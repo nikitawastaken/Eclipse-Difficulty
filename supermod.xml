@@ -1923,11 +1923,21 @@
 				<file :name="ene_murkywater_heavy_husk.unit" />
 			</group>
 	
-			<group :name="ene_murkywater_heavy_r870/">
-				<file :name="ene_murkywater_heavy_r870.unit" />
-				<file :name="ene_murkywater_heavy_r870_husk.unit" />
+			<group :name="ene_murkywater_heavy_shotgun/"> 
+				<file :name="ene_murkywater_heavy_shotgun.unit" />
+				<file :name="ene_murkywater_heavy_shotgun_husk.unit" />
 			</group>
 
+			<group :name="ene_murkywater_sniper/">
+				<file :name="ene_murkywater_sniper.unit" />
+				<file :name="ene_murkywater_sniper_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_shield/">
+				<file :name="ene_murkywater_shield.unit" />
+				<file :name="ene_murkywater_shield_husk.unit" />
+			</group>
+			
 			<group :name="ene_murkywater_light_fbi/">
 				<file :name="ene_murkywater_light_fbi.unit" />
 				<file :name="ene_murkywater_light_fbi_husk.unit" />
@@ -1943,6 +1953,16 @@
 				<file :name="ene_murkywater_light_fbi_mp5_husk.unit" />
 			</group>
 
+			<group :name="ene_murkywater_sniper_fbi/">
+				<file :name="ene_murkywater_sniper_fbi.unit" />
+				<file :name="ene_murkywater_sniper_fbi_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_shield_fbi/">
+				<file :name="ene_murkywater_shield_fbi.unit" />
+				<file :name="ene_murkywater_shield_fbi_husk.unit" />
+			</group>
+			
 			<group :name="ene_murkywater_light_city/">
 				<file :name="ene_murkywater_light_city.unit" />
 				<file :name="ene_murkywater_light_city_husk.unit" />
@@ -1957,7 +1977,17 @@
 				<file :name="ene_murkywater_light_city_mp5.unit" />
 				<file :name="ene_murkywater_light_city_mp5_husk.unit" />
 			</group>
-						
+
+			<group :name="ene_murkywater_sniper_city/">
+				<file :name="ene_murkywater_sniper_city.unit" />
+				<file :name="ene_murkywater_sniper_city_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_shield_city/">
+				<file :name="ene_murkywater_shield_city.unit" />
+				<file :name="ene_murkywater_shield_city_husk.unit" />
+			</group>
+			
 			<group :name="ene_murkywater_heavy_fbi/">
 				<xml  :name="ene_murkywater_heavy_fbi.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_heavy_fbi.cooked_physics" />

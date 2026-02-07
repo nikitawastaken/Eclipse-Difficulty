@@ -192,15 +192,14 @@
 	</constraints>
 	
 	<decal_surfaces default_material="flesh" >
-		<decal_mesh name="dm_helmet_swat" 							enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_fbi_swat" 						enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_fbi_swat_mandibles" 			enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_swat_heavy" 					enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_shield" 						enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_shield_glass" 					enabled="false" material="glass_no_decal" />
-		<decal_mesh name="dm_helmet_city_shield_glass" 				enabled="false" material="glass_no_decal" />
-		<decal_mesh name="dm_helmet_city_shield_mandibles" 			enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_visor" 								enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_helmet1" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet2" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet3" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_visor1" 								enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_visor2" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_visor3" 								enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_visor4" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_visor5" 								enabled="false" material="glass_no_decal" />
 	</decal_surfaces>
 
 	<graphics>
@@ -389,19 +388,7 @@
 					<material materials="mtr_swat_lod_2, mtr_equipment_lod_2" />
 				</object>
 			</lod_object>
-
-			<lod_object name="lod_gear_fbi_swat_d">
-				<object name="g_gear_fbi_swat_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_swat"max_distance="1000" />
-					<material materials="mtr_swat_lod_1"max_distance="1500" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-				<object name="g_gear_fbi_swat_d_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-			</lod_object>
-
+			
 			<!-- GENSEC ELITE SWAT GEAR OBJECTS -->
 			<lod_object name="lod_gear_city_swat_a">
 				<object name="g_gear_city_swat_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -527,12 +514,12 @@
 			</lod_object>
 
 			<lod_object name="lod_hat_swat_goggles">
-				<object name="g_hat_swat_lod7" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_hat_swat_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_hat_swat_lod8" 	enabled="false" lod="1" >
+				<object name="g_hat_swat_lod6" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
@@ -546,18 +533,6 @@
 					<material materials="mtr_equipment_lod_2" />
 				</object>
 				<object name="g_hat_city_swat_lod2" 	enabled="false" lod="1" >
-					<material materials="mtr_equipment" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_equipment_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_hat_city_swat_b">
-				<object name="g_hat_city_swat_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_equipment"max_distance="1000" />
-					<material materials="mtr_equipment_lod_1"max_distance="1500" />
-					<material materials="mtr_equipment_lod_2" />
-				</object>
-				<object name="g_hat_city_swat_lod4" 	enabled="false" lod="1" >
 					<material materials="mtr_equipment" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_equipment_lod_2" />
 				</object>
@@ -588,50 +563,25 @@
 				</object>
 			</lod_object>
 
-			<!-- HEAVY SWAT HELMET OBJECTS -->
-			<lod_object name="lod_helmet_swat_heavy">
-				<object name="g_helmet_swat_heavy_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_helmet_swat_hinges">
+				<object name="g_helmet_swat_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_swat_heavy_lod2" 	enabled="false" lod="1" >
+				<object name="g_helmet_swat_lod6" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_swat_heavy_visor">
-				<object name="g_helmet_swat_heavy_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_helmet_swat_riot">
+				<object name="g_helmet_swat_lod8" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_swat_heavy_lod4" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_helmet_swat_heavy_torch">
-				<object name="g_helmet_swat_heavy_lod6" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet"max_distance="1000" />
-					<material materials="mtr_helmet_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-				<object name="g_helmet_swat_heavy_lod7" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_helmet_swat_heavy_goggles">
-				<object name="g_helmet_swat_heavy_lod9" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet"max_distance="1000" />
-					<material materials="mtr_helmet_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-				<object name="g_helmet_swat_heavy_lod10" 	enabled="false" lod="1" >
+				<object name="g_helmet_swat_lod9" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
@@ -650,7 +600,7 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_fbi_swat_mandibles">
+			<lod_object name="lod_helmet_fbi_swat_nvg">
 				<object name="g_helmet_fbi_swat_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
@@ -661,7 +611,7 @@
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
-
+	
 			<lod_object name="lod_helmet_fbi_swat_torch">
 				<object name="g_helmet_fbi_swat_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
@@ -674,7 +624,7 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_fbi_swat_mandibles_b">
+			<lod_object name="lod_helmet_fbi_swat_goggles_a">
 				<object name="g_helmet_fbi_swat_lod7" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
@@ -686,104 +636,80 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_fbi_swat_nvg">
-				<object name="g_helmet_fbi_swat_lod9" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet"max_distance="1000" />
-					<material materials="mtr_helmet_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-				<object name="g_helmet_fbi_swat_lod10" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_helmet_fbi_swat_visor">
-				<object name="g_helmet_fbi_swat_lod11" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet"max_distance="1000" />
-					<material materials="mtr_helmet_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-				<object name="g_helmet_fbi_swat_lod12" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_helmet_fbi_swat_goggles_a">
-				<object name="g_helmet_fbi_swat_lod14" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet"max_distance="1000" />
-					<material materials="mtr_helmet_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-				<object name="g_helmet_fbi_swat_lod15" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_lod_2" />
-				</object>
-			</lod_object>
-
 			<lod_object name="lod_helmet_fbi_swat_goggles_b">
-				<object name="g_helmet_fbi_swat_lod17" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_helmet_fbi_swat_lod10" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_fbi_swat_lod18" 	enabled="false" lod="1" >
+				<object name="g_helmet_fbi_swat_lod11" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
 
 			<lod_object name="lod_helmet_fbi_swat_goggles_c">
-				<object name="g_helmet_fbi_swat_lod20" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_helmet_fbi_swat_lod13" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_fbi_swat_lod21" 	enabled="false" lod="1" >
+				<object name="g_helmet_fbi_swat_lod14" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_fbi_swat_goggles_d">
-				<object name="g_helmet_fbi_swat_lod23" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<!-- CITY SWAT HELMET OBJECTS -->
+			<lod_object name="lod_helmet_city_swat">
+				<object name="g_helmet_city_swat_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_fbi_swat_lod24" 	enabled="false" lod="1" >
+				<object name="g_helmet_city_swat_lod2" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_fbi_swat_goggles_e">
-				<object name="g_helmet_fbi_swat_lod26" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_helmet_city_swat_mandibles">
+				<object name="g_helmet_city_swat_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_helmet_fbi_swat_lod27" 	enabled="false" lod="1" >
+				<object name="g_helmet_city_swat_lod4" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
-			
-			<!-- SWAT ARM PATCH OBJECTS -->
-			<lod_object name="lod_patch_arm_swat">
-				<object name="g_patch_arm_swat" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_swat"max_distance="1000" />
-					<material materials="mtr_swat_lod_1"max_distance="1500" />
-					<material materials="mtr_swat_lod_2" />
+
+			<lod_object name="lod_helmet_city_swat_torch">
+				<object name="g_helmet_city_swat_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet"max_distance="1000" />
+					<material materials="mtr_helmet_lod_1"max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
 				</object>
-				<object name="g_patch_arm_swat_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_swat_lod_2" />
+				<object name="g_helmet_city_swat_lod6" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>
 
-			<!-- FBI SHIELD HELMET OBJECTS -->
+			<lod_object name="lod_helmet_city_swat_nvg">
+				<object name="g_helmet_city_swat_lod7" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet"max_distance="1000" />
+					<material materials="mtr_helmet_lod_1"max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+				<object name="g_helmet_city_swat_lod8" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+			</lod_object>
+
+			<!-- SHIELD HELMET OBJECTS -->
 			<lod_object name="lod_helmet_shield">
 				<object name="g_helmet_shield_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet_shield"max_distance="1000" />
@@ -796,7 +722,7 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_shield_visor_hinges">
+			<lod_object name="lod_helmet_shield_visor">
 				<object name="g_helmet_shield_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet_shield"max_distance="1000" />
 					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
@@ -808,21 +734,21 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_shield_visor">
-				<object name="g_helmet_shield_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet_shield"max_distance="1000" />
+			<lod_object name="lod_helmet_shield_torch">
+				<object name="g_helmet_shield_lod6" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet_shield" max_distance="1000" />
 					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
-				<object name="g_helmet_shield_lod6" 	enabled="false" lod="1" >
+				<object name="g_helmet_shield_lod7" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_shield_torch">
+			<lod_object name="lod_helmet_city_shield">
 				<object name="g_helmet_shield_lod8" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet_shield" max_distance="1000" />
+					<material materials="mtr_helmet_shield"max_distance="1000" />
 					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
@@ -830,88 +756,19 @@
 					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
-			</lod_object>
-
-			<lod_object name="lod_helmet_shield_mandibles">
-				<object name="g_helmet_shield_lod10" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_helmet_shield"max_distance="1000" />
-					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
-					<material materials="mtr_helmet_shield_lod_2" />
-				</object>
-				<object name="g_helmet_shield_lod11" 	enabled="false" lod="1" >
-					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_helmet_shield_lod_2" />
-				</object>
-			</lod_object>
-			
-			<!-- FBI SWAT ARM PATCH OBJECTS -->
-			<lod_object name="lod_patch_arm_fbi_swat">
-				<object name="g_patch_arm_fbi_swat" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_swat"max_distance="1000" />
-					<material materials="mtr_swat_lod_1"max_distance="1500" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-				<object name="g_patch_arm_fbi_swat_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
 			</lod_object>		
-
-			<!-- BODY PATCH OBJECTS -->
-			<lod_object name="lod_patch_body_a">
-				<object name="g_patch_body_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_swat"max_distance="1000" />
-					<material materials="mtr_swat_lod_1"max_distance="1500" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-				<object name="g_patch_body_a_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_patch_body_b">
-				<object name="g_patch_body_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_swat"max_distance="1000" />
-					<material materials="mtr_swat_lod_1"max_distance="1500" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-				<object name="g_patch_body_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_swat_lod_2" />
-				</object>
-			</lod_object>
 			
 			<!-- GLASS OBJECTS -->
-			<object name="g_goggles_glass_a" 				enabled="false" />	
-			
+			<object name="g_goggles_glass_a" 				enabled="false" />		
 			<object name="g_goggles_glass_b" 				enabled="false" />	
 
-			<object name="g_hat_swat_lod5" 					enabled="false" />	
-			
-			<object name="g_hat_swat_lod6" 					enabled="false" />	
-			
-			<object name="g_hat_swat_lod9" 					enabled="false" />	
-			
-			<object name="g_helmet_swat_heavy_lod5" 		enabled="false" />	
-			
-			<object name="g_helmet_swat_heavy_lod8" 		enabled="false" />	
-			
-			<object name="g_helmet_fbi_swat_lod13" 			enabled="false" />
+			<object name="g_hat_swat_lod7" 					enabled="false" />	
 
-			<object name="g_helmet_fbi_swat_lod13" 			enabled="false" />				
-			
-			<object name="g_helmet_fbi_swat_lod16" 			enabled="false" />				
-			
-			<object name="g_helmet_fbi_swat_lod19" 			enabled="false" />	
-			
-			<object name="g_helmet_fbi_swat_lod22" 			enabled="false" />	
-			
-			<object name="g_helmet_fbi_swat_lod25" 			enabled="false" />	
+			<object name="g_helmet_fbi_swat_lod9" 			enabled="false" />
+			<object name="g_helmet_fbi_swat_lod12" 			enabled="false" />				
 
-			<object name="g_helmet_shield_lod7" 			enabled="false" />	
-
-			<object name="g_helmet_shield_lod12" 			enabled="false" />	
+			<object name="g_helmet_shield_lod5" 			enabled="false" />	
+			<object name="g_helmet_shield_lod10" 			enabled="false" />	
 						
 			<object name="s_body" 	enabled="true" shadow_caster="true" />			
 		</graphic_group>
