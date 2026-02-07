@@ -103,10 +103,7 @@ return {
 	[100405] = disabled,
 	[102864] = {
 		loot_drop = {
-			{
-				name = "loot_drop",
-				position = Vector3(-300, -250, 0),
-			},
+			{ name = "player_spawn", position = Vector3(-300, -250, 0) },
 		},
 	},
 	-- Change amount of required bags

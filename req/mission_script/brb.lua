@@ -84,9 +84,6 @@ return {
 			},
 		},
 	},
-	-- Play megaphone cop voice lines
-	[100837] = mga_thermite_event,
-	[101114] = mga_vault_event,
 	-- Spawn group intervals
 	[400020] = cloaker_spawn,
 	[400021] = cloaker_spawn,

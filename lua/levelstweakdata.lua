@@ -207,6 +207,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.kenaz.group_ai_settings = {
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
+
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
@@ -866,4 +872,53 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
 		end
 	end
+
+	local ready_team_package = { "packages/ready_teams" }
+	self.watchdogs_1.custom_package = ready_team_package
+	self.watchdogs_1_night.custom_package = ready_team_package
+	self.watchdogs_2.custom_package = ready_team_package
+	self.watchdogs_2_day.custom_package = ready_team_package
+	self.firestarter_1.custom_package = ready_team_package
+	self.firestarter_2.custom_package = ready_team_package
+	self.firestarter_3.custom_package = ready_team_package
+	self.alex_3.custom_package = ready_team_package
+	self.hox_2.custom_package = ready_team_package
+	self.man.custom_package = ready_team_package
+
+	local female_bikers_package = { "packages/female_bikers" }
+	self.welcome_to_the_jungle_1.custom_package = female_bikers_package
+	self.welcome_to_the_jungle_1_night.custom_package = female_bikers_package
+	self.cane.custom_package = female_bikers_package
+	self.mex.custom_package = female_bikers_package
+
+	local us_army_package = { "packages/us_army" }
+	self.arm_for.custom_package = us_army_package
+	self.roberts.custom_package = us_army_package
+	self.crojob2.custom_package = us_army_package
+	self.crojob3.custom_package = us_army_package
+	self.jolly.custom_package = us_army_package
+	self.peta2.custom_package = us_army_package
+	self.trai.custom_package = us_army_package
+
+	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
+	self.dah.custom_package = gensec_tactical_security_package
+	self.arena.custom_package = gensec_tactical_security_package
+
+	local lapd_package = { "packages/lapd" }
+	self.kenaz.custom_package = lapd_package
+	self.pal.custom_package = lapd_package
+	self.friend.custom_package = lapd_package
+	table.insert(self.jolly.custom_package, "packages/lapd")
+
+	local coast_guard_package = { "packages/coast_guard" }
+	self.chca.custom_package = coast_guard_package
+	self.deep.custom_package = coast_guard_package
+
+	local texas_rangers_package = { "packages/texas_rangers" }
+	self.dinner.custom_package = texas_rangers_package
+	self.trai.custom_package = texas_rangers_package
+
+	local bellmead_security_package = { "packages/bellmead_security" }
+	self.ranc.custom_package = bellmead_security_package
+	self.corp.custom_package = bellmead_security_package
 end)

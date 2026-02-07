@@ -71,6 +71,9 @@ return {
 			{ 32, 33, 34 },
 			{ 83, 85, 90 },
 		},
+		flee_point = { -- Additional flee points
+			{ name = "back_spawns", position = Vector3(550, -8500, 26) },
+		},
 	},
 	-- Add new reinforce
 	[101169] = { -- FirstCar

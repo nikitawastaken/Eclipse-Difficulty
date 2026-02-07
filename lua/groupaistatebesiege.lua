@@ -482,8 +482,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	if tactics_map.deathguard and not phase_is_anticipation then
 		if current_objective.tactic == "deathguard" then
 			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
-			if u_data and u_data.status and u_data.status ~= "electrified" and current_objective.area.nav_segs[u_data.seg] then
+			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
 				return
+			else
+				objective_area = self:get_area_from_nav_seg_id(group_leader_u_data.tracker:nav_segment())
+				current_objective.moving_out = nil
+				current_objective.tactic = nil
 			end
 		end
 
@@ -515,7 +519,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					attitude = "engage",
 					pose = "stand",
 					tactic = "deathguard",
-					moving_in = true,
 					follow_unit = closest_crim_u_data.unit,
 					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 					coarse_path = coarse_path,
@@ -600,12 +603,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			open_fire = true,
 			tactic = current_objective.tactic,
 			area = objective_area,
-			coarse_path = {
-				{
-					objective_area.pos_nav_seg,
-					mvector3.copy(objective_area.pos),
-				},
-			},
+			coarse_path = self:_coarse_path_from_area(objective_area)
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
@@ -764,16 +762,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				type = "assault_area",
 				area = retreat_area,
 				open_fire = true,
-				coarse_path = {
-					{
-						retreat_area.pos_nav_seg,
-						mvector3.copy(retreat_area.pos),
-					},
-				},
+				coarse_path = self:_coarse_path_from_area(objective_area)
 			})
 		end
 	end
 end)
+
+-- Helper to create a basic coarse path
+function GroupAIStateBesiege:_coarse_path_from_area(area)
+	return {
+		{
+			area.pos_nav_seg,
+			mvector3.copy(area.pos)
+		}
+	}
+end
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_duration)
@@ -1100,12 +1103,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 		pose = "crouch",
 		type = "assault_area",
 		area = spawn_group.area,
-		coarse_path = {
-			{
-				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos,
-			},
-		},
+		coarse_path = self:_coarse_path_from_area(spawn_group.area),
 	}
 
 	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
@@ -1499,12 +1497,6 @@ function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	end
 end
 
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
-	if not group.said_retreat then
-		group.said_retreat = self:_chk_say_group(group, "retreat")
-	end
-end)
-
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
 Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function(self, unit, team_id)
@@ -1781,6 +1773,71 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
 		coarse_path = coarse_path,
+	})
+end)
+
+-- Tweak how flee points are chosen for group retirements
+Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(self, group)
+	local objective_area = group.objective.area
+	local to_search_areas = {
+		objective_area,
+	}
+	local found_areas = {
+		[objective_area] = true,
+	}
+	local group_access_mask = self._get_group_acces_mask(group)
+
+	local retire_area, retire_pos, retire_path
+	repeat
+		local search_area = table.remove(to_search_areas, 1)
+		local flee_point = search_area.flee_points and search_area.flee_points[table.random_key(search_area.flee_points)]
+		if flee_point then
+			local coarse_path = managers.navigation:search_coarse({
+				id = "GroupAI_retire",
+				from_seg = group.objective.area.pos_nav_seg,
+				to_seg = search_area.pos_nav_seg,
+				access_pos = group_access_mask,
+				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area }),
+			})
+
+			if coarse_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = coarse_path
+				break
+			elseif not retire_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = managers.navigation:search_coarse({
+					id = "GroupAI_retire",
+					from_seg = group.objective.area.pos_nav_seg,
+					to_seg = search_area.pos_nav_seg,
+					access_pos = group_access_mask,
+				})
+			end
+		end
+
+		for _, other_area in pairs(search_area.neighbours) do
+			if not found_areas[other_area] then
+				table.insert(to_search_areas, other_area)
+				found_areas[other_area] = true
+			end
+		end
+	until #to_search_areas == 0
+
+	if not retire_path then
+		return
+	end
+
+	self:_chk_say_group(group, "retreat")
+	self:_set_objective_to_enemy_group(group, {
+		type = "retire",
+		area = retire_area,
+		coarse_path = retire_path,
+		pos = retire_pos,
+		stance = "hos",
+		pose = "stand",
+		attitude = "avoid",
 	})
 end)
 

@@ -82,8 +82,8 @@ return {
 			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
-	-- Combine some navigation areas
 	[100017] = {
+		-- Combine some navigation areas
 		ai_area = {
 			{ 25, 26, 119 },
 			{ 27, 120, 121 },
@@ -91,6 +91,11 @@ return {
 			{ 38, 133 },
 			{ 41, 42, 50, 66 },
 			{ 43, 44, 51 },
+		},
+		-- Additional flee points
+		flee_point = {
+			{ name = "right_side", position = Vector3(3500, 2500, -1200) },
+			{ name = "left_side", position = Vector3(3800, -4450, -1050) },
 		},
 	},
 	-- Add new reinforce
@@ -103,7 +108,7 @@ return {
 			},
 		},
 	},
-	[102166] = { -- open gate (downstairs)
+	[104682] = { -- open gate (downstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -112,7 +117,7 @@ return {
 			},
 		},
 	},
-	[104371] = { -- open gate (upstairs)
+	[104684] = { -- open gate (upstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -136,6 +141,15 @@ return {
 				name = "breach",
 				force = 2,
 				position = Vector3(-175, -25, -600),
+			},
+		},
+	},
+	[105969] = { -- Vault opened
+		reinforce = {
+			{
+				name = "vault",
+				force = 2,
+				position = Vector3(-3150, 325, -1000),
 			},
 		},
 	},
@@ -174,6 +188,15 @@ return {
 	},
 	-- Disable Titan Cams
 	[106265] = disabled,
+	-- Disable vanilla reinforce points
+	[101978] = disabled,
+	[102207] = disabled,
+	[102436] = disabled,
+	[102439] = disabled,
+	[104114] = disabled,
+	[104146] = disabled,
+	[104153] = disabled,
+	[104169] = disabled,
 	-- Add new elevator spawngroup
 	[103316] = {
 		on_executed = {
@@ -231,9 +254,6 @@ return {
 			end
 		end,
 	},
-	-- Play megaphone cop voice lines
-	[105842] = mga_thermite_event,
-	[105792] = mga_vault_event,
 	-- Spawn Group delays
 	[105434] = elevator_spawn,
 	[105450] = elevator_spawn,

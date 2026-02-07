@@ -6,7 +6,7 @@
 	"priority" : 900,
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "6.0dev82",
+	"version" : "6.0dev83",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty_dev",
 		"host" : { "meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/dev/meta.json" }

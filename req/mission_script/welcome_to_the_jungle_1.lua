@@ -24,6 +24,31 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Add new reinforce
+	[103714] = { -- preferred 1
+		reinforce = {
+			{
+				name = "mioyes",
+				force = 3,
+				position = Vector3(6550, -3550, 0),
+			},
+			{
+				name = "edge",
+				force = 2,
+				position = Vector3(4500, -6350, 0),
+			},
+			{
+				name = "grit",
+				force = 2,
+				position = Vector3(1250, -5825, 25),
+			},
+			{
+				name = "rush",
+				force = 2,
+				position = Vector3(900, -3400, 55),
+			},
+		},
+	},
 	-- Disable Titan cams
 	[101301] = disabled,
 	-- Disable reinforce

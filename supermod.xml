@@ -99,8 +99,6 @@
 				<post :hook_id="handlers/unitnetworkhandler"/>
 			</group>
 
-			<post :hook_id="setups/gamesetup"/>
-
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
@@ -379,6 +377,7 @@
 			<file :name="classics/dinner/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>
+			<file :name="bain/big/nav_manager_data.nav_data"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>
 			<file :name="classics/run/nav_manager_data.nav_data"/>
 			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
@@ -1325,12 +1324,72 @@
 		</group>
 
 		<group name="units/pd2_dlc_army/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="soldier_heads_atlas_var1_df.texture" />
+				<file :name="soldier_heads_atlas_var1_nm.texture" />
+				<file :name="soldier_heads_atlas_var2_df.texture" />
+				<file :name="soldier_heads_atlas_var2_nm.texture" />
+				<file :name="soldier_body_df.texture" />
+				<file :name="soldier_body_nm.texture" />
+				<file :name="soldier_head_df.texture" />
+				<file :name="soldier_head_nm.texture" />
+			</group>
+			
 			<group :name="ene_acc_soldier_head/">
 				<xml  :name="ene_acc_soldier_head.sequence_manager" />
+				<file :name="ene_acc_soldier_head.cooked_physics" />
+				<file :name="ene_acc_soldier_head.model" />
+				<file :name="ene_acc_soldier_head.object" />
+				<file :name="ene_acc_soldier_head.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_acc_soldier_head_var1.material_config" />
+					<file :name="ene_acc_soldier_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_soldier_head_var2.material_config" />
+					<file :name="ene_acc_soldier_head_var1_contour.material_config" />
+				</group>
 			</group>
 
+			<group :name="ene_acc_soldier_helmet/">
+				<file :name="ene_acc_soldier_helmet.cooked_physics" />
+				<file :name="ene_acc_soldier_helmet.material_config" />
+				<file :name="ene_acc_soldier_helmet.model" />
+				<file :name="ene_acc_soldier_helmet.object" />
+				<file :name="ene_acc_soldier_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_soldier_cap/">
+				<file :name="ene_acc_soldier_cap.cooked_physics" />
+				<file :name="ene_acc_soldier_cap.model" />
+				<file :name="ene_acc_soldier_cap.object" />
+				<file :name="ene_acc_soldier_cap.unit" />
+			</group>
+			
 			<group :name="ene_soldier_1/">
-				<xml  :name="ene_soldier_1.sequence_manager" />
+				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_soldier_1.cooked_physics" />
+				<file :name="ene_soldier_1.material_config" />
+				<file :name="ene_soldier_1_contour.material_config" />
+				<file :name="ene_soldier_1.model" />
+				<file :name="ene_soldier_1.object" />
+				<file :name="ene_soldier_1.unit" />
+				<file :name="ene_soldier_1_husk.unit" />
+			</group>
+
+			<group :name="ene_soldier_2/">
+				<file :name="ene_soldier_2.unit" />
+				<file :name="ene_soldier_2_husk.unit" />
+			</group>
+
+			<group :name="ene_soldier_3/">
+				<file :name="ene_soldier_3.unit" />
+				<file :name="ene_soldier_3_husk.unit" />
+			</group>
+
+			<group :name="ene_soldier_4/">
+				<file :name="ene_soldier_4.unit" />
+				<file :name="ene_soldier_4_husk.unit" />
 			</group>
 		</group>
 
@@ -2522,8 +2581,42 @@
 		</group>
 
 		<group name="units/pd2_dlc_chca/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="coast_guard_df.texture" />
+				<file :name="coast_guard_nm.texture" />
+			</group>
+
+			<group :name="ene_acc_coast_guard_cap/">
+				<file :name="ene_acc_coast_guard_cap.cooked_physics" />
+				<file :name="ene_acc_coast_guard_cap.material_config" />
+				<file :name="ene_acc_coast_guard_cap.model" />
+				<file :name="ene_acc_coast_guard_cap.object" />
+				<file :name="ene_acc_coast_guard_cap.unit" />
+			</group>
+
 			<group :name="ene_coast_guard_1/">
-				<xml  :name="ene_coast_guard_1.sequence_manager" />
+				<xml  :name="ene_coast_guard_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_coast_guard_1.material_config" />
+				<file :name="ene_coast_guard_1_contour.material_config" />
+				<file :name="ene_coast_guard_1.model" />
+				<file :name="ene_coast_guard_1.object" />
+				<file :name="ene_coast_guard_1.unit" />
+				<file :name="ene_coast_guard_1_husk.unit" />
+			</group>
+
+			<group :name="ene_coast_guard_2/">
+				<file :name="ene_coast_guard_2.unit" />
+				<file :name="ene_coast_guard_2_husk.unit" />
+			</group>
+
+			<group :name="ene_coast_guard_3/">
+				<file :name="ene_coast_guard_3.unit" />
+				<file :name="ene_coast_guard_3_husk.unit" />
+			</group>
+
+			<group :name="ene_coast_guard_4/">
+				<file :name="ene_coast_guard_4.unit" />
+				<file :name="ene_coast_guard_4_husk.unit" />
 			</group>
 
 			<group :name="ene_security_cruise_1/">

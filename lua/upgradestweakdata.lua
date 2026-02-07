@@ -31,6 +31,23 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
+
+	-- Maniac stuff deck14
+	self.max_cocaine_stacks_per_tick = 80
+	self.max_total_cocaine_stacks = 300
+	self.cocaine_stacks_tick_t = 0.35
+
+	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+	local cocainum_stacks = get_difficulty_specific_value({ 2.5, 2.3, 2, 1.925, 1.885 })
+
+	self.cocaine_stacks_decay_t = cocainum_stacks
+	self.cocaine_stacks_decay_percentage_per_tick = 0.075
+	self.cocaine_stacks_decay_amount_per_tick = 30
+	self.cocaine_stacks_dmg_absorption_value = 0.1
+	self.cocaine_stacks_convert_levels = { 30, 25 }
+
+	self.values.player.cocaine_stacks_decay_multiplier = { 0.5 }
+	self.values.player.cocaine_stack_absorption_multiplier = { 1.5 }
 end
 
 local old_init = UpgradesTweakData.init
@@ -1959,6 +1976,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
+	self.values.player.damage_to_hot[2] = 0.3
 	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
 	self.definitions.player_extra_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",

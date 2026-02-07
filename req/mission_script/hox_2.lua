@@ -240,7 +240,7 @@ return {
 		reinforce = {
 			{
 				name = "atrium_lower",
-				force = 4,
+				force = 3,
 				position = Vector3(-200, 4200, -500),
 			},
 			{
@@ -265,7 +265,7 @@ return {
 		},
 	},
 	-- Add reinforce around the operations room
-	[101839] = { -- entrance_001
+	[101843] = { -- ent_001
 		reinforce = {
 			{
 				name = "entrance01",
@@ -274,7 +274,7 @@ return {
 			},
 		},
 	},
-	[101840] = { -- entrance_002
+	[101844] = { -- ent_002
 		reinforce = {
 			{
 				name = "entrance02",
@@ -283,7 +283,7 @@ return {
 			},
 		},
 	},
-	[101841] = { -- entrance_003
+	[101845] = { -- ent_003
 		reinforce = {
 			{
 				name = "entrance03",
@@ -292,7 +292,7 @@ return {
 			},
 		},
 	},
-	[101842] = { -- entrance_004
+	[101846] = { -- ent_004
 		reinforce = {
 			{
 				name = "entrance04",

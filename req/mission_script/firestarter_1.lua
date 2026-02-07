@@ -4,6 +4,11 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local heavy = scripted_enemy.heavy_swat_2
 local bulldozer = scripted_enemy.bulldozer_1
 local shield = scripted_enemy.shield
+local hangar_reinforce_amount = {
+	values = {
+		amount = 3,
+	},
+}
 local gangster_outside_amount = {
 	values = {
 		amount = 3,
@@ -46,11 +51,15 @@ local heli_enemy4 = {
 		participate_to_group_ai = false,
 	},
 }
-local pro_chance_mul = is_pro_job and 1.5 or 1
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
 return {
+	-- increase reinforce outside hangars
+	[101355] = hangar_reinforce_amount,
+	[101352] = hangar_reinforce_amount,
+	[101347] = hangar_reinforce_amount,
+	[101349] = hangar_reinforce_amount,
 	-- adjust FBI chopper ambush
 	[103432] = {
 		on_executed = {

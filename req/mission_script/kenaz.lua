@@ -50,18 +50,15 @@ return {
 	[100405] = disabled,
 	[101907] = { -- start enemies delay end
 		on_executed = {
-			{ id = 100230, delay = 30 }, -- wall spawns
+			{ id = 100230, delay = 45 }, -- wall spawns
 		},
 	},
 	[100224] = { -- Combat ON
 		on_executed = {
-			{ id = 101024, delay = 30 }, -- elevators
+			{ id = 101024, delay = 45 }, -- elevators
 		},
 		loot_drop = {
-			{
-				name = "loot_drop",
-				position = Vector3(-4345, -4895, 15),
-			},
+			{ name = "pool_area", position = Vector3(-4345, -4895, 15) },
 		},
 	},
 	-- New reinforce points
