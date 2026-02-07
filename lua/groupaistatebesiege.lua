@@ -482,8 +482,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	if tactics_map.deathguard and not phase_is_anticipation then
 		if current_objective.tactic == "deathguard" then
 			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
-			if u_data and u_data.status and u_data.status ~= "electrified" and current_objective.area.nav_segs[u_data.seg] then
+			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
 				return
+			else
+				objective_area = self:get_area_from_nav_seg_id(group_leader_u_data.tracker:nav_segment())
+				current_objective.moving_out = nil
+				current_objective.tactic = nil
 			end
 		end
 
@@ -515,7 +519,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					attitude = "engage",
 					pose = "stand",
 					tactic = "deathguard",
-					moving_in = true,
 					follow_unit = closest_crim_u_data.unit,
 					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 					coarse_path = coarse_path,
@@ -600,12 +603,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			open_fire = true,
 			tactic = current_objective.tactic,
 			area = objective_area,
-			coarse_path = {
-				{
-					objective_area.pos_nav_seg,
-					mvector3.copy(objective_area.pos),
-				},
-			},
+			coarse_path = self:_coarse_path_from_area(objective_area)
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
@@ -764,16 +762,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				type = "assault_area",
 				area = retreat_area,
 				open_fire = true,
-				coarse_path = {
-					{
-						retreat_area.pos_nav_seg,
-						mvector3.copy(retreat_area.pos),
-					},
-				},
+				coarse_path = self:_coarse_path_from_area(objective_area)
 			})
 		end
 	end
 end)
+
+-- Helper to create a basic coarse path
+function GroupAIStateBesiege:_coarse_path_from_area(area)
+	return {
+		{
+			area.pos_nav_seg,
+			mvector3.copy(area.pos)
+		}
+	}
+end
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_duration)
@@ -1100,12 +1103,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 		pose = "crouch",
 		type = "assault_area",
 		area = spawn_group.area,
-		coarse_path = {
-			{
-				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos,
-			},
-		},
+		coarse_path = self:_coarse_path_from_area(spawn_group.area),
 	}
 
 	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
