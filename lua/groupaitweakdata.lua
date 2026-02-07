@@ -532,7 +532,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			america = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
 			russia = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
 			zombie = { Idstring("units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3") },
-			murkywater = { IIdstring("units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5") },
+			murkywater = { Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5") },
 			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5") },
 		},
 		access = access_type_all,
