@@ -101,6 +101,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper", bph_needed, false) -- Not loaded on the White House. Why? Don't ask.
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_sniper_fbi/ene_murkywater_sniper_fbi", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_shield_fbi/ene_murkywater_shield_fbi", bph_needed, false)
