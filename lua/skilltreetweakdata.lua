@@ -357,21 +357,21 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_booster.name_id = "menu_kleptomaniac"
 	self.skills.ecm_booster.desc_id = "menu_kleptomaniac_desc"
 
-	-- Chameleon
-	self.skills.jail_workout[1].upgrades = {}
-	self.skills.jail_workout[2].upgrades = {}
-	self.skills.jail_workout.icon_xy = { 0, 0 }
-	self.skills.jail_workout.name_id = "menu_work_in_progress_beta"
-	self.skills.jail_workout.desc_id = "menu_work_in_progress_beta_desc"
+	-- Sixth Sense
+	self.skills.jail_workout[1].upgrades = { "player_standstill_omniscience" }
+	self.skills.jail_workout[2].upgrades = { "player_standstill_omniscience_2" }
+	self.skills.jail_workout.icon_xy = { 8, 0 }
+	self.skills.jail_workout.name_id = "menu_sixth_sense"
+	self.skills.jail_workout.desc_id = "menu_sixth_sense_desc"
 
-	-- ECM Specialist
-	self.skills.ecm_2x[1].upgrades = {}
-	self.skills.ecm_2x[2].upgrades = {}
-	self.skills.ecm_2x.icon_xy = { 0, 0 }
-	self.skills.ecm_2x.name_id = "menu_work_in_progress_beta"
-	self.skills.ecm_2x.desc_id = "menu_work_in_progress_beta_desc"
+	-- ECM Blackout
+	self.skills.ecm_2x[1].upgrades = { "ecm_jammer_quantity_increase_1" }
+	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_affects_police_comms" }
+	self.skills.ecm_2x.icon_xy = { 8, 0 }
+	self.skills.ecm_2x.name_id = "menu_ecm_blackout"
+	self.skills.ecm_2x.desc_id = "menu_ecm_blackout_desc"
 
-	-- Blackout
+	-- Background Threat
 	self.skills.chameleon[1].upgrades = {}
 	self.skills.chameleon[2].upgrades = {}
 	self.skills.chameleon.icon_xy = { 0, 0 }

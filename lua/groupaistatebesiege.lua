@@ -164,6 +164,11 @@ function GroupAIStateBesiege:besiege_assault_phase()
 	return task_data and task_data.phase
 end
 
+function GroupAIStateBesiege:_active_ecm_police_comms_jamm()
+	local is_active = self:is_ecm_jammer_active("police_comms")
+	return is_active, 1 / tweak_data.upgrades.ecm_jammer_comms_jamming_multiplier
+end
+
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)
@@ -482,8 +487,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	if tactics_map.deathguard and not phase_is_anticipation then
 		if current_objective.tactic == "deathguard" then
 			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
-			if u_data and u_data.status and u_data.status ~= "electrified" and current_objective.area.nav_segs[u_data.seg] then
+			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
 				return
+			else
+				objective_area = self:get_area_from_nav_seg_id(group_leader_u_data.tracker:nav_segment())
+				current_objective.moving_out = nil
+				current_objective.tactic = nil
 			end
 		end
 
@@ -515,7 +524,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					attitude = "engage",
 					pose = "stand",
 					tactic = "deathguard",
-					moving_in = true,
 					follow_unit = closest_crim_u_data.unit,
 					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 					coarse_path = coarse_path,
@@ -600,12 +608,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			open_fire = true,
 			tactic = current_objective.tactic,
 			area = objective_area,
-			coarse_path = {
-				{
-					objective_area.pos_nav_seg,
-					mvector3.copy(objective_area.pos),
-				},
-			},
+			coarse_path = self:_coarse_path_from_area(objective_area),
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
@@ -658,9 +661,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		if assault_area and assault_path then
 			local push = assault_from == objective_area
+			local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 
 			if push then
-				if tactics_map.no_push then
+				-- disable enemy pushes if police comms are jammed with an ECM
+				if tactics_map.no_push or are_police_comms_ecm_jammed then
 					return
 				end
 
@@ -764,16 +769,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				type = "assault_area",
 				area = retreat_area,
 				open_fire = true,
-				coarse_path = {
-					{
-						retreat_area.pos_nav_seg,
-						mvector3.copy(retreat_area.pos),
-					},
-				},
+				coarse_path = self:_coarse_path_from_area(objective_area),
 			})
 		end
 	end
 end)
+
+-- Helper to create a basic coarse path
+function GroupAIStateBesiege:_coarse_path_from_area(area)
+	return {
+		{
+			area.pos_nav_seg,
+			mvector3.copy(area.pos),
+		},
+	}
+end
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_duration)
@@ -1100,12 +1110,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 		pose = "crouch",
 		type = "assault_area",
 		area = spawn_group.area,
-		coarse_path = {
-			{
-				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos,
-			},
-		},
+		coarse_path = self:_coarse_path_from_area(spawn_group.area),
 	}
 
 	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
@@ -1128,8 +1133,10 @@ function GroupAIStateBesiege:_upd_group_spawning()
 end
 
 function GroupAIStateBesiege:spawn_rate(use_balance_mul)
+	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate)
 		* (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
+		* (are_police_comms_ecm_jammed and jammed_police_comms_mul or 1)
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
@@ -1597,10 +1604,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		-- disable enemy pushes if police comms are jammed with an ECM
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
@@ -1738,10 +1747,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false

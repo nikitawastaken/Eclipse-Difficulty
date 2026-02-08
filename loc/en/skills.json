@@ -111,6 +111,10 @@
 	"menu_logistician_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now lockpick safes.",
 	"menu_kleptomaniac": "Kleptomaniac",
 	"menu_kleptomaniac_desc": "BASIC: ##$basic##\nYou can pick up items while in casing mode.\n\nACE: ##$pro##\nWork in Progress.",
+	"menu_sixth_sense": "Sixth Sense",
+	"menu_sixth_sense_desc": "BASIC: ##$basic##\nYou can automatically mark guards and civilians ##one by one## within a ##$multibasic## meter radius after not moving or attacking for ##$multibasic2## seconds.\n\nThis ability only works in stealth.\n\nACE: ##$pro##\nYou can automatically mark ##all## enemies and civilians ##at once## within a ##$multipro## meter radius after not moving or attacking for ##$multipro2## seconds.\n\nThis ability now works in loud as well.",
+	"menu_ecm_blackout": "ECM Blackout",
+	"menu_ecm_blackout_desc": "BASIC: ##$basic##\nYou can now place ##$multibasic## ECM Jammers instead of just two.\n\nACE: ##$pro##\nWhen activated, your ECM Jammers will generate disruptions in ongoing enemy communications.\n\nCommunication disruptions cause enemies to refrain from pushing and slow down the speed at which new squads arrive on the scene by ##$multipro##.",
 	"menu_sprinter": "Athlete",
 	"menu_sprinter_desc": "BASIC: ##$basic##\nThe time before stamina regeneration starts is reduced by ##$multibasic## and the regeneration rate of stamina is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour total movement speed is increased by ##$multipro##.",
 	"menu_awareness": "Duck and Cover",
@@ -130,7 +134,6 @@
 	"menu_spotter_teamwork_beta_desc": "BASIC: ##$basic##\nEnemies you mark take ##$multibasic## more damage when farther away than ##$multibasic2## meters.\n\nACE: ##$pro##\nEnemies you mark take ##$multipro## more damage at all ranges.\n\nThe marked state duration is increased by ##$multipro2##.\n\nNote: This effect is applied separately from the Basic version.",
 	"menu_cleaner_beta": "Eagle Eye",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage against special enemies.\n\nACE: ##$pro##\nYou can now mark specials by aiming down at them with any weapon.\n\nThe range at which you can manually mark enemies is ##$multipro## times longer.",
-	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last for ##$multipro## seconds.",
 	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## critical hit chance.\n\nCritical hits now deal an additional ##$multipro2## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 
 
