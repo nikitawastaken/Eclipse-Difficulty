@@ -164,6 +164,11 @@ function GroupAIStateBesiege:besiege_assault_phase()
 	return task_data and task_data.phase
 end
 
+function GroupAIStateBesiege:_active_ecm_police_comms_jamm()
+	local is_active = self:is_ecm_jammer_active("police_comms")
+	return is_active, 1 / tweak_data.upgrades.ecm_jammer_comms_jamming_multiplier
+end
+
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)
@@ -656,9 +661,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		if assault_area and assault_path then
 			local push = assault_from == objective_area
+			local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 
 			if push then
-				if tactics_map.no_push then
+				-- disable enemy pushes if police comms are jammed with an ECM
+				if tactics_map.no_push or are_police_comms_ecm_jammed then
 					return
 				end
 
@@ -1126,8 +1133,10 @@ function GroupAIStateBesiege:_upd_group_spawning()
 end
 
 function GroupAIStateBesiege:spawn_rate(use_balance_mul)
+	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate)
 		* (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
+		* (are_police_comms_ecm_jammed and jammed_police_comms_mul or 1)
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
@@ -1595,10 +1604,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		-- disable enemy pushes if police comms are jammed with an ECM
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
@@ -1736,10 +1747,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
