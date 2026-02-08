@@ -2423,6 +2423,5 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.saw.enemy_slicer[1] = 2
-	-- make sure the pocket ECM doesn't receive the comms jamming ability cause that'd be too strong
 	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end
