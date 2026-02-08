@@ -1046,19 +1046,55 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-	-- Chameleon
-	self.values.player.suspicion_multiplier[1] = 0.65
-	self.skill_descs.jail_workout.multibasic = "35%"
-	self.skill_descs.jail_workout.multipro = "5"
+	-- Sixth Sense
+	self.values.player.standstill_omniscience = {
+		{
+			outside_of_whisper_mode = false,
+			all_at_once = false,
+			start_t = 3,
+			interval_t = 3,
+			sense_radius = 1000,
+			target_resense_t = 15,
+		},
+		{
+			outside_of_whisper_mode = true,
+			all_at_once = true,
+			start_t = 3,
+			interval_t = 3,
+			sense_radius = 1200,
+			target_resense_t = 0,
+		},
+	}
+	self.definitions.player_standstill_omniscience_2 = {
+		name_id = "menu_player_standstill_omniscience_2",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "standstill_omniscience",
+			category = "player",
+		},
+	}
+	self.skill_descs.jail_workout.multibasic = "10"
+	self.skill_descs.jail_workout.multibasic2 = "3"
+	self.skill_descs.jail_workout.multipro = "12"
+	self.skill_descs.jail_workout.multipro2 = "3"
 
-	-- ECM Specialist
-	self.values.ecm_jammer.feedback_duration_boost = {
-		1.5,
+	-- ECM Blackout
+	self.values.ecm_jammer.quantity[1] = 2
+	self.ecm_jammer_comms_jamming_multiplier = 0.2
+	self.values.ecm_jammer.affects_police_comms = { true }
+	self.definitions.ecm_jammer_affects_police_comms = {
+		name_id = "menu_ecm_jammer_affects_police_comms",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "affects_police_comms",
+			synced = true,
+			category = "ecm_jammer",
+		},
 	}
-	self.values.ecm_jammer.feedback_duration_boost_2 = {
-		1.5,
-	}
-	self.skill_descs.ecm_2x.multipro = "30"
+	self.skill_descs.ecm_2x.multibasic = "4"
+	self.skill_descs.ecm_2x.multipro = "80%"
 
 	-- Sixth Sense
 	self.skill_descs.chameleon.multibasic = "10"
@@ -2387,4 +2423,5 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.saw.enemy_slicer[1] = 2
+	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end

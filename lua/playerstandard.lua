@@ -573,9 +573,6 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 	return new_action
 end
 
--- No more sixth sense
-Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", function(self, ...) end)
-
 -- Don't update sixth sense anymore and add sprint reload upgrade to shotguns
 Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	PlayerMovementState.update(self, t, dt)
@@ -593,6 +590,10 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	managers.hud:_update_crosshair_offset(t, dt)
 	self:_upd_stance_switch_delay(t, dt)
 
+	if managers.player:has_category_upgrade("player", "standstill_omniscience") then
+		self:_update_standstill_omniscience(t, dt)
+	end
+
 	if managers.player:has_category_upgrade("snp", "charged_shot") then
 		self:_update_sniper_shot_charge(t, dt)
 	end
@@ -604,6 +605,54 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload")
 		or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
+
+-- Sixth Sense overhaul: less harsh conditions for activation, ACED variant makes it work in loud and marks all enemies at once
+function PlayerStandard:_update_standstill_omniscience(t, dt)
+	local skill_data = managers.player:upgrade_value("player", "standstill_omniscience") or nil
+
+	local action_forbidden = managers.player:current_state() == "civilian"
+		or self:_interacting()
+		or self:is_deploying()
+		or self:_is_throwing_projectile()
+		or self:_is_meleeing()
+		or self:_on_zipline()
+		or self._moving
+		or self:running()
+		or self:in_air()
+		or self:shooting()
+
+	if not skill_data or not skill_data.outside_of_whisper_mode and not managers.groupai:state():whisper_mode() or action_forbidden then
+		if self._state_data.omniscience_t then
+			self._state_data.omniscience_t = nil
+		end
+
+		return
+	end
+
+	self._state_data.omniscience_t = self._state_data.omniscience_t or t + skill_data.start_t
+
+	if self._state_data.omniscience_t <= t then
+		local sensed_targets = World:find_units_quick("sphere", self._unit:movement():m_pos(), skill_data.sense_radius, managers.slot:get_mask("trip_mine_targets"))
+
+		for _, unit in ipairs(sensed_targets) do
+			if alive(unit) and not unit:base():char_tweak().is_escort then
+				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
+
+				if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
+					self._state_data.omniscience_units_detected[unit:key()] = t + skill_data.target_resense_t
+
+					managers.game_play_central:auto_highlight_enemy(unit, true)
+
+					if not skill_data.all_at_once then
+						break
+					end
+				end
+			end
+		end
+
+		self._state_data.omniscience_t = t + skill_data.interval_t
+	end
+end
 
 -- Standstill damage multiplier upgrade
 function PlayerStandard:_update_standstill_resistance(t, dt)
