@@ -1054,7 +1054,7 @@ function UpgradesTweakData:init(tweak_data)
 			start_t = 3,
 			interval_t = 3,
 			sense_radius = 1000,
-			target_resense_t = 15
+			target_resense_t = 15,
 		},
 		{
 			outside_of_whisper_mode = true,
@@ -1062,7 +1062,7 @@ function UpgradesTweakData:init(tweak_data)
 			start_t = 3,
 			interval_t = 3,
 			sense_radius = 1200,
-			target_resense_t = 0
+			target_resense_t = 0,
 		},
 	}
 	self.definitions.player_standstill_omniscience_2 = {
@@ -1071,8 +1071,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "standstill_omniscience",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.skill_descs.jail_workout.multibasic = "10"
 	self.skill_descs.jail_workout.multibasic2 = "3"
@@ -1090,8 +1090,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "affects_police_comms",
 			synced = true,
-			category = "ecm_jammer"
-		}
+			category = "ecm_jammer",
+		},
 	}
 	self.skill_descs.ecm_2x.multibasic = "4"
 	self.skill_descs.ecm_2x.multipro = "80%"

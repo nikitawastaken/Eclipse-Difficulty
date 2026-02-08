@@ -610,7 +610,16 @@ end)
 function PlayerStandard:_update_standstill_omniscience(t, dt)
 	local skill_data = managers.player:upgrade_value("player", "standstill_omniscience") or nil
 
-	local action_forbidden = managers.player:current_state() == "civilian" or self:_interacting() or self:is_deploying() or self:_is_throwing_projectile() or self:_is_meleeing() or self:_on_zipline() or self._moving or self:running() or self:in_air() or self:shooting()
+	local action_forbidden = managers.player:current_state() == "civilian"
+		or self:_interacting()
+		or self:is_deploying()
+		or self:_is_throwing_projectile()
+		or self:_is_meleeing()
+		or self:_on_zipline()
+		or self._moving
+		or self:running()
+		or self:in_air()
+		or self:shooting()
 
 	if not skill_data or not skill_data.outside_of_whisper_mode and not managers.groupai:state():whisper_mode() or action_forbidden then
 		if self._state_data.omniscience_t then

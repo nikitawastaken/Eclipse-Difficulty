@@ -26,7 +26,7 @@ function ECMJammerBase:set_active(active)
 				call = true,
 				camera = jam_cameras,
 				pager = jam_pagers,
-				police_comms = jam_police_comms
+				police_comms = jam_police_comms,
 			})
 
 			self:_send_net_event(self._NET_EVENTS.jammer_active)
