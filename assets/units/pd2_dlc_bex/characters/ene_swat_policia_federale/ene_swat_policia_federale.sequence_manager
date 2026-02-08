@@ -380,7 +380,7 @@
 			<object 			enabled="true" name="'g_gear_fbi_swat_d_lod1'" />
 
 			<run_sequence 		name="'fbi_swat'" />
-			<run_sequence 		name="'random_body_b'" />
+			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'armor_crotch'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />

@@ -127,7 +127,6 @@
 		
 			<run_sequence		name="'fbi_heavy'" />
 			<run_sequence		name="'armor'" />
-			<run_sequence 		name="'headset_base'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'city_heavy_1'" once="true" triggable="true">
