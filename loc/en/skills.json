@@ -114,7 +114,7 @@
 	"menu_sixth_sense": "Sixth Sense",
 	"menu_sixth_sense_desc": "BASIC: ##$basic##\nYou can automatically mark guards and civilians ##one by one## within a ##$multibasic## meter radius after not moving or attacking for ##$multibasic2## seconds.\n\nThis ability only works in stealth.\n\nACE: ##$pro##\nYou can automatically mark ##all## enemies and civilians ##at once## within a ##$multipro## meter radius after not moving or attacking for ##$multipro2## seconds.\n\nThis ability now works in loud as well.",
 	"menu_ecm_blackout": "ECM Blackout",
-	"menu_ecm_blackout_desc": "BASIC: ##$basic##\nYou can now place ##$multibasic## ECM Jammers instead of just two.\n\nACE: ##$pro##\nWhen activated, your ECM Jammers will generate disruptions in ongoing enemy communications.\n\nCommunication disruptions cause enemies to refrain from pushing and slow down the speed at which new squads arrive on the scene by ##$multipro##.",
+	"menu_ecm_blackout_desc": "BASIC: ##$basic##\nYou can now place ##$multibasic## ECM Jammers instead of just two.\n\nACE: ##$pro##\nWhen activated in loud, your ECM Jammers will generate disruptions in ongoing enemy communications.\n\nCommunication disruptions cause enemies to refrain from pushing and slow down the speed at which new squads arrive on the scene by ##$multipro##.",
 	"menu_sprinter": "Athlete",
 	"menu_sprinter_desc": "BASIC: ##$basic##\nThe time before stamina regeneration starts is reduced by ##$multibasic## and the regeneration rate of stamina is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour total movement speed is increased by ##$multipro##.",
 	"menu_awareness": "Duck and Cover",
