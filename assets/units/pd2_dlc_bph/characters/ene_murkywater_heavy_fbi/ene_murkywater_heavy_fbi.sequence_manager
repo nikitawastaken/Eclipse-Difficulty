@@ -47,28 +47,24 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'break_visor_a'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_helmet_lod9'" />
-			<object 			enabled="false" name="'g_helmet_lod14'" />
-			<object 			enabled="false" name="'g_helmet_lod17'" />
+			<object 			enabled="false" name="'g_helmet_lod5'" />
+			<object 			enabled="false" name="'g_helmet_lod12'" />
 
-			<decal_mesh 		enabled="false" name="'dm_visor_glass1'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
 			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
-			<decal_mesh 		enabled="false" name="'dm_visor_glass3'"/>
-			
+			<decal_mesh 		enabled="false" name="'dm_visor4'"/>
+		
 			<effect 			damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'break_visor_b'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_helmet_lod12'" />
-			<object 			enabled="false" name="'g_helmet_lod13'" />
-			<object 			enabled="false" name="'g_helmet_lod14'" />
-			
-			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
-			<decal_mesh 		enabled="false" name="'dm_visor_glass2'"/>
-			<decal_mesh 		enabled="false" name="'dm_visor3'"/>
-			
+			<object 			enabled="false" name="'g_helmet_lod6'" />
+			<object 			enabled="false" name="'g_helmet_lod7'" />
+
+			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
+	
 			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
@@ -126,11 +122,9 @@
 			<object 			enabled="true" name="'g_helmet_lod7'" />
 			<object 			enabled="true" name="'g_helmet_lod8'" />
 			<object 			enabled="true" name="'g_helmet_lod9'" />
-			<object 			enabled="true" name="'g_helmet_lod10'" />
 			
 			<decal_mesh 		enabled="true" name="'dm_visor1'" />
-			<decal_mesh 		enabled="true" name="'dm_visor_glass2'" />
-			
+		
 			<run_sequence		name="'fbi_heavy'" />
 			<run_sequence		name="'armor'" />
 			<run_sequence 		name="'headset_base'" />
@@ -144,15 +138,16 @@
 
 			<object 			enabled="false" name="'g_helmet_lod1'" />
 			<object 			enabled="false" name="'g_helmet_lod2'" />
+			<object 			enabled="true" name="'g_helmet_lod8'" />
 			<object 			enabled="true" name="'g_helmet_lod9'" />
 			<object 			enabled="true" name="'g_helmet_lod10'" />
 			<object 			enabled="true" name="'g_helmet_lod11'" />
 			<object 			enabled="true" name="'g_helmet_lod12'" />
-			<object 			enabled="true" name="'g_helmet_lod13'" />
 			
 			<decal_mesh 		enabled="false" name="'dm_helmet1'" />
 			<decal_mesh 		enabled="true" name="'dm_helmet2'" />
-			<decal_mesh 		enabled="true" name="'dm_visor3'" />
+			<decal_mesh 		enabled="true" name="'dm_visor2'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass2'" />
 			
 			<run_sequence		name="'city_heavy'" />
 			<run_sequence		name="'armor_big'" />
@@ -166,15 +161,16 @@
 
 			<object 			enabled="false" name="'g_helmet_lod1'" />
 			<object 			enabled="false" name="'g_helmet_lod2'" />
+			<object 			enabled="true" name="'g_helmet_lod10'" />
 			<object 			enabled="true" name="'g_helmet_lod11'" />
 			<object 			enabled="true" name="'g_helmet_lod12'" />
 			<object 			enabled="true" name="'g_helmet_lod13'" />
 			<object 			enabled="true" name="'g_helmet_lod14'" />
-			<object 			enabled="true" name="'g_helmet_lod15'" />
 			
 			<decal_mesh 		enabled="false" name="'dm_helmet1'" />
 			<decal_mesh 		enabled="true" name="'dm_helmet2'" />
-			<decal_mesh 		enabled="true" name="'dm_visor3'" />
+			<decal_mesh 		enabled="true" name="'dm_visor2'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass2'" />
 			
 			<run_sequence		name="'city_heavy'" />
 			<run_sequence		name="'armor_big'" />

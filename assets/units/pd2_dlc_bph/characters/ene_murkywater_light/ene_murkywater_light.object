@@ -197,9 +197,8 @@
 		<decal_mesh name="dm_helmet3" 								enabled="false" material="steel_no_decal" />
 		<decal_mesh name="dm_visor1" 								enabled="false" material="glass_no_decal" />
 		<decal_mesh name="dm_visor2" 								enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_visor3" 								enabled="false" material="glass_no_decal" />
-		<decal_mesh name="dm_visor4" 								enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_visor5" 								enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_visor3" 								enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_visor4" 								enabled="false" material="glass_no_decal" />
 	</decal_surfaces>
 
 	<graphics>
@@ -747,24 +746,24 @@
 			</lod_object>
 
 			<lod_object name="lod_helmet_shield_torch">
-				<object name="g_helmet_shield_lod6" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_helmet_shield_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet_shield" max_distance="1000" />
 					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
-				<object name="g_helmet_shield_lod7" 	enabled="false" lod="1" >
+				<object name="g_helmet_shield_lod6" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
 			</lod_object>
 
 			<lod_object name="lod_helmet_city_shield">
-				<object name="g_helmet_shield_lod8" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_helmet_shield_lod7" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet_shield"max_distance="1000" />
 					<material materials="mtr_helmet_shield_lod_1"max_distance="1500" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
-				<object name="g_helmet_shield_lod9" 	enabled="false" lod="1" >
+				<object name="g_helmet_shield_lod8" 	enabled="false" lod="1" >
 					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_helmet_shield_lod_2" />
 				</object>
@@ -777,11 +776,12 @@
 
 			<object name="g_hat_swat_lod7" 					enabled="false" />	
 
+			<object name="g_helmet_swat_lod7" 			enabled="false" />	
+	
 			<object name="g_helmet_fbi_swat_lod9" 			enabled="false" />
 			<object name="g_helmet_fbi_swat_lod12" 			enabled="false" />				
 
-			<object name="g_helmet_shield_lod5" 			enabled="false" />	
-			<object name="g_helmet_shield_lod10" 			enabled="false" />	
+			<object name="g_helmet_shield_lod9" 			enabled="false" />	
 						
 			<object name="s_body" 	enabled="true" shadow_caster="true" />			
 		</graphic_group>
