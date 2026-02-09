@@ -29,7 +29,7 @@ local outside_loot_drop = {
 	},
 }
 local dozer_in_the_container_amount = is_eclipse and 2 or 1
-	
+
 return {
 	[101731] = {
 		ponr = { -- Trigger once, warhead case opened
