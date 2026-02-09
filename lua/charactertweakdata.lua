@@ -1130,10 +1130,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
-    self.bolivian_indoors.use_radio = "fri_dispatch_generic_message"
+	self.bolivian_indoors.use_radio = "fri_dispatch_generic_message"
 
 	self.bolivian_indoors_mex.chatter = self.presets.enemy_chatter.gangster
-    self.bolivian_indoors_mex.use_radio = "fri_dispatch_generic_message"
+	self.bolivian_indoors_mex.use_radio = "fri_dispatch_generic_message"
 
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
