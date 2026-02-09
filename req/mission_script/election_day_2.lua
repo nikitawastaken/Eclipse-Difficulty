@@ -34,6 +34,32 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Combine some navigation areas
+	[101157] = {
+		ai_area = {
+			{ 1, 2 },
+			{ 18, 116 },
+			{ 17, 25 },
+			{ 19, 52 },
+			{ 92, 97 },
+			{ 9, 90 },
+			{ 24, 91, 109 },
+			{ 23, 27, 108 },
+			{ 93, 106 },
+			{ 21, 26, 75 },
+			{ 56, 115 },
+			{ 59, 107 },
+			{ 83, 114 },
+			{ 70, 71 },
+			{ 81, 88 },
+			{ 47, 50 },
+			{ 48, 49, 68 },
+			{ 36, 104 },
+			{ 35, 103 },
+			{ 34, 102 },
+			{ 33, 101 }
+		},
+	},
 	-- Fix harasser respawn delay
 	[102807] = {
 		on_executed = {
