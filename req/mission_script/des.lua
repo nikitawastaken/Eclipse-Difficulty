@@ -81,7 +81,7 @@ return {
 		-- add point of no return
 		ponr = {
 			length = 300,
-			player_mul = { 1.6, 1.2, 1, 0.8 },
+			player_mul = { 1.75, 1.25, 1, 1 },
 		},
 	},
 	[109005] = { -- open door biolab
@@ -124,6 +124,10 @@ return {
 	[100919] = disabled, -- weapon preferreds 6
 	[101320] = disabled, -- biolab preferreds 6
 	[101334] = disabled, -- books preferreds 4
+	-- Disable non-cheaty preferreds that just suck
+	[107974] = disabled, -- wF
+	[107975] = disabled, -- entrance_preferreds
+	[101453] = disabled, -- entrance_preferreds004
 	-- Spawn group intervals
 	[102439] = hub_spawn,
 	[107909] = garage_door_spawn,
