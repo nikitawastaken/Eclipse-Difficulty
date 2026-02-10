@@ -1159,8 +1159,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
+	self.bolivian_indoors.use_radio = "fri_dispatch_generic_message"
 
 	self.bolivian_indoors_mex.chatter = self.presets.enemy_chatter.gangster
+	self.bolivian_indoors_mex.use_radio = "fri_dispatch_generic_message"
 
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
@@ -1951,7 +1953,7 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
-local ecm_vuln_hard = 0.5
+local ecm_vuln_hard = 0.6
 local ecm_vuln_none = 0
 
 CharacterTweakData.access_health_hs_mul_blacklist = table.list_to_set({
@@ -2135,7 +2137,7 @@ function CharacterTweakData:_set_presets()
 		char_preset.move_speed = self.presets.move_speed[char_move_speed]
 
 		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
-		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.75
+		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.8
 
 		char_preset.ecm_hurts = { ears = 6 }
 		char_preset.ecm_vulnerability = char_ecm_vuln
