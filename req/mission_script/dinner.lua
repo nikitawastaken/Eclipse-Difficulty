@@ -264,9 +264,9 @@ return {
 	[103093] = murky_dozers,
 	[103094] = murky_dozers,
 	-- Inside the GenSec van
-	[101241] = murky_dozer_green,
-	[101242] = murky_dozer_black,
-	[101243] = murky_dozer_skull,
+	[101241] = murky_dozers,
+	[101242] = murky_dozers,
+	[101243] = murky_dozers,
 	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
 	-- spawn container snipers
 	[105117] = {
