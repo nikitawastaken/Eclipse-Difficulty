@@ -1846,6 +1846,24 @@
 
 				<file :name="bph_taser_head_df.texture" />
 				<file :name="bph_taser_head_nm.texture" />
+
+				<file :name="bph_bulldozer_head_1_df.texture" />
+				<file :name="bph_bulldozer_head_1_nm.texture" />
+				
+				<file :name="bph_bulldozer_body_1_df.texture" />
+				<file :name="bph_bulldozer_body_1_nm.texture" />
+
+				<file :name="bph_bulldozer_head_2_df.texture" />
+				<file :name="bph_bulldozer_body_2_df.texture" />
+
+				<file :name="bph_bulldozer_head_3_df.texture" />
+				<file :name="bph_bulldozer_body_3_df.texture" />
+
+				<file :name="bph_bulldozer_head_4_df.texture" />
+				<file :name="bph_bulldozer_body_4_df.texture" />
+
+				<file :name="bph_bulldozer_head_medic_df.texture" />
+				<file :name="bph_bulldozer_body_medic_df.texture" />
 			</group>
 
 			<group :name="ene_murkywater_cop_1/">
@@ -2061,6 +2079,50 @@
 				<file :name="ene_murkywater_tazer_r870.unit" />
 				<file :name="ene_murkywater_tazer_r870_husk.unit" />
 			</group>
+	
+			<group :name="ene_murkywater_bulldozer_1/">
+				<xml  :name="ene_murkywater_bulldozer_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_bulldozer_1.material_config" />
+				<file :name="ene_murkywater_bulldozer_1_contour.material_config" />
+				<file :name="ene_murkywater_bulldozer_1.model" />
+				<file :name="ene_murkywater_bulldozer_1.object" />
+				<file :name="ene_murkywater_bulldozer_1.unit" />
+				<file :name="ene_murkywater_bulldozer_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_murkywater_bulldozer_2.material_config" />
+					<file :name="ene_murkywater_bulldozer_2_contour.material_config" />
+
+					<file :name="ene_murkywater_bulldozer_3.material_config" />
+					<file :name="ene_murkywater_bulldozer_3_contour.material_config" />
+
+					<file :name="ene_murkywater_bulldozer_4.material_config" />
+					<file :name="ene_murkywater_bulldozer_4_contour.material_config" />
+
+					<file :name="ene_murkywater_bulldozer_medic.material_config" />
+					<file :name="ene_murkywater_bulldozer_medic_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_murkywater_bulldozer_2/">
+				<file :name="ene_murkywater_bulldozer_2.unit" />
+				<file :name="ene_murkywater_bulldozer_2_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_bulldozer_3/">
+				<file :name="ene_murkywater_bulldozer_3.unit" />
+				<file :name="ene_murkywater_bulldozer_3_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_bulldozer_4/">
+				<file :name="ene_murkywater_bulldozer_4.unit" />
+				<file :name="ene_murkywater_bulldozer_4_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_bulldozer_medic/">
+				<file :name="ene_murkywater_bulldozer_medic.unit" />
+				<file :name="ene_murkywater_bulldozer_medic_husk.unit" />
+			</group>
 		</group>
 			
 		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false">
@@ -2116,10 +2178,8 @@
 				<file :name="bex_medic_head_nm.texture" />
 
 				<file :name="bex_bulldozer_head_1_df.texture" />
-				<file :name="bex_bulldozer_head_1_nm.texture" />
-				
+			
 				<file :name="bex_bulldozer_body_1_df.texture" />
-				<file :name="bex_bulldozer_body_1_nm.texture" />
 
 				<file :name="bex_bulldozer_head_2_df.texture" />
 				<file :name="bex_bulldozer_body_2_df.texture" />

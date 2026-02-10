@@ -383,7 +383,13 @@ local M = {
 
 	["units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer"] = { name = "taser_1", head = head_sequences.swat_b },
 	["units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870"] = { name = "taser_2", head = head_sequences.cloaker },
-		
+	
+	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1"] = { name = "bulldozer_1", head = head_sequences.bulldozer },
+	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2"] = { name = "bulldozer_2", head = head_sequences.bulldozer },
+	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"] = { name = "bulldozer_3", head = head_sequences.bulldozer },
+	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"] = { name = "bulldozer_4", head = head_sequences.bulldozer },
+	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"] = { name = "bulldozer_medic", head = head_sequences.bulldozer },
+	
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"] = { name = "secret_service_bex", head = head_sequences.security },
