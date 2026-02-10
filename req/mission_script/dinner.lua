@@ -1,7 +1,9 @@
 --Awesome layout ranomization from ASS
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {
@@ -78,6 +80,27 @@ local chance_no_keycard = normal and 0.1 or hard and 0.2 or 0.4
 local zero_traversal_covers = math.random() < chance_zero_traversal_covers
 local zero_top_containers = math.random() < chance_zero_top_containers
 local all_containers_closed = math.random() < chance_all_containers_closed
+
+local murky_green_bulldozer = scripted_enemy.murky_bulldozer_1
+local murky_black_bulldozer = scripted_enemy.murky_bulldozer_2
+local murky_elite_ben_bulldozer = scripted_enemy.murky_elite_bulldozer_1
+local murky_elite_skull_bulldozer = scripted_enemy.murky_elite_bulldozer_2
+
+local random_murky_dozers = {
+	murky_green_bulldozer,
+	murky_black_bulldozer,
+}
+local random_murky_elite_dozers = {
+	murky_elite_ben_bulldozer,
+	murky_elite_skull_bulldozer,
+}
+
+local murky_bulldozer = is_eclipse and random_murky_elite_dozers or random_murky_dozers
+
+local murky_dozers = {
+	enemy = murky_bulldozer,
+}
+
 return {
 	[101061] = {
 		ponr = {
@@ -225,6 +248,25 @@ return {
 			},
 		},
 	},
+    -- replace dozers that come out murky choppers and gensec van with actual murkywater dozers
+    -- 1st chopper, right after the ambush
+	[103095] = murky_dozers,
+	[103097] = murky_dozers,
+	[103087] = murky_dozers,
+	[103096] = murky_dozers,
+	[102190] = murky_dozers,
+	[100621] = murky_dozers,
+	-- 2nd chopper, near slaughterhouse
+	[103088] = murky_dozers,
+	[103090] = murky_dozers,
+	[103091] = murky_dozers,
+	[103092] = murky_dozers,
+	[103093] = murky_dozers,
+	[103094] = murky_dozers,
+	-- Inside the GenSec van
+	[101241] = murky_dozer_green,
+	[101242] = murky_dozer_black,
+	[101243] = murky_dozer_skull,
 	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
 	-- spawn container snipers
 	[105117] = {

@@ -904,6 +904,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
 
+    local murky_dozers_package = { "packages/murky_bulldozers" }
+	self.pbr2.custom_package = murky_dozers_package
+	self.dinner.custom_package = murky_dozers_package
+
 	local lapd_package = { "packages/lapd" }
 	self.kenaz.custom_package = lapd_package
 	self.pal.custom_package = lapd_package
