@@ -142,6 +142,9 @@
 		<sequence editable_state="true" name="'bulldozer_3'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_body_b'" />
 			<object 			enabled="true" name="'g_gear_body_b_lod1'" />
+
+			<object 			enabled="true" name="'g_radio'" />
+			<object 			enabled="true" name="'g_radio_lod1'"/>
 			
 			<run_sequence 		name="'skulldozer'" />
 			<run_sequence 		name="'big_armor'" />
@@ -154,6 +157,9 @@
 
 			<object 			enabled="true" name="'g_gear_chest_a'" />
 			<object 			enabled="true" name="'g_gear_chest_a_lod1'" />
+
+			<object 			enabled="true" name="'g_radio'" />
+			<object 			enabled="true" name="'g_radio_lod1'"/>
 			
 			<run_sequence 		name="'bendozer'" />
 			<run_sequence 		name="'big_armor'" />
@@ -217,6 +223,9 @@
 		
 			<object 				enabled="false" name="'g_armor_back'" />
 			<object 				enabled="false" name="'g_armor_back_lod1'"/>
+
+			<object 				enabled="false" name="'g_radio'" />
+			<object 				enabled="false" name="'g_radio_lod1'"/>
 			
 			<decal_mesh 			enabled="false" name="'dm_armor_back'"/>
 

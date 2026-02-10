@@ -2180,7 +2180,8 @@
 				<file :name="bex_bulldozer_head_1_df.texture" />
 			
 				<file :name="bex_bulldozer_body_1_df.texture" />
-
+				<file :name="bex_bulldozer_body_1_nm.texture" />
+				
 				<file :name="bex_bulldozer_head_2_df.texture" />
 				<file :name="bex_bulldozer_body_2_df.texture" />
 
