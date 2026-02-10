@@ -374,7 +374,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Background Threat
 	self.skills.chameleon[1].upgrades = {}
 	self.skills.chameleon[2].upgrades = {}
-	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12 
+	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12
 	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
 	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
 
