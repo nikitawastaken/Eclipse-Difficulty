@@ -1196,7 +1196,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.jail_diet.multipro = "10"
 
 	-- Resilient Assault
-	self.values.player.critical_hit_chance[1] = 0.05
+	self.values.player.critical_hit_chance[1] = 1
 	self.values.player.armor_depleted_stagger_shot = {
 		0,
 		3,

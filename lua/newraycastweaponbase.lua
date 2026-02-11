@@ -40,7 +40,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	end
 
 	self._explosive_ammo = weapon_tweak.explosive_ammo
-
+	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
+	
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6
@@ -81,6 +82,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
 			self._explosive_ammo = self._ammo_data.explosive_ammo
+		end
+
+		if self._ammo_data.ignore_crit_damage ~= nil then
+			self._ignore_crit_damage = self._ammo_data.ignore_crit_damage
 		end
 	end
 
@@ -144,6 +149,14 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 	end
 end)
+
+function NewRaycastWeaponBase:is_explosive()
+	return self._explosive_ammo or false
+end
+
+function NewRaycastWeaponBase:ignore_crit_damage()
+	return self._ignore_crit_damage or false
+end
 
 function NewRaycastWeaponBase:movement_penalty()
 	if managers.player:has_category_upgrade("player", "no_movement_penalty") then

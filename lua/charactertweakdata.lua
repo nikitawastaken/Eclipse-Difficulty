@@ -207,7 +207,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.is_double_barrel = deep_clone(presets.weapon.eclipse_normal.is_shotgun_pump)
-	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 3
+	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 6
 	presets.weapon.eclipse_normal.is_double_barrel.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
@@ -491,6 +491,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		6,
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
+		v.RELOAD_SPEED = 1
 		v.melee_dmg = team_ai_dmg + 2
 		v.FALLOFF = {
 			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
