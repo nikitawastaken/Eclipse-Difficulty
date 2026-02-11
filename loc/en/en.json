@@ -197,6 +197,7 @@
 	"ene_murkywater_no_light" : "Murkywater Armored Security",
 	"ene_murkywater_no_light_no_security" : "Murkywater Armored Security",
 	"ene_murkywater_not_security" : "Murkywater Armored Security",
+    "ene_murkywater_security" : "Murkywater Security",
 	"ene_murkywater_cop" : "Murkywater Security",
 	"ene_murkywater_agent" : "Murkywater SRT",
 	"ene_murkywater_light" : "Murkywater Recruit",

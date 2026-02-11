@@ -257,6 +257,9 @@ local M = {
 	},
 	["murkywater"] = {
 		["CS"] = {
+            security_1 = "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+			security_2 = "units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
+			security_3 = "units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
 			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
 			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
 			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
@@ -288,6 +291,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["FBI"] = {
+            security_1 = "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+			security_2 = "units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
+			security_3 = "units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
 			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
 			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
 			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
@@ -319,6 +325,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["Elite"] = {
+            security_1 = "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+			security_2 = "units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
+			security_3 = "units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
 			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
 			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
 			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",

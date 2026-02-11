@@ -184,9 +184,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 	self.crojob3_night.group_ai_preset = "heavy_response"
 
+    self.kosugi.ai_group_type = "murkywater"
+
 	self.shoutout_raid.group_ai_settings = {
 		assault_force_mul = 1.25,
 	}
+    self.shoutout_raid.ai_group_type = "murkywater"
+    
 
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
@@ -216,8 +220,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
+    self.nail.ai_group_type = "zombie"
 
 	self.peta.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
+    self.peta.ai_group_type = "america"
 
 	self.peta2.group_ai_settings = {
 		assault_force_mul = 0.75,
@@ -305,21 +311,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.help.group_ai_settings = {
 		assault_force_mul = 0.75,
 	}
-	self.help.package = {
-		"packages/lvl_help",
-		"packages/narr_hvh",
-	}
 	self.help.ai_group_type = "zombie"
-
-	self.nail.package = {
-		"packages/job_nail",
-		"packages/narr_hvh",
-	}
-	self.nail.ai_group_type = "zombie"
  
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
+    self.friend.ai_group_type = "america"
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
+    self.moon.ai_group_type = "america"
 
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
@@ -907,6 +905,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
     local murky_dozers_package = { "packages/murky_bulldozers" }
 	self.pbr2.custom_package = murky_dozers_package
 	self.dinner.custom_package = murky_dozers_package
+
+    local murky_mercs_package = { "packages/murky_mercs" }
+	self.kosugi.custom_package = murky_mercs_package
+	self.shoutout_raid.custom_package = murky_mercs_package
+
+    local zombie_faction_package = { "packages/zombie_cops" }
+	self.nail.custom_package = zombie_faction_package
+	self.help.custom_package = zombie_faction_package
 
 	local lapd_package = { "packages/lapd" }
 	self.kenaz.custom_package = lapd_package

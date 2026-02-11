@@ -184,6 +184,9 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security",
 		"units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1",
 		"units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2",
+        "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
+		"units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
 		-- Murky Street Cops
 		"units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1",
 		"units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2",
