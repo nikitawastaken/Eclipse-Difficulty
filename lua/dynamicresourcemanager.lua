@@ -93,6 +93,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
 
 	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3", bph_needed, false)

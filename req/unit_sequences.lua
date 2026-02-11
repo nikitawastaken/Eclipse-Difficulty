@@ -342,6 +342,10 @@ local M = {
 	["units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat"] = { name = "la_cop_3_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat"] = { name = "la_cop_4_fat", head = head_sequences.security_fat },
 
+	["units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1"] = { name = "security_1", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2"] = { name = "security_2", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3"] = { name = "security_3", head = head_sequences.security },
+	
 	["units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1"] = { name = "cop_1", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2"] = { name = "cop_2", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3"] = { name = "cop_3", head = head_sequences.security },

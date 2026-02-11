@@ -1807,7 +1807,8 @@
 			<group :name="shared_textures/">
 				<file :name="bph_police_df.texture" />
 				<file :name="bph_police_nm.texture" />
-			
+
+				<file :name="bph_security_df.texture" />		
 				<file :name="bph_fbi_df.texture" />
 			
 				<file :name="bph_swat_body_df.texture" />
@@ -1876,6 +1877,9 @@
 				<file :name="ene_murkywater_cop_1_husk.unit" />
 
 				<group :name="vars/">
+					<file :name="ene_murkywater_security_1.material_config" />
+					<file :name="ene_murkywater_security_1_contour.material_config" />
+					
 					<file :name="ene_murkywater_agent_1.material_config" />
 					<file :name="ene_murkywater_agent_1_contour.material_config" />
 				</group>
@@ -1896,6 +1900,21 @@
 				<file :name="ene_murkywater_cop_4_husk.unit" />
 			</group>
 
+			<group :name="ene_murkywater_security_1/">
+				<file :name="ene_murkywater_security_1.unit" />
+				<file :name="ene_murkywater_security_1_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_security_2/">
+				<file :name="ene_murkywater_security_2.unit" />
+				<file :name="ene_murkywater_security_2_husk.unit" />
+			</group>
+			
+			<group :name="ene_murkywater_security_3/">
+				<file :name="ene_murkywater_security_3.unit" />
+				<file :name="ene_murkywater_security_3_husk.unit" />
+			</group>
+			
 			<group :name="ene_murkywater_agent_1/">
 				<file :name="ene_murkywater_agent_1.unit" />
 				<file :name="ene_murkywater_agent_1_husk.unit" />

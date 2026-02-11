@@ -134,15 +134,35 @@
 			<object 			enabled="true" name="'g_hat_security_lod1'" />
 			<object 			enabled="true" name="'g_hat_security_lod2'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'security'" once="true" triggable="true">		
+			<set_variables 		is_security="1" />
+			<material_config 	name="'units/pd2_dlc_bph/characters/ene_murkywater_cop_1/vars/ene_murkywater_security_1'"/>
+		</sequence>	
 		
 		<sequence editable_state="true" name="'cop'" once="true" triggable="true">		
 			<set_variables 		is_cop="1" />
 		</sequence>	
-
+		
 		<sequence editable_state="true" name="'fbi'" once="true" triggable="true">		
 			<set_variables 		is_fbi="1" />
 			<material_config 	name="'units/pd2_dlc_bph/characters/ene_murkywater_cop_1/vars/ene_murkywater_agent_1'"/>
 		</sequence>	
+
+		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">
+			<run_sequence 		name="'cop_1'" />
+			<run_sequence 		name="'security'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_2'" once="true" triggable="true">
+			<run_sequence 		name="'cop_2'" />
+			<run_sequence 		name="'security'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_3'" once="true" triggable="true">
+			<run_sequence 		name="'cop_3'" />
+			<run_sequence 		name="'security'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_cop_a'" />
