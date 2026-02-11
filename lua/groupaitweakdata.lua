@@ -3275,7 +3275,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_step = 0.05,
 		diff_step_interval = 15,
 		assault_add = 0.25,
-		hostage_kill_add = is_pro_job and 0.1 or nil,
+		hostage_kill_add = is_pro_job and 0.15 or nil,
 		mid_assault_scale = nil,
 	}
 
@@ -3448,8 +3448,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 60, 180 },
 		{ 60, 180 },
 		{ 60, 120 },
-		{ 60, 90 },
-		{ 60, 90 },
+		{ 45, 90 },
+		{ 45, 90 },
 	})
 
 	local special_wgt = get_difficulty_specific_value({
