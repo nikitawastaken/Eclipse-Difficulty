@@ -17,7 +17,7 @@ local cloaker_spawn = {
 }
 return {
 	-- Combine some navigation areas
-	[100017] = {
+	[100000] = {
 		ai_area = {
 			{ 2, 32 },
 			{ 8, 7, 9 },
@@ -30,6 +30,8 @@ return {
 			{ 67, 68 },
 			{ 63, 64 },
 			{ 45, 44 },
+			{ 198, 185 },
+			{ 199, 186 },
 		},
 	},
 	[100379] = {
@@ -76,6 +78,11 @@ return {
 				position = Vector3(0, -8250, 0),
 			},
 			{
+				name = "pool",
+				force = 3,
+				position = Vector3(-3145, -5555, 15),
+			},
+			{
 				name = "exterior_right",
 				force = 2,
 				position = Vector3(2100, -7700, 25),
@@ -84,6 +91,16 @@ return {
 				name = "exterior_left",
 				force = 2,
 				position = Vector3(-2100, -7700, 25),
+			},
+			{
+				name = "security01",
+				force = 2,
+				position = Vector3(-1490, 935, 105),
+			},
+			{
+				name = "security02",
+				force = 2,
+				position = Vector3(1515, 900, 125),
 			},
 		},
 	},

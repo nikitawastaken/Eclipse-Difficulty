@@ -3273,9 +3273,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_max = 1,
 		diff_init = 0.25,
 		diff_step = 0.05,
-		diff_step_interval = below_overkill and 15 or 10,
+		diff_step_interval = 15,
 		assault_add = 0.25,
-		hostage_kill_add = is_pro_job and 0.1 or nil,
+		hostage_kill_add = is_pro_job and 0.15 or nil,
 		mid_assault_scale = nil,
 	}
 
@@ -3406,9 +3406,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Push delay
 	self.besiege.assault.push_delay = get_difficulty_specific_value({
 		{ 20, 16, 12 },
+		{ 20, 16, 12 },
 		{ 18, 14, 10 },
 		{ 18, 14, 10 },
-		{ 16, 12, 8 },
 		{ 16, 12, 8 },
 	})
 	self.hostage_push_delay_mul = 1.5
@@ -3444,16 +3444,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		30,
 		30,
 	})
-	self.cs_grenade_min_chance = get_difficulty_specific_value({
-		0,
-		0,
-		0.1,
-		0.25,
-		0.45,
-	})
 	self.cs_grenade_chance_times = get_difficulty_specific_value({
 		{ 60, 180 },
-		{ 60, 150 },
+		{ 60, 180 },
 		{ 60, 120 },
 		{ 45, 90 },
 		{ 45, 90 },
@@ -3731,9 +3724,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Push delay
 	self.ponr.assault.push_delay = get_difficulty_specific_value({
 		{ 10, 10, 10 },
+		{ 10, 10, 10 },
 		{ 8, 8, 8 },
 		{ 8, 8, 8 },
-		{ 6, 6, 6 },
 		{ 6, 6, 6 },
 	})
 

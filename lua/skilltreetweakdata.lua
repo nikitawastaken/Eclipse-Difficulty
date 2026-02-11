@@ -338,14 +338,14 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Cat Burglar
 	self.skills.cleaner[1].upgrades = { "player_less_noise_multiplier" }
 	self.skills.cleaner[2].upgrades = { "player_fall_damage_multiplier_cat", "player_fall_damage_noise_multiplier" }
-	self.skills.cleaner.icon_xy = { 8, 0 }
+	self.skills.cleaner.icon_xy = { 0, 4 }
 	self.skills.cleaner.name_id = "menu_cat_burglar"
 	self.skills.cleaner.desc_id = "menu_cat_burglar_desc"
 
 	-- Logistician
 	self.skills.second_chances[1].upgrades = { "carry_interact_speed_multiplier_2" }
 	self.skills.second_chances[2].upgrades = { "player_pick_lock_hard", "player_pick_lock_easy_speed_multiplier" }
-	self.skills.second_chances.icon_xy = { 8, 0 }
+	self.skills.second_chances.icon_xy = { 5, 4 }
 	self.skills.second_chances.name_id = "menu_logistician"
 	self.skills.second_chances.desc_id = "menu_logistician_desc"
 
@@ -353,28 +353,28 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_booster[1].upgrades = { "player_mask_off_pickup" }
 	self.skills.ecm_booster[2].upgrades = { --[[ "player_extra_mission_pickups_multiplier" ]]
 	}
-	self.skills.ecm_booster.icon_xy = { 8, 0 }
+	self.skills.ecm_booster.icon_xy = { 1, 6 }
 	self.skills.ecm_booster.name_id = "menu_kleptomaniac"
 	self.skills.ecm_booster.desc_id = "menu_kleptomaniac_desc"
 
 	-- Sixth Sense
 	self.skills.jail_workout[1].upgrades = { "player_standstill_omniscience" }
 	self.skills.jail_workout[2].upgrades = { "player_standstill_omniscience_2" }
-	self.skills.jail_workout.icon_xy = { 8, 0 }
+	self.skills.jail_workout.icon_xy = { 6, 10 }
 	self.skills.jail_workout.name_id = "menu_sixth_sense"
 	self.skills.jail_workout.desc_id = "menu_sixth_sense_desc"
 
 	-- ECM Blackout
 	self.skills.ecm_2x[1].upgrades = { "ecm_jammer_quantity_increase_1" }
 	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_affects_police_comms" }
-	self.skills.ecm_2x.icon_xy = { 8, 0 }
+	self.skills.ecm_2x.icon_xy = { 6, 3 }
 	self.skills.ecm_2x.name_id = "menu_ecm_blackout"
 	self.skills.ecm_2x.desc_id = "menu_ecm_blackout_desc"
 
 	-- Background Threat
 	self.skills.chameleon[1].upgrades = {}
 	self.skills.chameleon[2].upgrades = {}
-	self.skills.chameleon.icon_xy = { 0, 0 }
+	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12
 	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
 	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
 
