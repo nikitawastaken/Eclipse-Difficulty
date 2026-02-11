@@ -717,8 +717,10 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_big_diamond = ( money_mul * 25000 )
 	elseif level_id == "red2" then
 		self.bag_values.money = 90000 -- 90,000$
+		self.small_loot.money_bundle = ( money_mul * 1250 )
 	elseif level_id == "dinner" then
 		self.bag_values.gold = 350000 -- 350,000$
+		self.small_loot.money_bundle = ( money_mul * 1250 )
 	else
 		self.small_loot.money_bundle = ( money_mul * 1250 )
 		self.small_loot.money_bundle_value = ( money_mul * 10000 )
