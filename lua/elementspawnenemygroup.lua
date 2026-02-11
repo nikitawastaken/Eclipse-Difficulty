@@ -97,7 +97,6 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 	self._values.preferred_spawn_groups = table.map_keys(new_groups)
 end)
 
-
 Hooks:PostHook(ElementSpawnEnemyGroup, "_chk_spawn_group_references", "eclipse__chk_spawn_group_references", function(self, preferred_groups)
 	local function check_references(tbl)
 		local ref_chk
