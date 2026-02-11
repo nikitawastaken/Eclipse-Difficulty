@@ -23,7 +23,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	local categories = weapon_tweak.categories
 
-	-- Extra start out ammo upgrade	
+	-- Extra start out ammo upgrade
 	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) and not table.contains_any(tweak_data.upgrades.start_out_ammo_category_blacklist, categories) then
 		local is_starting_out_with_extra_ammo = managers.player:has_category_upgrade("player", "start_out_ammo_multiplier")
 		self:replenish(is_starting_out_with_extra_ammo)
