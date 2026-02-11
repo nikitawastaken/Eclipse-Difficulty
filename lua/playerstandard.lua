@@ -363,7 +363,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, primary_category)
 
 						if damage_health_ratio > 0 then
-							local upgrade = weap_base:is_category("saw") and self._damage_health_ratio_mul_melee or self._damage_health_ratio_mul
+							local upgrade = self._damage_health_ratio_mul
 							dmg_mul = dmg_mul * (1 + upgrade * damage_health_ratio)
 						end
 

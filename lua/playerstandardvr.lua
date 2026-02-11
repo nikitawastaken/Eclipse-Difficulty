@@ -113,7 +113,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local dmg_mul = managers.player:temporary_upgrade_value("temporary", "dmg_multiplier_outnumbered", 1)
 		dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 
-		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun", "saw") then
+		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun") then
 			dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)
 		end
 
@@ -132,7 +132,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, primary_category)
 
 		if damage_health_ratio > 0 then
-			local upgrade_name = weap_base:is_category("saw") and "melee_damage_health_ratio_multiplier" or "damage_health_ratio_multiplier"
+			local upgrade_name = "damage_health_ratio_multiplier"
 			local damage_ratio = damage_health_ratio
 			dmg_mul = dmg_mul * (1 + managers.player:upgrade_value("player", upgrade_name, 0) * damage_ratio)
 		end
