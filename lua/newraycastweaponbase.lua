@@ -41,7 +41,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._explosive_ammo = weapon_tweak.explosive_ammo
 	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
-	
+
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6

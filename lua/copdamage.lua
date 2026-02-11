@@ -85,11 +85,10 @@ function CopDamage:can_be_critical(attack_data)
 		if weapon_unit_base:ignore_crit_damage() then
 			return false
 		end
-		
+
 		local weapon_td = weapon_unit_base:weapon_tweak_data()
 
 		weapon_type = weapon_td.categories[1]
-		
 	elseif weapon_unit_base.get_name_id then
 		weapon_type = weapon_unit_base:get_name_id()
 	end
