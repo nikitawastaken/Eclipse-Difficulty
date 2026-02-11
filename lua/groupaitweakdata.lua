@@ -3670,13 +3670,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"custom_recon",
 
 		-- Timed groups
-		"bellmead_group1",
-		"fbi_group1",
-		"gensec_group1",
-		"murky_group1",
-		"murky_scripted_group1",
-		"us_group1",
-		"us_scripted_group1",
+		"bellmead_timed_group",
+		"fbi_timed_group",
+		"gensec_timed_group",
+		"murkywater_timed_group",
+		"army_timed_group",
 	})
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
@@ -3812,35 +3810,39 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.cloaker.groups = {
 		single_spooc = { 1, 1, 1 },
 	}
-	self.ponr.assault.groups.single_spooc = empty_tbl
-	self.ponr.assault.groups.Phalanx = empty_tbl
-	self.ponr.assault.groups.marshal_squad = empty_tbl
-	self.ponr.assault.groups.custom = empty_tbl
-	self.ponr.assault.groups.custom_assault = empty_tbl
-	self.ponr.assault.groups.snowman_boss = empty_tbl
-	self.ponr.assault.groups.piggydozer = empty_tbl
-	-- timed groups
-	self.ponr.assault.groups.fbi_group1 = empty_tbl
-	self.ponr.assault.groups.murky_group1 = empty_tbl
-	self.ponr.assault.groups.murky_scripted_group1 = empty_tbl
-	self.ponr.assault.groups.us_group1 = empty_tbl
-	self.ponr.assault.groups.us_scripted_group1 = empty_tbl
-	self.ponr.assault.groups.bellmead_group1 = empty_tbl
 
-	self.ponr.recon.groups.single_spooc = empty_tbl
-	self.ponr.recon.groups.Phalanx = empty_tbl
-	self.ponr.recon.groups.marshal_squad = empty_tbl
-	self.ponr.recon.groups.custom = empty_tbl
-	self.ponr.recon.groups.custom_recon = empty_tbl
-	self.ponr.recon.groups.snowman_boss = empty_tbl
-	self.ponr.recon.groups.piggydozer = empty_tbl
-	-- timed groups
-	self.ponr.recon.groups.fbi_group1 = empty_tbl
-	self.ponr.recon.groups.murky_group1 = empty_tbl
-	self.ponr.recon.groups.murky_scripted_group1 = empty_tbl
-	self.ponr.recon.groups.us_group1 = empty_tbl
-	self.ponr.recon.groups.us_scripted_group1 = empty_tbl
-	self.ponr.recon.groups.bellmead_group1 = empty_tbl
+	-- Add various groups to assault and recon group tables that don't spawn normally but need to be able to participate
+	local function add_groups_as_empty(groups, junk_groups)
+		for _, group in ipairs(junk_groups) do
+			groups[group] = groups[group] or empty_tbl
+		end
+	end
+
+	local junk_groups = {
+		"single_spooc",
+		"Phalanx",
+		"marshal_squad",
+		"custom_assault",
+		"custom",
+		"snowman_boss",
+		"piggydozer",
+
+		-- Timed groups
+		"bellmead_timed_group",
+		"fbi_timed_group",
+		"gensec_timed_group",
+		"murkywater_timed_group",
+		"army_timed_group",
+	}
+	add_groups_as_empty(self.besiege.assault.groups, junk_groups)
+	add_groups_as_empty(self.ponr.assault.groups, junk_groups)
+
+	local custom_assault_i = table.get_vector_index(junk_groups, "custom_assault")
+	if custom_assault_i then
+		junk_groups[custom_assault_i] = "custom_recon"
+	end
+	add_groups_as_empty(self.besiege.recon.groups, junk_groups)
+	add_groups_as_empty(self.ponr.recon.groups, junk_groups)
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {

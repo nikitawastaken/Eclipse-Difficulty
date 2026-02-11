@@ -6,7 +6,7 @@ return function(timed_tactics, timed_random_tactics, spawn_point_ref)
 			diff_scale = { 1, 1.5, 2 },
 		},
 		group_data = {
-			fbi_timed_group = {
+			gensec_timed_group = {
 				enabled = true,
 				team_id = "law1",
 				max_nr_simultaneous_groups = 2,

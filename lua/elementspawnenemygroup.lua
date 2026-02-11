@@ -96,3 +96,25 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 
 	self._values.preferred_spawn_groups = table.map_keys(new_groups)
 end)
+
+
+Hooks:PostHook(ElementSpawnEnemyGroup, "_chk_spawn_group_references", "eclipse__chk_spawn_group_references", function(self, preferred_groups)
+	local function check_references(tbl)
+		local ref_chk
+		for group_id, group_data in pairs(tbl) do
+			ref_chk = group_data.spawn_point_chk_ref
+			if ref_chk then
+				for _, group_type in ipairs(preferred_groups) do
+					if ref_chk[group_type] then
+						table.insert(preferred_groups, group_id)
+						break
+					end
+				end
+			end
+		end
+	end
+
+	for _, timed_data in pairs(tweak_data.group_ai.timed_enemy_spawn_groups or {}) do
+		check_references(timed_data.group_data or {})
+	end
+end)

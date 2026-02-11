@@ -1183,13 +1183,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					local u_key = spawned_unit:key()
 					local u_data = self._police[u_key]
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:set_enemy_assigned(objective.area, u_key)
-					else
-						-- Proper AI assignment for timed groups
-						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:set_enemy_assigned(objective.area, u_key)
 
 					if spawn_entry.tactics then
 						u_data.tactics = spawn_entry.tactics
@@ -1201,10 +1196,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					u_data.rank = spawn_entry.rank
 					u_data.spawn_group = spawn_task.spawn_group
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:_add_group_member(spawn_task.group, u_key)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:_add_group_member(spawn_task.group, u_key)
 
 					if spawned_unit:brain():is_available_for_assignment(objective) then
 						if objective.element then
@@ -1446,6 +1439,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
+-- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
 	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
@@ -1454,7 +1448,9 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 	for _, group_type in ipairs(group_types) do
 		local spawn_group_desc = spawn_groups[group_type]
 		local cat_weights = allowed_groups[group_type]
-		if spawn_group_desc and cat_weights then
+		if not cat_weights then
+			-- Nothing
+		elseif spawn_group_desc then
 			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
 				local cat_data = unit_categories[spawn_entry.unit]
 				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
