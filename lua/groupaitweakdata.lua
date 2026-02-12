@@ -1878,7 +1878,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_heavies = {
-		amount = { 3, 3 },
+		amount = { 2, 3 },
 		spawn = {
 			{
 				freq = 0.5,
@@ -1955,7 +1955,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_taser = {
-		amount = { 1, 3 },
+		amount_weighted = { 
+			[3] = get_difficulty_specific_value({ 1, 1, 2 }),
+			[2] = 3,
+			[1] = 3,
+		},
 		spawn = {
 			{
 				freq = 1,
@@ -1976,7 +1980,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_bulldozer = {
-		amount = { 1, 3 },
+		amount_weighted = { 
+			[3] = get_difficulty_specific_value({ 2, 2, 3 }),
+			[2] = 4,
+			[1] = 3,
+		},
 		spawn = {
 			{
 				freq = 1,
@@ -2241,7 +2249,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_heavies = {
-		amount = { 3, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[3] = 4,
+			[2] = get_difficulty_specific_value({ 3, 3, 3, 2 }),
+		},
 		spawn = {
 			{
 				freq = 0.5,
@@ -2294,8 +2306,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 160,
-					diff_scale / 80,
+					diff_scale / 120,
+					diff_scale / 60,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.4, 0.6, 0.8, 1 },
 				amount_min = 1,
@@ -2329,6 +2341,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					2 / diff_scale_low,
 					0,
 				}, heavy_response and 0 or 1),
+				amount_max = 2,
 				rank = 1,
 				unit = "fbi_agent_3",
 				tactics = self._tactics.shield_spt,
@@ -2336,7 +2349,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					2 / diff_scale_low,
+					4 / diff_scale_low,
 					0,
 					0,
 				}, heavy_response and 0 or 1),
@@ -2363,14 +2376,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_taser = {
-		amount = { 2, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[3] = 3,
+			[2] = 2,
+		},
 		spawn = {
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 320,
-					diff_scale / 160,
+					diff_scale / 240,
+					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
 				amount_min = 1,
@@ -2404,14 +2421,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_bulldozer = {
-		amount = { 2, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 2, 2, 2, 3 }),
+			[3] = 4,
+			[2] = 2,
+		},
 		spawn = {
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 640,
-					diff_scale / 320,
+					diff_scale / 480,
+					diff_scale / 240,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.1, 0.4, 0.7, 1 },
 				amount_min = 1,
@@ -2603,7 +2624,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_heavies = {
-		amount = { 3, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[3] = 4,
+			[2] = get_difficulty_specific_value({ 3, 3, 3, 2 }),
+		},
 		spawn = {
 			{
 				freq = 0.5,
@@ -2656,8 +2681,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 480,
-					diff_scale / 240,
+					diff_scale / 360,
+					diff_scale / 180,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.4, 0.6, 0.8, 1 },
 				amount_min = 1,
@@ -2697,14 +2722,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_taser = {
-		amount = { 2, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[3] = 3,
+			[2] = 2,
+		},
 		spawn = {
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 320,
-					diff_scale / 160,
+					diff_scale / 240,
+					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.6, 0.8, 1, 1 },
 				amount_min = 1,
@@ -2738,14 +2767,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_bulldozer = {
-		amount = { 2, 4 },
+		amount_weighted = {
+			[4] = get_difficulty_specific_value({ 2, 2, 2, 3 }),
+			[3] = 4,
+			[2] = 2,
+		},
 		spawn = {
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 960,
-					diff_scale / 480,
+					diff_scale / 720,
+					diff_scale / 360,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.1, 0.4, 0.7, 1 },
 				amount_min = 1,
@@ -3424,16 +3457,20 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Push delay
 	self.besiege.assault.push_delay = get_difficulty_specific_value({
-		{ 20, 16, 12 },
-		{ 20, 16, 12 },
-		{ 18, 14, 10 },
-		{ 18, 14, 10 },
-		{ 16, 12, 8 },
+		{ 18, 14, 12 },
+		{ 18, 14, 12 },
+		{ 16, 12, 10 },
+		{ 16, 12, 10 },
+		{ 14, 10, 8 },
 	})
 	self.hostage_push_delay_mul = 1.5
 
 	-- GRENADES --
-	self.min_grenade_timeout = { 20, 15, 10 }
+	self.min_grenade_timeout = get_difficulty_specific_value({
+		{ 25, 20, 15 },
+		{ 25, 20, 15 },
+		{ 20, 15, 10 },
+	})
 
 	self.flash_grenade_timeout = { 15, 20 }
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
