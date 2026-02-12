@@ -184,6 +184,43 @@ function GroupAIStateBesiege:_begin_reenforce_task(...)
 	end
 end
 
+-- Reinforce now keeps track of multiple IDs in the same area, rather than only the latest
+-- Only the largest force value is used, and the force factor is only removed when all IDs are removed
+Hooks:OverrideFunction(GroupAIStateBesiege, "set_area_min_police_force", function(self, id, force, pos, ...)
+	local function get_best_force(ids)
+		local best_id, best_force = nil
+		for id, force in pairs(ids) do
+			if not best_force or best_force < force then
+				best_id = id
+				best_force = force
+			end
+		end
+		return best_id, best_force
+	end
+
+	if force then
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(pos, true)
+		local area = self:get_area_from_nav_seg_id(nav_seg_id)
+		local force_factor = area.factors.force or {}
+		force_factor.ids = force_factor.ids or {}
+		force_factor.ids[id] = force
+		force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+		area.factors.force = force_factor
+	else
+		for _, area in pairs(self._area_data) do
+			local force_factor = area.factors.force
+			if force_factor and force_factor.ids and force_factor.ids[id] then
+				force_factor.ids[id] = nil
+				force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+				if not force_factor.force then
+					area.factors.force = nil
+				end
+				return
+			end
+		end
+	end
+end)
+
 -- Old fade behavior but less abusable
 local _upd_assault_task_original = GroupAIStateBesiege._upd_assault_task
 function GroupAIStateBesiege:_upd_assault_task(...)
