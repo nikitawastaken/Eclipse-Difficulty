@@ -712,7 +712,9 @@
 
 				<file :name="female_heads_atlas_df.texture" />
 				<file :name="female_heads_atlas_nm.texture" />
-				
+
+				<file :name="ene_acc_shield_city_df.texture" />
+							
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
@@ -782,7 +784,6 @@
 			</group>
 
 			<group :name="ene_acc_shield_city/">
-				<file 	:name="shield_city_df.texture" />
 				<xml 	:name="ene_acc_shield_city.sequence_manager" />
 				<file 	:name="ene_acc_shield_city.cooked_physics" />
 				<file 	:name="ene_acc_shield_city.material_config" />
@@ -1805,6 +1806,12 @@
 
 		<group name="units/pd2_dlc_bph/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
+				<file :name="ene_acc_shield_small_df.texture" />
+				<file :name="ene_acc_shield_small_nm.texture" />
+				<file :name="ene_acc_shield_small_op.texture" />
+				<file :name="ene_acc_shield_lights_df.texture" />
+				<file :name="ene_acc_shield_city_df.texture" />
+							
 				<file :name="bph_police_df.texture" />
 				<file :name="bph_police_nm.texture" />
 
@@ -1867,6 +1874,29 @@
 				<file :name="bph_bulldozer_body_medic_df.texture" />
 			</group>
 
+			<group :name="ene_acc_shield_small/">
+				<file :name="ene_acc_shield_small.cooked_physics" />
+				<file :name="ene_acc_shield_small.material_config" />
+				<file :name="ene_acc_shield_small.model" />
+				<file :name="ene_acc_shield_small.object" />
+				<file :name="ene_acc_shield_small.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_lights/">
+				<file :name="ene_acc_shield_lights.material_config" />
+				<file :name="ene_acc_shield_lights.model" />
+				<file :name="ene_acc_shield_lights.object" />
+			</group>
+
+			<group :name="ene_acc_shield_city/">
+				<file 	:name="ene_acc_shield_city.cooked_physics" />
+				<file 	:name="ene_acc_shield_city.material_config" />
+				<file 	:name="ene_acc_shield_city.model" />
+				<file 	:name="ene_acc_shield_city.object" />
+				<file 	:name="ene_acc_shield_city.unit" />
+				<file 	:name="ene_acc_shield_city_dummy.unit" />
+			</group>
+		
 			<group :name="ene_murkywater_cop_1/">
 				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_cop_1.material_config" />
@@ -2149,13 +2179,17 @@
 		</group>
 
 		<group name="units/pd2_dlc_bex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<group :name="shared_textures/">
+			<group :name="shared_textures/">	
 				<file :name="mexican_heads_atlas_var1_df.texture" />
 				<file :name="mexican_heads_atlas_var1_nm.texture" />
 
 				<file :name="mexican_heads_atlas_var2_df.texture" />
 				<file :name="mexican_heads_atlas_var2_nm.texture" />
 
+				<file :name="ene_acc_shield_small_df.texture" />				
+				<file :name="ene_acc_shield_lights_df.texture" />
+				<file :name="ene_acc_shield_city_df.texture" />
+			
 				<file :name="bex_police_df.texture" />
 				<file :name="bex_police_nm.texture" />
 			
@@ -2214,6 +2248,29 @@
 				<file :name="bex_bulldozer_body_medic_df.texture" />
 			</group>
 
+			<group :name="ene_acc_shield_small/">
+				<file :name="ene_acc_shield_small.cooked_physics" />
+				<file :name="ene_acc_shield_small.material_config" />
+				<file :name="ene_acc_shield_small.model" />
+				<file :name="ene_acc_shield_small.object" />
+				<file :name="ene_acc_shield_small.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_lights/">
+				<file :name="ene_acc_shield_lights.material_config" />
+				<file :name="ene_acc_shield_lights.model" />
+				<file :name="ene_acc_shield_lights.object" />
+			</group>
+
+			<group :name="ene_acc_shield_city/">
+				<file 	:name="ene_acc_shield_city.cooked_physics" />
+				<file 	:name="ene_acc_shield_city.material_config" />
+				<file 	:name="ene_acc_shield_city.model" />
+				<file 	:name="ene_acc_shield_city.object" />
+				<file 	:name="ene_acc_shield_city.unit" />
+				<file 	:name="ene_acc_shield_city_dummy.unit" />
+			</group>
+		
 			<group :name="ene_acc_security_cap/">
 				<file :name="ene_acc_security_cap.material_config" />
 				<file :name="ene_acc_security_cap.model" />

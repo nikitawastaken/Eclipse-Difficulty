@@ -93,6 +93,8 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
 
 	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_small/ene_acc_shield_small", bph_needed, true)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city", bph_needed, true)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3", bph_needed, false)
@@ -118,6 +120,8 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870", bph_needed, false)
 	
 	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_small", bex_needed, true)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_city/ene_acc_shield_city", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_policia_federale_hat/ene_acc_policia_federale_hat", bex_needed, true)
