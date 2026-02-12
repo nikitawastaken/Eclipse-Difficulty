@@ -1493,6 +1493,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1507,6 +1508,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1521,6 +1523,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1535,6 +1538,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1549,6 +1553,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,

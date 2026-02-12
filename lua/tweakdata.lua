@@ -99,12 +99,12 @@ tweak_data.projectiles.west_arrow = {
 }
 
 tweak_data.projectiles.long_arrow = deep_clone(tweak_data.projectiles.west_arrow)
-tweak_data.projectiles.long_arrow.damage = 30
+tweak_data.projectiles.long_arrow.damage = 24
 tweak_data.projectiles.long_arrow.launch_speed = 3500
 tweak_data.projectiles.long_arrow.adjust_z = -30
 
 tweak_data.projectiles.elastic_arrow = deep_clone(tweak_data.projectiles.west_arrow)
-tweak_data.projectiles.elastic_arrow.damage = 30
+tweak_data.projectiles.elastic_arrow.damage = 24
 tweak_data.projectiles.elastic_arrow.launch_speed = 3500
 tweak_data.projectiles.elastic_arrow.adjust_z = -130
 
@@ -130,11 +130,11 @@ tweak_data.projectiles.frankish_arrow = deep_clone(tweak_data.projectiles.crossb
 tweak_data.projectiles.frankish_arrow.damage = 12
 
 tweak_data.projectiles.arblast_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.arblast_arrow.damage = 30
+tweak_data.projectiles.arblast_arrow.damage = 24
 tweak_data.projectiles.arblast_arrow.launch_speed = 3500
 
 tweak_data.projectiles.ecp_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.ecp_arrow.damage = 12
+tweak_data.projectiles.ecp_arrow.damage = 8
 tweak_data.projectiles.ecp_arrow.launch_speed = 3500
 
 tweak_data.projectiles.crossbow_arrow_exp = create_explosive_arrow(tweak_data.projectiles.crossbow_arrow)
@@ -152,11 +152,11 @@ tweak_data.projectiles.wpn_prj_four.damage = 4
 
 tweak_data.projectiles.wpn_prj_ace.damage = 1
 
-tweak_data.projectiles.wpn_prj_jav.damage = 48
+tweak_data.projectiles.wpn_prj_jav.damage = 24
 
-tweak_data.projectiles.wpn_prj_hur.damage = 24
+tweak_data.projectiles.wpn_prj_hur.damage = 18
 
-tweak_data.projectiles.wpn_prj_target.damage = 24
+tweak_data.projectiles.wpn_prj_target.damage = 18
 
 -- Throwable Grenades
 tweak_data.projectiles.frag.damage = 48
@@ -181,16 +181,17 @@ tweak_data.projectiles.dynamite.name_id = "bm_grenade_frag"
 tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosions/dynamite_explosion"
 
 tweak_data.projectiles.concussion.damage = 1
-tweak_data.projectiles.concussion.range = 800
+tweak_data.projectiles.concussion.curve_pow = 1
+tweak_data.projectiles.concussion.range = 900
 
 tweak_data.projectiles.wpn_gre_electric.damage = 24
 tweak_data.projectiles.wpn_gre_electric.curve_pow = 3
 tweak_data.projectiles.wpn_gre_electric.range = 650
 
-tweak_data.projectiles.xmas_snowball.damage = 8
+tweak_data.projectiles.xmas_snowball.damage = 4
 tweak_data.projectiles.xmas_snowball.curve_pow = 1
 
-tweak_data.projectiles.poison_gas_grenade.damage = 12
+tweak_data.projectiles.poison_gas_grenade.damage = 6
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 15
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
@@ -284,7 +285,7 @@ tweak_data.weapon_disable_crit_for_damage.cluster = { explosion = false, fire = 
 tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
-tweak_data.projectiles.cluster.init_timer = 2
+tweak_data.projectiles.cluster.init_timer = 2.5
 tweak_data.projectiles.cluster.range = 200
 
 -- Incendiary Cluster Grenade

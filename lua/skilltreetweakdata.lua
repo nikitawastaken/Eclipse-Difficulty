@@ -966,9 +966,9 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_trip_mine_deploy_time_multiplier_2")
 	table.insert(self.default_upgrades, "sentry_gun_armor_multiplier") -- prev defense package
 	table.insert(self.default_upgrades, "sentry_gun_shield") -- prev defense package
-	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
 	table.insert(self.default_upgrades, "saw_ignore_shields_1") -- prev saw massacre
-	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
 	table.insert(self.default_upgrades, "player_corpse_dispose_amount_2")
 	table.insert(self.default_upgrades, "player_extra_corpse_dispose_amount")
 	table.insert(self.default_upgrades, "ecm_jammer_can_retrigger")

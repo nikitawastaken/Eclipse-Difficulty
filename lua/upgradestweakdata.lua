@@ -7,7 +7,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- why is this here?
 	self.explosive_bullet = {
-		curve_pow = 1,
+		curve_pow = 0.5,
 		player_dmg_mul = 1 / 4,
 		range = 200,
 	}
@@ -16,7 +16,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.values.rep_upgrades.values = { 0 }
 
 	self.values.player.body_armor = {
-		armor = { 0, 2, 4.5, 7, 10, 14, 18 },
+		armor = { 0, 2, 4.5, 7, 10, 13, 16 },
 		movement = { 1, 0.95, 0.9, 0.85, 0.775, 0.7, 0.625 },
 		concealment = { 30, 26, 23, 21, 18, 12, 1 },
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
@@ -628,6 +628,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.scavenging.multipro = "20%"
 
 	-- Fully Loaded
+	self.start_out_ammo_category_blacklist = {
+		"saw",
+		"grenade_launcher",
+		"minigun",
+		"flamethrower",
+		"bow",
+		"crossbow",
+	}
+
 	self.definitions.player_start_out_ammo_multiplier = {
 		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",
@@ -638,6 +647,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.start_out_ammo_multiplier = { 1.5 }
+
 	self.skill_descs.ammo_reservoir.multibasic = "50%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
@@ -2422,6 +2432,5 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
-	self.values.saw.enemy_slicer[1] = 2
 	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end
