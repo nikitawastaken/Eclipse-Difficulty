@@ -1878,7 +1878,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_heavies = {
-		amount = { 2, 3 },
+		amount_weighted = { 
+			[3] = 4,
+			[2] = get_difficulty_specific_value({ 3, 2 }),
+		},
 		spawn = {
 			{
 				freq = 0.5,
@@ -1912,7 +1915,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_shield = {
-		amount = { 3, 4 },
+		amount = { 3, 3 },
 		spawn = {
 			{
 				freq = 1,
