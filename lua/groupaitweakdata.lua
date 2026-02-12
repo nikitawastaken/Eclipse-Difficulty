@@ -1878,7 +1878,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_heavies = {
-		amount_weighted = { 
+		amount_weighted = {
 			[3] = 4,
 			[2] = get_difficulty_specific_value({ 3, 2 }),
 		},
