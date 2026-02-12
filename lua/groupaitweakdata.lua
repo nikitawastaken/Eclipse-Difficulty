@@ -1955,7 +1955,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_taser = {
-		amount_weighted = { 
+		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 1, 1, 2 }),
 			[2] = 3,
 			[1] = 3,
@@ -1980,7 +1980,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_bulldozer = {
-		amount_weighted = { 
+		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 2, 2, 3 }),
 			[2] = 4,
 			[1] = 3,
