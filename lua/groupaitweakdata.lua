@@ -2253,9 +2253,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.fbi_heavies = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2, 3 }),
 			[3] = 4,
-			[2] = get_difficulty_specific_value({ 3, 3, 3, 2 }),
+			[2] = get_difficulty_specific_value({ 3, 3, 3, 2, 1 }),
 		},
 		spawn = {
 			{
@@ -2380,7 +2380,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.fbi_taser = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2, 3 }),
 			[3] = 3,
 			[2] = 2,
 		},
@@ -2425,7 +2425,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.fbi_bulldozer = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 2, 2, 2, 3 }),
+			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
 			[2] = 2,
 		},
@@ -2628,9 +2628,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.elite_heavies = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2, 3 }),
 			[3] = 4,
-			[2] = get_difficulty_specific_value({ 3, 3, 3, 2 }),
+			[2] = get_difficulty_specific_value({ 3, 3, 3, 2, 1 }),
 		},
 		spawn = {
 			{
@@ -2726,7 +2726,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.elite_taser = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 1, 1, 1, 2 }),
+			[4] = get_difficulty_specific_value({ 1, 1, 1, 2, 3 }),
 			[3] = 3,
 			[2] = 2,
 		},
@@ -2771,7 +2771,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.elite_bulldozer = {
 		amount_weighted = {
-			[4] = get_difficulty_specific_value({ 2, 2, 2, 3 }),
+			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
 			[2] = 2,
 		},
