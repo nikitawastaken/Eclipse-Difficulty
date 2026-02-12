@@ -1886,6 +1886,7 @@
 				<file :name="ene_acc_shield_lights.material_config" />
 				<file :name="ene_acc_shield_lights.model" />
 				<file :name="ene_acc_shield_lights.object" />
+				<file :name="ene_acc_shield_lights.unit" />
 			</group>
 
 			<group :name="ene_acc_shield_city/">
@@ -2260,6 +2261,7 @@
 				<file :name="ene_acc_shield_lights.material_config" />
 				<file :name="ene_acc_shield_lights.model" />
 				<file :name="ene_acc_shield_lights.object" />
+				<file :name="ene_acc_shield_lights.unit" />
 			</group>
 
 			<group :name="ene_acc_shield_city/">

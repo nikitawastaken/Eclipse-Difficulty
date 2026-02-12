@@ -94,6 +94,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 
 	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_small/ene_acc_shield_small", bph_needed, true)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_lights/ene_acc_shield_lights", bph_needed, true)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city", bph_needed, true)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2", bph_needed, false)
