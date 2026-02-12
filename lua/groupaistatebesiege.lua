@@ -1130,7 +1130,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 	end
 
 	local best_groups = {}
-	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "recon"].groups, 1)
+	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "reenforce"].groups, 1)
 	if total_weight <= 0 and not guarantee then
 		return
 	end

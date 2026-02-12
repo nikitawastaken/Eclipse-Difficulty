@@ -3833,6 +3833,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"gensec_timed_group",
 		"murkywater_timed_group",
 		"army_timed_group",
+
+		-- Reinforce groups
+		"cs_defend_init",
+		"cs_defend_light",
+		"cs_defend_heavy",
+		"fbi_defend_init",
+		"fbi_defend_light",
+		"fbi_defend_heavy",
+		"elite_defend_light",
+		"elite_defend_heavy",
 	}
 	add_groups_as_empty(self.besiege.assault.groups, junk_groups)
 	add_groups_as_empty(self.ponr.assault.groups, junk_groups)
