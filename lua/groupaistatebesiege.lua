@@ -1331,7 +1331,13 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	end
 
 	local wanted_nr_units
-	if type(spawn_group_desc.amount) == "number" then
+	if spawn_group_desc.amount_weighted then
+		local amount_selector = EclipseWeightedSelector:new()
+		for amount, weight in pairs(spawn_group_desc.amount_weighted) do
+			amount_selector:add(amount, weight)
+		end
+		wanted_nr_units = amount_selector:select()
+	elseif type(spawn_group_desc.amount) == "number" then
 		wanted_nr_units = spawn_group_desc.amount
 	else
 		wanted_nr_units = math.random(spawn_group_desc.amount[1], spawn_group_desc.amount[2])
