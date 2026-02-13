@@ -123,21 +123,21 @@ local john_dialogue_14 = nil
 local john_dialogue_15 = nil
 
 if john_boat_driver_chance <= 0.1 then
-	john_dialogue_1 = "Play_bot_watchdogs_new_stage2_01"
-	john_dialogue_2 = "Play_bot_watchdogs_new_stage2_05"
-	john_dialogue_3 = "Play_bot_watchdogs_new_stage2_06"
-	john_dialogue_4 = "Play_bot_watchdogs_new_stage2_07"
-	john_dialogue_5 = "Play_bot_watchdogs_new_stage2_08"
-	john_dialogue_6 = "Play_bot_watchdogs_new_stage2_09"
-	john_dialogue_7 = "Play_bot_watchdogs_new_stage2_10"
-	john_dialogue_8 = "Play_bot_watchdogs_new_stage2_07"
-	john_dialogue_9 = "Play_bot_watchdogs_new_stage2_11"
-	john_dialogue_10 = "Play_bot_watchdogs_new_stage2_12"
-	john_dialogue_11 = "Play_bot_watchdogs_new_stage2_13"
-	john_dialogue_12 = "Play_bot_watchdogs_new_stage2_14"
-	john_dialogue_13 = "Play_bot_watchdogs_new_stage2_02"
-	john_dialogue_14 = "Play_bot_watchdogs_new_stage2_03"
-	john_dialogue_15 = "Play_bot_watchdogs_new_stage2_04"
+	john_dialogue_1 = "bot_watchdogs_new_stage2_01"
+	john_dialogue_2 = "bot_watchdogs_new_stage2_05"
+	john_dialogue_3 = "bot_watchdogs_new_stage2_06"
+	john_dialogue_4 = "bot_watchdogs_new_stage2_07"
+	john_dialogue_5 = "bot_watchdogs_new_stage2_08"
+	john_dialogue_6 = "bot_watchdogs_new_stage2_09"
+	john_dialogue_7 = "bot_watchdogs_new_stage2_10"
+	john_dialogue_8 = "bot_watchdogs_new_stage2_07"
+	john_dialogue_9 = "bot_watchdogs_new_stage2_11"
+	john_dialogue_10 = "bot_watchdogs_new_stage2_12"
+	john_dialogue_11 = "bot_watchdogs_new_stage2_13"
+	john_dialogue_12 = "bot_watchdogs_new_stage2_14"
+	john_dialogue_13 = "bot_watchdogs_new_stage2_02"
+	john_dialogue_14 = "bot_watchdogs_new_stage2_03"
+	john_dialogue_15 = "bot_watchdogs_new_stage2_04"
 else
 	john_dialogue_1 = "bot_wd2_01"
 	john_dialogue_2 = "bot_wd2_02"
@@ -336,8 +336,10 @@ return {
 		},
 	},
 	-- chance-based closed warehouse on all difficulties
+	--[[
 	[104001] = filter_easy_above_warehouse_1,
 	[104003] = filter_easy_above_warehouse_2,
+	]]--
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
