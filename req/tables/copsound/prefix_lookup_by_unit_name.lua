@@ -269,23 +269,36 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2",
 		"units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3",
 	},
-	--[[
-	russian_taser_list = {
+    russian_bulldozer_list = {
 		func = function(self, nr_variations)
-			return "rtsr_"
+			return "rbdz_"
 		end,
+        "units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_benelli/ene_akan_fbi_tank_benelli",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic",
 	},
 	russian_cloaker_list = {
 		func = function(self, nr_variations)
 			return "rclk_"
 		end,
+        "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 	},
-	russian_medic_list = {
+    russian_medic_list = {
 		func = function(self, nr_variations)
 			return "rmdc_"
 		end,
+        "units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870",
 	},
-	]]
+    russian_taser_list = {
+		func = function(self, nr_variations)
+			return "rtsr_"
+		end,
+        "units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870",
+	},
 	russian_merc_list = {
 		func = function(self, nr_variations)
 			return "r" .. nr_variations .. "n_"

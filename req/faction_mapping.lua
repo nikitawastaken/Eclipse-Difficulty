@@ -101,7 +101,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 		},
 		["FBI"] = {
 			swat_1 = {
@@ -129,7 +129,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 		},
 		["Elite"] = {
 			swat_1 = {
@@ -157,7 +157,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 		},
 	},
 	["zombie"] = {
