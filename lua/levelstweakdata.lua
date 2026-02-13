@@ -183,8 +183,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 	self.crojob3_night.group_ai_preset = "heavy_response"
-
-    self.kosugi.ai_group_type = "murkywater"
+	
+	self.kosugi.ai_group_type = "murkywater"
+	self.dark.ai_group_type = "murkywater"
 
 	self.shoutout_raid.group_ai_settings = {
 		assault_force_mul = 1.25,
@@ -342,6 +343,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.wwh.group_ai_preset = "remote"
+	self.wwh.ai_group_type = "murkywater"
 
 	self.hvh.group_ai_settings = {
 		use_equipment_reenforce = false,
@@ -909,6 +911,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
     local murky_mercs_package = { "packages/murky_mercs" }
 	self.kosugi.custom_package = murky_mercs_package
 	self.shoutout_raid.custom_package = murky_mercs_package
+	self.dark.custom_package = murky_mercs_package
+	self.wwh.custom_package = murky_mercs_package
 
     local zombie_faction_package = { "packages/zombie_cops" }
 	self.nail.custom_package = zombie_faction_package
