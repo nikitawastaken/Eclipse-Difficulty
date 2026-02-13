@@ -892,7 +892,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
-	
+
 	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
 	self.brb.custom_package = murky_mercs_scripted_package
 
