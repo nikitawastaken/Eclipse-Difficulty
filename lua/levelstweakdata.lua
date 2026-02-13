@@ -895,7 +895,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	
 	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
 	self.brb.custom_package = murky_mercs_scripted_package
-	self.shoutout_raid.custom_package = murky_mercs_package
 
 	local lapd_package = { "packages/lapd" }
 	self.kenaz.custom_package = lapd_package
