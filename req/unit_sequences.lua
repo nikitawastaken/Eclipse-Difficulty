@@ -284,6 +284,8 @@ local M = {
 	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
 	["units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"] = { name = "soldier_4", head = head_sequences.soldier_b },
 
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"] = { name = "spook_1", head = head_sequences.cloaker },
+
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"] = { name = "hvh_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2"] = { name = "hvh_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_3/ene_cop_hvh_3"] = { name = "hvh_cop_3", head = head_sequences.security },

@@ -320,6 +320,7 @@
 
 		<!-- cloaker goggle glow -->
 		<file name="effects/particles/character/hvh_cloaker_goggle.effect"/>
+		<file name="effects/particles/character/mad_cloaker_goggle.effect"/>
 		
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
@@ -1488,6 +1489,27 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_mad/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="mad_cloaker_body_df.texture" />
+
+				<file :name="mad_cloaker_head_df.texture" />
+				<file :name="mad_cloaker_head_nm.texture" />
+				
+				<file :name="mad_spook_il.texture" />
+			</group>
+
+			<group :name="ene_akan_fbi_spooc_asval_smg/">
+				<xml  :name="ene_akan_fbi_spooc_asval_smg.sequence_manager"/>
+				<file :name="ene_akan_fbi_spooc_asval_smg.material_config" />
+				<file :name="ene_akan_fbi_spooc_asval_smg_contour.material_config" />
+				<file :name="ene_akan_fbi_spooc_asval_smg.model" />
+				<file :name="ene_akan_fbi_spooc_asval_smg.object" />
+				<file :name="ene_akan_fbi_spooc_asval_smg.unit" />
+				<file :name="ene_akan_fbi_spooc_asval_smg_husk.unit" />
+			</group>
+		</group>
+		
 		<!-- sosa hitboxes and footsteps -->
 		<group name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/" dyn_package="false">
 			<file :name="ene_drug_lord_boss.object"/>
