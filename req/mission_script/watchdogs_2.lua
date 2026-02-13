@@ -339,7 +339,8 @@ return {
 	--[[
 	[104001] = filter_easy_above_warehouse_1,
 	[104003] = filter_easy_above_warehouse_2,
-	]]--
+	]]
+	--
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
