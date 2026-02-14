@@ -185,10 +185,11 @@ return {
 			{ id = 105648, remove = true },
 		},
 	},
-	-- trigger on end assault
+	-- trigger swat choppers on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 400075, delay = 10 },
+			{ id = 400080, delay = 10 },
+			{ id = 400081, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -213,8 +214,8 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
-			{ id = 400077, delay = 0 },
-			{ id = 400078, delay = 0 },
+			{ id = 400080, delay = 0 },
+			{ id = 400081, delay = 0 },
 		},
 	},
 	-- enable spawns sooner
