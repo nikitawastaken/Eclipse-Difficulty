@@ -390,7 +390,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_2", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
 	Eclipse.mission_elements.gen_object_editor_trigger(400051, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
-	
+
 	-- closed warehouse rng
 	Eclipse.mission_elements.gen_element_random(400052, "open_closed_warehouse_random", open_closed_warehouse),
 }
