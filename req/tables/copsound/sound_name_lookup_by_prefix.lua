@@ -26,6 +26,7 @@ local lXn_tbl = {
 	lk3b = "lk3a",
 }
 local rXn_tbl = {
+	a01 = "i01",
 	a07b = "a07a",
 	gr1a = "rdy",
 	gr1b = "rdy",
@@ -66,6 +67,7 @@ local zXn_tbl = {
 	x02a_any_3p = zXn_zombie_sounds_tbl,
 	burndeath = zXn_zombie_sounds_tbl,
 	burnhurt = zXn_zombie_sounds_tbl,
+	a01 = zXn_zombie_sounds_tbl,
 	a07b = zXn_zombie_sounds_tbl,
 	gr1a = zXn_zombie_sounds_tbl,
 	gr1b = zXn_zombie_sounds_tbl,
@@ -95,6 +97,7 @@ local zXn_tbl = {
 	clr = zXn_zombie_sounds_tbl,
 }
 local mXn_tbl = {
+	a01 = "i01",
 	a07b = "a07a",
 	gr1a = "rdy",
 	gr1b = "rdy",

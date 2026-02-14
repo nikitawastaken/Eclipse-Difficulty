@@ -21,12 +21,6 @@ local garage_door_spawn = {
 	},
 	groups = preferred.no_shields,
 }
-local van_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -50,6 +44,12 @@ local container_spawn = {
 		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local van_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
 }
 local roof_spawn = {
 	values = {
