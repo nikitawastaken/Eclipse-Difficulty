@@ -321,6 +321,14 @@ local optsOpenSwatVanDoors_Trigger_2 = {
 	},
 }
 
+local open_closed_warehouse = {
+	amount = 1,
+	on_executed = {
+		{ id = 104003, delay = 0 },
+		{ id = 104001, delay = 0 },
+	},
+}
+
 M.elements = {
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400001, "sniper_1", Vector3(3385, -3308, 540.404), Rotation(-90, 0, -0), optsSniper_1),
@@ -382,6 +390,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_2", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
 	Eclipse.mission_elements.gen_object_editor_trigger(400051, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
+
+	-- closed warehouse rng
+	Eclipse.mission_elements.gen_element_random(400052, "open_closed_warehouse_random", open_closed_warehouse),
 }
 
 return M
