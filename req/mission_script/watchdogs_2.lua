@@ -22,34 +22,6 @@ local enabled = {
 		enabled = true,
 	},
 }
-local filter_easy_above_warehouse_1 = {
-	values = {
-		enabled = math.random() <= 0.5,
-		difficulty_normal = true,
-		difficulty_hard = true,
-		difficulty_overkill = true,
-		difficulty_overkill_145 = true,
-	},
-}
-local filter_easy_above_warehouse_2 = {
-	values = {
-		enabled = math.random() <= 0.3,
-		difficulty_normal = true,
-		difficulty_hard = true,
-		difficulty_overkill = true,
-		difficulty_overkill_145 = true,
-	},
-}
-local closed_warehouse_back = {
-	values = {
-		enabled = math.random() < 0.5,
-	},
-}
-local closed_warehouse_front = {
-	values = {
-		enabled = math.random() < 0.25,
-	},
-}
 local standard_spawn = {
 	values = {
 		interval = 15,
@@ -335,12 +307,26 @@ return {
 			chance = 25,
 		},
 	},
-	-- chance-based closed warehouse on all difficulties
-	--[[
-	[104001] = filter_easy_above_warehouse_1,
-	[104003] = filter_easy_above_warehouse_2,
-	]]
-	--
+	-- the warehouse can either be closed or open on all difficulties
+	[104003] = {
+		values = {
+			difficulty_overkill = true,
+			difficulty_hard = true,
+			difficulty_normal = true,
+			difficulty_overkill_145 = true,
+		},
+	},
+	[104001] = {
+		values = {
+			difficulty_easy_wish = true,
+		},
+	},
+	[100169] = {
+		on_executed = {
+			{ id = 400052, delay = 1 },
+			{ id = 104000, remove = true },
+		},
+	},
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
