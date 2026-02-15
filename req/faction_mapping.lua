@@ -76,6 +76,9 @@ local M = {
 	},
 	["russia"] = {
 		["CS"] = {
+			fbi_1 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45",
+			fbi_2 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass",
+			fbi_3 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg",
 			swat_1 = {
 				"units/payday2/characters/ene_swat_1/ene_swat_1",
 				"units/payday2/characters/ene_swat_3/ene_swat_3",
@@ -104,6 +107,9 @@ local M = {
 			cloaker = "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 		},
 		["FBI"] = {
+			fbi_1 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45",
+			fbi_2 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass",
+			fbi_3 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg",
 			swat_1 = {
 				"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
 				"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
@@ -132,6 +138,9 @@ local M = {
 			cloaker = "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 		},
 		["Elite"] = {
+			fbi_1 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45",
+			fbi_2 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass",
+			fbi_3 = "units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg",
 			swat_1 = {
 				"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
 				"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
