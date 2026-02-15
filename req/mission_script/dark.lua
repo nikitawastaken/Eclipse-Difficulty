@@ -1,9 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local murky_arm_security = scripted_enemy.murkywater_1
-local murky_security_1 = scripted_enemy.security_1
-local murky_security_2 = scripted_enemy.security_2
-local murky_security_3 = scripted_enemy.security_3
+local murky_security_1 = scripted_enemy.murky_security_1
+local murky_security_2 = scripted_enemy.murky_security_2
+local murky_security_3 = scripted_enemy.murky_security_3
 local murky_guard_list_low_diffs = { [murky_security_1] = 2, [murky_security_2] = 2, [murky_security_3] = 2, [murky_arm_security] = 1 }
 local murky_guard_list_high_diffs = { [murky_arm_security] = 4, [murky_security_1] = 1, [murky_security_2] = 1, [murky_security_3] = 1 }
 
