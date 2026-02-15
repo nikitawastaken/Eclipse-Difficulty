@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<materials version="3" group="ene_akan_cs_cop_ak47_ass">
+<materials version="3" group="ene_akan_cs_cop_c45">
     <material name="mtr_police_body" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
         <bump_normal_texture 	file="units/pd2_dlc_mad/characters/shared_textures/mad_police_nm" />
         <diffuse_texture 		file="units/pd2_dlc_mad/characters/shared_textures/mad_police_df" />

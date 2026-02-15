@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
-	<object file="units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass" />
+	<object file="units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45" />
 
-	<dependencies>			
-		<depends_on bnk="soundbanks/regular_vox" />
-		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />		
+	<dependencies>	
+		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />	
 	</dependencies>
 
 	<extensions>	
@@ -82,21 +81,24 @@
 				<var value="RightToeBase" />				
 			</var>
 			<var name="allow_client_spawn" value="true" />
-			<var name="local_only" value="true" />			
+			<var name="local_only" value="true "/>			
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
-		<extension name="base" class="CopBase" >		
+		<extension name="base" class="HuskCopBase" >		
 			<var name="_tweak_table" value="cop" />
 			<var name="_default_weapon_id" value="c45" />			
 		</extension>
-		<extension name="inventory" class="CopInventory" />
-		<extension name="brain" class="CopBrain" />
+		<extension name="inventory" class="HuskCopInventory" />
+		<extension name="brain" class="HuskCopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />
-		<extension name="character_damage" class="CopDamage">	
+		<extension name="character_damage" class="HuskCopDamage" >		
 			<var name="_head_body_name" value="head" />
-			<var name="_head" value="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />		
+			<var name="_head" value="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
+			<var name="_head_gear_object" value="g_hat_cop_lod" />
+			<var name="_nr_head_gear_objects" value="6" />
+			<var name="_head_gear" value="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />	
 		</extension>
-		<extension name="movement" class="CopMovement" >		
+		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />
 			<var name="_anim_global" value="cop" />			
 		</extension>
@@ -111,9 +113,9 @@
 		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass_husk" />
+	<network sync="husk" remote_unit=""/>
 
-	<sounds>	
+	<sounds> 
 		<default_soundsource source="Hips" />		
-	</sounds>	
+	</sounds> 
 </unit>
