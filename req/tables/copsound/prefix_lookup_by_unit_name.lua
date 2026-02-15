@@ -303,6 +303,15 @@ local prefix_lookup_for_humans = {
 		func = function(self, nr_variations)
 			return "r" .. nr_variations .. "n_"
 		end,
+		-- Akan Street Cops
+		"units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45",
+		"units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull",
+		"units/pd2_dlc_mad/characters/ene_akan_cs_cop_akmsu_smg/ene_akan_cs_cop_akmsu_smg",
+		"units/pd2_dlc_mad/characters/ene_akan_cs_cop_r870/ene_akan_cs_cop_r870",
+		-- Akan Agents
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg",
 		-- Custom stuff below
 		"units/pd2_dlc_mad/characters/ene_rus_security_1/ene_rus_security_1",
 		"units/pd2_dlc_mad/characters/ene_rus_security_2/ene_rus_security_2",

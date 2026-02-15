@@ -153,6 +153,9 @@
 	"ene_shield_1" : "FBI Shield",
 	"ene_shield_2" : "SWAT Shield",
 	"ene_city_shield" : "GenSec Elite Shield",
+	
+	"ene_akan_cs_cop" : "AKAN First Responder",
+	"ene_akan_fbi_agent" : "AKAN SRT",
 
 	"ene_cop_hvh_1" : "Zombie MPDC Cop",
 	"ene_cop_hvh_2" : "Zombie MPDC Cop",
