@@ -37,8 +37,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','a','a','b','b','b','c','c','c','d','d','d','e','e','e','f','f','f','g','g','g','h','h','h','bo','bo','bo','jerome')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','a','a','b','b','b','c','c','c','d','d','d','e','e','e','f','f','f','g','g','g','h','h','h','bo','bo','bo','jerome')..'_var1'" />
+			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','a','a','a','b','b','b','b','c','c','c','c','d','d','d','d','e','e','e','e','f','f','f','f','g','g','f','g','h','h','h','h','bo','bo','bo','bo','jerome')..'_var2'" />
+			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','a','a','a','b','b','b','b','c','c','c','c','d','d','d','d','e','e','e','e','f','f','f','f','g','g','f','g','h','h','h','h','bo','bo','bo','bo','jerome')..'_var1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'balaclava_cop_base'" once="true" triggable="true">	

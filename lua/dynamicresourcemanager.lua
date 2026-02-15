@@ -73,6 +73,10 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 
 	local mad_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"))
 	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45", mad_needed, false)
+	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull", mad_needed, false)
+	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45", mad_needed, false)
+	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass", mad_needed, false)
+	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg", mad_needed, false)
 
 	local hvh_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"))
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3", hvh_needed, false)

@@ -3,8 +3,9 @@
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
 	<object file="units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45" />
 
-	<dependencies>	
-		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />	
+	<dependencies>		
+		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
+		<depends_on unit="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />		
 	</dependencies>
 
 	<extensions>	
@@ -86,7 +87,7 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >		
 			<var name="_tweak_table" value="cop" />
-			<var name="_default_weapon_id" value="c45" />			
+			<var name="_default_weapon_id" value="akmsu_smg" />		
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />
@@ -96,7 +97,7 @@
 			<var name="_head" value="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
 			<var name="_head_gear_object" value="g_hat_cop_lod" />
 			<var name="_nr_head_gear_objects" value="2" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />	
+			<var name="_head_gear" value="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />			
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />
@@ -116,6 +117,6 @@
 	<network sync="husk" remote_unit=""/>
 
 	<sounds> 
-		<default_soundsource source="Hips" />		
-	</sounds> 
+		<default_soundsource source="Hips" />
+	</sounds>
 </unit>

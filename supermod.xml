@@ -1545,7 +1545,47 @@
 					<file :name="ene_akan_fbi_agent_c45_contour.material_config" />
 				</group>
 			</group>
+
+			<group :name="ene_akan_cs_cop_asval_smg/">
+				<file :name="ene_akan_cs_cop_asval_smg.unit" />
+				<file :name="ene_akan_cs_cop_asval_smg_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_cop_ak47_ass/">
+				<file :name="ene_akan_cs_cop_ak47_ass.unit" />
+				<file :name="ene_akan_cs_cop_ak47_ass_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_cop_raging_bull/">
+				<file :name="ene_akan_cs_cop_raging_bull.unit" />
+				<file :name="ene_akan_cs_cop_raging_bull_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_cop_akmsu_smg/">
+				<file :name="ene_akan_cs_cop_akmsu_smg.unit" />
+				<file :name="ene_akan_cs_cop_akmsu_smg_husk.unit" />
+			</group>
 			
+			<group :name="ene_akan_cs_cop_r870/">
+				<file :name="ene_akan_cs_cop_r870.unit" />
+				<file :name="ene_akan_cs_cop_r870_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_fbi_agent_c45/">
+				<file :name="ene_akan_fbi_agent_c45.unit" />
+				<file :name="ene_akan_fbi_agent_c45_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_fbi_agent_ak47_ass/">
+				<file :name="ene_akan_fbi_agent_ak47_ass.unit" />
+				<file :name="ene_akan_fbi_agent_ak47_ass_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_fbi_agent_akmsu_smg/">
+				<file :name="ene_akan_fbi_agent_akmsu_smg.unit" />
+				<file :name="ene_akan_fbi_agent_akmsu_smg_husk.unit" />
+			</group>
+						
 			<group :name="ene_akan_fbi_spooc_asval_smg/">
 				<xml  :name="ene_akan_fbi_spooc_asval_smg.sequence_manager"/>
 				<file :name="ene_akan_fbi_spooc_asval_smg.material_config" />

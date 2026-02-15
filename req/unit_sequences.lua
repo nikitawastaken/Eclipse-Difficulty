@@ -284,10 +284,16 @@ local M = {
 	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
 	["units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"] = { name = "soldier_4", head = head_sequences.soldier_b },
 
-	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass"] = { name = "cop_1", head = head_sequences.security },
-	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_akmsu_smg/ene_akan_cs_cop_akmsu_smg"] = { name = "cop_2", head = head_sequences.security },
-	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_asval_smg/ene_akan_cs_cop_asval_smg"] = { name = "cop_3", head = head_sequences.security },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45"] = { name = "cop_1", head = head_sequences.security },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass"] = { name = "cop_1", head = head_sequences.security }, -- unused
+	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_asval_smg/ene_akan_cs_cop_asval_smg"] = { name = "cop_1", head = head_sequences.security }, -- unused
+	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull"] = { name = "cop_2", head = head_sequences.security },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_akmsu_smg/ene_akan_cs_cop_akmsu_smg"] = { name = "cop_3", head = head_sequences.security },
 	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_r870/ene_akan_cs_cop_r870"] = { name = "cop_4", head = head_sequences.security },
+
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45"] = { name = "fbi_1", head = head_sequences.security },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass"] = { name = "fbi_2", head = head_sequences.security },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg"] = { name = "fbi_3", head = head_sequences.hrt },	
 	
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"] = { name = "spook_1", head = head_sequences.cloaker },
 
