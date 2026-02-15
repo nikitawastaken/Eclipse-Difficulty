@@ -39,20 +39,20 @@
     </material>
 
     <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_bo">
-        <bump_normal_texture 	file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_nm" />
-        <diffuse_texture 		file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_df" />
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/bo_nm" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/bo_df" />
         <variable				value="1 1 1" type="vector3" name="contour_color"/>
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>
     <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_bo_lod_1">
-        <bump_normal_texture 	file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_nm" mip="1" />
-        <diffuse_texture 		file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_df" mip="1" />
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/bo_nm" mip="1" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/bo_df" mip="1" />
         <variable 				value="1 1 1" type="vector3" name="contour_color"/>
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>
     <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_bo_lod_2">
-        <bump_normal_texture 	file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_nm" mip="2" />
-        <diffuse_texture 		file="units/payday2/characters/shared_textures/civ_male_bank_manager_5_head_df" mip="2" />
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/bo_nm" mip="2" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/bo_df" mip="2" />
         <variable 				value="1 1 1" type="vector3" name="contour_color"/>
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>

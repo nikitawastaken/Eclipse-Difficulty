@@ -1853,6 +1853,9 @@ function CharacterTweakData:character_map(...)
 	}
 
 	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
+
+	safe_add(char_map.mad, "ene_akan_cs_cop_c45")
+--	safe_add(char_map.mad, "ene_akan_cs_raging_bull")
 	
 	safe_add(char_map.hvh, "ene_swat_hvh_3")
 	safe_add(char_map.hvh, "ene_sniper_hvh_1")

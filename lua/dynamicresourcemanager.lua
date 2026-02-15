@@ -71,6 +71,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	local drm_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"))
 	load_unload_unit("units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic", drm_needed, false)
 
+	local mad_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"))
+	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45", mad_needed, false)
+
 	local hvh_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"))
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3", hvh_needed, false)
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_sniper_hvh_1/ene_sniper_hvh_1", hvh_needed, false)

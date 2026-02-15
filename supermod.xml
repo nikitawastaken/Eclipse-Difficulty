@@ -713,6 +713,9 @@
 				<file :name="female_heads_atlas_df.texture" />
 				<file :name="female_heads_atlas_nm.texture" />
 
+				<file :name="bo_df.texture" />
+				<file :name="bo_nm.texture" />
+				
 				<file :name="ene_acc_shield_city_df.texture" />
 							
 				<file :name="visor_glass_df.texture" />
@@ -1490,14 +1493,59 @@
 
 		<group name="units/pd2_dlc_mad/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
+				<file :name="russian_heads_atlas_var1_df.texture" />
+				<file :name="russian_heads_atlas_var1_nm.texture" />
+
+				<file :name="russian_heads_atlas_var2_df.texture" />
+				<file :name="russian_heads_atlas_var2_nm.texture" />
+
+				<file :name="mad_police_df.texture" />
+				<file :name="mad_police_nm.texture" />
+
+				<file :name="mad_fbi_df.texture" />
+			
 				<file :name="mad_cloaker_body_df.texture" />
 
 				<file :name="mad_cloaker_head_df.texture" />
 				<file :name="mad_cloaker_head_nm.texture" />
+	
+				<file :name="mad_medic_head_df.texture" />
+				<file :name="mad_medic_head_nm.texture" />
 				
 				<file :name="mad_spook_il.texture" />
 			</group>
+			
+			<group :name="ene_acc_russian_head/">
+				<xml  :name="ene_acc_russian_head.sequence_manager" />
+				<file :name="ene_acc_russian_head.cooked_physics" />
+				<file :name="ene_acc_russian_head.model" />
+				<file :name="ene_acc_russian_head.object" />
+				<file :name="ene_acc_russian_head.unit" />
 
+				<group :name="vars/">
+					<file :name="ene_acc_russian_head_var1.material_config" />
+					<file :name="ene_acc_russian_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_russian_head_var2.material_config" />
+					<file :name="ene_acc_russian_head_var2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_akan_cs_cop_c45/">
+				<xml  :name="ene_akan_cs_cop_c45.sequence_manager" dyn_package="true" />
+				<file :name="ene_akan_cs_cop_c45.material_config" />
+				<file :name="ene_akan_cs_cop_c45_contour.material_config" />
+				<file :name="ene_akan_cs_cop_c45.model" />
+				<file :name="ene_akan_cs_cop_c45.object" />
+				<file :name="ene_akan_cs_cop_c45.unit" />
+				<file :name="ene_akan_cs_cop_c45_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_akan_fbi_agent_c45.material_config" />
+					<file :name="ene_akan_fbi_agent_c45_contour.material_config" />
+				</group>
+			</group>
+			
 			<group :name="ene_akan_fbi_spooc_asval_smg/">
 				<xml  :name="ene_akan_fbi_spooc_asval_smg.sequence_manager"/>
 				<file :name="ene_akan_fbi_spooc_asval_smg.material_config" />
