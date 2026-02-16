@@ -116,7 +116,7 @@
 	"menu_ecm_blackout": "ECM Blackout",
 	"menu_ecm_blackout_desc": "BASIC: ##$basic##\nYou can now place ##$multibasic## ECM Jammers instead of just two.\n\nACE: ##$pro##\nWhen activated in loud, your ECM Jammers will generate disruptions in ongoing enemy communications.\n\nCommunication disruptions cause enemies to refrain from pushing and slow down the speed at which new squads arrive on the scene by ##$multipro##.",
 	"menu_background_threat": "Background Threat",
-	"menu_background_threat_desc": "BASIC: ##$basic##\nYou gain ##$multibasic Transparency## for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nFor every point of ##Transparency## you are ##$multibasic5## less likely to be targeted in loud and your detection rate in stealth is reduced by ##$multibasic5##.\n\nACE: ##$pro##\nWork in progress.",
+	"menu_background_threat_desc": "BASIC: ##$basic##\nYou gain ##$multibasic Transparency## for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nFor every point of ##Transparency## you are ##$multibasic5## less likely to be targeted in loud and your detection rate in stealth is reduced by ##$multibasic5##.\n\nACE: ##$pro##\nYou deal ##$multipro## extra damage to enemies not currently targeting you in loud.\n\nYou instantly kill unalerted enemies in stealth.",
 	"menu_sprinter": "Athlete",
 	"menu_sprinter_desc": "BASIC: ##$basic##\nThe time before stamina regeneration starts is reduced by ##$multibasic## and the regeneration rate of stamina is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour total movement speed is increased by ##$multipro##.",
 	"menu_awareness": "Duck and Cover",

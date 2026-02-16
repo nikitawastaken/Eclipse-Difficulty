@@ -1126,12 +1126,22 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.values.player.unaware_of_aggressor_damage_multiplier = { 1.5 }
+	self.definitions.player_unaware_of_aggressor_damage_multiplier = {
+		name_id = "menu_player_unaware_of_aggressor_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "unaware_of_aggressor_damage_multiplier",
+			category = "player",
+		},
+	}
 	self.skill_descs.chameleon.multibasic = "1"
 	self.skill_descs.chameleon.multibasic2 = "2"
 	self.skill_descs.chameleon.multibasic3 = "35"
 	self.skill_descs.chameleon.multibasic4 = "10"
 	self.skill_descs.chameleon.multibasic5 = "5%"
-	self.skill_descs.chameleon.multipro = "5%"
+	self.skill_descs.chameleon.multipro = "50%"
 
 	-- Athlete
 	self.values.player.stamina_regen_timer_multiplier[1] = 0.85

@@ -373,8 +373,8 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Background Threat
 	self.skills.chameleon[1].upgrades = { "player_detection_risk_transparency" }
-	self.skills.chameleon[2].upgrades = {}
-	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12
+	self.skills.chameleon[2].upgrades = { "player_unaware_of_aggressor_damage_multiplier" }
+	self.skills.chameleon.icon_xy = { 9, 12 }
 	self.skills.chameleon.name_id = "menu_background_threat"
 	self.skills.chameleon.desc_id = "menu_background_threat_desc"
 

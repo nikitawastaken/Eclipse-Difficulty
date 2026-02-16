@@ -38,9 +38,17 @@ CopBrain._next_cover_grenade_chk_t = 0
 CopBrain._next_logic_upd_t = 0
 CopBrain._logic_upd_interval = 1 / 30
 
--- helper function
+-- Helper functions
 function CopBrain:is_suppressed()
 	return self._logic_data.is_suppressed or false
+end
+
+function CopBrain:set_focus_enemy(focus_enemy)
+	self._logic_data._focus_enemy = focus_enemy or nil
+end
+
+function CopBrain:get_focus_enemy()
+	return self._logic_data._focus_enemy and self._logic_data._focus_enemy.unit or nil
 end
 
 function CopBrain:on_suppressed(state)
