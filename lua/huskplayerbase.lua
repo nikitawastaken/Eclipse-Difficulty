@@ -3,7 +3,7 @@ function HuskPlayerBase:get_value_from_risk_upgrade(risk_upgrade, detection_risk
 
 	if not detection_risk then
 		if not self._suspicion_settings.hud_offset then
-	        self._suspicion_settings.hud_offset = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
+			self._suspicion_settings.hud_offset = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
 		end
 
 		detection_risk = math.round(self._suspicion_settings.hud_offset * 100)

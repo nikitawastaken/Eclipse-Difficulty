@@ -386,19 +386,19 @@ end
 function PlayerInventoryGui:setup_player_stats(panel)
 	local data = {
 		{
-			name = "armor"
+			name = "armor",
 		},
 		{
-			name = "health"
+			name = "health",
 		},
 		{
 			procent = true,
-			name = "movement"
+			name = "movement",
 		},
 		{
 			name = "dodge",
 			procent = true,
-			revert = true
+			revert = true,
 		},
 		{
 			name = "transparency",
@@ -406,14 +406,14 @@ function PlayerInventoryGui:setup_player_stats(panel)
 		{
 			name = "crit",
 			procent = true,
-			revert = true
+			revert = true,
 		},
 		{
-			name = "damage_shake"
+			name = "damage_shake",
 		},
 		{
-			name = "stamina"
-		}
+			name = "stamina",
+		},
 	}
 	local stats_panel = panel:child("stats_panel")
 
@@ -424,12 +424,12 @@ function PlayerInventoryGui:setup_player_stats(panel)
 	end
 
 	stats_panel = panel:panel({
-		name = "stats_panel"
+		name = "stats_panel",
 	})
 	local panel = stats_panel:panel({
 		h = 20,
 		layer = 1,
-		w = stats_panel:w()
+		w = stats_panel:w(),
 	})
 	self._player_stats_shown = data
 	self._player_stats_titles = {
@@ -439,7 +439,7 @@ function PlayerInventoryGui:setup_player_stats(panel)
 			font_size = tweak_data.menu.pd2_small_font_size,
 			font = tweak_data.menu.pd2_small_font,
 			color = tweak_data.screen_colors.text,
-			text = utf8.to_upper(managers.localization:text("bm_menu_stats_total"))
+			text = utf8.to_upper(managers.localization:text("bm_menu_stats_total")),
 		}),
 		base = stats_panel:text({
 			alpha = 0.75,
@@ -448,7 +448,7 @@ function PlayerInventoryGui:setup_player_stats(panel)
 			font_size = tweak_data.menu.pd2_small_font_size,
 			font = tweak_data.menu.pd2_small_font,
 			color = tweak_data.screen_colors.text,
-			text = utf8.to_upper(managers.localization:text("bm_menu_stats_base"))
+			text = utf8.to_upper(managers.localization:text("bm_menu_stats_base")),
 		}),
 		skill = stats_panel:text({
 			alpha = 0.75,
@@ -457,8 +457,8 @@ function PlayerInventoryGui:setup_player_stats(panel)
 			font_size = tweak_data.menu.pd2_small_font_size,
 			font = tweak_data.menu.pd2_small_font,
 			color = tweak_data.screen_colors.resource,
-			text = utf8.to_upper(managers.localization:text("bm_menu_stats_skill"))
-		})
+			text = utf8.to_upper(managers.localization:text("bm_menu_stats_skill")),
+		}),
 	}
 	local x = 0
 	local y = 20
@@ -466,19 +466,19 @@ function PlayerInventoryGui:setup_player_stats(panel)
 	local text_columns = {
 		{
 			size = 100,
-			name = "name"
+			name = "name",
 		},
 		{
 			size = 60,
 			name = "total",
-			align = "right"
+			align = "right",
 		},
 		{
 			align = "right",
 			name = "base",
 			blend = "add",
 			alpha = 0.75,
-			size = 60
+			size = 60,
 		},
 		{
 			align = "right",
@@ -486,8 +486,8 @@ function PlayerInventoryGui:setup_player_stats(panel)
 			blend = "add",
 			alpha = 0.75,
 			size = 60,
-			color = tweak_data.screen_colors.resource
-		}
+			color = tweak_data.screen_colors.resource,
+		},
 	}
 	self._player_stats_texts = {}
 	self._player_stats_panel = stats_panel:panel()
@@ -499,13 +499,13 @@ function PlayerInventoryGui:setup_player_stats(panel)
 			x = 0,
 			layer = 1,
 			y = y,
-			w = self._player_stats_panel:w()
+			w = self._player_stats_panel:w(),
 		})
 
 		if math.mod(i, 2) ~= 0 and not panel:child(tostring(i)) then
 			panel:rect({
 				name = tostring(i),
-				color = Color.black:with_alpha(0.4)
+				color = Color.black:with_alpha(0.4),
 			})
 		end
 
@@ -518,7 +518,7 @@ function PlayerInventoryGui:setup_player_stats(panel)
 				layer = 0,
 				x = x,
 				w = column.size,
-				h = panel:h()
+				h = panel:h(),
 			})
 			self._player_stats_texts[stat.name][column.name] = text_panel:text({
 				text = "0",
@@ -528,7 +528,7 @@ function PlayerInventoryGui:setup_player_stats(panel)
 				align = column.align,
 				alpha = column.alpha,
 				blend_mode = column.blend,
-				color = column.color or tweak_data.screen_colors.text
+				color = column.color or tweak_data.screen_colors.text,
 			})
 			x = x + column.size
 
@@ -544,7 +544,7 @@ function PlayerInventoryGui:_get_armor_stats(name)
 	local mods_stats = {}
 	local skill_stats = {}
 	local detection_risk = managers.blackmarket:get_suspicion_offset_from_custom_data({
-		armors = name
+		armors = name,
 	}, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
 	detection_risk = math.round(detection_risk * 100)
 	local bm_armor_tweak = tweak_data.blackmarket.armors[name]
@@ -552,39 +552,40 @@ function PlayerInventoryGui:_get_armor_stats(name)
 
 	for i, stat in ipairs(self._stats_shown) do
 		base_stats[stat.name] = {
-			value = 0
+			value = 0,
 		}
 		mods_stats[stat.name] = {
-			value = 0
+			value = 0,
 		}
 		skill_stats[stat.name] = {
-			value = 0
+			value = 0,
 		}
 
 		if stat.name == "armor" then
 			local base = tweak_data.player.damage.ARMOR_INIT
 			local mod = managers.player:body_armor_value("armor", upgrade_level)
 			base_stats[stat.name] = {
-				value = (base + mod) * tweak_data.gui.stats_present_multiplier
+				value = (base + mod) * tweak_data.gui.stats_present_multiplier,
 			}
 			skill_stats[stat.name] = {
-				value = (base_stats[stat.name].value + managers.player:body_armor_skill_addend(name) * tweak_data.gui.stats_present_multiplier) * managers.player:body_armor_skill_multiplier(name) - base_stats[stat.name].value
+				value = (base_stats[stat.name].value + managers.player:body_armor_skill_addend(name) * tweak_data.gui.stats_present_multiplier) * managers.player:body_armor_skill_multiplier(name)
+					- base_stats[stat.name].value,
 			}
 		elseif stat.name == "health" then
 			local base = tweak_data.player.damage.HEALTH_INIT
 			local mod = managers.player:health_skill_addend()
 			base_stats[stat.name] = {
-				value = (base + mod) * tweak_data.gui.stats_present_multiplier
+				value = (base + mod) * tweak_data.gui.stats_present_multiplier,
 			}
 			skill_stats[stat.name] = {
-				value = base_stats[stat.name].value * managers.player:health_skill_multiplier() - base_stats[stat.name].value
+				value = base_stats[stat.name].value * managers.player:health_skill_multiplier() - base_stats[stat.name].value,
 			}
 		elseif stat.name == "movement" then
 			local base = tweak_data.player.movement_state.standard.movement.speed.STANDARD_MAX / 100 * tweak_data.gui.stats_present_multiplier
 			local movement_penalty = managers.player:body_armor_value("movement", upgrade_level)
 			local base_value = movement_penalty * base
 			base_stats[stat.name] = {
-				value = base_value
+				value = base_value,
 			}
 			local skill_mod = managers.player:movement_speed_multiplier(false, false, upgrade_level, 1)
 			local val = base * skill_mod
@@ -593,34 +594,34 @@ function PlayerInventoryGui:_get_armor_stats(name)
 			local skill_value = val - base_value
 			skill_stats[stat.name] = {
 				value = skill_value,
-				skill_in_effect = skill_value > 0
+				skill_in_effect = skill_value > 0,
 			}
 		elseif stat.name == "dodge" then
 			local base = 0
 			local mod = managers.player:body_armor_value("dodge", upgrade_level)
 			base_stats[stat.name] = {
-				value = (base + mod) * 100
+				value = (base + mod) * 100,
 			}
 			skill_stats[stat.name] = {
-				value = managers.player:skill_dodge_chance(false, false, false, name, detection_risk) * 100
+				value = managers.player:skill_dodge_chance(false, false, false, name, detection_risk) * 100,
 			}
 		elseif stat.name == "crit" then
 			local base = 0
 			local mod = managers.player:body_armor_value("crit", upgrade_level)
 			base_stats[stat.name] = {
-				value = (base + mod) * 100
+				value = (base + mod) * 100,
 			}
 			skill_stats[stat.name] = {
-				value = managers.player:critical_hit_chance(detection_risk) * 100
+				value = managers.player:critical_hit_chance(detection_risk) * 100,
 			}
 		elseif stat.name == "transparency" then
 			local base = 0
 			local mod = managers.player:body_armor_value("transparency", upgrade_level)
 			base_stats[stat.name] = {
-				value = (base + mod)
+				value = (base + mod),
 			}
 			skill_stats[stat.name] = {
-				value = managers.player:transparency_value(detection_risk)
+				value = managers.player:transparency_value(detection_risk),
 			}
 		elseif stat.name == "damage_shake" then
 			local base = tweak_data.gui.armor_damage_shake_base
@@ -630,10 +631,10 @@ function PlayerInventoryGui:_get_armor_stats(name)
 			local mod_value = base / mod - base_value
 			local skill_value = base / mod / skill - base_value - mod_value + managers.player:upgrade_value("player", "damage_shake_addend", 0)
 			base_stats[stat.name] = {
-				value = (base_value + mod_value) * tweak_data.gui.stats_present_multiplier
+				value = (base_value + mod_value) * tweak_data.gui.stats_present_multiplier,
 			}
 			skill_stats[stat.name] = {
-				value = skill_value * tweak_data.gui.stats_present_multiplier
+				value = skill_value * tweak_data.gui.stats_present_multiplier,
 			}
 		elseif stat.name == "stamina" then
 			local stamina_data = tweak_data.player.movement_state.stamina
@@ -644,10 +645,10 @@ function PlayerInventoryGui:_get_armor_stats(name)
 			local mod_value = base * mod - base_value
 			local skill_value = base * mod * skill - base_value - mod_value
 			base_stats[stat.name] = {
-				value = base_value + mod_value
+				value = base_value + mod_value,
 			}
 			skill_stats[stat.name] = {
-				value = skill_value
+				value = skill_value,
 			}
 		end
 

@@ -1113,7 +1113,7 @@ function UpgradesTweakData:init(tweak_data)
 			2,
 			"below",
 			35,
-			10
+			10,
 		},
 	}
 	self.definitions.player_detection_risk_transparency = {
@@ -1123,8 +1123,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "detection_risk_transparency",
 			synced = true,
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.skill_descs.chameleon.multibasic = "1"
 	self.skill_descs.chameleon.multibasic2 = "2"
