@@ -65,7 +65,7 @@ return {
 	[103031] = {
 		ponr = {
 			length = 300,
-			player_mul = { 1.6, 1.4, 1, 1 },
+			length_balance_mul = { 1.6, 1.4, 1, 1 },
 		},
 	},
 	-- fix one of the ai_hunt SOs not having taser access

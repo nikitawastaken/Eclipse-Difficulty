@@ -105,7 +105,7 @@ return {
 	[101356] = {
 		ponr = {
 			length = 480,
-			player_mul = { 2.5, 2, 1.5, 1 },
+			length_balance_mul = { 2.5, 2, 1.5, 1 },
 		},
 	},
 	-- restore events from PDTH

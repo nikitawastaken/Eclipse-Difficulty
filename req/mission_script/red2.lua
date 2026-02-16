@@ -120,7 +120,7 @@ return {
 	[101660] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
+			length_balance_mul = { 1.25, 1, 0.75, 0.5 },
 		},
 		on_executed = {
 			{ id = 400000, delay = 0 },

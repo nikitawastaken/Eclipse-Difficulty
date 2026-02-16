@@ -39,7 +39,7 @@ return {
 	[100875] = {
 		ponr = { -- Set hunt, waiting for escape
 			length = 200,
-			player_mul = { 1.25, 1, 0.875, 0.75 },
+			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
 		},
 	},
 	[100877] = {

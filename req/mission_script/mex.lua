@@ -37,7 +37,7 @@ return {
 	[100020] = {
 		ponr = {
 			length = 1200,
-			player_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- disable selected spawngroup based on which tunnel has been chossen

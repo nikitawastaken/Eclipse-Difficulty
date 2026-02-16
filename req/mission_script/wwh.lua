@@ -69,7 +69,7 @@ return {
 	[100945] = { -- Open train doors - heist start
 		ponr = {
 			length = 800,
-			player_mul = { 2, 1.25, 1, 0.75 },
+			length_balance_mul = { 2, 1.25, 1, 0.75 },
 		},
 	},
 	[100810] = {

@@ -62,7 +62,7 @@ return {
 	[101829] = {
 		ponr = {
 			length = 300,
-			player_mul = { 2, 1.5, 1.25, 1 },
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
 		},
 		-- add dozers chance based event to the vault
 		on_executed = {

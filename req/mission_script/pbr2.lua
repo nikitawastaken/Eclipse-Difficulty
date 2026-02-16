@@ -19,7 +19,7 @@ return {
 	[100980] = {
 		ponr = {
 			length = 60,
-			player_mul = { 1.67, 1.34, 1, 1 },
+			length_balance_mul = { 1.67, 1.34, 1, 1 },
 		},
 	},
 	-- Add new reinforce
