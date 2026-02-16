@@ -48,14 +48,14 @@ function PlayerBase:set_suspicion_multiplier(reason, multiplier)
 	self._suspicion_settings.buildup_mul = buildup_mul
 	self._suspicion_settings.range_mul = range_mul
 
-	Eclipse:log_chat(
-		"PlayerBase: Set suspicion multiplier for reason '"
-			.. reason
-			.. "' to "
-			.. (multiplier or "nil")
-			.. ". New buildup multiplier is "
-			.. buildup_mul
-			.. " and new range multiplier is "
-			.. range_mul
-	)
+	if reason == "suspicion_transparency_multiplier" then
+		Eclipse:log_chat(
+			"PlayerBase: Set suspicion transparency multiplier to "
+				.. (multiplier or "nil")
+				.. ". New buildup multiplier is "
+				.. buildup_mul
+				.. " and new range multiplier is "
+				.. range_mul
+		)
+	end
 end
