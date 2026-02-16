@@ -59,8 +59,6 @@ function HuskPlayerMovement:_apply_attention_setting_modifications(setting)
 		local transparency_value = self._unit:base():get_value_from_risk_upgrade(transparency_upgrade, detection_risk) or 0
 
 		weight_mul = weight_mul * (1 - (0.05 * transparency_value))
-
-		Eclipse:log_chat("HuskPlayerMovement: Applying attention setting modifications with transparency value " .. transparency_value .. " and resulting weight multiplier " .. weight_mul)
 	end
 
 	if weight_mul and weight_mul ~= 1 then
