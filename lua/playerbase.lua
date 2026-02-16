@@ -31,26 +31,3 @@ function PlayerBase:sync_unit_upgrades()
 		end
 	end
 end
-
-function PlayerBase:set_suspicion_multiplier(reason, multiplier)
-	self._suspicion_settings.multipliers[reason] = multiplier
-	local buildup_mul = self._suspicion_settings.init_buildup_mul
-	local range_mul = self._suspicion_settings.init_range_mul
-
-	for reason, mul in pairs(self._suspicion_settings.multipliers) do
-		buildup_mul = buildup_mul * mul
-
-		if mul > 1 then
-			range_mul = range_mul * math.sqrt(mul)
-		end
-	end
-
-	self._suspicion_settings.buildup_mul = buildup_mul
-	self._suspicion_settings.range_mul = range_mul
-
-	if reason == "suspicion_transparency_multiplier" then
-		Eclipse:log_chat(
-			"PlayerBase: Set suspicion transparency multiplier to " .. (multiplier or "nil") .. ". New buildup multiplier is " .. buildup_mul .. " and new range multiplier is " .. range_mul
-		)
-	end
-end
