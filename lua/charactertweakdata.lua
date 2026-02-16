@@ -210,7 +210,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 6
 	presets.weapon.eclipse_normal.is_double_barrel.FALLOFF = {
 		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } }
+		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_normal.is_rifle.autofire_rounds = { 1, 5 }
@@ -254,7 +254,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_flamethrower.autofire_rounds = { 20, 40 }
 	presets.weapon.eclipse_normal.is_flamethrower.range = { close = 500, optimal = 875, far = 1750 }
 	presets.weapon.eclipse_normal.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 2  * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1.5 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -322,10 +322,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_elite_shield = based_on(presets.weapon.eclipse_shield, {
 		melee_range = 175,
 		melee_force = 600,
-	})	
+	})
 	presets.weapon.eclipse_elite_shield.is_revolver.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } }
+		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_range = 125
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_force = 400
