@@ -2,9 +2,7 @@ function HuskPlayerBase:get_value_from_risk_upgrade(risk_upgrade, detection_risk
 	local risk_value = 0
 
 	if not detection_risk then
-		local detection_risk = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
-
-		detection_risk = math.round(detection_risk * 100)
+		detection_risk = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
 	end
 
 	if risk_upgrade and type(risk_upgrade) == "table" then
