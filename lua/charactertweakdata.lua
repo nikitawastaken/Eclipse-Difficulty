@@ -145,7 +145,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_normal = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
-		focus_delay = 0.7,
+		focus_delay = 0.6,
 		melee_dmg = 9 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 2, 3 },
@@ -254,14 +254,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_flamethrower.autofire_rounds = { 20, 40 }
 	presets.weapon.eclipse_normal.is_flamethrower.range = { close = 500, optimal = 875, far = 1750 }
 	presets.weapon.eclipse_normal.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 250, acc = { 0.25, 0.45 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1.5 * dmg_mul, r = 250, acc = { 0.15, 0.35 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_security = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 1.25 },
-		focus_delay = 0.9,
+		focus_delay = 0.8,
 		range = { close = 1000, optimal = 2000, far = 4000 },
 	})
 	accuracy_addition(presets.weapon.eclipse_security, -0.1)
@@ -284,7 +284,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.75 },
-		focus_delay = 0.5,
+		focus_delay = 0.4,
 		melee_dmg = 12 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.eclipse_good, 1.2)
@@ -296,7 +296,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_expert = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.5 },
-		focus_delay = 0.3,
+		focus_delay = 0.2,
 		melee_dmg = 15 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.eclipse_expert, 1.4)
@@ -371,9 +371,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_elite_sniper.is_sniper.stance_acc_mul = { running = 0.75, walking = 1, standing = 1 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
@@ -452,8 +452,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_bulldozer.is_flamethrower.melee_speed = nil
 	presets.weapon.eclipse_bulldozer.is_flamethrower.melee_retry_delay = nil
 	presets.weapon.eclipse_bulldozer.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 250, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 250, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1.5 * dmg_mul, r = 1000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.2 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
