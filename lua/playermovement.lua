@@ -113,3 +113,26 @@ function PlayerMovement:_upd_underdog_skill(t)
 
 	data.chk_t = t + (activated and data.chk_interval_active or data.chk_interval_inactive)
 end
+
+-- Transparency loud target priority multiplier
+function PlayerMovement:_apply_attention_setting_modifications(setting)
+	setting.detection = self._unit:base():detection_settings()
+
+	if managers.player:has_category_upgrade("player", "detection_risk_transparency") then
+		local transparency_value = managers.player:transparency_value()
+
+		setting.weight_mul = (setting.weight_mul or 1) * (1 - (0.05 * transparency_value))
+	end
+
+	if managers.player:has_category_upgrade("player", "camouflage_bonus") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "camouflage_bonus", 1)
+	end
+
+	if managers.player:has_category_upgrade("player", "camouflage_multiplier") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "camouflage_multiplier", 1)
+	end
+
+	if managers.player:has_category_upgrade("player", "uncover_multiplier") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "uncover_multiplier", 1)
+	end
+end
