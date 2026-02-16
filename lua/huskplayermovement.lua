@@ -54,7 +54,8 @@ function HuskPlayerMovement:_apply_attention_setting_modifications(setting)
 	local transparency_upgrade = self._unit:base():upgrade_value("player", "detection_risk_transparency") or nil
 
 	if transparency_upgrade then
-		local transparency_value = self._unit:base():get_value_from_risk_upgrade(transparency_upgrade, self._suspicion_settings.hud_offset) or 0
+		local detection_risk = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
+		local transparency_value = self._unit:base():get_value_from_risk_upgrade(transparency_upgrade, detection_risk) or 0
 
 		weight_mul = weight_mul * (1 - (0.05 * transparency_value))
 
