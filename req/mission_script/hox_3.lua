@@ -64,7 +64,7 @@ return {
 	[101735] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.25, 1.15, 1, 1 },
 		},
 	},
 	-- Boss spawn

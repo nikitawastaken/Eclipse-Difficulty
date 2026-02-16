@@ -90,7 +90,7 @@ return {
 	[100023] = {
 		ponr = {
 			length = 1200,
-			player_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- play the background sirens that are supposed to play

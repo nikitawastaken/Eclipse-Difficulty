@@ -60,7 +60,7 @@ return {
 		difficulty_min = 1,
 		ponr = {
 			length = 180,
-			player_mul = { 1.33, 1.15, 1, 0.85 },
+			length_balance_mul = { 1.33, 1.15, 1, 0.85 },
 		},
 	},
 	[103595] = {

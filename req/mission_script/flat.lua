@@ -85,7 +85,7 @@ return {
 	[101016] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.33, 1.167, 1, 1 },
+			length_balance_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
 	-- Restore roof access blockade

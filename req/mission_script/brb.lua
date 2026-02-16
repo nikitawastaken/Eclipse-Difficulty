@@ -27,7 +27,7 @@ return {
 	[101115] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.15, 1.15, 1, 1 },
+			length_balance_mul = { 1.15, 1.15, 1, 1 },
 		},
 	},
 	--[[

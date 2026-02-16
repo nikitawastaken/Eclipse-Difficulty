@@ -85,7 +85,7 @@ return {
 	[101558] = {
 		ponr = {
 			length = 600,
-			player_mul = { 1, 1, 0.9, 0.75 },
+			length_balance_mul = { 1, 1, 0.9, 0.75 },
 		},
 		-- trigger cops loot drop off on alarm
 		on_executed = {

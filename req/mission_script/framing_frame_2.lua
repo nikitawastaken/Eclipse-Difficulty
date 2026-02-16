@@ -8,7 +8,7 @@ return {
 	[102064] = {
 		ponr = {
 			length = 60,
-			player_mul = { 2.5, 1.75, 1.25, 1 },
+			length_balance_mul = { 2.5, 1.75, 1.25, 1 },
 		},
 	},
 	-- add SWATs that come out of the vans

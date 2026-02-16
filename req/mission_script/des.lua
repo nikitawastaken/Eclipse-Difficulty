@@ -81,7 +81,7 @@ return {
 		-- add point of no return
 		ponr = {
 			length = 300,
-			player_mul = { 1.75, 1.25, 1, 1 },
+			length_balance_mul = { 1.75, 1.25, 1, 1 },
 		},
 	},
 	[109005] = { -- open door biolab

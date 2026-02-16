@@ -126,7 +126,7 @@ local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or
 local ffo_countdown = {
 	ponr = {
 		length = 1200,
-		player_mul = { 1.25, 1, 0.75, 0.75 },
+		length_balance_mul = { 1.25, 1, 0.75, 0.75 },
 	},
 }
 

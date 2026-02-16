@@ -52,7 +52,7 @@ return {
 	[100022] = {
 		ponr = { -- Alarm
 			length = 2100,
-			player_mul = { 1.75, 1.25, 1.125, 1 },
+			length_balance_mul = { 1.75, 1.25, 1.125, 1 },
 		},
 	},
 	-- Add reinforce at the escape

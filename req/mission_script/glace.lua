@@ -66,7 +66,7 @@ return {
 	[100533] = {
 		ponr = {
 			length = 20,
-			player_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	[100521] = disabled,

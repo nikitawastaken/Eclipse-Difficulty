@@ -33,7 +33,7 @@ return {
 	[100115] = {
 		ponr = {
 			length = 900,
-			player_mul = { 2, 1.25, 1, 1 },
+			length_balance_mul = { 2, 1.25, 1, 1 },
 		},
 	},
 	-- 2 cop cars crashing down on Death Wish
