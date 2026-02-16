@@ -49,6 +49,6 @@ function PlayerBase:set_suspicion_multiplier(reason, multiplier)
 	self._suspicion_settings.range_mul = range_mul
 
 	Eclipse:log_chat(
-		"PlayerBase: Set suspicion multiplier for reason '" .. reason .. "' to " .. multiplier .. ". New buildup multiplier is " .. buildup_mul .. " and new range multiplier is " .. range_mul
+		"PlayerBase: Set suspicion multiplier for reason '" .. reason .. "' to " .. (multiplier or "nil") .. ". New buildup multiplier is " .. buildup_mul .. " and new range multiplier is " .. range_mul
 	)
 end
