@@ -59,7 +59,7 @@
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
 	"menu_prison_wife_beta": "Thick Skin",
 	"menu_prison_wife_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## extra health.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## extra health.",
-	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pickup rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour ammo pick up range is increased by ##$multipro##.",
+	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYou regenerate ##$multibasic## stamina for each ammo box you pick up.\n\nACE: ##$pro##\nYour ammo pickup range is increased by ##$multipro## and an additional ##$multipro2## for every ##$multipro3## points of armor.",
 	"menu_fully_loaded": "Fully Loaded",
 	"menu_fully_loaded_desc": "BASIC: ##$basic##\nYou start out the heist with extra ##$multibasic## ammo above your maximum pool.\n\nNote: Does not affect Special Weapons.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	"menu_mag_plus_beta": "Mag Plus",

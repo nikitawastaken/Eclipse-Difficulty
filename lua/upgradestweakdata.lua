@@ -622,10 +622,31 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.juggernaut.multibasic2 = "25%"
 
 	-- Scavenger
-	self.values.player.pick_up_ammo_multiplier[1] = 1.05
+	self.definitions.player_stamina_regen_on_ammo_pickup = {
+		name_id = "menu_player_stamina_regen_on_ammo_pickup",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "stamina_regen_on_ammo_pickup",
+			category = "player",
+		},
+	}
+	self.values.player.stamina_regen_on_ammo_pickup = { 0.02 }
+	self.definitions.player_armor_pickup_range_bonus = {
+		name_id = "menu_player_armor_pickup_range_bonus",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_pickup_range_bonus",
+			category = "player"
+		}
+	}
+	self.values.player.armor_pickup_range_bonus = { 1.01 }
 	self.values.player.increased_pickup_area[1] = 1.2
-	self.skill_descs.scavenging.multibasic = "5%"
+	self.skill_descs.scavenging.multibasic = "2%"
 	self.skill_descs.scavenging.multipro = "20%"
+	self.skill_descs.scavenging.multipro2 = "1%"
+	self.skill_descs.scavenging.multipro3 = "10"
 
 	-- Fully Loaded
 	self.start_out_ammo_category_blacklist = {
@@ -636,7 +657,6 @@ function UpgradesTweakData:init(tweak_data)
 		"bow",
 		"crossbow",
 	}
-
 	self.definitions.player_start_out_ammo_multiplier = {
 		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",

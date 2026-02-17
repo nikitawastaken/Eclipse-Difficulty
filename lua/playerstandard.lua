@@ -18,7 +18,20 @@ function PlayerStandard:init(unit)
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
 	local pm = managers.player
-	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1)
+	local pickup_range_multiplier = 1
+
+	-- Scavenger ACED: increase pickup range based on armor
+	if pm:has_category_upgrade("player", "armor_pickup_range_bonus") then
+		local armor_init = tweak_data.player.damage.ARMOR_INIT
+		local base_max_armor = armor_init + pm:body_armor_value("armor") + pm:body_armor_skill_addend()
+		local mul = pm:upgrade_value("player", "armor_pickup_range_bonus", 1)
+
+		for i = 1, base_max_armor do
+			pickup_range_multiplier = pickup_range_multiplier * mul
+		end
+	end
+
+	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1) * pickup_range_multiplier
 end
 
 Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)

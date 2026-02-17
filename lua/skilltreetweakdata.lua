@@ -194,8 +194,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut.icon_xy = { 3, 1 }
 
 	-- Scavenger
-	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
-	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
+	self.skills.scavenging[1].upgrades = { "player_stamina_regen_on_ammo_pickup" }
+	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1", "player_armor_pickup_range_bonus" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_start_out_ammo_multiplier" }
