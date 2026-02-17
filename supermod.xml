@@ -1499,6 +1499,7 @@
 				<file :name="asval_df.texture"/>
 				<file :name="asval_nm.texture"/>
 				<file :name="wpn_npc_asval.model"/>
+				<file :name="wpn_npc_asval.unit"/>
 			</group>
 		</group>
 			
