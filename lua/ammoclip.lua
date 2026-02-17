@@ -82,7 +82,7 @@ function AmmoClip:_pickup(unit)
 			-- Scavenger BASIC: restore stamina on ammo pickup
 			if player_manager:has_category_upgrade("player", "stamina_regen_on_ammo_pickup") then
 				local max_stamina = unit:movement():_max_stamina()
-				local stamina_regen_percentage = player_manager:upgrade_value("player" , "stamina_regen_on_ammo_pickup") or 0
+				local stamina_regen_percentage = player_manager:upgrade_value("player", "stamina_regen_on_ammo_pickup") or 0
 
 				unit:movement():add_stamina(max_stamina * stamina_regen_percentage)
 			end

@@ -638,8 +638,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "armor_pickup_range_bonus",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.armor_pickup_range_bonus = { 1.01 }
 	self.values.player.increased_pickup_area[1] = 1.2
