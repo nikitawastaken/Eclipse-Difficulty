@@ -1611,10 +1611,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Bloodthirst
 	self.values.player.non_special_melee_multiplier[1] = 1.33
 	self.values.player.melee_damage_multiplier[1] = 1.33
-	self.values.player.melee_damage_stacking = { { max_multiplier = 5, melee_multiplier = 0.25 } }
+	self.values.player.melee_damage_stacking = { { max_multiplier = 8, melee_multiplier = 0.25 } }
 	self.skill_descs.bloodthirst.multibasic = "33%"
 	self.skill_descs.bloodthirst.multipro = "25%"
-	self.skill_descs.bloodthirst.multipro2 = "500%"
+	self.skill_descs.bloodthirst.multipro2 = "800%"
 
 	-- Pumping Iron
 	self.values.melee.faster_reswing = { 0.5 }
@@ -1653,11 +1653,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.drop_soap.multipro = "30"
 
 	-- Zerker
-	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
+	self.values.player.melee_damage_health_ratio_multiplier[1] = 1.5
 	self.skill_descs.wolverine.multibasic = "50%"
 	self.skill_descs.wolverine.multibasic2 = "20%"
 	self.skill_descs.wolverine.multipro = "50%"
-	self.skill_descs.wolverine.multipro2 = "250%"
+	self.skill_descs.wolverine.multipro2 = "150%"
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = { 0.85, 0.65 }
