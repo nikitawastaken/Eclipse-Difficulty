@@ -1494,6 +1494,14 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_mad/weapons/" dyn_package="false">
+			<group :name="wpn_npc_asval/">
+				<file :name="asval_df.texture"/>
+				<file :name="asval_nm.texture"/>
+				<file :name="wpn_npc_asval.model"/>
+			</group>
+		</group>
+			
 		<group name="units/pd2_dlc_mad/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
 				<file :name="russian_heads_atlas_var1_df.texture" />
