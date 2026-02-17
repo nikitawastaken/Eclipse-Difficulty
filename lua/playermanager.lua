@@ -2029,3 +2029,13 @@ function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
 
 	return false
 end
+
+-- Detection risk transparency upgrade
+function PlayerManager:transparency_value(detection_risk)
+	local value = 0
+
+	local detection_risk_transparency = managers.player:upgrade_value("player", "detection_risk_transparency")
+	value = value + self:get_value_from_risk_upgrade(detection_risk_transparency, detection_risk)
+
+	return value
+end

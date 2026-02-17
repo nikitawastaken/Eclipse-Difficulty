@@ -16,7 +16,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.values.rep_upgrades.values = { 0 }
 
 	self.values.player.body_armor = {
-		armor = { 0, 2, 4.5, 7, 10, 13, 16 },
+		armor = { 0, 2, 4.5, 7, 10, 14, 18 },
 		movement = { 1, 0.95, 0.9, 0.85, 0.775, 0.7, 0.625 },
 		concealment = { 30, 26, 23, 21, 18, 12, 1 },
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
@@ -622,10 +622,31 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.juggernaut.multibasic2 = "25%"
 
 	-- Scavenger
-	self.values.player.pick_up_ammo_multiplier[1] = 1.05
+	self.definitions.player_stamina_regen_on_ammo_pickup = {
+		name_id = "menu_player_stamina_regen_on_ammo_pickup",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "stamina_regen_on_ammo_pickup",
+			category = "player",
+		},
+	}
+	self.values.player.stamina_regen_on_ammo_pickup = { 0.02 }
+	self.definitions.player_armor_pickup_range_bonus = {
+		name_id = "menu_player_armor_pickup_range_bonus",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_pickup_range_bonus",
+			category = "player",
+		},
+	}
+	self.values.player.armor_pickup_range_bonus = { 1.01 }
 	self.values.player.increased_pickup_area[1] = 1.2
-	self.skill_descs.scavenging.multibasic = "5%"
+	self.skill_descs.scavenging.multibasic = "2%"
 	self.skill_descs.scavenging.multipro = "20%"
+	self.skill_descs.scavenging.multipro2 = "1%"
+	self.skill_descs.scavenging.multipro3 = "10"
 
 	-- Fully Loaded
 	self.start_out_ammo_category_blacklist = {
@@ -636,7 +657,6 @@ function UpgradesTweakData:init(tweak_data)
 		"bow",
 		"crossbow",
 	}
-
 	self.definitions.player_start_out_ammo_multiplier = {
 		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",
@@ -1106,9 +1126,42 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.ecm_2x.multibasic = "4"
 	self.skill_descs.ecm_2x.multipro = "80%"
 
-	-- Sixth Sense
-	self.skill_descs.chameleon.multibasic = "10"
-	self.skill_descs.chameleon.multibasic2 = "3"
+	-- Background Threat
+	self.values.player.detection_risk_transparency = {
+		{
+			1,
+			2,
+			"below",
+			35,
+			10,
+		},
+	}
+	self.definitions.player_detection_risk_transparency = {
+		name_id = "menu_player_detection_risk_transparency",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "detection_risk_transparency",
+			synced = true,
+			category = "player",
+		},
+	}
+	self.values.player.unaware_of_aggressor_damage_multiplier = { 1.5 }
+	self.definitions.player_unaware_of_aggressor_damage_multiplier = {
+		name_id = "menu_player_unaware_of_aggressor_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "unaware_of_aggressor_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.chameleon.multibasic = "1"
+	self.skill_descs.chameleon.multibasic2 = "2"
+	self.skill_descs.chameleon.multibasic3 = "35"
+	self.skill_descs.chameleon.multibasic4 = "10"
+	self.skill_descs.chameleon.multibasic5 = "5%"
+	self.skill_descs.chameleon.multipro = "50%"
 
 	-- Athlete
 	self.values.player.stamina_regen_timer_multiplier[1] = 0.85
@@ -1558,10 +1611,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Bloodthirst
 	self.values.player.non_special_melee_multiplier[1] = 1.33
 	self.values.player.melee_damage_multiplier[1] = 1.33
-	self.values.player.melee_damage_stacking = { { max_multiplier = 5, melee_multiplier = 0.25 } }
+	self.values.player.melee_damage_stacking = { { max_multiplier = 8, melee_multiplier = 0.25 } }
 	self.skill_descs.bloodthirst.multibasic = "33%"
 	self.skill_descs.bloodthirst.multipro = "25%"
-	self.skill_descs.bloodthirst.multipro2 = "500%"
+	self.skill_descs.bloodthirst.multipro2 = "800%"
 
 	-- Pumping Iron
 	self.values.melee.faster_reswing = { 0.5 }
@@ -1600,11 +1653,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.drop_soap.multipro = "30"
 
 	-- Zerker
-	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
+	self.values.player.melee_damage_health_ratio_multiplier[1] = 1.5
 	self.skill_descs.wolverine.multibasic = "50%"
 	self.skill_descs.wolverine.multibasic2 = "20%"
 	self.skill_descs.wolverine.multipro = "50%"
-	self.skill_descs.wolverine.multipro2 = "250%"
+	self.skill_descs.wolverine.multipro2 = "150%"
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = { 0.85, 0.65 }

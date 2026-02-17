@@ -194,8 +194,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut.icon_xy = { 3, 1 }
 
 	-- Scavenger
-	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
-	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
+	self.skills.scavenging[1].upgrades = { "player_stamina_regen_on_ammo_pickup" }
+	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1", "player_armor_pickup_range_bonus" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_start_out_ammo_multiplier" }
@@ -372,11 +372,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_2x.desc_id = "menu_ecm_blackout_desc"
 
 	-- Background Threat
-	self.skills.chameleon[1].upgrades = {}
-	self.skills.chameleon[2].upgrades = {}
-	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12
-	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
-	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.chameleon[1].upgrades = { "player_detection_risk_transparency" }
+	self.skills.chameleon[2].upgrades = { "player_unaware_of_aggressor_damage_multiplier" }
+	self.skills.chameleon.icon_xy = { 9, 12 }
+	self.skills.chameleon.name_id = "menu_background_threat"
+	self.skills.chameleon.desc_id = "menu_background_threat_desc"
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
