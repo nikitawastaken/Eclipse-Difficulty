@@ -1547,5 +1547,5 @@ function CrimeNetContractGui:set_one_down(one_down)
 	local gui_xp = self._contract_panel:child("job_xp")
 	local add_xp = self._contract_panel:child("add_xp")
 	gui_xp:set_color(one_down and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.text)
-	add_xp:set_color(one_down and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.text)
+	add_xp:set_color(one_down and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.risk)
 end
