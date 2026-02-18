@@ -183,29 +183,29 @@ return {
 			amount = 8,
 		},
 	},
-    -- tweak the amount of harassers during assaults
-    [101788] = {
+	-- tweak the amount of harassers during assaults
+	[101788] = {
 		values = {
 			amount = 3,
 			amount_random = 2,
 		},
 	},
-    -- Harassers spawn now spawn on 1st assault on Overkill and above
-    [106547] = {
-        values = {
+	-- Harassers spawn now spawn on 1st assault on Overkill and above
+	[106547] = {
+		values = {
 			trigger_times = 0, -- this here is just for the swat van
 		},
 		on_executed = {
 			{ id = 100880, remove = not overkill_and_above and true or nil, delay = 0 },
 		},
 	},
-    -- tweak swat van arrival
-    -- allow it on all difficulties
-    [106566] = filter_easy_above,
-    -- increase the chance to 60% (from 30%)
-    [106344] = swat_van_chance,
-    -- remove some additional bs chance and trigger the swat van arrival already
-    [106568] = {
+	-- tweak swat van arrival
+	-- allow it on all difficulties
+	[106566] = filter_easy_above,
+	-- increase the chance to 60% (from 30%)
+	[106344] = swat_van_chance,
+	-- remove some additional bs chance and trigger the swat van arrival already
+	[106568] = {
 		on_executed = {
 			{ id = 106542, remove = true },
 			{ id = 104134, delay = 0 },

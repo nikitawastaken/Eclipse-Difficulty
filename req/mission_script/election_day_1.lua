@@ -161,7 +161,7 @@ return {
 	[104410] = jumpdown_spawn,
 	[104111] = jumpdown_spawn,
 	[104321] = jumpdown_spawn,
-    [400006] = scripted_heli_spawn,
+	[400006] = scripted_heli_spawn,
 	[400012] = scripted_heli_spawn,
 	[400018] = scripted_heli_spawn,
 	-- Harassers
