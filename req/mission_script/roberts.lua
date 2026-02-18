@@ -42,6 +42,9 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
+local swat_van_chance = {
+	chance = 60,
+}
 local standard_spawn = {
 	values = {
 		interval = 15,
@@ -55,18 +58,14 @@ local sewer_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 
 return {
 	-- Instantly enter full force onslaught upon plane securing the bags or crashing down
 	[101971] = {
 		set_ponr_state = true,
-	},
-	-- remove vanilla PONRs
-	[101949] = {
-		on_executed = {
-			{ id = 101952, remove = true },
-			{ id = 101955, remove = true },
-		},
 	},
 	[101938] = { -- Bag in cage
 		values = {
@@ -182,6 +181,34 @@ return {
 	[101805] = {
 		values = {
 			amount = 8,
+		},
+	},
+    -- tweak the amount of harassers during assaults
+    [101788] = {
+		values = {
+			amount = 3,
+			amount_random = 2,
+		},
+	},
+    -- Harassers spawn now spawn on 1st assault on Overkill and above
+    [106547] = {
+        values = {
+			trigger_times = 0, -- this here is just for the swat van
+		},
+		on_executed = {
+			{ id = 100880, remove = not overkill_and_above and true or nil, delay = 0 },
+		},
+	},
+    -- tweak swat van arrival
+    -- allow it on all difficulties
+    [106566] = filter_easy_above,
+    -- increase the chance to 60% (from 30%)
+    [106344] = swat_van_chance,
+    -- remove some additional bs chance and trigger the swat van arrival already
+    [106568] = {
+		on_executed = {
+			{ id = 106542, remove = true },
+			{ id = 104134, delay = 0 },
 		},
 	},
 	-- GenSec Operators near the GenSec truck on overkill and above
