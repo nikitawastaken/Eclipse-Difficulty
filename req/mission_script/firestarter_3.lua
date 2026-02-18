@@ -238,15 +238,15 @@ return {
 		},
 	},
 	-- dozers
-    -- randomize heli dozers
+	-- randomize heli dozers
 	[101785] = {
-        enemy = heli_dozer,
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
 	},
 	[101786] = {
-        enemy = heli_dozer,
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
