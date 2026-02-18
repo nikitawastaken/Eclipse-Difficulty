@@ -544,7 +544,6 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 9
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
 				weap_data.armor_piercing_chance = 1
-				weap_data.hit_alert_size_increase = 4
 				weap_data.shake.fire_multiplier = 0.5
 				weap_data.stance_multipliers = {
 					spread = {
