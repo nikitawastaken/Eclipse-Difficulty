@@ -59,9 +59,9 @@ function CopBrain:on_suppressed(state)
 end
 
 function CopBrain:set_focus_enemy_unit(focus_enemy)
-	self._logic_data.focus_enemy_unit = focus_enemy.unit or nil
+	self._logic_data.focus_enemy_unit = focus_enemy and focus_enemy.unit or nil
 
-	self._unit:network():send("unit_set_focus_enemy_unit", focus_enemy.unit or nil)
+	self._unit:network():send("unit_set_focus_enemy_unit", focus_enemy and focus_enemy.unit or nil)
 end
 
 function CopBrain:get_focus_enemy_unit()
