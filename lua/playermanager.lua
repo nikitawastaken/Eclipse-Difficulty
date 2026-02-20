@@ -2051,6 +2051,6 @@ function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldow
 	local time = upgrade_value[2]
 	self._global.cooldown_upgrades[category] = self._global.cooldown_upgrades[category] or {}
 	self._global.cooldown_upgrades[category][upgrade] = {
-		cooldown_time = Application:time() + time + (extra_cooldown_time or 0)
+		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
 	}
 end

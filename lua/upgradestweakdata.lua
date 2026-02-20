@@ -600,7 +600,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_regen_health_regen = { 1 }
 	self.values.player.armor_regen_plating_bonus = {
 		extra_cooldown = 1,
-		extra_health = 0.1
+		extra_health = 0.1,
 	}
 	self.skill_descs.prison_wife.multibasic = "15%"
 	self.skill_descs.prison_wife.multipro = "10"
