@@ -2080,7 +2080,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
-	self.values.player.damage_to_hot[2] = 0.3
 	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
 	self.definitions.player_extra_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
@@ -2091,7 +2090,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.cooldown.headshot_regen_health_bonus = { { 1, 3 } }
+	self.values.cooldown.headshot_regen_health_bonus = { { 1, 5 } }
 	self.values.player.headshot_regen_health_bonus = { 1 }
 	self.definitions.cooldown_headshot_regen_health_bonus = {
 		name_id = "menu_cooldown_headshot_regen_health_bonus",
@@ -2126,9 +2125,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "10"
-	self.specialization_descs[11][5].multiperk2 = "3"
+	self.specialization_descs[11][5].multiperk2 = "5"
 	self.specialization_descs[11][7].multiperk = "30%"
-	self.specialization_descs[11][9].multiperk = "3"
+	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
 	self.specialization_descs[11][9].multiperk3 = "3"
 
