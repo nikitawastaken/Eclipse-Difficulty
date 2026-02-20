@@ -878,12 +878,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.custom_package = ready_team_package
 	self.man.custom_package = ready_team_package
 
+--[[
 	local female_bikers_package = { "packages/female_bikers" }
 	self.welcome_to_the_jungle_1.custom_package = female_bikers_package
 	self.welcome_to_the_jungle_1_night.custom_package = female_bikers_package
 	self.cane.custom_package = female_bikers_package
 	self.mex.custom_package = female_bikers_package
-
+]]
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
 	self.roberts.custom_package = us_army_package
