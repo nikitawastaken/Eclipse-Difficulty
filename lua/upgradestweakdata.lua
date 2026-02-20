@@ -151,6 +151,7 @@ function UpgradesTweakData:init(tweak_data)
 				"shock",
 				"fear",
 				"chac",
+				"funder_strike"
 			}
 		},
 		{ -- skip level 1, it's reached too fast
