@@ -2039,3 +2039,18 @@ function PlayerManager:transparency_value(detection_risk)
 
 	return value
 end
+
+-- Extra cooldown argument for the cooldown upgrades, used for regen plating aced dynamic cooldown
+function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldown_time)
+	local upgrade_value = self:upgrade_value(category, upgrade)
+
+	if upgrade_value == 0 then
+		return
+	end
+
+	local time = upgrade_value[2]
+	self._global.cooldown_upgrades[category] = self._global.cooldown_upgrades[category] or {}
+	self._global.cooldown_upgrades[category][upgrade] = {
+		cooldown_time = Application:time() + time + (extra_cooldown_time or 0)
+	}
+end

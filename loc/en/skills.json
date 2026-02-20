@@ -49,7 +49,7 @@
 	"menu_pack_mule": "Pack Mule",
 	"menu_pack_mule_desc": "BASIC: ##$basic##\nYou can sprint with all bags.\n\nACE: ##$pro##\nYou can carry ##$multipro## bags at the same time.\n\nFor each ##$multipro2## armor points the bag movement penalty is reduced by ##$multipro3##.",
 	"menu_regen_plating": "Regen Plating",
-	"menu_regen_plating_desc": "BASIC: ##$basic##\nYour armor recovery rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you regenerate ##$multipro## health.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
+	"menu_regen_plating_desc": "BASIC: ##$basic##\nYour armor recovery rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you regenerate ##$multipro## health and an additional ##$multipro2## health for every ##$multipro3## points of armor.\n\nThis cannot occur more than once every ##$multipro## seconds and an additional ##$multipro2## second for every ##$multipro3## points of armor.",
 	"menu_iron_man": "Iron Man",
 	"menu_iron_man_desc": "BASIC: ##$basic##\nWhen you have more than ##$multibasic## of your armor regenerated, you take ##$multibasic2## less damage.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 

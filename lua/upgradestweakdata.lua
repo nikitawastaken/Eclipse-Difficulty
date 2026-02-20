@@ -597,10 +597,15 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.cooldown.health_regen_on_armor_regen = { { 1, 10 } }
-	self.values.player.armor_regen_health_regen = { 0.8 }
+	self.values.player.armor_regen_health_regen = { 1 }
+	self.values.player.armor_regen_plating_bonus = {
+		extra_cooldown = 1,
+		extra_health = 0.1
+	}
 	self.skill_descs.prison_wife.multibasic = "15%"
-	self.skill_descs.prison_wife.multipro = "8"
-	self.skill_descs.prison_wife.multipro2 = "10"
+	self.skill_descs.prison_wife.multipro = "10"
+	self.skill_descs.prison_wife.multipro2 = "1"
+	self.skill_descs.prison_wife.multipro3 = "20"
 
 	-- Iron Man
 	self.definitions.player_armor_threshold_damage_multiplier = {
