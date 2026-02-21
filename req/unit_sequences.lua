@@ -297,6 +297,9 @@ local M = {
 	
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"] = { name = "spook_1", head = head_sequences.cloaker },
 
+	["units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"] = { name = "taser_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870"] = { name = "taser_2", head = head_sequences.swat_d },
+	
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"] = { name = "hvh_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2"] = { name = "hvh_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_3/ene_cop_hvh_3"] = { name = "hvh_cop_3", head = head_sequences.security },
