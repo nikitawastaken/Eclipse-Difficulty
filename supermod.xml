@@ -1526,6 +1526,8 @@
 				<file :name="mad_cloaker_head_df.texture" />
 				<file :name="mad_cloaker_head_nm.texture" />
 	
+				<file :name="mad_medic_body_df.texture" />
+
 				<file :name="mad_medic_head_df.texture" />
 				<file :name="mad_medic_head_nm.texture" />
 
@@ -1618,6 +1620,21 @@
 				<file :name="ene_akan_fbi_spooc_asval_smg_husk.unit" />
 			</group>
 
+			<group :name="ene_akan_medic_ak47_ass/">
+				<xml  :name="ene_akan_medic_ak47_ass.sequence_manager" dyn_package="true" />
+				<file :name="ene_akan_medic_ak47_ass.material_config" />
+				<file :name="ene_akan_medic_ak47_ass_contour.material_config" />
+				<file :name="ene_akan_medic_ak47_ass.model" />
+				<file :name="ene_akan_medic_ak47_ass.object" />
+				<file :name="ene_akan_medic_ak47_ass.unit" />
+				<file :name="ene_akan_medic_ak47_ass_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_medic_r870/">
+				<file :name="ene_akan_medic_r870.unit" />
+				<file :name="ene_akan_medic_r870_husk.unit" />
+			</group>
+			
 			<group :name="ene_akan_cs_tazer_ak47_ass/">
 				<xml  :name="ene_akan_cs_tazer_ak47_ass.sequence_manager" dyn_package="true" />
 				<file :name="ene_akan_cs_tazer_ak47_ass.material_config" />
