@@ -1134,7 +1134,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		special_type = "taser",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1") },
-			russia = { Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1") },
+			russia = { Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass") },
 			zombie = { Idstring("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1") },
 			murkywater = { Idstring("units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer") },
 			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale") },
@@ -1146,7 +1146,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		special_type = "taser",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870") },
-			russia = { Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870") },
+			russia = { Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870") },
 			zombie = { Idstring("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870") },
 			murkywater = { Idstring("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870") },
 			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870") },
@@ -1162,8 +1162,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
 			russia = {
-				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
-				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
+				Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"),
+				Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870"),
 			},
 			zombie = {
 				Idstring("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1"),
@@ -1185,7 +1185,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		special_type = "medic",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4") },
-			russia = { Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4") },
+			russia = { Idstring("units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass") },
 			zombie = { Idstring("units/pd2_dlc_hvh/characters/ene_medic_hvh_m4/ene_medic_hvh_m4") },
 			murkywater = { Idstring("units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic") },
 			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale") },
@@ -1197,7 +1197,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		special_type = "medic",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870") },
-			russia = { Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870") },
+			russia = { Idstring("units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870") },
 			zombie = { Idstring("units/pd2_dlc_hvh/characters/ene_medic_hvh_r870/ene_medic_hvh_r870") },
 			murkywater = { Idstring("units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870") },
 			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870") },
@@ -1213,8 +1213,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
 			},
 			russia = {
-				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
-				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+				Idstring("units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass"),
+				Idstring("units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870"),
 			},
 			zombie = {
 				Idstring("units/pd2_dlc_hvh/characters/ene_medic_hvh_m4/ene_medic_hvh_m4"),
