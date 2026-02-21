@@ -31,9 +31,9 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	return math.map_range_clamped(dis, min_distance, max_distance, 1, 0) * (dot_mul ^ dot_effect)
 end)
 
--- LoS checks for explosions. It basically vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
+-- LoS checks for explosions. Borrowed from vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
 -- Anyway, this should prevent explosions deal dmg through walls.
-function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, min_distance, dot_distance, max_distance)
+function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, max_distance)
 	local tmp_vec1 = Vector3()
 	local tmp_vec2 = Vector3()
 	local tmp_vec3 = Vector3()
