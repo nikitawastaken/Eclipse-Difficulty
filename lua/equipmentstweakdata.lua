@@ -18,6 +18,6 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.max_amount.grenade_case = 2
 	self.class_name_to_deployable_id.GrenadeCrateBase = "grenade_case"
-	
+
 	self.max_amount.ecm_jammer = 4
 end)
