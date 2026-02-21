@@ -53,7 +53,7 @@ function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos,
 
 	if max_distance < dis then
 		return 0
-	end	
+	end
 
 	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
 
