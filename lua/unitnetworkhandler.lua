@@ -149,7 +149,7 @@ function UnitNetworkHandler:server_drop_carry(
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
 	sender,
-	movement,
+	movement
 )
 	local peer = self._verify_sender(sender)
 
@@ -169,7 +169,7 @@ function UnitNetworkHandler:server_drop_carry(
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
 		peer,
-		movement,
+		movement
 	)
 end
 
@@ -187,7 +187,7 @@ function UnitNetworkHandler:sync_carry_data(
 	zipline_unit,
 	peer_id,
 	sender,
-	movement,
+	movement
 )
 	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
 		return
@@ -206,6 +206,6 @@ function UnitNetworkHandler:sync_carry_data(
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
 		peer_id,
-		movement,
+		movement
 	)
 end
