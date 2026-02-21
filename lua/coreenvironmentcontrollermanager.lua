@@ -81,7 +81,7 @@ function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos,
 
 	local boom = math.max(dis - min_distance, 0) / (max_distance - min_distance)
 	boom = (1 - boom) * dot_mul
-	
+
 	--log("boom is "..tostring(boom))
 
 	return boom

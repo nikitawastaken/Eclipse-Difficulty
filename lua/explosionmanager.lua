@@ -146,7 +146,7 @@ function ExplosionManager:give_local_player_dmg(pos, range, damage)
 			variant = "explosion",
 			position = pos,
 			range = range,
-			damage = damage
+			damage = damage,
 		})
 	end
 end
