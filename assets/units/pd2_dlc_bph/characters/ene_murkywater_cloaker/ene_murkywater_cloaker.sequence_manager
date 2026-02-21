@@ -2,12 +2,28 @@
 <table>
 	<unit>
 <!--CUSTOM SEQUENCES START-->
+		<variables>	
+			<has_light_on		value="0" />
+		</variables>
+
+		<filter name="'check_lights_off'">
+			<check value="vars.has_light_on == 0" />
+		</filter>
+
+		<filter name="'check_lights_on'">
+			<check value="vars.has_light_on == 1" />
+		</filter>
+		
 		<sequence editable_state="true" name="'spook_1'" once="true" triggable="true">			
 			<object 			enabled="true" name="'g_gadgets'" />
 			<object 			enabled="true" name="'g_gadgets_lod1'" />
-		</sequence>
-<!--CUSTOM SEQUENCES END-->		
+		</sequence>	
+		
 		<sequence editable_state="false" name="'spook_lights_flicker'" triggable="false">
+			<run_sequence 		filter="'check_lights_on'" name="'flicker_lights'" />
+		</sequence>		
+		
+		<sequence editable_state="false" name="'flicker_lights'" triggable="false">
 			<run_sequence name="'kill_spook_lights'" 		start_time="0.1" />
 			<run_sequence name="'turn_on_spook_lights'" 	start_time="0.25"/>
 			<run_sequence name="'kill_spook_lights'" 		start_time="0.4"/>
@@ -18,16 +34,20 @@
 			<run_sequence name="'turn_on_spook_lights'" 	start_time="1.5"/>
 			<run_sequence name="'kill_spook_lights'" 		start_time="1.8"/>
 		</sequence>		
+<!--CUSTOM SEQUENCES END-->	
 		<sequence editable_state="false" name="'kill_spook_lights'" triggable="false">
+			<set_variables 		has_light_on="0" />
 			<effect_spawner 	enabled="false" name="'es_light'"/>
 			<light 				enabled="false" name="'point_light'"/>
 			<object 			enabled="false" name="'g_il'"/>
 		</sequence>
 		<sequence editable_state="false" name="'kill_murky_flashlights'" triggable="false">
+			<set_variables 		has_light_on="0" />
 			<effect_spawner 	enabled="false" name="'es_light'"/>
 			<light 				enabled="false" name="'ls_light'"/>
 		</sequence>
 		<sequence editable_state="false" name="'turn_on_spook_lights'" triggable="false">
+			<set_variables 		has_light_on="1" />
 			<effect_spawner 	enabled="true" name="'es_light'"/>
 			<light 				enabled="true" name="'point_light'"/>
 			<object 			enabled="true" name="'g_il'"/>
