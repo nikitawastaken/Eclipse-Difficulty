@@ -277,7 +277,7 @@ local optsSecret_Service_Defend = {
 }
 local optsrespawn_taser_1 = {
 	on_executed = {
-		{ id = 400047, delay = 45 },
+		{ id = 400047, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400047,
@@ -286,7 +286,7 @@ local optsrespawn_taser_1 = {
 }
 local optsrespawn_shield_1 = {
 	on_executed = {
-		{ id = 400048, delay = 45 },
+		{ id = 400048, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400048,
@@ -295,7 +295,7 @@ local optsrespawn_shield_1 = {
 }
 local optsrespawn_shield_2 = {
 	on_executed = {
-		{ id = 400049, delay = 45 },
+		{ id = 400049, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400049,
@@ -304,7 +304,7 @@ local optsrespawn_shield_2 = {
 }
 local optsrespawn_taser_2 = {
 	on_executed = {
-		{ id = 400053, delay = 45 },
+		{ id = 400053, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400053,
@@ -313,7 +313,7 @@ local optsrespawn_taser_2 = {
 }
 local optsrespawn_shield_3 = {
 	on_executed = {
-		{ id = 400054, delay = 45 },
+		{ id = 400054, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400054,
@@ -322,7 +322,7 @@ local optsrespawn_shield_3 = {
 }
 local optsrespawn_shield_4 = {
 	on_executed = {
-		{ id = 400055, delay = 45 },
+		{ id = 400055, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400055,
