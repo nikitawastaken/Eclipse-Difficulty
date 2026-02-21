@@ -31,6 +31,62 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	return math.map_range_clamped(dis, min_distance, max_distance, 1, 0) * (dot_mul ^ dot_effect)
 end)
 
+-- LoS checks for explosions. It basically vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
+-- Anyway, this should prevent explosions deal dmg through walls in the most cases, however it still dmg through wall if explosion and player was were too close to each other.
+-- To try fix the issue if player too close to explosion need either tweak LoS check in `ExplosionManager:give_local_player_dmg` or change to proper raycast methods to detect LoS in this function instead
+function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, min_distance, dot_distance, max_distance)
+	local tmp_vec1 = Vector3()
+	local tmp_vec2 = Vector3()
+	local tmp_vec3 = Vector3()
+	local vp = managers.viewport:first_active_viewport()
+
+	if not vp then
+		return 0
+	end
+
+	local camera = vp:camera()
+	local cam_pos = tmp_vec1
+
+	camera:m_position(cam_pos)
+
+	local test_vec = tmp_vec2
+	local dis = mvector3.direction(test_vec, cam_pos, test_pos)
+
+	if max_distance < dis then
+		return 0
+	end
+
+	if dis < min_distance then
+		return 1
+	end
+
+	local dot_mul = 1
+	local max_dot = math.cos(75)
+	local cam_rot = camera:rotation()
+	local cam_fwd = camera:rotation():y()
+
+	if mvector3.dot(cam_fwd, test_vec) < max_dot then
+		if dis < dot_distance then
+			dot_mul = 0.5
+		else
+			return 0
+		end
+	end
+
+	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
+
+	if ray_hit then
+		return 0
+	end
+
+	local boom = math.max(dis - min_distance, 0) / (max_distance - min_distance)
+	boom = (1 - boom) * dot_mul
+	
+	--log("boom is "..tostring(boom))
+
+	return boom
+end
+--
 -- Tone down the red screen on health hits
 function CoreEnvironmentControllerManager:set_health_effect_value(health_effect_value)
 	self._health_effect_value = health_effect_value * 2
