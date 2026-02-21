@@ -53,24 +53,7 @@ function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos,
 
 	if max_distance < dis then
 		return 0
-	end
-
-	if dis < min_distance then
-		return 1
-	end
-
-	local dot_mul = 1
-	local max_dot = math.cos(75)
-	local cam_rot = camera:rotation()
-	local cam_fwd = camera:rotation():y()
-
-	if mvector3.dot(cam_fwd, test_vec) < max_dot then
-		if dis < dot_distance then
-			dot_mul = 0.5
-		else
-			return 0
-		end
-	end
+	end	
 
 	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
 
@@ -78,12 +61,7 @@ function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos,
 		return 0
 	end
 
-	local boom = math.max(dis - min_distance, 0) / (max_distance - min_distance)
-	boom = (1 - boom) * dot_mul
-
-	--log("boom is "..tostring(boom))
-
-	return boom
+	return 1
 end
 --
 -- Tone down the red screen on health hits
