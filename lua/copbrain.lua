@@ -43,14 +43,6 @@ function CopBrain:is_suppressed()
 	return self._logic_data.is_suppressed or false
 end
 
-function CopBrain:set_focus_enemy(focus_enemy)
-	self._logic_data._focus_enemy = focus_enemy or nil
-end
-
-function CopBrain:get_focus_enemy()
-	return self._logic_data._focus_enemy and self._logic_data._focus_enemy.unit or nil
-end
-
 function CopBrain:on_suppressed(state)
 	self._logic_data.is_suppressed = state or nil
 	self._unit:network():send("unit_suppressed", state or false)
@@ -64,6 +56,16 @@ function CopBrain:on_suppressed(state)
 	if self._current_logic.on_suppressed_state then
 		self._current_logic.on_suppressed_state(self._logic_data)
 	end
+end
+
+function CopBrain:set_focus_enemy_unit(focus_enemy)
+	self._logic_data.focus_enemy_unit = focus_enemy and focus_enemy.unit or nil
+
+	self._unit:network():send("unit_set_focus_enemy_unit", focus_enemy and focus_enemy.unit or nil)
+end
+
+function CopBrain:get_focus_enemy_unit()
+	return self._logic_data.focus_enemy_unit or nil
 end
 
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)

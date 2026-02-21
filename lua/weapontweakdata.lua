@@ -544,7 +544,6 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 9
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
 				weap_data.armor_piercing_chance = 1
-				weap_data.hit_alert_size_increase = 4
 				weap_data.shake.fire_multiplier = 0.5
 				weap_data.stance_multipliers = {
 					spread = {
@@ -755,7 +754,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
 
 				for i, v in pairs(weap_data.spread) do
-					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or 2.5
+					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3 or 2.5
 				end
 			end
 			

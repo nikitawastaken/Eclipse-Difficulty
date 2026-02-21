@@ -27,7 +27,7 @@ function PlayerStandard:init(unit)
 		local mul = pm:upgrade_value("player", "armor_pickup_range_bonus", 1)
 
 		for i = 1, base_max_armor do
-			pickup_range_multiplier = pickup_range_multiplier * mul
+			pickup_range_multiplier = pickup_range_multiplier + mul
 		end
 	end
 

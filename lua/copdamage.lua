@@ -611,7 +611,7 @@ function CopDamage:damage_bullet(attack_data)
 		end
 
 		-- Unaware of aggressor damage boost upgrade
-		if self._unit:brain():get_focus_enemy() ~= attack_data.attacker_unit then
+		if self._unit:brain():get_focus_enemy_unit() ~= attack_data.attacker_unit then
 			damage = damage * enemy_unaware_of_aggressor_damage_boost
 		end
 

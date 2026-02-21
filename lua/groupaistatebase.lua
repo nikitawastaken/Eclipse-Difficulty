@@ -276,7 +276,7 @@ function GroupAIStateBase:max_difficulty(value)
 end
 
 -- Killing hostages in Pro Jobs increases diff
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self, killer_unit)
 	if not alive(killer_unit) then
 		return
 	end

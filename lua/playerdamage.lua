@@ -807,10 +807,21 @@ function PlayerDamage:_regenerate_armor(no_sound)
 
 		-- Cooldown health regen on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
+			local armor_init = tweak_data.player.damage.ARMOR_INIT
+			local base_max_armor = armor_init + managers.player:body_armor_value("armor") + managers.player:body_armor_skill_addend()
 			local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
+			local armor_bonus = tweak_data.upgrades.values.player.armor_regen_plating_bonus
+			local extra_cooldown = 0
+			local extra_health = 0
 
-			self:restore_health(health_to_restore)
-			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+			-- Extra health regen addend and cooldown length for every 20 base armor points
+			for i = 1, (base_max_armor / 2) do
+				extra_health = extra_health + armor_bonus.extra_health
+				extra_cooldown = extra_cooldown + armor_bonus.extra_cooldown
+			end
+
+			self:restore_health(health_to_restore + extra_health)
+			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen", extra_cooldown)
 		end
 	end
 

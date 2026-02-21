@@ -181,7 +181,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Regen Plating
 	self.skills.prison_wife[1].upgrades = { "player_armor_regen_time_mul_1" }
-	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen" }
+	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen", "player_armor_regen_plating_bonus" }
 	self.skills.prison_wife.name_id = "menu_regen_plating"
 	self.skills.prison_wife.desc_id = "menu_regen_plating_desc"
 	self.skills.prison_wife.icon_xy = { 11, 10 }
