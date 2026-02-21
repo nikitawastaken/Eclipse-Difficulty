@@ -1521,6 +1521,13 @@
 				<file :name="mad_swat_heads_atlas_df.texture" />
 				<file :name="mad_swat_heads_atlas_nm.texture" />
 
+				<file :name="mad_heavy_swat_body_df.texture" />			
+
+				<file :name="mad_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="mad_heavy_swat_helmets_atlas_nm.texture" />
+								
+				<file :name="mad_city_heavy_swat_body_df.texture" />		
+
 				<file :name="mad_cloaker_body_df.texture" />
 
 				<file :name="mad_cloaker_head_df.texture" />
@@ -1609,7 +1616,37 @@
 				<file :name="ene_akan_fbi_agent_akmsu_smg.unit" />
 				<file :name="ene_akan_fbi_agent_akmsu_smg_husk.unit" />
 			</group>
-						
+
+			<group :name="ene_akan_fbi_heavy_g36/">
+				<xml  :name="ene_akan_fbi_heavy_g36.sequence_manager" dyn_package="true" />
+				<file :name="ene_akan_fbi_heavy_g36.material_config" />
+				<file :name="ene_akan_fbi_heavy_g36_contour.material_config" />
+				<file :name="ene_akan_fbi_heavy_g36.model" />
+				<file :name="ene_akan_fbi_heavy_g36.object" />
+				<file :name="ene_akan_fbi_heavy_g36.unit" />
+				<file :name="ene_akan_fbi_heavy_g36_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_akan_city_heavy_g36.material_config" />
+					<file :name="ene_akan_city_heavy_g36_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_akan_fbi_heavy_r870/">
+				<file :name="ene_akan_fbi_heavy_r870.unit" />
+				<file :name="ene_akan_fbi_heavy_r870_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_city_heavy_g36/">
+				<file :name="ene_akan_city_heavy_g36.unit" />
+				<file :name="ene_akan_city_heavy_g36_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_city_heavy_r870/">
+				<file :name="ene_akan_city_heavy_r870.unit" />
+				<file :name="ene_akan_city_heavy_r870_husk.unit" />
+			</group>
+			
 			<group :name="ene_akan_fbi_spooc_asval_smg/">
 				<xml  :name="ene_akan_fbi_spooc_asval_smg.sequence_manager"/>
 				<file :name="ene_akan_fbi_spooc_asval_smg.material_config" />

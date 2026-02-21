@@ -295,6 +295,11 @@ local M = {
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass"] = { name = "fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg"] = { name = "fbi_3", head = head_sequences.hrt },	
 	
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_g36/ene_akan_fbi_heavy_g36"] = { name = "fbi_heavy_1", head = head_sequences.swat_d },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_r870/ene_akan_fbi_heavy_r870"] = { name = "fbi_heavy_2", head = head_sequences.swat_d },
+	["units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36"] = { name = "city_heavy_1", head = head_sequences.swat_d },
+	["units/pd2_dlc_mad/characters/ene_akan_city_heavy_r870/ene_akan_city_heavy_r870"] = { name = "city_heavy_2", head = head_sequences.swat_d },
+	
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"] = { name = "spook_1", head = head_sequences.cloaker },
 
 	["units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass"] = { name = "medic_1", head = head_sequences.medic },
