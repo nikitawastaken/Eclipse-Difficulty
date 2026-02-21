@@ -32,8 +32,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 end)
 
 -- LoS checks for explosions. It basically vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
--- Anyway, this should prevent explosions deal dmg through walls in the most cases, however it still dmg through wall if explosion and player was were too close to each other.
--- To try fix the issue if player too close to explosion need either tweak LoS check in `ExplosionManager:give_local_player_dmg` or change to proper raycast methods to detect LoS in this function instead
+-- Anyway, this should prevent explosions deal dmg through walls.
 function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, min_distance, dot_distance, max_distance)
 	local tmp_vec1 = Vector3()
 	local tmp_vec2 = Vector3()

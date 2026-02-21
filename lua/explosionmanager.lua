@@ -139,7 +139,7 @@ end
 -- Deal explosion DMG to players only in LoS (when game thinks there no LoS at least)
 function ExplosionManager:give_local_player_dmg(pos, range, damage)
 	local player = managers.player:player_unit()
-	local los = managers.environment_controller:test_line_of_sight_explosion(pos, 200, range / 3, range) or 0
+	local los = managers.environment_controller:test_line_of_sight_explosion(pos, 1, range / 3, range) or 0
 
 	if player and los > 0 then
 		player:character_damage():damage_explosion({
