@@ -19,9 +19,9 @@ function ECMJammerBase:set_active(active)
 
 				self:contour_interaction()
 			else
-				jam_cameras = owner_base:upgrade_value("ecm_jammer", "affects_cameras")
-				jam_pagers = owner_base:upgrade_value("ecm_jammer", "affects_pagers")
-				jam_police_comms = owner_base:upgrade_value("ecm_jammer", "affects_police_comms")
+				jam_cameras = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_cameras")
+				jam_pagers = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_pagers")
+				jam_police_comms = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_police_comms")
 			end
 
 			managers.groupai:state():register_ecm_jammer(self._unit, {
