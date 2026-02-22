@@ -295,6 +295,26 @@ local M = {
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass"] = { name = "fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg"] = { name = "fbi_3", head = head_sequences.hrt },	
 	
+	["units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"] = { name = "swat_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_swat_r870/ene_akan_cs_swat_r870"] = { name = "swat_2", head = head_sequences.swat_a },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_swat_akmsu_smg/ene_akan_cs_swat_akmsu_smg"] = { name = "swat_3", head = head_sequences.swat_a },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_heavy_ak47_ass/ene_akan_cs_heavy_ak47_ass"] = { name = "swat_heavy_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_heavy_r870/ene_akan_cs_heavy_r870"] = { name = "swat_heavy_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45"] = { name = "shield_2", head = head_sequences.swat_d },
+	["units/pd2_dlc_mad/characters/ene_akan_cs_swat_sniper_svd_snp/ene_akan_cs_swat_sniper_svd_snp"] = { name = "sniper_1", head = head_sequences.swat_b },
+		
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass"] = { name = "fbi_swat_1", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870"] = { name = "fbi_swat_2", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_swat_akmsu_smg/ene_akan_fbi_swat_akmsu_smg"] = { name = "fbi_swat_3", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_swat_sniper_svd_snp/ene_akan_fbi_swat_sniper_svd_snp"] = { name = "sniper_2", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg"] = { name = "shield_1", head = head_sequences.swat_d },
+	
+	["units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass"] = { name = "city_swat_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870"] = { name = "city_swat_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg"] = { name = "city_swat_3", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_svd_dmr/ene_akan_city_swat_sniper_svd_dmr"] = { name = "sniper_3", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield"] = { name = "shield_3", head = head_sequences.swat_d },
+
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_g36/ene_akan_fbi_heavy_g36"] = { name = "fbi_heavy_1", head = head_sequences.swat_d },
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_r870/ene_akan_fbi_heavy_r870"] = { name = "fbi_heavy_2", head = head_sequences.swat_d },
 	["units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36"] = { name = "city_heavy_1", head = head_sequences.swat_d },

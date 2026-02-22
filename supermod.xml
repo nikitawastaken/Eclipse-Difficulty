@@ -1504,13 +1504,15 @@
 		</group>
 			
 		<group name="units/pd2_dlc_mad/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<group :name="shared_textures/">
+			<group :name="shared_textures/">	
 				<file :name="russian_heads_atlas_var1_df.texture" />
 				<file :name="russian_heads_atlas_var1_nm.texture" />
 
 				<file :name="russian_heads_atlas_var2_df.texture" />
 				<file :name="russian_heads_atlas_var2_nm.texture" />
 
+				<file :name="shield_df.texture" />
+			
 				<file :name="mad_police_df.texture" />
 				<file :name="mad_police_nm.texture" />
 
@@ -1518,8 +1520,15 @@
 
 				<file :name="mad_swat_body_df.texture" />
 
+				<file :name="mad_swat_helmets_atlas_df.texture" />
+				<file :name="mad_swat_helmets_atlas_nm.texture" />
+
 				<file :name="mad_swat_heads_atlas_df.texture" />
 				<file :name="mad_swat_heads_atlas_nm.texture" />
+
+				<file :name="mad_fbi_swat_body_df.texture" />
+
+				<file :name="mad_city_swat_body_df.texture" />
 
 				<file :name="mad_heavy_swat_body_df.texture" />			
 
@@ -1544,6 +1553,30 @@
 				<file :name="mad_taser_head_nm.texture" />
 								
 				<file :name="mad_spook_il.texture" />
+			</group>
+
+			<group :name="ene_acc_shield_akan_small/">
+				<file :name="ene_acc_shield_akan_small.cooked_physics" />
+				<file :name="ene_acc_shield_akan_small.material_config" />
+				<file :name="ene_acc_shield_akan_small.model" />
+				<file :name="ene_acc_shield_akan_small.object" />
+				<file :name="ene_acc_shield_akan_small.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_akan_shield/">
+				<file :name="ene_acc_shield_akan.material_config" />
+				<file :name="ene_acc_shield_akan.model" />
+				<file :name="ene_acc_shield_akan.object" />
+				<file :name="ene_acc_shield_akan.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_city/">
+				<file 	:name="ene_acc_shield_city.cooked_physics" />
+				<file 	:name="ene_acc_shield_city.material_config" />
+				<file 	:name="ene_acc_shield_city.model" />
+				<file 	:name="ene_acc_shield_city.object" />
+				<file 	:name="ene_acc_shield_city.unit" />
+				<file 	:name="ene_acc_shield_city_dummy.unit" />
 			</group>
 			
 			<group :name="ene_acc_russian_head/">
@@ -1616,7 +1649,105 @@
 				<file :name="ene_akan_fbi_agent_akmsu_smg.unit" />
 				<file :name="ene_akan_fbi_agent_akmsu_smg_husk.unit" />
 			</group>
+	
+			<group :name="ene_akan_cs_swat_ak47_ass/">
+				<xml  :name="ene_akan_cs_swat_ak47_ass.sequence_manager" dyn_package="true" />
+				<file :name="ene_akan_cs_swat_ak47_ass.material_config" />
+				<file :name="ene_akan_cs_swat_ak47_ass_contour.material_config" />
+				<file :name="ene_akan_cs_swat_ak47_ass.model" />
+				<file :name="ene_akan_cs_swat_ak47_ass.object" />
+				<file :name="ene_akan_cs_swat_ak47_ass.unit" />
+				<file :name="ene_akan_cs_swat_ak47_ass_husk.unit" />
 
+				<group :name="vars/">
+					<file :name="ene_akan_fbi_swat_ak47_ass.material_config" />
+					<file :name="ene_akan_fbi_swat_ak47_ass_contour.material_config" />
+
+					<file :name="ene_akan_city_swat_ak47_ass.material_config" />
+					<file :name="ene_akan_city_swat_ak47_ass_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_akan_cs_swat_r870/">
+				<file :name="ene_akan_cs_swat_r870.unit" />
+				<file :name="ene_akan_cs_swat_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_swat_akmsu_smg/">
+				<file :name="ene_akan_cs_swat_akmsu_smg.unit" />
+				<file :name="ene_akan_cs_swat_akmsu_smg_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_heavy_ak47_ass/">
+				<file :name="ene_akan_cs_heavy_ak47_ass.unit" />
+				<file :name="ene_akan_cs_heavy_ak47_ass_husk.unit" />
+			</group>
+	
+			<group :name="ene_akan_cs_heavy_r870/"> 
+				<file :name="ene_akan_cs_heavy_r870.unit" />
+				<file :name="ene_akan_cs_heavy_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_swat_sniper_svd_snp/">
+				<file :name="ene_akan_cs_swat_sniper_svd_snp.unit" />
+				<file :name="ene_akan_cs_swat_sniper_svd_snp_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_cs_shield_c45/">
+				<file :name="ene_akan_cs_shield_c45.unit" />
+				<file :name="ene_akan_cs_shield_c45_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_fbi_swat_ak47_ass/">
+				<file :name="ene_akan_fbi_swat_ak47_ass.unit" />
+				<file :name="ene_akan_fbi_swat_ak47_ass_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_swat_r870/">
+				<file :name="ene_akan_fbi_swat_r870.unit" />
+				<file :name="ene_akan_fbi_swat_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_swat_akmsu_smg/">
+				<file :name="ene_akan_fbi_swat_akmsu_smg.unit" />
+				<file :name="ene_akan_fbi_swat_akmsu_smg_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_swat_sniper_svd_snp/">
+				<file :name="ene_akan_fbi_swat_sniper_svd_snp.unit" />
+				<file :name="ene_akan_fbi_swat_sniper_svd_snp_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_shield_sr2_smg/">
+				<file :name="ene_akan_fbi_shield_sr2_smg.unit" />
+				<file :name="ene_akan_fbi_shield_sr2_smg_husk.unit" />
+			</group>
+			
+			<group :name="ene_akan_city_swat_ak47_ass/">
+				<file :name="ene_akan_city_swat_ak47_ass.unit" />
+				<file :name="ene_akan_city_swat_ak47_ass_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_city_swat_r870/">
+				<file :name="ene_akan_city_swat_r870.unit" />
+				<file :name="ene_akan_city_swat_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_city_swat_akmsu_smg/">
+				<file :name="ene_akan_city_swat_akmsu_smg.unit" />
+				<file :name="ene_akan_city_swat_akmsu_smg_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_city_swat_sniper_svd_dmr/">
+				<file :name="ene_akan_city_swat_sniper_svd_dmr.unit" />
+				<file :name="ene_akan_city_swat_sniper_svd_dmr_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_city_shield/">
+				<file :name="ene_akan_city_shield.unit" />
+				<file :name="ene_akan_city_shield_husk.unit" />
+			</group>
+			
 			<group :name="ene_akan_fbi_heavy_g36/">
 				<xml  :name="ene_akan_fbi_heavy_g36.sequence_manager" dyn_package="true" />
 				<file :name="ene_akan_fbi_heavy_g36.material_config" />
