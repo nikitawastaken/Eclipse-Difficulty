@@ -6,6 +6,8 @@ function ECMJammerBase:set_active(active)
 	end
 
 	if Network:is_server() then
+		local owner_base = alive(self:owner()) and self:owner().base and self:owner():base()
+
 		if active then
 			self._alert_filter = self:owner():movement():SO_access()
 			local jam_cameras, jam_pagers, jam_police_comms = nil
@@ -17,9 +19,9 @@ function ECMJammerBase:set_active(active)
 
 				self:contour_interaction()
 			else
-				jam_cameras = self:owner():base():upgrade_value("ecm_jammer", "affects_cameras")
-				jam_pagers = self:owner():base():upgrade_value("ecm_jammer", "affects_pagers")
-				jam_police_comms = self:owner():base():upgrade_value("ecm_jammer", "affects_police_comms")
+				jam_cameras = owner_base:upgrade_value("ecm_jammer", "affects_cameras")
+				jam_pagers = owner_base:upgrade_value("ecm_jammer", "affects_pagers")
+				jam_police_comms = owner_base:upgrade_value("ecm_jammer", "affects_police_comms")
 			end
 
 			managers.groupai:state():register_ecm_jammer(self._unit, {
