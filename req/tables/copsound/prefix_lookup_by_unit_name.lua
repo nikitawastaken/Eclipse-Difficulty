@@ -303,7 +303,7 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45",
-		"units/pd2_dlc_mad/characters/ene_akan_city_shield_deagle/ene_akan_city_shield_deagle",
+		"units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield",
         -- Custom stuff below
         "units/pd2_dlc_mad/characters/ene_rus_shield_c45/ene_rus_shield_c45",
 		"units/pd2_dlc_mad/characters/ene_rus_shield_sr2/ene_rus_shield_sr2",
@@ -347,9 +347,9 @@ local prefix_lookup_for_humans = {
         "units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg",
-		"units/pd2_dlc_mad/characters/ene_akan_city_heavy_ak47_ass/ene_akan_city_heavy_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36",
 		"units/pd2_dlc_mad/characters/ene_akan_city_heavy_r870/ene_akan_city_heavy_r870",
-		"units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_m14/ene_akan_city_swat_sniper_m14",
+		"units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_svd_dmr/ene_akan_city_swat_sniper_svd_dmr",
 		-- Custom stuff below
 		"units/pd2_dlc_mad/characters/ene_rus_security_1/ene_rus_security_1",
 		"units/pd2_dlc_mad/characters/ene_rus_security_2/ene_rus_security_2",
