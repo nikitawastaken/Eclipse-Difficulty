@@ -96,17 +96,17 @@ local street_heli_amount = {
 local street_heli_enemy = {
 	enemy = ready_team_1,
 }
+local breach_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 local window_spawn = {
 	values = {
 		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local breach_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {

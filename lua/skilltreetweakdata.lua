@@ -688,14 +688,20 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- armorer
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
+	self.specializations[3][1].icon_xy = { 6, 1 }
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
+	self.specializations[3][3].icon_xy = { 2, 4 }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
 	self.specializations[3][7].upgrades = { "" }
+	self.specializations[3][7].icon_xy = { 1, 4 }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[3][9].icon_xy = { 0, 4 }
 
 	-- rogue
 	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
+	self.specializations[4][3].icon_xy = { 5, 9 }
 	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[4][9].icon_xy = { 4, 9 }
 
 	-- hitman
 	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
@@ -948,10 +954,14 @@ function SkillTreeTweakData:init(tweak_data)
 	-- wild cards
 	for _, perkdeck in pairs(self.specializations) do
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
+		perkdeck[2].texture_bundle_folder = "eclipse"
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
+		perkdeck[4].texture_bundle_folder = "eclipse"
 		perkdeck[6].upgrades = { "armor_kit" }
+		perkdeck[6].texture_bundle_folder = "eclipse"
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
+		perkdeck[8].texture_bundle_folder = "eclipse"
 	end
 
 	-- Buncha default upgrade fuckery

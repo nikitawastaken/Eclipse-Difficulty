@@ -128,7 +128,7 @@ return {
 			},
 		},
 	},
-	[104682] = { -- open gate (downstairs)
+	[102166] = { -- open gate (downstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -137,7 +137,7 @@ return {
 			},
 		},
 	},
-	[104684] = { -- open gate (upstairs)
+	[104371] = { -- open gate (upstairs)
 		reinforce = {
 			{
 				name = "gate",
