@@ -1040,6 +1040,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	-- unused, but keeping it here in case we want to use it later
 	self.values.player.fall_damage_multiplier_cat = { 0.5 }
 	self.definitions.player_fall_damage_multiplier_cat = {
 		name_id = "menu_player_fall_damage_multiplier_cat",
@@ -1062,7 +1063,6 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.cleaner.multibasic = "50%"
 	self.skill_descs.cleaner.multipro = "50%"
-	self.skill_descs.cleaner.multipro2 = "50%"
 
 	-- Logistician
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5
@@ -1810,40 +1810,40 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[4][9].multiperk4 = "200%"
 
 	-- Hitman
-	self.definitions.player_chain_headshot_kills = {
-		name_id = "menu_player_chain_headshot_kills",
+	self.definitions.player_chain_hitman_kills = {
+		name_id = "menu_player_chain_hitman_kills",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "chain_headshot_kills",
+			upgrade = "chain_hitman_kills",
 			category = "player",
 		},
 	}
-	self.values.player.chain_headshot_kills = {
+	self.values.player.chain_hitman_kills = {
 		{
-			headshot_kills = 3,
+			kills = 3,
 			max_time = 10,
 		},
 	}
-	self.definitions.temporary_chain_headshot_dodge_1 = {
-		name_id = "menu_player_chain_headshot_dodge",
+	self.definitions.temporary_chain_hitman_dodge_1 = {
+		name_id = "menu_player_chain_hitman_dodge",
 		category = "temporary",
 		upgrade = {
 			value = 1,
-			upgrade = "chain_headshot_dodge",
+			upgrade = "chain_hitman_dodge",
 			category = "temporary",
 		},
 	}
-	self.definitions.temporary_chain_headshot_dodge_2 = {
-		name_id = "menu_player_chain_headshot_dodge",
+	self.definitions.temporary_chain_hitman_dodge_2 = {
+		name_id = "menu_player_chain_hitman_dodge",
 		category = "temporary",
 		upgrade = {
 			value = 2,
-			upgrade = "chain_headshot_dodge",
+			upgrade = "chain_hitman_dodge",
 			category = "temporary",
 		},
 	}
-	self.values.temporary.chain_headshot_dodge = {
+	self.values.temporary.chain_hitman_dodge = {
 		{ 0.1, 5 },
 		{ 0.2, 5 },
 	}
