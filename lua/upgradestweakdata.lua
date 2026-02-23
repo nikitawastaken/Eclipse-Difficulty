@@ -1040,6 +1040,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	-- unused, but keeping it here in case we want to use it later
 	self.values.player.fall_damage_multiplier_cat = { 0.5 }
 	self.definitions.player_fall_damage_multiplier_cat = {
 		name_id = "menu_player_fall_damage_multiplier_cat",
@@ -1062,7 +1063,6 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.cleaner.multibasic = "50%"
 	self.skill_descs.cleaner.multipro = "50%"
-	self.skill_descs.cleaner.multipro2 = "50%"
 
 	-- Logistician
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5

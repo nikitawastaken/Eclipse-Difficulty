@@ -106,7 +106,7 @@
 
 
 	"menu_cat_burglar": "Cat Burglar",
-	"menu_cat_burglar_desc": "BASIC: ##$basic##\nYour voice makes ##$multibasic## less noise.\n\nACE: ##$pro##\nYou take ##$multipro## less damage from falling.\n\nYour falls make ##$multipro2## less noise.",
+	"menu_cat_burglar_desc": "BASIC: ##$basic##\nYour voice makes ##$multibasic## less noise.\n\nACE: ##$pro##\nYour armor now absorbs fall damage.\n\nYour falls make ##$multipro## less noise.",
 	"menu_logistician": "Logistician",
 	"menu_logistician_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now lockpick safes.",
 	"menu_kleptomaniac": "Kleptomaniac",
