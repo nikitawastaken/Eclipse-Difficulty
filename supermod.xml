@@ -732,6 +732,7 @@
 				<file :name="visor_glass_purple_df.texture" />
 				<file :name="visor_glass_red_df.texture" />
 				<file :name="visor_glass_yellow_df.texture" />
+				<file :name="visor_glass_blue_df.texture" />
 				<file :name="spook_il.texture" />
 			</group>
 
