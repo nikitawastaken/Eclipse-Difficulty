@@ -83,7 +83,7 @@
 		
 		<sequence editable_state="true" name="'balaclava_swat_base'" once="true" triggable="true">
 			<run_sequence 		filter="'check_no_random_balaclava'" name="'balaclava_swat_a'" />		
-			<run_sequence 		filter="'check_random_balaclava'" name="'balaclava_swat_'..pick('b','b','a','c')" />
+			<run_sequence 		filter="'check_random_balaclava'" name="'balaclava_swat_'..pick('c','c','a','b')" />
 			<run_sequence 		name="'disable_head'" />
 		</sequence>
 		
