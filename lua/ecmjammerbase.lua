@@ -59,3 +59,22 @@ function ECMJammerBase:set_active(active)
 
 	self._jammer_active = active
 end
+
+--Sync outline when feedback is ready so every player can see ECM and activate it
+Hooks:PostHook(ECMJammerBase, "contour_interaction", "contour_interaction_feedback_ready_outline_sync", function(self)
+	if managers.player:has_category_upgrade("ecm_jammer", "can_activate_feedback") and managers.network:session() and self._unit:contour() then
+		self._unit:contour():add("deployable_interactable", true)
+	end
+end)
+
+Hooks:PostHook(ECMJammerBase, "_set_feedback_active", "_set_feedback_active_ready_outline_sync", function(self,state)
+	if state then
+		self._unit:contour():remove("deployable_interactable", true)
+		self._unit:contour():add("deployable_active")
+	else
+		if self._unit:contour() then
+			self._unit:contour():remove("deployable_interactable", true)
+			self._unit:contour():remove("deployable_active")
+		end
+	end
+end)
