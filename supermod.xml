@@ -301,6 +301,9 @@
 	<assets base_path="assets/">
 		<!-- Mod logo for welcome message -->
 		<file name="guis/textures/mod_logo.texture"/>
+		
+		<!-- Replace vanilla One Down modifier icon -->
+		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
 
 		<!-- perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
