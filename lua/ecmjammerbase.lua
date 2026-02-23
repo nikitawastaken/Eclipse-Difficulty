@@ -67,7 +67,7 @@ Hooks:PostHook(ECMJammerBase, "contour_interaction", "contour_interaction_feedba
 	end
 end)
 
-Hooks:PostHook(ECMJammerBase, "_set_feedback_active", "_set_feedback_active_ready_outline_sync", function(self,state)
+Hooks:PostHook(ECMJammerBase, "_set_feedback_active", "_set_feedback_active_ready_outline_sync", function(self, state)
 	if state then
 		self._unit:contour():remove("deployable_interactable", true)
 		self._unit:contour():add("deployable_active")
