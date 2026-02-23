@@ -734,11 +734,11 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 
 	if can_revive and managers.player:has_category_upgrade("player", "cheat_death_chance") then
 		local r = math.rand(1)
-		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_headshot_cheat_death", 0)
+		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_hitman_cheat_death", 0)
 
 		if r <= self_revive_chance then
 			self._auto_revive_timer = 1
-			managers.player:remove_property("chain_headshot_cheat_death")
+			managers.player:remove_property("chain_hitman_cheat_death")
 		end
 	end
 

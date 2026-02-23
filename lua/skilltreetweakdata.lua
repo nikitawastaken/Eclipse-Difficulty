@@ -704,11 +704,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[4][9].icon_xy = { 4, 9 }
 
 	-- hitman
-	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
+	self.specializations[5][1].upgrades = { "player_chain_hitman_kills", "temporary_chain_hitman_dodge_1" }
 	self.specializations[5][1].icon_xy = { 7, 2 }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }
 	self.specializations[5][3].icon_xy = { 0, 3 }
-	self.specializations[5][5].upgrades = { "temporary_chain_headshot_dodge_2" }
+	self.specializations[5][5].upgrades = { "temporary_chain_hitman_dodge_2" }
 	self.specializations[5][5].icon_xy = { 1, 3 }
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
 	self.specializations[5][7].icon_xy = { 2, 3 }
