@@ -889,13 +889,20 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.custom_package = ready_team_package
 	self.man.custom_package = ready_team_package
 
+	self.welcome_to_the_jungle_1.custom_package = {}
+	self.welcome_to_the_jungle_1_night.custom_package = {}
+	self.cane.custom_package = {}
+	self.mex.custom_package = {}
+	self.dinner.custom_package = {}
+	self.trai.custom_package = {}
+	
 	--[[
-	local female_bikers_package = { "packages/female_bikers" }
-	self.welcome_to_the_jungle_1.custom_package = female_bikers_package
-	self.welcome_to_the_jungle_1_night.custom_package = female_bikers_package
-	self.cane.custom_package = female_bikers_package
-	self.mex.custom_package = female_bikers_package
-]]
+	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
+	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
+	table.insert(self.cane.custom_package, "packages/female_bikers")
+	table.insert(self.mex.custom_package, "packages/female_bikers")
+	]]--
+
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
 	self.roberts.custom_package = us_army_package
@@ -903,7 +910,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.custom_package = us_army_package
 	self.jolly.custom_package = us_army_package
 	self.peta2.custom_package = us_army_package
-	self.trai.custom_package = us_army_package
+	table.insert(self.trai.custom_package, "packages/us_army")
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
@@ -911,7 +918,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
     local murky_dozers_package = { "packages/murky_bulldozers" }
 	self.pbr2.custom_package = murky_dozers_package
-	self.dinner.custom_package = murky_dozers_package
+	table.insert(self.dinner.custom_package, "packages/murky_bulldozers")
 
     local murky_mercs_package = { "packages/murky_mercs" }
 	self.kosugi.custom_package = murky_mercs_package
@@ -934,8 +941,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.deep.custom_package = coast_guard_package
 
 	local texas_rangers_package = { "packages/texas_rangers" }
-	self.dinner.custom_package = texas_rangers_package
-	self.trai.custom_package = texas_rangers_package
+	table.insert(self.dinner.custom_package, "packages/texas_rangers")
+	table.insert(self.trai.custom_package, "packages/texas_rangers")
 
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
