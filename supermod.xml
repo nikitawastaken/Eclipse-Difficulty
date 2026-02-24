@@ -1516,7 +1516,9 @@
 				<file :name="russian_heads_atlas_var2_nm.texture" />
 
 				<file :name="shield_df.texture" />
-			
+
+				<file :name="ene_acc_shield_city_df.texture" />
+							
 				<file :name="mad_police_df.texture" />
 				<file :name="mad_police_nm.texture" />
 
@@ -1555,7 +1557,24 @@
 				
 				<file :name="mad_taser_head_df.texture" />
 				<file :name="mad_taser_head_nm.texture" />
-								
+
+				<file :name="mad_bulldozer_head_1_df.texture" />
+				<file :name="mad_bulldozer_head_1_nm.texture" />
+				
+				<file :name="mad_bulldozer_body_1_df.texture" />
+
+				<file :name="mad_bulldozer_head_2_df.texture" />
+				<file :name="mad_bulldozer_body_2_df.texture" />
+
+				<file :name="mad_bulldozer_head_3_df.texture" />
+				<file :name="mad_bulldozer_body_3_df.texture" />
+
+				<file :name="mad_bulldozer_head_4_df.texture" />
+				<file :name="mad_bulldozer_body_4_df.texture" />
+
+				<file :name="mad_bulldozer_head_medic_df.texture" />
+				<file :name="mad_bulldozer_body_medic_df.texture" />
+				
 				<file :name="mad_spook_il.texture" />
 			</group>
 
@@ -1820,6 +1839,50 @@
 			<group :name="ene_akan_cs_tazer_r870/">
 				<file :name="ene_akan_cs_tazer_r870.unit" />
 				<file :name="ene_akan_cs_tazer_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_tank_r870/">
+				<xml  :name="ene_akan_fbi_tank_r870.sequence_manager" dyn_package="true" />
+				<file :name="ene_akan_fbi_tank_r870.material_config" />
+				<file :name="ene_akan_fbi_tank_r870_contour.material_config" />
+				<file :name="ene_akan_fbi_tank_r870.model" />
+				<file :name="ene_akan_fbi_tank_r870.object" />
+				<file :name="ene_akan_fbi_tank_r870.unit" />
+				<file :name="ene_akan_fbi_tank_r870_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_akan_fbi_tank_saiga.material_config" />
+					<file :name="ene_akan_fbi_tank_saiga_contour.material_config" />
+
+					<file :name="ene_akan_fbi_tank_rpk_lmg.material_config" />
+					<file :name="ene_akan_fbi_tank_rpk_lmg_contour.material_config" />
+
+					<file :name="ene_akan_fbi_tank_mini.material_config" />
+					<file :name="ene_akan_fbi_tank_mini_contour.material_config" />
+
+					<file :name="ene_akan_fbi_tank_medic.material_config" />
+					<file :name="ene_akan_fbi_tank_medic_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_akan_fbi_tank_saiga/">
+				<file :name="ene_akan_fbi_tank_saiga.unit" />
+				<file :name="ene_akan_fbi_tank_saiga_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_tank_rpk_lmg/">
+				<file :name="ene_akan_fbi_tank_rpk_lmg.unit" />
+				<file :name="ene_akan_fbi_tank_rpk_lmg_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_tank_mini/">
+				<file :name="ene_akan_fbi_tank_mini.unit" />
+				<file :name="ene_akan_fbi_tank_mini_husk.unit" />
+			</group>
+
+			<group :name="ene_akan_fbi_tank_medic/">
+				<file :name="ene_akan_fbi_tank_medic.unit" />
+				<file :name="ene_akan_fbi_tank_medic_husk.unit" />
 			</group>
 		</group>
 		
@@ -2225,12 +2288,12 @@
 			</group>
 
 			<group :name="ene_acc_shield_city/">
-				<file 	:name="ene_acc_shield_city.cooked_physics" />
-				<file 	:name="ene_acc_shield_city.material_config" />
-				<file 	:name="ene_acc_shield_city.model" />
-				<file 	:name="ene_acc_shield_city.object" />
-				<file 	:name="ene_acc_shield_city.unit" />
-				<file 	:name="ene_acc_shield_city_dummy.unit" />
+				<file :name="ene_acc_shield_city.cooked_physics" />
+				<file :name="ene_acc_shield_city.material_config" />
+				<file :name="ene_acc_shield_city.model" />
+				<file :name="ene_acc_shield_city.object" />
+				<file :name="ene_acc_shield_city.unit" />
+				<file :name="ene_acc_shield_city_dummy.unit" />
 			</group>
 		
 			<group :name="ene_murkywater_cop_1/">

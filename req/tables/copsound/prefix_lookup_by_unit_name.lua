@@ -276,7 +276,7 @@ local prefix_lookup_for_humans = {
         "units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg",
-		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_benelli/ene_akan_fbi_tank_benelli",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic",
 	},
 	russian_cloaker_list = {
