@@ -186,6 +186,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	
 	self.kosugi.ai_group_type = "murkywater"
 	self.dark.ai_group_type = "murkywater"
+	
+	self.pines.ai_group_type = "russia"
 
 	self.shoutout_raid.group_ai_settings = {
 		assault_force_mul = 1.25,
@@ -915,6 +917,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
+	
+	local russian_mercs_package = { "packages/akan_mercs" }
+	self.pines.custom_package = russian_mercs_package
 
     local murky_dozers_package = { "packages/murky_bulldozers" }
 	self.pbr2.custom_package = murky_dozers_package
