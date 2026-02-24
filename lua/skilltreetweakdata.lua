@@ -181,7 +181,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Regen Plating
 	self.skills.prison_wife[1].upgrades = { "player_armor_regen_time_mul_1" }
-	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen" }
+	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen", "player_armor_regen_plating_bonus" }
 	self.skills.prison_wife.name_id = "menu_regen_plating"
 	self.skills.prison_wife.desc_id = "menu_regen_plating_desc"
 	self.skills.prison_wife.icon_xy = { 11, 10 }
@@ -194,8 +194,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut.icon_xy = { 3, 1 }
 
 	-- Scavenger
-	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
-	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
+	self.skills.scavenging[1].upgrades = { "player_stamina_regen_on_ammo_pickup" }
+	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1", "player_armor_pickup_range_bonus" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_start_out_ammo_multiplier" }
@@ -337,7 +337,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Cat Burglar
 	self.skills.cleaner[1].upgrades = { "player_less_noise_multiplier" }
-	self.skills.cleaner[2].upgrades = { "player_fall_damage_multiplier_cat", "player_fall_damage_noise_multiplier" }
+	self.skills.cleaner[2].upgrades = { "player_fall_health_damage_multiplier", "player_fall_damage_noise_multiplier" }
 	self.skills.cleaner.icon_xy = { 0, 4 }
 	self.skills.cleaner.name_id = "menu_cat_burglar"
 	self.skills.cleaner.desc_id = "menu_cat_burglar_desc"
@@ -372,11 +372,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_2x.desc_id = "menu_ecm_blackout_desc"
 
 	-- Background Threat
-	self.skills.chameleon[1].upgrades = {}
-	self.skills.chameleon[2].upgrades = {}
-	self.skills.chameleon.icon_xy = { 0, 0 } -- 9, 12
-	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
-	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.chameleon[1].upgrades = { "player_detection_risk_transparency" }
+	self.skills.chameleon[2].upgrades = { "player_unaware_of_aggressor_damage_multiplier" }
+	self.skills.chameleon.icon_xy = { 9, 12 }
+	self.skills.chameleon.name_id = "menu_background_threat"
+	self.skills.chameleon.desc_id = "menu_background_threat_desc"
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
@@ -688,21 +688,27 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- armorer
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
+	self.specializations[3][1].icon_xy = { 6, 1 }
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
+	self.specializations[3][3].icon_xy = { 2, 4 }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
 	self.specializations[3][7].upgrades = { "" }
+	self.specializations[3][7].icon_xy = { 1, 4 }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[3][9].icon_xy = { 0, 4 }
 
 	-- rogue
 	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
+	self.specializations[4][3].icon_xy = { 5, 9 }
 	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[4][9].icon_xy = { 4, 9 }
 
 	-- hitman
-	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
+	self.specializations[5][1].upgrades = { "player_chain_hitman_kills", "temporary_chain_hitman_dodge_1" }
 	self.specializations[5][1].icon_xy = { 7, 2 }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }
 	self.specializations[5][3].icon_xy = { 0, 3 }
-	self.specializations[5][5].upgrades = { "temporary_chain_headshot_dodge_2" }
+	self.specializations[5][5].upgrades = { "temporary_chain_hitman_dodge_2" }
 	self.specializations[5][5].icon_xy = { 1, 3 }
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
 	self.specializations[5][7].icon_xy = { 2, 3 }
@@ -960,10 +966,14 @@ function SkillTreeTweakData:init(tweak_data)
 
 		-- wildcard upgrades
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
+		perkdeck[2].texture_bundle_folder = "eclipse"
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
+		perkdeck[4].texture_bundle_folder = "eclipse"
 		perkdeck[6].upgrades = { "armor_kit" }
+		perkdeck[6].texture_bundle_folder = "eclipse"
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
+		perkdeck[8].texture_bundle_folder = "eclipse"
 	end
 
 	-- Buncha default upgrade fuckery
@@ -978,9 +988,9 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_trip_mine_deploy_time_multiplier_2")
 	table.insert(self.default_upgrades, "sentry_gun_armor_multiplier") -- prev defense package
 	table.insert(self.default_upgrades, "sentry_gun_shield") -- prev defense package
-	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
 	table.insert(self.default_upgrades, "saw_ignore_shields_1") -- prev saw massacre
-	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
 	table.insert(self.default_upgrades, "player_corpse_dispose_amount_2")
 	table.insert(self.default_upgrades, "player_extra_corpse_dispose_amount")
 	table.insert(self.default_upgrades, "ecm_jammer_can_retrigger")

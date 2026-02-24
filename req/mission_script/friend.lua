@@ -31,7 +31,7 @@ return {
 	[101103] = {
 		ponr = {
 			length = 360,
-			player_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.25, 1.15, 1, 1 },
 		},
 	},
 	-- Disable bad navlink

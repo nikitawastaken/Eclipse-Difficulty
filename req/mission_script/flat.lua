@@ -55,7 +55,7 @@ local roof_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents_shields,
 }
 local cloaker_spawn = {
 	values = {
@@ -85,7 +85,7 @@ return {
 	[101016] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.33, 1.167, 1, 1 },
+			length_balance_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
 	-- Restore roof access blockade

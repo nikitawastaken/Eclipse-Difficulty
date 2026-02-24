@@ -51,7 +51,7 @@ return {
 	[103450] = {
 		ponr = {
 			length = 900,
-			player_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
+			length_balance_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
 		},
 		-- begin dozers spam
 		on_executed = {

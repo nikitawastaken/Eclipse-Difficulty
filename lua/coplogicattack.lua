@@ -49,6 +49,9 @@ function CopLogicAttack._upd_aim(data, my_data)
 	end
 
 	CopLogicAttack.aim_allow_fire(shoot, aim, data, my_data)
+
+	-- save the focus enemy
+	data.unit:brain():set_focus_enemy_unit((verified or nearly_visible) and focus_enemy)
 end
 
 -- Helper function to reuse in other enemy logic _upd_aim functions

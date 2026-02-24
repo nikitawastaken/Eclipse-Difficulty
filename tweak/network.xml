@@ -72,6 +72,19 @@
 		<search>
 			<network/>
 			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- create a unit_set_focus_enemy_unit message for `UnitHandler` -->
+			<message name="unit_set_focus_enemy_unit" delivery="ordered" receiver="unit">
+				<param type="unit" />
+				<param type="unit" />
+			</message>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
 			<message name="sync_drill_upgrades"/>
 			<param type="unit"/>
 		</search>

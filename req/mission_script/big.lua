@@ -75,11 +75,26 @@ local elevator_close_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local invisible_walls = {}
+local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
+for i = 0, 10 do
+	table.insert(invisible_walls, {
+		name = invisible_wall_ids,
+		pos = Vector3(-1342, -930, -595.679),
+		visible = false,
+	})
+	table.insert(invisible_walls, {
+		name = invisible_wall_ids,
+		pos = Vector3(-1009, -930, -595.679),
+		visible = false,
+	})
+end
+
 return {
 	[100809] = {
 		ponr = {
 			length = 240,
-			player_mul = { 2, 1.25, 1, 1 },
+			length_balance_mul = { 2, 1.25, 1, 1 },
 		},
 	},
 	[100017] = {
@@ -97,6 +112,11 @@ return {
 			{ name = "right_side", position = Vector3(3500, 2500, -1200) },
 			{ name = "left_side", position = Vector3(3800, -4450, -1050) },
 		},
+		-- disable ambush cloakers on startup
+		on_executed = {
+			{ id = 400021, delay = 0 },
+		},
+		spawn = invisible_walls, -- Add invisible walls to elevator spawn
 	},
 	-- Add new reinforce
 	[100109] = { -- Police
@@ -108,7 +128,7 @@ return {
 			},
 		},
 	},
-	[104682] = { -- open gate (downstairs)
+	[102166] = { -- open gate (downstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -117,7 +137,7 @@ return {
 			},
 		},
 	},
-	[104684] = { -- open gate (upstairs)
+	[104371] = { -- open gate (upstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -232,12 +252,6 @@ return {
 	[104397] = {
 		on_executed = {
 			{ id = 400012, delay = 0 },
-		},
-	},
-	-- disable ambush cloakers on startup
-	[100017] = {
-		on_executed = {
-			{ id = 400011, delay = 3 },
 		},
 	},
 	-- enable ambush cloakers on loud

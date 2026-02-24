@@ -544,7 +544,6 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 9
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
 				weap_data.armor_piercing_chance = 1
-				weap_data.hit_alert_size_increase = 4
 				weap_data.shake.fire_multiplier = 0.5
 				weap_data.stance_multipliers = {
 					spread = {
@@ -755,7 +754,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
 
 				for i, v in pairs(weap_data.spread) do
-					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or 2.5
+					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3 or 2.5
 				end
 			end
 			
@@ -2275,21 +2274,21 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Airbow
 	self.ecp.CLIP_AMMO_MAX = 6
-	self.ecp.stats.damage = 60
+	self.ecp.stats.damage = 80
 	self.ecp.stats.spread = 20
 	self.ecp.stats.recoil = 22
 	self.ecp.stats.concealment = 20
 	self.ecp.fire_mode_data.fire_rate = 60 / 120
-	self.ecp.stats_modifiers = { damage = 2 }
+	self.ecp.stats_modifiers = nil
 
 	-- Pistol Crossbow
 	self.hunter.CLIP_AMMO_MAX = 1
-	self.hunter.stats.damage = 40
+	self.hunter.stats.damage = 80
 	self.hunter.stats.spread = 24
 	self.hunter.stats.recoil = 24
 	self.hunter.stats.concealment = 28
 	self.hunter.fire_mode_data.fire_rate = 60 / 60
-	self.hunter.stats_modifiers = { damage = 2 }
+	self.hunter.stats_modifiers = nil
 
 	-- Light Crossbow
 	self.frankish.CLIP_AMMO_MAX = 1
@@ -2307,7 +2306,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arblast.stats.recoil = 24
 	self.arblast.stats.concealment = 20
 	self.arblast.fire_mode_data.fire_rate = 60 / 30
-	self.arblast.stats_modifiers = { damage = 5 }
+	self.arblast.stats_modifiers = { damage = 4 }
 	self.arblast.reload_speed_multiplier = 1.3
 
 	-- Plainsrider
@@ -2325,7 +2324,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.long.stats.recoil = 25
 	self.long.stats.concealment = 22
 	self.long.fire_mode_data.fire_rate = 60 / 300
-	self.long.stats_modifiers = { damage = 5 }
+	self.long.stats_modifiers = { damage = 4 }
 
 	self.elastic.CLIP_AMMO_MAX = 1
 	self.elastic.stats.damage = 60
@@ -2333,7 +2332,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.elastic.stats.recoil = 24
 	self.elastic.stats.concealment = 22
 	self.elastic.fire_mode_data.fire_rate = 60 / 300
-	self.elastic.stats_modifiers = { damage = 5 }
+	self.elastic.stats_modifiers = { damage = 4 }
 
 	-- Basilisk
 	self.ms3gl.projectile_types = {
@@ -2652,7 +2651,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.init_stat_overrides.rpg7 = function(weap_data)
 		self.rpg7.pickup_mul = 0
-		self.rpg7.total_ammo_mul = 5
+		self.rpg7.total_ammo_mul = 6
 	end
 				
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!

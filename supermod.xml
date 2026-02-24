@@ -157,14 +157,17 @@
 						<post :hook_id="playerbipod"/>
 						<post :hook_id="playercarry"/>
 					</group>
+					<post :hook_id="playerbase"/>
 					<post :hook_id="playerdamage"/>
 					<post :hook_id="playerequipment"/>
-					<post :hook_id="huskplayerdamage"/>
 					<post :hook_id="playercamera"/>
 					<post :hook_id="playermovement"/>
-					<post :hook_id="huskplayermovement"/>
 					<post :hook_id="playerinventory"/>
 					<post :hook_id="playerhand"/>
+
+					<post :hook_id="huskplayerbase"/>
+					<post :hook_id="huskplayerdamage"/>
+					<post :hook_id="huskplayermovement"/>
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
@@ -309,6 +312,9 @@
 		<!-- Mod logo for welcome message -->
 		<file name="guis/textures/mod_logo.texture"/>
 
+		<!-- Replace vanilla One Down modifier icon -->
+		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
+
 		<!-- perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
@@ -380,7 +386,6 @@
 		<!-- Improve navigation data -->
 		<group name="levels/narratives/">
 			<file :name="h_firestarter/stage_3/world/world.continent"/>
-			<file :name="bain/big/world/world.continent"/>
 			<file :name="classics/dinner/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>
@@ -1284,7 +1289,7 @@
 				<file :name="soldier_head_df.texture" />
 				<file :name="soldier_head_nm.texture" />
 			</group>
-			
+
 			<group :name="ene_acc_soldier_head/">
 				<xml  :name="ene_acc_soldier_head.sequence_manager" />
 				<file :name="ene_acc_soldier_head.cooked_physics" />
@@ -1315,7 +1320,7 @@
 				<file :name="ene_acc_soldier_cap.object" />
 				<file :name="ene_acc_soldier_cap.unit" />
 			</group>
-			
+
 			<group :name="ene_soldier_1/">
 				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_soldier_1.cooked_physics" />

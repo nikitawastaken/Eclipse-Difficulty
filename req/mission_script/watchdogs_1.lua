@@ -49,7 +49,7 @@ return {
 	[101144] = { -- Car has been shot
 		ponr = {
 			length = 180,
-			player_mul = { 1.375, 1.25, 1.125, 1 },
+			length_balance_mul = { 1.375, 1.25, 1.125, 1 },
 		},
 	},
 	-- replace the turrets with spawngroups

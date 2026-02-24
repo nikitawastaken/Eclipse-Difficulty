@@ -27,6 +27,10 @@ local jumpdown_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_heli_spawn = {
+	groups = preferred.no_cops_agents,
+}
+
 return {
 	-- Combine some navigation areas
 	[101786] = {
@@ -81,6 +85,35 @@ return {
 			{ id = 104073, remove = true }, -- setup_flyin_choppers
 		},
 	},
+	-- Choppers drop SWATs after assaults
+	[104133] = {
+		on_executed = {
+			{ id = 400019, delay = 0, delay_rand = 10 },
+		},
+	},
+	-- 1st chopper
+	[104074] = {
+		on_executed = {
+			{ id = 104075, delay = 45 },
+			{ id = 400005, delay = 33 },
+		},
+	},
+	-- 2nd chopper
+	[104125] = {
+		on_executed = {
+			{ id = 104128, delay = 45 },
+			{ id = 400011, delay = 33 },
+		},
+	},
+	-- 3rd chopper
+	[104126] = {
+		on_executed = {
+			{ id = 104129, delay = 45 },
+			{ id = 400017, delay = 33 },
+		},
+	},
+	-- fly outs are handled in their on_executed now
+	[104127] = disabled,
 	-- Disable harassers
 	[104156] = disabled,
 	[104157] = disabled,
@@ -128,6 +161,9 @@ return {
 	[104410] = jumpdown_spawn,
 	[104111] = jumpdown_spawn,
 	[104321] = jumpdown_spawn,
+	[400006] = scripted_heli_spawn,
+	[400012] = scripted_heli_spawn,
+	[400018] = scripted_heli_spawn,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,

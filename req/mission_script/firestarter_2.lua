@@ -29,7 +29,7 @@ return {
 	[107143] = {
 		ponr = {
 			length = 90,
-			player_mul = { 2.5, 1.5, 1, 1 },
+			length_balance_mul = { 2.5, 1.5, 1, 1 },
 		},
 	},
 	-- Additional flee points

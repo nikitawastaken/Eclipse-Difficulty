@@ -7,9 +7,9 @@ local biker_enemy = {
 	["units/payday2/characters/ene_biker_2/ene_biker_2"] = 5,
 	["units/payday2/characters/ene_biker_3/ene_biker_3"] = 5,
 	["units/payday2/characters/ene_biker_4/ene_biker_4"] = 5,
-	["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
 local biker = { enemy = biker_enemy }
 local disabled = {
@@ -37,7 +37,7 @@ return {
 	[100020] = {
 		ponr = {
 			length = 1200,
-			player_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- disable selected spawngroup based on which tunnel has been chossen

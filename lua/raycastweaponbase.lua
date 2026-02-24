@@ -45,10 +45,6 @@ function RaycastWeaponBase:exit_run_speed_multiplier()
 	return multiplier
 end
 
-function RaycastWeaponBase:is_explosive()
-	return self._ammo_data and self._ammo_data.explosive_ammo or self:is_category("grenade_launcher") or false
-end
-
 -- Only use standing stance spread, the rest is now handled by stance multipliers
 function RaycastWeaponBase:_get_spread(user_unit)
 	local spread_multiplier = self:spread_multiplier()

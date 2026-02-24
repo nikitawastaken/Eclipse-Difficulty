@@ -3,6 +3,10 @@ local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local so_access = Eclipse.access_filter
+local only_cloakers_so = {
+	so_access_filter = so_access.spooc,
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -18,12 +22,6 @@ local garage_door_spawn = {
 		interval = 10,
 	},
 	groups = preferred.no_shields,
-}
-local van_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
 }
 local window_spawn = {
 	values = {
@@ -48,6 +46,12 @@ local container_spawn = {
 		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local van_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
 }
 local roof_spawn = {
 	values = {
@@ -82,7 +86,7 @@ return {
 	[101061] = {
 		ponr = {
 			length = 200,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
 	[103218] = disabled,
@@ -291,6 +295,20 @@ return {
 	[101219] = snipers_amount,
 	[101222] = snipers_amount,
 	[101224] = snipers_amount,
+	-- only cloakers can use conveyor belts navlinks
+	[101036] = only_cloakers_so,
+	[105179] = only_cloakers_so,
+	[105180] = only_cloakers_so,
+	[105181] = only_cloakers_so,
+	[105182] = only_cloakers_so,
+	[105183] = only_cloakers_so,
+	[105184] = only_cloakers_so,
+	[105185] = only_cloakers_so,
+	[105186] = only_cloakers_so,
+	[105187] = only_cloakers_so,
+	[105188] = only_cloakers_so,
+	[105189] = only_cloakers_so,
+	[105190] = only_cloakers_so,
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,

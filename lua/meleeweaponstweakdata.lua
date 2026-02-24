@@ -4,7 +4,27 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.iceaxe.stats.max_damage = 9
 
 	-- Change a few weapons' damage type
-	self.melee_weapons.cs.type = "sharp"
+	self.melee_weapons.cs.stats.weapon_type = "sharp"
+	self.melee_weapons.poker.stats.weapon_type = "sharp"
+	self.melee_weapons.meter.stats.weapon_type = "blunt"
+	self.melee_weapons.hockey.stats.weapon_type = "blunt"
+	self.melee_weapons.croupier_rake.stats.weapon_type = "blunt"
+	self.melee_weapons.slot_lever.stats.weapon_type = "blunt"
+	self.melee_weapons.push.stats.weapon_type = "sharp"
+	self.melee_weapons.barbedwire.stats.weapon_type = "blunt"
+	self.melee_weapons.baseballbat.stats.weapon_type = "blunt"
+	self.melee_weapons.briefcase.stats.weapon_type = "blunt"
+	self.melee_weapons.model24.stats.weapon_type = "blunt"
+	self.melee_weapons.swagger.stats.weapon_type = "blunt"
+	self.melee_weapons.shillelagh.stats.weapon_type = "blunt"
+	self.melee_weapons.detector.stats.weapon_type = "blunt"
+	self.melee_weapons.microphone.stats.weapon_type = "blunt"
+	self.melee_weapons.micstand.stats.weapon_type = "blunt"
+	self.melee_weapons.oldbaton.stats.weapon_type = "blunt"
+	self.melee_weapons.branding_iron.stats.weapon_type = "blunt"
+	self.melee_weapons.morning.stats.weapon_type = "blunt"
+	self.melee_weapons.buck.stats.weapon_type = "sharp"
+	self.melee_weapons.tiger.stats.weapon_type = "sharp"
 
 	local type_map = {
 		["fists"] = "blunt",

@@ -74,7 +74,7 @@ return {
 	[104782] = {
 		ponr = {
 			length = 420,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
 	-- Combine some navigation areas

@@ -6,6 +6,8 @@ function ECMJammerBase:set_active(active)
 	end
 
 	if Network:is_server() then
+		local owner_base = alive(self:owner()) and self:owner().base and self:owner():base()
+
 		if active then
 			self._alert_filter = self:owner():movement():SO_access()
 			local jam_cameras, jam_pagers, jam_police_comms = nil
@@ -17,9 +19,9 @@ function ECMJammerBase:set_active(active)
 
 				self:contour_interaction()
 			else
-				jam_cameras = self:owner():base():upgrade_value("ecm_jammer", "affects_cameras")
-				jam_pagers = self:owner():base():upgrade_value("ecm_jammer", "affects_pagers")
-				jam_police_comms = self:owner():base():upgrade_value("ecm_jammer", "affects_police_comms")
+				jam_cameras = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_cameras")
+				jam_pagers = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_pagers")
+				jam_police_comms = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_police_comms")
 			end
 
 			managers.groupai:state():register_ecm_jammer(self._unit, {
@@ -57,3 +59,22 @@ function ECMJammerBase:set_active(active)
 
 	self._jammer_active = active
 end
+
+--Sync outline when feedback is ready so every player can see ECM and activate it
+Hooks:PostHook(ECMJammerBase, "contour_interaction", "contour_interaction_feedback_ready_outline_sync", function(self)
+	if managers.player:has_category_upgrade("ecm_jammer", "can_activate_feedback") and managers.network:session() and self._unit:contour() then
+		self._unit:contour():add("deployable_interactable", true)
+	end
+end)
+
+Hooks:PostHook(ECMJammerBase, "_set_feedback_active", "_set_feedback_active_ready_outline_sync", function(self, state)
+	if state then
+		self._unit:contour():remove("deployable_interactable", true)
+		self._unit:contour():add("deployable_active")
+	else
+		if self._unit:contour() then
+			self._unit:contour():remove("deployable_interactable", true)
+			self._unit:contour():remove("deployable_active")
+		end
+	end
+end)

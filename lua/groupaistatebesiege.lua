@@ -184,6 +184,43 @@ function GroupAIStateBesiege:_begin_reenforce_task(...)
 	end
 end
 
+-- Reinforce now keeps track of multiple IDs in the same area, rather than only the latest
+-- Only the largest force value is used, and the force factor is only removed when all IDs are removed
+Hooks:OverrideFunction(GroupAIStateBesiege, "set_area_min_police_force", function(self, id, force, pos, ...)
+	local function get_best_force(ids)
+		local best_id, best_force = nil
+		for id, force in pairs(ids) do
+			if not best_force or best_force < force then
+				best_id = id
+				best_force = force
+			end
+		end
+		return best_id, best_force
+	end
+
+	if force then
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(pos, true)
+		local area = self:get_area_from_nav_seg_id(nav_seg_id)
+		local force_factor = area.factors.force or {}
+		force_factor.ids = force_factor.ids or {}
+		force_factor.ids[id] = force
+		force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+		area.factors.force = force_factor
+	else
+		for _, area in pairs(self._area_data) do
+			local force_factor = area.factors.force
+			if force_factor and force_factor.ids and force_factor.ids[id] then
+				force_factor.ids[id] = nil
+				force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+				if not force_factor.force then
+					area.factors.force = nil
+				end
+				return
+			end
+		end
+	end
+end)
+
 -- Old fade behavior but less abusable
 local _upd_assault_task_original = GroupAIStateBesiege._upd_assault_task
 function GroupAIStateBesiege:_upd_assault_task(...)
@@ -1093,7 +1130,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 	end
 
 	local best_groups = {}
-	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "recon"].groups, 1)
+	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "reenforce"].groups, 1)
 	if total_weight <= 0 and not guarantee then
 		return
 	end
@@ -1183,13 +1220,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					local u_key = spawned_unit:key()
 					local u_data = self._police[u_key]
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:set_enemy_assigned(objective.area, u_key)
-					else
-						-- Proper AI assignment for timed groups
-						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:set_enemy_assigned(objective.area, u_key)
 
 					if spawn_entry.tactics then
 						u_data.tactics = spawn_entry.tactics
@@ -1201,10 +1233,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					u_data.rank = spawn_entry.rank
 					u_data.spawn_group = spawn_task.spawn_group
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:_add_group_member(spawn_task.group, u_key)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:_add_group_member(spawn_task.group, u_key)
 
 					if spawned_unit:brain():is_available_for_assignment(objective) then
 						if objective.element then
@@ -1301,7 +1331,13 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	end
 
 	local wanted_nr_units
-	if type(spawn_group_desc.amount) == "number" then
+	if spawn_group_desc.amount_weighted then
+		local amount_selector = EclipseWeightedSelector:new()
+		for amount, weight in pairs(spawn_group_desc.amount_weighted) do
+			amount_selector:add(amount, weight)
+		end
+		wanted_nr_units = amount_selector:select()
+	elseif type(spawn_group_desc.amount) == "number" then
 		wanted_nr_units = spawn_group_desc.amount
 	else
 		wanted_nr_units = math.random(spawn_group_desc.amount[1], spawn_group_desc.amount[2])
@@ -1446,6 +1482,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
+-- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
 	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
@@ -1454,7 +1491,9 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 	for _, group_type in ipairs(group_types) do
 		local spawn_group_desc = spawn_groups[group_type]
 		local cat_weights = allowed_groups[group_type]
-		if spawn_group_desc and cat_weights then
+		if not cat_weights then
+			-- Nothing
+		elseif spawn_group_desc then
 			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
 				local cat_data = unit_categories[spawn_entry.unit]
 				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type

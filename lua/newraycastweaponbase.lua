@@ -21,8 +21,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	local fire_mode_data = self:weapon_tweak_data().fire_mode_data or {}
 	local toggable_fire_modes = fire_mode_data and fire_mode_data.toggable
 
-	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) then
-		-- Extra start out ammo upgrade
+	local categories = weapon_tweak.categories
+
+	-- Extra start out ammo upgrade
+	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) and not table.contains_any(tweak_data.upgrades.start_out_ammo_category_blacklist, categories) then
 		local is_starting_out_with_extra_ammo = managers.player:has_category_upgrade("player", "start_out_ammo_multiplier")
 		self:replenish(is_starting_out_with_extra_ammo)
 	end
@@ -38,6 +40,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	end
 
 	self._explosive_ammo = weapon_tweak.explosive_ammo
+	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
 
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
@@ -79,6 +82,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
 			self._explosive_ammo = self._ammo_data.explosive_ammo
+		end
+
+		if self._ammo_data.ignore_crit_damage ~= nil then
+			self._ignore_crit_damage = self._ammo_data.ignore_crit_damage
 		end
 	end
 
@@ -142,6 +149,14 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 	end
 end)
+
+function NewRaycastWeaponBase:is_explosive()
+	return self._explosive_ammo or false
+end
+
+function NewRaycastWeaponBase:ignore_crit_damage()
+	return self._ignore_crit_damage or false
+end
 
 function NewRaycastWeaponBase:movement_penalty()
 	if managers.player:has_category_upgrade("player", "no_movement_penalty") then
@@ -673,6 +688,7 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	end
 
 	ammo_max_multiplier = managers.modifiers:modify_value("WeaponBase:GetMaxAmmoMultiplier", ammo_max_multiplier)
+	ammo_max_multiplier = math.sqrt(ammo_max_multiplier)
 	local ammo_max_per_clip = self:calculate_ammo_max_per_clip()
 	local ammo_max = math.round((tweak_data.weapon[self._name_id].AMMO_MAX + managers.player:upgrade_value(self._name_id, "clip_amount_increase") * ammo_max_per_clip) * ammo_max_multiplier)
 	ammo_max_per_clip = math.min(ammo_max_per_clip, ammo_max)

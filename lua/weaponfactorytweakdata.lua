@@ -1044,11 +1044,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	-- AK drum magazine
 	self.parts.wpn_upg_ak_m_drum = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm)
+	self.parts.wpn_upg_ak_m_drum.is_a_unlockable = nil
 	self.parts.wpn_upg_ak_m_drum.texture_bundle_folder = nil
 	self.parts.wpn_upg_ak_m_drum.dlc = nil
 	self.parts.wpn_upg_ak_m_drum.name_id = "bm_wp_ak_m_drum"
 	self.parts.wpn_upg_ak_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum"
 	self.parts.wpn_upg_ak_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.pcs = { 10, 20, 30, 40 }
 	self.parts.wpn_upg_ak_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
 	self.parts.wpn_upg_ak_m_drum.stats.extra_ammo = 0
 	self.parts.wpn_upg_ak_m_drum.custom_stats = { ammo_offset = 45 }
@@ -1100,8 +1102,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = { ammo_max_mul = 2 / 3 }
 	self.parts.wpn_fps_saw_m_blade_sharp.no_magazine_balancing = true
 
-	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
-	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -9
+	self.parts.wpn_fps_saw_body_silent.stats.suppression = 9
+	self.parts.wpn_fps_saw_body_silent.stats.alert_size = 9
 
 	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
 	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
@@ -1493,6 +1495,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1507,6 +1510,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1521,6 +1525,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1535,6 +1540,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1549,6 +1555,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = {
 					ignore_statistic = true,
 					explosive_ammo = true,
+					ignore_crit_damage = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,

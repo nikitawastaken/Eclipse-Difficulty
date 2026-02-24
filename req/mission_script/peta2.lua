@@ -34,7 +34,7 @@ return {
 	[100580] = { -- All goats secured
 		ponr = {
 			length = 180,
-			player_mul = { 2, 1.25, 1, 1 },
+			length_balance_mul = { 2, 1.25, 1, 1 },
 		},
 		values = {
 			callback = function() -- Somebody call the National Guard!

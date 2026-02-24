@@ -102,10 +102,10 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	end
 
 	-- Hitman headshot killchain
-	if self:has_category_upgrade("player", "chain_headshot_kills") then
-		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	if self:has_category_upgrade("player", "chain_hitman_kills") then
+		self:register_message(Message.OnEnemyKilled, "chain_hitman_kills", callback(self, self, "_on_enter_chain_hitman_kills_event"))
 	else
-		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+		self:unregister_message(Message.OnEnemyKilled, "chain_hitman_kills")
 	end
 
 	-- Second Wind ACED
@@ -496,10 +496,10 @@ PlayerAction.JohnWickKillChain = {
 		local co = coroutine.running()
 		local time = Application:time()
 		local kills = 1
-		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_hitman_dodge")
 		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
-		local function on_lethal_headshot(attack_data)
+		local function on_killshot(attack_data)
 			local attacker_unit = attack_data.attacker_unit
 			local variant = attack_data.variant
 
@@ -508,11 +508,11 @@ PlayerAction.JohnWickKillChain = {
 
 				if kills == target_kills then
 					if has_chain_dodge then
-						player_manager:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+						player_manager:activate_temporary_upgrade("temporary", "chain_hitman_dodge")
 					end
 
 					if cheat_death_upgrade_value ~= 0 then
-						player_manager:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+						player_manager:add_to_property("chain_hitman_cheat_death", cheat_death_upgrade_value)
 					end
 
 					time = target_time
@@ -520,7 +520,7 @@ PlayerAction.JohnWickKillChain = {
 			end
 		end
 
-		player_manager:register_message(Message.OnLethalHeadShot, co, on_lethal_headshot)
+		player_manager:register_message(Message.OnEnemyKilled, co, on_killshot)
 
 		while time < target_time do
 			time = Application:time()
@@ -528,19 +528,19 @@ PlayerAction.JohnWickKillChain = {
 			coroutine.yield(co)
 		end
 
-		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
 
-function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
+function PlayerManager:_on_enter_chain_hitman_kills_event(attack_data)
 	local attacker_unit = attack_data.attacker_unit
 	local variant = attack_data.variant
 
 	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
-		local data = self:upgrade_value("player", "chain_headshot_kills", 0)
+		local data = self:upgrade_value("player", "chain_hitman_kills", 0)
 
 		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.headshot_kills, Application:time() + data.max_time)
+			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.kills, Application:time() + data.max_time)
 		end
 	end
 end
@@ -673,7 +673,7 @@ function PlayerManager:skill_dodge_chance(...)
 		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
 	end
 
-	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_hitman_dodge", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
@@ -2028,4 +2028,29 @@ function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
 	end
 
 	return false
+end
+
+-- Detection risk transparency upgrade
+function PlayerManager:transparency_value(detection_risk)
+	local value = 0
+
+	local detection_risk_transparency = managers.player:upgrade_value("player", "detection_risk_transparency")
+	value = value + self:get_value_from_risk_upgrade(detection_risk_transparency, detection_risk)
+
+	return value
+end
+
+-- Extra cooldown argument for the cooldown upgrades, used for regen plating aced dynamic cooldown
+function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldown_time)
+	local upgrade_value = self:upgrade_value(category, upgrade)
+
+	if upgrade_value == 0 then
+		return
+	end
+
+	local time = upgrade_value[2]
+	self._global.cooldown_upgrades[category] = self._global.cooldown_upgrades[category] or {}
+	self._global.cooldown_upgrades[category][upgrade] = {
+		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
+	}
 end

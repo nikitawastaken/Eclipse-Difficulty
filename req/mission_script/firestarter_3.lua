@@ -85,7 +85,7 @@ return {
 	[101558] = {
 		ponr = {
 			length = 600,
-			player_mul = { 1, 1, 0.9, 0.75 },
+			length_balance_mul = { 1, 1, 0.9, 0.75 },
 		},
 		-- trigger cops loot drop off on alarm
 		on_executed = {
@@ -126,9 +126,6 @@ return {
 			{ id = 400056, delay = 0 },
 		},
 	},
-	-- randomize heli dozers
-	[101785] = { enemy = heli_dozer },
-	[101786] = { enemy = heli_dozer },
 	-- special ambush chance increase
 	[103072] = {
 		chance = ambush_chance,
@@ -185,10 +182,11 @@ return {
 			{ id = 105648, remove = true },
 		},
 	},
-	-- trigger on end assault
+	-- trigger swat choppers on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 400075, delay = 10 },
+			{ id = 400080, delay = 10 },
+			{ id = 400081, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -213,8 +211,8 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
-			{ id = 400077, delay = 0 },
-			{ id = 400078, delay = 0 },
+			{ id = 400080, delay = 0 },
+			{ id = 400081, delay = 0 },
 		},
 	},
 	-- enable spawns sooner
@@ -240,12 +238,15 @@ return {
 		},
 	},
 	-- dozers
+	-- randomize heli dozers
 	[101785] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
 	},
 	[101786] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},

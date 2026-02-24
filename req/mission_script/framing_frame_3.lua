@@ -37,7 +37,7 @@ return {
 	[100318] = {
 		ponr = {
 			length = 720,
-			player_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 		--this makes snipers in the nearby building not floating
 		on_executed = {

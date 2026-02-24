@@ -109,9 +109,6 @@ return {
 			{ id = 102206, delay = 0 },
 		},
 	},
-	-- randomize heli dozers
-	[101785] = { enemy = heli_dozer },
-	[101786] = { enemy = heli_dozer },
 	-- special ambush chance increase
 	[103072] = {
 		chance = ambush_chance,
@@ -230,12 +227,15 @@ return {
 		},
 	},
 	-- dozers
+	-- randomize heli dozers
 	[101785] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
 	},
 	[101786] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},

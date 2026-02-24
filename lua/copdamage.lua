@@ -59,6 +59,55 @@ function CopDamage:_apply_damage_reduction(...)
 	return damage
 end
 
+function CopDamage:can_be_critical(attack_data)
+	local weapon_unit_base = nil
+
+	if alive(attack_data.weapon_unit) then
+		weapon_unit_base = attack_data.weapon_unit:base()
+	end
+
+	if weapon_unit_base == nil then
+		return true
+	end
+
+	local weapon_type = nil
+	local damage_type = attack_data.variant
+
+	if weapon_unit_base.thrower_unit then
+		local unit_base = weapon_unit_base._unit:base()
+
+		if unit_base._tweak_projectile_entry then
+			weapon_type = unit_base._tweak_projectile_entry
+		elseif unit_base._projectile_entry then
+			weapon_type = unit_base._projectile_entry
+		end
+	elseif weapon_unit_base.weapon_tweak_data then
+		if weapon_unit_base:ignore_crit_damage() then
+			return false
+		end
+
+		local weapon_td = weapon_unit_base:weapon_tweak_data()
+
+		weapon_type = weapon_td.categories[1]
+	elseif weapon_unit_base.get_name_id then
+		weapon_type = weapon_unit_base:get_name_id()
+	end
+
+	local damage_crit_data = tweak_data.weapon_disable_crit_for_damage[weapon_type]
+
+	if not damage_crit_data then
+		return true
+	end
+
+	local is_damage_type_can_crit = damage_crit_data[damage_type]
+
+	if is_damage_type_can_crit then
+		return true
+	end
+
+	return false
+end
+
 -- Fixed critical hit mul and additional crit damage upgrade
 function CopDamage:roll_critical_hit(attack_data)
 	if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then
@@ -207,7 +256,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 
 	damage = damage * (self._marked_dmg_mul or 1)
 
-	if self._unit:movement():cool() then
+	if self._unit:movement():cool() and managers.player:has_category_upgrade("player", "unaware_of_aggressor_damage_multiplier") then
 		damage = self._HEALTH_INIT
 	end
 
@@ -527,7 +576,7 @@ function CopDamage:damage_bullet(attack_data)
 		end
 	end
 
-	if self._unit:movement():cool() then
+	if self._unit:movement():cool() and managers.player:has_category_upgrade("player", "unaware_of_aggressor_damage_multiplier") then
 		damage = self._HEALTH_INIT
 	end
 
@@ -538,6 +587,7 @@ function CopDamage:damage_bullet(attack_data)
 		local enemy_close_damage_boost = managers.player:upgrade_value("player", "close_damage_multiplier", 0)
 		local enemy_hurt_damage_boost = managers.player:upgrade_value("player", "enemy_hurt_damage_multiplier", 1)
 		local enemy_panic_damage_boost = managers.player:upgrade_value("player", "enemy_panic_damage_multiplier", 1)
+		local enemy_unaware_of_aggressor_damage_boost = managers.player:upgrade_value("player", "unaware_of_aggressor_damage_multiplier", 1)
 
 		-- Close up damage boost upgrade
 		if enemy_close_damage_boost ~= 0 then
@@ -558,6 +608,11 @@ function CopDamage:damage_bullet(attack_data)
 		-- Panic animation damage boost upgrade (doesn't work while a hurt anim is playing, otherwise it's too strong)
 		if self._unit:brain():is_suppressed() and not self._unit:anim_data().hurt then
 			damage = damage * enemy_panic_damage_boost
+		end
+
+		-- Unaware of aggressor damage boost upgrade
+		if self._unit:brain():get_focus_enemy_unit() ~= attack_data.attacker_unit then
+			damage = damage * enemy_unaware_of_aggressor_damage_boost
 		end
 
 		local damage_scale = nil

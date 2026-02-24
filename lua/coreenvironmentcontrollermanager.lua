@@ -31,6 +31,39 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	return math.map_range_clamped(dis, min_distance, max_distance, 1, 0) * (dot_mul ^ dot_effect)
 end)
 
+-- LoS checks for explosions. Borrowed from vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
+-- Anyway, this should prevent explosions deal dmg through walls.
+function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, max_distance)
+	local tmp_vec1 = Vector3()
+	local tmp_vec2 = Vector3()
+	local tmp_vec3 = Vector3()
+	local vp = managers.viewport:first_active_viewport()
+
+	if not vp then
+		return false
+	end
+
+	local camera = vp:camera()
+	local cam_pos = tmp_vec1
+
+	camera:m_position(cam_pos)
+
+	local test_vec = tmp_vec2
+	local dis = mvector3.direction(test_vec, cam_pos, test_pos)
+
+	if max_distance < dis then
+		return false
+	end
+
+	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
+
+	if ray_hit then
+		return false
+	end
+
+	return true
+end
+--
 -- Tone down the red screen on health hits
 function CoreEnvironmentControllerManager:set_health_effect_value(health_effect_value)
 	self._health_effect_value = health_effect_value * 2

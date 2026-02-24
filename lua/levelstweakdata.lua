@@ -402,6 +402,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
+		difficulty_scaling = {
+			diff_init = 0.4,
+			assault_add = 0.2,
+		},
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
@@ -918,12 +922,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.custom_package = ready_team_package
 	self.man.custom_package = ready_team_package
 
+	--[[
 	local female_bikers_package = { "packages/female_bikers" }
 	self.welcome_to_the_jungle_1.custom_package = female_bikers_package
 	self.welcome_to_the_jungle_1_night.custom_package = female_bikers_package
 	self.cane.custom_package = female_bikers_package
 	self.mex.custom_package = female_bikers_package
-
+]]
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
 	self.roberts.custom_package = us_army_package
@@ -936,6 +941,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
+
+	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
+	self.brb.custom_package = murky_mercs_scripted_package
 
 	local lapd_package = { "packages/lapd" }
 	self.kenaz.custom_package = lapd_package

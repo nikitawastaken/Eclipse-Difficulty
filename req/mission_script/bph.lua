@@ -54,7 +54,7 @@ return {
 	[100268] = {
 		ponr = {
 			length = 300,
-			player_mul = { 1.25, 1, 1, 1 },
+			length_balance_mul = { 1.25, 1, 1, 1 },
 		},
 	},
 	-- Spawn group intervals
