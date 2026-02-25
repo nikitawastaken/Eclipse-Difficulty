@@ -1,3 +1,8 @@
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 return {
 	-- replace police sirens with the same one used in Boiling Point
 	[100288] = {
@@ -22,4 +27,6 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
+	-- disable endless assault (the heist doesn't need one)
+	[101473] = disabled,
 }
