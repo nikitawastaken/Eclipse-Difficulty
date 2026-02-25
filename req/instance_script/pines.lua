@@ -5,7 +5,6 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
-
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local taser = scripted_enemy.taser_1
@@ -36,7 +35,7 @@ M["levels/instances/unique/san_helicopter_4swat/world/world"] = function(result)
 		if reworked_chopper.swat_spawns[id] then
 			element.values.enemy_table = swats
 		elseif reworked_chopper.special_spawns[id] then
-			element.values.enemy_table = specials	
+			element.values.enemy_table = specials
 		end
 	end
 end
