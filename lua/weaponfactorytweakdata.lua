@@ -1044,11 +1044,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	-- AK drum magazine
 	self.parts.wpn_upg_ak_m_drum = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm)
+	self.parts.wpn_upg_ak_m_drum.is_a_unlockable = nil
 	self.parts.wpn_upg_ak_m_drum.texture_bundle_folder = nil
 	self.parts.wpn_upg_ak_m_drum.dlc = nil
 	self.parts.wpn_upg_ak_m_drum.name_id = "bm_wp_ak_m_drum"
 	self.parts.wpn_upg_ak_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum"
 	self.parts.wpn_upg_ak_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.pcs = { 10, 20, 30, 40 }
 	self.parts.wpn_upg_ak_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
 	self.parts.wpn_upg_ak_m_drum.stats.extra_ammo = 0
 	self.parts.wpn_upg_ak_m_drum.custom_stats = { ammo_offset = 45 }

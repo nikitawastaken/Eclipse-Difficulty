@@ -581,6 +581,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.values.player.armor_carry_bonus[1] = 0.01
 	self.skill_descs.iron_man.multipro = "2"
 	self.skill_descs.iron_man.multipro2 = "10"
 	self.skill_descs.iron_man.multipro3 = "1%"
@@ -646,7 +647,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.armor_pickup_range_bonus = { 1.01 }
+	self.values.player.armor_pickup_range_bonus = { 0.01 }
 	self.values.player.increased_pickup_area[1] = 1.2
 	self.skill_descs.scavenging.multibasic = "2%"
 	self.skill_descs.scavenging.multipro = "20%"
