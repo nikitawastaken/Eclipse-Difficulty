@@ -328,8 +328,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
+		assault_force_mul = 0.75,
 		difficulty_scaling = {
-			diff_init = 0.5,
+			diff_init = 0.4,
+			assault_add = 0.2,
 		},
 	}
 	self.wwh.group_ai_preset = "remote"
