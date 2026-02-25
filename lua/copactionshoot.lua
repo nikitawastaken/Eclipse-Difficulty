@@ -338,13 +338,13 @@ end
 
 function CopActionShoot:_play_melee_anim(t)
 	local melee_weapon = self._unit:base():melee_weapon()
-	
-	if not melee_weapon then	
+
+	if not melee_weapon then
 		return
 	end
-	
+
 	local state = self._ext_movement:play_redirect(melee_weapon == "weapon" and "melee" or melee_weapon == "bash" and "melee_bayonet" or "melee_item")
-	
+
 	if not state then
 		return
 	end
