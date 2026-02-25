@@ -1042,7 +1042,8 @@ end
 
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_data)
 	local faction = Eclipse.utils.faction(tweak_data.levels)
-    local is_murkywater_heist = faction == "murkywater"
+	local is_murkywater_heist = faction == "murkywater"
+	local is_akan_heist = faction == "russia"
 
 	self._prefix_data_p1 = {
 		cop = function()
@@ -1073,8 +1074,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
-    -- Different radio chatter for Security in murky heists
-	if is_murkywater_heist then
+    -- Different radio chatter for Security in murky/akan heists
+	if is_murkywater_heist or is_akan_heist then
 		self.security.radio_prefix = "fri_"
 		self.security.use_radio = "dsp_radio_russian"
 	end

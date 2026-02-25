@@ -6,6 +6,7 @@
 	<dependencies>
 		
 		<depends_on bnk="soundbanks/regular_vox" />
+		<depends_on bnk="soundbanks/npc_russian_mercenaries" />
 		<depends_on unit="units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor" />
 		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
 	</dependencies>

@@ -3,24 +3,17 @@ local disabled = {
 		enabled = false,
 	},
 }
+local air_siren = {
+	values = {
+		sound_event = "earthquake_siren"
+	},
+}
 return {
 	-- replace police sirens with the same one used in Boiling Point
-	[100288] = {
-		values = {
-            sound_event = "earthquake_siren"
-		}
-	},
-	[104193] = {
-		values = {
-            sound_event = "earthquake_siren"
-		}
-	},
+	[100288] = air_siren,
+	[104193] = air_siren,
 	-- disable scripted megaphone cop
-	[106309] = {
-		values = {
-            enabled = false
-		}
-	},
+	[106309] = disabled,
 	-- disable cop car lights on startup
 	[100018] = {
 		on_executed = {
