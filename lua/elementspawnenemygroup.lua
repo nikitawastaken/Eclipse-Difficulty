@@ -79,7 +79,7 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 	if not self._values.preferred_spawn_groups then
 		return
 	end
-	
+
 	self._values.interval = math.max(tweak_data.group_ai.min_spawn_group_interval, self._values.interval)
 
 	local new_groups = {}
