@@ -15,5 +15,11 @@ return {
 		values = {
             enabled = false
 		}
-	}
+	},
+	-- disable cop car lights on startup
+	[100018] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
 }
