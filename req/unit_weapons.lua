@@ -9,6 +9,13 @@ local M = {
 	[("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { "usp_tactical", "mp5_tactical" },
 	[("units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"):key()] = { "usp_tactical", "mp5_tactical" },
 	[("units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/payday2/characters/ene_tazer_1/ene_tazer_1"):key()] = "m4",
+	[("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1"):key()] = "m4",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870"):key()] = "r870",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale"):key()] = "m4",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870"):key()] = "r870",
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security
