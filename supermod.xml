@@ -560,6 +560,15 @@
 				<file :name="wpn_npc_sawnoff_shotgun.model"/>
 			</group>
 
+			<!-- NPC SCAR retexture/model -->
+			<group :name="wpn_npc_scar_murkywater/">
+				<file :name="mk17_df.texture"/>
+				<file :name="mk17_nm.texture"/>
+				<file :name="wpn_npc_scar_murkywater.material_config"/>
+				<file :name="wpn_npc_scar_murkywater.model"/>
+				<file :name="wpn_npc_scar_murkywater.object"/>
+			</group>
+			
             <!-- NPC Beretta 92 flashlight fix -->
             <group :name="wpn_npc_beretta92/">
 				<file :name="wpn_npc_beretta92.object" />
@@ -1504,6 +1513,14 @@
 				<file :name="asval_nm.texture"/>
 				<file :name="wpn_npc_asval.model"/>
 				<file :name="wpn_npc_asval.unit"/>
+			</group>
+
+			<group :name="wpn_npc_ak47/">
+				<file :name="ak_df.texture"/>
+				<file :name="ak_nm.texture"/>
+				<file :name="wpn_npc_ak47.material_config"/>
+				<file :name="wpn_npc_ak47.model"/>
+				<file :name="wpn_npc_ak47.object"/>
 			</group>
 		</group>
 			
