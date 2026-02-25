@@ -42,7 +42,7 @@ local M = {
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_hvh",
 	"units/pd2_dlc_mad/characters/ene_acc_russian_head/vars/ene_acc_russian_head_var1",
 	"units/pd2_dlc_mad/characters/ene_acc_russian_head/vars/ene_acc_russian_head_var2",
-	"units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/vars/ene_akan_fbi_agent_c45",
+	"units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/vars/ene_akan_fbi_agent_c45",
 	"units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/vars/ene_akan_fbi_swat_ak47_ass",
 	"units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/vars/ene_akan_city_swat_ak47_ass",
 	"units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_g36/vars/ene_akan_city_heavy_g36",
