@@ -34,6 +34,9 @@ local M = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
 			forbid_sabotage = true,
 		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam"):key()] = {
+			timer = 120,
+		},
 	},
 	["big"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
