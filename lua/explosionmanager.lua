@@ -65,13 +65,13 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 
 				if damage > 0 then
 					action_data.damage = math.max(damage * (math.clamp(1 - len / range, 0, 1) ^ curve_pow), 1)
-					
+
 					-- Check for a wall and reduce damage if it's in the way
 					local wall_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", wall_slot_mask)
 					if wall_block then
 						action_data.damage = action_data.damage * 0.5
 					end
-					
+
 					-- Check for a shield blocking direct los to the explosion impact and reduce damage if the explosion is in front of it
 					local shield_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", shield_slot_mask)
 					local shield_unit = shield_block and shield_block.unit
