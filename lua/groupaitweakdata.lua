@@ -1683,27 +1683,38 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self._random_units = {
+		hrt_special = {
+			"taser_1",
+			"cloaker",
+		},
 		light_special = {
 			["medic_1"] = 3,
 			["medic_2"] = 2,
 			["cloaker"] = 2,
 		},
 		heavy_special = {
-			["medic_1"] = 3,
-			["medic_2"] = 2,
-			["taser_1"] = 2,
-			["taser_2"] = 1,
-		},
-		shield_special = {
 			["medic_1"] = 4,
 			["medic_2"] = 3,
-			["cloaker"] = 3,
 			["taser_1"] = 3,
 			["taser_2"] = 2,
 		},
-		hrt_special = {
-			"taser_1",
-			"cloaker",
+		shield_special = {
+			["medic_1"] = 5,
+			["medic_2"] = 4,
+			["cloaker"] = 4,
+			["taser_1"] = 4,
+			["taser_2"] = 3,
+		},
+		taser_special = {
+			["medic_1"] = 3,
+			["cloaker"] = 3,
+			["medic_2"] = 2,
+		},
+		bulldozer_special = {
+			["medic_1"] = 3,
+			["taser_1"] = 3,
+			["medic_2"] = 2,
+			["taser_2"] = 2,
 		},
 	}
 
@@ -2404,7 +2415,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				random_unit = self._random_units.light_special,
+				random_unit = self._random_units.taser_special,
 				tactics = self._tactics.taser_spt,
 			},
 		},
@@ -2450,7 +2461,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
-				random_unit = self._random_units.heavy_special,
+				random_unit = self._random_units.bulldozer_special,
 				tactics = self._tactics.bulldozer_spt,
 			},
 		},
@@ -2730,7 +2741,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				random_unit = self._random_units.light_special,
+				random_unit = self._random_units.taser_special,
 				tactics = self._tactics.taser_spt,
 			},
 		},
@@ -2776,7 +2787,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
-				random_unit = self._random_units.heavy_special,
+				random_unit = self._random_units.bulldozer_special,
 				tactics = self._tactics.bulldozer_spt,
 			},
 		},
