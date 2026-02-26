@@ -1683,27 +1683,38 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self._random_units = {
+		hrt_special = {
+			"taser_1",
+			"cloaker",
+		},
 		light_special = {
 			["medic_1"] = 3,
 			["medic_2"] = 2,
 			["cloaker"] = 2,
 		},
 		heavy_special = {
-			["medic_1"] = 3,
-			["medic_2"] = 2,
-			["taser_1"] = 2,
-			["taser_2"] = 1,
-		},
-		shield_special = {
 			["medic_1"] = 4,
 			["medic_2"] = 3,
-			["cloaker"] = 3,
 			["taser_1"] = 3,
 			["taser_2"] = 2,
 		},
-		hrt_special = {
-			"taser_1",
-			"cloaker",
+		shield_special = {
+			["medic_1"] = 5,
+			["medic_2"] = 4,
+			["cloaker"] = 4,
+			["taser_1"] = 4,
+			["taser_2"] = 3,
+		},
+		taser_special = {
+			["medic_1"] = 3,
+			["cloaker"] = 3,
+			["medic_2"] = 2,
+		},
+		bulldozer_special = {
+			["medic_1"] = 3,
+			["taser_1"] = 3,
+			["medic_2"] = 2,
+			["taser_2"] = 2,
 		},
 	}
 
@@ -2404,7 +2415,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				random_unit = self._random_units.light_special,
+				random_unit = self._random_units.taser_special,
 				tactics = self._tactics.taser_spt,
 			},
 		},
@@ -2450,7 +2461,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
-				random_unit = self._random_units.heavy_special,
+				random_unit = self._random_units.bulldozer_special,
 				tactics = self._tactics.bulldozer_spt,
 			},
 		},
@@ -2730,7 +2741,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				random_unit = self._random_units.light_special,
+				random_unit = self._random_units.taser_special,
 				tactics = self._tactics.taser_spt,
 			},
 		},
@@ -2776,7 +2787,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
-				random_unit = self._random_units.heavy_special,
+				random_unit = self._random_units.bulldozer_special,
 				tactics = self._tactics.bulldozer_spt,
 			},
 		},
@@ -2791,7 +2802,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
-				freq_balance_mul = { 0.6, 0.8, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 1,
@@ -2802,8 +2812,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 240,
-					diff_scale / 120,
+					diff_scale / 300,
+					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.6, 0.8, 1 },
 				amount_max = 1,
@@ -3182,8 +3192,8 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 					-- end
 				end
 
-				if assault_state.assault.spawnrate then
-					assault_state.assault.spawnrate = table_multiplier(assault_state.assault.spawnrate, level_settings.spawnrate_mul or 1)
+				if assault_state.assault.spawn_rate then
+					assault_state.assault.spawn_rate = table_multiplier(assault_state.assault.spawn_rate, level_settings.spawn_rate_mul or 1)
 
 					-- if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
 					-- 	Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
@@ -3407,6 +3417,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 	})
 	self.spawn_kill_max_dis = 1500
+
+	self.min_spawn_group_interval = get_difficulty_specific_value({
+		10,
+		10,
+		7.5,
+		7.5,
+		5,
+	})
 
 	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
 		{ 3, 2.5, 2 },

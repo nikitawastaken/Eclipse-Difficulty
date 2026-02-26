@@ -80,7 +80,7 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 		return
 	end
 
-	self._values.interval = math.max(tweak_data.group_ai.spawn_kill_cooldown / 2, self._values.interval)
+	self._values.interval = math.max(tweak_data.group_ai.min_spawn_group_interval, self._values.interval)
 
 	local new_groups = {}
 	for _, initial_group in pairs(self._values.preferred_spawn_groups) do

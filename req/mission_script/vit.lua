@@ -71,7 +71,11 @@ return {
 		},
 	},
 	-- disable gas in the PEOC
-	[103245] = disabled,
+	[102079] = {
+		on_executed = {
+			{ id = 102023, remove = true },
+		},
+	},
 	-- make humvee event be chance based
 	[101606] = humvee_crash_event_chance,
 	[103360] = disabled,
