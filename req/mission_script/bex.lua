@@ -121,31 +121,31 @@ return {
 			{ id = 100129, remove = true }, -- preferred
 		},
 	},
-	[101758] = {  -- add reenforce to office rooms at start, server room point 1
+	[101758] = { -- add reenforce to office rooms at start, server room point 1
 		reinforce = {
 			reenforce_office_1,
 			reenforce_office_2,
 		},
 	},
-	[101013] = {  -- server room point 2
+	[101013] = { -- server room point 2
 		reinforce = {
 			reenforce_office_2,
 			reenforce_office_3,
 		},
 	},
-	[101886] = {  -- server room point 3 (same room as 1)
+	[101886] = { -- server room point 3 (same room as 1)
 		reinforce = {
 			reenforce_office_1,
 			reenforce_office_2,
 		},
 	},
-	[101022] = {  -- server room point 4
+	[101022] = { -- server room point 4
 		reinforce = {
 			reenforce_office_1,
 			reenforce_office_3,
 		},
 	},
-	[101801] = {  -- hacking completed - server room is fair game for reenforce
+	[101801] = { -- hacking completed - server room is fair game for reenforce
 		reinforce = {
 			reenforce_office_1,
 			reenforce_office_2,
@@ -158,14 +158,14 @@ return {
 			{
 				name = "teller_balcony01",
 				force = 2,
-				position = Vector3(1200, -2200, 400)
+				position = Vector3(1200, -2200, 400),
 			},
 			{
 				name = "teller_balcony02",
 				force = 2,
-				position = Vector3(-1200, -2200, 400)
-			}
-		}
+				position = Vector3(-1200, -2200, 400),
+			},
+		},
 	},
 	-- Reinforce drill parts car on first break
 	[103346] = {
@@ -173,36 +173,36 @@ return {
 			{
 				name = "parts_car",
 				force = 2,
-				position = Vector3(3100, -1400, 0)
-			}
-		}
+				position = Vector3(3100, -1400, 0),
+			},
+		},
 	},
 	[103347] = {
 		reinforce = {
 			{
 				name = "parts_car",
 				force = 2,
-				position = Vector3(1600, 2100, 0)
-			}
-		}
+				position = Vector3(1600, 2100, 0),
+			},
+		},
 	},
 	[103352] = {
 		reinforce = {
 			{
 				name = "parts_car",
 				force = 2,
-				position = Vector3(1800, -2000, 0)
-			}
-		}
+				position = Vector3(1800, -2000, 0),
+			},
+		},
 	},
 	[103354] = {
 		reinforce = {
 			{
 				name = "parts_car",
 				force = 2,
-				position = Vector3(-1700, 3300, 0)
-			}
-		}
+				position = Vector3(-1700, 3300, 0),
+			},
+		},
 	},
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
@@ -210,17 +210,17 @@ return {
 	-- Disable broken navlinks
 	[102541] = {
 		on_executed = {
-			{ id = 102544, remove = true }
-		}
+			{ id = 102544, remove = true },
+		},
 	},
 	[104726] = {
 		on_executed = {
-			{ id = 101490, remove = true }
-		}
+			{ id = 101490, remove = true },
+		},
 	},
-	[102541] = { 
+	[102541] = {
 		on_executed = {
-			{ id = 101618, remove = true, },  -- why does this spawn a guard ?
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 	},
 	-- begin the cloaker hunt at the start of the first assault
