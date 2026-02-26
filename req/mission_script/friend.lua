@@ -107,7 +107,7 @@ return {
 	-- Only boat escape
 	[100213] = disabled,
 	[100214] = disabled,
-	[103446] = disabled, 
+	[103446] = disabled,
 	--You're Sosa's men, not undercover cops
 	[100852] = mobster_team,
 	[100854] = mobster_team,
