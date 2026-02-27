@@ -9,6 +9,11 @@ local disabled = {
 		enabled = false,
 	},
 }
+local standard_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 return {
 	-- Combine some navigation areas
 	[141003] = {
@@ -40,40 +45,6 @@ return {
 	[103594] = {
 		difficulty_max = 0.1,
 	},
-	-- Boss dead, safe objective
-	[101169] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
-		reinforce = {
-			{
-				name = "main_hall",
-				force = 4,
-				position = Vector3(-1700, -1075, 50),
-			},
-		},
-	},
-	-- Disable Sosa retreat on low health during boss fight
-	[101596] = disabled,
-	-- Fallback to make Sosa retreat when house is accessible
-	[102653] = {
-		on_executed = {
-			{ id = 102692, delay = 0 },
-		},
-	},
-	-- Change Sosa's line to more appropriate one (having a chance to say the famous Scarface quote)
-	[101485] = {
-		values = {
-			sound_event = "Play_bos_fri_04",
-		},
-	},
-	-- disable vanilla bag instance requirments
-	[100165] = disabled,
-	-- Disable vanilla reinforce
-	-- Timed objective/escape zone reinforce BORING
-	[100007] = disabled,
-	[100207] = disabled,
-	[100208] = disabled,
-	[100210] = disabled,
 	-- Add some reinforce around the house
 	[100129] = { -- Preferred
 		reinforce = {
@@ -99,6 +70,44 @@ return {
 			},
 		},
 	},
+	-- Boss dead, safe objective
+	[101169] = {
+		difficulty_max = 1,
+		difficulty_min = 1,
+		reinforce = {
+			{
+				name = "main_hall",
+				force = 3,
+				position = Vector3(-1700, -1075, 50),
+			},
+		},
+	},
+	-- Disable Sosa retreat on low health during boss fight
+	[101596] = disabled,
+	-- Fallback to make Sosa retreat when house is accessible
+	[102653] = {
+		on_executed = {
+			{ id = 102692, delay = 0 },
+		},
+	},
+	-- Change Sosa's line to more appropriate one (having a chance to say the famous Scarface quote)
+	[101485] = {
+		values = {
+			sound_event = "Play_bos_fri_04",
+		},
+	},
+	-- Disable vanilla bag instance requirments
+	[100165] = disabled,
+	-- Disable vanilla reinforce
+	-- Timed objective/escape zone reinforce BORING
+	[100007] = disabled,
+	[100207] = disabled,
+	[100208] = disabled,
+	[100210] = disabled,
+	-- Only boat escape
+	[100213] = disabled,
+	[100214] = disabled,
+	[103446] = disabled,
 	--You're Sosa's men, not undercover cops
 	[100852] = mobster_team,
 	[100854] = mobster_team,
@@ -143,21 +152,13 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
-	-- Van escapes disable nearby spawngroups and reinforce
-	[100240] = { -- add loot bag van 1
-		reinforce = {
-			{ name = "mansion_right" },
-		},
-		on_executed = {
-			{ id = 400002, delay = 0 },
-		},
-	},
-	[101208] = { -- add loot bag van 2
-		reinforce = {
-			{ name = "mansion_front" },
-		},
-		on_executed = {
-			{ id = 400004, delay = 0 },
-		},
-	},
+	-- Spawn group intervals
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[100206] = standard_spawn,
+	[102861] = standard_spawn,
+	[102381] = standard_spawn,
 }

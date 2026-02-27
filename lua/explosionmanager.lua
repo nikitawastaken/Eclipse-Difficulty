@@ -2,6 +2,7 @@
 -- Also added some minor code optimization
 local hit_dir = Vector3()
 local shield_slot_mask = World:make_slot_mask(8)
+local wall_slot_mask = World:make_slot_mask(1, 11)
 local criminal_names = table.list_to_set(CriminalsManager.character_names())
 Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, detect_results, params, variant, damage_func_name)
 	local user_unit = params.user
@@ -64,6 +65,13 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 
 				if damage > 0 then
 					action_data.damage = math.max(damage * (math.clamp(1 - len / range, 0, 1) ^ curve_pow), 1)
+
+					-- Check for a wall and reduce damage if it's in the way
+					local wall_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", wall_slot_mask)
+					if wall_block then
+						action_data.damage = action_data.damage * 0.5
+					end
+
 					-- Check for a shield blocking direct los to the explosion impact and reduce damage if the explosion is in front of it
 					local shield_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", shield_slot_mask)
 					local shield_unit = shield_block and shield_block.unit
