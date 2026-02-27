@@ -1,7 +1,15 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
 		enabled = false,
 	},
+}
+
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 return {
 	-- Add new reinforce
@@ -36,4 +44,13 @@ return {
 	},
 	-- disable endless assault (the heist doesn't need one)
 	[101473] = disabled,
+	-- cloaker spawngroup stuff
+	[400026] = cloaker_spawn,
+	[400027] = cloaker_spawn,
+	[400028] = cloaker_spawn,
+	[400029] = cloaker_spawn,
+	[400030] = cloaker_spawn,
+	[400031] = cloaker_spawn,
+	[400032] = cloaker_spawn,
+	[400033] = cloaker_spawn,
 }
