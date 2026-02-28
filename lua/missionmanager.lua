@@ -169,16 +169,14 @@ function MissionManager.mission_script_patch_funcs.post_mga_event(self, element,
 	Eclipse:log_console("%s hooked as megaphone cop event trigger", element:editor_name())
 end
 
+-- Set flashlights on or off when this element is executed
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
-	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
-		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
+	local function set_flashlights()
 		managers.game_play_central:set_flashlights_on(data)
-	end)
-	Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_flashlight_" .. element:id(), function()
-		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
-		managers.game_play_central:set_flashlights_on(data)
-	end)
-	Eclipse:log_console("%s hooked as flashlight state trigger", element:editor_name())
+	end
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_flashlight_" .. element:id(), set_flashlights)
+	Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_flashlight_" .. element:id(), set_flashlights)
+	Eclipse:log("%s hooked as flashlight state trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.groups(self, element, data)
