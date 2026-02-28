@@ -22,15 +22,6 @@ local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
 
-local filter_players_all = {
-	values = {
-		player_1 = true,
-		player_2 = true,
-		player_3 = true,
-		player_4 = true,
-	},
-}
-
 local shield = {
 	enemy = is_eclipse_pro and elite_shield or shield,
 }
@@ -54,19 +45,6 @@ local crowbar_amount = {
 	values = {
 		amount = normal and 3 or hard and 2 or 1,
 		amount_random = 1,
-	},
-}
-local c4_amount = eclipse and 7 or 4
-local c4_amount_solo = eclipse and 4 or 2
-local c4_event_func = {
-	values = {
-		amount = is_solo and c4_amount_solo or c4_amount,
-	},
-}
-local c4_event_counter_func = {
-	values = {
-		enabled = true,
-		counter_target = is_solo and c4_amount_solo or c4_amount,
 	},
 }
 local van_spawn = {
@@ -148,16 +126,6 @@ return {
 	[102216] = filter_easy_above,
 	[102320] = filter_disable,
 	[102369] = filter_disable,
-	-- change c4's amount event to resemble more from PDTH
-	[101891] = c4_event_func,
-	[101565] = c4_event_counter_func,
-	[102307] = filter_players_all,
-	[102294] = disabled,
-	[102568] = disabled,
-	[102284] = filter_easy_above,
-	[102289] = filter_disable,
-	[102287] = filter_disable,
-	[102288] = filter_disable,
 	-- change crowbar's amount depending on diffculties
 	[100127] = crowbar_amount,
 	-- reinforce Spots
