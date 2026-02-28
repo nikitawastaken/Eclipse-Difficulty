@@ -499,11 +499,8 @@ PlayerAction.JohnWickKillChain = {
 		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_hitman_dodge")
 		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
-		local function on_killshot(attack_data)
-			local attacker_unit = attack_data.attacker_unit
-			local variant = attack_data.variant
-
-			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+		local function on_killshot(weapon_unit, variant)
+			if variant == "bullet" then
 				kills = kills + 1
 
 				if kills == target_kills then
@@ -531,12 +528,8 @@ PlayerAction.JohnWickKillChain = {
 		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
-
-function PlayerManager:_on_enter_chain_hitman_kills_event(attack_data)
-	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
-
-	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+function PlayerManager:_on_enter_chain_hitman_kills_event(weapon_unit, variant)
+	if variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
 		local data = self:upgrade_value("player", "chain_hitman_kills", 0)
 
 		if data ~= 0 then
