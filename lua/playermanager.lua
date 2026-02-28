@@ -2054,3 +2054,31 @@ function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldow
 		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
 	}
 end
+
+function PlayerManager:_update_damage_dealt(t, dt)
+	local local_peer_id = managers.network:session() and managers.network:session():local_peer():id()
+	if not local_peer_id or not self:has_category_upgrade("player", "cocaine_stacking") then
+		return
+	end
+	self._damage_dealt_to_cops_t = self._damage_dealt_to_cops_t or t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+	self._damage_dealt_to_cops_decay_t = self._damage_dealt_to_cops_decay_t or t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+	local cocaine_stack = self:get_synced_cocaine_stacks(local_peer_id)
+	local amount = cocaine_stack and cocaine_stack.amount or 0
+	local new_amount = amount
+	if self._damage_dealt_to_cops_t <= t then
+		self._damage_dealt_to_cops_t = t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+		local new_stacks = (self._damage_dealt_to_cops or 0) * (tweak_data.gui.stats_present_multiplier or 10) * self:upgrade_value("player", "cocaine_stacking", 0)
+		self._damage_dealt_to_cops = 0
+		new_amount = new_amount + math.min(new_stacks, tweak_data.upgrades.max_cocaine_stacks_per_tick or 20)
+	end
+	if self._damage_dealt_to_cops_decay_t <= t then
+		self._damage_dealt_to_cops_decay_t = t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+		local decay = amount * (tweak_data.upgrades.cocaine_stacks_decay_percentage_per_tick or 0)
+		decay = decay + (tweak_data.upgrades.cocaine_stacks_decay_amount_per_tick or 20) * self:upgrade_value("player", "cocaine_stacks_decay_multiplier", 1)
+		new_amount = new_amount - decay
+	end
+	new_amount = math.clamp(math.floor(new_amount), 0, tweak_data.upgrades.max_total_cocaine_stacks or 2047)
+	if new_amount ~= amount then
+		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
+	end
+end

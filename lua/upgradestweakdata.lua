@@ -36,9 +36,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.max_cocaine_stacks_per_tick = 80
 	self.max_total_cocaine_stacks = 300
 	self.cocaine_stacks_tick_t = 0.35
-
+	
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local cocainum_stacks = get_difficulty_specific_value({ 2.5, 2.3, 2, 1.925, 1.885 })
+	local cocainum_stacks = get_difficulty_specific_value({ 1.75, 1.65, 1.55, 1.45, 1.4 })
 
 	self.cocaine_stacks_decay_t = cocainum_stacks
 	self.cocaine_stacks_decay_percentage_per_tick = 0.075
