@@ -27,7 +27,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 
 	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
 	if ray_hit then
-		return 0 
+		return 0
 	end
 
 	local cam_fwd = camera:rotation():y()
