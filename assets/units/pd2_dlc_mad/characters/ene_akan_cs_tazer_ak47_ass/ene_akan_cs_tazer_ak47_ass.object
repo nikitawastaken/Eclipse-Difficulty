@@ -260,7 +260,9 @@
 			</lod_object>
 
 			<object name="g_helmet_lod3" 	enabled="false" />	
-	
+
+			<object name="g_helmet_lod6" 	enabled="false" />	
+		
 			<object name="s_body" 			enabled="true" shadow_caster="true" />			
 		</graphic_group>
 	</graphics>

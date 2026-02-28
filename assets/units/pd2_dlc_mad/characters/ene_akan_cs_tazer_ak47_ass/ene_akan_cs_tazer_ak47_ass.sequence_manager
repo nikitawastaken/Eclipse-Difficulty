@@ -42,6 +42,7 @@
 			<object 			enabled="false" name="'g_helmet_lod2'" />
 			<object 			enabled="true" name="'g_helmet_lod4'" />
 			<object 			enabled="true" name="'g_helmet_lod5'" />
+			<object 			enabled="true" name="'g_helmet_lod6'" />
 
 			<decal_mesh 		enabled="false" name="'dm_helmet'" />
 			<decal_mesh 		enabled="true" name="'dm_mask'" />
