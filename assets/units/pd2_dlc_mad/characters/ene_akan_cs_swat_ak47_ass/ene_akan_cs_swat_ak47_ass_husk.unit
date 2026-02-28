@@ -4,7 +4,6 @@
 	<object file="units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass" />
 
 	<dependencies>		
-		<depends_on unit="units/payday2/characters/ene_acc_swat_helmet/ene_acc_swat_helmet" />
 		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />	
 	</dependencies>
 
@@ -97,7 +96,7 @@
 			<var name="_head" value="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
 			<var name="_head_gear_object" value="g_helmet_swat_lod" />
 			<var name="_nr_head_gear_objects" value="9" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_swat_helmet/ene_acc_swat_helmet" />
+			<var name="_head_gear" value="units/pd2_dlc_mad/characters/ene_acc_swat_helmet/ene_acc_swat_helmet" />
 			<var name="_head_gear_decal_mesh" value="dm_helmet1" />				
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		

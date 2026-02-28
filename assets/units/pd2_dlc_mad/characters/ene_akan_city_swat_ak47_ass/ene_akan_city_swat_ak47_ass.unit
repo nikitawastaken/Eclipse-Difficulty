@@ -100,7 +100,7 @@
 			<var name="_head_gear_object" value="g_helmet_city_swat_lod" />
 			<var name="_nr_head_gear_objects" value="6" />
 			<var name="_nr_head_gear_objects" value="6" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_swat_helmet/ene_acc_swat_helmet" />
+			<var name="_head_gear" value="units/pd2_dlc_mad/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet" />
 			<var name="_head_gear_decal_mesh" value="dm_helmet3" />			
 		</extension>
 		<extension name="movement" class="CopMovement" >	

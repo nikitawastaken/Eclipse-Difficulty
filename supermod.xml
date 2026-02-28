@@ -1596,6 +1596,111 @@
 				<file :name="mad_spook_il.texture" />
 			</group>
 
+			<group :name="ene_acc_cop_hat/">
+				<file :name="ene_acc_cop_hat.cooked_physics" />
+				<file :name="ene_acc_cop_hat.material_config" />
+				<file :name="ene_acc_cop_hat.model" />
+				<file :name="ene_acc_cop_hat.object" />
+				<file :name="ene_acc_cop_hat.unit" />
+			</group>
+
+			<group :name="ene_acc_fbi_cap/">
+				<file :name="ene_acc_fbi_cap.cooked_physics" />
+				<file :name="ene_acc_fbi_cap.material_config" />
+				<file :name="ene_acc_fbi_cap.model" />
+				<file :name="ene_acc_fbi_cap.object" />
+				<file :name="ene_acc_fbi_cap.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_helmet/">
+				<file :name="ene_acc_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_helmet.material_config" />
+				<file :name="ene_acc_swat_helmet.model" />
+				<file :name="ene_acc_swat_helmet.object" />
+				<file :name="ene_acc_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_hat/">
+				<file :name="ene_acc_swat_hat.cooked_physics" />
+				<file :name="ene_acc_swat_hat.material_config" />
+				<file :name="ene_acc_swat_hat.model" />
+				<file :name="ene_acc_swat_hat.object" />
+				<file :name="ene_acc_swat_hat.unit" />
+			</group>
+		
+			<group :name="ene_acc_fbi_swat_helmet/">
+				<file :name="ene_acc_fbi_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_fbi_swat_helmet.model" />
+				<file :name="ene_acc_fbi_swat_helmet.object" />
+				<file :name="ene_acc_fbi_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_city_swat_helmet/">
+				<file :name="ene_acc_city_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_city_swat_helmet.model" />
+				<file :name="ene_acc_city_swat_helmet.object" />
+				<file :name="ene_acc_city_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_city_swat_hat/">
+				<file :name="ene_acc_city_swat_hat.cooked_physics" />
+				<file :name="ene_acc_city_swat_hat.model" />
+				<file :name="ene_acc_city_swat_hat.object" />
+				<file :name="ene_acc_city_swat_hat.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_heavy_helmet/">
+				<file :name="ene_acc_swat_heavy_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_helmet.material_config" />
+				<file :name="ene_acc_swat_heavy_helmet.model" />
+				<file :name="ene_acc_swat_heavy_helmet.object" />
+				<file :name="ene_acc_swat_heavy_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_heavy_visor/">
+				<file :name="ene_acc_swat_heavy_visor.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_visor.model" />
+				<file :name="ene_acc_swat_heavy_visor.object" />
+				<file :name="ene_acc_swat_heavy_visor.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_mask/">
+				<file :name="ene_acc_shield_mask.cooked_physics" />
+				<file :name="ene_acc_shield_mask.model" />
+				<file :name="ene_acc_shield_mask.object" />
+				<file :name="ene_acc_shield_mask.unit" />
+			</group>
+
+			<group :name="ene_acc_city_heavy_helmet/">
+				<file :name="ene_acc_city_heavy_helmet.cooked_physics" />
+				<file :name="ene_acc_city_heavy_helmet.model" />
+				<file :name="ene_acc_city_heavy_helmet.object" />
+				<file :name="ene_acc_city_heavy_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_medic_helmet/">
+				<file :name="ene_acc_medic_helmet.cooked_physics" />
+				<file :name="ene_acc_medic_helmet.material_config" />
+				<file :name="ene_acc_medic_helmet.model" />
+				<file :name="ene_acc_medic_helmet.object" />
+				<file :name="ene_acc_medic_helmet.unit" />
+			</group>
+				
+			<group :name="ene_acc_tazer_helmet/">
+				<file :name="ene_acc_tazer_helmet.cooked_physics" />
+				<file :name="ene_acc_tazer_helmet.material_config" />
+				<file :name="ene_acc_tazer_helmet.model" />
+				<file :name="ene_acc_tazer_helmet.object" />
+				<file :name="ene_acc_tazer_helmet.unit" />
+			</group>
+			
+			<group :name="ene_acc_tazer_mask/">
+				<file :name="ene_acc_tazer_mask.cooked_physics" />
+				<file :name="ene_acc_tazer_mask.model" />
+				<file :name="ene_acc_tazer_mask.object" />
+				<file :name="ene_acc_tazer_mask.unit" />
+			</group>
+					
 			<group :name="ene_acc_shield_akan_small/">
 				<file :name="ene_acc_shield_akan_small.cooked_physics" />
 				<file :name="ene_acc_shield_akan_small.material_config" />
@@ -2290,6 +2395,105 @@
 				<file :name="bph_bulldozer_body_medic_df.texture" />
 			</group>
 
+			<group :name="ene_acc_cop_hat/">
+				<file :name="ene_acc_cop_hat.cooked_physics" />
+				<file :name="ene_acc_cop_hat.material_config" />
+				<file :name="ene_acc_cop_hat.model" />
+				<file :name="ene_acc_cop_hat.object" />
+				<file :name="ene_acc_cop_hat.unit" />
+			</group>
+
+			<group :name="ene_acc_fbi_cap/">
+				<file :name="ene_acc_fbi_cap.cooked_physics" />
+				<file :name="ene_acc_fbi_cap.material_config" />
+				<file :name="ene_acc_fbi_cap.model" />
+				<file :name="ene_acc_fbi_cap.object" />
+				<file :name="ene_acc_fbi_cap.unit" />
+			</group>
+		
+			<group :name="ene_acc_security_cap/">
+				<file :name="ene_acc_security_cap.cooked_physics" />
+				<file :name="ene_acc_security_cap.material_config" />
+				<file :name="ene_acc_security_cap.model" />
+				<file :name="ene_acc_security_cap.object" />
+				<file :name="ene_acc_security_cap.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_helmet/">
+				<file :name="ene_acc_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_helmet.material_config" />
+				<file :name="ene_acc_swat_helmet.model" />
+				<file :name="ene_acc_swat_helmet.object" />
+				<file :name="ene_acc_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_hat/">
+				<file :name="ene_acc_swat_hat.cooked_physics" />
+				<file :name="ene_acc_swat_hat.material_config" />
+				<file :name="ene_acc_swat_hat.model" />
+				<file :name="ene_acc_swat_hat.object" />
+				<file :name="ene_acc_swat_hat.unit" />
+			</group>
+		
+			<group :name="ene_acc_fbi_swat_helmet/">
+				<file :name="ene_acc_fbi_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_fbi_swat_helmet.model" />
+				<file :name="ene_acc_fbi_swat_helmet.object" />
+				<file :name="ene_acc_fbi_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_city_swat_helmet/">
+				<file :name="ene_acc_city_swat_helmet.cooked_physics" />
+				<file :name="ene_acc_city_swat_helmet.model" />
+				<file :name="ene_acc_city_swat_helmet.object" />
+				<file :name="ene_acc_city_swat_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_city_swat_hat/">
+				<file :name="ene_acc_city_swat_hat.cooked_physics" />
+				<file :name="ene_acc_city_swat_hat.model" />
+				<file :name="ene_acc_city_swat_hat.object" />
+				<file :name="ene_acc_city_swat_hat.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_heavy_helmet/">
+				<file :name="ene_acc_swat_heavy_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_helmet.material_config" />
+				<file :name="ene_acc_swat_heavy_helmet.model" />
+				<file :name="ene_acc_swat_heavy_helmet.object" />
+				<file :name="ene_acc_swat_heavy_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_swat_heavy_visor/">
+				<file :name="ene_acc_swat_heavy_visor.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_visor.model" />
+				<file :name="ene_acc_swat_heavy_visor.object" />
+				<file :name="ene_acc_swat_heavy_visor.unit" />
+			</group>
+
+			<group :name="ene_acc_city_heavy_helmet/">
+				<file :name="ene_acc_city_heavy_helmet.cooked_physics" />
+				<file :name="ene_acc_city_heavy_helmet.model" />
+				<file :name="ene_acc_city_heavy_helmet.object" />
+				<file :name="ene_acc_city_heavy_helmet.unit" />
+			</group>
+		
+			<group :name="ene_acc_medic_helmet/">
+				<file :name="ene_acc_medic_helmet.cooked_physics" />
+				<file :name="ene_acc_medic_helmet.material_config" />
+				<file :name="ene_acc_medic_helmet.model" />
+				<file :name="ene_acc_medic_helmet.object" />
+				<file :name="ene_acc_medic_helmet.unit" />
+			</group>
+				
+			<group :name="ene_acc_tazer_helmet/">
+				<file :name="ene_acc_tazer_helmet.cooked_physics" />
+				<file :name="ene_acc_tazer_helmet.material_config" />
+				<file :name="ene_acc_tazer_helmet.model" />
+				<file :name="ene_acc_tazer_helmet.object" />
+				<file :name="ene_acc_tazer_helmet.unit" />
+			</group>
+				
 			<group :name="ene_acc_shield_small/">
 				<file :name="ene_acc_shield_small.cooked_physics" />
 				<file :name="ene_acc_shield_small.material_config" />
