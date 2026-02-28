@@ -18,6 +18,7 @@ NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/payday2/weapons/wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer"):key()] = true,
 	[Idstring("units/pd2_dlc_pent/weapons/wpn_npc_flamethrower_bulldozer/wpn_npc_flamethrower_bulldozer"):key()] = true,
 	[Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"):key()] = true,
+	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"):key()] = true,
 }
 
 Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)

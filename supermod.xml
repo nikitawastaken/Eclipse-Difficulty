@@ -1516,12 +1516,28 @@
 				<file :name="wpn_npc_asval.unit"/>
 			</group>
 
+			<group :name="wpn_npc_rpk/">
+				<file :name="wpn_npc_rpk_df.texture"/>
+				<file :name="wpn_npc_rpk_nm.texture"/>
+				<file :name="wpn_npc_rpk.model"/>
+				<file :name="wpn_npc_rpk.object"/>
+				<file :name="wpn_npc_rpk.unit"/>
+			</group>
+
+			<group :name="wpn_npc_rpk_bulldozer/" dyn_package="true">
+				<file :name="wpn_npc_rpk_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_rpk_bulldozer.model" />
+				<file :name="wpn_npc_rpk_bulldozer.object" />
+				<file :name="wpn_npc_rpk_bulldozer.unit" />
+			</group>
+
 			<group :name="wpn_npc_ak47/">
 				<file :name="ak_df.texture"/>
 				<file :name="ak_nm.texture"/>
 				<file :name="wpn_npc_ak47.material_config"/>
 				<file :name="wpn_npc_ak47.model"/>
 				<file :name="wpn_npc_ak47.object"/>
+				<file :name="wpn_npc_ak47.unit"/>
 			</group>
 		</group>
 			
