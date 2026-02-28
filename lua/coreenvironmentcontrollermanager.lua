@@ -25,7 +25,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	if ray_hit then
 		return 0
 	end
-	
+
 	if dis < min_distance then
 		return 1
 	end
