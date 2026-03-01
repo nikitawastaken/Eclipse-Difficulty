@@ -36,7 +36,7 @@ return {
 	[101103] = {
 		ponr = {
 			length = 360,
-			length_balance_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
 	-- Disable bad navlink

@@ -499,11 +499,8 @@ PlayerAction.JohnWickKillChain = {
 		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_hitman_dodge")
 		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
-		local function on_killshot(attack_data)
-			local attacker_unit = attack_data.attacker_unit
-			local variant = attack_data.variant
-
-			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+		local function on_killshot(weapon_unit, variant)
+			if variant == "bullet" then
 				kills = kills + 1
 
 				if kills == target_kills then
@@ -531,12 +528,8 @@ PlayerAction.JohnWickKillChain = {
 		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
-
-function PlayerManager:_on_enter_chain_hitman_kills_event(attack_data)
-	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
-
-	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+function PlayerManager:_on_enter_chain_hitman_kills_event(weapon_unit, variant)
+	if variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
 		local data = self:upgrade_value("player", "chain_hitman_kills", 0)
 
 		if data ~= 0 then
@@ -704,7 +697,7 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 	local time = tweak_data.projectiles.smoke_screen_grenade.duration
 	self._smoke_screen_effects = self._smoke_screen_effects or {}
 
-	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit))
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus))
 
 	if alive(self._smoke_grenade) and Network:is_server() then
 		self._smoke_grenade:set_slot(0)
@@ -2053,4 +2046,32 @@ function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldow
 	self._global.cooldown_upgrades[category][upgrade] = {
 		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
 	}
+end
+
+function PlayerManager:_update_damage_dealt(t, dt)
+	local local_peer_id = managers.network:session() and managers.network:session():local_peer():id()
+	if not local_peer_id or not self:has_category_upgrade("player", "cocaine_stacking") then
+		return
+	end
+	self._damage_dealt_to_cops_t = self._damage_dealt_to_cops_t or t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+	self._damage_dealt_to_cops_decay_t = self._damage_dealt_to_cops_decay_t or t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+	local cocaine_stack = self:get_synced_cocaine_stacks(local_peer_id)
+	local amount = cocaine_stack and cocaine_stack.amount or 0
+	local new_amount = amount
+	if self._damage_dealt_to_cops_t <= t then
+		self._damage_dealt_to_cops_t = t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+		local new_stacks = (self._damage_dealt_to_cops or 0) * (tweak_data.gui.stats_present_multiplier or 10) * self:upgrade_value("player", "cocaine_stacking", 0)
+		self._damage_dealt_to_cops = 0
+		new_amount = new_amount + math.min(new_stacks, tweak_data.upgrades.max_cocaine_stacks_per_tick or 20)
+	end
+	if self._damage_dealt_to_cops_decay_t <= t then
+		self._damage_dealt_to_cops_decay_t = t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+		local decay = amount * (tweak_data.upgrades.cocaine_stacks_decay_percentage_per_tick or 0)
+		decay = decay + (tweak_data.upgrades.cocaine_stacks_decay_amount_per_tick or 20) * self:upgrade_value("player", "cocaine_stacks_decay_multiplier", 1)
+		new_amount = new_amount - decay
+	end
+	new_amount = math.clamp(math.floor(new_amount), 0, tweak_data.upgrades.max_total_cocaine_stacks or 2047)
+	if new_amount ~= amount then
+		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
+	end
 end
