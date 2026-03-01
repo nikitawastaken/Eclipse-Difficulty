@@ -1963,6 +1963,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "aa12")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12/wpn_npc_aa12"))
 
+	table.insert(self.weap_ids, "saiga_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_saiga_bulldozer/wpn_npc_saiga_bulldozer"))
+
 	table.insert(self.weap_ids, "aa12_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer"))
 
@@ -1983,6 +1986,10 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "rpk_lmg_tank")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"))
+
+	table.insert(self.weap_ids, "pl14_tactical")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"))
+
 end)
 
 local ecm_vuln_hard = 0.6

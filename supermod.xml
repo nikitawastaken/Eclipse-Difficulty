@@ -630,6 +630,23 @@
 				<file :name="wpn_npc_usp_tactical.unit"/>
 			</group>
 
+			<!-- NPC Izhma -->
+			<group :name="wpn_npc_saiga/">
+				<file :name="saiga_df.texture" />
+				<file :name="saiga_nm.texture" />
+				<file :name="wpn_npc_saiga.material_config" />
+				<file :name="wpn_npc_saiga.model" />
+				<file :name="wpn_npc_saiga.object" />
+			</group>
+
+			<!-- Bulldozer Izhma -->
+			<group :name="wpn_npc_saiga_bulldozer/">
+				<file :name="wpn_npc_saiga_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_saiga_bulldozer.model" />
+				<file :name="wpn_npc_saiga_bulldozer.object" />
+				<file :name="wpn_npc_saiga_bulldozer.unit" />
+			</group>
+			
 			<!-- NPC Steakout -->
 			<group :name="wpn_npc_aa12/">
 				<file :name="aa12_df.texture" />
@@ -1524,7 +1541,7 @@
 				<file :name="wpn_npc_rpk.unit"/>
 			</group>
 
-			<group :name="wpn_npc_rpk_bulldozer/" dyn_package="true">
+			<group :name="wpn_npc_rpk_bulldozer/">
 				<file :name="wpn_npc_rpk_bulldozer.cooked_physics" />
 				<file :name="wpn_npc_rpk_bulldozer.model" />
 				<file :name="wpn_npc_rpk_bulldozer.object" />
@@ -1538,6 +1555,16 @@
 				<file :name="wpn_npc_ak47.model"/>
 				<file :name="wpn_npc_ak47.object"/>
 				<file :name="wpn_npc_ak47.unit"/>
+			</group>
+
+			<group :name="wpn_npc_pl14_tactical/">
+				<file :name="pl14_df.texture" />
+				<file :name="pl14_nm.texture" />
+				<file :name="wpn_npc_pl14_tactical.cooked_physics" />
+				<file :name="wpn_npc_pl14_tactical.material_config" />
+				<file :name="wpn_npc_pl14_tactical.model" />
+				<file :name="wpn_npc_pl14_tactical.object" />
+				<file :name="wpn_npc_pl14_tactical.unit"/>
 			</group>
 		</group>
 			
