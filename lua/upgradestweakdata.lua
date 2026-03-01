@@ -20,7 +20,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		movement = { 1, 0.95, 0.9, 0.85, 0.775, 0.7, 0.625 },
 		concealment = { 30, 26, 23, 21, 18, 12, 1 },
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
-		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
+		damage_shake = { 1, 0.9, 0.8, 0.7, 0.55, 0.4, 0.25 },
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
 		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
 		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
@@ -38,7 +38,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.cocaine_stacks_tick_t = 0.35
 
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local cocainum_stacks = get_difficulty_specific_value({ 2.5, 2.3, 2, 1.925, 1.885 })
+	local cocainum_stacks = get_difficulty_specific_value({ 1.75, 1.65, 1.55, 1.45, 1.4 })
 
 	self.cocaine_stacks_decay_t = cocainum_stacks
 	self.cocaine_stacks_decay_percentage_per_tick = 0.075

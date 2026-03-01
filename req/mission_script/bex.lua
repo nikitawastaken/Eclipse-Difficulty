@@ -49,14 +49,27 @@ local bags_required_objective = {
 		amount = 4 + (is_pro_job and 2 or 0),
 	},
 }
+local reenforce_office_1 = {
+	name = "office1",
+	force = 2,
+	position = Vector3(700, -6000, 0),
+}
+local reenforce_office_2 = {
+	name = "office2",
+	force = 2,
+	position = Vector3(-700, -6000, 0),
+}
+local reenforce_office_3 = {
+	name = "office3",
+	force = 2,
+	position = Vector3(1150, -4400, 0),
+}
 return {
 	-- Combine some navigation areas
 	[100017] = {
 		ai_area = {
 			{ 57, 59 },
 			{ 68, 77 },
-			{ 98, 19 },
-			{ 76, 97, 18 },
 		},
 	},
 	[101829] = {
@@ -74,59 +87,73 @@ return {
 			{ name = "parts_car" },
 		},
 	},
+	-- Delay initial preferreds
+	[103009] = { -- start police car drive in
+		on_executed = {
+			{ id = 100129, delay = 15 }, -- preferred
+		},
+	},
+	-- Add new reinforce
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "police_car01",
+				name = "edge",
 				force = 3,
-				position = Vector3(2140, 485, 0),
+				position = Vector3(0, -600, 0),
 			},
 			{
-				name = "police_car02",
+				name = "grit",
 				force = 3,
-				position = Vector3(-100, 400, 0),
+				position = Vector3(1600, 400, 0),
 			},
 			{
-				name = "police_car03",
+				name = "rush",
 				force = 3,
-				position = Vector3(-1900, -150, 0),
+				position = Vector3(-1600, 400, 0),
 			},
 			{
-				name = "police_car04",
+				name = "mioyes",
 				force = 3,
-				position = Vector3(-1700, -2600, 0),
+				position = Vector3(-2200, -2500, 0),
 			},
 		},
 		on_executed = {
 			{ id = 100129, remove = true }, -- preferred
 		},
 	},
-	-- Delay initial preferreds
-	[103009] = { -- start police car drive in
-		on_executed = {
-			{ id = 100129, delay = 0, delay_rand = 15 }, -- preferred
-		},
-	},
-	[102311] = { -- func sequence trigger 003
+	[101758] = { -- add reenforce to office rooms at start, server room point 1
 		reinforce = {
-			{
-				name = "backdoor",
-				force = 2,
-				position = Vector3(1800, -2200, 0),
-			},
+			reenforce_office_1,
+			reenforce_office_2,
 		},
 	},
-	[103692] = { -- break wall
+	[101013] = { -- server room point 2
 		reinforce = {
-			{
-				name = "breach",
-				force = 2,
-				position = Vector3(-1700, -5100, 0),
-			},
+			reenforce_office_2,
+			reenforce_office_3,
 		},
 	},
-	-- Reinforce inside the bank
-	[100123] = { -- 1st assault done
+	[101886] = { -- server room point 3 (same room as 1)
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_2,
+		},
+	},
+	[101022] = { -- server room point 4
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_3,
+		},
+	},
+	[101801] = { -- hacking completed - server room is fair game for reenforce
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_2,
+			reenforce_office_3,
+		},
+	},
+	-- Reinforce second floor above tellers
+	[100027] = {
 		reinforce = {
 			{
 				name = "teller_balcony01",
@@ -137,11 +164,6 @@ return {
 				name = "teller_balcony02",
 				force = 2,
 				position = Vector3(-1200, -2200, 400),
-			},
-			{
-				name = "bank_interior",
-				force = 2,
-				position = Vector3(0, -1100, 0),
 			},
 		},
 	},
@@ -182,7 +204,21 @@ return {
 			},
 		},
 	},
-	[102541] = { -- link activate navlinks roof
+	-- Disable vanilla reinforce points
+	[101834] = disabled, -- drill, Eclipse automates those
+	[101835] = disabled, -- server room, only 1, for some reason
+	-- Disable broken navlinks
+	[102541] = {
+		on_executed = {
+			{ id = 102544, remove = true },
+		},
+	},
+	[104726] = {
+		on_executed = {
+			{ id = 101490, remove = true },
+		},
+	},
+	[102541] = {
 		on_executed = {
 			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
@@ -196,9 +232,9 @@ return {
 			{ id = 400062, delay = 0 },
 		},
 	},
-	-- don't remove enemies for no reason
+	-- Don't remove enemies for no reason
 	[102856] = disabled,
-	-- restores some unused sniper spawns with their SOs
+	-- Restores some unused sniper spawns with their SOs
 	[100372] = enabled,
 	[100402] = enabled,
 	[100392] = enabled,
@@ -207,30 +243,27 @@ return {
 	[100407] = enabled,
 	[100397] = enabled,
 	[100417] = enabled,
-	-- disable turrets sequences
+	-- Disable turrets sequences
 	[102990] = disabled,
 	[102991] = disabled,
 	[102992] = disabled,
 	[103003] = disabled,
-	-- enable swat vans regardless of the side where player spawned
+	-- Enable swat vans regardless of the side where player spawned
 	[102988] = enabled,
 	[102989] = enabled,
-	-- disable a few reinforce points
-	[101834] = disabled, -- drill, Eclipse automates those
-	[101835] = disabled, -- server room, only 1, for some reason
-	-- disable dozers
+	-- Disable dozers
 	[100018] = {
 		on_executed = {
 			{ id = 400004, delay = 0 },
 		},
 	},
-	-- enable dozers on loud
+	-- Enable dozers on loud
 	[100022] = {
 		on_executed = {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	-- spawn the skulldozer that defends your van on Death Wish
+	-- Spawn the skulldozer that defends your van on Death Wish
 	[100210] = {
 		on_executed = {
 			{ id = 400000, delay = 0 },
@@ -241,7 +274,7 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	-- fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
+	-- Fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
 	[103317] = {
 		values = {
 			dialogue = "Play_loc_bex_109",
@@ -253,12 +286,6 @@ return {
 		values = {
 			position = Vector3(475, -4598, 800),
 			rotation = Rotation(0, 0, 0),
-		},
-	},
-	-- this one makes the enemies stuck when they use it
-	[104726] = {
-		on_executed = {
-			{ id = 101490, remove = true },
 		},
 	},
 	-- Change amount of required bags

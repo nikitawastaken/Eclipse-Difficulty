@@ -93,8 +93,8 @@ end
 return {
 	[100809] = {
 		ponr = {
-			length = 240,
-			length_balance_mul = { 2, 1.25, 1, 1 },
+			length = 300,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	[100017] = {
