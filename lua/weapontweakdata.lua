@@ -2699,6 +2699,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.akmsu_smg_npc = copy_data(self.akmsu_smg_npc, self.mp5_npc, self.akmsu_crew)
 
+	self.vityaz_npc = copy_data(self.vityaz_npc, self.mp5_npc, self.vityaz_crew)
+
 	self.asval_smg_npc.sounds.prefix = "val_npc"
 	self.asval_smg_npc.muzzleflash_silenced = "effects/payday2/particles/weapons/9mm_auto_silence"
 

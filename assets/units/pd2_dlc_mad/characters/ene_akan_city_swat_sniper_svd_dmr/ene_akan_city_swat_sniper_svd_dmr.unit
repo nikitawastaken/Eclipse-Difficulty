@@ -91,7 +91,7 @@
 		<extension name="base" class="CopBase" >		
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="city_sniper" />
-			<var name="_default_weapon_id" value="m14" />
+			<var name="_default_weapon_id" value="svd_dmr" />
 		</extension>
 		<extension name="inventory" class="CopInventory" />
 		<extension name="brain" class="CopBrain" />

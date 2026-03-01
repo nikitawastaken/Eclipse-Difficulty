@@ -1984,11 +1984,17 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "snowthrower_tank")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 
+	table.insert(self.weap_ids, "vityaz")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz"))
+
 	table.insert(self.weap_ids, "rpk_lmg_tank")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"))
 
 	table.insert(self.weap_ids, "pl14_tactical")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"))
+
+	table.insert(self.weap_ids, "svd_dmr")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))
 
 end)
 

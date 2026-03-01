@@ -73,7 +73,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 
 	local mad_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"))
 	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer", mad_needed, true)
+	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz", mad_needed, true)
 	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical", mad_needed, true)
+	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr", mad_needed, true)
 	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_cop_hat/ene_acc_cop_hat", mad_needed, true)
 	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", mad_needed, true)
 	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_swat_helmet/ene_acc_swat_helmet", mad_needed, true)

@@ -1557,6 +1557,16 @@
 				<file :name="wpn_npc_ak47.unit"/>
 			</group>
 
+			<group :name="wpn_npc_vityaz/">
+				<file :name="vityaz_df.texture" />
+				<file :name="vityaz_nm.texture" />
+				<file :name="wpn_npc_vityaz.cooked_physics" />
+				<file :name="wpn_npc_vityaz.material_config" />
+				<file :name="wpn_npc_vityaz.model" />
+				<file :name="wpn_npc_vityaz.object" />
+				<file :name="wpn_npc_vityaz.unit"/>
+			</group>
+			
 			<group :name="wpn_npc_pl14_tactical/">
 				<file :name="pl14_df.texture" />
 				<file :name="pl14_nm.texture" />
@@ -1565,6 +1575,13 @@
 				<file :name="wpn_npc_pl14_tactical.model" />
 				<file :name="wpn_npc_pl14_tactical.object" />
 				<file :name="wpn_npc_pl14_tactical.unit"/>
+			</group>
+
+			<group :name="wpn_npc_svd_dmr/">
+				<file :name="wpn_npc_svd_dmr.cooked_physics" />
+				<file :name="wpn_npc_svd_dmr.model" />
+				<file :name="wpn_npc_svd_dmr.object" />
+				<file :name="wpn_npc_svd_dmr.unit"/>
 			</group>
 		</group>
 			
