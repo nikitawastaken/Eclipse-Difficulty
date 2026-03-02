@@ -1667,6 +1667,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = { 0.85, 0.65 }
+	self.values.player.healing_reduction = { 0.25, 0 }
 	self.values.player.max_health_reduction = { 0.1 }
 	self.skill_descs.frenzy.multibasic = "10%"
 	self.skill_descs.frenzy.multibasic2 = "15%"
