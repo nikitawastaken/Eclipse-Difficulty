@@ -1672,6 +1672,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.frenzy.multibasic = "10%"
 	self.skill_descs.frenzy.multibasic2 = "15%"
 	self.skill_descs.frenzy.multipro = "35%"
+	self.skill_descs.frenzy.multipro2 = "100%"
 
 	-- Perk Decks
 	-------------
@@ -1767,11 +1768,33 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_regen_timer_multiplier_passive[1] = 0.85
 	self.values.player.passive_armor_movement_penalty_multiplier[1] = 0.8
 	self.values.player.tier_armor_multiplier[3] = 1.15
+	self.values.cooldown.crewmate_damage_reduction = { { 1, 60 } }
+	self.definitions.cooldown_crewmate_damage_reduction = {
+		name_id = "menu_cooldown_crewmate_damage_reduction",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "crewmate_damage_reduction",
+			category = "cooldown",
+		},
+	}
+	self.values.temporary.damage_reduction_from_crewmate = { { 0.8, 10 } }
+	self.definitions.temporary_damage_reduction_from_crewmate = {
+		name_id = "menu_temporary_damage_reduction_from_crewmate",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "damage_reduction_from_crewmate",
+			category = "temporary",
+		},
+	}
 	self.values.temporary.armor_break_invulnerable = { { 2, 60 } }
 	self.specialization_descs[3][1].multiperk = "15%"
 	self.specialization_descs[3][3].multiperk = "20%"
 	self.specialization_descs[3][5].multiperk = "15%"
-	self.specialization_descs[3][7].multiperk = "25%"
+	self.specialization_descs[3][7].multiperk = "20%"
+	self.specialization_descs[3][7].multiperk2 = "10"
+	self.specialization_descs[3][7].multiperk3 = "60"
 	self.specialization_descs[3][9].multiperk = "2"
 	self.specialization_descs[3][9].multiperk2 = "60"
 
@@ -1846,8 +1869,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.temporary.chain_hitman_dodge = {
-		{ 0.1, 5 },
-		{ 0.2, 5 },
+		{ 0.1, 10 },
+		{ 0.2, 10 },
 	}
 	self.definitions.temporary_dodge_outnumbered = {
 		name_id = "menu_player_dodge_outnumbered",
@@ -1873,12 +1896,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[5][1].multiperk = "3"
 	self.specialization_descs[5][1].multiperk2 = "10"
 	self.specialization_descs[5][1].multiperk3 = "10%"
-	self.specialization_descs[5][1].multiperk4 = "5"
+	self.specialization_descs[5][1].multiperk4 = "10"
 	self.specialization_descs[5][3].multiperk = "10%"
 	self.specialization_descs[5][5].multiperk = "3"
 	self.specialization_descs[5][5].multiperk2 = "10"
 	self.specialization_descs[5][5].multiperk3 = "10%"
-	self.specialization_descs[5][5].multiperk4 = "5"
+	self.specialization_descs[5][5].multiperk4 = "10"
 	self.specialization_descs[5][7].multiperk = "20%"
 	self.specialization_descs[5][9].multiperk = "3"
 	self.specialization_descs[5][9].multiperk2 = "10"

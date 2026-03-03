@@ -114,7 +114,7 @@ return {
 		},
 		-- disable ambush cloakers on startup
 		on_executed = {
-			{ id = 400021, delay = 0 },
+			{ id = 400011, delay = 0 },
 		},
 		spawn = invisible_walls, -- Add invisible walls to elevator spawn
 	},
