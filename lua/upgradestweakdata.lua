@@ -1847,8 +1847,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.temporary.chain_hitman_dodge = {
-		{ 0.1, 5 },
-		{ 0.2, 5 },
+		{ 0.1, 10 },
+		{ 0.2, 10 },
 	}
 	self.definitions.temporary_dodge_outnumbered = {
 		name_id = "menu_player_dodge_outnumbered",
@@ -1874,12 +1874,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[5][1].multiperk = "3"
 	self.specialization_descs[5][1].multiperk2 = "10"
 	self.specialization_descs[5][1].multiperk3 = "10%"
-	self.specialization_descs[5][1].multiperk4 = "5"
+	self.specialization_descs[5][1].multiperk4 = "10"
 	self.specialization_descs[5][3].multiperk = "10%"
 	self.specialization_descs[5][5].multiperk = "3"
 	self.specialization_descs[5][5].multiperk2 = "10"
 	self.specialization_descs[5][5].multiperk3 = "10%"
-	self.specialization_descs[5][5].multiperk4 = "5"
+	self.specialization_descs[5][5].multiperk4 = "10"
 	self.specialization_descs[5][7].multiperk = "20%"
 	self.specialization_descs[5][9].multiperk = "3"
 	self.specialization_descs[5][9].multiperk2 = "10"
