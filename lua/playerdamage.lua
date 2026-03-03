@@ -264,7 +264,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 			if pm:has_enabled_cooldown_upgrade("cooldown", "crewmate_damage_reduction") then
 				managers.network:session():send_to_peers("sync_damage_reduction_from_crewmate")
-				
+
 				pm:disable_cooldown_upgrade("cooldown", "crewmate_damage_reduction")
 			end
 		end
