@@ -692,7 +692,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
 	self.specializations[3][3].icon_xy = { 2, 4 }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
-	self.specializations[3][7].upgrades = { "" }
+	self.specializations[3][7].upgrades = { "cooldown_crewmate_damage_reduction" }
 	self.specializations[3][7].icon_xy = { 1, 4 }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[3][9].icon_xy = { 0, 4 }
@@ -985,6 +985,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.insert(self.default_upgrades, "ecm_jammer_affects_pagers")
 	table.insert(self.default_upgrades, "ecm_jammer_can_open_sec_doors")
+	table.insert(self.default_upgrades, "temporary_damage_reduction_from_crewmate") -- armorer iron curtain card
 	table.delete(self.default_upgrades, "player_fall_damage_multiplier")
 	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")

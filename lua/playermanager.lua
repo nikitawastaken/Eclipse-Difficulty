@@ -759,6 +759,11 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 		--Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
 	end
 
+	-- armorer iron curtain crewmate  reduction
+	if self:has_activate_temporary_upgrade("temporary", "damage_reduction_from_crewmate") then
+		multiplier = multiplier * self:temporary_upgrade_value("temporary", "damage_reduction_from_crewmate", 1)
+	end
+
 	return multiplier
 end
 

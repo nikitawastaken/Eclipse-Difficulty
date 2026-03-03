@@ -61,6 +61,16 @@
 			<rpc/>
 		</search>
 		<target mode="attach">
+			<!-- create a sync_damage_reduction_from_crewmate message for `ConnectionHandler` -->
+			<message name="sync_damage_reduction_from_crewmate" delivery="ordered" receiver="connection" />
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
 			<!-- create a unit_suppressed message for `UnitHandler` -->
 			<message name="unit_suppressed" delivery="ordered" receiver="unit">
 				<param type="unit" />
