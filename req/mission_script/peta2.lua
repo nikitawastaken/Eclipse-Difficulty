@@ -48,6 +48,7 @@ return {
 	-- Tweak one of the bridge spawngroups
 	[102374] = {
 		values = {
+			interval = 10,
 			elements = {
 				102376,
 				102377,
@@ -93,7 +94,7 @@ return {
 			{ id = 101939, remove = true },
 		},
 	},
-	-- Disalbe pointless reinforce on the bridge
+	-- Disable pointless reinforce on the bridge
 	[101385] = disabled,
 	[101386] = disabled,
 	-- Spawn group intervals
@@ -103,7 +104,6 @@ return {
 	[100131] = far_spawn,
 	[100132] = far_spawn,
 	[100693] = far_spawn,
-	[102374] = far_spawn,
 	[101217] = close_spawn,
 	[100007] = close_spawn,
 	[100128] = close_spawn,
