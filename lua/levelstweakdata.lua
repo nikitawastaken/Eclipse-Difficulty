@@ -91,7 +91,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.arm_hcm.group_ai_settings.assault_force_mul = 0.75
-	
+
 	self.arm_for.group_ai_preset = "heavy_response"
 
 	self.escape_park.group_ai_settings.difficulty_scaling = {
