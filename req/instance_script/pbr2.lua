@@ -25,6 +25,23 @@ local random_elite_dozers = {
 }
 local bulldozer = is_eclipse and random_elite_dozers or random_dozers
 local swats = { [swat_1] = 2, [swat_2] = 1 }
+
+local murky_green_bulldozer = scripted_enemy.murky_bulldozer_1
+local murky_black_bulldozer = scripted_enemy.murky_bulldozer_2
+local murky_elite_ben_bulldozer = scripted_enemy.murky_elite_bulldozer_1
+local murky_elite_skull_bulldozer = scripted_enemy.murky_elite_bulldozer_2
+
+local random_murky_dozers = {
+	murky_green_bulldozer,
+	murky_black_bulldozer,
+}
+local random_murky_elite_dozers = {
+	murky_elite_ben_bulldozer,
+	murky_elite_skull_bulldozer,
+}
+
+local murky_bulldozer = is_eclipse and random_murky_elite_dozers or random_murky_dozers
+
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_easy = Eclipse.utils.set_diff_groups("easy")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
@@ -72,6 +89,7 @@ local patches = {
 	murky_plane = {
 		reinforcment_amount = table.set(100088),
 		ambush_amount = table.set(100342),
+        murky_dozers = table.set(100403, 100404, 100405, 100406, 100407, 100408, 100409, 100410, 100411),
 	},
 }
 
@@ -87,6 +105,8 @@ M["levels/instances/unique/pbr/pbr_plane_cargo/world/world"] = function(result)
 		elseif cargo_plane.ambush_amount[id] then
 			element.values.amount = 2
 			element.values.amount_random = 4
+        elseif cargo_plane.murky_dozers[id] then
+			element.values.enemy_table = murky_bulldozer
 		end
 	end
 end

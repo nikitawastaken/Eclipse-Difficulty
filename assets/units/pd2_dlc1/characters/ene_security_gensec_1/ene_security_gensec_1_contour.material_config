@@ -13,8 +13,8 @@
         <variable value="0"     type="scalar" name="contour_opacity"/>
     </material>
     <material name="mtr_body_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture    file="units/pd2_dlc1/characters/shared_textures/ene_security_gensec_nm" mip="4" />
-        <diffuse_texture        file="units/pd2_dlc1/characters/shared_textures/ene_security_gensec_df" mip="4" />
+        <bump_normal_texture    file="units/pd2_dlc1/characters/shared_textures/ene_security_gensec_nm" mip="2" />
+        <diffuse_texture        file="units/pd2_dlc1/characters/shared_textures/ene_security_gensec_df" mip="2" />
         <variable value="1 1 1" type="vector3" name="contour_color"/>
         <variable value="0"     type="scalar" name="contour_opacity"/>
     </material>	
@@ -34,9 +34,9 @@
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>
     <material name="mtr_police_body_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="4"/>
-        <diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="4"/>
-        <material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="4"/>
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="2"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="2"/>
+        <material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="2"/>
         <variable 				value="1 1 1" type="vector3" name="contour_color"/>
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>

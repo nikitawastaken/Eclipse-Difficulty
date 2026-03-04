@@ -9,8 +9,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_body_df" mip="1" />
 	</material>
 	<material name="mtr_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_body_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_body_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_body_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_body_df" mip="2" />
 	</material>
 
 	<material name="mtr_police_body" render_template="generic:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -24,9 +24,9 @@
 		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="1"/>
 	</material>
 	<material name="mtr_police_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="4"/>
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="4"/>
-		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="4"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="2"/>
+		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="2"/>
 	</material>
 	
 	<material name="mtr_hat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -38,8 +38,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_hat_df" mip="1" />
 	</material>
 	<material name="mtr_hat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_hat_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_hat_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_hat_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_hat_df" mip="2" />
 	</material>
 	
     <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">

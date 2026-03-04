@@ -9,8 +9,8 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="1" />
 	</material>
 	<material name="mtr_head_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="4" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="4" />
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="2" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="2" />
 	</material>
 
 	<material name="mtr_body" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -22,8 +22,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_body_merc_df" mip="1" />
 	</material>
 	<material name="mtr_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_body_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_body_merc_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_body_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_body_merc_df" mip="2" />
 	</material>
 	
 	<material name="mtr_swat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -35,8 +35,8 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/swat_body_df" mip="1" />
 	</material>
 	<material name="mtr_swat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/swat_body_nm" mip="4" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/swat_body_df" mip="4" />
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/swat_body_nm" mip="2" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/swat_body_df" mip="2" />
 	</material>
 
 	<material name="mtr_equipment" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -48,8 +48,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_equipment_merc_df" mip="1" />
 	</material>
 	<material name="mtr_equipment_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_equipment_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_equipment_merc_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_equipment_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_usm1/characters/shared_textures/ene_marshal_equipment_merc_df" mip="2" />
 	</material>
 	
 	<material name="mtr_equipment_shield" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -61,8 +61,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2_equipment_df" mip="1" />
 	</material>
 	<material name="mtr_equipment_shield_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1_equipment_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2_equipment_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1_equipment_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2_equipment_df" mip="2" />
 	</material>
 	
     <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">

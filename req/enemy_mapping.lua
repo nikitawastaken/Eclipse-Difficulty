@@ -2,12 +2,20 @@
 local M = {
 	-- Vanilla Factions
 	-- America
+    -- Security
+    [("units/payday2/characters/ene_security_1/ene_security_1"):key()] = "security_1",
+	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = "security_2",
+	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "security_3",
 	-- Blue SWAT
 	[("units/payday2/characters/ene_swat_1/ene_swat_1"):key()] = "swat_1",
 	[("units/payday2/characters/ene_swat_2/ene_swat_2"):key()] = "swat_2",
 	[("units/payday2/characters/ene_swat_3/ene_swat_3"):key()] = "swat_1",
 	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = "heavy_1",
 	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = "heavy_2",
+	-- FBI Agents
+	[("units/payday2/characters/ene_fbi_1/ene_fbi_1"):key()] = "fbi_1",
+	[("units/payday2/characters/ene_fbi_2/ene_fbi_2"):key()] = "fbi_2",
+	[("units/payday2/characters/ene_fbi_3/ene_fbi_3"):key()] = "fbi_3",
 	-- FBI SWAT
 	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = "heavy_1",
 	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = "heavy_2",
@@ -140,7 +148,7 @@ local M = {
 	-- FBI SWAT
 	[("units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi"):key()] = "swat_1",
 	[("units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_r870/ene_swat_policia_federale_fbi_r870"):key()] = "swat_2",
-	[("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/ene_swat_heavy_policia_federale_fbi"):key()] = "heavy_1", -- unused unit, but it's better to include him just in case
+	[("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/ene_swat_heavy_policia_federale_fbi"):key()] = "heavy_1", -- unused unit in vanilla, but it's better to include him just in case
 	[("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi_g36/ene_swat_heavy_policia_federale_fbi_g36"):key()] = "heavy_1",
 	[("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi_r870/ene_swat_heavy_policia_federale_fbi_r870"):key()] = "heavy_2",
 	-- City SWAT

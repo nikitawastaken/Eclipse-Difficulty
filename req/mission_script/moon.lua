@@ -1,5 +1,8 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
+local scripted_enemy = Eclipse.scripted_enemy
+local security_4 = scripted_enemy.green_security_1
+local security_5 = scripted_enemy.green_security_2
 local disabled = {
 	values = {
 		enabled = false,
@@ -24,6 +27,12 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 	groups = preferred.only_cloakers_single,
+}
+local mall_guard_1 = {
+	enemy = security_4,
+}
+local mall_guard_2 = {
+	enemy = security_5,
 }
 return {
 	-- Add new reinforce
@@ -75,6 +84,9 @@ return {
 	[103790] = exclude_cop_agents_shields_dozers,
 	[103791] = exclude_cop_agents_shields_dozers,
 	[103792] = exclude_cop_agents_shields_dozers,
+	-- replace ene_security_1 with proper mall guards
+	[106676] = mall_guard_1,
+	[103646] = mall_guard_2,
 	-- Spawn group intervals
 	-- This heist is quite compact, so having 0s (5s) spawn groups is a bit overkill, especially when you reach the roof, things get pretty messy up there.
 	[100131] = entrance_spawn,

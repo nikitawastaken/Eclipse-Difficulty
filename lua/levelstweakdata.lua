@@ -191,10 +191,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 	self.crojob3_night.group_ai_preset = "heavy_response"
+	
+	self.kosugi.ai_group_type = "murkywater"
+	self.dark.ai_group_type = "murkywater"
+	
+	self.pines.ai_group_type = "russia"
 
 	self.shoutout_raid.group_ai_settings = {
 		assault_force_mul = 1.25,
 	}
+    self.shoutout_raid.ai_group_type = "murkywater"
+    
 
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
@@ -224,8 +231,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
+    self.nail.ai_group_type = "zombie"
 
 	self.peta.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
+    self.peta.ai_group_type = "america"
 
 	self.peta2.group_ai_settings = {
 		assault_force_mul = 0.75,
@@ -313,10 +322,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.help.group_ai_settings = {
 		assault_force_mul = 0.75,
 	}
-
+	self.help.ai_group_type = "zombie"
+ 
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
+    self.friend.ai_group_type = "america"
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
+    self.moon.ai_group_type = "america"
 
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
@@ -343,6 +355,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.wwh.group_ai_preset = "remote"
+	self.wwh.ai_group_type = "murkywater"
 
 	self.hvh.group_ai_settings = {
 		use_equipment_reenforce = false,
@@ -888,13 +901,20 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.custom_package = ready_team_package
 	self.man.custom_package = ready_team_package
 
+	self.welcome_to_the_jungle_1.custom_package = {}
+	self.welcome_to_the_jungle_1_night.custom_package = {}
+	self.cane.custom_package = {}
+	self.mex.custom_package = {}
+	self.dinner.custom_package = {}
+	self.trai.custom_package = {}
+	
 	--[[
-	local female_bikers_package = { "packages/female_bikers" }
-	self.welcome_to_the_jungle_1.custom_package = female_bikers_package
-	self.welcome_to_the_jungle_1_night.custom_package = female_bikers_package
-	self.cane.custom_package = female_bikers_package
-	self.mex.custom_package = female_bikers_package
-]]
+	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
+	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
+	table.insert(self.cane.custom_package, "packages/female_bikers")
+	table.insert(self.mex.custom_package, "packages/female_bikers")
+	]]--
+
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
 	self.roberts.custom_package = us_army_package
@@ -902,14 +922,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.custom_package = us_army_package
 	self.jolly.custom_package = us_army_package
 	self.peta2.custom_package = us_army_package
-	self.trai.custom_package = us_army_package
+	table.insert(self.trai.custom_package, "packages/us_army")
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
+	
+	local russian_mercs_package = { "packages/akan_mercs" }
+	self.pines.custom_package = russian_mercs_package
 
-	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
-	self.brb.custom_package = murky_mercs_scripted_package
+    local murky_dozers_package = { "packages/murky_bulldozers" }
+	self.pbr2.custom_package = murky_dozers_package
+	table.insert(self.dinner.custom_package, "packages/murky_bulldozers")
+
+    local murky_mercs_package = { "packages/murky_mercs" }
+	self.kosugi.custom_package = murky_mercs_package
+	self.shoutout_raid.custom_package = murky_mercs_package
+	self.dark.custom_package = murky_mercs_package
+	self.wwh.custom_package = murky_mercs_package
+
+    local zombie_faction_package = { "packages/zombie_cops" }
+	self.nail.custom_package = zombie_faction_package
+	self.help.custom_package = zombie_faction_package
 
 	local lapd_package = { "packages/lapd" }
 	self.kenaz.custom_package = lapd_package
@@ -922,8 +956,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.deep.custom_package = coast_guard_package
 
 	local texas_rangers_package = { "packages/texas_rangers" }
-	self.dinner.custom_package = texas_rangers_package
-	self.trai.custom_package = texas_rangers_package
+	table.insert(self.dinner.custom_package, "packages/texas_rangers")
+	table.insert(self.trai.custom_package, "packages/texas_rangers")
 
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
