@@ -2165,6 +2165,14 @@ function CharacterTweakData:_set_presets()
 				{ 3, 4 },
 			})
 			char_preset.spooc_kick_damage = is_eclipse and 0.5 or 0.25
+			char_preset.use_spooc_attack_sound = not is_eclipse and true or false
+			
+			if not is_shadow_spooc then
+				char_preset.spooc_sound_events = { 
+					detect_stop = char_preset.use_spooc_attack_sound and "cloaker_detect_stop" or nil, 
+					detect = char_preset.use_spooc_attack_sound and "cloaker_detect_mono" or "clk_c01x_plu",
+				}
+			end
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
 		elseif tag_map.medic then
@@ -2219,13 +2227,11 @@ function CharacterTweakData:_set_presets()
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
-	-- eclipse exclusive edits
 	if is_overkill then
 		self:_multiply_all_speeds(1.05, 1.05)
 	elseif is_eclipse then
 		self:_multiply_all_speeds(1.05, 1.1)
 
-		self.spooc.spooc_sound_events = { detect_stop = nil, detect = "clk_c01x_plu" } -- cloakers whistle to announce their charge
 		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 	end
 end

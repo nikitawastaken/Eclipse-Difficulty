@@ -1,6 +1,7 @@
 local vanilla_outfits = Eclipse.settings.player_styles == 1
 local expanded_outfits = Eclipse.settings.player_styles == 2
 local no_outfits = Eclipse.settings.player_styles == 3
+local disable_christmas = Eclipse.settings.disable_christmas 
 
 Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	for _, level in pairs(self) do
@@ -37,6 +38,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				},
 				force_tactics = {},
 			}
+			
+			-- Add an option to disable year-round Christmas decorations
+			if disable_christmas and level.is_christmas_heist then
+				level.is_christmas_heist = false
+			end
 		end
 	end
 

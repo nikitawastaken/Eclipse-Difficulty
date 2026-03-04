@@ -94,3 +94,14 @@ function ActionSpooc:on_exit()
 		self._target_unit:movement():on_targetted_for_attack(false, self._common_data.unit)
 	end
 end
+
+-- Make sure Cloaker charge noise is disabled on Death Wish regardless of the Christmas event being active
+function ActionSpooc:_use_christmas_sounds()
+	if not self._unit:base():char_tweak().use_spooc_attack_sound then
+		return false
+	end
+	
+	local tweak = managers.job:current_level_data()
+
+	return tweak and tweak.is_christmas_heist
+end

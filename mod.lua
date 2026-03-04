@@ -15,6 +15,7 @@ if not Eclipse then
 			team_ai_weapons = 1,
 			improved_gun_echo = 2,
 			welcome_message = true,
+			disable_christmas = false,
 		},
 		loaded_elements = false,
 	}
@@ -204,6 +205,11 @@ if not Eclipse then
 			Eclipse.settings.flavor_text_tips = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_disable_christmas_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.disable_christmas = enabled
+		end
+		
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -221,7 +227,7 @@ if not Eclipse then
 
 			Eclipse.settings.improved_gun_echo = value
 		end
-
+		
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -327,6 +333,16 @@ if not Eclipse then
 			priority = 100,
 		})
 
+		MenuHelper:AddToggle({
+			id = "disable_christmas",
+			title = "eclipse_menu_disable_christmas",
+			desc = "eclipse_menu_disable_christmas_desc",
+			callback = "eclipse_disable_christmas_toggle",
+			value = Eclipse.settings.disable_christmas,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
