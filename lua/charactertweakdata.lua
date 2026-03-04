@@ -2166,10 +2166,10 @@ function CharacterTweakData:_set_presets()
 			})
 			char_preset.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 			char_preset.use_spooc_attack_sound = not is_eclipse and true or false
-			
+
 			if not is_shadow_spooc then
-				char_preset.spooc_sound_events = { 
-					detect_stop = char_preset.use_spooc_attack_sound and "cloaker_detect_stop" or nil, 
+				char_preset.spooc_sound_events = {
+					detect_stop = char_preset.use_spooc_attack_sound and "cloaker_detect_stop" or nil,
 					detect = char_preset.use_spooc_attack_sound and "cloaker_detect_mono" or "clk_c01x_plu",
 				}
 			end

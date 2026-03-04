@@ -209,7 +209,7 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.disable_christmas = enabled
 		end
-		
+
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -227,7 +227,7 @@ if not Eclipse then
 
 			Eclipse.settings.improved_gun_echo = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -342,7 +342,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)

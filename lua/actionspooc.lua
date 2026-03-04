@@ -100,7 +100,7 @@ function ActionSpooc:_use_christmas_sounds()
 	if not self._unit:base():char_tweak().use_spooc_attack_sound then
 		return false
 	end
-	
+
 	local tweak = managers.job:current_level_data()
 
 	return tweak and tweak.is_christmas_heist
