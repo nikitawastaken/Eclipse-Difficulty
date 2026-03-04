@@ -30,7 +30,6 @@ return {
 			length_balance_mul = { 1.15, 1.15, 1, 1 },
 		},
 	},
-	--[[
 	[100145] = { -- Floor blown
 		values = {
 			callback = function()
@@ -38,7 +37,6 @@ return {
 			end,
 		},
 	},
-	]]
 	-- Combine some navigation areas
 	[100287] = {
 		ai_area = {
