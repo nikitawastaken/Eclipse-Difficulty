@@ -14,7 +14,7 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 	groups = preferred.only_cloakers_single,
-
+}
 return {
 	-- Add new reinforce
 	[100109] = { -- Police
