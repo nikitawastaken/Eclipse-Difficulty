@@ -419,7 +419,7 @@ CopLogicBase.surrender_chk_funcs = {
 	end,
 
 	not_assault = function(data, aggressor_unit, surrender_data)
-		if (not managers.groupai:state():get_assault_mode()) then
+		if not managers.groupai:state():get_assault_mode() then
 			return 1 - surrender_data
 		end
 	end,
@@ -477,7 +477,6 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 
 	return hold_chance < 1 and hold_chance
 end
-
 
 -- Change how alert ranges get diminished by walls
 -- The bigger an alert range, the less it gets diminished by being blocked by a wall
