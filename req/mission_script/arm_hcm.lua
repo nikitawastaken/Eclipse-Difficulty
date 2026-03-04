@@ -37,7 +37,7 @@ local dozer_van_chance = {
 }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local elevator_spawn = {

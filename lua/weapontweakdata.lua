@@ -2688,6 +2688,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.uspsil_npc = copy_data(self.uspsil_npc, self.c45_npc, self.usp_crew)
 	self.uspsil_npc.has_suppressor = "suppressed_b"
 
+	self.pl14sil_npc = copy_data(self.pl14sil_npc, self.c45_npc, self.pl14_crew)
+	self.pl14sil_npc.has_suppressor = "suppressed_b"
+
 	self.deagle_npc.CLIP_AMMO_MAX = 7
 	self.deagle_npc.usage = "is_revolver"
 	self.deagle_npc.anim_usage = "is_pistol"
@@ -2695,6 +2698,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.ump_npc.sounds.prefix = self.schakal_crew.sounds.prefix
 
 	self.akmsu_smg_npc = copy_data(self.akmsu_smg_npc, self.mp5_npc, self.akmsu_crew)
+
+	self.vityaz_npc = copy_data(self.vityaz_npc, self.mp5_npc, self.vityaz_crew)
 
 	self.asval_smg_npc.sounds.prefix = "val_npc"
 	self.asval_smg_npc.muzzleflash_silenced = "effects/payday2/particles/weapons/9mm_auto_silence"

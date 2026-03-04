@@ -43,7 +43,7 @@ M["levels/instances/unique/pet_roadswats/world/world"] = function(result)
 		if soldiers.light_spawn[id] then
 			element.values.enemy = light_soldier
 		elseif soldiers.heavy_spawn[id] then
-			element.values.enemy = soldiers
+			element.values.enemy_table = soldiers
 		end
 	end
 end

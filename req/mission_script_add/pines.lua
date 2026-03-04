@@ -1,8 +1,16 @@
 ---@module White Xmas
 local M = {}
-
+local optsdisable_cop_lights = {
+	unit_ids = {
+		100213,
+		100061,
+		100290,
+		104712,
+		100214,
+		100058,
+	},
+}
 local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
-
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400026, 400027, 400028, 400029, 400030, 400031, 400032, 400033 },
 	on_executed = {
@@ -36,7 +44,6 @@ local optsCloakerHideGroup = {
 		400025,
 	},
 }
-
 local optsAssaultStarted = {
 	enabled = true,
 	global_event = "start_assault",
@@ -45,7 +52,6 @@ local optsAssaultStarted = {
 		{ id = 400036, delay = 0 },
 	},
 }
-
 -- Hiding Cloaker SOs are funny
 local hide_so_search_pos = Vector3(-2937, 7563, 3050.033)
 local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
@@ -54,6 +60,8 @@ local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_cr
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_stand", hide_so_search_pos)
 
 M.elements = {
+	-- disable cop car lights
+	Eclipse.mission_elements.gen_disable_unit(400001, "disable_cop_car_lights", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_cop_lights),
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400010, "cloaker_hide_so_1", Vector3(-7932, 14259, 4252.500), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),

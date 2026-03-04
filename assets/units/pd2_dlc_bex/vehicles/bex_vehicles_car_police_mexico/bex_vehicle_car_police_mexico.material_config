@@ -41,8 +41,8 @@
         <diffuse_texture file="units/pd2_dlc_bex/characters/ene_policia_02/ene_bex_cop_policia_head_atlas_df"/>
     </material>
     <material render_template="generic:DIFFUSE_TEXTURE:NORMALMAP" name="mtr_police_body" version="2">
-        <bump_normal_texture file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" mip="1"/>
-        <diffuse_texture file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_df"/>
+        <bump_normal_texture file="units/pd2_dlc_bex/characters/shared_textures/bex_police_nm" />
+        <diffuse_texture file="units/pd2_dlc_bex/characters/shared_textures/bex_police_df" />
     </material>
     <material render_template="decal:DIFFUSE_TEXTURE" name="mat_mull" version="2">
         <diffuse_texture file="units/payday2/props/shadow_mullplan/shadow_mullplan_df"/>

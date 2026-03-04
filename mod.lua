@@ -15,6 +15,7 @@ if not Eclipse then
 			team_ai_weapons = 1,
 			improved_gun_echo = 2,
 			welcome_message = true,
+			disable_christmas = false,
 		},
 		loaded_elements = false,
 	}
@@ -204,6 +205,11 @@ if not Eclipse then
 			Eclipse.settings.flavor_text_tips = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_disable_christmas_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.disable_christmas = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -323,6 +329,16 @@ if not Eclipse then
 				"eclipse_menu_improved_gun_echo_heat",
 			},
 			value = Eclipse.settings.improved_gun_echo,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "disable_christmas",
+			title = "eclipse_menu_disable_christmas",
+			desc = "eclipse_menu_disable_christmas_desc",
+			callback = "eclipse_disable_christmas_toggle",
+			value = Eclipse.settings.disable_christmas,
 			menu_id = menu_id,
 			priority = 100,
 		})

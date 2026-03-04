@@ -5,6 +5,17 @@ local M = {
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"):key()] = { "pl14_tactical", "asval_smg" },
+	[("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/payday2/characters/ene_tazer_1/ene_tazer_1"):key()] = "m4",
+	[("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1"):key()] = "m4",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870"):key()] = "r870",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale"):key()] = "m4",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870"):key()] = "r870",
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security
@@ -40,6 +51,10 @@ local M = {
 	--Prison guards (accurate to Hoxton Breakout's live action trailer)
 	[("units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1"):key()] = "m4",
 	[("units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1"):key()] = "c45",
+	-- Murkywater guards
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3"):key()] = "r870", --stronger camera man
 	--FBI office agents
 	--they have either c45 or bronco
 	[("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"):key()] = { c45 = 3, raging_bull = 1 },
@@ -55,7 +70,7 @@ local M = {
 	[("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
 	--casino guard gets silenced pistol
 	[("units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"):key()] = { beretta92 = 6, raging_bull = 1 },
-	--murky sercret service
+	--Murkywater sercret service
 	[("units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"):key()] = { c45 = 3, ump = 1 },
 	--Black Cat guards
 	[("units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"):key()] = { beretta92 = 6, raging_bull = 1 },

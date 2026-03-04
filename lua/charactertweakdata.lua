@@ -1011,8 +1011,39 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
+-- fix zombie faction using russian radio chatter and give the said chatter to murkies
+function CharacterTweakData:_init_region_zombie()
+	self._default_chatter = "dispatch_generic_message" -- there is no zombie radio so use the default instead
+	self._unit_prefixes = {
+		cop = "z",
+		swat = "z",
+		heavy_swat = "z",
+		taser = "tsr",
+		cloaker = "clk",
+		bulldozer = "bdz",
+		medic = "mdc",
+	}
+	self._speech_prefix_p2 = "n"
+end
+
+function CharacterTweakData:_init_region_murkywater()
+	self._default_chatter = "dsp_radio_russian"
+	self._unit_prefixes = {
+		cop = "l",
+		swat = "l",
+		heavy_swat = "l",
+		taser = "tsr",
+		cloaker = "clk",
+		bulldozer = "bdz",
+		medic = "mdc",
+	}
+	self._speech_prefix_p2 = "n"
+end
+
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_data)
 	local faction = Eclipse.utils.faction(tweak_data.levels)
+	local is_murkywater_heist = faction == "murkywater"
+	local is_akan_heist = faction == "russia"
 
 	self._prefix_data_p1 = {
 		cop = function()
@@ -1042,6 +1073,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
+
+	-- Different radio chatter for Security in murky/akan heists
+	if is_murkywater_heist or is_akan_heist then
+		self.security.radio_prefix = "fri_"
+		self.security.use_radio = "dsp_radio_russian"
+	end
 
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 6
@@ -1427,19 +1464,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.piggydozer.HEALTH_INIT = 180
 	self.piggydozer.headshot_dmg_mul = 2
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-
-	if self._unit_prefixes.heavy_swat == "l" then
-		self.zeal_swat.speech_prefix_p2 = "d"
-		self.zeal_swat.speech_prefix_count = 4
-		self.heavy_swat.speech_prefix_p2 = "d"
-		self.heavy_swat.speech_prefix_count = 4
-		self.fbi_heavy_swat.speech_prefix_p2 = "d"
-		self.fbi_heavy_swat.speech_prefix_count = 4
-		self.city_heavy_swat.speech_prefix_p2 = "d"
-		self.city_heavy_swat.speech_prefix_count = 4
-		self.zeal_heavy_swat.speech_prefix_p2 = "d"
-		self.zeal_heavy_swat.speech_prefix_count = 4
-	end
 end)
 
 CharacterTweakData.team_ai_weapons_mapped = {
@@ -1803,6 +1827,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_swat_heavy_r870")
 	safe_add(char_map.basic, "ene_tazer_r870")
 	safe_add(char_map.basic, "ene_fbi_swat_3")
+	safe_add(char_map.basic, "ene_city_swat_r870")
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
 	safe_add(char_map.basic, "ene_bulldozer_5")
@@ -1822,10 +1847,81 @@ function CharacterTweakData:character_map(...)
 
 	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
 
-	safe_add(char_map.rvd, "ene_la_cop_1_fat")
-	safe_add(char_map.rvd, "ene_la_cop_2_fat")
-	safe_add(char_map.rvd, "ene_la_cop_3_fat")
-	safe_add(char_map.rvd, "ene_la_cop_4_fat")
+	safe_add(char_map.mad, "ene_akan_cs_cop_c45")
+	safe_add(char_map.mad, "ene_akan_cs_cop_raging_bull")
+	safe_add(char_map.mad, "ene_akan_fbi_agent_c45")
+	safe_add(char_map.mad, "ene_akan_fbi_agent_ak47_ass")
+	safe_add(char_map.mad, "ene_akan_fbi_agent_akmsu_smg")
+	safe_add(char_map.mad, "ene_akan_cs_heavy_r870")
+	safe_add(char_map.mad, "ene_akan_fbi_heavy_r870")
+	safe_add(char_map.mad, "ene_akan_fbi_shield_dw_sr2_smg")
+	safe_add(char_map.mad, "ene_akan_cs_swat_akmsu_smg")
+	safe_add(char_map.mad, "ene_akan_fbi_swat_akmsu_smg")
+	safe_add(char_map.mad, "ene_akan_fbi_swat_sniper_svd_snp")
+	safe_add(char_map.mad, "ene_akan_city_swat_ak47_ass")
+	safe_add(char_map.mad, "ene_akan_city_swat_r870")
+	safe_add(char_map.mad, "ene_akan_city_swat_akmsu_smg")
+	safe_add(char_map.mad, "ene_akan_city_swat_sniper_svd_dmr")
+	safe_add(char_map.mad, "ene_akan_city_shield")
+	safe_add(char_map.mad, "ene_akan_city_heavy_g36")
+	safe_add(char_map.mad, "ene_akan_city_heavy_r870")
+	safe_add(char_map.mad, "ene_akan_cs_tazer_r870")
+	safe_add(char_map.mad, "ene_akan_fbi_tank_mini")
+	safe_add(char_map.mad, "ene_akan_fbi_tank_medic")
+
+	safe_add(char_map.hvh, "ene_swat_hvh_3")
+	safe_add(char_map.hvh, "ene_sniper_hvh_1")
+	safe_add(char_map.hvh, "ene_fbi_swat_hvh_3")
+	safe_add(char_map.hvh, "ene_city_swat_hvh_1")
+	safe_add(char_map.hvh, "ene_city_swat_hvh_2")
+	safe_add(char_map.hvh, "ene_city_swat_hvh_3")
+	safe_add(char_map.hvh, "ene_sniper_hvh_3")
+	safe_add(char_map.hvh, "ene_city_shield_hvh")
+	safe_add(char_map.hvh, "ene_city_heavy_hvh_1")
+	safe_add(char_map.hvh, "ene_city_heavy_hvh_r870")
+	safe_add(char_map.hvh, "ene_tazer_hvh_r870")
+	safe_add(char_map.hvh, "ene_bulldozer_hvh_4")
+	safe_add(char_map.hvh, "ene_bulldozer_medic_hvh")
+
+	safe_add(char_map.bph, "ene_murkywater_cop_1")
+	safe_add(char_map.bph, "ene_murkywater_cop_2")
+	safe_add(char_map.bph, "ene_murkywater_cop_3")
+	safe_add(char_map.bph, "ene_murkywater_cop_4")
+	safe_add(char_map.bph, "ene_murkywater_security_1")
+	safe_add(char_map.bph, "ene_murkywater_security_2")
+	safe_add(char_map.bph, "ene_murkywater_security_3")
+	safe_add(char_map.bph, "ene_murkywater_agent_1")
+	safe_add(char_map.bph, "ene_murkywater_agent_2")
+	safe_add(char_map.bph, "ene_murkywater_agent_3")
+	safe_add(char_map.bph, "ene_murkywater_light_mp5")
+	safe_add(char_map.bph, "ene_murkywater_light_fbi_mp5")
+	safe_add(char_map.bph, "ene_murkywater_sniper_fbi")
+	safe_add(char_map.bph, "ene_murkywater_shield_fbi")
+	safe_add(char_map.bph, "ene_murkywater_light_city_mp5")
+	safe_add(char_map.bph, "ene_murkywater_sniper_city")
+	safe_add(char_map.bph, "ene_murkywater_shield_city")
+	safe_add(char_map.bph, "ene_murkywater_heavy_fbi")
+	safe_add(char_map.bph, "ene_murkywater_heavy_fbi_r870")
+	safe_add(char_map.bph, "ene_murkywater_heavy_city")
+	safe_add(char_map.bph, "ene_murkywater_heavy_city_r870")
+	safe_add(char_map.bph, "ene_murkywater_tazer_r870")
+
+	safe_add(char_map.bex, "ene_policia_03")
+	safe_add(char_map.bex, "ene_policia_04")
+	safe_add(char_map.bex, "ene_policia_agent_01")
+	safe_add(char_map.bex, "ene_policia_agent_02")
+	safe_add(char_map.bex, "ene_policia_agent_03")
+	safe_add(char_map.bex, "ene_swat_policia_federale_mp5")
+	safe_add(char_map.bex, "ene_swat_policia_federale_fbi_mp5")
+	safe_add(char_map.bex, "ene_swat_policia_sniper_fbi")
+	safe_add(char_map.bex, "ene_swat_policia_federale_fbi")
+	safe_add(char_map.bex, "ene_swat_policia_federale_fbi_r870")
+	safe_add(char_map.bex, "ene_swat_policia_federale_city_mp5")
+	safe_add(char_map.bex, "ene_swat_policia_sniper_city")
+	safe_add(char_map.bex, "ene_swat_shield_policia_federale_city")
+	safe_add(char_map.bex, "ene_swat_heavy_policia_federale_city")
+	safe_add(char_map.bex, "ene_swat_heavy_policia_federale_city_r870")
+	safe_add(char_map.bex, "ene_swat_tazer_policia_federale_r870")
 
 	safe_add(char_map.chas, "ene_male_chas_police_03")
 	safe_add(char_map.chas, "ene_male_chas_police_04")
@@ -1845,12 +1941,6 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_02_fat")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_03_fat")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_04_fat")
-
-	safe_add(char_map.bex, "ene_policia_03")
-	safe_add(char_map.bex, "ene_policia_04")
-	safe_add(char_map.bex, "ene_policia_agent_01")
-	safe_add(char_map.bex, "ene_policia_agent_02")
-	safe_add(char_map.bex, "ene_policia_agent_03")
 
 	return char_map
 end
@@ -1872,6 +1962,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "aa12")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12/wpn_npc_aa12"))
 
+	table.insert(self.weap_ids, "saiga_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_saiga_bulldozer/wpn_npc_saiga_bulldozer"))
+
 	table.insert(self.weap_ids, "aa12_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer"))
 
@@ -1889,6 +1982,18 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "snowthrower_tank")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
+
+	table.insert(self.weap_ids, "vityaz")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz"))
+
+	table.insert(self.weap_ids, "rpk_lmg_tank")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"))
+
+	table.insert(self.weap_ids, "pl14_tactical")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"))
+
+	table.insert(self.weap_ids, "svd_dmr")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))
 end)
 
 local ecm_vuln_hard = 0.6
@@ -2165,6 +2270,14 @@ function CharacterTweakData:_set_presets()
 				{ 3, 4 },
 			})
 			char_preset.spooc_kick_damage = is_eclipse and 0.5 or 0.25
+			char_preset.use_spooc_attack_sound = not is_eclipse and true or false
+
+			if not is_shadow_spooc then
+				char_preset.spooc_sound_events = {
+					detect_stop = char_preset.use_spooc_attack_sound and "cloaker_detect_stop" or nil,
+					detect = char_preset.use_spooc_attack_sound and "cloaker_detect_mono" or "clk_c01x_plu",
+				}
+			end
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
 		elseif tag_map.medic then
@@ -2219,13 +2332,11 @@ function CharacterTweakData:_set_presets()
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
-	-- eclipse exclusive edits
 	if is_overkill then
 		self:_multiply_all_speeds(1.05, 1.05)
 	elseif is_eclipse then
 		self:_multiply_all_speeds(1.05, 1.1)
 
-		self.spooc.spooc_sound_events = { detect_stop = nil, detect = "clk_c01x_plu" } -- cloakers whistle to announce their charge
 		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 	end
 end
