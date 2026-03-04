@@ -89,7 +89,7 @@ local patches = {
 	murky_plane = {
 		reinforcment_amount = table.set(100088),
 		ambush_amount = table.set(100342),
-        murky_dozers = table.set(100403, 100404, 100405, 100406, 100407, 100408, 100409, 100410, 100411),
+		murky_dozers = table.set(100403, 100404, 100405, 100406, 100407, 100408, 100409, 100410, 100411),
 	},
 }
 
@@ -105,7 +105,7 @@ M["levels/instances/unique/pbr/pbr_plane_cargo/world/world"] = function(result)
 		elseif cargo_plane.ambush_amount[id] then
 			element.values.amount = 2
 			element.values.amount_random = 4
-        elseif cargo_plane.murky_dozers[id] then
+		elseif cargo_plane.murky_dozers[id] then
 			element.values.enemy_table = murky_bulldozer
 		end
 	end

@@ -168,14 +168,14 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:set_cloaker_goggles_on(true)
 
 	-- Change Cloaker light glow colour
-    local lights = self._unit:get_objects_by_type(Idstring("light"))
+	local lights = self._unit:get_objects_by_type(Idstring("light"))
 	local new_RGB = self.cloaker_light_RGB[self._unit:name():key()]
 	if new_RGB then
 		for k, v in pairs(lights) do
 			v:set_color(Color(hsv_to_rgb(unpack(new_RGB))))
 		end
 	end
-	
+
 	if Network:is_client() then
 		return
 	end

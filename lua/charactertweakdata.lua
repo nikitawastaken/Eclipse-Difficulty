@@ -1021,7 +1021,7 @@ function CharacterTweakData:_init_region_zombie()
 		taser = "tsr",
 		cloaker = "clk",
 		bulldozer = "bdz",
-		medic = "mdc"
+		medic = "mdc",
 	}
 	self._speech_prefix_p2 = "n"
 end
@@ -1035,7 +1035,7 @@ function CharacterTweakData:_init_region_murkywater()
 		taser = "tsr",
 		cloaker = "clk",
 		bulldozer = "bdz",
-		medic = "mdc"
+		medic = "mdc",
 	}
 	self._speech_prefix_p2 = "n"
 end
@@ -1074,7 +1074,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
-    -- Different radio chatter for Security in murky/akan heists
+	-- Different radio chatter for Security in murky/akan heists
 	if is_murkywater_heist or is_akan_heist then
 		self.security.radio_prefix = "fri_"
 		self.security.use_radio = "dsp_radio_russian"
@@ -1853,7 +1853,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.mad, "ene_akan_fbi_agent_ak47_ass")
 	safe_add(char_map.mad, "ene_akan_fbi_agent_akmsu_smg")
 	safe_add(char_map.mad, "ene_akan_cs_heavy_r870")
-	safe_add(char_map.mad, "ene_akan_fbi_heavy_r870")	
+	safe_add(char_map.mad, "ene_akan_fbi_heavy_r870")
 	safe_add(char_map.mad, "ene_akan_fbi_shield_dw_sr2_smg")
 	safe_add(char_map.mad, "ene_akan_cs_swat_akmsu_smg")
 	safe_add(char_map.mad, "ene_akan_fbi_swat_akmsu_smg")
@@ -1867,9 +1867,8 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.mad, "ene_akan_city_heavy_r870")
 	safe_add(char_map.mad, "ene_akan_cs_tazer_r870")
 	safe_add(char_map.mad, "ene_akan_fbi_tank_mini")
-	safe_add(char_map.mad, "ene_akan_fbi_tank_medic")				
+	safe_add(char_map.mad, "ene_akan_fbi_tank_medic")
 
-			
 	safe_add(char_map.hvh, "ene_swat_hvh_3")
 	safe_add(char_map.hvh, "ene_sniper_hvh_1")
 	safe_add(char_map.hvh, "ene_fbi_swat_hvh_3")
@@ -1895,7 +1894,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.bph, "ene_murkywater_agent_2")
 	safe_add(char_map.bph, "ene_murkywater_agent_3")
 	safe_add(char_map.bph, "ene_murkywater_light_mp5")
-	safe_add(char_map.bph, "ene_murkywater_light_fbi_mp5") 
+	safe_add(char_map.bph, "ene_murkywater_light_fbi_mp5")
 	safe_add(char_map.bph, "ene_murkywater_sniper_fbi")
 	safe_add(char_map.bph, "ene_murkywater_shield_fbi")
 	safe_add(char_map.bph, "ene_murkywater_light_city_mp5")
@@ -1995,7 +1994,6 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "svd_dmr")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))
-
 end)
 
 local ecm_vuln_hard = 0.6

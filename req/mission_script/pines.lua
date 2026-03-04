@@ -6,7 +6,7 @@ local disabled = {
 }
 local air_siren = {
 	values = {
-		sound_event = "earthquake_siren"
+		sound_event = "earthquake_siren",
 	},
 }
 local cloaker_spawn = {

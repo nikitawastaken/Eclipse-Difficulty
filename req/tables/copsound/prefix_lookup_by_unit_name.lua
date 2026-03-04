@@ -184,7 +184,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security",
 		"units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1",
 		"units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2",
-        "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
 		"units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
 		"units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
 		-- Murky Street Cops
@@ -269,11 +269,11 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2",
 		"units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3",
 	},
-    russian_bulldozer_list = {
+	russian_bulldozer_list = {
 		func = function(self, nr_variations)
 			return "rbdz_"
 		end,
-        "units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini",
@@ -283,16 +283,16 @@ local prefix_lookup_for_humans = {
 		func = function(self, nr_variations)
 			return "rclk_"
 		end,
-        "units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg",
 	},
-    russian_medic_list = {
+	russian_medic_list = {
 		func = function(self, nr_variations)
 			return "rmdc_"
 		end,
-        "units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870",
 	},
-    russian_shield_list = {
+	russian_shield_list = {
 		func = function(self, nr_variations)
 			local rand = math.random()
 			if rand < 0.5 then
@@ -304,16 +304,16 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45",
 		"units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield",
-        -- Custom stuff below
-        "units/pd2_dlc_mad/characters/ene_rus_shield_c45/ene_rus_shield_c45",
+		-- Custom stuff below
+		"units/pd2_dlc_mad/characters/ene_rus_shield_c45/ene_rus_shield_c45",
 		"units/pd2_dlc_mad/characters/ene_rus_shield_sr2/ene_rus_shield_sr2",
 		"units/pd2_dlc_mad/characters/ene_rus_shield_sr2_city/ene_rus_shield_sr2_city",
 	},
-    russian_taser_list = {
+	russian_taser_list = {
 		func = function(self, nr_variations)
 			return "rtsr_"
 		end,
-        "units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass",
+		"units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870",
 	},
 	russian_merc_list = {
@@ -329,22 +329,22 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg",
-        -- Akan Recruits
-        "units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass",
+		-- Akan Recruits
+		"units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_swat_r870/ene_akan_cs_swat_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_swat_akmsu_smg/ene_akan_cs_swat_akmsu_smg",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_heavy_ak47_ass/ene_akan_cs_heavy_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_heavy_r870/ene_akan_cs_heavy_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_cs_swat_sniper_svd_snp/ene_akan_cs_swat_sniper_svd_snp",
-        -- Akan Soldiers
-        "units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass",
+		-- Akan Soldiers
+		"units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_swat_akmsu_smg/ene_akan_fbi_swat_akmsu_smg",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_ak47_ass/ene_akan_fbi_heavy_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_r870/ene_akan_fbi_heavy_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_fbi_swat_sniper_svd_snp/ene_akan_fbi_swat_sniper_svd_snp",
-        -- DRAK Elites
-        "units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass",
+		-- DRAK Elites
+		"units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass",
 		"units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870",
 		"units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg",
 		"units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36",

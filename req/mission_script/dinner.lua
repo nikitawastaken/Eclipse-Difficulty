@@ -252,8 +252,8 @@ return {
 			},
 		},
 	},
-    -- replace dozers that come out murky choppers and gensec van with actual murkywater dozers
-    -- 1st chopper, right after the ambush
+	-- replace dozers that come out murky choppers and gensec van with actual murkywater dozers
+	-- 1st chopper, right after the ambush
 	[103095] = murky_dozers,
 	[103097] = murky_dozers,
 	[103087] = murky_dozers,

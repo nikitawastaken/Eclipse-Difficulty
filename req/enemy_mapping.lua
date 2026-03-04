@@ -2,8 +2,8 @@
 local M = {
 	-- Vanilla Factions
 	-- America
-    -- Security
-    [("units/payday2/characters/ene_security_1/ene_security_1"):key()] = "security_1",
+	-- Security
+	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = "security_1",
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = "security_2",
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "security_3",
 	-- Blue SWAT

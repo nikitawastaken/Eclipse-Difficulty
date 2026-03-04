@@ -3,7 +3,7 @@ local M = {
 	security_1 = "units/payday2/characters/ene_security_1/ene_security_1",
 	security_2 = "units/payday2/characters/ene_security_2/ene_security_2",
 	security_3 = "units/payday2/characters/ene_security_3/ene_security_3",
-	
+
 	murky_security_1 = "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
 	murky_security_2 = "units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
 	murky_security_3 = "units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
@@ -89,7 +89,7 @@ local M = {
 
 	headless_bulldozer_2 = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4",
 
-    murky_bulldozer_1 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1",
+	murky_bulldozer_1 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1",
 
 	murky_bulldozer_2 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2",
 
