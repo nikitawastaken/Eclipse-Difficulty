@@ -1,16 +1,18 @@
--- Rebalance melee weapons based on their range, concealment and speed
+-- Rebalance melee weapons based on their range, concealment, speed, and type
 Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_weapons", function(self, tweak_data)
 	self.melee_weapons.iceaxe.stats.min_damage = 1.5
 	self.melee_weapons.iceaxe.stats.max_damage = 9
 
 	-- Change a few weapons' damage type
+	self.melee_weapons.buck.stats.weapon_type = "sharp"
+	self.melee_weapons.tiger.stats.weapon_type = "sharp"
 	self.melee_weapons.cs.stats.weapon_type = "sharp"
+	self.melee_weapons.push.stats.weapon_type = "sharp"
 	self.melee_weapons.poker.stats.weapon_type = "sharp"
 	self.melee_weapons.meter.stats.weapon_type = "blunt"
 	self.melee_weapons.hockey.stats.weapon_type = "blunt"
 	self.melee_weapons.croupier_rake.stats.weapon_type = "blunt"
 	self.melee_weapons.slot_lever.stats.weapon_type = "blunt"
-	self.melee_weapons.push.stats.weapon_type = "sharp"
 	self.melee_weapons.barbedwire.stats.weapon_type = "blunt"
 	self.melee_weapons.baseballbat.stats.weapon_type = "blunt"
 	self.melee_weapons.briefcase.stats.weapon_type = "blunt"
@@ -23,15 +25,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.oldbaton.stats.weapon_type = "blunt"
 	self.melee_weapons.branding_iron.stats.weapon_type = "blunt"
 	self.melee_weapons.morning.stats.weapon_type = "blunt"
-	self.melee_weapons.buck.stats.weapon_type = "sharp"
-	self.melee_weapons.tiger.stats.weapon_type = "sharp"
 
-	local type_map = {
-		["fists"] = "blunt",
-		["axe"] = "sharp",
-		["knife"] = "sharp",
-		["sword"] = "sharp",
-	}
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
 	local min_expire, max_expire = 10, 0
@@ -64,12 +58,12 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 
 	local function get_damage(expire, range, conceal, charge_t)
 		local min = (1 + expire * 3 + conceal + range) * x_min
-		local max = math.max(min, (min + min * charge_t * x_max) / 1.5)
+		local max = min + min * charge_t * x_max
 		return min, max
 	end
 
 	for id, data in pairs(self.melee_weapons) do
-		data.type = type_map[data.type] or data.type
+		data.melee_charge_shaker = "" -- Hacky way to disable the shaker effect while charging a melee weapon
 
 		local is_blunt = data.stats.weapon_type == "blunt"
 		local is_sharp = data.stats.weapon_type == "sharp"
@@ -86,8 +80,8 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		data.stats.max_damage = math.round(max * damage_mul, 0.5)
 		data.stats.min_damage_effect = math.round((math.map_range(expire, min_expire, max_expire, 30, 350) + (data.melee_damage_delay or 0) * 350) * effect_mul, 10)
 		data.stats.max_damage_effect = data.stats.min_damage_effect
-		data.stats.remove_weapon_movement_penalty = nil
 		data.stats.charge_time = data.stats.charge_time and data.stats.charge_time * 0.5
 		data.stats.headshot_damage_mul = is_blunt and 1.5 or 1
+		data.stats.remove_weapon_movement_penalty = nil
 	end
 end)

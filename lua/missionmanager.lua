@@ -25,6 +25,12 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 		element._values[k] = v
 		Eclipse:log_console('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
 	end
+
+	-- Handle new spawn group element functionality
+	if data.interval and element._values.interval_reference then
+		element._values.interval_reference = data.interval
+		element._values.interval = nil
+	end
 end
 
 function MissionManager.mission_script_patch_funcs.on_executed(self, element, data)

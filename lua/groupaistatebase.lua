@@ -152,6 +152,9 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		spooc = true,
 		marksman = true,
 	}
+	if managers.mutators:modify_value("GroupAIStateBase:MaxDiff", false) then
+		self._difficulty_value = 1
+	end
 end)
 
 -- Add a function to check if a deployble is within a nav_seg

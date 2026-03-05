@@ -6,10 +6,6 @@ MutatorGraceTroll._type = "MutatorGraceTroll"
 MutatorGraceTroll.name_id = "mutator_gracetroll"
 MutatorGraceTroll.desc_id = "mutator_gracetroll_desc"
 MutatorGraceTroll.has_options = true
-MutatorGraceTroll.reductions = {
-	money = 0,
-	exp = 0,
-}
 MutatorGraceTroll.categories = { "gameplay" }
 MutatorGraceTroll.icon_coords = {
 	4,
@@ -227,10 +223,6 @@ MutatorMedicDozers._type = "MutatorMedicDozers"
 MutatorMedicDozers.name_id = "mutator_medicdozers"
 MutatorMedicDozers.desc_id = "mutator_medicdozers_desc"
 MutatorMedicDozers.has_options = true
-MutatorMedicDozers.reductions = {
-	money = 0,
-	exp = 0,
-}
 MutatorMedicDozers.categories = { "enemies" }
 MutatorMedicDozers.icon_coords = {
 	2,
@@ -371,3 +363,44 @@ function MutatorMedicDozers:options_fill()
 		return 0
 	end
 end
+
+-- Max difficulty --
+MutatorMaxDiff = MutatorMaxDiff or class(BaseMutator)
+MutatorMaxDiff._type = "MutatorMaxDiff"
+MutatorMaxDiff.name_id = "mutator_maxdiff"
+MutatorMaxDiff.desc_id = "mutator_maxdiff_desc"
+MutatorMaxDiff.categories = { "gameplay" }
+
+MutatorMaxDiff.icon_coords = {
+	3,
+	2,
+}
+
+function MutatorMaxDiff:modify_value(id, value)
+	if id == "GroupAIStateBase:MaxDiff" then
+		return true
+	end
+	return value
+end
+
+--[[
+-- No outlines --
+MutatorNoOutlines = MutatorNoOutlines or class(BaseMutator)
+MutatorNoOutlines._type = "MutatorNoOutlines"
+MutatorNoOutlines.name_id = "mutator_nooutlines"
+MutatorNoOutlines.desc_id = "mutator_nooutlines_desc"
+MutatorNoOutlines.categories = { "gameplay" }
+
+MutatorNoOutlines.icon_coords = {
+	6,
+	1
+}
+
+function MutatorNoOutlines:setup(data)
+	for _, vp in ipairs(managers.viewport:viewports()) do
+		vp:vp():set_post_processor_effect("World", Idstring("bloom_combine_post_processor"), Idstring("bloom_combine_empty"))
+		vp:vp():set_post_processor_effect("World", Idstring("bloom_combine"), Idstring("bloom_combine_empty"))
+		vp:vp():set_post_processor_effect("World", Idstring("shadow_modifier"), Idstring("empty"))
+		vp:vp():set_post_processor_effect("World", Idstring("shadow_rendering"), Idstring("empty"))
+	end
+end--]]

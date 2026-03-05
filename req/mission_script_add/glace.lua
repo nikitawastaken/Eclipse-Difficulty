@@ -16,12 +16,10 @@ local elite_shield = scripted_enemy.elite_shield
 local taser = scripted_enemy.taser_1
 local bulldozer = scripted_enemy.bulldozer_1
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_taser_and_shields = math.random() <= diff_scaling
-local enabled_chance_dozer = math.random() <= diff_scaling
-local enabled_chance_dozer_scaffold = math.random() <= diff_scaling
-local enabled_chance_shield_scaffold = math.random() <= diff_scaling
+local enabled_chance_taser_and_shields = math.random() <= 0.4
+local enabled_chance_dozer = math.random() <= 0.3
+local enabled_chance_dozer_scaffold = math.random() <= 0.3
+local enabled_chance_shield_scaffold = math.random() <= 0.6
 
 local optsBulldozer = {
 	enemy = bulldozer,
