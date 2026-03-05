@@ -18,9 +18,7 @@ local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_shields = math.random() <= diff_scaling
+local enabled_chance_shields = math.random() <= 0.5
 
 local optsSWAT_Heavy145 = {
 	enemy = heavy_sg,
