@@ -242,7 +242,7 @@ function PlayerDamage:_chk_dmg_too_soon(damage)
 			self._old_next_allowed_dmg_t = next_allowed_dmg_t
 		end
 	end
-	
+
 	return managers.player:player_timer():time() < next_allowed_dmg_t
 end
 
@@ -294,7 +294,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 	end
 
 	managers.hud:damage_taken()
-	
+
 	-- For Grace Troll Mutator setting
 	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
 
@@ -382,7 +382,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		self._old_last_received_dmg = nil
 		self._old_next_allowed_dmg_t = nil
 	end
-	
+
 	health_subtracted = self:get_real_health()
 
 	self:change_health(-attack_data.damage)

@@ -1,13 +1,13 @@
 -- Overriding function for adding new mutators. New mutators added via extending "_mutators" table with PostHook don't appear in-game
 Hooks:OverrideFunction(MutatorsManager, "init", function(self)
-    managers.mutators = self
+	managers.mutators = self
 	self._message_system = MessageSystem:new()
 	self._lobby_delay = -1
 
 	if not Global.mutators then
 		Global.mutators = {
 			mutator_values = {},
-			active_on_load = {}
+			active_on_load = {},
 		}
 	end
 
@@ -28,7 +28,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorCG22:new(self),
 		MutatorPiggyRevenge:new(self),
 		-- New mutators
-		MutatorGraceTroll:new(self)
+		MutatorGraceTroll:new(self),
 	}
 	self._active_mutators = {}
 	local activate = Global.mutators and Global.mutators.active_on_load
@@ -45,7 +45,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 
 			if mutator then
 				table.insert(self:active_mutators(), {
-					mutator = mutator
+					mutator = mutator,
 				})
 				cat_print("jamwil", "[Mutators] Activated mutator: ", id)
 			else
@@ -66,7 +66,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		table.insert(setup_mutators, active_mutator.mutator)
 	end
 
-	table.sort(setup_mutators, function (a, b)
+	table.sort(setup_mutators, function(a, b)
 		return b.load_priority < a.load_priority
 	end)
 

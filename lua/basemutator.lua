@@ -8,12 +8,12 @@ MutatorGraceTroll.desc_id = "mutator_gracetroll_desc"
 MutatorGraceTroll.has_options = true
 MutatorGraceTroll.reductions = {
 	money = 0,
-	exp = 0
+	exp = 0,
 }
-MutatorGraceTroll.categories = {"gameplay"}
+MutatorGraceTroll.categories = { "gameplay" }
 MutatorGraceTroll.icon_coords = {
 	4,
-	2
+	2,
 }
 
 function MutatorGraceTroll:register_values(mutator_manager)
@@ -28,7 +28,7 @@ function MutatorGraceTroll:modify_value(id, value)
 	elseif id == "PlayerDamage:ReducedIFrameDamage" and self:get_grace_troll_reduced_iframe_damage() then
 		return true
 	end
-	
+
 	return value
 end
 
@@ -77,7 +77,7 @@ function MutatorGraceTroll:setup_options_gui(node)
 		name = "gracetroll_slider",
 		callback = "_update_mutator_value",
 		text_id = "menu_mutator_gracetroll_slider",
-		update_callback = callback(self, self, "_update_gracetroll")
+		update_callback = callback(self, self, "_update_gracetroll"),
 	}
 	local data_node = {
 		show_value = true,
@@ -85,18 +85,18 @@ function MutatorGraceTroll:setup_options_gui(node)
 		type = "CoreMenuItemSlider.ItemSlider",
 		decimal_count = 2,
 		min = self:_min_grace(),
-		max = self:_max_grace()
+		max = self:_max_grace(),
 	}
 	local slider = node:create_item(data_node, params)
 
 	slider:set_value(self:get_gracetroll())
 	node:add_item(slider)
-	
+
 	params = {
 		name = "grace_troll_disable_armor_grace_toggle",
 		callback = "_update_mutator_value",
 		text_id = "menu_mutator_grace_troll_disable_armor_grace_toggle",
-		update_callback = callback(self, self, "_toggle_grace_troll_disable_armor_grace")
+		update_callback = callback(self, self, "_toggle_grace_troll_disable_armor_grace"),
 	}
 	data_node = {
 		{
@@ -111,7 +111,7 @@ function MutatorGraceTroll:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -125,20 +125,20 @@ function MutatorGraceTroll:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local toggle1 = node:create_item(data_node, params)
 
 	toggle1:set_value(self:get_grace_troll_disable_armor_grace() and "on" or "off")
 	node:add_item(toggle1)
-	
+
 	params = {
 		name = "grace_troll_reduced_iframe_damage_toggle",
 		callback = "_update_mutator_value",
 		text_id = "menu_mutator_grace_troll_reduced_iframe_damage_toggle",
-		update_callback = callback(self, self, "_toggle_grace_troll_reduced_iframe_damage")
+		update_callback = callback(self, self, "_toggle_grace_troll_reduced_iframe_damage"),
 	}
 	data_node = {
 		{
@@ -153,7 +153,7 @@ function MutatorGraceTroll:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -167,9 +167,9 @@ function MutatorGraceTroll:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local toggle2 = node:create_item(data_node, params)
 
@@ -202,15 +202,15 @@ function MutatorGraceTroll:reset_to_default()
 		if slider then
 			slider:set_value(self:get_gracetroll())
 		end
-		
+
 		local toggle1 = self._node:item("grace_troll_disable_armor_grace_toggle")
-		
+
 		if toggle1 then
 			toggle1:set_value(self:get_grace_troll_disable_armor_grace())
 		end
-		
+
 		local toggle2 = self._node:item("grace_troll_reduced_iframe_damage_toggle")
-		
+
 		if toggle2 then
 			toggle2:set_value(self:get_grace_troll_reduced_iframe_damage())
 		end
