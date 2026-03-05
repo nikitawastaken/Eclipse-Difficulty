@@ -390,7 +390,7 @@ MutatorHHSpeed.desc_id = "mutator_hh_speed_desc"
 MutatorHHSpeed.has_options = false
 MutatorHHSpeed.reductions = { money = 0, exp = 0 }
 MutatorHHSpeed.categories = { "gameplay" }
-MutatorHHSpeed.icon_coords = { 2, 3 }
+MutatorHHSpeed.icon_coords = { 1, 1 }
 --player speed
 function MutatorHHSpeed:setup(mutator_manager)
 	local mult = 1.8
