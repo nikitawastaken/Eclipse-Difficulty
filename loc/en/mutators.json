@@ -13,6 +13,9 @@
 
 	"mutator_maxdiff": "Difficulty Tweak",
 	"mutator_maxdiff_desc": "All police assaults now start at maximum intensity.",
-	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity."
-
+	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity.",
+	
+	"mutator_hh_speed": "Hyper Speeds",
+	"mutator_hh_speed_desc": "Player and enemy movement speeds are drastically increased.",
+	"mutator_hh_speed_longdesc": "Player and enemy movement speeds are drastically increased.",
 }

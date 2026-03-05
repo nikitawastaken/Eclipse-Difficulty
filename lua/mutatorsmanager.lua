@@ -18,6 +18,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorGraceTroll:new(self),
 		MutatorMedicDozers:new(self),
 		MutatorMaxDiff:new(self),
+		MutatorHHSpeed:new(self),
 		--MutatorNoOutlines:new(self),
 	}
 	self._active_mutators = {}

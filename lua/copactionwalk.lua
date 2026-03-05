@@ -504,3 +504,15 @@ Hooks:PreHook(CopActionWalk, "init", "eclipse_init", function(self, action_desc,
 		table.insert(action_desc.nav_path, 1, mvector3.copy(common_data.pos))
 	end
 end)
+-- Hyper speeds for enemy
+local orig_get_max_walk_speed = CopActionWalk._get_current_max_walk_speed
+
+function CopActionWalk:_get_current_max_walk_speed(...)
+	local speed = orig_get_max_walk_speed(self, ...)
+	
+	if managers.mutators and managers.mutators:is_mutator_active(MutatorHHSpeed) then
+		speed = speed * 1.55
+	end
+	
+	return speed
+end

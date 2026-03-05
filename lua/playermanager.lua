@@ -2080,3 +2080,33 @@ function PlayerManager:_update_damage_dealt(t, dt)
 		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
 	end
 end
+-- Hyper speeds recharging throwable
+Hooks:PostHook(PlayerManager, "update", "MutatorHHSpeed_ThrowableRecharge", function(self, t, dt)
+	-- this is needed so that it will not crash on briefing
+	if not alive(self:player_unit()) then
+		return
+	end
+
+	if managers.mutators and managers.mutators:is_mutator_active(MutatorHHSpeed) then
+		
+		local equipped_grenade = managers.blackmarket:equipped_grenade()
+		local grenade_tweak = tweak_data.blackmarket.projectiles[equipped_grenade]
+
+		if grenade_tweak and not grenade_tweak.base_cooldown then
+			
+			if not self:got_max_grenades() then
+				self._hh_grenade_timer = (self._hh_grenade_timer or 0) + dt
+				
+				-- give 1 grenade after 2 minutes
+				if self._hh_grenade_timer >= 120 then
+					self:add_grenade_amount(1, true)
+					self._hh_grenade_timer = 0
+					self:player_unit():sound():play("pickup_ammo_health_boost", nil, false)
+				end
+			else
+				self._hh_grenade_timer = 0
+			end
+			
+		end
+	end
+end)

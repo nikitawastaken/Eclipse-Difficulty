@@ -382,7 +382,31 @@ function MutatorMaxDiff:modify_value(id, value)
 	end
 	return value
 end
+-- Hyper speeds 
+MutatorHHSpeed = MutatorHHSpeed or class(BaseMutator)
+MutatorHHSpeed._type = "MutatorHHSpeed"
+MutatorHHSpeed.name_id = "mutator_hh_speed"
+MutatorHHSpeed.desc_id = "mutator_hh_speed_desc"
+MutatorHHSpeed.has_options = false
+MutatorHHSpeed.reductions = { money = 0, exp = 0 }
+MutatorHHSpeed.categories = { "gameplay" }
+MutatorHHSpeed.icon_coords = { 2, 3 }
+--player speed
+function MutatorHHSpeed:setup(mutator_manager)
+	local mult = 1.8
+	local speed_tweak = tweak_data.player.movement_state.standard.movement.speed
+	
+	speed_tweak.STANDARD_MAX = speed_tweak.STANDARD_MAX * mult
+	speed_tweak.RUNNING_MAX = speed_tweak.RUNNING_MAX * mult
+	speed_tweak.CROUCHING_MAX = speed_tweak.CROUCHING_MAX * mult
+	speed_tweak.STEELSIGHT_MAX = speed_tweak.STEELSIGHT_MAX * mult
+	speed_tweak.CLIMBING_MAX = speed_tweak.CLIMBING_MAX * mult
+	speed_tweak.INAIR_MAX = speed_tweak.INAIR_MAX * mult
 
+	local jump_vel = tweak_data.player.movement_state.standard.movement.jump_velocity.xy
+	jump_vel.run = jump_vel.run * mult
+	jump_vel.walk = jump_vel.walk * mult
+end
 --[[
 -- No outlines --
 MutatorNoOutlines = MutatorNoOutlines or class(BaseMutator)
