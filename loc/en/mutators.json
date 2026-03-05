@@ -9,6 +9,10 @@
 	"mutator_medicdozers": "Medic Dozers",
 	"mutator_medicdozers_desc": "Medic Dozers can now spawn.",
 	"mutator_medicdozers_longdesc": "Whenever a Bulldozer of any variety spawns, there is a chance that it will be replaced by a Medic Bulldozer.",
-	"menu_mutator_medic_dozer_replace_elites_toggle": "Medic Dozer can replace Elite Dozer spawn"
+	"menu_mutator_medic_dozer_replace_elites_toggle": "Medic Dozer can replace Elite Dozer spawn",
+
+	"mutator_maxdiff": "Fast Response",
+	"mutator_maxdiff_desc": "All police assaults now start at maximum intensity.",
+	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity."
 
 }

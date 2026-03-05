@@ -12,24 +12,13 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 	end
 
 	self._mutators = {
-		-- Vanilla mutators
-		MutatorEnemyHealth:new(self),
-		MutatorEnemyDamage:new(self),
+		-- Vanilla mutators (well, their remainings)
 		MutatorFriendlyFire:new(self),
-		MutatorShotgunTweak:new(self),
-		MutatorExplodingEnemies:new(self),
-		MutatorHydra:new(self),
-		MutatorEnemyReplacer:new(self),
-		MutatorMediDozer:new(self),
-		MutatorCloakerEffect:new(self),
-		MutatorShieldDozers:new(self),
-		MutatorTitandozers:new(self),
-		MutatorPiggyBank:new(self),
-		MutatorCG22:new(self),
-		MutatorPiggyRevenge:new(self),
 		-- New mutators
 		MutatorGraceTroll:new(self),
 		MutatorMedicDozers:new(self),
+		MutatorMaxDiff:new(self),
+		--MutatorNoOutlines:new(self),
 	}
 	self._active_mutators = {}
 	local activate = Global.mutators and Global.mutators.active_on_load
