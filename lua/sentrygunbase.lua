@@ -69,3 +69,10 @@ function SentryGunBase:_update_omniscience(t, dt)
 		self._state_data.omniscience_t = t + tweak_data.player.omniscience.interval_t
 	end
 end
+
+-- u243.1 sentry crash fix
+function SentryGunBase:enable_shield()
+	self._has_shield = true
+
+	self._unit:damage():run_sequence_simple("shield_on")
+end
