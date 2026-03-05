@@ -8,8 +8,8 @@ MutatorGraceTroll.desc_id = "mutator_gracetroll_desc"
 MutatorGraceTroll.has_options = true
 MutatorGraceTroll.categories = { "gameplay" }
 MutatorGraceTroll.icon_coords = {
-	4,
-	2,
+	1, --2
+	1,
 }
 
 function MutatorGraceTroll:register_values(mutator_manager)
