@@ -4,6 +4,11 @@
 	"mutator_gracetroll_longdesc": "Damage grace on players and AI crewmembers is changed to a specific value. Damage grace affects how often instances of damage are calculated, lower values will cause you to take more damage in a shorter amount of time.\n\nNOTE: Custom Damage Grace value will be applied only if it is lower than difficulty based grace period.",
 	"menu_mutator_gracetroll_slider": "Grace Period (in s)",
 	"menu_mutator_grace_troll_disable_armor_grace_toggle": "Disable Armor Break Grace Period",
-	"menu_mutator_grace_troll_reduced_iframe_damage_toggle": "Grace Piercing"
+	"menu_mutator_grace_troll_reduced_iframe_damage_toggle": "Grace Piercing",
+
+	"mutator_medicdozers": "Medic Dozers",
+	"mutator_medicdozers_desc": "Medic Dozers can now spawn.",
+	"mutator_medicdozers_longdesc": "Whenever a Bulldozer of any variety spawns, there is a chance that it will be replaced by a Medic Bulldozer.",
+	"menu_mutator_medic_dozer_replace_elites_toggle": "Medic Dozer can replace Elite Dozer spawn"
 
 }

@@ -29,6 +29,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorPiggyRevenge:new(self),
 		-- New mutators
 		MutatorGraceTroll:new(self),
+		MutatorMedicDozers:new(self),
 	}
 	self._active_mutators = {}
 	local activate = Global.mutators and Global.mutators.active_on_load
