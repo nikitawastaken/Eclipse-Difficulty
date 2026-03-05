@@ -372,8 +372,8 @@ MutatorMaxDiff.desc_id = "mutator_maxdiff_desc"
 MutatorMaxDiff.categories = { "gameplay" }
 
 MutatorMaxDiff.icon_coords = {
-	6,
-	1,
+	3,
+	2,
 }
 
 function MutatorMaxDiff:modify_value(id, value)
