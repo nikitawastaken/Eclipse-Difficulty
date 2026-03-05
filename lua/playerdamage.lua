@@ -226,13 +226,36 @@ function PlayerDamage:damage_bullet(attack_data)
 end
 
 -- Grace period protects no matter the new potential damage but is shorter in general (sh)
-function PlayerDamage:_chk_dmg_too_soon()
+function PlayerDamage:_chk_dmg_too_soon(damage)
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)
+	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
+	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
+	if reduced_iframe_mutator then
+		local t = managers.player:player_timer():time()
+		if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
+			self._old_last_received_dmg = nil
+			self._old_next_allowed_dmg_t = nil
+			return true
+		end
+		if next_allowed_dmg_t > t then
+			self._old_last_received_dmg = self._last_received_dmg
+			self._old_next_allowed_dmg_t = next_allowed_dmg_t
+		end
+	end
+	
 	return managers.player:player_timer():time() < next_allowed_dmg_t
 end
 
 function PlayerDamage:_calc_armor_damage(attack_data)
 	local health_subtracted = 0
+	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
+	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
+	if reduced_iframe_mutator then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
 
 	if self:get_real_armor() > 0 then
 		health_subtracted = self:get_real_armor()
@@ -271,12 +294,19 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 	end
 
 	managers.hud:damage_taken()
+	
+	-- For Grace Troll Mutator setting
+	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
 
 	-- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
 	local had_armor = self:get_real_armor() > 0
 	if had_armor and self:get_real_armor() <= 0 then
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
-			self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
+			if disable_armor_break_grace then
+				self._can_take_dmg_timer = self._dmg_interval
+			else
+				self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
+			end
 		end
 	end
 
@@ -344,6 +374,15 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	end
 
 	local health_subtracted = 0
+	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
+	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
+	if reduced_iframe_mutator then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
+	
 	health_subtracted = self:get_real_health()
 
 	self:change_health(-attack_data.damage)
