@@ -64,7 +64,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 
 	for id, data in pairs(self.melee_weapons) do
 		data.melee_charge_shaker = "" -- Hacky way to disable the shaker effect while charging a melee weapon
-		
+
 		local is_blunt = data.stats.weapon_type == "blunt"
 		local is_sharp = data.stats.weapon_type == "sharp"
 		local golden_spoon = id == "spoon_gold"
