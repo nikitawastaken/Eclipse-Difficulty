@@ -221,9 +221,6 @@ function MutatorGraceTroll:options_fill()
 	return self:_get_percentage_fill(self:_min_grace(), self:_max_grace(), self:get_gracetroll())
 end
 
-
-
-
 --Medic Dozers--
 MutatorMedicDozers = MutatorMedicDozers or class(BaseMutator)
 MutatorMedicDozers._type = "MutatorMedicDozers"
@@ -234,10 +231,10 @@ MutatorMedicDozers.reductions = {
 	money = 0,
 	exp = 0,
 }
-MutatorMedicDozers.categories = {"enemies"}
+MutatorMedicDozers.categories = { "enemies" }
 MutatorMedicDozers.icon_coords = {
 	2,
-	3
+	3,
 }
 
 function MutatorMedicDozers:register_values(mutator_manager)
@@ -252,7 +249,7 @@ function MutatorMedicDozers:setup(data)
 	local dozer_type = tweak_data.group_ai.unit_categories.bulldozer.unit_types
 	local dozer_type_1 = tweak_data.group_ai.unit_categories.bulldozer_1.unit_types
 	local dozer_type_2 = tweak_data.group_ai.unit_categories.bulldozer_2.unit_types
-	
+
 	local america_medic_dozer = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic")
 	local russia_medic_dozer = Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic")
 	local zombie_medic_dozer = Idstring("units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh")
@@ -264,37 +261,37 @@ function MutatorMedicDozers:setup(data)
 	table.insert(dozer_type.zombie, zombie_medic_dozer)
 	table.insert(dozer_type.federales, federales_medic_dozer)
 	table.insert(dozer_type.murkywater, murkywater_medic_dozer)
-	
+
 	table.insert(dozer_type_1.america, america_medic_dozer)
 	table.insert(dozer_type_1.russia, russia_medic_dozer)
 	table.insert(dozer_type_1.zombie, zombie_medic_dozer)
 	table.insert(dozer_type_1.federales, federales_medic_dozer)
 	table.insert(dozer_type_1.murkywater, murkywater_medic_dozer)
-	
+
 	table.insert(dozer_type_2.america, america_medic_dozer)
 	table.insert(dozer_type_2.russia, russia_medic_dozer)
 	table.insert(dozer_type_2.zombie, zombie_medic_dozer)
 	table.insert(dozer_type_2.federales, federales_medic_dozer)
 	table.insert(dozer_type_2.murkywater, murkywater_medic_dozer)
-	
+
 	-- Toggle for replacing elite dozers
 	if self:get_medic_dozer_replace_elites() then
 		local dozer_type_elite = tweak_data.group_ai.unit_categories.elite_bulldozer.unit_types
 		local dozer_type_elite_1 = tweak_data.group_ai.unit_categories.elite_bulldozer_1.unit_types
 		local dozer_type_elite_2 = tweak_data.group_ai.unit_categories.elite_bulldozer_2.unit_types
-		
+
 		table.insert(dozer_type_elite.america, america_medic_dozer)
 		table.insert(dozer_type_elite.russia, russia_medic_dozer)
 		table.insert(dozer_type_elite.zombie, zombie_medic_dozer)
 		table.insert(dozer_type_elite.federales, federales_medic_dozer)
 		table.insert(dozer_type_elite.murkywater, murkywater_medic_dozer)
-		
+
 		table.insert(dozer_type_elite_1.america, america_medic_dozer)
 		table.insert(dozer_type_elite_1.russia, russia_medic_dozer)
 		table.insert(dozer_type_elite_1.zombie, zombie_medic_dozer)
 		table.insert(dozer_type_elite_1.federales, federales_medic_dozer)
 		table.insert(dozer_type_elite_1.murkywater, murkywater_medic_dozer)
-		
+
 		table.insert(dozer_type_elite_2.america, america_medic_dozer)
 		table.insert(dozer_type_elite_2.russia, russia_medic_dozer)
 		table.insert(dozer_type_elite_2.zombie, zombie_medic_dozer)
@@ -308,7 +305,7 @@ function MutatorMedicDozers:setup_options_gui(node)
 		name = "medic_dozer_replace_elites_toggle",
 		callback = "_update_mutator_value",
 		text_id = "menu_mutator_medic_dozer_replace_elites_toggle",
-		update_callback = callback(self, self, "_toggle_medic_dozer_replace_elites")
+		update_callback = callback(self, self, "_toggle_medic_dozer_replace_elites"),
 	}
 	local data_node = {
 		{
@@ -323,7 +320,7 @@ function MutatorMedicDozers:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -337,15 +334,15 @@ function MutatorMedicDozers:setup_options_gui(node)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local new_item = node:create_item(data_node, params)
 
 	new_item:set_value(self:get_medic_dozer_replace_elites() and "on" or "off")
 	node:add_item(new_item)
-	
+
 	self._node = node
 
 	return new_item
