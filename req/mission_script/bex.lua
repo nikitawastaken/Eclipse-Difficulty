@@ -30,6 +30,12 @@ local enabled = {
 		enabled = true,
 	},
 }
+local close_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -299,6 +305,10 @@ return {
 	[102382] = disabled,
 	[102781] = disabled,
 	-- Spawn group intervals
+	-- Slow down the side spawns to make the spawn group distribution more even on higher difficulties.
+	[100019] = close_spawn,
+	[100128] = close_spawn,
+	[100132] = close_spawn,
 	[400042] = cloaker_spawn,
 	[400043] = cloaker_spawn,
 	[400044] = cloaker_spawn,
@@ -311,6 +321,7 @@ return {
 	[400051] = cloaker_spawn,
 	[400017] = van_scripted_spawn,
 	[400024] = van_scripted_spawn,
+	-- Scripted spawns
 	[104687] = beat_cop, -- pre-spawned policia
 	[104688] = beat_cop,
 	[100675] = beat_cop,

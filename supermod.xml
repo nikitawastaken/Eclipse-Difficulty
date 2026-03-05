@@ -19,6 +19,8 @@
 		<group hook_id="lib/">
 			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
+			<post :hook_id="utils/lightloadingscreenguiscript"/>
+			<post :hook_id="mutators/basemutator"/>			
 
 			<group :hook_id="states/">
 				<post :hook_id="missionendstate"/>
@@ -90,6 +92,7 @@
 				<post :hook_id="trademanager"/>
 				<post :hook_id="hudmanagerpd2"/>
 				<post :hook_id="jobmanager"/>
+				<post :hook_id="mutatorsmanager"/>
 			</group>
 
 			<group :hook_id="network/">
@@ -301,6 +304,15 @@
 	<assets base_path="assets/">
 		<!-- Mod logo for welcome message -->
 		<file name="guis/textures/mod_logo.texture"/>
+		
+		<!-- Mod logos for loading, enter screen and menu. They're not loading properly (The changes take effect only after loading to the heist level.). Need SBLT mages to resolve this -->
+		<!--<file name="guis/textures/game_small_logo.texture"/>
+		<file name="guis/textures/menu_title_screen.texture"/>		
+		<file name="units/menu/menu_scene/menu_cylinder.material_config"/>
+		<file name="units/menu/menu_scene/menu_cylinder_logo.texture"/>-->
+		
+		<!-- Mutators icons atlas-->
+		<file name="guis/textures/pd2/mutator_icons_atlas.texture"/>
 		
 		<!-- Replace vanilla One Down modifier icon -->
 		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>

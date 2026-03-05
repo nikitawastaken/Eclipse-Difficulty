@@ -1,0 +1,9 @@
+{
+	"mutator_gracetroll": "Grace Troll",
+	"mutator_gracetroll_desc": "Custom Damage Grace value (in seconds).",
+	"mutator_gracetroll_longdesc": "Damage grace on players and AI crewmembers is changed to a specific value. Damage grace affects how often instances of damage are calculated, lower values will cause you to take more damage in a shorter amount of time.\n\nNOTE: Custom Damage Grace value will be applied only if it is lower than difficulty based grace period.",
+	"menu_mutator_gracetroll_slider": "Grace Period (in s)",
+	"menu_mutator_grace_troll_disable_armor_grace_toggle": "Disable Armor Break Grace Period",
+	"menu_mutator_grace_troll_reduced_iframe_damage_toggle": "Grace Piercing"
+
+}
