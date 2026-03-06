@@ -13,6 +13,14 @@
 
 	"mutator_maxdiff": "Difficulty Tweak",
 	"mutator_maxdiff_desc": "All police assaults now start at maximum intensity.",
-	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity."
+	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity.",
+
+	"mutator_nooutlines": "Expert Realism",
+	"mutator_nooutlines_desc": "Outlines and name labels are disabled.",
+	"mutator_nooutlines_longdesc": "Outlines and name labels are disabled.",
+
+	"mutator_onedown": "One Down",
+	"mutator_onedown_desc": "Base amount of downs set to 1.",
+	"mutator_onedown_longdesc": "Base amount of downs set to 1."
 
 }

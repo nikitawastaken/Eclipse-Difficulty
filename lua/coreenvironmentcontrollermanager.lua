@@ -304,3 +304,16 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", fu
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
 end)
+-- No Outlines mutator
+Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ContourSS_refresh_render_settings", function(self, vp)
+	if not alive(self._vp) then
+		return
+	end
+
+	if managers.mutators:modify_value("CoreEnvironmentControllerManager:NoOutlines", false) then
+		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine_post_processor"), Idstring("bloom_combine_empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine"), Idstring("bloom_combine_empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_modifier"), Idstring("empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_rendering"), Idstring("empty"))
+	end
+end)

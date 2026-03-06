@@ -383,7 +383,6 @@ function MutatorMaxDiff:modify_value(id, value)
 	return value
 end
 
---[[
 -- No outlines --
 MutatorNoOutlines = MutatorNoOutlines or class(BaseMutator)
 MutatorNoOutlines._type = "MutatorNoOutlines"
@@ -392,15 +391,31 @@ MutatorNoOutlines.desc_id = "mutator_nooutlines_desc"
 MutatorNoOutlines.categories = { "gameplay" }
 
 MutatorNoOutlines.icon_coords = {
-	6,
+	5,
 	1
 }
 
-function MutatorNoOutlines:setup(data)
-	for _, vp in ipairs(managers.viewport:viewports()) do
-		vp:vp():set_post_processor_effect("World", Idstring("bloom_combine_post_processor"), Idstring("bloom_combine_empty"))
-		vp:vp():set_post_processor_effect("World", Idstring("bloom_combine"), Idstring("bloom_combine_empty"))
-		vp:vp():set_post_processor_effect("World", Idstring("shadow_modifier"), Idstring("empty"))
-		vp:vp():set_post_processor_effect("World", Idstring("shadow_rendering"), Idstring("empty"))
+function MutatorNoOutlines:modify_value(id, value)
+	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" then
+		return true
 	end
-end--]]
+	return value
+end
+
+-- One Down --
+MutatorOneDown = MutatorOneDown or class(BaseMutator)
+MutatorOneDown._type = "MutatorOneDown"
+MutatorOneDown.name_id = "mutator_onedown"
+MutatorOneDown.desc_id = "mutator_onedown_desc"
+MutatorOneDown.categories = { "gameplay" }
+MutatorOneDown.icon_coords = {
+	4,
+	1,
+}
+
+function MutatorOneDown:modify_value(id, value)
+	if id == "PlayerDamage:OneDown" or id == "HuskPlayerDamage:OneDown" then
+		return true
+	end
+	return value
+end

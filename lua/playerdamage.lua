@@ -8,6 +8,10 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	if is_pro_job then
 		self._lives_init = 4
 	end
+	-- One Down mutator
+	if managers.mutators:modify_value("PlayerDamage:OneDown", false) then
+		self._lives_init = 2
+	end
 end)
 
 -- Upgrade that heals you when you revive others

@@ -30,3 +30,12 @@ function HUDManager:temp_hide_carry_bag()
 	self._sound_source:post_event("Play_bag_generic_throw")
 	self._sound_source:post_event("Play_bag_generic_throw")
 end
+-- No Outlines mutator (hide name label panels)
+Hooks:PostHook(HUDManager, "_update_name_labels", "_update_name_labels_mutator_no_outlines", function(self)
+	if managers.mutators:modify_value("HUDManager:NoOutlines", false) then
+		for _, data in ipairs(self._hud.name_labels) do
+			local label_panel = data.panel
+			label_panel:set_visible(false)
+		end
+	end
+end)
