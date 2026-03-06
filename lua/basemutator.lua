@@ -428,7 +428,7 @@ MutatorBoFlashbang.desc_id = "mutator_bo_flashbang_desc"
 MutatorBoFlashbang.categories = { "gameplay" }
 MutatorBoFlashbang.icon_coords = {
 	6,
-	1
+	1,
 }
 
 function MutatorBoFlashbang:setup(data)
