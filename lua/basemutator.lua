@@ -407,8 +407,6 @@ function MutatorHHSpeed:setup(mutator_manager)
 	jump_vel.run = jump_vel.run * mult
 	jump_vel.walk = jump_vel.walk * mult
 end
---[[
-
 -- No outlines --
 MutatorNoOutlines = MutatorNoOutlines or class(BaseMutator)
 MutatorNoOutlines._type = "MutatorNoOutlines"
