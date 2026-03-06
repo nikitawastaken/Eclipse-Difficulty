@@ -305,7 +305,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", fu
 	end
 end)
 -- No Outlines mutator
-Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ContourSS_refresh_render_settings", function(self, vp)
+Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "refresh_render_settings_no_outlines_mutator", function(self, vp)
 	if not alive(self._vp) then
 		return
 	end
