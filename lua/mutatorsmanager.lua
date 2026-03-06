@@ -20,6 +20,8 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorMaxDiff:new(self),
 		MutatorHHSpeed:new(self),
 		--MutatorNoOutlines:new(self),
+		MutatorNoOutlines:new(self),
+		MutatorOneDown:new(self),
 	}
 	self._active_mutators = {}
 	local activate = Global.mutators and Global.mutators.active_on_load

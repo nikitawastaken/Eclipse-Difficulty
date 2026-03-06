@@ -18,4 +18,13 @@
 	"mutator_hh_speed": "Hyper Speeds",
 	"mutator_hh_speed_desc": "Player and enemy movement speeds are drastically increased.",
 	"mutator_hh_speed_longdesc": "Player and enemy movement speeds are drastically increased.",
+
+	"mutator_nooutlines": "Expert Realism",
+	"mutator_nooutlines_desc": "Outlines and name labels are disabled.",
+	"mutator_nooutlines_longdesc": "Outlines and name labels are disabled.",
+
+	"mutator_onedown": "One Down",
+	"mutator_onedown_desc": "Base amount of downs set to 1.",
+	"mutator_onedown_longdesc": "Base amount of downs set to 1."
+
 }

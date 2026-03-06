@@ -38,3 +38,11 @@ end
 function HuskPlayerDamage:restore_lives(lives_restored)
 	self._revives = math.min(self._revives_max, self._revives + lives_restored)
 end
+
+-- One Down mutator
+Hooks:PostHook(HuskPlayerDamage, "init", "eclipse_init_one_down_mutator", function(self)
+	if managers.mutators:modify_value("HuskPlayerDamage:OneDown", false) then
+		self._revives = 2
+		self._revives_max = 2
+	end
+end)
