@@ -257,6 +257,17 @@ function M.get_difficulty_specific_value(t)
 	return t[#t]
 end
 
+-- Grab a value from a list based on difficulty group
+-- Easy/Normal, Hard/Overkill, and Death Wish are the three groups
+function M.get_difficulty_group_specific_value(t)
+	local difficulty_index = M.difficulty_index()
+	local group_index = difficulty_index < 4 and 1 or difficulty_index < 6 and 2 or 3
+	if t[group_index] ~= nil then
+		return t[group_index]
+	end
+	return t[#t]
+end
+
 -- Easily multiply the values in a list-style table such as { X, Y, Z }
 -- Can supply a mul A (for all values) or { A, B, C } (for corresponding values)
 function M.table_multiplier(target_table, mul)
