@@ -392,7 +392,7 @@ MutatorNoOutlines.categories = { "gameplay" }
 
 MutatorNoOutlines.icon_coords = {
 	5,
-	1
+	1,
 }
 
 function MutatorNoOutlines:modify_value(id, value)

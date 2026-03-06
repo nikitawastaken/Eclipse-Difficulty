@@ -44,5 +44,5 @@ Hooks:PostHook(HuskPlayerDamage, "init", "eclipse_init_one_down_mutator", functi
 	if managers.mutators:modify_value("HuskPlayerDamage:OneDown", false) then
 		self._revives = 2
 		self._revives_max = 2
-	end	
+	end
 end)
