@@ -8,8 +8,8 @@ local disabled = {
 }
 local roof_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+		interval = 5,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -18,7 +18,7 @@ local window_spawn = {
 		interval = 15,
 		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local cloaker_spawn = {
 	values = {
