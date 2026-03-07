@@ -18,11 +18,13 @@ local disabled = {
 local far_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 local close_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -49,6 +51,7 @@ return {
 	[102374] = {
 		values = {
 			interval = 10,
+			interval_balance_mul = { 1.5, 1.25, 1, 1 },
 			elements = {
 				102376,
 				102377,

@@ -1,20 +1,22 @@
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
-local roof_spawn = {
+local roof_far_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
-local objective_spawn = {
+local roof_close_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local mortuary_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -44,22 +46,22 @@ return {
 			{
 				name = "warehouse01",
 				force = 2,
-				position = Vector3(-1550, -2425, 0),
+				position = Vector3(1200, -2200, 0),
 			},
 			{
 				name = "warehouse02",
 				force = 2,
-				position = Vector3(-200, -2300, 0),
+				position = Vector3(-150, -1250, 0),
 			},
 			{
 				name = "warehouse03",
 				force = 2,
-				position = Vector3(1225, -2150, 0),
+				position = Vector3(-1500, -2200, 0),
 			},
 			{
 				name = "warehouse04",
 				force = 2,
-				position = Vector3(-1650, -4000, 0),
+				position = Vector3(-2925, -3400, -20),
 			},
 		},
 	},
@@ -105,12 +107,12 @@ return {
 	},
 	[101543] = disable_car_reinforce,
 	-- Spawn group intervals
-	[100133] = objective_spawn,
-	[101715] = objective_spawn,
-	[100007] = roof_spawn,
-	[100130] = roof_spawn,
-	[100131] = roof_spawn,
-	[101683] = roof_spawn,
-	[101820] = roof_spawn,
+	[100007] = roof_far_spawn,
+	[100130] = roof_far_spawn,
+	[100131] = roof_far_spawn,
+	[101683] = roof_far_spawn,
+	[101820] = roof_far_spawn,
+	[100133] = roof_close_spawn,
+	[101715] = roof_close_spawn,
 	[100019] = mortuary_spawn,
 }

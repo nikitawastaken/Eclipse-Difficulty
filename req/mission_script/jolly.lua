@@ -12,6 +12,7 @@ local train_spawn = {
 local bridge_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }

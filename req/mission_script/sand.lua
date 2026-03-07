@@ -13,27 +13,19 @@ local enabled = {
 		enabled = true,
 	},
 }
-local upper_spawn = {
+local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
-	groups = preferred.no_cops_agents,
 }
 local waterfront_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
-local office_spawn = {
+local rappel_spawn = {
 	values = {
 		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local warehouse_spawn = {
-	values = {
-		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -48,64 +40,45 @@ local boat_timer = {
 	},
 }
 return {
-	[100109] = {
+	-- Add new reinforce
+	[100109] = { -- police
 		reinforce = {
 			{
-				name = "warehouse_office01",
+				name = "gate",
 				force = 3,
-				position = Vector3(0, 0, 0),
+				position = Vector3(2925, -3225, 0),
 			},
 			{
-				name = "warehouse_office02",
+				name = "warehouse_a",
 				force = 3,
-				position = Vector3(-1750, -2250, 0),
+				position = Vector3(-325, 2150, 0),
 			},
 			{
-				name = "warehouse_office03",
+				name = "warehouse_b",
 				force = 3,
-				position = Vector3(-4500, -3250, 0),
+				position = Vector3(1200, -120, 0),
+			},
+			{
+				name = "warehouse_c",
+				force = 3,
+				position = Vector3(450, -2750, 0),
 			},
 		},
 	},
 	[101369] = {
 		reinforce = {
-			{ name = "warehouse_office01" },
-			{ name = "warehouse_office02" },
-			{ name = "warehouse_office03" },
+			{ name = "gate" },
+			{ name = "warehouse_a" },
+			{ name = "warehouse_b" },
+			{ name = "warehouse_c" },
 		},
 	},
-	[104374] = {
-		reinforce = {
-			{
-				name = "harbor_office01",
-				force = 3,
-				position = Vector3(8400, -2875, -300),
-			},
-			{
-				name = "harbor_office02",
-				force = 3,
-				position = Vector3(9725, 1150, -300),
-			},
-			{
-				name = "harbor_office03",
-				force = 3,
-				position = Vector3(9850, -1300, -300),
-			},
-		},
-	},
-	[104384] = {
-		reinforce = {
-			{ name = "harbor_office01" },
-			{ name = "harbor_office02" },
-			{ name = "harbor_office03" },
-		},
-	},
-	[101630] = {
+	[103885] = { -- output_signal_activated
 		reinforce = {
 			{
 				name = "harbor",
 				force = 5,
-				position = Vector3(15500, -2750, -300),
+				position = Vector3(15275, -3225, -300),
 			},
 		},
 	},
@@ -144,30 +117,50 @@ return {
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
 	--Spawn group intervals
-	[100692] = upper_spawn,
-	[100694] = upper_spawn,
-	[101264] = upper_spawn,
-	[101268] = upper_spawn,
-	[101269] = upper_spawn,
-	[101270] = upper_spawn,
-	[101420] = upper_spawn,
-	[101444] = upper_spawn,
-	[101456] = upper_spawn,
-	[101458] = upper_spawn,
-	[101265] = office_spawn,
-	[101266] = office_spawn,
-	[100693] = office_spawn,
-	[101969] = office_spawn,
-	[101971] = office_spawn,
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[101270] = standard_spawn,
+	[100007] = standard_spawn,
+	[100019] = standard_spawn,
+	[100030] = standard_spawn,
+	[100692] = standard_spawn,
+	[101263] = standard_spawn,
+	[101264] = standard_spawn,
+	[101267] = standard_spawn,
+	[101268] = standard_spawn,
+	[101269] = standard_spawn,
+	[101270] = standard_spawn,
+	[101271] = standard_spawn,
+	[101420] = standard_spawn,
+	[101442] = standard_spawn,
+	[101444] = standard_spawn,
+	[101446] = standard_spawn,
+	[101448] = standard_spawn,
+	[101450] = standard_spawn,
+	[101452] = standard_spawn,
+	[101454] = standard_spawn,
+	[101456] = standard_spawn,
+	[101458] = standard_spawn,
+	[101363] = standard_spawn,
+	[101954] = standard_spawn,
+	[101957] = standard_spawn,
+	[101959] = standard_spawn,
+	[101961] = standard_spawn,
+	[101965] = standard_spawn,
+	[104810] = standard_spawn,
 	[105463] = waterfront_spawn,
-	[100019] = waterfront_spawn,
-	[101442] = waterfront_spawn,
-	[104816] = warehouse_spawn,
-	[101967] = warehouse_spawn,
-	[104814] = warehouse_spawn,
-	[101965] = warehouse_spawn,
-	[104812] = warehouse_spawn,
-	[104809] = warehouse_spawn,
-	[101963] = warehouse_spawn,
-	[104810] = warehouse_spawn,
+	[100693] = rappel_spawn,
+	[101265] = rappel_spawn,
+	[101266] = rappel_spawn,
+	[101963] = rappel_spawn,
+	[101967] = rappel_spawn,
+	[101969] = rappel_spawn,
+	[101971] = rappel_spawn,
+	[104809] = rappel_spawn,
+	[104812] = rappel_spawn,
+	[104814] = rappel_spawn,
+	[104816] = rappel_spawn,
 }

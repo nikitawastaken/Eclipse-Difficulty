@@ -33,7 +33,8 @@ local casino_balcony_spawn = {
 }
 local rappel_vertical_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 }
 local vent_spawn = {

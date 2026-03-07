@@ -64,6 +64,13 @@ local mga_thermite_event = {
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
+local roof_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local elevator_spawn = {
 	values = {
 		interval = 30,
@@ -71,7 +78,8 @@ local elevator_spawn = {
 }
 local elevator_close_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -128,7 +136,7 @@ return {
 			},
 		},
 	},
-	[102166] = { -- open gate (downstairs)
+	[104682] = { -- open gate (downstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -137,7 +145,7 @@ return {
 			},
 		},
 	},
-	[104371] = { -- open gate (upstairs)
+	[104684] = { -- open gate (upstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -168,35 +176,8 @@ return {
 		reinforce = {
 			{
 				name = "vault",
-				force = 2,
-				position = Vector3(-3150, 325, -1000),
-			},
-		},
-	},
-	[100834] = { -- Elevator Escape
-		reinforce = {
-			{
-				name = "elevator_escape",
-				force = 2,
-				position = Vector3(-1150, -1050, -1000),
-			},
-		},
-	},
-	[104523] = { -- Bus Escape
-		reinforce = {
-			{
-				name = "bus_escspae",
-				force = 2,
-				position = Vector3(-2640, -1445, -600),
-			},
-		},
-	},
-	[100833] = { -- C4 Escape
-		reinforce = {
-			{
-				name = "c4_escape",
-				force = 2,
-				position = Vector3(-3400, 1000, -600),
+				force = 3,
+				position = Vector3(-3300, 350, -1000),
 			},
 		},
 	},
@@ -268,7 +249,9 @@ return {
 			end
 		end,
 	},
-	-- Spawn Group delays
+	-- Spawn group intervals
+	[100007] = roof_spawn,
+	[100692] = roof_spawn,
 	[105434] = elevator_spawn,
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,

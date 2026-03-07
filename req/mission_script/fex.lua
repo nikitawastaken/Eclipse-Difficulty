@@ -9,12 +9,14 @@ local disabled = {
 local roof_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -55,12 +57,12 @@ return {
 			},
 		},
 		on_executed = { -- preferreds
-			{ id = 100830, delay = 20 },
+			{ id = 100830, delay = 30 },
 		},
 	},
 	--Delay sanctum preferreds
 	[103217] = {
-		reinforce = { -- Enable reinforce
+		reinforce = { 
 			{
 				name = "sanctum_left",
 				force = 2,
@@ -75,12 +77,6 @@ return {
 		on_executed = {
 			{ id = 103216, delay = 0, delay_rand = 20 },
 			{ id = 103493, delay = 0, delay_rand = 20 },
-		},
-	},
-	[100955] = {
-		reinforce = {
-			{ name = "sanctum_left" },
-			{ name = "sanctum_right" },
 		},
 	},
 	-- Don't kill off enemies in courtyard/patio
