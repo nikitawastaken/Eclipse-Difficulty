@@ -3,7 +3,7 @@ function ElementWaypoint:on_executed(instigator)
 	if not self._values.enabled then
 		return
 	end
-	
+
 	if managers.mutators:modify_value("ElementWaypoint:NoOutlines", false) then
 		return
 	end
@@ -23,7 +23,7 @@ function ElementWaypoint:on_executed(instigator)
 			present_timer = 0,
 			text = text,
 			icon = self._values.icon,
-			position = self._values.position
+			position = self._values.position,
 		})
 	elseif managers.hud:get_waypoint_data(self._id) then
 		managers.hud:remove_waypoint(self._id)
