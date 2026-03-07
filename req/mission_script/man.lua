@@ -170,6 +170,10 @@ return {
 				position = Vector3(-1850, 1000, 1375),
 			},
 		},
+		-- police called, call in da choppa
+		on_executed = {
+			{ id = 101608, delay = chopper_delay_init },
+		},
 	},
 	-- tweak power boxes
 	-- remove one of 2 elementrandom. Keep only one
@@ -567,11 +571,6 @@ return {
 		on_executed = {
 			{ id = 102950, remove = true }, -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
-		},
-	},
-	[100131] = { -- police called, call in da choppa
-		on_executed = {
-			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	[101608] = {
