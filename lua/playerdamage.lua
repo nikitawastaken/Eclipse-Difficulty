@@ -229,33 +229,35 @@ function PlayerDamage:damage_bullet(attack_data)
 	self:_call_listeners(damage_info)
 end
 
--- Grace period protects no matter the new potential damage but is shorter in general (sh)
+-- Grace piercing mechanics from Hoppip's Reduced I-Frame Damage mod (you only take the difference in damage if you would take damage during an i-frame)
 function PlayerDamage:_chk_dmg_too_soon(damage)
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)
-	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
-	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
-	if reduced_iframe_mutator then
-		local t = managers.player:player_timer():time()
-		if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
-			self._old_last_received_dmg = nil
-			self._old_next_allowed_dmg_t = nil
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if vanilla_grace_piercing then
+		if damage <= self._last_received_dmg + 0.01 and managers.player:player_timer():time() < next_allowed_dmg_t then
 			return true
 		end
-		if next_allowed_dmg_t > t then
-			self._old_last_received_dmg = self._last_received_dmg
-			self._old_next_allowed_dmg_t = next_allowed_dmg_t
-		end
 	end
-
-	return managers.player:player_timer():time() < next_allowed_dmg_t
+	
+	local t = managers.player:player_timer():time()
+	if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+		return true
+	end
+	if next_allowed_dmg_t > t then
+		self._old_last_received_dmg = self._last_received_dmg
+		self._old_next_allowed_dmg_t = next_allowed_dmg_t
+	end	
 end
 
 function PlayerDamage:_calc_armor_damage(attack_data)
 	local health_subtracted = 0
 	local had_armor = self:get_real_armor() > 0
-	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
-	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
-	if reduced_iframe_mutator then
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
 		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
 		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
 		self._old_last_received_dmg = nil
@@ -378,9 +380,9 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	end
 
 	local health_subtracted = 0
-	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
-	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
-	if reduced_iframe_mutator then
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
 		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
 		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
 		self._old_last_received_dmg = nil
