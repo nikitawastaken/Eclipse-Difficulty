@@ -21,7 +21,7 @@ end
 function MutatorGraceTroll:modify_value(id, value)
 	if id == "PlayerDamage:DisableArmorGrace" and self:get_grace_troll_disable_armor_grace() then
 		return true
-	elseif id == "PlayerDamage:ReducedIFrameDamage" and self:get_grace_troll_reduced_iframe_damage() then
+	elseif id == "PlayerDamage:VanillaGracePiercing" and self:get_grace_troll_reduced_iframe_damage() then
 		return true
 	end
 
