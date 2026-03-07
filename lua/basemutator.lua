@@ -396,7 +396,7 @@ MutatorNoOutlines.icon_coords = {
 }
 
 function MutatorNoOutlines:modify_value(id, value)
-	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" then
+	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" or id == "ElementWaypoint:NoOutlines" then
 		return true
 	end
 	return value

@@ -1,6 +1,6 @@
 {
 	"mutator_gracetroll": "Grace Troll",
-	"mutator_gracetroll_desc": "Custom Damage Grace value (in seconds).",
+	"mutator_gracetroll_desc": "Customize the Grace Period behavior.",
 	"mutator_gracetroll_longdesc": "Damage grace on players and AI crewmembers is changed to a specific value. Damage grace affects how often instances of damage are calculated, lower values will cause you to take more damage in a shorter amount of time.\n\nNOTE: Custom Damage Grace value will be applied only if it is lower than difficulty based grace period.",
 	"menu_mutator_gracetroll_slider": "Grace Period (in s)",
 	"menu_mutator_grace_troll_disable_armor_grace_toggle": "Disable Armor Break Grace Period",
@@ -16,8 +16,8 @@
 	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity.",
 
 	"mutator_nooutlines": "Expert Realism",
-	"mutator_nooutlines_desc": "Outlines and name labels are disabled.",
-	"mutator_nooutlines_longdesc": "Outlines and name labels are disabled.",
+	"mutator_nooutlines_desc": "Outlines, name labels and majority of waypoints are disabled.",
+	"mutator_nooutlines_longdesc": "Outlines, name labels and majority of waypoints are disabled.",
 
 	"mutator_onedown": "One Down",
 	"mutator_onedown_desc": "Base amount of downs set to 1.",
