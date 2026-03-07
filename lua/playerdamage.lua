@@ -239,7 +239,7 @@ function PlayerDamage:_chk_dmg_too_soon(damage)
 			return true
 		end
 	end
-	
+
 	local t = managers.player:player_timer():time()
 	if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
 		self._old_last_received_dmg = nil
@@ -249,7 +249,7 @@ function PlayerDamage:_chk_dmg_too_soon(damage)
 	if next_allowed_dmg_t > t then
 		self._old_last_received_dmg = self._last_received_dmg
 		self._old_next_allowed_dmg_t = next_allowed_dmg_t
-	end	
+	end
 end
 
 function PlayerDamage:_calc_armor_damage(attack_data)
