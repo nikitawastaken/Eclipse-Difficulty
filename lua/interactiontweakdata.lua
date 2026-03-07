@@ -9,7 +9,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 
 	-- Reduce armored transport truck deposit box lockpick time
 	self.pick_lock_deposit_transport.timer = 10
-	
+
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
 	self.hostage_trade.contour_flash_interval = 0.5
 	self.hostage_trade_resources = deep_clone(self.hostage_trade)

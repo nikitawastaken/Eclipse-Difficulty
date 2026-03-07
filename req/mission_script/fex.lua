@@ -62,7 +62,7 @@ return {
 	},
 	--Delay sanctum preferreds
 	[103217] = {
-		reinforce = { 
+		reinforce = {
 			{
 				name = "sanctum_left",
 				force = 2,

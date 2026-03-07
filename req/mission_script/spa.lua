@@ -57,12 +57,12 @@ return {
 	},
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[102667] = rappel_init_spawn, 
-	[102668] = rappel_init_spawn, 
-	[107262] = rappel_init_spawn, 
-	[107263] = rappel_init_spawn, 
-	[102664] = rappel_init_spawn, 
-	[104472] = rappel_init_spawn, 
+	[102667] = rappel_init_spawn,
+	[102668] = rappel_init_spawn,
+	[107262] = rappel_init_spawn,
+	[107263] = rappel_init_spawn,
+	[102664] = rappel_init_spawn,
+	[104472] = rappel_init_spawn,
 	[102139] = roof_spawn,
 	[102140] = roof_spawn,
 	[102151] = roof_spawn,
@@ -72,7 +72,7 @@ return {
 	[107260] = roof_spawn,
 	[107261] = roof_spawn,
 	[100750] = rappel_spawn,
-	[101012] = rappel_spawn,	
+	[101012] = rappel_spawn,
 	[102138] = rappel_spawn,
 	[104338] = rappel_spawn,
 }
