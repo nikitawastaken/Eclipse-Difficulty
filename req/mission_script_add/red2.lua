@@ -29,7 +29,7 @@ local security = { [security_guard_1] = 2, [security_guard_2] = 2, [security_gua
 
 local enabled_chance_escape_snipers = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
 local enabled_chance_vault_shields = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
-local enabled_chance_escape_shields = math.random() <= (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0
+local enabled_chance_escape_shields = math.random() <= (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0)
 local enabled_chance_vault_dozers = math.random() <= 0.25
 local enabled_chance_escape_swats = math.random() <= (normal and 0.3 or hard and 0.4 or 0.6) + (is_pro_job and 0.3 or 0)
 local enabled_chance_escape_hallway_wall = math.random() <= (normal and 0.2 or hard and 0.3 or 0.5) + (is_pro_job and 0.3 or 0)
