@@ -443,3 +443,18 @@ function MutatorOneDown:modify_value(id, value)
 	end
 	return value
 end
+
+-- Instant flashbang detonation
+MutatorBoFlashbang = MutatorBoFlashbang or class(BaseMutator)
+MutatorBoFlashbang._type = "MutatorBoFlashbang"
+MutatorBoFlashbang.name_id = "mutator_bo_flashbang"
+MutatorBoFlashbang.desc_id = "mutator_bo_flashbang_desc"
+MutatorBoFlashbang.categories = { "gameplay" }
+MutatorBoFlashbang.icon_coords = {
+	6,
+	1,
+}
+
+function MutatorBoFlashbang:setup(data)
+	tweak_data.group_ai.flash_grenade.timer = 0
+end

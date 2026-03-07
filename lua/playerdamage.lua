@@ -252,6 +252,7 @@ end
 
 function PlayerDamage:_calc_armor_damage(attack_data)
 	local health_subtracted = 0
+	local had_armor = self:get_real_armor() > 0
 	-- For Grace Troll mutator (Hoppip's Reduced I-Frame Damage mod as toggle setting in mutator)
 	local reduced_iframe_mutator = managers.mutators:modify_value("PlayerDamage:ReducedIFrameDamage", false)
 	if reduced_iframe_mutator then
@@ -303,7 +304,6 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
 
 	-- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
-	local had_armor = self:get_real_armor() > 0
 	if had_armor and self:get_real_armor() <= 0 then
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
 			if disable_armor_break_grace then

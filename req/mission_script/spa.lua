@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
-local van_arrive_time = 60 + (is_pro_job and 30 or 0)
+local van_arrive_timer = 60 + (is_pro_job and 60 or 0)
+local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
 local rappel_far_spawn = {
 	values = {
 		interval = 10,
@@ -38,7 +38,7 @@ return {
 	-- add point of no return and disable endless assault
 	[100875] = {
 		ponr = { -- Set hunt, waiting for escape
-			length = 200,
+			length = 300,
 			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
 		},
 	},
@@ -48,29 +48,11 @@ return {
 		},
 	},
 	-- tweak van arrival timer
-	--[[
-	[101543] = {
-		values = {
-			time = van_arrive_time,
+	[100483] = {
+		on_executed = {
+			{ id = 100549, delay = van_arrive_timer, delay_rand = van_arrive_timer_random },
 		},
 	},
-	[101312] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	[101631] = {
-		values = {
-			time = van_arrive_time,
-		},
-	},
-	[101201] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	]]
-	--
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	[102139] = rappel_far_spawn,
