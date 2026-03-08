@@ -1608,9 +1608,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pm9.use_data.selection_index = 2
 	self.pm9.CLIP_AMMO_MAX = 25
 	self.pm9.stats.damage = 16
-	self.pm9.stats.spread = 14
-	self.pm9.stats.recoil = 20
-	self.pm9.stats.concealment = 26
+	self.pm9.stats.spread = 12
+	self.pm9.stats.recoil = 18
+	self.pm9.stats.concealment = 28
 	self.pm9.fire_mode_data.fire_rate = 60 / 1100
 	
 	-- Wasp
@@ -1656,7 +1656,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shepheard.CLIP_AMMO_MAX = 30
 	self.shepheard.stats.damage = 18
 	self.shepheard.stats.spread = 14
-	self.shepheard.stats.recoil = 18
+	self.shepheard.stats.recoil = 17
 	self.shepheard.stats.concealment = 24
 	self.shepheard.fire_mode_data.fire_rate = 60 / 800
 
@@ -1974,7 +1974,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- LMGs and Miniguns
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
-	self.m249.stats.damage = 20
+	self.m249.stats.damage = 18
 	self.m249.stats.spread = 10
 	self.m249.stats.recoil = 8
 	self.m249.stats.concealment = 10
@@ -1983,7 +1983,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Buzzsaw
 	self.mg42.CLIP_AMMO_MAX = 150
-	self.mg42.stats.damage = 20
+	self.mg42.stats.damage = 18
 	self.mg42.stats.spread = 10
 	self.mg42.stats.recoil = 8
 	self.mg42.stats.concealment = 10
@@ -1992,7 +1992,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Bootleg
 	self.tecci.categories = { "lmg" }
 	self.tecci.CLIP_AMMO_MAX = 100
-	self.tecci.stats.damage = 20
+	self.tecci.stats.damage = 18
 	self.tecci.stats.spread = 10
 	self.tecci.stats.recoil = 12
 	self.tecci.stats.concealment = 19
@@ -2001,7 +2001,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Campbell
 	self.kacchainsaw.CLIP_AMMO_MAX = 200
-	self.kacchainsaw.stats.damage = 20
+	self.kacchainsaw.stats.damage = 18
 	self.kacchainsaw.stats.spread = 10
 	self.kacchainsaw.stats.recoil = 8
 	self.kacchainsaw.stats.concealment = 14
