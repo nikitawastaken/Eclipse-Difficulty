@@ -1993,6 +1993,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "pl14_tactical")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"))
 
+	table.insert(self.weap_ids, "ak47_elite")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_ak47_elite/wpn_npc_ak47_elite"))
+
 	table.insert(self.weap_ids, "svd_dmr")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))
 end)

@@ -23,7 +23,7 @@ local roof_spawn = {
 		interval = 5,
 		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn = {
 	values = {

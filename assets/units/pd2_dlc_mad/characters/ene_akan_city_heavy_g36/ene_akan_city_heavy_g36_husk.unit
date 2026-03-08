@@ -86,7 +86,7 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >		
 			<var name="_tweak_table" value="city_heavy_swat" />
-			<var name="_default_weapon_id" value="ak47_ass" />
+			<var name="_default_weapon_id" value="ak47_elite" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />

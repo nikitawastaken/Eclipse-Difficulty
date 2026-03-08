@@ -45,8 +45,8 @@ end
 
 local steelsight_times = {
 	default = 0.3,
-	pistol = 0.15,
-	pistol_heavy = 0.2,
+	pistol = 0.2,
+	pistol_heavy = 0.25,
 	smg = 0.25,
 	dmr = 0.4,
 	snp = 0.45,
@@ -105,7 +105,9 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 				weap_data.pickup_mul = weap_data.pickup_mul or cat_map.dmr and 0.8 or 1
 				weap_data.shake.fire_multiplier = cat_map.dmr and 1.25 or 1
-
+				weap_data.max_nr_enemy_penetrations = cat_map.dmr and 1 or nil
+				weap_data.can_shoot_through_enemy = cat_map.dmr and true or nil
+				
 				if cat_map.dmr then
 					weap_data.FIRE_MODE = "single"
 					weap_data.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
@@ -450,6 +452,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.pickup_mul = weap_data.pickup_mul or 0.8
 				weap_data.total_ammo_scale = { 2, 3, 0.3625, 4 }
 				weap_data.pickup_scale = { 8, 6, 0.25, 4 }
+				weap_data.max_nr_enemy_penetrations = cat_map.dmr and 1 or nil
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
@@ -675,14 +678,19 @@ function WeaponTweakData:_init_weapons(overrides)
 			weap_data.damage_melee_effect_mul = 1
 			weap_data.damage_falloff = nil
 			weap_data.stance_multipliers = weap_data.stance_multipliers or nil
-			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil
-			weap_data.penetration_damage_mul = {
-				armor = 0.75,
-				enemy = 0.75,
-				wall = 0.5,
-				shield = 0.5,
+			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil		
+			weap_data.penetration = {
+				enemy = {
+					damage_mul = 0.75,
+				},
+				wall = {
+					damage_mul = 0.5,
+				},
+				shield = {
+					damage_mul = 0.5,
+				},				
 			}
-			
+
 			if weap_data.kick then
 				if is_turret then
 					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
@@ -2695,17 +2703,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.deagle_npc.usage = "is_revolver"
 	self.deagle_npc.anim_usage = "is_pistol"
 
-	self.ump_npc.sounds.prefix = self.schakal_crew.sounds.prefix
-
-	self.akmsu_smg_npc = copy_data(self.akmsu_smg_npc, self.mp5_npc, self.akmsu_crew)
-
-	self.vityaz_npc = copy_data(self.vityaz_npc, self.mp5_npc, self.vityaz_crew)
-
-	self.asval_smg_npc.sounds.prefix = "val_npc"
-	self.asval_smg_npc.muzzleflash_silenced = "effects/payday2/particles/weapons/9mm_auto_silence"
-
+	self.ump_npc = copy_data(self.ump_npc, self.mp5_npc, self.schakal_crew)
 	self.shepheard_npc = copy_data(self.shepheard_npc, self.mp5_npc, self.shepheard_crew)
+	self.vityaz_npc = copy_data(self.vityaz_npc, self.mp5_npc, self.vityaz_crew)
+	self.akmsu_smg_npc = copy_data(self.akmsu_smg_npc, self.mp5_npc, self.akmsu_crew)
+	self.akmsu_smg_npc.has_suppressor = nil
 
+	self.asval_smg_npc = copy_data(self.asval_smg_npc, self.mp5_tactical_npc, self.asval_crew)
+	self.asval_smg_npc.has_suppressor = "suppressed_a"
+	
 	self.mac11_npc.sounds.prefix = self.mac10_crew.sounds.prefix
 
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix

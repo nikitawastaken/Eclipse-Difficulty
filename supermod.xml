@@ -1570,6 +1570,13 @@
 				<file :name="wpn_npc_ak47.unit"/>
 			</group>
 
+			<group :name="wpn_npc_ak47_elite/">
+				<file :name="wpn_npc_ak47_elite.cooked_physics" />
+				<file :name="wpn_npc_ak47_elite.model"/>
+				<file :name="wpn_npc_ak47_elite.object"/>
+				<file :name="wpn_npc_ak47_elite.unit"/>
+			</group>
+
 			<group :name="wpn_npc_vityaz/">
 				<file :name="vityaz_df.texture" />
 				<file :name="vityaz_nm.texture" />
@@ -1578,6 +1585,13 @@
 				<file :name="wpn_npc_vityaz.model" />
 				<file :name="wpn_npc_vityaz.object" />
 				<file :name="wpn_npc_vityaz.unit"/>
+			</group>
+
+			<group :name="wpn_npc_akmsu/">
+				<file :name="wpn_npc_akmsu.cooked_physics" />
+				<file :name="wpn_npc_akmsu.model" />
+				<file :name="wpn_npc_akmsu.object" />
+				<file :name="wpn_npc_akmsu.unit"/>
 			</group>
 			
 			<group :name="wpn_npc_pl14_tactical/">
