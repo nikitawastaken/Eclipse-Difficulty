@@ -102,7 +102,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.max_nr_enemy_penetrations then
 			self._max_nr_enemy_penetrations = stats.max_nr_enemy_penetrations
 		end
-		
+
 		if stats.swap_speed_multiplier then
 			self._swap_speed_multiplier = self._swap_speed_multiplier * stats.swap_speed_multiplier
 		end
@@ -586,17 +586,17 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 
 		local max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
 		if max_nr_enemy_penetrations then
-			for _, category in ipairs(self:categories()) do		
+			for _, category in ipairs(self:categories()) do
 				max_nr_enemy_penetrations = max_nr_enemy_penetrations + managers.player:upgrade_value(category, "max_enemy_penetrations_addend", 1)
 			end
 		end
 
 		if self._penetration_data.enemy then
-			if self._enemy_penetrations > 1 then		
+			if self._enemy_penetrations > 1 then
 				if max_nr_enemy_penetrations and math.max(0, self._enemy_penetrations - 1) > max_nr_enemy_penetrations then
 					return 0
 				end
-			
+
 				local enemy_pen_mult = (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
 
 				multiplier = multiplier * enemy_pen_mult

@@ -2205,11 +2205,15 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 			end
 
 			local snp_total_ammo_mul, snp_pickup_mul = tweak_data.weapon:_calculate_snp_ammo_mul(damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
-			
+
 			self[factory_id].override[part_id].stats.damage = (self[factory_id].override[part_id].stats.damage or 0) + (part_damage or 0)
 			self[factory_id].override[part_id].custom_stats.ammo_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_max_mul or 1) * (damage_ratio or 1) * (snp_total_ammo_mul or 1)
-			self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul or 1) * (damage_ratio or 1) * (snp_pickup_mul or 1)
-			self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul or 1) * (damage_ratio or 1) * (snp_pickup_mul or 1)
+			self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul or 1)
+				* (damage_ratio or 1)
+				* (snp_pickup_mul or 1)
+			self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul or 1)
+				* (damage_ratio or 1)
+				* (snp_pickup_mul or 1)
 
 			if round_total_ammo then
 				local weap_total_ammo = weap_data.AMMO_MAX

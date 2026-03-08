@@ -76,7 +76,7 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 	self._hit_through_enemy = self._hit_through_enemy or col_ray.unit:in_slot(self.enemy_mask)
 	self._hit_through_wall = self._hit_through_wall or col_ray.unit:in_slot(self.wall_mask)
 	self._hit_through_shield = self._hit_through_shield or col_ray.unit:in_slot(self.wall_mask)
-	
+
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
@@ -106,6 +106,6 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 			multiplier = multiplier * shield_pen_mult
 		end
 	end
-	
+
 	return (1 - math.min(1, math.max(0, distance - self._damage_near * inc_range_mul) / (self._damage_far * inc_range_mul))) * damage * multiplier
 end

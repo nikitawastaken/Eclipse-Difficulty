@@ -476,7 +476,7 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 				break
 			elseif not can_shoot_through_wall and in_slot_func(unit, wall_mask) and (has_ray_type_func(hit.body, ai_vision_ids) or has_ray_type_func(hit.body, bulletproof_ids)) then
 				break
-			elseif hit.unit:in_slot(shield_mask) and no_penetration then 
+			elseif hit.unit:in_slot(shield_mask) and no_penetration then
 				break
 			end
 		end
