@@ -1,6 +1,7 @@
 local preferred = Eclipse.preferred
 local security_enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"
 local security = { enemy = security_enemy }
+local diff_i = Eclipse.utils.difficulty_index()
 local disabled = {
 	values = {
 		enabled = false,
@@ -77,6 +78,23 @@ return {
 		on_executed = {
 			{ id = 103216, delay = 0, delay_rand = 20 },
 			{ id = 103493, delay = 0, delay_rand = 20 },
+		},
+	},
+	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)
+	-- rest of the stuff are handled in instance
+	[100708] = {
+		values = {
+			trigger_times = 1,
+			enabled = diff_i >= 5 and true or false,
+		},
+		on_executed = {
+			{ id = 101160, remove = true },
+			{ id = 101161, delay = 60 },
+		},
+	},
+	[101162] = {
+		on_executed = {
+			{ id = 101161, delay = 240, delay_rand = 60 },
 		},
 	},
 	-- Don't kill off enemies in courtyard/patio
