@@ -27,6 +27,12 @@ local cloaker_spawn = {
 	},
 }
 return {
+	[102919] = { -- enable_safe_interaction_loud
+		ponr = {
+			length = 360,
+			length_balance_mul = { 1.25, 1.125, 1, 1 },
+		},
+	},
 	-- Combine some navigation areas
 	[101230] = {
 		ai_area = {
@@ -42,40 +48,49 @@ return {
 	[100109] = {
 		reinforce = { -- Police arrived
 			{
-				name = "patio",
-				force = 3,
-				position = Vector3(100, 3700, 0),
+				name = "kitchen",
+				force = 2,
+				position = Vector3(1900, 1000, 0),
+			},
+			{
+				name = "piano",
+				force = 2,
+				position = Vector3(-2000, -100, 0),
 			},
 			{
 				name = "stairs",
-				force = 3,
-				position = Vector3(25, 400, 0),
+				force = 2,
+				position = Vector3(75, 600, 0),
 			},
 			{
 				name = "fountain",
-				force = 4,
-				position = Vector3(0, -2130, -200),
+				force = 3,
+				position = Vector3(0, -1400, -200),
+			},
+			{
+				name = "patio",
+				force = 3,
+				position = Vector3(0, 3600, 0),
 			},
 		},
 		on_executed = { -- preferreds
 			{ id = 100830, delay = 30 },
 		},
 	},
-	--Delay sanctum preferreds
 	[103217] = {
 		reinforce = {
 			{
-				name = "sanctum_left",
+				name = "sanctum_entrance01",
 				force = 2,
-				position = Vector3(-1700, 5000, -275),
+				position = Vector3(-1125, 3350, 0),
 			},
 			{
-				name = "sanctum_right",
+				name = "sanctum_entrance02",
 				force = 2,
-				position = Vector3(2000, 4400, 0),
+				position = Vector3(2050, 3900, 0),
 			},
 		},
-		on_executed = {
+		on_executed = { -- Delay sanctum preferreds
 			{ id = 103216, delay = 0, delay_rand = 20 },
 			{ id = 103493, delay = 0, delay_rand = 20 },
 		},
@@ -100,10 +115,6 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
-	-- Disable preferred remove elements responsible for removing spawn groups in front of the mansion.
-	[100244] = disabled,
-	[102899] = disabled,
-	[103218] = disabled,
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100007] = roof_spawn,

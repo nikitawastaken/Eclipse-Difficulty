@@ -21,29 +21,32 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local building_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local warehouse_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Add new reinforce
 	[100109] = {
-		reinforce = { -- Police arrived
+		reinforce = { -- police
 			{
 				name = "shop_front01",
 				force = 3,
@@ -56,7 +59,7 @@ return {
 			},
 		},
 	},
-	[101198] = { -- warehouse door open
+	[101198] = { -- wearhouse_door_open
 		reinforce = {
 			{
 				name = "tea_shop",
@@ -65,13 +68,16 @@ return {
 			},
 		},
 	},
-	[101647] = { -- Dragon found, change reinfroce
+	[101647] = { -- artifact_found
+		ponr = {
+			length = 300,
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
 		reinforce = {
-			{ name = "shop_front1" },
-			{ name = "shop_front2" },
+			{ name = "shop_front02" },
 			{
 				name = "back_alley",
-				force = 2,
+				force = 3,
 				position = Vector3(-1400, 4900, 540),
 			},
 			{
@@ -187,9 +193,6 @@ return {
 	[400028] = scripted_swat_van_spawn,
 	[400035] = scripted_swat_van_spawn,
 	[400042] = scripted_swat_van_spawn,
-	[100131] = close_spawn,
-	[100132] = close_spawn,
-	[102713] = close_spawn,
 	[100133] = building_spawn,
 	[100692] = building_spawn,
 	[100694] = building_spawn,
@@ -202,4 +205,10 @@ return {
 	[100019] = warehouse_spawn,
 	[101201] = warehouse_spawn,
 	[101133] = warehouse_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
 }

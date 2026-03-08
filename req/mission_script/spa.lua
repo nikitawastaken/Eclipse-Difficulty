@@ -18,11 +18,23 @@ local rappel_init_spawn = {
 local rappel_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 return {
+	-- add point of no return and disable endless assault
+	[100875] = {
+		ponr = { -- Set hunt, waiting for escape
+			length = 300,
+			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
+		},
+	},
+	[100877] = {
+		values = {
+			enabled = false,
+		},
+	},
 	-- Combine some navigation areas
 	[100303] = {
 		ai_area = {
@@ -35,18 +47,6 @@ return {
 			{ 59, 168 },
 			{ 110, 64, 111 },
 			{ 63, 162 },
-		},
-	},
-	-- add point of no return and disable endless assault
-	[100875] = {
-		ponr = { -- Set hunt, waiting for escape
-			length = 300,
-			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
-		},
-	},
-	[100877] = {
-		values = {
-			enabled = false,
 		},
 	},
 	-- tweak van arrival timer

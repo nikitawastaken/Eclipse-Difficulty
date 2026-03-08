@@ -22,7 +22,7 @@ local rappel_spawn_far = {
 local rappel_spawn_close = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+		interval_balance_mul = { 2, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
