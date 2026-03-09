@@ -1,2 +1,2 @@
-SavefileManager.PROGRESS_SLOT = 042
-SavefileManager.BACKUP_SLOT = 042
+SavefileManager.PROGRESS_SLOT = 067
+SavefileManager.BACKUP_SLOT = 067
