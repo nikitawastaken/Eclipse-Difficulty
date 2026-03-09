@@ -40,6 +40,8 @@ M["levels/instances/unique/fex/fex_helicopter_backup/world/world"] = function(re
 			table.map_append(element.values, filter_disable)
 		elseif dozer_heli.dozer_spawns[id] then
 			element.values.enemy_table = bulldozers
+		elseif dozer_heli.swat_spawns[id] then
+			element.values.enemy = heavy_swat_sg
 		end
 	end
 end
