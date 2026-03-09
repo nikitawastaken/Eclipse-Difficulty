@@ -162,7 +162,7 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 	return self:_convert_add_to_mul(multiplier)
 end
 
--- Bandaid for removing team AI abilities/boosts
-function BlackMarketManager:verify_has_crew_skill() end
-
-function BlackMarketManager:verify_has_crew_ability() end
+-- set default throwable to be the cards
+Hooks:PostHook(BlackMarketManager, "_setup", "eclipse__setup", function(self)
+	self._defaults.grenade = "wpn_prj_ace"
+end)

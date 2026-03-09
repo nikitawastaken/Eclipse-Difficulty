@@ -1206,8 +1206,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Akron
 	self.hcar.categories = {
-		"dmr",
 		"assault_rifle",
+		"dmr",
 	}
 	self.hcar.CLIP_AMMO_MAX = 20
 	self.hcar.stats.damage = 64

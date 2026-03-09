@@ -2,7 +2,6 @@
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
-local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 
 local sniper = scripted_enemy.sniper
 
@@ -188,10 +187,8 @@ local spawnGroundSnipers = {
 local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_01",
 }
-
 local ground_sniper_delay = 30
-local ground_sniper_delay_rand = overkill_and_above and 60 or 90
-
+local ground_sniper_delay_rand = 30
 local optsrespawn_sniper_1 = {
 	on_executed = {
 		{ id = 400001, delay = ground_sniper_delay, delay_rand = ground_sniper_delay_rand },

@@ -1,3 +1,23 @@
+-- Auto Daily-Skin Dropper by Dr_Newbie (temporary workaround for the card drop issue caused by skin drops)
+Hooks:Add('MenuManagerOnOpenMenu', 'F_'..Idstring('MenuManagerOnOpenMenu:Auto Daily-Skin Dropper'):key(), function(self, menu)
+	if (menu == 'menu_main' or menu == 'lobby') and managers.network and managers.network.account then
+		DelayedCalls:Add('F_'..Idstring('DelayedCalls:Auto Daily-Skin Dropper'):key(), 1, function()
+			_G.DailySkinDrops = _G.DailySkinDrops or {}	
+			function DailySkinDrops:Ask()
+				if managers.network.account:inventory_reward(callback(DailySkinDrops, DailySkinDrops, "Result")) then
+					--True
+				else
+					--False
+				end
+			end
+			function DailySkinDrops:Result()
+				--Why?
+			end
+			DailySkinDrops:Ask()
+		end)
+	end
+end)
+
 --# selene: allow(mixed_table)
 function MenuCallbackHandler:is_contract_difficulty_allowed(item)
 	if not managers.menu:active_menu() then
@@ -24,7 +44,7 @@ function MenuCallbackHandler:is_contract_difficulty_allowed(item)
 	local plvl = managers.experience:current_level()
 	local level_lock = tweak_data.difficulty_level_locks[item:value()] or 0
 	local is_not_level_locked = plvl >= level_lock
-	return is_not_level_locked and managers.job:get_max_jc_for_player() >= math.clamp(job_jc + difficulty_jc, 0, 100)
+	return is_not_level_locked
 end
 
 function MenuCrimeNetFiltersInitiator:update_node(node)
@@ -458,4 +478,23 @@ function MenuCallbackHandler:max_masks()
 			end
 		end
 	end
+end
+
+-- remove the functionality of pro jobs disabling level restarts
+function MenuCallbackHandler:_restart_level_visible()
+	if not self:is_multiplayer() or managers.job:stage_success() then
+		return false
+	end
+
+	-- if self:is_prof_job() then
+	-- 	return false
+	-- end
+
+	local state = game_state_machine:current_state_name()
+
+	return state ~= "ingame_waiting_for_players" and state ~= "ingame_lobby_menu" and state ~= "empty"
+end
+
+function MenuCallbackHandler:singleplayer_restart()
+	return self:is_singleplayer() and self:has_full_game() --[[and self:is_normal_job()]] and not managers.job:stage_success()
 end
