@@ -1,8 +1,8 @@
 -- Auto Daily-Skin Dropper by Dr_Newbie (temporary workaround for the card drop issue caused by skin drops)
-Hooks:Add('MenuManagerOnOpenMenu', 'F_'..Idstring('MenuManagerOnOpenMenu:Auto Daily-Skin Dropper'):key(), function(self, menu)
-	if (menu == 'menu_main' or menu == 'lobby') and managers.network and managers.network.account then
-		DelayedCalls:Add('F_'..Idstring('DelayedCalls:Auto Daily-Skin Dropper'):key(), 1, function()
-			_G.DailySkinDrops = _G.DailySkinDrops or {}	
+Hooks:Add("MenuManagerOnOpenMenu", "F_" .. Idstring("MenuManagerOnOpenMenu:Auto Daily-Skin Dropper"):key(), function(self, menu)
+	if (menu == "menu_main" or menu == "lobby") and managers.network and managers.network.account then
+		DelayedCalls:Add("F_" .. Idstring("DelayedCalls:Auto Daily-Skin Dropper"):key(), 1, function()
+			_G.DailySkinDrops = _G.DailySkinDrops or {}
 			function DailySkinDrops:Ask()
 				if managers.network.account:inventory_reward(callback(DailySkinDrops, DailySkinDrops, "Result")) then
 					--True
@@ -496,5 +496,7 @@ function MenuCallbackHandler:_restart_level_visible()
 end
 
 function MenuCallbackHandler:singleplayer_restart()
-	return self:is_singleplayer() and self:has_full_game() --[[and self:is_normal_job()]] and not managers.job:stage_success()
+	return self:is_singleplayer()
+		and self:has_full_game() --[[and self:is_normal_job()]]
+		and not managers.job:stage_success()
 end

@@ -319,7 +319,7 @@ local exp_step_curve = 1.5
 
 for i = exp_step_start, exp_step_end do
 	tweak_data.experience_manager.levels[i] = {
-		points = math.round((500000 - exp_step_last_points) * math.pow(exp_step * (i - exp_step_start), exp_step_curve) + exp_step_last_points) * multiplier
+		points = math.round((500000 - exp_step_last_points) * math.pow(exp_step * (i - exp_step_start), exp_step_curve) + exp_step_last_points) * multiplier,
 	}
 end
 
@@ -362,7 +362,7 @@ tweak_data.experience_manager.loot_drop_value = {
 	xp90 = 384000,
 	xp100 = 512000,
 	xp_pda9_1 = 250000,
-	xp_pda9_2 = 3000000
+	xp_pda9_2 = 3000000,
 }
 
 -- Remove alive player multipliers, there's already a strong penalty for the player in custody
@@ -382,7 +382,6 @@ tweak_data.experience_manager.day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 
 tweak_data:digest_recursive(tweak_data.experience_manager)
-
 
 -- misc
 -- Python code for matplotlibing experience graphs

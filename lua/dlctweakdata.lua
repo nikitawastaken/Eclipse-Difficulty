@@ -15,28 +15,28 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 		{
 			type_items = "materials",
 			item_entry = "solid_flat_red",
-			amount = 1
+			amount = 1,
 		},
 		{
 			type_items = "materials",
 			item_entry = "solid_flat_black",
-			amount = 1
+			amount = 1,
 		},
 		{
 			type_items = "textures",
 			item_entry = "fan",
-			amount = 1
+			amount = 1,
 		},
 		{
 			type_items = "masks",
 			item_entry = "skull",
-			amount = 1
+			amount = 1,
 		},
 		{
 			type_items = "weapon_mods",
 			item_entry = "wpn_fps_upg_o_aimpoint_2",
-			amount = 1
-		}
+			amount = 1,
+		},
 	}
 
 	-- don't give a bunch of stuff by default at level 0

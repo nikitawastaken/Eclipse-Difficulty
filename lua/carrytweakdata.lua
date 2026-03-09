@@ -8,7 +8,7 @@ Hooks:PostHook(CarryTweakData, "init", "eclipse_init", function(self)
 	-- Bag value fixes
 	self.diamonds_dah.bag_value = "diamonds_dah"
 	self.goat.bag_value = "goat"
-		
+
 	-- Change the weight of specific loot types
 	self.ranc_weapon.type = "medium"
 end)

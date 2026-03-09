@@ -397,7 +397,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.bph.group_ai_settings.difficulty_scaling = { assault_delay = 15 }
-	
+
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.8,
@@ -482,8 +482,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.has_megaphone_cop = true
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
-	
-	-- stealth bonus changes 
+
+	-- stealth bonus changes
 	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
 	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
 	-- low risk heists
@@ -509,7 +509,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
 	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
 	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
-	
+
 	-- multi day heists
 	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
 	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
@@ -523,7 +523,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- Firestarter (5% in day 2 and 10% for day 3)
 	self.firestarter_2.ghost_bonus = 0.05
 	self.firestarter_3.ghost_bonus = 0.1
-	
+
 	-- heists that shouldn't have stealth bonus (they're not possible to beat)
 	self.nmh.ghost_bonus = nil
 

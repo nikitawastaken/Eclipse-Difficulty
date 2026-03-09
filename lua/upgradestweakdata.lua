@@ -151,12 +151,11 @@ function UpgradesTweakData:init(tweak_data)
 				"shock",
 				"fear",
 				"chac",
-				"funder_strike"
-			}
+				"funder_strike",
+			},
 		},
 		{ -- skip level 1, it's reached too fast
-			upgrades = {
-			}
+			upgrades = {},
 		},
 		{
 			name_id = "weapons",
@@ -165,29 +164,29 @@ function UpgradesTweakData:init(tweak_data)
 				"pl14",
 				"packrat",
 				"holt",
-				"g26"
-			}
+				"g26",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"m1928",
-				"mac10"
-			}
+				"mac10",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"ak74",
 				"new_m4",
-				"g36"
-			}
+				"g36",
+			},
 		},
 		{ -- lvl 5
 			name_id = "body_armor",
 			upgrades = {
 				"body_armor1",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -196,22 +195,22 @@ function UpgradesTweakData:init(tweak_data)
 				"frag_com",
 				"dada_com",
 				"dynamite",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"p90",
-				"cobray"
-			}
+				"cobray",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"ksg",
 				"r870",
-				"m590"
-			}
+				"m590",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -219,48 +218,48 @@ function UpgradesTweakData:init(tweak_data)
 				"g22c",
 				"p226",
 				"hs2000",
-				"sparrow"
-			}
+				"sparrow",
+			},
 		},
 		{ -- lvl 10
 			name_id = "body_armor",
 			upgrades = {
 				"body_armor2",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"m16",
-				"akm"
-			}
+				"akm",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
-				"wpn_prj_four"
-			}
+				"wpn_prj_four",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"s552",
-				"aug"
-			}
+				"aug",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"new_raging_bull",
 				"chinchilla",
-				"model3"
-			}
+				"model3",
+			},
 		},
 		{ -- lvl 15
 			name_id = "body_armor",
 			upgrades = {
 				"body_armor3",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -268,42 +267,42 @@ function UpgradesTweakData:init(tweak_data)
 				"vhs",
 				"corgi",
 				"hajk",
-				"ak5"
-			}
+				"ak5",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"new_mp5",
-				"mp7"
-			}
+				"mp7",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
-				"molotov"
-			}
+				"molotov",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"huntsman",
 				"boot",
-				"b682"
-			}
+				"b682",
+			},
 		},
 		{ -- lvl 20
 			name_id = "body_armor",
 			upgrades = {
 				"body_armor4",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"judge",
-				"serbu"
-			}
+				"serbu",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -311,21 +310,21 @@ function UpgradesTweakData:init(tweak_data)
 				"usp",
 				"ppk",
 				"breech",
-				"shrew"
-			}
+				"shrew",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"mateba",
-				"korth"
-			}
+				"korth",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
-				"wpn_prj_hur"
-			}
+				"wpn_prj_hur",
+			},
 		},
 		{ -- lvl 25
 			name_id = "body_armor",
@@ -333,8 +332,8 @@ function UpgradesTweakData:init(tweak_data)
 				"body_armor5",
 				"spas12",
 				"benelli",
-				"ultima"
-			}
+				"ultima",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -342,43 +341,43 @@ function UpgradesTweakData:init(tweak_data)
 				"scar",
 				"fal",
 				"galil",
-				"g3"
-			}
+				"g3",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"olympic",
-				"famas"
-			}
+				"famas",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"l85a2",
-				"asval"
-			}
+				"asval",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"flint",
-				"tkb"
-			}
+				"tkb",
+			},
 		},
 		{ -- lvl 30
 			name_id = "weapons",
 			upgrades = {
 				"coach",
-				"concussion"
-			}
+				"concussion",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"new_m14",
-				"shak12"
-			}
+				"shak12",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -389,7 +388,7 @@ function UpgradesTweakData:init(tweak_data)
 				"fmg9",
 				"sr2",
 				"baka",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -397,7 +396,7 @@ function UpgradesTweakData:init(tweak_data)
 				"m249",
 				"tecci",
 				"mg42",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -405,14 +404,14 @@ function UpgradesTweakData:init(tweak_data)
 				"lemming",
 				"peacemaker",
 				"rsh12",
-			}
+			},
 		},
 		{ -- lvl 35
 			name_id = "weapons",
 			upgrades = {
 				"shepheard",
 				"coal",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -420,7 +419,7 @@ function UpgradesTweakData:init(tweak_data)
 				"ching",
 				"sub2000",
 				"wpn_prj_jav",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -428,7 +427,7 @@ function UpgradesTweakData:init(tweak_data)
 				"r700",
 				"msr",
 				"winchester1874",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -436,8 +435,8 @@ function UpgradesTweakData:init(tweak_data)
 				"glock_18c",
 				"beer",
 				"czech",
-				"stech"
-			}
+				"stech",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -445,49 +444,49 @@ function UpgradesTweakData:init(tweak_data)
 				"saiga",
 				"aa12",
 				"sko12",
-			}
+			},
 		},
 		{ -- lvl 40
 			name_id = "weapons",
 			upgrades = {
 				"gre_m79",
 				"slap",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"par",
 				"hk21",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"sbl",
 				"fir_com",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"colt_1911",
 				"m1911",
-				"type54"
-			}
+				"type54",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"basset",
 				"striker",
-			}
+			},
 		},
 		{ -- lvl 45
 			name_id = "weapons",
 			upgrades = {
 				"china",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -496,7 +495,7 @@ function UpgradesTweakData:init(tweak_data)
 				"mosin",
 				"model70",
 				"desertfox",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -509,15 +508,15 @@ function UpgradesTweakData:init(tweak_data)
 				"x_packrat",
 				"x_g22c",
 				"x_g18c",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"komodo",
 				"akmsu",
-				"wpn_gre_electric"
-			}
+				"wpn_gre_electric",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -525,27 +524,27 @@ function UpgradesTweakData:init(tweak_data)
 				"erma",
 				"sterling",
 				"schakal",
-			}
+			},
 		},
 		{ -- lvl 50
 			name_id = "weapons",
 			upgrades = {
 				"ms3gl",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"rpk",
 				"hk51b",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"m45",
 				"uzi",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -554,7 +553,7 @@ function UpgradesTweakData:init(tweak_data)
 				"siltstone",
 				"qbu88",
 				"wa2000",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -562,28 +561,28 @@ function UpgradesTweakData:init(tweak_data)
 				"legacy",
 				"c96",
 				"maxim9",
-			}
+			},
 		},
 		{ -- lvl 55
 			name_id = "weapons",
 			upgrades = {
 				"contraband",
 				"groza",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"deagle",
 				"sticky_grenade",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"supernova",
 				"m1897",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -591,54 +590,54 @@ function UpgradesTweakData:init(tweak_data)
 				"polymer",
 				"vityaz",
 				"pm9",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"m37",
 				"rota",
-			}
+			},
 		},
 		{ -- lvl 60
 			name_id = "weapons",
 			upgrades = {
 				"m32",
 				"arbiter",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"scout",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"hcar",
 				"poison_gas_grenade",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"arblast",
 				"long",
-				"elastic"
-			}
+				"elastic",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"awp",
-			}
+			},
 		},
 		{ -- lvl 65
 			name_id = "weapons",
 			upgrades = {
 				"hunter",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
@@ -647,76 +646,76 @@ function UpgradesTweakData:init(tweak_data)
 				"x_deagle",
 				"x_model3",
 				"poison_gas_grenade",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"plainsrider",
 				"ecp",
-				"frankish"
-			}
+				"frankish",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"m60",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"flamethrower_mk2",
-			}
+			},
 		},
 		{ -- lvl 70
 			name_id = "weapons",
 			upgrades = {
 				"m95",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"system",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"shuno",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"x_judge",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"hailstorm",
-			}
+			},
 		},
 		{ -- lvl 75
 			name_id = "weapons",
 			upgrades = {
 				"kacchainsaw",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"ray",
-			}
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"contender",
-				"victor"
-			}
+				"victor",
+			},
 		},
 		{
 			name_id = "weapons",
@@ -726,27 +725,27 @@ function UpgradesTweakData:init(tweak_data)
 				"x_sr2",
 				"x_olympic",
 				"x_mp5",
-				"x_baka"
-			}
+				"x_baka",
+			},
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"rpg7",
-			}
+			},
 		},
 		{ -- lvl 80
 			name_id = "weapons",
 			upgrades = {
 				"m134",
-			}
+			},
 		},
 		[100] = {
 			name_id = "weapons",
 			upgrades = {
 				"akm_gold",
-			}
-		}
+			},
+		},
 	}
 
 	-- Weapons

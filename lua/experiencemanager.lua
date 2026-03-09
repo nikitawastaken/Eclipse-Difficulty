@@ -13,7 +13,8 @@ function ExperienceManager:get_xp_by_params(params)
 	local level_id = params.level_id or false
 	local ignore_heat = params.ignore_heat
 	local current_job_stage = params.current_stage or 1
-	local days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
+	local days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage)
+		or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
 	local pro_job_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_job_multiplier") or 1
 	local ghost_multiplier = 1 + (managers.job:get_ghost_bonus() or 0)
 	local total_stars = math.min(job_stars, player_stars)
@@ -65,13 +66,14 @@ function ExperienceManager:get_xp_by_params(params)
 	days_dissect = math.round(base_xp * days_multiplier - base_xp)
 	local is_level_limited = player_stars < job_stars
 
---[[if is_level_limited then
+	--[[if is_level_limited then
 		local diff_in_stars = job_stars - player_stars
 		local tweak_multiplier = tweak_data:get_value("experience_manager", "level_limit", "pc_difference_multipliers", diff_in_stars) or 0
 		local old_base_xp = base_xp
 		base_xp = math.round(base_xp * tweak_multiplier)
 		level_limit_dissect = base_xp - old_base_xp
-	end ]]--
+	end ]]
+	--
 
 	contract_xp = base_xp
 	risk_dissect = math.round(contract_xp * xp_multiplier)
@@ -135,11 +137,26 @@ function ExperienceManager:get_xp_by_params(params)
 		job_xp = math.round(job_xp_dissect),
 		base = math.round(base_xp),
 		total = math.round(total_xp),
-		last_stage = on_last_stage
+		last_stage = on_last_stage,
 	}
 
 	if Application:production_build() then
-		local rounding_error = dissection_table.total - (dissection_table.stage_xp + dissection_table.job_xp + dissection_table.bonus_risk + dissection_table.bonus_num_players + dissection_table.bonus_failed + dissection_table.bonus_skill + dissection_table.bonus_days + dissection_table.heat_xp + dissection_table.bonus_infamy + dissection_table.bonus_ghost + dissection_table.bonus_gage_assignment + dissection_table.bonus_mission_xp + dissection_table.bonus_low_level)
+		local rounding_error = dissection_table.total
+			- (
+				dissection_table.stage_xp
+				+ dissection_table.job_xp
+				+ dissection_table.bonus_risk
+				+ dissection_table.bonus_num_players
+				+ dissection_table.bonus_failed
+				+ dissection_table.bonus_skill
+				+ dissection_table.bonus_days
+				+ dissection_table.heat_xp
+				+ dissection_table.bonus_infamy
+				+ dissection_table.bonus_ghost
+				+ dissection_table.bonus_gage_assignment
+				+ dissection_table.bonus_mission_xp
+				+ dissection_table.bonus_low_level
+			)
 		dissection_table.rounding_error = rounding_error
 	else
 		dissection_table.rounding_error = 0

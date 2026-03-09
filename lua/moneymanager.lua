@@ -87,7 +87,11 @@ end
 function MoneyManager:get_money_by_params(params)
 	local is_pro_job = Eclipse.utils.is_pro_job()
 	local pro_mul = 1
-	if is_pro_job then pro_mul = 1.2 else pro_mul = 1 end
+	if is_pro_job then
+		pro_mul = 1.2
+	else
+		pro_mul = 1
+	end
 	local job_id = params.job_id
 	local job_stars = params.job_stars or 0
 	local difficulty_stars = params.difficulty_stars or params.risk_stars or 0
@@ -231,13 +235,13 @@ function MoneyManager:get_money_by_params(params)
 			job_risk = job_risk,
 			bag_risk = bag_risk,
 			vehicle_risk = vehicle_risk,
-			small_risk = small_risk
+			small_risk = small_risk,
 		},
 		{
 			job_base_payout = base_static_value,
-			job_risk_payout = risk_static_value
+			job_risk_payout = risk_static_value,
 		},
-		mutators_reduction
+		mutators_reduction,
 	}
 
 	return unpack(ret)

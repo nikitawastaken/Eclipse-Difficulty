@@ -24,7 +24,7 @@ local M = {
 	mallcrasher = "slightly_very_common",
 	ukrainian_job = "slightly_very_common",
 	ukrainian_job_prof = "slightly_very_common",
-	
+
 	arm_cro = "common",
 	arm_fac = "common",
 	arm_hcm = "common",
@@ -47,7 +47,7 @@ local M = {
 	skm_mallcrasher = "common",
 	skm_mus = "common",
 	skm_watchdogs_stage2 = "common",
-	
+
 	bex = "slightly_rare",
 	chas = "slightly_rare",
 	dark = "slightly_rare",
@@ -63,7 +63,7 @@ local M = {
 	watchdogs = "slightly_rare",
 	watchdogs_night = "slightly_rare",
 	watchdogs_wrapper = "slightly_rare",
-	
+
 	alex = "rare",
 	born = "rare",
 	brb = "rare",
@@ -79,7 +79,7 @@ local M = {
 	sah = "rare",
 	tag = "rare",
 	wwh = "rare",
-	
+
 	arena = "slightly_very_rare",
 	big = "slightly_very_rare",
 	bph = "slightly_very_rare",
@@ -100,7 +100,7 @@ local M = {
 	red2 = "slightly_very_rare",
 	run = "slightly_very_rare",
 	trai = "slightly_very_rare",
-	
+
 	arm_for = "very_rare",
 	des = "very_rare",
 	corp = "very_rare",
@@ -119,7 +119,7 @@ local M = {
 	welcome_to_the_jungle_night_prof = "very_rare",
 	welcome_to_the_jungle_wrapper = "very_rare",
 	welcome_to_the_jungle_wrapper_prof = "very_rare",
-	
+
 	deep = "extremely_rare",
 	vit = "extremely_rare",
 }

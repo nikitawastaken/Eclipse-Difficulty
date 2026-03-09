@@ -16,16 +16,16 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 			jcs = {
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -33,8 +33,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -43,8 +43,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -54,8 +54,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -66,8 +66,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -79,8 +79,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -93,8 +93,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -107,8 +107,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
+				10,
+			},
 		},
 		{
 			jcs = {
@@ -121,11 +121,11 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 				40,
 				30,
 				20,
-				10
-			}
-		}
+				10,
+			},
+		},
 	}
-	
+
 	--Improve crime.net vids on some of the heists
 	--The Dentist's heists
 	self.jobs.mia.crimenet_videos = {
@@ -268,10 +268,10 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 
 	--fix Ukrainian Prisoner using Vlad's codex for some reason
 	self.jobs.sand.crimenet_videos = { "codex/jiufeng1" }
-	
+
 	for k, v in pairs(self.jobs) do
 		local heist_preset = self.heist_jc_presets[k]
-		
+
 		if v.jc and heist_preset then
 			v.jc = self.jc_presets[heist_preset] or v.jc
 		end

@@ -21,7 +21,7 @@ function DescriptionItem:init(panel, text, i, saved_descriptions)
 		text = managers.localization:to_upper_text(name_id),
 		font_size = tweak_data.menu.pd2_medium_font_size,
 		font = tweak_data.menu.pd2_medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local x, y, w, h = title_text:text_rect()
 
@@ -37,7 +37,7 @@ function DescriptionItem:init(panel, text, i, saved_descriptions)
 			text = managers.localization:to_upper_text("cn_menu_pro_job"),
 			font_size = tweak_data.menu.pd2_medium_font_size,
 			font = tweak_data.menu.pd2_medium_font,
-			color = tweak_data.screen_colors.pro_color
+			color = tweak_data.screen_colors.pro_color,
 		})
 		local x, y, w, h = pro_text:text_rect()
 
@@ -47,7 +47,7 @@ function DescriptionItem:init(panel, text, i, saved_descriptions)
 
 	self._scroll_panel = self._panel:panel({
 		x = 10,
-		y = title_text:bottom()
+		y = title_text:bottom(),
 	})
 
 	self._scroll_panel:grow(-self._scroll_panel:x() - 10, -self._scroll_panel:y())
@@ -70,7 +70,7 @@ function DescriptionItem:init(panel, text, i, saved_descriptions)
 		text = desc_string,
 		font_size = tweak_data.menu.pd2_small_font_size,
 		font = tweak_data.menu.pd2_small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	if saved_descriptions then
@@ -86,7 +86,7 @@ function DescriptionItem:init(panel, text, i, saved_descriptions)
 	self:_chk_add_scrolling()
 
 	if managers.skirmish:is_weekly_skirmish() then
-		managers.network:add_event_listener({}, "on_set_dropin", function ()
+		managers.network:add_event_listener({}, "on_set_dropin", function()
 			self:add_description_text("\n##" .. managers.localization:text("menu_weekly_skirmish_dropin_warning") .. "##")
 		end)
 	end
