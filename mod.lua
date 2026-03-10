@@ -62,18 +62,18 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-	function Eclipse:log_console(...)
+	function Eclipse:log_console(str, ...)
 		if self.logging then
-			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
+			log("[EclipseOverhaul] " .. str:format(...))
 		end
 	end
 
-	function Eclipse:warn_console(...)
-		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
+	function Eclipse:warn_console(str, ...)
+		log("[EclipseOverhaul][Warning] " .. str:format(...))
 	end
 
-	function Eclipse:error_console(...)
-		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
+	function Eclipse:error_console(str, ...)
+		log("[EclipseOverhaul][Error] " .. str:format(...))
 	end
 
 	function Eclipse:log_chat(...)
