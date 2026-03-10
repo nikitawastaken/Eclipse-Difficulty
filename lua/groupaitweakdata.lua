@@ -3191,15 +3191,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 					-- 	Utils.PrintTable(assault_state.assault.force_pool)
 					-- end
 				end
-
-				if assault_state.assault.spawn_rate then
-					assault_state.assault.spawn_rate = table_multiplier(assault_state.assault.spawn_rate, level_settings.spawn_rate_mul or 1)
-
-					-- if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
-					-- 	Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
-					-- 	Utils.PrintTable(assault_state.assault.spawnrate)
-					-- end
-				end
 			end
 
 			if assault_state.recon then
@@ -3427,13 +3418,33 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		5,
 	})
 
-	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
-		{ 3, 2.5, 2 },
-		{ 3, 2.5, 2 },
-		{ 2.75, 2.25, 1.75 },
-		{ 2.75, 2.25, 1.75 },
-		{ 2.5, 2, 1.5 },
+	local spawn_rater_regular = get_difficulty_specific_value({
+		2,
+		2,
+		1.8,
+		1.8,
+		1.6,
 	})
+	local spawn_rate_fast = get_difficulty_specific_value({
+		1.6,
+		1.6,
+		1.3,
+		1.3,
+		1,
+	})
+	
+	self.besiege.assault.spawn_rate = {
+		regular = {
+			spawn_rater_regular * 1.5,
+			spawn_rater_regular * 1.25,
+			spawn_rater_regular * 1,
+		},
+		fast = {
+			spawn_rate_fast * 1.5,
+			spawn_rate_fast * 1.25,
+			spawn_rate_fast * 1,
+		},
+	}
 	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
 	local spawn_rate_entry
 	for i = 0, 21, 1 do

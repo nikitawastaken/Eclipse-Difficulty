@@ -63,7 +63,7 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul)
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul, tweak_data.drama.team_ai_drama_balance_mul_weight)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
