@@ -48,13 +48,11 @@ local blockade_enemy2 = {
 	enemy = is_eclipse_pro and elite_shield or shield,
 }
 local heli_enemy1 = {
-	values = {
-		enemy = taser,
-	},
+	enemy = taser,
 }
 local heli_enemy2 = {
+	enemy = is_eclipse_pro and elite_bulldozer or bulldozer,
 	values = {
-		enemy = is_eclipse_pro and elite_bulldozer or bulldozer,
 		trigger_times = 0,
 	},
 }
