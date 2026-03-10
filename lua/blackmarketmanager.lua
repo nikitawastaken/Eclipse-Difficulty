@@ -166,3 +166,8 @@ end
 Hooks:PostHook(BlackMarketManager, "_setup", "eclipse__setup", function(self)
 	self._defaults.grenade = "wpn_prj_ace"
 end)
+
+-- Bandaid for removing team AI abilities/boosts
+function BlackMarketManager:verify_has_crew_skill() end
+
+function BlackMarketManager:verify_has_crew_ability() end
