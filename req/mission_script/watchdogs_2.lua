@@ -42,14 +42,10 @@ local no_participate_to_group_ai = {
 	},
 }
 local blockade_enemy1 = {
-	values = {
-		enemy = is_eclipse and elite_bulldozer or bulldozer,
-	},
+	enemy = is_eclipse and elite_bulldozer or bulldozer,
 }
 local blockade_enemy2 = {
-	values = {
-		enemy = is_eclipse_pro and elite_shield or shield,
-	},
+	enemy = is_eclipse_pro and elite_shield or shield,
 }
 local heli_enemy1 = {
 	values = {
