@@ -67,7 +67,7 @@ local optsSniperAmbush_4 = {
 	enabled = is_eclipse_pro,
 }
 local optsSniper_escape = {
-	enemy = is_eclipse and elite_sniper or sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400060, delay = 0 },
 	},
