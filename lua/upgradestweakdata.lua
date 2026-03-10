@@ -1812,6 +1812,17 @@ function UpgradesTweakData:init(tweak_data)
 	-- ECM Blackout
 	self.values.ecm_jammer.quantity[1] = 2
 	self.ecm_jammer_comms_jamming_multiplier = 0.2
+	self.values.ecm_jammer.blocks_snipers = { true }
+	self.definitions.ecm_jammer_blocks_snipers = {
+		name_id = "menu_ecm_jammer_blocks_snipers",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "blocks_snipers",
+			synced = true,
+			category = "ecm_jammer",
+		},
+	}
 	self.values.ecm_jammer.affects_police_comms = { true }
 	self.definitions.ecm_jammer_affects_police_comms = {
 		name_id = "menu_ecm_jammer_affects_police_comms",

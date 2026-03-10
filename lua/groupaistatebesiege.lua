@@ -164,6 +164,11 @@ function GroupAIStateBesiege:besiege_assault_phase()
 	return task_data and task_data.phase
 end
 
+function GroupAIStateBesiege:_active_ecm_sniper_block()
+	local is_active = self:is_ecm_jammer_active("block_snipers")
+	return is_active
+end
+
 function GroupAIStateBesiege:_active_ecm_police_comms_jamm()
 	local is_active = self:is_ecm_jammer_active("police_comms")
 	return is_active, 1 / tweak_data.upgrades.ecm_jammer_comms_jamming_multiplier

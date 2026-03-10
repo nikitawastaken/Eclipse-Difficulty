@@ -10,18 +10,20 @@ function ECMJammerBase:set_active(active)
 
 		if active then
 			self._alert_filter = self:owner():movement():SO_access()
-			local jam_cameras, jam_pagers, jam_police_comms = nil
+			local jam_cameras, jam_pagers, jam_police_comms, block_snipers = nil
 
 			if self._owner_id == 1 then
 				jam_cameras = managers.player:has_category_upgrade("ecm_jammer", "affects_cameras")
 				jam_pagers = managers.player:has_category_upgrade("ecm_jammer", "affects_pagers")
 				jam_police_comms = managers.player:has_category_upgrade("ecm_jammer", "affects_police_comms")
+				block_snipers = managers.player:has_category_upgrade("ecm_jammer", "blocks_snipers")
 
 				self:contour_interaction()
 			else
 				jam_cameras = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_cameras")
 				jam_pagers = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_pagers")
 				jam_police_comms = owner_base and owner_base:upgrade_value("ecm_jammer", "affects_police_comms")
+				block_snipers = owner_base and owner_base:upgrade_value("ecm_jammer", "blocks_snipers")
 			end
 
 			managers.groupai:state():register_ecm_jammer(self._unit, {
@@ -29,6 +31,7 @@ function ECMJammerBase:set_active(active)
 				camera = jam_cameras,
 				pager = jam_pagers,
 				police_comms = jam_police_comms,
+				block_snipers = block_snipers,
 			})
 
 			self:_send_net_event(self._NET_EVENTS.jammer_active)

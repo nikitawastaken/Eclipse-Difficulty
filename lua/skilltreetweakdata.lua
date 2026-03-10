@@ -365,7 +365,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.jail_workout.desc_id = "menu_sixth_sense_desc"
 
 	-- ECM Blackout
-	self.skills.ecm_2x[1].upgrades = { "ecm_jammer_quantity_increase_1" }
+	self.skills.ecm_2x[1].upgrades = { "ecm_jammer_quantity_increase_1", "ecm_jammer_blocks_snipers" }
 	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_affects_police_comms" }
 	self.skills.ecm_2x.icon_xy = { 6, 3 }
 	self.skills.ecm_2x.name_id = "menu_ecm_blackout"
