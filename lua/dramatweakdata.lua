@@ -10,5 +10,5 @@ function DramaTweakData:init()
 	self.low = 0.1
 	self.peak = 1
 	self.assault_fade_end = 0.15
-	self.spawn_rate_scaling  = { 0.1, 0.4 }
+	self.spawn_rate_scaling = { 0.1, 0.4 }
 end

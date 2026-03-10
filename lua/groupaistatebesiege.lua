@@ -1176,9 +1176,9 @@ end
 function GroupAIStateBesiege:spawn_rate()
 	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
 	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
-	
+
 	local function get_drama_spawn_rate_entry(k)
-		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k]) 
+		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
 	end
 
 	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight)
@@ -1188,19 +1188,19 @@ function GroupAIStateBesiege:spawn_rate()
 		get_drama_spawn_rate_entry(3),
 	} or regular_spawnrate_tbl
 
---	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
-	
+	--	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
+
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
 
---[[
+	--[[
 	if self._task_data.assault.phase == "sustain" then
 		Eclipse:log_chat("Spawn rate for drama value " .. self._drama_data.amount .. " set to " .. self:_get_difficulty_dependent_value(spawn_rate))
 	else
 		Eclipse:log_chat("Current phase is not sustain, so no drama-based spawnrate.")
 	end
 ]]
-	
+
 	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
 end
 

@@ -3432,7 +3432,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		1.3,
 		1,
 	})
-	
+
 	self.besiege.assault.spawn_rate = {
 		regular = {
 			spawn_rater_regular * 1.5,
