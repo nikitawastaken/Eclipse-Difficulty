@@ -21,7 +21,7 @@ Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
 			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
 		end
 
-		self._listener_holder:add("on_revive_interaction_success", {
+		self._listener_holder:add("on_revive_interaction_success_revive_health_regen", {
 			"on_revive_interaction_success",
 		}, on_revive_interaction_success)
 	end
