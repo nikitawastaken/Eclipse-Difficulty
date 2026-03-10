@@ -561,14 +561,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	end
 
 	local team_ai_hp = get_difficulty_specific_value({
-		64,
-		64,
-		96,
-		128,
-		160,
+		60,
+		90,
+		120,
+		180,
+		240,
 	})
 
-	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.6 or 1) * (Keepers and 0.8 or 1)
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
 	presets.gang_member_damage.REGENERATE_RATIO = 1 / 50
 	presets.gang_member_damage.REGENERATE_TIME = 1
