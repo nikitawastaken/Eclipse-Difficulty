@@ -37,6 +37,21 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 		element._values.interval_reference = data.interval
 		element._values.interval = nil
 	end
+
+	-- ASS edits
+	if data.chance and element._chance then
+		element._chance = data.chance
+	end
+
+	-- We love spawn group elements
+	local group_data = element._group_data
+	if group_data then
+		group_data.amount = data.amount or group_data.amount
+		group_data.spawn_type = data.spawn_type or group_data.spawn_type
+		if data.ignore_disabled ~= nil then
+			group_data.ignore_disabled = data.ignore_disabled
+		end
+	end
 end
 
 function MissionManager.mission_script_patch_funcs.on_executed(self, element, data)
