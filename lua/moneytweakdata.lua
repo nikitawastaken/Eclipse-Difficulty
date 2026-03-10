@@ -21,7 +21,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.money = 45000 -- 45.000 $
 	self.bag_values.gold = 75000 -- 75.000 $
 	self.bag_values.goat = 125000 -- 125.000 $
-	self.bag_values.diamonds = 25000 -- 25.000 $
+	self.bag_values.diamonds = 18000 -- 25.000 $
 	self.bag_values.diamonds_dah = 250000 -- 250.000 $
 	self.bag_values.coke = 80000 -- 80.000 $
 	self.bag_values.coke_pure = 95000 -- 95.000 $
@@ -690,46 +690,28 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_coins = (money_mul * 1800)
 		self.small_loot.vault_loot_ring = (money_mul * 6000)
 		self.small_loot.vault_loot_jewels = (money_mul * 1400)
-	elseif level_id == "family" or level_id == "jewelry_store" or level_id == "ukrainian_job" then
-		self.small_loot.money_bundle = (money_mul * 1000)
-		self.small_loot.diamondheist_vault_bust = (money_mul * 3000)
-		self.small_loot.diamondheist_vault_diamond = (money_mul * 5750)
-		self.small_loot.diamondheist_big_diamond = (money_mul * 7250)
-		self.small_loot.gen_atm = (money_mul * 76000)
-		self.small_loot.vault_loot_gold = (money_mul * 2500)
-		self.small_loot.vault_loot_cash = (money_mul * 1200)
-		self.small_loot.vault_loot_coins = (money_mul * 800)
-		self.small_loot.vault_loot_ring = (money_mul * 300)
-		self.small_loot.vault_loot_jewels = (money_mul * 600)
-		self.bag_values.diamonds = 12500 -- 12,500$
 	elseif level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = (money_mul * 50000)
-	elseif level_id == "four_stores" then
-		self.small_loot.money_bundle = (money_mul * 750)
-		self.small_loot.vault_loot_gold = (money_mul * 10000)
-		self.small_loot.vault_loot_cash = (money_mul * 2000)
-		self.small_loot.vault_loot_coins = (money_mul * 1000)
-		self.small_loot.vault_loot_ring = (money_mul * 4000)
-		self.small_loot.vault_loot_jewels = (money_mul * 1800)
 	elseif level_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = (money_mul * 50000)
 		self.small_loot.diamondheist_vault_diamond = (money_mul * 15000)
 		self.small_loot.diamondheist_big_diamond = (money_mul * 25000)
 	elseif level_id == "red2" then
 		self.bag_values.money = 90000 -- 90,000$
+		self.small_loot.gen_atm = (money_mul * 72000)
 		self.small_loot.money_bundle = (money_mul * 1250)
 	elseif level_id == "dinner" then
 		self.bag_values.gold = 350000 -- 350,000$
 		self.small_loot.money_bundle = (money_mul * 1250)
 	else
-		self.small_loot.money_bundle = (money_mul * 1250)
+		self.small_loot.money_bundle = (money_mul * 750)
 		self.small_loot.money_bundle_value = (money_mul * 10000)
 		self.small_loot.ring_band = 1954
 		self.small_loot.diamondheist_vault_bust = (money_mul * 5750)
 		self.small_loot.diamondheist_vault_diamond = (money_mul * 7250)
 		self.small_loot.diamondheist_big_diamond = (money_mul * 10000)
 		self.small_loot.mus_small_artifact = (money_mul * 700)
-		self.small_loot.value_gold = (money_mul * 3000)
+		self.small_loot.value_gold = (money_mul * 10000)
 		self.small_loot.gen_atm = (money_mul * 76000)
 		self.small_loot.special_deposit_box = (money_mul * 3500)
 		self.small_loot.slot_machine_payout = (money_mul * 25000)
