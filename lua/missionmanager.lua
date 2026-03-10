@@ -21,15 +21,15 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 -- Add custom mission script changes and triggers for specific levels
 MissionManager.mission_script_patch_funcs = {}
 function MissionManager.mission_script_patch_funcs.values(self, element, data)
-	if data.enemy and getmetatable(element) == ElementSpawnEnemyDummy then
-		Eclipse:warn_console(string.format("Bad scripted spawn patch on %u, fixing", element:id()))
-		self.mission_script_patch_funcs.enemy(self, element, data.enemy)
-		data.enemy = nil
-	end
-
 	for k, v in pairs(data) do
 		element._values[k] = v
 		Eclipse:log_console('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
+	end
+
+	if data.enemy and getmetatable(element) == ElementSpawnEnemyDummy then
+		Eclipse:warn_console(string.format("Bad scripted spawn patch on %u, fixing", element:id()))
+		self.mission_script_patch_funcs.enemy(self, element, data.enemy)
+		element._values.enemy = nil
 	end
 
 	-- Handle new spawn group element functionality
