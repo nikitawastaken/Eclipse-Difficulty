@@ -1424,6 +1424,32 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+    self.unit_categories.headless_dozers = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+		},
+		access = access_type_all,
+	}
+
 	self.unit_categories.army_soldier_1 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
@@ -2930,6 +2956,11 @@ GroupAITweakData.bellmead_response_heists = table.list_to_set({
 	"corp",
 	"deep",
 })
+GroupAITweakData.headless_dozer_heists = table.list_to_set({
+	"nail",
+	"help",
+	--"hvh",
+})
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_index)
@@ -3017,6 +3048,17 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"ranged_fire",
 			"smoke_grenade",
 		},
+        bulldozer_def = {
+			"shield",
+			"murder",
+			"smoke_grenade",
+		},
+		bulldozer_agg = {
+			"shield",
+			"murder",
+			"charge",
+			"flash_grenade",
+		},
 	}
 
 	self._timed_random_tactics = {
@@ -3038,6 +3080,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			army_agg = 2,
 			army_snk = 1,
 		},
+        headless_dozers = { "bulldozer_def", "bulldozer_agg" },
 	}
 
 	self.timed_enemy_spawn_groups = {}
@@ -3068,6 +3111,10 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 
 	if self.gensec_tac_teams_heists[level_id] then
 		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
+	end
+
+    if self.headless_dozer_heists[level_id] then
+		self.timed_enemy_spawn_groups.headless_dozer_group1 = Eclipse:require("timed_groups/headless_dozer_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
 	end
 end
 
