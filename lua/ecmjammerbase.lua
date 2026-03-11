@@ -72,7 +72,7 @@ function ECMJammerBase:_set_feedback_active(state)
 	end
 
 	if Network:is_server() then
-		local owner_base = alive(self:owner()) and self:owner().base and self:owner():base()		
+		local owner_base = alive(self:owner()) and self:owner().base and self:owner():base()
 		if state then
 			self._unit:interaction():set_active(false, true)
 
