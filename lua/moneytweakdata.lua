@@ -33,7 +33,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.samurai_suit = 145000
 	self.bag_values.artifact_statue = 200000
 	self.bag_values.mus_artifact_bag = 100000
-	self.bag_values.circuit = 10000
+	self.bag_values.circuit = 175000
 	self.bag_values.shells = 100000
 	self.bag_values.turret = 500000
 	self.bag_values.sandwich = 500000
@@ -73,7 +73,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.ordinary_wine = 25000
 	self.bag_values.robot_toy = 15000
 	self.bag_values.rubies = 52500
-	self.bag_values.red_diamond = 10000
+	self.bag_values.red_diamond = 100000
 	self.bag_values.old_wine = 75000
 	self.bag_values.garden_gnome = 69
 	self.bag_values.ranc_weapon = 36000
