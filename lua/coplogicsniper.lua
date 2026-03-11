@@ -5,6 +5,7 @@ function CopLogicSniper._upd_aim(data, my_data)
 	local aim = expected_pos and focus_enemy.reaction >= AIAttentionObject.REACT_AIM
 	local shoot = focus_enemy and focus_enemy.verified and focus_enemy.reaction >= AIAttentionObject.REACT_SHOOT
 	local anim_data = data.unit:anim_data()
+	local is_sniper = (data.unit:base():has_tag("sniper") or data.unit:base():has_tag("fbi_sniper"))
 	local ecm_sniper_block_active = managers.groupai:state():_active_ecm_sniper_block()
 
 	if not my_data.advancing and not my_data.turning and not data.unit:movement():chk_action_forbidden("walk") then
@@ -41,7 +42,7 @@ function CopLogicSniper._upd_aim(data, my_data)
 		end
 	end
 
-	if not ecm_sniper_block_active and (aim or shoot) then
+	if not (is_sniper and ecm_sniper_block_active) and (aim or shoot) then
 		if focus_enemy.verified then
 			if my_data.attention_unit ~= focus_enemy.u_key then
 				CopLogicBase._set_attention(data, focus_enemy)
