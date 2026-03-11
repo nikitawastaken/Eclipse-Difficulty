@@ -49,8 +49,8 @@ return {
 			},
 		},
 	},
-    -- disable scripted headless dozers
-    [100351] = disabled,
+	-- disable scripted headless dozers
+	[100351] = disabled,
 	-- Spawn group intervals
 	[101601] = ledge_spawn,
 	[101603] = ledge_spawn,

@@ -1424,7 +1424,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-    self.unit_categories.headless_dozers = {
+	self.unit_categories.headless_dozers = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
@@ -3048,7 +3048,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"ranged_fire",
 			"smoke_grenade",
 		},
-        bulldozer_def = {
+		bulldozer_def = {
 			"shield",
 			"murder",
 			"smoke_grenade",
@@ -3080,7 +3080,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			army_agg = 2,
 			army_snk = 1,
 		},
-        headless_dozers = { "bulldozer_def", "bulldozer_agg" },
+		headless_dozers = { "bulldozer_def", "bulldozer_agg" },
 	}
 
 	self.timed_enemy_spawn_groups = {}
@@ -3113,7 +3113,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
 	end
 
-    if self.headless_dozer_heists[level_id] then
+	if self.headless_dozer_heists[level_id] then
 		self.timed_enemy_spawn_groups.headless_dozer_group1 = Eclipse:require("timed_groups/headless_dozer_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
 	end
 end
