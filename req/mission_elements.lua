@@ -849,4 +849,25 @@ function M.gen_operator(id, name, pos, rot, opts)
 	return operator
 end
 
+function M.gen_area_min_police_force(id, name, pos, rot, opts)
+	opts = opts or {}
+	local area_min_police_force = {
+		id = id,
+		editor_name = name,
+		class = "ElementAreaMinPoliceForce",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			amount = opts.amount or 2,
+		},
+	}
+
+	return area_min_police_force
+end
+
 return M
