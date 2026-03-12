@@ -67,3 +67,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		mutator:setup(self)
 	end
 end)
+
+function MutatorsManager:should_disable_statistics()
+	return false
+end
