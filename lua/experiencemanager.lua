@@ -164,3 +164,9 @@ function ExperienceManager:get_xp_by_params(params)
 
 	return math.round(total_xp), dissection_table
 end
+
+-- For offshore casino rework
+local data = ExperienceManager.on_loot_drop_xp
+function ExperienceManager:on_loot_drop_xp(value_id, force)
+	data(self, value_id, true)
+end

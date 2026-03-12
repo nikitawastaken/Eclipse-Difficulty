@@ -383,6 +383,22 @@ tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 
 tweak_data:digest_recursive(tweak_data.experience_manager)
 
+-- Offshore casino rework
+if tweak_data.blackmarket.xp.xp_pda9_1 then
+	tweak_data.blackmarket.xp.xp_pda9_1.weight = 0.1
+	tweak_data.blackmarket.xp.xp_pda9_2.weight = 0.1
+	tweak_data.blackmarket.xp.xp_pda9_1.infamous = true
+	tweak_data.blackmarket.xp.xp_pda9_2.infamous = true
+	tweak_data.blackmarket.xp.xp_pda9_1.pcs = {
+		90,
+		100
+	}
+	tweak_data.blackmarket.xp.xp_pda9_2.pcs = {
+		90,
+		100
+	}
+end
+
 -- misc
 -- Python code for matplotlibing experience graphs
 --[[

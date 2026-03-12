@@ -59,11 +59,13 @@
 
 				<group :hook_id="menu/">
 					<post :hook_id="crimenetcontractgui"/>
+					<post :hook_id="crimenetcasinogui"/>
 					<post :hook_id="ingamecontractgui"/>
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
 					<post :hook_id="missionbriefinggui"/>
+					<post :hook_id="menucomponentmanager"/>					
 				</group>
 
 				<group :hook_id="player/">
@@ -72,11 +74,13 @@
 				</group>
 
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
+				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="moneymanager"/>
 				<post :hook_id="experiencemanager"/>
 				<post :hook_id="lootmanager"/>
+				<post :hook_id="lootdropmanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
