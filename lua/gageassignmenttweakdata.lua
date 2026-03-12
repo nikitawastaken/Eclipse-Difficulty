@@ -5,4 +5,8 @@ Hooks:PostHook(GageAssignmentTweakData, "init", "eclipse_init", function(self)
 			v.coin_reward = math.ceil(v.aquire / 5) * 2
 		end
 	end
+	self.assignments.yellow_bull.aquire = 5
+	self.assignments.red_spider.aquire = 5
+	self.assignments.blue_eagle.aquire = 5
+	self.assignments.purple_snake.aquire = 5
 end)
