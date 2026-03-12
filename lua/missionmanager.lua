@@ -32,6 +32,31 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 		element._values.enemy = nil
 	end
 
+	if data.timer and element.timer_operation_set_time then
+		element:timer_operation_set_time(data.timer)
+	end
+
+	-- All of this just to be able to fix area triggers...
+	if data.instigator and element._instigator_find_func then
+		element._instigator_count_all_func = ElementAreaTrigger.instigator_project_all_functions[data.instigator]
+		element._instigator_count_inside_func = ElementAreaTrigger.instigator_project_inside_functions[data.instigator]
+		element._instigator_valid_func = ElementAreaTrigger.instigator_valid_functions[data.instigator]
+		if Network:is_client() then
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions_client[data.instigator]
+		else
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions[data.instigator]
+			if element._values.trigger_on == "on_empty" then
+				local temp_switch = ElementAreaTrigger.on_empty_find_func_switch[data.instigator]
+				if temp_switch then
+					element._on_empty_find_func_switch = element._instigator_find_func
+					element._instigator_find_func = temp_switch
+				else
+					element._on_empty_find_func_switch = nil
+				end
+			end
+		end
+	end
+
 	-- Handle new spawn group element functionality
 	if data.interval and element._values.interval_reference then
 		element._values.interval_reference = data.interval
