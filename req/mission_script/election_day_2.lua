@@ -22,7 +22,7 @@ local window_far_spawn = {
 local skylight_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 2, 1.5, 1, 1 },
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
