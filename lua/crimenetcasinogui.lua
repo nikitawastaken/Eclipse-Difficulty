@@ -14,9 +14,9 @@ function CrimeNetCasinoGui:_place_bet()
 		dialog = "menu_cn_casino_pay_fee",
 		contract_fee = managers.experience:cash_string(managers.money:get_cost_of_casino_fee(secure_cards, increase_infamous, preferred_card)),
 		offshore = managers.experience:cash_string(managers.money:offshore()),
-		yes_func = callback(self, self, "_crimenet_casino_pay_fee")
+		yes_func = callback(self, self, "_crimenet_casino_pay_fee"),
 	}
-	
+
 	local currency = managers.menu:active_menu().logic:selected_node():item("bet_item"):value()
 	if currency == "sell_items" then
 		params.dialog = "menu_cn_casino_sell_items"
@@ -43,14 +43,15 @@ function CrimeNetCasinoGui:_crimenet_casino_pay_fee()
 	if managers.menu:active_menu().logic:selected_node():item("preferred_item") then
 		local card_secured = secure_cards or 0
 		local card_drops = {
-			math.random(3) <= card_secured and preferred_item
+			math.random(3) <= card_secured and preferred_item,
 		}
 
 		if card_drops[1] then
 			card_secured = card_secured - 1
 		end
 
-		card_drops[2] = card_secured == 2 and managers.lootdrop:specific_fake_loot_pc(preferred_item) or card_secured == 1 and card_secured == math.random(3) and managers.lootdrop:specific_fake_loot_pc(preferred_item)
+		card_drops[2] = card_secured == 2 and managers.lootdrop:specific_fake_loot_pc(preferred_item)
+			or card_secured == 1 and card_secured == math.random(3) and managers.lootdrop:specific_fake_loot_pc(preferred_item)
 
 		if card_drops[2] then
 			card_secured = card_secured - 1
@@ -73,7 +74,6 @@ function CrimeNetCasinoGui:_crimenet_casino_pay_fee()
 				local chance = no_pcs > 1 and math.lerp(start_chance, 1, math.pow((i - 1) / (no_pcs - 1), chance_curve)) or 1
 				local roll = math.rand(1)
 				if roll <= chance then
-
 					item_pc = pcs[i]
 
 					break
@@ -93,7 +93,7 @@ function CrimeNetCasinoGui:_crimenet_casino_pay_fee()
 			rolls_amount = managers.menu:active_menu().logic:selected_node():item("rolls_item"):value() or 1,
 			item_pc = get_random_item_pc(),
 			disable_difficulty = true,
-			skip_types = {}
+			skip_types = {},
 		}
 
 		if setup_data.rolls_amount == 1 then
@@ -104,13 +104,13 @@ function CrimeNetCasinoGui:_crimenet_casino_pay_fee()
 			else
 				managers.money:deduct_from_offshore(setup_data.casino_fee)
 				-- if type(managers.money.dispatch_event) ~= "nil" then
-					managers.money:dispatch_event("casino_fee_paid", setup_data.casino_fee)
+				managers.money:dispatch_event("casino_fee_paid", setup_data.casino_fee)
 				-- end
 			end
 
 			managers.menu:active_menu().logic:refresh_node()
 		end
 
-		managers.menu:open_node((setup_data.bet == "sell_items" or setup_data.rolls_amount > 1) and "offshore_casino_claim_rewards" or "crimenet_contract_casino_lootdrop", {setup_data})
+		managers.menu:open_node((setup_data.bet == "sell_items" or setup_data.rolls_amount > 1) and "offshore_casino_claim_rewards" or "crimenet_contract_casino_lootdrop", { setup_data })
 	end
 end

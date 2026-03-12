@@ -10,7 +10,7 @@ Hooks:Add("CoreMenuData.LoadDataMenu", "OffshoreCasinoComponent.CoreMenuData.Loa
 		["menu_components"] = "offshore_casino_claim_rewards",
 		["back_callback"] = "save_progress",
 	}
-	
+
 	table.insert(menu, new_node)
 end)
 

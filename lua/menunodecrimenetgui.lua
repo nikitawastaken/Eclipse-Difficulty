@@ -3,7 +3,7 @@ MenuNodeCrimenetCasinoGui.PRECISION = "%.1f"
 function MenuNodeCrimenetCasinoGui:_setup_layout()
 	local parent_layer = managers.menu:active_menu().renderer:selected_node():layer()
 	self._panel = self.ws:panel():panel({
-		layer = parent_layer + 1
+		layer = parent_layer + 1,
 	})
 	local width, height, space_x, space_y, start_x = self:_get_sizes(self._panel:w(), self._panel:h())
 	local large_font = tweak_data.menu.pd2_large_font
@@ -19,21 +19,21 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		text = managers.localization:to_upper_text("menu_casino_title_main"),
 		font_size = large_font_size,
 		font = large_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, w, h = text_title:text_rect()
 	self._main_panel = self._panel:panel({
 		x = 0,
 		y = h,
 		w = self._panel:w(),
-		h = self._panel:h() - h
+		h = self._panel:h() - h,
 	})
 	local text_betting = self._main_panel:text({
 		blend_mode = "add",
 		text = managers.localization:to_upper_text("menu_casino_title_betting"),
 		font_size = medium_font_size,
 		font = medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	text_betting:set_position(start_x, 0)
@@ -46,7 +46,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		layer = 1,
 		y = text_betting:bottom(),
 		w = width,
-		h = height
+		h = height,
 	})
 
 	self._betting_panel:set_x(text_betting:x())
@@ -55,14 +55,14 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	local text_options = self._main_panel:panel({
 		layer = 1,
 		w = width - option_size,
-		h = self.item_panel:h()
+		h = self.item_panel:h(),
 	})
 
 	text_options:set_x(self._betting_panel:x())
@@ -71,32 +71,32 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	local betting_titles = {
 		{
 			id = "bet",
-			text = "menu_bet_item"
+			text = "menu_bet_item",
 		},
 		{
 			id = "rolls",
-			text = "menu_rolls_item"
+			text = "menu_rolls_item",
 		},
 		{
 			id = "prefer",
-			text = "menu_casino_option_prefer_title"
+			text = "menu_casino_option_prefer_title",
 		},
 		{
 			id = "infamous",
-			text = "menu_casino_option_infamous_title"
+			text = "menu_casino_option_infamous_title",
 		},
 		{
 			id = "safecards",
-			text = "menu_casino_option_safecard_title"
+			text = "menu_casino_option_safecard_title",
 		},
 		{
-			skip = true
+			skip = true,
 		},
 		{
-			skip = true
-		}
+			skip = true,
+		},
 	}
-	
+
 	self._betting_titles = {}
 	local i = 1
 	local y = 0
@@ -112,7 +112,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 					x = -10,
 					font_size = small_font_size,
 					font = small_font,
-					color = tweak_data.screen_colors.text
+					color = tweak_data.screen_colors.text,
 				})
 			end
 
@@ -130,13 +130,13 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		cash = "upcard_cash",
 		masks = "upcard_mask",
 		xp = "upcard_xp",
-		none = "downcard_overkill_deck"
+		none = "downcard_overkill_deck",
 	}
 	self._betting_cards_panel = self._betting_panel:panel({
 		layer = 1,
 		x = content_offset,
 		y = content_offset + 15,
-		w = self._betting_panel:w() - content_offset * 2
+		w = self._betting_panel:w() - content_offset * 2,
 	})
 
 	self._betting_cards_panel:set_h((self.item_panel:y() - content_offset * 2) * 0.6)
@@ -153,7 +153,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			layer = 1,
 			texture = texture,
 			w = math.round(0.7111111111111111 * self._betting_cards_panel:h()),
-			h = self._betting_cards_panel:h()
+			h = self._betting_cards_panel:h(),
 		})
 
 		self._betting_cards[i]:set_rotation(math.random(14) - 7)
@@ -167,7 +167,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		x = text_betting:x(),
 		y = text_betting:bottom(),
 		w = width,
-		h = height / 2 - space_y / 2
+		h = height / 2 - space_y / 2,
 	})
 
 	self._stats_panel:set_x(self._betting_panel:right() + space_x)
@@ -176,8 +176,8 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	local text_stats = self._main_panel:text({
@@ -185,7 +185,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		text = managers.localization:to_upper_text("menu_casino_title_stats"),
 		font_size = medium_font_size,
 		font = medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, _, h = text_stats:text_rect()
 
@@ -200,27 +200,27 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		"masks",
 		"materials",
 		"textures",
-		"colors"
+		"colors",
 	}
 	local stat_columns = {
 		{
 			name = "base",
 			color = Color(0.5, 0.5, 0.5),
-			color_inf = Color(1, 0.1, 1)
+			color_inf = Color(1, 0.1, 1),
 		},
 		{
 			name = "bets",
-			color = tweak_data.screen_colors.risk
+			color = tweak_data.screen_colors.risk,
 		},
 		{
 			name = "skill",
-			color = tweak_data.screen_colors.resource
+			color = tweak_data.screen_colors.resource,
 		},
 		{
 			name = "total",
 			color = tweak_data.screen_colors.text,
-			color_inf = Color(1, 0.1, 1)
-		}
+			color_inf = Color(1, 0.1, 1),
+		},
 	}
 	self._stat_values = {}
 	local title_width = 150
@@ -237,7 +237,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			y = y,
 			font_size = small_font_size,
 			font = small_font,
-			color = column.color or tweak_data.screen_colors.text
+			color = column.color or tweak_data.screen_colors.text,
 		})
 
 		x = x + column_width
@@ -255,7 +255,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 				x = x,
 				y = y,
 				w = column_width,
-				h = small_font_size
+				h = small_font_size,
 			})
 			self._stat_values[stat][column.name] = text_panel:text({
 				blend_mode = "add",
@@ -263,7 +263,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 				align = "right",
 				font_size = small_font_size,
 				font = small_font,
-				color = column.color or tweak_data.screen_colors.text
+				color = column.color or tweak_data.screen_colors.text,
 			})
 			x = x + column_width
 		end
@@ -279,7 +279,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			layer = 1,
 			y = y,
 			w = title_width,
-			h = small_font_size
+			h = small_font_size,
 		})
 		self._stat_values[stat].title = text_panel:text({
 			blend_mode = "add",
@@ -288,7 +288,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			text = managers.localization:to_upper_text("menu_casino_stat_" .. stat),
 			font_size = small_font_size,
 			font = small_font,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 		y = y + small_font_size
 	end
@@ -300,7 +300,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		layer = 1,
 		y = y,
 		w = title_width,
-		h = small_font_size
+		h = small_font_size,
 	})
 
 	text_panel:text({
@@ -309,7 +309,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		text = managers.localization:to_upper_text("bm_global_value_infamous"),
 		font_size = small_font_size,
 		font = small_font,
-		color = Color(1, 0.1, 1)
+		color = Color(1, 0.1, 1),
 	})
 
 	x = title_width
@@ -320,7 +320,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			x = x,
 			y = y,
 			w = column_width,
-			h = small_font_size
+			h = small_font_size,
 		})
 		self._infamous_values[column.name] = text_panel:text({
 			blend_mode = "add",
@@ -328,7 +328,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			font_size = small_font_size,
 			font = small_font,
 			color = column.color_inf or column.color or tweak_data.screen_colors.text,
-			alpha = column.alpha or 1
+			alpha = column.alpha or 1,
 		})
 		x = x + column_width
 	end
@@ -337,7 +337,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	local item_pc = tweak_data.lootdrop.STARS[stars].pcs[1]
 	local skip_types = {
 		xp = true,
-		cash = true
+		cash = true,
 	}
 	local droppable_items = managers.lootdrop:droppable_items(item_pc, true, skip_types)
 	local pc = stars * 10
@@ -359,7 +359,6 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	end
 
 	for _, stat in pairs(self._stats_cards) do
-		
 		local value = string.format(MenuNodeCrimenetCasinoGui.PRECISION, self._base_chances[stat])
 
 		self._stat_values[stat].base:set_text(value .. "%")
@@ -380,12 +379,12 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	end
 
 	local _, infamous_base_chance, infamous_mod = managers.lootdrop:infamous_chance({
-		disable_difficulty = true
+		disable_difficulty = true,
 	})
 	local infamous_chance = items_total > 0 and infamous_base_chance * items_infamous / items_total or 0
 	self._infamous_chance = {
 		base = infamous_chance,
-		skill = infamous_mod
+		skill = infamous_mod,
 	}
 	local value = self:_round_value(infamous_chance * 100)
 	local skill = self:_round_value((infamous_chance * infamous_mod - infamous_chance) * 100)
@@ -399,7 +398,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	self._breakdown_panel = self._main_panel:panel({
 		layer = 1,
 		w = width,
-		h = self._betting_panel:h() - self._stats_panel:h() - space_y
+		h = self._betting_panel:h() - self._stats_panel:h() - space_y,
 	})
 
 	self._breakdown_panel:set_x(self._stats_panel:x())
@@ -409,8 +408,8 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	local text_breakdown = self._main_panel:text({
@@ -418,7 +417,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		text = managers.localization:to_upper_text("menu_casino_title_breakdown"),
 		font_size = medium_font_size,
 		font = medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, _, h = text_breakdown:text_rect()
 
@@ -432,7 +431,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		y = content_offset,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._breakdown_costs = self._breakdown_panel:text({
 		blend_mode = "add",
@@ -440,13 +439,13 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		y = content_offset,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.risk
+		color = tweak_data.screen_colors.risk,
 	})
 	self._offshore_text = self._main_panel:text({
 		blend_mode = "add",
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self:set_offshore_text()
@@ -461,7 +460,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 	local increase_infamous = false
 	local preferred_card = "none"
 	local text_string = managers.localization:to_upper_text("menu_casino_total_bet", {
-		casino_bet = managers.experience:cash_string(managers.money:get_cost_of_casino_fee(secured_cards, increase_infamous, preferred_card))
+		casino_bet = managers.experience:cash_string(managers.money:get_cost_of_casino_fee(secured_cards, increase_infamous, preferred_card)),
 	})
 	self._total_bet = self._panel:text({
 		blend_mode = "add",
@@ -469,7 +468,7 @@ function MenuNodeCrimenetCasinoGui:_setup_layout()
 		text = text_string,
 		font_size = large_font_size,
 		font = large_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, _, h = self._total_bet:text_rect()
 
@@ -483,22 +482,22 @@ function MenuNodeCrimenetCasinoGui:set_update_values(preferred_card, secured_car
 	local node = managers.menu:active_menu() and managers.menu:active_menu().logic:selected_node()
 	local currency = node and node:item("bet_item") and node:item("bet_item"):value() or "offshore"
 	local sell_items = currency == "sell_items"
-	
+
 	local function set_cost(value)
 		return currency == "coins" and managers.experience:experience_string(value / 100000) or managers.experience:cash_string(value)
 	end
-	
+
 	local breakdown_titles = ""
 	local breakdown_costs = ""
-	
+
 	local function breakdown_setup(title, cost)
 		breakdown_titles = breakdown_titles .. "\n" .. managers.localization:to_upper_text(title) .. ":"
 		breakdown_costs = breakdown_costs .. "\n" .. set_cost(cost)
 	end
-	
+
 	if not sell_items then
 		breakdown_setup("menu_casino_cost_fee", managers.money:get_cost_of_casino_entrance())
-		
+
 		if preferred_card ~= "none" then
 			breakdown_setup("menu_casino_option_prefer_title", tweak_data:get_value("casino", "prefer_cost"))
 		end
@@ -526,7 +525,8 @@ function MenuNodeCrimenetCasinoGui:set_update_values(preferred_card, secured_car
 	end
 
 	local text_string = managers.localization:to_upper_text(sell_items and "menu_casino_total_sell" or "menu_casino_total_bet", {
-		casino_bet = payout or set_cost(managers.money:get_cost_of_casino_fee(secured_cards, increase_infamous, preferred_card, node and node:item("rolls_item") and node:item("rolls_item"):value() or 1))
+		casino_bet = payout
+			or set_cost(managers.money:get_cost_of_casino_fee(secured_cards, increase_infamous, preferred_card, node and node:item("rolls_item") and node:item("rolls_item"):value() or 1)),
 	})
 
 	self._total_bet:set_text(text_string)
@@ -567,7 +567,9 @@ function MenuNodeCrimenetCasinoGui:set_update_values(preferred_card, secured_car
 			local value = (non_secured_value + (card == preferred_card and secured_value or 0)) / 3 - self._base_chances[card]
 			value = self:_round_value(value)
 
-			self._stat_values[card].bets:set_text(value == 0 and "" or (value > 0 and "+" .. string.format(MenuNodeCrimenetCasinoGui.PRECISION, value) or string.format(MenuNodeCrimenetCasinoGui.PRECISION, value)) .. "%")
+			self._stat_values[card].bets:set_text(
+				value == 0 and "" or (value > 0 and "+" .. string.format(MenuNodeCrimenetCasinoGui.PRECISION, value) or string.format(MenuNodeCrimenetCasinoGui.PRECISION, value)) .. "%"
+			)
 			self._stat_values[card].total:set_text(string.format(MenuNodeCrimenetCasinoGui.PRECISION, value + self._base_chances[card]) .. "%")
 
 			if card == preferred_card then
@@ -593,19 +595,19 @@ function MenuNodeCrimenetCasinoGui:set_update_values(preferred_card, secured_car
 	if self._betting_titles.infamous then
 		self._betting_titles.infamous:set_alpha(infamous_enabled and 1 or 0.5)
 	end
-	
+
 	if self._betting_titles.bet then
 		self._betting_titles.bet:set_text(managers.localization:to_upper_text(sell_items and "menu_disposal_item" or "menu_bet_item"))
 	end
-	
+
 	if self._betting_titles.rolls then
 		self._betting_titles.rolls:set_text(managers.localization:to_upper_text(sell_items and "menu_sell_payout_item" or "menu_rolls_item"))
 	end
-	
+
 	if self._betting_titles.prefer then
 		self._betting_titles.prefer:set_text(managers.localization:to_upper_text(sell_items and "menu_casino_sell_prefer_title" or "menu_casino_option_prefer_title"))
 	end
-	
+
 	self:set_offshore_text()
 end
 
@@ -613,7 +615,7 @@ function MenuNodeCrimenetCasinoGui:set_offshore_text()
 	local node = managers.menu:active_menu() and managers.menu:active_menu().logic:selected_node()
 	local currency = node and node:item("bet_item") and node:item("bet_item"):value() or "offshore"
 	if currency == "cash" or currency == "sell_items" then
-		self._offshore_text:set_text(managers.localization:to_upper_text("menu_cash", {money = managers.experience:cash_string(managers.money:total())}):gsub("##", ""))
+		self._offshore_text:set_text(managers.localization:to_upper_text("menu_cash", { money = managers.experience:cash_string(managers.money:total()) }):gsub("##", ""))
 	elseif currency == "coins" then
 		self._offshore_text:set_text(managers.localization:to_upper_text("menu_es_coins_progress") .. ": " .. managers.experience:experience_string(managers.custom_safehouse:coins()))
 	else

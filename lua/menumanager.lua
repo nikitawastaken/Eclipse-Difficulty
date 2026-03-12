@@ -510,7 +510,7 @@ function MenuCrimeNetCasinoInitiator:refresh_node(node)
 		infamous = node:item("increase_infamous"):value(),
 		card1 = node:item("secure_card_1"):value(),
 		card2 = node:item("secure_card_2"):value(),
-		card3 = node:item("secure_card_3"):value()
+		card3 = node:item("secure_card_3"):value(),
 	}
 
 	node:clean_items()
@@ -525,35 +525,35 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		{
 			value = "offshore",
 			text_id = "menu_bet_offshore",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "cash",
 			text_id = "menu_bet_cash",
-			_meta = "option"
+			_meta = "option",
 		},
-		type = "MenuItemMultiChoice"
+		type = "MenuItemMultiChoice",
 	}
-	
+
 	if managers.custom_safehouse then
 		table.insert(bet_data, {
 			value = "coins",
 			text_id = "menu_bet_coins",
-			_meta = "option"
+			_meta = "option",
 		})
 	end
-	
+
 	table.insert(bet_data, {
 		value = "sell_items",
 		text_id = "menu_sell_items",
-		_meta = "option"
+		_meta = "option",
 	})
-	
+
 	local bet_params = {
 		name = "bet_item",
 		callback = "crimenet_casino_update",
 		text_id = "",
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 	local bet_item = node:create_item(bet_data, bet_params)
 	bet_item:set_value(options and options.bet or "offshore")
@@ -561,7 +561,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 	node:add_item(bet_item)
 
 	self:create_divider(node, "casino_divider_bet", nil, 12)
-	
+
 	local sell_items = options and options.bet and options.bet == "sell_items"
 	local card1 = options and options.card1 == "on" and 1 or 0
 	local card2 = options and options.card2 == "on" and 1 or 0
@@ -572,7 +572,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 	if sell_items then
 		_, max_bets = managers.lootdrop:get_stashed_items(options and options.preferred or "none")
 	end
-	
+
 	local rolls_data = {
 		localize = false,
 		show_value = true,
@@ -580,73 +580,73 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		type = "CoreMenuItemSlider.ItemSlider",
 		decimal_count = 0,
 		min = 1,
-		max = max_bets
+		max = max_bets,
 	}
-		
+
 	local rolls_params = {
 		name = "rolls_item",
 		callback = "crimenet_casino_update_slider",
 		text_id = " ",
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 	local rolls_item = node:create_item(rolls_data, rolls_params)
 	rolls_item:set_value(options and options.rolls or 1)
 
 	node:add_item(rolls_item)
-	
+
 	local preferred_data = {
 		{
 			value = "none",
 			text_id = sell_items and "menu_any" or "menu_casino_option_prefer_none",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "weapon_mods",
 			text_id = "menu_casino_stat_weapon_mods",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "masks",
 			text_id = "menu_casino_stat_masks",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "materials",
 			text_id = "menu_casino_stat_materials",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "textures",
 			text_id = "menu_casino_stat_textures",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "colors",
 			text_id = "menu_casino_stat_colors",
-			_meta = "option"
+			_meta = "option",
 		},
-		type = "MenuItemMultiChoice"
+		type = "MenuItemMultiChoice",
 	}
-	
+
 	if not sell_items then
 		table.insert(preferred_data, 2, {
 			value = "cash",
 			text_id = "menu_casino_stat_cash",
-			_meta = "option"
+			_meta = "option",
 		})
-		
+
 		table.insert(preferred_data, 2, {
 			value = "xp",
 			text_id = "menu_casino_stat_xp",
-			_meta = "option"
+			_meta = "option",
 		})
 	end
-	
+
 	local preferred_params = {
 		name = "preferred_item",
 		callback = "crimenet_casino_update",
 		text_id = "",
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 	local preferred_item = node:create_item(preferred_data, preferred_params)
 
@@ -672,7 +672,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -686,9 +686,9 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local infamous_params = {
 		name = "increase_infamous",
@@ -696,14 +696,14 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		text_id = "menu_casino_option_infamous_title",
 		icon_by_text = true,
 		disabled_color = Color(0.25, 1, 1, 1),
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 	local infamous_items = {
 		textures = true,
 		colors = false,
 		materials = true,
 		weapon_mods = false,
-		masks = true
+		masks = true,
 	}
 	local preferred_value = preferred_item:value()
 	local infamous_item = node:create_item(infamous_data, infamous_params)
@@ -732,7 +732,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -746,9 +746,9 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local card1_params = {
 		name = "secure_card_1",
@@ -756,14 +756,16 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		text_id = "menu_casino_option_safecard1",
 		icon_by_text = true,
 		disabled_color = Color(0.25, 1, 1, 1),
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 
 	if managers.experience:current_level() < tweak_data:get_value("casino", "secure_card_level", 1) then
 		card1_params.disabled_color = Color(1, 0.6, 0.2, 0.2)
-		card1_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard1") .. " - " .. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
-			level = tweak_data:get_value("casino", "secure_card_level", 1)
-		})
+		card1_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard1")
+			.. " - "
+			.. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
+				level = tweak_data:get_value("casino", "secure_card_level", 1),
+			})
 		card1_params.localize = "false"
 	end
 
@@ -792,7 +794,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -806,9 +808,9 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local card2_params = {
 		name = "secure_card_2",
@@ -816,14 +818,16 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		text_id = "menu_casino_option_safecard2",
 		icon_by_text = true,
 		disabled_color = Color(0.25, 1, 1, 1),
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 
 	if managers.experience:current_level() < tweak_data:get_value("casino", "secure_card_level", 2) then
 		card2_params.disabled_color = Color(1, 0.6, 0.2, 0.2)
-		card2_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard2") .. " - " .. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
-			level = tweak_data:get_value("casino", "secure_card_level", 2)
-		})
+		card2_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard2")
+			.. " - "
+			.. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
+				level = tweak_data:get_value("casino", "secure_card_level", 2),
+			})
 		card2_params.localize = "false"
 	end
 
@@ -852,7 +856,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 24,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = 24,
@@ -866,9 +870,9 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = 0,
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	local card3_params = {
 		name = "secure_card_3",
@@ -876,14 +880,16 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		text_id = "menu_casino_option_safecard3",
 		icon_by_text = true,
 		disabled_color = Color(0.25, 1, 1, 1),
-		visible_callback = visible_callback
+		visible_callback = visible_callback,
 	}
 
 	if managers.experience:current_level() < tweak_data:get_value("casino", "secure_card_level", 3) then
 		card3_params.disabled_color = Color(1, 0.6, 0.2, 0.2)
-		card3_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard3") .. " - " .. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
-			level = tweak_data:get_value("casino", "secure_card_level", 3)
-		})
+		card3_params.text_id = managers.localization:to_upper_text("menu_casino_option_safecard3")
+			.. " - "
+			.. managers.localization:to_upper_text("menu_casino_option_safecard_lock", {
+				level = tweak_data:get_value("casino", "secure_card_level", 3),
+			})
 		card3_params.localize = "false"
 	end
 
@@ -920,7 +926,10 @@ function MenuCallbackHandler:crimenet_casino_update_slider(item)
 		local infamous_item = node:item("increase_infamous")
 		local preferred_card = node:item("preferred_item") and node:item("preferred_item"):value() or "none"
 		local preferred_card = node:item("preferred_item") and node:item("preferred_item"):value() or "none"
-		managers.menu:active_menu().renderer:selected_node():set_update_values(preferred_card, secure_cards, infamous_item:value() == "on", infamous_item:enabled(), node:item("secure_card_1") and node:item("secure_card_1"):enabled())
+		managers.menu
+			:active_menu().renderer
+			:selected_node()
+			:set_update_values(preferred_card, secure_cards, infamous_item:value() == "on", infamous_item:enabled(), node:item("secure_card_1") and node:item("secure_card_1"):enabled())
 		managers.menu_component:can_afford()
 	end
 end
@@ -930,22 +939,22 @@ function MenuManager:show_confirm_pay_casino_fee(params)
 		title = managers.localization:text("dialog_casino_pay_title"),
 		text = managers.localization:text(params.dialog, {
 			contract_fee = params.contract_fee,
-			offshore = params.offshore
+			offshore = params.offshore,
 		}),
-		focus_button = 2
+		focus_button = 2,
 	}
 	local yes_button = {
 		text = managers.localization:text("menu_cn_casino_pay_accept"),
-		callback_func = params.yes_func
+		callback_func = params.yes_func,
 	}
 	local no_button = {
 		text = managers.localization:text("dialog_no"),
 		callback_func = params.no_func,
-		cancel_button = true
+		cancel_button = true,
 	}
 	dialog_data.button_list = {
 		yes_button,
-		no_button
+		no_button,
 	}
 
 	managers.system_menu:show(dialog_data)

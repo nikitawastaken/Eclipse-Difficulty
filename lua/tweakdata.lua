@@ -391,11 +391,11 @@ if tweak_data.blackmarket.xp.xp_pda9_1 then
 	tweak_data.blackmarket.xp.xp_pda9_2.infamous = true
 	tweak_data.blackmarket.xp.xp_pda9_1.pcs = {
 		90,
-		100
+		100,
 	}
 	tweak_data.blackmarket.xp.xp_pda9_2.pcs = {
 		90,
-		100
+		100,
 	}
 end
 

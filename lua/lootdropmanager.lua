@@ -69,13 +69,13 @@ function LootDropManager:droppable_items(item_pc, infamous_success)
 					table.insert(droppable_items[type], {
 						entry = item,
 						global_value = global_value,
-						weight = weight
+						weight = weight,
 					})
 				else
 					table.insert(maxed_inventory_items[type], {
 						entry = item,
 						global_value = global_value,
-						weight = weight
+						weight = weight,
 					})
 				end
 			end
@@ -105,13 +105,13 @@ function LootDropManager:new_make_casino_drop(setup_data, return_data)
 
 	local droppable_items, maxed_inventory_items = self:droppable_items(setup_data.item_pc or 40, infamous_success, setup_data and setup_data.skip_types)
 	local global_value, entry = nil
-	
+
 	return_data.item_tbl = {}
 	return_data.items = {}
 	return_data.progress = {
-		total = setup_data.rolls_amount
+		total = setup_data.rolls_amount,
 	}
-	local co = coroutine.create(function ()
+	local co = coroutine.create(function()
 		local itr = 0
 		local generate_speed = math.max(5, setup_data.rolls_amount / 1000)
 		for i = 1, setup_data.rolls_amount do
@@ -164,7 +164,7 @@ function LootDropManager:new_make_casino_drop(setup_data, return_data)
 						managers.money:dispatch_event("casino_fee_paid", setup_data.casino_fee)
 					end
 				end
-				
+
 				managers.blackmarket:add_to_inventory(dropped_item.global_value, pc_type, dropped_item.entry)
 
 				global_value = dropped_item.global_value
@@ -178,7 +178,7 @@ function LootDropManager:new_make_casino_drop(setup_data, return_data)
 				table.insert(return_data.items, {
 					global_value = global_value,
 					type_items = pc_type,
-					item_entry = entry
+					item_entry = entry,
 				})
 				return_data.item_tbl[item_str] = 1
 			end
@@ -205,7 +205,7 @@ function LootDropManager:sell_stashed_items(casino_data, return_data)
 	return_data.items = {}
 	return_data.item_tbl = {}
 	return_data.progress = {
-		total = casino_data.rolls_amount
+		total = casino_data.rolls_amount,
 	}
 
 	local co = coroutine.create(function()
@@ -219,7 +219,7 @@ function LootDropManager:sell_stashed_items(casino_data, return_data)
 			if #for_sale == 0 then
 				break
 			end
-			
+
 			local random_item_index = math.max(math.random(#for_sale), 1)
 			local item = for_sale[random_item_index]
 			local global_value = item.global_value
@@ -238,7 +238,7 @@ function LootDropManager:sell_stashed_items(casino_data, return_data)
 					global_value = global_value,
 					type_items = category,
 					item_entry = id,
-					cost = cost
+					cost = cost,
 				})
 				return_data.item_tbl[item_str] = 1
 			end
@@ -251,7 +251,7 @@ function LootDropManager:sell_stashed_items(casino_data, return_data)
 			if item.amount <= 0 then
 				table.remove(for_sale, random_item_index)
 			end
-			
+
 			itr = itr + 1
 
 			if itr > generate_speed then
@@ -259,10 +259,10 @@ function LootDropManager:sell_stashed_items(casino_data, return_data)
 				itr = 0
 			end
 		end
-		
+
 		return_data.money_gained = total_cash_gained
 		managers.money:_add_to_total(total_cash_gained, {
-			no_offshore = true
+			no_offshore = true,
 		})
 	end)
 
@@ -281,7 +281,10 @@ function LootDropManager:infamous_chance(setup_data)
 	end
 
 	local chance = tweak_data.lootdrop.global_values.infamous.chance
-	local multiplier = managers.player:upgrade_value("player", "passive_loot_drop_multiplier", 1) * managers.player:upgrade_value("player", "loot_drop_multiplier", 1) * infamous_diff * (setup_data and setup_data.increase_infamous or 1)
+	local multiplier = managers.player:upgrade_value("player", "passive_loot_drop_multiplier", 1)
+		* managers.player:upgrade_value("player", "loot_drop_multiplier", 1)
+		* infamous_diff
+		* (setup_data and setup_data.increase_infamous or 1)
 
 	if type(managers.experience.current_rank) ~= "nil" and managers.experience:current_rank() > 0 then
 		for infamy, item in pairs(tweak_data.infamy.items) do
@@ -307,29 +310,29 @@ function LootDropManager:get_stashed_items(preferred_item)
 			if category == "colors" and type(tweak_data.blackmarket.mask_colors) == "table" then
 				cosmetic_category = "mask_colors"
 			end
-			
+
 			cost = managers.money:get_mask_part_price(cosmetic_category, id, global_value) * sell_mul
 		end
-		
+
 		if cost == 0 then
 			local part_name_converter = {
 				masks = "mask",
 				textures = "pattern",
 				materials = "material",
 				colors = "color",
-				mask_colors = "color"
+				mask_colors = "color",
 			}
 			local category_value = part_name_converter[category] or "mask"
 			local mask_color_mul = category == "mask_colors" and 0.5 or 1
 			local gv_multiplier = tweak_data:get_value("money_manager", "global_value_multipliers", global_value) or 1
 			local pv = tweak_data:get_value("money_manager", "masks", category_value .. "_value", 1) * mask_color_mul or 0
-			
+
 			cost = math.round(pv * gv_multiplier) * sell_mul
 		end
-		
+
 		return cost
 	end
-	
+
 	local allowed_category = {
 		mask_colors = true,
 		colors = true,
@@ -345,12 +348,15 @@ function LootDropManager:get_stashed_items(preferred_item)
 	for global_value, gv in pairs(Global.blackmarket_manager.inventory) do
 		for category, cv in pairs(gv) do
 			for id, amount in pairs(cv) do
-				local droppable = tweak_data.blackmarket[category] and tweak_data.blackmarket[category][id] and tweak_data.blackmarket[category][id].pcs and table.size(tweak_data.blackmarket[category][id].pcs) > 0
+				local droppable = tweak_data.blackmarket[category]
+					and tweak_data.blackmarket[category][id]
+					and tweak_data.blackmarket[category][id].pcs
+					and table.size(tweak_data.blackmarket[category][id].pcs) > 0
 				local prefered = preferred_item == category or preferred_item == "none"
 				if preferred_item == "colors" and category == "mask_colors" then
 					prefered = true
 				end
-				
+
 				if prefered and allowed_category[category] and (droppable or category == "mask_colors" or global_value == "gage_pack_jobs") then
 					local cost = get_item_cost(global_value, category, id)
 					table.insert(all_items, {
@@ -358,7 +364,7 @@ function LootDropManager:get_stashed_items(preferred_item)
 						type_items = category,
 						item_entry = id,
 						amount = amount,
-						cost = cost
+						cost = cost,
 					})
 					total_amount = total_amount + amount
 					total_cost = total_cost + (cost * amount)
@@ -366,6 +372,6 @@ function LootDropManager:get_stashed_items(preferred_item)
 			end
 		end
 	end
-	
+
 	return all_items, total_amount, total_cost
 end

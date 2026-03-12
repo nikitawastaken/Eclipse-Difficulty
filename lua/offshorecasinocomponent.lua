@@ -11,11 +11,9 @@ if type(MenuGuiItem) == "nil" then
 		self._selected = false
 	end
 
-	function MenuGuiItem:refresh()
-	end
+	function MenuGuiItem:refresh() end
 
-	function MenuGuiItem:inside()
-	end
+	function MenuGuiItem:inside() end
 
 	function MenuGuiItem:is_selected()
 		return self._selected
@@ -50,8 +48,7 @@ if type(MenuGuiItem) == "nil" then
 		self:refresh()
 	end
 
-	function MenuGuiItem:flash()
-	end
+	function MenuGuiItem:flash() end
 end
 
 if type(CrimeSpreeButton) == "nil" then
@@ -67,7 +64,7 @@ if type(CrimeSpreeButton) == "nil" then
 			layer = 1000,
 			x = parent:w() * (1 - self._w) - 10,
 			w = parent:w() * self._w,
-			h = font_size or tweak_data.menu.pd2_medium_font_size
+			h = font_size or tweak_data.menu.pd2_medium_font_size,
 		})
 
 		self._panel:set_bottom(parent:h())
@@ -82,7 +79,7 @@ if type(CrimeSpreeButton) == "nil" then
 			layer = 1,
 			color = self._color,
 			font = font or tweak_data.menu.pd2_medium_font,
-			font_size = font_size or tweak_data.menu.pd2_medium_font_size
+			font_size = font_size or tweak_data.menu.pd2_medium_font_size,
 		})
 		self._highlight = self._panel:rect({
 			blend_mode = "add",
@@ -90,7 +87,7 @@ if type(CrimeSpreeButton) == "nil" then
 			valign = "scale",
 			halign = "scale",
 			layer = 10,
-			color = self._color
+			color = self._color,
 		})
 
 		self:refresh()
@@ -136,8 +133,7 @@ if type(CrimeSpreeButton) == "nil" then
 		self._links[dir] = item
 	end
 
-	function CrimeSpreeButton:update(t, dt)
-	end
+	function CrimeSpreeButton:update(t, dt) end
 
 	function CrimeSpreeButton:shrink_wrap_button(w_padding, h_padding)
 		local _, _, w, h = self._text:text_rect()
@@ -149,7 +145,7 @@ end
 OffshoreCasinoComponent = OffshoreCasinoComponent or class(MenuGuiComponentGeneric)
 OffshoreCasinoComponent.menu_nodes = {
 	start_menu = "crime_spree_lobby",
-	mission_end_menu = "main"
+	mission_end_menu = "main",
 }
 local padding = 10
 local card_size = 180
@@ -168,7 +164,7 @@ function OffshoreCasinoComponent:init(ws, fullscreen_ws, node)
 	self._fullscreen_panel = self._fullscreen_ws:panel():panel({})
 	self._buttons = {}
 	self._node = node
-	
+
 	self._backdrop = MenuBackdropGUI:new(self._fullscreen_ws)
 	self._baselayer_two = self._backdrop:get_new_base_layer()
 
@@ -178,7 +174,7 @@ function OffshoreCasinoComponent:init(ws, fullscreen_ws, node)
 			speed = 1,
 			loop = false,
 			alpha = 0.2,
-			video = "movies/lootdrop" .. tostring(math.random(8))
+			video = "movies/lootdrop" .. tostring(math.random(8)),
 		})
 
 		managers.video:add_video(self._video)
@@ -215,10 +211,10 @@ function OffshoreCasinoComponent:close()
 
 		self._video = nil
 	end
-	
+
 	self._backdrop:close()
 	self._backdrop = nil
-	
+
 	if tostring(managers.music.jukebox_menu_track) ~= "nil" then
 		managers.music:post_event("stop_all_music")
 		managers.music:post_event(managers.music:jukebox_menu_track("mainmenu"))
@@ -226,7 +222,7 @@ function OffshoreCasinoComponent:close()
 		managers.music:stop()
 		managers.music:post_event("menu_music")
 	end
-	
+
 	managers.menu:active_menu().logic:refresh_node()
 	managers.menu_component:post_event("count_1_finished")
 end
@@ -255,10 +251,10 @@ function OffshoreCasinoComponent:_setup()
 	end
 
 	self._panel = self._ws:panel():panel({
-		layer = 51
+		layer = 51,
 	})
 	self._fullscreen_panel = self._fullscreen_ws:panel():panel({
-		layer = 50
+		layer = 50,
 	})
 
 	local blur = self._panel:bitmap({
@@ -266,13 +262,13 @@ function OffshoreCasinoComponent:_setup()
 		render_template = "VertexColorTexturedBlur3D",
 		w = self._panel:w(),
 		h = self._panel:h(),
-		layer = -2
+		layer = -2,
 	})
 
 	local function func(o)
 		local start_blur = 0
 
-		over(0.6, function (p)
+		over(0.6, function(p)
 			o:set_alpha(math.lerp(start_blur, 1, p))
 		end)
 	end
@@ -285,7 +281,7 @@ function OffshoreCasinoComponent:_setup()
 	self._panel:rect({
 		alpha = 0.75,
 		layer = -1,
-		color = Color.black
+		color = Color.black,
 	})
 
 	self._text_header = self._ws:panel():text({
@@ -295,7 +291,7 @@ function OffshoreCasinoComponent:_setup()
 		text = managers.localization:to_upper_text("menu_l_lootscreen"),
 		font_size = tweak_data.menu.pd2_large_font_size,
 		font = tweak_data.menu.pd2_large_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local x, y, w, h = self._text_header:text_rect()
 
@@ -307,15 +303,15 @@ function OffshoreCasinoComponent:_setup()
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	local progress_bar_h = 24
 	self._progress_panel = self._panel:panel({
 		layer = 10,
 		w = self._panel:w() * 0.8,
-		h = progress_bar_h + tweak_data.menu.pd2_medium_font_size
+		h = progress_bar_h + tweak_data.menu.pd2_medium_font_size,
 	})
 
 	self._progress_panel:set_center_x(self._panel:w() * 0.5)
@@ -326,7 +322,7 @@ function OffshoreCasinoComponent:_setup()
 		text = managers.localization:to_upper_text(casino_data.bet == "sell_items" and "menu_generating_sells" or "menu_cs_generating_rewards"),
 		font_size = tweak_data.menu.pd2_medium_font_size,
 		font = tweak_data.menu.pd2_medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self._progress_text = self._progress_panel:text({
@@ -335,28 +331,31 @@ function OffshoreCasinoComponent:_setup()
 		align = "right",
 		font_size = tweak_data.menu.pd2_medium_font_size,
 		font = tweak_data.menu.pd2_medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local progress_bar_panel = self._progress_panel:panel({
-		h = progress_bar_h
+		h = progress_bar_h,
 	})
 
 	progress_bar_panel:set_bottom(self._progress_panel:h())
-	BoxGuiObject:new(progress_bar_panel:panel({
-		layer = 100
-	}), {
-		sides = {
-			1,
-			1,
-			1,
-			1
+	BoxGuiObject:new(
+		progress_bar_panel:panel({
+			layer = 100,
+		}),
+		{
+			sides = {
+				1,
+				1,
+				1,
+				1,
+			},
 		}
-	})
+	)
 
 	self._progress_bar = progress_bar_panel:rect({
 		alpha = 0.8,
 		blend_mode = "add",
-		color = tweak_data.screen_colors.button_stage_2
+		color = tweak_data.screen_colors.button_stage_2,
 	})
 end
 
@@ -392,7 +391,7 @@ function OffshoreCasinoComponent:mouse_moved(o, x, y)
 
 	local used, pointer = nil
 	self._selected_item = nil
-	
+
 	if self._list_scroll then
 		self._list_scroll._over_scroll_bar = self._list_scroll._scroll_bar:visible() and self._list_scroll._scroll_bar:inside(x, y)
 		self._list_scroll._over_arrow_up = alive(self._list_scroll:panel():child("scroll_up_indicator_arrow")) and self._list_scroll:panel():child("scroll_up_indicator_arrow"):inside(x, y)
@@ -420,7 +419,7 @@ function OffshoreCasinoComponent:mouse_pressed(o, button, x, y)
 		if self._list_scroll._over_scroll_bar then
 			self._list_scroll._grabbed_scroll_bar = true
 			self._list_scroll._current_y = y
-			
+
 			return true
 		elseif self._list_scroll._over_arrow_up then
 			self._list_scroll._pressing_arrow_up = true
@@ -430,7 +429,7 @@ function OffshoreCasinoComponent:mouse_pressed(o, button, x, y)
 			return true
 		end
 	end
-	
+
 	for idx, btn in ipairs(self._buttons) do
 		if btn:is_selected() and btn:callback() then
 			btn:callback()()
@@ -462,7 +461,7 @@ function OffshoreCasinoComponent:create_card(panel, icon, size)
 		layer = 20,
 		texture = texture,
 		w = math.round(0.7111111111111111 * size),
-		h = size
+		h = size,
 	})
 
 	upcard:set_rotation(rotation)
@@ -493,7 +492,7 @@ function OffshoreCasinoComponent:get_reward_icon(reward)
 			card_inc = 200000,
 			name_id = "menu_challenge_xp_drop",
 			icon = "upcard_xp",
-			amount = 20000
+			amount = 20000,
 		},
 		{
 			id = "cash",
@@ -503,7 +502,7 @@ function OffshoreCasinoComponent:get_reward_icon(reward)
 			name_id = "menu_challenge_cash_drop",
 			icon = "upcard_cash",
 			always_show = true,
-			amount = 400000
+			amount = 400000,
 		},
 		{
 			id = "loot_drop",
@@ -511,8 +510,8 @@ function OffshoreCasinoComponent:get_reward_icon(reward)
 			card_inc = 5,
 			name_id = "menu_challenge_loot_drop",
 			icon = "upcard_random",
-			amount = 0.2
-		}
+			amount = 0.2,
+		},
 	}
 
 	for _, data in ipairs(rewards) do
@@ -540,7 +539,7 @@ function OffshoreCasinoComponent:_add_item_textures(lootdrop_data, panel)
 			y = panel:h() / 6,
 			w = panel:h() / 1.5,
 			h = panel:h() / 1.5,
-			color = tweak_data.blackmarket.mask_colors[item_id].color
+			color = tweak_data.blackmarket.mask_colors[item_id].color,
 		})
 	elseif category == "colors" then
 		local colors = tweak_data.blackmarket.colors[item_id].colors
@@ -548,19 +547,19 @@ function OffshoreCasinoComponent:_add_item_textures(lootdrop_data, panel)
 			texture = "guis/textures/pd2/blackmarket/icons/colors/color_bg",
 			layer = 1,
 			w = panel:h(),
-			h = panel:h()
+			h = panel:h(),
 		})
 		local c1 = panel:bitmap({
 			texture = "guis/textures/pd2/blackmarket/icons/colors/color_01",
 			layer = 0,
 			w = panel:h(),
-			h = panel:h()
+			h = panel:h(),
 		})
 		local c2 = panel:bitmap({
 			texture = "guis/textures/pd2/blackmarket/icons/colors/color_02",
 			layer = 0,
 			w = panel:h(),
-			h = panel:h()
+			h = panel:h(),
 		})
 
 		c1:set_color(colors[1])
@@ -568,7 +567,7 @@ function OffshoreCasinoComponent:_add_item_textures(lootdrop_data, panel)
 	else
 		local texture_loaded_clbk = callback(self, self, "_texture_loaded_clbk", {
 			panel = panel,
-			is_pattern = category == "textures" and true or false
+			is_pattern = category == "textures" and true or false,
 		})
 		local texture_path = nil
 
@@ -619,7 +618,9 @@ function OffshoreCasinoComponent:_add_item_textures(lootdrop_data, panel)
 				guis_id = tweak_data.blackmarket[tweak_data_category][item_id].guis_id
 			end
 
-			local bundle_folder = tweak_data.blackmarket[tweak_data_category] and tweak_data.blackmarket[tweak_data_category][guis_id] and tweak_data.blackmarket[tweak_data_category][guis_id].texture_bundle_folder
+			local bundle_folder = tweak_data.blackmarket[tweak_data_category]
+				and tweak_data.blackmarket[tweak_data_category][guis_id]
+				and tweak_data.blackmarket[tweak_data_category][guis_id].texture_bundle_folder
 
 			if bundle_folder then
 				guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
@@ -635,7 +636,7 @@ function OffshoreCasinoComponent:_add_item_textures(lootdrop_data, panel)
 		else
 			Application:error("[HUDLootScreen]", "Texture not in DB", texture_path)
 			panel:rect({
-				color = Color.red
+				color = Color.red,
 			})
 		end
 	end
@@ -658,9 +659,9 @@ function OffshoreCasinoComponent:_texture_loaded_clbk(params, texture_idstring)
 	if is_pattern then
 		item:set_render_template(Idstring("VertexColorTexturedPatterns"))
 	end
-	
+
 	TextureCache:unretrieve(texture_idstring)
-	
+
 	local texture_width = item:texture_width()
 	local texture_height = item:texture_height()
 	local panel_width = panel:w()
@@ -674,7 +675,7 @@ function OffshoreCasinoComponent:_texture_loaded_clbk(params, texture_idstring)
 		local rect = panel:rect({
 			blend_mode = "add",
 			rotation = 360,
-			color = Color.red
+			color = Color.red,
 		})
 
 		rect:set_center(panel:w() * 0.5, panel:h() * 0.5)
@@ -697,12 +698,12 @@ end
 OffshoreCasinoComponent.states = {
 	{
 		"_update_loot_drops",
-		0.5
+		0.5,
 	},
 	{
 		"_update_rewards_list",
-		0.5
-	}
+		0.5,
+	},
 }
 
 function OffshoreCasinoComponent:is_generating_rewards()
@@ -727,7 +728,6 @@ function OffshoreCasinoComponent:has_finished_generating_rewards()
 			self._money_gained = self._generated_loot_drops.money_gained
 			self._generated_loot_drops = nil
 			self._loot_drops_coroutine = nil
-			
 
 			MenuCallbackHandler:save_progress()
 
@@ -839,7 +839,7 @@ function OffshoreCasinoComponent:flip_item_card(card, item_type, delay)
 	end
 
 	managers.menu_component:post_event("loot_flip_card")
-	over(0.25, function (p)
+	over(0.25, function(p)
 		card:set_rotation(start_rotation + math.sin(p * 45) * diff)
 
 		if card:rotation() == 0 then
@@ -854,7 +854,7 @@ function OffshoreCasinoComponent:flip_item_card(card, item_type, delay)
 
 	card:set_image(texture)
 	card:set_texture_rect(unpack(rect))
-	over(0.25, function (p)
+	over(0.25, function(p)
 		card:set_rotation(start_rotation + math.sin(p * 45 + 45) * diff)
 
 		if card:rotation() == 0 then
@@ -872,7 +872,7 @@ function OffshoreCasinoComponent:fade_in(element, duration, delay)
 	end
 
 	element:show()
-	over(duration, function (p)
+	over(duration, function(p)
 		element:set_alpha(math.lerp(0, 1, p))
 	end)
 end
@@ -882,7 +882,7 @@ function OffshoreCasinoComponent:fade_out(element, duration, delay)
 		wait(delay)
 	end
 
-	over(duration, function (p)
+	over(duration, function(p)
 		element:set_alpha(math.lerp(1, 0, p))
 	end)
 	element:hide()
@@ -896,7 +896,7 @@ function OffshoreCasinoComponent:count_text(element, cash_string, start_val, end
 	local v = start_val
 
 	managers.menu_component:post_event("count_1")
-	over(duration, function (p)
+	over(duration, function(p)
 		v = math.lerp(start_val, end_val, p)
 
 		element:set_text(managers.experience:cash_string(v, cash_string))
@@ -909,7 +909,7 @@ function OffshoreCasinoComponent:fill_circle(element, start, target, duration, d
 		wait(delay)
 	end
 
-	over(duration, function (p)
+	over(duration, function(p)
 		local v = math.lerp(start, target, p)
 
 		element:set_color(Color(v, 1, 1))
@@ -942,10 +942,10 @@ function OffshoreCasinoComponent:_update_loot_drops()
 		x = padding,
 		y = padding,
 		w = self._panel:w() - padding * 2,
-		h = self._panel:h() - padding * 2
+		h = self._panel:h() - padding * 2,
 	})
 	local loot_params = {
-		loot = managers.experience:experience_string(#loot_drops)
+		loot = managers.experience:experience_string(#loot_drops),
 	}
 	local drops_remaining = self._loot_panel:text({
 		vertical = "bottom",
@@ -955,7 +955,7 @@ function OffshoreCasinoComponent:_update_loot_drops()
 		text = managers.localization:to_upper_text(casino_data.bet == "sell_items" and "menu_loot_drops_selling" or "menu_cs_loot_drops_remaining", loot_params),
 		font_size = tweak_data.menu.pd2_medium_font_size,
 		font = tweak_data.menu.pd2_medium_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(drops_remaining)
@@ -963,7 +963,7 @@ function OffshoreCasinoComponent:_update_loot_drops()
 	drops_remaining:set_bottom(self._loot_panel:bottom() - padding)
 
 	self._loot_scroll = ScrollablePanel:new(self._loot_panel, "loot_scroll", {
-		padding = 0
+		padding = 0,
 	})
 	local num_items = #loot_drops
 	local items_per_line = 6
@@ -988,13 +988,13 @@ function OffshoreCasinoComponent:_update_loot_drops()
 			mask_colors = "upcard_color",
 			textures = "upcard_pattern",
 			drills = "upcard_drill",
-			weapon_bonus = "upcard_weapon_bonus"
+			weapon_bonus = "upcard_weapon_bonus",
 		}
 		local panel = self._loot_scroll:canvas():panel({
 			x = item_size * (c % items_per_line),
 			y = item_size * math.floor(c / items_per_line),
 			w = item_size,
-			h = item_size
+			h = item_size,
 		})
 		local card = self:create_card(panel, "downcard_overkill_deck", item_size * 0.8)
 
@@ -1010,12 +1010,10 @@ function OffshoreCasinoComponent:_update_loot_drops()
 			y = panel:h() * (1 - size) * 0.5,
 			w = panel:w() * size,
 			h = panel:h() * size,
-			color = Color(math.random(), math.random(), math.random())
+			color = Color(math.random(), math.random(), math.random()),
 		})
 
 		self:_add_item_textures(lootdrop_data, item_panel)
-		
-			
 
 		local loot_str = string.format("%s_%s_%s", lootdrop_data.global_value, lootdrop_data.type_items, lootdrop_data.item_entry)
 		local count_text = self._loot_amount[loot_str] > 1 and tostring(self._loot_amount[loot_str]) or ""
@@ -1024,10 +1022,10 @@ function OffshoreCasinoComponent:_update_loot_drops()
 				texture = "guis/textures/pd2/hud_progress_32px",
 				h = 24,
 				w = 24,
-				layer = 1
+				layer = 1,
 			})
 			count_bg:set_rightbottom(item_panel:w(), item_panel:h())
-			
+
 			local amount_text = item_panel:text({
 				text = count_text,
 				vertical = "center",
@@ -1037,17 +1035,17 @@ function OffshoreCasinoComponent:_update_loot_drops()
 				font_size = tweak_data.menu.pd2_medium_font_size / (1 + (string.len(count_text - 1) * 0.25)),
 				font = tweak_data.menu.pd2_medium_font,
 				color = Color.black,
-				layer = 2
+				layer = 2,
 			})
 			amount_text:set_center(count_bg:center())
 		end
-		
+
 		local t = 0
 		t = t + 1 + intial_delay
-		
+
 		if self._selling_items then
 			item_panel:animate(callback(self, self, "fade_in"), 0.25, t)
-			
+
 			t = t + 0.5 + c * 0.2
 
 			loot_params.loot = managers.experience:experience_string(num_items - i)
@@ -1059,13 +1057,13 @@ function OffshoreCasinoComponent:_update_loot_drops()
 
 			card:animate(callback(self, self, "fade_in"), 0.25, t)
 			item_panel:animate(callback(self, self, "fade_out"), 0.25, t)
-			
+
 			t = t + 2 + max_items * 0.5 * 0.2
 			card:animate(callback(self, self, "flip_item_card"), "upcard_cash", t)
 			card:animate(callback(self, self, "fade_out"), 0.25, t)
 		else
 			card:animate(callback(self, self, "fade_in"), 0.25, t)
-			
+
 			t = t + 0.5 + c * 0.2
 
 			card:animate(callback(self, self, "flip_item_card"), card_types[lootdrop_data.type_items], t)
@@ -1084,9 +1082,9 @@ function OffshoreCasinoComponent:_update_loot_drops()
 
 			item_panel:animate(callback(self, self, "fade_out"), 0.25, t)
 		end
-		
+
 		c = c + 1
-		
+
 		if max_items <= c then
 			c = 0
 			intial_delay = t
@@ -1105,11 +1103,11 @@ function OffshoreCasinoComponent:_update_loot_drops()
 			align = "center",
 			alpha = 0,
 			text = managers.localization:text(casino_data.bet == "sell_items" and "menu_loot_sells_not_shown" or "menu_cs_loot_drops_not_shown", {
-				remaining = managers.experience:experience_string(num_items - max_items * max_pages)
+				remaining = managers.experience:experience_string(num_items - max_items * max_pages),
 			}),
 			font_size = tweak_data.menu.pd2_large_font_size,
 			font = tweak_data.menu.pd2_large_font,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 		local t = end_t
 
@@ -1118,9 +1116,9 @@ function OffshoreCasinoComponent:_update_loot_drops()
 
 		end_t = end_t + 2.5
 	end
-	
+
 	self._loot_scroll:update_canvas_size()
-	
+
 	self:next_state(end_t)
 end
 
@@ -1128,16 +1126,16 @@ function OffshoreCasinoComponent:_update_rewards_list()
 	if alive(self._loot_panel) then
 		self._panel:remove(self._loot_panel)
 	end
-	
+
 	self._list_panel = self._panel:panel({
 		x = padding,
 		y = padding,
 		w = self._panel:w() - padding * 2,
-		h = self._panel:h() - padding * 2 - tweak_data.menu.pd2_large_font_size
+		h = self._panel:h() - padding * 2 - tweak_data.menu.pd2_large_font_size,
 	})
 	self._list_scroll = ScrollablePanel:new(self._list_panel, "loot_scroll", {
 		force_scroll_indicators = true,
-		padding = 0
+		padding = 0,
 	})
 	local count = 0
 	local fade_in_t = 0.25
@@ -1157,9 +1155,9 @@ function OffshoreCasinoComponent:_update_rewards_list()
 			h = size,
 			font_size = size,
 			font = tweak_data.menu.pd2_small_font,
-			color = color or tweak_data.screen_colors.text
+			color = color or tweak_data.screen_colors.text,
 		})
-		
+
 		if name == "cost" then
 			reward_text:set_right(self._list_scroll:canvas():w() - (padding * 3))
 		else
@@ -1172,7 +1170,7 @@ function OffshoreCasinoComponent:_update_rewards_list()
 	if not self._selling_items then
 		add_reward_text(managers.localization:to_upper_text("menu_experience") .. " 0", nil, "experience")
 	end
-	
+
 	add_reward_text(managers.localization:to_upper_text("menu_cash_spending") .. ": " .. managers.experience:cash_string(self._money_gained or 0) or "", nil, "spending")
 	add_reward_text("")
 
@@ -1205,11 +1203,11 @@ function OffshoreCasinoComponent:_update_rewards_list()
 			local amount = tweak_data:get_value("experience_manager", "loot_drop_value", item_id) * self._loot_amount[loot_str] or 0
 			self._total_loot_drop_exp = (self._total_loot_drop_exp or 0) + amount
 			self._list_scroll:canvas():child("experience"):set_text(managers.localization:to_upper_text("menu_experience") .. " " .. managers.experience:experience_string(self._total_loot_drop_exp))
-			
+
 			text = managers.localization:text("bm_menu_" .. tostring(category)) .. ": " .. managers.experience:experience_string(lootdrop_data.cost)
 			local _, rarity = string.gsub(item_id, "xp_pda9", "")
 			color = rarity > 0 and tweak_data.screen_colors.infamous_color or tweak_data.screen_colors.text
-			
+
 			td = tweak_data.blackmarket.xp[item_id]
 		elseif category == "safes" then
 			td = tweak_data.economy[category] and tweak_data.economy[category][item_id]
@@ -1232,7 +1230,7 @@ function OffshoreCasinoComponent:_update_rewards_list()
 		if text then
 			local amount = self._loot_amount[loot_str] > 1 and string.format(" (x%s)", self._loot_amount[loot_str]) or ""
 			add_reward_text(text .. amount, color)
-			
+
 			if lootdrop_data.cost then
 				if category == "xp" then
 					add_reward_text(managers.experience:experience_string(lootdrop_data.cost * self._loot_amount[loot_str]), color, "cost")
@@ -1248,7 +1246,7 @@ function OffshoreCasinoComponent:_update_rewards_list()
 	self._button_panel = self._panel:panel({
 		alpha = 0,
 		y = self._panel:h() - tweak_data.menu.pd2_large_font_size,
-		h = tweak_data.menu.pd2_large_font_size - padding
+		h = tweak_data.menu.pd2_large_font_size - padding,
 	})
 
 	self._button_panel:animate(callback(self, self, "fade_in"), 0, 1)
@@ -1262,7 +1260,7 @@ function OffshoreCasinoComponent:_update_rewards_list()
 	self._selected_item = btn
 
 	table.insert(self._buttons, btn)
-	
+
 	self._total_loot_drop_cash = nil
 	self._total_loot_drop_exp = nil
 
