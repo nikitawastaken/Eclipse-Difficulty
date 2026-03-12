@@ -30,7 +30,7 @@ local heavy_swats = {
 	enemy = {
 		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 2, 1 }),
 		[scripted_enemy.heavy_swat_2] = 3,
-	}
+	},
 }
 local death_row_spawns = {
 	on_executed = {
@@ -39,7 +39,7 @@ local death_row_spawns = {
 		{ id = 101680, delay = 0 },
 		{ id = 101681, delay = 0 },
 		{ id = 101682, delay = 0 },
-	}
+	},
 }
 local cell_unlock_timer = 60 + (diff_i * 10) * (is_pro_job and 1.5 or 1)
 local ai_remove_area_triggers = {
