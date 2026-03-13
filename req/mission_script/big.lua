@@ -5,10 +5,12 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local swat_1 = scripted_enemy.swat_1
+local sniper = scripted_enemy.sniper
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
+local harasser_c4 = is_eclipse and { [heavy_1] = 2, [sniper] = 1 } or { [swat_1] = 2, [sniper] = 1 }
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 local disabled = {
@@ -50,6 +52,9 @@ end
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
+local harasser_c4_escape = {
+	enemy = harasser_c4,
+}
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
@@ -63,6 +68,9 @@ local mga_thermite_event = {
 }
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
+}
+local swat_sniper_c4_escape_so = {
+	so_access_filter = { "swat", "sniper" },
 }
 local roof_spawn = {
 	values = {
@@ -229,6 +237,32 @@ return {
 	-- Prevent shields/dozers from disabling the timelock
 	[101195] = no_shields_and_dozers,
 	[102268] = no_shields_and_dozers,
+	-- include swat access in c4 sniper SOs
+	[102890] = swat_sniper_c4_escape_so,
+	[102896] = swat_sniper_c4_escape_so,
+	[102900] = swat_sniper_c4_escape_so,
+	[102906] = swat_sniper_c4_escape_so,
+	-- make c4 sniper respawns bit more random
+	[102762] = {
+		on_executed = {
+			{ id = 102883, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102777] = {
+		on_executed = {
+			{ id = 102893, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102787] = {
+		on_executed = {
+			{ id = 102898, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102796] = {
+		on_executed = {
+			{ id = 102901, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
 	-- trigger ambush cloakers when the time lock door opens
 	[104397] = {
 		on_executed = {
@@ -257,6 +291,10 @@ return {
 	[105500] = elevator_spawn,
 	[400019] = elevator_close_spawn,
 	-- Harassers
+	[102883] = harasser_c4_escape,
+	[102893] = harasser_c4_escape,
+	[102898] = harasser_c4_escape,
+	[102901] = harasser_c4_escape,
 	[100883] = harasser,
 	[100884] = harasser,
 	[100885] = harasser,
