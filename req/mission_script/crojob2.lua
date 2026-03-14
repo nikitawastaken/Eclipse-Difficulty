@@ -41,8 +41,8 @@ return {
 		values = {
 			interval = fence_spawn.interval,
 			elements = {
-			--	105353,
-			--	105354,
+				--	105353,
+				--	105354,
 				100810,
 				100812,
 				100814,
