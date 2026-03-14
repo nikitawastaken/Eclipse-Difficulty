@@ -55,6 +55,11 @@ local bags_required = {
 		amount = normal and 3 or hard and 5 or 7,
 	},
 }
+local trucks_amount = {
+	values = {
+		amount = normal and 2 or hard and 4 or 5,
+	},
+}
 return {
 	-- New reinforce
 	[100109] = {
@@ -94,6 +99,11 @@ return {
 	[100260] = bags_required,
 	[100261] = bags_required,
 	[100262] = bags_required,
+	-- tweak the amount of GenSec trucks
+	[100032] = trucks_amount,
+	[100033] = trucks_amount,
+	[100034] = trucks_amount,
+	[100035] = trucks_amount,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,

@@ -51,6 +51,11 @@ local bags_required = {
 		amount = normal and 3 or hard and 5 or 7,
 	},
 }
+local trucks_amount = {
+	values = {
+		amount = normal and 2 or hard and 4 or 5,
+	},
+}
 return {
 	-- Delay police response and add new reinforce
 	[100109] = {
@@ -80,6 +85,20 @@ return {
 			},
 		},
 	},
+	-- restore one of unused snipers and change his sniper postion
+	[100376] = {
+		values = {
+			enabled = true,
+			position = Vector3(-1984, -3839.996, 1263),
+			rotation = Rotation(90, 0, 0),
+		},
+	},
+	[100416] = {
+		values = {
+			position = Vector3(-2507.843, -3302.226, 1265),
+			rotation = Rotation(-43.515, 0, 0),
+		},
+	},
 	-- Add actual cloaker hide groups
 	[102206] = {
 		on_executed = {
@@ -99,6 +118,11 @@ return {
 	[101168] = bags_required,
 	[101169] = bags_required,
 	[101170] = bags_required,
+	-- tweak the amount of GenSec trucks
+	[100032] = trucks_amount,
+	[100033] = trucks_amount,
+	[100034] = trucks_amount,
+	[100035] = trucks_amount,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
