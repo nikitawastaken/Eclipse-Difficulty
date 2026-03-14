@@ -4,20 +4,20 @@ local army_guard = scripted_enemy.soldier_1
 local security_army = {
 	enemy = army_guard,
 }
-local fence_spawn = {
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+local close_spawn = {
 	values = {
 		interval = 15,
 	},
 }
 local upper_spawn = {
 	values = {
-		interval = 40,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 60,
+		interval = 30,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -33,12 +33,20 @@ return {
 	[104838] = {
 		ponr = {
 			length = 240,
-			length_balance_mul = { 1.25, 1.25, 1, 1 },
+			length_balance_mul = { 1.25, 1.125, 1, 1 },
 		},
 	},
-	[106867] = {
+	[106867] = disabled,
+	[104040] = { -- This spawngroup is split
 		values = {
-			enabled = false,
+			interval = fence_spawn.interval,
+			elements = {
+			--	105353,
+			--	105354,
+				100810,
+				100812,
+				100814,
+			},
 		},
 	},
 	-- Add new reinforce
@@ -66,6 +74,23 @@ return {
 			},
 		},
 	},
+	-- Disable very imaginative vanilla reinforce
+	[101167] = disabled, -- min_force_hacking_left_ON
+	[101168] = disabled, -- min_force_hacking_right_ON
+	[102661] = disabled, -- min_force_van_escape
+	[102663] = disabled, -- min_force_chopper_escape
+	-- Spawn group intervals
+	[101768] = close_spawn,
+	[101769] = close_spawn,
+	[100869] = close_spawn,
+	[101574] = close_spawn,
+	[104040] = close_spawn,
+	[101630] = upper_spawn,
+	[101770] = upper_spawn,
+	[101771] = upper_spawn,
+	[101772] = upper_spawn,
+	[102887] = upper_spawn,
+	[108179] = upper_spawn,
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,
@@ -97,14 +122,4 @@ return {
 	[106020] = security_army,
 	[106138] = security_army,
 	[106141] = security_army,
-	-- Spawn group intervals
-	[100869] = fence_spawn,
-	[101574] = fence_spawn,
-	[101630] = upper_spawn,
-	[101770] = upper_spawn,
-	[101771] = upper_spawn,
-	[101772] = upper_spawn,
-	[102887] = upper_spawn,
-	[108179] = upper_spawn,
-	[104040] = window_spawn,
 }
