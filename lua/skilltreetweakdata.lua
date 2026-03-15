@@ -337,7 +337,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Cat Burglar
 	self.skills.cleaner[1].upgrades = { "player_less_noise_multiplier" }
-	self.skills.cleaner[2].upgrades = { "player_fall_health_damage_multiplier", "player_fall_damage_noise_multiplier" }
+	self.skills.cleaner[2].upgrades = { "player_armor_absorbs_fall_damage", "player_fall_damage_noise_multiplier" }
 	self.skills.cleaner.icon_xy = { 0, 4 }
 	self.skills.cleaner.name_id = "menu_cat_burglar"
 	self.skills.cleaner.desc_id = "menu_cat_burglar_desc"

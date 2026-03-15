@@ -589,7 +589,12 @@ function PlayerDamage:damage_fall(data)
 
 		local fall_damage = self:_max_health() * fall_multiplier
 
-		self:change_health(-fall_damage)
+		if managers.player:has_category_upgrade("player", "armor_absorbs_fall_damage") then
+			self:change_armor(-fall_damage)
+		else
+			self:change_health(-fall_damage)
+		end
+
 		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
 	end
 

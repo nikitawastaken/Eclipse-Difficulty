@@ -1735,14 +1735,13 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	-- unused, but keeping it here in case we want to use it later
-	self.values.player.fall_damage_multiplier_cat = { 0.5 }
-	self.definitions.player_fall_damage_multiplier_cat = {
-		name_id = "menu_player_fall_damage_multiplier_cat",
+	self.values.player.armor_absorbs_fall_damage = { true }
+	self.definitions.player_armor_absorbs_fall_damage = {
+		name_id = "menu_player_armor_absorbs_fall_damage",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "fall_damage_multiplier_cat",
+			upgrade = "armor_absorbs_fall_damage",
 			category = "player",
 		},
 	}
