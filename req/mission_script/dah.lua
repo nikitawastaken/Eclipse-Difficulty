@@ -5,6 +5,7 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
+local gensec_security = scripted_enemy.gensec_1
 local cops = {
 	cop_1,
 	cop_2,
@@ -16,6 +17,9 @@ local beat_cops = {
 	values = {
 		participate_to_group_ai = true,
 	},
+}
+local gensec_enemy = {
+	enemy = gensec_security,
 }
 local enabled = {
 	values = {
@@ -412,6 +416,39 @@ return {
 	[102812] = beat_cops,
 	[102813] = beat_cops,
 	[102814] = beat_cops,
+	-- replace Secret Service with GenSec Red Security (like in PDTH)
+	[100034] = gensec_enemy,
+	[100041] = gensec_enemy,
+	[102322] = gensec_enemy,
+	[102323] = gensec_enemy,
+	[102326] = gensec_enemy,
+	[102327] = gensec_enemy,
+	[102328] = gensec_enemy,
+	[101682] = gensec_enemy,
+	[101718] = gensec_enemy,
+	[101720] = gensec_enemy,
+	[102450] = gensec_enemy,
+	[101209] = gensec_enemy,
+	[103561] = gensec_enemy,
+	[102325] = gensec_enemy,
+	[102458] = gensec_enemy,
+	[102462] = gensec_enemy,
+	[103574] = gensec_enemy,
+	[103576] = gensec_enemy,
+	[101261] = gensec_enemy,
+	[103826] = gensec_enemy,
+	[103827] = gensec_enemy,
+	[103832] = gensec_enemy,
+	[103834] = gensec_enemy,
+	[100104] = gensec_enemy,
+	[101787] = gensec_enemy,
+	[102812] = gensec_enemy,
+	[102813] = gensec_enemy,
+	[102814] = gensec_enemy,
+	[102026] = gensec_enemy,
+	[102028] = gensec_enemy,
+	[102042] = gensec_enemy,
+	[102043] = gensec_enemy,
 	-- spawn dozer and 2 tasers on overkill above (comes a bit later after beat cops)
 	[102128] = {
 		on_executed = {
@@ -570,7 +607,7 @@ return {
 			{ id = 400021, delay = 38 },
 		},
 	},
-	-- add Secret Service that tries to protect the CFO
+	-- add GenSec Security that tries to protect the CFO
 	[103308] = {
 		on_executed = {
 			{ id = 400086, delay = 0 },
