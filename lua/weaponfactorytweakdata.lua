@@ -156,7 +156,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 				local part_data = self.parts and self.parts[part_id]
 				local default_part = table.contains(self[factory_id].default_blueprint, part_id)
 				local is_type = part_data and part_data.type and part_data.type == part_type
-				
+
 				if is_type and not default_part then
 					table.insert(list, part_id)
 				end
@@ -207,10 +207,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	table.delete(self.wpn_fps_smg_x_sr2.uses_parts, "wpn_fps_smg_sr2_s_unfolded")
 
-	table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")	
-		
+	table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
+
 	-- LMG STEELSIGHTS START
-	
+
 	-- Separate the rear sight from the M60's body part
 	self.parts.wpn_fps_lmg_m60_o_standard = {
 		a_obj = "a_body",
@@ -218,141 +218,141 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		name_id = "bm_wp_m4_lower_reciever",
 		unit = "units/pd2_dlc_atw/weapons/wpn_fps_lmg_m60_pts/wpn_fps_lmg_m60_body_standard",
 		stats = {
-			value = 1
+			value = 1,
 		},
 		forbids = {
 			"wpn_fps_upg_o_xpsg33_magnifier",
 			"wpn_fps_upg_o_45rds",
 			"wpn_fps_upg_o_45rds_v2",
 			"wpn_fps_upg_o_sig",
-			"wpn_fps_upg_o_45steel"
+			"wpn_fps_upg_o_45steel",
 		},
 		visibility = {
-			{ 
-				objects = { 
-					g_grip = false, 
-					g_lower = false, 
-					g_stock = false, 
-				}, 
+			{
+				objects = {
+					g_grip = false,
+					g_lower = false,
+					g_stock = false,
+				},
 			},
 		},
 	}
 	self.parts.wpn_fps_lmg_m60_body_standard.visibility = {
-		{ 
-			objects = { 
-				g_sight = false, 
-			}, 
+		{
+			objects = {
+				g_sight = false,
+			},
 		},
 	}
-	table.insert(self.wpn_fps_lmg_m60.default_blueprint, "wpn_fps_lmg_m60_o_standard")	
-	table.insert(self.wpn_fps_lmg_m60.uses_parts, "wpn_fps_lmg_m60_o_standard")	
+	table.insert(self.wpn_fps_lmg_m60.default_blueprint, "wpn_fps_lmg_m60_o_standard")
+	table.insert(self.wpn_fps_lmg_m60.uses_parts, "wpn_fps_lmg_m60_o_standard")
 
 	local lmg_sights = clone(rifle_sights)
 
 	for _, part_id in pairs(rifle_second_sights) do
 		table.insert(lmg_sights, part_id)
 	end
-	
+
 	local sightless_lmgs = {
 		"wpn_fps_lmg_rpk",
 		"wpn_fps_lmg_hk21",
 		"wpn_fps_lmg_m249",
-	--	"wpn_fps_lmg_mg42",
+		--	"wpn_fps_lmg_mg42",
 		"wpn_fps_lmg_par",
-		"wpn_fps_lmg_m60"
+		"wpn_fps_lmg_m60",
 	}
 	for _, factory_id in pairs(sightless_lmgs) do
 		if not self[factory_id].adds then
 			self[factory_id].adds = {}
 		end
-		
+
 		if not self[factory_id].override then
 			self[factory_id].override = {}
 		end
 	end
-	
+
 	-- Add LMG sights and sight gadgets
 	self:_add_parts_from_list(sightless_lmgs, lmg_sights)
-	
+
 	for _, part_id in pairs(lmg_sights) do
 		local part_data = self.parts[part_id]
-		
+
 		if not part_data then
 			break
 		end
-		
+
 		-- Make sure each sight in the auto-generated table has a stance_mod table
 		if not self.parts[part_id].stance_mod then
 			self.parts[part_id].stance_mod = {}
 		end
-		
+
 		local is_second_sight = part_data.type == "second_sight"
 		local is_magnifier = is_second_sight and part_data.a_obj == "a_magnifier"
 		local is_canted_sight = is_second_sight and not is_magnifier
-		
+
 		-- Set stances for each sight
 		if is_magnifier then
-			part_data.stance_mod.wpn_fps_lmg_rpk = { 
-				translation = Vector3(0, 6, -3) 
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 6, -3),
 			}
-			part_data.stance_mod.wpn_fps_lmg_hk21 = { 
-				translation = Vector3(0, 6, -3.2) 
+			part_data.stance_mod.wpn_fps_lmg_hk21 = {
+				translation = Vector3(0, 6, -3.2),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m249 = { 
-				translation = Vector3(0, 6, -3.4) 
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
+				translation = Vector3(0, 6, -3.4),
 			}
-			part_data.stance_mod.wpn_fps_lmg_par = { 
-				translation = Vector3(0, 6, -3.2)
+			part_data.stance_mod.wpn_fps_lmg_par = {
+				translation = Vector3(0, 6, -3.2),
 			}
-			part_data.stance_mod.wpn_fps_lmg_mg42 = { 
-				translation = Vector3(0, 6, -1.75) 
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
+				translation = Vector3(0, 6, -1.75),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m60 = { 
-				translation = Vector3(0.1, 6, 0) --
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
+				translation = Vector3(0.1, 6, 0), --
 			}
 		elseif is_canted_sight then
-			part_data.stance_mod.wpn_fps_lmg_rpk = { 
-				translation = Vector3(0, 0, -11.15), 
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 0, -11.15),
 				rotation = Rotation(0, 0, -45),
 			}
-			part_data.stance_mod.wpn_fps_lmg_hk21 = { 
+			part_data.stance_mod.wpn_fps_lmg_hk21 = {
 				translation = Vector3(-2.75, 0, -11.15),
 				rotation = Rotation(0, 0, -45),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m249 = { 
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
 				translation = Vector3(0.300, -1, -12.7),
 				rotation = Rotation(0, 0, -45),
 			}
-			part_data.stance_mod.wpn_fps_lmg_par = { 
+			part_data.stance_mod.wpn_fps_lmg_par = {
 				translation = Vector3(-2.45, -4, -13.15),
 				rotation = Rotation(0, 0, -45),
 			}
-			part_data.stance_mod.wpn_fps_lmg_mg42 = { 
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
 				translation = Vector3(0.85, 0, -11.9),
 				rotation = Rotation(0, 0, -45),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m60 = { 
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
 				translation = Vector3(-2.75, 0, -11.15), --
 				rotation = Rotation(0, 0, -45),
 			}
 		else
-			part_data.stance_mod.wpn_fps_lmg_rpk = { 
-				translation = Vector3(0, 0, -3) 
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 0, -3),
 			}
 			part_data.stance_mod.wpn_fps_lmg_hk21 = {
-				translation = Vector3(0, -0, -3.2) 
+				translation = Vector3(0, -0, -3.2),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m249 = { 
-				translation = Vector3(0, -1, -3.4) 
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
+				translation = Vector3(0, -1, -3.4),
 			}
-			part_data.stance_mod.wpn_fps_lmg_par = { 
-				translation = Vector3(0, 8 , -3.2)
+			part_data.stance_mod.wpn_fps_lmg_par = {
+				translation = Vector3(0, 8, -3.2),
 			}
-			part_data.stance_mod.wpn_fps_lmg_mg42 = { 
-				translation = Vector3(0, 12, -1.75) 
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
+				translation = Vector3(0, 12, -1.75),
 			}
-			part_data.stance_mod.wpn_fps_lmg_m60 = { 	
-				translation = Vector3(0.1, 8, 0) --
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
+				translation = Vector3(0.1, 8, 0), --
 			}
 		end
 
@@ -360,13 +360,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if is_magnifier and table.contains(self.wpn_fps_lmg_rpk.uses_parts, part_id) then
 			table.delete(self.wpn_fps_lmg_rpk.uses_parts, part_id)
 		end
-				
+
 		-- Add rails and mounts
 		self.wpn_fps_lmg_rpk.adds[part_id] = { "wpn_fps_ak_extra_ris" }
 		self.wpn_fps_lmg_hk21.adds[part_id] = { "wpn_fps_ass_g3_body_rail" }
 		self.wpn_fps_lmg_mg42.adds[part_id] = { "wpn_fps_snp_scout_o_rail" }
 		self.wpn_fps_lmg_m60.adds[part_id] = { "wpn_fps_snp_scout_o_rail" }
-		
+
 		-- Create dummy parts to properly parent sights
 		self.parts.wpn_fps_upg_o_ak_scopemount_rpk_dummy = {
 			type = "jerome_o_sm",
@@ -386,9 +386,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			},
 			animations = {
 				reload_not_empty = "reload_not_empty",
-				reload = "reload"
+				reload = "reload",
 			},
-		}		
+		}
 		self.parts.wpn_fps_lmg_mg42_sight_dummy = {
 			a_obj = "a_body",
 			type = "jerome_lower_reciever",
@@ -399,7 +399,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			},
 			animations = {
 				reload_not_empty = "reload_not_empty",
-				reload = "reload"
+				reload = "reload",
 			},
 		}
 		self.parts.wpn_fps_lmg_par_sight_dummy = {
@@ -412,7 +412,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			},
 			animations = {
 				reload_not_empty = "reload_not_empty",
-				reload = "reload"
+				reload = "reload",
 			},
 		}
 		self.parts.wpn_fps_lmg_m60_sight_dummy = {
@@ -425,15 +425,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			},
 			animations = {
 				reload_not_empty = "reload_not_empty",
-				reload = "reload"
+				reload = "reload",
 			},
 		}
-		
+
 		-- Additional weapon-specific overrides
 
---		self.wpn_fps_lmg_mg42.override.wpn_fps_snp_scout_o_rail = { a_obj = "a_o_parented", parent = "jerome_lower_reciever" }		
+		--		self.wpn_fps_lmg_mg42.override.wpn_fps_snp_scout_o_rail = { a_obj = "a_o_parented", parent = "jerome_lower_reciever" }
 		self.wpn_fps_lmg_m60.override.wpn_fps_snp_scout_o_rail = { a_obj = "a_o_parented", parent = "jerome_upper_reciever" }
-				
+
 		-- RPK
 		if not self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount then
 			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
@@ -441,11 +441,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.adds = { "wpn_fps_upg_o_ak_scopemount_rpk_dummy" }
 		end
 
-		if not is_magnifier then		
-			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[part_id] = { 
-				a_obj = "a_o_sm", 
-				parent = "jerome_o_sm", 
-				stance_mod = { 
+		if not is_magnifier then
+			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[part_id] = {
+				a_obj = "a_o_sm",
+				parent = "jerome_o_sm",
+				stance_mod = {
 					wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) },
 				},
 			}
@@ -456,7 +456,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			self.wpn_fps_lmg_m249.override[part_id].parent = "jerome_upper_reciever"
 			self.wpn_fps_lmg_m249.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
 			table.insert(self.wpn_fps_lmg_m249.override[part_id].adds, "wpn_fps_lmg_m249_sight_dummy")
-			
+
 			--[[Buzzsaw
 			self.wpn_fps_lmg_mg42.override[part_id] = self.wpn_fps_lmg_mg42.override[part_id] or {}
 			self.wpn_fps_lmg_mg42.override[part_id].a_obj = "a_o_parented"
@@ -464,14 +464,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			self.wpn_fps_lmg_mg42.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
 			table.insert(self.wpn_fps_lmg_mg42.override[part_id].adds, "wpn_fps_lmg_mg42_sight_dummy")
 			]]
-			
+
 			-- KSP 58
 			self.wpn_fps_lmg_par.override[part_id] = self.wpn_fps_lmg_par.override[part_id] or {}
 			self.wpn_fps_lmg_par.override[part_id].a_obj = "a_o_parented"
 			self.wpn_fps_lmg_par.override[part_id].parent = "jerome_upper_reciever"
 			self.wpn_fps_lmg_par.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
 			table.insert(self.wpn_fps_lmg_par.override[part_id].adds, "wpn_fps_lmg_par_sight_dummy")
-		
+
 			-- M60
 			self.wpn_fps_lmg_m60.override[part_id] = self.wpn_fps_lmg_m60.override[part_id] or {}
 			self.wpn_fps_lmg_m60.override[part_id].a_obj = "a_o_parented"
@@ -479,12 +479,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			self.wpn_fps_lmg_m60.override[part_id].forbids = self.parts[part_id].forbids and deep_clone(self.parts[part_id].forbids) or {}
 			table.insert(self.wpn_fps_lmg_m60.override[part_id].forbids, "wpn_fps_lmg_m60_o_standard")
 			self.wpn_fps_lmg_m60.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
-			table.insert(self.wpn_fps_lmg_m60.override[part_id].adds, "wpn_fps_lmg_m60_sight_dummy") 		
+			table.insert(self.wpn_fps_lmg_m60.override[part_id].adds, "wpn_fps_lmg_m60_sight_dummy")
 		end
 	end
 
 	-- LMG Steelsights END
-	
+
 	-- Assault Rifle Mods
 
 	-- let the AMCAR use more CAR family mods
@@ -1726,11 +1726,11 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 	}
 	local custom_stats_tbl = {
-		wpn_fps_upg_a_custom = { 
-			rays = 6, 
-			damage_near_mul = 0.5, 
+		wpn_fps_upg_a_custom = {
+			rays = 6,
+			damage_near_mul = 0.5,
 			muzzleflash = "effects/particles/weapons/sho_buckshot",
-		},	
+		},
 		wpn_fps_upg_a_explosive = {
 			rays = 1,
 			ammo_pickup_max_mul = 0.4,
@@ -1989,18 +1989,18 @@ WeaponFactoryTweakData.grenade_launcher_ammo_override_map = {
 function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 	local custom_stats_tbl = {
 		wpn_fps_upg_a_grenade_launcher_incendiary = {
-			ammo_pickup_max_mul = 0.6, 
-			ammo_pickup_min_mul = 0.6, 
+			ammo_pickup_max_mul = 0.6,
+			ammo_pickup_min_mul = 0.6,
 			launcher_grenade = "launcher_incendiary",
 		},
 		wpn_fps_upg_a_grenade_launcher_electric = {
-			ammo_pickup_max_mul = 0.8, 
-			ammo_pickup_min_mul = 0.8, 
+			ammo_pickup_max_mul = 0.8,
+			ammo_pickup_min_mul = 0.8,
 			launcher_grenade = "launcher_electric",
 		},
 		wpn_fps_upg_a_grenade_launcher_poison = {
-			ammo_pickup_max_mul = 0.4, 
-			ammo_pickup_min_mul = 0.4, 
+			ammo_pickup_max_mul = 0.4,
+			ammo_pickup_min_mul = 0.4,
 			launcher_grenade = "launcher_poison",
 		},
 	}
@@ -2052,7 +2052,7 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison), 
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison),
 			},
 			default = {
 				stats = { damage = 0 },

@@ -109,7 +109,7 @@ function BlackMarketManager:get_reload_time(weapon_id)
 	local mult = tweak_data.weapon[weapon_id].reload_speed_multiplier
 	local empty_mult = tweak_data.weapon[weapon_id].reload_empty_speed_multiplier
 	local not_empty_mult = tweak_data.weapon[weapon_id].reload_not_empty_speed_multiplier
-	
+
 	result_empty = result_empty / (empty_mult or mult or 1)
 	result_tactical = result_tactical / (not_empty_mult or mult or 1)
 
