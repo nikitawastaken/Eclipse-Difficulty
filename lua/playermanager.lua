@@ -836,8 +836,8 @@ function PlayerManager:drop_carry(zipline_unit)
 			forward,
 			throw_distance_multiplier_upgrade_level,
 			zipline_unit,
-			movement,
-			managers.network:session():local_peer()
+			managers.network:session():local_peer(),
+			movement
 		)
 	end
 

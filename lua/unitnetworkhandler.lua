@@ -148,8 +148,8 @@ function UnitNetworkHandler:server_drop_carry(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	movement,
-	sender
+	sender,
+	movement
 )
 	local peer = self._verify_sender(sender)
 
@@ -168,8 +168,8 @@ function UnitNetworkHandler:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		movement,
-		peer
+		peer,
+		movement
 	)
 end
 
