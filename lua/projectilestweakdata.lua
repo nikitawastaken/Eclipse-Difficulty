@@ -24,6 +24,9 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	-- increase concussion grenade expire_t and repeat_expire_t to match other grenades
 	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
+	
+	-- Give Sicario's smoke grenade a sound when smoke is ready to use (like any cd-based throwables have)
+	self.projectiles.smoke_screen_grenadesounds = { cooldown = "perkdeck_cooldown_over" }
 
 	-- give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
