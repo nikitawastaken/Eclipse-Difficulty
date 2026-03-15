@@ -836,8 +836,8 @@ function PlayerManager:drop_carry(zipline_unit)
 			forward,
 			throw_distance_multiplier_upgrade_level,
 			zipline_unit,
-			managers.network:session():local_peer(),
-			movement
+			movement,
+			managers.network:session():local_peer()
 		)
 	end
 
@@ -949,8 +949,8 @@ function PlayerManager:server_drop_carry(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	peer,
-	movement
+	movement,
+	peer
 )
 	if not self:verify_carry(peer, carry_id) then
 		return
