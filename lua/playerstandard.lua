@@ -32,6 +32,8 @@ function PlayerStandard:init(unit)
 	end
 
 	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1) * pickup_range_multiplier
+	
+	self._random_device = Eclipse:require("twister_rng")
 end
 
 Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
@@ -488,16 +490,26 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
 						local apply_spray = false
-						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
+						local apply_random_pattern = false
+						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery, random_pattern
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
 							pattern_tweak_data = weap_tweak_data.spray.pattern -- first part of spray pattern
 							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
 							recoil_recovery = weap_tweak_data.recoil_recovery_timer
 							apply_spray = true
+						elseif fire_mode == "auto" and tweak_data.weapon.recoil_stance_patterns then
+							local movement_state = self:get_movement_state()
+							if self._random_device._seed == nil then
+								self._random_device:init_or_reset_state(weap_tweak_data.recoil_seeds[movement_state] or weap_tweak_data.recoil_seeds.standing)
+							end
+							random_pattern = tweak_data.weapon.recoil_stance_patterns[movement_state] or tweak_data.weapon.recoil_stance_patterns.default
+							apply_random_pattern = true
 						end
 
 						if apply_spray and not _G.IS_VR then
 							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
+						elseif apply_random_pattern and not _G.IS_VR then
+							self._camera_unit:base():rand_recoil_kick(self._random_device, random_pattern, recoil_multiplier)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 						end
