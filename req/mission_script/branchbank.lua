@@ -63,9 +63,8 @@ local sniper_amount = {
 		amount_random = normal and 0 or hard and 1 or 2,
 	},
 }
-local swat_vans_amount = is_eclipse_pro and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
@@ -74,10 +73,11 @@ local parking_lot_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_cops_agents,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 local scripted_swat_van_spawn = {
@@ -97,7 +97,7 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
-	-- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
 	[104452] = {
 		on_executed = {
 			{ id = 400001, delay = 0 },
@@ -109,9 +109,6 @@ return {
 			{ id = 102206, delay = 0 },
 		},
 	},
-	-- randomize heli dozers
-	[101785] = { enemy = heli_dozer },
-	[101786] = { enemy = heli_dozer },
 	-- special ambush chance increase
 	[103072] = {
 		chance = ambush_chance,
@@ -168,10 +165,17 @@ return {
 			{ id = 105648, remove = true },
 		},
 	},
-	-- trigger on end assault
+	-- trigger swat vans on start assault
+	[104300] = {
+		on_executed = {
+			{ id = 103540, delay = 0 },
+		},
+	},
+	-- trigger swat choppers on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 400043, delay = 10 },
+			{ id = 400045, delay = 10 },
+			{ id = 400046, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -192,11 +196,12 @@ return {
 			{ id = 100438, delay = 30 },
 		},
 	},
-	-- make the SWAT events happen earlier if it's on eclipsepj
+	-- make the SWAT events happen earlier if it's on Death Wish Pro
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },
-			{ id = 400043, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400045, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400046, remove = not is_eclipse_pro and true or nil, delay = 0 },
 		},
 	},
 	-- enable spawns sooner
@@ -222,12 +227,15 @@ return {
 		},
 	},
 	-- dozers
+	-- randomize heli dozers
 	[101785] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
 	},
 	[101786] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 102296, delay = 0 },
 		},
@@ -253,14 +261,14 @@ return {
 			difficulty_easy_wish = true,
 		},
 	},
-	-- police car amount
+	-- Police car amount
 	[103879] = cop_car_amount,
-	-- sniper amount
+	-- Sniper amount
 	[101200] = sniper_amount,
-	-- vault gate chance
+	-- Vault gate chance
 	[100195] = gate_chance,
 	[100196] = gate_chance,
-	-- enable all street initial_reinforce spots when first responders arrive, increase the amount of enemies for initial_reinforce points
+	-- Enable all street initial_reinforce spots when first responders arrive, increase the amount of enemies for initial_reinforce points
 	[104727] = initial_reinforce,
 	[104728] = initial_reinforce,
 	[104729] = initial_reinforce,
@@ -268,18 +276,24 @@ return {
 	[100369] = initial_reinforce_amount,
 	[102091] = initial_reinforce_amount,
 	[100370] = initial_reinforce_amount,
-	-- disable drill and escape reinforce (it's done automatically now)
+	-- Disable drill and escape reinforce (it's done automatically now)
 	[101125] = disabled,
 	[101126] = disabled,
 	[105331] = disabled,
+	-- Additional flee points
+	[105722] = {
+		flee_point = {
+			{ name = "back_spawns", position = Vector3(1950, 6350, 1) },
+		},
+	},
 	-- Spawn group intervals
 	[400012] = scripted_swat_van_spawn,
 	[400019] = scripted_swat_van_spawn,
 	[400035] = scripted_swat_van_spawn,
 	[400042] = scripted_swat_van_spawn,
-	[100246] = street_spawn,
-	[100249] = street_spawn,
-	[100250] = street_spawn,
+	[100246] = standard_spawn,
+	[100249] = standard_spawn,
+	[100250] = standard_spawn,
 	[101211] = parking_lot_spawn,
 	[103742] = cloaker_spawn,
 	[102914] = cloaker_spawn,

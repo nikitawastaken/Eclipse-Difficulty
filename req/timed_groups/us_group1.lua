@@ -1,4 +1,4 @@
-return function(timed_tactics, difficulty_index)
+return function(timed_tactics, timed_random_tactics, difficulty_index, spawn_point_ref)
 	return {
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
@@ -9,7 +9,7 @@ return function(timed_tactics, difficulty_index)
 			army_timed_group = {
 				enabled = true,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 3,
+				max_nr_simultaneous_groups = 2,
 				amount = { 2, 3 },
 				disable_timer = nil,
 				disable_diff = nil,
@@ -30,18 +30,20 @@ return function(timed_tactics, difficulty_index)
 				end,
 				spawn = {
 					{
+						amount_max = 2,
+						rank = 2,
+						freq = 0.5,
+						unit = "army_soldier_3",
+						tactics = timed_tactics.army_def,
+						random_tactics = timed_random_tactics.army_aggressive,
+					},
+					{
 						amount_min = 1,
 						rank = 2,
 						freq = 1,
 						unit = "army_soldier_2",
 						tactics = timed_tactics.army_def,
-					},
-					{
-						amount_max = 2,
-						rank = 3,
-						freq = 0.5,
-						unit = "army_soldier_3",
-						tactics = timed_tactics.army_agg,
+						random_tactics = timed_random_tactics.army_defensive,
 					},
 					{
 						amount_max = 1,
@@ -55,10 +57,7 @@ return function(timed_tactics, difficulty_index)
 						tactics = timed_tactics.army_spt,
 					},
 				},
-				spawn_point_chk_ref = table.list_to_set({
-					"cs_swats",
-					"cs_heavies",
-				}),
+				spawn_point_chk_ref = table.list_to_set(spawn_point_ref),
 			},
 		},
 	}

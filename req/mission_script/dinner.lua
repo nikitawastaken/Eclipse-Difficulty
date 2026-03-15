@@ -1,8 +1,14 @@
 --Awesome layout ranomization from ASS
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local so_access = Eclipse.access_filter
+local only_cloakers_so = {
+	so_access_filter = so_access.spooc,
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -18,12 +24,6 @@ local garage_door_spawn = {
 		interval = 10,
 	},
 	groups = preferred.no_shields,
-}
-local van_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
 }
 local window_spawn = {
 	values = {
@@ -49,6 +49,13 @@ local container_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local van_spawn = {
+	values = {
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+	},
+	groups = preferred.no_cops_agents,
+}
 local roof_spawn = {
 	values = {
 		interval = 30,
@@ -57,7 +64,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 local bags_required = {
@@ -78,11 +85,32 @@ local chance_no_keycard = normal and 0.1 or hard and 0.2 or 0.4
 local zero_traversal_covers = math.random() < chance_zero_traversal_covers
 local zero_top_containers = math.random() < chance_zero_top_containers
 local all_containers_closed = math.random() < chance_all_containers_closed
+
+local murky_green_bulldozer = scripted_enemy.murky_bulldozer_1
+local murky_black_bulldozer = scripted_enemy.murky_bulldozer_2
+local murky_elite_ben_bulldozer = scripted_enemy.murky_elite_bulldozer_1
+local murky_elite_skull_bulldozer = scripted_enemy.murky_elite_bulldozer_2
+
+local random_murky_dozers = {
+	murky_green_bulldozer,
+	murky_black_bulldozer,
+}
+local random_murky_elite_dozers = {
+	murky_elite_ben_bulldozer,
+	murky_elite_skull_bulldozer,
+}
+
+local murky_bulldozer = is_eclipse and random_murky_elite_dozers or random_murky_dozers
+
+local murky_dozers = {
+	enemy = murky_bulldozer,
+}
+
 return {
 	[101061] = {
 		ponr = {
 			length = 200,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
 	[103218] = disabled,
@@ -122,21 +150,10 @@ return {
 	-- Disable a few vanilla reinforce points
 	[104143] = disabled,
 	[104144] = disabled,
-	-- Slightly slower difficulty ramp up
-	[102162] = disabled,
-	[101357] = { -- initial diff
-		values = {
-			difficulty = 0.5,
-		},
-	},
 	[101696] = { -- players entered container area
-		difficulty = 0.75,
 		on_executed = {
 			{ id = 102804, delay = 0 },
 		},
-	},
-	[100680] = { -- trap hidden, start lifting gold
-		difficulty = 1,
 	},
 	[105038] = math.random() < chance_no_keycard and disabled or nil,
 	[103563] = math.random() < chance_disable_catwalk_far and disabled or nil,
@@ -236,6 +253,25 @@ return {
 			},
 		},
 	},
+	-- replace dozers that come out murky choppers and gensec van with actual murkywater dozers
+	-- 1st chopper, right after the ambush
+	[103095] = murky_dozers,
+	[103097] = murky_dozers,
+	[103087] = murky_dozers,
+	[103096] = murky_dozers,
+	[102190] = murky_dozers,
+	[100621] = murky_dozers,
+	-- 2nd chopper, near slaughterhouse
+	[103088] = murky_dozers,
+	[103090] = murky_dozers,
+	[103091] = murky_dozers,
+	[103092] = murky_dozers,
+	[103093] = murky_dozers,
+	[103094] = murky_dozers,
+	-- Inside the GenSec van
+	[101241] = murky_dozers,
+	[101242] = murky_dozers,
+	[101243] = murky_dozers,
 	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
 	-- spawn container snipers
 	[105117] = {
@@ -302,6 +338,20 @@ return {
 	[101219] = snipers_amount,
 	[101222] = snipers_amount,
 	[101224] = snipers_amount,
+	-- only cloakers can use conveyor belts navlinks
+	[101036] = only_cloakers_so,
+	[105179] = only_cloakers_so,
+	[105180] = only_cloakers_so,
+	[105181] = only_cloakers_so,
+	[105182] = only_cloakers_so,
+	[105183] = only_cloakers_so,
+	[105184] = only_cloakers_so,
+	[105185] = only_cloakers_so,
+	[105186] = only_cloakers_so,
+	[105187] = only_cloakers_so,
+	[105188] = only_cloakers_so,
+	[105189] = only_cloakers_so,
+	[105190] = only_cloakers_so,
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,

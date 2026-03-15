@@ -75,19 +75,27 @@ ElementSpawnEnemyGroup.group_mapping.tac_shield_wall_ranged = ElementSpawnEnemyG
 ElementSpawnEnemyGroup.group_mapping.tac_shield_wall_charge = ElementSpawnEnemyGroup.group_mapping.tac_shield_wall
 ElementSpawnEnemyGroup.group_mapping.tac_tazer_charge = ElementSpawnEnemyGroup.group_mapping.tac_tazer_flanking
 
+ElementSpawnEnemyGroup._values_meta = {
+	__index = function(t, k)
+		if k == "interval" then
+			local interval = rawget(t, "interval_reference") or 0
+			local balance_mul = rawget(t, "interval_balance_mul")
+			if balance_mul then
+				local balance_mul_weight = tweak_data.group_ai.team_ai_spawn_group_interval_balance_mul_weight
+				return interval * managers.groupai:state():_get_balancing_multiplier(balance_mul, balance_mul_weight)
+			end
+			return interval
+		end
+	end,
+}
 Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_values", function(self)
 	if not self._values.preferred_spawn_groups then
 		return
 	end
 
-	self._values.interval = math.max(5, self._values.interval)
-	for _, id in pairs(self._values.elements) do
-		local spawn_point = self:get_mission_element(id)
-		if spawn_point and spawn_point._values.spawn_action then
-			self._values.interval = math.max(10, self._values.interval)
-			break
-		end
-	end
+	self._values.interval_reference = math.max(tweak_data.group_ai.min_spawn_group_interval, self._values.interval)
+	self._values.interval = nil
+	setmetatable(self._values, ElementSpawnEnemyGroup._values_meta)
 
 	local new_groups = {}
 	for _, initial_group in pairs(self._values.preferred_spawn_groups) do
@@ -102,4 +110,25 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 	end
 
 	self._values.preferred_spawn_groups = table.map_keys(new_groups)
+end)
+
+Hooks:PostHook(ElementSpawnEnemyGroup, "_chk_spawn_group_references", "eclipse__chk_spawn_group_references", function(self, preferred_groups)
+	local function check_references(tbl)
+		local ref_chk
+		for group_id, group_data in pairs(tbl) do
+			ref_chk = group_data.spawn_point_chk_ref
+			if ref_chk then
+				for _, group_type in ipairs(preferred_groups) do
+					if ref_chk[group_type] then
+						table.insert(preferred_groups, group_id)
+						break
+					end
+				end
+			end
+		end
+	end
+
+	for _, timed_data in pairs(tweak_data.group_ai.timed_enemy_spawn_groups or {}) do
+		check_references(timed_data.group_data or {})
+	end
 end)

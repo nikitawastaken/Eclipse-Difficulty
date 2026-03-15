@@ -16,7 +16,7 @@ local enabled = {
 }
 local courtyard_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -24,13 +24,16 @@ local staircase_window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local matrix_window_spawn = {
+	values = {
+		interval = 30,
+	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local exhibit_rappel_spawn = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local last_rappel_spawn = {
 	groups = preferred.no_cops_agents,
@@ -39,7 +42,7 @@ return {
 	[102425] = {
 		ponr = {
 			length = 240,
-			player_mul = { 1.25, 1.25, 1, 1 },
+			length_balance_mul = { 1.25, 1.25, 1, 1 },
 		},
 	},
 	-- Combine some navigation areas
@@ -54,6 +57,11 @@ return {
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
+			{
+				name = "entrance",
+				force = 3,
+				position = Vector3(-3475, 225, -700),
+			},
 			{
 				name = "south",
 				force = 2,
@@ -115,6 +123,8 @@ return {
 			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
 		},
 	},
+	-- Don't disable front spawns
+	[102159] = enabled,
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,

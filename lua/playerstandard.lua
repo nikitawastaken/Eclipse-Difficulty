@@ -11,18 +11,27 @@ function PlayerStandard:init(unit)
 		self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
 	end
 
+	-- Make sure that new increased gravity is set
+	self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+
 	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
 	local pm = managers.player
-	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1)
+	local pickup_range_multiplier = 1
 
-	self._random_device = Eclipse:require("twister_rng")
-end
+	-- Scavenger ACED: increase pickup range based on armor
+	if pm:has_category_upgrade("player", "armor_pickup_range_bonus") then
+		local armor_init = tweak_data.player.damage.ARMOR_INIT
+		local base_max_armor = armor_init + pm:body_armor_value("armor") + pm:body_armor_skill_addend()
+		local mul = pm:upgrade_value("player", "armor_pickup_range_bonus", 1)
 
--- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
-function PlayerStandard:full_steelsight()
-	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
+		for i = 1, base_max_armor do
+			pickup_range_multiplier = pickup_range_multiplier + mul
+		end
+	end
+
+	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1) * pickup_range_multiplier
 end
 
 Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
@@ -35,23 +44,40 @@ Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	end
 end)
 
--- Scale headbob based on move speed
--- Add headbob while moving and aiming
--- function PlayerStandard:_get_walk_headbob()
--- 	local standard_speed = tweak_data.player.movement_state.standard.movement.speed.STANDARD_MAX
--- 	local walk_speed_mul = math.clamp(self:_get_max_walk_speed(t), standard_speed * 0.5, standard_speed * 2) / standard_speed
--- 	local has_run_and_shoot = self._equipped_unit:base():run_and_shoot_allowed()
+-- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
+function PlayerStandard:full_steelsight()
+	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
+end
 
--- 	local headbob_rate = 1
--- 		/ 40
--- 		* (self._running and has_run_and_shoot and 1.5 or self._running and 3 or 1)
--- 		* (self._state_data.ducking and 0.5 or 1)
--- 		* (self._state_data.in_steelsight and 0.05 or 1)
--- 		* (self._state_data.in_air and 0 or 1)
--- 		* (self._state_data.using_bipod and 0 or 1)
+-- Increase player gravity to make movement less floaty
+function PlayerStandard:_activate_mover(mover, velocity)
+	self._unit:activate_mover(mover, velocity)
 
--- 	return headbob_rate * walk_speed_mul
--- end
+	if self._state_data.on_ladder then
+		self._unit:mover():set_gravity(Vector3(0, 0, 0))
+	else
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	if self._is_jumping then
+		self._unit:mover():jump()
+		self._unit:mover():set_velocity(velocity)
+	end
+end
+
+function PlayerStandard:_end_action_ladder(t, input)
+	if not self._state_data.on_ladder then
+		return
+	end
+
+	self._state_data.on_ladder = false
+
+	if self._unit:mover() then
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	self._unit:movement():on_exit_ladder()
+end
 
 function PlayerStandard:_stance_entered(unequipped)
 	local stance_standard = tweak_data.player.stances.default[managers.player:current_state()] or tweak_data.player.stances.default.standard
@@ -350,7 +376,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, primary_category)
 
 						if damage_health_ratio > 0 then
-							local upgrade = weap_base:is_category("saw") and self._damage_health_ratio_mul_melee or self._damage_health_ratio_mul
+							local upgrade = self._damage_health_ratio_mul
 							dmg_mul = dmg_mul * (1 + upgrade * damage_health_ratio)
 						end
 
@@ -462,26 +488,16 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
 						local apply_spray = false
-						local apply_random_pattern = false
-						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery, random_pattern
+						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
 							pattern_tweak_data = weap_tweak_data.spray.pattern -- first part of spray pattern
 							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
 							recoil_recovery = weap_tweak_data.recoil_recovery_timer
 							apply_spray = true
-						elseif fire_mode == "auto" and tweak_data.weapon.recoil_stance_patterns then
-							local movement_state = self:get_movement_state()
-							if self._random_device._seed == nil then
-								self._random_device:init_or_reset_state(weap_tweak_data.recoil_seeds[movement_state] or weap_tweak_data.recoil_seeds.standing)
-							end
-							random_pattern = tweak_data.weapon.recoil_stance_patterns[movement_state] or tweak_data.weapon.recoil_stance_patterns.default
-							apply_random_pattern = true
 						end
 
 						if apply_spray and not _G.IS_VR then
 							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
-						elseif apply_random_pattern and not _G.IS_VR then
-							self._camera_unit:base():rand_recoil_kick(self._random_device, random_pattern, recoil_multiplier)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 						end
@@ -570,9 +586,6 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 	return new_action
 end
 
--- No more sixth sense
-Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", function(self, ...) end)
-
 -- Don't update sixth sense anymore and add sprint reload upgrade to shotguns
 Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	PlayerMovementState.update(self, t, dt)
@@ -590,6 +603,10 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	managers.hud:_update_crosshair_offset(t, dt)
 	self:_upd_stance_switch_delay(t, dt)
 
+	if managers.player:has_category_upgrade("player", "standstill_omniscience") then
+		self:_update_standstill_omniscience(t, dt)
+	end
+
 	if managers.player:has_category_upgrade("snp", "charged_shot") then
 		self:_update_sniper_shot_charge(t, dt)
 	end
@@ -601,6 +618,54 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload")
 		or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
+
+-- Sixth Sense overhaul: less harsh conditions for activation, ACED variant makes it work in loud and marks all enemies at once
+function PlayerStandard:_update_standstill_omniscience(t, dt)
+	local skill_data = managers.player:upgrade_value("player", "standstill_omniscience") or nil
+
+	local action_forbidden = managers.player:current_state() == "civilian"
+		or self:_interacting()
+		or self:is_deploying()
+		or self:_is_throwing_projectile()
+		or self:_is_meleeing()
+		or self:_on_zipline()
+		or self._moving
+		or self:running()
+		or self:in_air()
+		or self:shooting()
+
+	if not skill_data or not skill_data.outside_of_whisper_mode and not managers.groupai:state():whisper_mode() or action_forbidden then
+		if self._state_data.omniscience_t then
+			self._state_data.omniscience_t = nil
+		end
+
+		return
+	end
+
+	self._state_data.omniscience_t = self._state_data.omniscience_t or t + skill_data.start_t
+
+	if self._state_data.omniscience_t <= t then
+		local sensed_targets = World:find_units_quick("sphere", self._unit:movement():m_pos(), skill_data.sense_radius, managers.slot:get_mask("trip_mine_targets"))
+
+		for _, unit in ipairs(sensed_targets) do
+			if alive(unit) and not unit:base():char_tweak().is_escort then
+				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
+
+				if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
+					self._state_data.omniscience_units_detected[unit:key()] = t + skill_data.target_resense_t
+
+					managers.game_play_central:auto_highlight_enemy(unit, true)
+
+					if not skill_data.all_at_once then
+						break
+					end
+				end
+			end
+		end
+
+		self._state_data.omniscience_t = t + skill_data.interval_t
+	end
+end
 
 -- Standstill damage multiplier upgrade
 function PlayerStandard:_update_standstill_resistance(t, dt)
@@ -1146,5 +1211,37 @@ function PlayerStandard:_start_action_intimidate(t, secondary)
 		end
 
 		self:_do_action_intimidate(t, interact_type, sound_name, skip_alert)
+	end
+end
+
+-- Increase interaction speed when inspired
+function PlayerStandard:_get_interaction_speed()
+	local dt = managers.player:player_timer():delta_time()
+
+	local morale_boost_bonus = self._ext_movement:morale_boost()
+	if morale_boost_bonus then
+		dt = dt * morale_boost_bonus.move_speed_bonus
+	end
+
+	return dt
+end
+
+-- Talking always makes noise, affected by less noise upgrade
+function PlayerStandard:say_line(sound_name, skip_alert)
+	self._unit:sound():say(sound_name, true, false)
+
+	skip_alert = false -- always make noise
+
+	if not skip_alert then
+		local alert_rad = 500 * managers.player:upgrade_value("player", "less_noise_multiplier", 1)
+		local new_alert = {
+			"vo_cbt",
+			self._unit:movement():m_head_pos(),
+			alert_rad,
+			self._unit:movement():SO_access(),
+			self._unit,
+		}
+
+		managers.groupai:state():propagate_alert(new_alert)
 	end
 end

@@ -65,7 +65,7 @@ return {
 	[103031] = {
 		ponr = {
 			length = 300,
-			player_mul = { 1.6, 1.4, 1, 1 },
+			length_balance_mul = { 1.6, 1.4, 1, 1 },
 		},
 	},
 	-- fix one of the ai_hunt SOs not having taser access
@@ -108,7 +108,7 @@ return {
 			{ id = 100374, remove = true },
 		},
 	},
-	-- more choppers on eclipse and pro jobs
+	-- more choppers on Death Wish and pro jobs
 	[101172] = {
 		values = {
 			amount = chopper_amount,

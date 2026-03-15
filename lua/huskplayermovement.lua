@@ -43,3 +43,25 @@ function HuskPlayerMovement:sync_stance(code, ...)
 	return orig(self, code > 1 and 2 or code, ...)
 end
 function HuskPlayerMovement:set_cbt_permanent() end
+
+-- Transparency loud target priority multiplier
+function HuskPlayerMovement:_apply_attention_setting_modifications(setting)
+	setting.detection = self._unit:base():detection_settings()
+	local weight_mul = self._unit:base():upgrade_value("player", "camouflage_bonus") or 1
+	weight_mul = weight_mul * (self._unit:base():upgrade_value("player", "camouflage_multiplier") or 1)
+	weight_mul = weight_mul * (self._unit:base():upgrade_value("player", "uncover_multiplier") or 1)
+
+	local transparency_upgrade = self._unit:base():upgrade_value("player", "detection_risk_transparency") or nil
+
+	if transparency_upgrade then
+		local peer = managers.network:session():peer_by_unit(self._unit)
+		local detection_risk = managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
+		local transparency_value = self._unit:base():get_value_from_risk_upgrade(transparency_upgrade, detection_risk) or 0
+
+		weight_mul = weight_mul * (1 - (0.05 * transparency_value))
+	end
+
+	if weight_mul and weight_mul ~= 1 then
+		setting.weight_mul = (setting.weight_mul or 1) * weight_mul
+	end
+end

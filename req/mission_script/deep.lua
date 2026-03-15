@@ -32,22 +32,24 @@ local rappel_spawn = {
 }
 local fueling_area_lower_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 2, 1.5, 1.25, 1 },
 	},
 }
 local pillar_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local tower_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local fueling_area_upper_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
+		interval_balance_mul = { 2, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -96,17 +98,17 @@ return {
 				position = Vector3(4375, 150, 4500),
 			},
 			{
-				name = "stairs1",
+				name = "stairs01",
 				force = 2,
 				position = Vector3(2900, 3800, 4000),
 			},
 			{
-				name = "stairs2",
+				name = "stairs02",
 				force = 2,
 				position = Vector3(4500, 2800, 3800),
 			},
 			{
-				name = "stairs3",
+				name = "stairs03",
 				force = 2,
 				position = Vector3(1300, -875, 4000),
 			},

@@ -65,3 +65,19 @@ function ElectricGrenade:_detonate(tag, unit, body, other_unit, other_body, posi
 	self:_tase_player()
 	self:_handle_hiding_and_destroying(true, nil)
 end
+
+-- Tase player now require LoS check
+function ElectricGrenade:_tase_player()
+	local player = managers.player:player_unit()
+
+	if alive(player) and player == self:thrower_unit() and player:character_damage().on_self_tased then
+		local detonate_pos = self._unit:position() + math.UP * 100
+		local range = self._range
+		local affected, line_of_sight, travel_dis, linear_dis = QuickFlashGrenade._chk_dazzle_local_player(self, detonate_pos, range)
+		local los = managers.environment_controller:test_line_of_sight_explosion(detonate_pos, 200, range / 3, range) or false
+
+		if affected and los then
+			player:character_damage():on_self_tased(0.2)
+		end
+	end
+end

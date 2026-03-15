@@ -29,25 +29,25 @@ local eclipse_dozers = {
 }
 local construct_lower_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
 local escape_spawn = {
 	values = {
-		interval = 30,
-	},
-}
-local saw_spawn = {
-	values = {
-		interval = 45,
+		interval = 20,
 	},
 }
 local construct_upper_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local saw_spawn = {
+	values = {
+		interval = 40,
+	},
 }
 local flank_spawn = {
 	values = {
@@ -65,8 +65,8 @@ local escape_guaranteed_spawn = {
 return {
 	[100533] = {
 		ponr = {
-			length = 20,
-			player_mul = { 2, 1.5, 1, 1 },
+			length = 30,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	[100521] = disabled,
@@ -93,27 +93,27 @@ return {
 		reinforce = {
 			{ name = "bridge" },
 			{
-				name = "construct1",
-				force = 3,
+				name = "construct01",
+				force = 2,
 				position = Vector3(-1425, -18825, 5800),
 			},
 			{
-				name = "construct2",
-				force = 3,
+				name = "construct02",
+				force = 2,
 				position = Vector3(-840, -21830, 5800),
 			},
 			{
-				name = "construct3",
-				force = 3,
+				name = "construct03",
+				force = 2,
 				position = Vector3(-1300, -24585, 5800),
 			},
 		},
 	},
 	[101593] = { -- escape bridge spawns
 		reinforce = {
-			{ name = "construct1" },
-			{ name = "construct2" },
-			{ name = "construct3" },
+			{ name = "construct01" },
+			{ name = "construct02" },
+			{ name = "construct03" },
 		},
 	},
 	-- disable the entire attack heli

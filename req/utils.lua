@@ -257,6 +257,17 @@ function M.get_difficulty_specific_value(t)
 	return t[#t]
 end
 
+-- Grab a value from a list based on difficulty group
+-- Easy/Normal, Hard/Overkill, and Death Wish are the three groups
+function M.get_difficulty_group_specific_value(t)
+	local difficulty_index = M.difficulty_index()
+	local group_index = difficulty_index < 4 and 1 or difficulty_index < 6 and 2 or 3
+	if t[group_index] ~= nil then
+		return t[group_index]
+	end
+	return t[#t]
+end
+
 -- Easily multiply the values in a list-style table such as { X, Y, Z }
 -- Can supply a mul A (for all values) or { A, B, C } (for corresponding values)
 function M.table_multiplier(target_table, mul)
@@ -286,6 +297,28 @@ function M.weighted_selector(t)
 		end
 	end
 	return selector
+end
+
+-- Based on Bank Heist's hiding Cloaker SO setup
+-- search_position must be the same for all GroupAI hiding SOs
+-- interrupt_dis is in meters
+-- The SO group element must also be in AI navigation (or at least able to be found by GroupAI)
+function M.get_hiding_cloaker_so_opts(so_action, search_position, interrupt_dis)
+	return {
+		SO_access = "1024",
+		scan = true,
+		align_position = true,
+		needs_pos_rsrv = true,
+		align_rotation = true,
+		no_arrest = true,
+		interrupt_dmg = 0,
+		action_duration_min = 120,
+		action_duration_max = 180,
+		so_action = so_action,
+		search_position = search_position,
+		interrupt_dis = interrupt_dis or 7,
+		interval = -1,
+	}
 end
 
 -- The original one isn't good enough

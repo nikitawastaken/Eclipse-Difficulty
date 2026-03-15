@@ -15,7 +15,7 @@ Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
 		elseif self._body_element._name:find("glass") then
 			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 2) * tank_balance_mul
 		else
-			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 4) * tank_balance_mul
+			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 2.5) * tank_balance_mul
 		end
 	end
 

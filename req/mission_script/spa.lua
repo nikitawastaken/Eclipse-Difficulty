@@ -1,26 +1,40 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
-local van_arrive_time = 60 + (is_pro_job and 30 or 0)
-local skylight_spawn = {
+local van_arrive_timer = 60 + (is_pro_job and 60 or 0)
+local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
+local roof_spawn = {
+	values = {
+		interval = 5,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
+	},
+	groups = preferred.no_cops_agents,
+}
+local rappel_init_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
+local rappel_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 return {
+	-- add point of no return and disable endless assault
+	[100875] = {
+		ponr = { -- Set hunt, waiting for escape
+			length = 300,
+			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
+		},
+	},
+	[100877] = {
+		values = {
+			enabled = false,
+		},
+	},
 	-- Combine some navigation areas
 	[100303] = {
 		ai_area = {
@@ -35,56 +49,30 @@ return {
 			{ 63, 162 },
 		},
 	},
-	-- add point of no return and disable endless assault
-	[100875] = {
-		ponr = {
-			length = 240,
-			player_mul = { 1.5, 1, 0.85, 0.75 },
-		},
-	},
-	[100877] = {
-		values = {
-			enabled = false,
-		},
-	},
 	-- tweak van arrival timer
-	--[[
-	[101543] = {
-		values = {
-			time = van_arrive_time,
+	[100483] = {
+		on_executed = {
+			{ id = 100549, delay = van_arrive_timer, delay_rand = van_arrive_timer_random },
 		},
 	},
-	[101312] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	[101631] = {
-		values = {
-			time = van_arrive_time,
-		},
-	},
-	[101201] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	]]
-	--
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[100750] = window_spawn,
-	[101012] = window_spawn,
-	[102138] = window_spawn,
-	[102664] = window_spawn,
-	[104338] = window_spawn,
-	[104472] = window_spawn,
-	[102139] = skylight_spawn,
-	[102140] = skylight_spawn,
-	[104336] = skylight_spawn,
-	[104337] = skylight_spawn,
-	[107260] = skylight_spawn,
-	[107261] = skylight_spawn,
+	[102667] = rappel_init_spawn,
+	[102668] = rappel_init_spawn,
+	[107262] = rappel_init_spawn,
+	[107263] = rappel_init_spawn,
+	[102664] = rappel_init_spawn,
+	[104472] = rappel_init_spawn,
+	[102139] = roof_spawn,
+	[102140] = roof_spawn,
 	[102151] = roof_spawn,
+	[104336] = roof_spawn,
+	[104337] = roof_spawn,
 	[104347] = roof_spawn,
+	[107260] = roof_spawn,
+	[107261] = roof_spawn,
+	[100750] = rappel_spawn,
+	[101012] = rappel_spawn,
+	[102138] = rappel_spawn,
+	[104338] = rappel_spawn,
 }

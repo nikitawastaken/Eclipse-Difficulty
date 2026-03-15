@@ -1,3 +1,29 @@
+-- Increase player gravity to make movement less floaty
+function PlayerStandardVR:_end_action_ladder()
+	if not self._state_data.on_ladder then
+		return
+	end
+
+	self._state_data.on_ladder = false
+
+	if self._unit:mover() then
+		self._unit:mover():set_velocity(Vector3())
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	self._ext_movement:on_exit_ladder()
+	self._unit:sound():play("footstep_land")
+
+	if alive(self._ladder_directions) then
+		World:delete_unit(self._ladder_directions)
+
+		self._ladder_directions = nil
+	end
+
+	self._state_data.last_warp_pos = nil
+	self._state_data._warp_start_time = TimerManager:game():time()
+end
+
 function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, weap_base, akimbo)
 	local action_wanted = pressed or held or released
 	action_wanted = action_wanted or self:is_shooting_count()
@@ -87,7 +113,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local dmg_mul = managers.player:temporary_upgrade_value("temporary", "dmg_multiplier_outnumbered", 1)
 		dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 
-		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun", "saw") then
+		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun") then
 			dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)
 		end
 
@@ -106,7 +132,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, primary_category)
 
 		if damage_health_ratio > 0 then
-			local upgrade_name = weap_base:is_category("saw") and "melee_damage_health_ratio_multiplier" or "damage_health_ratio_multiplier"
+			local upgrade_name = "damage_health_ratio_multiplier"
 			local damage_ratio = damage_health_ratio
 			dmg_mul = dmg_mul * (1 + managers.player:upgrade_value("player", upgrade_name, 0) * damage_ratio)
 		end

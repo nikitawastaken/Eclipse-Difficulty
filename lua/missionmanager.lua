@@ -25,6 +25,58 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 		element._values[k] = v
 		Eclipse:log_console('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
 	end
+
+	if data.enemy and getmetatable(element) == ElementSpawnEnemyDummy then
+		Eclipse:warn_console(string.format("Bad scripted spawn patch on %u, fixing", element:id()))
+		self.mission_script_patch_funcs.enemy(self, element, data.enemy)
+		element._values.enemy = nil
+	end
+
+	if data.timer and element.timer_operation_set_time then
+		element:timer_operation_set_time(data.timer)
+	end
+
+	-- All of this just to be able to fix area triggers...
+	if data.instigator and element._instigator_find_func then
+		element._instigator_count_all_func = ElementAreaTrigger.instigator_project_all_functions[data.instigator]
+		element._instigator_count_inside_func = ElementAreaTrigger.instigator_project_inside_functions[data.instigator]
+		element._instigator_valid_func = ElementAreaTrigger.instigator_valid_functions[data.instigator]
+		if Network:is_client() then
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions_client[data.instigator]
+		else
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions[data.instigator]
+			if element._values.trigger_on == "on_empty" then
+				local temp_switch = ElementAreaTrigger.on_empty_find_func_switch[data.instigator]
+				if temp_switch then
+					element._on_empty_find_func_switch = element._instigator_find_func
+					element._instigator_find_func = temp_switch
+				else
+					element._on_empty_find_func_switch = nil
+				end
+			end
+		end
+	end
+
+	-- Handle new spawn group element functionality
+	if data.interval and element._values.interval_reference then
+		element._values.interval_reference = data.interval
+		element._values.interval = nil
+	end
+
+	-- ASS edits
+	if data.chance and element._chance then
+		element._chance = data.chance
+	end
+
+	-- We love spawn group elements
+	local group_data = element._group_data
+	if group_data then
+		group_data.amount = data.amount or group_data.amount
+		group_data.spawn_type = data.spawn_type or group_data.spawn_type
+		if data.ignore_disabled ~= nil then
+			group_data.ignore_disabled = data.ignore_disabled
+		end
+	end
 end
 
 function MissionManager.mission_script_patch_funcs.on_executed(self, element, data)
@@ -42,6 +94,11 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 			elseif val then
 				val.delay = v.delay or 0
 				val.delay_rand = v.delay_rand or 0
+
+				if v.alternative then
+					val.alternative = v.alternative
+				end
+
 				Eclipse:log_console("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name())
 			else
 				table.insert(element._values.on_executed, v)
@@ -70,7 +127,9 @@ end
 function MissionManager.mission_script_patch_funcs.ponr(self, element, data)
 	if is_pro_job then
 		local function set_ponr()
-			local ponr_timer_balance_mul = data.player_mul and managers.groupai:state():_get_balancing_multiplier(data.player_mul) or 1
+			local ponr_timer_balance_mul = data.length_balance_mul
+					and managers.groupai:state():_get_balancing_multiplier(data.length_balance_mul, tweak_data.group_ai.team_ai_ponr_length_balance_mul_weight)
+				or 1
 			managers.groupai:state():set_point_of_no_return_timer(data.length * ponr_timer_balance_mul, -1, "ffo")
 		end
 
@@ -162,12 +221,14 @@ function MissionManager.mission_script_patch_funcs.post_mga_event(self, element,
 	Eclipse:log_console("%s hooked as megaphone cop event trigger", element:editor_name())
 end
 
+-- Set flashlights on or off when this element is executed
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
-	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
-		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
+	local function set_flashlights()
 		managers.game_play_central:set_flashlights_on(data)
-	end)
-	Eclipse:log_console("%s hooked as flashlight state trigger", element:editor_name())
+	end
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_flashlight_" .. element:id(), set_flashlights)
+	Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_flashlight_" .. element:id(), set_flashlights)
+	Eclipse:log("%s hooked as flashlight state trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.groups(self, element, data)
@@ -201,6 +262,55 @@ function MissionManager.mission_script_patch_funcs.ai_area(self, element, data)
 		end
 	end)
 	Eclipse:log_console("%s hooked as AI area trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.spawn(self, element, data)
+	Hooks:PostHook(element, "on_executed", "sh_on_executed_spawn_unit_" .. element:id(), function()
+		Eclipse:log("%s executed, spawning %d unit(s)", element:editor_name(), #data)
+		for _, u_data in ipairs(data) do
+			local unit = World:spawn_unit(u_data.name, u_data.pos or Vector3(), u_data.rot or Rotation())
+			if u_data.visible ~= nil then
+				unit:set_visible(u_data.visible)
+			end
+		end
+	end)
+	Eclipse:log("%s hooked as unit spawn trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.flee_point(self, element, data)
+	if Network:is_client() then
+		return
+	end
+
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_flee_point_" .. element:id(), function()
+		Eclipse:log("%s executed, toggled %u flee point(s)", element:editor_name(), #data)
+		for _, v in pairs(data) do
+			if v.position then
+				managers.groupai:state():add_flee_point(v.name, v.position)
+			else
+				managers.groupai:state():remove_flee_point(v.name)
+			end
+		end
+	end)
+	Eclipse:log("%s hooked as flee point trigger for %u area(s)", element:editor_name(), #data)
+end
+
+function MissionManager.mission_script_patch_funcs.loot_drop(self, element, data)
+	if Network:is_client() then
+		return
+	end
+
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_loot_drop_" .. element:id(), function()
+		Eclipse:log_console("%s executed, toggled %u loot drop point(s)", element:editor_name(), #data)
+		for _, v in pairs(data) do
+			if v.position then
+				managers.groupai:state():add_enemy_loot_drop_point(v.name, v.position)
+			else
+				managers.groupai:state():remove_enemy_loot_drop_point(v.name)
+			end
+		end
+	end)
+	Eclipse:log_console("%s hooked as loot drop trigger for %u area(s)", element:editor_name(), #data)
 end
 
 -- TODO: integrate into values patch like modern ASS

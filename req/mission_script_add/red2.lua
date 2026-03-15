@@ -2,6 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -24,36 +25,33 @@ local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 local security_guard_1 = scripted_enemy.security_1
 local security_guard_2 = scripted_enemy.security_2
 local security_guard_3 = scripted_enemy.security_3
-local security = { security_guard_1, security_guard_1, security_guard_2, security_guard_2, security_guard_3 }
+local security = { [security_guard_1] = 2, [security_guard_2] = 2, [security_guard_3] = 1 }
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_escape_snipers = math.random() <= diff_scaling
-local enabled_chance_vault_shields = math.random() <= diff_scaling
-local enabled_chance_escape_shields = math.random() <= diff_scaling
-local enabled_chance_vault_dozers = math.random() <= diff_scaling
-local enabled_chance_escape_145_group = math.random() <= diff_scaling
-local enabled_chance_escape_swats = math.random() <= diff_scaling
-local enabled_chance_escape_hallway_wall = math.random() <= diff_scaling
-local enabled_chance_escape_dozers = math.random() <= 0.5
-local enabled_chance_escape_cloakers = math.random() <= 0.5
-local enabled_chance_escape_shield_wall = math.random() <= 0.75
-local enabled_chance_shield_army = math.random() <= 0.3
-local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.1 or 0)
-local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.1 or 0)
+local enabled_chance_escape_snipers = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
+local enabled_chance_vault_shields = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
+local enabled_chance_escape_shields = math.random() <= (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0)
+local enabled_chance_vault_dozers = math.random() <= 0.25
+local enabled_chance_escape_swats = math.random() <= (normal and 0.3 or hard and 0.4 or 0.6) + (is_pro_job and 0.3 or 0)
+local enabled_chance_escape_hallway_wall = math.random() <= (normal and 0.2 or hard and 0.3 or 0.5) + (is_pro_job and 0.3 or 0)
+local enabled_chance_escape_dozers = math.random() <= 0.4
+local enabled_chance_escape_cloakers = math.random() <= 0.4
+local enabled_chance_escape_shield_wall = math.random() <= 0.6
+local enabled_chance_shield_army = math.random() <= 0.15 + (is_pro_job and 0.15 or 0)
+local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
+local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.2 or 0)
 
 local optsSecurity = {
 	enemy_table = security,
 	enabled = true,
 }
 local optsShield_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 100696, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsShield_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 100695, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
@@ -95,13 +93,13 @@ local optsSniper_6 = {
 	enabled = is_eclipse,
 }
 local optsVaultShield1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 400025, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
 }
 local optsVaultShield2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 400026, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
@@ -150,41 +148,41 @@ local optsSpoocAmbush2 = {
 }
 local optsTaserEscape = {
 	enemy = taser,
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG2 = {
 	enemy = heavy_sg,
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsTaser = {
 	enemy = taser,
 	participate_to_group_ai = true,
 	on_executed = { { id = 102421, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG = {
 	enemy = heavy_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400049, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavyRifle = {
 	enemy = heavy_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400046, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightRifle = {
 	enemy = light_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400048, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightSG = {
 	enemy = light_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400047, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsEscapeShield1 = {
 	enemy = shield,
@@ -317,11 +315,7 @@ local optsSwatVaultAmbush_2 = {
 	on_executed = { { id = 400113, delay = 0 } },
 	enabled = true,
 }
-local optsBulldozerVaultAmbush_1 = {
-	enemy = bulldozer,
-	enabled = true,
-}
-local optsBulldozerVaultAmbush_2 = {
+local optsBulldozerVaultAmbush = {
 	enemy = bulldozer,
 	enabled = true,
 }
@@ -353,6 +347,7 @@ local optsTaser_Sniper_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -382,6 +377,7 @@ local optsShieldArmySO = {
 	SO_access = tostring(2048 + 4096 + 8192),
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -389,6 +385,7 @@ local optsDozerHunt = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -398,6 +395,7 @@ local optsShieldSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	interval = 2,
 	pose = "crouch",
@@ -408,6 +406,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 	pose = "stand",
@@ -418,6 +417,7 @@ local optsSniperVaultAmbushSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -427,6 +427,7 @@ local optsHideSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 	interrupt_dis = 10,
 }
@@ -436,6 +437,7 @@ local optsHideSpoocVaultAmbushSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 }
 local optsDefendSO = {
@@ -444,6 +446,7 @@ local optsDefendSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_defend",
 	pose = "stand",
@@ -689,7 +692,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400009, "special_sniper_so_2", Vector3(-1175, -1375, 475), Rotation(0, 0, 0), optsSniperSO),
 	Eclipse.mission_elements.gen_so(400010, "special_sniper_so_3", Vector3(-1000, -1375, 475), Rotation(0, 0, 0), optsSniperSO),
 
-	--2 dozers spawn after killing Bo The Manager +2 extra dozers on Eclipse (even if you haven't killed Bo)
+	--2 dozers spawn after killing Bo The Manager +2 extra dozers on Death Wish (even if you haven't killed Bo)
 	Eclipse.mission_elements.gen_dummy(400011, "ai_spawn_enemy_Bo's_bulldozer_2", Vector3(-2682, -3588, -125), Rotation(90, -0, -0), optsBulldozer_BO),
 	Eclipse.mission_elements.gen_dummy(400012, "extra_tank_1", Vector3(-3176, 3750, -125), Rotation(90, -0, -0), optsBulldozer_193),
 	Eclipse.mission_elements.gen_dummy(400013, "extra_tank_2", Vector3(-2657, -3569, -125), Rotation(90, -0, -0), optsBulldozer_193),
@@ -808,8 +811,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400101, "sniper_vault_ambush_2", Vector3(3925, 1168, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_2),
 	Eclipse.mission_elements.gen_dummy(400102, "cloaker_vault_ambush_1", Vector3(4140, 795, -44.895), Rotation(0, 0, 0), optsCloakerVaultAmbush_1),
 	Eclipse.mission_elements.gen_dummy(400103, "cloaker_vault_ambush_2", Vector3(4140, 1713, -44.895), Rotation(180, 0, 0), optsCloakerVaultAmbush_2),
-	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_1),
-	Eclipse.mission_elements.gen_dummy(400105, "bulldozer_vault_ambush_2", Vector3(3996, 1294, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush),
+	Eclipse.mission_elements.gen_dummy(400105, "bulldozer_vault_ambush_2", Vector3(3996, 1294, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush),
 	-- SOs
 	Eclipse.mission_elements.gen_so(400106, "taser_vault_ambush_so_1", Vector3(5460.220, 1101.259, -426.790), Rotation(-66, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400107, "shield_vault_ambush_so_1", Vector3(5459, 1186, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),

@@ -2,6 +2,7 @@
 -- Also added some minor code optimization
 local hit_dir = Vector3()
 local shield_slot_mask = World:make_slot_mask(8)
+local wall_slot_mask = World:make_slot_mask(1, 11)
 local criminal_names = table.list_to_set(CriminalsManager.character_names())
 Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, detect_results, params, variant, damage_func_name)
 	local user_unit = params.user
@@ -64,11 +65,21 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 
 				if damage > 0 then
 					action_data.damage = math.max(damage * (math.clamp(1 - len / range, 0, 1) ^ curve_pow), 1)
+
+					-- Check for a wall and reduce damage if it's in the way
+					local wall_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", wall_slot_mask)
+					if wall_block then
+						action_data.damage = action_data.damage * 0.5
+					end
+
 					-- Check for a shield blocking direct los to the explosion impact and reduce damage if the explosion is in front of it
 					local shield_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", shield_slot_mask)
 					local shield_unit = shield_block and shield_block.unit
+					local parent_unit_tweak = shield_unit and shield_unit:parent() and shield_unit:parent():base() and shield_unit:parent():base()._tweak_table
+					local shield_explosion_dmg_mul = parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].shield_explosion_dmg_mul
+
 					if alive(shield_unit) and alive(shield_unit:parent()) and mvector3.dot(shield_unit:rotation():y(), hit_dir) < -0.5 then
-						action_data.damage = action_data.damage * 0.5
+						action_data.damage = action_data.damage * (shield_explosion_dmg_mul or 0.5)
 					end
 				else
 					action_data.damage = 0
@@ -130,5 +141,20 @@ function ExplosionManager:tase_area(params)
 				},
 			})
 		end
+	end
+end
+
+-- Deal explosion DMG to players only in LoS (when game thinks there no LoS at least)
+function ExplosionManager:give_local_player_dmg(pos, range, damage)
+	local player = managers.player:player_unit()
+	local los = managers.environment_controller:test_line_of_sight_explosion(pos, range) or false
+
+	if player and los then
+		player:character_damage():damage_explosion({
+			variant = "explosion",
+			position = pos,
+			range = range,
+			damage = damage,
+		})
 	end
 end

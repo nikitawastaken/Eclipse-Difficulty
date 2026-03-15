@@ -29,20 +29,16 @@ local wave_cop_count = {
 		amount_random = 6,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local rappel_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 local apartment_guaranteed_spawn = {
@@ -93,10 +89,6 @@ return {
 	[106170] = apartment_guaranteed_spawn,
 	[106162] = apartment_guaranteed_spawn,
 	-- Spawn group intervals
-	[100132] = close_spawn,
-	[106017] = close_spawn,
-	[106019] = close_spawn,
-	[106021] = close_spawn,
 	[100131] = rappel_spawn,
 	[100694] = rappel_spawn,
 }

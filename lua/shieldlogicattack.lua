@@ -61,7 +61,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		mvector3.set_zero(threat_pos)
 		for u_key, attention_obj in pairs(data.detected_attention_objects) do
 			local verified_dt = attention_obj.verified_t and data.t - attention_obj.verified_t or math.huge
-			local importance = attention_obj.verified and 1 or math.map_range_clamped(verified_dt, 0, 4, 1, 0)
+			local importance = attention_obj.verified and 1 or math.map_range_clamped(verified_dt, 0, 10, 1, 0)
 			importance = importance * math.map_range_clamped(attention_obj.verified_dis, 0, far_range, 1, 0) ^ 2
 			importance = importance * (attention_obj.settings.weight_mul or 1)
 			attention_obj.reaction = CopLogicSniper._chk_reaction_to_attention_object(data, attention_obj, true)

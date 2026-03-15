@@ -15,20 +15,16 @@ local disabled = {
 		enabled = false,
 	},
 }
-local farm_far_spawn = {
+local far_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
-local that_fucking_bush_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local farm_close_spawn = {
+local close_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -40,7 +36,7 @@ return {
 	[100580] = { -- All goats secured
 		ponr = {
 			length = 180,
-			player_mul = { 2, 1.25, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
 		},
 		values = {
 			callback = function() -- Somebody call the National Guard!
@@ -54,6 +50,8 @@ return {
 	-- Tweak one of the bridge spawngroups
 	[102374] = {
 		values = {
+			interval = 10,
+			interval_balance_mul = { 1.5, 1.25, 1, 1 },
 			elements = {
 				102376,
 				102377,
@@ -74,13 +72,6 @@ return {
 	[101590] = random_goats,
 	[101591] = random_goats,
 	[101592] = random_goats,
-	-- Disable one reinforce point on the bridge, increase the force of the other from 2 to 3
-	[101385] = {
-		values = {
-			amount = 3,
-		},
-	},
-	[101386] = disabled,
 	-- replace the turret/scripted van spawn with a spawngroups
 	[100264] = { -- arrive 1
 		on_executed = {
@@ -106,17 +97,25 @@ return {
 			{ id = 101939, remove = true },
 		},
 	},
+	-- Disable pointless reinforce on the bridge
+	[101385] = disabled,
+	[101386] = disabled,
 	-- Spawn group intervals
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.
+	[100019] = far_spawn,
+	[100131] = far_spawn,
+	[100132] = far_spawn,
+	[100693] = far_spawn,
+	[101217] = close_spawn,
+	[100007] = close_spawn,
+	[100128] = close_spawn,
+	[100130] = close_spawn,
+	[100133] = close_spawn,
+	[100692] = close_spawn,
+	[100694] = close_spawn,
 	[400006] = scripted_swat_van_spawn,
 	[400012] = scripted_swat_van_spawn,
 	[400018] = scripted_swat_van_spawn,
 	[400024] = scripted_swat_van_spawn,
-	[100131] = farm_far_spawn,
-	[100132] = farm_far_spawn,
-	[100133] = farm_far_spawn,
-	[101217] = that_fucking_bush_spawn,
-	[100128] = farm_close_spawn,
-	[100130] = farm_close_spawn,
 }

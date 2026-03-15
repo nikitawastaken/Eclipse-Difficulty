@@ -35,22 +35,22 @@ return {
 		},
 		reinforce = {
 			{
-				name = "street1",
+				name = "street01",
 				force = 2,
 				position = Vector3(-750, 450, 0),
 			},
 			{
-				name = "street2",
+				name = "street02",
 				force = 2,
 				position = Vector3(-1750, 450, 0),
 			},
 			{
-				name = "street3",
+				name = "street03",
 				force = 2,
 				position = Vector3(-1000, -4000, 0),
 			},
 			{
-				name = "street4",
+				name = "street04",
 				force = 2,
 				position = Vector3(3000, -4000, 0),
 			},

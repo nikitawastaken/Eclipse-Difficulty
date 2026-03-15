@@ -11,9 +11,9 @@ local biker_enemy = {
 	["units/payday2/characters/ene_biker_2/ene_biker_2"] = 5,
 	["units/payday2/characters/ene_biker_3/ene_biker_3"] = 5,
 	["units/payday2/characters/ene_biker_4/ene_biker_4"] = 5,
-	["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
 local biker = { enemy = biker_enemy }
 
@@ -24,6 +24,31 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Add new reinforce
+	[103714] = { -- preferred 1
+		reinforce = {
+			{
+				name = "mioyes",
+				force = 3,
+				position = Vector3(6550, -3550, 0),
+			},
+			{
+				name = "edge",
+				force = 2,
+				position = Vector3(4500, -6350, 0),
+			},
+			{
+				name = "grit",
+				force = 2,
+				position = Vector3(1250, -5825, 25),
+			},
+			{
+				name = "rush",
+				force = 2,
+				position = Vector3(900, -3400, 55),
+			},
+		},
+	},
 	-- Disable Titan cams
 	[101301] = disabled,
 	-- Disable reinforce

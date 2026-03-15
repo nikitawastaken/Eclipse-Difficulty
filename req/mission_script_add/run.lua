@@ -21,17 +21,15 @@ local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_alleyway_wall = math.random() <= diff_scaling
-local enabled_chance_alleyway_dozer = math.random() <= diff_scaling
-local enabled_chance_alleyway_spook1 = math.random() <= diff_scaling
-local enabled_chance_alleyway_spook2 = math.random() <= diff_scaling
-local enabled_chance_parkinglot_spook1 = math.random() <= diff_scaling
-local enabled_chance_parkinglot_spook2 = math.random() <= diff_scaling
-local enabled_chance_sniper_major_rooftop = math.random() <= diff_scaling
-local enabled_chance_sniper_armitage_underpass = math.random() <= diff_scaling
-local enabled_chance_sniper_armitage_rooftop = math.random() <= diff_scaling
+local enabled_chance_alleyway_wall = math.random() <= 0.6
+local enabled_chance_alleyway_dozer = math.random() <= 0.3
+local enabled_chance_alleyway_spook1 = math.random() <= 0.4
+local enabled_chance_alleyway_spook2 = math.random() <= 0.4
+local enabled_chance_parkinglot_spook1 = math.random() <= 0.4
+local enabled_chance_parkinglot_spook2 = math.random() <= 0.4
+local enabled_chance_sniper_major_rooftop = math.random() <= 0.2
+local enabled_chance_sniper_armitage_underpass = math.random() <= 0.2
+local enabled_chance_sniper_armitage_rooftop = math.random() <= 0.2
 local enabled_chance_inkwell_dozer = math.random() <= 0.8
 
 local optsShieldWall1 = {
@@ -225,6 +223,7 @@ local optsGarageHunt = {
 	path_style = "none",
 	pose = "crouch",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsFirstStreet_AIsniper = {
@@ -233,6 +232,7 @@ local optsFirstStreet_AIsniper = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	scan = true,
 	so_action = "AI_sniper",
 }
@@ -283,6 +283,7 @@ local optsDozerHuntSO = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsShieldSO = {
@@ -291,6 +292,7 @@ local optsShieldSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "crouch",
 	path_stance = "cbt",
@@ -301,6 +303,7 @@ local optsHideSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 	interrupt_dis = 10,
 }
@@ -310,6 +313,7 @@ local optsHideCarSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_hide_under_car_enter",
 	interrupt_dis = 10,
 }
@@ -318,6 +322,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "stand",
 }

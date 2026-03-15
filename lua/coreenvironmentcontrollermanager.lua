@@ -1,22 +1,28 @@
-local tmp_vec = Vector3()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local use_old_hitflash = (is_pro_job or Eclipse.settings.always_old_hitflash) and true or false
 
 -- Make flashbangs scale with look direction instead of a flat reduction at some certain angle
 Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", function(self, test_pos, min_distance, dot_distance, max_distance)
+	local tmp_vec1 = Vector3()
+	local tmp_vec2 = Vector3()
 	local vp = managers.viewport:first_active_viewport()
-
 	if not vp then
 		return 0
 	end
 
 	local camera = vp:camera()
+	local cam_pos = tmp_vec1
+	camera:m_position(cam_pos)
 
-	camera:m_position(tmp_vec)
-
-	local dis = mvector3.direction(tmp_vec, tmp_vec, test_pos)
+	local dir_to_target = tmp_vec2
+	local dis = mvector3.direction(dir_to_target, cam_pos, test_pos)
 
 	if dis > max_distance then
+		return 0
+	end
+
+	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
+	if ray_hit then
 		return 0
 	end
 
@@ -25,12 +31,46 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	end
 
 	local cam_fwd = camera:rotation():y()
-	local dot_mul = (mvector3.dot(cam_fwd, tmp_vec) + 1) / 2
+	local dot_mul = mvector3.dot(cam_fwd, dir_to_target)
+	dot_mul = math.clamp((dot_mul + 1) / 2, 0, 1)
 	local dot_effect = dis > dot_distance and 1 or dis / dot_distance
 
 	return math.map_range_clamped(dis, min_distance, max_distance, 1, 0) * (dot_mul ^ dot_effect)
 end)
 
+-- LoS checks for explosions. Borrowed from vanilla `test_line_of_sight` function because the one from SH don't work as LoS check for this.
+-- Anyway, this should prevent explosions deal dmg through walls.
+function CoreEnvironmentControllerManager:test_line_of_sight_explosion(test_pos, max_distance)
+	local tmp_vec1 = Vector3()
+	local tmp_vec2 = Vector3()
+	local tmp_vec3 = Vector3()
+	local vp = managers.viewport:first_active_viewport()
+
+	if not vp then
+		return false
+	end
+
+	local camera = vp:camera()
+	local cam_pos = tmp_vec1
+
+	camera:m_position(cam_pos)
+
+	local test_vec = tmp_vec2
+	local dis = mvector3.direction(test_vec, cam_pos, test_pos)
+
+	if max_distance < dis then
+		return false
+	end
+
+	local ray_hit = World:raycast("ray", cam_pos, test_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report")
+
+	if ray_hit then
+		return false
+	end
+
+	return true
+end
+--
 -- Tone down the red screen on health hits
 function CoreEnvironmentControllerManager:set_health_effect_value(health_effect_value)
 	self._health_effect_value = health_effect_value * 2
@@ -262,5 +302,18 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", fu
 	if use_old_hitflash then
 		self._hit_down = math.min(self._hit_down + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
+	end
+end)
+-- No Outlines mutator
+Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "refresh_render_settings_no_outlines_mutator", function(self, vp)
+	if not alive(self._vp) then
+		return
+	end
+
+	if managers.mutators:modify_value("CoreEnvironmentControllerManager:NoOutlines", false) then
+		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine_post_processor"), Idstring("bloom_combine_empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine"), Idstring("bloom_combine_empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_modifier"), Idstring("empty"))
+		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_rendering"), Idstring("empty"))
 	end
 end)

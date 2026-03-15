@@ -181,7 +181,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Regen Plating
 	self.skills.prison_wife[1].upgrades = { "player_armor_regen_time_mul_1" }
-	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen" }
+	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen", "player_armor_regen_plating_bonus" }
 	self.skills.prison_wife.name_id = "menu_regen_plating"
 	self.skills.prison_wife.desc_id = "menu_regen_plating_desc"
 	self.skills.prison_wife.icon_xy = { 11, 10 }
@@ -194,8 +194,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut.icon_xy = { 3, 1 }
 
 	-- Scavenger
-	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
-	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
+	self.skills.scavenging[1].upgrades = { "player_stamina_regen_on_ammo_pickup" }
+	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1", "player_armor_pickup_range_bonus" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_start_out_ammo_multiplier" }
@@ -236,15 +236,19 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.defense_up[2].upgrades = { "player_total_interaction_timer_multiplier" }
 	self.skills.defense_up.icon_xy = { 8, 9 }
 
-	-- Hardware Expert
-	self.skills.sentry_targeting_package[1].upgrades = { "player_drill_alert", "player_silent_drill" }
+	-- Hands-On Approach
+	self.skills.sentry_targeting_package[1].upgrades = { "player_hack_interaction_speed_multiplier" }
 	self.skills.sentry_targeting_package[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 9, 6 }
+	self.skills.sentry_targeting_package.icon_xy = { 0, 6 }
+	self.skills.sentry_targeting_package.name_id = "menu_handson_approach"
+	self.skills.sentry_targeting_package.desc_id = "menu_handson_approach_desc"
 
-	-- Kickstarter
-	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_autorepair_1", "player_drill_autorepair_2" }
-	self.skills.jack_of_all_trades[2].upgrades = { "player_drill_melee_hit_restart_chance_1" }
-	self.skills.jack_of_all_trades.icon_xy = { 9, 8 }
+	-- Ghost Wiring
+	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_alert", "player_silent_drill" }
+	self.skills.jack_of_all_trades[2].upgrades = { "player_tape_loop_duration_1", "player_tape_loop_duration_2" }
+	self.skills.jack_of_all_trades.icon_xy = { 1, 7 }
+	self.skills.jack_of_all_trades.name_id = "menu_ghost_wiring"
+	self.skills.jack_of_all_trades.desc_id = "menu_ghost_wiring_desc"
 
 	-- Portable Saw
 	self.skills.engineering[1].upgrades =
@@ -331,34 +335,48 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- GHOST --
 
-	-- Inner Pockets
-	self.skills.cleaner[1].upgrades = { "player_melee_concealment_modifier" }
-	self.skills.cleaner[2].upgrades = { "player_ballistic_vest_concealment_1" }
-	self.skills.cleaner.icon_xy = { 10, 7 }
-	self.skills.cleaner.name_id = "menu_thick_skin_beta"
-	self.skills.cleaner.desc_id = "menu_thick_skin_beta_desc"
+	-- Cat Burglar
+	self.skills.cleaner[1].upgrades = { "player_less_noise_multiplier" }
+	self.skills.cleaner[2].upgrades = { "player_fall_health_damage_multiplier", "player_fall_damage_noise_multiplier" }
+	self.skills.cleaner.icon_xy = { 0, 4 }
+	self.skills.cleaner.name_id = "menu_cat_burglar"
+	self.skills.cleaner.desc_id = "menu_cat_burglar_desc"
 
-	-- Winstone Wolfe
-	self.skills.second_chances[1].upgrades = { "player_corpse_dispose_amount_2", "player_extra_corpse_dispose_amount" }
-	self.skills.second_chances[2].upgrades = { "player_pick_lock_easy_speed_multiplier", "player_pick_lock_hard" }
+	-- Logistician
+	self.skills.second_chances[1].upgrades = { "carry_interact_speed_multiplier_2" }
+	self.skills.second_chances[2].upgrades = { "player_pick_lock_hard", "player_pick_lock_easy_speed_multiplier" }
 	self.skills.second_chances.icon_xy = { 5, 4 }
+	self.skills.second_chances.name_id = "menu_logistician"
+	self.skills.second_chances.desc_id = "menu_logistician_desc"
 
-	-- ECM feedback
-	self.skills.ecm_booster[1].upgrades = { "ecm_jammer_can_activate_feedback" }
-	self.skills.ecm_booster[2].upgrades = { "ecm_jammer_can_retrigger" }
-	self.skills.ecm_booster.icon_xy = { 6, 2 }
+	-- Kleptomaniac
+	self.skills.ecm_booster[1].upgrades = { "player_mask_off_pickup" }
+	self.skills.ecm_booster[2].upgrades = { --[[ "player_extra_mission_pickups_multiplier" ]]
+	}
+	self.skills.ecm_booster.icon_xy = { 1, 6 }
+	self.skills.ecm_booster.name_id = "menu_kleptomaniac"
+	self.skills.ecm_booster.desc_id = "menu_kleptomaniac_desc"
 
-	-- Chameleon
-	self.skills.jail_workout[1].upgrades = { "player_suspicion_bonus", "player_camouflage_bonus_1", "player_camouflage_bonus_2" }
-	self.skills.jail_workout[2].upgrades = { "player_concealment_bonus_1" }
+	-- Sixth Sense
+	self.skills.jail_workout[1].upgrades = { "player_standstill_omniscience" }
+	self.skills.jail_workout[2].upgrades = { "player_standstill_omniscience_2" }
+	self.skills.jail_workout.icon_xy = { 6, 10 }
+	self.skills.jail_workout.name_id = "menu_sixth_sense"
+	self.skills.jail_workout.desc_id = "menu_sixth_sense_desc"
 
-	-- ECM Specialist
-	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_2" }
+	-- ECM Blackout
+	self.skills.ecm_2x[1].upgrades = { "ecm_jammer_quantity_increase_1", "ecm_jammer_blocks_snipers" }
+	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_affects_police_comms" }
+	self.skills.ecm_2x.icon_xy = { 6, 3 }
+	self.skills.ecm_2x.name_id = "menu_ecm_blackout"
+	self.skills.ecm_2x.desc_id = "menu_ecm_blackout_desc"
 
-	-- Blackout
-	self.skills.chameleon[1].upgrades = { "player_tape_loop_duration_1", "player_tape_loop_duration_2" }
-	self.skills.chameleon[2].upgrades = { "ecm_jammer_affects_pagers", "ecm_jammer_can_open_sec_doors" }
-	self.skills.chameleon.icon_xy = { 6, 3 }
+	-- Background Threat
+	self.skills.chameleon[1].upgrades = { "player_detection_risk_transparency" }
+	self.skills.chameleon[2].upgrades = { "player_unaware_of_aggressor_damage_multiplier" }
+	self.skills.chameleon.icon_xy = { 9, 12 }
+	self.skills.chameleon.name_id = "menu_background_threat"
+	self.skills.chameleon.desc_id = "menu_background_threat_desc"
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
@@ -626,6 +644,27 @@ function SkillTreeTweakData:init(tweak_data)
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 
+	-- This is for applying custom atlas without typing texture_bundle_folder for every single deck
+	-- P.S. 2, 4 ,6 and 8 cards for custom perk decks still will use vanilla atlas
+	local generic_perk_deck_cards = { 2, 4, 6, 8 } -- For 2, 4, 6 and 8 cards that every deck have
+
+	local unique_perk_deck_cards = { 1, 3, 5, 7, 9 } -- For unique perk deck cards
+	local perk_decks_eclipse_atlas = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 } -- CC -> Ex-pres use default atlas so need reapply to use new one
+
+	-- Applying atlas changes for 2, 4, 6 and 8 cards
+	for i, _ in ipairs(self.specializations) do
+		for _, k in ipairs(generic_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+
+	-- Applying atlas changes for 1, 3, 5, 7 and 9 cards for Crew Chief, Muscle , ... Ex-Pres
+	for _, i in ipairs(perk_decks_eclipse_atlas) do
+		for _, k in ipairs(unique_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
@@ -649,21 +688,27 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- armorer
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
+	self.specializations[3][1].icon_xy = { 6, 1 }
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
+	self.specializations[3][3].icon_xy = { 2, 4 }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
-	self.specializations[3][7].upgrades = { "" }
+	self.specializations[3][7].upgrades = { "cooldown_crewmate_damage_reduction" }
+	self.specializations[3][7].icon_xy = { 1, 4 }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[3][9].icon_xy = { 0, 4 }
 
 	-- rogue
 	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
+	self.specializations[4][3].icon_xy = { 5, 9 }
 	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[4][9].icon_xy = { 4, 9 }
 
 	-- hitman
-	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
+	self.specializations[5][1].upgrades = { "player_chain_hitman_kills", "temporary_chain_hitman_dodge_1" }
 	self.specializations[5][1].icon_xy = { 7, 2 }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }
 	self.specializations[5][3].icon_xy = { 0, 3 }
-	self.specializations[5][5].upgrades = { "temporary_chain_headshot_dodge_2" }
+	self.specializations[5][5].upgrades = { "temporary_chain_hitman_dodge_2" }
 	self.specializations[5][5].icon_xy = { 1, 3 }
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
 	self.specializations[5][7].icon_xy = { 2, 3 }
@@ -684,11 +729,11 @@ function SkillTreeTweakData:init(tweak_data)
 	-- tactician (ex-burglar)
 	self.specializations[7][1].upgrades = { "second_deployable_1" }
 	self.specializations[7][1].icon_xy = { 5, 8 }
-	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2" }
+	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2", "player_drill_melee_hit_restart_chance_1" }
 	self.specializations[7][3].icon_xy = { 3, 8 }
 	self.specializations[7][5].upgrades = { "player_near_teammate_damage_multiplier" }
 	self.specializations[7][5].icon_xy = { 2, 8 }
-	self.specializations[7][7].upgrades = { "player_electrocuting_drill" }
+	self.specializations[7][7].upgrades = { "player_electrocuting_drill", "player_drill_autorepair_1", "player_drill_autorepair_2" }
 	self.specializations[7][7].icon_xy = { 4, 8 }
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[7][9].icon_xy = { 6, 8 }
@@ -706,13 +751,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Grinder
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_3" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_2" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President
@@ -762,6 +807,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
 	self.specializations[18][7].icon_xy = { 2, 1 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
+
+	-- stoic
+	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
@@ -903,13 +951,29 @@ function SkillTreeTweakData:init(tweak_data)
 
 	self.specializations[23] = wildcard_perkdeck
 
-	-- wild cards
+	-- Generic changes to all perk decks
 	for _, perkdeck in pairs(self.specializations) do
+		-- card cost
+		perkdeck[1].cost = 400
+		perkdeck[2].cost = 300
+		perkdeck[3].cost = 600
+		perkdeck[4].cost = 400
+		perkdeck[5].cost = 900
+		perkdeck[6].cost = 550
+		perkdeck[7].cost = 1200
+		perkdeck[8].cost = 700
+		perkdeck[9].cost = 1500
+
+		-- wildcard upgrades
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
+		perkdeck[2].texture_bundle_folder = "eclipse"
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
+		perkdeck[4].texture_bundle_folder = "eclipse"
 		perkdeck[6].upgrades = { "armor_kit" }
+		perkdeck[6].texture_bundle_folder = "eclipse"
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
+		perkdeck[8].texture_bundle_folder = "eclipse"
 	end
 
 	-- Buncha default upgrade fuckery
@@ -924,9 +988,16 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_trip_mine_deploy_time_multiplier_2")
 	table.insert(self.default_upgrades, "sentry_gun_armor_multiplier") -- prev defense package
 	table.insert(self.default_upgrades, "sentry_gun_shield") -- prev defense package
-	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
 	table.insert(self.default_upgrades, "saw_ignore_shields_1") -- prev saw massacre
-	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
+	--	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
+	table.insert(self.default_upgrades, "player_corpse_dispose_amount_2")
+	table.insert(self.default_upgrades, "player_extra_corpse_dispose_amount")
+	table.insert(self.default_upgrades, "ecm_jammer_can_retrigger")
+	table.insert(self.default_upgrades, "ecm_jammer_can_activate_feedback")
+	table.insert(self.default_upgrades, "ecm_jammer_affects_pagers")
+	table.insert(self.default_upgrades, "ecm_jammer_can_open_sec_doors")
+	table.insert(self.default_upgrades, "temporary_damage_reduction_from_crewmate") -- armorer iron curtain card
 	table.delete(self.default_upgrades, "player_fall_damage_multiplier")
 	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
@@ -936,4 +1007,19 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "striker_reload_speed_default") -- why did they do it like this?
+	table.delete(self.default_upgrades, "jowi")
+	table.delete(self.default_upgrades, "x_1911")
+	table.delete(self.default_upgrades, "x_b92fs")
+	table.delete(self.default_upgrades, "x_deagle")
+	table.delete(self.default_upgrades, "x_g22c")
+	table.delete(self.default_upgrades, "x_g17")
+	table.delete(self.default_upgrades, "x_usp")
+	table.delete(self.default_upgrades, "x_sr2")
+	table.delete(self.default_upgrades, "x_mp5")
+	table.delete(self.default_upgrades, "x_akmsu")
+	table.delete(self.default_upgrades, "x_packrat")
+	table.delete(self.default_upgrades, "x_p226")
+	table.delete(self.default_upgrades, "x_m45")
+	table.delete(self.default_upgrades, "x_mp7")
+	table.delete(self.default_upgrades, "x_ppk")
 end

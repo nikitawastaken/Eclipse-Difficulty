@@ -10,17 +10,46 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
 local weighted_selector = Eclipse.utils.weighted_selector
--- local function weighted_selector(t)
--- 	return Eclipse.utils.weighted_selector(t)
--- end
 
--- All reinforce points now have a force value of at least 2
--- Most vanilla reinforce points have the very weird force value of 1
--- A force value of 1 causes a reinforce point to never repopulate until all cops on that point are wiped out
--- Would presume level designers thought the force value was the number of groups to deploy
-local set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
-function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
-	return set_area_min_police_force_original(self, id, force and math.max(force, 2), ...)
+-- Make balance multiplier changes in this file to avoid Useful Bots overwriting it
+-- Criminal status no longer influences balance multipliers
+-- Team AI contribute less towards spawn limits and spawn rates
+function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai_weight)
+	team_ai_weight = tweak_data.group_ai.use_team_ai_balance_mul_weights and team_ai_weight or 1
+	local nr_criminals = 0
+	for u_key, u_data in pairs(self._char_criminals) do
+		if u_data.ai then
+			nr_criminals = nr_criminals + team_ai_weight
+		else
+			nr_criminals = nr_criminals + 1
+		end
+	end
+	nr_criminals = math.clamp(nr_criminals, 1, #balance_multipliers)
+	if balance_multipliers[nr_criminals] then
+		return balance_multipliers[nr_criminals]
+	end
+
+	local nr_criminals_floor = math.floor(nr_criminals)
+	local current_mul, next_mul = balance_multipliers[nr_criminals_floor], balance_multipliers[math.ceil(nr_criminals)]
+	return math.lerp(current_mul, next_mul, nr_criminals - nr_criminals_floor)
+end
+
+-- Balancing multiplier for players only (used for hostage situation aced)
+function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
+	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
+end
+
+-- Functions for adding/removing deployable reinforce
+function GroupAIStateBase:add_deployable_reenforce(name_id, unit, pos, nav_seg_id)
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[name_id] and tweak_data.group_ai.use_equipment_reenforce then
+		self:set_area_min_police_force(unit:key(), 1, pos)
+		self._deployable_nav_segs[nav_seg_id] = true
+	end
+end
+
+function GroupAIStateBase:remove_deployable_reenforce(unit, nav_seg_id)
+	self:set_area_min_police_force(unit:key())
+	self._deployable_nav_segs[nav_seg_id] = nil
 end
 
 -- Move the hostage hesitation delay to control instead of anticipation
@@ -35,6 +64,10 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 
 		self._mga_said_arrival = true
 	end
+
+	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_force_balance_mul_weight)
+	local force_value = self:_get_difficulty_dependent_value(self._tweak_data.assault.force)
+	self._task_data.assault.force = math.ceil(force_value * force_mul)
 
 	if self._hostage_headcount > 0 then
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
@@ -131,6 +164,16 @@ function GroupAIStateBesiege:besiege_assault_phase()
 	return task_data and task_data.phase
 end
 
+function GroupAIStateBesiege:_active_ecm_sniper_block()
+	local is_active = self:is_ecm_jammer_active("block_snipers")
+	return is_active
+end
+
+function GroupAIStateBesiege:_active_ecm_police_comms_jamm()
+	local is_active = self:is_ecm_jammer_active("police_comms")
+	return is_active, 1 / tweak_data.upgrades.ecm_jammer_comms_jamming_multiplier
+end
+
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)
@@ -138,8 +181,50 @@ function GroupAIStateBesiege:_begin_reenforce_task(...)
 
 	_begin_reenforce_task_original(self, ...)
 
-	self._task_data.reenforce.next_dispatch_t = next_dispatch_t
+	if self._task_data.reenforce.had_init_dispatch_delay then
+		self._task_data.reenforce.next_dispatch_t = next_dispatch_t
+	else
+		self._task_data.reenforce.next_dispatch_t = self._t + (tweak_data.group_ai.init_reenforce_delay or 30)
+		self._task_data.reenforce.had_init_dispatch_delay = true
+	end
 end
+
+-- Reinforce now keeps track of multiple IDs in the same area, rather than only the latest
+-- Only the largest force value is used, and the force factor is only removed when all IDs are removed
+Hooks:OverrideFunction(GroupAIStateBesiege, "set_area_min_police_force", function(self, id, force, pos, ...)
+	local function get_best_force(ids)
+		local best_id, best_force = nil
+		for id, force in pairs(ids) do
+			if not best_force or best_force < force then
+				best_id = id
+				best_force = force
+			end
+		end
+		return best_id, best_force
+	end
+
+	if force then
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(pos, true)
+		local area = self:get_area_from_nav_seg_id(nav_seg_id)
+		local force_factor = area.factors.force or {}
+		force_factor.ids = force_factor.ids or {}
+		force_factor.ids[id] = force
+		force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+		area.factors.force = force_factor
+	else
+		for _, area in pairs(self._area_data) do
+			local force_factor = area.factors.force
+			if force_factor and force_factor.ids and force_factor.ids[id] then
+				force_factor.ids[id] = nil
+				force_factor.id, force_factor.force = get_best_force(force_factor.ids)
+				if not force_factor.force then
+					area.factors.force = nil
+				end
+				return
+			end
+		end
+	end
+end)
 
 -- Old fade behavior but less abusable
 local _upd_assault_task_original = GroupAIStateBesiege._upd_assault_task
@@ -199,9 +284,7 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 
 			self:_begin_regroup_task(force_regroup)
 
-			if self._difficulty_value < 1 then
-				self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add or 0.25)
-			end
+			self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add)
 
 			return
 		end
@@ -329,12 +412,9 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 				end
 			end
 
-			-- Adjust next reinforce dispatch time based on the amount of tasks still needed
-			local min_reenforce_interval = self:_get_difficulty_dependent_value(self._tweak_data.reenforce.min_interval)
-
 			if spawned then
 				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
-				self._task_data.reenforce.next_dispatch_t = self._t + math.max(min_reenforce_interval, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks)
+				self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval)
 				break
 			end
 		else
@@ -389,7 +469,10 @@ function GroupAIStateBesiege:_assign_enemy_groups_to_task(phase, objective_type,
 					group.in_place_t = self._t
 					group.objective.moving_in = nil
 					if group.objective.assigned_t then
-						self:_chk_say_group(group, "ready")
+						local say_clear = math.random() < 0.5 and not self:_can_group_see_target(group, nil, 5)
+						if not say_clear or not self:_chk_say_group(group, "clear") then
+							self:_chk_say_group(group, "ready")
+						end
 					end
 				end
 			end
@@ -446,8 +529,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	if tactics_map.deathguard and not phase_is_anticipation then
 		if current_objective.tactic == "deathguard" then
 			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
-			if u_data and u_data.status and u_data.status ~= "electrified" and current_objective.area.nav_segs[u_data.seg] then
+			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
 				return
+			else
+				objective_area = self:get_area_from_nav_seg_id(group_leader_u_data.tracker:nav_segment())
+				current_objective.moving_out = nil
+				current_objective.tactic = nil
 			end
 		end
 
@@ -479,7 +566,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					attitude = "engage",
 					pose = "stand",
 					tactic = "deathguard",
-					moving_in = true,
 					follow_unit = closest_crim_u_data.unit,
 					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 					coarse_path = coarse_path,
@@ -524,6 +610,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
+	end
+
 	if current_objective.open_fire then
 		if not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) then
 			approach = not self:_can_group_see_target(group, nil, tactics_map.no_push and 5 or not tactics_map.charge and 1)
@@ -560,12 +650,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			open_fire = true,
 			tactic = current_objective.tactic,
 			area = objective_area,
-			coarse_path = {
-				{
-					objective_area.pos_nav_seg,
-					mvector3.copy(objective_area.pos),
-				},
-			},
+			coarse_path = self:_coarse_path_from_area(objective_area),
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
@@ -618,9 +703,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		if assault_area and assault_path then
 			local push = assault_from == objective_area
+			local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 
 			if push then
-				if tactics_map.no_push then
+				-- disable enemy pushes if police comms are jammed with an ECM
+				if tactics_map.no_push or are_police_comms_ecm_jammed then
 					return
 				end
 
@@ -724,16 +811,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				type = "assault_area",
 				area = retreat_area,
 				open_fire = true,
-				coarse_path = {
-					{
-						retreat_area.pos_nav_seg,
-						mvector3.copy(retreat_area.pos),
-					},
-				},
+				coarse_path = self:_coarse_path_from_area(objective_area),
 			})
 		end
 	end
 end)
+
+-- Helper to create a basic coarse path
+function GroupAIStateBesiege:_coarse_path_from_area(area)
+	return {
+		{
+			area.pos_nav_seg,
+			mvector3.copy(area.pos),
+		},
+	}
+end
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_duration)
@@ -858,6 +950,10 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 		if not grenade_user.unit:movement():chk_action_forbidden("interact") and not harmless then
 			if grenade_user.unit:movement():play_redirect("throw_grenade") then
+				grenade_user.unit:brain():action_request({
+					type = "stand",
+					body_part = 4,
+				})
 				managers.network:session():send_to_peers_synched("play_distance_interact_redirect", grenade_user.unit, "throw_grenade")
 			end
 		end
@@ -904,6 +1000,20 @@ end
 -- Tweak importance of spawn group distance in spawn group weight based on the groups to spawn
 -- Also slightly optimized this function to properly check all areas
 function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_groups, target_pos, max_dis, verify_clbk, timed)
+	if allowed_groups == self._tweak_data.assault.groups then
+		if self:_is_objective_type_on_cooldown("assault_area") then
+			return
+		end
+	elseif allowed_groups == self._tweak_data.recon.groups then
+		if self:_is_objective_type_on_cooldown("recon_area") then
+			return
+		end
+	elseif allowed_groups == self._tweak_data.reenforce.groups then
+		if self:_is_objective_type_on_cooldown("reenforce_area") then
+			return
+		end
+	end
+
 	target_pos = target_pos or target_area.pos
 	max_dis = max_dis or math.huge
 
@@ -1025,7 +1135,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 	end
 
 	local best_groups = {}
-	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "recon"].groups, 1)
+	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "reenforce"].groups, 1)
 	if total_weight <= 0 and not guarantee then
 		return
 	end
@@ -1041,12 +1151,7 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 		pose = "crouch",
 		type = "assault_area",
 		area = spawn_group.area,
-		coarse_path = {
-			{
-				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos,
-			},
-		},
+		coarse_path = self:_coarse_path_from_area(spawn_group.area),
 	}
 
 	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
@@ -1054,23 +1159,49 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 	end
 end
 
-function GroupAIStateBesiege:_is_spawn_task_type_on_cooldown(spawn_task)
-	local group_objective_type = spawn_task.group.objective.type
-	return self._next_group_spawn_t[group_objective_type] and self._next_group_spawn_t[group_objective_type] > self._t
+function GroupAIStateBesiege:_is_objective_type_on_cooldown(type)
+	return self._next_group_spawn_t[type] and self._next_group_spawn_t[type] > self._t
 end
 
-function GroupAIStateBesiege:_set_spawn_task_type_cooldown(spawn_task, cooldown)
-	local group_objective_type = spawn_task.group.objective.type
-	self._next_group_spawn_t[group_objective_type] = self._t + cooldown
+function GroupAIStateBesiege:_set_objective_type_cooldown(type, cooldown)
+	self._next_group_spawn_t[type] = self._t + cooldown
 end
 
 function GroupAIStateBesiege:_upd_group_spawning()
-	for _, spawn_task in ipairs(self._spawning_groups) do
-		if spawn_task.group.size > 0 or not self:_is_spawn_task_type_on_cooldown(spawn_task) then
-			self:_perform_group_spawning(spawn_task)
-			return
-		end
+	if self._spawning_groups[1] then
+		self:_perform_group_spawning(self._spawning_groups[1])
 	end
+end
+
+function GroupAIStateBesiege:spawn_rate()
+	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
+	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
+
+	local function get_drama_spawn_rate_entry(k)
+		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
+	end
+
+	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight)
+	local spawn_rate = self._task_data.assault.phase == "sustain" and {
+		get_drama_spawn_rate_entry(1),
+		get_drama_spawn_rate_entry(2),
+		get_drama_spawn_rate_entry(3),
+	} or regular_spawnrate_tbl
+
+	--	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
+
+	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
+	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
+
+	--[[
+	if self._task_data.assault.phase == "sustain" then
+		Eclipse:log_chat("Spawn rate for drama value " .. self._drama_data.amount .. " set to " .. self:_get_difficulty_dependent_value(spawn_rate))
+	else
+		Eclipse:log_chat("Current phase is not sustain, so no drama-based spawnrate.")
+	end
+]]
+
+	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
@@ -1118,13 +1249,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					local u_key = spawned_unit:key()
 					local u_data = self._police[u_key]
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:set_enemy_assigned(objective.area, u_key)
-					else
-						-- Proper AI assignment for timed groups
-						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:set_enemy_assigned(objective.area, u_key)
 
 					if spawn_entry.tactics then
 						u_data.tactics = spawn_entry.tactics
@@ -1134,11 +1260,10 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					spawned_unit:brain():set_spawn_entry(spawn_entry, u_data.tactics_map)
 
 					u_data.rank = spawn_entry.rank
+					u_data.spawn_group = spawn_task.spawn_group
 
-					-- Don't double assign for timed groups
-					if not spawn_task.timed then
-						self:_add_group_member(spawn_task.group, u_key)
-					end
+					-- TODO: check if this doesn't cause issues with fixed timed groups
+					self:_add_group_member(spawn_task.group, u_key)
 
 					if spawned_unit:brain():is_available_for_assignment(objective) then
 						if objective.element then
@@ -1215,11 +1340,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a dynamic enemy spawnrate that scales with player count and difficulty value
-	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
-	local spawn_rate = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate)
-
-	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
+	-- Set a dynamic enemy spawn rate that scales with player count and difficulty value
+	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate())
 end
 
 local function spawn_group_id(spawn_group)
@@ -1228,43 +1350,23 @@ end
 
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task, timed_desc)
 	local spawn_group_desc
+	local tactics
 	if timed_desc then
 		spawn_group_desc = timed_desc
+		tactics = tweak_data.group_ai._timed_tactics or {}
 	else
 		spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
-	end
-
-	local function check_special_limit_reached(unit)
-		local category = tweak_data.group_ai.unit_categories[unit]
-		local special_type = category and category.special_type
-
-		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
-	end
-
-	for _, enemy in pairs(spawn_group_desc.spawn) do
-		if enemy.random_tactics then
-			tactic_str = weighted_selector(enemy.random_tactics):select()
-			enemy.tactics = tweak_data.group_ai._tactics[tactic_str] or enemy.tactics
-		end
-
-		if enemy.random_unit then
-			unit = weighted_selector(enemy.random_unit):select()
-			if check_special_limit_reached(unit) then
-				local u
-				for k, v in pairs(enemy.random_unit) do
-					u = type(k) == "number" and v or k
-					if u ~= unit and not check_special_limit_reached(u) then
-						unit = u
-						break
-					end
-				end
-			end
-			enemy.unit = unit or enemy.unit
-		end
+		tactics = tweak_data.group_ai._tactics or {}
 	end
 
 	local wanted_nr_units
-	if type(spawn_group_desc.amount) == "number" then
+	if spawn_group_desc.amount_weighted then
+		local amount_selector = EclipseWeightedSelector:new()
+		for amount, weight in pairs(spawn_group_desc.amount_weighted) do
+			amount_selector:add(amount, weight)
+		end
+		wanted_nr_units = amount_selector:select()
+	elseif type(spawn_group_desc.amount) == "number" then
 		wanted_nr_units = spawn_group_desc.amount
 	else
 		wanted_nr_units = math.random(spawn_group_desc.amount[1], spawn_group_desc.amount[2])
@@ -1281,6 +1383,48 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		ai_task = ai_task,
 		timed = timed_desc and true,
 	}
+
+	local function check_special_limit_reached(unit)
+		local category = tweak_data.group_ai.unit_categories[unit]
+		local special_type = category and category.special_type
+
+		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
+	end
+
+	local function get_random_unit(random_units)
+		for k, v in pairs(random_units) do
+			local k_is_number = type(k) == "number"
+			local unit = k_is_number and v or k
+			if check_special_limit_reached(unit) then
+				if k_is_number then
+					table.remove(random_units, k)
+				else
+					random_units[k] = nil
+				end
+			end
+		end
+		return weighted_selector(random_units):select()
+	end
+
+	for _, spawn_entry in pairs(valid_unit_types) do
+		if spawn_entry.random_tactics then
+			tactic_str = weighted_selector(spawn_entry.random_tactics):select()
+			spawn_entry.tactics = tactics[tactic_str] or spawn_entry.tactics
+		end
+
+		if spawn_entry.random_unit then
+			spawn_entry.unit = get_random_unit(spawn_entry.random_unit) or spawn_entry.unit
+		end
+
+		local freq_by_diff = spawn_entry.freq_by_diff
+		if freq_by_diff then
+			spawn_entry.freq = self:_get_difficulty_dependent_value(freq_by_diff)
+		end
+
+		if spawn_entry.freq_balance_mul then
+			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_freq_balance_mul_weight)
+		end
+	end
 
 	table.insert(self._spawning_groups, spawn_task)
 
@@ -1308,7 +1452,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		if spawn_entry.amount_max then
 			if add_amount >= spawn_entry.amount_max then
 				table.remove(valid_unit_types, i)
-				total_weight = total_weight - (spawn_entry.freq_by_diff and self:_get_difficulty_dependent_value(spawn_entry.freq_by_diff) or spawn_entry.freq)
+				total_weight = total_weight - spawn_entry.freq
 				return true
 			else
 				spawn_entry.amount_max = spawn_entry.amount_max - add_amount
@@ -1320,7 +1464,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	while wanted_nr_units > 0 and i <= #valid_unit_types do
 		local spawn_entry = valid_unit_types[i]
 
-		total_weight = total_weight + (spawn_entry.freq_by_diff and self:_get_difficulty_dependent_value(spawn_entry.freq_by_diff) or spawn_entry.freq)
+		total_weight = total_weight + spawn_entry.freq
 
 		local entry_removed = spawn_entry.amount_min and spawn_entry.amount_min > 0 and _add_unit_type_to_spawn_task(i, spawn_entry)
 		if not entry_removed then
@@ -1337,7 +1481,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		repeat
 			rand_entry = valid_unit_types[i]
 
-			roll = roll - (rand_entry.freq_by_diff and self:_get_difficulty_dependent_value(rand_entry.freq_by_diff) or rand_entry.freq)
+			roll = roll - rand_entry.freq
 			i = i + 1
 		until roll <= 0
 
@@ -1346,7 +1490,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		if special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type) then
 			table.remove(valid_unit_types, i - 1)
-			total_weight = total_weight - (rand_entry.freq_by_diff and self:_get_difficulty_dependent_value(rand_entry.freq_by_diff) or rand_entry.freq)
+			total_weight = total_weight - rand_entry.freq
 		else
 			_add_unit_type_to_spawn_task(i - 1, rand_entry)
 		end
@@ -1367,6 +1511,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
+-- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
 	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
@@ -1375,7 +1520,9 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 	for _, group_type in ipairs(group_types) do
 		local spawn_group_desc = spawn_groups[group_type]
 		local cat_weights = allowed_groups[group_type]
-		if spawn_group_desc and cat_weights then
+		if not cat_weights then
+			-- Nothing
+		elseif spawn_group_desc then
 			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
 				local cat_data = unit_categories[spawn_entry.unit]
 				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
@@ -1425,12 +1572,6 @@ function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 		end
 	end
 end
-
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
-	if not group.said_retreat then
-		group.said_retreat = self:_chk_say_group(group, "retreat")
-	end
-end)
 
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
@@ -1530,10 +1671,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		-- disable enemy pushes if police comms are jammed with an ECM
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
@@ -1598,6 +1741,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		elseif objective_area == target_area then
 			return
 		end
+	end
+
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
+		group.said_moving_out = self:_chk_say_group(group, "recon_move_out_" .. table.random({ "a", "b", "c", "d" }))
 	end
 
 	local coarse_path
@@ -1667,10 +1814,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
+		local are_police_comms_ecm_jammed = self:_active_ecm_police_comms_jamm()
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
 		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
-		if tactics_map.no_push then
+		if tactics_map.no_push or are_police_comms_ecm_jammed then
 			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
@@ -1707,6 +1855,71 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	})
 end)
 
+-- Tweak how flee points are chosen for group retirements
+Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(self, group)
+	local objective_area = group.objective.area
+	local to_search_areas = {
+		objective_area,
+	}
+	local found_areas = {
+		[objective_area] = true,
+	}
+	local group_access_mask = self._get_group_acces_mask(group)
+
+	local retire_area, retire_pos, retire_path
+	repeat
+		local search_area = table.remove(to_search_areas, 1)
+		local flee_point = search_area.flee_points and search_area.flee_points[table.random_key(search_area.flee_points)]
+		if flee_point then
+			local coarse_path = managers.navigation:search_coarse({
+				id = "GroupAI_retire",
+				from_seg = group.objective.area.pos_nav_seg,
+				to_seg = search_area.pos_nav_seg,
+				access_pos = group_access_mask,
+				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area }),
+			})
+
+			if coarse_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = coarse_path
+				break
+			elseif not retire_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = managers.navigation:search_coarse({
+					id = "GroupAI_retire",
+					from_seg = group.objective.area.pos_nav_seg,
+					to_seg = search_area.pos_nav_seg,
+					access_pos = group_access_mask,
+				})
+			end
+		end
+
+		for _, other_area in pairs(search_area.neighbours) do
+			if not found_areas[other_area] then
+				table.insert(to_search_areas, other_area)
+				found_areas[other_area] = true
+			end
+		end
+	until #to_search_areas == 0
+
+	if not retire_path then
+		return
+	end
+
+	self:_chk_say_group(group, "retreat")
+	self:_set_objective_to_enemy_group(group, {
+		type = "retire",
+		area = retire_area,
+		coarse_path = retire_path,
+		pos = retire_pos,
+		stance = "hos",
+		pose = "stand",
+		attitude = "avoid",
+	})
+end)
+
 -- New designated ponr ai state
 GroupAIStatePonr = GroupAIStatePonr or class(GroupAIStateBesiege)
 
@@ -1731,6 +1944,20 @@ function GroupAIStatePonr:init(state, data)
 	end
 	self._delayed_hud_banner_update = false
 	self:force_end_assault_phase(true)
+	self:_do_ponr_state_special_limit_add()
+end
+
+function GroupAIStatePonr:_do_ponr_state_special_limit_add()
+	if self._did_ponr_state_special_limit_add then
+		return
+	end
+
+	self._did_ponr_state_special_limit_add = true
+
+	local special_unit_spawn_limits = tweak_data.group_ai.special_unit_spawn_limits
+	for special, limit_add in pairs(tweak_data.group_ai.ponr_state_special_limit_add or {}) do
+		special_unit_spawn_limits[special] = (special_unit_spawn_limits[special] or 0) + limit_add
+	end
 end
 
 -- Put the game into endless assault after anticipation ends if the game state is Full Force Onslaught

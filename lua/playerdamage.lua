@@ -8,6 +8,10 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	if is_pro_job then
 		self._lives_init = 4
 	end
+	-- One Down mutator
+	if managers.mutators:modify_value("PlayerDamage:OneDown", false) then
+		self._lives_init = 2
+	end
 end)
 
 -- Upgrade that heals you when you revive others
@@ -17,7 +21,7 @@ Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
 			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
 		end
 
-		self._listener_holder:add("on_revive_interaction_success", {
+		self._listener_holder:add("on_revive_interaction_success_revive_health_regen", {
 			"on_revive_interaction_success",
 		}, on_revive_interaction_success)
 	end
@@ -158,22 +162,22 @@ function PlayerDamage:damage_bullet(attack_data)
 	local has_active_injector = managers.player:has_activate_temporary_upgrade("temporary", "chico_injector")
 	local is_in_steelsight = self._unit:movement():current_state()._state_data.in_full_steelsight
 	local shake_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1) or 1)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
 
-	local shake_mul = math.clamp(attack_data.damage, 1, 12) * shake_armor_multiplier * (has_active_injector and 0.5 or 1)
+	local shake_mul = math.clamp(attack_data.damage, 1, 10) * shake_armor_multiplier * (has_active_injector and 0.5 or 1)
 	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
-	local stamina_mul = math.clamp(attack_data.damage, 1, 12) * stamina_strip_armor_multiplier * (has_active_injector and 0 or 1)
+	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * (has_active_injector and 0 or 1)
 	self._unit:movement():subtract_stamina(stamina_mul)
 
 	if not _G.IS_VR then
@@ -225,21 +229,90 @@ function PlayerDamage:damage_bullet(attack_data)
 	self:_call_listeners(damage_info)
 end
 
--- Grace period protects no matter the new potential damage but is shorter in general (sh)
-function PlayerDamage:_chk_dmg_too_soon()
+-- Grace piercing mechanics from Hoppip's Reduced I-Frame Damage mod (you only take the difference in damage if you would take damage during an i-frame)
+function PlayerDamage:_chk_dmg_too_soon(damage)
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)
-	return managers.player:player_timer():time() < next_allowed_dmg_t
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if vanilla_grace_piercing then
+		if damage <= self._last_received_dmg + 0.01 and managers.player:player_timer():time() < next_allowed_dmg_t then
+			return true
+		end
+	end
+
+	local t = managers.player:player_timer():time()
+	if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+		return true
+	end
+	if next_allowed_dmg_t > t then
+		self._old_last_received_dmg = self._last_received_dmg
+		self._old_next_allowed_dmg_t = next_allowed_dmg_t
+	end
 end
 
--- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
-local _calc_armor_damage_original = PlayerDamage._calc_armor_damage
-function PlayerDamage:_calc_armor_damage(...)
+function PlayerDamage:_calc_armor_damage(attack_data)
+	local health_subtracted = 0
 	local had_armor = self:get_real_armor() > 0
-	local health_subtracted = _calc_armor_damage_original(self, ...)
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
 
+	if self:get_real_armor() > 0 then
+		health_subtracted = self:get_real_armor()
+
+		self:change_armor(-attack_data.damage)
+
+		health_subtracted = health_subtracted - self:get_real_armor()
+
+		self:_damage_screen()
+		SoundDevice:set_rtpc("shield_status", self:armor_ratio() * 100)
+		self:_send_set_armor()
+
+		if self:get_real_armor() <= 0 then
+			self._unit:sound():play("player_armor_gone_stinger")
+
+			if attack_data.armor_piercing then
+				self._unit:sound():play("player_sniper_hit_armor_gone")
+			end
+
+			local pm = managers.player
+
+			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
+
+			if pm:has_inactivate_temporary_upgrade("temporary", "armor_break_invulnerable") then
+				pm:activate_temporary_upgrade("temporary", "armor_break_invulnerable")
+
+				self._can_take_dmg_timer = pm:temporary_upgrade_value("temporary", "armor_break_invulnerable", 0)
+			end
+
+			if pm:has_enabled_cooldown_upgrade("cooldown", "crewmate_damage_reduction") then
+				managers.network:session():send_to_peers("sync_damage_reduction_from_crewmate")
+
+				pm:disable_cooldown_upgrade("cooldown", "crewmate_damage_reduction")
+			end
+		end
+	end
+
+	managers.hud:damage_taken()
+
+	-- For Grace Troll Mutator setting
+	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
+
+	-- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
 	if had_armor and self:get_real_armor() <= 0 then
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
-			self._can_take_dmg_timer = self._dmg_interval + (tweak_data.player.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL or 0.15)
+			if disable_armor_break_grace then
+				self._can_take_dmg_timer = self._dmg_interval
+			else
+				self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
+			end
 		end
 	end
 
@@ -249,7 +322,7 @@ end
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
 Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval / 2
+		self._can_take_dmg_timer = self._dmg_interval
 	end
 end)
 
@@ -307,6 +380,15 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	end
 
 	local health_subtracted = 0
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
+
 	health_subtracted = self:get_real_health()
 
 	self:change_health(-attack_data.damage)
@@ -500,10 +582,10 @@ function PlayerDamage:damage_fall(data)
 			self:_send_set_revives()
 		end
 	else
-		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.25, 1)
+		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
 
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
-		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
+		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1) * managers.player:upgrade_value("player", "fall_damage_multiplier_cat", 1)
 
 		local fall_damage = self:_max_health() * fall_multiplier
 
@@ -512,7 +594,7 @@ function PlayerDamage:damage_fall(data)
 	end
 
 	if die or fall_multiplier > 0 then
-		local alert_rad = player_tweak.fall_damage_alert_size or 500
+		local alert_rad = (player_tweak.fall_damage_alert_size or 500) * managers.player:upgrade_value("player", "fall_damage_noise_multiplier", 1)
 		local new_alert = {
 			"vo_cbt",
 			self._unit:movement():m_head_pos(),
@@ -557,7 +639,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then
 		self:_call_listeners(damage_info)
 		return
-	elseif self:incapacitated() or self._unit:movement():current_state().immortal then
+	elseif self:is_downed() or self._unit:movement():current_state().immortal then
 		self._last_teargas_hit_t = nil
 		return
 	end
@@ -734,11 +816,11 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 
 	if can_revive and managers.player:has_category_upgrade("player", "cheat_death_chance") then
 		local r = math.rand(1)
-		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_headshot_cheat_death", 0)
+		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_hitman_cheat_death", 0)
 
 		if r <= self_revive_chance then
 			self._auto_revive_timer = 1
-			managers.player:remove_property("chain_headshot_cheat_death")
+			managers.player:remove_property("chain_hitman_cheat_death")
 		end
 	end
 
@@ -807,10 +889,21 @@ function PlayerDamage:_regenerate_armor(no_sound)
 
 		-- Cooldown health regen on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
+			local armor_init = tweak_data.player.damage.ARMOR_INIT
+			local base_max_armor = armor_init + managers.player:body_armor_value("armor") + managers.player:body_armor_skill_addend()
 			local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
+			local armor_bonus = tweak_data.upgrades.values.player.armor_regen_plating_bonus
+			local extra_cooldown = 0
+			local extra_health = 0
 
-			self:restore_health(health_to_restore)
-			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+			-- Extra health regen addend and cooldown length for every 20 base armor points
+			for i = 1, (base_max_armor / 2) do
+				extra_health = extra_health + armor_bonus.extra_health
+				extra_cooldown = extra_cooldown + armor_bonus.extra_cooldown
+			end
+
+			self:restore_health(health_to_restore + extra_health)
+			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen", extra_cooldown)
 		end
 	end
 

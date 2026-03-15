@@ -8,17 +8,17 @@ return {
 	[101377] = { -- enable main preferreds
 		reinforce = {
 			{
-				name = "blockade1",
+				name = "blockade01",
 				force = 2,
 				position = Vector3(-550, -5675, 550),
 			},
 			{
-				name = "blockade2",
+				name = "blockade02",
 				force = 2,
 				position = Vector3(-5800, -150, 550),
 			},
 			{
-				name = "blockade3",
+				name = "blockade03",
 				force = 2,
 				position = Vector3(800, 5250, 550),
 			},

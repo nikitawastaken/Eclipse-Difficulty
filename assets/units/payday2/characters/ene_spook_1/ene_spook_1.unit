@@ -98,7 +98,7 @@
 		<extension name="character_damage" class="CopDamage">
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
-			<var name="_death_sequence" value="kill_spook_lights" />	
+			<var name="_death_sequence" value="spook_lights_flicker" />	
 		</extension>
 		<extension name="movement" class="CopMovement" >
 			<var name="_footwear" value="hardsole" />

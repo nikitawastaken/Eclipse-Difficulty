@@ -77,8 +77,8 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 end
 
 function WeaponDescription._get_base_steelsight_time(_, name)
-	local mul = tweak_data.weapon[name].steelsight_speed_multiplier or 1
-	return tweak_data.weapon[name].steelsight_time / mul
+	local mul = tweak_data.weapon[name].steelsight_time_mul or 1
+	return tweak_data.weapon[name].steelsight_time * mul
 end
 
 -- it's janky but what can you do
@@ -89,8 +89,8 @@ function WeaponDescription._get_mods_steelsight_time(_, name, base, mods)
 	local multiplier = 1
 	for _, mod in ipairs(mods) do
 		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
-		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_speed_multiplier then
-			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_speed_multiplier
+		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_time_mul then
+			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_time_mul
 		end
 	end
 
@@ -131,7 +131,7 @@ function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, 
 	if new == cur then
 		return false, 0
 	else
-		return true, result - base_stats.steelsight_time.value + mods_stats.steelsight_time.value
+		return true, result - base_stats.steelsight_time.value - mods_stats.steelsight_time.value
 	end
 end
 
@@ -163,7 +163,8 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	local base_stats = WeaponDescription._get_base_stats(name)
 	local mods_stats = WeaponDescription._get_mods_stats(name, base_stats, equipped_mods, bonus_stats)
 	local skill_stats = WeaponDescription._get_skill_stats(name, category, slot, base_stats, mods_stats, silencer, single_mod, auto_mod, blueprint)
-	local _, max_ammo, ammo_data = WeaponDescription.get_weapon_ammo_info(name, tweak_data.weapon[name].stats.extra_ammo, base_stats.totalammo.index + mods_stats.totalammo.index)
+	local _, max_ammo, ammo_data =
+		WeaponDescription.get_weapon_ammo_info(name, tweak_data.weapon[name].stats.extra_ammo, base_stats.totalammo.index + mods_stats.totalammo.index, mods_stats.ammo_max_mul)
 	base_stats.totalammo.value = ammo_data.base
 	mods_stats.totalammo.value = ammo_data.mod
 	skill_stats.totalammo.value = ammo_data.skill
@@ -222,22 +223,29 @@ function WeaponDescription._get_base_stats(name)
 	if weapon_tweak.fire_rate_multiplier then
 		result.fire_rate.value = result.fire_rate.value * weapon_tweak.fire_rate_multiplier
 	end
+	-- Custom total ammo mul
+	result.ammo_max_mul = { value = 1, index = 1 }
 	return result
 end
 
 local old_weapon_desc_mods_stats = WeaponDescription._get_mods_stats
 function WeaponDescription._get_mods_stats(name, base, mods, bonus)
 	local result = old_weapon_desc_mods_stats(name, base, mods, bonus)
+	result.ammo_max_mul = { value = 1, index = 1 }
 
-	if base.reload and mods then
+	if mods then
 		local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
 		local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
-
 		for _, mod in ipairs(mods) do
 			local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
-			if part_data and part_data.custom_stats and part_data.custom_stats.reload_speed_multiplier then
-				local multiplier_addend = base.reload.value - (base.reload.value * part_data.custom_stats.reload_speed_multiplier)
-				result.reload.value = result.reload.value + multiplier_addend
+			if part_data and part_data.custom_stats then
+				if part_data.custom_stats.reload_speed_multiplier then
+					local multiplier_addend = base.reload.value - (base.reload.value * part_data.custom_stats.reload_speed_multiplier)
+					result.reload.value = result.reload.value + multiplier_addend
+				elseif part_data.custom_stats.ammo_max_mul then
+					result.ammo_max_mul.value = part_data.custom_stats.ammo_max_mul
+					result.ammo_max_mul.index = part_data.custom_stats.ammo_max_mul
+				end
 			end
 		end
 	end
@@ -245,7 +253,7 @@ function WeaponDescription._get_mods_stats(name, base, mods, bonus)
 end
 
 -- percentage ammo increase upgrade
-function WeaponDescription.get_weapon_ammo_info(weapon_id, extra_ammo, total_ammo_mod)
+function WeaponDescription.get_weapon_ammo_info(weapon_id, extra_ammo, total_ammo_mod, ammo_max_mul_mod)
 	local weapon_tweak_data = tweak_data.weapon[weapon_id]
 	local ammo_max_multiplier = managers.player:upgrade_value("player", "extra_ammo_multiplier", 1)
 	local category_skill_in_effect = false
@@ -300,10 +308,14 @@ function WeaponDescription.get_weapon_ammo_info(weapon_id, extra_ammo, total_amm
 	local ammo_from_mods = ammo_max * (total_ammo_mod and tweak_data.weapon.stats.total_ammo_mod[total_ammo_mod] or 0)
 	ammo_max = (ammo_max + ammo_from_mods + managers.player:upgrade_value(weapon_id, "clip_amount_increase") * ammo_max_per_clip) * ammo_max_multiplier
 	ammo_max_per_clip = math.min(ammo_max_per_clip, ammo_max)
+	ammo_max_mul_mod = ammo_max_mul_mod.value or 1
 	local ammo_data = {
 		base = tweak_data.weapon[weapon_id].AMMO_MAX,
 		mod = ammo_from_mods + managers.player:upgrade_value(weapon_id, "clip_amount_increase") * ammo_max_per_clip,
 	}
+	if ammo_max_mul_mod ~= 1 then
+		ammo_data.mod = (ammo_data.base + ammo_data.mod) * (ammo_max_mul_mod - 1)
+	end
 	ammo_data.skill = (ammo_data.base + ammo_data.mod) * ammo_max_multiplier - ammo_data.base - ammo_data.mod
 	ammo_data.skill_in_effect = managers.player:has_category_upgrade("player", "extra_ammo_multiplier")
 		or category_skill_in_effect

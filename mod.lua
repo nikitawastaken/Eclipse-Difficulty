@@ -14,6 +14,8 @@ if not Eclipse then
 			flavor_text_tips = false,
 			team_ai_weapons = 1,
 			improved_gun_echo = 2,
+			welcome_message = true,
+			disable_christmas = false,
 		},
 		loaded_elements = false,
 	}
@@ -26,6 +28,18 @@ if not Eclipse then
 	function Eclipse:require_lua(file)
 		local path = self.mod_path .. "lua/" .. file .. ".lua"
 		return io.file_is_readable(path) and blt.vm.dofile(path)
+	end
+
+	-- Similar to Eclipse:require() but does all found files in a folder
+	-- Supports only single returns for each file
+	function Eclipse:require_all_in_folder(folder)
+		local results = {}
+		local path = self.mod_path .. "req/" .. folder .. "/"
+		for _, file in pairs(file.GetFiles(path)) do
+			local result = blt.vm.dofile(path .. file)
+			table.insert(results, result)
+		end
+		return next(results) and results
 	end
 
 	function Eclipse:instance_script_patches()
@@ -60,18 +74,18 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-	function Eclipse:log_console(...)
+	function Eclipse:log_console(str, ...)
 		if self.logging then
-			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
+			log("[EclipseOverhaul] " .. str:format(...))
 		end
 	end
 
-	function Eclipse:warn_console(...)
-		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
+	function Eclipse:warn_console(str, ...)
+		log("[EclipseOverhaul][Warning] " .. str:format(...))
 	end
 
-	function Eclipse:error_console(...)
-		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
+	function Eclipse:error_console(str, ...)
+		log("[EclipseOverhaul][Error] " .. str:format(...))
 	end
 
 	function Eclipse:log_chat(...)
@@ -203,6 +217,11 @@ if not Eclipse then
 			Eclipse.settings.flavor_text_tips = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_disable_christmas_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.disable_christmas = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -322,6 +341,16 @@ if not Eclipse then
 				"eclipse_menu_improved_gun_echo_heat",
 			},
 			value = Eclipse.settings.improved_gun_echo,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "disable_christmas",
+			title = "eclipse_menu_disable_christmas",
+			desc = "eclipse_menu_disable_christmas_desc",
+			callback = "eclipse_disable_christmas_toggle",
+			value = Eclipse.settings.disable_christmas,
 			menu_id = menu_id,
 			priority = 100,
 		})

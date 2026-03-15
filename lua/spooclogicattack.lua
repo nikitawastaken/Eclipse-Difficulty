@@ -13,7 +13,8 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	if focus_enemy.reaction < AIAttentionObject.REACT_SHOOT or focus_enemy.dis > (my_data.want_to_take_cover and 1500 or 2500) then
+	local max_spooc_dis = (data.char_tweak.max_spooc_dis or 2000) * (my_data.want_to_take_cover and 0.5 or 1)
+	if focus_enemy.reaction < AIAttentionObject.REACT_SHOOT or focus_enemy.dis > max_spooc_dis then
 		return
 	end
 

@@ -1,6 +1,7 @@
 ---@module The Ukrainian Prisoner
 local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local scripted_enemy = Eclipse.scripted_enemy
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
@@ -17,8 +18,7 @@ local swats = { [swat_1] = 2, [swat_2] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2 }
 local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local specials_1 = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
-local specials_2 = (normal or hard) and shield or elite_shield
+local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
 
 local patches = {
 	swat_chopper = {
@@ -65,13 +65,13 @@ M["levels/instances/unique/sand/sand_spawn_enemies/world/world"] = function(resu
 			element.values.enemy_table = swats
 			element.values.position = Vector3(-100, -125, 0)
 		elseif squads.special_spawn_1[id] then
-			element.values.enemy = specials_2
+			element.values.enemy = shield
 			element.values.position = Vector3(64, -64, 0)
 		elseif squads.special_spawn_2[id] then
-			element.values.enemy = specials_2
+			element.values.enemy = shield
 			element.values.position = Vector3(-63, 67, 0)
 		elseif squads.special_spawn_3[id] then
-			element.values.enemy_table = specials_1
+			element.values.enemy_table = specials
 			element.values.position = Vector3(1, -0, 0)
 		elseif squads.filters_normal_above[id] then
 			table.map_append(element.values, filter_normal_above)

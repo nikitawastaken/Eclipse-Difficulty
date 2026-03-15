@@ -7,15 +7,9 @@ local sniper_trigger_times = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_over_3m",
 }
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local dock_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -32,17 +26,17 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "gate1",
+				name = "gate01",
 				force = 5,
 				position = Vector3(2100, 4875, 400),
 			},
 			{
-				name = "gate2",
+				name = "gate02",
 				force = 5,
 				position = Vector3(5325, 1500, 400),
 			},
 			{
-				name = "gate3",
+				name = "gate03",
 				force = 5,
 				position = Vector3(2025, -4500, 400),
 			},
@@ -52,12 +46,12 @@ return {
 				position = Vector3(-1800, -50, 200),
 			},
 			{
-				name = "fork_corner1",
+				name = "fork_corner01",
 				force = 3,
 				position = Vector3(-1440, -3970, 200),
 			},
 			{
-				name = "fork_corner2",
+				name = "fork_corner02",
 				force = 3,
 				position = Vector3(-315, 4935, 400),
 			},
@@ -94,8 +88,6 @@ return {
 	[400007] = scripted_swat_van_spawn,
 	[400014] = scripted_swat_van_spawn,
 	[400021] = scripted_swat_van_spawn,
-	[100911] = roof_spawn,
-	[100019] = roof_spawn,
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,
 	[102397] = dock_spawn,

@@ -9,7 +9,8 @@ return {
 	["levels/instances/unique/kenaz/elevator_openable/world/world"] = function(result)
 		for _, element in ipairs(result.default.elements) do
 			if patches.elevator[element.id] then
-				element.values.interval = 20
+				element.values.interval = 15
+				element.values.interval_balance_mul = { 2, 1.66, 1.33, 1 }
 			end
 		end
 	end,

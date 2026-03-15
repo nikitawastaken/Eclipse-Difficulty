@@ -2,6 +2,8 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 	self.first_aid_kit.quantity = { 8 }
 	self.trip_mine.quantity = { 6, 4 }
 	self.specials.cable_tie.quantity = 4
+	self.ecm_jammer.quantity = { 2 }
+	self.ecm_jammer.deploy_time = 1
 
 	self.grenade_case = {
 		deploy_time = 2,
@@ -17,4 +19,6 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.max_amount.grenade_case = 2
 	self.class_name_to_deployable_id.GrenadeCrateBase = "grenade_case"
+
+	self.max_amount.ecm_jammer = 4
 end)

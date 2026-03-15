@@ -1,6 +1,6 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
@@ -86,10 +86,11 @@ local standard_spawn = {
 	},
 }
 return {
-	[105046] = {
+	-- FFO
+	[100023] = {
 		ponr = {
-			length = 300,
-			player_mul = { 1.20, 1.10, 1, 1 },
+			length = 1200,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- play the background sirens that are supposed to play
@@ -112,8 +113,6 @@ return {
 		},
 	},
 	[104694] = disabled,
-	-- Disable boat escape
-	[104979] = disabled,
 	-- Remove a pointless reinforce spot
 	[100907] = disabled,
 	-- Thermal Drill Lottery (feat. Bile The Pilot)

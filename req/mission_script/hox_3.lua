@@ -35,7 +35,7 @@ local ready_team_dozer_chance = {
 	},
 }
 local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -48,17 +48,24 @@ local flank_spawn = {
 local van_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 return {
 	[101735] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.25, 1.15, 1, 1 },
 		},
 	},
 	-- Boss spawn
@@ -69,6 +76,12 @@ return {
 	[100788] = {
 		difficulty_max = 1,
 		difficulty_min = 1,
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400084, delay = 0 },
+		},
 	},
 	-- replace the turret with spawngroup
 	[103524] = {
@@ -159,6 +172,14 @@ return {
 	[102424] = flank_spawn,
 	[102438] = flank_spawn,
 	[102459] = flank_spawn,
+	[400074] = cloaker_spawn,
+	[400075] = cloaker_spawn,
+	[400076] = cloaker_spawn,
+	[400077] = cloaker_spawn,
+	[400078] = cloaker_spawn,
+	[400079] = cloaker_spawn,
+	[400080] = cloaker_spawn,
+	[400081] = cloaker_spawn,
 	-- Harassers
 	[100883] = harasser,
 	[100884] = harasser,

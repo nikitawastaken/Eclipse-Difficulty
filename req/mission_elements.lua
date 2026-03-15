@@ -132,9 +132,9 @@ function M.gen_so(id, name, pos, rot, opts)
 			execute_on_startup = false,
 			rotation = rot,
 			base_delay = 0,
-			action_duration_min = 0,
-			search_position = pos,
-			use_instigator = true,
+			action_duration_min = opts.action_duration_min or 0,
+			search_position = opts.search_position or pos,
+			use_instigator = opts.use_instigator or false,
 			trigger_times = 0,
 			trigger_on = "none",
 			search_distance = 0,
@@ -143,8 +143,8 @@ function M.gen_so(id, name, pos, rot, opts)
 			path_haste = "run",
 			repeatable = false,
 			attitude = "engage",
-			interval = 2,
-			action_duration_max = 0,
+			interval = opts.interval or 2,
+			action_duration_max = opts.action_duration_max or 0,
 			align_rotation = opts.align_rotation or false,
 			pose = opts.pose or "none",
 			forced = opts.forced or false, --setting this to true skips the spawn anim
@@ -152,7 +152,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			interaction_voice = "none",
 			SO_access = opts.SO_access or "512", -- default to sniper
 			chance_inc = 0,
-			interrupt_dmg = 1,
+			interrupt_dmg = opts.interrupt_dmg or 1,
 			interrupt_objective = false,
 			on_executed = opts.on_executed or {},
 			spawn_instigator_ids = opts.spawn_instigator_ids or {},
@@ -160,6 +160,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			interrupt_dis = opts.interrupt_dis or 1,
 			patrol_path = "none",
 			callback = opts.callback or false,
+			no_arrest = opts.no_arrest or false,
 		},
 	}
 
@@ -253,6 +254,47 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 	}
 
 	return areatrigger
+end
+
+---Generate an area report element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_areareporttrigger(id, name, pos, rot, opts)
+	opts = opts or {}
+	local areareporttrigger = {
+		id = id,
+		editor_name = name,
+		class = "ElementAreaReportTrigger",
+		module = "CoreElementArea",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 1,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			interval = 0.1,
+			trigger_on = opts.trigger_on or "on_enter",
+			instigator = opts.instigator or "player",
+			shape_type = opts.shape_type or "box",
+			width = opts.width or 500,
+			depth = opts.depth or 500,
+			height = opts.height or 500,
+			radius = opts.radius or 250,
+			spawn_unit_elements = {},
+			amount = opts.amount or "1",
+			instigator_name = "",
+			use_disabled_shapes = false,
+			substitute_object = "",
+			callback = opts.callback or false,
+		},
+	}
+
+	return areareporttrigger
 end
 
 ---Generate a dummy trigger element
@@ -390,6 +432,34 @@ function M.gen_smokegrenade(id, name, pos, rot, opts)
 	return smokegrenade
 end
 
+---Generate a elementspecialobjectivegroup element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_sogroup(id, name, pos, rot, opts)
+	opts = opts or {}
+	local sogroup = {
+		id = id,
+		editor_name = name,
+		class = "ElementSpecialObjectiveGroup",
+		values = {
+			execute_on_startup = false,
+			position = pos,
+			rotation = rot,
+			use_instigator = false,
+			base_delay = opts.base_delay or 0,
+			base_chance = opts.base_chance or 1,
+			trigger_times = opts.trigger_times or 0,
+			mode = opts.mode or "recurring_cloaker_spawn",
+			followup_elements = opts.followup_elements or {},
+			on_executed = opts.on_executed or {},
+			enabled = true,
+			callback = opts.callback or false,
+		},
+	}
+	return sogroup
+end
+
 ---Generate a prefered add element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
@@ -452,7 +522,7 @@ function M.gen_counter(id, name, opts)
 			on_executed = opts.on_executed or {},
 			trigger_times = opts.trigger_times or 0,
 			counter_target = opts.counter_target or 0,
-			enabled = opts.enabled or true,
+			enabled = opts.enabled or false,
 			base_delay = opts.base_delay or 0,
 			digital_gui_unit_ids = opts.digital_gui_unit_ids or {},
 			callback = opts.callback or false,
@@ -480,7 +550,7 @@ function M.gen_global_event(id, name, pos, rot, opts)
 			global_event = opts.global_event or "",
 			on_executed = opts.on_executed or {},
 			trigger_times = opts.trigger_times or 0,
-			enabled = opts.enabled or true,
+			enabled = opts.enabled or false,
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
@@ -754,6 +824,50 @@ function M.gen_element_filter(id, name, pos, rot, opts)
 	}
 
 	return element_filter
+end
+
+function M.gen_operator(id, name, pos, rot, opts)
+	opts = opts or {}
+	local operator = {
+		id = id,
+		editor_name = name,
+		class = "ElementOperator",
+		module = "CoreElementOperator",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			operation = opts.operation or "add",
+			elements = opts.elements or {},
+		},
+	}
+
+	return operator
+end
+
+function M.gen_area_min_police_force(id, name, pos, rot, opts)
+	opts = opts or {}
+	local area_min_police_force = {
+		id = id,
+		editor_name = name,
+		class = "ElementAreaMinPoliceForce",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			amount = opts.amount or 2,
+		},
+	}
+
+	return area_min_police_force
 end
 
 return M

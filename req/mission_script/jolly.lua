@@ -6,12 +6,13 @@ local disabled = {
 }
 local train_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local bridge_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -23,7 +24,7 @@ return {
 	[100082] = {
 		ponr = {
 			length = 120,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
+			length_balance_mul = { 1.25, 1.25, 1, 1 },
 		},
 	},
 	-- Disable hunt

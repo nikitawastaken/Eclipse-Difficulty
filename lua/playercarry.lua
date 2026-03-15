@@ -67,7 +67,7 @@ function PlayerCarry:_get_max_walk_speed(...)
 		local mul = managers.player:upgrade_value("player", "armor_carry_bonus", 1)
 
 		for i = 1, base_max_armor do
-			multiplier = multiplier * mul
+			multiplier = multiplier + mul
 		end
 
 		multiplier = math.clamp(multiplier, 0, 1)

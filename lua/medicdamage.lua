@@ -17,13 +17,18 @@ function MedicDamage:heal_unit(...)
 	return heal_unit_orig(self, ...)
 end
 
--- Make medics require line of sight to heal
 local verify_heal_requesting_unit_original = MedicDamage.verify_heal_requesting_unit
 function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 	if not verify_heal_requesting_unit_original(self, requesting_unit, ...) then
 		return false
 	end
 
+	-- Medics cannot heal charging Cloakers
+	if requesting_unit:movement()._active_actions[1] and requesting_unit:movement()._active_actions[1]:type() == "spooc" then
+		return false
+	end
+
+	-- Make medics require line of sight to heal
 	local medic_pos = self._unit:movement():m_head_pos()
 	local slot_mask = managers.slot:get_mask("AI_visibility")
 

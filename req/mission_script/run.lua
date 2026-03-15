@@ -61,7 +61,7 @@ local van_guaranteed_spawn = {
 }
 local van_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -84,7 +84,7 @@ local armitage_spawn = {
 }
 local building_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -105,7 +105,7 @@ return {
 	[101356] = {
 		ponr = {
 			length = 480,
-			player_mul = { 2.5, 2, 1.5, 1 },
+			length_balance_mul = { 2.5, 2, 1.5, 1 },
 		},
 	},
 	-- restore events from PDTH

@@ -50,9 +50,9 @@ return {
 		},
 	},
 	[100022] = {
-		ponr = {
-			length = 3000,
-			player_mul = { 1.75, 1.25, 1.125, 1 },
+		ponr = { -- Alarm
+			length = 2100,
+			length_balance_mul = { 1.75, 1.25, 1.125, 1 },
 		},
 	},
 	-- Add reinforce at the escape
@@ -71,7 +71,11 @@ return {
 		},
 	},
 	-- disable gas in the PEOC
-	[103245] = disabled,
+	[102079] = {
+		on_executed = {
+			{ id = 102023, remove = true },
+		},
+	},
 	-- make humvee event be chance based
 	[101606] = humvee_crash_event_chance,
 	[103360] = disabled,

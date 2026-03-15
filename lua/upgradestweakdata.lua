@@ -7,9 +7,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- why is this here?
 	self.explosive_bullet = {
-		curve_pow = 3,
+		curve_pow = 0.5,
 		player_dmg_mul = 1 / 4,
-		range = 300,
+		range = 200,
 	}
 
 	-- 100 skill points
@@ -17,12 +17,13 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	self.values.player.body_armor = {
 		armor = { 0, 2, 4.5, 7, 10, 14, 18 },
-		movement = { 1, 0.925, 0.85, 0.775, 0.7, 0.625, 0.55 },
+		movement = { 1, 0.95, 0.9, 0.85, 0.775, 0.7, 0.625 },
 		concealment = { 30, 26, 23, 21, 18, 12, 1 },
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
-		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
+		damage_shake = { 1, 0.9, 0.8, 0.7, 0.55, 0.4, 0.25 },
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
 		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
+		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
 	}
 
 	-- make sna less cancer
@@ -30,11 +31,722 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
+
+	-- Maniac stuff deck14
+	self.max_cocaine_stacks_per_tick = 80
+	self.max_total_cocaine_stacks = 300
+	self.cocaine_stacks_tick_t = 0.35
+
+	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+	local cocainum_stacks = get_difficulty_specific_value({ 1.75, 1.65, 1.55, 1.45, 1.4 })
+
+	self.cocaine_stacks_decay_t = cocainum_stacks
+	self.cocaine_stacks_decay_percentage_per_tick = 0.075
+	self.cocaine_stacks_decay_amount_per_tick = 30
+	self.cocaine_stacks_dmg_absorption_value = 0.1
+	self.cocaine_stacks_convert_levels = { 30, 25 }
+
+	self.values.player.cocaine_stacks_decay_multiplier = { 0.5 }
+	self.values.player.cocaine_stack_absorption_multiplier = { 1.5 }
 end
 
 local old_init = UpgradesTweakData.init
 function UpgradesTweakData:init(tweak_data)
 	old_init(self, tweak_data)
+
+	-- LEVELING PROGRESION OVERHAUL --
+	self.level_tree = {
+		[0] = {
+			upgrades = {
+				"wpn_dallas_mask",
+				"wpn_prj_ace",
+
+				-- melee bloat bullshit
+				"weapon",
+				"fists",
+				"rambo",
+				"gerber",
+				"kampfmesser",
+				"brass_knuckles",
+				"tomahawk",
+				"baton",
+				"shovel",
+				"becker",
+				"moneybundle",
+				"barbedwire",
+				"x46",
+				"dingdong",
+				"spoon",
+				"spoon_gold",
+				"bayonet",
+				"bullseye",
+				"baseballbat",
+				"cleaver",
+				"fireaxe",
+				"machete",
+				"briefcase",
+				"fairbair",
+				"freedom",
+				"model24",
+				"swagger",
+				"alien_maul",
+				"piggy_hammer",
+				"shillelagh",
+				"boxing_gloves",
+				"meat_cleaver",
+				"hammer",
+				"whiskey",
+				"scalper",
+				"mining_pick",
+				"branding_iron",
+				"bowie",
+				"microphone",
+				"detector",
+				"micstand",
+				"oldbaton",
+				"switchblade",
+				"taser",
+				"slot_lever",
+				"croupier_rake",
+				"hockey",
+				"twins",
+				"cqc",
+				"tiger",
+				"fight",
+				"sandsteel",
+				"great",
+				"beardy",
+				"buck",
+				"morning",
+				"cutters",
+				"boxcutter",
+				"selfie",
+				"gator",
+				"pugio",
+				"iceaxe",
+				"shawn",
+				"stick",
+				"pitchfork",
+				"scoutknife",
+				"nin",
+				"ballistic",
+				"zeus",
+				"wing",
+				"road",
+				"cs",
+				"brick",
+				"ostry",
+				"catch",
+				"oxide",
+				"sword",
+				"agave",
+				"happy",
+				"push",
+				"grip",
+				"sap",
+				"clean",
+				"meter",
+				"aziz",
+				"hauteur",
+				"shock",
+				"fear",
+				"chac",
+				"funder_strike",
+			},
+		},
+		{ -- skip level 1, it's reached too fast
+			upgrades = {},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"b92fs",
+				"pl14",
+				"packrat",
+				"holt",
+				"g26",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m1928",
+				"mac10",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ak74",
+				"new_m4",
+				"g36",
+			},
+		},
+		{ -- lvl 5
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor1",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"frag",
+				"frag_com",
+				"dada_com",
+				"dynamite",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"p90",
+				"cobray",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ksg",
+				"r870",
+				"m590",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"g22c",
+				"p226",
+				"hs2000",
+				"sparrow",
+			},
+		},
+		{ -- lvl 10
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor2",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m16",
+				"akm",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"wpn_prj_four",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"s552",
+				"aug",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_raging_bull",
+				"chinchilla",
+				"model3",
+			},
+		},
+		{ -- lvl 15
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor3",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"vhs",
+				"corgi",
+				"hajk",
+				"ak5",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_mp5",
+				"mp7",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"molotov",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"huntsman",
+				"boot",
+				"b682",
+			},
+		},
+		{ -- lvl 20
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor4",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"judge",
+				"serbu",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"usp",
+				"ppk",
+				"breech",
+				"shrew",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mateba",
+				"korth",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"wpn_prj_hur",
+			},
+		},
+		{ -- lvl 25
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor5",
+				"spas12",
+				"benelli",
+				"ultima",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"scar",
+				"fal",
+				"galil",
+				"g3",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"olympic",
+				"famas",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"l85a2",
+				"asval",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"flint",
+				"tkb",
+			},
+		},
+		{ -- lvl 30
+			name_id = "weapons",
+			upgrades = {
+				"coach",
+				"concussion",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_m14",
+				"shak12",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mp9",
+				"scorpion",
+				"tec9",
+				"fmg9",
+				"sr2",
+				"baka",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m249",
+				"tecci",
+				"mg42",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"lemming",
+				"peacemaker",
+				"rsh12",
+			},
+		},
+		{ -- lvl 35
+			name_id = "weapons",
+			upgrades = {
+				"shepheard",
+				"coal",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ching",
+				"sub2000",
+				"wpn_prj_jav",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"r700",
+				"msr",
+				"winchester1874",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"glock_18c",
+				"beer",
+				"czech",
+				"stech",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"saiga",
+				"aa12",
+				"sko12",
+			},
+		},
+		{ -- lvl 40
+			name_id = "weapons",
+			upgrades = {
+				"gre_m79",
+				"slap",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"par",
+				"hk21",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"sbl",
+				"fir_com",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"colt_1911",
+				"m1911",
+				"type54",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"basset",
+				"striker",
+			},
+		},
+		{ -- lvl 45
+			name_id = "weapons",
+			upgrades = {
+				"china",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"r93",
+				"mosin",
+				"model70",
+				"desertfox",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"jowi",
+				"x_1911",
+				"x_b92fs",
+				"x_g17",
+				"x_usp",
+				"x_packrat",
+				"x_g22c",
+				"x_g18c",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"komodo",
+				"akmsu",
+				"wpn_gre_electric",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"erma",
+				"sterling",
+				"schakal",
+			},
+		},
+		{ -- lvl 50
+			name_id = "weapons",
+			upgrades = {
+				"ms3gl",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"rpk",
+				"hk51b",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m45",
+				"uzi",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"tti",
+				"siltstone",
+				"qbu88",
+				"wa2000",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"legacy",
+				"c96",
+				"maxim9",
+			},
+		},
+		{ -- lvl 55
+			name_id = "weapons",
+			upgrades = {
+				"contraband",
+				"groza",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"deagle",
+				"sticky_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"supernova",
+				"m1897",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"polymer",
+				"vityaz",
+				"pm9",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m37",
+				"rota",
+			},
+		},
+		{ -- lvl 60
+			name_id = "weapons",
+			upgrades = {
+				"m32",
+				"arbiter",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"scout",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"hcar",
+				"poison_gas_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"arblast",
+				"long",
+				"elastic",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"awp",
+			},
+		},
+		{ -- lvl 65
+			name_id = "weapons",
+			upgrades = {
+				"hunter",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_chinchilla",
+				"x_deagle",
+				"x_model3",
+				"poison_gas_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"plainsrider",
+				"ecp",
+				"frankish",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m60",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"flamethrower_mk2",
+			},
+		},
+		{ -- lvl 70
+			name_id = "weapons",
+			upgrades = {
+				"m95",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"system",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"shuno",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_judge",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"hailstorm",
+			},
+		},
+		{ -- lvl 75
+			name_id = "weapons",
+			upgrades = {
+				"kacchainsaw",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ray",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"contender",
+				"victor",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_akmsu",
+				"x_mac10",
+				"x_sr2",
+				"x_olympic",
+				"x_mp5",
+				"x_baka",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"rpg7",
+			},
+		},
+		{ -- lvl 80
+			name_id = "weapons",
+			upgrades = {
+				"m134",
+			},
+		},
+		[100] = {
+			name_id = "weapons",
+			upgrades = {
+				"akm_gold",
+			},
+		},
+	}
 
 	-- Weapons
 	-------------
@@ -105,13 +817,13 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.medic_2x.multipro = "2"
 
 	-- Inspire
-	self.morale_boost_speed_bonus = 1.3
-	self.morale_boost_reload_speed_bonus = 1.3
+	self.morale_boost_speed_bonus = 1.2
+	self.morale_boost_reload_speed_bonus = 1.2
 	self.morale_boost_suppression_resistance = 0.9
 	self.morale_boost_time = 7
 	self.values.cooldown.long_dis_revive[1][2] = 120
 	self.skill_descs.inspire.multibasic = "7m"
-	self.skill_descs.inspire.multibasic2 = "30%"
+	self.skill_descs.inspire.multibasic2 = "20%"
 	self.skill_descs.inspire.multibasic3 = "10%"
 	self.skill_descs.inspire.multibasic4 = "7"
 	self.skill_descs.inspire.multipro = "120"
@@ -469,9 +1181,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.steelsight_accuracy_inc[1] = 0.5
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.6
 	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "50%"
+	self.skill_descs.close_by.multipro = "40%"
 
 	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {
@@ -563,6 +1275,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.values.player.armor_carry_bonus[1] = 0.01
 	self.skill_descs.iron_man.multipro = "2"
 	self.skill_descs.iron_man.multipro2 = "10"
 	self.skill_descs.iron_man.multipro3 = "1%"
@@ -579,10 +1292,15 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.cooldown.health_regen_on_armor_regen = { { 1, 10 } }
-	self.values.player.armor_regen_health_regen = { 0.8 }
+	self.values.player.armor_regen_health_regen = { 1 }
+	self.values.player.armor_regen_plating_bonus = {
+		extra_cooldown = 1,
+		extra_health = 0.1,
+	}
 	self.skill_descs.prison_wife.multibasic = "15%"
-	self.skill_descs.prison_wife.multipro = "8"
-	self.skill_descs.prison_wife.multipro2 = "10"
+	self.skill_descs.prison_wife.multipro = "10"
+	self.skill_descs.prison_wife.multipro2 = "1"
+	self.skill_descs.prison_wife.multipro3 = "20"
 
 	-- Iron Man
 	self.definitions.player_armor_threshold_damage_multiplier = {
@@ -604,12 +1322,41 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.juggernaut.multibasic2 = "25%"
 
 	-- Scavenger
-	self.values.player.pick_up_ammo_multiplier[1] = 1.05
+	self.definitions.player_stamina_regen_on_ammo_pickup = {
+		name_id = "menu_player_stamina_regen_on_ammo_pickup",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "stamina_regen_on_ammo_pickup",
+			category = "player",
+		},
+	}
+	self.values.player.stamina_regen_on_ammo_pickup = { 0.02 }
+	self.definitions.player_armor_pickup_range_bonus = {
+		name_id = "menu_player_armor_pickup_range_bonus",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_pickup_range_bonus",
+			category = "player",
+		},
+	}
+	self.values.player.armor_pickup_range_bonus = { 0.01 }
 	self.values.player.increased_pickup_area[1] = 1.2
-	self.skill_descs.scavenging.multibasic = "5%"
+	self.skill_descs.scavenging.multibasic = "2%"
 	self.skill_descs.scavenging.multipro = "20%"
+	self.skill_descs.scavenging.multipro2 = "1%"
+	self.skill_descs.scavenging.multipro3 = "10"
 
 	-- Fully Loaded
+	self.start_out_ammo_category_blacklist = {
+		"saw",
+		"grenade_launcher",
+		"minigun",
+		"flamethrower",
+		"bow",
+		"crossbow",
+	}
 	self.definitions.player_start_out_ammo_multiplier = {
 		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",
@@ -620,6 +1367,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.start_out_ammo_multiplier = { 1.5 }
+
 	self.skill_descs.ammo_reservoir.multibasic = "50%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
@@ -688,15 +1436,24 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.defense_up.multibasic = "10%"
 	self.skill_descs.defense_up.multipro = "10%"
 
-	-- Hardware Expert
+	-- Hands-On Approach
+	self.definitions.player_hack_interaction_speed_multiplier = {
+		name_id = "menu_player_hack_interaction_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hack_interaction_speed_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
 	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
+	self.skill_descs.sentry_targeting_package.multibasic = "25%"
 	self.skill_descs.sentry_targeting_package.multipro = "50%"
 
-	-- Kickstarter
-	self.drill_time_to_autorepair = 60
-	self.drill_hits_to_restart = 3
-	self.skill_descs.jack_of_all_trades.multibasic = "60"
-	self.skill_descs.jack_of_all_trades.multipro = "3"
+	-- Ghost Wiring
+	self.skill_descs.jack_of_all_trades.multipro = "1"
+	self.skill_descs.jack_of_all_trades.multipro2 = "25"
 
 	-- Portable Saw
 	self.values.saw.lock_damage_multiplier[2] = 1.6
@@ -857,7 +1614,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2.5m"
+	self.skill_descs.fire_trap.multibasic2 = "2m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
 	self.skill_descs.fire_trap.multipro = "30"
 	self.skill_descs.fire_trap.multipro2 = "4"
@@ -967,41 +1724,155 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Ghost --
 
-	-- Inner Pockets
-	self.values.player.melee_concealment_modifier[1] = 1
-	self.values.player.ballistic_vest_concealment[1] = 3
-	self.skill_descs.cleaner.multibasic2 = "1"
-	self.skill_descs.cleaner.multipro2 = "3"
+	-- Cat Burglar
+	self.values.player.less_noise_multiplier = { 0.5 }
+	self.definitions.player_less_noise_multiplier = {
+		name_id = "menu_player_less_noise_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "less_noise_multiplier",
+			category = "player",
+		},
+	}
+	-- unused, but keeping it here in case we want to use it later
+	self.values.player.fall_damage_multiplier_cat = { 0.5 }
+	self.definitions.player_fall_damage_multiplier_cat = {
+		name_id = "menu_player_fall_damage_multiplier_cat",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "fall_damage_multiplier_cat",
+			category = "player",
+		},
+	}
+	self.values.player.fall_damage_noise_multiplier = { 0.5 }
+	self.definitions.player_fall_damage_noise_multiplier = {
+		name_id = "menu_player_fall_damage_noise_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "fall_damage_noise_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.cleaner.multibasic = "50%"
+	self.skill_descs.cleaner.multipro = "50%"
 
-	-- Winstone Wolfe
+	-- Logistician
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5
-	self.skill_descs.second_chances.multibasic = "1"
-	self.skill_descs.second_chances.multibasic2 = "3"
+	self.skill_descs.second_chances.multibasic = "50%"
 	self.skill_descs.second_chances.multipro = "50%"
-	self.skill_descs.second_chances.multipro2 = "50%"
 
-	-- ECM Feedback
-	self.ecm_feedback_retrigger_interval = 120
-	self.skill_descs.ecm_booster.multibasic = "25m"
-	self.skill_descs.ecm_booster.multipro = "2"
-
-	-- Chameleon
-	self.values.player.suspicion_multiplier[1] = 0.65
-	self.skill_descs.jail_workout.multibasic = "35%"
-	self.skill_descs.jail_workout.multipro = "5"
-
-	-- ECM Specialist
-	self.values.ecm_jammer.feedback_duration_boost = {
-		1.5,
+	-- Kleptomaniac
+	self.values.player.extra_mission_pickups_multiplier = { 2 }
+	self.definitions.player_extra_mission_pickups_multiplier = {
+		name_id = "menu_player_extra_mission_pickups_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_mission_pickups_multiplier",
+			category = "player",
+		},
 	}
-	self.values.ecm_jammer.feedback_duration_boost_2 = {
-		1.5,
-	}
-	self.skill_descs.ecm_2x.multipro = "30"
 
 	-- Sixth Sense
-	self.skill_descs.chameleon.multibasic = "10"
-	self.skill_descs.chameleon.multibasic2 = "3"
+	self.values.player.standstill_omniscience = {
+		{
+			outside_of_whisper_mode = false,
+			all_at_once = false,
+			start_t = 3,
+			interval_t = 3,
+			sense_radius = 1000,
+			target_resense_t = 15,
+		},
+		{
+			outside_of_whisper_mode = true,
+			all_at_once = true,
+			start_t = 3,
+			interval_t = 3,
+			sense_radius = 1200,
+			target_resense_t = 0,
+		},
+	}
+	self.definitions.player_standstill_omniscience_2 = {
+		name_id = "menu_player_standstill_omniscience_2",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "standstill_omniscience",
+			category = "player",
+		},
+	}
+	self.skill_descs.jail_workout.multibasic = "10"
+	self.skill_descs.jail_workout.multibasic2 = "3"
+	self.skill_descs.jail_workout.multipro = "12"
+	self.skill_descs.jail_workout.multipro2 = "3"
+
+	-- ECM Blackout
+	self.values.ecm_jammer.quantity[1] = 2
+	self.ecm_jammer_comms_jamming_multiplier = 0.2
+	self.values.ecm_jammer.blocks_snipers = { true }
+	self.definitions.ecm_jammer_blocks_snipers = {
+		name_id = "menu_ecm_jammer_blocks_snipers",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "blocks_snipers",
+			synced = true,
+			category = "ecm_jammer",
+		},
+	}
+	self.values.ecm_jammer.affects_police_comms = { true }
+	self.definitions.ecm_jammer_affects_police_comms = {
+		name_id = "menu_ecm_jammer_affects_police_comms",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "affects_police_comms",
+			synced = true,
+			category = "ecm_jammer",
+		},
+	}
+	self.skill_descs.ecm_2x.multibasic = "4"
+	self.skill_descs.ecm_2x.multipro = "80%"
+
+	-- Background Threat
+	self.values.player.detection_risk_transparency = {
+		{
+			1,
+			2,
+			"below",
+			35,
+			10,
+		},
+	}
+	self.definitions.player_detection_risk_transparency = {
+		name_id = "menu_player_detection_risk_transparency",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "detection_risk_transparency",
+			synced = true,
+			category = "player",
+		},
+	}
+	self.values.player.unaware_of_aggressor_damage_multiplier = { 1.5 }
+	self.definitions.player_unaware_of_aggressor_damage_multiplier = {
+		name_id = "menu_player_unaware_of_aggressor_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "unaware_of_aggressor_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.chameleon.multibasic = "1"
+	self.skill_descs.chameleon.multibasic2 = "2"
+	self.skill_descs.chameleon.multibasic3 = "35"
+	self.skill_descs.chameleon.multibasic4 = "10"
+	self.skill_descs.chameleon.multibasic5 = "5%"
+	self.skill_descs.chameleon.multipro = "50%"
 
 	-- Athlete
 	self.values.player.stamina_regen_timer_multiplier[1] = 0.85
@@ -1451,10 +2322,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Bloodthirst
 	self.values.player.non_special_melee_multiplier[1] = 1.33
 	self.values.player.melee_damage_multiplier[1] = 1.33
-	self.values.player.melee_damage_stacking = { { max_multiplier = 5, melee_multiplier = 0.25 } }
+	self.values.player.melee_damage_stacking = { { max_multiplier = 8, melee_multiplier = 0.25 } }
 	self.skill_descs.bloodthirst.multibasic = "33%"
 	self.skill_descs.bloodthirst.multipro = "25%"
-	self.skill_descs.bloodthirst.multipro2 = "500%"
+	self.skill_descs.bloodthirst.multipro2 = "800%"
 
 	-- Pumping Iron
 	self.values.melee.faster_reswing = { 0.5 }
@@ -1480,7 +2351,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steroids.multibasic = "100%"
 
 	-- Counterstrike
-	self.values.cooldown.melee_dozer_knock = { { 1, 10 } }
+	self.values.cooldown.melee_dozer_knock = { { 1, 30 } }
 	self.definitions.cooldown_melee_dozer_knock = {
 		name_id = "menu_cooldown_melee_dozer_knock",
 		category = "cooldown",
@@ -1490,21 +2361,23 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.skill_descs.drop_soap.multipro = "10"
+	self.skill_descs.drop_soap.multipro = "30"
 
 	-- Zerker
-	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
+	self.values.player.melee_damage_health_ratio_multiplier[1] = 1.5
 	self.skill_descs.wolverine.multibasic = "50%"
 	self.skill_descs.wolverine.multibasic2 = "20%"
 	self.skill_descs.wolverine.multipro = "50%"
-	self.skill_descs.wolverine.multipro2 = "250%"
+	self.skill_descs.wolverine.multipro2 = "150%"
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = { 0.85, 0.65 }
+	self.values.player.healing_reduction = { 0.25, 0 }
 	self.values.player.max_health_reduction = { 0.1 }
 	self.skill_descs.frenzy.multibasic = "10%"
 	self.skill_descs.frenzy.multibasic2 = "15%"
 	self.skill_descs.frenzy.multipro = "35%"
+	self.skill_descs.frenzy.multipro2 = "100%"
 
 	-- Perk Decks
 	-------------
@@ -1600,11 +2473,33 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_regen_timer_multiplier_passive[1] = 0.85
 	self.values.player.passive_armor_movement_penalty_multiplier[1] = 0.8
 	self.values.player.tier_armor_multiplier[3] = 1.15
+	self.values.cooldown.crewmate_damage_reduction = { { 1, 60 } }
+	self.definitions.cooldown_crewmate_damage_reduction = {
+		name_id = "menu_cooldown_crewmate_damage_reduction",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "crewmate_damage_reduction",
+			category = "cooldown",
+		},
+	}
+	self.values.temporary.damage_reduction_from_crewmate = { { 0.8, 10 } }
+	self.definitions.temporary_damage_reduction_from_crewmate = {
+		name_id = "menu_temporary_damage_reduction_from_crewmate",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "damage_reduction_from_crewmate",
+			category = "temporary",
+		},
+	}
 	self.values.temporary.armor_break_invulnerable = { { 2, 60 } }
 	self.specialization_descs[3][1].multiperk = "15%"
 	self.specialization_descs[3][3].multiperk = "20%"
 	self.specialization_descs[3][5].multiperk = "15%"
-	self.specialization_descs[3][7].multiperk = "25%"
+	self.specialization_descs[3][7].multiperk = "20%"
+	self.specialization_descs[3][7].multiperk2 = "10"
+	self.specialization_descs[3][7].multiperk3 = "60"
 	self.specialization_descs[3][9].multiperk = "2"
 	self.specialization_descs[3][9].multiperk2 = "60"
 
@@ -1645,42 +2540,42 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[4][9].multiperk4 = "200%"
 
 	-- Hitman
-	self.definitions.player_chain_headshot_kills = {
-		name_id = "menu_player_chain_headshot_kills",
+	self.definitions.player_chain_hitman_kills = {
+		name_id = "menu_player_chain_hitman_kills",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "chain_headshot_kills",
+			upgrade = "chain_hitman_kills",
 			category = "player",
 		},
 	}
-	self.values.player.chain_headshot_kills = {
+	self.values.player.chain_hitman_kills = {
 		{
-			headshot_kills = 3,
+			kills = 3,
 			max_time = 10,
 		},
 	}
-	self.definitions.temporary_chain_headshot_dodge_1 = {
-		name_id = "menu_player_chain_headshot_dodge",
+	self.definitions.temporary_chain_hitman_dodge_1 = {
+		name_id = "menu_player_chain_hitman_dodge",
 		category = "temporary",
 		upgrade = {
 			value = 1,
-			upgrade = "chain_headshot_dodge",
+			upgrade = "chain_hitman_dodge",
 			category = "temporary",
 		},
 	}
-	self.definitions.temporary_chain_headshot_dodge_2 = {
-		name_id = "menu_player_chain_headshot_dodge",
+	self.definitions.temporary_chain_hitman_dodge_2 = {
+		name_id = "menu_player_chain_hitman_dodge",
 		category = "temporary",
 		upgrade = {
 			value = 2,
-			upgrade = "chain_headshot_dodge",
+			upgrade = "chain_hitman_dodge",
 			category = "temporary",
 		},
 	}
-	self.values.temporary.chain_headshot_dodge = {
-		{ 0.1, 5 },
-		{ 0.2, 5 },
+	self.values.temporary.chain_hitman_dodge = {
+		{ 0.1, 10 },
+		{ 0.2, 10 },
 	}
 	self.definitions.temporary_dodge_outnumbered = {
 		name_id = "menu_player_dodge_outnumbered",
@@ -1706,12 +2601,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[5][1].multiperk = "3"
 	self.specialization_descs[5][1].multiperk2 = "10"
 	self.specialization_descs[5][1].multiperk3 = "10%"
-	self.specialization_descs[5][1].multiperk4 = "5"
+	self.specialization_descs[5][1].multiperk4 = "10"
 	self.specialization_descs[5][3].multiperk = "10%"
 	self.specialization_descs[5][5].multiperk = "3"
 	self.specialization_descs[5][5].multiperk2 = "10"
 	self.specialization_descs[5][5].multiperk3 = "10%"
-	self.specialization_descs[5][5].multiperk4 = "5"
+	self.specialization_descs[5][5].multiperk4 = "10"
 	self.specialization_descs[5][7].multiperk = "20%"
 	self.specialization_descs[5][9].multiperk = "3"
 	self.specialization_descs[5][9].multiperk2 = "10"
@@ -1772,6 +2667,7 @@ function UpgradesTweakData:init(tweak_data)
 			range = 700,
 		},
 	}
+	self.drill_hits_to_restart = 3
 	self.definitions.player_near_teammate_damage_multiplier = {
 		name_id = "menu_player_near_teammate_damage_multiplier",
 		category = "feature",
@@ -1781,6 +2677,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.drill_time_to_autorepair = 60
 	self.drill_electrocution_chance = 0.9
 	self.values.player.electrocuting_drill = { true }
 	self.definitions.player_electrocuting_drill = {
@@ -1805,9 +2702,11 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.specialization_descs[7][1].multiperk = "half"
 	self.specialization_descs[7][3].multiperk = "30%"
+	self.specialization_descs[7][3].multiperk2 = "3"
 	self.specialization_descs[7][5].multiperk = "20%"
 	self.specialization_descs[7][5].multiperk2 = "7m"
 	self.specialization_descs[7][7].multiperk = "90%"
+	self.specialization_descs[7][7].multiperk2 = "60"
 	self.specialization_descs[7][9].multiperk = "full"
 	self.specialization_descs[7][9].multiperk2 = "100%"
 
@@ -1921,8 +2820,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.cooldown.headshot_regen_health_bonus = { { 1, 3 } }
-	self.values.player.headshot_regen_health_bonus = { 5 }
+	self.values.cooldown.headshot_regen_health_bonus = { { 1, 5 } }
+	self.values.player.headshot_regen_health_bonus = { 1 }
 	self.definitions.cooldown_headshot_regen_health_bonus = {
 		name_id = "menu_cooldown_headshot_regen_health_bonus",
 		category = "feature",
@@ -1942,19 +2841,23 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
-	self.damage_to_hot_data.stacking_cooldown = 1
+	self.damage_to_hot_data.add_stack_sources.fire = false
 	self.damage_to_hot_data.add_stack_sources.poison = false
 	self.damage_to_hot_data.add_stack_sources.swat_van = false
 	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
+
+	self.values.player.fall_damage_multiplier = { 0.5 }
+
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
-	self.specialization_descs[11][1].multiperk2 = "1"
+	self.specialization_descs[11][1].multiperk2 = "1.5"
 	self.specialization_descs[11][3].multiperk = "30%"
-	self.specialization_descs[11][5].multiperk = "5"
-	self.specialization_descs[11][5].multiperk2 = "3"
+	self.specialization_descs[11][3].multiperk2 = "50%"
+	self.specialization_descs[11][5].multiperk = "10"
+	self.specialization_descs[11][5].multiperk2 = "5"
 	self.specialization_descs[11][7].multiperk = "30%"
-	self.specialization_descs[11][9].multiperk = "3"
+	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
 	self.specialization_descs[11][9].multiperk3 = "3"
 
@@ -2203,6 +3106,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"
+	self.specialization_descs[19][3].multiperk = "50%"
 
 	-- Tag Team
 	self.values.player.tag_team_base.kill_health_gain = 0.5
@@ -2306,6 +3210,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1
@@ -2314,5 +3219,5 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
-	self.values.saw.enemy_slicer[1] = 2
+	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end

@@ -1,5 +1,11 @@
+-- The Inspire changes that were done here blow the game up
+-- There is no _ext_movement on BaseInteractionExt
+-- Not sure if it's needed here, PlayerStandard:_get_interaction_speed() was changed to do something similar
 function BaseInteractionExt:_get_timer()
 	local modified_timer = self:_get_modified_timer()
+	-- local dt = managers.player:player_timer():delta_time()
+	-- local morale_boost_bonus = self._ext_movement:morale_boost()
+	-- local is_inspired = dt * morale_boost_bonus.move_speed_bonus
 
 	if modified_timer then
 		return modified_timer
@@ -23,6 +29,7 @@ function BaseInteractionExt:_get_timer()
 
 	multiplier = multiplier * managers.player:upgrade_value("player", "total_interaction_timer_multiplier", 1)
 
+	-- return self:_timer_value() * multiplier * is_inspired * managers.player:toolset_value()
 	return self:_timer_value() * multiplier * managers.player:toolset_value()
 end
 
@@ -317,4 +324,16 @@ function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player
 	end
 
 	return can_place
+end
+
+function can_pickup(player, item)
+	return Network:is_server() and item and managers.player:player_unit() == player and managers.player:can_pickup_equipment(item)
+end
+
+function UseInteractionExt:can_select(player)
+	return BaseInteractionExt.can_select(self, player) or can_pickup(player, self._tweak_data.special_equipment_block)
+end
+
+function UseInteractionExt:can_interact(player)
+	return BaseInteractionExt.can_interact(self, player) or can_pickup(player, self._tweak_data.special_equipment_block)
 end

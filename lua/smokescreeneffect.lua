@@ -1,4 +1,4 @@
-function SmokeScreenEffect:init(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit)
+function SmokeScreenEffect:init(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus)
 	self._timer = time
 	self._position = position
 	self._radius = 400

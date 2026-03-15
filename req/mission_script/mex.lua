@@ -7,9 +7,9 @@ local biker_enemy = {
 	["units/payday2/characters/ene_biker_2/ene_biker_2"] = 5,
 	["units/payday2/characters/ene_biker_3/ene_biker_3"] = 5,
 	["units/payday2/characters/ene_biker_4/ene_biker_4"] = 5,
-	["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
 local biker = { enemy = biker_enemy }
 local disabled = {
@@ -25,7 +25,7 @@ local window_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 local bags_required = {
@@ -34,41 +34,10 @@ local bags_required = {
 	},
 }
 return {
-	-- Add pump and tanker reinforce
-	[102160] = {
-		reinforce = { -- pump 1
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(2750, -9850, -3200),
-			},
-		},
-	},
-	[102163] = {
-		reinforce = { -- pump 2
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(3725, -12725, -3200),
-			},
-		},
-	},
-	[102616] = {
-		reinforce = { -- tanker 1
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(2425, -7375, -3100),
-			},
-		},
-	},
-	[102618] = {
-		reinforce = { -- tanker 2
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(1325, -12700, -3200),
-			},
+	[100020] = {
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- disable selected spawngroup based on which tunnel has been chossen

@@ -102,10 +102,10 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	end
 
 	-- Hitman headshot killchain
-	if self:has_category_upgrade("player", "chain_headshot_kills") then
-		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	if self:has_category_upgrade("player", "chain_hitman_kills") then
+		self:register_message(Message.OnEnemyKilled, "chain_hitman_kills", callback(self, self, "_on_enter_chain_hitman_kills_event"))
 	else
-		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+		self:unregister_message(Message.OnEnemyKilled, "chain_hitman_kills")
 	end
 
 	-- Second Wind ACED
@@ -496,23 +496,20 @@ PlayerAction.JohnWickKillChain = {
 		local co = coroutine.running()
 		local time = Application:time()
 		local kills = 1
-		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_hitman_dodge")
 		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
-		local function on_lethal_headshot(attack_data)
-			local attacker_unit = attack_data.attacker_unit
-			local variant = attack_data.variant
-
-			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+		local function on_killshot(weapon_unit, variant)
+			if variant == "bullet" then
 				kills = kills + 1
 
 				if kills == target_kills then
 					if has_chain_dodge then
-						player_manager:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+						player_manager:activate_temporary_upgrade("temporary", "chain_hitman_dodge")
 					end
 
 					if cheat_death_upgrade_value ~= 0 then
-						player_manager:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+						player_manager:add_to_property("chain_hitman_cheat_death", cheat_death_upgrade_value)
 					end
 
 					time = target_time
@@ -520,7 +517,7 @@ PlayerAction.JohnWickKillChain = {
 			end
 		end
 
-		player_manager:register_message(Message.OnLethalHeadShot, co, on_lethal_headshot)
+		player_manager:register_message(Message.OnEnemyKilled, co, on_killshot)
 
 		while time < target_time do
 			time = Application:time()
@@ -528,19 +525,15 @@ PlayerAction.JohnWickKillChain = {
 			coroutine.yield(co)
 		end
 
-		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
-
-function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
-	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
-
-	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
-		local data = self:upgrade_value("player", "chain_headshot_kills", 0)
+function PlayerManager:_on_enter_chain_hitman_kills_event(weapon_unit, variant)
+	if variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+		local data = self:upgrade_value("player", "chain_hitman_kills", 0)
 
 		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.headshot_kills, Application:time() + data.max_time)
+			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.kills, Application:time() + data.max_time)
 		end
 	end
 end
@@ -673,7 +666,7 @@ function PlayerManager:skill_dodge_chance(...)
 		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
 	end
 
-	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_hitman_dodge", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
@@ -704,7 +697,7 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 	local time = tweak_data.projectiles.smoke_screen_grenade.duration
 	self._smoke_screen_effects = self._smoke_screen_effects or {}
 
-	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit))
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus))
 
 	if alive(self._smoke_grenade) and Network:is_server() then
 		self._smoke_grenade:set_slot(0)
@@ -764,6 +757,11 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	if self:has_category_upgrade("player", "hostage_damage_reduction_addend") then
 		multiplier = multiplier * (1 - self:get_hostage_bonus_addend("damage_reduction"))
 		--Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
+	end
+
+	-- armorer iron curtain crewmate  reduction
+	if self:has_activate_temporary_upgrade("temporary", "damage_reduction_from_crewmate") then
+		multiplier = multiplier * self:temporary_upgrade_value("temporary", "damage_reduction_from_crewmate", 1)
 	end
 
 	return multiplier
@@ -1068,7 +1066,7 @@ function PlayerManager:peer_dropped_out(peer)
 
 				local dir = Vector3(0, 0, 0)
 
-				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, peer)
+				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, Vector3(0, 0, 0), peer)
 			end
 		end
 
@@ -1142,7 +1140,8 @@ function PlayerManager:force_drop_carry()
 			camera_ext:rotation(),
 			Vector3(0, 0, 0),
 			0,
-			nil
+			nil,
+			Vector3(0, 0, 0)
 		)
 	else
 		self:server_drop_carry(
@@ -1156,6 +1155,7 @@ function PlayerManager:force_drop_carry()
 			Vector3(0, 0, 0),
 			0,
 			nil,
+			Vector3(0, 0, 0),
 			managers.network:session():local_peer()
 		)
 	end
@@ -1991,3 +1991,92 @@ Hooks:PostHook(PlayerManager, "sync_tag_team", "sync_tag_team_sound_effect", fun
 		self:local_player():sound():play(tweak_data.blackmarket.projectiles.tag_team.sounds.activate)
 	end
 end)
+
+function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
+	local allowed_equipment = {
+		"bank_manager_key",
+		"acid",
+		"caustic_soda",
+		"hydrogen_chloride",
+		"thermite_paste",
+		"gas",
+		"harddrive",
+		"c4",
+		"printer_ink",
+		"paper_roll",
+		"liquid_nitrogen",
+		"thermite",
+		"blood_sample",
+		"blood_sample_verified",
+		"mayan_gold_bar",
+		"lance_part",
+		"stock",
+		"barrel",
+		"receiver",
+		"ranc_acid",
+	}
+
+	if special_equipment.amount then
+		local equipment = tweak_data.equipments.specials[name]
+		local extra = self:_equipped_upgrade_value(equipment)
+		local multiplier = table.contains(allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		local max_quantity = (equipment.max_quantity or equipment.quantity or 1) * multiplier
+
+		return Application:digest_value(special_equipment.amount, false) < max_quantity + extra, not not equipment.max_quantity
+	end
+
+	return false
+end
+
+-- Detection risk transparency upgrade
+function PlayerManager:transparency_value(detection_risk)
+	local value = 0
+
+	local detection_risk_transparency = managers.player:upgrade_value("player", "detection_risk_transparency")
+	value = value + self:get_value_from_risk_upgrade(detection_risk_transparency, detection_risk)
+
+	return value
+end
+
+-- Extra cooldown argument for the cooldown upgrades, used for regen plating aced dynamic cooldown
+function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldown_time)
+	local upgrade_value = self:upgrade_value(category, upgrade)
+
+	if upgrade_value == 0 then
+		return
+	end
+
+	local time = upgrade_value[2]
+	self._global.cooldown_upgrades[category] = self._global.cooldown_upgrades[category] or {}
+	self._global.cooldown_upgrades[category][upgrade] = {
+		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
+	}
+end
+
+function PlayerManager:_update_damage_dealt(t, dt)
+	local local_peer_id = managers.network:session() and managers.network:session():local_peer():id()
+	if not local_peer_id or not self:has_category_upgrade("player", "cocaine_stacking") then
+		return
+	end
+	self._damage_dealt_to_cops_t = self._damage_dealt_to_cops_t or t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+	self._damage_dealt_to_cops_decay_t = self._damage_dealt_to_cops_decay_t or t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+	local cocaine_stack = self:get_synced_cocaine_stacks(local_peer_id)
+	local amount = cocaine_stack and cocaine_stack.amount or 0
+	local new_amount = amount
+	if self._damage_dealt_to_cops_t <= t then
+		self._damage_dealt_to_cops_t = t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+		local new_stacks = (self._damage_dealt_to_cops or 0) * (tweak_data.gui.stats_present_multiplier or 10) * self:upgrade_value("player", "cocaine_stacking", 0)
+		self._damage_dealt_to_cops = 0
+		new_amount = new_amount + math.min(new_stacks, tweak_data.upgrades.max_cocaine_stacks_per_tick or 20)
+	end
+	if self._damage_dealt_to_cops_decay_t <= t then
+		self._damage_dealt_to_cops_decay_t = t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+		local decay = amount * (tweak_data.upgrades.cocaine_stacks_decay_percentage_per_tick or 0)
+		decay = decay + (tweak_data.upgrades.cocaine_stacks_decay_amount_per_tick or 20) * self:upgrade_value("player", "cocaine_stacks_decay_multiplier", 1)
+		new_amount = new_amount - decay
+	end
+	new_amount = math.clamp(math.floor(new_amount), 0, tweak_data.upgrades.max_total_cocaine_stacks or 2047)
+	if new_amount ~= amount then
+		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
+	end
+end

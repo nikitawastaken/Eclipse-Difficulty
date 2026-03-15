@@ -8,12 +8,16 @@ local M = {
 	glace = true,
 	hox_2 = true,
 	firestarter_2 = true,
+	firestarter_3 = true,
 	framing_frame_2 = true,
 	roberts = true,
 	jolly = true,
 	dah = true,
 	rvd2 = true,
 	man = true,
+	help = true,
+	hvh = true,
+	nmh = true,
 }
 
 return M

@@ -19,7 +19,7 @@ local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -27,11 +27,6 @@ local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1
 local us_soldier = {
 	enemy = us_soldiers,
 }
---[[
-local army_dozer = {
-	enemy = overkill_and_above and us_soldier_tank,
-}
-]]
 local taser_spawn = {
 	enemy = taser,
 }
@@ -47,20 +42,12 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
-local plank_amount = {
-	values = {
-		amount = 4,
-		amount_random = 6 - (is_pro_job and 4 or 0),
-	},
+local swat_van_chance = {
+	chance = 60,
 }
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
-	},
-}
-local rear_spawn = {
-	values = {
-		interval = 25,
 	},
 }
 local sewer_spawn = {
@@ -71,17 +58,14 @@ local sewer_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 
 return {
-	[101949] = {
-		ponr = {
-			length = 60,
-			player_mul = { 2, 1.5, 1, 1 },
-		},
-		on_executed = {
-			{ id = 101952, remove = true },
-			{ id = 101955, remove = true },
-		},
+	-- Instantly enter full force onslaught upon plane securing the bags or crashing down
+	[101971] = {
+		set_ponr_state = true,
 	},
 	[101938] = { -- Bag in cage
 		values = {
@@ -112,13 +96,18 @@ return {
 			{
 				name = "bank_front",
 				force = 2,
-				position = Vector3(2925, -650, -75),
+				position = Vector3(2925, -650, -70),
 			},
 			{
 				name = "bank_back",
-				force = 2,
+				force = 3,
 				position = Vector3(-3250, -1375, -60),
 			},
+		},
+		-- add gensec response on loud
+		on_executed = {
+			{ id = 103028, delay = 10, delay_rand = 5 },
+			{ id = 105567, delay = 10, delay_rand = 5 },
 		},
 	},
 	-- Add manhole reinforce
@@ -159,13 +148,13 @@ return {
 		},
 	},
 	-- tweak the ambush near the end
-	-- both soldiers and dozer ambush on eclipse pro
+	-- both soldiers and dozer ambush on Death Wish pro
 	[106416] = {
 		values = {
 			amount = is_eclipse_pro and 2 or 1,
 		},
 	},
-	-- all 8 ambush units on eclipse pro
+	-- all 8 ambush units on Death Wish pro
 	[104534] = {
 		values = {
 			amount = is_eclipse_pro and 8 or 6,
@@ -178,10 +167,50 @@ return {
 			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- adjust plank amount
-	[101803] = plank_amount,
-	[101804] = plank_amount,
-	[101805] = plank_amount,
+	-- Increase plank amounts
+	[101803] = {
+		values = {
+			amount = 12,
+		},
+	},
+	[101804] = {
+		values = {
+			amount = 16,
+		},
+	},
+	[101805] = {
+		values = {
+			amount = 8,
+		},
+	},
+	-- tweak the amount of harassers during assaults
+	[101788] = {
+		values = {
+			amount = 2,
+			amount_random = overkill_and_above and 3 or 2,
+		},
+	},
+	-- Harassers spawn now spawn on 1st assault on Overkill and above
+	[106547] = {
+		values = {
+			trigger_times = 0, -- this here is just for the swat van
+		},
+		on_executed = {
+			{ id = 100880, remove = not overkill_and_above and true or nil, delay = 0 },
+		},
+	},
+	-- tweak swat van arrival
+	-- allow it on all difficulties
+	[106566] = filter_easy_above,
+	-- increase the chance to 60% (from 30%)
+	[106344] = swat_van_chance,
+	-- remove some additional bs chance and trigger the swat van arrival already
+	[106568] = {
+		on_executed = {
+			{ id = 106542, remove = true },
+			{ id = 104134, delay = 0 },
+		},
+	},
 	-- GenSec Operators near the GenSec truck on overkill and above
 	[105748] = gensec_truck,
 	[105749] = gensec_truck,
@@ -202,12 +231,12 @@ return {
 	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
 	[400007] = scripted_swat_van_spawn,
-	[100128] = street_spawn,
-	[100131] = street_spawn,
-	[100132] = street_spawn,
-	[100133] = street_spawn,
-	[100130] = rear_spawn,
-	[100694] = rear_spawn,
+	[100128] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[100130] = standard_spawn,
+	[100694] = standard_spawn,
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,
 	[103296] = sewer_spawn,

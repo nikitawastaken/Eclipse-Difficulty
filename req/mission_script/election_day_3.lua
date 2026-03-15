@@ -37,7 +37,7 @@ local low_harasser_enemy = {
 local low_harasser = { enemy = low_harasser_enemy }
 local med_harasser_enemy = swat_1
 local med_harasser = { enemy = med_harasser_enemy }
-local high_harasser_enemy = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local high_harasser_enemy = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local high_harasser = { enemy = high_harasser_enemy }
 local low_escape_enemy = {
 	[swat_1] = 3,
@@ -54,49 +54,56 @@ local high_escape_enemy = {
 	[heavy_2] = 2,
 }
 local high_escape = { enemy = high_escape_enemy }
-local mall_spawn = {
+local atrium_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local atrium_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 return {
 	[104782] = {
 		ponr = {
 			length = 420,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	-- Combine some navigation areas
+	[100063] = {
+		ai_area = {
+			{ 52, 54, 55, 56, 57, 58, 59, 69 },
+			{ 35, 36 },
+			{ 33, 34 },
+			{ 11, 26 },
+			{ 132, 133 },
+			{ 42, 124, 125, 126 },
+			{ 32, 120 },
 		},
 	},
 	-- New reinforce
 	[104306] = {
 		reinforce = {
 			{
-				name = "atrium_left",
+				name = "atrium01",
 				force = 2,
 				position = Vector3(-450, 150, 0),
 			},
 			{
-				name = "atrium_middle",
+				name = "atrium02",
 				force = 2,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
-				name = "atrium_right",
+				name = "atrium03",
 				force = 2,
 				position = Vector3(-450, -3350, 0),
 			},
@@ -113,16 +120,12 @@ return {
 			{ id = 100321, delay = 0 },
 		},
 	},
-	-- elevator Dozer
+	-- Elevator Dozer
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
 	-- Spawn group intervals
 	-- More or less a port of the original intervals with some twists as per usual.
-	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
-	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
-	[100424] = mall_spawn,
-	[100435] = mall_spawn,
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
 	[104838] = atrium_spawn,

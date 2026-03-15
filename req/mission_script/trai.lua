@@ -16,31 +16,37 @@ local sniper_trigger_times = {
 }
 local warehouse_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[103501] = disabled,
-	[103051] = disabled,
 	-- Reinforce spots on traincars, it just works.
 	[102477] = {
 		reinforce = {
 			{
-				name = "traincar1",
+				name = "traincar01",
 				force = 3,
 				position = Vector3(-6220, 5800, 450),
 			},
 			{
-				name = "traincar2",
+				name = "traincar02",
 				force = 3,
 				position = Vector3(-3220, 4790, 450),
 			},
 			{
-				name = "traincar3",
+				name = "traincar03",
 				force = 3,
 				position = Vector3(2090, 5770, 450),
 			},
+		},
+	},
+	-- Disable traincar reinforce when hooking up the locomotive
+	[101049] = {
+		reinforce = {
+			{ name = "traincar1" },
+			{ name = "traincar2" },
+			{ name = "traincar3" },
 		},
 	},
 	-- Fix snipers being able to spawn only once

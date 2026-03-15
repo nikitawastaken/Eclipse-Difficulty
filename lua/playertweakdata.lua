@@ -85,7 +85,7 @@ function PlayerTweakData:_set_presets()
 			10,
 			10,
 			10,
-			10,
+			15,
 			15,
 		})
 		self.damage.DOWNED_TIME_MIN = get_difficulty_specific_value({
@@ -142,14 +142,15 @@ PlayerTweakData._set_sm_wish = PlayerTweakData._set_presets
 Hooks:OverrideFunction(PlayerTweakData, "_set_singleplayer", function(...) end)
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
-	self.gravity = -982
+	self.put_on_mask_time = self.put_on_mask_time / 2
 
-	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
+	self.gravity = -(982 * 1.5)
 
 	self.damage.respawn_time_penalty = 10
-	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
-	self.damage.custody_ammo_confiscated = 0.4
-	self.damage.custody_health_drained = 0.4
+
+	self.movement_state.standard.movement.jump_velocity.z = self.movement_state.standard.movement.jump_velocity.z * 1.25
+	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
+	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 
 	self.fall_health_damage = 0.6
 
@@ -160,4 +161,24 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
+end)
+
+Hooks:PostHook(PlayerTweakData, "_init_new_stances", "eclipse_init_new_stances", function(self)
+	self.stances.hk21.steelsight.shoulders.translation = Vector3(-8.6, 6, 3.3)
+	self.stances.hk21.steelsight.shoulders.rotation = Rotation(-0.108, 0.0860001, -0.628)
+
+	self.stances.m249.steelsight.shoulders.translation = Vector3(-10.75, 6.6, 0.42)
+	self.stances.m249.steelsight.shoulders.rotation = Rotation(-0.108, 0.086001, -0.628)
+
+	self.stances.rpk.steelsight.shoulders.translation = Vector3(-10.745, -10.371, 4.81)
+	self.stances.rpk.steelsight.shoulders.rotation = Rotation(-0.107988, 0.087, -0.628)
+
+	self.stances.mg42.steelsight.shoulders.translation = Vector3(-10.78, -2.15, -0.9)
+	self.stances.mg42.steelsight.shoulders.rotation = Rotation(-0.108, 0.286, 1.32881e-009)
+
+	self.stances.par.steelsight.shoulders.translation = Vector3(-10.05, 9.631, 3.85)
+	self.stances.par.steelsight.shoulders.rotation = Rotation(-0.108, 0.0860001, -0.628)
+
+	self.stances.m60.steelsight.shoulders.translation = Vector3(-10.75, -6.369, -0.1)
+	self.stances.m60.steelsight.shoulders.rotation = Rotation(-0.208001, 0.286, 5.21102e-011)
 end)

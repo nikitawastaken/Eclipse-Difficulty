@@ -3,7 +3,7 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
 local elite_sniper = scripted_enemy.elite_sniper
-local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }
@@ -14,19 +14,22 @@ local enabled = {
 }
 local window_far_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local skylight_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local window_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -34,6 +37,32 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Combine some navigation areas
+	[101157] = {
+		ai_area = {
+			{ 1, 2 },
+			{ 18, 116 },
+			{ 17, 25 },
+			{ 19, 52 },
+			{ 92, 97 },
+			{ 9, 90 },
+			{ 24, 91, 109 },
+			{ 23, 27, 108 },
+			{ 93, 106 },
+			{ 21, 26, 75 },
+			{ 56, 115 },
+			{ 59, 107 },
+			{ 83, 114 },
+			{ 70, 71 },
+			{ 81, 88 },
+			{ 47, 50 },
+			{ 48, 49, 68 },
+			{ 36, 104 },
+			{ 35, 103 },
+			{ 34, 102 },
+			{ 33, 101 },
+		},
+	},
 	-- Fix harasser respawn delay
 	[102807] = {
 		on_executed = {

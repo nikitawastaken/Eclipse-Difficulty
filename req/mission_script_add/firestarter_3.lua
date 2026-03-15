@@ -50,6 +50,7 @@ local optsDefend_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -163,10 +164,42 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local chopper_amount = {
-	amount = is_eclipse and 2 or 1,
+local optsChopper_trigger_overkill_below = {
+	on_executed = {
+		{ id = 400078, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsChopper_trigger_death_wish = {
+	on_executed = {
+		{ id = 400079, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local chopper_amount_dw = {
+	amount = 2,
 	on_executed = {
 		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400031, delay = 0, delay_rand = 10 },
+		{ id = 400037, delay = 0, delay_rand = 10 },
+	},
+}
+local chopper_amount_ovk_below = {
+	amount = is_pro_job and 2 or 1,
+	on_executed = {
 		{ id = 400031, delay = 0, delay_rand = 10 },
 		{ id = 400037, delay = 0, delay_rand = 10 },
 	},
@@ -209,10 +242,6 @@ local optsspawnswatchopper_1 = {
 		{ id = 400027, delay = 26 },
 		{ id = 400028, delay = 26 },
 		{ id = 400029, delay = 26 },
-		{ id = 400026, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400027, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400028, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400029, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400030, delay = 0 },
 	},
 	enabled = true,
@@ -223,10 +252,6 @@ local optsspawnswatchopper_2 = {
 		{ id = 400033, delay = 26 },
 		{ id = 400034, delay = 26 },
 		{ id = 400035, delay = 26 },
-		{ id = 400032, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400033, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400034, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400035, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400036, delay = 0 },
 	},
 	enabled = true,
@@ -235,6 +260,7 @@ local optsHuntSO = {
 	SO_access = tostring(128 + 1024 + 2048 + 4096 + 8192),
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -363,10 +389,10 @@ local optsSWATChopper_1 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
@@ -377,15 +403,15 @@ local optsSWATChopper_2 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "redi_flyin_left", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
 M.elements = {
-	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
+	-- skulldozer nearby the van on Death Wish (based on DW Trailer)
 	Eclipse.mission_elements.gen_dummy(400001, "van_dozer", Vector3(-8305, -3511, 0), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400002, "dozer_defend_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsDefend_SO),
 	Eclipse.mission_elements.gen_toggleelement(400003, "enable_dozervan", optsEnable_DWDozer),
@@ -479,7 +505,10 @@ M.elements = {
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400075, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400078, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
+	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner_dw", chopper_amount_dw),
+	Eclipse.mission_elements.gen_element_filter(400080, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
+	Eclipse.mission_elements.gen_element_filter(400081, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
 }
 
 return M

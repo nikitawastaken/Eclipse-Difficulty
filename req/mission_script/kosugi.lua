@@ -1,13 +1,20 @@
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local scripted_enemy = Eclipse.scripted_enemy
+local jerome_camera_man = scripted_enemy.security_3
 local bags_required = {
 	values = {
 		amount = (normal and 4 or hard and 8 or 12) + (is_pro_job and 4 or 0),
 	},
 }
+local surv_man = {
+	enemy = jerome_camera_man,
+}
 
 return {
-	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on eclipse)
+	-- replace regular murkywater with shotgun guard in the surv room
+	[100711] = surv_man,
+	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on Death Wish)
 	-- 4 more bags to secure on pro jobs
 	[101156] = bags_required,
 	[103407] = bags_required,

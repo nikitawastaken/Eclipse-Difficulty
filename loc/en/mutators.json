@@ -1,0 +1,30 @@
+{
+	"mutator_gracetroll": "Grace Troll",
+	"mutator_gracetroll_desc": "Customize the Grace Period behavior.",
+	"mutator_gracetroll_longdesc": "Damage grace on players and AI crewmembers is changed to a specific value. Damage grace affects how often instances of damage are calculated, lower values will cause you to take more damage in a shorter amount of time.\n\nNOTE: Custom Damage Grace value will be applied only if it is lower than difficulty based grace period.",
+	"menu_mutator_gracetroll_slider": "Grace Period (in s)",
+	"menu_mutator_grace_troll_disable_armor_grace_toggle": "Disable Armor Break Grace Period",
+	"menu_mutator_grace_troll_reduced_iframe_damage_toggle": "Vanilla Grace Piercing",
+
+	"mutator_medicdozers": "Medic Dozers",
+	"mutator_medicdozers_desc": "Medic Dozers can now spawn.",
+	"mutator_medicdozers_longdesc": "Whenever a Bulldozer of any variety spawns, there is a chance that it will be replaced by a Medic Bulldozer.",
+	"menu_mutator_medic_dozer_replace_elites_toggle": "Medic Dozer can replace Elite Dozer spawn",
+
+	"mutator_maxdiff": "Difficulty Tweak",
+	"mutator_maxdiff_desc": "All police assaults now start at maximum intensity.",
+	"mutator_maxdiff_longdesc": "All police assaults now start at maximum intensity.",
+
+	"mutator_nooutlines": "Expert Realism",
+	"mutator_nooutlines_desc": "Outlines, name labels and majority of waypoints are disabled.",
+	"mutator_nooutlines_longdesc": "Outlines, name labels and majority of waypoints are disabled.",
+
+	"mutator_onedown": "One Down",
+	"mutator_onedown_desc": "Base amount of downs set to 1.",
+	"mutator_onedown_longdesc": "Base amount of downs set to 1.",
+
+	"mutator_bo_flashbang": "Your Opinion - My Choice",
+	"mutator_bo_flashbang_desc": "Flashbangs now detonate instantly.",
+	"mutator_bo_flashbang_longdesc": "Flashbangs now detonate instantly."
+
+}

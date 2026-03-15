@@ -8,6 +8,9 @@ local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
 local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
+local cloaker = scripted_enemy.cloaker
+
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
 
 local random_dozers = {
 	green_bulldozer,
@@ -217,6 +220,61 @@ local spawn_dozers = {
 	on_executed = { { id = 400041, delay = 0 }, { id = 400042, delay = 0 }, { id = 400043, delay = 0 }, { id = 400044, delay = 0 }, { id = 400033, delay = 0 } },
 }
 
+local optsBesiegeDummyCloaker_1 = {
+	trigger_times = 0,
+	enemy = cloaker,
+	participate_to_group_ai = true,
+	spawn_action = "e_sp_clk_up_water",
+	enabled = true,
+}
+local optsBesiegeDummyCloaker_2 = {
+	trigger_times = 0,
+	enemy = cloaker,
+	participate_to_group_ai = true,
+	enabled = true,
+}
+
+local optsPreferedCloakerAdd1 = {
+	spawn_groups = { 400074, 400075, 400076, 400077, 400078, 400079, 400080, 400081 },
+	on_executed = {
+		{ id = 400083, delay = 0 },
+	},
+	enabled = true,
+}
+local optsAddCloakerHideGroup = {
+	enabled = true,
+	on_executed = {
+		{ id = 400082, delay = 0 },
+	},
+}
+local optsCloakerHideGroup = {
+	followup_elements = {
+		400050,
+		400051,
+		400052,
+		400053,
+		400054,
+		400055,
+		400056,
+		400057,
+		400058,
+		400059,
+		400060,
+		400061,
+		400062,
+		400063,
+		400064,
+		400065,
+	},
+}
+
+-- Hiding Cloaker SOs are funny
+local hide_so_search_pos = Vector3(200, 3, 50.043)
+local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sit_student_var5", hide_so_search_pos) -- funny spot
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_stand", hide_so_search_pos)
+
 M.elements = {
 	-- swat van 1
 	Eclipse.mission_elements.gen_dummy(400001, "swat_van_spawn_1", Vector3(4063, -1547, 44.504), Rotation(-121, 0, 0), optsBesiegeDummy),
@@ -280,6 +338,47 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400049, "wife_is_dead", Vector3(0, 0, 0), Rotation(0, 0, 0), optswife_dead),
 
 	Eclipse.mission_elements.gen_missionscript(400047, "dozer_response", spawn_dozers),
+
+	-- New Cloakers and their hiding spots
+	-- hiding spots
+	Eclipse.mission_elements.gen_so(400050, "cloaker_hide_so_1", Vector3(435, 1419, -146.720), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_2),
+	Eclipse.mission_elements.gen_so(400051, "cloaker_hide_so_2", Vector3(532, 550, 50.522), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400052, "cloaker_hide_so_3", Vector3(602.549, -379.053, 51.183), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400053, "cloaker_hide_so_4", Vector3(-396, 282, -350), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400054, "cloaker_hide_so_5", Vector3(-188, 1050, 250), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400055, "cloaker_hide_so_6", Vector3(605, 1532, -150), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400056, "cloaker_hide_so_7", Vector3(1270, -108, 54.713), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400057, "cloaker_hide_so_8", Vector3(-2047, -918, 26.039), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400058, "cloaker_hide_so_9", Vector3(-79, 250, 50), Rotation(180, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400059, "cloaker_hide_so_10", Vector3(874, -790, -1.461), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400060, "cloaker_hide_so_11", Vector3(987, 440, 50), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400061, "cloaker_hide_so_12", Vector3(-1129, -1144, -0.539), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400062, "cloaker_hide_so_13", Vector3(-490, -230, -350), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400063, "cloaker_hide_so_14", Vector3(-879, 1850, -191.249), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400064, "cloaker_hide_so_15", Vector3(853, 1844, -179.165), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400065, "cloaker_hide_so_16", Vector3(605, -451.017, 450), Rotation(-179, 0, 0), optsCloaker_Hide_SpotSO_4),
+	-- cloakers
+	Eclipse.mission_elements.gen_dummy(400066, "cloaker_spawn_1", Vector3(-440, 2937, -491.086), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400067, "cloaker_spawn_2", Vector3(3628.736, 1993.053, 16.009), Rotation(124, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400068, "cloaker_spawn_3", Vector3(-1971, 2257, -487.082), Rotation(-130, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400069, "cloaker_spawn_4", Vector3(-358, -4520, 789.901), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400070, "cloaker_spawn_5", Vector3(721, -4496, 789.901), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400071, "cloaker_spawn_6", Vector3(4752, -784, 44.551), Rotation(145, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400072, "cloaker_spawn_7", Vector3(-3906.631, -2312.099, 15.551), Rotation(-33, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400073, "cloaker_spawn_8", Vector3(-5620, 2832, -52.617), Rotation(-121, 0, 0), optsBesiegeDummyCloaker_2),
+	-- spawngroups
+	Eclipse.mission_elements.gen_spawngroup(400074, "revenge_cloaker_spawngroup_01", { 400066 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400075, "revenge_cloaker_spawngroup_02", { 400067 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400076, "revenge_cloaker_spawngroup_03", { 400068 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400077, "revenge_cloaker_spawngroup_04", { 400069 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400078, "revenge_cloaker_spawngroup_05", { 400070 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400079, "revenge_cloaker_spawngroup_06", { 400071 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400080, "revenge_cloaker_spawngroup_07", { 400072 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400081, "revenge_cloaker_spawngroup_08", { 400073 }, 0),
+	-- the whole system that does the thing
+	Eclipse.mission_elements.gen_preferedadd(400082, "revenge_cloaker_spawns", optsPreferedCloakerAdd1),
+	Eclipse.mission_elements.gen_sogroup(400083, "revenge_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
+	Eclipse.mission_elements.gen_missionscript(400084, "revenge_cloaker_spawn_global", optsAddCloakerHideGroup),
 }
 
 return M

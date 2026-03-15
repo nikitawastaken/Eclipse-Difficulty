@@ -30,30 +30,58 @@ local enabled = {
 		enabled = true,
 	},
 }
-local side_spawn = {
+local close_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local bags_required = {
 	values = {
-		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		counter_target = 4 + (is_pro_job and 2 or 0),
 	},
 }
 local bags_required_objective = {
 	values = {
-		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		amount = 4 + (is_pro_job and 2 or 0),
 	},
 }
+local reenforce_office_1 = {
+	name = "office1",
+	force = 2,
+	position = Vector3(700, -6000, 0),
+}
+local reenforce_office_2 = {
+	name = "office2",
+	force = 2,
+	position = Vector3(-700, -6000, 0),
+}
+local reenforce_office_3 = {
+	name = "office3",
+	force = 2,
+	position = Vector3(1150, -4400, 0),
+}
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 57, 59 },
+			{ 68, 77 },
+		},
+	},
 	[101829] = {
 		ponr = {
-			length = 240,
-			player_mul = { 2, 1.5, 1.25, 1 },
+			length = 300,
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
 		},
 		-- add dozers chance based event to the vault
 		on_executed = {
@@ -65,75 +93,81 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 57, 59 },
-			{ 68, 77 },
-		},
-	},
-	[100109] = { -- Police
-		on_executed = { -- delay preferreds
-			{ id = 100129, delay = 45 }, -- preferred
-		},
-	},
-	[100810] = { -- start police car drive-in
-		reinforce = {
-			{
-				name = "police_car1",
-				force = 3,
-				position = Vector3(2140, 475, 0),
-			},
-			{
-				name = "police_car2",
-				force = 3,
-				position = Vector3(-100, 400, 0),
-			},
-			{
-				name = "police_car3",
-				force = 3,
-				position = Vector3(-1900, -150, 0),
-			},
-			{
-				name = "police_car3",
-				force = 3,
-				position = Vector3(-2200, -2600, 0),
-			},
-		},
-	},
-	[102311] = { -- func sequence trigger 003
-		reinforce = {
-			{
-				name = "backdoor",
-				force = 2,
-				position = Vector3(1800, -2200, 0),
-			},
-		},
-	},
-	[102541] = { -- link activate navlinks roof
+	-- Delay initial preferreds
+	[103009] = { -- start police car drive in
 		on_executed = {
-			{ id = 101618, remove = true }, -- why does this spawn a guard ?
+			{ id = 100129, delay = 15 }, -- preferred
 		},
 	},
-	[103692] = { -- break wall
+	-- Add new reinforce
+	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "breach",
-				force = 2,
-				position = Vector3(-1700, -5100, 0),
+				name = "edge",
+				force = 3,
+				position = Vector3(0, -600, 0),
 			},
+			{
+				name = "grit",
+				force = 3,
+				position = Vector3(1600, 400, 0),
+			},
+			{
+				name = "rush",
+				force = 3,
+				position = Vector3(-1600, 400, 0),
+			},
+			{
+				name = "mioyes",
+				force = 3,
+				position = Vector3(-2200, -2500, 0),
+			},
+		},
+		on_executed = {
+			{ id = 100129, remove = true }, -- preferred
+		},
+	},
+	[101758] = { -- add reenforce to office rooms at start, server room point 1
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_2,
+		},
+	},
+	[101013] = { -- server room point 2
+		reinforce = {
+			reenforce_office_2,
+			reenforce_office_3,
+		},
+	},
+	[101886] = { -- server room point 3 (same room as 1)
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_2,
+		},
+	},
+	[101022] = { -- server room point 4
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_3,
+		},
+	},
+	[101801] = { -- hacking completed - server room is fair game for reenforce
+		reinforce = {
+			reenforce_office_1,
+			reenforce_office_2,
+			reenforce_office_3,
 		},
 	},
 	-- Reinforce second floor above tellers
-	[100123] = { -- Assault done
+	[100027] = {
 		reinforce = {
 			{
-				name = "teller_balcony1",
+				name = "teller_balcony01",
 				force = 2,
 				position = Vector3(1200, -2200, 400),
 			},
 			{
-				name = "teller_balcony2",
+				name = "teller_balcony02",
 				force = 2,
 				position = Vector3(-1200, -2200, 400),
 			},
@@ -176,9 +210,37 @@ return {
 			},
 		},
 	},
-	-- don't remove enemies for no reason
+	-- Disable vanilla reinforce points
+	[101834] = disabled, -- drill, Eclipse automates those
+	[101835] = disabled, -- server room, only 1, for some reason
+	-- Disable broken navlinks
+	[102541] = {
+		on_executed = {
+			{ id = 102544, remove = true },
+		},
+	},
+	[104726] = {
+		on_executed = {
+			{ id = 101490, remove = true },
+		},
+	},
+	[102541] = {
+		on_executed = {
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
+		},
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
+		on_executed = {
+			{ id = 400062, delay = 0 },
+		},
+	},
+	-- Don't remove enemies for no reason
 	[102856] = disabled,
-	-- restores some unused sniper spawns with their SOs
+	-- Restores some unused sniper spawns with their SOs
 	[100372] = enabled,
 	[100402] = enabled,
 	[100392] = enabled,
@@ -187,41 +249,27 @@ return {
 	[100407] = enabled,
 	[100397] = enabled,
 	[100417] = enabled,
-	-- disable turrets sequences
+	-- Disable turrets sequences
 	[102990] = disabled,
 	[102991] = disabled,
 	[102992] = disabled,
 	[103003] = disabled,
-	-- enable swat vans regardless of the side where player spawned
+	-- Enable swat vans regardless of the side where player spawned
 	[102988] = enabled,
 	[102989] = enabled,
-	-- disable a few reinforce points
-	[101834] = disabled, -- drill, Eclipse automates those
-	[101835] = disabled, -- server room, only 1, for some reason
-	-- add guaranteed spawns that come out of swat vans
-	[102987] = {
-		on_executed = {
-			{ id = 400022, delay = 0, delay_rand = 5 },
-		},
-	},
-	[103002] = {
-		on_executed = {
-			{ id = 400015, delay = 0, delay_rand = 5 },
-		},
-	},
-	-- disable dozers
+	-- Disable dozers
 	[100018] = {
 		on_executed = {
 			{ id = 400004, delay = 0 },
 		},
 	},
-	-- enable dozers on loud
+	-- Enable dozers on loud
 	[100022] = {
 		on_executed = {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	-- spawn the skulldozer that defends your van on Eclipse
+	-- Spawn the skulldozer that defends your van on Death Wish
 	[100210] = {
 		on_executed = {
 			{ id = 400000, delay = 0 },
@@ -232,7 +280,7 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	-- fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
+	-- Fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
 	[103317] = {
 		values = {
 			dialogue = "Play_loc_bex_109",
@@ -246,31 +294,34 @@ return {
 			rotation = Rotation(0, 0, 0),
 		},
 	},
-	-- this one makes the enemies stuck when they use it
-	[104726] = {
-		on_executed = {
-			{ id = 101490, remove = true },
-		},
-	},
-	-- change amount of required bags
+	-- Change amount of required bags
 	[101482] = bags_required_objective,
 	[102533] = bags_required_objective,
 	[101498] = bags_required,
 	[103954] = bags_required,
-	-- nuke stupid cheat spawns
+	-- Nuke stupid cheat spawns
 	[100741] = disabled,
 	[102369] = disabled,
 	[102382] = disabled,
 	[102781] = disabled,
 	-- Spawn group intervals
-	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
-	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
-	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.
-	[100019] = side_spawn,
-	[100128] = side_spawn,
-	[100132] = side_spawn,
+	-- Slow down the side spawns to make the spawn group distribution more even on higher difficulties.
+	[100019] = close_spawn,
+	[100128] = close_spawn,
+	[100132] = close_spawn,
+	[400042] = cloaker_spawn,
+	[400043] = cloaker_spawn,
+	[400044] = cloaker_spawn,
+	[400045] = cloaker_spawn,
+	[400046] = cloaker_spawn,
+	[400047] = cloaker_spawn,
+	[400048] = cloaker_spawn,
+	[400049] = cloaker_spawn,
+	[400050] = cloaker_spawn,
+	[400051] = cloaker_spawn,
 	[400017] = van_scripted_spawn,
 	[400024] = van_scripted_spawn,
+	-- Scripted spawns
 	[104687] = beat_cop, -- pre-spawned policia
 	[104688] = beat_cop,
 	[100675] = beat_cop,

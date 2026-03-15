@@ -1,17 +1,18 @@
 WeaponFactoryTweakData.part_type_stat_blacklist = {
-	foregrip = true,
-	extra = true,
-	grip = true,
-	stock = true,
-	lower_body = true,
 	body = true,
-	vertical_grip = true,
-	lower_reciever = true,
-	upper_reciever = true,
-	drag_handle = true,
 	bolt = true,
-	slide = true,
+	drag_handle = true,
+	exclusive_set = true,
+	extra = true,
+	foregrip = true,
 	gadget = true,
+	grip = true,
+	lower_body = true,
+	lower_reciever = true,
+	slide = true,
+	stock = true,
+	upper_reciever = true,
+	vertical_grip = true,
 }
 WeaponFactoryTweakData.parts_to_all = {
 	"wpn_fps_upg_bonus_team_exp",
@@ -149,14 +150,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		end
 	end
 
-	local function create_part_list(list, factory_id, part_type)
+	local function create_part_type_list(list, factory_id, part_type)
 		if self[factory_id] and self[factory_id].uses_parts then
 			for _, part_id in pairs(self[factory_id].uses_parts) do
 				local part_data = self.parts and self.parts[part_id]
-				local is_barrel_ext = part_data and part_data.type == part_type
 				local default_part = table.contains(self[factory_id].default_blueprint, part_id)
+				local is_type = part_data and part_data.type and part_data.type == part_type
 
-				if is_barrel_ext and not default_part then
+				if is_type and not default_part then
 					table.insert(list, part_id)
 				end
 			end
@@ -165,22 +166,25 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	-- Create lists of available barrel extensions for different weapon types
 	local rifle_barrel_exts = {}
-	create_part_list(rifle_barrel_exts, "wpn_fps_ass_m4", "barrel_ext")
+	create_part_type_list(rifle_barrel_exts, "wpn_fps_ass_m4", "barrel_ext")
 
 	local pistol_barrel_exts = {}
-	create_part_list(pistol_barrel_exts, "wpn_fps_pis_g17", "barrel_ext")
+	create_part_type_list(pistol_barrel_exts, "wpn_fps_pis_g17", "barrel_ext")
 
 	local shotgun_barrel_exts = {}
-	create_part_list(shotgun_barrel_exts, "wpn_fps_shot_r870", "barrel_ext")
+	create_part_type_list(shotgun_barrel_exts, "wpn_fps_shot_r870", "barrel_ext")
 
 	local rifle_sights = {}
-	create_part_list(rifle_sights, "wpn_fps_ass_m4", "sight")
+	create_part_type_list(rifle_sights, "wpn_fps_ass_m4", "sight")
+
+	local rifle_second_sights = {}
+	create_part_type_list(rifle_second_sights, "wpn_fps_ass_m4", "second_sight")
 
 	local pistol_sights = {}
-	create_part_list(pistol_sights, "wpn_fps_pis_g17", "sight")
+	create_part_type_list(pistol_sights, "wpn_fps_pis_g17", "sight")
 
 	local snp_sights = {}
-	create_part_list(snp_sights, "wpn_fps_snp_msr", "sight")
+	create_part_type_list(snp_sights, "wpn_fps_snp_msr", "sight")
 
 	-- Add/remove parts
 	table.delete(self.wpn_fps_ass_contraband.uses_parts, "wpn_fps_sho_sko12_body_grip")
@@ -197,10 +201,289 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	-- Akimbo SMG default blueprints
 	table.delete(self.wpn_fps_smg_x_mac10.default_blueprint, "wpn_fps_smg_mac10_s_fold")
+	table.insert(self.wpn_fps_smg_x_mac10.default_blueprint, "wpn_fps_smg_mac10_s_fold2")
 	table.delete(self.wpn_fps_smg_x_mac10.uses_parts, "wpn_fps_smg_mac10_s_fold")
 	table.delete(self.wpn_fps_smg_x_mac10.uses_parts, "wpn_fps_smg_mac10_s_skel")
 
 	table.delete(self.wpn_fps_smg_x_sr2.uses_parts, "wpn_fps_smg_sr2_s_unfolded")
+
+	table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
+
+	-- LMG STEELSIGHTS START
+
+	-- Separate the rear sight from the M60's body part
+	self.parts.wpn_fps_lmg_m60_o_standard = {
+		a_obj = "a_body",
+		type = "sight",
+		name_id = "bm_wp_m4_lower_reciever",
+		unit = "units/pd2_dlc_atw/weapons/wpn_fps_lmg_m60_pts/wpn_fps_lmg_m60_body_standard",
+		stats = {
+			value = 1,
+		},
+		forbids = {
+			"wpn_fps_upg_o_xpsg33_magnifier",
+			"wpn_fps_upg_o_45rds",
+			"wpn_fps_upg_o_45rds_v2",
+			"wpn_fps_upg_o_sig",
+			"wpn_fps_upg_o_45steel",
+		},
+		visibility = {
+			{
+				objects = {
+					g_grip = false,
+					g_lower = false,
+					g_stock = false,
+				},
+			},
+		},
+	}
+	self.parts.wpn_fps_lmg_m60_body_standard.visibility = {
+		{
+			objects = {
+				g_sight = false,
+			},
+		},
+	}
+	table.insert(self.wpn_fps_lmg_m60.default_blueprint, "wpn_fps_lmg_m60_o_standard")
+	table.insert(self.wpn_fps_lmg_m60.uses_parts, "wpn_fps_lmg_m60_o_standard")
+
+	local lmg_sights = clone(rifle_sights)
+
+	for _, part_id in pairs(rifle_second_sights) do
+		table.insert(lmg_sights, part_id)
+	end
+
+	local sightless_lmgs = {
+		"wpn_fps_lmg_rpk",
+		"wpn_fps_lmg_hk21",
+		"wpn_fps_lmg_m249",
+		--	"wpn_fps_lmg_mg42",
+		"wpn_fps_lmg_par",
+		"wpn_fps_lmg_m60",
+	}
+	for _, factory_id in pairs(sightless_lmgs) do
+		if not self[factory_id].adds then
+			self[factory_id].adds = {}
+		end
+
+		if not self[factory_id].override then
+			self[factory_id].override = {}
+		end
+	end
+
+	-- Add LMG sights and sight gadgets
+	self:_add_parts_from_list(sightless_lmgs, lmg_sights)
+
+	for _, part_id in pairs(lmg_sights) do
+		local part_data = self.parts[part_id]
+
+		if not part_data then
+			break
+		end
+
+		-- Make sure each sight in the auto-generated table has a stance_mod table
+		if not self.parts[part_id].stance_mod then
+			self.parts[part_id].stance_mod = {}
+		end
+
+		local is_second_sight = part_data.type == "second_sight"
+		local is_magnifier = is_second_sight and part_data.a_obj == "a_magnifier"
+		local is_canted_sight = is_second_sight and not is_magnifier
+
+		-- Set stances for each sight
+		if is_magnifier then
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 6, -3),
+			}
+			part_data.stance_mod.wpn_fps_lmg_hk21 = {
+				translation = Vector3(0, 6, -3.2),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
+				translation = Vector3(0, 6, -3.4),
+			}
+			part_data.stance_mod.wpn_fps_lmg_par = {
+				translation = Vector3(0, 6, -3.2),
+			}
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
+				translation = Vector3(0, 6, -1.75),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
+				translation = Vector3(0.1, 6, 0), --
+			}
+		elseif is_canted_sight then
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 0, -11.15),
+				rotation = Rotation(0, 0, -45),
+			}
+			part_data.stance_mod.wpn_fps_lmg_hk21 = {
+				translation = Vector3(-2.75, 0, -11.15),
+				rotation = Rotation(0, 0, -45),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
+				translation = Vector3(0.300, -1, -12.7),
+				rotation = Rotation(0, 0, -45),
+			}
+			part_data.stance_mod.wpn_fps_lmg_par = {
+				translation = Vector3(-2.45, -4, -13.15),
+				rotation = Rotation(0, 0, -45),
+			}
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
+				translation = Vector3(0.85, 0, -11.9),
+				rotation = Rotation(0, 0, -45),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
+				translation = Vector3(-2.75, 0, -11.15), --
+				rotation = Rotation(0, 0, -45),
+			}
+		else
+			part_data.stance_mod.wpn_fps_lmg_rpk = {
+				translation = Vector3(0, 0, -3),
+			}
+			part_data.stance_mod.wpn_fps_lmg_hk21 = {
+				translation = Vector3(0, -0, -3.2),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m249 = {
+				translation = Vector3(0, -1, -3.4),
+			}
+			part_data.stance_mod.wpn_fps_lmg_par = {
+				translation = Vector3(0, 8, -3.2),
+			}
+			part_data.stance_mod.wpn_fps_lmg_mg42 = {
+				translation = Vector3(0, 12, -1.75),
+			}
+			part_data.stance_mod.wpn_fps_lmg_m60 = {
+				translation = Vector3(0.1, 8, 0), --
+			}
+		end
+
+		-- Remove any magnifier gadgets from the RPK specifically to avoid very nasty clipping
+		if is_magnifier and table.contains(self.wpn_fps_lmg_rpk.uses_parts, part_id) then
+			table.delete(self.wpn_fps_lmg_rpk.uses_parts, part_id)
+		end
+
+		-- Add rails and mounts
+		self.wpn_fps_lmg_rpk.adds[part_id] = { "wpn_fps_ak_extra_ris" }
+		self.wpn_fps_lmg_hk21.adds[part_id] = { "wpn_fps_ass_g3_body_rail" }
+		self.wpn_fps_lmg_mg42.adds[part_id] = { "wpn_fps_snp_scout_o_rail" }
+		self.wpn_fps_lmg_m60.adds[part_id] = { "wpn_fps_snp_scout_o_rail" }
+
+		-- Create dummy parts to properly parent sights
+		self.parts.wpn_fps_upg_o_ak_scopemount_rpk_dummy = {
+			type = "jerome_o_sm",
+			name_id = "none",
+			unit = "units/payday2/weapons/wpn_fps_ass_74/wpn_fps_ass_74",
+			stats = {
+				value = 1,
+			},
+		}
+		self.parts.wpn_fps_lmg_m249_sight_dummy = {
+			a_obj = "a_upper",
+			type = "jerome_upper_reciever",
+			name_id = "none",
+			unit = "units/pd2_dlc_gage_lmg/weapons/wpn_fps_lmg_m249_pts/wpn_fps_lmg_m249_sight_dummy",
+			stats = {
+				value = 1,
+			},
+			animations = {
+				reload_not_empty = "reload_not_empty",
+				reload = "reload",
+			},
+		}
+		self.parts.wpn_fps_lmg_mg42_sight_dummy = {
+			a_obj = "a_body",
+			type = "jerome_lower_reciever",
+			name_id = "none",
+			unit = "units/pd2_dlc_gage_historical/weapons/wpn_fps_lmg_mg42_pts/wpn_fps_lmg_mg42_sight_dummy",
+			stats = {
+				value = 1,
+			},
+			animations = {
+				reload_not_empty = "reload_not_empty",
+				reload = "reload",
+			},
+		}
+		self.parts.wpn_fps_lmg_par_sight_dummy = {
+			a_obj = "a_upper",
+			type = "jerome_upper_reciever",
+			name_id = "none",
+			unit = "units/pd2_dlc_par/weapons/wpn_fps_lmg_par_pts/wpn_fps_lmg_par_sight_dummy",
+			stats = {
+				value = 1,
+			},
+			animations = {
+				reload_not_empty = "reload_not_empty",
+				reload = "reload",
+			},
+		}
+		self.parts.wpn_fps_lmg_m60_sight_dummy = {
+			a_obj = "a_lid",
+			type = "jerome_upper_reciever",
+			name_id = "none",
+			unit = "units/pd2_dlc_atw/weapons/wpn_fps_lmg_m60_pts/wpn_fps_lmg_m60_sight_dummy",
+			stats = {
+				value = 1,
+			},
+			animations = {
+				reload_not_empty = "reload_not_empty",
+				reload = "reload",
+			},
+		}
+
+		-- Additional weapon-specific overrides
+
+		--		self.wpn_fps_lmg_mg42.override.wpn_fps_snp_scout_o_rail = { a_obj = "a_o_parented", parent = "jerome_lower_reciever" }
+		self.wpn_fps_lmg_m60.override.wpn_fps_snp_scout_o_rail = { a_obj = "a_o_parented", parent = "jerome_upper_reciever" }
+
+		-- RPK
+		if not self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount then
+			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
+			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
+			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.adds = { "wpn_fps_upg_o_ak_scopemount_rpk_dummy" }
+		end
+
+		if not is_magnifier then
+			self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[part_id] = {
+				a_obj = "a_o_sm",
+				parent = "jerome_o_sm",
+				stance_mod = {
+					wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) },
+				},
+			}
+
+			-- KSP
+			self.wpn_fps_lmg_m249.override[part_id] = self.wpn_fps_lmg_m249.override[part_id] or {}
+			self.wpn_fps_lmg_m249.override[part_id].a_obj = "a_o_parented"
+			self.wpn_fps_lmg_m249.override[part_id].parent = "jerome_upper_reciever"
+			self.wpn_fps_lmg_m249.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
+			table.insert(self.wpn_fps_lmg_m249.override[part_id].adds, "wpn_fps_lmg_m249_sight_dummy")
+
+			--[[Buzzsaw
+			self.wpn_fps_lmg_mg42.override[part_id] = self.wpn_fps_lmg_mg42.override[part_id] or {}
+			self.wpn_fps_lmg_mg42.override[part_id].a_obj = "a_o_parented"
+			self.wpn_fps_lmg_mg42.override[part_id].parent = "jerome_lower_reciever"
+			self.wpn_fps_lmg_mg42.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
+			table.insert(self.wpn_fps_lmg_mg42.override[part_id].adds, "wpn_fps_lmg_mg42_sight_dummy")
+			]]
+
+			-- KSP 58
+			self.wpn_fps_lmg_par.override[part_id] = self.wpn_fps_lmg_par.override[part_id] or {}
+			self.wpn_fps_lmg_par.override[part_id].a_obj = "a_o_parented"
+			self.wpn_fps_lmg_par.override[part_id].parent = "jerome_upper_reciever"
+			self.wpn_fps_lmg_par.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
+			table.insert(self.wpn_fps_lmg_par.override[part_id].adds, "wpn_fps_lmg_par_sight_dummy")
+
+			-- M60
+			self.wpn_fps_lmg_m60.override[part_id] = self.wpn_fps_lmg_m60.override[part_id] or {}
+			self.wpn_fps_lmg_m60.override[part_id].a_obj = "a_o_parented"
+			self.wpn_fps_lmg_m60.override[part_id].parent = "jerome_upper_reciever"
+			self.wpn_fps_lmg_m60.override[part_id].forbids = self.parts[part_id].forbids and deep_clone(self.parts[part_id].forbids) or {}
+			table.insert(self.wpn_fps_lmg_m60.override[part_id].forbids, "wpn_fps_lmg_m60_o_standard")
+			self.wpn_fps_lmg_m60.override[part_id].adds = self.parts[part_id].adds and deep_clone(self.parts[part_id].adds) or {}
+			table.insert(self.wpn_fps_lmg_m60.override[part_id].adds, "wpn_fps_lmg_m60_sight_dummy")
+		end
+	end
+
+	-- LMG Steelsights END
 
 	-- Assault Rifle Mods
 
@@ -260,13 +543,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_upg_m4_m_l5.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_m4_m_l5.custom_stats.ammo_offset = 5
-
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.total_ammo_mod = -9
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 16
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.spread = 3
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -5
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.concealment = -4
-	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750, ammo_pickup_min_mul = 1 / 1.8, ammo_pickup_min_mul = 1 / 1.8 }
 
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
@@ -405,14 +681,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_pis_deagle_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_pis_deagle_m_extended.custom_stats = { ammo_offset = 3 }
-
-	self.parts.wpn_fps_pis_deagle_ck.stats.total_ammo_mod = 5
-	self.parts.wpn_fps_pis_deagle_ck.stats.damage = -16
-	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
-	self.parts.wpn_fps_pis_deagle_ck.stats.recoil = 2
-	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = -2
-	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_min_mul = 5 / 4
-	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_max_mul = self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_min_mul
 
 	self.parts.wpn_fps_pis_usp_b_expert.stats.spread = 1
 	self.parts.wpn_fps_pis_usp_b_expert.stats.concealment = -1
@@ -567,20 +835,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_korth_b_railed.stats.recoil = 0
 	self.parts.wpn_fps_pis_korth_b_railed.stats.concealment = 0
 
-	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
-	self.parts.wpn_fps_pis_korth_m_6.stats.total_ammo_mod = -4
-	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 16
-	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
-	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -3
-	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_m_6.custom_stats = { ammo_pickup_max_mul = 4 / 5, ammo_pickup_min_mul = 4 / 5 }
-
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.total_ammo_mod = 5
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.damage = -16
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.spread = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.recoil = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.custom_stats = { ammo_pickup_max_mul = 4 / 3, ammo_pickup_min_mul = 4 / 3 }
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.spread = 1
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.recoil = 1
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.concealment = -2
 
 	-- SMG Mods
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.spread = 1
@@ -599,10 +857,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.recoil = -2
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.concealment = 2
 
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
-	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 3 / 4, ammo_pickup_min_mul = 3 / 4 }
+	self.parts.wpn_fps_smg_mac10_m_extended.stats.extra_ammo = 6
 
 	self.parts.wpn_fps_smg_p90_b_long.stats.damage = 0
 	self.parts.wpn_fps_smg_p90_b_long.stats.spread = 2
@@ -722,9 +977,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.recoil = -3
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.concealment = 5
 
+	self.parts.wpn_fps_sho_ben_b_long.stats.extra_ammo = 1
 	self.parts.wpn_fps_sho_ben_b_long.stats.spread = 1
 	self.parts.wpn_fps_sho_ben_b_long.stats.recoil = 0
 
+	self.parts.wpn_fps_sho_ben_b_short.stats.extra_ammo = -1
 	self.parts.wpn_fps_sho_ben_b_short.stats.damage = 0
 	self.parts.wpn_fps_sho_ben_b_short.stats.recoil = 0
 	self.parts.wpn_fps_sho_ben_b_short.stats.concealment = 3
@@ -803,10 +1060,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_ultima_s_light.stats.recoil = 1
 	self.parts.wpn_fps_sho_ultima_s_light.stats.concealment = -1
 
-	self.parts.wpn_fps_sho_m590_b_long.stats.extra_ammo = 0
+	self.parts.wpn_fps_sho_m590_b_long.stats.extra_ammo = 1
 	self.parts.wpn_fps_sho_m590_b_long.stats.spread = 1
 	self.parts.wpn_fps_sho_m590_b_long.stats.concealment = -2
-	self.parts.wpn_fps_sho_m590_b_long.custom_stats.ammo_offset = 3
 
 	self.parts.wpn_fps_sho_sko12_b_long.stats.damage = 0
 	self.parts.wpn_fps_sho_sko12_b_long.stats.recoil = 0
@@ -833,9 +1089,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_supernova_s_raven.stats.concealment = 1
 
 	self.parts.wpn_fps_sho_supernova_conversion.stats.extra_ammo = 0
-	self.parts.wpn_fps_sho_supernova_conversion.stats.spread = 0
-	self.parts.wpn_fps_sho_supernova_conversion.stats.recoil = -2
-	self.parts.wpn_fps_sho_supernova_conversion.custom_stats = { ammo_pickup_max_mul = 5 / 4, ammo_pickup_min_mul = 5 / 4 }
+	self.parts.wpn_fps_sho_supernova_conversion.stats.damage = 0
+	self.parts.wpn_fps_sho_supernova_conversion.stats.spread = -2
+	self.parts.wpn_fps_sho_supernova_conversion.stats.recoil = 0
+	self.parts.wpn_fps_sho_supernova_conversion.stats.concealment = 2
 
 	-- Sniper Rifle Mods
 	self.parts.wpn_fps_snp_msr_b_long.stats.concealment = -1
@@ -974,33 +1231,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_lmg_hcar_m_drum.stats.extra_ammo = 15
 
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 13
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -18
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -4
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 6
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 1.6, ammo_pickup_min_mul = 2, ammo_pickup_max_mul = 2 }
-
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.damage = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.spread = 2
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.concealment = -2
 
-	self.parts.wpn_fps_lmg_kacchainsaw_mag_b.stats.extra_ammo = -25
+	self.parts.wpn_fps_lmg_kacchainsaw_mag_b.stats.extra_ammo = -50
 	self.parts.wpn_fps_lmg_kacchainsaw_mag_b.stats.recoil = 0
 
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.spread = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.concealment = -4
-
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 10
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = -6
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.concealment = 2
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100, ammo_pickup_min_mul = 2 / 3, ammo_pickup_max_mul = 2 / 3 }
 
 	--Minigun Mods
 	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.spread = 3
@@ -1068,209 +1309,57 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_gre_ms3gl_conversion.adds = {}
 
 	-- Re-add drum mags	and unused RPK mag
-	self.parts.wpn_fps_upg_m4_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_m4_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
+	local drum_anims = {
+		reload_not_empty = "reload_not_empty",
+		reload = "reload",
 	}
 
-	self.parts.wpn_upg_ak_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_ak_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
+	-- CAR drum magazine
+	self.parts.wpn_fps_upg_m4_m_drum = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
+	self.parts.wpn_fps_upg_m4_m_drum.name_id = "bm_wp_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_fps_upg_m4_m_drum.stats.extra_ammo = 0
+	self.parts.wpn_fps_upg_m4_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_fps_upg_m4_m_drum.animations = drum_anims
 
-	self.parts.wpn_fps_smg_mp5_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_mp5_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
+	-- AK drum magazine
+	self.parts.wpn_upg_ak_m_drum = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm)
+	self.parts.wpn_upg_ak_m_drum.is_a_unlockable = nil
+	self.parts.wpn_upg_ak_m_drum.texture_bundle_folder = nil
+	self.parts.wpn_upg_ak_m_drum.dlc = nil
+	self.parts.wpn_upg_ak_m_drum.name_id = "bm_wp_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.pcs = { 10, 20, 30, 40 }
+	self.parts.wpn_upg_ak_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_upg_ak_m_drum.stats.extra_ammo = 0
+	self.parts.wpn_upg_ak_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_upg_ak_m_drum.animations = drum_anims
 
-	self.parts.wpn_upg_saiga_m_20rnd = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_saiga_m_20rnd",
-		unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd",
-		third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 13,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
+	-- Compact-5 drum magazine
+	self.parts.wpn_fps_smg_mp5_m_drum = deep_clone(self.parts.wpn_fps_smg_mp5_m_straight)
+	self.parts.wpn_fps_smg_mp5_m_drum.texture_bundle_folder = nil
+	self.parts.wpn_fps_smg_mp5_m_drum.dlc = nil
+	self.parts.wpn_fps_smg_mp5_m_drum.name_id = "bm_wp_ak_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.bullet_objects.amount = 1
+	self.parts.wpn_fps_smg_mp5_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_fps_smg_mp5_m_drum.stats.extra_ammo = 0
+	self.parts.wpn_fps_smg_mp5_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_fps_smg_mp5_m_drum.animations = drum_anims
 
-	-- Add Eclipse logo charm
-	self.parts.wpn_fps_upg_charm_eclipse = {
-		is_a_unlockable = true,
-		texture_bundle_folder = "eclipse",
-		a_obj = "a_charm",
-		type = "charm",
-		name_id = "bm_wp_upg_charm_eclipse",
-		unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse",
-		third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse",
-		pcs = {},
-		stats = {
-			value = 1,
-		},
-	}
-
-	-- Conversion kits and various barrels, family based modifications --
-
-	local dmr_stance_muls = {
-		spread = {
-			standing = {
-				hipfire = 1.5,
-				crouching = 0.8,
-				steelsight = 0.4,
-			},
-			moving = {
-				hipfire = 2,
-				crouching = 1,
-				steelsight = 1.5,
-			},
-		},
-		recoil = {
-			standing = {
-				hipfire = 1.4,
-				crouching = 1,
-				steelsight = 1,
-			},
-			moving = {
-				hipfire = 1.6,
-				crouching = 1,
-				steelsight = 1.4,
-			},
-		},
-	}
-	local dmr_fire_mode_muls = {
-		auto = {},
-	}
-
-	local conversion_kit_stats = {
-		ar_dmr_kit = {
-			custom_stats = {
-				steelsight_speed_multiplier = 0.75,
-				stance_mul = dmr_stance_muls,
-				fire_mode_mul = dmr_fire_mode_muls,
-			},
-			stats = {
-				value = 1,
-				damage = 28,
-				spread = 4,
-				recoil = -8,
-				concealment = -4,
-				suppression = -5,
-				alert_size = 1,
-			},
-		},
-	}
-
-	-- ak family
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = conversion_kit_stats.ar_dmr_kit.custom_stats
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats = conversion_kit_stats.ar_dmr_kit.stats
-
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = conversion_kit_stats.ar_dmr_kit.custom_stats
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats = conversion_kit_stats.ar_dmr_kit.stats
-
-	-- car family
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = conversion_kit_stats.ar_dmr_kit.custom_stats
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats = conversion_kit_stats.ar_dmr_kit.stats
-
-	self.wpn_fps_ass_m4.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = conversion_kit_stats.ar_dmr_kit.custom_stats
-	self.wpn_fps_ass_m4.override.wpn_fps_upg_ass_m4_b_beowulf.stats = conversion_kit_stats.ar_dmr_kit.stats
-
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = conversion_kit_stats.ar_dmr_kit.custom_stats
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats = conversion_kit_stats.ar_dmr_kit.stats
-
-	-- gewehr
-	--self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = conversion_kit_stats.low_dmr_to_high_dmr.custom_stats
-	--self.parts.wpn_fps_ass_g3_b_sniper.stats = conversion_kit_stats.low_dmr_to_high_dmr.stats
-	self.parts.wpn_fps_ass_g3_b_sniper.adds = {} -- wtf is this, why do you need a separate dummy mod for ammo pickup specifically
+	-- Izhma drum magazine
+	self.parts.wpn_upg_saiga_m_20rnd = deep_clone(self.parts.wpn_fps_sho_basset_m_extended)
+	self.parts.wpn_upg_saiga_m_20rnd.texture_bundle_folder = nil
+	self.parts.wpn_upg_saiga_m_20rnd.name_id = "bm_wp_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.stats.extra_ammo = 4
+	self.parts.wpn_upg_saiga_m_20rnd.custom_stats = {}
+	self.parts.wpn_upg_saiga_m_20rnd.animations = drum_anims
 
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.damage = 0
@@ -1279,26 +1368,24 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_g3_b_short.stats.concealment = 2
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = {}
 
-	-- falcon
-	--self.parts.wpn_fps_ass_fal_fg_04.custom_stats = conversion_kit_stats.low_dmr_to_high_dmr.custom_stats
-	--self.parts.wpn_fps_ass_fal_fg_04.stats = conversion_kit_stats.low_dmr_to_high_dmr.stats
-
-	-- ks12
-	--self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = conversion_kit_stats.low_dmr_to_high_dmr.custom_stats
-	--self.parts.wpn_fps_ass_shak12_body_vks.stats = conversion_kit_stats.low_dmr_to_high_dmr.stats
-
-	-- broomstick
-	--self.parts.wpn_fps_pis_c96_b_long.custom_stats = conversion_kit_stats.high_dmg.custom_stats
-	--self.parts.wpn_fps_pis_c96_b_long.stats = { value = 1, total_ammo_mod = -5, concealment = -6, spread = 2, recoil = -3, damage = 18, suppression = -5, alert_size = 4 }
-
 	-- Firemodes
 	self.parts.wpn_fps_upg_i_singlefire.stats = { spread = 1, recoil = -1, value = 1 }
 	self.parts.wpn_fps_upg_i_autofire.stats = { spread = -1, recoil = 1, value = 1 }
 
 	-- Saw mods
+	self.parts.wpn_fps_saw_m_blade_durable.stats.damage = -4
+	self.parts.wpn_fps_saw_m_blade_durable.stats.extra_ammo = 25
+	self.parts.wpn_fps_saw_m_blade_durable.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_saw_m_blade_durable.custom_stats = { ammo_max_mul = 4 / 3 }
+	self.parts.wpn_fps_saw_m_blade_durable.no_magazine_balancing = true
 
-	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
-	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -9
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.damage = 4
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.extra_ammo = -25
+	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = { ammo_max_mul = 2 / 3 }
+	self.parts.wpn_fps_saw_m_blade_sharp.no_magazine_balancing = true
+
+	self.parts.wpn_fps_saw_body_silent.stats.suppression = 9
+	self.parts.wpn_fps_saw_body_silent.stats.alert_size = 9
 
 	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
 	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
@@ -1339,13 +1426,23 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { value = 1, damage = -4, extra_ammo = 50, total_ammo_mod = 5 }
+	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
+		value = 1,
+		damage = -2,
+		extra_ammo = 25,
+		total_ammo_mod = 5,
+	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { value = 1, damage = 4, extra_ammo = -50, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
+		value = 1,
+		damage = 2,
+		extra_ammo = -25,
+		total_ammo_mod = -5,
+	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
@@ -1354,47 +1451,31 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_b_wtf.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_fla_system_b_wtf.stats.concealment = 0
 
-	self.parts.wpn_fps_fla_system_a_low = {
-		type = "ammo",
-		a_obj = "a_body",
-		internal_part = true,
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		name_id = "bm_wp_system_a_low",
-		pcs = {},
-		stats = {
-			value = 0,
-		},
-		custom_stats = {
-			bullet_class = "FlameBulletBase",
-			dot_data_name = "ammo_system_low",
-		},
-	}
+	self.parts.wpn_fps_fla_system_a_low = deep_clone(self.parts.wpn_fps_fla_mk2_a_rare)
+	self.parts.wpn_fps_fla_system_a_low.name_id = "bm_wp_system_a_low"
+	self.parts.wpn_fps_fla_system_a_low.custom_stats.dot_data_name = "ammo_system_low"
 
-	self.parts.wpn_fps_fla_system_a_high = {
-		type = "ammo",
-		a_obj = "a_body",
-		internal_part = true,
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		name_id = "bm_wp_system_a_high",
-		pcs = {},
-		stats = {
-			value = 0,
-		},
-		custom_stats = {
-			bullet_class = "FlameBulletBase",
-			dot_data_name = "ammo_system_high",
-		},
-	}
+	self.parts.wpn_fps_fla_system_a_high = deep_clone(self.parts.wpn_fps_fla_mk2_a_welldone)
+	self.parts.wpn_fps_fla_system_a_high.name_id = "bm_wp_system_a_high"
+	self.parts.wpn_fps_fla_system_a_high.custom_stats.dot_data_name = "ammo_system_high"
 
-	self.parts.wpn_fps_fla_system_m_low.stats = { value = 1, damage = -4, extra_ammo = 25, total_ammo_mod = 5 }
+	self.parts.wpn_fps_fla_system_m_low.stats = {
+		value = 1,
+		damage = -2,
+		extra_ammo = 25,
+		total_ammo_mod = 5,
+	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_system_m_high.stats = { value = 1, damage = 4, extra_ammo = -25, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_system_m_high.stats = {
+		value = 1,
+		damage = 2,
+		extra_ammo = -25,
+		total_ammo_mod = -5,
+	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
@@ -1597,22 +1678,22 @@ WeaponFactoryTweakData.shotgun_ammo_override_map = {
 	["wpn_fps_sho_aa12"] = "very_light",
 	["wpn_fps_sho_basset"] = "very_light",
 	["wpn_fps_sho_striker"] = "very_light",
+	["wpn_fps_sho_sko12"] = "very_light",
 	["wpn_fps_sho_ben"] = "light",
 	["wpn_fps_sho_spas12"] = "light",
 	["wpn_fps_sho_rota"] = "light",
 	["wpn_fps_sho_ultima"] = "light",
-	["wpn_fps_sho_sko12"] = "light",
 	["wpn_fps_shot_r870"] = "medium",
 	["wpn_fps_shot_serbu"] = "medium",
 	["wpn_fps_sho_ksg"] = "medium",
 	["wpn_fps_pis_judge"] = "medium",
 	["wpn_fps_sho_m590"] = "medium",
 	["wpn_fps_shot_m37"] = "heavy",
+	["wpn_fps_sho_boot"] = "heavy",
 	["wpn_fps_shot_m1897"] = "heavy",
 	["wpn_fps_sho_supernova"] = "heavy",
 	["wpn_fps_shot_huntsman"] = "very_heavy",
 	["wpn_fps_shot_b682"] = "very_heavy",
-	["wpn_fps_sho_boot"] = "very_heavy",
 	["wpn_fps_sho_coach"] = "very_heavy",
 }
 
@@ -1621,27 +1702,84 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	local slug_stance_muls = {
 		spread = {
 			standing = {
-				hipfire = 1.2,
-				crouching = 1,
-				steelsight = 0.5,
+				hipfire = 1.5,
+				crouching = 0.8,
+				steelsight = 0.4,
 			},
 			moving = {
-				hipfire = 1.4,
+				hipfire = 2,
 				crouching = 1,
-				steelsight = 1,
+				steelsight = 1.5,
 			},
 		},
 		recoil = {
 			standing = {
 				hipfire = 1,
 				crouching = 1,
-				steelsight = 0.8,
-			},
-			moving = {
-				hipfire = 1.2,
-				crouching = 1,
 				steelsight = 1,
 			},
+			moving = {
+				hipfire = 1.3,
+				crouching = 1,
+				steelsight = 1.3,
+			},
+		},
+	}
+	local custom_stats_tbl = {
+		wpn_fps_upg_a_custom = {
+			rays = 6,
+			damage_near_mul = 0.5,
+			muzzleflash = "effects/particles/weapons/sho_buckshot",
+		},
+		wpn_fps_upg_a_explosive = {
+			rays = 1,
+			ammo_pickup_max_mul = 0.4,
+			ammo_pickup_min_mul = 0.4,
+			damage_near_mul = 10,
+			stance_mul = slug_stance_muls,
+			ignore_statistic = true,
+			explosive_ammo = true,
+			ignore_crit_damage = true,
+			bullet_class = "InstantExplosiveBulletBase",
+			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
+		},
+		wpn_fps_upg_a_slug = {
+			rays = 1,
+			armor_piercing_add = 1,
+			max_nr_enemy_penetrations = 1,
+			damage_near_mul = 10,
+			stance_mul = slug_stance_muls,
+			check_additional_achievements = true,
+			can_shoot_through_shield = true,
+			can_shoot_through_wall = true,
+			can_shoot_through_enemy = true,
+			muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
+		},
+		wpn_fps_upg_a_piercing = {
+			rays = 12,
+			armor_piercing_add = 1,
+			max_nr_enemy_penetrations = 1,
+			can_shoot_through_enemy = true,
+			muzzleflash = "effects/particles/weapons/sho_flechette",
+		},
+		wpn_fps_upg_a_dragons_breath = {
+			rays = 12,
+			armor_piercing_add = 1,
+			ammo_pickup_min_mul = 0.8,
+			ammo_pickup_max_mul = 0.8,
+			dot_data_name = "ammo_dragons_breath",
+			bullet_class = "FlameBulletBase",
+			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
+		},
+		wpn_fps_upg_a_rip = {
+			rays = 1,
+			ammo_pickup_min_mul = 0.6,
+			ammo_pickup_max_mul = 0.6,
+			damage_near_mul = 10,
+			stance_mul = slug_stance_muls,
+			muzzleflash = "effects/particles/weapons/sho_tomb",
+			dot_data_name = "ammo_rip",
+			bullet_class = "PoisonBulletBase",
 		},
 	}
 
@@ -1649,370 +1787,155 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		wpn_fps_upg_a_custom = {
 			very_heavy = { -- double barrels
 				stats = { damage = 12, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 10, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 8, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			light = { -- semi autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			very_light = { -- full autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 		},
 		wpn_fps_upg_a_custom_free = {
 			very_heavy = { -- double barrels
 				stats = { damage = 12, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 10, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 8, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			light = { -- semi autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 			very_light = { -- full autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
 			},
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
 				stats = { damage = 216, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ignore_statistic = true,
-					explosive_ammo = true,
-					ammo_pickup_max_mul = 0.4,
-					ammo_pickup_min_mul = 0.4,
-					stance_mul = slug_stance_muls,
-					bullet_class = "InstantExplosiveBulletBase",
-					damage_near_mul = 10,
-					rays = 1,
-					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 180, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ignore_statistic = true,
-					explosive_ammo = true,
-					ammo_pickup_max_mul = 0.4,
-					ammo_pickup_min_mul = 0.4,
-					stance_mul = slug_stance_muls,
-					bullet_class = "InstantExplosiveBulletBase",
-					damage_near_mul = 10,
-					rays = 1,
-					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 144, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ignore_statistic = true,
-					explosive_ammo = true,
-					ammo_pickup_max_mul = 0.4,
-					ammo_pickup_min_mul = 0.4,
-					stance_mul = slug_stance_muls,
-					bullet_class = "InstantExplosiveBulletBase",
-					damage_near_mul = 10,
-					rays = 1,
-					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			light = { -- semi autos
 				stats = { damage = 108, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ignore_statistic = true,
-					explosive_ammo = true,
-					ammo_pickup_max_mul = 0.4,
-					ammo_pickup_min_mul = 0.4,
-					stance_mul = slug_stance_muls,
-					bullet_class = "InstantExplosiveBulletBase",
-					damage_near_mul = 10,
-					rays = 1,
-					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			very_light = { -- full autos
 				stats = { damage = 86, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ignore_statistic = true,
-					explosive_ammo = true,
-					ammo_pickup_max_mul = 0.4,
-					ammo_pickup_min_mul = 0.4,
-					stance_mul = slug_stance_muls,
-					bullet_class = "InstantExplosiveBulletBase",
-					damage_near_mul = 10,
-					rays = 1,
-					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 		},
 		wpn_fps_upg_a_slug = {
 			very_heavy = { -- double barrels
 				stats = { damage = 104, total_ammo_mod = -6, recoil = -2, spread = 4 },
-				custom_stats = {
-					armor_piercing_add = 1,
-					can_shoot_through_shield = true,
-					can_shoot_through_wall = true,
-					can_shoot_through_enemy = true,
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					check_additional_achievements = true,
-					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 76, total_ammo_mod = -6, recoil = -2, spread = 4 },
-				custom_stats = {
-					armor_piercing_add = 1,
-					can_shoot_through_shield = true,
-					can_shoot_through_wall = true,
-					can_shoot_through_enemy = true,
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					check_additional_achievements = true,
-					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 64, total_ammo_mod = -6, recoil = -2, spread = 4 },
-				custom_stats = {
-					armor_piercing_add = 1,
-					can_shoot_through_shield = true,
-					can_shoot_through_wall = true,
-					can_shoot_through_enemy = true,
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					check_additional_achievements = true,
-					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			light = { -- semi autos
 				stats = { damage = 52, total_ammo_mod = -6, recoil = -2, spread = 4 },
-				custom_stats = {
-					armor_piercing_add = 1,
-					can_shoot_through_shield = true,
-					can_shoot_through_wall = true,
-					can_shoot_through_enemy = true,
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					check_additional_achievements = true,
-					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			very_light = { -- full autos
 				stats = { damage = 38, total_ammo_mod = -6, recoil = -2, spread = 4 },
-				custom_stats = {
-					armor_piercing_add = 1,
-					can_shoot_through_shield = true,
-					can_shoot_through_wall = true,
-					can_shoot_through_enemy = true,
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					check_additional_achievements = true,
-					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 		},
 		wpn_fps_upg_a_piercing = {
 			very_heavy = { -- double barrels
 				stats = { damage = -12 },
-				custom_stats = {
-					rays = 12,
-					armor_piercing_add = 1,
-					can_shoot_through_enemy = true,
-					muzzleflash = "effects/particles/weapons/sho_flechette",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = -10 },
-				custom_stats = {
-					rays = 12,
-					armor_piercing_add = 1,
-					can_shoot_through_enemy = true,
-					muzzleflash = "effects/particles/weapons/sho_flechette",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = -8 },
-				custom_stats = {
-					rays = 12,
-					armor_piercing_add = 1,
-					can_shoot_through_enemy = true,
-					muzzleflash = "effects/particles/weapons/sho_flechette",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			light = { -- semi autos
 				stats = { damage = -6 },
-				custom_stats = {
-					rays = 12,
-					armor_piercing_add = 1,
-					can_shoot_through_enemy = true,
-					muzzleflash = "effects/particles/weapons/sho_flechette",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			very_light = { -- full autos
 				stats = { damage = -5 },
-				custom_stats = {
-					rays = 12,
-					armor_piercing_add = 1,
-					can_shoot_through_enemy = true,
-					muzzleflash = "effects/particles/weapons/sho_flechette",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 		},
 		wpn_fps_upg_a_dragons_breath = {
 			very_heavy = { -- double barrels
 				stats = { damage = -12, total_ammo_mod = -6, spread = -2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.8,
-					ammo_pickup_max_mul = 0.8,
-					armor_piercing_add = 1,
-					rays = 12,
-					dot_data_name = "ammo_dragons_breath",
-					bullet_class = "FlameBulletBase",
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = -10, total_ammo_mod = -6, spread = -2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.8,
-					ammo_pickup_max_mul = 0.8,
-					armor_piercing_add = 1,
-					rays = 12,
-					dot_data_name = "ammo_dragons_breath",
-					bullet_class = "FlameBulletBase",
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = -8, total_ammo_mod = -6, spread = -2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.8,
-					ammo_pickup_max_mul = 0.8,
-					armor_piercing_add = 1,
-					rays = 12,
-					dot_data_name = "ammo_dragons_breath",
-					bullet_class = "FlameBulletBase",
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
 			},
 			light = { -- semi autos
 				stats = { damage = -6, total_ammo_mod = -6, spread = -2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.8,
-					ammo_pickup_max_mul = 0.8,
-					armor_piercing_add = 1,
-					rays = 12,
-					dot_data_name = "ammo_dragons_breath",
-					bullet_class = "FlameBulletBase",
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
 			},
 			very_light = { -- full autos
 				stats = { damage = -5, total_ammo_mod = -6, spread = -2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.8,
-					ammo_pickup_max_mul = 0.8,
-					armor_piercing_add = 1,
-					rays = 12,
-					dot_data_name = "ammo_dragons_breath",
-					bullet_class = "FlameBulletBase",
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
 			},
 		},
 		wpn_fps_upg_a_rip = {
 			very_heavy = { -- double barrels
 				stats = { damage = 72, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.6,
-					ammo_pickup_max_mul = 0.6,
-					armor_piercing_add = 1,
-					muzzleflash = "effects/particles/weapons/sho_tomb",
-					dot_data_name = "ammo_rip",
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					bullet_class = "PoisonBulletBase",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 60, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.6,
-					ammo_pickup_max_mul = 0.6,
-					armor_piercing_add = 1,
-					muzzleflash = "effects/particles/weapons/sho_tomb",
-					dot_data_name = "ammo_rip",
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					bullet_class = "PoisonBulletBase",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 48, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.6,
-					ammo_pickup_max_mul = 0.6,
-					armor_piercing_add = 1,
-					muzzleflash = "effects/particles/weapons/sho_tomb",
-					dot_data_name = "ammo_rip",
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					bullet_class = "PoisonBulletBase",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			light = { -- semi autos
 				stats = { damage = 36, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.6,
-					ammo_pickup_max_mul = 0.6,
-					armor_piercing_add = 1,
-					muzzleflash = "effects/particles/weapons/sho_tomb",
-					dot_data_name = "ammo_rip",
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					bullet_class = "PoisonBulletBase",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			very_light = { -- full autos
 				stats = { damage = 26, total_ammo_mod = -8, spread = 2 },
-				custom_stats = {
-					ammo_pickup_min_mul = 0.6,
-					ammo_pickup_max_mul = 0.6,
-					armor_piercing_add = 1,
-					muzzleflash = "effects/particles/weapons/sho_tomb",
-					dot_data_name = "ammo_rip",
-					stance_mul = slug_stance_muls,
-					damage_near_mul = 10,
-					rays = 1,
-					bullet_class = "PoisonBulletBase",
-				},
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 		},
 	}
@@ -2054,8 +1977,8 @@ end
 WeaponFactoryTweakData.grenade_launcher_ammo_override_map = {
 	["wpn_fps_gre_arbiter"] = "light",
 	["wpn_fps_gre_ms3gl"] = "light",
-	["wpn_fps_gre_m32"] = "medium",
-	["wpn_fps_gre_china"] = "medium",
+	["wpn_fps_gre_m32"] = "light",
+	["wpn_fps_gre_china"] = "heavy",
 	["wpn_fps_gre_m79"] = "heavy",
 	["wpn_fps_gre_slap"] = "heavy",
 	["wpn_fps_ass_contraband"] = "heavy",
@@ -2064,59 +1987,76 @@ WeaponFactoryTweakData.grenade_launcher_ammo_override_map = {
 
 -- Automatically balance Grenade Launcher ammo types
 function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
+	local custom_stats_tbl = {
+		wpn_fps_upg_a_grenade_launcher_incendiary = {
+			ammo_pickup_max_mul = 0.6,
+			ammo_pickup_min_mul = 0.6,
+			launcher_grenade = "launcher_incendiary",
+		},
+		wpn_fps_upg_a_grenade_launcher_electric = {
+			ammo_pickup_max_mul = 0.8,
+			ammo_pickup_min_mul = 0.8,
+			launcher_grenade = "launcher_electric",
+		},
+		wpn_fps_upg_a_grenade_launcher_poison = {
+			ammo_pickup_max_mul = 0.4,
+			ammo_pickup_min_mul = 0.4,
+			launcher_grenade = "launcher_poison",
+		},
+	}
 	local grenade_launcher_ammo_overrides = {
 		wpn_fps_upg_a_grenade_launcher_incendiary = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_incendiary),
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_incendiary),
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_incendiary),
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_incendiary),
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_electric = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_electric),
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_electric),
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_electric),
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_electric),
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_poison = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison),
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison),
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison),
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
+				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_grenade_launcher_poison),
 			},
 		},
 	}
@@ -2157,58 +2097,6 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 					end
 				end
 			]]
-			end
-		end
-	end
-end
-
--- Automatically balance magazine mods based on capacity
-function WeaponFactoryTweakData:_balance_magazines(tweak_data)
-	local upgrade_definitions = tweak_data.upgrades.definitions
-
-	for weap_id, weap_data in pairs(upgrade_definitions) do
-		local factory_id = weap_data.factory_id
-
-		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
-		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
-
-		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
-		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX
-
-		if not is_akimbo then
-			for part_id, part_data in pairs(self.parts) do
-				if part_data and not part_data.no_magazine_balancing then
-					if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
-						local extra_ammo_stat = part_data.stats and part_data.stats.extra_ammo
-						local ammo_offset_stat = part_data.custom_stats and part_data.custom_stats.ammo_offset
-						if extra_ammo_stat or ammo_offset_stat then
-							-- Wipe overrides of weapon parts just in case.
-							-- Use the "no_override_wipe" flag for any edge cases
-							if not part_data.no_override_wipe and self[factory_id].override and self[factory_id].override[part_id] then
-								self[factory_id].override[part_id].stats = self.parts[part_id].stats or {}
-								self[factory_id].override[part_id].custom_stats = self.parts[part_id].custom_stats or {}
-							end
-
-							if part_data.stats and not part_data.is_supported then
-								if mag_capacity and not shotgun_reload then
-									local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
-									local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-
-									local reload_speed_stat = -math.clamp(math.floor(capacity_increase / 30), -10, 10)
-									local concealment_stat = -math.clamp(math.ceil(capacity_increase / 30), -6, 6)
-									local spread_stat = capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 60), 0, 5) or 0
-
-									part_data.stats.reload = 0
-									part_data.stats.recoil = 0
-									part_data.stats.spread = spread_stat
-									part_data.stats.reload = shotgun_reload and 0 or reload_speed_stat
-									part_data.stats.concealment = concealment_stat
-									part_data.is_supported = true
-								end
-							end
-						end
-					end
-				end
 			end
 		end
 	end
@@ -2272,68 +2160,47 @@ function WeaponFactoryTweakData:_balance_akimbo(tweak_data)
 	end
 end
 
-WeaponFactoryTweakData.conversion_parts = {
-	wpn_fps_upg_ass_m4_b_beowulf = true,
-	wpn_fps_upg_ass_ak_b_zastava = true,
-	wpn_fps_smg_mp5_m_straight = true,
-	wpn_fps_pis_korth_m_6 = true,
-}
-WeaponFactoryTweakData.conversion_balancing_whitelist = {
-	exclusive_set = true,
-}
-
--- Automatically balance conversion kits based on damage
-function WeaponFactoryTweakData:_balance_conversions(tweak_data)
+-- Automatically balance magazine mods based on capacity
+function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_wipe)
 	local upgrade_definitions = tweak_data.upgrades.definitions
-
-	local function calculate_real_damage(value, modifier)
-		return value and modifier * tweak_data.weapon.stats.damage[math.min(value, #tweak_data.weapon.stats.damage)] or 0
-	end
-
-	local function calculate_total_ammo_stat(value)
-		return value and math.ceil(math.min(value / 0.05, #tweak_data.weapon.stats.total_ammo_mod)) or 0
-	end
 
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
+
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
+		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
 
-		if weapon_tweak then
-			local dmg_modifier = weapon_tweak.stats_modifiers and weapon_tweak.stats_modifiers.damage or 1
-			local weap_dmg_stat = weapon_tweak.stats and weapon_tweak.stats.damage or 1
+		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
+		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX
 
-			for part_id, part_data in pairs(self.parts) do
-				if part_data and not part_data.no_conversion_balancing then
-					if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
-						local part_type = part_data.type
-						if self.conversion_parts[part_id] or self.conversion_balancing_whitelist[part_type] then
-							local part_dmg_stat = part_data.stats and part_data.stats.damage or 0
-							local weap_real_dmg = math.min(weap_dmg_stat, #tweak_data.weapon.stats.damage) * dmg_modifier
-							local part_real_dmg = math.min(weap_dmg_stat + part_dmg_stat * dmg_modifier, #tweak_data.weapon.stats.damage) * dmg_modifier
-							local damage_ratio = weap_real_dmg / part_real_dmg
+		local part_data = self.parts[part_id]
+		if part_data and not is_akimbo then
+			if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
+				local extra_ammo_stat = part_data.stats and part_data.stats.extra_ammo
+				local ammo_offset_stat = part_data.custom_stats and part_data.custom_stats.ammo_offset
+				if extra_ammo_stat or ammo_offset_stat then
+					-- Wipe overrides of weapon parts just in case.
+					-- Use the "no_override_wipe" flag for any edge cases
+					if not part_data.no_override_wipe and self[factory_id].override and self[factory_id].override[part_id] then
+						self[factory_id].override[part_id].stats = self.parts[part_id].stats or {}
+						self[factory_id].override[part_id].custom_stats = self.parts[part_id].custom_stats or {}
+					end
 
-							local pickup_stat = damage_ratio
-							local total_ammo_stat = -calculate_total_ammo_stat(1 - damage_ratio)
+					if part_data.stats and not part_data.is_supported then
+						if mag_capacity and not shotgun_reload then
+							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
+							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 
-							local part_override = self[factory_id].override and self[factory_id].override[part_id]
-							if part_override then
-								if not part_override.stats then
-									part_override.stats = {}
-								end
+							local reload_stat = -math.clamp(math.floor(capacity_increase / 20), -6, 6)
+							local concealment_stat = -math.clamp(math.round(capacity_increase / 30), -10, 10)
+							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 5) or 0)
+							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 5) or 0)
 
-								part_override.stats.total_ammo_mod = total_ammo_stat
-
-								if not part_override.custom_stats then
-									part_override.custom_stats = {}
-								end
-
-								part_override.custom_stats.ammo_pickup_max_mul = pickup_stat
-								part_override.custom_stats.ammo_pickup_min_mul = part_override.custom_stats.ammo_pickup_max_mul
-							else
-								part_data.stats.total_ammo_mod = total_ammo_stat
-								part_data.custom_stats.ammo_pickup_max_mul = pickup_stat
-								part_data.custom_stats.ammo_pickup_min_mul = part_data.custom_stats.ammo_pickup_max_mul
-							end
+							part_data.stats.recoil = (no_stat_wipe and (part_data.stats.recoil or 0) or 0) + recoil_stat
+							part_data.stats.spread = (no_stat_wipe and (part_data.stats.spread or 0) or 0) + spread_stat
+							part_data.stats.concealment = (no_stat_wipe and (part_data.stats.concealment or 0) or 0) + concealment_stat
+							part_data.stats.reload = (no_stat_wipe and (part_data.stats.reload or 0) or 0) + reload_stat
+							part_data.is_supported = true
 						end
 					end
 				end
@@ -2343,12 +2210,8 @@ function WeaponFactoryTweakData:_balance_conversions(tweak_data)
 end
 
 -- Automatically balance underbarrel weapon stats based on concealment
-function WeaponFactoryTweakData:_balance_underbarrels(tweak_data)
+function WeaponFactoryTweakData:_balance_underbarrel(tweak_data, part_id)
 	local upgrade_definitions = tweak_data.upgrades.definitions
-
-	local function calculate_total_ammo_stat(value)
-		return value and math.floor(math.ceil(value / 0.05, #tweak_data.weapon.stats.total_ammo_mod)) or 0
-	end
 
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
@@ -2359,42 +2222,142 @@ function WeaponFactoryTweakData:_balance_underbarrels(tweak_data)
 				self[factory_id].override = {}
 			end
 
-			for part_id, part_data in pairs(self.parts) do
-				if part_data and not part_data.no_underbarrel_balanacing then
-					local is_underbarrel = part_data.perks and table.contains(part_data.perks, "underbarrel")
-
-					if is_underbarrel then
-						local weap_total_ammo = weapon_tweak.AMMO_MAX
-						local underbarrel_total_ammo = math.round(weap_total_ammo / 2, weapon_tweak.CLIP_AMMO_MAX)
-						local total_ammo_mod_stat = -calculate_total_ammo_stat(1 - underbarrel_total_ammo / weap_total_ammo)
-
-						if not self[factory_id].override[part_id] then
-							self[factory_id].override[part_id] = {}
-						end
-
-						self[factory_id].override[part_id].stats = deep_clone(part_data.stats)
-						self[factory_id].override[part_id].stats.total_ammo_mod = total_ammo_mod_stat
-					end
+			local part_data = self.parts[part_id]
+			if part_data then
+				if not self[factory_id].override[part_id] then
+					self[factory_id].override[part_id] = {}
 				end
+
+				if not self[factory_id].override[part_id].custom_stats then
+					self[factory_id].override[part_id].custom_stats = {}
+				end
+
+				local weap_total_ammo = weapon_tweak.AMMO_MAX
+				local damage_ratio_round = math.round(weap_total_ammo * 0.5, weapon_tweak.CLIP_AMMO_MAX) / weap_total_ammo
+
+				self[factory_id].override[part_id].custom_stats.ammo_max_mul = damage_ratio_round
 			end
 		end
 	end
 end
 
 -- Automatically balance suppressor stats based on concealment
-function WeaponFactoryTweakData:_balance_silencers()
-	for part_id, part_data in pairs(self.parts) do
-		if part_data and not part_data.no_silencer_balancing then
-			local is_barrel_ext = part_data.type and part_data.type == "barrel_ext"
-			local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
+function WeaponFactoryTweakData:_balance_silencer(part_id, is_barrel_ext)
+	local part_data = self.parts[part_id]
+	if part_data then
+		if part_data.stats then
+			part_data.stats.suppression = (part_data.stats.suppression or 0) + 12
+			part_data.stats.alert_size = (part_data.stats.alert_size or 0) + 10
 
-			if is_silencer and part_data.stats then
-				part_data.stats.suppression = 12
-				part_data.stats.alert_size = 10
+			if part_data.stats.concealment and is_barrel_ext then
+				part_data.stats.damage = -math.max(4 + part_data.stats.concealment, 0)
+			end
+		end
+	end
+end
 
-				if part_data.stats.concealment and is_barrel_ext then
-					part_data.stats.damage = -math.max(4 + part_data.stats.concealment, 0)
+WeaponFactoryTweakData.category_templates = {
+	assault_rifle = "amcar",
+	dmr = "new_m14",
+	pistol = "glock_17",
+	revolver = "new_raging_bull",
+	smg = "new_mp5",
+	shotgun = "r870",
+	lmg = "m249",
+	minigun = "m134",
+	snp = "msr",
+}
+
+-- Automatically balance conversion kits based on damage
+function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, part_id, damage, category, round_total_ammo)
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	local function category_swap_stats_table(category_old, category_new)
+		local reference_old_weap_id = self.category_templates[category_old]
+		local reference_new_weap_id = self.category_templates[category_new]
+		local reference_old_tweak = tweak_data.weapon and tweak_data.weapon[reference_old_weap_id]
+		local reference_new_tweak = tweak_data.weapon and tweak_data.weapon[reference_new_weap_id]
+
+		local stats_tbl = {}
+		local custom_stats_tbl = {}
+		if reference_new_tweak and reference_old_tweak then
+			custom_stats_tbl.ammo_max_mul = reference_new_tweak.total_ammo_mul or 1
+			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak.pickup_mul or 1
+			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak.pickup_mul or 1
+			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul
+			custom_stats_tbl.max_nr_enemy_penetrations = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
+			custom_stats_tbl.can_shoot_through_enemy = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
+			custom_stats_tbl.steelsight_time_mul = reference_new_tweak.steelsight_time
+					and reference_old_tweak.steelsight_time
+					and (reference_new_tweak.steelsight_time / reference_old_tweak.steelsight_time)
+				or 1
+			custom_stats_tbl.stance_mul = deep_clone(reference_new_tweak.stance_multipliers or reference_old_tweak.stance_multipliers)
+			custom_stats_tbl.fire_mode_mul = deep_clone(reference_new_tweak.fire_mode_multipliers or reference_old_tweak.fire_mode_multipliers)
+
+			if reference_new_tweak.stats then
+				stats_tbl.alert_size = reference_new_tweak.stats.alert_size - reference_old_tweak.stats.alert_size
+				stats_tbl.suppression = reference_new_tweak.stats.suppression - reference_old_tweak.stats.suppression
+			end
+		end
+
+		return stats_tbl, custom_stats_tbl
+	end
+
+	local factory_id = upgrade_definitions[weap_id] and upgrade_definitions[weap_id].factory_id
+	local weap_data = tweak_data.weapon and tweak_data.weapon[weap_id]
+
+	if factory_id and weap_data then
+		local weap_damage, part_damage, damage_ratio
+		local dmg_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
+
+		if damage then
+			weap_damage = math.min(weap_data.stats.damage, #tweak_data.weapon.stats.damage) * dmg_modifier
+			part_damage = math.round((damage - weap_damage) / dmg_modifier)
+			damage_ratio = weap_damage / damage
+		end
+
+		if self[factory_id] then
+			if not self[factory_id].override then
+				self[factory_id].override = {}
+			end
+
+			if not self[factory_id].override[part_id] then
+				self[factory_id].override[part_id] = {}
+			end
+
+			self[factory_id].override[part_id].stats = deep_clone(self.parts[part_id].stats) or {}
+			self[factory_id].override[part_id].custom_stats = deep_clone(self.parts[part_id].custom_stats) or {}
+
+			local weap_category = weap_data.categories and weap_data.categories[1]
+			if category and weap_category then
+				local cat_swap_stats, cat_swap_custom_stats = category_swap_stats_table(weap_category, category)
+
+				for k, v in pairs(cat_swap_custom_stats) do
+					self[factory_id].override[part_id].custom_stats[k] = v
 				end
+
+				for k, v in pairs(cat_swap_stats) do
+					self[factory_id].override[part_id].stats[k] = v
+				end
+			end
+
+			local snp_total_ammo_mul, snp_pickup_mul = tweak_data.weapon:_calculate_snp_ammo_mul(damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
+
+			self[factory_id].override[part_id].stats.damage = (self[factory_id].override[part_id].stats.damage or 0) + (part_damage or 0)
+			self[factory_id].override[part_id].custom_stats.ammo_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_max_mul or 1) * (damage_ratio or 1) * (snp_total_ammo_mul or 1)
+			self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul or 1)
+				* (damage_ratio or 1)
+				* (snp_pickup_mul or 1)
+			self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul or 1)
+				* (damage_ratio or 1)
+				* (snp_pickup_mul or 1)
+
+			if round_total_ammo then
+				local weap_total_ammo = weap_data.AMMO_MAX
+				local part_total_ammo = weap_total_ammo * self[factory_id].override[part_id].custom_stats.ammo_max_mul
+				local damage_ratio_round = math.round(part_total_ammo, weap_data.CLIP_AMMO_MAX) / weap_total_ammo
+
+				self[factory_id].override[part_id].custom_stats.ammo_max_mul = damage_ratio_round
 			end
 		end
 	end
@@ -2402,15 +2365,120 @@ end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
+	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
+	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse"
+
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -2
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 4
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {}
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.fire_rate_multiplier = 750 / 450
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 36, "assault_rifle", true)
+	self:_balance_magazine(tweak_data, "wpn_fps_lmg_hcar_body_conversionkit", true)
+
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 2
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100 }
+	self:_balance_conversion_kit(tweak_data, "kacchainsaw", "wpn_fps_lmg_kacchainsaw_conversionkit", 12, nil, true)
+
+	self.parts.wpn_fps_pis_deagle_ck.stats.damage = 0
+	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
+	self.parts.wpn_fps_pis_deagle_ck.stats.recoil = 2
+	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = -1
+	self.parts.wpn_fps_pis_deagle_ck.custom_stats = { ammo_offset = 3 }
+	self:_balance_conversion_kit(tweak_data, "deagle", "wpn_fps_pis_deagle_ck", 64, nil, true)
+
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 0
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -3
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
+	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
+
+	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
+	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 0
+	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
+	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
+	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
+	self.parts.wpn_fps_pis_korth_m_6.no_magazine_balancing = true
+	self:_balance_conversion_kit(tweak_data, "korth", "wpn_fps_pis_korth_m_6", 80, nil, true)
+
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 0
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.spread = 3
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -2
+	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
+	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")
+	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_m4_upg_fg_mk12", 36, nil, true)
+
+	self:_balance_conversion_kit(tweak_data, "galil", "wpn_fps_ass_galil_fg_sniper", 64, nil, true)
+
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
+	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {}
+	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
+	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
+
+	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
+	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
+
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.spread = 2
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -6
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -2
+	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {}
+	self:_balance_conversion_kit(tweak_data, "shak12", "wpn_fps_ass_shak12_body_vks", 72, nil, true)
+
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
+	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
+
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
+	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
+
+	for part_id, part_data in pairs(self.parts) do
+		local is_barrel_ext = part_data.type and part_data.type == "barrel_ext"
+		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
+		if is_silencer and not part_data.no_silencer_balancing then
+			self:_balance_silencer(part_id, is_barrel_ext)
+		end
+
+		local is_underbarrel = part_data.perks and table.contains(part_data.perks, "underbarrel")
+		if is_underbarrel and not part_data.no_underbarrel_balancing then
+			self:_balance_underbarrel(tweak_data, part_id)
+		end
+
+		local is_magazine = part_data.type and part_data.type == "magazine"
+		if is_magazine and not part_data.no_magazine_balancing then
+			self:_balance_magazine(tweak_data, part_id, false)
+		end
+	end
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
 	self:_balance_launcher_ammo(tweak_data)
-	self:_balance_magazines(tweak_data)
 	self:_balance_akimbo(tweak_data)
-	self:_balance_conversions(tweak_data)
-	self:_balance_underbarrels(tweak_data)
-	self:_balance_silencers()
 end)
 
 -- Remove weapon boosts
@@ -2487,6 +2555,32 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 		},
 	}
 
+	local shotgun_stance_muls = {
+		spread = {
+			standing = {
+				hipfire = 1,
+				crouching = 1,
+				steelsight = 0.7,
+			},
+			moving = {
+				hipfire = 1,
+				crouching = 1,
+				steelsight = 0.8,
+			},
+		},
+		recoil = {
+			standing = {
+				hipfire = 1,
+				crouching = 1,
+				steelsight = 1,
+			},
+			moving = {
+				hipfire = 1.3,
+				crouching = 1,
+				steelsight = 1.3,
+			},
+		},
+	}
 	local sting_stats = {
 		light = {
 			damage = -36,
@@ -2501,164 +2595,53 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			spread = -6,
 		},
 	}
-
-	local shotgun_stance_muls = {
-		spread = {
-			standing = {
-				hipfire = 1,
-				crouching = 1,
-				steelsight = 0.8,
-			},
-			moving = {
-				hipfire = 1.2,
-				crouching = 1,
-				steelsight = 1,
-			},
-		},
-		recoil = {
-			standing = {
-				hipfire = 1.2,
-				crouching = 1,
-				steelsight = 1,
-			},
-			moving = {
-				hipfire = 1.4,
-				crouching = 1,
-				steelsight = 1.2,
-			},
+	local sting_custom_stats = {
+		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
+		armor_piercing_add = 1,
+		is_explosive = false,
+		can_shoot_through_shield = true,
+		can_shoot_through_enemy = true,
+		ignore_damage_upgrades = false,
+		stance_mul = shotgun_stance_muls,
+		sounds = {
+			fire_single = "hornet_fire",
 		},
 	}
 
 	local grenade_launchers = {
 		wpn_fps_gre_arbiter = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.light,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_ms3gl = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.light,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_m32 = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.medium,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_china = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.medium,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_m79 = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.heavy,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_slap = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.heavy,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 	}
 	local grenade_underbarrels = {
 		wpn_fps_ass_groza = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.heavy,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_ass_contraband = {
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 			stats = sting_stats.heavy,
-			custom_stats = {
-				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
-				armor_piercing_add = 1,
-				is_explosive = false,
-				can_shoot_through_shield = true,
-				can_shoot_through_enemy = true,
-				ignore_damage_upgrades = false,
-				stance_mul = shotgun_stance_muls,
-				sounds = {
-					fire_single = "hornet_fire",
-				},
-			},
+			custom_stats = deep_clone(sting_custom_stats),
 		},
 	}
 	local launcher_value = self.parts.wpn_fps_upg_a_grenade_launcher_hornet.stats.value

@@ -54,6 +54,7 @@ local patches = {
 		cops = table.set(100093, 100094),
 		swats = table.set(100102, 100103),
 		swat_or_dozer = table.set(100101),
+		spike_trips = table.set(100016),
 		so_group_fix = table.set(100096, 100097, 100099, 100100),
 	},
 }
@@ -72,7 +73,7 @@ M["levels/instances/unique/hox_breakout_road001/world/world"] = function(result)
 		local id = element.id
 
 		if roadblock.cops[id] then
-			element.values.enemy_table = diff_i < 5 and cops or swats
+			element.values.enemy_table = diff_i < 4 and cops or swats
 		elseif roadblock.swats[id] then
 			element.values.enemy_table = swats
 		elseif roadblock.swat_or_dozer[id] then
@@ -80,6 +81,40 @@ M["levels/instances/unique/hox_breakout_road001/world/world"] = function(result)
 		elseif roadblock.so_group_fix[id] then
 			element.values.ai_group = "enemies"
 			element.values.SO_access = law
+		elseif roadblock.spike_trips[id] then
+			element.values.on_executed = {
+				{ id = 100022, delay = 0 },
+				{ id = 100038, delay = 0 },
+				{ id = 100109, delay = 0 },
+				{ id = 100124, delay = 0 },
+				{ id = 100098, delay = 0 }, -- add swats near spike trips
+			}
+		end
+	end
+end
+M["levels/instances/unique/xmn/xmn_breakout_road001/world/world"] = function(result)
+	local roadblock = patches.road_blockade
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if roadblock.cops[id] then
+			element.values.enemy_table = diff_i < 4 and cops or swats
+		elseif roadblock.swats[id] then
+			element.values.enemy_table = swats
+		elseif roadblock.swat_or_dozer[id] then
+			element.values.enemy_table = diff_i < 6 and swats or swat_or_dozer
+		elseif roadblock.so_group_fix[id] then
+			element.values.ai_group = "enemies"
+			element.values.SO_access = law
+		elseif roadblock.spike_trips[id] then
+			element.values.on_executed = {
+				{ id = 100022, delay = 0 },
+				{ id = 100038, delay = 0 },
+				{ id = 100109, delay = 0 },
+				{ id = 100124, delay = 0 },
+				{ id = 100098, delay = 0 }, -- add swats near spike trips
+			}
 		end
 	end
 end

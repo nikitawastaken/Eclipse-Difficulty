@@ -47,14 +47,11 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local escape_dozer = {
-	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
-}
-local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = overkill_and_above and 5 or 3
+local harassers = overkill_and_above and 6 or 3
 local harasser_amount = {
 	values = {
 		amount = harassers,
@@ -99,33 +96,42 @@ local street_heli_amount = {
 local street_heli_enemy = {
 	enemy = ready_team_1,
 }
-local window_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local breach_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local window_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 75,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
 local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
 local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
+local ffo_countdown = {
+	ponr = {
+		length = 1200,
+		length_balance_mul = { 1.25, 1, 0.75, 0.75 },
+	},
+}
 
 return {
 	-- Combine some navigation areas
@@ -138,35 +144,35 @@ return {
 		},
 	},
 	--PONR
-	[100695] = {
-		ponr = {
-			length = 60,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
-		},
-	},
+	[400013] = ffo_countdown,
+	[400016] = ffo_countdown,
 	-- Add new reinforce
-	[101825] = { -- Interrogation started
+	[100131] = { -- police_called
 		reinforce = {
 			{
-				name = "staircase_main1",
+				name = "staircase_main01",
 				force = 2,
 				position = Vector3(-1250, -2750, 300),
 			},
 			{
-				name = "staircase_main2",
+				name = "staircase_main02",
 				force = 2,
 				position = Vector3(-1250, -2750, 1000),
 			},
 			{
-				name = "staircase_side1",
+				name = "staircase_side01",
 				force = 2,
 				position = Vector3(-1250, 975, 475),
 			},
 			{
-				name = "staircase_side2",
+				name = "staircase_side02",
 				force = 2,
 				position = Vector3(-1850, 1000, 1375),
 			},
+		},
+		-- police called, call in da choppa
+		on_executed = {
+			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	-- tweak power boxes
@@ -194,9 +200,6 @@ return {
 			amount = is_eclipse and 4 or 3,
 		},
 	},
-	-- Tweak diff scaling
-	[102305] = disabled, -- saw in place, diff 0.75
-	[101760] = disabled, -- interrogation started, diff 1
 	-- Multiple interrupts once more (pain)
 	[102978] = {
 		on_executed = {
@@ -206,8 +209,8 @@ return {
 	-- fix Taxman's getting into the limo event
 	[101581] = {
 		on_executed = {
-			{ id = 101599, delay = 2.5 },
-			{ id = 101582, delay = 2.5 },
+			{ id = 101599, delay = 2 },
+			{ id = 101582, delay = 2 },
 		},
 	},
 	[101578] = {
@@ -380,6 +383,7 @@ return {
 	[100130] = {
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 20 },
+			{ id = 400046, delay = 240, delay_rand = 60 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -569,11 +573,6 @@ return {
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
 		},
 	},
-	[100131] = { -- police called, call in da choppa
-		on_executed = {
-			{ id = 101608, delay = chopper_delay_init },
-		},
-	},
 	[101608] = {
 		values = {
 			trigger_times = 0,
@@ -709,6 +708,85 @@ return {
 			amount = is_pro_job and 2 or 1,
 		},
 	},
+	-- make the the ambush roof spawns near the end of the heist less ass
+	-- increase the amount of units
+	[102424] = {
+		values = {
+			amount = is_eclipse and 2 or 1,
+			amount_random = 1,
+		},
+	},
+	-- change cloaker's position and their SO
+	[102409] = {
+		values = {
+			participate_to_group_ai = true,
+			position = Vector3(420.769, 2837.680, 1743),
+			rotation = Rotation(90, 0, 0),
+		},
+		on_executed = {
+			{ id = 102123, delay = 0 },
+		},
+	},
+	[102123] = {
+		values = {
+			use_instigator = true,
+			position = Vector3(102.101, 2833.002, 1750),
+			rotation = Rotation(90, 0, 0),
+		},
+	},
+	-- change dozer's positions and always spawn them in pairs
+	[102433] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
+		values = {
+			position = Vector3(-664.130, 3054.638, 1821),
+			rotation = Rotation(-88, 0, 0),
+		},
+	},
+	[102434] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
+		values = {
+			position = Vector3(-656.111, 3152.987, 1817),
+			rotation = Rotation(-112, 0, 0),
+		},
+	},
+	[102435] = {
+		values = {
+			amount = 2,
+		},
+	},
+	-- change front shield's positions and their SOs
+	[102410] = {
+		values = {
+			position = Vector3(-815.537, 2995.424, 1825),
+			rotation = Rotation(-89, 0, 0),
+		},
+	},
+	[102411] = {
+		values = {
+			position = Vector3(-795.728, 3104.885, 1825),
+			rotation = Rotation(-105, 0, 0),
+		},
+	},
+	[102412] = {
+		values = {
+			position = Vector3(-720, 2954, 1842),
+			rotation = Rotation(-90, 0, 0),
+		},
+	},
+	[102413] = {
+		values = {
+			position = Vector3(-701.068, 3084.950, 1814),
+			rotation = Rotation(-102, 0, 0),
+		},
+	},
+	-- spawn both front and back shields on overkill above
+	[102430] = {
+		values = {
+			amount = overkill_and_above and 2 or 1,
+		},
+	},
+	-- disable the redundant cloaker group
+	[102429] = disabled,
 	-- Spawn group intervals
 	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
 	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
@@ -744,9 +822,6 @@ return {
 	[103079] = law_team,
 	-- tweak SO access
 	[102610] = fbi_intro_so,
-	-- Escape Dozers
-	[102433] = escape_dozer,
-	[102434] = escape_dozer,
 	-- Harassers
 	[102436] = harasser,
 	[102437] = harasser,

@@ -111,7 +111,7 @@ return {
 	[101436] = exclude_cop_agents_shields_dozers,
 	[101507] = exclude_cop_agents_shields_dozers,
 	-- cops now use climbing SOs on first assault (Eclipse exclusive event)
-	-- disable this on Eclipse
+	-- disable this on Death Wish
 	[101496] = {
 		values = {
 			enabled = is_eclipse and false,
@@ -166,7 +166,7 @@ return {
 			{ id = 100965, delay = 180, delay_rand = 120 },
 		},
 	},
-	-- loop the choppa+2 chopper spawns on Eclipse
+	-- loop the choppa+2 chopper spawns on Death Wish
 	[100965] = {
 		on_executed = {
 			{ id = 400009, delay = 0 },

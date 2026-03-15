@@ -36,11 +36,6 @@ local enemy_filter_dozers = {
 		},
 	},
 }
-local elevator_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local office_window_spawn = {
 	values = {
 		interval = 15,
@@ -166,8 +161,6 @@ return {
 	[103644] = enemy_filter_dozers,
 ]]
 	-- Spawn group intervals
-	[102784] = elevator_spawn,
-	[102828] = elevator_spawn,
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,
 	[102376] = staircase_spawn,

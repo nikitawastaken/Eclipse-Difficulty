@@ -37,20 +37,15 @@ local unused_sniper_trigger_times = {
 		enabled = true,
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-}
 local window_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local boat_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -72,17 +67,17 @@ local chopper_trigger_times = {
 	},
 }
 return {
-	[100945] = {
+	[100945] = { -- Open train doors - heist start
 		ponr = {
-			length = 900,
-			player_mul = { 2, 1.25, 1, 0.8 },
+			length = 800,
+			length_balance_mul = { 2, 1.25, 1, 0.75 },
 		},
 	},
 	[100810] = {
 		reinforce = {
 			{
 				name = "gate",
-				force = 4,
+				force = 3,
 				position = Vector3(1625, 3575, 950),
 			},
 		},
@@ -141,9 +136,6 @@ return {
 	[400007] = scripted_swat_van_spawn,
 	[400015] = scripted_swat_van_spawn,
 	[400023] = scripted_swat_van_spawn,
-	[100817] = roof_spawn,
-	[101024] = roof_spawn,
-	[101029] = roof_spawn,
 	[100605] = window_spawn,
 	[100177] = boat_spawn,
 	[100737] = boat_spawn,
