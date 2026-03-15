@@ -461,13 +461,17 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 
 	multiplier = multiplier + 1 - self._reload_speed_multiplier
 
+	if self:clip_not_empty() then
+		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_not_empty_speed_multiplier or 1)
+	elseif self:clip_empty() then
+		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_empty_speed_multiplier or 1)
+	end
+
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
 		multiplier = multiplier + 1 - pm:upgrade_value(category, "reload_speed_multiplier", 1)
 
 		if category == "shotgun" then -- shotgun reload speed stuff
-			local current_weapon_is_double_barrel = self:_weapon_tweak_data_id() == "huntsman" or self:_weapon_tweak_data_id() == "b682" or self:_weapon_tweak_data_id() == "coach"
-
-			if self._use_shotgun_reload or current_weapon_is_double_barrel then
+			if self._use_shotgun_reload or self:weapon_tweak_data().double_barrel then
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 			else
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "mag_reload_speed_mul", 1)

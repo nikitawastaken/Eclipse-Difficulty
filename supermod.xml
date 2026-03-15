@@ -455,7 +455,6 @@
 			</group>
 		</group>
 
-
 		<group name="guis/dlcs/">
 			<group :name="eclipse/textures/pd2/blackmarket/icons/">
 				<file :name="mods/wpn_fps_upg_charm_eclipse.texture" />
@@ -725,6 +724,43 @@
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
 
+		<!-- LMG iron sights -->
+		<group name="units/pd2_dlc_gage_lmg/weapons/">
+			<group :name="wpn_fps_lmg_m249_pts/">
+				<file :name="wpn_fps_lmg_m249_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_gage_historical/weapons/">
+			<group :name="wpn_fps_lmg_mg42_pts/">
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_par/weapons/">
+			<group :name="wpn_fps_lmg_par_pts/">
+				<file :name="wpn_fps_lmg_par_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_atw/weapons/">
+			<group :name="wpn_fps_lmg_m60_pts/">
+				<file :name="wpn_fps_lmg_m60_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.unit"/>
+			</group>
+		</group>
+		
 		<group name="units/pd2_halloween/weapons/">
 			<group :name="wpn_mel_titan_sword/">
 				<file :name="wpn_mel_titan_sword.cooked_physics"/>

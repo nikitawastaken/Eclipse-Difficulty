@@ -1,0 +1,34 @@
+<dynamic_object>
+	<diesel orientation_object="rp_wpn_fps_lmg_mg42_reciever"/>
+   
+	<animations>
+		<animation_group name="reload">
+		  <object name="anim_draghandle_reload" enabled="true" />
+		  <object name="anim_mag_hatch_reload" enabled="true" />
+		  <object name="anim_lid_reload" enabled="true" />
+		  <object name="anim_draghandle_reload" enabled="true" />
+		  <object name="anim_dh_reload" enabled="true" />
+		  <object name="anim_mag_reload" enabled="true" />
+		  <object name="a_belt_2_reload" enabled="true" />
+		  <object name="a_belt_3_reload" enabled="true" />
+		  <object name="a_belt_4_reload" enabled="true" />
+		  <object name="anim_mag_handle_reload" enabled="true" />
+		</animation_group>
+		
+		<animation_group name="reload_not_empty">
+		  <object name="anim_draghandle_reload_not_empty" enabled="true" />
+		  <object name="anim_mag_hatch_reload_not_empty" enabled="true" />
+		  <object name="anim_lid_reload_not_empty" enabled="true" />
+		  <object name="anim_draghandle_reload_not_empty" enabled="true" />
+		  <object name="anim_dh_reload_not_empty" enabled="true" />
+		  <object name="anim_mag_reload_not_empty" enabled="true" />
+		  <object name="a_belt_2_reload_not_empty" enabled="true" />
+		  <object name="a_belt_3_reload_not_empty" enabled="true" />
+		  <object name="a_belt_4_reload_not_empty" enabled="true" />
+		  <object name="anim_mag_handle_not_empty" enabled="true" />
+		</animation_group>
+		
+		<animation_group name="recoil">
+		</animation_group>
+	</animations>
+</dynamic_object>
