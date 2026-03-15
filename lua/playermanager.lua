@@ -972,8 +972,8 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		peer and peer:id() or 0,
-		movement
+		movement,
+		peer and peer:id() or 0
 	)
 	self:sync_carry_data(
 		unit,
@@ -986,8 +986,8 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		peer and peer:id() or 0,
-		movement
+		movement,
+		peer and peer:id() or 0
 	)
 
 	if unit:carry_data()._global_event then
@@ -1008,8 +1008,8 @@ function PlayerManager:sync_carry_data(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	peer_id,
-	movement
+	movement,
+	peer_id
 )
 	local throw_distance_multiplier = self:upgrade_value_by_level("carry", "throw_distance_multiplier", throw_distance_multiplier_upgrade_level, 1)
 	local carry_type = tweak_data.carry[carry_id].type
