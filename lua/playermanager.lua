@@ -973,7 +973,7 @@ function PlayerManager:server_drop_carry(
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
 		peer and peer:id() or 0,
-		movement,
+		movement
 	)
 	self:sync_carry_data(
 		unit,
@@ -987,7 +987,7 @@ function PlayerManager:server_drop_carry(
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
 		peer and peer:id() or 0,
-		movement,
+		movement
 	)
 
 	if unit:carry_data()._global_event then
