@@ -206,6 +206,6 @@ function UnitNetworkHandler:sync_carry_data(
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
 		peer_id,
-		movement,
+		movement
 	)
 end
