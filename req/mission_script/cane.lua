@@ -96,6 +96,18 @@ return {
 			{ id = 101536, delay = 0, delay_rand = 40 }, -- roof basics
 		},
 	},
+	-- swap out start_assault link with end_assault
+	[100581] = {
+		on_executed = {
+			{ id = 100767, remove = true },
+		},
+	},
+	[100405] = {
+		on_executed = {
+			{ id = 101155, remove = true },
+			{ id = 100767, delay = 0 },
+		},
+	},
 	-- Tweak one of the back spawngroups
 	[102374] = {
 		values = {

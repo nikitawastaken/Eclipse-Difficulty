@@ -44,12 +44,7 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		amount = normal and 3 or hard and 5 or 7,
-	},
-}
-local trucks_amount = {
-	values = {
-		amount = normal and 2 or hard and 4 or 5,
+		amount = normal and 2 or hard and 5 or 6,
 	},
 }
 return {
@@ -91,11 +86,6 @@ return {
 	[100323] = bags_required,
 	[100512] = bags_required,
 	[102738] = bags_required,
-	-- tweak the amount of GenSec trucks
-	[100032] = trucks_amount,
-	[100033] = trucks_amount,
-	[100034] = trucks_amount,
-	[100035] = trucks_amount,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
