@@ -1009,7 +1009,7 @@ function PlayerManager:sync_carry_data(
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
 	peer_id,
-	movement,
+	movement
 )
 	local throw_distance_multiplier = self:upgrade_value_by_level("carry", "throw_distance_multiplier", throw_distance_multiplier_upgrade_level, 1)
 	local carry_type = tweak_data.carry[carry_id].type
