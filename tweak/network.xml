@@ -132,9 +132,8 @@
 			<message name="sync_carry_data"/>
 			<param type="int" min="0" max="15"/>
 		</search>
-		<target mode="replace">
+		<target mode="attach">
 			<param type="vector3"/> <!-- Add movement vector -->
-			<param type="int" min="0" max="15"/> <!-- peer_id -->
 		</target>
 	</tweak>
 </tweaks>
