@@ -1995,7 +1995,7 @@ function GroupAIStatePonr:_upd_assault_task(...)
 			managers.hud:check_anticipation_voice(task_data.phase_end_t - t)
 			managers.hud:check_start_anticipation_music(task_data.phase_end_t - t)
 
-			if task_data.is_hesitating and task_data.voice_delay < self._t then
+			if task_data.is_hesitating and task_data.voice_delay and task_data.voice_delay < self._t then
 				if self._hostage_headcount > 0 then
 					local best_group = nil
 
