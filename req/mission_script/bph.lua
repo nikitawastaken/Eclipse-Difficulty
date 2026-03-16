@@ -1,28 +1,44 @@
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local set_diff_groups = Eclipse.utils.set_diff_groups
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
+local filter_easy_above = {
+	values = set_diff_groups("easy_above"),
+}
 local standard_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local standard_init_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local standard_init_spawn_why_does_it_have_11_spawn_points = {
+	values = {
+		interval = standard_init_spawn.values.interval,
+		interval_balance_mul = standard_init_spawn.values.interval_balance_mul,
+		elements = { 100426, 100204, 100200, 100192, 100199, 100193 },
+	},
+	groups = standard_init_spawn.groups,
 }
 local tower_spawn = {
 	values = {
 		interval = 25,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local flank_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -41,7 +57,7 @@ local death_row_spawns = {
 		{ id = 101682, delay = 0 },
 	},
 }
-local cell_unlock_timer = 60 + (diff_i * 10) * (is_pro_job and 1.5 or 1)
+local cell_unlock_timer = (60 + (diff_i * 10)) * (is_pro_job and 1.5 or 1)
 local ai_remove_area_triggers = {
 	values = {
 		instigator = "enemies_all",
@@ -51,6 +67,9 @@ local disabled = {
 	values = {
 		enabled = false,
 	},
+}
+local difficulty_add_25 = {
+	difficulty_add = 0.25,
 }
 return {
 	-- Combine some navigation areas
@@ -81,6 +100,38 @@ return {
 	[100991] = ai_remove_area_triggers,
 	[100985] = ai_remove_area_triggers,
 	[100984] = ai_remove_area_triggers,
+	-- Adjusted diff curve
+	[100022] = difficulty_add_25, -- Alarm (0.25)
+	[101283] = difficulty_add_25, -- Intro ambush completed (0.5)
+	[102997] = difficulty_add_25, -- Put drill on canteen door (0.75), OR
+	[103010] = difficulty_add_25, -- Put drill on laundry door (0.75)
+	[100269] = difficulty_add_25, -- Door to Bain opened (1)
+	-- Modify intro ambush kill requirement, adding more difficulty scaling as well as player scaling
+	[101344] = disabled,
+	[101336] = filter_easy_above,
+	[101334] = {
+		pre_func = function(self)
+			if self._modified_counter_triggers then
+				return
+			end
+			self._modified_counter_triggers = true
+			local counter_trigger = self:get_mission_element(100903)
+			if counter_trigger then
+				local intro_ambush_kill_requirement = {}
+				for i = 1, 8 do
+					intro_ambush_kill_requirement[i] = math.ceil(10 + i * diff_i)
+				end
+				local values = counter_trigger:values()
+				values.amount = managers.groupai:state():_get_balancing_multiplier(intro_ambush_kill_requirement)
+				for _, id in ipairs(values.elements or {}) do
+					local counter = counter_trigger:get_mission_element(id)
+					counter:add_trigger(counter_trigger:id(), values.trigger_type, values.amount, callback(counter_trigger, counter_trigger, "on_executed"))
+				end
+			end
+		end,
+	},
+	-- Never switch from hunt to standard besiege on Pro Jobs
+	[100115] = is_pro_job and disabled or nil,
 	-- Adjust watchtower door logic
 	-- Door is openable immediately, but the lever is not interactable until the normal time
 	[101547] = {
@@ -97,12 +148,10 @@ return {
 	-- No regular PONR, replace with FFO on Pro Jobs
 	[101161] = disabled,
 	[102736] = {
-		ponr = {
-			length = 300,
-			length_balance_mul = { 1.25, 1, 1, 1 },
-		},
+		set_ponr_state = true,
 		on_executed = {
 			{ id = 101689, delay = 0 },
+			{ id = 101159, delay = 0.2 }, -- Delay hunt just long enough to avoid FFO's forced break :julespig:
 		},
 	},
 	-- Extended cell unlock timer slightly on high difficulties (even more on Pro Jobs)
@@ -113,6 +162,8 @@ return {
 	},
 	-- Disable hiding Cloaker spots, they are very poorly set up (and unnecessary on this heist)
 	[100800] = disabled,
+	-- Prevent watchtower bridge reinforce point from being removed
+	[102911] = disabled,
 	-- Replace some Murky guards with heavy SWAT
 	[101059] = heavy_swats, -- Intro
 	[101060] = heavy_swats,
@@ -184,7 +235,7 @@ return {
 	[100663] = standard_spawn,
 	[100669] = standard_spawn,
 	[100675] = standard_spawn,
-	[100741] = standard_init_spawn,
+	[100741] = standard_init_spawn_why_does_it_have_11_spawn_points,
 	[100131] = standard_init_spawn,
 	[101365] = tower_spawn,
 	[103529] = tower_spawn,
