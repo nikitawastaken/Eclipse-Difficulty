@@ -71,11 +71,17 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 	-- We love spawn group elements
 	local group_data = element._group_data
 	if group_data then
-		group_data.spawn_points = data.elements or group_data.spawn_points
 		group_data.amount = data.amount or group_data.amount
 		group_data.spawn_type = data.spawn_type or group_data.spawn_type
 		if data.ignore_disabled ~= nil then
 			group_data.ignore_disabled = data.ignore_disabled
+		end
+		if data.elements then
+			group_data.spawn_points, element._unused_randoms = {}, {}
+			for i, id in ipairs(data.elements) do
+				table.insert(element._unused_randoms, i)
+				table.insert(group_data.spawn_points, element:get_mission_element(id))
+			end
 		end
 	end
 end
