@@ -8,7 +8,7 @@ local mga_vault_event = {
 local bridge_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.2, 1 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
