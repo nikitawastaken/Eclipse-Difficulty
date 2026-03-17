@@ -174,6 +174,9 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		"cn_nightc3",
 	}
 
+	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+	local pdth_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4, })
+
 	-- If you want money, you stay and get additional loot- otherwise all you get is mainly XP
 	-- These are base values only, the rest is handled by difficulty_multiplier_payout for now (moneytweakdata)
 	self.jobs.jewelry_store.payout = { 25000 }
@@ -191,12 +194,13 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.election_day.payout = { 150000 }
 	self.jobs.rat.payout = { 75000 }
 	self.jobs.alex.payout = { 75000 }
-	self.jobs.firestarter.payout = { 100000 }
+	self.jobs.firestarter.payout = { 180000 }
 	self.jobs.watchdogs.payout = { 150000 }
+	self.jobs.watchdogs_wrapper.payout = { 150000 }
 	self.jobs.family.payout = { 50000 }
-	self.jobs.welcome_to_the_jungle_wrapper_prof.payout = { 450000 }
-	self.jobs.welcome_to_the_jungle_wrapper.payout = { 450000 }
-	self.jobs.welcome_to_the_jungle.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle_wrapper_prof.payout = { 650000 }
+	self.jobs.welcome_to_the_jungle_wrapper.payout = { 650000 }
+	self.jobs.welcome_to_the_jungle.payout = { 650000 }
 	self.jobs.framing_frame.payout = { 250000 }
 	self.jobs.big.payout = { 120000 }
 	self.jobs.roberts.payout = { 75000 }
@@ -215,11 +219,11 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.dinner.payout = { 75000 }
 	self.jobs.pbr.payout = { 250000 }
 	self.jobs.pbr2.payout = { 650000 }
-	self.jobs.pal.payout = { 200000 }
+	self.jobs.pal.payout = { 560000 }
 	self.jobs.cane.payout = { 100000 }
-	self.jobs.nail.payout = { 6000 }
+	self.jobs.nail.payout = { 2015 }
 	self.jobs.peta.payout = { 2016 }
-	self.jobs.man.payout = { 500000 }
+	self.jobs.man.payout = { 1250000 }
 	self.jobs.dark.payout = { 175000 }
 	self.jobs.mad.payout = { 250000 }
 	self.jobs.mus.payout = { 75000 }
@@ -229,15 +233,15 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.moon.payout = { 75000 }
 	self.jobs.spa.payout = { 200000 }
 	self.jobs.fish.payout = { 100000 }
-	self.jobs.flat.payout = { 118000 }
-	self.jobs.help.payout = { 6000 }
-	self.jobs.run.payout = { 270000 }
-	self.jobs.glace.payout = { 375000 }
-	self.jobs.haunted.payout = { 20000 }
+	self.jobs.flat.payout = { 900000 }
+	self.jobs.help.payout = { 2016 }
+	self.jobs.run.payout = { 750000 }
+	self.jobs.glace.payout = { 875000 }
+	self.jobs.haunted.payout = { 2013 }
 	self.jobs.dah.payout = { 215750 }
 	self.jobs.rvd.payout = { 15000 }
 	self.jobs.brb.payout = { 8000 }
-	self.jobs.hvh.payout = { 20000 }
+	self.jobs.hvh.payout = { 2017 }
 	self.jobs.wwh.payout = { 175000 }
 	self.jobs.tag.payout = { 270000 }
 	self.jobs.des.payout = { 350000 }
@@ -257,7 +261,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.corp.payout = { 320000 }
 	self.jobs.deep.payout = { 670465 }
 	self.jobs.boss.payout = { 50000 }
-	self.jobs.nmh.payout = { 120000 }
+	self.jobs.nmh.payout = { 420000 }
 	self.jobs.sah.payout = { 100000 }
 
 	--Halloween heists gets Stonecold's (PDTH Alpha) menu movie (mysterious)
