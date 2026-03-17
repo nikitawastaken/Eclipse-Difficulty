@@ -34,7 +34,7 @@ local dozer_van_chance = {
 local standard_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },	
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local cloaker_spawn = {

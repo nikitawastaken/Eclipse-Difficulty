@@ -7,13 +7,13 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.6, 1.35, 1.1, 0.85 }
+		interval_balance_mul = { 1.6, 1.35, 1.1, 0.85 },
 	},
 }
 local skylight_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.6, 1.35, 1.1, 0.85 }
+		interval_balance_mul = { 1.6, 1.35, 1.1, 0.85 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

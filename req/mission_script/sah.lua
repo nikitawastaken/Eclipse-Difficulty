@@ -63,7 +63,7 @@ return {
 		},
 	},
 	-- PONR state
---	[101175] = disabled,
+	--	[101175] = disabled,
 	[101006] = {
 		set_ponr_state = true,
 	},
@@ -80,13 +80,13 @@ return {
 			{
 				name = "auction_room",
 				force = 3,
-				position = Vector3(0, 2000, -100)
+				position = Vector3(0, 2000, -100),
 			},
 			{
 				name = "outside",
 				force = 3,
-				position = Vector3(0, -3300, -50)
-			}
+				position = Vector3(0, -3300, -50),
+			},
 		},
 		on_executed = {
 			{ id = 100127, delay = 0 },
