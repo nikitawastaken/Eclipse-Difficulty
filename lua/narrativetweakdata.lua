@@ -174,9 +174,6 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		"cn_nightc3",
 	}
 
-	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local pdth_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4, })
-
 	-- If you want money, you stay and get additional loot- otherwise all you get is mainly XP
 	-- These are base values only, the rest is handled by difficulty_multiplier_payout for now (moneytweakdata)
 	self.jobs.jewelry_store.payout = { 25000 }
