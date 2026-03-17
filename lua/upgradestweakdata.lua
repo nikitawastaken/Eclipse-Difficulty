@@ -751,6 +751,9 @@ function UpgradesTweakData:init(tweak_data)
 	-- Weapons
 	-------------
 
+	-- Akimbo price multiplier
+	self.weapon_cost_multiplier.akimbo = 0.8
+	
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
 	self.weapon_movement_penalty.heavy = 0.8
