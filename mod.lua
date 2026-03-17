@@ -30,6 +30,18 @@ if not Eclipse then
 		return io.file_is_readable(path) and blt.vm.dofile(path)
 	end
 
+	-- Similar to Eclipse:require() but does all found files in a folder
+	-- Supports only single returns for each file
+	function Eclipse:require_all_in_folder(folder)
+		local results = {}
+		local path = self.mod_path .. "req/" .. folder .. "/"
+		for _, file in pairs(file.GetFiles(path)) do
+			local result = blt.vm.dofile(path .. file)
+			table.insert(results, result)
+		end
+		return next(results) and results
+	end
+
 	function Eclipse:instance_script_patches()
 		if self._instance_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
@@ -62,18 +74,18 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-	function Eclipse:log_console(...)
+	function Eclipse:log_console(str, ...)
 		if self.logging then
-			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
+			log("[EclipseOverhaul] " .. str:format(...))
 		end
 	end
 
-	function Eclipse:warn_console(...)
-		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
+	function Eclipse:warn_console(str, ...)
+		log("[EclipseOverhaul][Warning] " .. str:format(...))
 	end
 
-	function Eclipse:error_console(...)
-		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
+	function Eclipse:error_console(str, ...)
+		log("[EclipseOverhaul][Error] " .. str:format(...))
 	end
 
 	function Eclipse:log_chat(...)

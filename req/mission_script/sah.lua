@@ -6,24 +6,26 @@ local disabled = {
 }
 local storage_far_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local roof_far_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local roof_close_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local storage_close_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 }
 local storage_window_spawn = {
@@ -116,6 +118,7 @@ return {
 	[106776] = roof_far_spawn,
 	[106779] = roof_far_spawn,
 	[100133] = roof_close_spawn,
+	[100154] = roof_close_spawn,
 	[100694] = roof_close_spawn,
 	[106826] = roof_close_spawn,
 	[102303] = storage_close_spawn,

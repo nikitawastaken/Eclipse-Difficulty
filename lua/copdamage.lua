@@ -562,7 +562,7 @@ function CopDamage:damage_bullet(attack_data)
 
 	-- Reduce damage when hitting Tan Heavy armor plates
 	if hit_plate then
-		damage = damage * (attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul and attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul.armor or 1)
+		damage = damage * 0.75
 	end
 
 	local dst = mvector3.distance(attack_data.origin, self._unit:position())

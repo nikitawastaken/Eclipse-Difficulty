@@ -164,6 +164,11 @@ function GroupAIStateBesiege:besiege_assault_phase()
 	return task_data and task_data.phase
 end
 
+function GroupAIStateBesiege:_active_ecm_sniper_block()
+	local is_active = self:is_ecm_jammer_active("block_snipers")
+	return is_active
+end
+
 function GroupAIStateBesiege:_active_ecm_police_comms_jamm()
 	local is_active = self:is_ecm_jammer_active("police_comms")
 	return is_active, 1 / tweak_data.upgrades.ecm_jammer_comms_jamming_multiplier
@@ -1168,11 +1173,35 @@ function GroupAIStateBesiege:_upd_group_spawning()
 	end
 end
 
-function GroupAIStateBesiege:spawn_rate(use_balance_mul)
+function GroupAIStateBesiege:spawn_rate()
+	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
+	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
+
+	local function get_drama_spawn_rate_entry(k)
+		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
+	end
+
+	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight)
+	local spawn_rate = self._task_data.assault.phase == "sustain" and {
+		get_drama_spawn_rate_entry(1),
+		get_drama_spawn_rate_entry(2),
+		get_drama_spawn_rate_entry(3),
+	} or regular_spawnrate_tbl
+
+	--	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
+
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
-	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate)
-		* (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
-		* (are_police_comms_ecm_jammed and jammed_police_comms_mul or 1)
+	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
+
+	--[[
+	if self._task_data.assault.phase == "sustain" then
+		Eclipse:log_chat("Spawn rate for drama value " .. self._drama_data.amount .. " set to " .. self:_get_difficulty_dependent_value(spawn_rate))
+	else
+		Eclipse:log_chat("Current phase is not sustain, so no drama-based spawnrate.")
+	end
+]]
+
+	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
@@ -1312,7 +1341,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	end
 
 	-- Set a dynamic enemy spawn rate that scales with player count and difficulty value
-	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate(true))
+	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate())
 end
 
 local function spawn_group_id(spawn_group)
@@ -1966,7 +1995,7 @@ function GroupAIStatePonr:_upd_assault_task(...)
 			managers.hud:check_anticipation_voice(task_data.phase_end_t - t)
 			managers.hud:check_start_anticipation_music(task_data.phase_end_t - t)
 
-			if task_data.is_hesitating and task_data.voice_delay < self._t then
+			if task_data.is_hesitating and task_data.voice_delay and task_data.voice_delay < self._t then
 				if self._hostage_headcount > 0 then
 					local best_group = nil
 

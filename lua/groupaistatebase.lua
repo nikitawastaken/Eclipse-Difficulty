@@ -63,7 +63,7 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul)
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul, tweak_data.drama.team_ai_drama_balance_mul_weight)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
@@ -515,6 +515,22 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "eclipse_add_special_ob
 	end
 end)
 
+-- Additional handling for interval balance multipliers to work
+-- GroupAI keeps its own record of the interval rather than asking the spawn group element each time
+Hooks:PostHook(GroupAIStateBase, "create_spawn_group", "eclipse_create_spawn_group", function(self, id, spawn_group)
+	local new_spawn_group_data = Hooks:GetReturn()
+	if new_spawn_group_data then
+		new_spawn_group_data.interval = nil
+		setmetatable(new_spawn_group_data, {
+			__index = function(t, k)
+				if k == "interval" then
+					return spawn_group:value("interval")
+				end
+			end,
+		})
+	end
+end)
+
 -- Setup sentry marking via host
 function GroupAIStateBase:register_marking_sentry(unit)
 	if unit:base().sentry_gun and unit:base():has_marking() then
@@ -590,6 +606,7 @@ end
 -- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting
 -- Spawn noise being used is now a tweakdata flag
 -- Idle noise and goggles being on while hiding are now tweakdata flags
+local hiding_cloaker_vec1, hiding_cloaker_vec2 = Vector3(), Vector3()
 local junk_reason_group_nil = "group_nil"
 local junk_reason_group_mismatch = "groups_mismatched"
 local junk_reason_group_empty = "group_empty"

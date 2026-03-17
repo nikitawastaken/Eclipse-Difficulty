@@ -21,7 +21,7 @@ end
 function MutatorGraceTroll:modify_value(id, value)
 	if id == "PlayerDamage:DisableArmorGrace" and self:get_grace_troll_disable_armor_grace() then
 		return true
-	elseif id == "PlayerDamage:ReducedIFrameDamage" and self:get_grace_troll_reduced_iframe_damage() then
+	elseif id == "PlayerDamage:VanillaGracePiercing" and self:get_grace_troll_reduced_iframe_damage() then
 		return true
 	end
 
@@ -420,7 +420,7 @@ MutatorNoOutlines.icon_coords = {
 }
 
 function MutatorNoOutlines:modify_value(id, value)
-	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" then
+	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" or id == "ElementWaypoint:NoOutlines" then
 		return true
 	end
 	return value

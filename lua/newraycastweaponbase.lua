@@ -39,8 +39,11 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 	end
 
+	self._penetration_data = weapon_tweak.penetration or {}
+
 	self._explosive_ammo = weapon_tweak.explosive_ammo
 	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
+	self._max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
 
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
@@ -59,6 +62,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
 
 	self._fire_mode_multipliers = weapon_tweak.fire_mode_multipliers or {}
+
+	self._moving_steelsight_spread_mul = spread_muls and spread_muls.moving and spread_muls.moving.steelsight or 1
 
 	local recoil_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.recoil
 	local spread_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.spread
@@ -92,6 +97,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	for _, stats in pairs(custom_stats) do
 		if stats.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = stats.steelsight_move_speed_mul
+		end
+
+		if stats.max_nr_enemy_penetrations then
+			self._max_nr_enemy_penetrations = stats.max_nr_enemy_penetrations
 		end
 
 		if stats.swap_speed_multiplier then
@@ -452,13 +461,17 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 
 	multiplier = multiplier + 1 - self._reload_speed_multiplier
 
+	if self:clip_not_empty() then
+		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_not_empty_speed_multiplier or 1)
+	elseif self:clip_empty() then
+		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_empty_speed_multiplier or 1)
+	end
+
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
 		multiplier = multiplier + 1 - pm:upgrade_value(category, "reload_speed_multiplier", 1)
 
 		if category == "shotgun" then -- shotgun reload speed stuff
-			local current_weapon_is_double_barrel = self:_weapon_tweak_data_id() == "huntsman" or self:_weapon_tweak_data_id() == "b682" or self:_weapon_tweak_data_id() == "coach"
-
-			if self._use_shotgun_reload or current_weapon_is_double_barrel then
+			if self._use_shotgun_reload or self:weapon_tweak_data().double_barrel then
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 			else
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "mag_reload_speed_mul", 1)
@@ -567,7 +580,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	local multiplier = 1
 
 	local weapon_tweak = self:weapon_tweak_data()
-	local penetration_dmg_mul = weapon_tweak.penetration_damage_mul
 
 	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
 	self._hit_through_wall = self._hit_through_wall or hit.unit:in_slot(self.wall_mask)
@@ -576,30 +588,47 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
-		if self._enemy_penetrations > 1 then
-			local enemy_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.enemy or 1) ^ math.max(1, self._enemy_penetrations - 1)
+		local max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
+		if max_nr_enemy_penetrations then
+			for _, category in ipairs(self:categories()) do
+				max_nr_enemy_penetrations = max_nr_enemy_penetrations + managers.player:upgrade_value(category, "max_enemy_penetrations_addend", 1)
+			end
+		end
 
-			multiplier = multiplier * enemy_pen_mult
+		if self._penetration_data.enemy then
+			if self._enemy_penetrations > 1 then
+				if max_nr_enemy_penetrations and math.max(0, self._enemy_penetrations - 1) > max_nr_enemy_penetrations then
+					return 0
+				end
+
+				local enemy_pen_mult = (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
+
+				multiplier = multiplier * enemy_pen_mult
+			end
 		end
 	end
 
 	if self._hit_through_wall then
 		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
-		if self._wall_penetrations > 1 then
-			local wall_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.wall or 1) ^ math.max(1, self._wall_penetrations - 1)
+		if self._penetration_data.wall then
+			if self._wall_penetrations > 1 then
+				local wall_pen_mult = (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1)
 
-			multiplier = multiplier * wall_pen_mult
+				multiplier = multiplier * wall_pen_mult
+			end
 		end
 	end
 
 	if self._hit_through_shield then
 		self._shield_penetrations = (self._shield_penetrations or 0) + 1
 
-		if self._shield_penetrations > 1 then
-			local shield_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.shield or 1) ^ math.max(1, self._shield_penetrations - 1)
+		if self._penetration_data.shield then
+			if self._shield_penetrations > 1 then
+				local shield_pen_mult = (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
 
-			multiplier = multiplier * shield_pen_mult
+				multiplier = multiplier * shield_pen_mult
+			end
 		end
 	end
 

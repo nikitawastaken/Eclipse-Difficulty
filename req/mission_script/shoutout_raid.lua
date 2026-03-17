@@ -34,7 +34,7 @@ return {
 	[101731] = {
 		ponr = { -- Trigger once, warhead case opened
 			length = 480,
-			length_balance_mul = { 1.5, 1.125, 1, 1 },
+			length_balance_mul = { 1.75, 1.5, 1.25, 1 },
 		},
 	},
 	[100109] = { -- Police

@@ -1,9 +1,4 @@
 local preferred = Eclipse.preferred
-local disabled = {
-	values = {
-		enabled = false,
-	},
-}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -15,8 +10,15 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local greendozer_only = {
-	green_bulldozer,
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+local enabled = {
+	values = {
+		enabled = true,
+	},
 }
 local random_dozers = {
 	green_bulldozer,
@@ -47,7 +49,7 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		amount = normal and 3 or hard and 5 or 7,
+		amount = normal and 2 or hard and 5 or 6,
 	},
 }
 return {
@@ -86,6 +88,23 @@ return {
 				force = 2,
 				position = Vector3(-4800, -200, -175),
 			},
+		},
+	},
+	-- re-enable unused snipers
+	[100015] = enabled,
+	-- delay their spawn system
+	[100122] = {
+		on_executed = {
+			{ id = 100015, delay = 120 },
+		},
+	},
+	-- add missing Bain's warning about snipers
+	[100363] = {
+		on_executed = {
+			{ id = 400003, delay = 0 },
+			{ id = 400004, delay = 0 },
+			{ id = 400002, delay = 5 },
+			{ id = 400001, delay = 4 },
 		},
 	},
 	-- tweak the amount of required bags

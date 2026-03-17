@@ -26,10 +26,63 @@ function MissionManager.mission_script_patch_funcs.values(self, element, data)
 		Eclipse:log_console('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
 	end
 
+	if data.enemy and getmetatable(element) == ElementSpawnEnemyDummy then
+		Eclipse:warn_console(string.format("Bad scripted spawn patch on %u, fixing", element:id()))
+		self.mission_script_patch_funcs.enemy(self, element, data.enemy)
+		element._values.enemy = nil
+	end
+
+	if data.timer and element.timer_operation_set_time then
+		element:timer_operation_set_time(data.timer)
+	end
+
+	-- All of this just to be able to fix area triggers...
+	if data.instigator and element._instigator_find_func then
+		element._instigator_count_all_func = ElementAreaTrigger.instigator_project_all_functions[data.instigator]
+		element._instigator_count_inside_func = ElementAreaTrigger.instigator_project_inside_functions[data.instigator]
+		element._instigator_valid_func = ElementAreaTrigger.instigator_valid_functions[data.instigator]
+		if Network:is_client() then
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions_client[data.instigator]
+		else
+			element._instigator_find_func = ElementAreaTrigger.instigator_find_functions[data.instigator]
+			if element._values.trigger_on == "on_empty" then
+				local temp_switch = ElementAreaTrigger.on_empty_find_func_switch[data.instigator]
+				if temp_switch then
+					element._on_empty_find_func_switch = element._instigator_find_func
+					element._instigator_find_func = temp_switch
+				else
+					element._on_empty_find_func_switch = nil
+				end
+			end
+		end
+	end
+
 	-- Handle new spawn group element functionality
 	if data.interval and element._values.interval_reference then
 		element._values.interval_reference = data.interval
 		element._values.interval = nil
+	end
+
+	-- ASS edits
+	if data.chance and element._chance then
+		element._chance = data.chance
+	end
+
+	-- We love spawn group elements
+	local group_data = element._group_data
+	if group_data then
+		group_data.amount = data.amount or group_data.amount
+		group_data.spawn_type = data.spawn_type or group_data.spawn_type
+		if data.ignore_disabled ~= nil then
+			group_data.ignore_disabled = data.ignore_disabled
+		end
+		if data.elements then
+			group_data.spawn_points, element._unused_randoms = {}, {}
+			for i, id in ipairs(data.elements) do
+				table.insert(element._unused_randoms, i)
+				table.insert(group_data.spawn_points, element:get_mission_element(id))
+			end
+		end
 	end
 end
 

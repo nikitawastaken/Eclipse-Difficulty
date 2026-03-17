@@ -47,14 +47,10 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local alley_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
+		interval_balance_mul = { 2, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -79,26 +75,22 @@ return {
 			{
 				name = "parking_lot01",
 				force = 3,
-				position = Vector3(-1100, -400, 0),
+				position = Vector3(300, -1350, -15),
 			},
 			{
 				name = "parking_lot02",
 				force = 3,
-				position = Vector3(1800, -400, 0),
+				position = Vector3(1775, -425, -15),
 			},
 			{
 				name = "parking_lot03",
 				force = 3,
-				position = Vector3(525, -1325, 0),
+				position = Vector3(-1100, -425, -15),
 			},
-		},
-	},
-	[101584] = { -- fire done
-		reinforce = {
 			{
-				name = "entrance",
+				name = "reception",
 				force = 2,
-				position = Vector3(775, 925, 100),
+				position = Vector3(500, 800, 100),
 			},
 			{
 				name = "alley",
@@ -107,51 +99,27 @@ return {
 			},
 		},
 	},
-	[102193] = { -- cell block door opens
-		reinforce = {
-			{
-				name = "cells",
-				force = 2,
-				position = Vector3(-2300, 3925, 0),
-			},
-			{
-				name = "garage",
-				force = 4,
-				position = Vector3(-4550, -825, -260),
-			},
-		},
-	},
-	-- Add new preferreds and adjust existing ones
-	[100129] = { -- initial preferreds
+	-- Only activate certain preferreds after the first assault is over
+	[100021] = { -- completed_obj_fire
 		on_executed = {
-			{ id = 101574, remove = true }, -- roof preferreds
+			{ id = 101573, remove = true }, -- ai_enemy_prefered_garage_roof
 		},
 	},
-	[100021] = {
+	[100129] = { -- preferred
 		on_executed = {
-			{ id = 101573, remove = true }, -- garage roof preferreds
+			{ id = 101574, remove = true }, -- ai_preferred_police_roof
 		},
 	},
-	-- Don't remove roof preferreds
-	[104087] = {
+	[100123] = { -- end_assault
 		on_executed = {
-			{ id = 101572, remove = true }, -- remove garage roof preferreds
+			{ id = 101573, delay = 0, delay_rand = 30 }, -- ai_enemy_prefered_garage_roof
+			{ id = 101574, delay = 0, delay_rand = 30 }, -- ai_preferred_police_roof
 		},
 	},
-	[101571] = { -- fire started, enable roof preferreds
-		on_executed = {
-			{ id = 101574, delay = 0, delay_rand = 20 },
-		},
-	},
-	-- don't disable back cell preferreds
+	-- Don't disable cell preferreds
 	[101397] = {
 		on_executed = {
-			{ id = 102194, remove = true },
-		},
-	},
-	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
-		on_executed = {
-			{ id = 101573, delay = 0, delay_rand = 20 },
+			{ id = 102194, remove = true }, -- ai_enemy_prefered_remove_cells_back_spawn
 		},
 	},
 	-- replace the turret with a spawngroup
@@ -212,9 +180,6 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group intervals
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[100019] = alley_spawn,
-	[100131] = alley_spawn,
-	[104123] = alley_spawn,
 	[100132] = roof_spawn,
 	[104091] = roof_spawn,
 	[100128] = roof_spawn,

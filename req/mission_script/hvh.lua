@@ -6,7 +6,8 @@ local disabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
+		interval_balance_mul = { 2, 1.666, 1.333, 1 }, -- 666 :dwpj:
 	},
 }
 return {
@@ -22,8 +23,7 @@ return {
 		difficulty_add = 0.2,
 	},
 	-- Spawn group intervals
-	-- This heist is microscopic, thankfully whoever was setting up these spawns bothered to set them to 15s intervals.
-	-- That said, some of them could be slower because they are bit closer to player holdout areas.
+	-- This heist is microscopic.
 	[100651] = standard_spawn,
 	[101005] = standard_spawn,
 	[101010] = standard_spawn,

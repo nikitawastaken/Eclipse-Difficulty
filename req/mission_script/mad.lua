@@ -35,12 +35,14 @@ local wall_far_spawn = {
 local lab_lower_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_shields,
 }
 local lab_upper_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_bulldozers,
 }
@@ -66,8 +68,46 @@ return {
 	-- instantly start FFO when grabbing the server
 	[100176] = {
 		set_ponr_state = true,
+		reinforce = {
+			{ name = "lab_room01" },
+			{ name = "lab_room02" },
+			{ name = "lab_room03" },
+		},
 	},
 	[100524] = disabled,
+	-- Add new reinforce
+	[101583] = { -- area_player_downstairs
+		reinforce = {
+			{
+				name = "lab_room01",
+				force = 2,
+				position = Vector3(2675, 3225, -600),
+			},
+			{
+				name = "lab_room02",
+				force = 2,
+				position = Vector3(3300, 2550, -800),
+			},
+		},
+	},
+	[100337] = { -- x-ray_found_trigger003
+		reinforce = {
+			{
+				name = "lab_room03",
+				force = 2,
+				position = Vector3(1700, -60, -800),
+			},
+		},
+	},
+	[100339] = { -- x-ray_found_trigger005
+		reinforce = {
+			{
+				name = "lab_room03",
+				force = 2,
+				position = Vector3(-40, 1665, -700),
+			},
+		},
+	},
 	-- Disable instant difficulty increase
 	[101980] = disabled,
 	-- use unused lab spawn as random dozer unit

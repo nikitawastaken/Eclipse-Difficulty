@@ -561,14 +561,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	end
 
 	local team_ai_hp = get_difficulty_specific_value({
-		64,
-		64,
-		96,
-		128,
-		160,
+		60,
+		90,
+		120,
+		180,
+		240,
 	})
 
-	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.6 or 1) * (Keepers and 0.8 or 1)
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
 	presets.gang_member_damage.REGENERATE_RATIO = 1 / 50
 	presets.gang_member_damage.REGENERATE_TIME = 1
@@ -1992,6 +1992,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "pl14_tactical")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"))
+
+	table.insert(self.weap_ids, "ak47_elite")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_ak47_elite/wpn_npc_ak47_elite"))
 
 	table.insert(self.weap_ids, "svd_dmr")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))

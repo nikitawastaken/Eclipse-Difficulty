@@ -19,7 +19,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	local job_data = self._node:parameters().menu_component_data
 	self._customizable = job_data.customize_contract or false
 	self._smart_matchmaking = job_data.smart_matchmaking or false
-	local font_size = tweak_data.menu.pd2_small_font_size
+	local font_size = tweak_data.menu.pd2_small_font_size * 0.875
 	local font = tweak_data.menu.pd2_small_font
 	local risk_color = tweak_data.screen_colors.risk
 	local padding = tweak_data.gui.crime_net.contract_gui.padding
@@ -277,7 +277,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	local one_down_warning_text = self._contract_panel:text({
 		name = "one_down_warning_text",
-		text = " ",
+		text = managers.localization:to_upper_text("menu_one_down"),
 		font = font,
 		font_size = font_size,
 		color = tweak_data.screen_colors.one_down,
@@ -289,8 +289,8 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	next_top = one_down_warning_text:bottom()
 
-	if one_down_active then
-		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
+	if not one_down_active then
+		one_down_warning_text:set_visible(false)
 	end
 
 	local ghost_bonus_mul = managers.job:get_ghost_bonus()
@@ -387,7 +387,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	pro_warning_text:set_h(pro_warning_text:h())
 	pro_warning_text:set_left(double_padding)
 	pro_warning_text:set_top(next_top)
-	pro_warning_text:set_visible(narrative.professional)
+	pro_warning_text:set_visible(narrative.one_down)
 
 	if pro_warning_text:visible() then
 		next_top = pro_warning_text:bottom()
@@ -594,7 +594,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	local cy = experience_title:center_y()
 	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 		or 0
-	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, narrative.professional, #narrative_chains, {
+	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, narrative.one_down, #narrative_chains, {
 		ignore_heat = job_heat_value > 0 and self._customizable,
 		mission_xp = xp_min,
 	})
@@ -641,6 +641,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	self:make_fine_text(payday_text)
 	payday_text:set_bottom(self._contract_panel:h() - padding)
+	payday_text:set_visible(false)
 
 	self._briefing_event = narrative.briefing_event
 
@@ -958,7 +959,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	local days_multiplier = 0
 
 	for i = 1, #narrative_chains do
-		local day_mul = narrative.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", i) or tweak_data:get_value("experience_manager", "day_multiplier", i)
+		local day_mul = narrative.one_down and tweak_data:get_value("experience_manager", "pro_day_multiplier", i) or tweak_data:get_value("experience_manager", "day_multiplier", i)
 		days_multiplier = days_multiplier + day_mul - 1
 	end
 
@@ -1018,7 +1019,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 		visible = true,
 		layer = 3,
 		text = levelup_text,
-		font_size = tweak_data.menu.pd2_small_font_size,
+		font_size = font_size,
 		font = tweak_data.menu.pd2_small_font,
 		color = tweak_data.hud_stats.potential_xp_color,
 	})
@@ -1121,7 +1122,7 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 		local xp_max = contract_visuals.max_mission_xp
 				and (type(contract_visuals.max_mission_xp) == "table" and contract_visuals.max_mission_xp[difficulty_stars + 1] or contract_visuals.max_mission_xp)
 			or 0
-		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.one_down, #narrative_chains, {
 			ignore_heat = job_heat_value > 0 and self._customizable,
 			mission_xp = xp_max,
 		})
@@ -1135,7 +1136,7 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 		local xp_min = contract_visuals.min_mission_xp
 				and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 			or 0
-		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.one_down, #narrative_chains, {
 			ignore_heat = job_heat_value > 0 and self._customizable,
 			mission_xp = xp_min,
 		})
@@ -1283,7 +1284,7 @@ function CrimeNetContractGui:set_all(t, dt)
 	local contract_visuals = job_data.contract_visuals or {}
 	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 		or 0
-	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.one_down, #narrative_chains, {
 		ignore_heat = job_heat_value > 0 and self._customizable,
 		mission_xp = xp_min,
 	})
@@ -1467,6 +1468,69 @@ function CrimeNetContractGui:set_difficulty_id(difficulty_id)
 	self:set_potential_rewards(self._potential_show_max)
 end
 
+function CrimeNetContractGui:_create_xp_appendices(x, y)
+	local font_size = tweak_data.menu.pd2_small_font_size * 0.875
+	local font = tweak_data.menu.pd2_small_font
+	local job_xp = self._contract_panel:text({
+		text = "0",
+		name = "job_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.text,
+	})
+
+	self:make_fine_text(job_xp)
+	job_xp:set_x(x)
+	job_xp:set_center_y(y)
+
+	local add_xp = self._contract_panel:text({
+		text = "",
+		name = "add_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.risk,
+	})
+
+	add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(add_xp)
+	add_xp:set_x(x)
+	add_xp:set_center_y(y)
+
+	local ghost_add_xp = self._contract_panel:text({
+		text = "",
+		name = "ghost_add_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.ghost_color,
+	})
+
+	ghost_add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(ghost_add_xp)
+	ghost_add_xp:set_x(x)
+	ghost_add_xp:set_center_y(y)
+	ghost_add_xp:set_visible(managers.job:has_ghost_bonus())
+
+	local heat_add_xp = self._contract_panel:text({
+		text = "",
+		name = "heat_add_xp",
+		font = font,
+		font_size = font_size,
+		color = self._heat_color,
+	})
+
+	heat_add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(heat_add_xp)
+	heat_add_xp:set_x(x)
+	heat_add_xp:set_center_y(y)
+	heat_add_xp:set_visible(self._is_job_heated)
+	job_xp:set_y(math.round(job_xp:y()))
+	add_xp:set_y(math.round(job_xp:y()))
+	heat_add_xp:set_y(math.round(job_xp:y()))
+	ghost_add_xp:set_y(math.round(job_xp:y()))
+
+	return job_xp, add_xp, heat_add_xp, ghost_add_xp
+end
+
 function CrimeNetContractGui:set_one_down(one_down)
 	local job_data = self._node:parameters().menu_component_data
 	if job_data.difficulty == "normal" then
@@ -1476,14 +1540,12 @@ function CrimeNetContractGui:set_one_down(one_down)
 	job_data.one_down = one_down
 
 	local one_down_warning_text = self._contract_panel:child("one_down_warning_text")
+	one_down_warning_text:set_visible(one_down)
 
-	if one_down then
-		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
-	else
-		one_down_warning_text:set_text("")
-	end
+	self:set_potential_rewards(self._potential_show_max)
 
-	local _, _, w, h = one_down_warning_text:text_rect()
-	one_down_warning_text:set_h(h)
-	one_down_warning_text:set_w(w)
+	local gui_xp = self._contract_panel:child("job_xp")
+	local add_xp = self._contract_panel:child("add_xp")
+	gui_xp:set_color(one_down and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.text)
+	add_xp:set_color(one_down and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.risk)
 end

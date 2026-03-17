@@ -4,9 +4,16 @@ local disabled = {
 		enabled = false,
 	},
 }
+local standard_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+	},
+}
 local skylight_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -124,6 +131,16 @@ return {
 		},
 	},
 	-- Spawn group intervals
+	[100192] = standard_spawn,
+	[100231] = standard_spawn,
+	[100571] = standard_spawn,
+	[102898] = standard_spawn,
+	[102899] = standard_spawn,
+	[102900] = standard_spawn,
+	[103169] = standard_spawn,
+	[103170] = standard_spawn,
+	[103171] = standard_spawn,
+	[103172] = standard_spawn,
 	[103218] = skylight_spawn,
 	[102035] = cloaker_spawn,
 	[102036] = cloaker_spawn,

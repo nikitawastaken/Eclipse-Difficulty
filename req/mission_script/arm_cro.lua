@@ -1,10 +1,4 @@
 local preferred = Eclipse.preferred
-local disabled = {
-	values = {
-		enabled = false,
-	},
-}
-
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -16,8 +10,10 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local greendozer_only = {
-	green_bulldozer,
+local disabled = {
+	values = {
+		enabled = false,
+	},
 }
 local random_dozers = {
 	green_bulldozer,
@@ -48,7 +44,7 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		amount = normal and 3 or hard and 5 or 7,
+		amount = normal and 2 or hard and 5 or 6,
 	},
 }
 return {
@@ -78,6 +74,20 @@ return {
 				force = 2,
 				position = Vector3(0, 3200, -20),
 			},
+		},
+	},
+	-- restore one of unused snipers and change his sniper postion
+	[100376] = {
+		values = {
+			enabled = true,
+			position = Vector3(-1984, -3839.996, 1263),
+			rotation = Rotation(90, 0, 0),
+		},
+	},
+	[100416] = {
+		values = {
+			position = Vector3(-2507.843, -3302.226, 1265),
+			rotation = Rotation(-43.515, 0, 0),
 		},
 	},
 	-- Add actual cloaker hide groups

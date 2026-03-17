@@ -1424,6 +1424,32 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.headless_dozers = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"),
+				Idstring("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"),
+			},
+		},
+		access = access_type_all,
+	}
+
 	self.unit_categories.army_soldier_1 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
@@ -2930,6 +2956,11 @@ GroupAITweakData.bellmead_response_heists = table.list_to_set({
 	"corp",
 	"deep",
 })
+GroupAITweakData.headless_dozer_heists = table.list_to_set({
+	"nail",
+	"help",
+	--"hvh",
+})
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_index)
@@ -3017,6 +3048,17 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"ranged_fire",
 			"smoke_grenade",
 		},
+		bulldozer_def = {
+			"shield",
+			"murder",
+			"smoke_grenade",
+		},
+		bulldozer_agg = {
+			"shield",
+			"murder",
+			"charge",
+			"flash_grenade",
+		},
 	}
 
 	self._timed_random_tactics = {
@@ -3038,6 +3080,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			army_agg = 2,
 			army_snk = 1,
 		},
+		headless_dozers = { "bulldozer_def", "bulldozer_agg" },
 	}
 
 	self.timed_enemy_spawn_groups = {}
@@ -3068,6 +3111,10 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 
 	if self.gensec_tac_teams_heists[level_id] then
 		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
+	end
+
+	if self.headless_dozer_heists[level_id] then
+		self.timed_enemy_spawn_groups.headless_dozer_group1 = Eclipse:require("timed_groups/headless_dozer_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
 	end
 end
 
@@ -3189,15 +3236,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 					-- if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
 					-- 	Eclipse:log_console("Assault force for pool " .. level_id .. " set to: ")
 					-- 	Utils.PrintTable(assault_state.assault.force_pool)
-					-- end
-				end
-
-				if assault_state.assault.spawn_rate then
-					assault_state.assault.spawn_rate = table_multiplier(assault_state.assault.spawn_rate, level_settings.spawn_rate_mul or 1)
-
-					-- if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
-					-- 	Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
-					-- 	Utils.PrintTable(assault_state.assault.spawnrate)
 					-- end
 				end
 			end
@@ -3427,13 +3465,33 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		5,
 	})
 
-	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
-		{ 3, 2.5, 2 },
-		{ 3, 2.5, 2 },
-		{ 2.75, 2.25, 1.75 },
-		{ 2.75, 2.25, 1.75 },
-		{ 2.5, 2, 1.5 },
+	local spawn_rater_regular = get_difficulty_specific_value({
+		2,
+		2,
+		1.8,
+		1.8,
+		1.6,
 	})
+	local spawn_rate_fast = get_difficulty_specific_value({
+		1.6,
+		1.6,
+		1.3,
+		1.3,
+		1,
+	})
+
+	self.besiege.assault.spawn_rate = {
+		regular = {
+			spawn_rater_regular * 1.5,
+			spawn_rater_regular * 1.25,
+			spawn_rater_regular * 1,
+		},
+		fast = {
+			spawn_rate_fast * 1.5,
+			spawn_rate_fast * 1.25,
+			spawn_rate_fast * 1,
+		},
+	}
 	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
 	local spawn_rate_entry
 	for i = 0, 21, 1 do
@@ -3595,8 +3653,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
-			cs_swats = { 20, 10, 0 },
-			fbi_swats = { 20, 25, 30 },
+			cs_swats = { 15, 5, 0 },
+			fbi_swats = { 20, 25, 25 },
 			fbi_heavies = { 10, 15, 20 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
@@ -3618,9 +3676,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.assault.groups = {
-			fbi_swats = { 30, 15, 0 },
-			elite_swats = { 20, 25, 30 },
-			fbi_heavies = { 10, 20, 30 },
+			fbi_swats = { 20, 10, 0 },
+			elite_swats = { 15, 20, 25 },
+			fbi_heavies = { 10, 15, 20 },
 			fbi_shield = shield_wgt,
 			elite_sniper = elite_sniper_wgt,
 			elite_taser = taser_wgt,

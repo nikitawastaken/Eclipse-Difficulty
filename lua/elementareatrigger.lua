@@ -44,6 +44,22 @@ Hooks:PostHook(ElementAreaTrigger, "on_set_enabled", "sh_on_set_enabled", functi
 	check_executed_objects(self, self, {})
 end)
 
+-- Hostile and intimidated enemies, but not converts
+function ElementAreaTrigger.instigator_find_functions.enemies_no_converts(values, instigators)
+	for _, data in pairs(managers.enemy:all_enemies()) do
+		if not data.is_converted then
+			table.insert(instigators, data.unit)
+		end
+	end
+end
+
+-- All enemies, whether hostile, converted, or intimidated
+function ElementAreaTrigger.instigator_find_functions.enemies_all(values, instigators)
+	for _, data in pairs(managers.enemy:all_enemies()) do
+		table.insert(instigators, data.unit)
+	end
+end
+
 -- Point of no return escape zones only need the players who aren't downed to trigger the escape
 local old_project_instigators = ElementAreaTrigger.project_instigators
 function ElementAreaTrigger:project_instigators()

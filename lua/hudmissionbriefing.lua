@@ -280,20 +280,6 @@ function HUDMissionBriefing:init(hud, workspace)
 	self._paygrade_panel:set_right(self._background_layer_one:w())
 	pg_text:set_right(self._paygrade_panel:left())
 
-	if is_pro_job then
-		local one_down_text = self._foreground_layer_one:text({
-			name = "one_down_text",
-			text = managers.localization:to_upper_text("menu_one_down"),
-			font = content_font,
-			font_size = content_font_size,
-			color = tweak_data.screen_colors.one_down,
-		})
-		local _, _, w, h = one_down_text:text_rect()
-
-		one_down_text:set_size(w, h)
-		one_down_text:set_righttop(pg_text:left() - 10, pg_text:top())
-	end
-
 	if managers.skirmish:is_skirmish() then
 		self._paygrade_panel:set_visible(false)
 		pg_text:set_visible(false)

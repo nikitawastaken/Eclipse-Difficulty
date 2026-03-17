@@ -99,18 +99,21 @@ local street_heli_enemy = {
 local breach_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 2, 1.66, 1.33, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -144,7 +147,7 @@ return {
 	[400013] = ffo_countdown,
 	[400016] = ffo_countdown,
 	-- Add new reinforce
-	[101825] = { -- Interrogation started
+	[100131] = { -- police_called
 		reinforce = {
 			{
 				name = "staircase_main01",
@@ -166,6 +169,10 @@ return {
 				force = 2,
 				position = Vector3(-1850, 1000, 1375),
 			},
+		},
+		-- police called, call in da choppa
+		on_executed = {
+			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	-- tweak power boxes
@@ -564,11 +571,6 @@ return {
 		on_executed = {
 			{ id = 102950, remove = true }, -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
-		},
-	},
-	[100131] = { -- police called, call in da choppa
-		on_executed = {
-			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	[101608] = {

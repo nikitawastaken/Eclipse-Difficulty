@@ -54,6 +54,700 @@ local old_init = UpgradesTweakData.init
 function UpgradesTweakData:init(tweak_data)
 	old_init(self, tweak_data)
 
+	-- LEVELING PROGRESION OVERHAUL --
+	self.level_tree = {
+		[0] = {
+			upgrades = {
+				"wpn_dallas_mask",
+				"wpn_prj_ace",
+
+				-- melee bloat bullshit
+				"weapon",
+				"fists",
+				"rambo",
+				"gerber",
+				"kampfmesser",
+				"brass_knuckles",
+				"tomahawk",
+				"baton",
+				"shovel",
+				"becker",
+				"moneybundle",
+				"barbedwire",
+				"x46",
+				"dingdong",
+				"spoon",
+				"spoon_gold",
+				"bayonet",
+				"bullseye",
+				"baseballbat",
+				"cleaver",
+				"fireaxe",
+				"machete",
+				"briefcase",
+				"fairbair",
+				"freedom",
+				"model24",
+				"swagger",
+				"alien_maul",
+				"piggy_hammer",
+				"shillelagh",
+				"boxing_gloves",
+				"meat_cleaver",
+				"hammer",
+				"whiskey",
+				"scalper",
+				"mining_pick",
+				"branding_iron",
+				"bowie",
+				"microphone",
+				"detector",
+				"micstand",
+				"oldbaton",
+				"switchblade",
+				"taser",
+				"slot_lever",
+				"croupier_rake",
+				"hockey",
+				"twins",
+				"cqc",
+				"tiger",
+				"fight",
+				"sandsteel",
+				"great",
+				"beardy",
+				"buck",
+				"morning",
+				"cutters",
+				"boxcutter",
+				"selfie",
+				"gator",
+				"pugio",
+				"iceaxe",
+				"shawn",
+				"stick",
+				"pitchfork",
+				"scoutknife",
+				"nin",
+				"ballistic",
+				"zeus",
+				"wing",
+				"road",
+				"cs",
+				"brick",
+				"ostry",
+				"catch",
+				"oxide",
+				"sword",
+				"agave",
+				"happy",
+				"push",
+				"grip",
+				"sap",
+				"clean",
+				"meter",
+				"aziz",
+				"hauteur",
+				"shock",
+				"fear",
+				"chac",
+				"funder_strike",
+			},
+		},
+		{ -- skip level 1, it's reached too fast
+			upgrades = {},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"b92fs",
+				"pl14",
+				"packrat",
+				"holt",
+				"g26",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m1928",
+				"mac10",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ak74",
+				"new_m4",
+				"g36",
+			},
+		},
+		{ -- lvl 5
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor1",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"frag",
+				"frag_com",
+				"dada_com",
+				"dynamite",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"p90",
+				"cobray",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ksg",
+				"r870",
+				"m590",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"g22c",
+				"p226",
+				"hs2000",
+				"sparrow",
+			},
+		},
+		{ -- lvl 10
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor2",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m16",
+				"akm",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"wpn_prj_four",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"s552",
+				"aug",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_raging_bull",
+				"chinchilla",
+				"model3",
+			},
+		},
+		{ -- lvl 15
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor3",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"vhs",
+				"corgi",
+				"hajk",
+				"ak5",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_mp5",
+				"mp7",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"molotov",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"huntsman",
+				"boot",
+				"b682",
+			},
+		},
+		{ -- lvl 20
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor4",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"judge",
+				"serbu",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"usp",
+				"ppk",
+				"breech",
+				"shrew",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mateba",
+				"korth",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"wpn_prj_hur",
+			},
+		},
+		{ -- lvl 25
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor5",
+				"spas12",
+				"benelli",
+				"ultima",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"scar",
+				"fal",
+				"galil",
+				"g3",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"olympic",
+				"famas",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"l85a2",
+				"asval",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"flint",
+				"tkb",
+			},
+		},
+		{ -- lvl 30
+			name_id = "weapons",
+			upgrades = {
+				"coach",
+				"concussion",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_m14",
+				"shak12",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mp9",
+				"scorpion",
+				"tec9",
+				"fmg9",
+				"sr2",
+				"baka",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m249",
+				"tecci",
+				"mg42",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"lemming",
+				"peacemaker",
+				"rsh12",
+			},
+		},
+		{ -- lvl 35
+			name_id = "weapons",
+			upgrades = {
+				"shepheard",
+				"coal",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ching",
+				"sub2000",
+				"wpn_prj_jav",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"r700",
+				"msr",
+				"winchester1874",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"glock_18c",
+				"beer",
+				"czech",
+				"stech",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"saiga",
+				"aa12",
+				"sko12",
+			},
+		},
+		{ -- lvl 40
+			name_id = "weapons",
+			upgrades = {
+				"gre_m79",
+				"slap",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"par",
+				"hk21",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"sbl",
+				"fir_com",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"colt_1911",
+				"m1911",
+				"type54",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"basset",
+				"striker",
+			},
+		},
+		{ -- lvl 45
+			name_id = "weapons",
+			upgrades = {
+				"china",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"r93",
+				"mosin",
+				"model70",
+				"desertfox",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"jowi",
+				"x_1911",
+				"x_b92fs",
+				"x_g17",
+				"x_usp",
+				"x_packrat",
+				"x_g22c",
+				"x_g18c",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"komodo",
+				"akmsu",
+				"wpn_gre_electric",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"erma",
+				"sterling",
+				"schakal",
+			},
+		},
+		{ -- lvl 50
+			name_id = "weapons",
+			upgrades = {
+				"ms3gl",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"rpk",
+				"hk51b",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m45",
+				"uzi",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"tti",
+				"siltstone",
+				"qbu88",
+				"wa2000",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"legacy",
+				"c96",
+				"maxim9",
+			},
+		},
+		{ -- lvl 55
+			name_id = "weapons",
+			upgrades = {
+				"contraband",
+				"groza",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"deagle",
+				"sticky_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"supernova",
+				"m1897",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"polymer",
+				"vityaz",
+				"pm9",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m37",
+				"rota",
+			},
+		},
+		{ -- lvl 60
+			name_id = "weapons",
+			upgrades = {
+				"m32",
+				"arbiter",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"scout",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"hcar",
+				"poison_gas_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"arblast",
+				"long",
+				"elastic",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"awp",
+			},
+		},
+		{ -- lvl 65
+			name_id = "weapons",
+			upgrades = {
+				"hunter",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_chinchilla",
+				"x_deagle",
+				"x_model3",
+				"poison_gas_grenade",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"plainsrider",
+				"ecp",
+				"frankish",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m60",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"flamethrower_mk2",
+			},
+		},
+		{ -- lvl 70
+			name_id = "weapons",
+			upgrades = {
+				"m95",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"system",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"shuno",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_judge",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"hailstorm",
+			},
+		},
+		{ -- lvl 75
+			name_id = "weapons",
+			upgrades = {
+				"kacchainsaw",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ray",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"contender",
+				"victor",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_akmsu",
+				"x_mac10",
+				"x_sr2",
+				"x_olympic",
+				"x_mp5",
+				"x_baka",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"rpg7",
+			},
+		},
+		{ -- lvl 80
+			name_id = "weapons",
+			upgrades = {
+				"m134",
+			},
+		},
+		[100] = {
+			name_id = "weapons",
+			upgrades = {
+				"akm_gold",
+			},
+		},
+	}
+
 	-- Weapons
 	-------------
 
@@ -1041,14 +1735,13 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	-- unused, but keeping it here in case we want to use it later
-	self.values.player.fall_damage_multiplier_cat = { 0.5 }
-	self.definitions.player_fall_damage_multiplier_cat = {
-		name_id = "menu_player_fall_damage_multiplier_cat",
+	self.values.player.armor_absorbs_fall_damage = { true }
+	self.definitions.player_armor_absorbs_fall_damage = {
+		name_id = "menu_player_armor_absorbs_fall_damage",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "fall_damage_multiplier_cat",
+			upgrade = "armor_absorbs_fall_damage",
 			category = "player",
 		},
 	}
@@ -1118,6 +1811,17 @@ function UpgradesTweakData:init(tweak_data)
 	-- ECM Blackout
 	self.values.ecm_jammer.quantity[1] = 2
 	self.ecm_jammer_comms_jamming_multiplier = 0.2
+	self.values.ecm_jammer.blocks_snipers = { true }
+	self.definitions.ecm_jammer_blocks_snipers = {
+		name_id = "menu_ecm_jammer_blocks_snipers",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "blocks_snipers",
+			synced = true,
+			category = "ecm_jammer",
+		},
+	}
 	self.values.ecm_jammer.affects_police_comms = { true }
 	self.definitions.ecm_jammer_affects_police_comms = {
 		name_id = "menu_ecm_jammer_affects_police_comms",

@@ -8,7 +8,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local secret_service = scripted_enemy.secret_service_1
+local gensec_security = scripted_enemy.gensec_2
 local swat_rifle = scripted_enemy.swat_1
 local swat_sg = scripted_enemy.swat_2
 local swat_smg = scripted_enemy.swat_1
@@ -67,7 +67,7 @@ local optsSniperAmbush_4 = {
 	enabled = is_eclipse_pro,
 }
 local optsSniper_escape = {
-	enemy = is_eclipse and elite_sniper or sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400060, delay = 0 },
 	},
@@ -191,46 +191,46 @@ local optsSWAT_Ambush = {
 	enabled = true,
 }
 local optsSecret_Service_1 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400088, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_2 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400089, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_3 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400092, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_4 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400093, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_5 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	enabled = true,
 }
 local optsSecret_Service_9 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 410004, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_10 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 410005, delay = 0 },
 	},
@@ -466,27 +466,27 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(-3291, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400081, "smoke_grenade_3", Vector3(-4283, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 
-	-- Secret Service that tries to defend the CFO
+	-- GenSec Security that tries to defend the CFO
 	-- left spawn
-	Eclipse.mission_elements.gen_dummy(400086, "secret_service_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
-	Eclipse.mission_elements.gen_dummy(400087, "secret_service_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
-	Eclipse.mission_elements.gen_so(400088, "secret_service_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400089, "secret_service_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(400086, "gensec_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
+	Eclipse.mission_elements.gen_dummy(400087, "gensec_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
+	Eclipse.mission_elements.gen_so(400088, "gensec_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400089, "gensec_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
 
 	-- middle spawn
-	Eclipse.mission_elements.gen_dummy(400090, "secret_service_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
-	Eclipse.mission_elements.gen_dummy(400091, "secret_service_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
-	Eclipse.mission_elements.gen_so(400092, "secret_service_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400093, "secret_service_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(400090, "gensec_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
+	Eclipse.mission_elements.gen_dummy(400091, "gensec_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
+	Eclipse.mission_elements.gen_so(400092, "gensec_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400093, "gensec_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
 
 	-- right spawn
-	Eclipse.mission_elements.gen_dummy(400094, "secret_service_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
+	Eclipse.mission_elements.gen_dummy(400094, "gensec_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
 
 	-- upper middle spawn
-	Eclipse.mission_elements.gen_dummy(410002, "secret_service_6", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
-	Eclipse.mission_elements.gen_dummy(410003, "secret_service_7", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
-	Eclipse.mission_elements.gen_so(410004, "secret_service_so_6", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410005, "secret_service_so_7", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(410002, "gensec_6", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
+	Eclipse.mission_elements.gen_dummy(410003, "gensec_7", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
+	Eclipse.mission_elements.gen_so(410004, "gensec_so_6", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410005, "gensec_so_7", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(410006, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }

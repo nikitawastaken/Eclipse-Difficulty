@@ -107,10 +107,11 @@ function BlackMarketManager:get_reload_time(weapon_id)
 
 	-- Add custom reload time multipliers
 	local mult = tweak_data.weapon[weapon_id].reload_speed_multiplier
-	if mult then
-		result_empty = result_empty / mult
-		result_tactical = result_tactical / mult
-	end
+	local empty_mult = tweak_data.weapon[weapon_id].reload_empty_speed_multiplier
+	local not_empty_mult = tweak_data.weapon[weapon_id].reload_not_empty_speed_multiplier
+
+	result_empty = result_empty / (empty_mult or mult or 1)
+	result_tactical = result_tactical / (not_empty_mult or mult or 1)
 
 	return result_empty, result_tactical
 end
@@ -161,6 +162,11 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	return self:_convert_add_to_mul(multiplier)
 end
+
+-- set default throwable to be the cards
+Hooks:PostHook(BlackMarketManager, "_setup", "eclipse__setup", function(self)
+	self._defaults.grenade = "wpn_prj_ace"
+end)
 
 -- Bandaid for removing team AI abilities/boosts
 function BlackMarketManager:verify_has_crew_skill() end

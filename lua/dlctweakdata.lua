@@ -10,4 +10,44 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 			item_entry = "wpn_fps_upg_charm_eclipse",
 		},
 	}
+
+	self.preorder.content.loot_drops = {
+		{
+			type_items = "materials",
+			item_entry = "solid_flat_red",
+			amount = 1,
+		},
+		{
+			type_items = "materials",
+			item_entry = "solid_flat_black",
+			amount = 1,
+		},
+		{
+			type_items = "textures",
+			item_entry = "fan",
+			amount = 1,
+		},
+		{
+			type_items = "masks",
+			item_entry = "skull",
+			amount = 1,
+		},
+		{
+			type_items = "weapon_mods",
+			item_entry = "wpn_fps_upg_o_aimpoint_2",
+			amount = 1,
+		},
+	}
+
+	-- don't give a bunch of stuff by default at level 0
+	self.armored_transport.content.upgrades = nil
+	self.pd2_clan_lgl.content.upgrades = nil
+	self.pd2_clan2.content.upgrades = nil
+	self.gage_pack.content.upgrades = nil
+	self.preorder.content.upgrades = nil
+	self.cce.content.upgrades = nil
+	self.gage_pack_lmg.content.upgrades = nil
+	self.starter_kit.content.upgrades = nil
+	self.mxm_upgrades.content.upgrades = { "grenade_crate" }
+	self.sawp_grenade.content.upgrades = nil
 end)

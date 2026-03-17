@@ -44,9 +44,12 @@ end
 
 function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, _, ...)
 	self._enemy_penetrations = nil
-	self._surface_penetrations = nil
+	self._wall_penetrations = nil
+	self._shield_penetrations = nil
+
 	self._hit_through_enemy = nil
-	self._hit_through_surface = nil
+	self._hit_through_wall = nil
+	self._hit_through_shield = nil
 
 	local result = {
 		hit_enemy = false,
@@ -71,25 +74,36 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 	local penetration_dmg_mul = weapon_tweak.penetration_damage_mul
 
 	self._hit_through_enemy = self._hit_through_enemy or col_ray.unit:in_slot(self.enemy_mask)
-	self._hit_through_surface = self._hit_through_surface or col_ray.unit:in_slot(self.shield_mask) or col_ray.unit:in_slot(self.wall_mask)
+	self._hit_through_wall = self._hit_through_wall or col_ray.unit:in_slot(self.wall_mask)
+	self._hit_through_shield = self._hit_through_shield or col_ray.unit:in_slot(self.wall_mask)
 
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
 		if self._enemy_penetrations > 1 then
-			local enemy_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.enemy or 1) ^ math.max(1, self._enemy_penetrations - 1)
+			local enemy_pen_mult = (self._penetration_data.enemy and self._penetration_data.enemy.damage_mul or 1) ^ math.max(1, self._enemy_penetrations - 1)
 
 			multiplier = multiplier * enemy_pen_mult
 		end
 	end
 
-	if self._hit_through_surface then
-		self._surface_penetrations = (self._surface_penetrations or 0) + 1
+	if self._hit_through_wall then
+		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
-		if self._surface_penetrations > 1 then
-			local surface_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.surface or 1) ^ math.max(1, self._surface_penetrations - 1)
+		if self._wall_penetrations > 1 then
+			local wall_pen_mult = (self._penetration_data.enemy and self._penetration_data.wall.damage_mul or 1) ^ math.max(1, self._wall_penetrations - 1)
 
-			multiplier = multiplier * surface_pen_mult
+			multiplier = multiplier * wall_pen_mult
+		end
+	end
+
+	if self._hit_through_shield then
+		self._shield_penetrations = (self._shield_penetrations or 0) + 1
+
+		if self._shield_penetrations > 1 then
+			local shield_pen_mult = (self._penetration_data.enemy and self._penetration_data.shield.damage_mul or 1) ^ math.max(1, self._shield_penetrations - 1)
+
+			multiplier = multiplier * shield_pen_mult
 		end
 	end
 

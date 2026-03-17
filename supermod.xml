@@ -20,11 +20,13 @@
 			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
 			<post :hook_id="utils/lightloadingscreenguiscript"/>
-			<post :hook_id="mutators/basemutator"/>			
+			<post :hook_id="mutators/basemutator"/>
 
 			<group :hook_id="states/">
 				<post :hook_id="missionendstate"/>
 				<post :hook_id="ingameplayerbase"/>
+				<post :hook_id="ingamelobbymenu"/>
+				<post :hook_id="gameoverstate"/>
 				<post :hook_id="menumainstate"/>
 			</group>
 
@@ -43,6 +45,7 @@
 					<post :hook_id="elementspecialobjectivegroup"/>
 					<post :hook_id="elementinstigatorrule"/>
 					<post :hook_id="elementdifficulty"/>
+					<post :hook_id="elementwaypoint"/>
 					<post :hook_id="missionscriptelement"/>
 				</group>
 
@@ -56,10 +59,13 @@
 
 				<group :hook_id="menu/">
 					<post :hook_id="crimenetcontractgui"/>
+					<post :hook_id="crimenetcasinogui"/>
 					<post :hook_id="ingamecontractgui"/>
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
+					<post :hook_id="missionbriefinggui"/>
+					<post :hook_id="menucomponentmanager"/>					
 				</group>
 
 				<group :hook_id="player/">
@@ -68,8 +74,13 @@
 				</group>
 
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
+				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
 				<post :hook_id="missionmanager"/>
+				<post :hook_id="moneymanager"/>
+				<post :hook_id="experiencemanager"/>
+				<post :hook_id="lootmanager"/>
+				<post :hook_id="lootdropmanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
@@ -93,6 +104,8 @@
 				<post :hook_id="hudmanagerpd2"/>
 				<post :hook_id="jobmanager"/>
 				<post :hook_id="mutatorsmanager"/>
+				<post :hook_id="consolessafehousemanager"/>
+				<post :hook_id="gageassignmentmanager"/>
 			</group>
 
 			<group :hook_id="network/">
@@ -105,6 +118,7 @@
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
+				<post :hook_id="moneytweakdata"/>
 				<post :hook_id="tipstweakdata"/>
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
@@ -130,6 +144,7 @@
 				<post :hook_id="levelstweakdata"/>
 				<post :hook_id="narrativetweakdata"/>
 				<post :hook_id="dlctweakdata"/>
+				<post :hook_id="gageassignmenttweakdata"/>
 				<post :hook_id="attentiontweakdata"/>
 			</group>
 
@@ -304,16 +319,16 @@
 	<assets base_path="assets/">
 		<!-- Mod logo for welcome message -->
 		<file name="guis/textures/mod_logo.texture"/>
-		
+
 		<!-- Mod logos for loading, enter screen and menu. They're not loading properly (The changes take effect only after loading to the heist level.). Need SBLT mages to resolve this -->
 		<!--<file name="guis/textures/game_small_logo.texture"/>
-		<file name="guis/textures/menu_title_screen.texture"/>		
+		<file name="guis/textures/menu_title_screen.texture"/>
 		<file name="units/menu/menu_scene/menu_cylinder.material_config"/>
 		<file name="units/menu/menu_scene/menu_cylinder_logo.texture"/>-->
-		
+
 		<!-- Mutators icons atlas-->
 		<file name="guis/textures/pd2/mutator_icons_atlas.texture"/>
-		
+
 		<!-- Replace vanilla One Down modifier icon -->
 		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
 
@@ -339,7 +354,7 @@
 		<!-- cloaker goggle glow -->
 		<file name="effects/particles/character/hvh_cloaker_goggle.effect"/>
 		<file name="effects/particles/character/mad_cloaker_goggle.effect"/>
-		
+
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
 
@@ -439,7 +454,6 @@
 				</group>
 			</group>
 		</group>
-
 
 		<group name="guis/dlcs/">
 			<group :name="eclipse/textures/pd2/blackmarket/icons/">
@@ -580,7 +594,7 @@
 				<file :name="wpn_npc_scar_murkywater.model"/>
 				<file :name="wpn_npc_scar_murkywater.object"/>
 			</group>
-			
+
             <!-- NPC Beretta 92 flashlight fix -->
             <group :name="wpn_npc_beretta92/">
 				<file :name="wpn_npc_beretta92.object" />
@@ -658,7 +672,7 @@
 				<file :name="wpn_npc_saiga_bulldozer.object" />
 				<file :name="wpn_npc_saiga_bulldozer.unit" />
 			</group>
-			
+
 			<!-- NPC Steakout -->
 			<group :name="wpn_npc_aa12/">
 				<file :name="aa12_df.texture" />
@@ -710,6 +724,43 @@
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
 
+		<!-- LMG iron sights -->
+		<group name="units/pd2_dlc_gage_lmg/weapons/">
+			<group :name="wpn_fps_lmg_m249_pts/">
+				<file :name="wpn_fps_lmg_m249_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_m249_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_gage_historical/weapons/">
+			<group :name="wpn_fps_lmg_mg42_pts/">
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_mg42_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_par/weapons/">
+			<group :name="wpn_fps_lmg_par_pts/">
+				<file :name="wpn_fps_lmg_par_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_par_sight_dummy.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_atw/weapons/">
+			<group :name="wpn_fps_lmg_m60_pts/">
+				<file :name="wpn_fps_lmg_m60_sight_dummy.cooked_physics"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.model"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.object"/>
+				<file :name="wpn_fps_lmg_m60_sight_dummy.unit"/>
+			</group>
+		</group>
+		
 		<group name="units/pd2_halloween/weapons/">
 			<group :name="wpn_mel_titan_sword/">
 				<file :name="wpn_mel_titan_sword.cooked_physics"/>
@@ -759,9 +810,9 @@
 
 				<file :name="bo_df.texture" />
 				<file :name="bo_nm.texture" />
-				
+
 				<file :name="ene_acc_shield_city_df.texture" />
-							
+
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
@@ -901,10 +952,10 @@
 
 					<file :name="ene_cop_hvh_1.material_config" />
 					<file :name="ene_cop_hvh_1_contour.material_config" />
-					
+
 					<file :name="ene_fbi_hvh_1.material_config" />
 					<file :name="ene_fbi_hvh_1_contour.material_config" />
-					
+
 					<file :name="ene_bex_security_01.material_config" />
 					<file :name="ene_bex_security_01_contour.material_config" />
 
@@ -1569,6 +1620,13 @@
 				<file :name="wpn_npc_ak47.unit"/>
 			</group>
 
+			<group :name="wpn_npc_ak47_elite/">
+				<file :name="wpn_npc_ak47_elite.cooked_physics" />
+				<file :name="wpn_npc_ak47_elite.model"/>
+				<file :name="wpn_npc_ak47_elite.object"/>
+				<file :name="wpn_npc_ak47_elite.unit"/>
+			</group>
+
 			<group :name="wpn_npc_vityaz/">
 				<file :name="vityaz_df.texture" />
 				<file :name="vityaz_nm.texture" />
@@ -1578,7 +1636,14 @@
 				<file :name="wpn_npc_vityaz.object" />
 				<file :name="wpn_npc_vityaz.unit"/>
 			</group>
-			
+
+			<group :name="wpn_npc_akmsu/">
+				<file :name="wpn_npc_akmsu.cooked_physics" />
+				<file :name="wpn_npc_akmsu.model" />
+				<file :name="wpn_npc_akmsu.object" />
+				<file :name="wpn_npc_akmsu.unit"/>
+			</group>
+
 			<group :name="wpn_npc_pl14_tactical/">
 				<file :name="pl14_df.texture" />
 				<file :name="pl14_nm.texture" />
@@ -1596,9 +1661,9 @@
 				<file :name="wpn_npc_svd_dmr.unit"/>
 			</group>
 		</group>
-			
+
 		<group name="units/pd2_dlc_mad/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<group :name="shared_textures/">	
+			<group :name="shared_textures/">
 				<file :name="russian_heads_atlas_var1_df.texture" />
 				<file :name="russian_heads_atlas_var1_nm.texture" />
 
@@ -1608,7 +1673,7 @@
 				<file :name="shield_df.texture" />
 
 				<file :name="ene_acc_shield_city_df.texture" />
-							
+
 				<file :name="mad_police_df.texture" />
 				<file :name="mad_police_nm.texture" />
 
@@ -1626,31 +1691,31 @@
 
 				<file :name="mad_city_swat_body_df.texture" />
 
-				<file :name="mad_heavy_swat_body_df.texture" />			
+				<file :name="mad_heavy_swat_body_df.texture" />
 
-				<file :name="mad_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="mad_heavy_swat_helmets_atlas_df.texture" />
 				<file :name="mad_heavy_swat_helmets_atlas_nm.texture" />
-								
-				<file :name="mad_city_heavy_swat_body_df.texture" />		
+
+				<file :name="mad_city_heavy_swat_body_df.texture" />
 
 				<file :name="mad_cloaker_body_df.texture" />
 
 				<file :name="mad_cloaker_head_df.texture" />
 				<file :name="mad_cloaker_head_nm.texture" />
-	
+
 				<file :name="mad_medic_body_df.texture" />
 
 				<file :name="mad_medic_head_df.texture" />
 				<file :name="mad_medic_head_nm.texture" />
 
 				<file :name="mad_taser_body_df.texture" />
-				
+
 				<file :name="mad_taser_head_df.texture" />
 				<file :name="mad_taser_head_nm.texture" />
 
 				<file :name="mad_bulldozer_head_1_df.texture" />
 				<file :name="mad_bulldozer_head_1_nm.texture" />
-				
+
 				<file :name="mad_bulldozer_body_1_df.texture" />
 
 				<file :name="mad_bulldozer_head_2_df.texture" />
@@ -1664,7 +1729,7 @@
 
 				<file :name="mad_bulldozer_head_medic_df.texture" />
 				<file :name="mad_bulldozer_body_medic_df.texture" />
-				
+
 				<file :name="mad_spook_il.texture" />
 			</group>
 
@@ -1683,7 +1748,7 @@
 				<file :name="ene_acc_fbi_cap.object" />
 				<file :name="ene_acc_fbi_cap.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_helmet/">
 				<file :name="ene_acc_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_swat_helmet.material_config" />
@@ -1691,7 +1756,7 @@
 				<file :name="ene_acc_swat_helmet.object" />
 				<file :name="ene_acc_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_hat/">
 				<file :name="ene_acc_swat_hat.cooked_physics" />
 				<file :name="ene_acc_swat_hat.material_config" />
@@ -1699,28 +1764,28 @@
 				<file :name="ene_acc_swat_hat.object" />
 				<file :name="ene_acc_swat_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_fbi_swat_helmet/">
 				<file :name="ene_acc_fbi_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_fbi_swat_helmet.model" />
 				<file :name="ene_acc_fbi_swat_helmet.object" />
 				<file :name="ene_acc_fbi_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_city_swat_helmet/">
 				<file :name="ene_acc_city_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_city_swat_helmet.model" />
 				<file :name="ene_acc_city_swat_helmet.object" />
 				<file :name="ene_acc_city_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_city_swat_hat/">
 				<file :name="ene_acc_city_swat_hat.cooked_physics" />
 				<file :name="ene_acc_city_swat_hat.model" />
 				<file :name="ene_acc_city_swat_hat.object" />
 				<file :name="ene_acc_city_swat_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_heavy_helmet/">
 				<file :name="ene_acc_swat_heavy_helmet.cooked_physics" />
 				<file :name="ene_acc_swat_heavy_helmet.material_config" />
@@ -1728,7 +1793,7 @@
 				<file :name="ene_acc_swat_heavy_helmet.object" />
 				<file :name="ene_acc_swat_heavy_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_heavy_visor/">
 				<file :name="ene_acc_swat_heavy_visor.cooked_physics" />
 				<file :name="ene_acc_swat_heavy_visor.model" />
@@ -1749,7 +1814,7 @@
 				<file :name="ene_acc_city_heavy_helmet.object" />
 				<file :name="ene_acc_city_heavy_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_medic_helmet/">
 				<file :name="ene_acc_medic_helmet.cooked_physics" />
 				<file :name="ene_acc_medic_helmet.material_config" />
@@ -1757,7 +1822,7 @@
 				<file :name="ene_acc_medic_helmet.object" />
 				<file :name="ene_acc_medic_helmet.unit" />
 			</group>
-				
+
 			<group :name="ene_acc_tazer_helmet/">
 				<file :name="ene_acc_tazer_helmet.cooked_physics" />
 				<file :name="ene_acc_tazer_helmet.material_config" />
@@ -1765,14 +1830,14 @@
 				<file :name="ene_acc_tazer_helmet.object" />
 				<file :name="ene_acc_tazer_helmet.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_tazer_mask/">
 				<file :name="ene_acc_tazer_mask.cooked_physics" />
 				<file :name="ene_acc_tazer_mask.model" />
 				<file :name="ene_acc_tazer_mask.object" />
 				<file :name="ene_acc_tazer_mask.unit" />
 			</group>
-					
+
 			<group :name="ene_acc_shield_akan_small/">
 				<file :name="ene_acc_shield_akan_small.cooked_physics" />
 				<file :name="ene_acc_shield_akan_small.material_config" />
@@ -1796,7 +1861,7 @@
 				<file 	:name="ene_acc_shield_city.unit" />
 				<file 	:name="ene_acc_shield_city_dummy.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_russian_head/">
 				<xml  :name="ene_acc_russian_head.sequence_manager" />
 				<file :name="ene_acc_russian_head.cooked_physics" />
@@ -1847,27 +1912,27 @@
 				<file :name="ene_akan_cs_cop_akmsu_smg.unit" />
 				<file :name="ene_akan_cs_cop_akmsu_smg_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_cs_cop_r870/">
 				<file :name="ene_akan_cs_cop_r870.unit" />
 				<file :name="ene_akan_cs_cop_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_agent_c45/">
 				<file :name="ene_akan_fbi_agent_c45.unit" />
 				<file :name="ene_akan_fbi_agent_c45_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_agent_ak47_ass/">
 				<file :name="ene_akan_fbi_agent_ak47_ass.unit" />
 				<file :name="ene_akan_fbi_agent_ak47_ass_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_agent_akmsu_smg/">
 				<file :name="ene_akan_fbi_agent_akmsu_smg.unit" />
 				<file :name="ene_akan_fbi_agent_akmsu_smg_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_akan_cs_swat_ak47_ass/">
 				<xml  :name="ene_akan_cs_swat_ak47_ass.sequence_manager" dyn_package="true" />
 				<file :name="ene_akan_cs_swat_ak47_ass.material_config" />
@@ -1900,8 +1965,8 @@
 				<file :name="ene_akan_cs_heavy_ak47_ass.unit" />
 				<file :name="ene_akan_cs_heavy_ak47_ass_husk.unit" />
 			</group>
-	
-			<group :name="ene_akan_cs_heavy_r870/"> 
+
+			<group :name="ene_akan_cs_heavy_r870/">
 				<file :name="ene_akan_cs_heavy_r870.unit" />
 				<file :name="ene_akan_cs_heavy_r870_husk.unit" />
 			</group>
@@ -1915,7 +1980,7 @@
 				<file :name="ene_akan_cs_shield_c45.unit" />
 				<file :name="ene_akan_cs_shield_c45_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_swat_ak47_ass/">
 				<file :name="ene_akan_fbi_swat_ak47_ass.unit" />
 				<file :name="ene_akan_fbi_swat_ak47_ass_husk.unit" />
@@ -1940,7 +2005,7 @@
 				<file :name="ene_akan_fbi_shield_sr2_smg.unit" />
 				<file :name="ene_akan_fbi_shield_sr2_smg_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_city_swat_ak47_ass/">
 				<file :name="ene_akan_city_swat_ak47_ass.unit" />
 				<file :name="ene_akan_city_swat_ak47_ass_husk.unit" />
@@ -1965,7 +2030,7 @@
 				<file :name="ene_akan_city_shield.unit" />
 				<file :name="ene_akan_city_shield_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_heavy_g36/">
 				<xml  :name="ene_akan_fbi_heavy_g36.sequence_manager" dyn_package="true" />
 				<file :name="ene_akan_fbi_heavy_g36.material_config" />
@@ -1985,17 +2050,17 @@
 				<file :name="ene_akan_fbi_heavy_r870.unit" />
 				<file :name="ene_akan_fbi_heavy_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_city_heavy_g36/">
 				<file :name="ene_akan_city_heavy_g36.unit" />
 				<file :name="ene_akan_city_heavy_g36_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_city_heavy_r870/">
 				<file :name="ene_akan_city_heavy_r870.unit" />
 				<file :name="ene_akan_city_heavy_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_fbi_spooc_asval_smg/">
 				<xml  :name="ene_akan_fbi_spooc_asval_smg.sequence_manager"/>
 				<file :name="ene_akan_fbi_spooc_asval_smg.material_config" />
@@ -2020,7 +2085,7 @@
 				<file :name="ene_akan_medic_r870.unit" />
 				<file :name="ene_akan_medic_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_akan_cs_tazer_ak47_ass/">
 				<xml  :name="ene_akan_cs_tazer_ak47_ass.sequence_manager" dyn_package="true" />
 				<file :name="ene_akan_cs_tazer_ak47_ass.material_config" />
@@ -2080,7 +2145,7 @@
 				<file :name="ene_akan_fbi_tank_medic_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- sosa hitboxes and footsteps -->
 		<group name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/" dyn_package="false">
 			<file :name="ene_drug_lord_boss.object"/>
@@ -2109,13 +2174,13 @@
 			<group :name="shared_textures/">
 				<file :name="hvh_heads_atlas_var1_df.texture" />
 				<file :name="hvh_heads_atlas_var1_nm.texture" />
-				
+
 				<file :name="hvh_heads_atlas_var2_df.texture" />
 				<file :name="hvh_heads_atlas_var2_nm.texture" />
-				
+
 				<file :name="hvh_arms_atlas_df.texture" />
 				<file :name="eyes_il.texture" />
-				
+
 				<file :name="police_hvh_df.texture" />
 				<file :name="fbi_hvh_1_df.texture" />
 				<file :name="swat_body_hvh_df.texture" />
@@ -2126,7 +2191,7 @@
 				<file :name="ene_bulldozer_medic_hvh_df.texture" />
 				<file :name="hvh_spook_il.texture" />
 			</group>
-			
+
 			<group :name="ene_acc_hvh_head/">
 				<xml  :name="ene_acc_hvh_head.sequence_manager" />
 				<file :name="ene_acc_hvh_head.cooked_physics" />
@@ -2207,12 +2272,12 @@
 				<file :name="ene_sniper_hvh_1.unit" />
 				<file :name="ene_sniper_hvh_1_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_shield_hvh_2/">
 				<file :name="ene_shield_hvh_2.unit" />
 				<file :name="ene_shield_hvh_2_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_fbi_swat_hvh_1/">
 				<file :name="ene_fbi_swat_hvh_1.unit" />
 				<file :name="ene_fbi_swat_hvh_1_husk.unit" />
@@ -2232,7 +2297,7 @@
 				<file :name="ene_sniper_hvh_2.unit" />
 				<file :name="ene_sniper_hvh_2_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_shield_hvh_1/">
 				<file :name="ene_shield_hvh_1.unit" />
 				<file :name="ene_shield_hvh_1_husk.unit" />
@@ -2272,7 +2337,7 @@
 				<file :name="ene_fbi_heavy_hvh_r870.unit" />
 				<file :name="ene_fbi_heavy_hvh_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_city_heavy_hvh_1/">
 				<file :name="ene_city_heavy_hvh_1.unit" />
 				<file :name="ene_city_heavy_hvh_1_husk.unit" />
@@ -2281,7 +2346,7 @@
 			<group :name="ene_city_heavy_hvh_r870/">
 				<file :name="ene_city_heavy_hvh_r870.unit" />
 				<file :name="ene_city_heavy_hvh_r870_husk.unit" />
-			</group>		
+			</group>
 
 			<group :name="ene_tazer_hvh_1/">
 				<file :name="ene_tazer_hvh_1.unit" />
@@ -2291,7 +2356,7 @@
 			<group :name="ene_tazer_hvh_r870/">
 				<file :name="ene_tazer_hvh_r870.unit" />
 				<file :name="ene_tazer_hvh_r870_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_medic_hvh_m4/">
 				<file :name="ene_medic_hvh_m4.unit" />
@@ -2306,34 +2371,34 @@
 			<group :name="ene_spook_hvh_1/">
 				<file :name="ene_spook_hvh_1.unit" />
 				<file :name="ene_spook_hvh_1_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_bulldozer_hvh_1/">
 				<file :name="ene_bulldozer_hvh_1.unit" />
 				<file :name="ene_bulldozer_hvh_1_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_bulldozer_hvh_2/">
 				<file :name="ene_bulldozer_hvh_2.unit" />
 				<file :name="ene_bulldozer_hvh_2_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_bulldozer_hvh_3/">
 				<file :name="ene_bulldozer_hvh_3.unit" />
 				<file :name="ene_bulldozer_hvh_3_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_bulldozer_hvh_4/">
 				<file :name="ene_bulldozer_hvh_4.unit" />
 				<file :name="ene_bulldozer_hvh_4_husk.unit" />
-			</group>	
+			</group>
 
 			<group :name="ene_bulldozer_medic_hvh/">
 				<file :name="ene_bulldozer_medic_hvh.unit" />
 				<file :name="ene_bulldozer_medic_hvh_husk.unit" />
-			</group>				
+			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc_rvd/vehicles/" dyn_package="false">
 			<file :name="anim_vehicle_car_police_los_angeles.material_config" />
 		</group>
@@ -2404,32 +2469,32 @@
 				<file :name="ene_acc_shield_small_op.texture" />
 				<file :name="ene_acc_shield_lights_df.texture" />
 				<file :name="ene_acc_shield_city_df.texture" />
-							
+
 				<file :name="bph_police_df.texture" />
 				<file :name="bph_police_nm.texture" />
 
-				<file :name="bph_security_df.texture" />		
+				<file :name="bph_security_df.texture" />
 				<file :name="bph_fbi_df.texture" />
-			
+
 				<file :name="bph_swat_body_df.texture" />
 				<file :name="bph_swat_body_nm.texture" />
 
 				<file :name="bph_fbi_swat_body_df.texture" />
 				<file :name="bph_city_swat_body_df.texture" />
-	
-				<file :name="bph_swat_heads_atlas_df.texture" />			
+
+				<file :name="bph_swat_heads_atlas_df.texture" />
 				<file :name="bph_swat_heads_atlas_nm.texture" />
-				
-				<file :name="bph_swat_helmets_atlas_df.texture" />			
+
+				<file :name="bph_swat_helmets_atlas_df.texture" />
 				<file :name="bph_swat_helmets_atlas_nm.texture" />
-				
-				<file :name="bph_heavy_swat_body_df.texture" />			
+
+				<file :name="bph_heavy_swat_body_df.texture" />
 				<file :name="bph_heavy_swat_body_nm.texture" />
 
-				<file :name="bph_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="bph_heavy_swat_helmets_atlas_df.texture" />
 				<file :name="bph_heavy_swat_helmets_atlas_nm.texture" />
-								
-				<file :name="bph_city_heavy_swat_body_df.texture" />		
+
+				<file :name="bph_city_heavy_swat_body_df.texture" />
 
 				<file :name="bph_cloaker_body_df.texture" />
 				<file :name="bph_cloaker_body_nm.texture" />
@@ -2450,7 +2515,7 @@
 
 				<file :name="bph_bulldozer_head_1_df.texture" />
 				<file :name="bph_bulldozer_head_1_nm.texture" />
-				
+
 				<file :name="bph_bulldozer_body_1_df.texture" />
 				<file :name="bph_bulldozer_body_1_nm.texture" />
 
@@ -2482,7 +2547,7 @@
 				<file :name="ene_acc_fbi_cap.object" />
 				<file :name="ene_acc_fbi_cap.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_security_cap/">
 				<file :name="ene_acc_security_cap.cooked_physics" />
 				<file :name="ene_acc_security_cap.material_config" />
@@ -2490,7 +2555,7 @@
 				<file :name="ene_acc_security_cap.object" />
 				<file :name="ene_acc_security_cap.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_helmet/">
 				<file :name="ene_acc_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_swat_helmet.material_config" />
@@ -2498,7 +2563,7 @@
 				<file :name="ene_acc_swat_helmet.object" />
 				<file :name="ene_acc_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_hat/">
 				<file :name="ene_acc_swat_hat.cooked_physics" />
 				<file :name="ene_acc_swat_hat.material_config" />
@@ -2506,28 +2571,28 @@
 				<file :name="ene_acc_swat_hat.object" />
 				<file :name="ene_acc_swat_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_fbi_swat_helmet/">
 				<file :name="ene_acc_fbi_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_fbi_swat_helmet.model" />
 				<file :name="ene_acc_fbi_swat_helmet.object" />
 				<file :name="ene_acc_fbi_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_city_swat_helmet/">
 				<file :name="ene_acc_city_swat_helmet.cooked_physics" />
 				<file :name="ene_acc_city_swat_helmet.model" />
 				<file :name="ene_acc_city_swat_helmet.object" />
 				<file :name="ene_acc_city_swat_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_city_swat_hat/">
 				<file :name="ene_acc_city_swat_hat.cooked_physics" />
 				<file :name="ene_acc_city_swat_hat.model" />
 				<file :name="ene_acc_city_swat_hat.object" />
 				<file :name="ene_acc_city_swat_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_heavy_helmet/">
 				<file :name="ene_acc_swat_heavy_helmet.cooked_physics" />
 				<file :name="ene_acc_swat_heavy_helmet.material_config" />
@@ -2535,7 +2600,7 @@
 				<file :name="ene_acc_swat_heavy_helmet.object" />
 				<file :name="ene_acc_swat_heavy_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_swat_heavy_visor/">
 				<file :name="ene_acc_swat_heavy_visor.cooked_physics" />
 				<file :name="ene_acc_swat_heavy_visor.model" />
@@ -2549,7 +2614,7 @@
 				<file :name="ene_acc_city_heavy_helmet.object" />
 				<file :name="ene_acc_city_heavy_helmet.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_medic_helmet/">
 				<file :name="ene_acc_medic_helmet.cooked_physics" />
 				<file :name="ene_acc_medic_helmet.material_config" />
@@ -2557,7 +2622,7 @@
 				<file :name="ene_acc_medic_helmet.object" />
 				<file :name="ene_acc_medic_helmet.unit" />
 			</group>
-				
+
 			<group :name="ene_acc_tazer_helmet/">
 				<file :name="ene_acc_tazer_helmet.cooked_physics" />
 				<file :name="ene_acc_tazer_helmet.material_config" />
@@ -2565,7 +2630,7 @@
 				<file :name="ene_acc_tazer_helmet.object" />
 				<file :name="ene_acc_tazer_helmet.unit" />
 			</group>
-				
+
 			<group :name="ene_acc_shield_small/">
 				<file :name="ene_acc_shield_small.cooked_physics" />
 				<file :name="ene_acc_shield_small.material_config" />
@@ -2589,7 +2654,7 @@
 				<file :name="ene_acc_shield_city.unit" />
 				<file :name="ene_acc_shield_city_dummy.unit" />
 			</group>
-		
+
 			<group :name="ene_murkywater_cop_1/">
 				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_cop_1.material_config" />
@@ -2602,7 +2667,7 @@
 				<group :name="vars/">
 					<file :name="ene_murkywater_security_1.material_config" />
 					<file :name="ene_murkywater_security_1_contour.material_config" />
-					
+
 					<file :name="ene_murkywater_agent_1.material_config" />
 					<file :name="ene_murkywater_agent_1_contour.material_config" />
 				</group>
@@ -2617,7 +2682,7 @@
 				<file :name="ene_murkywater_cop_3.unit" />
 				<file :name="ene_murkywater_cop_3_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_cop_4/">
 				<file :name="ene_murkywater_cop_4.unit" />
 				<file :name="ene_murkywater_cop_4_husk.unit" />
@@ -2632,12 +2697,12 @@
 				<file :name="ene_murkywater_security_2.unit" />
 				<file :name="ene_murkywater_security_2_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_security_3/">
 				<file :name="ene_murkywater_security_3.unit" />
 				<file :name="ene_murkywater_security_3_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_agent_1/">
 				<file :name="ene_murkywater_agent_1.unit" />
 				<file :name="ene_murkywater_agent_1_husk.unit" />
@@ -2647,12 +2712,12 @@
 				<file :name="ene_murkywater_agent_2.unit" />
 				<file :name="ene_murkywater_agent_2_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_agent_3/">
 				<file :name="ene_murkywater_agent_3.unit" />
 				<file :name="ene_murkywater_agent_3_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_light/">
 				<xml  :name="ene_murkywater_light.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_light.material_config" />
@@ -2685,8 +2750,8 @@
 				<file :name="ene_murkywater_heavy.unit" />
 				<file :name="ene_murkywater_heavy_husk.unit" />
 			</group>
-	
-			<group :name="ene_murkywater_heavy_shotgun/"> 
+
+			<group :name="ene_murkywater_heavy_shotgun/">
 				<file :name="ene_murkywater_heavy_shotgun.unit" />
 				<file :name="ene_murkywater_heavy_shotgun_husk.unit" />
 			</group>
@@ -2700,7 +2765,7 @@
 				<file :name="ene_murkywater_shield.unit" />
 				<file :name="ene_murkywater_shield_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_light_fbi/">
 				<file :name="ene_murkywater_light_fbi.unit" />
 				<file :name="ene_murkywater_light_fbi_husk.unit" />
@@ -2725,7 +2790,7 @@
 				<file :name="ene_murkywater_shield_fbi.unit" />
 				<file :name="ene_murkywater_shield_fbi_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_light_city/">
 				<file :name="ene_murkywater_light_city.unit" />
 				<file :name="ene_murkywater_light_city_husk.unit" />
@@ -2750,7 +2815,7 @@
 				<file :name="ene_murkywater_shield_city.unit" />
 				<file :name="ene_murkywater_shield_city_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_heavy_fbi/">
 				<xml  :name="ene_murkywater_heavy_fbi.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_heavy_fbi.cooked_physics" />
@@ -2771,17 +2836,17 @@
 				<file :name="ene_murkywater_heavy_fbi_r870.unit" />
 				<file :name="ene_murkywater_heavy_fbi_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_heavy_city/">
 				<file :name="ene_murkywater_heavy_city.unit" />
 				<file :name="ene_murkywater_heavy_city_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_heavy_city_r870/">
 				<file :name="ene_murkywater_heavy_city_r870.unit" />
 				<file :name="ene_murkywater_heavy_city_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_murkywater_cloaker/">
 				<xml  :name="ene_murkywater_cloaker.sequence_manager" />
 				<file :name="ene_murkywater_cloaker.material_config" />
@@ -2821,7 +2886,7 @@
 				<file :name="ene_murkywater_tazer_r870.unit" />
 				<file :name="ene_murkywater_tazer_r870_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_murkywater_bulldozer_1/">
 				<xml  :name="ene_murkywater_bulldozer_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_murkywater_bulldozer_1.material_config" />
@@ -2866,47 +2931,47 @@
 				<file :name="ene_murkywater_bulldozer_medic_husk.unit" />
 			</group>
 		</group>
-			
+
 		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false">
 			<file :name="bex_vehicles_car_police_mexico/bex_vehicle_car_police_mexico.material_config" />
 		</group>
 
 		<group name="units/pd2_dlc_bex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<group :name="shared_textures/">	
+			<group :name="shared_textures/">
 				<file :name="mexican_heads_atlas_var1_df.texture" />
 				<file :name="mexican_heads_atlas_var1_nm.texture" />
 
 				<file :name="mexican_heads_atlas_var2_df.texture" />
 				<file :name="mexican_heads_atlas_var2_nm.texture" />
 
-				<file :name="ene_acc_shield_small_df.texture" />				
+				<file :name="ene_acc_shield_small_df.texture" />
 				<file :name="ene_acc_shield_lights_df.texture" />
 				<file :name="ene_acc_shield_city_df.texture" />
-			
+
 				<file :name="bex_police_df.texture" />
 				<file :name="bex_police_nm.texture" />
-			
+
 				<file :name="bex_fbi_df.texture" />
-			
+
 				<file :name="bex_security_df.texture" />
-						
+
 				<file :name="pex_police_df.texture" />
-				
-				<file :name="bex_swat_body_df.texture" />	
-				<file :name="bex_fbi_swat_body_df.texture" />		
-				<file :name="bex_city_swat_body_df.texture" />	
+
+				<file :name="bex_swat_body_df.texture" />
+				<file :name="bex_fbi_swat_body_df.texture" />
+				<file :name="bex_city_swat_body_df.texture" />
 				<file :name="bex_swat_helmets_atlas_df.texture" />
 				<file :name="bex_swat_helmets_atlas_nm.texture" />
 				<file :name="bex_swat_heads_atlas_df.texture" />
 
-				<file :name="bex_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="bex_heavy_swat_helmets_atlas_df.texture" />
 				<file :name="bex_heavy_swat_helmets_atlas_nm.texture" />
-				
-				<file :name="bex_heavy_swat_body_df.texture" />			
+
+				<file :name="bex_heavy_swat_body_df.texture" />
 				<file :name="bex_heavy_swat_body_nm.texture" />
-				
-				<file :name="bex_city_heavy_swat_body_df.texture" />		
-				
+
+				<file :name="bex_city_heavy_swat_body_df.texture" />
+
 				<file :name="bex_cloaker_body_df.texture" />
 				<file :name="bex_cloaker_body_nm.texture" />
 
@@ -2924,10 +2989,10 @@
 				<file :name="bex_medic_head_nm.texture" />
 
 				<file :name="bex_bulldozer_head_1_df.texture" />
-			
+
 				<file :name="bex_bulldozer_body_1_df.texture" />
 				<file :name="bex_bulldozer_body_1_nm.texture" />
-				
+
 				<file :name="bex_bulldozer_head_2_df.texture" />
 				<file :name="bex_bulldozer_body_2_df.texture" />
 
@@ -2964,7 +3029,7 @@
 				<file 	:name="ene_acc_shield_city.unit" />
 				<file 	:name="ene_acc_shield_city_dummy.unit" />
 			</group>
-		
+
 			<group :name="ene_acc_security_cap/">
 				<file :name="ene_acc_security_cap.material_config" />
 				<file :name="ene_acc_security_cap.model" />
@@ -2992,7 +3057,7 @@
 				<file :name="ene_acc_policia_federale_helmet.model" />
 				<file :name="ene_acc_policia_federale_helmet.object" />
 			</group>
-			
+
 			<group :name="ene_acc_policia_federale_hat/">
 				<file :name="ene_acc_policia_federale_hat.cooked_physics" />
 				<file :name="ene_acc_policia_federale_hat.material_config" />
@@ -3036,7 +3101,7 @@
 				<file :name="ene_acc_swat_heavy_policia_federale_mask.object" />
 				<file :name="ene_acc_swat_heavy_policia_federale_mask.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_swat_heavy_policia_federale_city_helmet/">
 				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.cooked_physics" />
 				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.model" />
@@ -3062,7 +3127,7 @@
 				<file :name="ene_acc_swat_medic_policia_federale_helmet.model" />
 				<file :name="ene_acc_swat_medic_policia_federale_helmet.object" />
 			</group>
-			
+
 			<group :name="ene_acc_mexican_head/">
 				<xml  :name="ene_acc_mexican_head.sequence_manager" />
 				<file :name="ene_acc_mexican_head.cooked_physics" />
@@ -3196,7 +3261,7 @@
 				<file :name="ene_swat_policia_federale_fbi.unit" />
 				<file :name="ene_swat_policia_federale_fbi_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_swat_policia_federale_fbi_mp5/">
 				<file :name="ene_swat_policia_federale_fbi_mp5.unit" />
 				<file :name="ene_swat_policia_federale_fbi_mp5_husk.unit" />
@@ -3206,7 +3271,7 @@
 				<file :name="ene_swat_policia_federale_fbi_r870.unit" />
 				<file :name="ene_swat_policia_federale_fbi_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_swat_policia_sniper_fbi/">
 				<file :name="ene_swat_policia_sniper_fbi.unit" />
 				<file :name="ene_swat_policia_sniper_fbi_husk.unit" />
@@ -3221,7 +3286,7 @@
 				<file :name="ene_swat_policia_federale_city.unit" />
 				<file :name="ene_swat_policia_federale_city_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_swat_policia_federale_city_mp5/">
 				<file :name="ene_swat_policia_federale_city_mp5.unit" />
 				<file :name="ene_swat_policia_federale_city_mp5_husk.unit" />
@@ -3241,7 +3306,7 @@
 				<file :name="ene_swat_shield_policia_federale_city.unit" />
 				<file :name="ene_swat_shield_policia_federale_city_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_swat_heavy_policia_federale_fbi/">
 				<xml  :name="ene_swat_heavy_policia_federale_fbi.sequence_manager" dyn_package="true" />
 				<file :name="ene_swat_heavy_policia_federale_fbi.material_config" />

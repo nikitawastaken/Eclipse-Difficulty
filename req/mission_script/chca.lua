@@ -17,23 +17,27 @@ local enabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 }
 local rappel_horizontal_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 2, 1.5, 1, 1 },
 	},
 }
 local casino_balcony_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local rappel_vertical_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
+		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
 	},
 }
 local vent_spawn = {

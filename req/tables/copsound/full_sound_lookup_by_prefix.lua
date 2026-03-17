@@ -266,17 +266,5 @@ M.l5n_ = {
 	x01a_any_3p = "l1n_x02a_any_3p",
 	tasered = "l1n_burnhurt", -- i'm tased
 }
--- Test fix for l5n on clientside
--- for _, replacement in pairs(M.l5n_) do
--- 	if type(replacement) == "table" then
--- 		for _, v in pairs(replacement) do
--- 			if v:begins("Play_") then
--- 				M.l5n_[SoundDevice:string_to_id(v)] = replacement
--- 			end
--- 		end
--- 	elseif replacement:begins("Play_") then
--- 		M.l5n_[SoundDevice:string_to_id(replacement)] = replacement
--- 	end
--- end
 
 return M

@@ -70,6 +70,12 @@ local flank_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_enemy,
@@ -112,6 +118,9 @@ return {
 	[101435] = exclude_cop_agents_shields_dozers,
 	[101436] = exclude_cop_agents_shields_dozers,
 	[101507] = exclude_cop_agents_shields_dozers,
+	-- disable nuke meth explosion on Death Wish
+	[101985] = filter_easy_above,
+	[101984] = filter_disable,
 	-- restore meth lab in the basement
 	[100486] = {
 		values = {

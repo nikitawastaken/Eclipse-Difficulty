@@ -93,10 +93,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 
 	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_cro.group_ai_settings.assault_force_mul = 0.75
+	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
 
 	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_hcm.group_ai_settings.assault_force_mul = 0.75
+	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
 
 	self.arm_for.group_ai_preset = "heavy_response"
 
@@ -125,7 +125,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.25,
+		assault_force_mul = 1.2,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 15,
@@ -155,7 +155,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.framing_frame_2.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 
 	self.framing_frame_3.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		special_limit_add = {
 			shield = -1,
 			marksman = -1,
@@ -169,7 +169,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.mia_2.group_ai_settings.assault_force_mul = 0.5
+	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings = {
 		difficulty_scaling = {
@@ -198,7 +198,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pines.ai_group_type = "russia"
 
 	self.shoutout_raid.group_ai_settings = {
-		assault_force_mul = 1.25,
+		assault_force_mul = 1.2,
 	}
 	self.shoutout_raid.ai_group_type = "murkywater"
 
@@ -212,7 +212,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.pbr2.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -229,14 +229,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = nil
-	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
 	self.nail.ai_group_type = "zombie"
 
 	self.peta.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 	self.peta.ai_group_type = "america"
 
 	self.peta2.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 	}
 	self.peta2.group_ai_preset = "remote"
 
@@ -254,7 +253,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
-		assault_force_mul = 0.5,
+		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 2,
 		special_limit_add = {
 			shield = -2,
@@ -283,7 +282,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chew.group_ai_preset = "remote"
 
 	self.chill_combat.group_ai_settings = {
-		assault_force_mul = 0.5,
+		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
 			diff_init = 0.33,
@@ -319,7 +318,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chill_combat.group_ai_preset = "small_urban"
 
 	self.help.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 	}
 	self.help.ai_group_type = "zombie"
 
@@ -347,7 +346,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			diff_init = 0.4,
 			assault_add = 0.2,
@@ -358,7 +357,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.hvh.group_ai_settings = {
 		use_equipment_reenforce = false,
-		assault_force_mul = 0.5,
+		assault_force_mul = 0.6,
 		recon_force_mul = 0.75,
 		cs_grenade_chance_times_mul = 2,
 		difficulty_scaling = {
@@ -377,19 +376,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.rvd2.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 	}
 	self.rvd2.group_ai_preset = "heavy_response"
 
 	self.des.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 15,
 		},
 	}
 
 	self.nmh.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		special_limit_add = {
 			shield = -1,
 			marksman = -1,
@@ -397,11 +396,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	self.bph.group_ai_settings.difficulty_scaling = { assault_delay = 15 }
+	self.bph.group_ai_settings.difficulty_scaling = {
+		assault_delay = 15,
+		diff_init = 0, -- Handled by mission scripting for now
+		assault_add = 0, -- Handled by mission scripting for now
+	}
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 1.5,
 		special_limit_add = {
 			shield = -1,
@@ -415,7 +418,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
-		assault_force_mul = 1.25,
+		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 			taser = 1,
@@ -437,13 +440,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sand.group_ai_preset = "street"
 
 	self.chca.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 	}
 	self.chca.group_ai_preset = "remote"
 
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.25,
+		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 			tank = 1,
@@ -452,7 +455,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.trai.group_ai_preset = "heavy_response"
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
-		assault_force_mul = 1.5,
+		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
 		special_limit_add = {
 			shield = 2,
@@ -463,7 +466,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.deep.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 	}
 	self.deep.group_ai_preset = "remote"
 
@@ -483,6 +486,50 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.has_megaphone_cop = true
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
+
+	-- stealth bonus changes
+	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
+	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
+	-- low risk heists
+	self.mallcrasher.ghost_bonus = 0.05 -- it's possible to stealth mallcrasher, i'm serious
+	self.nightclub.ghost_bonus = 0.05 -- it's a basic heist (from 10%)
+	self.branchbank.ghost_bonus = 0.05 -- same as here (from 10%)
+	-- normal risks heists
+	self.kosugi.ghost_bonus = 0.1 -- increase the bonus to 10% (from 5%)
+	self.dark.ghost_bonus = 0.1 -- decrease the bonus to 10% (from 15%)
+	self.hox_3.ghost_bonus = 0.15 -- increase the bonus to 15% (from 10%)
+	self.bex.ghost_bonus = 0.1 -- Slik Road, City of Gold and Texas Heat heists all have bonus decreased to 10% (except final heists, Border Crossing and Lost In Transit)
+	self.pex.ghost_bonus = 0.1
+	self.chas.ghost_bonus = 0.1
+	self.sand.ghost_bonus = 0.1
+	self.chca.ghost_bonus = 0.1
+	self.ranc.ghost_bonus = 0.1
+	self.corp.ghost_bonus = 0.1
+	-- high risk heists
+	self.mex.ghost_bonus = 0.15 -- tedious heist
+	self.arm_for.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.arena.ghost_bonus = 0.15 -- Alesso Heist is pretty long even on stealth
+	self.kenaz.ghost_bonus = 0.15 -- same as GGC
+	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
+	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
+	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+
+	-- multi day heists
+	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
+	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
+	-- Framing Frame (5% in day 1, 3% in day 2 and 7% on day 3 to reach the max 15% stealth bonus)
+	self.framing_frame_1.ghost_bonus = 0.05
+	self.framing_frame_2.ghost_bonus = 0.03
+	self.framing_frame_3.ghost_bonus = 0.07
+	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
+	self.election_day_1.ghost_bonus = 0.03
+	self.election_day_2.ghost_bonus = 0.07
+	-- Firestarter (5% in day 2 and 10% for day 3)
+	self.firestarter_2.ghost_bonus = 0.05
+	self.firestarter_3.ghost_bonus = 0.1
+
+	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	self.nmh.ghost_bonus = nil
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD

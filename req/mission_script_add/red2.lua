@@ -27,18 +27,18 @@ local security_guard_2 = scripted_enemy.security_2
 local security_guard_3 = scripted_enemy.security_3
 local security = { [security_guard_1] = 2, [security_guard_2] = 2, [security_guard_3] = 1 }
 
-local enabled_chance_escape_snipers = (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0) <= math.random()
-local enabled_chance_vault_shields = (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0) <= math.random()
-local enabled_chance_escape_shields = (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0) <= math.random()
-local enabled_chance_vault_dozers = 0.25 <= math.random()
-local enabled_chance_escape_swats = (normal and 0.3 or hard and 0.4 or 0.6) + (is_pro_job and 0.3 or 0) <= math.random()
-local enabled_chance_escape_hallway_wall = (normal and 0.2 or hard and 0.3 or 0.5) + (is_pro_job and 0.3 or 0) <= math.random()
-local enabled_chance_escape_dozers = 0.4 <= math.random()
-local enabled_chance_escape_cloakers = 0.4 <= math.random()
-local enabled_chance_escape_shield_wall = 0.6 <= math.random()
-local enabled_chance_shield_army = 0.15 + (is_pro_job and 0.15 or 0) <= math.random()
-local enabled_chance_more_guards = 0.2 + (is_pro_job and 0.2 or 0) <= math.random()
-local enabled_chance_escape_basement_cloakers = 0.1 + (is_pro_job and 0.2 or 0) <= math.random()
+local enabled_chance_escape_snipers = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
+local enabled_chance_vault_shields = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
+local enabled_chance_escape_shields = math.random() <= (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0)
+local enabled_chance_vault_dozers = math.random() <= 0.25
+local enabled_chance_escape_swats = math.random() <= (normal and 0.3 or hard and 0.4 or 0.6) + (is_pro_job and 0.3 or 0)
+local enabled_chance_escape_hallway_wall = math.random() <= (normal and 0.2 or hard and 0.3 or 0.5) + (is_pro_job and 0.3 or 0)
+local enabled_chance_escape_dozers = math.random() <= 0.4
+local enabled_chance_escape_cloakers = math.random() <= 0.4
+local enabled_chance_escape_shield_wall = math.random() <= 0.6
+local enabled_chance_shield_army = math.random() <= 0.15 + (is_pro_job and 0.15 or 0)
+local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
+local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.2 or 0)
 
 local optsSecurity = {
 	enemy_table = security,
