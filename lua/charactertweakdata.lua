@@ -145,7 +145,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_normal = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
-		focus_delay = 0.6,
+		focus_delay = 0.5,
 		melee_dmg = 10 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 2, 3 },
@@ -261,7 +261,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_security = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 1.25 },
-		focus_delay = 0.75,
+		focus_delay = 0.6,
 		range = { close = 1000, optimal = 2000, far = 4000 },
 	})
 	accuracy_addition(presets.weapon.eclipse_security, -0.1)
@@ -284,7 +284,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.75 },
-		focus_delay = 0.45,
+		focus_delay = 0.4,
 		melee_dmg = 14 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.eclipse_good, 1.2)
@@ -302,6 +302,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.eclipse_expert, 1.4)
 	reload_speed_multiplier(presets.weapon.eclipse_expert, 1.2)
 	accuracy_addition(presets.weapon.eclipse_expert, 0.2)
+
+	presets.weapon.eclipse_deathwish = based_on(presets.weapon.eclipse_normal, {
+		aim_delay = { 0, 0.25 },
+		focus_delay = 0.2,
+		melee_dmg = 22 * dmg_mul,
+	})
+	damage_multiplier(presets.weapon.eclipse_deathwish, 1.6)
+	reload_speed_multiplier(presets.weapon.eclipse_deathwish, 1.3)
+	accuracy_addition(presets.weapon.eclipse_deathwish, 0.3)
 
 	presets.weapon.eclipse_murky = based_on(presets.weapon.eclipse_good)
 	damage_multiplier(presets.weapon.eclipse_murky, 1.25)
