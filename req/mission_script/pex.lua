@@ -50,7 +50,7 @@ local sniper_amount = {
 local roof_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 2, 1.5, 1.25, 1 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -60,6 +60,21 @@ local scripted_swat_van_spawn = {
 local cloaker_spawn = {
 	values = {
 		interval = 90,
+	},
+}
+local enable_room_reinforce01 = {
+	on_executed = {
+		{ id = 400040, delay = 0 },
+	},
+}
+local enable_room_reinforce02 = {
+	on_executed = {
+		{ id = 400041, delay = 0 },
+	},
+}
+local enable_room_reinforce03 = {
+	on_executed = {
+		{ id = 400042, delay = 0 },
 	},
 }
 return {
@@ -75,30 +90,26 @@ return {
 			{
 				name = "parking_lot01",
 				force = 3,
-				position = Vector3(300, -1350, -15),
+				position = Vector3(1750, -500, -15),
 			},
 			{
 				name = "parking_lot02",
 				force = 3,
-				position = Vector3(1775, -425, -15),
+				position = Vector3(-1100, -500, -15),
 			},
 			{
-				name = "parking_lot03",
+				name = "entrance",
 				force = 3,
-				position = Vector3(-1100, -425, -15),
-			},
-			{
-				name = "reception",
-				force = 2,
-				position = Vector3(500, 800, 100),
-			},
-			{
-				name = "alley",
-				force = 2,
-				position = Vector3(-1075, 3800, 0),
+				position = Vector3(525, 300, 100),
 			},
 		},
 	},
+	-- Disable vanilla reinforce
+	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
+	[104095] = disabled, -- point_area_min_police_force_protect_fire
+	[104099] = disabled, -- point_area_min_police_force_armory_large
+	[104100] = disabled, -- point_area_min_police_force_armory_large
+	[104101] = disabled, -- point_area_min_police_force_armory_medium
 	-- Only activate certain preferreds after the first assault is over
 	[100021] = { -- completed_obj_fire
 		on_executed = {
@@ -122,7 +133,13 @@ return {
 			{ id = 102194, remove = true }, -- ai_enemy_prefered_remove_cells_back_spawn
 		},
 	},
-	-- replace the turret with a spawngroup
+	-- Don't assign roof preferreds to an area trigger
+	[101225] = { -- link_completed_cut lose the prisoner
+		on_executed = {
+			{ id = 104087, remove = true }, -- enable_trigger_to_spawn_ai
+		},
+	},
+	-- Replace the turret with a spawngroup
 	[104070] = { -- arrive 1
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 5 },
@@ -143,17 +160,6 @@ return {
 			{ id = 400026, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- Disable pointless area triggers
-	[104087] = disabled,
-	-- Disable vanilla reinforce
-	[102192] = disabled,
-	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
-	[104095] = disabled,
-	[104099] = disabled,
-	[104100] = disabled,
-	[104101] = disabled,
-	[104109] = disabled,
-	[104111] = disabled,
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
 	[100359] = sniper_amount,

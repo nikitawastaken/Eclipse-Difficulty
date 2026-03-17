@@ -24,14 +24,14 @@ local sniper_trigger_times = {
 local building_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local warehouse_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 2, 1.5, 1, 1 },
+		interval = 25,
+		interval_balance_mul = { 1.2, 1, 0.8, 0.6 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

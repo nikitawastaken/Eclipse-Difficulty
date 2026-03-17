@@ -5,8 +5,8 @@ local disabled = {
 }
 local ledge_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+		interval = 20,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 }
 return {

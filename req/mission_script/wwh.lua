@@ -44,8 +44,8 @@ local window_spawn = {
 }
 local boat_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+		interval = 45,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

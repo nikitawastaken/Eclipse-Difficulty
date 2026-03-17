@@ -99,21 +99,21 @@ local street_heli_enemy = {
 local breach_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.5, 1.25, 1, 1 },
+		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 2, 1.66, 1.33, 1 },
+		interval = 20,
+		interval_balance_mul = { 1.7, 1.4, 1.1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }

@@ -32,8 +32,8 @@ local rappel_spawn = {
 }
 local fueling_area_lower_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 2, 1.5, 1.25, 1 },
+		interval = 20,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local pillar_spawn = {
@@ -48,8 +48,8 @@ local tower_spawn = {
 }
 local fueling_area_upper_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 2, 1.5, 1.25, 1 },
+		interval = 40,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }

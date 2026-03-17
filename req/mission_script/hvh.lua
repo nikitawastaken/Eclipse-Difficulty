@@ -6,8 +6,8 @@ local disabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 2, 1.666, 1.333, 1 }, -- 666 :dwpj:
+		interval = 15,
+		interval_balance_mul = { 1.2, 1.1, 1, 0.9 }, 
 	},
 }
 return {

@@ -6,26 +6,28 @@ local disabled = {
 }
 local storage_far_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
+		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
 	},
 }
 local roof_far_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local roof_close_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 1.75, 1.5, 1.25, 1 },
+		interval = 30,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local storage_close_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
+		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
 	},
 }
 local storage_window_spawn = {
@@ -61,7 +63,7 @@ return {
 		},
 	},
 	-- PONR state
-	[101175] = disabled,
+--	[101175] = disabled,
 	[101006] = {
 		set_ponr_state = true,
 	},
@@ -78,23 +80,13 @@ return {
 			{
 				name = "auction_room",
 				force = 3,
-				position = Vector3(0, 2000, -100),
+				position = Vector3(0, 2000, -100)
 			},
 			{
-				name = "outside_left",
-				force = 2,
-				position = Vector3(-1600, -1375, -50),
-			},
-			{
-				name = "outside_middle",
+				name = "outside",
 				force = 3,
-				position = Vector3(0, -2500, -50),
-			},
-			{
-				name = "outside_right",
-				force = 2,
-				position = Vector3(1575, -1350, -50),
-			},
+				position = Vector3(0, -3300, -50)
+			}
 		},
 		on_executed = {
 			{ id = 100127, delay = 0 },
