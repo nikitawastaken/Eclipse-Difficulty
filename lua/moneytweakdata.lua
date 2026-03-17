@@ -342,10 +342,10 @@ function MoneyTweakData:init(tweak_data)
 	local biggest_mask_part_cost = math.round(smallest_cashout * 20)
 	local smallest_mask_part_cost = math.round(smallest_cashout * 68)
 	local biggest_weapon_cost = math.round(250000 * 4) -- (og value - 2.5) highest price 1,000,000$ at level 100, change table_size value to change cost peak level
-	local smallest_weapon_cost = math.round(smallest_cashout * 120) -- lowest price 25,000 at level 0, change curve value to change the price difference between levels (lower value = higher difference)
-	local biggest_weapon_mod_cost = math.round(250000 * 0.45) -- peak cost reached at level 10 (?)
-	local smallest_weapon_mod_cost = math.round(smallest_cashout_mod * 25) --13
-	self.weapon_cost = self._create_value_table(smallest_weapon_cost, biggest_weapon_cost, 100, true, 0.8) -- (min, max, table_size, round, curve)
+	local smallest_weapon_cost = math.round(smallest_cashout * 95) -- lowest price 25,000 at level 0, change curve value to change the price difference between levels (lower value = higher difference)
+	local biggest_weapon_mod_cost = math.round(250000 * 0.3) -- peak cost reached at level 10 (?)
+	local smallest_weapon_mod_cost = math.round(smallest_cashout_mod * 15) --13
+	self.weapon_cost = self._create_value_table(smallest_weapon_cost, biggest_weapon_cost, 100, true, 1.2) -- (min, max, table_size, round, curve)
 	self.modify_weapon_cost = self._create_value_table(smallest_weapon_mod_cost, biggest_weapon_mod_cost, 10, true, 0.6)
 	self.remove_weapon_mod_cost_multiplier = self._create_value_table(1, 1, 10, true, 1)
 	self.masks = {
