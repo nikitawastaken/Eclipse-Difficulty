@@ -12,7 +12,7 @@
 	"menu_keepers": "Keepers",
 	"menu_keepers_desc": "BASIC:  ##$basic##\nYour doctor bags have ##$multibasic## more charge.\n\nACE: ##$pro##\nYou can now deploy ##$multipro## doctor bags instead of just one.",
 	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your crewmates within a ##$multibasic## range will increase their movement and interaction speed by ##$multibasic2##, as well as grant them ##$multibasic3## armor suppression resistance for ##$multibasic4## seconds.\n\nACE: ##$pro##\nYou can now revive your crewmates within a ##$multibasic## range by shouting at them.\n\nThis cannot occur more than once every ##$multipro## seconds.",
-	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nYou regenerate up to ##$multibasic## health every ##$multibasic2## seconds for having at least ##$multibasic3## hostage.\n\nMax health regenerated is divided between the amount of hostages equivalent to the crew's size.\n\nACE: ##$pro##\nThe amount of health you regenerate is increased by ##$multipro## when you are within ##$multipro2## of a hostage.",
+	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nYou regenerate up to ##$multibasic## health every ##$multibasic2## seconds for having at least ##$multibasic3## hostage.\n\nThe amount of hostages required to receive the full effect is equivalent to the amount of crew members present.\n\nACE: ##$pro##\nThe amount of health you regenerate is increased by ##$multipro## when you are within ##$multipro2## of a hostage.",
 	"menu_cable_guy_beta": "Control Freak",
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nCivilians are intimidated by the noise you make and remain intimidated ##$multipro## longer.",
 	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nYour cable tie supply is increased by ##$multibasic##.\n\nYou can cable tie hostages ##$multibasic2## faster.\n\nACE: ##$pro##\nYou can now have an additional hostage following you at the same time.\n\nThere is now a ##$multipro## chance for you to find a cable tie in an ammo box.",
@@ -26,7 +26,7 @@
 	"menu_ammo_efficiency_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in less than ##$multibasic2## seconds with either Assault, Marksman or Sniper Rifles set to single fire mode will refund ##$multibasic3## bullet into your reserves.\n\nMissing a headshot in any capacity resets the chain.\n\nACE: ##$pro##\nThe time required to finish the headshot chain is increased to ##$multipro## seconds.\n\nThe bullet will instead be refunded ##straight into the magazine##.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Assault, Marksman and Sniper Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot with either Assault, Marksman or Sniper Rifles set to single fire mode will increase your reload speed by ##$multipro## for ##$multipro2## seconds.",
 	"menu_headshot_fury": "Headshot Fury",
-	"menu_headshot_fury_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times. Missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle, a charge meter builds up over a period of ##$multipro## seconds.\n\nWhen fully charged, your next headshot will deal ##$multipro2## of the bullet's damage to the closest enemy in a ##$multipro3## radius, chaining up to ##$multipro4## times with each instance dealing ##$multipro5## less damage than the previous one.\n\nLeaving the aiming stance or firing the weapon at any point discharges the meter.",
+	"menu_headshot_fury_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times. Missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle without firing for at least ##$multipro## consecutive seconds, your next headshot will deal ##$multipro2## of the bullet's damage to the closest enemy in a ##$multipro3## radius.\n\nThis effect chains up to ##$multipro4## times with each instance dealing ##$multipro5## less damage than the previous one.",
 
 
 	"menu_point_blank": "Point Blank",
@@ -39,7 +39,6 @@
 	"menu_far_away_desc": "BASIC: ##$basic##\nEffective range of your Shotguns is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour accuracy bonus while aiming down sights with Shotguns is increased by ##$multipro##.",
 	"menu_overkill": "OVERKILL",
 	"menu_overkill_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a Shotgun, you have a ##$multibasic## chance to cause nearby enemies to panic.\n\nThis cannot occur more than once every ##$multibasic2## seconds\n\nACE: ##$pro##\nWhen you kill an enemy with a Shotgun, you receive ##$multipro## damage increase for ##$multipro2## seconds.\n\nThis damage bonus applies to all weapons.",
-
 	"menu_impact_padding": "Impact Padding",
 	"menu_impact_padding_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## damage reduction while standing upright and still.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you receive ##$multipro## damage reduction that lasts for ##$multipro2## seconds.\n\nThis cannot occur more than once every ##$multipro3## seconds.",
 	"menu_nerves_of_steel": "Nerves of Steel",
@@ -52,7 +51,6 @@
 	"menu_regen_plating_desc": "BASIC: ##$basic##\nYour armor recovery rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you regenerate ##$multipro## health and an additional ##$multipro2## health for every ##$multipro3## points of armor.\n\nThis cannot occur more than once every ##$multipro## seconds and an additional ##$multipro2## second for every ##$multipro3## points of armor.",
 	"menu_iron_man": "Iron Man",
 	"menu_iron_man_desc": "BASIC: ##$basic##\nWhen you have more than ##$multibasic## of your armor regenerated, you take ##$multibasic2## less damage.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
-
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nWhen you melee shield enemies, they get knocked back by the sheer force.\n\nYour ranged weapons have a chance of knocking down shields as well. Knock back chance scales with the total damage of the used weapon.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 	"bm_menu_skill_locked_level_7" : "Requires the aced version of Iron Man skill",
 	"menu_show_of_force_beta": "Plates of Steel",
@@ -69,6 +67,7 @@
 	"menu_big_game_hunters_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nA member of the crew who picks up the extra ammo box will be granted a ##$multipro## damage increase for ##$multipro2## seconds.",
 	"menu_ammo_reservoir_beta_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##$multibasic## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##$multipro2## seconds.",
 
+	
 	"menu_defense_up_beta": "Daredevil",
 	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
 	"menu_handson_approach": "Hands-On Approach",
