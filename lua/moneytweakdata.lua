@@ -63,9 +63,9 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.drk_bomb_part = 300000
 	self.bag_values.drone_control_helmet = 650000
 	self.bag_values.toothbrush = 18000
-	self.bag_values.cloaker_gold = 75000
-	self.bag_values.cloaker_money = 45000
-	self.bag_values.cloaker_cocaine = 80000
+	self.bag_values.cloaker_gold = 35000
+	self.bag_values.cloaker_money = 35000
+	self.bag_values.cloaker_cocaine = 35000
 	self.bag_values.diamond_necklace = 65000
 	self.bag_values.vr_headset = 30000
 	self.bag_values.women_shoes = 25000
