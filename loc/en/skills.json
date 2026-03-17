@@ -42,7 +42,7 @@
 	"menu_impact_padding": "Impact Padding",
 	"menu_impact_padding_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## damage reduction while standing upright and still.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you receive ##$multipro## damage reduction that lasts for ##$multipro2## seconds.\n\nThis cannot occur more than once every ##$multipro3## seconds.",
 	"menu_nerves_of_steel": "Nerves of Steel",
-	"menu_nerves_of_steel_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\n\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nYou gain ##$multipro## resistance to armor suppression.",
+	"menu_nerves_of_steel_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\n\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nWhen you are being shot at, armor suppression will take ##$multipro## longer to build up and begin decaying ##$multipro## faster.",
 	"menu_protective_mask": "Protective Mask",
 	"menu_protective_mask_desc": "BASIC: ##$basic##\nYour armor now absorbs tear gas damage.\n\nACE: ##$pro##\nThe visual effect of Flashbangs is weakened by ##$multipro##.",
 	"menu_pack_mule": "Pack Mule",
@@ -67,7 +67,7 @@
 	"menu_big_game_hunters_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nA member of the crew who picks up the extra ammo box will be granted a ##$multipro## damage increase for ##$multipro2## seconds.",
 	"menu_ammo_reservoir_beta_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##$multibasic## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##$multipro2## seconds.",
 
-	
+
 	"menu_defense_up_beta": "Daredevil",
 	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
 	"menu_handson_approach": "Hands-On Approach",

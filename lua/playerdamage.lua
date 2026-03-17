@@ -877,6 +877,27 @@ function PlayerDamage:_upd_suppression(t, dt)
 	end
 end
 
+-- suppression multiplier also affects decay timer
+function PlayerDamage:build_suppression(amount)
+	if self:_chk_suppression_too_soon(amount) then
+		return
+	end
+
+	local data = self._supperssion_data
+	amount = amount * managers.player:upgrade_value("player", "suppressed_multiplier", 1)
+	local morale_boost_bonus = self._unit:movement():morale_boost()
+
+	if morale_boost_bonus then
+		amount = amount * morale_boost_bonus.suppression_resistance
+	end
+
+	amount = amount * tweak_data.player.suppression.receive_mul
+	data.value = math.min(tweak_data.player.suppression.max_value, (data.value or 0) + amount * tweak_data.player.suppression.receive_mul)
+	self._last_received_sup = amount
+	self._next_allowed_sup_t = managers.player:player_timer():time() + self._dmg_interval
+	data.decay_start_t = managers.player:player_timer():time() + tweak_data.player.suppression.decay_start_delay * managers.player:upgrade_value("player", "suppressed_multiplier", 1)
+end
+
 -- On-armor-regen upgrades
 function PlayerDamage:_regenerate_armor(no_sound)
 	if self._unit:sound() and not no_sound then
