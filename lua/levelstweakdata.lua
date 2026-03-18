@@ -491,6 +491,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
 	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
 	-- low risk heists
+	self.gallery.ghost_bonus = 0.05 -- to be consistent with Framing Frame Day 1
 	self.mallcrasher.ghost_bonus = 0.05 -- it's possible to stealth mallcrasher, i'm serious
 	self.nightclub.ghost_bonus = 0.05 -- it's a basic heist (from 10%)
 	self.branchbank.ghost_bonus = 0.05 -- same as here (from 10%)
@@ -517,6 +518,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- multi day heists
 	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
 	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
+	self.welcome_to_the_jungle_1_night.ghost_bonus = 0.05 
 	-- Framing Frame (5% in day 1, 3% in day 2 and 7% on day 3 to reach the max 15% stealth bonus)
 	self.framing_frame_1.ghost_bonus = 0.05
 	self.framing_frame_2.ghost_bonus = 0.03
