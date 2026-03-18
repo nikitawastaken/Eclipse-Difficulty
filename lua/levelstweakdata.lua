@@ -989,6 +989,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.shoutout_raid.custom_package = murky_mercs_package
 	self.dark.custom_package = murky_mercs_package
 	self.wwh.custom_package = murky_mercs_package
+	
+	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
+	self.brb.custom_package = murky_mercs_scripted_package
 
 	local zombie_faction_package = { "packages/zombie_cops" }
 	self.nail.custom_package = zombie_faction_package
