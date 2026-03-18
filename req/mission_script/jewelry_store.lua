@@ -7,9 +7,15 @@ local enabled = {
 		enabled = true,
 	},
 }
+local bags_required_amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
 local bags_required = {
 	values = {
-		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		amount = bags_required_amount,
+	},
+}
+local bags_required_job_value = {
+	values = {
+		value = bags_required_amount,
 	},
 }
 local cop_1 = scripted_enemy.cop_1
@@ -60,6 +66,9 @@ return {
 	[101424] = bags_required,
 	[101427] = bags_required,
 	[101510] = bags_required,
+	[104033] = bags_required_job_value,
+	[104042] = bags_required_job_value,
+	[104044] = bags_required_job_value,
 	-- edit SWAT heli dropoff
 	-- 100% chance for guaranteed chopper
 	[102861] = { chance = 100 },
