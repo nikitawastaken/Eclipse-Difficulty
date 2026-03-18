@@ -10,7 +10,7 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.breach_group[element.id] then
 				element.values.interval = 30
-				element.values.interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+				element.values.interval_balance_mul = { 1.45, 1.3, 1.15, 1 }
 				element.values.groups = preferred.no_cops_agents
 			end
 		end
