@@ -123,6 +123,12 @@ return {
 	[104657] = bags_required,
 	[104658] = bags_required,
 	[100177] = disabled,
+	-- Disable outline for Ralph if he is tied
+	[100461] = {
+		on_executed = {
+			{id = 100082, delay = 0}
+		}
+	},
 	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
 	-- should be impossible to spawncamp the heist that way
 	[104385] = enabled,
