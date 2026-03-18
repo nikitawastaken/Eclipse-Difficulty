@@ -126,8 +126,8 @@ return {
 	-- Disable outline for Ralph if he is tied
 	[100461] = {
 		on_executed = {
-			{id = 100082, delay = 0}
-		}
+			{ id = 100082, delay = 0 },
+		},
 	},
 	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
 	-- should be impossible to spawncamp the heist that way
