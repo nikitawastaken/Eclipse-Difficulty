@@ -123,7 +123,7 @@ return {
 	-- disable this on Death Wish
 	[101496] = {
 		values = {
-			enabled = is_eclipse and false,
+			enabled = not is_eclipse and true or false,
 		},
 	},
 	-- hell
