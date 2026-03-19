@@ -26,17 +26,17 @@ return {
 		reinforce = {
 			{
 				name = "traincar01",
-				force = 3,
+				force = 2,
 				position = Vector3(-6220, 5800, 450),
 			},
 			{
 				name = "traincar02",
-				force = 3,
+				force = 2,
 				position = Vector3(-3220, 4790, 450),
 			},
 			{
 				name = "traincar03",
-				force = 3,
+				force = 2,
 				position = Vector3(2090, 5770, 450),
 			},
 		},
@@ -44,9 +44,9 @@ return {
 	-- Disable traincar reinforce when hooking up the locomotive
 	[101049] = {
 		reinforce = {
-			{ name = "traincar1" },
-			{ name = "traincar2" },
-			{ name = "traincar3" },
+			{ name = "traincar01" },
+			{ name = "traincar02" },
+			{ name = "traincar03" },
 		},
 	},
 	-- Fix snipers being able to spawn only once
