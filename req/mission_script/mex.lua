@@ -17,6 +17,12 @@ local disabled = {
 		enabled = false,
 	},
 }
+local wall_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+}
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -85,6 +91,37 @@ return {
 	[102878] = bags_required,
 	[102881] = bags_required,
 	[102893] = bags_required,
+	-- Spawn group intervals
+	[100128] = wall_spawn, -- American side
+	[100131] = wall_spawn,
+	[100132] = wall_spawn,
+	[100694] = wall_spawn, -- Mexican side
+	[102227] = wall_spawn,
+	[102228] = wall_spawn,
+	[102254] = wall_spawn,
+	[102255] = wall_spawn,
+	[102423] = wall_spawn,
+	[102424] = wall_spawn,
+	[102442] = wall_spawn,
+	[103235] = window_spawn,
+	[103048] = window_spawn,
+	[103067] = window_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
+	[102553] = cloaker_spawn,
+	[102554] = cloaker_spawn,
+	[102555] = cloaker_spawn,
+	[102556] = cloaker_spawn,
+	[102557] = cloaker_spawn,
+	[102558] = cloaker_spawn,
+	[102559] = cloaker_spawn,
+	[102560] = cloaker_spawn,
 	-- gangsters
 	[100670] = biker,
 	[100671] = biker,
@@ -113,24 +150,4 @@ return {
 	[101683] = biker,
 	[101774] = biker,
 	[101866] = biker, -- camera man
-	-- Spawn group intervals
-	[103235] = window_spawn,
-	[103048] = window_spawn,
-	[103067] = window_spawn,
-	[100844] = cloaker_spawn,
-	[100848] = cloaker_spawn,
-	[100852] = cloaker_spawn,
-	[100856] = cloaker_spawn,
-	[100860] = cloaker_spawn,
-	[100864] = cloaker_spawn,
-	[100868] = cloaker_spawn,
-	[100873] = cloaker_spawn,
-	[102553] = cloaker_spawn,
-	[102554] = cloaker_spawn,
-	[102555] = cloaker_spawn,
-	[102556] = cloaker_spawn,
-	[102557] = cloaker_spawn,
-	[102558] = cloaker_spawn,
-	[102559] = cloaker_spawn,
-	[102560] = cloaker_spawn,
 }

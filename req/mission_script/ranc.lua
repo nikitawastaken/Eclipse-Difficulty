@@ -7,6 +7,12 @@ local sniper_trigger_times = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_over_3m",
 }
+local roof_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 }
+	},
+}
 local dock_spawn = {
 	values = {
 		interval = 30,
@@ -88,6 +94,8 @@ return {
 	[400007] = scripted_swat_van_spawn,
 	[400014] = scripted_swat_van_spawn,
 	[400021] = scripted_swat_van_spawn,
+	[100911] = roof_spawn,
+	[100019] = roof_spawn,
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,
 	[102397] = dock_spawn,

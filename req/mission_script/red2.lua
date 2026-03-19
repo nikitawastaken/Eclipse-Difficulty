@@ -86,21 +86,21 @@ local mga_vault_event = {
 local skylight_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.65, 1.4, 1.15, 0.9 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local elevator_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.65, 1.4, 1.15, 0.9 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

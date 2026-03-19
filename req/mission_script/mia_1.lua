@@ -6,7 +6,7 @@ local disabled = {
 local alleyway_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 }
 return {

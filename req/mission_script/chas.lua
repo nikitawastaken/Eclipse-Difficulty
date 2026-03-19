@@ -31,7 +31,7 @@ local building_spawn = {
 local warehouse_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.2, 1, 0.8, 0.6 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

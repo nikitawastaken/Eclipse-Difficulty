@@ -79,14 +79,14 @@ local archives_spawn = {
 local atrium_skylight_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local atrium_elevator_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

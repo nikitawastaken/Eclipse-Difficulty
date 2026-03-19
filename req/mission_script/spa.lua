@@ -18,7 +18,7 @@ local rappel_init_spawn = {
 local rappel_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.6, 1.3, 1, 0.7 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }

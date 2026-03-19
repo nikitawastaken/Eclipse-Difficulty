@@ -12,18 +12,21 @@ local sniper_trigger_times = {
 local pent_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_lower_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local roof_upper_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields,
 }

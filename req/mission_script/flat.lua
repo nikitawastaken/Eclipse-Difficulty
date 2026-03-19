@@ -54,7 +54,7 @@ local retrigger = {
 local roof_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.3, 1.15, 1, 0.85 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields,
 }

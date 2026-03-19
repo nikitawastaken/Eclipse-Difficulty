@@ -7,7 +7,7 @@ local disabled = {
 local storage_far_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local roof_far_spawn = {
@@ -27,7 +27,7 @@ local roof_close_spawn = {
 local storage_close_spawn = {
 	values = {
 		interval = 40,
-		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local storage_window_spawn = {
