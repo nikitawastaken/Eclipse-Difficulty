@@ -10,7 +10,7 @@ local spawn_anim_fix = {
 local roof_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 }
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
 local dock_spawn = {
