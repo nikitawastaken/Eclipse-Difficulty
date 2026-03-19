@@ -277,6 +277,7 @@
 		{"cat_index": 69, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 70, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 71, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
-		{"cat_index": 72, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"}
+		{"cat_index": 72, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
+		{"cat_index": 73, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"}
 	]
 }
