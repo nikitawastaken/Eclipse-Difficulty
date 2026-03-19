@@ -43,9 +43,15 @@ local cloaker_spawn = {
 	},
 	groups = preferred.only_cloakers_single,
 }
+local bags_required_amount = normal and 2 or hard and 5 or 6
 local bags_required = {
 	values = {
-		amount = normal and 2 or hard and 5 or 6,
+		amount = bags_required_amount,
+	},
+}
+local bags_required_job_value = {
+	values = {
+		value = bags_required_amount,
 	},
 }
 return {
@@ -110,6 +116,10 @@ return {
 	[101168] = bags_required,
 	[101169] = bags_required,
 	[101170] = bags_required,
+	[101182] = bags_required_job_value,
+	[101183] = bags_required_job_value,
+	[101184] = bags_required_job_value,
+	[101186] = bags_required_job_value,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
