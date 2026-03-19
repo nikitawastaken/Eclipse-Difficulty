@@ -1397,7 +1397,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_walk_only,
 	}
-	
+
 	self.unit_categories.gensec_tacteam = {
 		unit_types = {
 			america = {
@@ -1577,7 +1577,7 @@ end)
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
 	local small_urban = self._mission_preset and self._mission_preset == "small_urban"
 	local heavy_response = self._mission_preset and self._mission_preset == "heavy_response"
-	
+
 	self.group_difficulty_scale = get_difficulty_specific_value({
 		8,
 		10,
@@ -1592,7 +1592,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		7,
 		8,
 	})
-	
+
 	self._tactics = {
 		none = {},
 		cop_init = {
@@ -3137,7 +3137,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 	end
 
 	if self.us_army_heists_scripted[level_id] then
-		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref, self.group_difficulty_scale)
+		self.timed_enemy_spawn_groups.us_scripted_group1 =
+			Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref, self.group_difficulty_scale)
 	end
 
 	if self.gensec_tac_teams_heists[level_id] then
