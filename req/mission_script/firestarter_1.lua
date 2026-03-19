@@ -61,6 +61,12 @@ return {
 	[101347] = hangar_reinforce_amount,
 	[101349] = hangar_reinforce_amount,
 	-- adjust FBI chopper ambush
+	-- fix the chopper leaving too early
+	[103386] = {
+		on_executed = {
+			{ id = 103387, delay = 14 },
+		},
+	},
 	[103432] = {
 		on_executed = {
 			{ id = 103437, remove = true },
