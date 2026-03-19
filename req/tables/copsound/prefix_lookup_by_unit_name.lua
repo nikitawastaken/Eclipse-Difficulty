@@ -155,7 +155,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4",
 		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic",
 	},
-	-- list that has 3 random voices, should be used for mercs and us soldiers
+	-- list that has 3 random voices, should be used for mercs, us soldiers and other misc enemies
 	l5n_l3n_l2n_list = {
 		func = function(self, nr_variations)
 			local rand = math.random()
@@ -167,6 +167,9 @@ local prefix_lookup_for_humans = {
 				return "l2n_"
 			end
 		end,
+		-- Midland Ranch Guards
+		"units/pd2_dlc_ranc/characters/ene_male_ranc_security_1/ene_male_ranc_security_1",
+		"units/pd2_dlc_ranc/characters/ene_male_ranc_security_2/ene_male_ranc_security_2",
 		-- Bellmead Mercs
 		"units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1",
 		"units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2",
