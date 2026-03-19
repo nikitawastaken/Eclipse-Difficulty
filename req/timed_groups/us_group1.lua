@@ -1,4 +1,4 @@
-return function(timed_tactics, timed_random_tactics, difficulty_index, spawn_point_ref)
+return function(timed_tactics, timed_random_tactics, spawn_point_ref, group_diff_scale)
 	return {
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
@@ -30,29 +30,29 @@ return function(timed_tactics, timed_random_tactics, difficulty_index, spawn_poi
 				end,
 				spawn = {
 					{
-						amount_max = 2,
 						rank = 2,
+						amount_max = 2,
 						freq = 0.5,
 						unit = "army_soldier_3",
-						tactics = timed_tactics.army_def,
+						tactics = timed_tactics.army_agg,
 						random_tactics = timed_random_tactics.army_aggressive,
 					},
 					{
-						amount_min = 1,
 						rank = 2,
+						amount_min = 1,
 						freq = 1,
 						unit = "army_soldier_2",
 						tactics = timed_tactics.army_def,
 						random_tactics = timed_random_tactics.army_defensive,
 					},
 					{
-						amount_max = 1,
 						rank = 1,
 						freq_by_diff = {
 							0,
-							(difficulty_index ^ 2) / 120,
-							(difficulty_index ^ 2) / 60,
+							group_diff_scale / 60,
+							group_diff_scale / 30,
 						},
+						amount_max = 1,
 						unit = "army_soldier_4",
 						tactics = timed_tactics.army_spt,
 					},

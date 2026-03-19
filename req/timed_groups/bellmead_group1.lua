@@ -30,16 +30,16 @@ return function(timed_tactics, timed_random_tactics, spawn_point_ref)
 				end,
 				spawn = {
 					{
-						amount_max = 2,
 						rank = 1,
+						amount_max = 2,
 						freq = 0.5,
 						unit = "bellmead_security",
 						tactics = timed_tactics.murky_agg,
 						random_tactics = timed_random_tactics.murky_aggressive,
 					},
 					{
-						amount_min = 1,
 						rank = 1,
+						amount_min = 1,
 						freq = 1,
 						unit = "bellmead_security",
 						tactics = timed_tactics.murky_def,
