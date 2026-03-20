@@ -2868,7 +2868,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_regen_damage_health_ratio_multiplier[1] = 0.3
 	self.values.player.armor_regen_damage_health_ratio_threshold_multiplier[1] = 4
 	self.values.player.damage_damage_health_ratio_threshold_multiplier = { 2 }
-	self.values.player.dodge_health_ratio_multiplier = { 0.4 }
+	self.values.player.dodge_health_ratio_multiplier = { 0.3 }
 	self.definitions.player_dodge_health_ratio_multiplier = {
 		name_id = "menu_player_dodge_health_ratio_multiplier",
 		category = "feature",
@@ -2890,7 +2890,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[12][1].multiperk = "30%"
 	self.specialization_descs[12][3].multiperk = "80%"
 	self.specialization_descs[12][5].multiperk = "15%"
-	self.specialization_descs[12][7].multiperk = "40%"
+	self.specialization_descs[12][7].multiperk = "30%"
 	self.specialization_descs[12][9].multiperk = "30%"
 
 	-- Ex-President
