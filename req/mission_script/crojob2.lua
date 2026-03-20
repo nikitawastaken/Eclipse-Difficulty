@@ -40,7 +40,7 @@ return {
 	[106867] = disabled,
 	[104040] = { -- This spawngroup is split
 		values = {
-			interval = fence_spawn.interval,
+			interval = close_spawn.interval,
 			elements = {
 				--	105353,
 				--	105354,
