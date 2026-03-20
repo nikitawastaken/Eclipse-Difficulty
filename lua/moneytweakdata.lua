@@ -19,7 +19,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values = {}
 	self.bag_values.default = 15000
 	self.bag_values.money = 45000
-	self.bag_values.gold = 92000
+	self.bag_values.gold = 95000
 	self.bag_values.goat = 115000
 	self.bag_values.diamonds = 18000
 	self.bag_values.diamonds_dah = 250000
@@ -28,7 +28,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.meth = 80000
 	self.bag_values.meth_half = 40000
 	self.bag_values.weapon = 60000
-	self.bag_values.weapons = 100000
+	self.bag_values.weapons = 120000
 	self.bag_values.painting = 75000
 	self.bag_values.samurai_suit = 145000
 	self.bag_values.artifact_statue = 200000
