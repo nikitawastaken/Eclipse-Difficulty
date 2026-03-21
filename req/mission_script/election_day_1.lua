@@ -39,7 +39,7 @@ return {
 			base_delay = 30,
 			base_delay_rand = 30,
 		},
-	}
+	},
 	-- Combine some navigation areas
 	[101786] = {
 		ai_area = {
