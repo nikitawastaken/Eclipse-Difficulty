@@ -42,7 +42,7 @@
 	"menu_deck3_5": "Composite Layer",
 	"menu_deck3_5_desc": "You gain ##$multiperk## more armor.",
 	"menu_deck3_7": "Iron Curtain",
-	"menu_deck3_7_desc": "When your armor breaks, your crewmates receive ##$multiperk## damage reduction for ##$multiperk2## seconds.\n\nThis cannot occur more than once every ##$multiperk3##seconds.\n\nNote: Crew perks do not stack.",
+	"menu_deck3_7_desc": "When your armor breaks, your crewmates receive ##$multiperk## damage reduction for ##$multiperk2## seconds.\n\nThis cannot occur more than once every ##$multiperk3## seconds.\n\nNote: Crew perks do not stack.",
 	"menu_deck3_9": "Failsafe Protocol",
 	"menu_deck3_9_desc": "When your armor gets depleted you will be immune to health damage for ##$multiperk## seconds.\n\nThis cannot occur more than once every ##$multiperk2## seconds.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck4_3_desc": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
