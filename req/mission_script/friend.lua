@@ -12,7 +12,7 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 return {

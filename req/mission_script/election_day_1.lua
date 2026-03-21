@@ -18,12 +18,13 @@ local harasser = {
 }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local jumpdown_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -32,6 +33,13 @@ local scripted_heli_spawn = {
 }
 
 return {
+	-- Add power cut SO delay
+	[102675] = {
+		values = {
+			base_delay = 30,
+			base_delay_rand = 30,
+		},
+	}
 	-- Combine some navigation areas
 	[101786] = {
 		ai_area = {

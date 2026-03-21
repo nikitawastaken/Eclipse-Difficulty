@@ -11,8 +11,8 @@ local disabled = {
 }
 local close_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local upper_spawn = {
@@ -23,6 +23,12 @@ local upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Add circuit breaker SO delay
+	[102302] = {
+		on_executed = {
+			{ id = 104665, delay = 30, delay_rand = 30 },
+		},
+	},
 	-- Combine some navigation areas
 	[101531] = {
 		ai_area = {
