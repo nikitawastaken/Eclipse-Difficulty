@@ -23,7 +23,6 @@ local surv_keycard_man = {
 	enemy = jerome_man,
 }
 
-
 return {
 	-- replace regular murkywater with shotgun guard in the surv room
 	[100711] = surv_keycard_man,
