@@ -97,6 +97,8 @@ return {
 	-- Disable vanilla reinforce
 	[101646] = disabled,
 	[102590] = disabled,
+	-- disable vanilla's bags to defend objective (it's handled by a new one in mission_script_add)
+	[101600] = disabled,
 	--[[set sniper amounts
 	[102450] = sniper_amount,
 	[102451] = sniper_amount,
