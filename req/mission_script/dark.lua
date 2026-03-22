@@ -11,7 +11,7 @@ local murkywater_security_enemy = overkill_and_above and murky_guard_list_high_d
 
 local murkywater_security = { enemy = murkywater_security_enemy }
 return {
-	-- add regular murkywater security to the spawn pool
+	--[[ add regular murkywater security to the spawn pool
 	[101189] = murkywater_security,
 	[102077] = murkywater_security,
 	[102078] = murkywater_security,
@@ -43,4 +43,5 @@ return {
 	[100124] = murkywater_security,
 	[101525] = murkywater_security,
 	[101528] = murkywater_security,
+	]]
 }
