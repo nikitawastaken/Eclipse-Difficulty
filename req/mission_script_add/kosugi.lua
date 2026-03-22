@@ -46,10 +46,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400001, "extra_murky", Vector3(6763, 431, 980), Rotation(180, 0, 0), optsExtraSecurity),
 	Eclipse.mission_elements.gen_missionscript(400002, "extra_security_script", optsSpawnExtraSecurity),
 	Eclipse.mission_elements.gen_dialogue(400003, "they_sending_security", Bain_sendextrasecurity),
-	
+
 	Eclipse.mission_elements.gen_object_editor(400004, "open_the_gates_if_closed", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpen_Gates),
 	Eclipse.mission_elements.gen_toggleelement(400005, "enable_open_the_gates", enable_open_gates),
-
 }
 
 return M
