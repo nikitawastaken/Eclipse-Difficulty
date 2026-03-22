@@ -22,6 +22,12 @@ local murky_choppers = {
 local surv_keycard_man = {
 	enemy = jerome_man,
 }
+local surv_keycard_chopper_man = {
+	enemy = jerome_man,
+	values = {
+		trigger_times = 1,
+	},
+}
 local extra_security_script = {
 	on_executed = {
 		{ id = 400002, delay = 30 },
@@ -32,7 +38,7 @@ return {
 	-- replace regular murkywater with shotgun guard in the surv room
 	[100711] = surv_keycard_man,
 	-- change murkywater's model to regular shotgun guard to better indicate who has the keycard
-	[101076] = surv_keycard_man,
+	[101076] = surv_keycard_chopper_man,
 	[101266] = surv_keycard_man,
 	[101272] = surv_keycard_man,
 	[101279] = surv_keycard_man,
