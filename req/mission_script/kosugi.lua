@@ -22,6 +22,11 @@ local murky_choppers = {
 local surv_keycard_man = {
 	enemy = jerome_man,
 }
+local extra_security_script = {
+	on_executed = {
+		{ id = 400002, delay = 30 },
+	},
+}
 
 return {
 	-- replace regular murkywater with shotgun guard in the surv room
@@ -40,6 +45,36 @@ return {
 	[100340] = {
 		on_executed = {
 			{ id = 100303, delay = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0) },
+		},
+	},
+	-- spawn extra security when the surv man dies or the vault opens
+	-- add extra security spawn to dummy trigger
+	[101273] = {
+		values = {
+			elements = {
+				101277,
+				101076,
+				101078,
+				101075,
+				101077,
+				400001, -- extra security
+			},
+		},
+	},
+	-- surv man is dead
+	[100715] = extra_security_script,
+	-- vault is open
+	[100964] = extra_security_script,
+	-- enable the toggle that opens the gate once the extra security spawns in
+	[101071] = {
+		on_executed = {
+			{ id = 400005, delay = 0.1 },
+		},
+	},
+	-- the guard in the back alley can now spawn on overkill
+	[102984] = {
+		values = {
+			difficulty_overkill_145 = true,
 		},
 	},
 	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on Death Wish)
