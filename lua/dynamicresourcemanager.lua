@@ -1,32 +1,32 @@
+DynamicResourceManager.unit_load_lookup = Eclipse:require("tables/dynamicresourcemanager/unit_load_lookup") 
+
 local ids_unit = Idstring("unit")
 local level_id = Eclipse.utils.level_id()
 local lvl_tweak = tweak_data.levels[level_id]
 
 Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units", function(self)
-	local function load_unload_unit(path, load, no_husk)
+	local function load_unload_unit(path, load, load_husk)
 		local has = self:has_resource(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 		if load and not has then
 			self:load(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
-
-			Eclipse:log_console("Loaded " .. path)
-			if not no_husk then
-				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
-
-				Eclipse:log_console("Loaded " .. path .. "_husk")
+			
+			if load_husk then
+				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)		
 			end
+			
+			Eclipse:log_console("Loaded " .. path)
 		elseif not load and has then
 			self:unload(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
-
-			Eclipse:log_console("Unloaded " .. path)
-			if not no_husk then
-				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
-
-				Eclipse:log_console("Unloaded " .. path .. "_husk")
+			
+			if load_husk then
+				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)	
 			end
+			
+			Eclipse:log_console("Unloaded " .. path)
 		end
 	end
-
-	-- Custom packages
+	
+	-- Load custom packages
 	if lvl_tweak and lvl_tweak.custom_package then
 		for _, custom_package in pairs(lvl_tweak.custom_package) do
 			local package_units = Eclipse:require(custom_package) or {}
@@ -36,196 +36,13 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		end
 	end
 
-	local cop_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"))
-	load_unload_unit("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_female_1/ene_cop_female_1", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_female_2/ene_cop_female_2", cop_needed, false)
-
-	local security_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_security_1/ene_security_1"))
-	load_unload_unit("units/payday2/characters/ene_security_1_fat/ene_security_1_fat", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_security_2_fat/ene_security_2_fat", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_security_3_fat/ene_security_3_fat", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_security_female_1/ene_security_female_1", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_security_female_2/ene_security_female_2", security_needed, false)
-
-	local swat_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"))
-	load_unload_unit("units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap", swat_needed, true)
-	load_unload_unit("units/payday2/characters/ene_swat_3/ene_swat_3", swat_needed, false)
-	load_unload_unit("units/payday2/characters/ene_tazer_r870/ene_tazer_r870", swat_needed, false)
-	load_unload_unit("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3", swat_needed, false)
-	load_unload_unit("units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", swat_needed, true)
-	load_unload_unit("units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap", swat_needed, true)
-	load_unload_unit("units/payday2/characters/ene_sniper_3/ene_sniper_3", swat_needed, false)
-
-	local dlc1_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"))
-	load_unload_unit("units/pd2_dlc1/characters/ene_acc_gensec_beret/ene_acc_gensec_beret", dlc1_needed, true)
-	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1", dlc1_needed, false)
-	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2", dlc1_needed, false)
-
-	local headless_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"))
-	load_unload_unit("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5", headless_needed, false)
-
-	local drm_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"))
-	load_unload_unit("units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic", drm_needed, false)
-
-	local mad_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"))
-	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_ak47_elite/wpn_npc_ak47_elite", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_cop_hat/ene_acc_cop_hat", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_swat_helmet/ene_acc_swat_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_swat_hat/ene_acc_swat_hat", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_shield_mask/ene_acc_shield_mask", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_medic_helmet/ene_acc_medic_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_tazer_mask/ene_acc_tazer_mask", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_shield_akan_small/ene_acc_shield_akan_small", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_shield_akan_shield/ene_acc_shield_akan", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city_dummy", mad_needed, true)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_swat_akmsu_smg/ene_akan_cs_swat_akmsu_smg", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_akmsu_smg/ene_akan_fbi_swat_akmsu_smg", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_sniper_svd_snp/ene_akan_fbi_swat_sniper_svd_snp", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_svd_dmr/ene_akan_city_swat_sniper_svd_dmr", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_city_heavy_r870/ene_akan_city_heavy_r870", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_r870/ene_akan_cs_tazer_r870", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini", mad_needed, false)
-	load_unload_unit("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic", mad_needed, false)
-
-	local hvh_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"))
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_sniper_hvh_1/ene_sniper_hvh_1", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_3/ene_fbi_swat_hvh_3", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_swat_hvh_1/ene_city_swat_hvh_1", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_swat_hvh_2/ene_city_swat_hvh_2", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_swat_hvh_3/ene_city_swat_hvh_3", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_sniper_hvh_3/ene_sniper_hvh_3", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_shield_hvh/ene_city_shield_hvh", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_1/ene_city_heavy_hvh_1", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_r870/ene_city_heavy_hvh_r870", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4", hvh_needed, false)
-	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh", hvh_needed, false)
-
-	local rvd_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"))
-	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat", rvd_needed, false)
-	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat", rvd_needed, false)
-	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat", rvd_needed, false)
-	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
-
-	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_cop_hat/ene_acc_cop_hat", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_security_cap/ene_acc_security_cap", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_swat_helmet/ene_acc_swat_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_swat_hat/ene_acc_swat_hat", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_medic_helmet/ene_acc_medic_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_small/ene_acc_shield_small", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_lights/ene_acc_shield_lights", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city_dummy", bph_needed, true)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper", bph_needed, false) -- Not loaded on the White House. Why? Don't ask.
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_sniper_fbi/ene_murkywater_sniper_fbi", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_shield_fbi/ene_murkywater_shield_fbi", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_light_city_mp5/ene_murkywater_light_city_mp5", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_sniper_city/ene_murkywater_sniper_city", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_shield_city/ene_murkywater_shield_city", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_city_r870/ene_murkywater_heavy_city_r870", bph_needed, false)
-	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870", bph_needed, false)
-
-	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_small", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_city/ene_acc_shield_city", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_city/ene_acc_shield_city_dummy", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_policia_federale_hat/ene_acc_policia_federale_hat", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_policia_federale_fbi_helmet/ene_acc_policia_federale_fbi_helmet", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_policia_federale_city_helmet/ene_acc_policia_federale_city_helmet", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_policia_federale_city_hat/ene_acc_policia_federale_city_hat", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_helmet/ene_acc_swat_heavy_policia_federale_helmet", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_mask/ene_acc_swat_heavy_policia_federale_mask", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_city_helmet/ene_acc_swat_heavy_policia_federale_city_helmet", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_tazer_policia_federale_mask/ene_acc_tazer_policia_federale_mask", bex_needed, true)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_03/ene_policia_03", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_04/ene_policia_04", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_mp5/ene_swat_policia_federale_fbi_mp5", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_policia_sniper_fbi/ene_swat_policia_sniper_fbi", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_mp5/ene_swat_policia_federale_city_mp5", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_policia_sniper_city/ene_swat_policia_sniper_city", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_city/ene_swat_shield_policia_federale_city", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city/ene_swat_heavy_policia_federale_city", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870", bex_needed, false)
-	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870", bex_needed, false)
-
-	local chas_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"))
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03", chas_needed, false)
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04", chas_needed, false)
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat", chas_needed, false)
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat", chas_needed, false)
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_03_fat/ene_male_chas_police_03_fat", chas_needed, false)
-	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat", chas_needed, false)
-
-	local ranc_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"))
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_acc_ranc_ranger_hat/ene_acc_ranc_ranger_hat", ranc_needed, true)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03", ranc_needed, false)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04", ranc_needed, false)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01_fat/ene_male_ranc_ranger_01_fat", ranc_needed, false)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat", ranc_needed, false)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat", ranc_needed, false)
-	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat", ranc_needed, false)
-
-	local usm2_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1"))
-	load_unload_unit("units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet/ene_acc_marshal_shield_helmet", usm2_needed, true)
-	load_unload_unit("units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2", usm2_needed, true)
+	-- Load individual custom units
+	for _, load_list in pairs(self.unit_load_lookup) do
+		local package_has_unit = PackageManager:has(ids_unit, Idstring(load_list.unit_included))
+		if package_has_unit then
+			for _, unit_to_load in pairs(load_list.units_to_load) do
+				load_unload_unit(unit_to_load.path, package_has_unit, unit_to_load.load_husk)
+			end					
+		end
+	end
 end)
