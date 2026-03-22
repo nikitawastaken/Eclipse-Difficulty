@@ -330,20 +330,20 @@ if not Eclipse then
 			priority = 100,
 		})
 
-		MenuHelper:AddMultipleChoice({
-			id = "improved_gun_echo",
-			title = "eclipse_menu_improved_gun_echo",
-			desc = "eclipse_menu_improved_gun_echo_desc",
-			callback = "eclipse_improved_gun_echo_setting",
-			items = {
-				"eclipse_menu_improved_gun_echo_vanilla",
-				"eclipse_menu_improved_gun_echo_oldschool",
-				"eclipse_menu_improved_gun_echo_heat",
-			},
-			value = Eclipse.settings.improved_gun_echo,
-			menu_id = menu_id,
-			priority = 100,
-		})
+		-- MenuHelper:AddMultipleChoice({
+		-- 	id = "improved_gun_echo",
+		-- 	title = "eclipse_menu_improved_gun_echo",
+		-- 	desc = "eclipse_menu_improved_gun_echo_desc",
+		-- 	callback = "eclipse_improved_gun_echo_setting",
+		-- 	items = {
+		-- 		"eclipse_menu_improved_gun_echo_vanilla",
+		-- 		"eclipse_menu_improved_gun_echo_oldschool",
+		-- 		"eclipse_menu_improved_gun_echo_heat",
+		-- 	},
+		-- 	value = Eclipse.settings.improved_gun_echo,
+		-- 	menu_id = menu_id,
+		-- 	priority = 100,
+		-- })
 
 		MenuHelper:AddToggle({
 			id = "disable_christmas",
