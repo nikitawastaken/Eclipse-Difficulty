@@ -32,7 +32,7 @@ local M = {
 			{ path = "units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3", load_husk = true },
 			{ path = "units/payday2/characters/ene_sniper_3/ene_sniper_3", load_husk = true },
 		},
-	},	
+	},
 	{
 		unit_included = "units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1",
 		units_to_load = {
@@ -40,7 +40,7 @@ local M = {
 			{ path = "units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1", load_husk = true },
 			{ path = "units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2", load_husk = true },
 		},
-	},	
+	},
 	{
 		unit_included = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4",
 		units_to_load = {
@@ -206,7 +206,7 @@ local M = {
 			{ path = "units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_city/ene_swat_shield_policia_federale_city", load_husk = true },
 			{ path = "units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city/ene_swat_heavy_policia_federale_city", load_husk = true },
 			{ path = "units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870", load_husk = true },
-			{ path = "units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870", load_husk = true },		
+			{ path = "units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870", load_husk = true },
 		},
 	},
 	{

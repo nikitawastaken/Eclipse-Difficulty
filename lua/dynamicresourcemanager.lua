@@ -1,4 +1,4 @@
-DynamicResourceManager.unit_load_lookup = Eclipse:require("tables/dynamicresourcemanager/unit_load_lookup") 
+DynamicResourceManager.unit_load_lookup = Eclipse:require("tables/dynamicresourcemanager/unit_load_lookup")
 
 local ids_unit = Idstring("unit")
 local level_id = Eclipse.utils.level_id()
@@ -9,23 +9,23 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		local has = self:has_resource(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 		if load and not has then
 			self:load(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
-			
+
 			if load_husk then
-				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)		
+				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 			end
-			
+
 			Eclipse:log_console("Loaded " .. path)
 		elseif not load and has then
 			self:unload(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
-			
+
 			if load_husk then
-				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)	
+				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 			end
-			
+
 			Eclipse:log_console("Unloaded " .. path)
 		end
 	end
-	
+
 	-- Load custom packages
 	if lvl_tweak and lvl_tweak.custom_package then
 		for _, custom_package in pairs(lvl_tweak.custom_package) do
@@ -42,7 +42,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		if package_has_unit then
 			for _, unit_to_load in pairs(load_list.units_to_load) do
 				load_unload_unit(unit_to_load.path, package_has_unit, unit_to_load.load_husk)
-			end					
+			end
 		end
 	end
 end)
