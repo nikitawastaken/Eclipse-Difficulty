@@ -84,7 +84,7 @@ function WeaponFactoryTweakData:_create_part_type_list(list, factory_id, part_ty
 	end
 end
 
-WeaponFactoryTweakData.default_unlockable_parts = { 
+WeaponFactoryTweakData.default_unlockable_parts = {
 	"wpn_fps_ass_fal_body_standard",
 }
 
@@ -160,7 +160,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			v.stats = {}
 			v.custom_stats = {}
 		end
-		
+
 		if v.is_a_unlockable and not v.custom then -- Make achievement-locked parts available via card drops
 			v.is_a_unlockable = nil
 			v.pcs = {
@@ -171,7 +171,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			}
 		end
 	end
-	
+
 	-- Create lists of available barrel extensions for different weapon types
 	local rifle_barrel_exts = {}
 	self:_create_part_type_list(rifle_barrel_exts, "wpn_fps_ass_m4", "barrel_ext")
@@ -265,7 +265,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		"wpn_fps_lmg_rpk",
 		"wpn_fps_lmg_hk21",
 		"wpn_fps_lmg_m249",
-	--	"wpn_fps_lmg_mg42",
+		--	"wpn_fps_lmg_mg42",
 		"wpn_fps_lmg_par",
 		"wpn_fps_lmg_m60",
 	}
@@ -1711,13 +1711,13 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 			value = 1,
 		},
 		perks = {
-			"bonus"
+			"bonus",
 		},
 	}
 
 	for _, bonus_id in pairs(bonus_ids) do
 		self.parts[bonus_id] = deep_clone(dummy_bonus)
-	end	
+	end
 
 	if weapon_skins then
 		local uses_parts = {
@@ -1727,14 +1727,14 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 			wpn_fps_upg_bonus_spread_p1 = {},
 			wpn_fps_upg_bonus_spread_n1 = {
 				category = {
-					"shotgun"
-				}
+					"shotgun",
+				},
 			},
 			wpn_fps_upg_bonus_damage_p1 = {
 				weapon = {
 					"flamethrower_mk2",
-					"system"
-				}
+					"system",
+				},
 			},
 			wpn_fps_upg_bonus_total_ammo_p1 = {
 				category = {
@@ -1743,16 +1743,16 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 					"flamethrower",
 					"bow",
 					"crossbow",
-					"snp"
+					"snp",
 				},
 				weapon = {
-					"saiga"
-				}
+					"saiga",
+				},
 			},
 			wpn_fps_upg_bonus_concealment_p2 = {
 				weapon = {
-					"p90"
-				}
+					"p90",
+				},
 			},
 			wpn_fps_upg_bonus_concealment_p3 = {
 				weapon = {
@@ -1761,27 +1761,27 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 					"g26",
 					"jowi",
 					"new_raging_bull",
-					"ppk"
-				}
+					"ppk",
+				},
 			},
 			wpn_fps_upg_bonus_recoil_p2 = {
 				weapon = {
 					"deagle",
 					"komodo",
 					"m16",
-					"scar"
-				}
+					"scar",
+				},
 			},
 			wpn_fps_upg_bonus_damage_p2 = {
 				weapon = {
-					"famas"
-				}
+					"famas",
+				},
 			},
 			wpn_fps_upg_bonus_total_ammo_p3 = {
 				weapon = {
-					"plainsrider"
-				}
-			}
+					"plainsrider",
+				},
+			},
 		}
 		local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
 
