@@ -10,7 +10,56 @@ local murky_guard_list_high_diffs = { [murky_arm_security] = 4, [murky_security_
 local murkywater_security_enemy = overkill_and_above and murky_guard_list_high_diffs or murky_guard_list_low_diffs
 
 local murkywater_security = { enemy = murkywater_security_enemy }
+
+local extra_security_script = {
+	on_executed = {
+		{ id = 400005, delay = 30 },
+	},
+}
 return {
+	-- spawn extra security when you bag the first part of EMP bomb
+	-- add extra security spawn to dummy trigger
+	[102138] = {
+		values = {
+			elements = {
+				102121,
+				400001, -- extra security
+			},
+		},
+	},
+	[102117] = {
+		values = {
+			elements = {
+				102101,
+				102102,
+				102103,
+				400002, -- extra security
+			},
+		},
+	},
+	[103873] = {
+		values = {
+			elements = {
+				103872,
+				100123,
+				100124,
+				400003, -- extra security
+			},
+		},
+	},
+	[102130] = {
+		values = {
+			elements = {
+				101189,
+				102077,
+				102078,
+				102079,
+				400004, -- extra security
+			},
+		},
+	},
+	-- the first part of EMP bomb has been bagged
+	[106205] = extra_security_script,
 	--[[ add regular murkywater security to the spawn pool
 	[101189] = murkywater_security,
 	[102077] = murkywater_security,
