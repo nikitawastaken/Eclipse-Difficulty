@@ -146,6 +146,7 @@
 				<post :hook_id="dlctweakdata"/>
 				<post :hook_id="gageassignmenttweakdata"/>
 				<post :hook_id="attentiontweakdata"/>
+				<post :hook_id="achievementstweakdata"/>
 			</group>
 
 			<group :hook_id="units/">

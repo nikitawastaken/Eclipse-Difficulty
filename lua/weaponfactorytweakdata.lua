@@ -70,121 +70,129 @@ function WeaponFactoryTweakData:_add_parts_from_template(tweak_data)
 	end
 end
 
-Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
-	for part_id, part_data in pairs(self.parts) do
-		if not part_data.stats then
-			part_data.stats = {}
-		end
+function WeaponFactoryTweakData:_create_part_type_list(list, factory_id, part_type)
+	if self[factory_id] and self[factory_id].uses_parts then
+		for _, part_id in pairs(self[factory_id].uses_parts) do
+			local part_data = self.parts and self.parts[part_id]
+			local default_part = table.contains(self[factory_id].default_blueprint, part_id)
+			local is_type = part_data and part_data.type and part_data.type == part_type
 
-		if not part_data.custom_stats then
-			part_data.custom_stats = {}
-		end
-
-		local zoom_level = part_data.stats.zoom
-		local is_sight = part_data.type and part_data.type == "sight"
-		local is_second_sight = part_data.perks and table.contains(part_data.perks, "second_sight")
-		local is_piggyback = is_second_sight and part_data.type == "extra"
-		local is_magnifier = is_second_sight and not is_piggyback
-		local is_optic = is_sight and part_data.perks and table.contains(part_data.perks, "scope")
-		local is_scope = is_optic and zoom_level and zoom_level > 3
-		local is_magazine = part_data.type and part_data.type == "magazine"
-		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
-
-		if self.part_type_stat_blacklist[part_data.type] and not is_second_sight then
-			part_data.stats = {}
-			part_data.custom_stats = {}
-		end
-
-		if part_data.sub_type == "ammo_explosive" then
-			part_data.custom_stats.explosive_ammo = true
-		end
-
-		if part_data.stats.suppression then
-			part_data.stats.suppression = 0
-		end
-
-		if part_data.stats.spread_moving then
-			part_data.stats.spread_moving = 0
-		end
-
-		if part_data.stats.damage and not part_data.no_damage_scaling then
-			part_data.stats.damage = math.round(part_data.stats.damage / 2.5)
-		end
-
-		local default_sights = {
-			wpn_fps_upg_o_shortdot = true,
-			wpn_fps_upg_o_shortdot_vanilla = true,
-			wpn_fps_hailstorm_o_claymore = true,
-		}
-
-		if not default_sights[part_id] and is_optic then
-			part_data.stats.recoil = 1
-			part_data.stats.spread = 0
-			part_data.stats.concealment = -1
-		end
-
-		if is_magnifier then
-			part_data.stats.recoil = 0
-			part_data.stats.spread = 0
-			part_data.stats.concealment = -1
-		end
-
-		local is_mbus_pro = part_id == "wpn_fps_upg_o_mbus_pro"
-
-		if is_sight and (is_mbus_pro or part_id:match("_standard$") or part_id:match("_iron")) then
-			part_data.stats.zoom = 0
-			part_data.stats.recoil = -1
-			part_data.stats.concealment = 1
-		end
-
-		if is_magazine and (part_id:match("_quick$") or part_id:match("_speed$") or part_id:match("_strap$")) then
-			part_data.stats = {}
-			part_data.stats.value = 1
-			part_data.stats.reload = 1
-			part_data.stats.concealment = -1
-		end
-
-		if part_id:match("_legend") then
-			part_data.stats = {}
-			part_data.custom_stats = {}
-		end
-	end
-
-	local function create_part_type_list(list, factory_id, part_type)
-		if self[factory_id] and self[factory_id].uses_parts then
-			for _, part_id in pairs(self[factory_id].uses_parts) do
-				local part_data = self.parts and self.parts[part_id]
-				local default_part = table.contains(self[factory_id].default_blueprint, part_id)
-				local is_type = part_data and part_data.type and part_data.type == part_type
-
-				if is_type and not default_part then
-					table.insert(list, part_id)
-				end
+			if is_type and not default_part then
+				table.insert(list, part_id)
 			end
 		end
 	end
+end
 
+WeaponFactoryTweakData.default_unlockable_parts = { 
+	"wpn_fps_ass_fal_body_standard",
+}
+
+Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
+	-- Make sure no default part is flagged as an unlockable to prevent default parts from appearing in the menu.
+	for _, part_id in pairs(self.default_unlockable_parts) do
+		if self.parts[part_id] and self.parts[part_id].is_a_unlockable then
+			self.parts[part_id].is_a_unlockable = nil
+		end
+	end
+
+	for k, v in pairs(self.parts) do
+		if not v.stats then
+			v.stats = {}
+		end
+
+		if not v.custom_stats then
+			v.custom_stats = {}
+		end
+
+		local is_default_part = v.pcs
+		local zoom_level = v.stats.zoom
+		local is_sight = v.type and v.type == "sight"
+		local is_second_sight = v.perks and table.contains(v.perks, "second_sight")
+		local is_piggyback = is_second_sight and v.type == "extra"
+		local is_magnifier = is_second_sight and not is_piggyback
+		local is_optic = is_sight and v.perks and table.contains(v.perks, "scope")
+		local is_scope = is_optic and zoom_level and zoom_level > 3
+		local is_magazine = v.type and v.type == "magazine"
+		local is_silencer = v.perks and table.contains(v.perks, "silencer")
+
+		if self.part_type_stat_blacklist[v.type] and not is_second_sight then
+			v.stats = {}
+			v.custom_stats = {}
+		end
+
+		if v.sub_type == "ammo_explosive" then
+			v.custom_stats.explosive_ammo = true
+		end
+
+		if v.stats.suppression then
+			v.stats.suppression = 0
+		end
+
+		if v.stats.spread_moving then
+			v.stats.spread_moving = 0
+		end
+
+		if v.stats.damage and not v.no_damage_scaling then
+			v.stats.damage = math.round(v.stats.damage / 2.5)
+		end
+
+		if not is_default_part and is_optic then
+			v.stats.recoil = 1
+			v.stats.spread = 0
+			v.stats.concealment = -1
+		end
+
+		if is_magnifier then
+			v.stats.recoil = 0
+			v.stats.spread = 0
+			v.stats.concealment = -1
+		end
+
+		if is_magazine and (k:match("_quick$") or k:match("_speed$") or k:match("_strap$")) then
+			v.stats = {}
+			v.stats.value = 1
+			v.stats.reload = 1
+			v.stats.concealment = -1
+		end
+
+		if k:match("_legend") then
+			v.stats = {}
+			v.custom_stats = {}
+		end
+		
+		if v.is_a_unlockable and not v.custom then -- Make achievement-locked parts available via card drops
+			v.is_a_unlockable = nil
+			v.pcs = {
+				10,
+				20,
+				30,
+				40,
+			}
+		end
+	end
+	
 	-- Create lists of available barrel extensions for different weapon types
 	local rifle_barrel_exts = {}
-	create_part_type_list(rifle_barrel_exts, "wpn_fps_ass_m4", "barrel_ext")
+	self:_create_part_type_list(rifle_barrel_exts, "wpn_fps_ass_m4", "barrel_ext")
 
 	local pistol_barrel_exts = {}
-	create_part_type_list(pistol_barrel_exts, "wpn_fps_pis_g17", "barrel_ext")
+	self:_create_part_type_list(pistol_barrel_exts, "wpn_fps_pis_g17", "barrel_ext")
 
 	local shotgun_barrel_exts = {}
-	create_part_type_list(shotgun_barrel_exts, "wpn_fps_shot_r870", "barrel_ext")
+	self:_create_part_type_list(shotgun_barrel_exts, "wpn_fps_shot_r870", "barrel_ext")
 
 	local rifle_sights = {}
-	create_part_type_list(rifle_sights, "wpn_fps_ass_m4", "sight")
+	self:_create_part_type_list(rifle_sights, "wpn_fps_ass_m4", "sight")
 
 	local rifle_second_sights = {}
-	create_part_type_list(rifle_second_sights, "wpn_fps_ass_m4", "second_sight")
+	self:_create_part_type_list(rifle_second_sights, "wpn_fps_ass_m4", "second_sight")
 
 	local pistol_sights = {}
-	create_part_type_list(pistol_sights, "wpn_fps_pis_g17", "sight")
+	self:_create_part_type_list(pistol_sights, "wpn_fps_pis_g17", "sight")
 
 	local snp_sights = {}
-	create_part_type_list(snp_sights, "wpn_fps_snp_msr", "sight")
+	self:_create_part_type_list(snp_sights, "wpn_fps_snp_msr", "sight")
 
 	-- Add/remove parts
 	table.delete(self.wpn_fps_ass_contraband.uses_parts, "wpn_fps_sho_sko12_body_grip")
@@ -257,7 +265,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		"wpn_fps_lmg_rpk",
 		"wpn_fps_lmg_hk21",
 		"wpn_fps_lmg_m249",
-		--	"wpn_fps_lmg_mg42",
+	--	"wpn_fps_lmg_mg42",
 		"wpn_fps_lmg_par",
 		"wpn_fps_lmg_m60",
 	}
@@ -446,7 +454,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 				a_obj = "a_o_sm",
 				parent = "jerome_o_sm",
 				stance_mod = {
-					wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) },
+					wpn_fps_lmg_rpk = { translation = Vector3(0, 10, -4.6) },
 				},
 			}
 
@@ -1673,6 +1681,171 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 end)
 
+-- Create dummied out weapon stat boosts to prevent potential crashes with custom weapons
+function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
+	local bonus_ids = {
+		"wpn_fps_upg_bonus_concealment_p1",
+		"wpn_fps_upg_bonus_concealment_p2",
+		"wpn_fps_upg_bonus_concealment_p3",
+		"wpn_fps_upg_bonus_spread_p1",
+		"wpn_fps_upg_bonus_spread_n1",
+		"wpn_fps_upg_bonus_recoil_p1",
+		"wpn_fps_upg_bonus_recoil_p2",
+		"wpn_fps_upg_bonus_damage_p1",
+		"wpn_fps_upg_bonus_damage_p2",
+		"wpn_fps_upg_bonus_total_ammo_p1",
+		"wpn_fps_upg_bonus_total_ammo_p3",
+		"wpn_fps_upg_bonus_team_exp_money_p3",
+	}
+	local dummy_bonus = {
+		exclude_from_challenge = true,
+		texture_bundle_folder = "boost_in_lootdrop",
+		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		a_obj = "a_body",
+		type = "bonus",
+		name_id = "bm_menu_bonus_total_ammo",
+		sub_type = "bonus_stats",
+		internal_part = true,
+		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		stats = {
+			value = 1,
+		},
+		perks = {
+			"bonus"
+		},
+	}
+
+	for _, bonus_id in pairs(bonus_ids) do
+		self.parts[bonus_id] = deep_clone(dummy_bonus)
+	end	
+
+	if weapon_skins then
+		local uses_parts = {
+			wpn_fps_upg_bonus_team_exp_money_p3 = {},
+			wpn_fps_upg_bonus_concealment_p1 = {},
+			wpn_fps_upg_bonus_recoil_p1 = {},
+			wpn_fps_upg_bonus_spread_p1 = {},
+			wpn_fps_upg_bonus_spread_n1 = {
+				category = {
+					"shotgun"
+				}
+			},
+			wpn_fps_upg_bonus_damage_p1 = {
+				weapon = {
+					"flamethrower_mk2",
+					"system"
+				}
+			},
+			wpn_fps_upg_bonus_total_ammo_p1 = {
+				category = {
+					"saw",
+					"minigun",
+					"flamethrower",
+					"bow",
+					"crossbow",
+					"snp"
+				},
+				weapon = {
+					"saiga"
+				}
+			},
+			wpn_fps_upg_bonus_concealment_p2 = {
+				weapon = {
+					"p90"
+				}
+			},
+			wpn_fps_upg_bonus_concealment_p3 = {
+				weapon = {
+					"b92fs",
+					"famas",
+					"g26",
+					"jowi",
+					"new_raging_bull",
+					"ppk"
+				}
+			},
+			wpn_fps_upg_bonus_recoil_p2 = {
+				weapon = {
+					"deagle",
+					"komodo",
+					"m16",
+					"scar"
+				}
+			},
+			wpn_fps_upg_bonus_damage_p2 = {
+				weapon = {
+					"famas"
+				}
+			},
+			wpn_fps_upg_bonus_total_ammo_p3 = {
+				weapon = {
+					"plainsrider"
+				}
+			}
+		}
+		local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
+
+		for id, data in pairs(tweak_data.upgrades.definitions) do
+			local weapon_tweak = tweak_data.weapon[data.weapon_id]
+			local primary_category = weapon_tweak and weapon_tweak.categories and weapon_tweak.categories[1]
+
+			if data.weapon_id and weapon_tweak and data.factory_id and self[data.factory_id] then
+				local either_weapon_or_category = nil
+
+				for part_id, params in pairs(uses_parts) do
+					weapon_pass = not params.weapon or table.contains(params.weapon, data.weapon_id)
+					exclude_weapon_pass = not params.exclude_weapon or not table.contains(params.exclude_weapon, data.weapon_id)
+					category_pass = not params.category or table.contains(params.category, primary_category)
+					exclude_category_pass = not params.exclude_category or not table.contains(params.exclude_category, primary_category)
+					either_weapon_or_category = params.weapon and params.category and true or false
+					all_pass = (either_weapon_or_category and (weapon_pass or category_pass) or weapon_pass and category_pass) and exclude_weapon_pass and exclude_category_pass
+
+					if all_pass then
+						table.insert(self[data.factory_id].uses_parts, part_id)
+						table.insert(self[data.factory_id .. "_npc"].uses_parts, part_id)
+					end
+				end
+			end
+		end
+	end
+end
+
+-- Re-apply "smallified" stats to specific Sniper sights
+function WeaponFactoryTweakData:factory_part_post_process()
+	local smallify_scopes = self:_get_smallify_scopes()
+
+	for factory_id, weapon_data in pairs(self) do
+		if weapon_data.default_blueprint then
+			local is_weapon, weapon_id = managers.weapon_factory:is_factory_id_real_weapon_id(factory_id)
+
+			if is_weapon and tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].categories and table.contains(tweak_data.weapon[weapon_id].categories, "snp") then
+				for _, part_id in ipairs(smallify_scopes) do
+					local original_stats = self.parts[part_id].stats and deep_clone(self.parts[part_id].stats) or {}
+					weapon_data.override = weapon_data.override or {}
+					weapon_data.override[part_id] = weapon_data.override[part_id] or {}
+					weapon_data.override[part_id].stats = weapon_data.override[part_id].stats or original_stats
+
+					if weapon_data.override[part_id].stats.concealment then
+						weapon_data.override[part_id].stats.concealment = (original_stats.concealment or 0) + 2
+					end
+
+					if weapon_data.override[part_id].stats.recoil then
+						weapon_data.override[part_id].stats.recoil = (original_stats.recoil or 0) - 2
+					end
+				end
+			end
+		end
+	end
+end
+
+-- Create a fresh list of Sniper sights that need to be "smallified"
+function WeaponFactoryTweakData:_get_smallify_scopes()
+	local rifle_sights = {}
+	self:_create_part_type_list(rifle_sights, "wpn_fps_ass_m4", "sight")
+
+	return rifle_sights
+end
+
 WeaponFactoryTweakData.shotgun_ammo_override_map = {
 	["wpn_fps_shot_saiga"] = "very_light",
 	["wpn_fps_sho_aa12"] = "very_light",
@@ -2480,9 +2653,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_akimbo(tweak_data)
 end)
-
--- Remove weapon boosts
-function WeaponFactoryTweakData:create_bonuses() end
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
 function WeaponFactoryTweakData:_init_hornet_grenade()
