@@ -33,20 +33,15 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.values.first_aid_kit.heal_amount = 9
 
 	-- Maniac stuff deck14
-	self.max_cocaine_stacks_per_tick = 80
+	self.max_cocaine_stacks_per_tick = 120
 	self.max_total_cocaine_stacks = 300
-	self.cocaine_stacks_tick_t = 0.35
-
-	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local cocainum_stacks = get_difficulty_specific_value({ 1.75, 1.65, 1.55, 1.45, 1.4 })
-
-	self.cocaine_stacks_decay_t = cocainum_stacks
-	self.cocaine_stacks_decay_percentage_per_tick = 0.075
-	self.cocaine_stacks_decay_amount_per_tick = 30
+	self.cocaine_stacks_tick_t = 0.2
+	self.cocaine_stacks_decay_t = 1.2
+	self.cocaine_stacks_decay_amount_per_tick = 24
+	self.cocaine_stacks_decay_percentage_per_tick = 0
 	self.cocaine_stacks_dmg_absorption_value = 0.1
-	self.cocaine_stacks_convert_levels = { 30, 25 }
-
-	self.values.player.cocaine_stacks_decay_multiplier = { 0.5 }
+	self.cocaine_stacks_convert_levels = { 20, 15 }
+	self.values.player.cocaine_stacks_decay_multiplier = { 0.75 }
 	self.values.player.cocaine_stack_absorption_multiplier = { 1.5 }
 end
 
