@@ -232,8 +232,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.fish.payout = { 100000 }
 	self.jobs.flat.payout = { 900000 }
 	self.jobs.help.payout = { 2016 }
-	self.jobs.run.payout = { 750000 }
-	self.jobs.glace.payout = { 875000 }
+	self.jobs.run.payout = { 900000 }
+	self.jobs.glace.payout = { 1115000 }
 	self.jobs.haunted.payout = { 2013 }
 	self.jobs.dah.payout = { 215750 }
 	self.jobs.rvd.payout = { 15000 }
@@ -242,9 +242,9 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.wwh.payout = { 175000 }
 	self.jobs.tag.payout = { 270000 }
 	self.jobs.des.payout = { 350000 }
-	self.jobs.vit.payout = { 1000000 }
+	self.jobs.vit.payout = { 2500000 }
 	self.jobs.bph.payout = { 200000 }
-	self.jobs.mex.payout = { 75000 }
+	self.jobs.mex.payout = { 375000 }
 	self.jobs.mex_cooking.payout = { 35000 }
 	self.jobs.bex.payout = { 125000 }
 	self.jobs.pex.payout = { 50000 }
@@ -258,7 +258,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.corp.payout = { 320000 }
 	self.jobs.deep.payout = { 670465 }
 	self.jobs.boss.payout = { 50000 }
-	self.jobs.nmh.payout = { 420000 }
+	self.jobs.nmh.payout = { 950000 }
 	self.jobs.sah.payout = { 100000 }
 
 	--Halloween heists gets Stonecold's (PDTH Alpha) menu movie (mysterious)

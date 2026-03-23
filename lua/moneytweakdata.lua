@@ -567,76 +567,73 @@ function MoneyTweakData:init(tweak_data)
 		10,
 		11,
 	}
-	self.mission_asset_cost_small = self._create_value_table(2500, 15000, 10, true, 1)
-	self.mission_asset_cost_medium = self._create_value_table(10000, 45000, 10, true, 1)
-	self.mission_asset_cost_large = self._create_value_table(55000, 400000, 10, true, 1)
+	self.mission_asset_cost_small = self._create_value_table(5000, 25000, 10, true, 1) -- (2500, 15000, 10, true, 1)
+	self.mission_asset_cost_medium = self._create_value_table(20000, 60000, 10, true, 1) -- (10000, 45000, 10, true, 1)
+	self.mission_asset_cost_large = self._create_value_table(75000, 400000, 10, true, 1) -- (55000, 400000, 10, true, 1)
 	self.preplaning_asset_cost_multiplier_by_risk = {
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
+		1,
+		1.6,
+		2,
+		2.4,
+		2.6,
+		2.8,
+		3,
 	}
-	-- calculation of preplanning asset costs is in
-	-- MoneyManager:get_preplanning_type_cost
-	-- cost = cost * (self:get_tweak_value("money_manager", "preplaning_asset_cost_multiplier_by_risk", difficulty_stars) or 1)
-	self.preplaning_asset_cost_thermite = 15000
-	self.preplaning_asset_cost_escapebig = 10000
-	self.preplaning_asset_cost_spycam = 6000
-	self.preplaning_asset_cost_delay10 = 4000
-	self.preplaning_asset_cost_delay20 = 6000
-	self.preplaning_asset_cost_delay30 = 8000
-	self.preplaning_asset_cost_timelock60 = 2000
-	self.preplaning_asset_cost_cake = 3000
-	self.preplaning_asset_cost_extracameras = 5000
-	self.preplaning_asset_cost_accesscameras = 10000
-	self.preplaning_asset_cost_drillparts = 3000
-	self.preplaning_asset_cost_deaddropbag = 1600
-	self.preplaning_asset_cost_unlocked_door = 1000
-	self.preplaning_asset_cost_unlocked_window = 1000
-	self.preplaning_asset_cost_zipline = 2000
-	self.preplaning_asset_cost_highlight_keybox = 1000
-	self.preplaning_asset_cost_keycard = 2000
-	self.preplaning_asset_cost_disable_alarm_button = 2000
-	self.preplaning_asset_cost_safe_escape = 2000
-	self.preplaning_asset_cost_sniper_spot = 10000
-	self.preplaning_asset_cost_framing_frame_1_truck = 1000
-	self.preplaning_asset_cost_framing_frame_1_entry_point = 1000
-	self.preplaning_asset_cost_bag_shortcut = 2000
-	self.preplaning_asset_cost_bag_zipline = 2000
-	self.preplaning_asset_cost_loot_drop_off = 3000
-	self.preplaning_asset_cost_thermal_paste = 3000
-	self.preplaning_asset_cost_branchbank_vault_key = 3000
-	self.preplaning_mia_cost_sniper = 10000
-	self.preplaning_mia_cost_delayed_police = 6000
-	self.preplaning_mia_cost_reduce_mobsters = 8000
-	self.preplaning_asset_cost_glass_cutter = 1000
-	self.preplaning_thebomb_cost_spotter = 4000
-	self.preplaning_thebomb_cost_crowbar = 1000
-	self.preplaning_thebomb_cost_ladder = 1000
-	self.preplaning_thebomb_cost_hacker = 3000
+	self.preplaning_asset_cost_thermite = 80000
+	self.preplaning_asset_cost_escapebig = 65000
+	self.preplaning_asset_cost_spycam = 12000
+	self.preplaning_asset_cost_delay10 = 8000
+	self.preplaning_asset_cost_delay20 = 12000
+	self.preplaning_asset_cost_delay30 = 16000
+	self.preplaning_asset_cost_timelock60 = 20000
+	self.preplaning_asset_cost_cake = 12000
+	self.preplaning_asset_cost_extracameras = 7500
+	self.preplaning_asset_cost_accesscameras = 35000
+	self.preplaning_asset_cost_drillparts = 12000
+	self.preplaning_asset_cost_deaddropbag = 18000
+	self.preplaning_asset_cost_unlocked_door = 20000
+	self.preplaning_asset_cost_unlocked_window = 20000
+	self.preplaning_asset_cost_zipline = 16000
+	self.preplaning_asset_cost_highlight_keybox = 9500
+	self.preplaning_asset_cost_keycard = 20000
+	self.preplaning_asset_cost_disable_alarm_button = 35000
+	self.preplaning_asset_cost_safe_escape = 20000
+	self.preplaning_asset_cost_sniper_spot = 35000
+	self.preplaning_asset_cost_framing_frame_1_truck = 18000
+	self.preplaning_asset_cost_framing_frame_1_entry_point = 18000
+	self.preplaning_asset_cost_bag_shortcut = 16000
+	self.preplaning_asset_cost_bag_zipline = 16000
+	self.preplaning_asset_cost_loot_drop_off = 16000
+	self.preplaning_asset_cost_thermal_paste = 20000
+	self.preplaning_asset_cost_branchbank_vault_key = 35000
+	self.preplaning_mia_cost_sniper = 35000
+	self.preplaning_mia_cost_delayed_police = 20000
+	self.preplaning_mia_cost_reduce_mobsters = 16000
+	self.preplaning_asset_cost_glass_cutter = 9500
+	self.preplaning_thebomb_cost_spotter = 35000
+	self.preplaning_thebomb_cost_crowbar = 9500
+	self.preplaning_thebomb_cost_ladder = 9500
+	self.preplaning_thebomb_cost_hacker = 20000
 	self.preplaning_thebomb_cost_manifest = 2000
-	self.preplaning_thebomb_cost_pilot = 3000
-	self.preplaning_thebomb_cost_escape_mid = 6000
-	self.preplaning_thebomb_cost_escape_close = 10000
-	self.preplaning_thebomb_cost_demolition = 500
-	self.preplaning_asset_cost_roof_access = 2000
-	self.preplaning_asset_cost_upper_floor_access = 1000
-	self.preplaning_asset_cost_crowbar_single = 1000
-	self.preplaning_asset_cost_mex_keys = 2000
-	self.preplanning_asset_cost_bex_car_pull = 2000
-	self.preplanning_asset_cost_bex_drunk_mariachi = 2000
-	self.preplanning_asset_cost_bex_garbage_truck = 2000
-	self.preplanning_asset_cost_bex_zipline = 2000
-	self.preplanning_asset_cost_pex_parked_car = 2000
-	self.preplanning_asset_cost_pex_spiked_churro = 2000
-	self.preplanning_asset_cost_pex_camera_access = 2000
-	self.preplanning_asset_cost_pex_open_window = 2000
-	self.preplanning_asset_cost_fex_stealth_entry_with_boat = 2000
-	self.preplanning_asset_cost_fex_loud_escape_with_heli = 2000
-	self.preplanning_asset_cost_fex_stealth_semi_open_garage_door = 2000
+	self.preplaning_thebomb_cost_pilot = 35000
+	self.preplaning_thebomb_cost_escape_mid = 16000
+	self.preplaning_thebomb_cost_escape_close = 22000
+	self.preplaning_thebomb_cost_demolition = 6000
+	self.preplaning_asset_cost_roof_access = 18000
+	self.preplaning_asset_cost_upper_floor_access = 12000
+	self.preplaning_asset_cost_crowbar_single = 9500
+	self.preplaning_asset_cost_mex_keys = 35000
+	self.preplanning_asset_cost_bex_car_pull = 9000
+	self.preplanning_asset_cost_bex_drunk_mariachi = 20000
+	self.preplanning_asset_cost_bex_garbage_truck = 15000
+	self.preplanning_asset_cost_bex_zipline = 16000
+	self.preplanning_asset_cost_pex_parked_car = 12000
+	self.preplanning_asset_cost_pex_spiked_churro = 12000
+	self.preplanning_asset_cost_pex_camera_access = 35000
+	self.preplanning_asset_cost_pex_open_window = 12500
+	self.preplanning_asset_cost_fex_stealth_entry_with_boat = 15000
+	self.preplanning_asset_cost_fex_loud_escape_with_heli = 10000
+	self.preplanning_asset_cost_fex_stealth_semi_open_garage_door = 20000
 	self.preplanning_asset_cost_kenaz_zeppelin_escape = 0
 	self.preplanning_asset_cost_kenaz_van_escape = 0
 	self.preplanning_asset_cost_kenaz_loud_entry_with_c4 = 0
@@ -662,7 +659,7 @@ function MoneyTweakData:init(tweak_data)
 	self.preplanning_asset_cost_kenaz_disable_metal_detectors = 0
 	self.preplanning_asset_cost_kenaz_celebrity_visit = 0
 	self.preplanning_asset_cost_kenaz_vault_gate_key = 0
-	self.preplanning_asset_cost_chas_tram = 5000
+	self.preplanning_asset_cost_chas_tram = 15000
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
