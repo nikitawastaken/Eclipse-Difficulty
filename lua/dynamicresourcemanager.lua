@@ -31,7 +31,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		for _, custom_package in pairs(lvl_tweak.custom_package) do
 			local package_units = Eclipse:require(custom_package) or {}
 			for _, package_unit in pairs(package_units) do
-				load_unload_unit(package_unit, true)
+				load_unload_unit(package_unit, true, true)
 			end
 		end
 	end
