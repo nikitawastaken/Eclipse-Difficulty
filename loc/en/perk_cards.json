@@ -105,7 +105,7 @@
 	"menu_deck13_3_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck13_5_desc": "Increases the maximum health that can be stored by ##$multiperk##.\n\nYour chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck13_7_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
-	"menu_deck14_1_desc": "##100%## of damage you deal is converted into Hysteria Stacks, up to ##120## every ##0.2## of a second.\nHMax amount of stacks is ##300##.\nYou gain ##1## damage absorption for every ##20## stacks of Hysteria. You lose ##24## Hysteria Stacks every ##1.2## seconds.",
+	"menu_deck14_1_desc": "##100%## of damage you deal is converted into Hysteria Stacks, up to ##120## every ##0.2## seconds.\nHMax amount of stacks is ##300##.\nYou gain ##1## damage absorption for every ##20## stacks of Hysteria. You lose ##24## Hysteria Stacks every ##1.2## seconds.",
 	"menu_deck14_3_desc": "Members of your crew also gain the effect of your Hysteria Stacks.\nHysteria Stacks from multiple crew members do not stack and only the stacks that give the highest damage absorption will have an effect.\n\nAll firearms have a chance to spread panic among your enemies.\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_deck14_5_desc": "Change the decay of your Hysteria Stacks to ##18## every ##1.2## seconds.",
 	"menu_deck14_7_desc": "Change the damage absorption of your Hysteria Stacks on you and your crew to ##1## damage absorption for every ##15## stacks of Hysteria.",
