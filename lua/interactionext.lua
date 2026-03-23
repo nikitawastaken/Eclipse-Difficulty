@@ -337,3 +337,38 @@ end
 function UseInteractionExt:can_interact(player)
 	return BaseInteractionExt.can_interact(self, player) or can_pickup(player, self._tweak_data.special_equipment_block)
 end
+
+local old_intimitate_sync_interacted = IntimitateInteractionExt.sync_interacted
+function IntimitateInteractionExt:sync_interacted(peer, player, status, skip_alive_check, max_following_hostages)
+	if self.tweak_data == "hostage_move" then
+		local unit = player
+
+		if not unit then
+			unit = peer and peer:unit()
+		end
+
+		if Network:is_server() and self._unit:brain():on_hostage_move_interaction(unit, "move", max_following_hostages) then
+			self:remove_interact()
+		end
+	else
+		old_intimitate_sync_interacted(self, peer, player, status, skip_alive_check)
+	end
+end
+
+local old_intimitate_interact = IntimitateInteractionExt.interact
+function IntimitateInteractionExt:interact(player)
+	if self.tweak_data == "hostage_move" then
+		if Network:is_server() then
+			if self._unit:brain():on_hostage_move_interaction(player, "move") then
+				self:remove_interact()
+			end
+		else
+			local max_following_hostages = tweak_data.player.max_nr_following_hostages
+				+ (player:base():upgrade_value("player", "extra_hostages") or 0)
+				+ (player:base():upgrade_value("player", "extra_hostages_chief") or 0)
+			managers.network:session():send_to_host("sync_hostage_interacted", self._unit, max_following_hostages, 1)
+		end
+	else
+		old_intimitate_interact(self, player)
+	end
+end

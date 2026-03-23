@@ -209,3 +209,30 @@ function UnitNetworkHandler:sync_carry_data(
 		peer_id
 	)
 end
+
+-- Add max number of following hostages
+function UnitNetworkHandler:sync_hostage_interacted(unit, max_following_hostages, status, sender)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(sender)
+
+	if not peer then
+		return
+	end
+
+	if alive(unit) and unit:interaction() then
+		if unit:interaction()._special_equipment and unit:interaction().apply_item_pickup then
+			managers.network:session():send_to_peer(peer, "special_eq_response", unit)
+
+			if unit:interaction():can_remove_item() then
+				unit:set_slot(0)
+			end
+		end
+
+		local char_unit = managers.criminals:character_unit_by_peer_id(peer:id())
+
+		unit:interaction():sync_interacted(peer, char_unit, status, false, max_following_hostages)
+	end
+end

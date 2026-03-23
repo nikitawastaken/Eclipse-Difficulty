@@ -137,4 +137,18 @@
 			<param type="int" min="0" max="15"/> <!-- peer_id -->
 		</target>
 	</tweak>
+	<!-- Add a custom "sync_hostage_interacted" message to allow clients to tell the server the amount of hostages they can have following -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="sync_hostage_interacted" delivery="ordered" receiver="unit">
+				<param type="unit" /> <!-- hostage unit -->
+				<param type="int" min="0" max="15" /> <!-- max number of following hostages -->
+				<param type="int" min="1" max="256" /> <!-- status -->
+			</message>
+		</target>
+	</tweak>
 </tweaks>

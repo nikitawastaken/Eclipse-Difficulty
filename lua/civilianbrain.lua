@@ -7,7 +7,7 @@ function CivilianBrain:update(unit, t, ...)
 	end
 end
 
-function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
+function CivilianBrain:on_hostage_move_interaction(interacting_unit, command, client_max_following_hostages)
 	if not self._logic_data.is_tied then
 		return
 	end
@@ -15,9 +15,10 @@ function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
 	if command == "move" then
 		local following_hostages = managers.groupai:state():get_following_hostages(interacting_unit)
 
-		local max_following_hostages = tweak_data.player.max_nr_following_hostages
-			+ (interacting_unit:base():upgrade_value("player", "extra_hostages") or 0)
-			+ (interacting_unit:base():upgrade_value("player", "extra_hostages_chief") or 0)
+		local max_following_hostages = client_max_following_hostages
+			or tweak_data.player.max_nr_following_hostages
+				+ (interacting_unit:base():upgrade_value("player", "extra_hostages") or 0)
+				+ (interacting_unit:base():upgrade_value("player", "extra_hostages_chief") or 0)
 
 		if max_following_hostages < 1 or following_hostages and max_following_hostages <= table.size(following_hostages) then
 			return
