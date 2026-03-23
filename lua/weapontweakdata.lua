@@ -111,7 +111,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.suppression = cat_map.dmr and 6 or 11
 				weap_data.stats.alert_size = cat_map.dmr and 6 or 7
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
-				weap_data.pickup_mul = weap_data.pickup_mul or cat_map.dmr and 0.8 or 1
+				weap_data.pickup_mul = weap_data.pickup_mul or cat_map.dmr and 0.6 or 1
 				weap_data.shake.fire_multiplier = cat_map.dmr and 1.25 or 1
 				weap_data.can_shoot_through_enemy = cat_map.dmr and true or nil
 				
