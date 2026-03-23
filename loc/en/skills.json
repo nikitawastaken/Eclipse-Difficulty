@@ -50,7 +50,7 @@
 	"menu_regen_plating": "Regen Plating",
 	"menu_regen_plating_desc": "BASIC: ##$basic##\nYour armor recovery rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you regenerate ##$multipro## health and an additional ##$multipro2## health for every ##$multipro3## points of armor.\n\nThis cannot occur more than once every ##$multipro## seconds and an additional ##$multipro2## second for every ##$multipro3## points of armor.",
 	"menu_iron_man": "Iron Man",
-	"menu_iron_man_desc": "BASIC: ##$basic##\nWhen you have more than ##$multibasic## of your armor regenerated, you take ##$multibasic2## less damage.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
+	"menu_iron_man_desc": "BASIC: ##$basic##\nWhen you have more than ##$multibasic## of your armor up, you take ##$multibasic2## less damage.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nWhen you melee shield enemies, they get knocked back by the sheer force.\n\nYour ranged weapons have a chance of knocking down shields as well. Knock back chance scales with the total damage of the used weapon.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 	"bm_menu_skill_locked_level_7" : "Requires the aced version of Iron Man skill",
 	"menu_show_of_force_beta": "Plates of Steel",
