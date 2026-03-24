@@ -408,7 +408,7 @@ tweak_data.casino = {
 		45,
 		55,
 		65,
-		75
+		75,
 	},
 	entrance_fee = {
 		300000,
@@ -417,22 +417,22 @@ tweak_data.casino = {
 		300000,
 		300000,
 		350000,
-		400000
+		400000,
 	},
 	prefer_cost = 500000,
 	prefer_chance = 0.1,
 	secure_card_cost = {
 		250000,
 		500000,
-		750000
+		750000,
 	},
 	secure_card_level = {
 		10,
 		40,
-		60
+		60,
 	},
 	infamous_cost = 2500000,
-	infamous_chance = 3
+	infamous_chance = 3,
 }
 
 -- misc
