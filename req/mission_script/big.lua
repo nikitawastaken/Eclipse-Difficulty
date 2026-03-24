@@ -10,7 +10,7 @@ local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local harasser_c4 = is_eclipse and { [heavy_1] = 2, [sniper] = 1 } or { [swat_1] = 2, [sniper] = 1 }
+local harasser_c4 = is_eclipse and { [heavy_1] = 2, [sniper] = 3 } or { [swat_1] = 2, [sniper] = 3 }
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 local disabled = {
