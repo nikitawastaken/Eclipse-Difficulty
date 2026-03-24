@@ -3400,7 +3400,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_max = 1,
 		diff_init = 0.25,
 		diff_step = 0.05,
-		diff_step_interval = get_difficulty_specific_value({ 16, 14, 12, 10, 8 }),
+		diff_step_interval = get_difficulty_specific_value({ 10, 9, 8, 7, 6 }),
 		assault_add = 0.25,
 		hostage_kill_add = is_pro_job and 0.15 or nil,
 	}
