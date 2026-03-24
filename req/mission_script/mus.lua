@@ -129,9 +129,9 @@ return {
 	-- Don't disable front spawns
 	[102159] = enabled,
 	-- Add scripted difficulty increases
-	[101507] = difficulty_add_15, -- barrier_opened001 
-	[101508] = difficulty_add_15, -- barrier_opened002 
-	[101913] = difficulty_add_15, -- diamond_picked_up 
+	[101507] = difficulty_add_15, -- barrier_opened001
+	[101508] = difficulty_add_15, -- barrier_opened002
+	[101913] = difficulty_add_15, -- diamond_picked_up
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,

@@ -104,7 +104,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100109] = {  -- police
+	[100109] = { -- police
 		reinforce = {
 			{
 				name = "edge",
@@ -128,16 +128,16 @@ return {
 			},
 		},
 	},
-	[102311] = {  -- func_sequence_trigger_003
+	[102311] = { -- func_sequence_trigger_003
 		reinforce = {
 			{
-				name = "backdoor",  -- lockpick door by the mechanic shop
+				name = "backdoor", -- lockpick door by the mechanic shop
 				force = 2,
 				position = Vector3(1750, -2100, 0),
 			},
 		},
 	},
-	[103692] = {  -- break_wal
+	[103692] = { -- break_wal
 		reinforce = {
 			{
 				name = "back_turret",
