@@ -215,7 +215,7 @@ local M = {
 			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03", load_husk = true },
 			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04", load_husk = true },
 			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat", load_husk = true },
-			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat", load_husk = true },
+			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat", load_husk = true },
 			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_03_fat/ene_male_chas_police_03_fat", load_husk = true },
 			{ path = "units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat", load_husk = true },
 		},
