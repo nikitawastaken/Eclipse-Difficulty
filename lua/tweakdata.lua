@@ -399,6 +399,42 @@ if tweak_data.blackmarket.xp.xp_pda9_1 then
 	}
 end
 
+tweak_data.casino = {
+	unlock_level = 10,
+	entrance_level = {
+		14,
+		28,
+		40,
+		45,
+		55,
+		65,
+		75
+	},
+	entrance_fee = {
+		300000,
+		300000,
+		300000,
+		300000,
+		300000,
+		350000,
+		400000
+	},
+	prefer_cost = 500000,
+	prefer_chance = 0.1,
+	secure_card_cost = {
+		250000,
+		500000,
+		750000
+	},
+	secure_card_level = {
+		10,
+		40,
+		60
+	},
+	infamous_cost = 2500000,
+	infamous_chance = 3
+}
+
 -- misc
 -- Python code for matplotlibing experience graphs
 --[[
