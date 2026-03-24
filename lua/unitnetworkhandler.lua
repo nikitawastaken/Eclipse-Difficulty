@@ -185,8 +185,8 @@ function UnitNetworkHandler:sync_carry_data(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	movement,
 	peer_id,
+	movement,
 	sender
 )
 	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
@@ -205,8 +205,8 @@ function UnitNetworkHandler:sync_carry_data(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		movement,
-		peer_id
+		peer_id,
+		movement
 	)
 end
 
