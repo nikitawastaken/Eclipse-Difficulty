@@ -86,21 +86,21 @@ local mga_vault_event = {
 local skylight_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local elevator_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -109,6 +109,9 @@ local vent_spawn = {
 		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 local forced_off = {
 	values = {
@@ -164,6 +167,9 @@ return {
 	[105910] = disabled, -- vault
 	[105902] = disabled, -- left gate
 	[105904] = disabled, -- right gate
+	-- add scripted diff increases
+	[104168] = difficulty_add_20, -- area_player_in_vault_area
+	[103700] = difficulty_add_20, -- area_player_in_vault_loud
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,
@@ -417,9 +423,6 @@ return {
 	[103231] = bulldozer_spawn,
 	-- why is there a beat cop instead of security guard in the vault???
 	[104001] = { enemy = security_guard_1 },
-	-- Play megaphone cop voice lines
-	[103232] = mga_thermite_event,
-	[101543] = mga_vault_event,
 	-- Spawn group intervals
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

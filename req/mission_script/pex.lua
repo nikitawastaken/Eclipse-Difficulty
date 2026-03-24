@@ -62,6 +62,9 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local enable_room_reinforce01 = {
 	on_executed = {
 		{ id = 400040, delay = 0 },
@@ -110,6 +113,10 @@ return {
 	[104099] = disabled, -- point_area_min_police_force_armory_large
 	[104100] = disabled, -- point_area_min_police_force_armory_large
 	[104101] = disabled, -- point_area_min_police_force_armory_medium
+	-- Add scripted difficulty increases
+	[101755] = difficulty_add_20, -- fire_is_done
+	[102193] = difficulty_add_20, -- main_door_opens
+	[101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
 	-- Only activate certain preferreds after the first assault is over
 	[100021] = { -- completed_obj_fire
 		on_executed = {

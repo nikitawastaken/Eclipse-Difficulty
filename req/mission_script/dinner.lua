@@ -132,12 +132,12 @@ return {
 			},
 		},
 	},
-	[100907] = { -- gas container hidden
+	[100818] = { -- complete_prepare_gas
 		reinforce = {
 			{
 				name = "courtyard",
 				force = 3,
-				position = Vector3(-15200, 6300, -75),
+				position = Vector3(-15100, 6500, -75),
 			},
 		},
 	},

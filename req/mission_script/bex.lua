@@ -46,6 +46,9 @@ local cloaker_spawn = {
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local bags_required = {
 	values = {
 		counter_target = 4 + (is_pro_job and 2 or 0),
@@ -101,7 +104,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100109] = { -- Police
+	[100109] = {  -- police
 		reinforce = {
 			{
 				name = "edge",
@@ -110,22 +113,37 @@ return {
 			},
 			{
 				name = "grit",
-				force = 3,
+				force = 2,
 				position = Vector3(1600, 400, 0),
 			},
 			{
 				name = "rush",
-				force = 3,
+				force = 2,
 				position = Vector3(-1600, 400, 0),
 			},
 			{
 				name = "mioyes",
 				force = 3,
-				position = Vector3(-2200, -2500, 0),
+				position = Vector3(-2250, -2350, 0),
 			},
 		},
-		on_executed = {
-			{ id = 100129, remove = true }, -- preferred
+	},
+	[102311] = {  -- func_sequence_trigger_003
+		reinforce = {
+			{
+				name = "backdoor",  -- lockpick door by the mechanic shop
+				force = 2,
+				position = Vector3(1750, -2100, 0),
+			},
+		},
+	},
+	[103692] = {  -- break_wal
+		reinforce = {
+			{
+				name = "back_turret",
+				force = 2,
+				position = Vector3(-1700, -5650, 0),
+			},
 		},
 	},
 	[101758] = { -- add reenforce to office rooms at start, server room point 1
@@ -211,6 +229,9 @@ return {
 			},
 		},
 	},
+	-- Add scripted difficulty increases
+	[101003] = difficulty_add_20, -- open_door
+	[101485] = difficulty_add_20, -- open_vault
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason

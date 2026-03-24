@@ -29,6 +29,9 @@ local cloaker_respawn_trigger = {
 		trigger_times = cloaker_respawn_amount,
 	},
 }
+local difficulty_add_15 = {
+	difficulty_add = 0.15,
+}
 local terminator_dozer_1 = {
 	enemy = is_eclipse and ben_dozer or green_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
@@ -130,14 +133,8 @@ return {
 			{
 				name = "canteen",
 				force = 2,
-				position = Vector3(3350, 1150, 0),
+				position = Vector3(3350, 1175, 0),
 			},
-		},
-	},
-	-- Reduce this reinforce point's force from 3
-	[103882] = {
-		values = {
-			amount = 2,
 		},
 	},
 	-- diff 1, blow the wall
@@ -183,6 +180,10 @@ return {
 	-- tweak elevator cloakers respawns (up to 6 cloakers on DW)
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
+	-- Add scripted difficulty increases
+	[102326] = difficulty_add_15, -- ICUsawDone
+	[102846] = difficulty_add_15, -- EnableValidationMachines
+	[102874] = difficulty_add_15, -- start_wait_for_elevator
 	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,

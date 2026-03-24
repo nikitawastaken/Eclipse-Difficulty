@@ -37,7 +37,9 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
-
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local dozer_spawn = {
 	enemy = diff_i < 4 and heavy_swat_sg or bulldozers,
 	values = {
@@ -62,8 +64,8 @@ local swat_spawn = {
 return {
 	[102919] = { -- enable_safe_interaction_loud
 		ponr = {
-			length = 360,
-			length_balance_mul = { 1.25, 1.125, 1, 1 },
+			length = 400,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 	},
 	-- Combine some navigation areas
@@ -152,6 +154,9 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
+	-- Add scripted difficulty increases
+	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
+	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100007] = roof_spawn,

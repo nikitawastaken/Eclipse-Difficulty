@@ -21,6 +21,9 @@ local mortuary_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local difficulty_add_25 = {
+	difficulty_add = 0.25,
+}
 local disable_car_reinforce = {
 	reinforce = {
 		{ name = "pink_car" },
@@ -107,6 +110,9 @@ return {
 		},
 	},
 	[101543] = disable_car_reinforce,
+	-- Add scripted difficulty increases
+	[101392] = difficulty_add_25, -- start_saw_pickup_location
+	[100727] = difficulty_add_25, -- start_escape
 	-- Spawn group intervals
 	[100007] = roof_far_spawn,
 	[100130] = roof_far_spawn,

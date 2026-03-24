@@ -49,6 +49,9 @@ local boat_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -132,11 +135,15 @@ return {
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
 	]]
-	-- slow down a few spawnpoints
-	[400007] = scripted_swat_van_spawn,
-	[400015] = scripted_swat_van_spawn,
-	[400023] = scripted_swat_van_spawn,
+	-- Add scripted difficulty increases
+	[100867] = difficulty_add_20, -- obj_complete011 (the captain reached the ship)
+	[100042] = difficulty_add_20, -- obj_started010 (remove the ropes)
+	[100926] = difficulty_add_20, -- obj_started007 (defend the boat)
+	-- Spawn group intervals
 	[100605] = window_spawn,
 	[100177] = boat_spawn,
 	[100737] = boat_spawn,
+	[400007] = scripted_swat_van_spawn,
+	[400015] = scripted_swat_van_spawn,
+	[400023] = scripted_swat_van_spawn,
 }

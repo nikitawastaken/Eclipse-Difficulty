@@ -84,8 +84,8 @@ return {
 	-- FFO
 	[101558] = {
 		ponr = {
-			length = 600,
-			length_balance_mul = { 1.125, 1, 1, 0.875 },
+			length = 800,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 		-- trigger cops loot drop off on alarm
 		on_executed = {

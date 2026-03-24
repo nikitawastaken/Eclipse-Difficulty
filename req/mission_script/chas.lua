@@ -40,6 +40,9 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -86,6 +89,7 @@ return {
 				position = Vector3(2650, 4300, 575),
 			},
 		},
+		difficulty_add = 0.20,
 	},
 	-- Always comment that all c4 are placed (why it's chance based to begin with, Overkill (Starbreeze) ...)
 	[103810] = {
@@ -182,6 +186,9 @@ return {
 	[100375] = sniper_trigger_times,
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
+	-- Add scripted difficulty increases
+	[100942] = difficulty_add_20, -- found_vault_loud
+	[101655] = difficulty_add_20, -- drill_is_active
 	-- Spawn group intervals
 	-- The Dragon Heist is probably one of the less offensive revival era heists in terms of its spawn group distribution, but some improvements could definitely be made to improve their flow.
 	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).

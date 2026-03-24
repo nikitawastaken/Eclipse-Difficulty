@@ -50,6 +50,9 @@ local staircase_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 return {
 	-- A bunch of reinforce spots to fill up this pretty large level
 	[100115] = {
@@ -103,7 +106,7 @@ return {
 			{ id = 100021, remove = true },
 		},
 	},
-	[100124] = { -- diff 0.75
+	[100761] = { -- player_inside_office_building
 		on_executed = {
 			{ id = 100006, delay = 0, delay_rand = 20 },
 			{ id = 100021, delay = 0, delay_rand = 20 },
@@ -135,7 +138,7 @@ return {
 	[103575] = bellmead_merc,
 	[103571] = specials,
 	[103579] = bellmead_merc,
-	-- eclipse
+	-- death wish
 	[103574] = bellmead_merc,
 	[103570] = specials,
 	[103578] = bellmead_merc,
@@ -148,7 +151,7 @@ return {
 	[103590] = bellmead_merc,
 	[103598] = specials,
 	[103594] = bellmead_merc,
-	-- eclipse
+	-- death wish
 	[103591] = bellmead_merc,
 	[103599] = specials,
 	[103595] = bellmead_merc,
@@ -162,6 +165,10 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
+	-- Add scripted difficulty increases
+	[100760] = difficulty_add_20, -- link_completed_obj_004 (blackmail)
+	[101124] = difficulty_add_20, -- display_case_open (prototype found)
+	[102341] = difficulty_add_20, -- output_hack_done (documents accessible)
 	-- Spawn group intervals
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,

@@ -91,6 +91,9 @@ local elevator_close_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
+}
 local invisible_walls = {}
 local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
 for i = 0, 10 do
@@ -144,7 +147,7 @@ return {
 			},
 		},
 	},
-	[104682] = { -- open gate (downstairs)
+	[104680] = { -- open gate (downstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -153,7 +156,7 @@ return {
 			},
 		},
 	},
-	[104684] = { -- open gate (upstairs)
+	[104681] = { -- open gate (upstairs)
 		reinforce = {
 			{
 				name = "gate",
@@ -180,7 +183,7 @@ return {
 			},
 		},
 	},
-	[105969] = { -- Vault opened
+	[105792] = { -- Player entered vault
 		reinforce = {
 			{
 				name = "vault",
@@ -189,7 +192,10 @@ return {
 			},
 		},
 	},
-	-- Enable roof spawngroups
+	-- Add scripted difficulty increases
+	[104397] = difficulty_add_20,
+	[105969] = difficulty_add_20,
+	--- Enable roof spawngroups
 	[100006] = {
 		values = {
 			spawn_groups = { 100019, 100007, 100692 },
