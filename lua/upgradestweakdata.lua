@@ -1831,7 +1831,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "ecm_jammer",
 		},
 	}
-	self.skill_descs.ecm_2x.multibasic = "4"
+	self.skill_descs.ecm_2x.multibasic = "2"
 	self.skill_descs.ecm_2x.multipro = "80%"
 
 	-- Background Threat
