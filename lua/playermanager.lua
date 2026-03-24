@@ -1109,59 +1109,63 @@ end
 
 function PlayerManager:force_drop_carry()
 	local carry_list = self:get_my_carry_data()
-	local carry_data = carry_list and carry_list[#carry_list]
-
-	if not carry_data then
+	if not carry_list then
 		return
 	end
 
+	local carry_data = table.remove(carry_list, #carry_list)
 	local player = self:player_unit()
-
 	if not alive(player) then
 		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
 
 		return
 	end
-
-	local dye_initiated = carry_data.dye_initiated
-	local has_dye_pack = carry_data.has_dye_pack
-	local dye_value_multiplier = carry_data.dye_value_multiplier
 	local camera_ext = player:camera()
+	local v_zero = Vector3(0, 0, 0)
 
-	if Network:is_client() then
-		managers.network:session():send_to_host(
-			"server_drop_carry",
-			carry_data.carry_id,
-			carry_data.multiplier,
-			dye_initiated,
-			has_dye_pack,
-			dye_value_multiplier,
-			camera_ext:position(),
-			camera_ext:rotation(),
-			Vector3(0, 0, 0),
-			0,
-			nil,
-			Vector3(0, 0, 0)
-		)
-	else
-		self:server_drop_carry(
-			carry_data.carry_id,
-			carry_data.multiplier,
-			dye_initiated,
-			has_dye_pack,
-			dye_value_multiplier,
-			camera_ext:position(),
-			camera_ext:rotation(),
-			Vector3(0, 0, 0),
-			0,
-			nil,
-			Vector3(0, 0, 0),
-			managers.network:session():local_peer()
-		)
+	while carry_data do
+		local dye_initiated = carry_data.dye_initiated
+		local has_dye_pack = carry_data.has_dye_pack
+		local dye_value_multiplier = carry_data.dye_value_multiplier
+
+		if Network:is_client() then
+			managers.network:session():send_to_host(
+				"server_drop_carry",
+				carry_data.carry_id,
+				carry_data.multiplier,
+				dye_initiated,
+				has_dye_pack,
+				dye_value_multiplier,
+				camera_ext:position(),
+				camera_ext:rotation(),
+				v_zero,
+				0,
+				nil,
+				v_zero
+			)
+		else
+			self:server_drop_carry(
+				carry_data.carry_id,
+				carry_data.multiplier,
+				dye_initiated,
+				has_dye_pack,
+				dye_value_multiplier,
+				camera_ext:position(),
+				camera_ext:rotation(),
+				v_zero,
+				0,
+				nil,
+				v_zero,
+				managers.network:session():local_peer()
+			)
+		end
+
+		carry_data = table.remove(carry_list, #carry_list)
 	end
 
 	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 	managers.hud:temp_hide_carry_bag()
+	self._eclipse_bags_carried = 0
 	self:update_removed_synced_carry_to_peers()
 end
 
@@ -1184,7 +1188,7 @@ function PlayerManager:clear_carry(soft_reset)
 	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 	managers.hud:temp_hide_carry_bag()
 	self:update_removed_synced_carry_to_peers()
-	self:subtract_bags_carried()
+	self._eclipse_bags_carried = 0
 
 	if self._current_state == "carry" then
 		managers.player:set_player_state("standard")
