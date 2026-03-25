@@ -65,3 +65,13 @@ function HuskPlayerMovement:_apply_attention_setting_modifications(setting)
 		setting.weight_mul = (setting.weight_mul or 1) * weight_mul
 	end
 end
+
+-- Security Camera Rework by Hoppip
+local on_uncovered_original = HuskPlayerMovement.on_uncovered
+function HuskPlayerMovement:on_uncovered(enemy_unit, ...)
+	local enemy_base = alive(enemy_unit) and enemy_unit:base()
+	if not enemy_base or not enemy_base._get_operator or not enemy_base:_get_operator() then
+		return on_uncovered_original(self, enemy_unit, ...)
+	end
+end
+

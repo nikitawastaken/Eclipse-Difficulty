@@ -154,6 +154,9 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 
 	self.fall_health_damage = 0.6
 
+	self.speak_alert_size = 500
+	self.running_alert_size = 400
+	
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 	self.omniscience.target_resense_t = 0

@@ -47,6 +47,7 @@
 					<post :hook_id="elementdifficulty"/>
 					<post :hook_id="elementwaypoint"/>
 					<post :hook_id="missionscriptelement"/>
+					<post :hook_id="elementenemydummytrigger"/>
 				</group>
 
 				<group :hook_id="hud/">
@@ -282,6 +283,7 @@
 					<post :hook_id="carrydata"/>
 					<post :hook_id="drill"/>
 					<post :hook_id="timergui"/>
+					<post :hook_id="securitycamera"/>
 				</group>
 
 				<group :hook_id="weapons/">
