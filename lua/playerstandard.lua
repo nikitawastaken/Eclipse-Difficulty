@@ -1259,13 +1259,13 @@ Hooks:PreHook(PlayerStandard, "_update_movement", "eclipse_update_movement", fun
 			local alert_epicenter = mvector3.copy(self._last_sent_pos)
 			mvector3.set_z(alert_epicenter, alert_epicenter.z + 150)
 			local alert_rad = (tweak_data.player.running_alert_size or 400) * mvector3.length(self._move_dir)
-		--	alert_rad = alert_rad * managers.player:upgrade_value("player", "less_noise_multiplier", 1)
+			--	alert_rad = alert_rad * managers.player:upgrade_value("player", "less_noise_multiplier", 1)
 			local new_alert = {
 				"footstep",
 				alert_epicenter,
 				alert_rad,
 				managers.groupai:state():get_unit_type_filter("civilians_enemies"),
-				self._unit
+				self._unit,
 			}
 			managers.groupai:state():propagate_alert(new_alert)
 		end

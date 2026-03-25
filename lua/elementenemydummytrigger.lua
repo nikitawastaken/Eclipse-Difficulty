@@ -17,7 +17,6 @@ local function check_executed_objects(trigger, current, checked)
 		local element_class = getmetatable(element)
 
 		if element_class == ElementSecurityCamera and not element._values.ai_enabled then
-
 			local camera_unit = element._values.camera_u_id and element:_fetch_unit_by_unit_id(element._values.camera_u_id)
 			if camera_unit then
 				camera_unit:base()._operator_triggers = camera_unit:base()._operator_triggers or {}

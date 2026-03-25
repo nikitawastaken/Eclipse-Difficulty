@@ -22,4 +22,3 @@ function CopLogicArrest.on_new_objective(data, ...)
 		return on_new_objective_original(data, ...)
 	end
 end
-

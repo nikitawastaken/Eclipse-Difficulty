@@ -97,8 +97,8 @@ function CopLogicIntimidated._start_action_hands_up(data)
 			light_hurt = -1,
 			hurt = -1,
 			heavy_hurt = -1,
-			walk = -1
-		}
+			walk = -1,
+		},
 	}
 	my_data.act_action = data.unit:brain():action_request(action_data)
 

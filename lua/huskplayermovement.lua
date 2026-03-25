@@ -74,4 +74,3 @@ function HuskPlayerMovement:on_uncovered(enemy_unit, ...)
 		return on_uncovered_original(self, enemy_unit, ...)
 	end
 end
-
