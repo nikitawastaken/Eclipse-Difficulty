@@ -215,7 +215,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.red2.payout = { 55000 }
 	self.jobs.dinner.payout = { 75000 }
 	self.jobs.pbr.payout = { 250000 }
-	self.jobs.pbr2.payout = { 650000 }
+	self.jobs.pbr2.payout = { 850000 }
 	self.jobs.pal.payout = { 560000 }
 	self.jobs.cane.payout = { 100000 }
 	self.jobs.nail.payout = { 2015 }
@@ -229,6 +229,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.friend.payout = { 180000 }
 	self.jobs.moon.payout = { 75000 }
 	self.jobs.spa.payout = { 200000 }
+	self.jobs.spa.contract_cost = { 47000, 94000, 235000, 470000, 600000, 600000, 600000 }
 	self.jobs.fish.payout = { 100000 }
 	self.jobs.flat.payout = { 900000 }
 	self.jobs.help.payout = { 2016 }
@@ -243,11 +244,11 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.tag.payout = { 270000 }
 	self.jobs.des.payout = { 350000 }
 	self.jobs.vit.payout = { 2500000 }
-	self.jobs.bph.payout = { 200000 }
+	self.jobs.bph.payout = { 1750000 }
 	self.jobs.mex.payout = { 375000 }
 	self.jobs.mex_cooking.payout = { 35000 }
 	self.jobs.bex.payout = { 125000 }
-	self.jobs.pex.payout = { 50000 }
+	self.jobs.pex.payout = { 420000 }
 	self.jobs.fex.payout = { 300000 }
 	self.jobs.chas.payout = { 100000 }
 	self.jobs.sand.payout = { 200000 }
