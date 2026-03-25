@@ -48,7 +48,7 @@ function MoneyManager:get_bag_value(carry_id, multiplier)
 	if value then
 		value = value
 	else
-		local bag_value_id = tweak_data.carry[carry_id] and tweak_data.carry[carry_id].bag_value or "default"
+		local bag_value_id = tweak_data.carry[carry_id].bag_value or "default"
 		value = self:get_tweak_value("money_manager", "bag_values", bag_value_id)
 	end
 
