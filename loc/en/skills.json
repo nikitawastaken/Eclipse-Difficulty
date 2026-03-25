@@ -30,7 +30,7 @@
 
 
 	"menu_point_blank": "Point Blank",
-	"menu_point_blank_desc": "BASIC: ##$basic##\nEach successful kill grants you a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\n\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage in a ##$multipro2## range.",
+	"menu_point_blank_desc": "BASIC: ##$basic##\nEach successful kill grants you a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\n\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage within a ##$multipro2## range.",
 	"menu_heavy_impact": "Heavy Impact",
 	"menu_heavy_impact_desc": "BASIC: ##$basic##\nYour shots have a ##$multibasic## chance to stagger all enemies except Bulldozers and Elite Shields.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage to enemies that are currently staggered.\n\nThe push force of your Shotguns allows you to ##launch## enemies when up close.",
 	"menu_fast_hands": "Fast Hands",
