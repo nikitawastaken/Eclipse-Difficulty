@@ -136,7 +136,7 @@ function MoneyTweakData:init(tweak_data)
 		easy_wish = 0.8,
 		overkill_290 = 0.8,
 		sm_wish = 0.8,
-		easy = 0
+		easy = 0,
 	}
 	self.buy_premium_static_fee = {
 		hard = 0,
