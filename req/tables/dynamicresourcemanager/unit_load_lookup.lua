@@ -143,6 +143,7 @@ local M = {
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet", load_husk = false },
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat", load_husk = false },
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet", load_husk = false },
+			{ path = "units/pd2_dlc_bph/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet", load_husk = false },
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", load_husk = false },
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_medic_helmet/ene_acc_medic_helmet", load_husk = false },
 			{ path = "units/pd2_dlc_bph/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet", load_husk = false },
