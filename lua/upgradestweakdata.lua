@@ -319,6 +319,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"wpn_prj_hur",
+				"wpn_prj_target",
 			},
 		},
 		{ -- lvl 25
