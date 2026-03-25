@@ -276,6 +276,32 @@ function MoneyManager:on_mission_completed(num_winners)
 	self:_add_to_total(total_payout, nil, TelemetryConst.economy_origin.mission_complete_reward)
 end
 
+function MoneyManager:get_cost_of_premium_contract(job_id, difficulty_id)
+	local job_data = tweak_data.narrative:job_data(job_id)
+
+	if not job_data then
+		return 0
+	end
+
+	local stars = job_data.jc / 10
+	local total_payout, base_payout, risk_payout = self:get_contract_money_by_stars(stars, difficulty_id - 2, #tweak_data.narrative:job_chain(job_id), job_id)
+	local diffs = {
+		"easy",
+		"normal",
+		"hard",
+		"overkill",
+		"overkill_145",
+		"easy_wish",
+		"overkill_290",
+		"sm_wish"
+	}
+	local value = job_data.contract_cost and job_data.contract_cost[difficulty_id - 1] / self:get_tweak_value("money_manager", "offshore_rate") or 0
+	local total_value = value
+	total_value = (self:get_tweak_value("money_manager", "buy_premium_multiplier", diffs[difficulty_id]) * total_value) + self:get_tweak_value("money_manager", "buy_premium_static_fee", diffs[difficulty_id])
+
+	return total_value
+end
+
 -- Offshore Casino
 function MoneyManager:can_afford_casino_fee(secured_cards, increase_infamous, preferred_card, currency)
 	local node = managers.menu:active_menu() and managers.menu:active_menu().logic:selected_node()

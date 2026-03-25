@@ -129,14 +129,14 @@ function MoneyTweakData:init(tweak_data)
 	self.sell_mask_multiplier = 0.25
 	self.killing_civilian_deduction = self._create_value_table(10000, 50000, 10, true, 2) --self.killing_civilian_deduction = self._create_value_table(2000, 50000, 10, true, 2)
 	self.buy_premium_multiplier = {
-		hard = 0,
-		overkill = 0,
-		overkill_145 = 0,
-		normal = 0,
-		easy_wish = 0,
-		overkill_290 = 0,
-		sm_wish = 0,
-		easy = 0,
+		hard = 1,
+		overkill = 1,
+		overkill_145 = 0.9,
+		normal = 1,
+		easy_wish = 0.8,
+		overkill_290 = 0.8,
+		sm_wish = 0.8,
+		easy = 0
 	}
 	self.buy_premium_static_fee = {
 		hard = 0,
@@ -370,115 +370,115 @@ function MoneyTweakData:init(tweak_data)
 		},
 		{
 			spending = 0,
-			offshore = millions(0),
+			offshore = millions(3),
 		},
 		{
 			spending = 0,
-			offshore = millions(1),
+			offshore = millions(3),
 		},
 		{
 			spending = 0,
-			offshore = millions(10),
+			offshore = millions(3),
 		},
 		{
 			spending = 0,
-			offshore = millions(10),
+			offshore = millions(3),
 		},
 		{
 			spending = 0,
-			offshore = millions(10),
+			offshore = millions(5),
 		},
 		{
 			spending = 0,
-			offshore = millions(20),
+			offshore = millions(5),
 		},
 		{
 			spending = 0,
-			offshore = millions(20),
+			offshore = millions(5),
 		},
 		{
 			spending = 0,
-			offshore = millions(20),
+			offshore = millions(5),
 		},
 		{
 			spending = 0,
-			offshore = millions(25),
+			offshore = millions(6),
 		},
 		{
 			spending = 0,
-			offshore = millions(25),
+			offshore = millions(6),
 		},
 		{
 			spending = 0,
-			offshore = millions(25),
+			offshore = millions(6),
 		},
 		{
 			spending = 0,
-			offshore = millions(25),
+			offshore = millions(6),
 		},
 		{
 			spending = 0,
-			offshore = millions(25),
+			offshore = millions(6),
 		},
 		{
 			spending = 0,
-			offshore = millions(30),
+			offshore = millions(7),
 		},
 		{
 			spending = 0,
-			offshore = millions(30),
+			offshore = millions(7),
 		},
 		{
 			spending = 0,
-			offshore = millions(30),
+			offshore = millions(7),
 		},
 		{
 			spending = 0,
-			offshore = millions(30),
+			offshore = millions(7),
 		},
 		{
 			spending = 0,
-			offshore = millions(30),
+			offshore = millions(7),
 		},
 		{
 			spending = 0,
-			offshore = millions(35),
+			offshore = millions(8),
 		},
 		{
 			spending = 0,
-			offshore = millions(35),
+			offshore = millions(8),
 		},
 		{
 			spending = 0,
-			offshore = millions(35),
+			offshore = millions(8),
 		},
 		{
 			spending = 0,
-			offshore = millions(35),
+			offshore = millions(8),
 		},
 		{
 			spending = 0,
-			offshore = millions(35),
+			offshore = millions(8),
 		},
 		{
 			spending = 0,
-			offshore = millions(40),
+			offshore = millions(9),
 		},
 		{
 			spending = 0,
-			offshore = millions(40),
+			offshore = millions(9),
 		},
 		{
 			spending = 0,
-			offshore = millions(40),
+			offshore = millions(9),
 		},
 		{
 			spending = 0,
-			offshore = millions(40),
+			offshore = millions(9),
 		},
 		{
 			spending = 0,
-			offshore = millions(40),
+			offshore = millions(9),
 		},
 	}
 	self.old_skill_switch_cost = {
@@ -693,13 +693,13 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_vault_bust = 50000
 		self.small_loot.diamondheist_vault_diamond = 15000
 		self.small_loot.diamondheist_big_diamond = 25000
-	elseif level_id == "red2" then
+	elseif level_id == "red2" or "kenaz" then
 		self.bag_values.money = 90000 -- 90,000$
 		self.small_loot.gen_atm = (money_mul * 72000)
-		self.small_loot.money_bundle = (money_mul * 1250)
+		self.small_loot.money_bundle = (money_mul * 8250)
 	elseif level_id == "dinner" then
 		self.bag_values.gold = 350000 -- 350,000$
-		self.small_loot.money_bundle = (money_mul * 1250)
+		self.small_loot.money_bundle = (money_mul * 10250)
 	else
 		self.small_loot.money_bundle = (money_mul * 750)
 		self.small_loot.money_bundle_value = (money_mul * 10000)
