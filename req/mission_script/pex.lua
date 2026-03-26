@@ -86,6 +86,9 @@ return {
 			length = 240,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
+		on_executed = {
+			{ id = 400049, delay = 0 }, -- enable parking hiding spots when Almor has been found
+		},
 	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
@@ -105,6 +108,22 @@ return {
 				force = 3,
 				position = Vector3(525, 300, 100),
 			},
+		},
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
+		on_executed = {
+			{ id = 100800, delay = 0 },
+			{ id = 100765, remove = true },
+		},
+	},
+	[100800] = {
+		on_executed = {
+			{ id = 400050, delay = 0 },
+			{ id = 101186, remove = true },
 		},
 	},
 	-- Disable vanilla reinforce

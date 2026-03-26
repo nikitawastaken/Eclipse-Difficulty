@@ -47,10 +47,15 @@ return {
 	[104604] = disabled,
 	-- 2 choppers can get deployed on Death Wish :dwpj: (with a random chance of 2 choppers on Pro Jobs below Death Wish)
 	[101384] = murky_choppers,
-	-- the same chopper that deploys murkies can now return :dajoker:
+	-- the same chopper that deploys murkies can now return :dajoker: (only once tho)
 	[100340] = {
 		on_executed = {
-			{ id = 100303, delay = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0) },
+			{ id = 100303, delay = (is_eclipse and 480 or 420) - (is_pro_job and 60 or 0) },
+		},
+	},
+	[100303] = {
+		values = {
+			trigger_times = 2,
 		},
 	},
 	-- spawn extra security when the surv man dies or the vault opens

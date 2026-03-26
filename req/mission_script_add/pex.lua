@@ -1,5 +1,10 @@
 ---@module Breakfast in Tijuana
 local M = {}
+
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
+
+
+
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
@@ -84,6 +89,46 @@ local opts_swat_group = {
 	amount = 4,
 }
 
+local optsAddCloakerHideGroup = {
+	enabled = true,
+	on_executed = {
+		{ id = 400048, delay = 0 },
+	},
+}
+local optsCloakerHideGroup_Station = {
+	followup_elements = {
+		400040,
+		400041,
+		400042,
+		400043,
+		400044,
+		400045,
+		400046,
+		400047,
+	},
+}
+local optsCloakerHideGroup_Parking = {
+	followup_elements = {
+		101191,
+		101192,
+		101193,
+		104064,
+		104065,
+		104128,
+		104129,
+		104139,
+	},
+}
+
+-- Hiding Cloaker SOs are funny
+local hide_so_search_pos = Vector3(-2436, 4351, 0.002)
+local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sit_student_var5", hide_so_search_pos) -- funny spot
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
+
+
+
 M.elements = {
 	-- Arrive 1
 	Eclipse.mission_elements.gen_dummy(400001, "swat_van_spawn_01", Vector3(4100, -1800, 0), Rotation(5, 0, 0), optsBesiegeDummy),
@@ -130,6 +175,21 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400034, "open_van_doors_05", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_5),
 	Eclipse.mission_elements.gen_object_editor_trigger(400035, "swat_van_doors_trigger_01", optsOpenSwatVanDoors_Trigger_1),
 	Eclipse.mission_elements.gen_spawngroup(400036, "swat_van_group_05", { 400029, 400030, 400031, 400032 }, 0, opts_swat_group),
+	
+	-- New Cloakers hiding spots
+	-- hiding spots
+	Eclipse.mission_elements.gen_so(400040, "cloaker_hide_so_1", Vector3(-1950.951, 2997.741, 100), Rotation(104, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400041, "cloaker_hide_so_2", Vector3(449, 1829, 100), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_2),
+	Eclipse.mission_elements.gen_so(400042, "cloaker_hide_so_3", Vector3(-131, 2575, 100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400043, "cloaker_hide_so_4", Vector3(-2724, 2171, 100), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400044, "cloaker_hide_so_5", Vector3(-2493, 788, 100), Rotation(-132, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400045, "cloaker_hide_so_6", Vector3(-319, 1782, 106), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400046, "cloaker_hide_so_7", Vector3(-1801, 1524, 503.201), Rotation(178, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400047, "cloaker_hide_so_8", Vector3(-1902, 2705, 503.201), Rotation(-177, 0, 0), optsCloaker_Hide_SpotSO_3),
+	-- the whole system that does the thing
+	Eclipse.mission_elements.gen_sogroup(400048, "pex_cloaker_hide_group_station", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup_Station),
+	Eclipse.mission_elements.gen_sogroup(400049, "pex_cloaker_hide_group_parking", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup_Parking),
+	Eclipse.mission_elements.gen_missionscript(400050, "pex_cloaker_spawn_global", optsAddCloakerHideGroup),
 }
 
 return M
