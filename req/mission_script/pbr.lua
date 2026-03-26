@@ -159,7 +159,7 @@ return {
 	[101140] = dorito_spawn,
 	[100437] = agile_spawn,
 	[100438] = agile_spawn,
-	[100440] = agile_spawn,	
+	[100440] = agile_spawn,
 	[100455] = agile_spawn,
 	[100454] = agile_spawn,
 	[100451] = agile_spawn,
