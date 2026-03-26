@@ -5,5 +5,30 @@
 		<texture path="guis/textures/menu_title_screen"/>
 		<material_config path="units/menu/menu_scene/menu_cylinder"/>
 		<texture path="units/menu/menu_scene/menu_cylinder_logo"/>
+		
+		<!-- Grenade Case icons -->
+		<texture path="guis/textures/pd2/blackmarket/icons/deployables/grenade_case"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case"/>
+
+		<!-- Weapon mod icons -->
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_m4_uupg_m_std"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_m4_m_drum"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_m4_m_drum"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_mp5_m_drum"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_upg_saiga_m_20rnd"/>
+		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_shepheard_mag_extended"/>
+		<texture path="guis/dlcs/eclipse/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_charm_eclipse"/>
+		<texture path="guis/dlcs/boost_in_lootdrop/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_bonus_team_exp"/>
+		<texture path="guis/dlcs/boost_in_lootdrop/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_bonus_team_money"/>
+
+		<!-- Weapon icons -->
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/amcar"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/outline/amcar"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/m16"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/outline/m16"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/olympic"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/weapons/outline/olympic"/>
+		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/weapons/shepheard"/>
+		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/weapons/outline/shepheard"/>
 	</AddFiles>
 </table>

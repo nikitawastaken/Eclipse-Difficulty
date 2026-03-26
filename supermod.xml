@@ -426,61 +426,6 @@
 			<file :name="hlm_random_right002/world/world.mission"/>
 		</group>
 
-		<!-- Various Icons -->
-		<group name="guis/textures/pd2/blackmarket/icons/" >
-			<group :name="deployables/">
-				<file :name="grenade_case.texture" />
-				<file :name="outline/grenade_case.texture" />
-			</group>
-			<group :name="mods/">
-				<file :name="wpn_fps_m4_uupg_m_std.texture" />
-				<file :name="wpn_fps_upg_m4_m_drum.texture" />
-				<file :name="wpn_upg_ak_m_drum.texture" />
-				<file :name="wpn_fps_smg_mp5_m_drum.texture" />
-				<file :name="wpn_upg_saiga_m_20rnd.texture" />
-			</group>
-			<group :name="weapons/">
-				<file :name="amcar.texture" />
-				<file :name="m16.texture" />
-				<file :name="olympic.texture" />
-
-				<group :name="outline/">
-					<file :name="amcar.texture" />
-					<file :name="m16.texture" />
-					<file :name="olympic.texture" />
-				</group>
-			</group>
-		</group>
-
-		<group name="guis/dlcs/">
-			<group :name="eclipse/textures/pd2/blackmarket/icons/">
-				<file :name="mods/wpn_fps_upg_charm_eclipse.texture" />
-			</group>
-
-			<group :name="joy/textures/pd2/blackmarket/icons/">
-				<file :name="mods/wpn_fps_smg_shepheard_mag_extended.texture" />
-
-				<group :name="weapons/">
-					<file :name="shepheard.texture" />
-					<file :name="outline/shepheard.texture" />
-				</group>
-			</group>
-
-			<group :name="gunperk/textures/pd2/blackmarket/icons/mods/">
-				<file :name="wpn_fps_upg_perk_speedloader.texture"/>
-				<file :name="wpn_fps_upg_perk_haste.texture"/>
-				<file :name="wpn_fps_upg_perk_deadsilence.texture"/>
-				<file :name="wpn_fps_upg_perk_jawbreaker.texture"/>
-				<file :name="wpn_fps_upg_perk_whirlwind.texture"/>
-				<file :name="wpn_fps_upg_perk_stockpile.texture"/>
-			</group>
-
-			<group :name="boost_in_lootdrop/textures/pd2/blackmarket/icons/mods/">
-				<file :name="wpn_fps_upg_bonus_team_exp.texture"/>
-				<file :name="wpn_fps_upg_bonus_team_money.texture"/>
-			</group>
-		</group>
-
 		<!-- Grenade Case  -->
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
