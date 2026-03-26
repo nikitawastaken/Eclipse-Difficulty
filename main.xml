@@ -1,0 +1,9 @@
+<table>
+	<AddFiles directory="assets">
+		<!-- Mod logos for loading, enter screen and menu -->
+		<texture path="guis/textures/game_small_logo"/>
+		<texture path="guis/textures/menu_title_screen"/>
+		<material_config path="units/menu/menu_scene/menu_cylinder"/>
+		<texture path="units/menu/menu_scene/menu_cylinder_logo"/>
+	</AddFiles>
+</table>
