@@ -50,7 +50,7 @@ return {
 	-- the same chopper that deploys murkies can now return :dajoker: (only once tho)
 	[100340] = {
 		on_executed = {
-			{ id = 100303, delay = (is_eclipse and 480 or 420) - (is_pro_job and 60 or 0) },
+			{ id = 100303, delay = (is_eclipse and 420 or 480) - (is_pro_job and 60 or 0) },
 		},
 	},
 	[100303] = {
