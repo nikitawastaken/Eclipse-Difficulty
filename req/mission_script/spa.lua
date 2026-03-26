@@ -2,16 +2,16 @@ local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
 local van_arrive_timer = 60 + (is_pro_job and 60 or 0)
 local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
-local roof_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents,
-}
 local rappel_init_spawn = {
 	values = {
 		interval = 10,
+	},
+	groups = preferred.no_cops_agents,
+}
+local roof_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }

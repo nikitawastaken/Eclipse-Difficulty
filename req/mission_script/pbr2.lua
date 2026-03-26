@@ -13,8 +13,13 @@ local standard_spawn = {
 local sewer_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
+local difficulty_add_25 = {
+	difficulty_add = 0.25,
+}
+
 return {
 	[100104] = disabled,
 	[100980] = {
@@ -61,6 +66,8 @@ return {
 			{ id = 100534, delay = 0, delay_rand = 20 }, -- Hardware preferred
 		},
 	},
+	-- Add scripted difficulty increases
+	[100668] = difficulty_add_25, -- done_with_a_pallet
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,

@@ -4,22 +4,38 @@ local no_participate = {
 		participate_to_group_ai = false,
 	},
 }
-local roof_spawn = {
+local dorito_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local agile_spawn = {
 	values = {
-		interval = 30,
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local dropdown_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local shaft_spawn = {
 	values = {
-		interval = 45,
+		interval = 25,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local door_slide_spawn = {
+	values = {
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
 }
 local disable_entrance_reinforce = {
 	reinforce = {
@@ -100,7 +116,7 @@ return {
 			},
 		},
 	},
-	[101434] = {
+	[101434] = { -- all_at_surface
 		reinforce = {
 			{ name = "demeter" },
 			{ name = "hades" },
@@ -115,12 +131,12 @@ return {
 			{
 				name = "gate",
 				force = 3,
-				position = Vector3(-11000, -6800, 7000),
+				position = Vector3(-11000, -6750, 7000),
 			},
 			{
 				name = "what_a_nice_car",
 				force = 3,
-				position = Vector3(-11200, 400, 7400),
+				position = Vector3(-11300, 500, 7400),
 			},
 		},
 	},
@@ -138,13 +154,17 @@ return {
 	[101238] = no_participate,
 	[101239] = no_participate,
 	-- Spawn group intervals
-	[100437] = roof_spawn,
-	[100438] = roof_spawn,
+	[101142] = dorito_spawn,
+	[101141] = dorito_spawn,
+	[101140] = dorito_spawn,
+	[100437] = agile_spawn,
+	[100438] = agile_spawn,
+	[100440] = agile_spawn,	
 	[100455] = agile_spawn,
 	[100454] = agile_spawn,
 	[100451] = agile_spawn,
 	[100450] = agile_spawn,
-	[100519] = agile_spawn,
-	[100440] = agile_spawn,
+	[100519] = dropdown_spawn,
 	[101196] = shaft_spawn,
+	[100461] = door_slide_spawn,
 }

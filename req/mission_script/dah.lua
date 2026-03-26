@@ -33,19 +33,19 @@ local disabled = {
 }
 local roof_far_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents,
 }
 local roof_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 35,
 	},
 	groups = preferred.no_cops_agents,
 }
 local vault_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

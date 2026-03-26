@@ -162,4 +162,8 @@ return {
 	[100206] = standard_spawn,
 	[102861] = standard_spawn,
 	[102381] = standard_spawn,
+	[101920] = standard_spawn,
+	[100719] = standard_spawn,
+	[100810] = standard_spawn,
+	[100921] = standard_spawn,
 }
