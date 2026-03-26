@@ -94,6 +94,8 @@
 	"eclipse_menu_improved_gun_echo_heat": "Heat",
 	"eclipse_menu_disable_christmas": "Disable Christmas Decorations",
 	"eclipse_menu_disable_christmas_desc": "Disables year-round Christmas effects such as enemy Santa hats or jingle bells on heists that have them.",
+	"eclipse_menu_early_control_music": "Early Control Music",
+	"eclipse_menu_early_control_music_desc": "Play control phase music when police start their retreat, before the assault banner disappears.",
 
 	"menu_pro_warning": "This is a pro job! Experience gain and contract pay are increased by 20%.\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Death Wish",

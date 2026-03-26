@@ -1920,6 +1920,18 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 	})
 end)
 
+-- Would add receive hook in mod.lua but NetworkHelper is set up after Eclipse's earliest hook starts running
+NetworkHelper:AddReceiveHook("Eclipse", "early_control_music", function(data, sender)
+	if sender == 1 and data == "early_control_music" then
+		Eclipse:play_early_control_music()
+	end
+end)
+
+Hooks:PostHook(GroupAIStateBesiege, "_begin_regroup_task", "eclipse_early_control_music__begin_regroup_task", function()
+	Eclipse:play_early_control_music()
+	NetworkHelper:SendToPeers("Eclipse", "early_control_music")
+end)
+
 -- New designated ponr ai state
 GroupAIStatePonr = GroupAIStatePonr or class(GroupAIStateBesiege)
 

@@ -16,6 +16,7 @@ if not Eclipse then
 			improved_gun_echo = 2,
 			welcome_message = true,
 			disable_christmas = false,
+			early_control_music = true,
 		},
 		loaded_elements = false,
 	}
@@ -117,6 +118,12 @@ if not Eclipse then
 		else
 			Eclipse:log_chat(unpack(vals))
 			Eclipse._old_chat_vals = vals
+		end
+	end
+
+	function Eclipse:play_early_control_music()
+		if self.settings.early_control_music and managers.music then
+			managers.music:post_event(tweak_data.levels:get_music_event("control"))
 		end
 	end
 
@@ -240,6 +247,11 @@ if not Eclipse then
 			Eclipse.settings.improved_gun_echo = value
 		end
 
+		function MenuCallbackHandler:eclipse_early_control_music_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.early_control_music = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -351,6 +363,16 @@ if not Eclipse then
 			desc = "eclipse_menu_disable_christmas_desc",
 			callback = "eclipse_disable_christmas_toggle",
 			value = Eclipse.settings.disable_christmas,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "early_control_music",
+			title = "eclipse_menu_early_control_music",
+			desc = "eclipse_menu_early_control_music_desc",
+			callback = "eclipse_early_control_music_toggle",
+			value = Eclipse.settings.early_control_music,
 			menu_id = menu_id,
 			priority = 100,
 		})
