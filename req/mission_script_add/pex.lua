@@ -3,8 +3,6 @@ local M = {}
 
 local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
 
-
-
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
@@ -127,8 +125,6 @@ local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sit_student_v
 local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
 
-
-
 M.elements = {
 	-- Arrive 1
 	Eclipse.mission_elements.gen_dummy(400001, "swat_van_spawn_01", Vector3(4100, -1800, 0), Rotation(5, 0, 0), optsBesiegeDummy),
@@ -175,7 +171,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400034, "open_van_doors_05", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_5),
 	Eclipse.mission_elements.gen_object_editor_trigger(400035, "swat_van_doors_trigger_01", optsOpenSwatVanDoors_Trigger_1),
 	Eclipse.mission_elements.gen_spawngroup(400036, "swat_van_group_05", { 400029, 400030, 400031, 400032 }, 0, opts_swat_group),
-	
+
 	-- New Cloakers hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400040, "cloaker_hide_so_1", Vector3(-1950.951, 2997.741, 100), Rotation(104, 0, 0), optsCloaker_Hide_SpotSO_3),
