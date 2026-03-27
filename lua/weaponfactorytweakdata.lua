@@ -360,7 +360,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 				translation = Vector3(0, 12, -1.75),
 			}
 			part_data.stance_mod.wpn_fps_lmg_m60 = {
-				translation = Vector3(0.1, 8, -1.25), 
+				translation = Vector3(0.1, 8, -1.25),
 			}
 		end
 
@@ -1180,7 +1180,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_awp_conversion_dragonlore.custom_stats = {}
 
 	-- LMG Mods
---	self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.concealment = -1
+	--	self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.concealment = -1
 
 	self.parts.wpn_fps_lmg_m249_b_long.stats.damage = 0
 	self.parts.wpn_fps_lmg_m249_b_long.stats.spread = 2
