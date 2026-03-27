@@ -1007,6 +1007,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "striker_reload_speed_default") -- why did they do it like this?
+	table.delete(self.default_upgrades, "akimbo_recoil_index_addend_1") 
 	table.delete(self.default_upgrades, "jowi")
 	table.delete(self.default_upgrades, "x_1911")
 	table.delete(self.default_upgrades, "x_b92fs")
