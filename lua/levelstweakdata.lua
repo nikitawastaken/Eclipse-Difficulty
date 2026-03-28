@@ -389,7 +389,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_delay = 60,
 		},
 	}
-	
+
 	self.nmh.group_ai_settings = {
 		assault_force_mul = 0.8,
 		special_limit_add = {
