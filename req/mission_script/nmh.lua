@@ -21,6 +21,7 @@ local disabled = {
 local vent_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -29,8 +30,8 @@ local cloaker_respawn_trigger = {
 		trigger_times = cloaker_respawn_amount,
 	},
 }
-local difficulty_add_15 = {
-	difficulty_add = 0.15,
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 local terminator_dozer_1 = {
 	enemy = is_eclipse and ben_dozer or green_dozer,
@@ -137,13 +138,6 @@ return {
 			},
 		},
 	},
-	-- diff 1, blow the wall
-	[104057] = disabled,
-	[103279] = {
-		on_executed = {
-			{ id = 104066, delay = 0, delay_rand = 10 },
-		},
-	},
 	-- alert all civs on mask up and delay panic button SO
 	[102518] = {
 		on_executed = {
@@ -181,9 +175,9 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Add scripted difficulty increases
-	[102326] = difficulty_add_15, -- ICUsawDone
-	[102846] = difficulty_add_15, -- EnableValidationMachines
-	[102874] = difficulty_add_15, -- start_wait_for_elevator
+	[102326] = difficulty_add_20, -- ICUsawDone
+	[102846] = difficulty_add_20, -- EnableValidationMachines
+	[102874] = difficulty_add_20, -- start_wait_for_elevator
 	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,

@@ -33,8 +33,12 @@ local storage_close_spawn = {
 local storage_window_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 return {
 	-- Combine some navigation areas
@@ -101,6 +105,10 @@ return {
 	[106783] = disabled,
 	[103926] = disabled,
 	[106784] = disabled,
+	-- Add scripted difficulty increases
+	[100510] = difficulty_add_20, -- complete_objective002 (hackbox hacked)
+	[100756] = difficulty_add_20, -- complete_objective008 (door opened)
+	[103821] = difficulty_add_20, -- complete_objective014 (tablet grabbed)
 	-- Spawn group intervals
 	[103662] = storage_far_spawn,
 	[102667] = roof_far_spawn,

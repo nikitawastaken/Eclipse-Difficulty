@@ -33,21 +33,27 @@ local disabled = {
 }
 local roof_far_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local roof_close_spawn = {
 	values = {
-		interval = 35,
+		interval = 45,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local vault_spawn = {
 	values = {
 		interval = 45,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 local bags_required = {
 	values = {
@@ -116,6 +122,10 @@ return {
 			},
 		},
 	},
+	-- Add scripted difficulty increases
+	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
+	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
+	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,
@@ -129,35 +139,6 @@ return {
 			{ id = 100082, delay = 0 },
 		},
 	},
-	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
-	-- should be impossible to spawncamp the heist that way
-	[104385] = enabled,
-	[104386] = enabled,
-	[104387] = enabled,
-	[104388] = enabled,
-	[104389] = enabled,
-	[103084] = enabled,
-	[104207] = enabled,
-	[104210] = enabled,
-	[104211] = enabled,
-	[104354] = enabled,
-	[104355] = enabled,
-	[104356] = enabled,
-	[104357] = enabled,
-	[104358] = enabled,
-	[104372] = enabled,
-	[104373] = enabled,
-	[104374] = enabled,
-	[104823] = enabled,
-	[104887] = enabled,
-	-- disable the enemy_prefered_remove's so that all spawnpoints stay enabled throughout the heist
-	[100875] = disabled,
-	[102386] = disabled,
-	[104361] = disabled,
-	[104375] = disabled,
-	[102191] = disabled,
-	[104390] = disabled,
-	[104886] = disabled,
 	-- disable endless
 	[101967] = disabled,
 	[102061] = disabled,
@@ -422,7 +403,7 @@ return {
 	[102812] = beat_cops,
 	[102813] = beat_cops,
 	[102814] = beat_cops,
-	-- replace Secret Service with GenSec Red Security (like in PDTH)
+	--[[ replace Secret Service with GenSec Red Security (like in PDTH)
 	[100034] = gensec_enemy,
 	[100041] = gensec_enemy,
 	[102322] = gensec_enemy,
@@ -450,6 +431,7 @@ return {
 	[102028] = gensec_enemy,
 	[102042] = gensec_enemy,
 	[102043] = gensec_enemy,
+	]]
 	-- spawn dozer and 2 tasers on overkill above (comes a bit later after beat cops)
 	[102128] = {
 		on_executed = {

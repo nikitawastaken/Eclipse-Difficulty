@@ -50,8 +50,12 @@ local crowbar_amount = {
 local van_spawn = {
 	values = {
 		interval = 45,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
+}
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 return {
 	-- Combine some navigation areas
@@ -128,33 +132,33 @@ return {
 	[102369] = filter_disable,
 	-- change crowbar's amount depending on diffculties
 	[100127] = crowbar_amount,
-	-- reinforce Spots
+	-- Add new reinforce
 	[100031] = {
 		reinforce = {
 			{
 				name = "bbq",
 				force = 3,
-				position = Vector3(-3750, 2400, 30),
+				position = Vector3(-3700, 2100, 25),
 			},
 			{
-				name = "mitchell01",
-				force = 2,
-				position = Vector3(-125, 2625, 25),
+				name = "mitchell_house01",
+				force = 3,
+				position = Vector3(-2525, 3900, 75),
 			},
 			{
-				name = "mitchell02",
+				name = "mitchell_house02",
 				force = 2,
-				position = Vector3(-2400, 4350, 25),
+				position = Vector3(-2750, 3600, -320),
 			},
 			{
-				name = "wilson01",
+				name = "wilson_house01",
 				force = 2,
-				position = Vector3(-3710, -1285, 25),
+				position = Vector3(-1925, 25, 30),
 			},
 			{
-				name = "wilson02",
+				name = "wilson_house02",
 				force = 2,
-				position = Vector3(-1125, 625, 50),
+				position = Vector3(-2975, 1375, -325),
 			},
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
@@ -162,6 +166,36 @@ return {
 			{ id = 400050, delay = 30 },
 		},
 	},
+	[101219] = { -- valve001 (beach)
+		reinforce = {
+			{
+				name = "valve",
+				force = 2,
+				position = Vector3(-6450, 1480, 30),
+			},
+		},
+	},
+	[101218] = { -- valve002 (Wilson)
+		reinforce = {
+			{
+				name = "valve",
+				force = 2,
+				position = Vector3(-2475, -1085, 30),
+			},
+		},
+	},
+	[101220] = { -- valve003 (Mitchell)
+		reinforce = {
+			{
+				name = "valve",
+				force = 2,
+				position = Vector3(-490, 2520, 30),
+			},
+		},
+	},
+	-- Add scripted difficulty increases
+	[101436] = difficulty_add_20, -- open_doors_to_basement
+	[102623] = difficulty_add_20, -- complete_drill_finish
 	-- disable vanilla's swat van randomizer
 	[102080] = disabled,
 	-- don't disable neighbour swat vans

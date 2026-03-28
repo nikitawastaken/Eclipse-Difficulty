@@ -1,9 +1,4 @@
 local preferred = Eclipse.preferred
-local diff_i = Eclipse.utils.difficulty_index()
-local easy = diff_i == 2
-local normal_and_hard = diff_i == 3 or diff_i == 4
-local overkill = diff_i == 5
-local deathwish = diff_i == 6
 local disabled = {
 	values = {
 		enabled = false,
@@ -35,8 +30,8 @@ local exhibit_rappel_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local difficulty_add_15 = {
-	difficulty_add = 0.15,
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 local last_rappel_spawn = {
 	groups = preferred.no_cops_agents,
@@ -126,12 +121,10 @@ return {
 			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
 		},
 	},
-	-- Don't disable front spawns
-	[102159] = enabled,
 	-- Add scripted difficulty increases
-	[101507] = difficulty_add_15, -- barrier_opened001
-	[101508] = difficulty_add_15, -- barrier_opened002
-	[101913] = difficulty_add_15, -- diamond_picked_up
+	[101507] = difficulty_add_20, -- barrier_opened001
+	[101508] = difficulty_add_20, -- barrier_opened002
+	[101913] = difficulty_add_20, -- diamond_picked_up
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,

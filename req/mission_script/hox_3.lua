@@ -125,12 +125,12 @@ return {
 			},
 			{
 				name = "house_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-650, 2500, -150),
 			},
 			{
 				name = "house_right",
-				force = 3,
+				force = 2,
 				position = Vector3(1600, -900, 0),
 			},
 			{
