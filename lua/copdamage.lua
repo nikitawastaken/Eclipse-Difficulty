@@ -561,12 +561,12 @@ function CopDamage:damage_bullet(attack_data)
 				attack_data.damage = 0
 				attack_data.result = {
 					type = hurt_type,
-					variant = attack_data.variant
+					variant = attack_data.variant,
 				}
 
 				self:_on_damage_received(attack_data)
 			end
-		
+
 			return
 		end
 	end
