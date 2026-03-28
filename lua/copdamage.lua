@@ -510,7 +510,6 @@ function CopDamage:damage_bullet(attack_data)
 
 	local is_civilian = CopDamage.is_civilian(self._unit:base()._tweak_table)
 
-	local hit_plate
 	if self._has_plate and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_plate_name and not attack_data.armor_piercing then
 		local armor_pierce_roll = math.rand(1)
 		local armor_pierce_value = 0
@@ -543,10 +542,33 @@ function CopDamage:damage_bullet(attack_data)
 		end
 
 		if armor_pierce_roll >= armor_pierce_value then
+			local t = TimerManager:game():time()
+			local diminish = math.map_range_clamped(t - (self._accumulated_plate_dmg_t or 0), 0, 1, 1, 0)
+			self._accumulated_plate_dmg = diminish * (self._accumulated_plate_dmg or 0) + attack_data.damage * (self._char_tweak.heavy_swat_plate_dmg_mul or 0.05) * self._HEALTH_GRANULARITY
+			self._accumulated_plate_dmg_t = t
+
+			if self._accumulated_plate_dmg > 0 then
+				local damage_percent = math.ceil(math.clamp(self._accumulated_plate_dmg, 1, self._HEALTH_GRANULARITY))
+				local hurt_type = self:get_damage_type(damage_percent, "bullet")
+				if hurt_type == "dmg_rcv" or hurt_type == "light_hurt" and self._unit:anim_data().hurt then
+					return
+				end
+
+				if hurt_type ~= "light_hurt" then
+					self._accumulated_plate_dmg = -self._accumulated_plate_dmg
+				end
+
+				attack_data.damage = 0
+				attack_data.result = {
+					type = hurt_type,
+					variant = attack_data.variant
+				}
+
+				self:_on_damage_received(attack_data)
+			end
+		
 			return
 		end
-
-		hit_plate = true
 	end
 
 	local result = nil
@@ -559,11 +581,6 @@ function CopDamage:damage_bullet(attack_data)
 	end
 
 	damage = damage * (self._marked_dmg_mul or 1)
-
-	-- Reduce damage when hitting Tan Heavy armor plates
-	if hit_plate then
-		damage = damage * 0.75
-	end
 
 	local dst = mvector3.distance(attack_data.origin, self._unit:position())
 	if self._marked_dmg_dist_mul then

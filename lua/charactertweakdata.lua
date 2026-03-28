@@ -1199,8 +1199,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
 	self.fbi_heavy_swat.suppression = self.presets.suppression.hard_agg
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.fbi_heavy_swat.heavy_swat_plate_dmg_mul = 0.02
 	self.fbi_heavy_swat.no_arrest = false
-
+	
 	self.city_swat.HEALTH_INIT = 16
 	self.city_swat.headshot_dmg_mul = 2.5 -- 64 head health
 	self.city_swat.speech_prefix_p2 = "n"
