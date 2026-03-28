@@ -3541,6 +3541,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
+	self.undershot_reenforce_interval_factor = 0.9
 	self.init_reenforce_delay = 15
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = table.list_to_set({
@@ -3632,8 +3633,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
 			cs_cops = { 20, 10, 0 },
-			cs_swats = { 20, 26, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_swats = { 22, 26, 30 },
+			cs_heavies = { 6, 12, 18 },
 			cs_shield = shield_wgt,
 		}
 		self.besiege.recon.groups = {
@@ -3647,9 +3648,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
-			cs_cops = { 16, 8, 0 },
-			cs_swats = { 24, 28, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_cops = { 18, 9, 0 },
+			cs_swats = { 24, 27, 30 },
+			cs_heavies = { 6, 12, 18 },
 			cs_shield = shield_wgt,
 			cs_taser = taser_wgt,
 			cs_bulldozer = tank_wgt,
@@ -3667,8 +3668,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
 			cs_swats = { 24, 12, 0 },
-			fbi_swats = { 16, 24, 32 },
-			fbi_heavies = { 8, 12, 16 },
+			fbi_swats = { 16, 24, 30 },
+			fbi_heavies = { 6, 12, 18 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
 			fbi_cloaker = spook_wgt,
