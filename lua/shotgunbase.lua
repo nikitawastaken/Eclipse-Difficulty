@@ -81,7 +81,7 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
 		if self._enemy_penetrations > 1 then
-			local enemy_pen_mult = (self._penetration_data.enemy and self._penetration_data.enemy.damage_mul or 1) ^ math.max(1, self._enemy_penetrations - 1)
+			local enemy_pen_mult = (self._penetration_data.enemy.damage_mul or 1) ^ math.max(1, self._enemy_penetrations - 1)
 
 			multiplier = multiplier * enemy_pen_mult
 		end
@@ -91,7 +91,7 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
 		if self._wall_penetrations > 1 then
-			local wall_pen_mult = (self._penetration_data.enemy and self._penetration_data.wall.damage_mul or 1) ^ math.max(1, self._wall_penetrations - 1)
+			local wall_pen_mult = (self._penetration_data.wall.damage_mul or 1) ^ math.max(1, self._wall_penetrations - 1)
 
 			multiplier = multiplier * wall_pen_mult
 		end
@@ -101,7 +101,7 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 		self._shield_penetrations = (self._shield_penetrations or 0) + 1
 
 		if self._shield_penetrations > 1 then
-			local shield_pen_mult = (self._penetration_data.enemy and self._penetration_data.shield.damage_mul or 1) ^ math.max(1, self._shield_penetrations - 1)
+			local shield_pen_mult = (self._penetration_data.shield.damage_mul or 1) ^ math.max(1, self._shield_penetrations - 1)
 
 			multiplier = multiplier * shield_pen_mult
 		end

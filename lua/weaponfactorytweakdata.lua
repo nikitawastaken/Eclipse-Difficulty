@@ -137,7 +137,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			v.stats.damage = math.round(v.stats.damage / 2.5)
 		end
 
-		if not is_default_part and is_optic then
+		if is_optic then
 			v.stats.recoil = 1
 			v.stats.spread = 0
 			v.stats.concealment = -1

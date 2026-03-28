@@ -263,7 +263,6 @@ function WeaponTweakData:_init_weapons(overrides)
 			elseif cat_map.smg then
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 8
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (9 / 8)
 				weap_data.steelsight_time = steelsight_times.smg
 				weap_data.steelsight_move_speed_mul = 0.6
 				weap_data.shake.fire_multiplier = 0.75
@@ -371,7 +370,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					recoil = {
 						standing = {
 							hipfire = 1.2,
-							crouching = 0.7,
+							crouching = 0.8,
 							steelsight = 0.9,
 						},
 						moving = {
@@ -381,11 +380,6 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					},
 				}
-
-				-- Reduce unsupported custom LMG accuracy
-				if is_unsupported_custom then
-					weap_data.stats.spread = math.clamp(weap_data.stats.spread - 3, 1, #self.stats.spread)
-				end
 			elseif cat_map.minigun then
 				weap_data.stats.suppression = 4
 				weap_data.stats.alert_size = 6
