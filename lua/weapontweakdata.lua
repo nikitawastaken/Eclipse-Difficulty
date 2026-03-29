@@ -72,6 +72,10 @@ function WeaponTweakData:_init_weapons(overrides)
 		local based_on_data = based_on_id and self[based_on_id]
 
 		if type(weap_data) == "table" and weap_data.stats then
+			local function clamp_weapon_stat(value, stat)
+				return math.clamp(value, 1, #self.stats[stat])
+			end
+
 			-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies
 
 			-- These are needed just in case
@@ -342,18 +346,26 @@ function WeaponTweakData:_init_weapons(overrides)
 
 				-- Increase unsupported custom shotgun accuracy
 				if is_unsupported_custom then
-					weap_data.stats.spread = math.clamp(weap_data.stats.spread + 2, 1, #self.stats.spread)
+					weap_data.stats.spread = clamp_weapon_stat(weap_data.stats.spread + 2, "spread")
 				end
 			elseif cat_map.lmg then
+				local function lmg_concealment_scale(a, b, c, d, r)
+					return math.round(math.map_range_clamped(weap_data.stats.concealment, a, b, c, d), r)
+				end
+				
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 6
-				weap_data.steelsight_time = steelsight_times.lmg
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (7 / 4)
 				weap_data.pickup_mul = weap_data.pickup_mul or (4 / 3)
-				weap_data.steelsight_move_speed_mul = 0.4
+
+				-- Scale stats based on concealment
+				weap_data.steelsight_time = lmg_concealment_scale(15, 20, 0.5, 0.4, 0.05)
+				weap_data.steelsight_move_speed_mul = lmg_concealment_scale(15, 20, 0.3, 0.4, 0.05)
+				weap_data.total_ammo_mul = lmg_concealment_scale(15, 20, 2, 1, 0.05)
+		
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15
 				weap_data.bipod_deploy_multiplier = 1
+				
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
@@ -639,7 +651,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 
-			weap_data.stats.alert_size = math.clamp(weap_data.stats.alert_size, 1, #self.stats.alert_size)
+			weap_data.stats.alert_size = clamp_weapon_stat(weap_data.stats.alert_size, "alert_size")
 			weap_data.stats.reload = 11
 			weap_data.panic_suppression_chance = 0.2
 			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
@@ -1944,7 +1956,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.stats.damage = 20
 	self.tecci.stats.spread = 11
 	self.tecci.stats.recoil = 10
-	self.tecci.stats.concealment = 19
+	self.tecci.stats.concealment = 18
 	self.tecci.fire_mode_data.fire_rate = 60 / 800
 	self.tecci.CAN_TOGGLE_FIREMODE = false
 
@@ -1972,16 +1984,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpk.stats.damage = 24
 	self.rpk.stats.spread = 14
 	self.rpk.stats.recoil = 7
-	self.rpk.stats.concealment = 13
+	self.rpk.stats.concealment = 14
 	self.rpk.fire_mode_data.fire_rate = 60 / 650
 
 	-- Versteckt
-	self.hk51b.CLIP_AMMO_MAX = 45
+	self.hk51b.CLIP_AMMO_MAX = 60
 	self.hk51b.stats.damage = 24
 	self.hk51b.stats.spread = 11
-	self.hk51b.stats.recoil = 5
-	self.hk51b.stats.concealment = 20
-	self.hk51b.fire_mode_data.fire_rate = 60 / 900
+	self.hk51b.stats.recoil = 3
+	self.hk51b.stats.concealment = 21
+	self.hk51b.fire_mode_data.fire_rate = 60 / 800
+	self.hk51b.reload_speed_multiplier = 0.85
 	self.hk51b.timers.deploy_bipod = nil
 
 	-- Brenner
