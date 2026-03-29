@@ -109,7 +109,7 @@
 	"menu_deck14_3_desc": "Members of your crew also gain the effect of your Hysteria Stacks.\nHysteria Stacks from multiple crew members do not stack and only the stacks that give the highest damage absorption will have an effect.\n\nAll firearms have a chance to spread panic among your enemies.\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_deck14_5_desc": "Change the decay of your Hysteria Stacks to ##18## every ##1.2## seconds.",
 	"menu_deck14_7_desc": "Change the damage absorption of your Hysteria Stacks on you and your crew to ##1## damage absorption for every ##15## stacks of Hysteria.",
-	"menu_deck14_9_desc": "Damage absorption from Hysteria Stacks on you is increased by ##50%##.",
+	"menu_deck14_9_desc": "Damage absorption from Hysteria Stacks on you is increased by ##50%##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck15_1_desc": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more, but with longer intervals.\n\nNote: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck15_3_desc": "##$multiperk## of your base health is converted into armor.\nHeavier armor receives a better conversion rate.",
 	"menu_deck15_5_desc": "Scoring a headshot grants you armor.\nHeavier armor regenerates more, but with longer intervals.",
