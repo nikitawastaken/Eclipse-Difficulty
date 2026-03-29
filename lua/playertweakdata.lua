@@ -131,7 +131,7 @@ function PlayerTweakData:_set_presets()
 
 	-- Stealth strike system
 	self.stealth_strikes = {
-		total_amount = get_difficulty_specific_value({ 5, 4, 4, 3, 2 }),
+		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }) - (is_pro_job and 1 or 0),
 		reason_addends = {
 			civilian_kill = 0.5,
 			alarm_pager_answered = 1,
