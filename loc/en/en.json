@@ -48,6 +48,11 @@
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
 
+	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
+	"hint_stealth_strike_alarm_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
+	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
+	"hint_stealth_strike_civ_too_many_killed": "Civilian killed. Suspicion increased.",
+	
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
 	"hint_trade_offered_resources": "Set this hostage free in exchange for resources!",

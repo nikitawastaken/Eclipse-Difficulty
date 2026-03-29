@@ -194,6 +194,8 @@
 					</group>
 
 					<post :hook_id="civilianbrain"/>
+					<post :hook_id="civiliandamage"/>
+					<post :hook_id="huskciviliandamage"/>
 				</group>
 
 				<post :hook_id="environment/environmentfire"/>

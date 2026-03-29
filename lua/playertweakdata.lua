@@ -128,6 +128,29 @@ function PlayerTweakData:_set_presets()
 	else
 		self.damage.automatic_respawn_time = nil
 	end
+
+	-- Stealth strike system
+	self.stealth_strikes = {
+		total_amount = get_difficulty_specific_value({ 5, 4, 4, 3, 2 }),
+		reason_addends = {
+			civilian_kill = 0.5,
+			alarm_pager_answered = 1,
+			alarm_pager_not_answered = 2,
+			alarm_pager_hang_up = 3,
+		},
+	}
+
+	-- Alarm pager "bluff" tables are now only used in the UI. 
+	local function fill_pager_bluff_table(amount)	
+		local tbl = {}	
+		for i = 0, math.max(0, amount - 1) do
+			table.insert(tbl, 1)
+		end	
+		return tbl
+	end
+	
+	self.alarm_pager.bluff_success_chance = fill_pager_bluff_table(self.stealth_strikes.total_amount)
+	self.alarm_pager.bluff_success_chance_w_skill = self.alarm_pager.bluff_success_chance
 end
 
 PlayerTweakData._set_easy = PlayerTweakData._set_presets
