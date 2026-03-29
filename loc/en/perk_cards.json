@@ -166,6 +166,7 @@
 	"menu_deck8_7_short": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies. For every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##. Stacks up to ##$multiperk4## times.",
 	"menu_deck8_9_short": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.",
 	"menu_deck9_1_short": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies. For every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##. Stacks up to ##$multiperk4## times.",
+	"menu_deck9_3_short": "Killing an enemy regenerates ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## seconds. You gain an additional ##$multiperk3## more armor.",
 	"menu_deck9_5_short": "Killing an enemy with a melee weapon regenerates ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second. When you are within medium range of an enemy you receive ##$multiperk3## less damage.",
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_1_short": "Ammo packs you pick up also yield medical supplies which heal you for ##$multiperk## health.",
