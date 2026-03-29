@@ -16,7 +16,6 @@ function ConcussionGrenade:_flash_player()
 	end
 end
 
-
 function ConcussionGrenade:set_thrower_unit(unit, ...)
 	ConcussionGrenade.super.set_thrower_unit(self, unit, ...)
 
@@ -53,10 +52,11 @@ function ConcussionGrenade:set_thrower_unit(unit, ...)
 			"launcher_electric_ms3gl",
 			"launcher_poison_ms3gl",
 			"launcher_rocket",
-			"rocket_ray_frag"
+			"rocket_ray_frag",
 		}
 
-		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry) or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
+		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry)
+			or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
 
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
@@ -92,7 +92,7 @@ function ConcussionGrenade:_detonate(tag, unit, body, other_unit, other_body, po
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
 		owner = self._unit,
-		verify_callback = callback(self, self, "_can_stun_unit")
+		verify_callback = callback(self, self, "_can_stun_unit"),
 	})
 
 	if self._has_explosive_cluster_grenades_bonus then

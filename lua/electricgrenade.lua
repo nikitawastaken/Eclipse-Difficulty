@@ -36,10 +36,11 @@ function ElectricGrenade:set_thrower_unit(unit, ...)
 			"launcher_electric_ms3gl",
 			"launcher_poison_ms3gl",
 			"launcher_rocket",
-			"rocket_ray_frag"
+			"rocket_ray_frag",
 		}
 
-		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry) or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
+		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry)
+			or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
 
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
