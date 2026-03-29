@@ -209,8 +209,6 @@ tweak_data.projectiles.launcher_poison_m32 = create_poison_grenade(tweak_data.pr
 tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_china.damage = 36
 
-tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = { explosion = false, fire = false } -- why is china puff allowed to crit lmao
-
 tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china, "medium")
 tweak_data.projectiles.launcher_electric_china = create_electric_grenade(tweak_data.projectiles.launcher_frag_china)
 tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china, "medium")
