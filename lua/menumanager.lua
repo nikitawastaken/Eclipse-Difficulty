@@ -620,11 +620,6 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 			text_id = "menu_casino_stat_textures",
 			_meta = "option",
 		},
-		{
-			value = "colors",
-			text_id = "menu_casino_stat_colors",
-			_meta = "option",
-		},
 		type = "MenuItemMultiChoice",
 	}
 
