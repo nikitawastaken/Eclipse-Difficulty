@@ -32,6 +32,12 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
 
+	-- Sentry Gun civilian Intimidation 
+	self.sentry_gun_intimidation = {
+		range = 1500,
+		interval = 1,
+	}
+	
 	-- Maniac stuff deck14
 	self.max_cocaine_stacks_per_tick = 120
 	self.max_total_cocaine_stacks = 300
