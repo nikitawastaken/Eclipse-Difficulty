@@ -148,6 +148,7 @@
 				<post :hook_id="gageassignmenttweakdata"/>
 				<post :hook_id="attentiontweakdata"/>
 				<post :hook_id="achievementstweakdata"/>
+				<post :hook_id="skirmishtweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
