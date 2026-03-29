@@ -3,7 +3,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
 
 	self.values.revolver = {} -- init revolver category table
-	self.values.grenade_case = {} -- init revolver category table
+	self.values.grenade_case = {} -- init grenade case category table
 
 	-- why is this here?
 	self.explosive_bullet = {
@@ -1713,7 +1713,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.smg.reload_speed_multiplier = { 1.2 }
 	self.skill_descs.shock_and_awe.multibasic = "20%"
 
-	-- Heavy Gun Expert
+	-- Body Expertise
 	self.values.player.no_movement_penalty = { true }
 	self.definitions.player_no_movement_penalty = {
 		name_id = "menu_player_no_movement_penalty",
@@ -1724,8 +1724,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.weapon.automatic_head_shot_add[1] = 0.8
-	self.skill_descs.body_expertise.multipro = "80%"
+	self.values.weapon.automatic_head_shot_add[1] = 0.6
+	self.skill_descs.body_expertise.multipro = "60%"
 
 	-- Ghost --
 
