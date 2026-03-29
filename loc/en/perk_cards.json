@@ -201,6 +201,7 @@
 	"menu_deck18_3_short": "While inside your smoke screen, you and your crew's armor regenerates ##$multiperk## faster and cannot be suppressed.",
 	"menu_deck18_7_short": "While inside your smoke screen, you and your crew gain ##$multiperk## dodge chance.",
 	"menu_deck18_9_short": "While the smoke screen is active, you and your crew will retain its effects for ##$multiperk## seconds after exiting it.",
+	"menu_deck19_3_short": "All of your armor is converted and applied to your health. You take ##$multiperk## less damage when falling from non-lethal heights.",
 	"menu_deck21_5_short": "Killing the enemy while the feedback is active will regenerate ##$multiperk## health. Your chance to dodge is increased by ##$multiperk2##.",
 	"menu_deck21_7_short": "You gain ##$multiperk## additional health.",
 	"menu_deck21_9_short": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
