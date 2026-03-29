@@ -296,8 +296,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.kick_starter.icon_xy = { 9, 7 }
 
 	-- Carpet Bombing
-	self.skills.fire_trap[1].upgrades = { "weapon_explosive_cluster_grenades" }
-	self.skills.fire_trap[2].upgrades = { "weapon_cluster_incendiary_grenades" }
+	self.skills.fire_trap[1].upgrades = { "weapon_explosive_cluster_grenades", "player_extra_throwables_multiplier" }
+	self.skills.fire_trap[2].upgrades = { "weapon_launchers_allow_clusters" }
 	self.skills.fire_trap.name_id = "menu_carpet_bombing"
 	self.skills.fire_trap.desc_id = "menu_carpet_bombing_desc"
 	self.skills.fire_trap.icon_xy = { 6, 9 }

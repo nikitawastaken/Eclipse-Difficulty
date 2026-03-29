@@ -1607,20 +1607,43 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.weapon.cluster_incendiary_grenades = { true }
-	self.definitions.weapon_cluster_incendiary_grenades = {
-		name_id = "menu_player_cluster_incendiary_grenades",
+	self.definitions.player_extra_throwables_multiplier = {
+		name_id = "menu_player_extra_throwables_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "cluster_incendiary_grenades",
+			upgrade = "extra_throwables_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.extra_throwables_multiplier = { 2 }
+	self.values.weapon.launchers_allow_clusters = { true }
+	self.definitions.weapon_launchers_allow_clusters = {
+		name_id = "menu_player_launchers_allow_clusters",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "launchers_allow_clusters",
 			synced = true,
 			category = "weapon",
 		},
 	}
+	-- unused upgrade
+	-- self.values.weapon.cluster_incendiary_grenades = { true }
+	-- self.definitions.weapon_cluster_incendiary_grenades = {
+	-- 	name_id = "menu_player_cluster_incendiary_grenades",
+	-- 	category = "feature",
+	-- 	upgrade = {
+	-- 		value = 1,
+	-- 		upgrade = "cluster_incendiary_grenades",
+	-- 		synced = true,
+	-- 		category = "weapon",
+	-- 	},
+	-- }
 	self.skill_descs.fire_trap.multibasic = "4"
 	self.skill_descs.fire_trap.multibasic2 = "2m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
+	self.skill_descs.fire_trap.multibasic4 = "100%"
 	self.skill_descs.fire_trap.multipro = "30"
 	self.skill_descs.fire_trap.multipro2 = "4"
 

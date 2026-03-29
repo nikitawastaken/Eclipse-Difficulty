@@ -2084,3 +2084,18 @@ function PlayerManager:_update_damage_dealt(t, dt)
 		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
 	end
 end
+
+-- An upgrade that increases the amount of carried throwables
+function PlayerManager:get_max_grenades(grenade_id)
+	grenade_id = grenade_id or managers.blackmarket:equipped_grenade()
+	local max_amount = tweak_data:get_raw_value("blackmarket", "projectiles", grenade_id, "max_amount") or 0
+
+	local grenade_tweak = tweak_data.blackmarket.projectiles[managers.blackmarket:equipped_grenade()]
+	if not grenade_tweak.base_cooldown then
+		max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
+
+		max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+	end
+
+	return math.ceil(max_amount)
+end

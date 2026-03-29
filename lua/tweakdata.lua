@@ -231,6 +231,7 @@ tweak_data.projectiles.launcher_incendiary_ms3gl = create_incendiary_grenade(twe
 tweak_data.projectiles.launcher_electric_ms3gl = create_electric_grenade(tweak_data.projectiles.launcher_frag_ms3gl)
 tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl, "light")
 
+-- RPG
 tweak_data.projectiles.launcher_rocket.damage = 480
 tweak_data.projectiles.launcher_rocket.curve_pow = 1
 tweak_data.projectiles.launcher_rocket.player_dmg_mul = 1 / 6

@@ -6,10 +6,47 @@ function FragGrenade:set_thrower_unit(unit, ...)
 	local is_a_non_benefitting_grenade = self._tweak_projectile_entry == "smoke_screen_grenade"
 
 	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and not is_a_non_benefitting_grenade then
+		self._has_launchers_allow_clusters_bonus = self._thrower_unit:base():upgrade_value("weapon", "launchers_allow_clusters") or nil
+		local launcher_grenades = {
+			"launcher_frag",
+			"launcher_incendiary",
+			"launcher_electric",
+			"launcher_poison",
+			"launcher_incendiary_m79",
+			"launcher_electric_m79",
+			"launcher_poison_m79",
+			"launcher_frag_slap",
+			"launcher_incendiary_slap",
+			"launcher_electric_slap",
+			"launcher_poison_slap",
+			"launcher_m203",
+			"underbarrel_m203_groza",
+			"launcher_frag_m32",
+			"launcher_incendiary_m32",
+			"launcher_electric_m32",
+			"launcher_poison_m32",
+			"launcher_frag_china",
+			"launcher_incendiary_china",
+			"launcher_electric_china",
+			"launcher_poison_china",
+			"launcher_frag_arbiter",
+			"launcher_incendiary_arbiter",
+			"launcher_electric_arbiter",
+			"launcher_poison_arbiter",
+			"launcher_frag_ms3gl",
+			"launcher_incendiary_ms3gl",
+			"launcher_electric_ms3gl",
+			"launcher_poison_ms3gl",
+			"launcher_rocket",
+			"rocket_ray_frag"
+		}
+
+		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry) or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
+
 		self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
-		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
+		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") and cluster_allowed or nil
 		self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
 
 		self._player_damage = self._player_damage * self._explosive_team_damage_multiplier
