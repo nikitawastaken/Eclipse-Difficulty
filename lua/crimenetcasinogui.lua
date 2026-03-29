@@ -111,6 +111,6 @@ function CrimeNetCasinoGui:_crimenet_casino_pay_fee()
 			managers.menu:active_menu().logic:refresh_node()
 		end
 
-		managers.menu:open_node("offshore_casino_claim_rewards", {setup_data})
+		managers.menu:open_node("offshore_casino_claim_rewards", { setup_data })
 	end
 end
