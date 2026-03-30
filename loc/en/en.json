@@ -48,6 +48,7 @@
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
 
+	"hud_stats_pagers_used": "STRIKES USED",
 	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
