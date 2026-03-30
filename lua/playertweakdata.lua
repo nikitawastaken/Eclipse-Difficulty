@@ -131,14 +131,17 @@ function PlayerTweakData:_set_presets()
 
 	-- Stealth strike system
 	self.stealth_strikes = {
-		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }) - (is_pro_job and 1 or 0),
+		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }),
 		reason_addends = {
-			civilian_kill = 0.5,
-			alarm_pager_answered = 1,
-			alarm_pager_not_answered = 2,
-			alarm_pager_hang_up = 3,
+				civilian_kill = 0.5,
+				alarm_pager_answered = 1,
+				alarm_pager_not_answered = 2,
+				alarm_pager_hang_up = 3,
 		},
 	}
+	if is_pro_job then
+		self.stealth_strikes.total_amount = self.stealth_strikes.total_amount - 1
+	end
 
 	-- Alarm pager "bluff" tables are now only used in the UI. 
 	local function fill_pager_bluff_table(amount)	
@@ -189,6 +192,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.suppression.tolerance = 0
 end)
 
+-- LMG Steelsights
 Hooks:PostHook(PlayerTweakData, "_init_new_stances", "eclipse_init_new_stances", function(self)
 	self.stances.hk21.steelsight.shoulders.translation = Vector3(-8.6, 6, 3.3)
 	self.stances.hk21.steelsight.shoulders.rotation = Rotation(-0.108, 0.0860001, -0.628)
