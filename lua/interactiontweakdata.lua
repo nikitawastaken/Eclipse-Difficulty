@@ -7,6 +7,9 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_move.timer = self.hostage_move.timer / 2
 	self.hostage_stay.timer = 0
 
+	--PEOC Pardons insta-pickup
+	self.take_pardons.timer = 0
+	
 	-- Reduce armored transport truck deposit box lockpick time
 	self.pick_lock_deposit_transport.timer = 10
 
