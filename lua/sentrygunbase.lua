@@ -72,6 +72,7 @@ end
 
 function SentryGunBase:update(unit, t, dt)
 	self:_check_body()
+	self:_update_omniscience(t, dt)
 
 	self.intimidate_t = self.intimidate_t or t + tweak_data.upgrades.sentry_gun_intimidation.interval
 

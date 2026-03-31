@@ -13,7 +13,7 @@
 		<!-- Weapon mod icons -->
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_m4_uupg_m_std"/>
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_m4_m_drum"/>
-		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_m4_m_drum"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_upg_ak_m_drum"/>
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_mp5_m_drum"/>
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_upg_saiga_m_20rnd"/>
 		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/mods/wpn_fps_smg_shepheard_mag_extended"/>

@@ -5,6 +5,28 @@ Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._charged_shot_allowed = false
 	self._standstill_damage_reduction_active = false
 	self._eclipse_bags_carried = 0
+	self._kleptomaniac_allowed_equipment = {
+		"bank_manager_key",
+		"acid",
+		"caustic_soda",
+		"hydrogen_chloride",
+		"thermite_paste",
+		"gas",
+		"harddrive",
+		"c4",
+		"printer_ink",
+		"paper_roll",
+		"liquid_nitrogen",
+		"thermite",
+		"blood_sample",
+		"blood_sample_verified",
+		"mayan_gold_bar",
+		"lance_part",
+		"stock",
+		"barrel",
+		"receiver",
+		"ranc_acid",
+	}
 end)
 
 -- Helper fuctions
@@ -1997,39 +2019,132 @@ Hooks:PostHook(PlayerManager, "sync_tag_team", "sync_tag_team_sound_effect", fun
 end)
 
 function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
-	local allowed_equipment = {
-		"bank_manager_key",
-		"acid",
-		"caustic_soda",
-		"hydrogen_chloride",
-		"thermite_paste",
-		"gas",
-		"harddrive",
-		"c4",
-		"printer_ink",
-		"paper_roll",
-		"liquid_nitrogen",
-		"thermite",
-		"blood_sample",
-		"blood_sample_verified",
-		"mayan_gold_bar",
-		"lance_part",
-		"stock",
-		"barrel",
-		"receiver",
-		"ranc_acid",
-	}
-
 	if special_equipment.amount then
 		local equipment = tweak_data.equipments.specials[name]
 		local extra = self:_equipped_upgrade_value(equipment)
-		local multiplier = table.contains(allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		local multiplier = table.contains(self._kleptomaniac_allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
 		local max_quantity = (equipment.max_quantity or equipment.quantity or 1) * multiplier
 
 		return Application:digest_value(special_equipment.amount, false) < max_quantity + extra, not not equipment.max_quantity
 	end
 
 	return false
+end
+
+function PlayerManager:add_special(params)
+	local name = params.equipment or params.name
+
+	if not tweak_data.equipments.specials[name] then
+		Application:error("Special equipment " .. name .. " doesn't exist!")
+
+		return
+	end
+
+	local unit = self:player_unit()
+	local equipment = tweak_data.equipments.specials[name]
+	local special_equipment = self._equipment.specials[name]
+	local respawn = params.amount and true or false
+	local amount = params.amount or equipment.quantity or 1
+	local extra = self:_equipped_upgrade_value(equipment) + self:upgrade_value(name, "quantity")
+	local is_cable_tie = name == "cable_tie"
+
+	if is_cable_tie then
+		extra = self:upgrade_value(name, "quantity_1") + self:upgrade_value(name, "quantity_2")
+	end
+
+	if special_equipment then
+		local multiplier = table.contains(self._kleptomaniac_allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		if equipment.max_quantity or equipment.quantity or params.transfer and equipment.transfer_quantity or params.dropped_out or multiplier > 1 then
+			local dedigested_amount = special_equipment.amount and Application:digest_value(special_equipment.amount, false) or 1
+			local max_amount = nil
+
+			if not params.dropped_out then
+				if params.transfer then
+					max_amount = equipment.transfer_quantity or 1
+
+					if equipment.max_quantity or equipment.quantity then
+						max_amount = math.max(max_amount, (equipment.max_quantity or equipment.quantity or 1) + extra)
+					end
+				else
+					max_amount = (equipment.max_quantity or equipment.quantity or 1) + extra
+				end
+			end
+			max_amount = max_amount * multiplier
+
+			local new_amount = self:has_category_upgrade(name, "quantity_unlimited") and -1 or params.dropped_out and dedigested_amount + amount or math.min(dedigested_amount + amount, max_amount)
+			special_equipment.amount = Application:digest_value(new_amount, true)
+
+			if special_equipment.is_cable_tie then
+				managers.hud:set_cable_ties_amount(HUDManager.PLAYER_PANEL, new_amount)
+				self:update_synced_cable_ties_to_peers(new_amount)
+			else
+				managers.hud:set_special_equipment_amount(name, new_amount)
+				self:update_equipment_possession_to_peers(name, new_amount)
+			end
+		end
+
+		return
+	end
+
+	local icon = equipment.icon
+	local action_message = equipment.action_message
+
+	if not params.silent then
+		local text = managers.localization:text(equipment.text_id)
+		local title = managers.localization:text("present_obtained_mission_equipment_title")
+
+		managers.hud:present_mid_text({
+			time = 4,
+			text = text,
+			title = title,
+			icon = icon,
+		})
+
+		if action_message and alive(unit) then
+			managers.network:session():send_to_peers_synched("sync_show_action_message", unit, action_message)
+		end
+	end
+
+	local quantity = nil
+
+	if is_cable_tie or not params.transfer and not params.dropped_out then
+		quantity = self:has_category_upgrade(name, "quantity_unlimited") and -1
+			or equipment.quantity
+				and (respawn and math.min(params.amount, (equipment.max_quantity or equipment.quantity or 1) + extra) or equipment.quantity and math.min(
+					amount + extra,
+					(equipment.max_quantity or equipment.quantity or 1) + extra
+				))
+
+		if not quantity and not equipment.avoid_transfer then
+			quantity = 1
+		end
+	else
+		quantity = params.amount
+	end
+
+	if is_cable_tie then
+		managers.hud:set_cable_tie(HUDManager.PLAYER_PANEL, {
+			icon = icon,
+			amount = quantity or nil,
+		})
+		self:update_synced_cable_ties_to_peers(quantity)
+	else
+		managers.hud:add_special_equipment({
+			id = name,
+			icon = icon,
+			amount = quantity or not equipment.avoid_tranfer and 1 or nil,
+		})
+		self:update_equipment_possession_to_peers(name, quantity)
+	end
+
+	self._equipment.specials[name] = {
+		amount = quantity and Application:digest_value(quantity, true) or nil,
+		is_cable_tie = is_cable_tie,
+	}
+
+	if equipment.player_rule then
+		self:set_player_rule(equipment.player_rule, true)
+	end
 end
 
 -- Detection risk transparency upgrade
