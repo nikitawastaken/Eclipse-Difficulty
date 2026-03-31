@@ -351,8 +351,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Kleptomaniac
 	self.skills.ecm_booster[1].upgrades = { "player_mask_off_pickup" }
-	self.skills.ecm_booster[2].upgrades = { --[[ "player_extra_mission_pickups_multiplier" ]]
-	}
+	self.skills.ecm_booster[2].upgrades = { "player_extra_mission_pickups_multiplier" }
 	self.skills.ecm_booster.icon_xy = { 1, 6 }
 	self.skills.ecm_booster.name_id = "menu_kleptomaniac"
 	self.skills.ecm_booster.desc_id = "menu_kleptomaniac_desc"
