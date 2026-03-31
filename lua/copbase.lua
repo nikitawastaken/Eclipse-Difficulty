@@ -1,3 +1,6 @@
+Month = os.date("%m")
+Day = os.date("%d")	
+
 local mat_vars = Eclipse:require("unit_material_vars")
 local mat_var_paths = table.list_to_set(mat_vars)
 local weighted_selector = Eclipse.utils.weighted_selector
@@ -117,7 +120,7 @@ function CopBase:_run_unit_sequences()
 
 		local head_material = sequence_head and sequence_head.material
 		local head_sequences = sequence_head and sequence_head.run_sequence
-
+		
 		-- If the unit had a head defined in its .unit file, spawn and parent it
 		if spawn_manager_ext then
 			if head then
@@ -145,6 +148,12 @@ function CopBase:_run_unit_sequences()
 					end
 				end
 
+				if Day == "01" and Month == "04" then -- Don't look :jerome:
+					if self._head_unit:damage():has_sequence("set_jerome_mode") then
+						self._head_unit:damage():run_sequence_simple("set_jerome_mode")
+					end
+				end
+				
 				for _, sequence in pairs(head_sequences) do
 					if self._head_unit:damage():has_sequence(sequence) then
 						self._head_unit:damage():run_sequence_simple(sequence)

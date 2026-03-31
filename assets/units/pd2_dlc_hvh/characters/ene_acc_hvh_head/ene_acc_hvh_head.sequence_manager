@@ -4,6 +4,7 @@
 		<variables>
 			<material_var				value="0" />
 			<has_random_balaclava		value="0" />
+			<jerome_mode				value="0" />
 		</variables>
 
 		<filter name="'check_mat_var1'">
@@ -21,7 +22,15 @@
 		<filter name="'check_no_random_balaclava'">
 			<check value="vars.has_random_balaclava == 0" />
 		</filter>
+
+		<filter name="'check_jerome_mode'">
+			<check value="vars.jerome_mode == 1" />
+		</filter>
 		
+		<filter name="'check_no_jerome_mode'">
+			<check value="vars.jerome_mode == 0" />
+		</filter>	
+				
 		<sequence editable_state="true" name="'head_material_var1'" once="true" triggable="true"> 
 			<set_variables 		material_var="1" />
 			<material_config 	name="'units/pd2_dlc_hvh/characters/ene_acc_hvh_head/vars/ene_acc_hvh_head_var1'" synchronous="true" />
@@ -32,15 +41,24 @@
 			<material_config 	name="'units/pd2_dlc_hvh/characters/ene_acc_hvh_head/vars/ene_acc_hvh_head_var2'" synchronous="true" />
 		</sequence>
 
+		<sequence editable_state="true" name="'set_jerome_mode'" once="true" triggable="true"> 
+			<set_variables 		jerome_mode="1" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'set_random_balaclava'" once="true" triggable="true"> 
 			<set_variables 		has_random_balaclava="1" />
 		</sequence>
 
 		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
+			<run_sequence		filter="'check_jerome_mode'" name="'body_c_var1'" />
+			<run_sequence		filter="'check_no_jerome_mode'" name="'random_body'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_body'" once="true" triggable="true"> 
 			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','b','c','d')..'_var2'" />
 			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','b','c','d')..'_var1'" />
 		</sequence>
-
+		
 		<sequence editable_state="true" name="'balaclava_cop_base'" once="true" triggable="true">	
 			<run_sequence 		name="'balaclava_cop_'..pick('a','a','a','a','b','c')" />
 			<run_sequence 		name="'disable_head'" />
