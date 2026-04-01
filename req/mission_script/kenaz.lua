@@ -133,14 +133,14 @@ return {
 	-- Move the groups added in u244 to a later preferred
 	[100229] = { -- enemies_add
 		values = {
-			spawn_groups = { 
-				100192, 
-				100231, 
-				100571, 
+			spawn_groups = {
+				100192,
+				100231,
+				100571,
 				102898,
-				102899, 
-				102900, 
-				103169, 
+				102899,
+				102900,
+				103169,
 				103170,
 				103171,
 				103172,
@@ -149,11 +149,11 @@ return {
 	},
 	[103217] = { -- enemies_add_skylight_open
 		values = {
-			spawn_groups = { 
+			spawn_groups = {
 				103218,
-				103244, 
-				103245, 
-				103246, 
+				103244,
+				103245,
+				103246,
 			},
 		},
 	},
