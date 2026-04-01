@@ -259,7 +259,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 
 	local weapon_tweak_data = self:weapon_tweak_data()
 	local fire_mode_data = weapon_tweak_data.fire_mode_data or {}
-	
+
 	for _, fire_mode in ipairs(self._fire_modes) do
 		if self:fire_mode() == fire_mode then
 			multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].recoil or 1)
@@ -337,11 +337,11 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	if self._shooting_count and self._shooting_count >= 1 and fire_mode_data.burst_recoil_scale_factor then
 		multiplier = multiplier * ((self._shooting_count + 1) ^ fire_mode_data.burst_recoil_scale_factor)
 	end
-	
+
 	if self._shooting_count and self._shooting_count <= 0 and fire_mode_data.burst_recoil_final_mul then
 		multiplier = multiplier * fire_mode_data.burst_recoil_final_mul
 	end
-	
+
 	return multiplier
 end
 

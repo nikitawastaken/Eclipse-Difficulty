@@ -2422,17 +2422,17 @@ function WeaponFactoryTweakData:_wipe_burst_fire_mode(tweak_data)
 		"smg",
 		"pistol",
 	}
-	
+
 	local upgrade_definitions = tweak_data.upgrades.definitions
 
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 		local weap_data = tweak_data.weapon and tweak_data.weapon[weap_id]
 		local weap_category = weap_data and weap_data.categories
-		
+
 		if weap_category then
 			local is_akimbo = table.contains(weap_category, "akimbo")
-			
+
 			if is_akimbo or not table.contains(burst_fire_whitelist, weap_category[1]) then
 				local uses_parts = self[factory_id] and self[factory_id].uses_parts
 				if uses_parts then
