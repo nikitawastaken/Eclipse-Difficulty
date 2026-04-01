@@ -301,7 +301,6 @@ Hooks:OverrideFunction(TradeManager, "get_possible_criminals", function(...)
 		end
 	end
 
-
 	return possible_criminals, nil
 end)
 
