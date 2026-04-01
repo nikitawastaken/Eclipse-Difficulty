@@ -232,6 +232,7 @@ function PlayerInventoryGui:_get_melee_weapon_stats(name)
 	base.reswing_time.real_value = base.reswing_time.value
 	skill.reswing_time.real_value = skill.reswing_time.value
 	local weapon_type = stats.weapon_type
+	weapon_type = utf8.to_upper(weapon_type)
 	base.type = {
 		min_value = weapon_type,
 		max_value = weapon_type,
