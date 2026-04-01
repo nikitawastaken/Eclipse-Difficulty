@@ -132,9 +132,20 @@ return {
 	[104099] = disabled, -- point_area_min_police_force_armory_large
 	[104100] = disabled, -- point_area_min_police_force_armory_large
 	[104101] = disabled, -- point_area_min_police_force_armory_medium
+	-- Fix two of three Hajrudin look-at triggers poking out of the room
+	[102478] = {
+		values = {
+			position = Vector3(-3375, 4321, 125),
+		},
+	},
+	[103881] = {
+		values = {
+			position = Vector3(-1725, 3498, 125),
+		},
+	},
 	-- Add scripted difficulty increases
 	[101755] = difficulty_add_20, -- fire_is_done
-	[102193] = difficulty_add_20, -- main_door_opens
+	[101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
 	[101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
 	-- Only activate certain preferreds after the first assault is over
 	[100021] = { -- completed_obj_fire
