@@ -311,7 +311,6 @@ function UpgradesTweakData:init(tweak_data)
 				"usp",
 				"ppk",
 				"breech",
-				"welrod",
 				"shrew",
 			},
 		},
@@ -407,6 +406,7 @@ function UpgradesTweakData:init(tweak_data)
 				"lemming",
 				"peacemaker",
 				"rsh12",
+				"welrod",
 			},
 		},
 		{ -- lvl 35
