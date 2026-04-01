@@ -98,7 +98,7 @@
 	"loading_eclipse_gameplay_96" : "Flamethrowers can penetrate through enemies and shields.",
 	"loading_eclipse_gameplay_97" : "ECM Jammers remain useful during loud phases thanks to their Feedback ability.",
 	"loading_eclipse_gameplay_98" : "Splitting into two groups is risky but effective, forcing enemies to spread out instead of attacking full force.",
-	"loading_eclipse_gameplay_99" : "A grenade’s trajectory is relative to your current movement direction.",
+	"loading_eclipse_gameplay_99" : "A grenade’s trajectory is influenced by your current movement direction. It'll go further when thrown while moving forward, and vice versa.",
 	"loading_eclipse_gameplay_100" : "Sniper Rifles are loud—making you easier to spot in stealth and drawing more enemy attention in loud. By contrast, SMGs and Pistols are much quieter.",
 	"loading_eclipse_gameplay_101" : "Not all targets are treated equally. Heists in locations of political, economic, or strategic significance are met with a disproportionate law enforcement response.",
 
