@@ -311,6 +311,7 @@ function UpgradesTweakData:init(tweak_data)
 				"usp",
 				"ppk",
 				"breech",
+				"welrod",
 				"shrew",
 			},
 		},

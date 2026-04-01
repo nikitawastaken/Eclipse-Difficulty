@@ -223,7 +223,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 				}
 				
-				if weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
+				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 675
 				end
 			elseif cat_map.revolver then
@@ -332,14 +332,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 					recoil = {
 						standing = {
-							hipfire = 1,
+							hipfire = 1.1,
 							crouching = 1,
 							steelsight = 0.9,
 						},
 						moving = {
 							hipfire = 1.3,
 							crouching = 1,
-							steelsight = 1.1,
+							steelsight = 1.2,
 						},
 					},
 				}
@@ -497,24 +497,24 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
-							hipfire = 5,
+							hipfire = 3,
 							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 10,
+							hipfire = 6,
 							crouching = 1,
-							steelsight = 5,
+							steelsight = 2,
 						},
 					},
 					recoil = {
 						standing = {
-							hipfire = 1.2,
+							hipfire = 1.1,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 0.9,
 						},
 						moving = {
-							hipfire = 1.4,
+							hipfire = 1.3,
 							crouching = 1,
 							steelsight = 1.2,
 						},
@@ -794,6 +794,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			if weap_data.AMMO_MAX then
 				weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
 				weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, weap_data.max_clips_round or 1)
+				weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, weap_data.min_max_clips or 0)
 				weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
 			end
 
@@ -1411,6 +1412,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.type54_underbarrel.reload_speed_multiplier = 1.3
 	self.type54_underbarrel.stats_modifiers = nil
 
+	-- Pipette Mk.2
+	self.welrod.CLIP_AMMO_MAX = 5
+	self.welrod.stats.damage = 96
+	self.welrod.stats.spread = 18
+	self.welrod.stats.recoil = 4
+	self.welrod.stats.concealment = 28
+	self.welrod.fire_mode_data.fire_rate = 60 / 27
+	self.welrod.fire_rate_multiplier = 45 / 27
+	self.welrod.stats_modifiers = nil
+	self.welrod.no_standard_fire_rate = true -- No automatic pistol fire rate override
+	self.welrod.can_shoot_through_enemy = true
+	self.welrod.can_shoot_through_shield = true
+	self.welrod.can_shoot_through_wall = true
+	self.welrod.has_description = true
+	self.welrod.desc_id = "bm_w_lemming_desc"
+	
 	-- Matever
 	self.mateba.categories = {
 		"revolver"
@@ -2333,7 +2350,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m32.stats.concealment = 16
 	self.m32.fire_mode_data.fire_rate = 60 / 100
 	self.m32.fire_rate_multiplier = 120 / 100
-	self.m32.reload_speed_multiplier = 1.45
+	self.m32.reload_speed_multiplier = 1.6
 	self.m32.stats_modifiers = { damage = 6 }
 
 	-- Arbiter
@@ -2645,14 +2662,45 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 			},
 		}
 	end
+
+	self.init_stat_overrides.welrod = function(weap_data)
+		self.welrod.min_max_clips = 3
+		self.welrod.stance_multipliers = {
+			spread = {
+				standing = {
+					hipfire = 1.2,
+					crouching = 1,
+					steelsight = 0.5,
+				},
+				moving = {
+					hipfire = 1.5,
+					crouching = 1,
+					steelsight = 1.3,
+				},
+			},
+			recoil = {
+				standing = {
+					hipfire = 1.1,
+					crouching = 1,
+					steelsight = 0.9,
+				},
+				moving = {
+					hipfire = 1.3,
+					crouching = 1,
+					steelsight = 1.2,
+				},
+			},
+		}
+	end
 	
 	self.init_stat_overrides.ray = function(weap_data)
 		self.ray.pickup_mul = 0
+		self.ray.min_max_clips = 2
 	end
 
 	self.init_stat_overrides.rpg7 = function(weap_data)
 		self.rpg7.pickup_mul = 0
-		self.rpg7.total_ammo_mul = 6
+		self.rpg7.min_max_clips = 3
 	end
 				
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!
