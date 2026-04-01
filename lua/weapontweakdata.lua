@@ -44,9 +44,7 @@ function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, picku
 end
 
 function WeaponTweakData:_calculate_snp_penetrations(damage, penetration_scale)
-	local amount_add = math.round(damage / penetration_scale[1]) ^ (1 + damage / penetration_scale[2])
-
-	return 1 + amount_add
+	return 1 + (math.ceil(damage / penetration_scale) ^ 2)
 end
 
 local steelsight_times = {
@@ -148,7 +146,6 @@ function WeaponTweakData:_init_weapons(overrides)
 							},
 						},
 					}
-					weap_data.fire_mode_multipliers = {}
 				else
 					weap_data.stance_multipliers = {
 						spread = {
@@ -178,12 +175,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					}
 					weap_data.fire_mode_multipliers = {
 						single = {
-							recoil = 1.2,
+							recoil = 1.3,
 							spread = 0.6,
-						},
-						burst = {
-							recoil = 0.8,
-							spread = 1,
 						},
 					}
 				end
@@ -299,11 +292,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.fire_mode_multipliers = {
 					single = {
 						recoil = 1.2,
-						spread = 0.8,
-					},
-					burst = {
-						recoil = 0.8,
-						spread = 1,
+						spread = 0.7,
 					},
 				}
 			elseif cat_map.shotgun then
@@ -436,7 +425,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.pickup_mul = weap_data.pickup_mul or (3 / 5)
 				weap_data.total_ammo_scale = { 2, 3, (1 / 2), 4 }
 				weap_data.pickup_scale = { 8, 6, (2 / 3), 4 }
-				weap_data.penetration_scale = { 80, 120 }
+				weap_data.penetration_scale = 80
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
@@ -728,16 +717,13 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.kick.steelsight = clone(weap_data.kick.standing)
 			end				
 			
-			local default_burst_cooldown = 60 / 400
-
 			if weap_data.fire_mode_data then
 				if weap_data.auto and  weap_data.fire_mode_data.fire_rate then
 					weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
 				end
-
-				if weap_data.fire_mode_data.burst_cooldown then
-					weap_data.fire_mode_data.burst_cooldown = default_burst_cooldown
-				end
+				
+				weap_data.fire_mode_data.burst_recoil_scale_factor = 0.8 
+				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5
 			end
 
 			-- Set spread values

@@ -1379,6 +1379,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	-- Firemodes
 	self.parts.wpn_fps_upg_i_singlefire.stats = { spread = 1, recoil = -1, value = 1 }
 	self.parts.wpn_fps_upg_i_autofire.stats = { spread = -1, recoil = 1, value = 1 }
+	self.parts.wpn_fps_upg_i_burstfire.stats = { spread = 1, recoil = -3, value = 1 }
 
 	-- Saw mods
 	self.parts.wpn_fps_saw_m_blade_durable.stats.damage = -4
@@ -2414,6 +2415,34 @@ function WeaponFactoryTweakData:_balance_underbarrel(tweak_data, part_id)
 	end
 end
 
+-- Delete the burst fire mod from specific weapon categories
+function WeaponFactoryTweakData:_wipe_burst_fire_mode(tweak_data)
+	local burst_fire_whitelist = {
+		"assault_rifle",
+		"smg",
+		"pistol",
+	}
+	
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+		local weap_data = tweak_data.weapon and tweak_data.weapon[weap_id]
+		local weap_category = weap_data and weap_data.categories
+		
+		if weap_category then
+			local is_akimbo = table.contains(weap_category, "akimbo")
+			
+			if is_akimbo or not table.contains(burst_fire_whitelist, weap_category[1]) then
+				local uses_parts = self[factory_id] and self[factory_id].uses_parts
+				if uses_parts then
+					table.delete(uses_parts, "wpn_fps_upg_i_burstfire")
+				end
+			end
+		end
+	end
+end
+
 -- Automatically balance suppressor stats based on concealment
 function WeaponFactoryTweakData:_balance_silencer(part_id, is_barrel_ext)
 	local part_data = self.parts[part_id]
@@ -2652,6 +2681,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_shotgun_ammo(tweak_data)
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_akimbo(tweak_data)
+	self:_wipe_burst_fire_mode(tweak_data)
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
