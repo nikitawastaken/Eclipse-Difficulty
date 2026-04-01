@@ -2069,7 +2069,7 @@ function PlayerManager:add_special(params)
 					max_amount = (equipment.max_quantity or equipment.quantity or 1) + extra
 				end
 			end
-			max_amount = max_amount * multiplier
+			max_amount = (max_amount or 1) * multiplier
 
 			local new_amount = self:has_category_upgrade(name, "quantity_unlimited") and -1 or params.dropped_out and dedigested_amount + amount or math.min(dedigested_amount + amount, max_amount)
 			special_equipment.amount = Application:digest_value(new_amount, true)
