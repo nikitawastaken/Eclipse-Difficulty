@@ -125,7 +125,7 @@ function CrimeNetManager:_get_jobs_by_jc()
 
 				if is_not_level_locked then
 					t[job_jc] = t[job_jc] or {}
-					
+
 					-- Pro Job popup chance
 					if math.random() <= 0.2 and difficulty ~= "normal" then
 						table.insert(t[job_jc], {
@@ -134,7 +134,7 @@ function CrimeNetManager:_get_jobs_by_jc()
 							difficulty = difficulty,
 							marker_dot_color = job_data.marker_dot_color or nil,
 							color_lerp = job_data.color_lerp or nil,
-							one_down = one_down_active
+							one_down = one_down_active,
 						})
 					else
 						table.insert(t[job_jc], {
@@ -142,7 +142,7 @@ function CrimeNetManager:_get_jobs_by_jc()
 							difficulty_id = difficulty_id,
 							difficulty = difficulty,
 							marker_dot_color = job_data.marker_dot_color or nil,
-							color_lerp = job_data.color_lerp or nil
+							color_lerp = job_data.color_lerp or nil,
 						})
 					end
 				end
