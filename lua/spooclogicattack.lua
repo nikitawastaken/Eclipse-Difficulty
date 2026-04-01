@@ -28,7 +28,7 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 	end
 
 	if not my_data.spooc_attack_delay_t then
-		my_data.spooc_attack_delay_t = data.t + math.map_range_clamped(focus_enemy.dis, 0, 500, 0.5, 0)
+		my_data.spooc_attack_delay_t = data.t + math.map_range_clamped(focus_enemy.dis, 0, 500, 1, 0)
 		return
 	elseif my_data.spooc_attack_delay_t > data.t then
 		return
