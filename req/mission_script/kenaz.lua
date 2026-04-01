@@ -10,9 +10,9 @@ local standard_spawn = {
 		interval_balance_mul = { 1.7, 1.4, 1.1, 0.8 },
 	},
 }
-local skylight_spawn = {
+local rappel_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
 		interval_balance_mul = { 1.7, 1.4, 1.1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -130,6 +130,33 @@ return {
 			},
 		},
 	},
+	-- Move the groups added in u244 to a later preferred
+	[100229] = { -- enemies_add
+		values = {
+			spawn_groups = { 
+				100192, 
+				100231, 
+				100571, 
+				102898,
+				102899, 
+				102900, 
+				103169, 
+				103170,
+				103171,
+				103172,
+			},
+		},
+	},
+	[103217] = { -- enemies_add_skylight_open
+		values = {
+			spawn_groups = { 
+				103218,
+				103244, 
+				103245, 
+				103246, 
+			},
+		},
+	},
 	-- Spawn group intervals
 	[100192] = standard_spawn,
 	[100231] = standard_spawn,
@@ -141,7 +168,10 @@ return {
 	[103170] = standard_spawn,
 	[103171] = standard_spawn,
 	[103172] = standard_spawn,
-	[103218] = skylight_spawn,
+	[103218] = rappel_spawn,
+	[103244] = rappel_spawn, -- xtras
+	[103245] = rappel_spawn,
+	[103246] = rappel_spawn,
 	[102035] = cloaker_spawn,
 	[102036] = cloaker_spawn,
 	[102037] = cloaker_spawn,
