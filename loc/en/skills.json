@@ -88,7 +88,7 @@
 	"menu_hellwire": "Hellwire",
 	"menu_hellwire_desc": "BASIC: ##$basic##\nYou can now carry ##$multibasic## more shaped charges and ##$multibasic2## more trip mines.\n\nACE: ##$pro##\nYour trip mines now spread fire around the area of detonation for ##$multipro## seconds in a ##$multipro2## meter diameter.",
 	"menu_powder_keg": "Powder Keg",
-	"menu_powder_keg_desc": "BASIC: ##$basic##\nThe blast radius of your individual Grenades, Grenade Launchers and Rocket Launchers is increased by ##$multibasic##.\n\nNote: Does not affect the ##\"Carpet Bombing\"## Skill.\n\nACE: ##$pro##\nYour individual Grenades, Grenade Launchers and Rocket Launchers have their damage falloff within the blast radius reduced by ##$multipro##.\n\nNote: Does not affect the ##\"Carpet Bombing\"## Skill.",
+	"menu_powder_keg_desc": "BASIC: ##$basic##\nThe blast radius of your individual Grenades, Grenade Launchers and Rocket Launchers is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour individual Grenades, Grenade Launchers and Rocket Launchers have their damage falloff within the blast radius reduced by ##$multipro##.",
 	"menu_carpet_bombing": "Carpet Bombing",
 	"menu_carpet_bombing_desc": "BASIC: ##$basic##\nExplosions caused by your individual Grenades release a cluster of ##$multibasic## small grenades.\n\nEach grenade has a ##$multibasic2## blast radius and deals ##$multibasic3## of the main grenade's damage.\n\nYour total throwable capacity is increased by ##$multibasic4##.\n\nACE: ##$pro##\nExplosions caused by your Grenade Launchers and Rocket Launchers release a cluster of grenades as well.\n\nNote: Fire pool and gas cloud grenades do not release clusters.",
 	"menu_combat_engineering_beta": "Combat Engineer",
