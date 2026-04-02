@@ -176,7 +176,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.fire_mode_multipliers = {
 						single = {
 							recoil = 1.3,
-							spread = 0.6,
+							spread = 0.7,
 						},
 					}
 				end
@@ -292,7 +292,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.fire_mode_multipliers = {
 					single = {
 						recoil = 1.2,
-						spread = 0.7,
+						spread = 0.8,
 					},
 				}
 			elseif cat_map.shotgun then
@@ -722,8 +722,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
 				end
 				
-				weap_data.fire_mode_data.burst_recoil_scale_factor = 0.8 
-				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5
+				weap_data.fire_mode_data.burst_recoil_scale_factor = 0.7
+				weap_data.fire_mode_data.burst_recoil_final_mul = 1.3
 			end
 
 			-- Set spread values
