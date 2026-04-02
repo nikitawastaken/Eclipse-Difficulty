@@ -3548,6 +3548,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"doctor_bag",
 		"ammo_bag",
 		"grenade_case",
+		"grenade_crate",
 	})
 
 	-- Recon spawn interval and spawncap
