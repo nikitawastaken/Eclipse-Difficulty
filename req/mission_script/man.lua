@@ -383,7 +383,6 @@ return {
 	[100130] = {
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 20 },
-			{ id = 400046, delay = 240, delay_rand = 60 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -583,6 +582,7 @@ return {
 			{ id = 101608, remove = true },
 			{ id = 103765, delay = 15, delay_rand = 45 }, -- trigger the c4 breach during hacking objetives rather than in police_called
 			{ id = 103766, delay = 15, delay_rand = 45 },
+            { id = 400046, delay = 30 }, -- trigger dozer spam event
 		},
 	},
 	[103765] = {
