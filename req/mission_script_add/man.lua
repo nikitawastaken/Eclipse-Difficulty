@@ -171,7 +171,7 @@ local optsenable_random_dozers = {
 }
 local spawn_dozer_global = {
 	enabled = dozer_event,
-    trigger_times = 1,
+	trigger_times = 1,
 	on_executed = {
 		{ id = 400033, delay = 0 },
 		{ id = 400047, delay = 0 },
