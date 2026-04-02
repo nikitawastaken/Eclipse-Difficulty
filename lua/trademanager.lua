@@ -392,7 +392,10 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		local clbk_id = "Respawn_criminal_on_trade"
 		self._criminal_respawn_clbk = clbk_id
 
-		managers.enemy:add_delayed_clbk(clbk_id, Eclipse.utils.callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
+		-- Monitor the behavior of this...
+		managers.enemy:add_delayed_clbk(clbk_id, function()
+			callback(self, self, "clbk_respawn_criminal")(pos, rotation)
+		end, respawn_t)
 	elseif not is_custody_trade then
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true

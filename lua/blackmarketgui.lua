@@ -27,6 +27,8 @@ local function format_round(val, round_value)
 	end
 end
 
+local function trivial_function() end
+
 --[[
 --	{
 --		name: string		(required)
@@ -992,20 +994,20 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				name = "bm_menu_btn_customize_gloves",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "customize_glove_callback"),
+				callback = self.customize_glove_callback and callback(self, self, "customize_glove_callback") or trivial_function,
 			},
 			hnd_mod_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_suit_variation",
-				callback = callback(self, self, "equip_glove_variation_callback"),
+				callback = self.equip_glove_variation_callback and callback(self, self, "equip_glove_variation_callback") or trivial_function,
 			},
 			hnd_mod_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_suit_variation",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_glove_variation_callback"),
+				callback = self.preview_glove_variation_callback and callback(self, self, "preview_glove_variation_callback") or trivial_function,
 			},
 			m_equip = {
 				btn = "BTN_A",
