@@ -268,7 +268,7 @@ return {
 			{ name = "operations_room" },
 		},
 	},
---[[
+	--[[
 	-- Add reinforce around the operations room
 	[101843] = { -- ent_001
 		reinforce = {
