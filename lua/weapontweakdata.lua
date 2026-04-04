@@ -554,72 +554,6 @@ function WeaponTweakData:_init_weapons(overrides)
 			end
 
 			local is_akimbo = cat_map.akimbo
-
-			if is_akimbo then
-				local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]
-
-				if single_weapon_data then
-					local akimbo_reload = weap_data.timers.reload_empty
-					local single_reload = single_weapon_data.timers.reload_empty
-
-					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
-					weap_data.stats = clone(single_weapon_data.stats)
-					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 5, 0)
-					weap_data.stats.concealment = math.max(single_weapon_data.stats.concealment - 4, 0)
-					weap_data.stats.suppression = math.max(single_weapon_data.stats.suppression - 3, 0)
-					weap_data.total_ammo_mul = (5 / 4)
-					weap_data.pickup_mul = nil
-					weap_data.steelsight_time = steelsight_times.default
-					weap_data.steelsight_move_speed_mul = 0.5
-					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (2 / 3)
-					weap_data.shake.fire_multiplier = (weap_data.shake.fire_multiplier or 1) * 1.25
-	
-					if not weap_data.rays then
-						weap_data.stance_multipliers.spread = {
-							standing = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 0.8,
-							},
-							moving = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 0.9,
-							},
-						}
-					else
-						weap_data.stance_multipliers.spread = {
-							standing = {
-								hipfire = 1.1,
-								crouching = 1,
-								steelsight = 0.7,
-							},
-							moving = {
-								hipfire = 1.2,
-								crouching = 1,
-								steelsight = 1,
-							},
-						}
-					end
-
-					weap_data.stance_multipliers.recoil = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 1.2,
-						},
-					}
-
-					if weap_data.fire_mode_data then
-						weap_data.fire_mode_data.fire_rate = weap_data.CAN_TOGGLE_FIREMODE and single_weapon_data.fire_mode_data.fire_rate or 60 / math.round((60 / single_weapon_data.fire_mode_data.fire_rate) * (2 / 3), 25)
-					end
-				end
-			end
 	
 			-- Automatically adjust custom weapon damage
 			if not is_akimbo then
@@ -744,6 +678,73 @@ function WeaponTweakData:_init_weapons(overrides)
 				override_caller(overrides[weap_id])
 			end
 
+			-- Balance akimbo weapons
+			if is_akimbo then
+				local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]
+
+				if single_weapon_data then
+					local akimbo_reload = weap_data.timers.reload_empty
+					local single_reload = single_weapon_data.timers.reload_empty
+
+					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
+					weap_data.stats = clone(single_weapon_data.stats)
+					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 5, 0)
+					weap_data.stats.concealment = math.max(single_weapon_data.stats.concealment - 4, 0)
+					weap_data.stats.suppression = math.max(single_weapon_data.stats.suppression - 3, 0)
+					weap_data.total_ammo_mul = (weap_data.total_ammo_mul or 1) * (5 / 4)
+					weap_data.pickup_mul = nil
+					weap_data.steelsight_time = steelsight_times.default
+					weap_data.steelsight_move_speed_mul = 0.5
+					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (2 / 3)
+					weap_data.shake.fire_multiplier = (weap_data.shake.fire_multiplier or 1) * 1.25
+	
+					if not weap_data.rays then
+						weap_data.stance_multipliers.spread = {
+							standing = {
+								hipfire = 1,
+								crouching = 1,
+								steelsight = 0.8,
+							},
+							moving = {
+								hipfire = 1,
+								crouching = 1,
+								steelsight = 0.9,
+							},
+						}
+					else
+						weap_data.stance_multipliers.spread = {
+							standing = {
+								hipfire = 1.1,
+								crouching = 1,
+								steelsight = 0.7,
+							},
+							moving = {
+								hipfire = 1.2,
+								crouching = 1,
+								steelsight = 1,
+							},
+						}
+					end
+
+					weap_data.stance_multipliers.recoil = {
+						standing = {
+							hipfire = 1.1,
+							crouching = 1,
+							steelsight = 0.9,
+						},
+						moving = {
+							hipfire = 1.3,
+							crouching = 1,
+							steelsight = 1.2,
+						},
+					}
+
+					if weap_data.fire_mode_data then
+						weap_data.fire_mode_data.fire_rate = weap_data.CAN_TOGGLE_FIREMODE and single_weapon_data.fire_mode_data.fire_rate or 60 / math.round((60 / single_weapon_data.fire_mode_data.fire_rate) * (2 / 3), 25)
+					end
+				end
+			end
+			
 			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
 			
 			-- Set total ammo and pickup
