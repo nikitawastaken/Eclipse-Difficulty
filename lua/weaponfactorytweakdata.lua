@@ -1998,19 +1998,19 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
-				stats = { damage = 216, total_ammo_mod = -8, recoil = -1,  spread = 2 },
+				stats = { damage = 216, total_ammo_mod = -8, recoil = -1, spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 180, total_ammo_mod = -8, recoil = -1,  spread = 2 },
+				stats = { damage = 180, total_ammo_mod = -8, recoil = -1, spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 144, total_ammo_mod = -8, recoil = -1,  spread = 2 },
+				stats = { damage = 144, total_ammo_mod = -8, recoil = -1, spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			light = { -- semi autos
-				stats = { damage = 108, total_ammo_mod = -8, recoil = -1,  spread = 2 },
+				stats = { damage = 108, total_ammo_mod = -8, recoil = -1, spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			very_light = { -- full autos

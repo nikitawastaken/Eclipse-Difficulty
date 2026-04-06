@@ -145,7 +145,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 					self._moving_steelsight_recoil_mul = stats_stance_mul.recoil.moving.steelsight
 				end
 			end
-			
+
 			if stats.stance_mul.spread then
 				if stats_stance_mul.spread.standing then
 					self._standing_hipfire_spread_mul = stats_stance_mul.spread.standing.hipfire
