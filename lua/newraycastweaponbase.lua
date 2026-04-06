@@ -144,7 +144,9 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 					self._moving_crouching_recoil_mul = stats_stance_mul.recoil.moving.crouching
 					self._moving_steelsight_recoil_mul = stats_stance_mul.recoil.moving.steelsight
 				end
-			elseif stats.stance_mul.spread then
+			end
+			
+			if stats.stance_mul.spread then
 				if stats_stance_mul.spread.standing then
 					self._standing_hipfire_spread_mul = stats_stance_mul.spread.standing.hipfire
 					self._standing_crouching_spread_mul = stats_stance_mul.spread.standing.crouching
@@ -334,8 +336,9 @@ function NewRaycastWeaponBase:recoil_multiplier()
 		multiplier = multiplier * (self._alt_fire_data.recoil_mul or 1)
 	end
 
-	if self._shooting_count and self._shooting_count >= 1 and fire_mode_data.burst_recoil_scale_factor then
-		multiplier = multiplier * ((self._shooting_count + 1) ^ fire_mode_data.burst_recoil_scale_factor)
+	-- Burst fire
+	if self._shooting_count and self._shooting_count >= 1 then
+		multiplier = multiplier * 1 / (self._shooting_count + 1)
 	end
 
 	if self._shooting_count and self._shooting_count <= 0 and fire_mode_data.burst_recoil_final_mul then

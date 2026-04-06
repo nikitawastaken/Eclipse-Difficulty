@@ -110,6 +110,7 @@ function WeaponTweakData:_init_weapons(overrides)
 
 			--catch-all stat setups
 			if cat_map.assault_rifle and not is_turret then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/556_auto_fps"
 				weap_data.stats.suppression = cat_map.dmr and 6 or 11
 				weap_data.stats.alert_size = cat_map.dmr and 6 or 7
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
@@ -118,8 +119,9 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.can_shoot_through_enemy = cat_map.dmr and true or nil
 				
 				if cat_map.dmr then
+					weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+					weap_data.trail_effect = "effects/payday2/particles/streaks/traveling_streak"
 					weap_data.FIRE_MODE = "single"
-					weap_data.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
 					weap_data.stance_multipliers = {
 						spread = {
 							standing = {
@@ -181,6 +183,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					}
 				end
 			elseif cat_map.pistol then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/9mm_pistol_fps"
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 9
 				weap_data.steelsight_time = steelsight_times.pistol
@@ -220,6 +223,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.fire_mode_data.fire_rate = 60 / 675
 				end
 			elseif cat_map.revolver then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/357_revolver_fps"
+				weap_data.trail_effect = "effects/payday2/particles/streaks/traveling_streak"
 				weap_data.stats.suppression = 7
 				weap_data.stats.alert_size = 7
 				weap_data.steelsight_time = steelsight_times.pistol_heavy
@@ -258,6 +263,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.fire_mode_data.fire_rate = 60 / 300
 				end
 			elseif cat_map.smg then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/9mm_smg_fps"
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 8
 				weap_data.steelsight_time = steelsight_times.smg
@@ -296,13 +302,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 				}
 			elseif cat_map.shotgun then
+				weap_data.muzzleflash = "effects/particles/weapons/sho_default"
+				weap_data.trail_effect = "effects/particles/weapons/shotgun_streak"
 				weap_data.rays = weap_data.rays and 8 or nil
 				weap_data.stats.suppression = 5
 				weap_data.stats.alert_size = 6
 				weap_data.damage_near = 2000
 				weap_data.damage_far = 2000
 				weap_data.shake.fire_multiplier = is_doublebarrel and 2 or 1.5
-				weap_data.muzzleflash = weap_data.rays and "effects/particles/weapons/sho_default" or weap_data.muzzleflash
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / weap_data.rays) * (5 / 4)
 				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays) * (4 / 3)
 				weap_data.double_barrel = is_doublebarrel
@@ -337,11 +344,13 @@ function WeaponTweakData:_init_weapons(overrides)
 				if is_unsupported_custom then
 					weap_data.stats.spread = clamp_weapon_stat(weap_data.stats.spread + 2, "spread")
 				end
-			elseif cat_map.lmg then
+			elseif cat_map.lmg then		
 				local function lmg_concealment_scale(a, b, c, d, r)
 					return math.round(math.map_range_clamped(weap_data.stats.concealment, a, b, c, d), r)
 				end
 				
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+				weap_data.trail_effect = "effects/particles/weapons/weapon_trail_green_lmg"
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 6
 				weap_data.pickup_mul = weap_data.pickup_mul or (4 / 3)
@@ -382,6 +391,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 				}
 			elseif cat_map.minigun then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+				weap_data.trail_effect = "effects/particles/weapons/weapon_trail_green_lmg"
 				weap_data.stats.suppression = 4
 				weap_data.stats.alert_size = 6
 				weap_data.steelsight_time = steelsight_times.lmg
@@ -416,6 +427,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 				}
 			elseif cat_map.snp then
+				weap_data.muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps"
+				weap_data.trail_effect = "effects/payday2/particles/streaks/big_light_streak"
 				weap_data.stats.suppression = 4
 				weap_data.stats.alert_size = 4
 				weap_data.steelsight_time = steelsight_times.snp
@@ -656,7 +669,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
 				end
 				
-				weap_data.fire_mode_data.burst_recoil_scale_factor = 0.7
+				weap_data.fire_mode_data.burst_cooldown = 60 / 450
 				weap_data.fire_mode_data.burst_recoil_final_mul = 1.3
 			end
 
@@ -1201,8 +1214,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.beer.stats.recoil = 14
 	self.beer.stats.concealment = 28
 	self.beer.fire_mode_data.fire_rate = 60 / 1100
-	self.beer.fire_mode_data.toggable = { "burst", "single" }
-	self.beer.FIRE_MODE = "burst"
 	
 	-- Chimano 88
 	self.glock_17.CLIP_AMMO_MAX = 17
@@ -2616,9 +2627,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				},
 			},
 		}
-		self.sub2000.muzzleflash = "effects/payday2/particles/weapons/9mm_auto_fps"
+		self.sub2000.muzzleflash = "effects/payday2/particles/weapons/9mm_smg_fps"
 	end
 
+	self.init_stat_overrides.shak12 = function(weap_data)
+		self.shak12.muzzleflash = "effects/payday2/particles/weapons/50cal_auto"
+	end
+	
 	self.init_stat_overrides.kacchainsaw = function(weap_data)
 		self.kacchainsaw.steelsight_time = steelsight_times.default
 		self.kacchainsaw.steelsight_move_speed_mul = 0.5

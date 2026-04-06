@@ -1876,26 +1876,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	local slug_stance_muls = {
 		spread = {
 			standing = {
-				hipfire = 1.5,
-				crouching = 0.8,
+				hipfire = 1.4,
+				crouching = 1,
 				steelsight = 0.4,
 			},
 			moving = {
-				hipfire = 2,
+				hipfire = 1.8,
 				crouching = 1,
-				steelsight = 1.5,
-			},
-		},
-		recoil = {
-			standing = {
-				hipfire = 1,
-				crouching = 1,
-				steelsight = 1,
-			},
-			moving = {
-				hipfire = 1.3,
-				crouching = 1,
-				steelsight = 1.3,
+				steelsight = 1.4,
 			},
 		},
 	}
@@ -1904,6 +1892,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			rays = 6,
 			damage_near_mul = 0.5,
 			muzzleflash = "effects/particles/weapons/sho_buckshot",
+			trail_effect = "effects/particles/weapons/shotgun_streak_buck",
 		},
 		wpn_fps_upg_a_explosive = {
 			rays = 1,
@@ -1916,6 +1905,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			ignore_crit_damage = true,
 			bullet_class = "InstantExplosiveBulletBase",
 			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
+			trail_effect = "effects/payday2/particles/streaks/traveling_streak",
 		},
 		wpn_fps_upg_a_slug = {
 			rays = 1,
@@ -1927,7 +1917,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			can_shoot_through_shield = true,
 			can_shoot_through_wall = true,
 			can_shoot_through_enemy = true,
-			muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
+			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
+			trail_effect = "effects/payday2/particles/streaks/traveling_streak",
 		},
 		wpn_fps_upg_a_piercing = {
 			rays = 12,
@@ -1935,6 +1926,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			max_nr_enemy_penetrations = 1,
 			can_shoot_through_enemy = true,
 			muzzleflash = "effects/particles/weapons/sho_flechette",
+			trail_effect = "effects/particles/weapons/shotgun_streak_flech",
 		},
 		wpn_fps_upg_a_dragons_breath = {
 			rays = 12,
@@ -1944,6 +1936,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			dot_data_name = "ammo_dragons_breath",
 			bullet_class = "FlameBulletBase",
 			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
+			trail_effect = "effects/particles/weapons/shotgun_streak_db",
 		},
 		wpn_fps_upg_a_rip = {
 			rays = 1,
@@ -1951,9 +1944,10 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			ammo_pickup_max_mul = 0.5,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
-			muzzleflash = "effects/particles/weapons/sho_tomb",
 			dot_data_name = "ammo_rip",
 			bullet_class = "PoisonBulletBase",
+			muzzleflash = "effects/particles/weapons/sho_tomb",
+			trail_effect = "effects/particles/weapons/shotgun_streak_flech",
 		},
 	}
 
@@ -2004,23 +1998,23 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
-				stats = { damage = 216, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 216, total_ammo_mod = -8, recoil = -1,  spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 180, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 180, total_ammo_mod = -8, recoil = -1,  spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 144, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 144, total_ammo_mod = -8, recoil = -1,  spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			light = { -- semi autos
-				stats = { damage = 108, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 108, total_ammo_mod = -8, recoil = -1,  spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			very_light = { -- full autos
-				stats = { damage = 86, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 86, total_ammo_mod = -8, recoil = -1, spread = 2 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 		},
@@ -2048,23 +2042,23 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_piercing = {
 			very_heavy = { -- double barrels
-				stats = { damage = -12 },
+				stats = { damage = -12, spread = 1 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -10 },
+				stats = { damage = -10, spread = 1 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -8 },
+				stats = { damage = -8, spread = 1 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			light = { -- semi autos
-				stats = { damage = -6 },
+				stats = { damage = -6, spread = 1 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 			very_light = { -- full autos
-				stats = { damage = -5 },
+				stats = { damage = -5, spread = 1 },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
 			},
 		},
