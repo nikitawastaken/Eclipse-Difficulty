@@ -1905,7 +1905,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			ignore_crit_damage = true,
 			bullet_class = "InstantExplosiveBulletBase",
 			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-			trail_effect = "effects/payday2/particles/streaks/traveling_streak",
+			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
 		},
 		wpn_fps_upg_a_slug = {
 			rays = 1,
@@ -1918,7 +1918,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			can_shoot_through_wall = true,
 			can_shoot_through_enemy = true,
 			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-			trail_effect = "effects/payday2/particles/streaks/traveling_streak",
+			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
 		},
 		wpn_fps_upg_a_piercing = {
 			rays = 12,
@@ -1947,7 +1947,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			dot_data_name = "ammo_rip",
 			bullet_class = "PoisonBulletBase",
 			muzzleflash = "effects/particles/weapons/sho_tomb",
-			trail_effect = "effects/particles/weapons/shotgun_streak_flech",
+			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak_green",
 		},
 	}
 

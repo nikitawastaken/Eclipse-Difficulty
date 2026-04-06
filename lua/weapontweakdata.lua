@@ -120,7 +120,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				if cat_map.dmr then
 					weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
-					weap_data.trail_effect = "effects/payday2/particles/streaks/traveling_streak"
+					weap_data.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
 					weap_data.FIRE_MODE = "single"
 					weap_data.stance_multipliers = {
 						spread = {
@@ -224,7 +224,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			elseif cat_map.revolver then
 				weap_data.muzzleflash = "effects/payday2/particles/weapons/357_revolver_fps"
-				weap_data.trail_effect = "effects/payday2/particles/streaks/traveling_streak"
+				weap_data.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
 				weap_data.stats.suppression = 7
 				weap_data.stats.alert_size = 7
 				weap_data.steelsight_time = steelsight_times.pistol_heavy
@@ -428,7 +428,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 			elseif cat_map.snp then
 				weap_data.muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps"
-				weap_data.trail_effect = "effects/payday2/particles/streaks/big_light_streak"
+				weap_data.trail_effect = "effects/payday2/particles/weapons/streaks/big_light_streak"
 				weap_data.stats.suppression = 4
 				weap_data.stats.alert_size = 4
 				weap_data.steelsight_time = steelsight_times.snp
@@ -1467,6 +1467,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.recoil = 4
 	self.deagle.stats.concealment = 26
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
+	self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
+	
+	-- Akimbo Deagle
+	self.x_deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
 
 	--Peacemaker
 	self.peacemaker.categories = {
