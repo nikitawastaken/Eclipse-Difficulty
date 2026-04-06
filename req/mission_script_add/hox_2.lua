@@ -135,11 +135,11 @@ local optsCloakerHideGroup = {
 	followup_elements = {
 		400066,
 		400067,
-        400068,
+		400068,
 		400069,
-        400071,
-        400072,
-        400077,
+		400071,
+		400072,
+		400077,
 		400078,
 		400079,
 		400080,
@@ -179,7 +179,7 @@ local spawn_cloaker_ambush = {
 local optscloaker_alerticon_exploitfix = {
 	elements = {
 		400042,
-        400043,
+		400043,
 	},
 }
 local optsdisable_the_plants = {
@@ -259,7 +259,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400045, "spooc_ambush_hide_so_2", Vector3(190, 4401, -500), Rotation(90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants),
 	Eclipse.mission_elements.gen_missionscript(400047, "cloaker_ambush_event", spawn_cloaker_ambush),
-    Eclipse.mission_elements.gen_dummytrigger(400109, "alert_icon_exploit_fix", Vector3(0, 0, 0), Rotation(0, 0, 0), optscloaker_alerticon_exploitfix),
+	Eclipse.mission_elements.gen_dummytrigger(400109, "alert_icon_exploit_fix", Vector3(0, 0, 0), Rotation(0, 0, 0), optscloaker_alerticon_exploitfix),
 
 	-- add blockade units when you open the basement door (with some evil stuff)
 	-- cloaker
