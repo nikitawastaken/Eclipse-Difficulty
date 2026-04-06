@@ -1,8 +1,8 @@
 ---@module Safehouse Raid
 local M = {}
-local diff_i = Eclipse.utils.difficulty_index()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 
-local bags_to_defend = diff_i <= 2 and 3 or (diff_i == 3 or diff_i == 4) and 2 or 1
+local bags_to_defend = normal and 3 or hard and 2 or 1
 
 local optsinstance_bag_requirment = {
 	instance = "obj_link_003",

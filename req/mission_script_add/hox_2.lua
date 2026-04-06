@@ -131,34 +131,19 @@ local optsDozerHunt_SO = {
 	so_action = "AI_hunt",
 }
 
-local optsCloakerHideGroupOperations = {
+local optsCloakerHideGroup = {
 	followup_elements = {
 		400066,
 		400067,
-		400078, -- Just outside operations
+        400068,
+		400069,
+        400071,
+        400072,
+        400077,
+		400078,
 		400079,
 		400080,
 		400081,
-	},
-}
-local optsCloakerHideGroupAtrium = {
-	base_chance = 0.7,
-	followup_elements = {
-		400068,
-		400069,
-	},
-}
-local optsCloakerHideGroupBossOffice = {
-	base_chance = 0.7,
-	followup_elements = {
-		400071,
-	},
-}
-local optsCloakerHideGroupForensics = {
-	base_chance = 0.7,
-	followup_elements = {
-		400072,
-		400077,
 	},
 }
 local optsCloakerHideGroupUpstairs = {
@@ -174,9 +159,6 @@ local optsAddCloakerHideGroupsDefault = {
 	enabled = true,
 	on_executed = {
 		{ id = 400101, delay = 0 },
-		{ id = 400103, delay = 0 },
-		{ id = 400104, delay = 0 },
-		{ id = 400105, delay = 0 },
 	},
 }
 local optsAddCloakerHideGroupsUpstairs = {
@@ -186,283 +168,18 @@ local optsAddCloakerHideGroupsUpstairs = {
 	},
 }
 
--- Hiding Cloaker SOs are funny
-local hide_so_search_pos = Vector3(0, 2700, -100)
-local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
-local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
-local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
-local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var2", hide_so_search_pos)
-local optsCloaker_Hide_SpotSO_5 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
-
-local optsdozerdied_1 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400001,
-	},
-	event = "death",
-}
-local optsdozerdied_2 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400002,
-	},
-	event = "death",
-}
-local optsdozerdied_3 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400003,
-	},
-	event = "death",
-}
-local optsdozerdied_4 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400004,
-	},
-	event = "death",
-}
-local optsdozerdied_5 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400005,
-	},
-	event = "death",
-}
-local optsdozerdied_6 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400006,
-	},
-	event = "death",
-}
-local optsdozerdied_7 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400007,
-	},
-	event = "death",
-}
-local optsdozerdied_8 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400008,
-	},
-	event = "death",
-}
-local optsdozerdied_9 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400009,
-	},
-	event = "death",
-}
-local optsdozerdied_10 = {
-	on_executed = {
-		{ id = 400039, delay = 0 },
-		{ id = 400012, delay = dozers_respawn },
-	},
-	elements = {
-		400010,
-	},
-	event = "death",
-}
-local optsdozerspawned_1 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400001,
-	},
-}
-local optsdozerspawned_2 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400002,
-	},
-}
-local optsdozerspawned_3 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400003,
-	},
-}
-local optsdozerspawned_4 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400004,
-	},
-}
-local optsdozerspawned_5 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400005,
-	},
-}
-local optsdozerspawned_6 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400006,
-	},
-}
-local optsdozerspawned_7 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400007,
-	},
-}
-local optsdozerspawned_8 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400008,
-	},
-}
-local optsdozerspawned_9 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400009,
-	},
-}
-local optsdozerspawned_10 = {
-	on_executed = {
-		{ id = 400038, delay = 0 },
-	},
-	elements = {
-		400010,
-	},
-}
-local choose_dozer_spawnpoint = {
-	amount = 1,
-	trigger_times = 1,
-	on_executed = {
-		{ id = 400013, delay = 0 },
-		{ id = 400014, delay = 0 },
-		{ id = 400015, delay = 0 },
-		{ id = 400016, delay = 0 },
-		{ id = 400017, delay = 0 },
-	},
-}
-local dozer_amount_1 = {
-	amount = dozer_random_amount,
-	on_executed = {
-		{ id = 400001, delay = 0 },
-		{ id = 400002, delay = 0 },
-	},
-}
-local dozer_amount_2 = {
-	amount = dozer_random_amount,
-	on_executed = {
-		{ id = 400003, delay = 0 },
-		{ id = 400004, delay = 0 },
-	},
-}
-local dozer_amount_3 = {
-	amount = dozer_random_amount,
-	on_executed = {
-		{ id = 400005, delay = 0 },
-		{ id = 400006, delay = 0 },
-	},
-}
-local dozer_amount_4 = {
-	amount = dozer_random_amount,
-	on_executed = {
-		{ id = 400007, delay = 0 },
-		{ id = 400008, delay = 0 },
-	},
-}
-local dozer_amount_5 = {
-	amount = dozer_random_amount,
-	on_executed = {
-		{ id = 400009, delay = 0 },
-		{ id = 400010, delay = 0 },
-	},
-}
-local optsdisable_random_dozers = {
-	enabled = true,
-	toggle = "off",
-	elements = {
-		400012,
-	},
-}
-local optsenable_random_dozers = {
-	enabled = true,
-	set_trigger_times = 1,
-	elements = {
-		400012,
-	},
-}
-local optsstart_dozer_spawns = {
-	on_executed = {
-		{ id = 400040, delay = 0 },
-	},
-	enabled = dozer_event,
-	player_3 = true,
-	player_4 = true,
-	difficulty_normal = true,
-	difficulty_hard = true,
-	difficulty_overkill = true,
-	difficulty_overkill_145 = true,
-	difficulty_easy_wish = true,
-}
-local spawn_dozer_global = {
-	enabled = true,
-	on_executed = {
-		{ id = 400012, delay = 0 },
-		{ id = 400041, delay = 0 },
-	},
-}
-local Bain_senddozers = {
-	dialogue = "play_pln_gen_pol_03",
-}
 local spawn_cloaker_ambush = {
 	enabled = normal_and_above and enabled_chance_cloakers,
 	on_executed = {
 		{ id = 400046, delay = 0 },
 		{ id = 400042, delay = 0.5 },
 		{ id = 400043, delay = 0.5 },
+	},
+}
+local optscloaker_alerticon_exploitfix = {
+	elements = {
+		400042,
+        400043,
 	},
 }
 local optsdisable_the_plants = {
@@ -525,53 +242,15 @@ local spawn_basement_blockades = {
 	},
 }
 
+-- Hiding Cloaker SOs are funny
+local hide_so_search_pos = Vector3(0, 2700, -100)
+local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var2", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_5 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
+
 M.elements = {
-	-- scripted dozers
-	Eclipse.mission_elements.gen_dummy(400001, "bulldozer_1", Vector3(1378, 3086, 300.935), Rotation(0, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400002, "bulldozer_2", Vector3(1449, 3086, 300.935), Rotation(0, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400003, "bulldozer_3", Vector3(-1909, 4654, 300), Rotation(-180, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400004, "bulldozer_4", Vector3(-1834, 4654, 300), Rotation(-180, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400005, "bulldozer_5", Vector3(4286, 964, 300), Rotation(0, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400006, "bulldozer_6", Vector3(4229, 964, 300), Rotation(0, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400007, "bulldozer_7", Vector3(-3056.560, 6092.781, -500), Rotation(-18, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400008, "bulldozer_8", Vector3(-3109.819, 6110.086, -500), Rotation(-18, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400009, "bulldozer_9", Vector3(-677, 6445, 300), Rotation(90, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400010, "bulldozer_10", Vector3(-678, 6391, 300), Rotation(90, 0, 0), optsBulldozer),
-	Eclipse.mission_elements.gen_so(400011, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt_SO),
-
-	-- scripted dozers stuff
-	Eclipse.mission_elements.gen_element_random(400012, "dozer_spawnpoint_select", choose_dozer_spawnpoint),
-	Eclipse.mission_elements.gen_element_random(400013, "left_side_atrium", dozer_amount_1),
-	Eclipse.mission_elements.gen_element_random(400014, "right_side_atrium", dozer_amount_2),
-	Eclipse.mission_elements.gen_element_random(400015, "next_to_operations_room", dozer_amount_3),
-	Eclipse.mission_elements.gen_element_random(400016, "near_entrance", dozer_amount_4),
-	Eclipse.mission_elements.gen_element_random(400017, "near_pc_boss_room", dozer_amount_5),
-
-	Eclipse.mission_elements.gen_dummytrigger(400018, "dozer_spawned_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_1),
-	Eclipse.mission_elements.gen_dummytrigger(400019, "dozer_spawned_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_2),
-	Eclipse.mission_elements.gen_dummytrigger(400020, "dozer_spawned_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_3),
-	Eclipse.mission_elements.gen_dummytrigger(400021, "dozer_spawned_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_4),
-	Eclipse.mission_elements.gen_dummytrigger(400022, "dozer_spawned_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_5),
-	Eclipse.mission_elements.gen_dummytrigger(400023, "dozer_spawned_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_6),
-	Eclipse.mission_elements.gen_dummytrigger(400024, "dozer_spawned_7", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_7),
-	Eclipse.mission_elements.gen_dummytrigger(400025, "dozer_spawned_8", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_8),
-	Eclipse.mission_elements.gen_dummytrigger(400026, "dozer_spawned_9", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_9),
-	Eclipse.mission_elements.gen_dummytrigger(400027, "dozer_spawned_10", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_10),
-	Eclipse.mission_elements.gen_dummytrigger(400028, "dozer_died_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_1),
-	Eclipse.mission_elements.gen_dummytrigger(400029, "dozer_died_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_2),
-	Eclipse.mission_elements.gen_dummytrigger(400030, "dozer_died_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_3),
-	Eclipse.mission_elements.gen_dummytrigger(400031, "dozer_died_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_4),
-	Eclipse.mission_elements.gen_dummytrigger(400032, "dozer_died_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_5),
-	Eclipse.mission_elements.gen_dummytrigger(400033, "dozer_died_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_6),
-	Eclipse.mission_elements.gen_dummytrigger(400034, "dozer_died_7", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_7),
-	Eclipse.mission_elements.gen_dummytrigger(400035, "dozer_died_8", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_8),
-	Eclipse.mission_elements.gen_dummytrigger(400036, "dozer_died_9", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_9),
-	Eclipse.mission_elements.gen_dummytrigger(400037, "dozer_died_10", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_10),
-	Eclipse.mission_elements.gen_toggleelement(400038, "disable_random_dozers", optsdisable_random_dozers),
-	Eclipse.mission_elements.gen_toggleelement(400039, "enable_random_dozers", optsenable_random_dozers),
-	Eclipse.mission_elements.gen_missionscript(400040, "hello_its_me_the_angry_man", spawn_dozer_global),
-	Eclipse.mission_elements.gen_element_filter(400102, "dozer_spawn_global", Vector3(0, 0, 0), Rotation(0, 0, 0), optsstart_dozer_spawns),
-	Eclipse.mission_elements.gen_dialogue(400041, "they_sending_dozers", Bain_senddozers),
 
 	-- suprise cloakers at the start of the heist (so evil)
 	Eclipse.mission_elements.gen_dummy(400042, "spooc_ambush_1", Vector3(-585, 4399, -500), Rotation(-90, 0, 0), optsCloaker_1),
@@ -580,6 +259,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400045, "spooc_ambush_hide_so_2", Vector3(190, 4401, -500), Rotation(90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants),
 	Eclipse.mission_elements.gen_missionscript(400047, "cloaker_ambush_event", spawn_cloaker_ambush),
+    Eclipse.mission_elements.gen_dummytrigger(400109, "alert_icon_exploit_fix", Vector3(0, 0, 0), Rotation(0, 0, 0), optscloaker_alerticon_exploitfix),
 
 	-- add blockade units when you open the basement door (with some evil stuff)
 	-- cloaker
@@ -646,10 +326,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400099, "hox_cloaker_spawngroup_09", { 400090 }, 0),
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400100, "hox_cloaker_spawns", optsPreferedCloakerAdd1),
-	Eclipse.mission_elements.gen_sogroup(400101, "cloakerHideGroupOperations", Vector3(-264, 1632, -100), Rotation(0, 0, 0), optsCloakerHideGroupOperations),
-	Eclipse.mission_elements.gen_sogroup(400103, "cloakerHideGroupAtrium", Vector3(72, 4152, -500), Rotation(0, 0, 0), optsCloakerHideGroupAtrium),
-	Eclipse.mission_elements.gen_sogroup(400104, "cloakerHideGroupBossOffice", Vector3(-800, 4550, -100), Rotation(0, 0, 0), optsCloakerHideGroupBossOffice),
-	Eclipse.mission_elements.gen_sogroup(400105, "cloakerHideGroupForensics", Vector3(-1272, 1392, -100), Rotation(0, 0, 0), optsCloakerHideGroupForensics),
+	Eclipse.mission_elements.gen_sogroup(400101, "cloakerHideGroupDefault", Vector3(-264, 1632, -100), Rotation(0, 0, 0), optsCloakerHideGroup),
 	Eclipse.mission_elements.gen_sogroup(400106, "cloakerHideGroupUpstairs", Vector3(-144, 2208, 300.935), Rotation(0, 0, 0), optsCloakerHideGroupUpstairs),
 	Eclipse.mission_elements.gen_missionscript(400107, "addCloakerHideGroupsDefault", optsAddCloakerHideGroupsDefault),
 	Eclipse.mission_elements.gen_missionscript(400108, "addCloakerHideGroupsUpstairs", optsAddCloakerHideGroupsUpstairs),
