@@ -249,8 +249,6 @@ function NewRaycastWeaponBase:fire(...)
 		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
 	end
 
-	Eclipse:log_chat(self._mobility)
-
 	return ray_res
 end
 
