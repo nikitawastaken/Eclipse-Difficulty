@@ -70,41 +70,27 @@ function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 	local inc_range_mul = managers.player:upgrade_value("shotgun", "effective_range_multiplier", 1) or 1
 
 	local multiplier = 1
-	local weapon_tweak = self:weapon_tweak_data()
-	local penetration_dmg_mul = weapon_tweak.penetration_damage_mul
 
 	self._hit_through_enemy = self._hit_through_enemy or col_ray.unit:in_slot(self.enemy_mask)
 	self._hit_through_wall = self._hit_through_wall or col_ray.unit:in_slot(self.wall_mask)
-	self._hit_through_shield = self._hit_through_shield or col_ray.unit:in_slot(self.wall_mask)
+	self._hit_through_shield = self._hit_through_shield or col_ray.unit:in_slot(self.shield_mask)
 
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
-		if self._enemy_penetrations > 1 then
-			local enemy_pen_mult = (self._penetration_data.enemy.damage_mul or 1) ^ math.max(1, self._enemy_penetrations - 1)
-
-			multiplier = multiplier * enemy_pen_mult
-		end
+		multiplier = multiplier * (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
 	end
 
 	if self._hit_through_wall then
 		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
-		if self._wall_penetrations > 1 then
-			local wall_pen_mult = (self._penetration_data.wall.damage_mul or 1) ^ math.max(1, self._wall_penetrations - 1)
-
-			multiplier = multiplier * wall_pen_mult
-		end
+		multiplier = multiplier * (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1)
 	end
 
 	if self._hit_through_shield then
 		self._shield_penetrations = (self._shield_penetrations or 0) + 1
 
-		if self._shield_penetrations > 1 then
-			local shield_pen_mult = (self._penetration_data.shield.damage_mul or 1) ^ math.max(1, self._shield_penetrations - 1)
-
-			multiplier = multiplier * shield_pen_mult
-		end
+		multiplier = multiplier * (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
 	end
 
 	return (1 - math.min(1, math.max(0, distance - self._damage_near * inc_range_mul) / (self._damage_far * inc_range_mul))) * damage * multiplier

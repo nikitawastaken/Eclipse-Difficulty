@@ -632,15 +632,11 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		end
 
 		if self._penetration_data.enemy then
-			if self._enemy_penetrations > 1 then
-				if max_nr_enemy_penetrations and math.max(0, self._enemy_penetrations - 1) > max_nr_enemy_penetrations then
-					return 0
-				end
-
-				local enemy_pen_mult = (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
-
-				multiplier = multiplier * enemy_pen_mult
+			if max_nr_enemy_penetrations and math.max(0, self._enemy_penetrations - 1) > max_nr_enemy_penetrations then
+				return 0
 			end
+
+			multiplier = multiplier * (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
 		end
 	end
 
@@ -648,11 +644,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
 		if self._penetration_data.wall then
-			if self._wall_penetrations > 1 then
-				local wall_pen_mult = (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1)
-
-				multiplier = multiplier * wall_pen_mult
-			end
+			multiplier = multiplier * (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1)
 		end
 	end
 
@@ -660,11 +652,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		self._shield_penetrations = (self._shield_penetrations or 0) + 1
 
 		if self._penetration_data.shield then
-			if self._shield_penetrations > 1 then
-				local shield_pen_mult = (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
-
-				multiplier = multiplier * shield_pen_mult
-			end
+			multiplier = multiplier * (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
 		end
 	end
 
