@@ -300,8 +300,7 @@ function GroupAIStateBase:_apply_forced_difficulty(new_diff_value)
 end
 
 -- Dummied out
-function GroupAIStateBase:set_difficulty(value)
-end
+function GroupAIStateBase:set_difficulty(value) end
 
 -- TODO: update mission script patches to the new difficulty system
 function GroupAIStateBase:add_difficulty(value)

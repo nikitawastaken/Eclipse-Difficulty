@@ -187,7 +187,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					delay = 0, -- Reduce the preset's delay
 					time = 120,
 				},
-			}
+			},
 		},
 	}
 
@@ -534,7 +534,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			on_enemy_weapons_hot = false,
 			on_entered_sustain = false,
 			on_entered_regroup = false,
-		}
+		},
 	}
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
