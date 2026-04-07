@@ -3181,6 +3181,83 @@ function GroupAITweakData:_apply_group_ai_preset(preset)
 end
 
 -- TODO: rewrite this shit
+GroupAITweakData.difficulty_scaling_presets = {
+	-- Fast response, scales to max quite quickly
+	["escape"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = 150,
+			},
+		},
+	},
+	-- Reaches max on assault #4's regroup (if on_enemy_weapons_hot is 0.25)
+	["regroup_slow"] = {
+		addends = {
+			on_entered_regroup = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+	},
+	-- Starts high, reaches max on assault #3's regroup
+	["regroup_aggressive"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.5,
+				delay = 45,
+				time = 120,
+			},
+			on_entered_regroup = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+	},
+	-- Reaches max on assault #3's sustain (if on_enemy_weapons_hot is 0.25, on_entered_sustain is 0.375)
+	["sustain"] = {
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+	-- Reaches max on assault #4's sustain (if on_enemy_weapons_hot is 0.25)
+	["sustain_slow"] = {
+		addends = {
+			on_entered_sustain = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+	-- Starts high, reaches max on assault #3's sustain
+	["sustain_aggressive"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.5,
+				delay = 45,
+				time = 120,
+			},
+			on_entered_sustain = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+}
 function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
@@ -3206,16 +3283,23 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	-- 	Utils.PrintTable(self.min_grenade_timeout)
 	-- end
 
-	if level_settings.difficulty_scaling then
-		for name, value in pairs(level_settings.difficulty_scaling) do
-			if self.difficulty_scaling[name] then
-				self.difficulty_scaling[name] = value
+	local function apply_difficulty_scaling(tbl)
+		if not tbl then
+			return
+		end
+		for key, value in pairs(tbl) do
+			if key == "steps" then
+				self.difficulty_scaling.steps = value
+			elseif self.difficulty_scaling[key] then
+				for category, data in pairs(value) do
+					self.difficulty_scaling[key][category] = data
+				end
 			end
-
-			-- Eclipse:log_console("Difficulty scaling for " .. level_id .. " set to: ")
-			-- Utils.PrintTable(self.difficulty_scaling)
 		end
 	end
+
+	apply_difficulty_scaling(self.difficulty_scaling_presets[level_settings.difficulty_scaling_preset])
+	apply_difficulty_scaling(level_settings.difficulty_scaling)
 
 	if level_settings.use_equipment_reenforce ~= nil then
 		self.use_equipment_reenforce = level_settings.use_equipment_reenforce
@@ -3392,7 +3476,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local empty_tbl = { 0, 0, 0 }
 
 	-- Assault Data
-	--In-heist difficulty scaling
+	-- In-heist difficulty scaling
+	--[[
 	self.difficulty_scaling = {
 		assault_delay = 45,
 		diff_min = 0,
@@ -3402,6 +3487,82 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_step_interval = get_difficulty_specific_value({ 10, 9, 8, 7, 6 }),
 		assault_add = 0.25,
 		hostage_kill_add = is_pro_job and 0.15 or nil,
+	}
+	]]
+	-- Quick translations from the old system to the new one
+	-- assault_delay -> addends.on_enemy_weapons_hot.delay
+	-- diff_init -> addends.on_enemy_weapons_hot.amount
+	-- diff_min, diff_max -> mission scripting only, as "forced difficulty"
+	-- diff_step, diff_step_interval -> no more global target/step time, each addend has its own time
+	-- assault_add -> addends.on_entered_regroup
+	-- hostage_kill_add -> addends.on_hostage_killed
+	self.difficulty_scaling = {
+		steps = {
+			--[[
+			-- New steps are added to the stack once the previous step has completed
+			{
+				amount = 0,
+				delay = 0,
+				time = 0,
+			},
+			{
+				amount = 0,
+				delay = 0,
+				time = 0,
+			},
+			]]
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 45,
+				time = 60,
+			},
+			-- Not enabled by default, only allowed for assault 2+ if enabled
+			on_entered_sustain = {
+				amount = 0.375,
+				delay = 0,
+				time = 60,
+			},
+			on_entered_regroup = {
+				amount = 0.375,
+				delay = 0,
+				time = 60,
+			},
+			on_entered_full_force_onslaught = {
+				amount = 1,
+				delay = 0,
+				time = 60,
+			},
+			on_hostage_killed = {
+				amount = { 0.075, 0.125 },
+				delay = 0,
+				time = { 10, 15 },
+			},
+		},
+		-- So that certain heists may toggle addends on/off in tweakdata or mission scripting
+		allowed_addends = {
+			on_enemy_weapons_hot = true,
+			on_entered_sustain = false,
+			on_entered_regroup = true,
+			on_entered_full_force_onslaught = is_pro_job and true or false,
+			on_hostage_killed = is_pro_job and true or false,
+		},
+		-- So that certain heists may change addends and have automatic difficulty scaling
+		addend_time_multipliers = {
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			on_entered_sustain = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			on_entered_regroup = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+		},
+		addend_time_balance_muls = {
+			on_enemy_weapons_hot = { 1, 1, 1, 1 },
+			on_entered_sustain = { 1, 1, 1, 1 },
+			on_entered_regroup = { 1, 1, 1, 1 },
+			on_entered_full_force_onslaught = { 1, 1, 1, 1 },
+			on_hostage_killed = { 1, 1, 1, 1 },
+		},
 	}
 
 	-- BESIEGE --

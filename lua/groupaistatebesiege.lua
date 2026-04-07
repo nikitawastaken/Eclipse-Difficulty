@@ -131,10 +131,11 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 	end
 
 	if not self._enemy_weapons_hot then
+		local assault_delay = self._difficulty_scaling.addends.on_enemy_weapons_hot.delay
+		assault_delay = assault_delay and assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
 		self._task_data.assault.disabled = nil
-		self._task_data.assault.next_dispatch_t = self._t + (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
-		self._task_data.assault.first_response_trades_delay = self._t
-			+ (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)) / 2
+		self._task_data.assault.next_dispatch_t = self._t + assault_delay
+		self._task_data.assault.first_response_trades_delay = self._t + assault_delay * 0.5
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
@@ -233,13 +234,22 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 	local t = self._t
 
 	if not task_data.active then
+		task_data.did_sustain_addend = nil
 		return
 	end
 
-	if task_data.phase == "build" and not self._mga_said_start_assault then
-		managers.groupai:state():_post_megaphone_event("mga_generic_c")
-
-		self._mga_said_start_assault = true
+	if task_data.phase == "sustain" then
+		if not task_data.did_sustain_addend then
+			task_data.did_sustain_addend = true
+			if self._assault_number >= 2 then
+				self:add_difficulty_addend_by_category("on_entered_sustain")
+			end
+		end
+	elseif task_data.phase == "build" then
+		if not self._mga_said_start_assault then
+			self._mga_said_start_assault = true
+			self:_post_megaphone_event("mga_generic_c")
+		end
 	end
 
 	if task_data.phase ~= "fade" or self._hunt_mode then
@@ -283,8 +293,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 			managers.mission:call_global_event("end_assault")
 
 			self:_begin_regroup_task(force_regroup)
-
-			self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add)
 
 			return
 		end
@@ -1921,6 +1929,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 	})
 end)
 
+Hooks:PostHook(GroupAIStateBesiege, "_begin_regroup_task", "eclipse__begin_regroup_task", function(self)
+	self:add_difficulty_addend_by_category("on_entered_regroup")
+end)
+
 -- Would add receive hook in mod.lua but NetworkHelper is set up after Eclipse's earliest hook starts running
 NetworkHelper:AddReceiveHook("Eclipse", "early_control_music", function(data, sender)
 	if sender == 1 and data == "early_control_music" then
@@ -1948,7 +1960,8 @@ function GroupAIStatePonr:init(state, data)
 	self:_parse_teammate_comments()
 	self:sync_assault_mode(false)
 	self:set_bain_state(true)
-	self:set_difficulty(1)
+	-- self:set_difficulty(1)
+	self:add_difficulty_addend_by_category("on_entered_full_force_onslaught")
 	self:_set_rescue_state(true)
 	self:_init_unit_type_filters()
 	self:_init_team_tables()
@@ -1979,10 +1992,18 @@ function GroupAIStatePonr:_upd_assault_task(...)
 	local task_data = self._task_data.assault
 
 	if not task_data.active then
+		task_data.did_sustain_addend = nil
 		return
 	end
 
 	local t = self._t
+
+	if task_data.phase == "sustain" and not task_data.did_sustain_addend then
+		task_data.did_sustain_addend = true
+		if self._assault_number >= 2 then
+			self:add_difficulty_addend_by_category("on_entered_sustain")
+		end
+	end
 
 	if task_data.phase ~= "anticipation" then
 		return _upd_assault_task_original_ponr(self, ...)

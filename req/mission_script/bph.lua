@@ -101,11 +101,11 @@ return {
 	[100985] = ai_remove_area_triggers,
 	[100984] = ai_remove_area_triggers,
 	-- Adjusted diff curve
-	[100022] = difficulty_add_25, -- Alarm (0.25)
-	[101283] = difficulty_add_25, -- Intro ambush completed (0.5)
-	[102997] = difficulty_add_25, -- Put drill on canteen door (0.75), OR
-	[103010] = difficulty_add_25, -- Put drill on laundry door (0.75)
-	[100269] = difficulty_add_25, -- Door to Bain opened (1)
+	-- [100022] = difficulty_add_25, -- Alarm (0.25)
+	-- [101283] = difficulty_add_25, -- Intro ambush completed (0.5)
+	-- [102997] = difficulty_add_25, -- Put drill on canteen door (0.75), OR
+	-- [103010] = difficulty_add_25, -- Put drill on laundry door (0.75)
+	-- [100269] = difficulty_add_25, -- Door to Bain opened (1)
 	-- Modify intro ambush kill requirement, adding more difficulty scaling as well as player scaling
 	[101344] = disabled,
 	[101336] = filter_easy_above,

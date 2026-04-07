@@ -204,20 +204,18 @@ function MissionManager.mission_script_patch_funcs.difficulty_add(self, element,
 	Eclipse:log_console("%s hooked as difficulty addition trigger", element:editor_name())
 end
 
-function MissionManager.mission_script_patch_funcs.difficulty_min(self, element, data)
-	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_min_" .. element:id(), function()
-		Eclipse:log_console("%s executed, set minimum difficulty to %.2g", element:editor_name(), data)
-		managers.groupai:state():min_difficulty(data)
+function MissionManager.mission_script_patch_funcs.forced_difficulty(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_forced_difficulty" .. element:id(), function()
+		managers.groupai:state():set_forced_difficulty(data)
 	end)
-	Eclipse:log_console("%s hooked as minimum difficulty trigger", element:editor_name())
 end
 
-function MissionManager.mission_script_patch_funcs.difficulty_max(self, element, data)
-	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_max_" .. element:id(), function()
-		Eclipse:log_console("%s executed, set maximum difficulty to %.2g", element:editor_name(), data)
-		managers.groupai:state():max_difficulty(data)
+function MissionManager.mission_script_patch_funcs.allowed_difficulty_addends(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_allowed_difficulty_addends" .. element:id(), function()
+		for category, allowed in pairs(data) do
+			managers.groupai:state():set_difficulty_addend_category_allowed(category, allowed)
+		end
 	end)
-	Eclipse:log_console("%s hooked as maximum difficulty trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.post_mga_event(self, element, data)

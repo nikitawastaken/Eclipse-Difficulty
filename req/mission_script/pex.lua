@@ -144,9 +144,9 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[101755] = difficulty_add_20, -- fire_is_done
-	[101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
-	[101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
+	-- [101755] = difficulty_add_20, -- fire_is_done
+	-- [101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
+	-- [101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
 	-- Only activate certain preferreds after the first assault is over
 	[100021] = { -- completed_obj_fire
 		on_executed = {

@@ -100,11 +100,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arm_for.group_ai_preset = "heavy_response"
 
-	self.escape_park.group_ai_settings.difficulty_scaling = {
-		difficulty_scaling = {
-			diff_init = 1,
-			assault_delay = 15,
-		},
+	self.escape_park.group_ai_settings = {
+		difficulty_scaling_preset = "escape",
 	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
@@ -116,9 +113,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_garage.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 
 	self.watchdogs_1.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.5,
-		},
+		difficulty_scaling_preset = "regroup_aggressive",
 	}
 
 	self.watchdogs_1_night.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
@@ -126,9 +121,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
+		difficulty_scaling_preset = "sustain_aggressive",
 		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 15,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 15, -- Reduce the preset's delay
+					time = 120,
+				},
+			},
 		},
 		special_limit_add = {
 			shield = 1,
@@ -164,7 +165,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mia_1.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 	}
 
@@ -172,25 +179,40 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings = {
+		difficulty_scaling_preset = "regroup_aggressive",
 		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 0,
-		},
-	}
-
-	self.hox_3.group_ai_settings = {
-		difficulty_scaling = {
-			assault_add = 0.4,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 0, -- Reduce the preset's delay
+					time = 120,
+				},
+			}
 		},
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
+	self.crojob2.group_ai_settings.difficulty_scaling_preset = nil
+	self.crojob2.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 60,
+				time = 60,
+			},
+		},
+	}
 	self.crojob2.group_ai_preset = "heavy_response"
 
 	self.crojob3.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 	}
 	self.crojob3.group_ai_preset = "heavy_response"
@@ -210,7 +232,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
@@ -220,7 +248,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pbr2.group_ai_settings = {
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 		special_limit_add = {
 			shield = -1,
@@ -229,11 +263,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.kenaz.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 	}
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
+	self.nail.group_ai_settings.difficulty_scaling_preset = nil
 	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.ai_group_type = "zombie"
 
@@ -248,8 +289,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.man.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		cs_grenade_chance_times_mul = 0.75,
+		difficulty_scaling_preset = "sustain",
 		difficulty_scaling = {
-			assault_delay = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 0,
+					time = 60,
+				},
+			},
 		},
 		special_limit_add = {
 			cloaker = 1,
@@ -291,9 +339,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
-			diff_init = 0.33,
-			assault_delay = 15,
-			assault_add = 0.33,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 1 / 3,
+					delay = 15,
+					time = 60,
+				},
+				on_entered_regroup = {
+					amount = 1 / 3,
+					delay = 0,
+					time = 60,
+				},
+			},
 		},
 		grenade_timeout_mul = {
 			cs_grenade = 0.5,
@@ -339,7 +396,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.65,
 		assault_delay_mul = 1.25,
 		difficulty_scaling = {
-			assault_delay = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 0,
+					time = 60,
+				},
+			},
 		},
 		special_limit_add = {
 			taser = 2,
@@ -348,7 +411,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.run.group_ai_preset = "street"
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
+	self.glace.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 75,
+				time = 60,
+			},
+		},
+	}
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
@@ -363,9 +434,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_force_mul = 0.75,
 		cs_grenade_chance_times_mul = 2,
 		difficulty_scaling = {
-			diff_init = 0.2,
-			assault_delay = 0,
-			assault_add = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.2,
+					delay = 0,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
 		},
 		grenade_timeout_mul = {
 			smoke_grenade = 1.25,
@@ -385,14 +463,26 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.des.group_ai_settings = {
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
-			assault_delay = 15,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 15,
+					time = 60,
+				},
+			},
 		},
 	}
 
 	self.sah.group_ai_settings = {
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 	}
 
@@ -406,9 +496,45 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.bph.group_ai_settings.difficulty_scaling = {
-		assault_delay = 15,
-		diff_init = 0, -- Handled by mission scripting for now
-		assault_add = 0, -- Handled by mission scripting for now
+		steps = {
+			{
+				amount = 0.2,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.2,
+				delay = 150,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0,
+				delay = 15,
+				time = 0,
+			},
+		},
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
+			on_entered_regroup = false,
+		}
 	}
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
@@ -420,6 +546,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 			marksman = -1,
 		},
+		difficulty_scaling_preset = "sustain",
 	}
 	self.vit.group_ai_preset = "heavy_response"
 
@@ -436,11 +563,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
+		difficulty_scaling_preset = "sustain",
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
+	self.sand.group_ai_settings.difficulty_scaling_preset = nil
 	self.sand.group_ai_settings.difficulty_scaling = nil
 	self.sand.group_ai_preset = "street"
 
@@ -456,6 +585,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = 1,
 			tank = 1,
 		},
+		difficulty_scaling_preset = "sustain",
 	}
 	self.trai.group_ai_preset = "heavy_response"
 
