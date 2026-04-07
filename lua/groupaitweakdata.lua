@@ -2970,6 +2970,7 @@ GroupAITweakData.us_army_heists = table.list_to_set({
 GroupAITweakData.us_army_heists_scripted = table.list_to_set({
 	"roberts",
 	"peta2",
+    "nmh",
 })
 GroupAITweakData.gensec_tac_teams_heists = table.list_to_set({
 	"arm_cro",

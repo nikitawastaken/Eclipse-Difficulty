@@ -61,6 +61,11 @@ return {
 		on_executed = {
 			{ id = 400063, delay = 0 },
 		},
+        values = {
+			callback = function() -- Somebody call the National Guard!
+					managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
+			end,
+		},
 	},
 	-- add sniper access to SO navlinks
 	[103238] = cops_so,
