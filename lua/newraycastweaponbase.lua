@@ -42,8 +42,13 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	-- Add and properly scale the new mobility stat
 	local new_stats = {}
 	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
-	local bonus_stats = self._cosmetics_bonus and self._cosmetics_data and self._cosmetics_data.bonus and tweak_data.economy.bonuses[self._cosmetics_data.bonus] and tweak_data.economy.bonuses[self._cosmetics_data.bonus].stats or {}
-	
+	local bonus_stats = self._cosmetics_bonus
+			and self._cosmetics_data
+			and self._cosmetics_data.bonus
+			and tweak_data.economy.bonuses[self._cosmetics_data.bonus]
+			and tweak_data.economy.bonuses[self._cosmetics_data.bonus].stats
+		or {}
+
 	new_stats.mobility = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.mobility or 1
 
 	for new_stat, _ in pairs(new_stats) do
@@ -61,7 +66,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	if not self._current_stats then
 		self._current_stats = {}
 	end
-	
+
 	for new_stat, i in pairs(new_stats) do
 		self._current_stats[new_stat] = tweak_data.weapon.stats[new_stat] and tweak_data.weapon.stats[new_stat][i] or 1
 
@@ -69,7 +74,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			self._current_stats[new_stat] = self._current_stats[new_stat] * self:weapon_tweak_data().stats_modifiers[new_stat]
 		end
 	end
-	
+
 	self._mobility = self._current_stats.mobility or self._mobility
 
 	self._penetration_data = weapon_tweak.penetration or {}
@@ -243,9 +248,9 @@ function NewRaycastWeaponBase:fire(...)
 	if is_player then
 		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
 	end
-	
+
 	Eclipse:log_chat(self._mobility)
-	
+
 	return ray_res
 end
 
@@ -546,9 +551,9 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local categories = weapon_tweak.categories
 
 	local steelsight_time = (tweak_data.player.TRANSITION_DURATION or 0.23) / (self._steelsight_time * (self._steelsight_time_mul or 1))
-	
+
 	local multiplier = 1
-	
+
 	multiplier = multiplier + 1 - self:mobility_to_handling_mul()
 
 	for _, category in ipairs(categories) do

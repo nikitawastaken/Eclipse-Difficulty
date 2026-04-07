@@ -84,7 +84,6 @@ function WeaponFactoryTweakData:_create_part_type_list(list, factory_id, part_ty
 	end
 end
 
-
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	for k, v in pairs(self.parts) do
 		if not v.stats then
