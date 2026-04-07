@@ -2082,18 +2082,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Microgun
 	self.shuno.CLIP_AMMO_MAX = 750
 	self.shuno.stats.damage = 16
-	self.shuno.stats.spread = 8
-	self.shuno.stats.recoil = 10
+	self.shuno.stats.spread = 7
+	self.shuno.stats.recoil = 9
 	self.shuno.stats.concealment = 6
 	self.shuno.fire_mode_data.fire_rate = 60 / 3000
+	self.shuno.exit_run_speed_multiplier = 0.5
 	self.shuno.has_description = true
 	self.shuno.desc_id = "bm_w_ray_desc"
 	
 	-- Minigun
 	self.m134.CLIP_AMMO_MAX = 600
 	self.m134.stats.damage = 20
-	self.m134.stats.spread = 10
-	self.m134.stats.recoil = 8
+	self.m134.stats.spread = 9
+	self.m134.stats.recoil = 7
 	self.m134.stats.concealment = 6
 	self.m134.fire_mode_data.fire_rate = 60 / 2000
 	self.m134.sprint_exit_time = 0.8
