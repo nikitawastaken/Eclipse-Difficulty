@@ -13,8 +13,12 @@
 		<filter name="'check_visor'">
 			<check value="vars.has_visor == 1" />
 		</filter>
-		
+
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
+			<run_sequence		filter="'check_visor'" name="'break_visor_taser'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'break_visor_taser'" once="true" triggable="true">
 			<object 			enabled="false" name="'g_helmet_lod3'" />
 
 			<decal_mesh 		enabled="false" name="'dm_visor'"/>
