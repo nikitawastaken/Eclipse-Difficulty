@@ -434,6 +434,21 @@ tweak_data.casino = {
 	infamous_chance = 3,
 }
 
+--[[ Add achievement-locked parts to card drops
+local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
+for k, v in pairs(achievement_parts) do
+	if tweak_data.weapon.factory.parts[k] and tweak_data.weapon.factory.parts[k].is_a_unlockable then
+		tweak_data.weapon.factory.parts[k].is_a_unlockable = nil
+		tweak_data.weapon.factory.parts[k].pcs = {
+			10,
+			20,
+			30,
+			40,
+		}
+	end
+end
+]]
+
 -- misc
 -- Python code for matplotlibing experience graphs
 --[[

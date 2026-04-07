@@ -145,7 +145,7 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	local weap_base = self._equipped_unit:base()
 	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
-	multiplier = multiplier * (weap_base:concealment_to_handling() or 1)
+	multiplier = multiplier * weap_base:mobility_to_handling_mul()
 
 	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
 
@@ -845,7 +845,7 @@ function PlayerStandard:_end_action_running(t)
 		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
 
 		local speed_multiplier = 1
-		--speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1)
+		speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier() 
 		speed_multiplier = speed_multiplier * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
 
 		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier

@@ -84,18 +84,8 @@ function WeaponFactoryTweakData:_create_part_type_list(list, factory_id, part_ty
 	end
 end
 
-WeaponFactoryTweakData.default_unlockable_parts = {
-	"wpn_fps_ass_fal_body_standard",
-}
 
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
-	-- Make sure no default part is flagged as an unlockable to prevent default parts from appearing in the menu.
-	for _, part_id in pairs(self.default_unlockable_parts) do
-		if self.parts[part_id] and self.parts[part_id].is_a_unlockable then
-			self.parts[part_id].is_a_unlockable = nil
-		end
-	end
-
 	for k, v in pairs(self.parts) do
 		if not v.stats then
 			v.stats = {}
@@ -105,14 +95,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			v.custom_stats = {}
 		end
 
-		local is_default_part = v.pcs
+		local is_default_part = not v.pcs
 		local zoom_level = v.stats.zoom
 		local is_sight = v.type and v.type == "sight"
 		local is_second_sight = v.perks and table.contains(v.perks, "second_sight")
 		local is_piggyback = is_second_sight and v.type == "extra"
 		local is_magnifier = is_second_sight and not is_piggyback
 		local is_optic = is_sight and v.perks and table.contains(v.perks, "scope")
-		local is_scope = is_optic and zoom_level and zoom_level > 3
 		local is_magazine = v.type and v.type == "magazine"
 		local is_silencer = v.perks and table.contains(v.perks, "silencer")
 
@@ -137,7 +126,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			v.stats.damage = math.round(v.stats.damage / 2.5)
 		end
 
-		if is_optic then
+		if is_optic and not is_default_part then
 			v.stats.recoil = 1
 			v.stats.spread = 0
 			v.stats.concealment = -1
@@ -146,7 +135,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if is_magnifier then
 			v.stats.recoil = 0
 			v.stats.spread = 0
-			v.stats.concealment = -1
+			v.stats.concealment = 0
 		end
 
 		if is_magazine and (k:match("_quick$") or k:match("_speed$") or k:match("_strap$")) then
@@ -159,16 +148,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if k:match("_legend") then
 			v.stats = {}
 			v.custom_stats = {}
-		end
-
-		if v.is_a_unlockable and not v.custom then -- Make achievement-locked parts available via card drops
-			v.is_a_unlockable = nil
-			v.pcs = {
-				10,
-				20,
-				30,
-				40,
-			}
 		end
 	end
 
@@ -2551,10 +2530,48 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 			if round_total_ammo then
 				local weap_total_ammo = weap_data.AMMO_MAX
 				local part_total_ammo = weap_total_ammo * self[factory_id].override[part_id].custom_stats.ammo_max_mul
-				local damage_ratio_round = math.round(part_total_ammo, weap_data.CLIP_AMMO_MAX) / weap_total_ammo
+				local part_mag_capacity = weap_data.CLIP_AMMO_MAX + (self[factory_id].override[part_id].stats.extra_ammo or 0)
+				local damage_ratio_round = math.round(part_total_ammo, part_mag_capacity) / weap_total_ammo
 
 				self[factory_id].override[part_id].custom_stats.ammo_max_mul = damage_ratio_round
 			end
+		end
+	end
+end
+
+-- Delete the burst fire mod from specific weapon categories
+function WeaponFactoryTweakData:_wipe_burst_fire_mode(tweak_data)
+	local burst_fire_whitelist = {
+		"assault_rifle",
+		"smg",
+		"pistol",
+	}
+
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+		local weap_data = tweak_data.weapon and tweak_data.weapon[weap_id]
+		local weap_category = weap_data and weap_data.categories
+
+		if weap_category then
+			local is_akimbo = table.contains(weap_category, "akimbo")
+
+			if is_akimbo or not table.contains(burst_fire_whitelist, weap_category[1]) then
+				local uses_parts = self[factory_id] and self[factory_id].uses_parts
+				if uses_parts then
+					table.delete(uses_parts, "wpn_fps_upg_i_burstfire")
+				end
+			end
+		end
+	end
+end
+
+-- Automatically balance underbarrel weapon stats based on concealment
+function WeaponFactoryTweakData:_convert_concealment_to_mobility(tweak_data)
+	for part_id, part_data in pairs(self.parts) do
+		if part_data.stats and part_data.stats.concealment then
+			part_data.stats.mobility = part_data.stats.concealment
 		end
 	end
 end
@@ -2605,6 +2622,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
 	self.parts.wpn_fps_pis_korth_m_6.no_magazine_balancing = true
+	self.parts.wpn_fps_pis_korth_m_6.custom_stats = {}
 	self:_balance_conversion_kit(tweak_data, "korth", "wpn_fps_pis_korth_m_6", 80, nil, true)
 
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 0
@@ -2676,6 +2694,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_akimbo(tweak_data)
 	self:_wipe_burst_fire_mode(tweak_data)
+	self:_convert_concealment_to_mobility()
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
