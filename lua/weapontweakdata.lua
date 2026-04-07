@@ -696,9 +696,14 @@ function WeaponTweakData:_init_weapons(overrides)
 				local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]
 
 				if single_weapon_data then
+					weap_data.muzzleflash = single_weapon_data.muzzleflash
+					weap_data.muzzleflash_silenced = single_weapon_data.muzzleflash_silenced
+					weap_data.shell_ejection = single_weapon_data.shell_ejection
+					weap_data.trail_effect = single_weapon_data.trail_effect
+
 					local akimbo_reload = weap_data.timers.reload_empty
 					local single_reload = single_weapon_data.timers.reload_empty
-
+					
 					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
 					weap_data.stats = clone(single_weapon_data.stats)
 					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 5, 0)
@@ -1467,10 +1472,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.recoil = 4
 	self.deagle.stats.concealment = 26
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
-	self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
-	
-	-- Akimbo Deagle
-	self.x_deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
 
 	--Peacemaker
 	self.peacemaker.categories = {
@@ -2542,6 +2543,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 			},
 		}
 		self.deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
+		self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
 	end
 	
 	self.init_stat_overrides.judge = function()
@@ -2558,11 +2560,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.init_stat_overrides.m95 = function(weap_data)
 		self.m95.steelsight_time = steelsight_times.snp_heavy
 		self.m95.shake.fire_multiplier = 2.5
+		self.m95.muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps"
 	end
 
 	self.init_stat_overrides.bessy = function(weap_data)
 		self.bessy.steelsight_time = steelsight_times.snp_heavy
 		self.bessy.shake.fire_multiplier = 2.5
+		self.bessy.muzzleflash = "effects/payday2/particles/weapons/bessy_muzzle"
 	end
 
 	self.init_stat_overrides.hailstorm = function(weap_data)
@@ -2597,6 +2601,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 			},
 		}
 		self.hailstorm.kick.standing = { 0.4, 0.5, -0.7, 0.7 }
+		self.hailstorm.muzzleflash = "effects/payday2/particles/weapons/hailstorm_effect"
+		self.hailstorm.trail_effect = "effects/payday2/particles/weapons/hailstorm_streak"
 	end
 
 	self.init_stat_overrides.sub2000 = function(weap_data)
@@ -2635,7 +2641,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	end
 
 	self.init_stat_overrides.shak12 = function(weap_data)
-		self.shak12.muzzleflash = "effects/payday2/particles/weapons/50cal_auto"
+		self.shak12.muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps"
 	end
 	
 	self.init_stat_overrides.kacchainsaw = function(weap_data)
