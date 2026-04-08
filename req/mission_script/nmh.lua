@@ -63,7 +63,9 @@ return {
 		},
 		values = {
 			callback = function() -- Somebody call the National Guard!
-				managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
+				if not normal then
+					managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
+				end
 			end,
 		},
 	},
