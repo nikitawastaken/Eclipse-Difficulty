@@ -1460,7 +1460,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.triad_boss_no_armor.HEALTH_INIT = 4
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
-    self.triad_boss_no_armor.die_sound_event = "lt2_x02a_any_3p"
+	self.triad_boss_no_armor.die_sound_event = "lt2_x02a_any_3p"
 
 	self.deep_boss.HEALTH_INIT = 200
 	self.deep_boss.headshot_dmg_mul = 1.75
@@ -2137,7 +2137,7 @@ CharacterTweakData.access_ecm_vulnerability = {
 CharacterTweakData.access_surrender_blacklist = table.list_to_set({
 	"bolivian",
 	"bolivian_indoors",
-    "mute_security_undominatable",
+	"mute_security_undominatable",
 })
 CharacterTweakData.access_surrender = {
 	security = "easy",
