@@ -696,7 +696,7 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.vault_loot_ring = (money_mul * 6000)
 	self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	self.small_loot.vault_loot_macka = 1
-	self.small_loot.federali_medal = 769
+	self.small_loot.federali_medal = 25000
 
 	-- Heist specific loot values
 	if level_id == "big" then
