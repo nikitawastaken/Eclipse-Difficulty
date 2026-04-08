@@ -14,9 +14,7 @@ local bellmead_response_heists = table.list_to_set({
 	"corp",
 	"deep",
 })
-local is_undercover = level_id == "man"
 local is_no_mercy = level_id == "nmh"
-local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
@@ -1420,7 +1418,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 2.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
-	self.chavez_boss.die_sound_event = "l3n_x01a_any_3p"
+	self.chavez_boss.die_sound_event = "lt1_x02a_any_3p"
 
 	self.hector_boss.HEALTH_INIT = 160
 	self.hector_boss.headshot_dmg_mul = 1.75
@@ -1438,7 +1436,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
-	self.biker_boss.die_sound_event = "fl1n_x02a_any_3p"
+	self.biker_boss.die_sound_event = "fl1n_x01a_any_3p"
 
 	self.drug_lord_boss.HEALTH_INIT = 160
 	self.drug_lord_boss.headshot_dmg_mul = 2.5
@@ -1446,11 +1444,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
-	self.drug_lord_boss.die_sound_event = "l2n_x01a_any_3p"
+	self.drug_lord_boss.die_sound_event = "lt2_x02a_any_3p"
 
 	self.drug_lord_boss_stealth.HEALTH_INIT = 4
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
-	self.drug_lord_boss_stealth.die_sound_event = "l2n_x01a_any_3p"
+	self.drug_lord_boss_stealth.die_sound_event = "lt2_x02a_any_3p"
 
 	self.triad_boss.HEALTH_INIT = 160
 	self.triad_boss.headshot_dmg_mul = 1.75
@@ -1462,6 +1460,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.triad_boss_no_armor.HEALTH_INIT = 4
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
+    self.triad_boss_no_armor.die_sound_event = "lt2_x02a_any_3p"
 
 	self.deep_boss.HEALTH_INIT = 200
 	self.deep_boss.headshot_dmg_mul = 1.75
@@ -2138,6 +2137,7 @@ CharacterTweakData.access_ecm_vulnerability = {
 CharacterTweakData.access_surrender_blacklist = table.list_to_set({
 	"bolivian",
 	"bolivian_indoors",
+    "mute_security_undominatable",
 })
 CharacterTweakData.access_surrender = {
 	security = "easy",
