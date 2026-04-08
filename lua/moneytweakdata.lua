@@ -720,18 +720,22 @@ function MoneyTweakData:init(tweak_data)
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
 	end
+	if level_id == "arena" then
+		self.bag_values.money = 175000
+	end
 	if level_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = 50000
 		self.small_loot.diamondheist_vault_diamond = 15000
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
 	if level_id == "red2" or level_id == "kenaz" then
-		self.bag_values.money = 90000 -- 90,000$
+		self.bag_values.money = 90000
+		self.bag_values.gold = 300000
 		self.small_loot.gen_atm = (money_mul * 36000)
 		self.small_loot.money_bundle = (money_mul * 8250)
 	end
 	if level_id == "dinner" then
-		self.bag_values.gold = 350000 -- 350,000$
+		self.bag_values.gold = 350000
 		self.small_loot.money_bundle = (money_mul * 10250)
 	end
 
