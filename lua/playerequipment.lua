@@ -36,6 +36,7 @@ function PlayerEquipment:use_grenade_case()
 		local rot = self:_m_deploy_rot()
 		rot = Rotation(rot:yaw() - 180, 0, 0)
 
+		PlayerStandard.say_line(self, "s01x_plu")
 		managers.statistics:use_grenade_crate()
 
 		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_case", "amount_increase")
@@ -60,6 +61,7 @@ function PlayerEquipment:use_grenade_crate()
 		local rot = self:_m_deploy_rot()
 		rot = Rotation(rot:yaw(), 0, 0)
 
+		PlayerStandard.say_line(self, "s01x_plu")
 		managers.statistics:use_grenade_crate()
 
 		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_crate", "amount_increase")
