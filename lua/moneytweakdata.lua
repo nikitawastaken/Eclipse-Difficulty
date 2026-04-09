@@ -54,10 +54,10 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.master_server = 720000
 	self.bag_values.lost_artifact = 420000
 	self.bag_values.present = 100000
-	self.bag_values.mad_master_server_value_1 = 250000
-	self.bag_values.mad_master_server_value_2 = 500000
-	self.bag_values.mad_master_server_value_3 = 750000
-	self.bag_values.mad_master_server_value_4 = 1000000
+	self.bag_values.mad_master_server_value_1 = 500000
+	self.bag_values.mad_master_server_value_2 = 750000
+	self.bag_values.mad_master_server_value_3 = 1000000
+	self.bag_values.mad_master_server_value_4 = 1850000
 	self.bag_values.weapon_glock = 25000
 	self.bag_values.weapon_scar = 50000
 	self.bag_values.drk_bomb_part = 300000
