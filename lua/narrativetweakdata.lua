@@ -267,14 +267,14 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.boss.payout = { 50000 }
 	self.jobs.nmh.payout = { 1350000 }
 	self.jobs.sah.payout = { 100000 }
-	
+
 	-- Hide contracts from broker (can still appear on CRIME.NET)
 	self.contacts.bain_no_variation.hidden = true
 	self.jobs.branchbank_deposit.contact = "bain_no_variation"
 	self.jobs.branchbank_cash.contact = "bain_no_variation"
 	self.jobs.branchbank_prof.contact = "bain_no_variation"
 	self.jobs.branchbank_gold_prof.contact = "bain_no_variation"
-	
+
 	-- Disable ability to choose type of Bank Heist in broker
 	table.insert(self._jobs_index, "branchbank")
 	self.jobs.branchbank.name_id = "heist_branchbank_hl"
