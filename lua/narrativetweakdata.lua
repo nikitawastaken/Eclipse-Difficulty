@@ -236,7 +236,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.moon.payout = { 75000 }
 	self.jobs.spa.payout = { 725000 }
 	self.jobs.spa.contract_cost = { 47000, 94000, 235000, 470000, 600000, 600000, 600000 }
-	self.jobs.fish.payout = { 100000 }
+	self.jobs.fish.payout = { 650000 }
 	self.jobs.flat.payout = { 900000 }
 	self.jobs.help.payout = { 2016 }
 	self.jobs.run.payout = { 900000 }
