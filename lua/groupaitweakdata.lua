@@ -3647,7 +3647,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		spawn_group_interval = 0.5,
 		difficulty_addend_time = 0.5,
 	}
-	
+
 	-- Spawn rate
 	self.spawn_kill_cooldown = get_difficulty_specific_value({
 		20,
