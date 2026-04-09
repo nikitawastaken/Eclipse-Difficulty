@@ -135,7 +135,7 @@ function MissionManager.mission_script_patch_funcs.ponr(self, element, data)
 	if is_pro_job then
 		local function set_ponr()
 			local ponr_timer_balance_mul = data.length_balance_mul
-					and managers.groupai:state():_get_balancing_multiplier(data.length_balance_mul, tweak_data.group_ai.team_ai_ponr_length_balance_mul_weight)
+					and managers.groupai:state():_get_balancing_multiplier(data.length_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.ponr_length)
 				or 1
 			managers.groupai:state():set_point_of_no_return_timer(data.length * ponr_timer_balance_mul, -1, "ffo")
 		end

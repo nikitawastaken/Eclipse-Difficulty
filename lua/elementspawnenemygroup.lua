@@ -81,7 +81,7 @@ ElementSpawnEnemyGroup._values_meta = {
 			local interval = rawget(t, "interval_reference") or 0
 			local balance_mul = rawget(t, "interval_balance_mul")
 			if balance_mul then
-				local balance_mul_weight = tweak_data.group_ai.team_ai_spawn_group_interval_balance_mul_weight
+				local balance_mul_weight = tweak_data.group_ai.team_ai_balance_mul_weights.spawn_group_interval
 				return interval * managers.groupai:state():_get_balancing_multiplier(balance_mul, balance_mul_weight)
 			end
 			return interval

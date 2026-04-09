@@ -65,7 +65,7 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		self._mga_said_arrival = true
 	end
 
-	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_force_balance_mul_weight)
+	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.force)
 	local force_value = self:_get_difficulty_dependent_value(self._tweak_data.assault.force)
 	self._task_data.assault.force = math.ceil(force_value * force_mul)
 
@@ -1190,7 +1190,7 @@ function GroupAIStateBesiege:spawn_rate()
 		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
 	end
 
-	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight)
+	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.spawn_rate)
 	local spawn_rate = self._task_data.assault.phase == "sustain" and {
 		get_drama_spawn_rate_entry(1),
 		get_drama_spawn_rate_entry(2),
@@ -1431,7 +1431,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if spawn_entry.freq_balance_mul then
-			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_freq_balance_mul_weight)
+			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.freq)
 		end
 	end
 

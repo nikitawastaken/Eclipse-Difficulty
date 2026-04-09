@@ -3638,12 +3638,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	self.use_team_ai_balance_mul_weights = true
-	self.team_ai_spawn_rate_balance_mul_weight = 0.5
-	self.team_ai_force_balance_mul_weight = 0.5
-	self.team_ai_freq_balance_mul_weight = 0.5
-	self.team_ai_ponr_length_balance_mul_weight = 0.5
-	self.team_ai_spawn_group_interval_balance_mul_weight = 0.5
-
+	self.team_ai_balance_mul_weights = {
+		drama = 0.5,
+		spawn_rate = 0.5,
+		force = 0.5,
+		freq = 0.5,
+		ponr_length = 0.5,
+		spawn_group_interval = 0.5,
+		difficulty_addend_time = 0.5,
+	}
+	
 	-- Spawn rate
 	self.spawn_kill_cooldown = get_difficulty_specific_value({
 		20,

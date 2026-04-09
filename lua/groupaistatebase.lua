@@ -54,9 +54,9 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
-	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
+	self._drama_data.drama_balance_mul = tweak_data.drama.drama_balance_mul
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul, tweak_data.drama.team_ai_drama_balance_mul_weight)
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
@@ -145,7 +145,7 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
 	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
 	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
-	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul) or 1)
+	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.difficulty_addend_time) or 1)
 	local finalized = {
 		amount = amount,
 		delay = final_delay,
