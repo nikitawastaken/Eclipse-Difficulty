@@ -35,7 +35,7 @@ return {
 			length_balance_mul = { 1.15, 1.15, 1, 1 },
 		},
 	},
---[[	[100145] = { -- Floor blown
+	--[[	[100145] = { -- Floor blown
 		values = {
 			callback = function()
 				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
