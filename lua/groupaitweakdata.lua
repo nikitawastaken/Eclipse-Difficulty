@@ -3551,18 +3551,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		},
 		-- So that certain heists may change addends and have automatic difficulty scaling
 		addend_time_multipliers = {
-			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
-			on_entered_sustain = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
-			on_entered_regroup = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
-			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
-			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_sustain = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_regroup = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
 		},
 		addend_time_balance_muls = {
-			on_enemy_weapons_hot = { 1, 1, 1, 1 },
-			on_entered_sustain = { 1, 1, 1, 1 },
-			on_entered_regroup = { 1, 1, 1, 1 },
-			on_entered_full_force_onslaught = { 1, 1, 1, 1 },
-			on_hostage_killed = { 1, 1, 1, 1 },
+			on_enemy_weapons_hot = { 1.3, 1.2, 1.1, 1 },
+			on_entered_sustain = { 1.3, 1.2, 1.1, 1 },
+			on_entered_regroup = { 1.3, 1.2, 1.1, 1 },
+			on_entered_full_force_onslaught = { 1.3, 1.2, 1.1, 1 },
+			on_hostage_killed = { 1.3, 1.2, 1.1, 1 },
 		},
 	}
 
@@ -3662,7 +3662,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		6,
 	})
 
-	local spawn_rater_regular = get_difficulty_specific_value({
+	local spawn_rate_regular = get_difficulty_specific_value({
 		2,
 		1.9,
 		1.8,
@@ -3679,9 +3679,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.besiege.assault.spawn_rate = {
 		regular = {
-			spawn_rater_regular * 1.6,
-			spawn_rater_regular * 1.3,
-			spawn_rater_regular,
+			spawn_rate_regular * 1.6,
+			spawn_rate_regular * 1.3,
+			spawn_rate_regular,
 		},
 		fast = {
 			spawn_rate_fast * 1.4,
