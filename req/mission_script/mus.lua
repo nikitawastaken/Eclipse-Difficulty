@@ -125,9 +125,9 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
---	[101507] = difficulty_add_20, -- barrier_opened001
---	[101508] = difficulty_add_20, -- barrier_opened002
---	[101913] = difficulty_add_20, -- diamond_picked_up
+	--	[101507] = difficulty_add_20, -- barrier_opened001
+	--	[101508] = difficulty_add_20, -- barrier_opened002
+	--	[101913] = difficulty_add_20, -- diamond_picked_up
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,
@@ -137,8 +137,8 @@ return {
 	[102418] = staircase_window_spawn,
 	[102399] = matrix_window_spawn,
 	[102400] = matrix_window_spawn,
-	[101946] = exhibit_rappel_spawn, 
-	[101959] = exhibit_rappel_spawn, 
+	[101946] = exhibit_rappel_spawn,
+	[101959] = exhibit_rappel_spawn,
 	[100019] = exhibit_slow_rappel_spawn,
 	[100809] = exhibit_slow_rappel_spawn,
 	[100810] = exhibit_slow_rappel_spawn,

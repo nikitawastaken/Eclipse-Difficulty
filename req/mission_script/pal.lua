@@ -194,8 +194,8 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
---	[101436] = difficulty_add_20, -- open_doors_to_basement
---	[102623] = difficulty_add_20, -- complete_drill_finish
+	--	[101436] = difficulty_add_20, -- open_doors_to_basement
+	--	[102623] = difficulty_add_20, -- complete_drill_finish
 	-- disable vanilla's swat van randomizer
 	[102080] = disabled,
 	-- don't disable neighbour swat vans

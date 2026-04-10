@@ -155,8 +155,8 @@ return {
 	[102903] = disabled,
 	[102904] = disabled,
 	-- Add scripted difficulty increases
---	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
---	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
+	--	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
+	--	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100007] = roof_spawn,
