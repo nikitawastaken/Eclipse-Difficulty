@@ -1972,7 +1972,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.cs_shield = {
 		drama_category = "shield",
-		amount = { 3, 3 },
+		amount = { 4, 4 },
 		spawn = {
 			{
 				freq = 1,
@@ -2356,7 +2356,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.fbi_shield = {
 		drama_category = "shield",
-		amount = { 4, 4 },
+		amount = { 4, 5 },
 		spawn = {
 			{
 				freq = 1,
@@ -2719,7 +2719,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self.enemy_spawn_groups.elite_shield = {
 		drama_category = "shield",
-		amount = { 4, 4 },
+		amount = { 4, 5 },
 		spawn = {
 			{
 				freq = 1,
