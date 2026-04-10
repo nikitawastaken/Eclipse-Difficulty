@@ -73,6 +73,10 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
 		self._task_data.assault.phase_end_t = self._t + anticipation_duration
 	end
+
+	if tweak_data.drama.assault_start_add then
+		self:_add_drama(tweak_data.drama.assault_start_add)
+	end
 end
 
 -- Make hostage count affect hesitation delay
@@ -1520,6 +1524,29 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
+-- Adapted from CopLogicBase.surrender_chk_funcs.health
+function GroupAIStateBesiege:_get_drama_group_weight_mul(group_type)
+	if not tweak_data.drama.drama_group_weight_muls[group_type] then
+		return 1
+	end
+	local min_drama, max_drama, min_mul, max_mul
+	for drama, mul in pairs(tweak_data.drama.drama_group_weight_muls[group_type]) do
+		if not min_drama or drama < min_drama then
+			min_drama = drama
+			min_mul = mul
+		end
+
+		if not max_drama or drama > max_drama then
+			max_drama = drama
+			max_mul = mul
+		end
+	end
+	if not min_mul or not max_mul then
+		return 1
+	end
+	return math.map_range_clamped(self._drama_data.amount, min_drama, max_drama, min_mul, max_mul)
+end
+
 -- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
@@ -1542,7 +1569,7 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 			end
 
 			if cat_weights then
-				local cat_weight = self:_get_difficulty_dependent_value(cat_weights)
+				local cat_weight = self:_get_difficulty_dependent_value(cat_weights) * self:_get_drama_group_weight_mul(group_type)
 				local mod_weight = weight * cat_weight
 
 				table.insert(best_groups, {

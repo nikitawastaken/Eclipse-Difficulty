@@ -343,6 +343,13 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 	end
 end)
 
+-- Add some drama when spawning a special unit
+Hooks:PostHook(GroupAIStateBase, "register_special_unit", "eclipse_register_special_unit", function(self, u_key, category_name)
+	if tweak_data.drama.special_spawn_drama_add[category_name] then
+		self:_add_drama(tweak_data.drama.special_spawn_drama_add[category_name])
+	end
+end)
+
 -- Add a function to check if a deployble is within a nav_seg
 function GroupAIStateBase:chk_deployable_nav_seg(nav_seg_id)
 	return self._deployable_nav_segs[nav_seg_id]
