@@ -1525,12 +1525,12 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 end
 
 -- Adapted from CopLogicBase.surrender_chk_funcs.health
-function GroupAIStateBesiege:_get_drama_group_weight_mul(group_type)
-	if not tweak_data.drama.drama_group_weight_muls[group_type] then
+function GroupAIStateBesiege:_get_drama_weight_mul(category)
+	if not tweak_data.drama.drama_weight_muls[category] then
 		return 1
 	end
 	local min_drama, max_drama, min_mul, max_mul
-	for drama, mul in pairs(tweak_data.drama.drama_group_weight_muls[group_type]) do
+	for drama, mul in pairs(tweak_data.drama.drama_weight_muls[category]) do
 		if not min_drama or drama < min_drama then
 			min_drama = drama
 			min_mul = mul
@@ -1569,7 +1569,7 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 			end
 
 			if cat_weights then
-				local cat_weight = self:_get_difficulty_dependent_value(cat_weights) * self:_get_drama_group_weight_mul(group_type)
+				local cat_weight = self:_get_difficulty_dependent_value(cat_weights) * self:_get_drama_weight_mul(spawn_group_desc.drama_category)
 				local mod_weight = weight * cat_weight
 
 				table.insert(best_groups, {

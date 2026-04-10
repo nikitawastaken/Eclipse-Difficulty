@@ -1971,6 +1971,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_shield = {
+		drama_category = "shield",
 		amount = { 3, 3 },
 		spawn = {
 			{
@@ -2027,6 +2028,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 1, 2 }),
 			[2] = 3,
@@ -2053,6 +2055,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 2, 3 }),
 			[2] = 4,
@@ -2352,6 +2355,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_shield = {
+		drama_category = "shield",
 		amount = { 4, 4 },
 		spawn = {
 			{
@@ -2428,6 +2432,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
@@ -2474,6 +2479,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[3] = 5,
@@ -2520,6 +2526,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_cloaker = {
+		drama_category = "spooc",
 		amount_weighted = {
 			[2] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[1] = 2,
@@ -2711,6 +2718,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_shield = {
+		drama_category = "shield",
 		amount = { 4, 4 },
 		spawn = {
 			{
@@ -2758,6 +2766,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
@@ -2804,6 +2813,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[3] = 5,
@@ -2850,6 +2860,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_sniper = {
+		drama_category = "marksman",
 		amount_weighted = {
 			[2] = get_difficulty_specific_value({ 1, 1, 1, 1, 2 }),
 			[1] = 6,

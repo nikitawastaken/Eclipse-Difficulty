@@ -17,42 +17,36 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 		medic = 0.025,
 		marksman = 0.05,
 	}
-	self.drama_group_weight_muls = {
-		cs_shield = {
-			[0.1] = 1.2,
+	self.drama_weight_muls = {
+		shield = {
+			[0.1] = 1.1,
 			[0.4] = 1,
-			[0.7] = 0.8,
-			[1.0] = 0.6,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
-		cs_taser = {
-			[0.1] = 1.2,
+		taser = {
+			[0.1] = 1.1,
 			[0.4] = 1,
-			[0.7] = 0.8,
-			[1.0] = 0.6,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
-		cs_bulldozer = {
-			[0.1] = 1.2,
+		tank = {
+			[0.1] = 1.1,
 			[0.4] = 1,
-			[0.7] = 0.7,
-			[1.0] = 0.4,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
-		fbi_cloaker = {
-			[0.1] = 1.2,
+		spooc = {
+			[0.1] = 1.1,
 			[0.4] = 1,
-			[0.7] = 0.7,
-			[1.0] = 0.4,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
-		elite_sniper = {
-			[0.1] = 1.2,
+		marksman = {
+			[0.1] = 1.1,
 			[0.4] = 1,
-			[0.7] = 0.8,
-			[1.0] = 0.6,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
 	}
-	self.drama_group_weight_muls.fbi_shield = self.drama_group_weight_muls.cs_shield
-	self.drama_group_weight_muls.elite_shield = self.drama_group_weight_muls.cs_shield
-	self.drama_group_weight_muls.fbi_taser = self.drama_group_weight_muls.cs_taser
-	self.drama_group_weight_muls.elite_taser = self.drama_group_weight_muls.cs_taser
-	self.drama_group_weight_muls.fbi_bulldozer = self.drama_group_weight_muls.cs_bulldozer
-	self.drama_group_weight_muls.elite_bulldozer = self.drama_group_weight_muls.cs_bulldozer
 end)
