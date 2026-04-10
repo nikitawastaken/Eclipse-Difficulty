@@ -2238,19 +2238,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.desertfox.stats.concealment = 21
 	self.desertfox.fire_mode_data.fire_rate = 60 / 45
 	self.desertfox.stats_modifiers = { damage = 10 }
-
-	-- Amaroq
-	self.awp.CLIP_AMMO_MAX = 5
-	self.awp.stats.damage = 36
-	self.awp.stats.spread = 24
-	self.awp.stats.recoil = 4
-	self.awp.stats.concealment = 12
-	self.awp.fire_mode_data.fire_rate = 60 / 45
-	self.awp.stats_modifiers = { damage = 10 }
 	
 	-- Aran
 	self.contender.CLIP_AMMO_MAX = 1
-	self.contender.stats.damage = 36
+	self.contender.stats.damage = 24
 	self.contender.stats.spread = 18
 	self.contender.stats.recoil = 4
 	self.contender.stats.concealment = 24
@@ -2263,6 +2254,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contender.ignore_damage_upgrades = nil
 	self.contender.rays = nil
 
+	-- Amaroq
+	self.awp.CLIP_AMMO_MAX = 5
+	self.awp.stats.damage = 36
+	self.awp.stats.spread = 24
+	self.awp.stats.recoil = 4
+	self.awp.stats.concealment = 12
+	self.awp.fire_mode_data.fire_rate = 60 / 45
+	self.awp.stats_modifiers = { damage = 10 }
+	
 	-- Thanatos
 	self.m95.CLIP_AMMO_MAX = 5
 	self.m95.stats.damage = 48
