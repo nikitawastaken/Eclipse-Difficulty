@@ -149,7 +149,7 @@ function NewSkillTreeGui:_setup()
 
 	self._panel = self._ws:panel():panel({
 		name = "SkillTreePanel",
-		layer = self._init_layer
+		layer = self._init_layer,
 	})
 	self._fullscreen_panel = self._fullscreen_ws:panel():panel()
 
@@ -162,7 +162,7 @@ function NewSkillTreeGui:_setup()
 		text = managers.localization:to_upper_text("menu_st_skilltree"),
 		font = large_font,
 		font_size = large_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local x, y, w, h = skilltree_text:text_rect()
 
@@ -179,7 +179,7 @@ function NewSkillTreeGui:_setup()
 		text = skilltree_text:text(),
 		font = massive_font,
 		font_size = massive_font_size,
-		color = tweak_data.screen_colors.button_stage_3
+		color = tweak_data.screen_colors.button_stage_3,
 	})
 	local x, y = managers.gui_data:safe_to_full_16_9(skilltree_text:world_x(), skilltree_text:world_center_y())
 
@@ -195,7 +195,7 @@ function NewSkillTreeGui:_setup()
 			text = managers.localization:to_upper_text("menu_back"),
 			font = large_font,
 			font_size = large_font_size,
-			color = tweak_data.screen_colors.button_stage_3
+			color = tweak_data.screen_colors.button_stage_3,
 		})
 
 		make_fine_text(back_button)
@@ -213,7 +213,7 @@ function NewSkillTreeGui:_setup()
 			text = back_button:text(),
 			font = massive_font,
 			font_size = massive_font_size,
-			color = tweak_data.screen_colors.button_stage_3
+			color = tweak_data.screen_colors.button_stage_3,
 		})
 		local x, y = managers.gui_data:safe_to_full_16_9(back_button:world_right(), back_button:world_center_y())
 
@@ -227,7 +227,7 @@ function NewSkillTreeGui:_setup()
 		name = "SkillsRootPanel",
 		layer = 1,
 		w = self._panel:w() * SKILLS_WIDTH_PERCENT,
-		h = self._panel:h() - (TOP_ADJUSTMENT + BOT_ADJUSTMENT)
+		h = self._panel:h() - (TOP_ADJUSTMENT + BOT_ADJUSTMENT),
 	})
 
 	skills_panel:set_top(TOP_ADJUSTMENT)
@@ -235,7 +235,7 @@ function NewSkillTreeGui:_setup()
 
 	local tab_panel = skills_panel:panel({
 		name = "TabPanel",
-		h = PAGE_TAB_H
+		h = PAGE_TAB_H,
 	})
 
 	tab_panel:set_top(0)
@@ -243,7 +243,7 @@ function NewSkillTreeGui:_setup()
 
 	local page_panel = skills_panel:panel({
 		name = "PagePanel",
-		h = skills_panel:h() - PAGE_TAB_H + PAGE_TREE_OVERLAP
+		h = skills_panel:h() - PAGE_TAB_H + PAGE_TREE_OVERLAP,
 	})
 
 	page_panel:set_top(tab_panel:bottom() - PAGE_TREE_OVERLAP)
@@ -251,7 +251,7 @@ function NewSkillTreeGui:_setup()
 
 	local tree_title_panel = page_panel:panel({
 		name = "TreeTitlePanel",
-		h = large_font_size
+		h = large_font_size,
 	})
 
 	tree_title_panel:set_bottom(page_panel:h())
@@ -259,7 +259,7 @@ function NewSkillTreeGui:_setup()
 
 	local tree_panel = page_panel:panel({
 		name = "TreePanel",
-		h = tree_title_panel:top()
+		h = tree_title_panel:top(),
 	})
 
 	tree_panel:set_top(0)
@@ -269,14 +269,14 @@ function NewSkillTreeGui:_setup()
 		name = "InfoRootPanel",
 		layer = 1,
 		w = self._panel:w() * (1 - SKILLS_WIDTH_PERCENT) - BIG_PADDING,
-		h = tree_panel:h()
+		h = tree_panel:h(),
 	})
 
 	info_panel:set_world_top(tree_panel:world_y())
 	info_panel:set_right(self._panel:w())
 
 	local skillset_panel = info_panel:panel({
-		name = "SkillSetPanel"
+		name = "SkillSetPanel",
 	})
 	local skillset_text = skillset_panel:text({
 		name = "SkillSetText",
@@ -285,7 +285,7 @@ function NewSkillTreeGui:_setup()
 		text = utf8.to_upper(self._skilltree:get_skill_switch_name(self._skilltree:get_selected_skill_switch(), true)),
 		font = medium_font,
 		font_size = medium_font_size,
-		color = tweak_data.screen_colors.button_stage_3
+		color = tweak_data.screen_colors.button_stage_3,
 	})
 
 	make_fine_text(skillset_text)
@@ -294,7 +294,7 @@ function NewSkillTreeGui:_setup()
 	self._skillset_panel = skillset_panel
 	local skillpoints_panel = info_panel:panel({
 		name = "SkillPointsPanel",
-		y = skillset_panel:bottom() + PADDING
+		y = skillset_panel:bottom() + PADDING,
 	})
 	local skillpoints_title_text = skillpoints_panel:text({
 		name = "SkillPointsTitleText",
@@ -303,7 +303,7 @@ function NewSkillTreeGui:_setup()
 		text = managers.localization:to_upper_text("menu_skillpoints"),
 		font = medium_font,
 		font_size = medium_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local skillpoints_points_text = skillpoints_panel:text({
 		name = "SkillPointsPointsText",
@@ -312,7 +312,7 @@ function NewSkillTreeGui:_setup()
 		text = tostring(self._skilltree:points()),
 		font = medium_font,
 		font_size = medium_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(skillpoints_title_text)
@@ -333,12 +333,12 @@ function NewSkillTreeGui:_setup()
 		h = info_panel:h() - (skillpoints_panel:bottom() + PADDING),
 		alpha = 0.45,
 		layer = 0,
-		color = Color.black
+		color = Color.black,
 	})
 	local description_panel = info_panel:panel({
 		name = "DescriptionPanel",
 		y = skillpoints_panel:bottom() + PADDING,
-		h = info_panel:h() - (skillpoints_panel:bottom() + PADDING)
+		h = info_panel:h() - (skillpoints_panel:bottom() + PADDING),
 	})
 	local description_text = description_panel:text({
 		text = "",
@@ -348,7 +348,7 @@ function NewSkillTreeGui:_setup()
 		blend_mode = "add",
 		word_wrap = true,
 		font = small_font,
-		font_size = small_font_size
+		font_size = small_font_size,
 	})
 
 	description_text:grow(-PADDING, -PADDING)
@@ -387,7 +387,7 @@ function NewSkillTreeGui:_setup()
 	local legends_panel = self._panel:panel({
 		name = "LegendsPanel",
 		w = self._panel:w() * 0.75,
-		h = tweak_data.menu.pd2_medium_font_size
+		h = tweak_data.menu.pd2_medium_font_size,
 	})
 
 	legends_panel:set_righttop(self._panel:w(), 0)
@@ -399,13 +399,13 @@ function NewSkillTreeGui:_setup()
 		vertical = "top",
 		font = small_font,
 		font_size = small_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	local legend_panel_reset_skills = self._panel:panel({
 		name = "LegendPanelResetSkills",
 		w = self._panel:w() * 0.75,
-		h = tweak_data.menu.pd2_medium_font_size
+		h = tweak_data.menu.pd2_medium_font_size,
 	})
 
 	legend_panel_reset_skills:set_righttop(self._panel:w() - 2, tweak_data.menu.pd2_medium_font_size)
@@ -417,39 +417,39 @@ function NewSkillTreeGui:_setup()
 		vertical = "top",
 		font = small_font,
 		font_size = small_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	BoxGuiObject:new(tree_panel, {
 		sides = {
 			1,
 			1,
 			2,
-			2
-		}
+			2,
+		},
 	})
 	BoxGuiObject:new(description_panel, {
 		sides = {
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	local black_rect = self._fullscreen_panel:rect({
 		layer = 1,
-		color = Color(0.4, 0, 0, 0)
+		color = Color(0.4, 0, 0, 0),
 	})
 	local blur = self._fullscreen_panel:bitmap({
 		texture = "guis/textures/test_blur_df",
 		render_template = "VertexColorTexturedBlur3D",
 		layer = -1,
 		w = self._fullscreen_ws:panel():w(),
-		h = self._fullscreen_ws:panel():h()
+		h = self._fullscreen_ws:panel():h(),
 	})
 
 	local function func(o)
-		over(0.6, function (p)
+		over(0.6, function(p)
 			o:set_alpha(p)
 		end)
 	end
