@@ -51,7 +51,7 @@ return {
 	},
 	[100022] = {
 		ponr = { -- Alarm
-			length = 100694,
+			length = 2100,
 			length_balance_mul = { 1.75, 1.375, 1.125, 1 },
 		},
 	},
