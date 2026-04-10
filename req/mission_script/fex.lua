@@ -126,8 +126,8 @@ return {
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
-			{ id = 103216, delay = 0, delay_rand = 20 },
-			{ id = 103493, delay = 0, delay_rand = 20 },
+			{ id = 103216, delay = 0, delay_rand = 30 },
+			{ id = 103493, delay = 0, delay_rand = 30 },
 		},
 	},
 	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)
@@ -155,8 +155,8 @@ return {
 	[102903] = disabled,
 	[102904] = disabled,
 	-- Add scripted difficulty increases
-	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
-	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
+--	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
+--	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100007] = roof_spawn,

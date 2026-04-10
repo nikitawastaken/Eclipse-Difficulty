@@ -110,8 +110,8 @@ return {
 	},
 	[101543] = disable_car_reinforce,
 	-- Add scripted difficulty increases
-	[101392] = difficulty_add_25, -- start_saw_pickup_location
-	[100727] = difficulty_add_25, -- start_escape
+--	[101392] = difficulty_add_25, -- start_saw_pickup_location
+--	[100727] = difficulty_add_25, -- start_escape
 	-- Spawn group intervals
 	[100007] = roof_far_spawn,
 	[100130] = roof_far_spawn,

@@ -187,8 +187,8 @@ return {
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
 	-- Add scripted difficulty increases
-	[100942] = difficulty_add_20, -- found_vault_loud
-	[101655] = difficulty_add_20, -- drill_is_active
+--	[100942] = difficulty_add_20, -- found_vault_loud
+--	[101655] = difficulty_add_20, -- drill_is_active
 	-- Spawn group intervals
 	-- The Dragon Heist is probably one of the less offensive revival era heists in terms of its spawn group distribution, but some improvements could definitely be made to improve their flow.
 	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).

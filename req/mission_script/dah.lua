@@ -123,9 +123,9 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
-	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
-	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
+--	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
+--	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
+--	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,
