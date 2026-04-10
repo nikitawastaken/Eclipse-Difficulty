@@ -3569,11 +3569,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
 		},
 		addend_time_balance_muls = {
-			on_enemy_weapons_hot = { 1.3, 1.2, 1.1, 1 },
-			on_entered_sustain = { 1.3, 1.2, 1.1, 1 },
-			on_entered_regroup = { 1.3, 1.2, 1.1, 1 },
-			on_entered_full_force_onslaught = { 1.3, 1.2, 1.1, 1 },
-			on_hostage_killed = { 1.3, 1.2, 1.1, 1 },
+			on_enemy_weapons_hot = { 1.45, 1.3, 1.15, 1 },
+			on_entered_sustain = { 1.45, 1.3, 1.15, 1 },
+			on_entered_regroup = { 1.45, 1.3, 1.15, 1 },
+			on_entered_full_force_onslaught = { 1.45, 1.3, 1.15, 1 },
+			on_hostage_killed = { 1.45, 1.3, 1.15, 1 },
 		},
 	}
 
