@@ -58,10 +58,6 @@ GroupAITweakData.group_ai_presets = {
 		cs_stealth_heavy = 2.5,
 		fbi_stealth_heavy = 2.5,
 	},
-	["street"] = {
-		cs_stealth_heavy = 2.5,
-		fbi_stealth_heavy = 2.5,
-	},
 }
 
 -- Helper to change freq based on engagement distance
@@ -3280,7 +3276,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
 	self.difficulty_curve_points = level_settings.difficulty_curve_points or self.difficulty_curve_points
-	self.difficulty_step_time = level_settings.difficulty_step_time or self.difficulty_step_time
 
 	self.spawn_kill_distance = level_settings.spawn_kill_distance or self.spawn_kill_distance
 
@@ -3316,7 +3311,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		end
 	end
 
-	apply_difficulty_scaling(self.difficulty_scaling_presets[level_settings.difficulty_scaling_preset])
+	apply_difficulty_scaling(self.difficulty_scaling_presets[lvl_tweak.difficulty_scaling_preset])
 	apply_difficulty_scaling(level_settings.difficulty_scaling)
 
 	if level_settings.use_equipment_reenforce ~= nil then
