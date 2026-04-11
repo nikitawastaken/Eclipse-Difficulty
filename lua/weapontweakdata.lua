@@ -2698,6 +2698,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.init_stat_overrides.welrod = function(weap_data)
 		self.welrod.min_max_clips = 3
+		self.welrod.special_damage_multiplier = 1.5
 		self.welrod.stance_multipliers = {
 			spread = {
 				standing = {
