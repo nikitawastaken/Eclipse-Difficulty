@@ -871,6 +871,10 @@ function PlayerManager:drop_carry(zipline_unit)
 		if self._current_state == "carry" then
 			managers.player:set_player_state("standard")
 		end
+	else
+		local current_carry = carry_list[1]
+		managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, current_carry.carry_id, managers.loot:get_real_value(current_carry.carry_id, current_carry.multiplier or 1))
+		managers.hud:temp_show_carry_bag(current_carry.carry_id, managers.loot:get_real_value(current_carry.carry_id, current_carry.multiplier or 1))
 	end
 
 	self:update_removed_synced_carry_to_peers()
