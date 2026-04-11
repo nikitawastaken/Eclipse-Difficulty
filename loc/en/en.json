@@ -34,6 +34,7 @@
 	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
+	"bm_menu_armor_regen": "Armor Regen",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
