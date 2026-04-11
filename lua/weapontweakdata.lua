@@ -454,7 +454,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 2)
 				weap_data.pickup_mul = weap_data.pickup_mul or (3 / 5)
 				weap_data.total_ammo_scale = { 2, 3, (1 / 2), 4 }
-				weap_data.pickup_scale = { 8, 6, (2 / 3), 4 }
+				weap_data.pickup_scale = { 8, 6, (1 / 2), 4 }
 				weap_data.penetration_scale = 80
 				weap_data.mobility_scale = { 14, 20, 10, 16 }
 				weap_data.stance_multipliers = {
@@ -2256,7 +2256,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Amaroq
 	self.awp.CLIP_AMMO_MAX = 5
-	self.awp.stats.damage = 36
+	self.awp.stats.damage = 24
 	self.awp.stats.spread = 24
 	self.awp.stats.recoil = 4
 	self.awp.stats.concealment = 12
