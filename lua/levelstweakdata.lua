@@ -8,8 +8,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		if level.world_name then
 			level.player_style = nil
 			level.group_ai_settings = {}
--- List of all the group AI settings for reference
---[[ 
+			-- List of all the group AI settings for reference
+			--[[ 
 			level.group_ai_settings = {
 				difficulty_curve_points = { 0.5 },
 				cloaker_interval_mul = 1,
@@ -95,7 +95,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.has_megaphone_cop = true
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
-	
+
 	-- Set Group AI presets that determine spawngroup composition and distribution
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -126,7 +126,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex_cooking.group_ai_preset = "remote"
 	self.chca.group_ai_preset = "remote"
 	self.deep.group_ai_preset = "remote"
-	
+
 	-- Set AI group types (factions)
 	self.kosugi.ai_group_type = "murkywater"
 	self.dark.ai_group_type = "murkywater"
@@ -135,7 +135,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pines.ai_group_type = "russia"
 	self.nail.ai_group_type = "zombie"
 	self.help.ai_group_type = "zombie"
-		
+
 	-- Set difficulty scaling  presets
 	self.escape_park.difficulty_scaling_preset = "escape"
 	self.escape_cafe_day.difficulty_scaling_preset = "escape"
@@ -146,7 +146,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.difficulty_scaling_preset = "escape"
 	self.escape_garage.difficulty_scaling_preset = "escape"
 	self.framing_frame_2.difficulty_scaling_preset = "escape"
-	
+
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"
@@ -175,7 +175,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mad.difficulty_scaling_preset = "regroup_slow"
 	self.pal.difficulty_scaling_preset = "regroup_slow"
 	self.flat.difficulty_scaling_preset = "regroup_slow"
-	self.friend.difficulty_scaling_preset = "regroup_slow"	
+	self.friend.difficulty_scaling_preset = "regroup_slow"
 	self.dah.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
 	self.nmh.difficulty_scaling_preset = "regroup_slow"
@@ -183,14 +183,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex_cooking.difficulty_scaling_preset = "regroup_slow"
 	self.bex.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
-		
+
 	self.pex.difficulty_scaling_preset = "sustain"
 
 	self.man.difficulty_scaling_preset = "sustain_slow"
 	self.vit.difficulty_scaling_preset = "sustain_slow"
 	self.trai.difficulty_scaling_preset = "sustain_slow"
 
-	-- Add Group AI settings									
+	-- Add Group AI settings
 	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
 	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
 
@@ -266,7 +266,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 
 	self.shoutout_raid.group_ai_settings.assault_force_mul = 1.2
@@ -337,7 +337,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 	}
-	
+
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
 		assault_force_mul = 0.6,
@@ -410,7 +410,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.help.group_ai_settings.assault_force_mul = 0.8
 
 	self.friend.group_ai_settings.assault_force_mul = 1.2
