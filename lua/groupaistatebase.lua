@@ -566,6 +566,26 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 	e_data.spawn_group.delay_t = math.max(e_data.spawn_group.delay_t, delay_t)
 end)
 
+-- Fix stale neighbours entries when creating AI Areas
+-- The function only modifies bidirectional neighbours to point to the newly created area
+-- Leaving stale neighbours entries if there was an existing one-way link due to navlinks
+Hooks:PostHook(GroupAIStateBase, "add_area", "eclipse_add_area", function(self, area_id, nav_segs, area_pos)
+	local all_areas = self._area_data
+	local new_area = all_areas[area_id]
+	if not new_area then
+		return
+	end
+
+	for _, other_area in pairs(all_areas) do
+		for _, seg_id in ipairs(nav_segs) do
+			if other_area.neighbours[seg_id] then
+				other_area.neighbours[seg_id] = nil
+				other_area.neighbours[new_area.id] = new_area
+			end
+		end
+	end
+end)
+
 -- Fix this function doing nothing
 function GroupAIStateBase:_merge_coarse_path_by_area(coarse_path)
 	local i_nav_seg = #coarse_path
