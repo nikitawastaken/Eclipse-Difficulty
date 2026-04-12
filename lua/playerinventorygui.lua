@@ -671,11 +671,12 @@ function PlayerInventoryGui:_get_armor_stats(name)
 				value = managers.player:transparency_value(detection_risk),
 			}
 		elseif stat.name == "armor_regen" then
-			local base = tweak_data.player.damage.REGENERATE_TIME
+			local base = 0
+			local mod = managers.player:body_armor_value("regen_timer", upgrade_level)
 			local mul1 = managers.player:body_armor_regen_multiplier(false, 1)
 			local mul2 = managers.player:upgrade_value("player", "armor_regen_time_mul", 1)
 			base_stats[stat.name] = {
-				value = base,
+				value = (base + mod),
 			}
 
 			local armor_grinding_data = managers.player:upgrade_value("player", "armor_grinding", nil)
@@ -684,11 +685,11 @@ function PlayerInventoryGui:_get_armor_stats(name)
 				local idx = armor_data.upgrade_level
 				local target_tick = armor_grinding_data[idx][2]
 				skill_stats[stat.name] = {
-					value = target_tick - base,
+					value = target_tick - (base + mod),
 				}
 			else
 				skill_stats[stat.name] = {
-					value = base * (mul1 * mul2 - 1),
+					value = (base + mod) * (mul1 * mul2 - 1),
 				}
 			end
 		elseif stat.name == "damage_shake" then
