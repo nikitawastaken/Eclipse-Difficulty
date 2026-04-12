@@ -632,15 +632,6 @@ function WeaponTweakData:_init_weapons(overrides)
 					damage_mul = 0.5,
 				},				
 			}
-
-			-- Set enemy penetration count caps
-			if weap_data.can_shoot_through_enemy then
-				if cat_map.dmr then
-					weap_data.max_nr_enemy_penetrations = 1
-				elseif cat_map.snp then	
-					weap_data.max_nr_enemy_penetrations	= self:_calculate_snp_penetrations(real_damage, weap_data.penetration_scale)
-				end
-			end
 			
 			if weap_data.kick then
 				if is_turret then
@@ -686,6 +677,15 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.kick.crouching = clone(weap_data.kick.standing)
 				weap_data.kick.steelsight = clone(weap_data.kick.standing)
 			end				
+
+			-- Set enemy penetration count caps
+			if weap_data.can_shoot_through_enemy then
+				if cat_map.snp then
+					weap_data.max_nr_enemy_penetrations	= self:_calculate_snp_penetrations(real_damage, weap_data.penetration_scale)
+				else
+					weap_data.max_nr_enemy_penetrations = 1
+				end
+			end
 			
 			if weap_data.fire_mode_data then
 				if weap_data.auto and  weap_data.fire_mode_data.fire_rate then
@@ -1438,18 +1438,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.type54_underbarrel.stats_modifiers = nil
 
 	-- Pipette Mk.2
-	self.welrod.CLIP_AMMO_MAX = 5
+	self.welrod.CLIP_AMMO_MAX = 6
 	self.welrod.stats.damage = 96
 	self.welrod.stats.spread = 18
 	self.welrod.stats.recoil = 4
 	self.welrod.stats.concealment = 28
 	self.welrod.fire_mode_data.fire_rate = 60 / 27
 	self.welrod.fire_rate_multiplier = 45 / 27
+	self.welrod.special_damage_multiplier = 1.5  
 	self.welrod.stats_modifiers = nil
 	self.welrod.no_standard_fire_rate = true -- No automatic pistol fire rate override
 	self.welrod.can_shoot_through_enemy = true
-	self.welrod.can_shoot_through_shield = true
-	self.welrod.can_shoot_through_wall = true
+	self.welrod.can_shoot_through_shield = true -- Was it really that hard, STG?
+	self.welrod.can_shoot_through_wall = true 
 	self.welrod.has_description = true
 	self.welrod.desc_id = "bm_w_lemming_desc"
 	
@@ -2696,37 +2697,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		}
 	end
 
-	self.init_stat_overrides.welrod = function(weap_data)
-		self.welrod.min_max_clips = 3
-		self.welrod.special_damage_multiplier = 1.5
-		self.welrod.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.5,
-				},
-				moving = {
-					hipfire = 1.5,
-					crouching = 1,
-					steelsight = 1.3,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.1,
-					crouching = 1,
-					steelsight = 0.9,
-				},
-				moving = {
-					hipfire = 1.3,
-					crouching = 1,
-					steelsight = 1.2,
-				},
-			},
-		}
-	end
-	
 	self.init_stat_overrides.ray = function(weap_data)
 		self.ray.pickup_mul = 0
 		self.ray.min_max_clips = 2
