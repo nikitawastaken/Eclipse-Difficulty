@@ -62,8 +62,8 @@ return {
 		difficulty_max = 1,
 		difficulty_min = 1,
 		ponr = {
-			length = 180,
-			length_balance_mul = { 1.33, 1.15, 1, 0.85 },
+			length = 210,
+			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
 	},
 	[103595] = {
