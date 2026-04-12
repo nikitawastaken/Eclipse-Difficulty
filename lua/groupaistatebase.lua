@@ -306,7 +306,7 @@ function GroupAIStateBase:set_difficulty(value) end
 function GroupAIStateBase:add_difficulty(value)
 	self:add_difficulty_addend({
 		amount = value,
-		time = value * 60,
+		time = value * 240,
 	})
 end
 
