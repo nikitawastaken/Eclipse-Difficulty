@@ -314,7 +314,7 @@ return {
 	-- vault ambush
 	[100225] = {
 		values = {
-			amount = is_pro_job and 3 or 2,
+			amount = is_pro_job and 2 or 1,
 		},
 	},
 	[103998] = filter_hard_above,
