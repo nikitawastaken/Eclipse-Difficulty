@@ -19,10 +19,10 @@ local random_elite_dozers = {
 	elite_skull_bulldozer,
 }
 local bulldozers = is_eclipse_pro and random_elite_dozers or random_dozers
-local specials = { 
-	[taser] = 3, 
-	[medic] = 2, 
-	[cloaker] = 1 
+local specials = {
+	[taser] = 3,
+	[medic] = 2,
+	[cloaker] = 1,
 }
 
 local filter_disable = Eclipse.utils.set_diff_groups("disable")

@@ -85,13 +85,13 @@ return {
 	-- Reduce the number of spawngroups to a more reasonable amount.
 	[100127] = { -- ai_enemy_prefered_add_001
 		values = {
-			spawn_groups = { 
-			--	100128, 
-				100130, 
-			--	100131, 
+			spawn_groups = {
+				--	100128,
+				100130,
+				--	100131,
 				100132,
-			--	101844, 
-				101843, 
+				--	101844,
+				101843,
 				100133,
 			},
 		},
