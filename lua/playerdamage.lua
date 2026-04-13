@@ -286,12 +286,14 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
 
-			if pm:has_inactivate_temporary_upgrade("temporary", "armor_break_invulnerable") then
-				pm:activate_temporary_upgrade("temporary", "armor_break_invulnerable")
+			-- Failsafe Protocol (remake it to use the cooldown system instead of temporary)
+			if pm:has_enabled_cooldown_upgrade("cooldown", "armor_break_invulnerable") then
+				self._can_take_dmg_timer = tweak_data.upgrades.values.player.armor_break_invulnerable_duration[1] or 0
 
-				self._can_take_dmg_timer = pm:temporary_upgrade_value("temporary", "armor_break_invulnerable", 0)
+				pm:disable_cooldown_upgrade("cooldown", "armor_break_invulnerable")
 			end
 
+			-- Iron Curtain
 			if pm:has_enabled_cooldown_upgrade("cooldown", "crewmate_damage_reduction") then
 				managers.network:session():send_to_peers("sync_damage_reduction_from_crewmate")
 
@@ -375,7 +377,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
+	if managers.player:has_activate_temporary_upgrade("temporary", "health_ratio_invulnerable") then
 		return 0
 	end
 
@@ -403,16 +405,16 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if self._has_mrwi_health_invulnerable then
-		local health_threshold = self._mrwi_health_invulnerable_threshold or 0.5
-		local is_cooling_down = managers.player:get_temporary_property("mrwi_health_invulnerable", false)
+	-- Remake the <%X HP invuln upgrade to use the cooldown system instead of temporary
+	if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_ratio_invulnerable") then
+		local health_threshold = tweak_data.upgrades.values.player.health_ratio_invulnerable_ratio[1] or 0.5
 
-		-- Make <50%hp invuln upgrade not proc on armor hits
-		if self:health_ratio() <= health_threshold and health_subtracted > 0 and not is_cooling_down then -- was it so hard to just add one more check, overkill?
-			local cooldown_time = self._mrwi_health_invulnerable_cooldown or 10
+		-- Make <X% hp invuln upgrade not proc on armor hits
+		if self:health_ratio() <= health_threshold and health_subtracted > 0 then
+			self:set_health(self:_max_health() * health_threshold) -- make it so that your health doesn't drop below 25% when activating invuln
 
-			managers.player:activate_temporary_upgrade("temporary", "mrwi_health_invulnerable")
-			managers.player:activate_temporary_property("mrwi_health_invulnerable", cooldown_time, true)
+			managers.player:activate_temporary_upgrade("temporary", "health_ratio_invulnerable")
+			managers.player:disable_cooldown_upgrade("cooldown", "health_ratio_invulnerable")
 		end
 	end
 
@@ -845,6 +847,11 @@ end
 function PlayerDamage:_upd_suppression(t, dt)
 	-- crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
+		return
+	end
+
+	-- active frenzy blocks armor suppression
+	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
 		return
 	end
 

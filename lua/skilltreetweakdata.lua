@@ -116,6 +116,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- ENFORCER --
 
+	-- original Underdog
+	self.skills.underdog[1].upgrades = { "" }
+	self.skills.underdog[2].upgrades = { "" }
+	self.skills.underdog.name_id = "menu_work_in_progress_beta"
+	self.skills.underdog.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.underdog.icon_xy = { 0, 0 }
+
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
 	self.skills.shotgun_cqb[2].upgrades = { "player_close_damage_multiplier" }
@@ -506,9 +513,16 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.messiah[1].upgrades = { "player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer" }
 	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1" }
 
+	-- Underdog
+	self.skills.martial_arts[1].upgrades = { "player_damage_multiplier_outnumbered" }
+	self.skills.martial_arts[2].upgrades = { "player_damage_dampener_outnumbered" }
+	self.skills.martial_arts.name_id = "menu_underdog_beta"
+	self.skills.martial_arts.desc_id = "menu_underdog_beta_desc"
+	self.skills.martial_arts.icon_xy = { 2, 1 }
+
 	-- Bloodthirst
-	self.skills.bloodthirst[1].upgrades = { "player_melee_damage_stacking_1" }
-	self.skills.bloodthirst[2].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier" }
+	self.skills.bloodthirst[1].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier", "player_melee_knockdown_mul" }
+	self.skills.bloodthirst[2].upgrades = { "player_melee_damage_stacking_1" }
 	self.skills.bloodthirst.name_id = "menu_bloodthirst"
 	self.skills.bloodthirst.desc_id = "menu_bloodthirst_desc"
 
@@ -527,8 +541,14 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.drop_soap.desc_id = "menu_counter_strike_desc"
 
 	-- Berserker
-	self.skills.wolverine[1].upgrades = { "player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier" }
-	self.skills.wolverine[2].upgrades = { "player_melee_damage_health_ratio_multiplier" }
+	self.skills.wolverine[1].upgrades = { "player_berserker_hit_stacking", "player_berserker_melee_damage_addend" }
+	self.skills.wolverine[2].upgrades = { "player_berserker_ranged_damage_addend" }
+	self.skills.wolverine.name_id = "menu_berserker"
+	self.skills.wolverine.desc_id = "menu_berserker_desc"
+
+	-- Frenzy
+	self.skills.frenzy[1].upgrades = { "cooldown_melee_attack_frenzy", "temporary_frenzy_damage_reduction", "temporary_frenzy_no_armor_suppression" }
+	self.skills.frenzy[2].upgrades = { "player_cooldown_reset_frenzy" }
 
 	-- MISC STUFF --
 	-- Medic Tree
@@ -680,7 +700,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[2][3].icon_xy = { 2, 1 }
 	self.specializations[2][5].upgrades = { "player_uncover_multiplier" }
 	self.specializations[2][5].icon_xy = { 1, 1 }
-	self.specializations[2][7].upgrades = { "temporary_mrwi_health_invulnerable_1" }
+	self.specializations[2][7].upgrades = { "cooldown_health_ratio_invulnerable", "temporary_health_ratio_invulnerable" }
 	self.specializations[2][7].texture_bundle_folder = "mrwi"
 	self.specializations[2][7].icon_xy = { 3, 0 }
 	self.specializations[2][9].upgrades = { "player_extra_health_multiplier_2" }
@@ -693,7 +713,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
 	self.specializations[3][7].upgrades = { "cooldown_crewmate_damage_reduction" }
 	self.specializations[3][7].icon_xy = { 1, 4 }
-	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[3][9].upgrades = { "cooldown_armor_break_invulnerable", "player_passive_loot_drop_multiplier" }
 	self.specializations[3][9].icon_xy = { 0, 4 }
 
 	-- rogue
@@ -736,6 +756,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[7][7].icon_xy = { 4, 8 }
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[7][9].icon_xy = { 6, 8 }
+
+	-- infiltrator
+	self.specializations[8][9].upgrades = { "cooldown_melee_kill_health_leech", "player_passive_loot_drop_multiplier" }
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")

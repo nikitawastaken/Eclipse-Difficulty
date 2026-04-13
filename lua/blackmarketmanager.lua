@@ -158,7 +158,9 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	multiplier = multiplier + 1 - managers.player:get_property("trigger_happy", 1)
 
-	multiplier = multiplier + 1 - (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
+	multiplier = multiplier - managers.player:get_property("snp_consecutive_headshots_mul", 0)
+
+	multiplier = multiplier - managers.player:get_property("berserker_ranged_damage", 0)
 
 	return self:_convert_add_to_mul(multiplier)
 end
