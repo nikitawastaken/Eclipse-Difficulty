@@ -1293,7 +1293,10 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 
 	if col_ray and alive(col_ray.unit) then
 		local damage, damage_effect = managers.blackmarket:equipped_melee_weapon_damage_info(charge_lerp_value)
-		local damage_effect_mul = math.max(managers.player:upgrade_value("player", "melee_knockdown_mul", 1), managers.player:upgrade_value(self._equipped_unit:base():weapon_tweak_data().categories and self._equipped_unit:base():weapon_tweak_data().categories[1], "melee_knockdown_mul", 1))
+		local damage_effect_mul = math.max(
+			managers.player:upgrade_value("player", "melee_knockdown_mul", 1),
+			managers.player:upgrade_value(self._equipped_unit:base():weapon_tweak_data().categories and self._equipped_unit:base():weapon_tweak_data().categories[1], "melee_knockdown_mul", 1)
+		)
 		damage = damage * managers.player:get_melee_dmg_multiplier()
 		damage_effect = damage_effect * damage_effect_mul
 		col_ray.sphere_cast_radius = sphere_cast_radius
@@ -1314,12 +1317,12 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 
 			if not hit_unit:character_damage()._no_blood then
 				managers.game_play_central:play_impact_flesh({
-					col_ray = col_ray
+					col_ray = col_ray,
 				})
 				managers.game_play_central:play_impact_sound_and_effects({
 					no_decal = true,
 					no_sound = true,
-					col_ray = col_ray
+					col_ray = col_ray,
 				})
 			end
 
@@ -1340,7 +1343,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 				no_decal = true,
 				no_sound = true,
 				col_ray = col_ray,
-				effect = Idstring("effects/payday2/particles/impacts/fallback_impact_pd2")
+				effect = Idstring("effects/payday2/particles/impacts/fallback_impact_pd2"),
 			})
 		end
 
@@ -1348,7 +1351,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 
 		if _G.IS_VR and hand_id then
 			custom_data = {
-				engine = hand_id == 1 and "right" or "left"
+				engine = hand_id == 1 and "right" or "left",
 			}
 		end
 
@@ -1377,7 +1380,8 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 			-- Berserker melee damage bonus
 			dmg_multiplier = dmg_multiplier * (1 + managers.player:get_property("berserker_melee_damage", 0))
 
-			dmg_multiplier = dmg_multiplier * managers.player:upgrade_value("player", "melee_" .. tostring(tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type) .. "_damage_multiplier", 1)
+			dmg_multiplier = dmg_multiplier
+				* managers.player:upgrade_value("player", "melee_" .. tostring(tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type) .. "_damage_multiplier", 1)
 
 			if character_unit:base() and character_unit:base().char_tweak and character_unit:base():char_tweak().priority_shout then
 				dmg_multiplier = dmg_multiplier * (tweak_data.blackmarket.melee_weapons[melee_entry].stats.special_damage_multiplier or 1)
@@ -1387,7 +1391,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 				self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 				self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
 					nil,
-					0
+					0,
 				}
 				local stack = self._state_data.stacking_dmg_mul.melee
 
@@ -1416,7 +1420,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 			end
 
 			local action_data = {
-				variant = "melee"
+				variant = "melee",
 			}
 
 			if _G.IS_VR and melee_entry == "weapon" and not bayonet_melee then
@@ -1439,7 +1443,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 				self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 				self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
 					nil,
-					0
+					0,
 				}
 				local stack = self._state_data.stacking_dmg_mul.melee
 
@@ -1467,7 +1471,7 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 		self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 		self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
 			nil,
-			0
+			0,
 		}
 		local stack = self._state_data.stacking_dmg_mul.melee
 		stack[1] = nil

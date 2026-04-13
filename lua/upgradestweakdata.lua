@@ -2416,7 +2416,7 @@ function UpgradesTweakData:init(tweak_data)
 			stacks_per_hit = 1,
 			max_stacks = 10,
 			stack_decay_t = 5,
-		}
+		},
 	}
 	self.values.player.berserker_melee_damage_addend = { 0.1 }
 	self.definitions.player_berserker_melee_damage_addend = {

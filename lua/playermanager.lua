@@ -477,7 +477,6 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		self:disable_cooldown_upgrade("cooldown", "melee_kill_health_leech")
 	end
 
-
 	-- Sociopath armor leech
 	local has_melee_armor_leech = self:has_enabled_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
 	if variant == "melee" and has_melee_armor_leech then
