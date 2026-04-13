@@ -144,7 +144,7 @@ return {
 	},
 	[101162] = {
 		on_executed = {
-			{ id = 101161, delay = 240, delay_rand = 120 },
+			{ id = 101161, delay = 420, delay_rand = 60 },
 		},
 	},
 	-- change up swat van enemies
