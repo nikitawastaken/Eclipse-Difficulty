@@ -569,18 +569,21 @@ end)
 -- Fix stale neighbours entries when creating AI Areas
 -- The function only modifies bidirectional neighbours to point to the newly created area
 -- Leaving stale neighbours entries if there was an existing one-way link due to navlinks
-Hooks:PostHook(GroupAIStateBase, "add_area", "eclipse_add_area", function(self, area_id, nav_segs, area_pos)
+Hooks:PostHook(GroupAIStateBase, "add_area", "eclipse_add_area", function(self, area_id, nav_segs)
 	local all_areas = self._area_data
 	local new_area = all_areas[area_id]
 	if not new_area then
 		return
 	end
 
-	for _, other_area in pairs(all_areas) do
-		for _, seg_id in ipairs(nav_segs) do
-			if other_area.neighbours[seg_id] then
-				other_area.neighbours[seg_id] = nil
-				other_area.neighbours[new_area.id] = new_area
+	local all_nav_segs = managers.navigation._nav_segments
+	for _, seg_id in ipairs(nav_segs) do
+		local nav_seg = all_nav_segs[seg_id]
+		if nav_seg and not nav_seg.disabled then
+			for other_seg_id, other_nav_seg in pairs(all_nav_segs) do
+				if not other_nav_seg.disabled and other_nav_seg.neighbours[seg_id] and not nav_seg.neighbours[other_seg_id] then -- recompute one-directional links
+					self:on_nav_seg_neighbour_state(other_seg_id, seg_id, true)
+				end
 			end
 		end
 	end
