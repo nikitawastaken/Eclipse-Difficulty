@@ -78,7 +78,7 @@ function PlayerTweakData:_set_presets()
 		1.4,
 		1.7,
 	})
-	
+
 	-- Time it takes for a player to exit the tased state
 	self.damage.TASED_RECOVER_TIME = get_difficulty_specific_value({
 		1,
@@ -87,7 +87,7 @@ function PlayerTweakData:_set_presets()
 		2,
 		3,
 	})
-	
+
 	-- On Pro Jobs, reduce the down timer per down by this many seconds, down to a minimum
 	if is_pro_job then
 		self.damage.DOWNED_TIME_DEC = get_difficulty_specific_value({
