@@ -1,4 +1,5 @@
 <effect force_synch="false">
+    <use name="effects/payday2/particles/weapons/fps_parts/fps_combo_light_all"/>
     <atom name="flame base" min_size="1" max_size="4" lifetime="0.4" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="kill" cull_policy="kill" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
         <initializerstack>
             <boxrandomrotation relative="effect" min="0 1 0" max="0 1 0" min_rot="0" max_rot="0"/>
@@ -129,17 +130,6 @@
                     <key t="1.8999999761581" v="0"/>
                 </rotation_scale_keys>
             </billboard>
-        </visualizerstack>
-    </atom>
-    <atom name="light" min_size="1" max_size="1" lifetime="0.1" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="kill" cull_policy="kill" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
-        <initializerstack>
-            <localboxrandomposition min="0 160 0" max="0 166 0"/>
-        </initializerstack>
-        <simulatorstack>
-            <worldtransform transform_rotations="false"/>
-        </simulatorstack>
-        <visualizerstack>
-            <light per_particle_age="false" shadow_caster="false" specular="true" color_input="constant" color="224.00001525879 209.00001525879 156" multiplier_input="constant" multiplier="0.002" far_range_input="constant" far_range="300"/>
         </visualizerstack>
     </atom>
 </effect>
