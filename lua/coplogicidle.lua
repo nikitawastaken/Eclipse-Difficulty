@@ -252,16 +252,16 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 
 					if target_vulnerable then
 						if attention_data.is_local_player then
-							local current_state = att_unit:movement():current_state() 
+							local current_state = att_unit:movement():current_state()
 
 							if current_state:_is_reloading() then
 								target_priority_slot = target_priority_slot - 1
-						--		Eclipse:log_chat("Target vulnerable")
+								--		Eclipse:log_chat("Target vulnerable")
 							end
 						elseif attention_data.is_husk_player then
 							if att_unit.anim_data and att_unit:anim_data().reload then
 								target_priority_slot = target_priority_slot - 1
-						--		Eclipse:log_chat("Target vulnerable")
+								--		Eclipse:log_chat("Target vulnerable")
 							end
 						end
 					end
