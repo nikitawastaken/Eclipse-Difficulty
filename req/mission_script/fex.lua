@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local security_enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"
@@ -60,6 +61,8 @@ local swat_spawn = {
 		participate_to_group_ai = true,
 	},
 }
+local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
 
 return {
 	[102919] = { -- enable_safe_interaction_loud
@@ -109,10 +112,10 @@ return {
 			},
 		},
 		on_executed = { -- preferreds
-			{ id = 100830, delay = 30 },
+			{ id = 100830, delay = 45 }, -- vanilla: 30
 		},
 	},
-	[103217] = {
+	[103217] = { -- inner_sanctum_and_loud
 		reinforce = {
 			{
 				name = "sanctum_entrance01",
@@ -135,16 +138,16 @@ return {
 	[100708] = {
 		values = {
 			trigger_times = 1,
-			enabled = diff_i >= 5 and true or false,
+			enabled = diff_i >= 4 and true or false,
 		},
 		on_executed = {
 			{ id = 101160, remove = true },
-			{ id = 101161, delay = 60 },
+			{ id = 101161, delay = chopper_delay_init },
 		},
 	},
 	[101162] = {
 		on_executed = {
-			{ id = 101161, delay = 420, delay_rand = 60 },
+			{ id = 101161, delay = 300, delay_rand = chopper_delay },
 		},
 	},
 	-- change up swat van enemies

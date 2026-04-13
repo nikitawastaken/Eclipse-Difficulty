@@ -60,17 +60,17 @@ local bags_required_objective = {
 	},
 }
 local reenforce_office_1 = {
-	name = "office1",
+	name = "office01",
 	force = 2,
 	position = Vector3(700, -6000, 0),
 }
 local reenforce_office_2 = {
-	name = "office2",
+	name = "office02",
 	force = 2,
 	position = Vector3(-700, -6000, 0),
 }
 local reenforce_office_3 = {
-	name = "office3",
+	name = "office03",
 	force = 2,
 	position = Vector3(1150, -4400, 0),
 }
@@ -97,12 +97,6 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Delay initial preferreds
-	[103009] = { -- start police car drive in
-		on_executed = {
-			{ id = 100129, delay = 15 }, -- preferred
-		},
-	},
 	-- Add new reinforce
 	[100109] = { -- police
 		reinforce = {
@@ -126,6 +120,9 @@ return {
 				force = 3,
 				position = Vector3(-2250, -2350, 0),
 			},
+		},
+		on_executed = { -- preferred
+			{ id = 100129, delay = 45 }, -- vanilla: 30
 		},
 	},
 	[102311] = { -- func_sequence_trigger_003

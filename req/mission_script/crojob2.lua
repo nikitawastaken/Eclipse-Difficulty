@@ -44,20 +44,8 @@ return {
 		},
 	},
 	[106867] = disabled,
-	[104040] = { -- This spawngroup is split
-		values = {
-			interval = close_spawn.interval,
-			elements = {
-				--	105353,
-				--	105354,
-				100810,
-				100812,
-				100814,
-			},
-		},
-	},
 	-- Add new reinforce
-	[101882] = {
+	[101540] = { -- police_called
 		reinforce = {
 			{
 				name = "crane01",
@@ -78,6 +66,18 @@ return {
 				name = "wagon02",
 				force = 2,
 				position = Vector3(-3700, 0, 500),
+			},
+		},
+	},
+	[104040] = { -- This spawngroup is split
+		values = {
+			interval = close_spawn.interval,
+			elements = {
+				--	105353,
+				--	105354,
+				100810,
+				100812,
+				100814,
 			},
 		},
 	},

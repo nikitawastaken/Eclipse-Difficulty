@@ -58,13 +58,13 @@ return {
 	-- Add a new loot drop point
 	[100405] = disabled,
 	[101907] = { -- start enemies delay end
-		on_executed = {
-			{ id = 100230, delay = 45 }, -- wall spawns
+		on_executed = { -- wall spawns
+			{ id = 100230, delay = 45 }, -- vanilla: 0
 		},
 	},
 	[100224] = { -- Combat ON
-		on_executed = {
-			{ id = 101024, delay = 45 }, -- elevators
+		on_executed = { -- elevators
+			{ id = 101024, delay = 45 }, -- vanilla: 0
 		},
 		loot_drop = {
 			{ name = "pool_area", position = Vector3(-4345, -4895, 15) },

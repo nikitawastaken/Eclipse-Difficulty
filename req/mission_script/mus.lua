@@ -84,8 +84,8 @@ return {
 				position = Vector3(0, -2500, -300),
 			},
 		},
-		on_executed = { -- standard preferreds
-			{ id = 100127, delay = 60 },
+		on_executed = { -- standard_preferreds
+			{ id = 100127, delay = 60 }, -- vanilla: 0
 		},
 	},
 	-- restore ground snipers
