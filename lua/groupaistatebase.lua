@@ -570,8 +570,7 @@ end)
 -- The function only modifies bidirectional neighbours to point to the newly created area
 -- Leaving stale neighbours entries if there was an existing one-way link due to navlinks
 Hooks:PostHook(GroupAIStateBase, "add_area", "eclipse_add_area", function(self, area_id, nav_segs)
-	local all_areas = self._area_data
-	local new_area = all_areas[area_id]
+	local new_area = self._area_data[area_id]
 	if not new_area then
 		return
 	end
@@ -581,7 +580,7 @@ Hooks:PostHook(GroupAIStateBase, "add_area", "eclipse_add_area", function(self, 
 		local nav_seg = all_nav_segs[seg_id]
 		if nav_seg and not nav_seg.disabled then
 			for other_seg_id, other_nav_seg in pairs(all_nav_segs) do
-				if not other_nav_seg.disabled and other_nav_seg.neighbours[seg_id] and not nav_seg.neighbours[other_seg_id] then -- recompute one-directional links
+				if not other_nav_seg.disabled and not new_area.nav_segs[other_seg_id] and other_nav_seg.neighbours[seg_id] and not nav_seg.neighbours[other_seg_id] then -- recompute one-directional links
 					self:on_nav_seg_neighbour_state(other_seg_id, seg_id, true)
 				end
 			end
