@@ -70,8 +70,8 @@
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>
     <material name="mtr_bulldozer_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture 	file="units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy_df_nm" mip="2" />
-        <diffuse_texture 		file="units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy_df_df" mip="2" />
+        <bump_normal_texture 	file="units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy_nm" mip="2" />
+        <diffuse_texture 		file="units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy_df" mip="2" />
         <variable 				value="1 1 1" type="vector3" name="contour_color"/>
         <variable 				value="0" type="scalar" name="contour_opacity"/>
     </material>
