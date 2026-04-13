@@ -68,7 +68,7 @@
 	<material name="mtr_eyes" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SELF_ILLUMINATION:SELF_ILLUMINATION_BLOOM:SKINNED_3WEIGHTS" version="2">
         <bump_normal_texture 			file="units/pd2_dlc_hvh/characters/shared_textures/hvh_heads_atlas_var2_nm" />
         <diffuse_texture 				file="units/pd2_dlc_hvh/characters/shared_textures/hvh_heads_atlas_var2_df" />
-		 <self_illumination_texture 	file="units/pd2_dlc_hvh/characters/shared_textures/shared_textures/eyes_il"/>
+		 <self_illumination_texture 	file="units/pd2_dlc_hvh/characters/shared_textures/eyes_il"/>
         <variable 						type="scalar" name="il_multiplier" value="reddot"/>
         <variable 						type="scalar" name="il_bloom" value="8.9460004249122"/>
 	</material>
