@@ -7,12 +7,13 @@ local disabled = {
 local train_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local bridge_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
