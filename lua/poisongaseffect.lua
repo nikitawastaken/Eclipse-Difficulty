@@ -30,7 +30,7 @@ function PoisonGasEffect:init(position, normal, projectile_tweak, grenade_unit)
 	self._effect = World:effect_manager():spawn({
 		effect = self._tweak_data.poison_gas_effect and Idstring(self._tweak_data.poison_gas_effect) or Idstring("effects/particles/explosions/poison_gas"),
 		position = position,
-		normal = normal
+		normal = normal,
 	})
 	--Blurzone setup
 	local blurzone_radius = self._range * self._radius_blurzone_multiplier
@@ -40,7 +40,7 @@ end
 function PoisonGasEffect:update(t, dt)
 	if self._timer then
 		self._timer = self._timer - dt
-		
+
 		local nearby_players = World:find_units_quick("sphere", self._position, self._range, managers.slot:get_mask("players"))
 		for _, unit in ipairs(nearby_players) do
 			self:_do_damage(t)
@@ -48,7 +48,7 @@ function PoisonGasEffect:update(t, dt)
 		if not self._started_fading and self._timer <= self._fade_time then
 			World:effect_manager():fade_kill(self._effect)
 			managers.environment_controller:set_blurzone(self._grenade_unit:key(), 0)
-			
+
 			self._started_fading = true
 		end
 
@@ -56,7 +56,11 @@ function PoisonGasEffect:update(t, dt)
 			self._timer = nil
 
 			if alive(self._grenade_unit) and (Network:is_server() or self._grenade_unit:id() == -1) then
-				managers.enemy:add_delayed_clbk("PoisonGasEffect" .. tostring(self._grenade_unit:key()), callback(PoisonGasEffect, PoisonGasEffect, "remove_grenade_unit"), TimerManager:game():time() + self._dot_data.dot_length + 1)
+				managers.enemy:add_delayed_clbk(
+					"PoisonGasEffect" .. tostring(self._grenade_unit:key()),
+					callback(PoisonGasEffect, PoisonGasEffect, "remove_grenade_unit"),
+					TimerManager:game():time() + self._dot_data.dot_length + 1
+				)
 			end
 		end
 
@@ -76,7 +80,7 @@ function PoisonGasEffect:update(t, dt)
 							hurt_animation = not self._dot_data.hurt_animation_chance or math.rand(1) < self._dot_data.hurt_animation_chance,
 							weapon_id = self._grenade_id,
 							weapon_unit = alive(self._grenade_unit) and self._grenade_unit or nil,
-							attacker_unit = alive(self._user_unit) and self._user_unit or nil
+							attacker_unit = alive(self._user_unit) and self._user_unit or nil,
 						}
 
 						managers.dot:add_doted_enemy(data)
@@ -97,7 +101,7 @@ function PoisonGasEffect:_do_damage(t)
 	if not alive(player_unit) or t < self._last_damage_tick + self._damage_tick_period then
 		return
 	end
-	
+
 	self._last_damage_tick = t
 	player_unit:character_damage():damage_killzone({
 		variant = "teargas",
