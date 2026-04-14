@@ -3795,8 +3795,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		6,
 		7,
 		8,
-		10,
-		12,
+		11,
+		14,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.6, 1 } or { 0.4, 0.7, 1 })
