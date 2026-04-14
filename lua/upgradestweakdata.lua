@@ -2414,11 +2414,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.berserker_hit_stacking = {
 		{
 			stacks_per_hit = 1,
-			max_stacks = 10,
-			stack_decay_t = 5,
+			max_stacks = 20,
+			stack_decay_t = 1,
 		},
 	}
-	self.values.player.berserker_melee_damage_addend = { 0.1 }
+	self.values.player.berserker_melee_damage_addend = { 0.05 }
 	self.definitions.player_berserker_melee_damage_addend = {
 		name_id = "menu_player_berserker_melee_damage_addend",
 		category = "feature",
@@ -2428,7 +2428,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.berserker_ranged_damage_addend = { 0.05 }
+	self.values.player.berserker_ranged_damage_addend = { 0.025 }
 	self.definitions.player_berserker_ranged_damage_addend = {
 		name_id = "menu_player_berserker_ranged_damage_addend",
 		category = "feature",
@@ -2439,12 +2439,11 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-	self.values.player.melee_damage_health_ratio_multiplier[1] = 1.5
-	self.skill_descs.wolverine.multibasic = "10%"
-	self.skill_descs.wolverine.multibasic2 = "10"
+	self.skill_descs.wolverine.multibasic = "5%"
+	self.skill_descs.wolverine.multibasic2 = "20"
 	self.skill_descs.wolverine.multibasic3 = "1"
-	self.skill_descs.wolverine.multipro = "5%"
-	self.skill_descs.wolverine.multipro2 = "10"
+	self.skill_descs.wolverine.multipro = "2.5%"
+	self.skill_descs.wolverine.multipro2 = "20"
 	self.skill_descs.wolverine.multipro3 = "1"
 
 	-- Frenzy
