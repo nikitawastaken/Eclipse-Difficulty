@@ -3,6 +3,7 @@
 	<use name="effects/payday2/particles/weapons/fps_parts/extra_fps_big_sparse"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/muzzle_smoke"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/muzzle_heat"/>
+	<use name="effects/payday2/particles/weapons/parts/distance_halo_big"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/fps_giant_flash"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/fps_spark_flash"/>
     <use_random>

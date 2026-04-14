@@ -1,8 +1,8 @@
 <effect force_synch="false">
-    <atom name="sparks0" min_size="1" max_size="1" lifetime="0.8" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="0" fade_in_length="10" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+    <atom name="sparks0" min_size="1" max_size="1" lifetime="2" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="0" fade_in_length="10" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
         <initializerstack>
-            <boxrandomposition relative="effect" min="40 40 125" max="-40 -40 285"/>
-            <boxrandomvelocity relative="effect" min="120 120 5295" max="-120 -120 8200"/>
+            <boxrandomposition relative="effect" min="0 0 125" max="0 0 285"/>
+            <boxrandomvelocity relative="effect" min="800 800 4800" max="-800 -800 6200"/>
             <boxrandomangle min="0" max="360"/>
             <boxrandomuvoffset uv_size="0.0625 0.0625" frame_start="0 0.9375" primary_step_direction="+x" secondary_step_direction="+y" num_frames="4"/>
             <boxrandomrotation relative="effect" min="0 0 0" max="0 0 0" min_rot="0" max_rot="0"/>

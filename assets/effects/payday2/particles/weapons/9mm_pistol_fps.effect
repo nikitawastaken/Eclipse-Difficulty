@@ -1,6 +1,7 @@
 <effect force_synch="false">
     <use name="effects/payday2/particles/weapons/fps_parts/fps_combo_light_all"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/fps_ball_flash"/>
+	<use name="effects/payday2/particles/weapons/parts/distance_halo_small"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/muzzle_smoke"/>
 	<use name="effects/payday2/particles/weapons/fps_parts/muzzle_heat"/>
     <use_random>

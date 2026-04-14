@@ -415,6 +415,12 @@
 							<file :name="sniper_fps_extra_long_flash.effect"/>
 							<file :name="third_big_flash_sniper.effect"/>
 						</group>
+						
+						<group :name="parts/">
+							<file :name="big_light.effect"/>
+							<file :name="medium_light.effect"/>
+							<file :name="uneven_light.effect"/>
+						</group>
 
 						<group :name="streaks/">
 							<file :name="big_light_streak.effect"/>
