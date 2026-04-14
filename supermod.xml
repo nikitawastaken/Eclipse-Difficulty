@@ -72,6 +72,7 @@
 				<group :hook_id="player/">
 					<post :hook_id="snipergrazedamage"/>
 					<post :hook_id="smokescreeneffect"/>
+					<post :hook_id="poisongaseffect"/>
 				</group>
 
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>

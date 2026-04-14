@@ -162,12 +162,17 @@ tweak_data.projectiles.xmas_snowball.curve_pow = 1
 
 tweak_data.projectiles.poison_gas_grenade.damage = 6
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
+tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 15
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
 tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.5
+tweak_data.projectiles.poison_gas_grenade.gas_player_damage = tweak_data.projectiles.cs_grenade_quick.damage_per_tick -- Tear gas dmg when player inside viper grenade
+tweak_data.projectiles.poison_gas_grenade.damage_tick_period = tweak_data.projectiles.cs_grenade_quick.damage_tick_period -- dmg tick period for player FF
+tweak_data.projectiles.poison_gas_grenade.radius_blurzone_multiplier = tweak_data.projectiles.cs_grenade_quick.radius_blurzone_multiplier -- Blurzone modifier
 
 tweak_data.projectiles.sticky_grenade.damage = 36
 tweak_data.projectiles.sticky_grenade.curve_pow = 1
+tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
 
 -- Launcher Grenades
 tweak_data.projectiles.launcher_frag.damage = 36

@@ -48,6 +48,9 @@
 
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
+	"bm_grenade_sticky_grenade": "Impact Grenade",
+	"bm_grenade_sticky_grenade_desc": "A grenade that explode on impact with the surfaces or enemies.",
+	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic gas that melt enemies lungs. Also will destroy your and teammates respiratory systems too if you decide to stay inside the cloud without mask protection.",
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
@@ -328,7 +331,7 @@
 	"bot_watchdogs_new_stage2_14_any_02": "Copy that, coming in at Dock 9!",
 	"bot_watchdogs_new_stage2_14_any_03": "Copy, coming in at Dock 9!",
 
-	"mad_txt_005": "	КОМНАТА МЕДОСМОТРА",
+	"mad_txt_005": "\tКОМНАТА МЕДОСМОТРА",
 	"mad_txt_006": "ОПЕРАЦИОННАЯ",
 
 	"menu_mutators_achievement_disabled": "",
