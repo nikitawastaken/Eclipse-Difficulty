@@ -2282,11 +2282,11 @@ PlayerAction.BerserkerHitStacking = {
 		local co = coroutine.running()
 		local time = Application:time()
 		local player_unit_damage_ext = player_manager:player_unit() and player_manager:player_unit():character_damage()
+		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
 		local target_time = time + stack_decay_t
-		local stacks = stacks_per_hit
+		local stacks = (stacks_per_hit * (is_armor_broken and 2 or 1))
 		local berserker_melee_damage_addend = player_manager:upgrade_value("player", "berserker_melee_damage_addend", 0)
 		local berserker_ranged_damage_addend = player_manager:upgrade_value("player", "berserker_ranged_damage_addend", 0)
-		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
 
 		local function on_receive_hit(attack_data)
 			local variant = attack_data.variant
@@ -2336,14 +2336,7 @@ function PlayerManager:_on_enter_berserker_hit_stacking_event(attack_data)
 		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
 
 		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine(
-				"berserker_hit_stacking",
-				PlayerAction.BerserkerHitStacking,
-				self,
-				data.stacks_per_hit * (is_armor_broken and 2 or 1),
-				data.max_stacks,
-				data.stack_decay_t
-			)
+			self._coroutine_mgr:add_coroutine("berserker_hit_stacking", PlayerAction.BerserkerHitStacking, self, data.stacks_per_hit, data.max_stacks, data.stack_decay_t)
 		end
 	end
 end
