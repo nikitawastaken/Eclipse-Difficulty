@@ -2336,7 +2336,14 @@ function PlayerManager:_on_enter_berserker_hit_stacking_event(attack_data)
 		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
 
 		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine("berserker_hit_stacking", PlayerAction.BerserkerHitStacking, self, data.stacks_per_hit * (is_armor_broken and 2 or 1), data.max_stacks, data.stack_decay_t)
+			self._coroutine_mgr:add_coroutine(
+				"berserker_hit_stacking",
+				PlayerAction.BerserkerHitStacking,
+				self,
+				data.stacks_per_hit * (is_armor_broken and 2 or 1),
+				data.max_stacks,
+				data.stack_decay_t
+			)
 		end
 	end
 end
