@@ -10,12 +10,12 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.spawn_rate_scaling = { 0.1, 0.4 }
 	self.assault_start_add = 1
 	self.special_spawn_drama_add = {
-		shield = 0.025,
-		taser = 0.05,
-		tank = 0.1,
-		spooc = 0.05,
-		medic = 0.025,
-		marksman = 0.05,
+		shield = 0.05,
+		taser = 0.075,
+		tank = 0.15,
+		spooc = 0.075,
+		medic = 0.05,
+		marksman = 0.075,
 	}
 	self.drama_weight_muls = {
 		shield = {
