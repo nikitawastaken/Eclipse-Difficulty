@@ -95,6 +95,19 @@
 		<search>
 			<network/>
 			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- Create a sync_set_cloaker_goggles_on message for `UnitHandler` -->
+			<message name="sync_set_cloaker_goggles_on" delivery="ordered" receiver="unit">
+				<param type="unit" /> <!-- Enemy unit -->
+				<param type="bool" /> <!-- Goggles on? -->
+			</message>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
 			<message name="sync_drill_upgrades"/>
 			<param type="unit"/>
 		</search>

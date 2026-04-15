@@ -245,6 +245,11 @@ function CopBase:set_cloaker_goggles_on(state)
 	if damage_ext and damage_ext:has_sequence(sequence) then
 		damage_ext:run_sequence_simple(sequence)
 	end
+
+	if Network:is_server() then
+		self._unit:network():send("sync_set_cloaker_goggles_on", state or false)
+		-- managers.network:session():send_to_peers_synched("sync_set_cloaker_goggles_on", self._unit, state)
+	end
 end
 
 -- No idea if play() needs source_name or sync arguments here
