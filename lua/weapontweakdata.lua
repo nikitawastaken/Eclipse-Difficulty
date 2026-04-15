@@ -1,6 +1,7 @@
 WeaponTweakData.WEAPON_TOTAL_DMG = 360
 WeaponTweakData.WEAPON_PICKUP_DMG = 16
 
+-- Remake stat tables to have linear scaling
 Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
 	self.stats.damage = {}
 	for i = 0, 1200, 1 do
@@ -33,6 +34,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 	end
 end)
 
+-- Add additional total ammo and pickup multipliers to Sniper rifles to offset their very high damage stats
 function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, pickup_scale)
 	local total_ammo_mul = 1
 	local pickup_mul = 1
@@ -48,23 +50,28 @@ function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, picku
 	return total_ammo_mul, pickup_mul
 end
 
+-- Calculate Sniper Rifles' enemy penetration limits based on their damage
 function WeaponTweakData:_calculate_snp_penetrations(damage, penetration_scale)
 	return 1 + (math.ceil(damage / penetration_scale) ^ 2)
 end
 
+-- Calculate mobility based on concealment using a scale defined for each weapon (category)
 function WeaponTweakData:_calculate_mobility_stat(concealment_stat, mobility_scale)
 	return math.round(math.map_range(concealment_stat, mobility_scale[1], mobility_scale[2], mobility_scale[3], mobility_scale[4]))
 end
 
+-- Steelsight times of each weapon category
 local steelsight_times = {
-	default = 0.3,
-	pistol = 0.2,
+	default = 0.3, 
+	pistol = 0.2, 
 	pistol_heavy = 0.25,
 	smg = 0.25,
 	dmr = 0.4,
 	snp = 0.45,
 	lmg = 0.45,
 }
+
+--The big function responsible for balancing all weapons based on category
 function WeaponTweakData:_init_weapons(overrides)
 	local akimbo_single_map = {}
 
@@ -86,10 +93,10 @@ function WeaponTweakData:_init_weapons(overrides)
 
 			-- These are needed just in case
 			local category_blacklist = table.list_to_set({
-				"car9",
-				"ak5s",
-				"scar16",
-				"or12",
+				"car9", -- Assault Rifle based_on, should be an SMG 
+				"ak5s", -- Assault Rifle based_on, should be an SMG
+				"scar16", -- Marksman Rifle based_on, should be an Assault Rifle
+				"or12", -- LMG based_on, should be a Shotgun
 			})
 			
 			if based_on_id and is_unsupported_custom then
@@ -117,7 +124,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			local is_dmr = cat_map.dmr
 			local is_doublebarrel = cat_map.shotgun and weap_data.CLIP_AMMO_MAX == 2
 
-			--catch-all stat setups
+			-- Category checks begin
 			if cat_map.assault_rifle and not is_turret then
 				weap_data.muzzleflash = "effects/payday2/particles/weapons/556_auto_fps"
 				weap_data.stats.suppression = is_dmr and 6 or 11
@@ -609,6 +616,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 
+			-- Non category-specific stats
 			weap_data.stats.mobility = weap_data.mobility_scale and self:_calculate_mobility_stat(weap_data.stats.concealment, weap_data.mobility_scale) or 13
 			weap_data.stats.alert_size = clamp_weapon_stat(weap_data.stats.alert_size, "alert_size")
 			weap_data.stats.reload = 11
@@ -633,6 +641,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				},				
 			}
 			
+			-- Recoil values defined per category
 			if weap_data.kick then
 				if is_turret then
 					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
@@ -674,11 +683,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.kick.standing = weap_data.auto and { -0.6, 1.2, -1, 1 } or { 1.2, 1.8, -0.5, 0.5 }
 					
 				end
+				
+				-- "crouching" and "steelsight" simply clone "standing"; differences in handling of the stances are tied to stance_multipliers now.
 				weap_data.kick.crouching = clone(weap_data.kick.standing)
 				weap_data.kick.steelsight = clone(weap_data.kick.standing)
 			end				
 
-			-- Set enemy penetration count caps
+			-- Set enemy penetration count caps.
+			-- Calculate them based on damage for Sniper Rifles; set them to 1 for everything else capable of shooting through enemies.
 			if weap_data.can_shoot_through_enemy then
 				if cat_map.snp then
 					weap_data.max_nr_enemy_penetrations	= self:_calculate_snp_penetrations(real_damage, weap_data.penetration_scale)
@@ -705,7 +717,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 			
-			-- Run overrides for specific weapons before calculating ammo
+			-- Run overrides for specific weapons before calculating ammo.
+			-- These are useful if you need to set a flag that is normally tied to a category.
 			local function override_caller(callback) 
 				callback()
 			end
@@ -719,6 +732,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]
 
 				if single_weapon_data then
+					-- Cosmetic flags
 					weap_data.muzzleflash = single_weapon_data.muzzleflash
 					weap_data.muzzleflash_silenced = single_weapon_data.muzzleflash_silenced
 					weap_data.shell_ejection = single_weapon_data.shell_ejection
@@ -727,6 +741,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					local akimbo_reload = weap_data.timers.reload_empty
 					local single_reload = single_weapon_data.timers.reload_empty
 					
+					-- Actual stats
 					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
 					weap_data.stats = clone(single_weapon_data.stats)
 					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 5, 0)
@@ -779,6 +794,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					}
 
+					-- Apply a ROF decrease to Akimbos but only if they cannot use full auto.
 					if weap_data.fire_mode_data then
 						weap_data.fire_mode_data.fire_rate = weap_data.CAN_TOGGLE_FIREMODE and single_weapon_data.fire_mode_data.fire_rate or 60 / math.round((60 / single_weapon_data.fire_mode_data.fire_rate) * (3 / 4), 25)
 					end
@@ -796,7 +812,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.total_damage = weap_data.total_damage
 			elseif is_secondary then -- Secondaries
 				weap_data.total_damage = weap_data.total_damage / 2
-			else -- Underbarrels etc.
+			else -- Others (underbarrels, usually)
 				weap_data.total_damage = weap_data.total_damage / 3
 			end
 
@@ -817,11 +833,12 @@ function WeaponTweakData:_init_weapons(overrides)
 			damage_stat = math.min(weap_data.stats.damage, #self.stats.damage)
 			real_damage = self.stats.damage[damage_stat] * damage_modifier
 
+			-- Set total ammo based on damage and magazine capacity.
 			local clip_dmg = weap_data.CLIP_AMMO_MAX * real_damage
 			if weap_data.AMMO_MAX then
 				weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
-				weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, weap_data.max_clips_round or 1)
-				weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, weap_data.min_max_clips or 0)
+				weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, weap_data.max_clips_round or 1) -- max_clips_round is the number by which total ammo will be divisible; it's only use is to ensure total ammo values for very low mag size weapons don't have odd total ammo stats like 17 or 23.
+				weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, weap_data.min_max_clips or 0) 
 				weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
 			end
 
@@ -1446,6 +1463,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.welrod.fire_mode_data.fire_rate = 60 / 27
 	self.welrod.fire_rate_multiplier = 45 / 27
 	self.welrod.special_damage_multiplier = 1.5  
+	self.welrod.timers.reload_not_empty = 3
+	self.welrod.timers.reload_empty = self.welrod.timers.reload_not_empty
 	self.welrod.stats_modifiers = nil
 	self.welrod.no_standard_fire_rate = true -- No automatic pistol fire rate override
 	self.welrod.can_shoot_through_enemy = true
