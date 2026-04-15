@@ -17,10 +17,10 @@ local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list = { 
-        [taser] = get_difficulty_group_specific_value({ 3, 2, 2 }), 
-        [medic] = get_difficulty_group_specific_value({ 0, 2, 2 }), 
-        [cloaker] = get_difficulty_group_specific_value({ 1, 1, 2 }),
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 1, 2 }),
 }
 local specials = specials_list
 

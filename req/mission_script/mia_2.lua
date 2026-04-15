@@ -17,10 +17,10 @@ local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
 local swats = { [swat_1] = 1, [swat_2] = 1 }
-local specials_list = { 
-        [taser] = get_difficulty_group_specific_value({ 3, 2, 3 }), 
-        [medic] = get_difficulty_group_specific_value({ 0, 1, 2 }), 
-        [cloaker] = get_difficulty_group_specific_value({ 1, 2, 3 }), 
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 3 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 1, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 3 }),
 }
 local random_special = specials_list
 local random_dozers = {

@@ -49,15 +49,15 @@ local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1
 local us_soldier = {
 	enemy = us_soldiers,
 }
-local specials_list = { 
-        [taser] = get_difficulty_group_specific_value({ 3, 2, 2 }), 
-        [medic] = get_difficulty_group_specific_value({ 0, 2, 2 }), 
-        [cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }), 
-        [elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
-        [green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }), -- no scripted green/blackdozers heli spawns on DW 
-        [black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),  
-        [elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }), 
-        [elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }), 
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }), -- no scripted green/blackdozers heli spawns on DW
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }),
 }
 local specials = {
 	enemy = specials_list,
