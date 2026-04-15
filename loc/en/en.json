@@ -64,6 +64,8 @@
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
 
+	"debug_interact_gage_assignment_take": "PRESS $BTN_INTERACT TO PICK UP THE PACKAGE",
+
 	"hud_assault_america_assault": "Police Assault In Progress",
 	"hud_assault_russia_assault": "Mercenary Assault In Progress",
 	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",
