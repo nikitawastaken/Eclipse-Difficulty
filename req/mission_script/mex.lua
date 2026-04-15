@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 -- add female bikers to spawn roster
 local biker_enemy = {
@@ -37,7 +37,7 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		amount = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 return {

@@ -20,31 +20,12 @@ local ambush_units_amount = normal and 1 or hard and 2 or 3
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
-local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
-}
-local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
-}
-local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
-local optsBulldozer = {
-	enemy_table = bulldozer,
-	on_executed = {
-		{ id = 400011, delay = 2 },
-	},
-	enabled = true,
-}
 local optsSWAT = {
 	enemy_table = swats,
 	enabled = true,
@@ -122,13 +103,6 @@ local optsDozer_Hide_SO = {
 	use_instigator = true,
 	interval = 2,
 	so_action = "e_so_sneak_wait_stand",
-}
-local optsDozerHunt_SO = {
-	SO_access = "4096",
-	scan = true,
-	use_instigator = true,
-	interval = 2,
-	so_action = "AI_hunt",
 }
 
 local optsCloakerHideGroup = {

@@ -3,6 +3,7 @@ local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -20,6 +21,11 @@ local bulldozer = scripted_enemy.bulldozer_1
 
 local enabled_chance_shields = math.random() <= 0.5
 
+local heavy_swats = {
+	[heavy_1] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[heavy_sg] = 6,
+}
+
 local optsSWAT_Heavy145 = {
 	enemy = heavy_sg,
 	participate_to_group_ai = true,
@@ -30,7 +36,7 @@ local optsSWAT_Heavy145 = {
 	enabled = true,
 }
 local optsSWAT_Rooftop_1 = {
-	enemy = heavy_sg,
+	enemy_table = heavy_sg,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400023, delay = 1 },
@@ -38,7 +44,7 @@ local optsSWAT_Rooftop_1 = {
 	enabled = true,
 }
 local optsSWAT_Rooftop_2 = {
-	enemy = heavy_sg,
+	enemy_table = heavy_sg,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400024, delay = 1 },

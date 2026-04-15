@@ -20,9 +20,6 @@ local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local light_harasser = { swat_1 }
 local heavy_harasser = diff_i > 5 and { [heavy_1] = 5, [elite_sniper] = 1 } or { heavy_1 }
 local specials_spawns = { [taser] = 2, [cloaker] = 1 }
-local greendozer_only = {
-	green_bulldozer,
-}
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -31,7 +28,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and greendozer_only or random_dozers
+local container_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local patches = {
 	harassers = table.set(100016, 100017, 100018),

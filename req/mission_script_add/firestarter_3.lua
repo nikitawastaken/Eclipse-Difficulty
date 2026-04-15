@@ -2,6 +2,7 @@
 local M = {}
 
 local diff_i = Eclipse.utils.difficulty_index()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -25,10 +26,17 @@ local elite_sniper = scripted_enemy.elite_sniper
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_sniper] = 2, [elite_bulldozer_neil] = 2, [elite_bulldozer_skull] = 2 }
-local specials_list_hard_ovk = { [taser] = 2, [medic] = 2, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 4, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local specials_list = { 
+        [taser] = get_difficulty_group_specific_value({ 3, 2, 2 }), 
+        [medic] = get_difficulty_group_specific_value({ 0, 2, 2 }), 
+        [cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }), 
+        [elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+        [green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }), 
+        [black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }),  
+        [elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }), 
+        [elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }), 
+}
+local specials = specials_list
 
 local random_dozers = {
 	green_bulldozer,

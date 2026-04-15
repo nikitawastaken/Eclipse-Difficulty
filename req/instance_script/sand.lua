@@ -3,6 +3,7 @@ local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local scripted_enemy = Eclipse.scripted_enemy
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
@@ -15,10 +16,13 @@ local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+
+local specials_list = { 
+        [taser] = get_difficulty_group_specific_value({ 3, 2, 2 }), 
+        [medic] = get_difficulty_group_specific_value({ 0, 2, 2 }), 
+        [cloaker] = get_difficulty_group_specific_value({ 1, 1, 2 }),
+}
+local specials = specials_list
 
 local patches = {
 	swat_chopper = {
