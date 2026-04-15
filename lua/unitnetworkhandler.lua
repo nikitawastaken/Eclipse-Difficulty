@@ -102,8 +102,8 @@ function UnitNetworkHandler:sync_set_cloaker_goggles_on(unit, state)
 	end
 
 	local base_ext = unit:base()
-	if base_ext and base_ext.set_cloaker_noise_on then
-		base_ext:set_cloaker_noise_on(state)
+	if base_ext and base_ext.set_cloaker_goggles_on then
+		base_ext:set_cloaker_goggles_on(state)
 	end
 end
 
