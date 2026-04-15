@@ -92,7 +92,7 @@ function WeaponFactoryTweakData:_wipe_stats(part_list)
 				self.parts[part_id].stats = deep_clone(dummy_part_tbl)
 				self.parts[part_id].custom_stats = {}
 			end
-		end		
+		end
 	end
 end
 
@@ -614,9 +614,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		"wpn_fps_ass_galil_fg_fab",
 		"wpn_fps_ass_galil_fg_mar",
 		"wpn_fps_ass_galil_fg_sar",
---		"wpn_fps_ass_galil_fg_sniper",
+		--		"wpn_fps_ass_galil_fg_sniper",
 	})
-	
+
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -2
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
@@ -639,9 +639,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		"wpn_fps_ass_fal_fg_03",
 		"wpn_fps_ass_fal_fg_04",
 		"wpn_fps_ass_fal_fg_wood",
---		"wpn_fps_ass_fal_fg_01",
+		--		"wpn_fps_ass_fal_fg_01",
 	})
-	
+
 	self.parts.wpn_fps_ass_fal_fg_01.stats.spread = -4
 	self.parts.wpn_fps_ass_fal_fg_01.stats.concealment = 4
 
@@ -758,9 +758,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_pl14_m_extended.stats.extra_ammo = 2
 
 	self.parts.wpn_fps_pis_packrat_m_extended.stats.extra_ammo = 5
-	
+
 	self:_wipe_stats({ "wpn_fps_pis_lemming_b_nitride" })
-	
+
 	self.parts.wpn_fps_pis_breech_b_reinforced.stats.spread = 0
 	self.parts.wpn_fps_pis_breech_b_reinforced.stats.recoil = 1
 	self.parts.wpn_fps_pis_breech_b_reinforced.stats.concealment = -1
