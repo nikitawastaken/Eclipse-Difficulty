@@ -164,7 +164,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_dmg = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_speed = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_retry_delay = nil
-	presets.weapon.eclipse_normal.akimbo_pistol.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.akimbo_pistol.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.FALLOFF = {
 		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.15, 0.3 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
@@ -220,7 +220,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.is_smg = deep_clone(presets.weapon.eclipse_normal.is_rifle)
-	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.eclipse_normal.is_smg.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
@@ -237,7 +237,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.mini = deep_clone(presets.weapon.eclipse_normal.is_lmg)
-	presets.weapon.eclipse_normal.mini.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.mini.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.mini.autofire_rounds = { 50, 200 }
 	presets.weapon.eclipse_normal.mini.FALLOFF = {
 		{ dmg_mul = 1.5 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
@@ -272,7 +272,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_gangster = based_on(presets.weapon.eclipse_normal, {
 		melee_dmg = 14 * dmg_mul,
-		stance_acc_mul = nil,
+		stance_acc_mul = nil_value,
 	})
 
 	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
@@ -322,7 +322,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 500,
 		melee_retry_delay = { 1, 2 },
 		range = { close = 500, optimal = 1000, far = 2000 },
-		stance_acc_mul = nil,
+		stance_acc_mul = nil_value,
 	})
 
 	presets.weapon.eclipse_shield.is_pistol.RELOAD_SPEED = 0.9
@@ -1000,9 +1000,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	return presets
 end
 
+CharacterTweakData.speed_preset_scaling_blacklist = table.list_to_set({
+	"civ_fast",
+	"escort_normal",
+	"escort_slow",
+})
 function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	for preset_name, preset in pairs(self.presets.move_speed) do
-		if preset_name ~= "civ_fast" then
+		if not self.speed_preset_scaling_blacklist[preset_name] then
 			for _, pose in pairs(preset) do
 				for haste_name, haste in pairs(pose) do
 					for stance_name, stance in pairs(haste) do
@@ -1817,7 +1822,7 @@ function CharacterTweakData:character_map(...)
 	local char_map = character_map_original(self, ...)
 
 	local function safe_add(char_map_table, element)
-		if char_map_table and char_map_table.list then
+		if char_map_table and char_map_table.list and not table.contains(char_map_table.list, element) then
 			table.insert(char_map_table.list, element)
 		end
 	end
@@ -2155,15 +2160,24 @@ function CharacterTweakData:_set_presets()
 		2.5,
 	})
 
+	-- Used to be at the end of this function but _multiply_all_speeds didn't affect Dozers
+	if is_overkill then
+		self:_multiply_all_speeds(1.05, 1.05)
+	elseif is_eclipse then
+		self:_multiply_all_speeds(1.05, 1.1)
+
+		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
+	end
+
+	local not_bosses = table.list_to_set({
+		"hector_boss_no_armor",
+		"drug_lord_boss_stealth",
+		"triad_boss_no_armor",
+	})
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
 		local char_access = char_preset.access
 
-		local not_bosses = table.list_to_set({
-			"hector_boss_no_armor",
-			"drug_lord_boss_stealth",
-			"triad_boss_no_armor",
-		})
 		local is_boss = name:match("_boss$") and not not_bosses[name]
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
 		local is_shadow_spooc = name == "shadow_spooc"
@@ -2216,23 +2230,7 @@ function CharacterTweakData:_set_presets()
 
 		-- Set up special units based on tags
 		local tag_map = type(char_preset.tags) == "table" and table.list_to_set(char_preset.tags) or {}
-		if tag_map.civilian then
-			char_preset.scare_max = { 10, 20 }
-			char_preset.scare_shot = 1
-			char_preset.scare_intimidate = -3
-			char_preset.submission_intimidate = 15
-			char_preset.submission_max = get_difficulty_specific_value({
-				{ 60, 120 },
-				{ 60, 120 },
-				{ 45, 90 },
-				{ 30, 60 },
-				{ 25, 50 },
-			})
-			char_preset.run_away_delay = {
-				5,
-				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
-			}
-		elseif tag_map.shield then
+		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
@@ -2346,12 +2344,25 @@ function CharacterTweakData:_set_presets()
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
-	if is_overkill then
-		self:_multiply_all_speeds(1.05, 1.05)
-	elseif is_eclipse then
-		self:_multiply_all_speeds(1.05, 1.1)
-
-		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
+	-- Civilians are not in the enemy list
+	for _, char_preset in pairs(self) do
+		if type(char_preset) == "table" and char_preset.tags and table.contains(char_preset.tags, "civilian") then
+			char_preset.scare_max = { 10, 20 }
+			char_preset.scare_shot = 1
+			char_preset.scare_intimidate = -3
+			char_preset.submission_intimidate = 15
+			char_preset.submission_max = get_difficulty_specific_value({
+				{ 60, 120 },
+				{ 60, 120 },
+				{ 45, 90 },
+				{ 30, 60 },
+				{ 25, 50 },
+			})
+			char_preset.run_away_delay = {
+				5,
+				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
+			}
+		end
 	end
 end
 
