@@ -102,17 +102,19 @@ function PoisonGasEffect:_do_damage(t)
 		return
 	end
 
-	self._last_damage_tick = t
-	player_unit:character_damage():damage_killzone({
-		variant = "teargas",
-		damage = self._player_damage,
-		col_ray = {
-			ray = math.UP,
-		},
-	})
+	if player_unit and mvector3.distance_sq(self._position, player_unit:position()) < self._range ^ 2 then
+		self._last_damage_tick = t
+		player_unit:character_damage():damage_killzone({
+			variant = "teargas",
+			damage = self._player_damage,
+			col_ray = {
+				ray = math.UP,
+			},
+		})
 
-	if not self._has_played_VO then
-		PlayerStandard.say_line(player_unit:sound(), "g42x_any")
-		self._has_played_VO = true
+		if not self._has_played_VO then
+			PlayerStandard.say_line(player_unit:sound(), "g42x_any")
+			self._has_played_VO = true
+		end
 	end
 end
