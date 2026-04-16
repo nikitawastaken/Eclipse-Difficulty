@@ -185,7 +185,7 @@ tweak_data.projectiles.xmas_snowball.curve_pow = 1
 -- Viper Grenade
 tweak_data.projectiles.poison_gas_grenade.damage = 12
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
-tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 450
+tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 20
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
 tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.5
