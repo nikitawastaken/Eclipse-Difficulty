@@ -10,18 +10,34 @@ Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)
 	end
 end)
 
--- Mark drills for reinforce groups
-Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
-	if not self._forbid_reenforce then
+function Drill:_set_area_min_police_force(state)
+	if self._min_force_clbk_id then
+		managers.enemy:remove_delayed_clbk(self._min_force_clbk_id)
+		self._min_force_clbk_id = nil
+	end
+
+	if state then
 		managers.groupai:state():set_area_min_police_force(self._unit:key(), 2, self._unit:position())
 	else
-		Eclipse:log_console("No reinforce point created, drill reinforce is disabled for " .. level_id)
+		managers.groupai:state():set_area_min_police_force(self._unit:key())
+	end
+end
+
+-- Mark drills for reinforce groups
+-- Silent drills don't get noticed immediately
+Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
+	if not self._set_area_min_police_force or self._forbid_reenforce then
+		-- Nothing
+	elseif self._skill_upgrades.silent_drill or self._skill_upgrades.reduced_alert then
+		self._min_force_clbk_id = "Drill_min_force" .. tostring(self._unit:key())
+		local delay = TimerManager:game():time() + math.rand(unpack(tweak_data.upgrades.silent_drill_min_force_delay or { 0, 60 }))
+		managers.enemy:add_delayed_clbk(self._min_force_clbk_id, callback(self, self, "_set_area_min_police_force", true), delay)
+	else
+		self:_set_area_min_police_force(true)
 	end
 end)
 
-Hooks:PostHook(Drill, "done", "eclipse_done", function(self)
-	managers.groupai:state():set_area_min_police_force(self._unit:key())
-end)
+Hooks:PostHook(Drill, "done", "eclipse_done", Drill._set_area_min_police_force)
 
 local _register_sabotage_SO_original = Drill._register_sabotage_SO
 function Drill:_register_sabotage_SO(...)
