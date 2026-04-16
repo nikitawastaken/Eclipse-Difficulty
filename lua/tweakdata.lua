@@ -13,7 +13,7 @@ local function create_poison_arrow(base_arrow)
 	local damage = base_arrow.damage
 	poison_arrow.damage = damage * 0.25
 	poison_arrow.bullet_class = "PoisonBulletBase"
-	
+
 	return poison_arrow
 end
 
@@ -22,7 +22,7 @@ local function create_incendiary_grenade(base_grenade)
 	local damage = base_grenade.damage
 	local tier_index = math.floor(damage / 12)
 	local tier = tier_index <= 2 and "light" or "heavy"
-	
+
 	incendiary_grenade.damage = damage / 12
 	incendiary_grenade.burn_tick_period = 0.5
 	incendiary_grenade.burn_duration = math.map_range(damage, 24, 48, 5, 10)
@@ -40,7 +40,7 @@ local function create_electric_grenade(base_grenade)
 	electric_grenade.range = base_grenade.range + 100
 	electric_grenade.sound_event = "gl_electric_explode"
 	electric_grenade.projectile_trail = true
-	
+
 	return electric_grenade
 end
 
@@ -49,7 +49,7 @@ local function create_poison_grenade(base_grenade)
 	local damage = base_grenade.damage
 	local tier_index = math.floor(damage / 12)
 	local tier = tier_index <= 2 and "light" or "heavy"
-		
+
 	poison_grenade.damage = damage / 12
 	poison_grenade.poison_gas_range = 300
 	poison_grenade.poison_gas_tick_time = 0.25
