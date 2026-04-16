@@ -2367,11 +2367,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.elastic.stats_modifiers = { damage = 4 }
 
 	-- Basilisk
+--[[
 	self.ms3gl.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_ms3gl",
 		launcher_electric = "launcher_electric_ms3gl",
 		launcher_poison = "launcher_poison_ms3gl",
 	}
+]]
 	self.ms3gl.CLIP_AMMO_MAX = 3
 	self.ms3gl.stats.damage = 40
 	self.ms3gl.stats.spread = 16
@@ -2384,27 +2386,31 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ms3gl.CAN_TOGGLE_FIREMODE = false
 
 	-- Piglet
+--[[
 	self.m32.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_m32",
 		launcher_electric = "launcher_electric_m32",
 		launcher_poison = "launcher_poison_m32",
 	}
+]]
 	self.m32.CLIP_AMMO_MAX = 6
 	self.m32.stats.damage = 40
 	self.m32.stats.spread = 20
 	self.m32.stats.recoil = 22
 	self.m32.stats.concealment = 16
 	self.m32.fire_mode_data.fire_rate = 60 / 100
-	self.m32.fire_rate_multiplier = 120 / 100
+	self.m32.fire_rate_multiplier = 150 / 100
 	self.m32.reload_speed_multiplier = 1.6
 	self.m32.stats_modifiers = { damage = 6 }
 
 	-- Arbiter
+--[[
 	self.arbiter.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_arbiter",
 		launcher_electric = "launcher_electric_arbiter",
 		launcher_poison = "launcher_poison_arbiter",
 	}
+]]
 	self.arbiter.use_data.selection_index = 2
 	self.arbiter.CLIP_AMMO_MAX = 5
 	self.arbiter.stats.damage = 40
@@ -2416,11 +2422,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arbiter.stats_modifiers = { damage = 6 }
 	
 	-- GL40
+--[[
 	self.gre_m79.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_m79",
 		launcher_electric = "launcher_electric_m79",
 		launcher_poison = "launcher_poison_m79",
 	}
+]]
 	self.gre_m79.use_data.selection_index = 1
 	self.gre_m79.CLIP_AMMO_MAX = 1
 	self.gre_m79.stats.damage = 60
@@ -2431,11 +2439,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.gre_m79.stats_modifiers = { damage = 6 }
 
 	-- China Puff
+--[[
 	self.china.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_china",
 		launcher_electric = "launcher_electric_china",
 		launcher_poison = "launcher_poison_china",
 	}
+]]
 	self.china.use_data.selection_index = 2
 	self.china.CLIP_AMMO_MAX = 3
 	self.china.stats.damage = 60
@@ -2447,11 +2457,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.china.stats_modifiers = { damage = 6 }
 	
 	-- Compact 40
+--[[
 	self.slap.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_slap",
 		launcher_electric = "launcher_electric_slap",
 		launcher_poison = "launcher_poison_slap",
 	}
+]]
 	self.slap.CLIP_AMMO_MAX = 1
 	self.slap.stats.damage = 60
 	self.slap.stats.spread = 22
