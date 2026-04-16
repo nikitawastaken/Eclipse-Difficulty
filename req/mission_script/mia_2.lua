@@ -2,6 +2,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local preferred = Eclipse.preferred
 local cloaker = scripted_enemy.cloaker
