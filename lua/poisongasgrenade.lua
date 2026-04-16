@@ -11,11 +11,11 @@ function PoisonGasGrenade:_detonate(tag, unit, body, other_unit, other_body, pos
 
 	managers.player:spawn_poison_gas(pos, normal, tweak_entry, self._unit)
 	self._unit:set_extension_update_enabled(Idstring("base"), false)
-	
+
 	World:effect_manager():spawn({
 		effect = Idstring("effects/particles/explosions/explosion_smoke_grenade"),
 		position = self._unit:position(),
-		normal = self._unit:rotation():y()
+		normal = self._unit:rotation():y(),
 	})
 	self._unit:sound_source():set_position(pos)
 	self._unit:sound_source():post_event("grenade_gas_explode")

@@ -254,8 +254,8 @@ function ProjectileBase:set_thrower_unit(unit, proj_ignore_thrower, thrower_igno
 	end
 end
 
--- Now this function send effect id string to GamePlayCentralManager:add_projectile_trail(...) function 
-Hooks:OverrideFunction(ProjectileBase, "add_trail_effect", function (self, trail_effect_id)
+-- Now this function send effect id string to GamePlayCentralManager:add_projectile_trail(...) function
+Hooks:OverrideFunction(ProjectileBase, "add_trail_effect", function(self, trail_effect_id)
 	if trail_effect_id and trail_effect_id ~= true then -- ~= true check need for crash prevention
 		managers.game_play_central:add_projectile_trail(self._unit, self._unit:orientation_object(), trail_effect_id)
 	else

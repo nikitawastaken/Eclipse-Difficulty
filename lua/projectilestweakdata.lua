@@ -27,7 +27,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	-- Give Sicario's smoke grenade a sound when smoke is ready to use (like any cd-based throwables have)
 	self.projectiles.smoke_screen_grenade.sounds = { cooldown = "perkdeck_cooldown_over" }
-	
+
 	-- Different trails for projectiles/throwables
 	self.projectiles.poison_gas_grenade.add_trail_effect = "effects/particles/weapons/projectile_trail_green"
 
