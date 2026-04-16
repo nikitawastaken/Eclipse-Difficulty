@@ -295,6 +295,7 @@
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
 						<post :hook_id="electricgrenade"/>
+						<post :hook_id="poisongasgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
@@ -368,6 +369,8 @@
 					<file :name="weapon_trail_green_lmg.effect"/>
 					<file :name="weapon_trail_red.effect"/>
 					<file :name="weapon_trail_red_lmg.effect"/>
+					
+					<file :name="projectile_trail_green.effect"/>
 				</group>
 				
 				<!-- cloaker goggle glow -->
