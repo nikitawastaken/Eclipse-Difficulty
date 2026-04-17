@@ -1548,8 +1548,8 @@ function GroupAIStateBesiege:_get_drama_weight_mul(category)
 			max_mul = mul
 		end
 	end
-	if not min_mul or not max_mul then
-		return 1
+	if min_mul == max_mul then
+		return min_mul or 1
 	end
 	return math.map_range_clamped(self._drama_data.amount, min_drama, max_drama, min_mul, max_mul)
 end
