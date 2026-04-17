@@ -78,9 +78,6 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	if self._god_mode then
 		if attack_data.damage > 0 then
-			-- Damage conversion into drama is affected by the armor you wear
-			local armor_drama_mul = self:get_real_armor() > 0 and managers.player:body_armor_value("criminal_hurt_drama_mul") or 1
-			local damage_into_drama = attack_data.damage * armor_drama_mul
 			self:_send_damage_drama(attack_data, damage_into_drama)
 		end
 
@@ -324,8 +321,17 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 	return health_subtracted
 end
 
+-- Damage conversion into drama is affected by the armor you wear
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
-Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
+local _send_damage_drama_original = Hooks:GetFunction(PlayerDamage, "_send_damage_drama")
+Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack_data, health_subtracted, ...)
+	-- Team AI use this function too, but they don't have `get_real_armor`
+	if self.get_real_armor and self:get_real_armor() > 0 then
+		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+	end
+
+	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
+
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
 		self._can_take_dmg_timer = self._dmg_interval
 	end
