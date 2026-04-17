@@ -78,7 +78,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	if self._god_mode then
 		if attack_data.damage > 0 then
-			self:_send_damage_drama(attack_data, damage_into_drama)
+			self:_send_damage_drama(attack_data, attack_data.damage)
 		end
 
 		self:_call_listeners(damage_info)
