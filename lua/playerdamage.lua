@@ -78,7 +78,10 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	if self._god_mode then
 		if attack_data.damage > 0 then
-			self:_send_damage_drama(attack_data, attack_data.damage)
+			-- Damage conversion into drama is affected by the armor you wear
+			local armor_drama_mul = self:get_real_armor() > 0 and managers.player:body_armor_value("criminal_hurt_drama_mul") or 1
+			local damage_into_drama = attack_data.damage * armor_drama_mul
+			self:_send_damage_drama(attack_data, damage_into_drama)
 		end
 
 		self:_call_listeners(damage_info)

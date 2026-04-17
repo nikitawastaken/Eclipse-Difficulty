@@ -3,7 +3,7 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.drama_balance_mul = { 1.3, 1.1, 0.8, 0.4 }
 	self.decay_period = 30
 	self.max_dis = 6000
-	self.max_dis_mul = 0.5
+	self.max_dis_mul = 1
 	self.low = 0.1
 	self.peak = 1
 	self.assault_fade_end = 0.15
