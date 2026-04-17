@@ -1531,27 +1531,30 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
--- Adapted from CopLogicBase.surrender_chk_funcs.health
 function GroupAIStateBesiege:_get_drama_weight_mul(category)
-	if not tweak_data.drama.drama_weight_muls[category] then
+	local drama_category_data = tweak_data.drama.drama_weight_muls[category]
+	if not drama_category_data then
 		return 1
 	end
+	local current_drama = self._drama_data.amount
 	local min_drama, max_drama, min_mul, max_mul
-	for drama, mul in pairs(tweak_data.drama.drama_weight_muls[category]) do
-		if not min_drama or drama < min_drama then
+	local sorted_keys = table.map_keys(drama_category_data)
+	for _, drama in ipairs(sorted_keys) do
+		if not min_drama or drama < current_drama then
 			min_drama = drama
-			min_mul = mul
+			min_mul = drama_category_data[drama]
 		end
-
-		if not max_drama or drama > max_drama then
+	end
+	for _, drama in table.reverse_ipairs(sorted_keys) do
+		if not max_drama or drama > current_drama then
 			max_drama = drama
-			max_mul = mul
+			max_mul = drama_category_data[drama]
 		end
 	end
 	if min_mul == max_mul then
 		return min_mul or 1
 	end
-	return math.map_range_clamped(self._drama_data.amount, min_drama, max_drama, min_mul, max_mul)
+	return math.map_range_clamped(current_drama, min_drama, max_drama, min_mul, max_mul)
 end
 
 -- TODO: more modifications for timed group bullshit
