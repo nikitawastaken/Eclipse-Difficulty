@@ -1437,6 +1437,13 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		if spawn_entry.freq_balance_mul then
 			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.freq)
 		end
+
+		if spawn_entry.drama_category then
+			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(spawn_entry.drama_category)
+		else
+			local category = tweak_data.group_ai.unit_categories[spawn_entry.unit]
+			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(category.drama_category or category.special_type)
+		end
 	end
 
 	table.insert(self._spawning_groups, spawn_task)

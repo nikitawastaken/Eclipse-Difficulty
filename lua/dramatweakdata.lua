@@ -48,5 +48,11 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 			[0.7] = 0.9,
 			[1.0] = 0.7,
 		},
+		supporting_special = {
+			[0.1] = 1.3,
+			[0.4] = 1,
+			[0.7] = 0.9,
+			[1.0] = 0.7,
+		},
 	}
 end)
