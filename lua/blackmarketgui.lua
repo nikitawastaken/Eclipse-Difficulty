@@ -1929,6 +1929,11 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					name = "damage_shake",
 				},
 				{
+					name = "armor_regen",
+					inverted = true,
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
+				},
+				{
 					name = "stamina",
 				},
 			}
@@ -2880,6 +2885,36 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 	end
 end
 
+local old_armor_stats = BlackMarketGui._get_armor_stats
+function BlackMarketGui:_get_armor_stats(name)
+	local base_stats, mods_stats, skill_stats = old_armor_stats(self, name)
+
+	local bm_armor_tweak = tweak_data.blackmarket.armors[name]
+	local upgrade_level = bm_armor_tweak.upgrade_level
+
+	local base = 0
+	local mod = managers.player:body_armor_value("regen_timer", upgrade_level)
+	local mul1 = managers.player:body_armor_regen_multiplier(false, 1)
+	local mul2 = managers.player:upgrade_value("player", "armor_regen_time_mul", 1)
+	base_stats.armor_regen = {
+		value = (base + mod),
+	}
+
+	local armor_grinding_data = managers.player:upgrade_value("player", "armor_grinding", nil)
+	if armor_grinding_data and armor_grinding_data ~= 0 then
+		local target_tick = armor_grinding_data[upgrade_level][2]
+		skill_stats.armor_regen = {
+			value = target_tick - (base + mod),
+		}
+	else
+		skill_stats.armor_regen = {
+			value = (base + mod) * (mul1 * mul2 - 1),
+		}
+	end
+
+	return base_stats, mods_stats, skill_stats
+end
+
 function BlackMarketGui:show_stats_blackmarket_armors_page()
 	local category = self._slot_data.category
 
@@ -2945,18 +2980,28 @@ function BlackMarketGui:show_stats_blackmarket_armors_page()
 			local base = base_stats[stat.name].value
 
 			self._armor_stats_texts[stat.name].equip:set_alpha(1)
-			self._armor_stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
-			self._armor_stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
-			self._armor_stats_texts[stat.name].skill:set_text(
-				skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
-			)
+			local equip_text = format_round(value, stat.round_value)
+			local base_text = format_round(base, stat.round_value)
+			local skill_text = skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
+
+			if stat.suffix then
+				equip_text = equip_text .. tostring(stat.suffix)
+				base_text = base_text .. tostring(stat.suffix)
+				if skill_text ~= "" then
+					skill_text = skill_text .. tostring(stat.suffix)
+				end
+			end
+
+			self._armor_stats_texts[stat.name].equip:set_text(equip_text)
+			self._armor_stats_texts[stat.name].base:set_text(base_text)
+			self._armor_stats_texts[stat.name].skill:set_text(skill_text)
 			self._armor_stats_texts[stat.name].total:set_text("")
 			self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
 
 			if value ~= 0 and base < value then
-				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_positive)
+				self._armor_stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 			elseif value ~= 0 and value < base then
-				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_negative)
+				self._armor_stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 			else
 				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
 			end
@@ -2965,16 +3010,24 @@ function BlackMarketGui:show_stats_blackmarket_armors_page()
 		else
 			local equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
 
+			local equip_text = format_round(equip, stat.round_value)
+			local total_text = format_round(value, stat.round_value)
+
+			if stat.suffix then
+				equip_text = equip_text .. tostring(stat.suffix)
+				total_text = total_text .. tostring(stat.suffix)
+			end
+
 			self._armor_stats_texts[stat.name].equip:set_alpha(0.75)
-			self._armor_stats_texts[stat.name].equip:set_text(format_round(equip, stat.round_value))
+			self._armor_stats_texts[stat.name].equip:set_text(equip_text)
 			self._armor_stats_texts[stat.name].base:set_text("")
 			self._armor_stats_texts[stat.name].skill:set_text("")
-			self._armor_stats_texts[stat.name].total:set_text(format_round(value, stat.round_value))
+			self._armor_stats_texts[stat.name].total:set_text(total_text)
 
 			if equip < value then
-				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_positive)
+				self._armor_stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 			elseif value < equip then
-				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_negative)
+				self._armor_stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 			else
 				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.text)
 			end
