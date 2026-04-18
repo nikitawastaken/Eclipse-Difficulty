@@ -174,7 +174,7 @@
 	"menu_deck10_5_short": "When you get healed from picking up ammo packs, your crewmates also get healed for ##$multiperk## of the amount.",
 	"menu_deck10_7_short": "Health gained from ammo packs is increased by ##$multiperk##. You gain ##$multiperk2## more health.",
 	"menu_deck10_9_short": "Your ammo pick up range is increased by ##$multiperk##.",
-	"menu_deck11_1_short": "Damaging an enemy will regenerate ##$multiperk## health every ##$multiperk2## seconds for ##$multiperk3## seconds. This effect stacks but cannot occur more than once every ##$multiperk4## seconds.",
+	"menu_deck11_1_short": "Damaging an enemy will regenerate ##$multiperk## health every ##$multiperk2## seconds for ##$multiperk3## seconds. This effect stacks but cannot occur more than once every ##$multiperk4## second.",
 	"menu_deck11_3_short": "You gain ##$multiperk## extra health. All of your armor is converted and applied to your health. You take ##$multiperk2## less damage when falling from non-lethal heights.",
 	"menu_deck11_5_short": "Scoring a headshot will heal you for ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.",
 	"menu_deck11_7_short": "You gain an additional ##$multiperk## extra health.",
