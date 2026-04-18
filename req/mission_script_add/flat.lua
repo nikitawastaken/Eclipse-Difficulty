@@ -36,7 +36,7 @@ local optsSWAT_Heavy145 = {
 	enabled = true,
 }
 local optsSWAT_Rooftop_1 = {
-	enemy_table = heavy_sg,
+	enemy_table = heavy_swats,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400023, delay = 1 },
@@ -44,7 +44,7 @@ local optsSWAT_Rooftop_1 = {
 	enabled = true,
 }
 local optsSWAT_Rooftop_2 = {
-	enemy_table = heavy_sg,
+	enemy_table = heavy_swats,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400024, delay = 1 },
