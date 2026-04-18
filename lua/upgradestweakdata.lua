@@ -2964,6 +2964,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
+	self.damage_to_hot_data.stacking_cooldown = 1
 	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
 	self.definitions.player_extra_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
@@ -3005,7 +3006,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
-	self.specialization_descs[11][1].multiperk4 = "1.5"
+	self.specialization_descs[11][1].multiperk4 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "10"
