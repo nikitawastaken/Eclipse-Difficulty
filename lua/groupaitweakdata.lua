@@ -1736,33 +1736,33 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"cloaker",
 		},
 		light_special = {
-			["medic_1"] = 3,
-			["medic_2"] = 2,
-			["cloaker"] = 2,
-		},
-		heavy_special = {
 			["medic_1"] = 4,
-			["medic_2"] = 3,
-			["taser_1"] = 3,
-			["taser_2"] = 2,
-		},
-		shield_special = {
-			["medic_1"] = 5,
-			["medic_2"] = 4,
-			["cloaker"] = 4,
-			["taser_1"] = 4,
-			["taser_2"] = 3,
-		},
-		taser_special = {
-			["medic_1"] = 3,
 			["cloaker"] = 3,
 			["medic_2"] = 2,
 		},
-		bulldozer_special = {
-			["medic_1"] = 3,
-			["taser_1"] = 3,
-			["medic_2"] = 2,
+		heavy_special = {
+			["medic_1"] = 5,
+			["taser_1"] = 4,
+			["medic_2"] = 3,
 			["taser_2"] = 2,
+		},
+		shield_special = {
+			["medic_1"] = 6,
+			["cloaker"] = 5,
+			["taser_1"] = 5,
+			["medic_2"] = 4,
+			["taser_2"] = 3,
+		},
+		taser_special = {
+			["cloaker"] = 4,
+			["medic_1"] = 3,		
+			["medic_2"] = 2,
+		},
+		bulldozer_special = {
+			["taser_1"] = 5,
+			["medic_1"] = 4,
+			["taser_2"] = 4,
+			["medic_2"] = 3,
 		},
 	}
 
