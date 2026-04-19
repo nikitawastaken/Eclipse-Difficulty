@@ -67,19 +67,22 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.cloaker_money = 35000
 	self.bag_values.cloaker_cocaine = 35000
 	self.bag_values.diamond_necklace = 65000
-	self.bag_values.vr_headset = 30000
-	self.bag_values.women_shoes = 25000
-	self.bag_values.expensive_vine = 45000
-	self.bag_values.ordinary_wine = 25000
-	self.bag_values.robot_toy = 15000
+	self.bag_values.vr_headset = 120000
+	self.bag_values.women_shoes = 115000
+	self.bag_values.expensive_vine = 135000
+	self.bag_values.ordinary_wine = 115000
+	self.bag_values.robot_toy = 105000
 	self.bag_values.rubies = 52500
 	self.bag_values.red_diamond = 100000
 	self.bag_values.old_wine = 75000
+	self.bag_values.chas_artifact = 420000
+	self.bag_values.chas_teaset = 240000
 	self.bag_values.garden_gnome = 69
 	self.bag_values.ranc_weapon = 36000
 	self.bag_values.turret_part = 25000
 	self.bag_values.corp_papers = 30000
 	self.bag_values.corp_prototype = 500000
+	self.bag_values.trai_printing_plates = 115000
 
 	self.bag_value_multiplier = 1
 	self.stage_completion = self._create_value_table(self.cut_stage_complete / 7 / self.offshore_rate, self.cut_stage_complete / self.offshore_rate, 7, true, 1)
