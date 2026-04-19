@@ -1,6 +1,9 @@
 local preferred = Eclipse.preferred
+local set_diff_groups = Eclipse.utils.set_diff_groups
+local filter_easy_above = {
+	values = set_diff_groups("easy_above"),
+}
 local diff_i = Eclipse.utils.difficulty_index()
-local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
@@ -16,22 +19,25 @@ local enabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
 	},
 }
 local waterfront_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },	
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local dozer_chance = {
 	values = {
-		chance = (diff_i_no_easy * 15) * (is_pro_job and 1.33 or 1),
+		chance = (diff_i * 10) * (is_pro_job and 1.5 or 1),
 	},
 }
 local boat_timer = {
@@ -39,6 +45,12 @@ local boat_timer = {
 		timer = 90 + (is_pro_job and 60 or 0),
 	},
 }
+local scripted_diff_add = {
+	amount = 0.25,
+	time = { 30, 45 },
+	delay = 0,
+}
+
 return {
 	-- Add new reinforce
 	[100109] = { -- police
@@ -65,7 +77,10 @@ return {
 			},
 		},
 	},
-	[101369] = {
+	[101369] = { -- input_close_first_gate
+		allowed_difficulty_addends = {
+			on_entered_regroup = false,
+		},
 		reinforce = {
 			{ name = "gate" },
 			{ name = "warehouse_a" },
@@ -73,7 +88,21 @@ return {
 			{ name = "warehouse_c" },
 		},
 	},
+	[100006] = { -- convergence_spawn001 (harbour office reached)
+		difficulty_addends = { -- increase diff and enable sustain addends
+			scripted_diff_add,
+		},
+		allowed_difficulty_addends = { 
+			on_entered_regroup = true,
+		},
+	},
 	[103885] = { -- output_signal_activated
+		difficulty_addends = { -- increase diff and disable sustain addends
+			scripted_diff_add,
+		},
+		allowed_difficulty_addends = {
+			on_entered_regroup = true,
+		},
 		reinforce = {
 			{
 				name = "harbor",
@@ -99,11 +128,13 @@ return {
 	-- Delay roof rappels at the start
 	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 20, delay_rand = 20 }, -- roof 1
-			{ id = 101279, delay = 20, delay_rand = 20 }, -- roof 2
-			{ id = 101272, delay = 20, delay_rand = 20 }, -- roof 3
+			{ id = 101280, delay = 30 }, -- roof 1
+			{ id = 101279, delay = 30 }, -- roof 2
+			{ id = 101272, delay = 30 }, -- roof 3
 		},
 	},
+	-- make sure both harbour office spawns are enabled regardless of difficulty
+	[103106] = filter_easy_above,
 	-- disable the helicopter turret since it does nothing anyway
 	[101257] = disabled,
 	-- enable unused sniper spawns

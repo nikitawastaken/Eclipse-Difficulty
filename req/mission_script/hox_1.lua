@@ -24,22 +24,26 @@ local swat_harasser = {
 local street_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
 	},
 }
 local van_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
 	},
 	groups = preferred.no_cops_agents,
 }
 local avalon_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
 	},
 }
 local upper_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -47,8 +51,11 @@ return {
 	-- add point of no return
 	[100580] = {
 		ponr = {
-			length = 600,
-			length_balance_mul = { 1.8, 1.5, 1.3, 1.2 },
+			length = 800,
+			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
+		},
+		allowed_difficulty_addends = { -- disable sustain addends
+			on_entered_regroup = false,
 		},
 	},
 	-- Combine some navigation areas
@@ -108,18 +115,14 @@ return {
 			},
 		},
 		on_executed = {
-			{ id = 100006, delay = 15, delay_rand = 30 },
+			{ id = 100006, delay = 30 },
 		},
 	},
-	-- tweak harassers
-	[102029] = swat_harasser,
-	[102031] = swat_harasser,
-	[102033] = swat_harasser,
-	[102035] = swat_harasser,
-	[102037] = swat_harasser,
-	[102039] = swat_harasser,
-	[102041] = swat_harasser,
-	[102043] = swat_harasser,
+	[100006] = { -- extra_preferreds1
+		allowed_difficulty_addends = { -- enable sustain addends
+			on_entered_regroup = true,
+		},
+	},
 	-- Spawn group intervals
 	[101719] = street_spawn,
 	[101728] = street_spawn,
@@ -134,4 +137,13 @@ return {
 	[101737] = upper_spawn,
 	[101789] = upper_spawn,
 	[101734] = upper_spawn,
+	-- Tweak harassers
+	[102029] = swat_harasser,
+	[102031] = swat_harasser,
+	[102033] = swat_harasser,
+	[102035] = swat_harasser,
+	[102037] = swat_harasser,
+	[102039] = swat_harasser,
+	[102041] = swat_harasser,
+	[102043] = swat_harasser,
 }

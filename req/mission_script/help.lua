@@ -75,8 +75,6 @@ return {
 	},
 	-- Spawn group intervals
 	-- This heist is pretty cramped and also has verticality, which makes having all those spawn groups packed so close to each other especially egregious. What's new?
-	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
-	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
 	[101143] = portal_spawn,
 	[101160] = portal_spawn,
 	[101161] = portal_spawn,

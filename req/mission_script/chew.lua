@@ -13,12 +13,11 @@ local filter_disable = {
 return {
 	-- Boss spawn
 	[100707] = {
-		difficulty_max = 0.1,
-	},
-	-- Boss dead
-	[100645] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = {
+			amount = 0.1, 
+			time = { 15, 30 }, 
+			delay = 0, 
+		},
 	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,

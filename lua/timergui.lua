@@ -9,6 +9,10 @@ Hooks:PostHook(TimerGui, "init", "eclipse_init", function(self, unit)
 			self:set_can_jam(unit_override.can_jam)
 		end
 
+		if unit_override.jam_times ~= nil then
+			self:set_jam_times(unit_override.jam_times)
+		end
+		
 		if unit_override.timer then
 			self:set_override_timer(unit_override.timer)
 		end

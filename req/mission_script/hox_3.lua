@@ -70,12 +70,11 @@ return {
 	},
 	-- Boss spawn
 	[102107] = {
-		difficulty_max = 0.1,
-	},
-	-- Boss dead
-	[100788] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = {
+			amount = 0.1, 
+			time = { 15, 30 }, 
+			delay = 0, 
+		},
 	},
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {

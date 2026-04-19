@@ -89,7 +89,6 @@ return {
 				position = Vector3(2650, 4300, 575),
 			},
 		},
-		difficulty_add = 0.20,
 	},
 	-- Always comment that all c4 are placed (why it's chance based to begin with, Overkill (Starbreeze) ...)
 	[103810] = {

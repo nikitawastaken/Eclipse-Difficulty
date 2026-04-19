@@ -146,6 +146,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.difficulty_scaling_preset = "escape"
 	self.escape_garage.difficulty_scaling_preset = "escape"
 	self.framing_frame_2.difficulty_scaling_preset = "escape"
+	self.chew.difficulty_scaling_preset = "escape"
 
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
@@ -154,10 +155,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
-	self.hox_1.difficulty_scaling_preset = "regroup_aggressive"
 
 	self.roberts.difficulty_scaling_preset = "regroup_slow"
-	self.rat.difficulty_scaling_preset = "regroup_slow"
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.big.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
@@ -169,20 +168,20 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dinner.difficulty_scaling_preset = "regroup_slow"
 	self.kenaz.difficulty_scaling_preset = "regroup_slow"
 	self.pbr.difficulty_scaling_preset = "regroup_slow"
-	self.cane.difficulty_scaling_preset = "regroup_slow"
 	self.peta.difficulty_scaling_preset = "regroup_slow"
 	self.peta2.difficulty_scaling_preset = "regroup_slow"
 	self.mad.difficulty_scaling_preset = "regroup_slow"
-	self.pal.difficulty_scaling_preset = "regroup_slow"
 	self.flat.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
 	self.dah.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
-	self.nmh.difficulty_scaling_preset = "regroup_slow"
-	self.mex.difficulty_scaling_preset = "regroup_slow"
-	self.mex_cooking.difficulty_scaling_preset = "regroup_slow"
 	self.bex.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
+
+	self.glace.difficulty_scaling_preset = "regroup_random"
+	self.run.difficulty_scaling_preset = "regroup_random"
+	self.pbr2.difficulty_scaling_preset = "regroup_random"
+	self.sand.difficulty_scaling_preset = "regroup_random"
 
 	self.pex.difficulty_scaling_preset = "sustain"
 
@@ -237,12 +236,33 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings.difficulty_scaling = {
+		steps = {
+			{
+				amount = 0.25,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.5,
+				delay = 30,
+				time = { 300, 360 },
+			},
+		},
 		addends = {
 			on_enemy_weapons_hot = {
-				amount = 0.5,
-				delay = 0, -- Reduce the preset's delay
-				time = 120,
+				amount = 0,
+				delay = 15,
+				time = 0,
 			},
+			on_entered_regroup = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
 		},
 	}
 

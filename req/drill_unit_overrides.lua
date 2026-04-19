@@ -45,7 +45,14 @@ local M = {
 	},
 	["glace"] = {
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = {
-			forbid_reenforce = true,
+			timer = 240,
+			jam_times = 2,
+			can_jam = true,
+		},
+		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam_rotated"):key()] = {
+			timer = 240,
+			jam_times = 2,
+			can_jam = true,
 		},
 	},
 	["man"] = {
@@ -56,6 +63,7 @@ local M = {
 	["pal"] = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {
 			timer = 240,
+			jam_times = 2,
 			can_jam = true,
 		},
 	},

@@ -50,9 +50,14 @@ local staircase_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
+local scripted_diff_add = {
+	difficulty_addends = { 
+		amount = 0.25,
+		time = { 30, 45 },
+		delay = 0,
+	},
 }
+
 return {
 	-- A bunch of reinforce spots to fill up this pretty large level
 	[100115] = {
@@ -166,9 +171,9 @@ return {
 	[103644] = enemy_filter_dozers,
 ]]
 	-- Add scripted difficulty increases
-	[100760] = difficulty_add_20, -- link_completed_obj_004 (blackmail)
-	[101124] = difficulty_add_20, -- display_case_open (prototype found)
-	[102341] = difficulty_add_20, -- output_hack_done (documents accessible)
+	[100760] = scripted_diff_add, -- link_completed_obj_004 (blackmail)
+	[101124] = scripted_diff_add, -- display_case_open (prototype found)
+	[102341] = scripted_diff_add, -- output_hack_done (documents accessible)
 	-- Spawn group intervals
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,

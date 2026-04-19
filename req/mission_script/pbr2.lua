@@ -16,8 +16,12 @@ local sewer_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local difficulty_add_25 = {
-	difficulty_add = 0.25,
+local scripted_diff_add = {
+	difficulty_addends = { 
+		amount = 0.25,
+		time = { 30, 45 },
+		delay = 0,
+	},
 }
 
 return {
@@ -67,7 +71,7 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[100668] = difficulty_add_25, -- done_with_a_pallet
+	[100668] = scripted_diff_add, -- done_with_a_pallet
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,

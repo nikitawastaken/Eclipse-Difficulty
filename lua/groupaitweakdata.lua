@@ -3214,7 +3214,7 @@ GroupAITweakData.difficulty_scaling_presets = {
 			on_enemy_weapons_hot = {
 				amount = 1,
 				delay = 15,
-				time = 150,
+				time = { 120, 180 },
 			},
 		},
 	},
@@ -3240,6 +3240,16 @@ GroupAITweakData.difficulty_scaling_presets = {
 				amount = 0.25,
 				delay = 0,
 				time = 60,
+			},
+		},
+	},
+	-- Randomized sustain addend meant to be used for levels with primarily scripted difficulty curves
+	["regroup_random"] = {
+		addends = {
+			on_entered_regroup = {
+				amount = { 0.125, 0.1875 },
+				delay = 0,
+				time = 45,
 			},
 		},
 	},

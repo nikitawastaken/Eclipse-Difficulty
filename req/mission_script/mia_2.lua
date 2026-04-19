@@ -66,14 +66,23 @@ local roof_spawn = {
 	},
 }
 return {
+	[100043] = { -- player_spawned
+		allowed_difficulty_addends = { -- disable sustain addends
+			on_entered_regroup = false,
+		},
+	},
+	[100512] = { -- add_spawn (apartment spawns)
+		allowed_difficulty_addends = { -- enable sustain addends
+			on_entered_regroup = true,
+		},
+	},
 	-- Boss spawn
 	[100154] = {
-		difficulty_max = 0.1,
-	},
-	-- Boss dead
-	[100153] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = {
+			amount = 0.1, 
+			time = { 15, 30 }, 
+			delay = 0, 
+		},
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,

@@ -44,7 +44,11 @@ return {
 	[101057] = disabled,
 	-- Enter main hall
 	[103594] = {
-		difficulty_max = 0.1,
+		forced_difficulty = {
+			amount = 0.1, 
+			time = { 15, 30 }, 
+			delay = 0, 
+		},
 	},
 	-- Add some reinforce around the house
 	[100129] = { -- Preferred
@@ -73,8 +77,6 @@ return {
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
 		reinforce = {
 			{
 				name = "main_hall",

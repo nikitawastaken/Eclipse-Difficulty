@@ -62,31 +62,47 @@ local van_guaranteed_spawn = {
 local van_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local inkwell_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local overpass_spawn = {
+local inkwell_agile_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local armitage_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_shields_bulldozers,
 }
-local building_spawn = {
+local overpass_spawn = {
+	values = {
+		interval = 25,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+	},
+}
+local overpass_agile_spawn = {
 	values = {
 		interval = 40,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local scripted_diff_add = {
+	amount = 0.25,
+	time = { 30, 45 },
+	delay = 0,
 }
 local swat_heli_incoming = {
 	values = {
@@ -101,6 +117,7 @@ local garage_event_triggered = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
+
 return {
 	[101356] = {
 		ponr = {
@@ -280,9 +297,12 @@ return {
 	[102866] = disabled,
 	[102880] = disabled, -- disabled vanilla ponr
 	-- delay the beginning of besiege
-	[100631] = {
+	[100631] = { -- area_player_spawn
 		on_executed = {
 			{ id = 400089, delay = 0 },
+		},
+		allowed_difficulty_addends = { -- disable sustain addends
+			on_entered_regroup = false,
 		},
 	},
 	[100641] = {
@@ -384,12 +404,12 @@ return {
 		},
 		reinforce = { -- add crane "blockade" reinforce
 			{
-				name = "major_ave1",
+				name = "major_ave01",
 				force = 3,
 				position = Vector3(-6075, -2125, 75),
 			},
 			{
-				name = "major_ave2",
+				name = "major_ave02",
 				force = 3,
 				position = Vector3(-6075, -425, 75),
 			},
@@ -402,8 +422,8 @@ return {
 	},
 	[100101] = { -- remove enemies trigger (reached the construction crane)
 		reinforce = { -- remove crane "blockade" reinforce
-			{ name = "major_ave1" },
-			{ name = "major_ave2" },
+			{ name = "major_ave01" },
+			{ name = "major_ave02" },
 		},
 	},
 	[100959] = { -- area player by street
@@ -425,9 +445,15 @@ return {
 		reinforce = { -- add Inkwell reinforce
 			{
 				name = "inkwell",
-				force = 5,
+				force = 3,
 				position = Vector3(-9250, -12775, 75),
 			},
+		},
+		difficulty_addends = { -- increase diff and enable sustain addends
+			scripted_diff_add,
+		},
+		allowed_difficulty_addends = {
+			on_entered_regroup = true,
 		},
 	},
 	[103883] = { -- Matt is out, go to parking
@@ -438,6 +464,9 @@ return {
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
 		},
+		allowed_difficulty_addends = { -- disable sustain addends
+			on_entered_regroup = false,
+		},
 	},
 	[103885] = { -- reached gate
 		on_executed = {
@@ -445,12 +474,12 @@ return {
 		},
 		reinforce = { -- add alley "blockade" reinforce
 			{
-				name = "armitage_ave1",
+				name = "armitage_ave01",
 				force = 3,
 				position = Vector3(-17300, -9500, 1050),
 			},
 			{
-				name = "armitage_ave2",
+				name = "armitage_ave02",
 				force = 3,
 				position = Vector3(-15500, -9500, 1050),
 			},
@@ -463,8 +492,8 @@ return {
 	},
 	[102486] = { -- trigger area 7
 		reinforce = { -- remove Armitage Ave. "blockade" reinforce
-			{ name = "armitage_ave1" },
-			{ name = "armitage_ave2" },
+			{ name = "armitage_ave01" },
+			{ name = "armitage_ave02" },
 		},
 	},
 	[103492] = { -- remove spawns trigger
@@ -473,12 +502,12 @@ return {
 		},
 		reinforce = { -- add overpass "blockade" reinforce
 			{
-				name = "overpass1",
+				name = "overpass01",
 				force = 3,
 				position = Vector3(-8400, -9500, 1580),
 			},
 			{
-				name = "overpass2",
+				name = "overpass02",
 				force = 3,
 				position = Vector3(-8400, -10250, 1580),
 			},
@@ -491,11 +520,17 @@ return {
 	},
 	[100271] = { -- trigger area 11
 		on_executed = {
-			{ id = 410053, delay = 0, delay_rand = 15 }, -- finale preferred add
+			{ id = 410053, delay = 0, delay_rand = 5 }, -- finale preferred add
 		},
 		reinforce = { -- remove overpass "blockade" reinforce
-			{ name = "overpass1" },
-			{ name = "overpass2" },
+			{ name = "overpass01" },
+			{ name = "overpass02" },
+		},
+		difficulty_addends = { -- increase diff and enable sustain addends
+			scripted_diff_add,
+		},
+		allowed_difficulty_addends = { 
+			on_entered_regroup = true,
 		},
 	},
 	-- Spawn group intervals
@@ -528,9 +563,11 @@ return {
 	[410041] = van_spawn,
 	[410048] = van_spawn,
 	[103703] = inkwell_spawn,
+	[100910] = armitage_spawn,
 	[102475] = armitage_spawn,
-	[100441] = building_spawn,
-	[103333] = building_spawn,
-	[103785] = building_spawn,
-	[100029] = building_spawn,
+	[103553] = armitage_spawn,
+	[100441] = inkwell_agile_spawn,
+	[103333] = inkwell_agile_spawn,
+	[103785] = inkwell_agile_spawn,
+	[100029] = overpass_agile_spawn,
 }
