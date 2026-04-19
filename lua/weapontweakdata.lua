@@ -2558,7 +2558,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.deagle.stats.suppression = 7
 		self.deagle.stats.alert_size = 7
 		self.deagle.total_ammo_mul = nil
-		self.deagle.pickup_mul  = (40 / 50)
+		self.deagle.pickup_mul  = (71 / 100)
 --		self.deagle.swap_speed_multiplier = 1.5
 		self.deagle.steelsight_move_speed_mul = 0.6
 		self.deagle.shake.fire_multiplier = 1.2
@@ -2597,7 +2597,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.x_deagle.stats.suppression = 7
 		self.x_deagle.stats.alert_size = 7
 		self.x_deagle.total_ammo_mul = nil
-		self.x_deagle.pickup_mul  = (40 / 50)
+		self.x_deagle.pickup_mul  = (71 / 100)
 --		self.deagle.swap_speed_multiplier = 1.5
 		self.x_deagle.steelsight_move_speed_mul = 0.6
 		self.x_deagle.shake.fire_multiplier = 1.2
