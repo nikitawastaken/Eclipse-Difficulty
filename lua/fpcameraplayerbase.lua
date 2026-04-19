@@ -12,11 +12,13 @@ Hooks:PostHook(FPCameraPlayerBase, "stop_shooting", "ssr_stop_shooting", functio
 end)
 
 function FPCameraPlayerBase:recoil_kick(up, down, left, right)
+	local penalty_v = self._recoil_kick.current and self._recoil_kick.accumulated - self._recoil_kick.current
 	local v = math.lerp(up, down, math.random())
-	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
+	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v + penalty_v
 	self._recoil_kick.last = v
+	local penalty_h = self._recoil_kick.h.current and self._recoil_kick.h.accumulated - self._recoil_kick.h.current
 	local h = math.lerp(left, right, math.random())
-	self._recoil_kick.h.accumulated = (self._recoil_kick.h.accumulated or 0) + h
+	self._recoil_kick.h.accumulated = (self._recoil_kick.h.accumulated or 0) + h + penalty_h
 	self._recoil_kick.h.last = h
 end
 
