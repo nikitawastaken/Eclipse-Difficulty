@@ -1761,8 +1761,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		bulldozer_special = {
 			["taser_1"] = 5,
 			["medic_1"] = 4,
-			["taser_2"] = 4,
-			["medic_2"] = 3,
+			["taser_2"] = 3,
+			["medic_2"] = 2,
 		},
 	}
 
