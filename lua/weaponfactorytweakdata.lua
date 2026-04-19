@@ -58,7 +58,7 @@ function WeaponFactoryTweakData:_add_forbids_from_list(part_id, part_list)
 	if not self.parts[part_id].forbids then
 		self.parts[part_id].forbids = {}
 	end
-	
+
 	for _, forbid_id in pairs(part_list) do
 		if not table.contains(self.parts[part_id].forbids, forbid_id) then
 			table.insert(self.parts[part_id].forbids, forbid_id)
@@ -635,21 +635,21 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			fire_auto = "akm_fire",
 		},
 	}
-	
+
 	self.parts.wpn_fps_ass_asval_b_proto.perks = nil
 	self.parts.wpn_fps_ass_asval_b_proto.sub_type = nil
 	self.parts.wpn_fps_ass_asval_b_proto.sound_switch = nil
 	self.parts.wpn_fps_ass_asval_b_proto.stats.alert_size = 0
 	self.parts.wpn_fps_ass_asval_b_proto.stats.suppression = 0
 	self.parts.wpn_fps_ass_asval_b_proto.adds = {
-		"wpn_fps_ass_asval_b_proto_switch"
+		"wpn_fps_ass_asval_b_proto_switch",
 	}
 
-	self.parts.wpn_fps_ass_asval_b_standard_dummy = deep_clone(self.parts.wpn_fps_smg_mp9_b_dummy) -- I hate that this is how I had to do it 
+	self.parts.wpn_fps_ass_asval_b_standard_dummy = deep_clone(self.parts.wpn_fps_smg_mp9_b_dummy) -- I hate that this is how I had to do it
 	self.parts.wpn_fps_ass_asval_b_standard.adds = { "wpn_fps_ass_asval_b_standard_dummy" }
-	
+
 	self:_add_forbids_from_list("wpn_fps_ass_asval_b_standard_dummy", rifle_barrel_exts)
-	
+
 	-- DMR Mods
 	self:_wipe_stats({
 		"wpn_fps_ass_galil_fg_fab",
@@ -981,7 +981,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_suppressor")
 
 	self:_add_parts_from_list({ "wpn_fps_smg_pm9" }, rifle_barrel_exts_no_shak12)
-	
+
 	self:_add_forbids_from_list("wpn_fps_smg_pm9_b_standard", rifle_barrel_exts_no_shak12)
 
 	self:_add_forbids_from_list("wpn_fps_smg_fmg9_conversion", rifle_barrel_exts)
@@ -1613,7 +1613,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if not self[factory_id].override then
 			self[factory_id].override = {}
 		end
-			
+
 		for _, part_id in pairs(part_list) do
 			if not self[factory_id].override[part_id] then
 				self[factory_id].override[part_id] = {}
@@ -1625,16 +1625,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 			local part_data = self.parts[part_id]
 			local part_stats = part_data and part_data.stats or {}
-			
+
 			self[factory_id].override[part_id].stats = deep_clone(part_stats)
 			self[factory_id].override[part_id].stats.spread = (part_stats.spread or 0) - 1
-			self[factory_id].override[part_id].stats.recoil = (part_stats.recoil or 0) - 1		
-			self[factory_id].override[part_id].stats.concealment = (part_stats.concealment or 0) + 2		
+			self[factory_id].override[part_id].stats.recoil = (part_stats.recoil or 0) - 1
+			self[factory_id].override[part_id].stats.concealment = (part_stats.concealment or 0) + 2
 		end
 	end
 
 	smallify_barrel_exts("wpn_fps_pis_welrod", pistol_barrel_exts)
-	
+
 	-- Split the team boost into two bonuses
 	self.parts.wpn_fps_upg_bonus_team_exp = {
 		exclude_from_challenge = true,
@@ -2620,12 +2620,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_charm_eclipse.unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse"
 
-	local fire_mode_locks = { 
+	local fire_mode_locks = {
 		"wpn_fps_upg_i_singlefire",
 		"wpn_fps_upg_i_autofire",
 		"wpn_fps_upg_i_burstfire",
 	}
-	
+
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = 0
@@ -2684,12 +2684,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
 	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
 	self:_add_forbids_from_list("wpn_fps_ass_g3_b_sniper", fire_mode_locks)
-	
+
 	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
 	self.parts.wpn_fps_ass_fal_fg_04.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
 	self:_add_forbids_from_list("wpn_fps_ass_fal_fg_04", fire_mode_locks)
-	
+
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.spread = 2
@@ -2698,7 +2698,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {}
 	self:_balance_conversion_kit(tweak_data, "shak12", "wpn_fps_ass_shak12_body_vks", 72, nil, true)
 	self:_add_forbids_from_list("wpn_fps_ass_shak12_body_vks", fire_mode_locks)
-	
+
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
@@ -2709,7 +2709,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
 	self:_add_forbids_from_list("wpn_fps_upg_ass_m4_b_beowulf", fire_mode_locks)
-	
+
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
@@ -2721,7 +2721,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 	self:_add_forbids_from_list("wpn_fps_upg_ass_ak_b_zastava", fire_mode_locks)
-	
+
 	for part_id, part_data in pairs(self.parts) do
 		local is_barrel_ext = part_data.type and part_data.type == "barrel_ext"
 		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
