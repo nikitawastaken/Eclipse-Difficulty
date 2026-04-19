@@ -48,11 +48,13 @@ local M = {
 			timer = 240,
 			jam_times = 2,
 			can_jam = true,
+			forbid_reenforce = true,
 		},
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam_rotated"):key()] = {
 			timer = 240,
 			jam_times = 2,
 			can_jam = true,
+			forbid_reenforce = true,
 		},
 	},
 	["man"] = {
