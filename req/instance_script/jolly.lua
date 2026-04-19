@@ -1,6 +1,7 @@
 ---@module Aftershock
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local us_soldier_1 = scripted_enemy.soldier_2
@@ -13,18 +14,25 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1, [elite_skull_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 })
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+}
+local specials = specials_list
 local law = so_access.law
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local patches = {
 	heli = {
-		soldiers = table.set(100003, 100004, 100000),
-		specials = table.set(100002),
+		soldiers = table.set(100003, 100004),
+		specials = table.set(100000, 100002),
 		hunt_so = table.set(100011),
 		filters_disable = table.set(100042, 100075, 100033),
 		filters_normal_above = table.set(100041),
