@@ -285,6 +285,7 @@ function GroupAIStateBase:_apply_forced_difficulty(new_diff_value)
 		return new_diff_value
 	end
 	local forced_diff_value
+	local t = self._t
 	if self._forced_difficulty.recovering then
 		self._forced_difficulty.recovery_start_t = self._forced_difficulty.recovery_start_t or t
 		self._forced_difficulty.end_t = self._forced_difficulty.end_t or t + (self._forced_difficulty.time or 0)
