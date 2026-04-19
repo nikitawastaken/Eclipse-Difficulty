@@ -182,9 +182,9 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Add scripted difficulty increases
---	[102326] = difficulty_add_20, -- ICUsawDone
---	[102846] = difficulty_add_20, -- EnableValidationMachines
---	[102874] = difficulty_add_20, -- start_wait_for_elevator
+	--	[102326] = difficulty_add_20, -- ICUsawDone
+	--	[102846] = difficulty_add_20, -- EnableValidationMachines
+	--	[102874] = difficulty_add_20, -- start_wait_for_elevator
 	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,

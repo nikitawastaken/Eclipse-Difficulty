@@ -51,7 +51,7 @@ local staircase_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local scripted_diff_add = {
-	difficulty_addends = { 
+	difficulty_addends = {
 		amount = 0.25,
 		time = { 30, 45 },
 		delay = 0,

@@ -68,13 +68,13 @@ return {
 				name = "garage",
 				force = 3,
 				position = Vector3(-600, -1400, -425),
-			},			
+			},
 		},
 		allowed_difficulty_addends = { -- disable sustain addends
 			on_entered_regroup = false,
 		},
 	},
-	[101790] = { -- outside_penthouse 
+	[101790] = { -- outside_penthouse
 		reinforce = {
 			{ name = "lobby" },
 			{ name = "garage" },
@@ -87,11 +87,11 @@ return {
 		},
 	},
 	-- Yufu spawned
-	[100765] = { 
+	[100765] = {
 		forced_difficulty = {
-			amount = 0.1, 
-			time = { 15, 30 }, 
-			delay = 0, 
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
 		},
 	},
 	[101607] = { -- Yufu is dead

@@ -46,7 +46,7 @@ return {
 			on_entered_regroup = false,
 		},
 	},
-	[102226] = { -- mexico_preferreds 
+	[102226] = { -- mexico_preferreds
 		allowed_difficulty_addends = { -- enable sustain addends
 			on_entered_regroup = true,
 		},

@@ -529,7 +529,7 @@ return {
 		difficulty_addends = { -- increase diff and enable sustain addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = { 
+		allowed_difficulty_addends = {
 			on_entered_regroup = true,
 		},
 	},

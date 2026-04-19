@@ -169,8 +169,8 @@ return {
 	[105902] = disabled, -- left gate
 	[105904] = disabled, -- right gate
 	-- add scripted diff increases
---	[104168] = difficulty_add_20, -- area_player_in_vault_area
---	[103700] = difficulty_add_20, -- area_player_in_vault_loud
+	--	[104168] = difficulty_add_20, -- area_player_in_vault_area
+	--	[103700] = difficulty_add_20, -- area_player_in_vault_loud
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,

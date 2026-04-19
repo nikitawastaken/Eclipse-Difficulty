@@ -45,9 +45,9 @@ return {
 	-- Enter main hall
 	[103594] = {
 		forced_difficulty = {
-			amount = 0.1, 
-			time = { 15, 30 }, 
-			delay = 0, 
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
 		},
 	},
 	-- Add some reinforce around the house

@@ -19,19 +19,19 @@ local enabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local waterfront_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },	
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local rappel_spawn = {
 	values = {
 		interval = 40,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },	
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -92,7 +92,7 @@ return {
 		difficulty_addends = { -- increase diff and enable sustain addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = { 
+		allowed_difficulty_addends = {
 			on_entered_regroup = true,
 		},
 	},

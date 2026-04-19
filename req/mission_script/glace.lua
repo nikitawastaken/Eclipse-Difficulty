@@ -24,12 +24,12 @@ local disabled = {
 		enabled = false,
 	},
 }
-local interrupter_enemy = { 
-	[light_rifle] = 10, 
+local interrupter_enemy = {
+	[light_rifle] = 10,
 	[light_sg] = 7,
 	[cloaker] = get_difficulty_group_specific_value({ 0, 3, 5 }),
 	[taser] = get_difficulty_group_specific_value({ 0, 2, 4 }),
-} 
+}
 local interrupter = {
 	enemy = interrupter_enemy,
 }
@@ -134,9 +134,9 @@ return {
 		},
 	},
 	[102295] = { -- at the top
-		difficulty_addends = {  -- increase diff and enable sustain addends
+		difficulty_addends = { -- increase diff and enable sustain addends
 			scripted_diff_add,
-		}, 
+		},
 		allowed_difficulty_addends = {
 			on_entered_regroup = true,
 		},
@@ -250,13 +250,13 @@ return {
 	-- Change preferreds
 	[101176] = { -- add_prefered_saw_spawns
 		values = { -- remove spawns close to the broken bridge part
-			spawn_groups = { 
-				100867, 
-				101153, 
-				101157, 
-				101154, 
-				101160, 
-				101156, 
+			spawn_groups = {
+				100867,
+				101153,
+				101157,
+				101154,
+				101160,
+				101156,
 				101159,
 				103886, -- Add a few construct groups
 				101847,
@@ -265,14 +265,14 @@ return {
 	},
 	[101239] = { -- add_prefered_escape_bridge_spawns
 		values = { -- remove spawns right next to the SWAT van saw
-			spawn_groups = { 
-				101255, 
-				101587, 
-				101258, 
-			--	101252, 
-				101254, 
-				101586, 
-			--	101251,
+			spawn_groups = {
+				101255,
+				101587,
+				101258,
+				--	101252,
+				101254,
+				101586,
+				--	101251,
 				102131,
 				103886, -- Add a few construct groups
 				101847,
