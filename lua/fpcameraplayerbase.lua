@@ -14,7 +14,7 @@ end)
 function FPCameraPlayerBase:recoil_kick(up, down, left, right)
 	local penalty_v = self._recoil_kick.current and self._recoil_kick.accumulated - self._recoil_kick.current or 0
 	local v = math.lerp(up, down, math.random())
-	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v + penalty_v 
+	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v + penalty_v
 	self._recoil_kick.last = v
 	local penalty_h = self._recoil_kick.h.current and self._recoil_kick.h.accumulated - self._recoil_kick.h.current or 0
 	local h = math.lerp(left, right, math.random())
