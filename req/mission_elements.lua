@@ -701,6 +701,37 @@ function M.gen_chance(id, name, pos, rot, opts)
 	return chance_element
 end
 
+---Generate a chance operator element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_chance_operator(id, name, pos, rot, opts)
+	opts = opts or {}
+	local chance_operator_element = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementLogicChance",
+		class = "ElementLogicChanceOperator",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			chance = opts.chance or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			operation = opts.operation or "reset",
+			elements = opts.elements or {},
+			callback = opts.callback or false,
+		},
+	}
+
+	return chance_operator_element
+end
+
 ---Generate a enable unit element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
