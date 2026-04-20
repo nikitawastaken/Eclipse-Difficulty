@@ -15,14 +15,14 @@ return {
 				element.values.trigger_times = 0 -- why it has set trigger times to 9?
 			elseif element.id == centrifuge.chance_fail then
 				element.values.callback = function()
-					local chance_element = managers.mission:get_mission_element(centrifuge.chance_element)
+					local chance_element = managers.mission:get_element_by_id(centrifuge.chance_element)
 					if chance_element and chance_element.chance_operation_add_chance then
 						chance_element:chance_operation_add_chance(5)
 					end
 				end
 			elseif element.id == centrifuge.chance_success then
 				element.values.callback = function()
-					local chance_element = managers.mission:get_mission_element(centrifuge.chance_element)
+					local chance_element = managers.mission:get_element_by_id(centrifuge.chance_element)
 					if chance_element and chance_element.chance_operation_reset then
 						chance_element:chance_operation_reset()
 					end
