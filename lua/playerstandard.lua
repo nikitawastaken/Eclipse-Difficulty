@@ -939,7 +939,11 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 		end
 
 		-- sidearm pullout extra damage
-		if self._is_sidearm_pullout_damage_allowed and managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol") then
+		if
+			self._is_sidearm_pullout_damage_allowed
+			and managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+			and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol")
+		then
 			managers.player:activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
 			self._is_sidearm_pullout_damage_allowed = false
 		end
