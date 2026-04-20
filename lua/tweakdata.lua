@@ -302,7 +302,7 @@ for _, projectile in pairs(tweak_data.projectiles) do
 end
 
 -- Fix the Death Wish soundtrack being unavailable
-self.music.track_list[12].lock = nil
+tweak_data.music.track_list[12].lock = nil
 
 -- Grenade Case HUD icon
 tweak_data.hud_icons.equipment_grenade_case = {
