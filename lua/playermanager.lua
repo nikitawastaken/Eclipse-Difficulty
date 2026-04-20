@@ -2340,3 +2340,25 @@ function PlayerManager:_on_enter_berserker_hit_stacking_event(attack_data)
 		end
 	end
 end
+
+-- dummy this function out because we speeding up CD on-kill is a relic of vanilla design
+function PlayerManager:speed_up_grenade_cooldown(time)
+	-- local timer = self._timers.replenish_grenades
+
+	-- if not timer then
+	-- 	return
+	-- end
+
+	-- timer.t = timer.t - time
+	-- local peer_id = managers.network:session():local_peer():id()
+	-- local grenade = self._global.synced_grenades[peer_id].grenade
+	-- local tweak = tweak_data.blackmarket.projectiles[grenade]
+	-- local time_left = self:get_timer_remaining("replenish_grenades") or 0
+
+	-- managers.hud:set_player_grenade_cooldown({
+	-- 	end_time = managers.game_play_central:get_heist_timer() + time_left,
+	-- 	duration = tweak.base_cooldown
+	-- })
+
+	return
+end
