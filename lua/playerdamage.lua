@@ -330,6 +330,9 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
 	end
 
+	-- hidden on-hurt drama gain reduction for grinder
+	health_subtracted = health_subtracted * managers.player:upgrade_value("player", "decreased_drama_hurt_mul", 1)
+
 	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
 
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then

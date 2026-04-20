@@ -2965,6 +2965,16 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Grinder
 	self.damage_to_hot_data.stacking_cooldown = 1
+	self.values.player.decreased_drama_hurt_mul = { 0.4 }
+	self.definitions.player_decreased_drama_hurt_mul = {
+		name_id = "menu_player_decreased_drama_hurt_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "decreased_drama_hurt_mul",
+			category = "player",
+		},
+	}
 	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
 	self.definitions.player_extra_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
