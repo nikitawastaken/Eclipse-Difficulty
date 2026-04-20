@@ -6,7 +6,7 @@ local has_faction_text = Eclipse.settings.faction_assault_text
 
 Hooks:PostHook(HUDAssaultCorner, "init", "eclipse_assault_corner_init", function(self)
 	self._ponr_state = false
-	
+
 	-- Disable assault panel color override when mutators are active
 	self._assault_mode = "normal"
 	self._assault_color = Color(1, 1, 1, 0)
