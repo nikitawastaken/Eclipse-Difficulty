@@ -17,6 +17,7 @@ function PlayerStandard:init(unit)
 	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
+	self._is_sidearm_pullout_damage_allowed = false
 	local pm = managers.player
 	local pickup_range_multiplier = 1
 
@@ -903,6 +904,17 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 			return
 		end
 
+		if managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+			local weapon_unit_base = managers.player:equipped_weapon_unit():base()
+			local selection_index = weapon_unit_base and weapon_unit_base:selection_index() or 0
+
+			if selection_index == 2 then
+				self._is_sidearm_pullout_damage_allowed = true
+			else
+				self._is_sidearm_pullout_damage_allowed = false
+			end
+		end
+
 		self._unequip_weapon_expire_t = nil
 
 		if not self:_interacting() then
@@ -927,8 +939,9 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 		end
 
 		-- sidearm pullout extra damage
-		if managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol") then
+		if self._is_sidearm_pullout_damage_allowed and managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol") then
 			managers.player:activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+			self._is_sidearm_pullout_damage_allowed = false
 		end
 
 		TestAPIHelper.on_event("load_weapon")
