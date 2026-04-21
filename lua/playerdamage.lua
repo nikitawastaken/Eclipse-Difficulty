@@ -328,10 +328,9 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 	-- Team AI use this function too, but they don't have `get_real_armor`
 	if self.get_real_armor and self:get_real_armor() > 0 then
 		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+	elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain reduction for armorless decks
+		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
 	end
-
-	-- hidden on-hurt drama gain reduction for grinder
-	health_subtracted = health_subtracted * managers.player:upgrade_value("player", "decreased_drama_hurt_mul", 1)
 
 	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
 

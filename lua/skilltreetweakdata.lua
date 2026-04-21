@@ -772,7 +772,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
 	-- Grinder
-	self.specializations[11][1].upgrades = { "player_damage_to_hot_1", "player_decreased_drama_hurt_mul" }
+	self.specializations[11][1].upgrades = { "player_damage_to_hot_1", "player_decreased_drama_hurt" }
 	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
@@ -831,6 +831,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- stoic
+	table.insert(self.specializations[19][1].upgrades, "player_decreased_drama_hurt")
 	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 
 	-- hacker
