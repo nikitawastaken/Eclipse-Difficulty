@@ -373,6 +373,12 @@
 					<file :name="projectile_trail_green.effect"/>
 				</group>
 				
+				<group :name="explosions/">
+					<file :name="poison_gas.effect"/>
+					<file :name="smoke_grenade_smoke.effect"/>
+					<file :name="smoke_screen.effect"/>
+				</group>
+				
 				<!-- cloaker goggle glow -->
 				<group :name="character/">
 					<file :name="hvh_cloaker_goggle.effect"/>
