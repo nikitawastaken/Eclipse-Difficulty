@@ -386,6 +386,10 @@
 				</group>
 			</group>
 			<group :name="payday2/">
+				<file :name="environment/cs_gas_damage_area.effect"/>
+				<file :name="environment/cs_gas_sealing_vent.effect"/>
+				<file :name="environment/gas_damage_area.effect"/>
+				
 				<group :name="particles/">
 					<file :name="explosions/cluster_incendiary_explosion.effect"/>
 					<file :name="character/taser_thread.effect"/>
