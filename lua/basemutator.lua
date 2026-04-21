@@ -754,7 +754,7 @@ MutatorTaser.desc_id = "mutator_taser_desc"
 MutatorTaser.has_options = true
 MutatorTaser.categories = { "gameplay" }
 MutatorTaser.icon_coords = {
-	7,
+	8,
 	1,
 }
 
