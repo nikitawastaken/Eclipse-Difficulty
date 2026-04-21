@@ -27,4 +27,22 @@
 	"mutator_bo_flashbang_desc": "Flashbangs now detonate instantly.",
 	"mutator_bo_flashbang_longdesc": "Flashbangs now detonate instantly."
 
+	"mutator_tear_gas": "Pest Control",
+	"mutator_tear_gas_desc": "Customize enemy Tear Gas usage.",
+	"mutator_tear_gas_longdesc": "Customize enemy Tear Gas usage.",
+	"menu_mutator_tear_gas_min_chance_times_mul_slider": "Minimum time to deploy tear gas",
+	"menu_mutator_tear_gas_max_chance_times_mul_slider": "Maximum time to deploy tear gas",
+	"menu_mutator_tear_gas_lifetime_mul_slider": "Tear Gas Grenade Duration",
+	"menu_mutator_tear_gas_replace_flashbangs_toggle": "Tear Gas Replaces Flashbangs",
+	"menu_mutator_tear_gas_collateral_damage_toggle": "Collateral Damage",
+
+	"mutator_taser": "Shock Therapy",
+	"mutator_taser_desc": "Customize the effects of being tased.",
+	"mutator_taser_longdesc": "Customize the effects of being tased.",
+	"menu_mutator_taser_camera_spin_limit_slider": "Camera horizontal movement limit",
+	"menu_mutator_taser_camera_pitch_limit_slider": "Camera vertical movement limit",
+	"menu_mutator_taser_incapacitation_time_slider": "Time to incapacitate",
+	"menu_mutator_taser_full_stun_shocks_slider": "Shocks to fully stun",
+	"menu_mutator_taser_camera_limit_toggle": "Limit camera movement",
+	"menu_mutator_taser_full_stun_toggle": "Full stun",
 }
