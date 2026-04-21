@@ -443,7 +443,7 @@ MutatorTearGas.desc_id = "mutator_tear_gas_desc"
 MutatorTearGas.has_options = true
 MutatorTearGas.categories = { "gameplay" }
 MutatorTearGas.icon_coords = {
-	7, 
+	7,
 	1,
 }
 
@@ -469,12 +469,12 @@ function MutatorTearGas:setup(data)
 	local min_chance_times_mul = self:get_tear_gas_min_chance_times_mul()
 	local max_chance_times_mul = self:get_tear_gas_max_chance_times_mul()
 	local lifetime_mul = self:get_tear_gas_lifetime_mul()
-	
+
 	-- Value 1: Time it takes for Tear Gas chance to begin scaling
 	-- Value 2: Time it takes for a Tear Gas grenade to be guaranteed
 	tweak_data.group_ai.cs_grenade_chance_times[1] = tweak_data.group_ai.cs_grenade_chance_times[1] * min_chance_times_mul
 	tweak_data.group_ai.cs_grenade_chance_times[2] = math.max(tweak_data.group_ai.cs_grenade_chance_times[2] * max_chance_times_mul, tweak_data.group_ai.cs_grenade_chance_times[1]) -- Make sure maximum cs_grenade_chance_times are no shorter than minimum cs_grenade_chance_times
-	tweak_data.group_ai.cs_grenade_lifetime = tweak_data.group_ai.cs_grenade_lifetime *  lifetime_mul
+	tweak_data.group_ai.cs_grenade_lifetime = tweak_data.group_ai.cs_grenade_lifetime * lifetime_mul
 end
 
 function MutatorTearGas:name()
@@ -538,7 +538,7 @@ end
 function MutatorTearGas:setup_options_gui(node)
 	local params = {}
 	local data_node = {}
-	
+
 	params = {
 		name = "tear_gas_min_chance_times_mul_slider",
 		callback = "_update_mutator_value",
@@ -595,7 +595,7 @@ function MutatorTearGas:setup_options_gui(node)
 
 	slider3:set_value(self:get_tear_gas_lifetime_mul())
 	node:add_item(slider3)
-	
+
 	params = {
 		name = "tear_gas_replace_flashbangs_toggle",
 		callback = "_update_mutator_value",
@@ -723,7 +723,7 @@ function MutatorTearGas:reset_to_default()
 		if slider3 then
 			slider3:set_value(self:get_tear_gas_lifetime_mul())
 		end
-		
+
 		local toggle1 = self._node:item("tear_gas_replace_flashbangs")
 		if toggle1 then
 			toggle1:set_value(self:get_tear_gas_replace_flashbangs())
@@ -746,7 +746,6 @@ function MutatorTearGas:options_fill()
 	end
 end
 
-
 --Taser Modifiers
 MutatorTaser = MutatorTaser or class(BaseMutator)
 MutatorTaser._type = "MutatorTaser"
@@ -755,7 +754,7 @@ MutatorTaser.desc_id = "mutator_taser_desc"
 MutatorTaser.has_options = true
 MutatorTaser.categories = { "gameplay" }
 MutatorTaser.icon_coords = {
-	7, 
+	7,
 	1,
 }
 
@@ -784,11 +783,11 @@ function MutatorTaser:setup(data)
 	local cam_pitch_limit = self:get_taser_camera_pitch_limit()
 	local full_stun_shocks = self:get_taser_full_stun_shocks()
 	local incap_time = self:get_taser_incapacitation_time()
-	
+
 	tweak_data.character.tased_camera_spin_limit = cam_spin_limit
 	tweak_data.character.tased_camera_pitch_limit = cam_pitch_limit
 	tweak_data.character.full_stun_shocks = full_stun_shocks
-	
+
 	local old_tased_time = tweak_data.player.damage.TASED_TIME
 	tweak_data.player.damage.TASED_TIME = math.min(incap_time, old_tased_time)
 end
@@ -868,7 +867,7 @@ end
 function MutatorTaser:setup_options_gui(node)
 	local params = {}
 	local data_node = {}
-	
+
 	params = {
 		name = "taser_camera_spin_limit_slider",
 		callback = "_update_mutator_value",
@@ -944,7 +943,7 @@ function MutatorTaser:setup_options_gui(node)
 
 	slider4:set_value(self:get_taser_full_stun_shocks())
 	node:add_item(slider4)
-	
+
 	params = {
 		name = "taser_camera_limit_toggle",
 		callback = "_update_mutator_value",
@@ -1028,7 +1027,7 @@ function MutatorTaser:setup_options_gui(node)
 
 	toggle2:set_value(self:get_taser_full_stun() and "on" or "off")
 	node:add_item(toggle2)
-	
+
 	return new_item
 end
 
@@ -1079,7 +1078,7 @@ function MutatorTaser:reset_to_default()
 		if slider4 then
 			slider4:set_value(self:get_taser_full_stun_shocks())
 		end
-		
+
 		local toggle1 = self._node:item("taser_camera_limit")
 		if toggle1 then
 			toggle1:set_value(self:get_taser_camera_limit())

@@ -50,7 +50,7 @@ function PlayerTased:enter(state_data, enter_data)
 	CopDamage.register_listener("on_criminal_tased", {
 		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
-	
+
 	local tased_camera_limit = managers.mutators:modify_value("PlayerTased:TaserCameraLimit", false)
 	if tased_camera_limit then
 		self._unit:camera():camera_unit():base():set_limits(tweak_data.character.tased_camera_spin_limit, tweak_data.character.tased_camera_pitch_limit)
@@ -90,10 +90,9 @@ function PlayerTased:_check_action_shock(t, input, ...)
 		if tweak_data.character.full_stun_shocks and self._num_shocks >= tweak_data.character.full_stun_shocks then
 			self._ext_camera:play_redirect(self:get_animation("tased_exit"))
 			self:_start_action_unequip_weapon(managers.player:player_timer():time(), {
-				selection_wanted = 1
+				selection_wanted = 1,
 			})
 			self:_play_unequip_animation()
 		end
 	end
-	
 end
