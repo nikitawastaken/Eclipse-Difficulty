@@ -278,11 +278,10 @@ local Smoke_bomb = {
 }
 
 local ambush_event_global = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
+    enabled = (ambush_event_chance and normal_and_above) and true or false,
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	elements = {
 		400068,
 	},
@@ -294,7 +293,6 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	toggle = "off",
 	elements = {
 		100197,
