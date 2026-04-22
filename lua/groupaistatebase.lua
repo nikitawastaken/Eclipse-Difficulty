@@ -295,7 +295,7 @@ function GroupAIStateBase:_apply_forced_difficulty(new_diff_value)
 		end
 		forced_diff_value = math.map_range_clamped(t, self._forced_difficulty.recovery_start_t, self._forced_difficulty.end_t, math.min_max(self._forced_difficulty.amount, new_diff_value))
 	elseif not self._forced_difficulty.delay or self._forced_difficulty.delay <= t then
-		forced_diff_value = finalized.amount
+		forced_diff_value = self._forced_difficulty.amount
 	end
 	return forced_diff_value or new_diff_value
 end
