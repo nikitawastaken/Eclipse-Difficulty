@@ -62,7 +62,7 @@ Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
 	-- Remove camera limits upon exiting the tased state
 	if self._camera_limit then
 		self._unit:camera():camera_unit():base():remove_limits()
-		self._camera_limit = nil		
+		self._camera_limit = nil
 	end
 end)
 
