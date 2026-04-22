@@ -278,7 +278,7 @@ local Smoke_bomb = {
 }
 
 local ambush_event_global = {
-    enabled = (ambush_event_chance and normal_and_above) and true or false,
+	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
