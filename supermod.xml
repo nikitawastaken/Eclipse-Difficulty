@@ -340,8 +340,13 @@
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
 
-		<!-- death wish risk level asset -->
+		<!-- risk level assets -->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
+		
 
 		<!-- custom effects -->
 		<group name="effects/">
