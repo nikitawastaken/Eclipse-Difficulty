@@ -52,10 +52,19 @@ function PlayerTased:enter(state_data, enter_data)
 	}, callback(self, self, "_on_tased_event"))
 
 	local tased_camera_limit = managers.mutators:modify_value("PlayerTased:TaserCameraLimit", false)
-	if tased_camera_limit then
+	if tased_camera_limit and not self._camera_limit then
 		self._unit:camera():camera_unit():base():set_limits(tweak_data.character.tased_camera_spin_limit, tweak_data.character.tased_camera_pitch_limit)
+		self._camera_limit = true
 	end
 end
+
+Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
+	-- Remove camera limits upon exiting the tased state
+	if self._camera_limit then
+		self._unit:camera():camera_unit():base():remove_limits()
+		self._camera_limit = nil		
+	end
+end)
 
 local _check_action_shock_original = PlayerTased._check_action_shock
 function PlayerTased:_check_action_shock(t, input, ...)
