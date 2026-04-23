@@ -146,8 +146,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.difficulty_scaling_preset = "escape"
 	self.escape_garage.difficulty_scaling_preset = "escape"
 	self.framing_frame_2.difficulty_scaling_preset = "escape"
-	self.chew.difficulty_scaling_preset = "escape"
-
+	
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"
@@ -360,7 +359,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
-		assault_force_mul = 0.6,
+		assault_force_mul = 0.4,
 		cs_grenade_chance_times_mul = 2,
 		special_limit_add = {
 			shield = -2,
@@ -383,6 +382,37 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 			shield_def = {
 				ranged_fire = false,
+			},
+		},
+		difficulty_scaling = {
+			steps = {
+				{
+					amount = 0.1,
+					delay = 30,
+					time = 15,
+				},
+				{
+					amount = 0.3,
+					delay = 30,
+					time = 30,
+				},
+				{
+					amount = 0.6,
+					delay = 30,
+					time = 45,
+				},
+			},
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0,
+					delay = 30,
+					time = 0,
+				},
+			},
+			allowed_addends = {
+				on_enemy_weapons_hot = false,
+				on_entered_sustain = false,
+				on_entered_regroup = false,
 			},
 		},
 	}

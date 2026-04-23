@@ -19,6 +19,12 @@ return {
 			delay = 0,
 		},
 	},
+	-- Boss dead
+	[100645] = {
+		forced_difficulty = { -- Disable forced diff
+			recovering = true,
+		}, 
+	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,
 	-- disable anything related to swat turret

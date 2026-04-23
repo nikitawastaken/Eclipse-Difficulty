@@ -84,6 +84,12 @@ return {
 			delay = 0,
 		},
 	},
+	-- Boss dead
+	[100153] = {
+		forced_difficulty = { -- Disable forced diff
+			recovering = true,
+		}, 
+	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
 	-- change up Commissar's room enemies

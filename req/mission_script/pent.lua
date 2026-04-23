@@ -95,6 +95,9 @@ return {
 		},
 	},
 	[101607] = { -- Yufu is dead
+		forced_difficulty = { -- Disable forced diff
+			recovering = true,
+		}, 
 		ponr = {
 			length = 210,
 			length_balance_mul = { 1.25, 1.125, 1, 0.875 },

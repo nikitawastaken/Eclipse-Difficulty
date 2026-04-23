@@ -42,14 +42,6 @@ return {
 	},
 	-- Disable bad navlink
 	[101057] = disabled,
-	-- Enter main hall
-	[103594] = {
-		forced_difficulty = {
-			amount = 0.1,
-			time = { 15, 30 },
-			delay = 0,
-		},
-	},
 	-- Add some reinforce around the house
 	[100129] = { -- Preferred
 		reinforce = {
@@ -75,8 +67,19 @@ return {
 			},
 		},
 	},
+	-- Enter main hall
+	[103594] = {
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
+	},
 	-- Boss dead, safe objective
 	[101169] = {
+		forced_difficulty = { -- Disable forced diff
+			recovering = true,
+		}, 
 		reinforce = {
 			{
 				name = "main_hall",
