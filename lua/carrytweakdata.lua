@@ -12,6 +12,7 @@ Hooks:PostHook(CarryTweakData, "init", "eclipse_init", function(self)
 	self.chas_artifact.bag_value = "chas_artifact"
 	self.chas_teaset.bag_value = "chas_teaset"
 	self.trai_printing_plates.bag_value = "trai_printing_plates"
+	self.black_tablet.bag_value = "black_tablet"
 
 	-- Change the weight of specific loot types
 	self.ranc_weapon.type = "medium"

@@ -49,7 +49,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.treasure = 180000
 	self.bag_values.counterfeit_money = 100000
 	self.bag_values.box_unknown = 10000
-	self.bag_values.black_tablet = 1000000
+	self.bag_values.black_tablet = 1800000
 	self.bag_values.masterpiece_painting = 250000
 	self.bag_values.master_server = 720000
 	self.bag_values.lost_artifact = 420000
