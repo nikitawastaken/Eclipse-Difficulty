@@ -21,6 +21,4 @@ Hooks:PostHook(ElementPrePlanning, "on_executed", "eclipse_on_executed", functio
 			managers.groupai:state():_set_silent_alarm(true, allowed_type)
 		end
 	end
-
-	Utils.PrintTable(allowed_types)
 end)

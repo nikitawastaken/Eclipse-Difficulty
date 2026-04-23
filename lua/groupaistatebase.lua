@@ -165,8 +165,6 @@ function GroupAIStateBase:add_difficulty_addend(data, silent_alarm)
 	-- Add the preplanning asset's delay_weapons_hot_t delay to the addend's base delay
 	if silent_alarm and data.delay then
 		data.delay = data.delay + self._silent_alarm_delay
-
-		Eclipse:log_chat(self._silent_alarm_delay)
 	end
 
 	table.insert(self._difficulty_addends, data)
