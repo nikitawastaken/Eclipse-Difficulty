@@ -146,7 +146,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.difficulty_scaling_preset = "escape"
 	self.escape_garage.difficulty_scaling_preset = "escape"
 	self.framing_frame_2.difficulty_scaling_preset = "escape"
-	
+
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"

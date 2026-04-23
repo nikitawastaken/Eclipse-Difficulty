@@ -79,7 +79,7 @@ return {
 	[101169] = {
 		forced_difficulty = { -- Disable forced diff
 			recovering = true,
-		}, 
+		},
 		reinforce = {
 			{
 				name = "main_hall",

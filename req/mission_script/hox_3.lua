@@ -80,7 +80,7 @@ return {
 	[100788] = {
 		forced_difficulty = { -- Disable forced diff
 			recovering = true,
-		}, 
+		},
 	},
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {

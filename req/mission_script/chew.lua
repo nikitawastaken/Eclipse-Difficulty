@@ -23,7 +23,7 @@ return {
 	[100645] = {
 		forced_difficulty = { -- Disable forced diff
 			recovering = true,
-		}, 
+		},
 	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,
