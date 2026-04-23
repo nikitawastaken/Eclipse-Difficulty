@@ -156,11 +156,19 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 end
 
 -- Add a difficulty addend to the stack
-function GroupAIStateBase:add_difficulty_addend(data)
+function GroupAIStateBase:add_difficulty_addend(data, silent_alarm)
 	data = self:_finalize_difficulty_addend_data(data)
 	if not data then
 		return
 	end
+	
+	-- Add the preplanning asset's delay_weapons_hot_t delay to the addend's base delay
+	if silent_alarm and data.delay then
+		data.delay = data.delay + self._silent_alarm_delay
+		
+		Eclipse:log_chat(self._silent_alarm_delay)
+	end
+	
 	table.insert(self._difficulty_addends, data)
 end
 
@@ -170,9 +178,9 @@ function GroupAIStateBase:set_difficulty_addend_category_allowed(category, allow
 end
 
 -- If the category is currently allowed, add an addend to the stack
-function GroupAIStateBase:add_difficulty_addend_by_category(category)
+function GroupAIStateBase:add_difficulty_addend_by_category(category, silent_alarm)
 	if self._difficulty_scaling.allowed_addends[category] then
-		self:add_difficulty_addend(category)
+		self:add_difficulty_addend(category, silent_alarm)
 	end
 end
 
@@ -311,9 +319,15 @@ function GroupAIStateBase:add_difficulty(value)
 	})
 end
 
+-- Set Silent Alarm asset's delay and type
+function GroupAIStateBase:_set_silent_alarm(value, delay_type)
+	self._has_silent_alarm = value
+	self._silent_alarm_delay = tweak_data.preplanning.types[delay_type] and tweak_data.preplanning.types[delay_type].delay_weapons_hot_t or 0
+end
+
 Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
 	if self._ai_enabled and not self._enemy_weapons_hot then
-		self:add_difficulty_addend_by_category("on_enemy_weapons_hot")
+		self:add_difficulty_addend_by_category("on_enemy_weapons_hot", self._has_silent_alarm)
 	end
 end)
 

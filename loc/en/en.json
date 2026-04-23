@@ -66,6 +66,13 @@
 
 	"debug_interact_gage_assignment_take": "PRESS $BTN_INTERACT TO PICK UP THE PACKAGE",
 
+	"menu_pp_asset_delay_police_10": "SILENT ALARM 20S. DELAY",
+	"menu_pp_asset_delay_police_10_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 20 seconds.",
+	"menu_pp_asset_delay_police_20": "SILENT ALARM 30S. DELAY",
+	"menu_pp_asset_delay_police_20_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 30 seconds.",
+	"menu_pp_asset_delay_police_30": "SILENT ALARM 40S. DELAY",
+	"menu_pp_asset_delay_police_30_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 40 seconds.",
+	
 	"hud_assault_america_assault": "Police Assault In Progress",
 	"hud_assault_russia_assault": "Mercenary Assault In Progress",
 	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",

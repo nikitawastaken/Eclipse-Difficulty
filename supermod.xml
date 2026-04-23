@@ -48,6 +48,7 @@
 					<post :hook_id="elementwaypoint"/>
 					<post :hook_id="missionscriptelement"/>
 					<post :hook_id="elementenemydummytrigger"/>
+					<post :hook_id="elementpreplanning"/>
 				</group>
 
 				<group :hook_id="hud/">
