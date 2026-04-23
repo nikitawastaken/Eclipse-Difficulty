@@ -26,8 +26,8 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"nail",
 		"help",
 	}
-	
-	self.risk_pd.exclude_stages = non_america_faction_heists	
+
+	self.risk_pd.exclude_stages = non_america_faction_heists
 	self.risk_swat.exclude_stages = non_america_faction_heists
 	self.risk_fbi.exclude_stages = non_america_faction_heists
 	self.risk_death_squad.exclude_stages = non_america_faction_heists
