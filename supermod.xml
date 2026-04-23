@@ -121,7 +121,8 @@
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
 				<post :hook_id="moneytweakdata"/>
-				<post :hook_id="tipstweakdata"/>
+				<post :hook_id="assetstweakdata"/>
+				<post :hook_id="tipstweakdata"/>				
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
