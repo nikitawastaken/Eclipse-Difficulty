@@ -14,7 +14,7 @@ Hooks:PostHook(PrePlanningTweakData, "init", "eclipse_init", function(self)
 	self.types.delay_police_20.delay_weapons_hot_t = silent_alarm_medium
 	self.types.delay_police_30.delay_weapons_hot_t = silent_alarm_long
 	self.types.delay_police_30_no_pos.delay_weapons_hot_t = silent_alarm_long
-	
+
 	-- less trivial big bank preplan
 	self.types.vault_thermite.budget_cost = 6
 	self.types.escape_c4_loud.budget_cost = 5
