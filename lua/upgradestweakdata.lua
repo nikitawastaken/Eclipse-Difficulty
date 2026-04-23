@@ -154,6 +154,13 @@ function UpgradesTweakData:init(tweak_data)
 				"fear",
 				"chac",
 				"funder_strike",
+				"tenderizer",
+				"kabar",
+				"fork",
+				"poker",
+				"spatula",
+				"chef",
+				"shock",
 			},
 		},
 		{ -- skip level 1, it's reached too fast
