@@ -87,24 +87,23 @@ return {
 			length = 800,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
-		-- trigger cops loot drop off on alarm
-		on_executed = {
-			{ id = 102206, delay = 0 },
-			{ id = 400068, delay = 0 }, -- enable the ambush
-		},
 	},
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
 	[100004] = {
 		on_executed = {
-			{ id = 400004, delay = 3 },
-			{ id = 400072, delay = 2 }, -- vault ambush for fs day 3
+			{ id = 400004, delay = 0 },
+			{ id = 400072, delay = 0 }, -- chance for vault ambush on loud
 		},
 	},
 	-- enable the dozer when things go loud
+    -- trigger cops loot drop off on alarm
+    -- enable the ambush
 	[100568] = {
 		on_executed = {
 			{ id = 400003, delay = 0 },
+            { id = 102206, delay = 0 },
+			{ id = 400068, delay = 0 },
 		},
 	},
 	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)

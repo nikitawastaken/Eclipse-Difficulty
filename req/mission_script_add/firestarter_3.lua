@@ -282,6 +282,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
+    enabled = true,
 	elements = {
 		400068,
 	},
@@ -293,6 +294,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
+    enabled = true,
 	toggle = "off",
 	elements = {
 		100197,
@@ -506,8 +508,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400068, "enable_ambush_on_alarm", optsEnable_ambush_alarm),
 	Eclipse.mission_elements.gen_toggleelement(400069, "disable_locked_vault_door", optsdisable_locked_vault_door),
 	-- smoke bombs
-	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb),
-	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
+	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner
