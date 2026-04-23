@@ -89,16 +89,16 @@ return {
 	[100004] = {
 		on_executed = {
 			{ id = 400004, delay = 0 },
-            { id = 400081, delay = 0 }, -- chance for vault ambush on loud (Death Wish only)
+			{ id = 400081, delay = 0 }, -- chance for vault ambush on loud (Death Wish only)
 		},
 	},
 	-- enable the dozer when things go loud
-    -- trigger cops loot drop off on alarm
-    -- enable the ambush
+	-- trigger cops loot drop off on alarm
+	-- enable the ambush
 	[100568] = {
 		on_executed = {
 			{ id = 400003, delay = 0 },
-            { id = 102206, delay = 0 },
+			{ id = 102206, delay = 0 },
 			{ id = 400077, delay = 0 },
 		},
 	},
@@ -108,7 +108,7 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
-    -- trigger the ambush when the vault opens
+	-- trigger the ambush when the vault opens
 	-- left
 	[100311] = {
 		on_executed = {

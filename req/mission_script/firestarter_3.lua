@@ -97,12 +97,12 @@ return {
 		},
 	},
 	-- enable the dozer when things go loud
-    -- trigger cops loot drop off on alarm
-    -- enable the ambush
+	-- trigger cops loot drop off on alarm
+	-- enable the ambush
 	[100568] = {
 		on_executed = {
 			{ id = 400003, delay = 0 },
-            { id = 102206, delay = 0 },
+			{ id = 102206, delay = 0 },
 			{ id = 400068, delay = 0 },
 		},
 	},

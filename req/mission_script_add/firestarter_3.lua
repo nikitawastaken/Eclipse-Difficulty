@@ -282,7 +282,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-    enabled = true,
+	enabled = true,
 	elements = {
 		400068,
 	},
@@ -294,7 +294,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-    enabled = true,
+	enabled = true,
 	toggle = "off",
 	elements = {
 		100197,

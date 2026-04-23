@@ -238,7 +238,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400076, delay = 0 }, { id = 400078, delay = 0 } },
 }
 local optsEnable_ambush = {
-    enabled = true,
+	enabled = true,
 	elements = {
 		400077,
 	},
@@ -250,7 +250,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-    enabled = true,
+	enabled = true,
 	toggle = "off",
 	elements = {
 		100197,
@@ -390,7 +390,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_filter(400045, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
 	Eclipse.mission_elements.gen_element_filter(400046, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
 
-    -- vault ambush
+	-- vault ambush
 	-- left
 	Eclipse.mission_elements.gen_dummy(400050, "dozer_ambush_left_1", Vector3(-2168, 1941, 0), Rotation(180, 0, 0), optsDozerAmbush),
 	Eclipse.mission_elements.gen_dummy(400051, "dozer_ambush_left_2", Vector3(-2245, 1941, 0), Rotation(180, 0, 0), optsDozerAmbush),
