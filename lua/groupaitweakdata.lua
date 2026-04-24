@@ -3532,9 +3532,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- assault_add -> addends.on_entered_regroup
 	-- hostage_kill_add -> addends.on_hostage_killed
 	self.difficulty_scaling = {
+		-- New timed steps are added to the stack once the previous timed step has completed
 		steps = {
 			--[[
-			-- New steps are added to the stack once the previous step has completed
 			{
 				amount = 0,
 				delay = 0,
@@ -3576,12 +3576,23 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			},
 		},
 		-- So that certain heists may toggle addends on/off in tweakdata or mission scripting
+		-- Adding not-allowed addends is blocked completely
 		allowed_addends = {
 			on_enemy_weapons_hot = true,
 			on_entered_sustain = false,
 			on_entered_regroup = true,
 			on_entered_full_force_onslaught = is_pro_job and true or false,
 			on_hostage_killed = is_pro_job and true or false,
+		},
+		-- So that certain heists may pause addends in tweakdata or mission scripting
+		-- Adding paused addends caches them (up to a limit) to be added later, when they're unpaused
+		paused_addends = {
+			-- on_enemy_weapons_hot = 2,
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
+			on_entered_regroup = false,
+			on_entered_full_force_onslaught = false,
+			on_hostage_killed = false,
 		},
 		-- So that certain heists may change addends and have automatic difficulty scaling
 		addend_time_multipliers = {

@@ -229,6 +229,14 @@ function MissionManager.mission_script_patch_funcs.allowed_difficulty_addends(se
 	end)
 end
 
+function MissionManager.mission_script_patch_funcs.paused_difficulty_addends(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_allowed_difficulty_addends" .. element:id(), function()
+		for category, cache_limit in pairs(data) do
+			managers.groupai:state():set_difficulty_addend_category_paused(category, cache_limit)
+		end
+	end)
+end
+
 function MissionManager.mission_script_patch_funcs.post_mga_event(self, element, data)
 	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_post_mga_event_" .. element:id(), function()
 		--Eclipse:log_console("%s executed, playing %.2g", element:editor_name(), data)

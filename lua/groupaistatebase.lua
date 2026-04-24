@@ -116,9 +116,12 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
 	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
 
+	self._silent_alarm_delay = self._silent_alarm_delay or 0
+
 	self._difficulty_value = 0
 	self._difficulty_scaling = deep_clone(tweak_data.group_ai.difficulty_scaling)
 	self._difficulty_addends = {}
+	self._paused_difficulty_addends = {}
 	self._difficulty_update_dt = 0
 	self:_calculate_difficulty_ratio()
 end)
@@ -141,14 +144,13 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 	end
 
 	local delay = data.delay and (tonumber(data.delay) or math.rand(unpack(data.delay))) or 0
-	local final_delay = delay + self._t
 	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
 	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
 	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
 	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.difficulty_addend_time) or 1)
 	local finalized = {
 		amount = amount,
-		delay = final_delay,
+		delay = delay,
 		time = final_time,
 		category = category,
 	}
@@ -156,18 +158,24 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 end
 
 -- Add a difficulty addend to the stack
-function GroupAIStateBase:add_difficulty_addend(data, silent_alarm)
+function GroupAIStateBase:add_difficulty_addend(data)
 	data = self:_finalize_difficulty_addend_data(data)
 	if not data then
 		return
 	end
-
 	-- Add the preplanning asset's delay_weapons_hot_t delay to the addend's base delay
-	if silent_alarm and data.delay then
+	if data.category == "on_enemy_weapons_hot" and self._has_silent_alarm then
 		data.delay = data.delay + self._silent_alarm_delay
 	end
-
-	table.insert(self._difficulty_addends, data)
+	if self._difficulty_scaling.paused_addends[data.category] then
+		local paused = self._paused_difficulty_addends[data.category] or {}
+		self._paused_difficulty_addends[data.category] = paused
+		if #paused < (tonumber(self._difficulty_scaling.paused_addends[data.category]) or 1) then
+			table.insert(paused, data)
+		end
+	else
+		table.insert(self._difficulty_addends, data)
+	end
 end
 
 -- Set whether an addend category is allowed to be added to the stack
@@ -175,10 +183,19 @@ function GroupAIStateBase:set_difficulty_addend_category_allowed(category, allow
 	self._difficulty_scaling.allowed_addends[category] = allowed and true or false
 end
 
+-- Set whether an addend category is paused and will be added to a separate table, only getting added to the stack when unpaused
+function GroupAIStateBase:set_difficulty_addend_category_paused(category, cache_limit)
+	if cache_limit then
+		self._difficulty_scaling.paused_addends[category] = tonumber(cache_limit) or 1
+	else
+		self._difficulty_scaling.paused_addends[category] = false
+	end
+end
+
 -- If the category is currently allowed, add an addend to the stack
-function GroupAIStateBase:add_difficulty_addend_by_category(category, silent_alarm)
+function GroupAIStateBase:add_difficulty_addend_by_category(category)
 	if self._difficulty_scaling.allowed_addends[category] then
-		self:add_difficulty_addend(category, silent_alarm)
+		self:add_difficulty_addend(category)
 	end
 end
 
@@ -229,14 +246,25 @@ local MAX_DIFFICULTY_ADDENDS = 64
 function GroupAIStateBase:_update_difficulty_value(t, dt)
 	-- No need to update every frame
 	self._difficulty_update_dt = self._difficulty_update_dt + dt
-	if self._difficulty_update_dt < 2 then
+	if self._difficulty_update_dt < 1.5 then
 		return
 	end
+	local cached_dt = self._difficulty_update_dt
 	self._difficulty_update_dt = 0
 
 	-- No difficulty updates during stealth
 	if not self:enemy_weapons_hot() then
 		return
+	end
+
+	-- When a paused addend category becomes unpaused, add all of its cached addends to the stack
+	for category, addends in pairs(self._paused_difficulty_addends) do
+		if not self._difficulty_scaling.paused_addends[category] then
+			self._paused_difficulty_addends[category] = nil
+			while addends[1] do
+				table.insert(self._difficulty_addends, table.remove(addends, 1))
+			end
+		end
 	end
 
 	-- Don't want addends to pile up endlessly if someone leaves the game running for 3 days
@@ -247,7 +275,7 @@ function GroupAIStateBase:_update_difficulty_value(t, dt)
 		end
 	end
 
-	local new_diff_value, steps_complete = self:_get_new_difficulty_value(t)
+	local new_diff_value, steps_complete = self:_get_new_difficulty_value(t, cached_dt)
 
 	-- If all existing timed steps are complete, add the next one if it exists
 	if steps_complete and self._difficulty_scaling.steps[1] then
@@ -261,37 +289,46 @@ end
 
 Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", GroupAIStateBase._update_difficulty_value)
 
-function GroupAIStateBase:_get_new_difficulty_value(t)
+function GroupAIStateBase:_get_new_difficulty_value(t, dt)
 	local new_diff_value = 0
 	local steps_complete = true
 	for _, data in ipairs(self._difficulty_addends) do
-		if data.complete or data.end_t and data.end_t <= t then
+		if data.complete then
 			if data.category == "step" then
 				steps_complete = true
 			end
-			data.complete = true
 			new_diff_value = new_diff_value + data.amount
-		elseif not data.delay or data.delay <= t then
+		elseif data.delay then
 			if data.category == "step" then
 				steps_complete = false
 			end
-			data.start_t = data.start_t or t
-			data.end_t = data.end_t or data.start_t + data.time
-			new_diff_value = new_diff_value + math.map_range_clamped(t, data.start_t, data.end_t, math.min_max(0, data.amount))
-		elseif data.category == "step" then
-			steps_complete = false
+			data.delay = data.delay - dt
+			if data.delay <= 0 then
+				data.delay = nil
+				data.start_t = t
+				data.end_t = t + data.time
+			end
+		else
+			if data.category == "step" then
+				steps_complete = false
+			end
+			if data.end_t <= t then
+				data.complete = true
+				new_diff_value = new_diff_value + data.amount
+			else
+				new_diff_value = new_diff_value + math.map_range_clamped(t, data.start_t, data.end_t, math.min_max(0, data.amount))
+			end
 		end
 	end
 	new_diff_value = math.clamp(new_diff_value, 0, 1)
-	return self:_apply_forced_difficulty(new_diff_value), steps_complete
+	return self:_apply_forced_difficulty(new_diff_value, t, dt), steps_complete
 end
 
-function GroupAIStateBase:_apply_forced_difficulty(new_diff_value)
+function GroupAIStateBase:_apply_forced_difficulty(new_diff_value, t, dt)
 	if not self._forced_difficulty then
 		return new_diff_value
 	end
 	local forced_diff_value
-	local t = self._t
 	if self._forced_difficulty.recovering then
 		self._forced_difficulty.recovery_start_t = self._forced_difficulty.recovery_start_t or t
 		self._forced_difficulty.end_t = self._forced_difficulty.end_t or t + (self._forced_difficulty.time or 0)
@@ -300,7 +337,12 @@ function GroupAIStateBase:_apply_forced_difficulty(new_diff_value)
 			return new_diff_value
 		end
 		forced_diff_value = math.map_range_clamped(t, self._forced_difficulty.recovery_start_t, self._forced_difficulty.end_t, math.min_max(self._forced_difficulty.amount, new_diff_value))
-	elseif not self._forced_difficulty.delay or self._forced_difficulty.delay <= t then
+	elseif self._forced_difficulty.delay then
+		self._forced_difficulty.delay = self._forced_difficulty.delay - dt
+		if self._forced_difficulty.delay <= 0 then
+			self._forced_difficulty.delay = nil
+		end
+	else
 		forced_diff_value = self._forced_difficulty.amount
 	end
 	return forced_diff_value or new_diff_value
@@ -325,7 +367,7 @@ end
 
 Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
 	if self._ai_enabled and not self._enemy_weapons_hot then
-		self:add_difficulty_addend_by_category("on_enemy_weapons_hot", self._has_silent_alarm)
+		self:add_difficulty_addend_by_category("on_enemy_weapons_hot")
 	end
 end)
 
