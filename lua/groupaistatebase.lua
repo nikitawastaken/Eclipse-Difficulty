@@ -393,8 +393,12 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		marksman = true,
 	}
 	if managers.mutators:modify_value("GroupAIStateBase:MaxDiff", false) then
-		self._difficulty_scaling.allowed_addends.enemy_weapons_hot = true
-		self._difficulty_scaling.addends.enemy_weapons_hot = { amount = 1 }
+		self._difficulty_scaling.allowed_addends.on_enemy_weapons_hot = true
+		self._difficulty_scaling.addends.on_enemy_weapons_hot = {
+			amount = 1,
+			delay = 0,
+			time = 0,
+		}
 	end
 end)
 
