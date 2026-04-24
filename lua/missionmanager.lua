@@ -207,9 +207,14 @@ end
 -- Addends, plural, so that you may add multiple at once if needed (eg, a small instant increase and a larger increase that takes a while)
 function MissionManager.mission_script_patch_funcs.difficulty_addends(self, element, data)
 	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_addends" .. element:id(), function()
-		Eclipse:log_console("%s executed, added %u difficulty addends", element:editor_name(), #data)
-		for _, addend in pairs(data) do
-			managers.groupai:state():add_difficulty_addend(addend)
+		if data[1] then
+			Eclipse:log_console("%s executed, added %u difficulty addend(s)", element:editor_name(), #data)
+			for _, addend in pairs(data) do
+				managers.groupai:state():add_difficulty_addend(addend)
+			end
+		else
+			Eclipse:log_console("%s executed, added difficulty addend", element:editor_name())
+			managers.groupai:state():add_difficulty_addend(data)
 		end
 	end)
 	Eclipse:log_console("%s hooked as difficulty addends trigger", element:editor_name())
