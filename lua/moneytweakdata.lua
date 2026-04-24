@@ -720,6 +720,19 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_ring = (money_mul * 6000)
 		self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	end
+	if level_id == "wwh" then
+		self.bag_values.money = 95000
+		self.bag_values.weapons = 180000
+	end
+	if level_id == "roberts" then
+		self.bag_values.money = 90000
+		self.small_loot.vault_loot_gold = (money_mul * 19500)
+		self.small_loot.vault_loot_cash = (money_mul * 6500)
+		self.small_loot.vault_loot_coins = (money_mul * 5800)
+		self.small_loot.vault_loot_ring = (money_mul * 12000)
+		self.small_loot.vault_loot_jewels = (money_mul * 8400)
+		self.small_loot.gen_atm = (money_mul * 72000)
+	end
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
 	end
@@ -791,8 +804,8 @@ function MoneyTweakData:init(tweak_data)
 		self.loot_drop_cash.xone_bonus = 5000000
 	end
 
-	self.unlock_new_mask_slot_value = 250000
-	self.unlock_new_weapon_slot_value = 375000
+	self.unlock_new_mask_slot_value = 150000
+	self.unlock_new_weapon_slot_value = 225000
 	self.moneythrower = {
 		max_kills_per_session = 100,
 		kill_to_offshore_multiplier = 1000,
