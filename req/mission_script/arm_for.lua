@@ -56,8 +56,8 @@ local specials_list = {
 	[elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
 	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }), -- no scripted green/blackdozers heli spawns on DW
 	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
-	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }),
-	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 2 }),
 }
 local specials = {
 	enemy = specials_list,
