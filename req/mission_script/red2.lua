@@ -35,8 +35,8 @@ local disabled = {
 		enabled = false,
 	},
 }
-local filter_overkill_above = {
-	values = Eclipse.utils.set_diff_groups("overkill_above"),
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
 local filter_hard_above = {
 	values = Eclipse.utils.set_diff_groups("hard_above"),
@@ -181,8 +181,8 @@ return {
 	[105719] = disabled,
 	[103945] = disabled,
 	-- allow Overdrill on overkill above
-	[104182] = filter_overkill_above,
-	[103962] = filter_overkill_above,
+	[104182] = filter_easy_above,
+	[103962] = filter_easy_above,
 	-- allow Bo's dozers on Normal+
 	[100682] = filter_normal_above,
 	-- disable forced manager flee objective
