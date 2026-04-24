@@ -70,8 +70,8 @@ return {
 				position = Vector3(-600, -1400, -425),
 			},
 		},
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 2,
 		},
 	},
 	[101790] = { -- outside_penthouse
@@ -79,8 +79,8 @@ return {
 			{ name = "lobby" },
 			{ name = "garage" },
 		},
-		allowed_difficulty_addends = { -- enable sustain addends
-			on_entered_regroup = true,
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
 		},
 		on_executed = { -- delay the double door spawn
 			{ id = 102109, delay = 30 },
@@ -95,9 +95,7 @@ return {
 		},
 	},
 	[101607] = { -- Yufu is dead
-		forced_difficulty = { -- Disable forced diff
-			recovering = true,
-		},
+		forced_difficulty = false,
 		ponr = {
 			length = 210,
 			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
