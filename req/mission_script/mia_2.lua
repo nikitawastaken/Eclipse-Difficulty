@@ -59,21 +59,21 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local roof_spawn = {
+local apartment_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
 return {
 	[100043] = { -- player_spawned
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 1,
 		},
 	},
 	[100512] = { -- add_spawn (apartment spawns)
-		allowed_difficulty_addends = { -- enable sustain addends
-			on_entered_regroup = true,
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
 		},
 	},
 	-- Boss spawn
@@ -90,9 +90,7 @@ return {
 			length = 60,
 			length_balance_mul = { 2, 2, 1, 1 },
 		},
-		forced_difficulty = { -- Disable forced diff
-			recovering = true,
-		},
+		forced_difficulty = false, -- Disable forced diff
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
@@ -146,11 +144,12 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
-	[100629] = roof_spawn,
-	[100627] = roof_spawn,
-	[100629] = roof_spawn,
-	[100666] = roof_spawn,
-	[101034] = roof_spawn,
-	[101530] = roof_spawn,
-	[101534] = roof_spawn,
+	[101084] = apartment_spawn,
+	[101085] = apartment_spawn,	
+	[100627] = apartment_spawn,
+	[100629] = apartment_spawn,
+	[100666] = apartment_spawn,
+	[101034] = apartment_spawn,
+	[101530] = apartment_spawn,
+	[101534] = apartment_spawn,
 }

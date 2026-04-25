@@ -95,11 +95,11 @@ local scripted_diff_add = {
 
 return {
 	[100121] = { -- obj_link_complete_005 (Prisoner taken away)
-		difficulty_addends = { -- increase diff and disable sustain addends
+		difficulty_addends = { -- increase diff and disable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 		reinforce = { -- disable construction side reinforce
 			{ name = "construct01" },
@@ -129,16 +129,16 @@ return {
 		},
 	},
 	[102634] = { -- obj_link_complete_002 (Found the Prisoner)
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 	},
 	[102295] = { -- at the top
-		difficulty_addends = { -- increase diff and enable sustain addends
+		difficulty_addends = { -- increase diff and enable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 		reinforce = {
 			{ name = "bridge" }, -- disable construction bridge reinforce

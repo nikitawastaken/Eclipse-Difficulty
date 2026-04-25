@@ -42,13 +42,13 @@ local bags_required = {
 }
 return {
 	[100109] = { -- police
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 1,
 		},
 	},
 	[102226] = { -- mexico_preferreds
-		allowed_difficulty_addends = { -- enable sustain addends
-			on_entered_regroup = true,
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
 		},
 	},
 	[100020] = {

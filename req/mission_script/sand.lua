@@ -78,8 +78,8 @@ return {
 		},
 	},
 	[101369] = { -- input_close_first_gate
-		allowed_difficulty_addends = {
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 		reinforce = {
 			{ name = "gate" },
@@ -89,19 +89,19 @@ return {
 		},
 	},
 	[100006] = { -- convergence_spawn001 (harbour office reached)
-		difficulty_addends = { -- increase diff and enable sustain addends
+		difficulty_addends = { -- increase diff and enable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 	},
 	[103885] = { -- output_signal_activated
-		difficulty_addends = { -- increase diff and disable sustain addends
+		difficulty_addends = { -- increase diff and enable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 		reinforce = {
 			{

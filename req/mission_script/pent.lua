@@ -70,8 +70,8 @@ return {
 				position = Vector3(-600, -1400, -425),
 			},
 		},
-		paused_difficulty_addends = { -- disable addends
-			on_entered_regroup = 2,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 	},
 	[101790] = { -- outside_penthouse
@@ -79,7 +79,7 @@ return {
 			{ name = "lobby" },
 			{ name = "garage" },
 		},
-		paused_difficulty_addends = { -- enable addends
+		paused_difficulty_addends = { -- enable regroup addends
 			on_entered_regroup = false,
 		},
 		on_executed = { -- delay the double door spawn

@@ -21,9 +21,7 @@ return {
 	},
 	-- Boss dead
 	[100645] = {
-		forced_difficulty = { -- Disable forced diff
-			recovering = true,
-		},
+		forced_difficulty = false, -- Disable forced diff
 	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,

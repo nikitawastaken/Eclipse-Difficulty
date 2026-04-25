@@ -89,7 +89,7 @@ local armitage_spawn = {
 local overpass_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 }
 local overpass_agile_spawn = {
@@ -301,8 +301,8 @@ return {
 		on_executed = {
 			{ id = 400089, delay = 0 },
 		},
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 	},
 	[100641] = {
@@ -449,11 +449,11 @@ return {
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
-		difficulty_addends = { -- increase diff and enable sustain addends
+		difficulty_addends = { -- increase diff and enable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 	},
 	[103883] = { -- Matt is out, go to parking
@@ -464,8 +464,8 @@ return {
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
 		},
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 	},
 	[103885] = { -- reached gate
@@ -526,11 +526,11 @@ return {
 			{ name = "overpass01" },
 			{ name = "overpass02" },
 		},
-		difficulty_addends = { -- increase diff and enable sustain addends
+		difficulty_addends = { -- increase diff and enable regroup addends
 			scripted_diff_add,
 		},
-		allowed_difficulty_addends = {
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 	},
 	-- Spawn group intervals

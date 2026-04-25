@@ -77,9 +77,7 @@ return {
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		forced_difficulty = { -- Disable forced diff
-			recovering = true,
-		},
+		forced_difficulty = false, -- Disable forced diff
 		reinforce = {
 			{
 				name = "main_hall",

@@ -48,7 +48,7 @@ local roof_close_spawn = {
 local vault_spawn = {
 	values = {
 		interval = 45,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

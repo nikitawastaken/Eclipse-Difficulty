@@ -12,16 +12,16 @@ local disabled = {
 }
 local close_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval = 20,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 }
-local upper_spawn = {
+local close_spawn_why_does_it_have_1_spawn_point = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval = close_spawn.values.interval,
+		interval_balance_mul = close_spawn.values.interval_balance_mul,
+		elements = { 101848, 108178, 108177, 108176, 108175 },
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local crowbar_amount = {
 	values = {
@@ -29,12 +29,6 @@ local crowbar_amount = {
 	},
 }
 return {
-	-- Add circuit breaker SO delay
-	[102302] = {
-		on_executed = {
-			{ id = 104665, delay = 30, delay_rand = 30 },
-		},
-	},
 	-- Combine some navigation areas
 	[101531] = {
 		ai_area = {
@@ -55,12 +49,12 @@ return {
 		reinforce = {
 			{
 				name = "crane01",
-				force = 2,
+				force = 3,
 				position = Vector3(-4500, 600, 125),
 			},
 			{
 				name = "crane02",
-				force = 2,
+				force = 3,
 				position = Vector3(2100, 550, 125),
 			},
 			{
@@ -79,16 +73,22 @@ return {
 	[102223] = crowbar_amount,
 	[102224] = crowbar_amount,
 	[102274] = crowbar_amount,
-	[104040] = { -- This spawngroup is split
+	-- Reduce the number of spawngroups on the left side during the computer hack
+	[104053] = { -- enemies_dockyard_left_add
 		values = {
-			interval = close_spawn.interval,
-			elements = {
-				--	105353,
-				--	105354,
-				100810,
-				100812,
-				100814,
+			spawn_groups = { 
+				104040, 
+		--		101771, 
+		--		101772,
+				102043,
+				101574,
 			},
+		},
+	},
+	-- Add circuit breaker SO delay
+	[102302] = {
+		on_executed = {
+			{ id = 104665, delay = 30, delay_rand = 30 },
 		},
 	},
 	-- Disable very imaginative vanilla reinforce
@@ -97,17 +97,13 @@ return {
 	[102661] = disabled, -- min_force_van_escape
 	[102663] = disabled, -- min_force_chopper_escape
 	-- Spawn group intervals
-	[101768] = close_spawn,
-	[101769] = close_spawn,
-	[100869] = close_spawn,
-	[101574] = close_spawn,
+	[101630] = close_spawn,
+	[102887] = close_spawn,
 	[104040] = close_spawn,
-	[101630] = upper_spawn,
-	[101770] = upper_spawn,
-	[101771] = upper_spawn,
-	[101772] = upper_spawn,
-	[102887] = upper_spawn,
-	[108179] = upper_spawn,
+	[101771] = close_spawn,
+	[101772] = close_spawn,
+	[108179] = close_spawn,
+	[101770] = close_spawn_why_does_it_have_1_spawn_point, 
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,

@@ -54,8 +54,8 @@ return {
 			length = 800,
 			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
 		},
-		allowed_difficulty_addends = { -- disable sustain addends
-			on_entered_regroup = false,
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
 		},
 	},
 	-- Combine some navigation areas
@@ -119,8 +119,8 @@ return {
 		},
 	},
 	[100006] = { -- extra_preferreds1
-		allowed_difficulty_addends = { -- enable sustain addends
-			on_entered_regroup = true,
+		paused_difficulty_addends = {
+			on_entered_regroup = false,
 		},
 	},
 	-- Spawn group intervals

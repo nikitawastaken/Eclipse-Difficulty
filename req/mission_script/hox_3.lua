@@ -78,9 +78,7 @@ return {
 	},
 	-- Boss dead
 	[100788] = {
-		forced_difficulty = { -- Disable forced diff
-			recovering = true,
-		},
+		forced_difficulty = false, -- Disable forced diff
 	},
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {
