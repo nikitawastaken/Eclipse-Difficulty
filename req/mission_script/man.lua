@@ -118,7 +118,7 @@ local window_spawn = {
 local roof_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul =  { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }

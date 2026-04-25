@@ -145,7 +145,7 @@ return {
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
 	[101084] = apartment_spawn,
-	[101085] = apartment_spawn,	
+	[101085] = apartment_spawn,
 	[100627] = apartment_spawn,
 	[100629] = apartment_spawn,
 	[100666] = apartment_spawn,

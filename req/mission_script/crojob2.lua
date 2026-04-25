@@ -76,10 +76,10 @@ return {
 	-- Reduce the number of spawngroups on the left side during the computer hack
 	[104053] = { -- enemies_dockyard_left_add
 		values = {
-			spawn_groups = { 
-				104040, 
-		--		101771, 
-		--		101772,
+			spawn_groups = {
+				104040,
+				--		101771,
+				--		101772,
 				102043,
 				101574,
 			},
@@ -103,7 +103,7 @@ return {
 	[101771] = close_spawn,
 	[101772] = close_spawn,
 	[108179] = close_spawn,
-	[101770] = close_spawn_why_does_it_have_1_spawn_point, 
+	[101770] = close_spawn_why_does_it_have_1_spawn_point,
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,
