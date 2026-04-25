@@ -320,18 +320,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
 	Eclipse.mission_elements.gen_so(400012, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
-	
+
 	-- add back missing taser spawn from PDTH
 	Eclipse.mission_elements.gen_dummy(400050, "taser_ambush", Vector3(279.099, 1948.238, 1734.858), Rotation(90, 0, 0), optsTaser_Ambush),
-	
+
 	Eclipse.mission_elements.gen_so(400051, "taser_sniper_so", Vector3(153, 2051, 1734.858), Rotation(115, 0, 0), optsTaser_Sniper_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400052, "spawn_roof_taser", optsrooftaser),
-	
+
 	-- restore two missing fbi agents
 	Eclipse.mission_elements.gen_object_editor(400053, "fbi_open_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_1),
 	Eclipse.mission_elements.gen_object_editor(400054, "fbi_open_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_2),
-
 
 	-- buff the hack timer (use PDTH values)
 	-- lower PC

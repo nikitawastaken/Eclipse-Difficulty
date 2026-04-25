@@ -43,7 +43,7 @@ local fbi_agent_enabled = {
 	enemy = fbi_agents,
 	values = {
 		enabled = true,
-	}
+	},
 }
 local regular_dozers = {
 	green_bulldozer,
@@ -736,7 +736,7 @@ return {
 		},
 	},
 	-- make the the ambush roof spawns near the end of the heist less ass
-	-- restore taser spawn from PDTH 
+	-- restore taser spawn from PDTH
 	[102423] = {
 		on_executed = {
 			{ id = 400052, delay = 0 },
