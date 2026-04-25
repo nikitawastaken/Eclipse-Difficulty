@@ -312,8 +312,5 @@ Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ref
 
 	if managers.mutators:modify_value("CoreEnvironmentControllerManager:NoOutlines", false) then
 		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine_post_processor"), Idstring("bloom_combine_empty"))
-		self._vp:vp():set_post_processor_effect("World", Idstring("bloom_combine"), Idstring("bloom_combine_empty"))
-		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_modifier"), Idstring("empty"))
-		self._vp:vp():set_post_processor_effect("World", Idstring("shadow_rendering"), Idstring("empty"))
 	end
 end)
