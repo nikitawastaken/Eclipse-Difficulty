@@ -349,6 +349,21 @@
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 		
+		<!-- Tips assets -->
+		<file name="guis/textures/loading/hints/general_skills.texture"/>
+		<file name="guis/textures/loading/hints/general_perks.texture"/>
+		<file name="guis/textures/loading/hints/general_grenades.texture"/>
+		<file name="guis/textures/loading/hints/enemy_generic.texture"/>
+		<file name="guis/textures/loading/hints/enemy_sniper.texture"/>
+		<file name="guis/textures/loading/hints/enemy_marksman.texture"/>
+		<file name="guis/textures/loading/hints/enemy_gensec.texture"/>
+		<file name="guis/textures/loading/hints/enemy_elite_shield.texture"/>
+		<file name="guis/textures/loading/hints/enemy_army.texture"/>
+		<file name="guis/textures/loading/hints/weapon_sniper.texture"/>
+		<file name="guis/textures/loading/hints/weapon_marksman.texture"/>
+		<file name="guis/textures/loading/hints/weapon_lmg.texture"/>
+		<file name="guis/textures/loading/hints/weapon_special.texture"/>
+		<file name="guis/textures/loading/hints/equipment_fak.texture"/>
 
 		<!-- custom effects -->
 		<group name="effects/">
