@@ -11,6 +11,7 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local dozer_random_amount = overkill_and_above and 2 or 1
 local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
+local taser_roof_chance = math.random() <= 0.4
 
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
@@ -38,12 +39,22 @@ local optsBesiegeDummyCloaker = {
 }
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400019, 400020, 400021, 400022, 400023, 400024, 400025, 400026, 400027 },
-	enabled = normal_and_above,
+	on_executed = {
+		{ id = 103804, delay = 0 },
+		{ id = 103805, delay = 0 },
+		{ id = 103806, delay = 0 },
+	},
+	enabled = true,
 }
 local optsTaser = {
 	enemy = taser,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400012, delay = 0 } },
+	enabled = true,
+}
+local optsTaser_Ambush = {
+	enemy = taser,
+	on_executed = { { id = 400051, delay = 0 } },
 	enabled = true,
 }
 local optsBulldozer = {
@@ -67,6 +78,16 @@ local optsHuntSO = {
 	use_instigator = true,
 	so_action = "AI_hunt",
 }
+local optsTaser_Sniper_SO = {
+	SO_access = "8192",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	use_instigator = true,
+	interval = 2,
+	so_action = "AI_sniper",
+}
 local optsTaserChopper = {
 	enabled = true,
 	trigger_list = {
@@ -83,6 +104,10 @@ local optsTaserChopper = {
 local optsspawntaserchopper = {
 	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 } },
 	enabled = normal_and_above,
+}
+local optsrooftaser = {
+	on_executed = { { id = 400050, delay = 0 } },
+	enabled = taser_roof_chance,
 }
 local optslowerNewComputerHack_1 = {
 	trigger_list = {
@@ -130,6 +155,28 @@ local optshigherNewComputerHack_3 = {
 	},
 	on_executed = {
 		{ id = 102829, delay = 0 },
+	},
+}
+local optsFBISuv_1 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100045, notify_unit_sequence = "open_door_left_back", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100045, notify_unit_sequence = "open_door_left_front", time = 0 },
+	},
+	on_executed = {
+		{ id = 102592, delay = 0.5 },
+		{ id = 102591, delay = 1 },
+	},
+}
+local optsFBISuv_2 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100044, notify_unit_sequence = "open_door_left_back", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100044, notify_unit_sequence = "open_door_left_front", time = 0 },
+	},
+	on_executed = {
+		{ id = 102588, delay = 1 },
+		{ id = 102586, delay = 0.5 },
 	},
 }
 
@@ -273,6 +320,18 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
 	Eclipse.mission_elements.gen_so(400012, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
+	
+	-- add back missing taser spawn from PDTH
+	Eclipse.mission_elements.gen_dummy(400050, "taser_ambush", Vector3(279.099, 1948.238, 1734.858), Rotation(90, 0, 0), optsTaser_Ambush),
+	
+	Eclipse.mission_elements.gen_so(400051, "taser_sniper_so", Vector3(153, 2051, 1734.858), Rotation(115, 0, 0), optsTaser_Sniper_SO),
+	
+	Eclipse.mission_elements.gen_missionscript(400052, "spawn_roof_taser", optsrooftaser),
+	
+	-- restore two missing fbi agents
+	Eclipse.mission_elements.gen_object_editor(400053, "fbi_open_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_1),
+	Eclipse.mission_elements.gen_object_editor(400054, "fbi_open_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_2),
+
 
 	-- buff the hack timer (use PDTH values)
 	-- lower PC

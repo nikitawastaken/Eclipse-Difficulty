@@ -39,6 +39,12 @@ local fbi_agents = {
 local fbi_agent = {
 	enemy = fbi_agents,
 }
+local fbi_agent_enabled = {
+	enemy = fbi_agents,
+	values = {
+		enabled = true,
+	}
+}
 local regular_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -380,9 +386,15 @@ return {
 			{ id = 103798, remove = true },
 		},
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[102386] = {
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		},
+	},
+	-- prevent c4 wall blows up for happening early
 	[100130] = {
 		on_executed = {
-			{ id = 400005, delay = 0, delay_rand = 20 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -622,6 +634,21 @@ return {
 	[104059] = street_heli_enemy,
 	[104060] = street_heli_enemy,
 	[104061] = street_heli_enemy,
+	-- don't call FBI intro if the deal went south early
+	[103075] = disabled,
+	-- restore 2 missing fbi agents
+	[102589] = {
+		on_executed = {
+			{ id = 102590, remove = true },
+			{ id = 400054, delay = 0 },
+		},
+	},
+	[102593] = {
+		on_executed = {
+			{ id = 102594, remove = true },
+			{ id = 400053, delay = 0 },
+		},
+	},
 	-- Escape harassers amount
 	[102444] = {
 		values = {
@@ -709,6 +736,12 @@ return {
 		},
 	},
 	-- make the the ambush roof spawns near the end of the heist less ass
+	-- restore taser spawn from PDTH 
+	[102423] = {
+		on_executed = {
+			{ id = 400052, delay = 0 },
+		},
+	},
 	-- increase the amount of units
 	[102424] = {
 		values = {
@@ -755,6 +788,7 @@ return {
 		},
 	},
 	-- change front shield's positions and their SOs
+	-- also fix missing access for all the SOs
 	[102410] = {
 		values = {
 			position = Vector3(-815.537, 2995.424, 1825),
@@ -768,16 +802,24 @@ return {
 		},
 	},
 	[102412] = {
+		so_access_filter = { "shield" },
 		values = {
 			position = Vector3(-720, 2954, 1842),
 			rotation = Rotation(-90, 0, 0),
 		},
 	},
 	[102413] = {
+		so_access_filter = { "shield" },
 		values = {
 			position = Vector3(-701.068, 3084.950, 1814),
 			rotation = Rotation(-102, 0, 0),
 		},
+	},
+	[102414] = {
+		so_access_filter = { "shield" },
+	},
+	[102415] = {
+		so_access_filter = { "shield" },
 	},
 	-- spawn both front and back shields on overkill above
 	[102430] = {
@@ -811,10 +853,10 @@ return {
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,
 	[102634] = fbi_agent,
-	[102591] = fbi_agent,
+	[102591] = fbi_agent_enabled,
 	[102592] = fbi_agent,
 	[102586] = fbi_agent,
-	[102588] = fbi_agent,
+	[102588] = fbi_agent_enabled,
 	-- set the undercover cops be on law team (so the FBI won't kill them)
 	[101609] = law_team,
 	[101612] = law_team,
