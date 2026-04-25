@@ -63,7 +63,7 @@ local optsSpecial_heli = {
 local optsDozer_heli = {
 	enemy_table = bulldozers,
 	spawn_action = "e_sp_down_16m_right",
-	on_executed = { { id = 400050, delay = 0 }, },
+	on_executed = { { id = 400050, delay = 0 } },
 	enabled = true,
 }
 
@@ -128,7 +128,7 @@ local optsspawnswatchopper = {
 		{ id = 400045, delay = 0 },
 	},
 	trigger_times = 1,
-	enabled =  diff_i >= 4 and true or false,
+	enabled = diff_i >= 4 and true or false,
 }
 
 local optsSniper_1 = {
@@ -476,7 +476,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400032, "enable_random_snipers", enable_sniper_mission_script),
 	Eclipse.mission_elements.gen_dialogue(400033, "they_sending_snipers", Bain_sendsnipers),
 	Eclipse.mission_elements.gen_missionscript(400034, "bfd_snipers_event_global", spawn_snipers_global),
-	
+
 	-- swat chopper
 	Eclipse.mission_elements.gen_dummy(400040, "swat_heli_1", Vector3(-85, -2517, -147.500), Rotation(0, 0, 0), optsDozer_heli),
 	Eclipse.mission_elements.gen_dummy(400041, "swat_heli_2", Vector3(-10, -2517, -147.500), Rotation(0, 0, 0), optsSpecial_heli),
@@ -488,9 +488,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400047, "swat_heli_sequence_leave", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_leave),
 	Eclipse.mission_elements.gen_object_editor(400048, "swat_heli_sequence_hide_and_loop", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_loop),
 	Eclipse.mission_elements.gen_missionscript(400049, "swat_heli_event", optsspawnswatchopper),
-	
+
 	Eclipse.mission_elements.gen_so(400050, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 	Eclipse.mission_elements.gen_dialogue(400051, "chopper_inbound", Bain_chopperinbound),
-	
 }
 return M
