@@ -1203,6 +1203,7 @@ function GroupAIStateBesiege:_upd_group_spawning()
 	end
 end
 
+-- Scale the spawn rate based on drama, diff, and player count
 function GroupAIStateBesiege:spawn_rate()
 	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
 	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
@@ -1218,18 +1219,8 @@ function GroupAIStateBesiege:spawn_rate()
 		get_drama_spawn_rate_entry(3),
 	} or regular_spawnrate_tbl
 
-	--	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
-
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
-
-	--[[
-	if self._task_data.assault.phase == "sustain" then
-		Eclipse:log_chat("Spawn rate for drama value " .. self._drama_data.amount .. " set to " .. self:_get_difficulty_dependent_value(spawn_rate))
-	else
-		Eclipse:log_chat("Current phase is not sustain, so no drama-based spawnrate.")
-	end
-]]
 
 	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
 end
@@ -1370,8 +1361,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a dynamic enemy spawn rate that scales with player count and difficulty value
-	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate())
+	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate() * spawn_task.group.size)
 end
 
 local function spawn_group_id(spawn_group)
