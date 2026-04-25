@@ -86,6 +86,10 @@ return {
 	},
 	-- Boss dead
 	[100153] = {
+		ponr = { -- FFO
+			length = 60,
+			length_balance_mul = { 2, 2, 1, 1 },
+		},
 		forced_difficulty = { -- Disable forced diff
 			recovering = true,
 		},

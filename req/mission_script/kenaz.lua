@@ -40,6 +40,9 @@ return {
 			{ 198, 185 },
 			{ 199, 186 },
 		},
+		on_executed = {
+			{ id = 400044, delay = 0 },
+		},
 	},
 	[100379] = {
 		ponr = {
@@ -48,10 +51,11 @@ return {
 		},
 	},
 	[102786] = disabled,
-	-- the BFD is running, start spawning interior snipers
+	-- the BFD is running, start spawning interior snipers and the chopper
 	[100394] = {
 		on_executed = {
 			{ id = 400034, delay = 30, delay_rand = 60 },
+			{ id = 400049, delay = 30, delay_rand = 60 },
 		},
 	},
 	-- Delay enemy spawns

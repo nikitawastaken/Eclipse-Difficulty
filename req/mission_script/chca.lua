@@ -60,6 +60,21 @@ for i = 0, 3 do
 	})
 end
 return {
+	-- FFOs
+	-- vault is open (default route)
+	[101331] = {
+		ponr = {
+			length = 480,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
+	-- 3 choppers went down (c4 route)
+	[101683] = {
+		ponr = {
+			length = 300,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
 	-- Add LoS blockers
 	[143003] = {
 		spawn = los_blockers,

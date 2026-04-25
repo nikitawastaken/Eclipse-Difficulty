@@ -1,6 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local army_guard = scripted_enemy.soldier_1
+local one_additional_crowbar_chance = math.random() <= 0.5
 local security_army = {
 	enemy = army_guard,
 }
@@ -21,6 +22,11 @@ local upper_spawn = {
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local crowbar_amount = {
+	values = {
+		amount = one_additional_crowbar_chance and 3 or 2,
+	},
 }
 return {
 	-- Add circuit breaker SO delay
@@ -69,6 +75,10 @@ return {
 			},
 		},
 	},
+	-- increase the amount of crowbars by 2-3
+	[102223] = crowbar_amount,
+	[102224] = crowbar_amount,
+	[102274] = crowbar_amount,
 	[104040] = { -- This spawngroup is split
 		values = {
 			interval = close_spawn.interval,
