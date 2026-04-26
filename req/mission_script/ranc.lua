@@ -9,19 +9,21 @@ local spawn_anim_fix = {
 }
 local roof_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
 local dock_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

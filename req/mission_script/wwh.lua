@@ -40,12 +40,13 @@ local unused_sniper_trigger_times = {
 local window_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local boat_spawn = {
 	values = {
-		interval = 40,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 45,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

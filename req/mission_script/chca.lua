@@ -68,6 +68,17 @@ for i = 0, 3 do
 	})
 end
 return {
+	-- Combine some navigation areas
+	[134066] = {
+		ai_area = {
+			{ 41, 42 },
+			{ 4, 34, 135 },
+			{ 3, 136, 137 },
+			{ 30, 31 },
+			{ 113, 117 },
+			{ 114, 115 }
+		}
+	},
 	-- FFOs
 	-- vault is open (default route)
 	[101331] = {
