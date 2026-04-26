@@ -666,7 +666,7 @@ function MoneyTweakData:init(tweak_data)
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4, })
+	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4 })
 	self.small_loot = {}
 	self.small_loot.money_bundle = (money_mul * 750)
 	self.small_loot.money_bundle_value = (money_mul * 10000)
