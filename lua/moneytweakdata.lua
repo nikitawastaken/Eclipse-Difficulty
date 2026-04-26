@@ -37,7 +37,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.shells = 100000
 	self.bag_values.turret = 500000
 	self.bag_values.sandwich = 500000
-	self.bag_values.cro_loot = 500000
+	self.bag_values.cro_loot = 1050000
 	self.bag_values.hope_diamond = 2000000
 	self.bag_values.evidence_bag = 135000
 	self.bag_values.vehicle_falcogini = 250000
@@ -666,13 +666,7 @@ function MoneyTweakData:init(tweak_data)
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local money_mul = get_difficulty_specific_value({
-		1,
-		1.1,
-		1.2,
-		1.3,
-		1.4,
-	})
+	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4, })
 	self.small_loot = {}
 	self.small_loot.money_bundle = (money_mul * 750)
 	self.small_loot.money_bundle_value = (money_mul * 10000)
@@ -753,6 +747,17 @@ function MoneyTweakData:init(tweak_data)
 	if level_id == "dinner" then
 		self.bag_values.gold = 350000
 		self.small_loot.money_bundle = (money_mul * 10250)
+	end
+	if level_id == "arm_cro" or level_id == "arm_hcm" or level_id == "arm_fac" or level_id == "arm_par" or level_id == "arm_und" then
+		self.bag_values.default = 47500
+		self.bag_values.money = 75000
+		self.bag_values.gold = 155000
+		self.bag_values.diamonds = 35000
+		self.small_loot.vault_loot_gold = (money_mul * 19500)
+		self.small_loot.vault_loot_cash = (money_mul * 6500)
+		self.small_loot.vault_loot_coins = (money_mul * 5800)
+		self.small_loot.vault_loot_ring = (money_mul * 12000)
+		self.small_loot.vault_loot_jewels = (money_mul * 8400)
 	end
 
 	self.max_small_loot_value = 20000000
