@@ -74,7 +74,7 @@ local cloaker_spawn = {
 return {
 	[104782] = {
 		ponr = {
-			length = 420,
+			length = 480,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
