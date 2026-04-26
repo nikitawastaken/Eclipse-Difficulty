@@ -7,7 +7,7 @@ local patches = {
 	elevator = table.set(100013),
 	so_access_tweak_drill = table.set(100302),
 	so_access_tweak_powerbox = table.set(100015),
-	the_drill = 100095,
+	the_drill_timer = table.set(100095),
 }
 
 return {
@@ -23,6 +23,9 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.so_access_tweak_drill[element.id] then
 				element.values.SO_access = acrobatic -- only let SWATs, tasers and cloakers disable the drill
+            elseif patches.the_drill_timer[element.id] then -- BFD drills faster with fewer players
+				element.values.dt_balance_mul = { 1.3, 1.2, 1.1, 1 }
+				element.values.team_ai_balance_mul_weight = 0.5
 			end
 		end
 	end,
@@ -30,15 +33,6 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.so_access_tweak_powerbox[element.id] then
 				element.values.SO_access = acrobatic -- only let SWATs, tasers and cloakers disable the power
-			end
-		end
-	end,
-	-- BFD drills faster with fewer players
-	["levels/instances/unique/kenaz/the_drill/world/world"] = function(result)
-		for _, element in ipairs(result.default.elements) do
-			if element.id == patches.the_drill then
-				element.values.dt_balance_mul = { 1.3, 1.2, 1.1, 1 }
-				element.values.team_ai_balance_mul_weight = 0.5
 			end
 		end
 	end,
