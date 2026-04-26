@@ -37,6 +37,7 @@ Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
 	end
 end)
 
+Hooks:PreHook(Drill, "destroy", "eclipse_destroy", Drill._set_area_min_police_force)
 Hooks:PostHook(Drill, "done", "eclipse_done", Drill._set_area_min_police_force)
 
 local _register_sabotage_SO_original = Drill._register_sabotage_SO
