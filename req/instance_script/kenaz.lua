@@ -15,7 +15,7 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.elevator[element.id] then
 				element.values.interval = 20
-				element.values.interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 }
+				element.values.interval_balance_mul = { 1.1, 1, 0.9, 0.8 }
 			end
 		end
 	end,
@@ -24,7 +24,7 @@ return {
 			if patches.so_access_tweak_drill[element.id] then
 				element.values.SO_access = acrobatic -- only let SWATs, tasers and cloakers disable the drill
 			elseif patches.the_drill_timer[element.id] then -- BFD drills faster with fewer players
-				element.values.dt_balance_mul = { 1.3, 1.2, 1.1, 1 }
+				element.values.dt_balance_mul = { 1.4, 1.3, 1.2, 1.1 }
 				element.values.team_ai_balance_mul_weight = 0.5
 			end
 		end

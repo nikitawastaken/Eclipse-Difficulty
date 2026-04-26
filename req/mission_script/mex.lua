@@ -17,16 +17,10 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-}
 local window_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -103,17 +97,6 @@ return {
 	[102881] = bags_required,
 	[102893] = bags_required,
 	-- Spawn group intervals
-	[100128] = standard_spawn, -- American side
-	[100131] = standard_spawn,
-	[100132] = standard_spawn,
-	[100694] = standard_spawn, -- Mexican side
-	[102227] = standard_spawn,
-	[102228] = standard_spawn,
-	[102254] = standard_spawn,
-	[102255] = standard_spawn,
-	[102423] = standard_spawn,
-	[102424] = standard_spawn,
-	[102442] = standard_spawn,
 	[103235] = window_spawn,
 	[103048] = window_spawn,
 	[103067] = window_spawn,

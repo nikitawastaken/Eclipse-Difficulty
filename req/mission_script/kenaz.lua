@@ -7,13 +7,13 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.7, 1.4, 1.1, 0.8 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 40,
-		interval_balance_mul = { 1.7, 1.4, 1.1, 0.8 },
+		interval = 35,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -58,9 +58,7 @@ return {
 			{ id = 400049, delay = 30, delay_rand = 60 },
 		},
 	},
-	-- Delay enemy spawns
-	-- Add a new loot drop point
-	[100405] = disabled,
+	-- Delay initial preferreds and add a new loot drop off point
 	[101907] = { -- start enemies delay end
 		on_executed = { -- wall spawns
 			{ id = 100230, delay = 45 }, -- vanilla: 0
@@ -74,67 +72,18 @@ return {
 			{ name = "pool_area", position = Vector3(-4345, -4895, 15) },
 		},
 	},
-	-- New reinforce points
-	-- Remove vanilla reinforce
-	[103204] = disabled,
-	[103205] = disabled,
-	[103206] = disabled,
-	[103207] = disabled,
-	[103209] = disabled,
-	[100229] = { -- enemies add
-		reinforce = {
-			{
-				name = "exterior_entrance",
-				force = 4,
-				position = Vector3(0, -8250, 0),
-			},
-			{
-				name = "pool",
-				force = 3,
-				position = Vector3(-3145, -5555, 15),
-			},
-			{
-				name = "exterior_right",
-				force = 2,
-				position = Vector3(2100, -7700, 25),
-			},
-			{
-				name = "exterior_left",
-				force = 2,
-				position = Vector3(-2100, -7700, 25),
-			},
-			{
-				name = "security01",
-				force = 2,
-				position = Vector3(-1490, 935, 105),
-			},
-			{
-				name = "security02",
-				force = 2,
-				position = Vector3(1515, 900, 125),
-			},
-		},
-	},
-	[101620] = { -- assemble the winch
-		reinforce = {
-			{
-				name = "interior_balcony_right",
-				force = 2,
-				position = Vector3(1330, -2440, 525),
-			},
-			{
-				name = "interior_balcony_left",
-				force = 2,
-				position = Vector3(-1330, -2440, 525),
-			},
-			{
-				name = "bar",
-				force = 3,
-				position = Vector3(50, -3975, 25),
-			},
-		},
-	},
+	[100405] = disabled,
 	-- Move the groups added in u244 to a later preferred
+	[103217] = { -- enemies_add_skylight_open
+		values = {
+			spawn_groups = {
+				103218,
+				103244,
+				103245,
+				103246,
+			},
+		},
+	},
 	[100229] = { -- enemies_add
 		values = {
 			spawn_groups = {
@@ -150,17 +99,90 @@ return {
 				103172,
 			},
 		},
-	},
-	[103217] = { -- enemies_add_skylight_open
-		values = {
-			spawn_groups = {
-				103218,
-				103244,
-				103245,
-				103246,
+		reinforce = { -- Add new reinforce
+			{
+				name = "exterior_entrance", 
+				force = 4,
+				position = Vector3(0, -7000, 0),
+			},
+			{
+				name = "exterior_gate01", 
+				force = 2,
+				position = Vector3(2500, -5500, -0),
+			},
+			{
+				name = "exterior_gate02",  
+				force = 2,
+				position = Vector3(-2500, -5800, -0),
+			},
+			{
+				name = "exterior_relax",  
+				force = 2,
+				position = Vector3(-4075, -2775, 0),
+			},
+			{
+				name = "exterior_balcony",  
+				force = 2,
+				position = Vector3(1950, -2450, 625),
+			},
+			{
+				name = "security01", 
+				force = 2,
+				position = Vector3(-1100, 1500, 110),
+			},
+			{
+				name = "security02",  
+				force = 2,
+				position = Vector3(1000, 1500, 110),
+			},
+			{
+				name = "stairs01", 
+				force = 2,
+				position = Vector3(2600, -400, 350),
+			},
+			{
+				name = "stairs02",  
+				force = 2,
+				position = Vector3(-2600, -400, 350),
 			},
 		},
 	},
+	[101620] = { -- assemble the winch
+		reinforce = {
+			{
+				name = "interior_balcony01",
+				force = 2,
+				position = Vector3(1330, -2440, 525),
+			},
+			{
+				name = "interior_balcony02",
+				force = 2,
+				position = Vector3(-1310, -2440, 525),
+			},
+			{
+				name = "bar",
+				force = 3,
+				position = Vector3(50, -3975, 25),
+			},
+		},
+	},
+	-- Disable stairs reinforce accordingly
+	[101517] = { -- disable_left_stairs
+		reinforce = {
+			{ name = "stairs02" },
+		},
+	},
+	[101520] = { -- disable_right_stairs
+		reinforce = {
+			{ name = "stairs01" },
+		},
+	},
+	-- Disable vanilla reinforce
+	[103204] = disabled,
+	[103205] = disabled,
+	[103206] = disabled,
+	[103207] = disabled,
+	[103209] = disabled,
 	-- Spawn group intervals
 	[100192] = standard_spawn,
 	[100231] = standard_spawn,

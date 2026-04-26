@@ -9,12 +9,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-}
 return {
 	-- Combine some navigation areas
 	[141003] = {
@@ -156,17 +150,4 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
-	-- Spawn group intervals
-	[100128] = standard_spawn,
-	[100130] = standard_spawn,
-	[100131] = standard_spawn,
-	[100132] = standard_spawn,
-	[100133] = standard_spawn,
-	[100206] = standard_spawn,
-	[102861] = standard_spawn,
-	[102381] = standard_spawn,
-	[101920] = standard_spawn,
-	[100719] = standard_spawn,
-	[100810] = standard_spawn,
-	[100921] = standard_spawn,
 }
