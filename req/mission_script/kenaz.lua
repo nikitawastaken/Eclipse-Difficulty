@@ -101,47 +101,47 @@ return {
 		},
 		reinforce = { -- Add new reinforce
 			{
-				name = "exterior_entrance", 
+				name = "exterior_entrance",
 				force = 4,
 				position = Vector3(0, -7000, 0),
 			},
 			{
-				name = "exterior_gate01", 
+				name = "exterior_gate01",
 				force = 2,
 				position = Vector3(2500, -5500, -0),
 			},
 			{
-				name = "exterior_gate02",  
+				name = "exterior_gate02",
 				force = 2,
 				position = Vector3(-2500, -5800, -0),
 			},
 			{
-				name = "exterior_relax",  
+				name = "exterior_relax",
 				force = 2,
 				position = Vector3(-4075, -2775, 0),
 			},
 			{
-				name = "exterior_balcony",  
+				name = "exterior_balcony",
 				force = 2,
 				position = Vector3(1950, -2450, 625),
 			},
 			{
-				name = "security01", 
+				name = "security01",
 				force = 2,
 				position = Vector3(-1100, 1500, 110),
 			},
 			{
-				name = "security02",  
+				name = "security02",
 				force = 2,
 				position = Vector3(1000, 1500, 110),
 			},
 			{
-				name = "stairs01", 
+				name = "stairs01",
 				force = 2,
 				position = Vector3(2600, -400, 350),
 			},
 			{
-				name = "stairs02",  
+				name = "stairs02",
 				force = 2,
 				position = Vector3(-2600, -400, 350),
 			},
