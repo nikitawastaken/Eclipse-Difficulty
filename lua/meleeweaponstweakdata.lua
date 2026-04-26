@@ -4,7 +4,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.iceaxe.stats.max_damage = 9
 
 	-- Change a few weapons' damage type
-	self.melee_weapons.buck.stats.weapon_type = "sharp"
+	self.melee_weapons.buck.stats.weapon_type = "blunt"
 	self.melee_weapons.tiger.stats.weapon_type = "sharp"
 	self.melee_weapons.cs.stats.weapon_type = "sharp"
 	self.melee_weapons.push.stats.weapon_type = "sharp"
