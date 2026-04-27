@@ -5,6 +5,7 @@ ElementPrePlanning.police_delay_types = table.list_to_set({
 	"delay_police_30",
 	"delay_police_30_no_pos",
 	"delay_police_60",
+	"delayed_police",
 })
 
 Hooks:PostHook(ElementPrePlanning, "on_executed", "eclipse_on_executed", function(self)
