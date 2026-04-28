@@ -1034,7 +1034,7 @@ function PlayerManager:server_drop_carry(
 	movement,
 	peer
 )
-	if not self:verify_carry(peer, carry_id) then
+	if peer and not self:verify_carry(peer, carry_id) then
 		return
 	end
 
