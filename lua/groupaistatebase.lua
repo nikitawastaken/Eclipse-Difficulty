@@ -143,14 +143,18 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 		return
 	end
 
+	local team_ai_weights = tweak_data.group_ai.team_ai_balance_mul_weights
 	local delay = data.delay and (tonumber(data.delay) or math.rand(unpack(data.delay))) or 0
+	local delay_mul = data.delay_mul or self._difficulty_scaling.addend_delay_multipliers[category]
+	local delay_balance_mul = data.delay_balance_mul or self._difficulty_scaling.addend_delay_balance_muls[category]
+	local final_delay = delay * (delay_mul or 1) * (delay_balance_mul and self:_get_balancing_multiplier(delay_balance_mul, team_ai_weights.difficulty_addend_delay) or 1)
 	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
 	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
 	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
-	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.difficulty_addend_time) or 1)
+	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, team_ai_weights.difficulty_addend_time) or 1)
 	local finalized = {
 		amount = amount,
-		delay = delay,
+		delay = final_delay,
 		time = final_time,
 		category = category,
 	}

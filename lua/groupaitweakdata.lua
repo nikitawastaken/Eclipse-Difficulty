@@ -3609,6 +3609,21 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			on_entered_full_force_onslaught = { 1.45, 1.3, 1.15, 1 },
 			on_hostage_killed = { 1.45, 1.3, 1.15, 1 },
 		},
+		-- The initial trade delay is not currently affected by on_enemy_weapons_hot delay multipliers
+		addend_delay_multipliers = {
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_entered_sustain = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_entered_regroup = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_hostage_killed = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+		},
+		addend_delay_balance_muls = {
+			on_enemy_weapons_hot = { 1, 1, 1, 1 },
+			on_entered_sustain = { 1, 1, 1, 1 },
+			on_entered_regroup = { 1, 1, 1, 1 },
+			on_entered_full_force_onslaught = { 1, 1, 1, 1 },
+			on_hostage_killed = { 1, 1, 1, 1 },
+		},
 	}
 
 	-- BESIEGE --
@@ -3691,6 +3706,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		ponr_length = 0.5,
 		spawn_group_interval = 0.5,
 		difficulty_addend_time = 0.5,
+		difficulty_addend_delay = 0.5,
 	}
 
 	-- Spawn rate
