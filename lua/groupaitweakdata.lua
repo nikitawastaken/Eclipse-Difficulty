@@ -3627,6 +3627,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- BESIEGE --
+	self.besiege.drama_gain_mul = 1
+
 	if difficulty_index <= 3 then
 		self.besiege.scripted_tiers = {
 			"CS",
@@ -4101,6 +4103,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
+	self.ponr.drama_gain_mul = 0.5
 
 	-- Control
 	if short_ponr_heists[level_id] then
