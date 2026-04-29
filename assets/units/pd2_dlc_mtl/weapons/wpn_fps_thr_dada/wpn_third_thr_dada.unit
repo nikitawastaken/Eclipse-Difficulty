@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<unit type="item" slot="14">
+	<network sync="spawn" />
+	<object file="units/pd2_dlc_mtl/weapons/wpn_fps_thr_dada/wpn_third_thr_dada" />
+	<dependencies>
+		<depends_on unit="units/pd2_dlc_mtl/weapons/wpn_fps_thr_dada/wpn_fps_thr_dada_husk" />
+		<depends_on effect="effects/particles/explosions/electric_grenade" />
+		<depends_on bnk="soundbanks/weapon_mtl" />
+	</dependencies>
+	<extensions>
+		<extension name="base" class="ElectricGrenade" > 
+			<var name="_tweak_projectile_entry" value="dada_com" />
+		</extension>        
+		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="damage" class="UnitDamage" >
+			<var name="_collision_event" value="mtl_roll" />
+			<var name="_collision_sfx_quite_time" value="0.1" />
+		</extension>
+	</extensions>
+	<sounds>
+		<default_soundsource source="rp_wpn_third_thr_dada" />
+        <soundsource name="snd" source="g_dada" />
+	</sounds>
+</unit>

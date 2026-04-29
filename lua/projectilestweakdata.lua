@@ -7,11 +7,12 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	-- 16s flask cooldown
 	self.projectiles.damage_control.base_cooldown = 16
 
-	-- remove retarded anticheat
-	self.projectiles.rocket_ray_frag.time_cheat = nil
-	self.projectiles.launcher_frag_m32.time_cheat = nil
-
-	-- grenade amounts
+	-- Remove the projectile anti-cheat
+	for k, v in pairs(self.projectiles) do
+		v.time_cheat = nil
+	end
+	
+	-- Set grenade amounts
 	self.projectiles.frag.max_amount = 3
 	self.projectiles.frag_com.max_amount = 3
 	self.projectiles.dada_com.max_amount = 3
@@ -22,34 +23,22 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.poison_gas_grenade.max_amount = 3
 	self.projectiles.wpn_gre_electric.max_amount = 3
 
-	-- increase concussion grenade expire_t and repeat_expire_t to match other grenades
-	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
-
-	-- Give Sicario's smoke grenade a sound when smoke is ready to use (like any cd-based throwables have)
-	self.projectiles.smoke_screen_grenade.sounds = { cooldown = "perkdeck_cooldown_over" }
-
-	-- Different trails for projectiles/throwables
-	self.projectiles.poison_gas_grenade.add_trail_effect = "effects/particles/weapons/projectile_trail_green"
-
-	-- give all hand grenades the community frag grenade's throw animation
+	-- Give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
 	self.projectiles.fir_com.animation = self.projectiles.frag_com.animation
 	self.projectiles.concussion.animation = self.projectiles.frag_com.animation
 	self.projectiles.wpn_gre_electric.animation = self.projectiles.frag_com.animation
+	self.projectiles.poison_gas_grenade.animation = self.projectiles.frag_com.animation -- ditto
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
+	
+	-- Increase Flashbang expire_t and repeat_expire_t to match other grenades
+	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
 
-	self.projectiles.launcher_incendiary_m79 = deep_clone(self.projectiles.launcher_incendiary)
-	self.projectiles.launcher_incendiary_m79.weapon_id = "gre_m79"
+	-- Give Sicario's Smoke Grenade a sound when smoke is ready to use (like any cd-based throwables have)
+	self.projectiles.smoke_screen_grenade.sounds = { cooldown = "perkdeck_cooldown_over" }
 
-	self.projectiles.launcher_electric_m79 = deep_clone(self.projectiles.launcher_electric)
-	self.projectiles.launcher_electric_m79.unit = "units/pd2_dlc_sawp/weapons/wpn_launcher_electric/wpn_launcher_electric_m32"
-	self.projectiles.launcher_electric_m79.weapon_id = "gre_m79"
-
-	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
-	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
-
-	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
-	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
+	-- Different trails for projectiles/throwables
+	self.projectiles.poison_gas_grenade.add_trail_effect = "effects/particles/weapons/projectile_trail_green"
 
 	self.projectiles.cluster = {
 		name_id = "bm_grenade_cluster",
