@@ -777,6 +777,17 @@ function GroupAIStateBase:_add_drama(amount)
 	self._drama_data.zone = nil
 end
 
+-- Support for variable drama decay rate
+Hooks:OverrideFunction(GroupAIStateBase, "_claculate_drama_value", function(self)
+	local drama_data = self._drama_data
+	local dt = self._t - drama_data.last_calculate_t
+	local dt_mod = self._get_drama_weight_mul and self:_get_drama_weight_mul("decay_rate") or 1
+	local adj = -dt / drama_data.decay_period * dt_mod
+	drama_data.last_calculate_t = self._t
+
+	self:_add_drama(adj)
+end)
+
 -- Set a minimum gunshot and bullet impact alert range in loud
 Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)
 	if alert_data[1] == "bullet" and alert_data[3] and self:enemy_weapons_hot() then
