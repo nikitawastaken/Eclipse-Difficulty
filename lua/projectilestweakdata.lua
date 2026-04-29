@@ -11,7 +11,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	for k, v in pairs(self.projectiles) do
 		v.time_cheat = nil
 	end
-	
+
 	-- Set grenade amounts
 	self.projectiles.frag.max_amount = 3
 	self.projectiles.frag_com.max_amount = 3
@@ -30,7 +30,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.wpn_gre_electric.animation = self.projectiles.frag_com.animation
 	self.projectiles.poison_gas_grenade.animation = self.projectiles.frag_com.animation -- ditto
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
-	
+
 	-- Increase Flashbang expire_t and repeat_expire_t to match other grenades
 	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
 

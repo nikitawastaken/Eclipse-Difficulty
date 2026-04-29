@@ -670,9 +670,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_ching_b_short.stats.concealment = 3
 
 	-- Pistol mods
-	
+
 	-- Wipe iron sight stats
-	self:_wipe_stats({ 
+	self:_wipe_stats({
 		"wpn_upg_o_marksmansight_rear",
 		"wpn_fps_pis_packrat_o_expert",
 	})
@@ -868,7 +868,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_m45_b_small.stats.concealment = 2
 
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats = { value = 1, reload = 1, recoil = 1, concealment = -2 }
-	
+
 	self.parts.wpn_fps_smg_tec9_b_standard.stats.spread = -1
 	self.parts.wpn_fps_smg_tec9_b_standard.stats.recoil = 0
 	self.parts.wpn_fps_smg_tec9_b_standard.stats.concealment = 1
@@ -877,7 +877,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_tec9_ns_ext.stats.spread = 2
 	self.parts.wpn_fps_smg_tec9_ns_ext.stats.recoil = 0
 	self.parts.wpn_fps_smg_tec9_ns_ext.stats.concealment = -2
-				
+
 	self.parts.wpn_fps_smg_thompson_barrel_short.stats.spread = -2
 	self.parts.wpn_fps_smg_thompson_barrel_short.stats.concealment = 2
 
@@ -1131,9 +1131,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.concealment = -4
 
 	--Minigun Mods
---	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.spread = 1
---	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.recoil = -3
---	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.concealment = -2
+	--	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.spread = 1
+	--	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.recoil = -3
+	--	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.concealment = -2
 
 	self.parts.wpn_fps_lmg_m134_barrel_short.stats.spread = -2
 	self.parts.wpn_fps_lmg_m134_barrel_short.stats.recoil = -1
