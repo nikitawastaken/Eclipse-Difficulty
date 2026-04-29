@@ -291,7 +291,7 @@ function GroupAIStateBase:_update_difficulty_value(t, dt)
 	self:_calculate_difficulty_ratio()
 end
 
-Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", GroupAIStateBase._update_difficulty_value)
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_diff_rework_update", GroupAIStateBase._update_difficulty_value)
 
 function GroupAIStateBase:_get_new_difficulty_value(t, dt)
 	local new_diff_value = 0
