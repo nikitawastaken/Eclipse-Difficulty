@@ -2147,22 +2147,22 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			self._throwable_stats_shown = {
 				{
 					range = true,
-					name = "damage"
+					name = "damage",
 				},
 				{
 					range = true,
-					name = "range"
+					name = "range",
 				},
 				{
 					inverse = true,
 					name = "cooldown",
 					num_decimals = 1,
-					suffix = managers.localization:text("menu_seconds_suffix_short")
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
 				},
 				{
 					index = true,
-					name = "amount"
-				}
+					name = "amount",
+				},
 			}
 			local x = 0
 			local y = 20
@@ -2171,21 +2171,21 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			local text_columns = {
 				{
 					size = 100,
-					name = "name"
+					name = "name",
 				},
 				{
 					align = "right",
 					name = "equip",
 					blend = "add",
 					alpha = 0.75,
-					size = 55
+					size = 55,
 				},
 				{
 					align = "right",
 					name = "base",
 					blend = "add",
 					alpha = 0.75,
-					size = 60
+					size = 60,
 				},
 				{
 					align = "right",
@@ -2193,16 +2193,16 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					blend = "add",
 					alpha = 0.75,
 					size = 65,
-					color = tweak_data.screen_colors.resource
+					color = tweak_data.screen_colors.resource,
 				},
 				{
 					size = 55,
 					name = "total",
-					align = "right"
-				}
+					align = "right",
+				},
 			}
 			self._throwable_stats_panel = self._stats_panel:panel({
-				visible = false
+				visible = false,
 			})
 
 			for i, stat in ipairs(self._throwable_stats_shown) do
@@ -2211,13 +2211,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					layer = 1,
 					name = stat.name,
 					y = y,
-					w = self._throwable_stats_panel:w()
+					w = self._throwable_stats_panel:w(),
 				})
 
 				if math.mod(i, 2) == 0 and not panel:child(tostring(i)) then
 					panel:rect({
 						name = tostring(i),
-						color = Color.black:with_alpha(0.3)
+						color = Color.black:with_alpha(0.3),
 					})
 				end
 
@@ -2230,7 +2230,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						layer = 0,
 						x = x,
 						w = column.size,
-						h = panel:h()
+						h = panel:h(),
 					})
 					self._throwable_stats_texts[stat.name][column.name] = text_panel:text({
 						rotation = 360,
@@ -2240,7 +2240,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						align = column.align,
 						alpha = column.alpha,
 						blend_mode = column.blend,
-						color = column.color or tweak_data.screen_colors.text
+						color = column.color or tweak_data.screen_colors.text,
 					})
 					x = x + column.size
 
@@ -3667,13 +3667,13 @@ function BlackMarketGui:show_stats_throwables_page()
 
 	self:set_stats_titles({
 		show = true,
-		name = "total"
+		name = "total",
 	}, {
 		name = "equip",
 		text_id = "bm_menu_equipped",
 		alpha = 0.75,
 		x = 105,
-		show = true
+		show = true,
 	})
 
 	local equipped_item = managers.blackmarket:equipped_item(category)
