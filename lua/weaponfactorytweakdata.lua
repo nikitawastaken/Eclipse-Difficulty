@@ -921,7 +921,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.spread = 1
 	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.recoil = 0
 	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.concealment = -1
-	
+
 	-- Shotgun Mods
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = 0
@@ -1273,19 +1273,19 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = 9
 
 	-- Dart Pistol parts
-	
+
 	-- Replace the default ammo type with a standard non-poison tipped dart
 	self.parts.wpn_fps_upg_a_dart_standard = deep_clone(self.parts.wpn_fps_upg_a_dart_poison)
 	self.parts.wpn_fps_upg_a_dart_standard.sub_type = nil
 	self.parts.wpn_fps_upg_a_dart_standard.custom_stats = nil
-	
-	table.delete(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_poison") 
-	table.insert(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_standard") 
-			
+
+	table.delete(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_poison")
+	table.insert(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_standard")
+
 	-- Remove the Revive Dart.
 	-- It does not belong in the game.
-	table.delete(self.wpn_fps_spe_dart.uses_parts, "wpn_fps_upg_a_dart_revive") 
-	
+	table.delete(self.wpn_fps_spe_dart.uses_parts, "wpn_fps_upg_a_dart_revive")
+
 	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.spread = 1
 	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.recoil = -2
 	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.concealment = -1
@@ -1297,7 +1297,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.concealment = -1
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.launch_speed_mul = 0.85
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.charge_speed_mul = 0.5
-	
+
 	-- Underbarrel ammo types
 	table.insert(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
 	table.insert(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
@@ -1545,7 +1545,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_pis_usp_co_comp_1.stats = pistol_barrel_ext_stats.recoil_heavily_favored
 	self.parts.wpn_fps_pis_usp_co_comp_2.stats = pistol_barrel_ext_stats.spread_heavily_favored
-	
+
 	self.parts.wpn_fps_pis_pmm_ns_suppressor.stats = pistol_barrel_ext_stats.medium_silencer_var1
 
 	local function smallify_barrel_exts(factory_id, part_list)

@@ -45,7 +45,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.dart_arrow.unit = "units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow"
 	self.projectiles.dart_arrow.local_unit = "units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local"
 	table.insert(self._projectiles_index, "dart_arrow")
-		
+
 	self.projectiles.cluster = {
 		name_id = "bm_grenade_cluster",
 		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",
