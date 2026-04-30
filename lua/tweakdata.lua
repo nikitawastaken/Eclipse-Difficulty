@@ -122,6 +122,17 @@ tweak_data.projectiles.ecp_arrow_poison = create_poison_arrow(tweak_data.project
 tweak_data.projectiles.frankish_poison_arrow = create_poison_arrow(tweak_data.projectiles.frankish_arrow)
 tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
 
+tweak_data.projectiles.dart_arrow = {
+	mass_look_up_modifier = 1.25,
+	push_at_body_index = 0,
+	damage = 12,
+	projectile_trail = true,
+	adjust_z = -100,
+	launch_speed = 2500,
+}
+
+tweak_data.projectiles.dart_daze.damage = 0
+
 -- Throwing Knives/Axes/Stars etc.
 
 -- Shuriken

@@ -40,6 +40,12 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	-- Different trails for projectiles/throwables
 	self.projectiles.poison_gas_grenade.add_trail_effect = "effects/particles/weapons/projectile_trail_green"
 
+	-- Add a non-poison tipped Dart Gun dart
+	self.projectiles.dart_arrow = deep_clone(self.projectiles.dart_poison)
+	self.projectiles.dart_arrow.unit = "units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow"
+	self.projectiles.dart_arrow.local_unit = "units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local"
+	table.insert(self._projectiles_index, "dart_arrow")
+		
 	self.projectiles.cluster = {
 		name_id = "bm_grenade_cluster",
 		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",

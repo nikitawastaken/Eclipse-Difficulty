@@ -345,7 +345,11 @@
 		
 		<!-- Electric Matryoshka Grenade -->
 		<file name="units/pd2_dlc_mtl/weapons/wpn_fps_thr_dada/wpn_third_thr_dada.unit"/>
-		
+
+		<!-- Add a non-poison tipped Dart Gun dart -->
+		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow.unit"/>
+		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local.unit"/>
+			
 		<!-- Risk level assets -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1.texture"/>

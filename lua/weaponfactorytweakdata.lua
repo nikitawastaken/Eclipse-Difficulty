@@ -917,6 +917,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self:_add_forbids_from_list("wpn_fps_smg_fmg9_conversion", rifle_barrel_exts)
 
+	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.damage = 0
+	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.spread = 1
+	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.recoil = 0
+	self.parts.wpn_fps_smg_speen_barrel_dmr.stats.concealment = -1
+	
 	-- Shotgun Mods
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = 0
@@ -1267,9 +1272,37 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 9
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = 9
 
-	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
-	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
-	self.parts.wpn_fps_saw_body_speed.custom_stats = { fire_rate_multiplier = 1.5 }
+	-- Dart Pistol parts
+	
+	-- Replace the default ammo type with a standard non-poison tipped dart
+	self.parts.wpn_fps_upg_a_dart_standard = deep_clone(self.parts.wpn_fps_upg_a_dart_poison)
+	self.parts.wpn_fps_upg_a_dart_standard.sub_type = nil
+	self.parts.wpn_fps_upg_a_dart_standard.custom_stats = nil
+	
+	table.delete(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_poison") 
+	table.insert(self.wpn_fps_spe_dart.default_blueprint, "wpn_fps_upg_a_dart_standard") 
+			
+	-- Remove the Revive Dart.
+	-- It does not belong in the game.
+	table.delete(self.wpn_fps_spe_dart.uses_parts, "wpn_fps_upg_a_dart_revive") 
+	
+	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.spread = 1
+	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.recoil = -2
+	self.parts.wpn_fps_spe_dart_magazine_high_pressure.stats.concealment = -1
+	self.parts.wpn_fps_spe_dart_magazine_high_pressure.custom_stats.launch_speed_mul = 1.25
+	self.parts.wpn_fps_spe_dart_magazine_high_pressure.custom_stats.charge_speed_mul = 1.15
+
+	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.spread = -1
+	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.recoil = 2
+	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.concealment = -1
+	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.launch_speed_mul = 0.85
+	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.charge_speed_mul = 0.5
+	
+	-- Underbarrel ammo types
+	table.insert(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
+	table.insert(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
+	table.delete(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
+	table.delete(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
 
 	-- Flamethrower Tanks
 	self.parts.wpn_fps_fla_mk2_a_rare = {
@@ -1512,6 +1545,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_pis_usp_co_comp_1.stats = pistol_barrel_ext_stats.recoil_heavily_favored
 	self.parts.wpn_fps_pis_usp_co_comp_2.stats = pistol_barrel_ext_stats.spread_heavily_favored
+	
+	self.parts.wpn_fps_pis_pmm_ns_suppressor.stats = pistol_barrel_ext_stats.medium_silencer_var1
 
 	local function smallify_barrel_exts(factory_id, part_list)
 		if not self[factory_id].override then
@@ -2296,7 +2331,7 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 	end
 end
 
--- Automatically balance underbarrel weapon stats based on concealment
+-- Automatically balance underbarrel weapon stats
 function WeaponFactoryTweakData:_balance_underbarrel(tweak_data, part_id)
 	local upgrade_definitions = tweak_data.upgrades.definitions
 
@@ -2323,6 +2358,8 @@ function WeaponFactoryTweakData:_balance_underbarrel(tweak_data, part_id)
 				local damage_ratio_round = math.round(weap_total_ammo * 0.5, weapon_tweak.CLIP_AMMO_MAX) / weap_total_ammo
 
 				self[factory_id].override[part_id].custom_stats.ammo_max_mul = damage_ratio_round
+				self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = 0.75
+				self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul
 			end
 		end
 	end
