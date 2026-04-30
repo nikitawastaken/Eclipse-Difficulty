@@ -409,7 +409,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
 
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
-		stance_mul = nil_value,
+		stance_acc_mul = nil_value,
 	})
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.25, 0.5 }, mode = { 1, 0, 0, 0 } },
@@ -424,7 +424,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aim_delay = { 0, 1.5 },
 		melee_dmg = 30 * special_dmg_mul,
 		melee_force = 600,
-		stance_mul = nil_value,
+		stance_acc_mul = nil_value,
 	})
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.FALLOFF = {
