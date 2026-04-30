@@ -100,14 +100,14 @@ function SawHit:on_collision(col_ray, weapon_unit, user_unit, damage)
 	local base_ext = hit_unit:base()
 
 	if base_ext and base_ext.has_tag and base_ext:has_tag("tank") then
-		damage = damage * (self:weapon_tweak_data().tank_damage_multiplier or 1)
+		damage = damage * (weapon_unit:base():weapon_tweak_data().tank_damage_multiplier or 1)
 	end
 
 	local result = InstantBulletBase.on_collision(self, col_ray, weapon_unit, user_unit, damage)
 
 	if hit_unit:damage() and col_ray.body:extension() and col_ray.body:extension().damage then
 		local lock_damage = damage
-		lock_damage = damage * managers.player:upgrade_value("saw", "lock_damage_multiplier", 1) * (self:weapon_tweak_data().lock_damage_multiplier or 1)
+		lock_damage = damage * managers.player:upgrade_value("saw", "lock_damage_multiplier", 1) * (weapon_unit:base():weapon_tweak_data().lock_damage_multiplier or 1)
 		lock_damage = math.clamp(lock_damage, 0, 200)
 
 		col_ray.body:extension().damage:damage_lock(user_unit, col_ray.normal, col_ray.position, col_ray.direction, lock_damage)
