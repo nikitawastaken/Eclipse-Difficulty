@@ -58,7 +58,7 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 			if is_shield then
 				damage = damage * (tweak_data.upgrades.saw_through_shield_dmg_mul or 1)
 			end
-			
+
 			if not ray_table_contains(hits, hit.unit) then
 				table.insert(hits, hit)
 			elseif hit.unit:character_damage() and hit.unit:character_damage().is_head and hit.unit:character_damage():is_head(hit.body) then

@@ -452,7 +452,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						if not params or not params.no_shake then
 							local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
 							local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-			
+
 							local on_hit_mul = false
 							if fired and fired.rays then
 								for _, ray in ipairs(fired.rays) do
@@ -464,8 +464,8 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 								end
 							end
 
-							local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"])  * recoil_shake
-						
+							local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"]) * recoil_shake
+
 							if self._state_data.in_steelsight then
 								self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
 							else
@@ -515,7 +515,6 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 
-		
 						local apply_spray = false
 						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons

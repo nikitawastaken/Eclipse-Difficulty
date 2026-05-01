@@ -206,8 +206,8 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 					end
 				end
 			end
-			
-			local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"])  * recoil_shake
+
+			local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"]) * recoil_shake
 
 			if self._state_data.in_steelsight then
 				self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
