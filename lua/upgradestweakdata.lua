@@ -660,7 +660,6 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"x_chinchilla",
-				"x_deagle",
 				"x_model3",
 				"poison_gas_grenade",
 			},

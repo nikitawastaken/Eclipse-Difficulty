@@ -724,14 +724,15 @@ function WeaponTweakData:_init_weapons(overrides)
 					-- Actual stats
 					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
 					weap_data.stats = clone(single_weapon_data.stats)
-					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 4, 0)
+					weap_data.stats.spread = math.max(single_weapon_data.stats.spread - 2, 0)
+					weap_data.stats.recoil = math.max(single_weapon_data.stats.recoil - 2, 0)
 					weap_data.stats.concealment = math.max(single_weapon_data.stats.concealment - 3, 0)
 					weap_data.stats.suppression = math.max(single_weapon_data.stats.suppression - 3, 0)
 					weap_data.steelsight_time = steelsight_times.default
 					weap_data.steelsight_move_speed_mul = 0.5
 					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (20 / 30)
-					weap_data.shake.fire_multiplier = (weap_data.shake.fire_multiplier or 1) + 0.3
-
+					weap_data.shake.fire_multiplier = (weap_data.shake.fire_multiplier or 1) + 0.4
+					
 					if not weap_data.rays then
 						weap_data.stance_multipliers.spread = {
 							standing = {
@@ -767,9 +768,9 @@ function WeaponTweakData:_init_weapons(overrides)
 							steelsight = 0.9,
 						},
 						moving = {
-							hipfire = 1.3,
+							hipfire = 1.2,
 							crouching = 1,
-							steelsight = 1.2,
+							steelsight = 1.1,
 						},
 					}
 				end
@@ -822,7 +823,6 @@ WeaponTweakData.akimbo_whitelist = table.list_to_set({
 	"jowi",
 	"x_1911",
 	"x_b92fs",
-	"x_deagle",
 	"x_g17",
 	"x_g22c",
 	"x_usp",
@@ -1353,14 +1353,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.maxim9.fire_mode_data.fire_rate = 60 / 600
 	self.maxim9.can_do_shotgun_push = false
 
-	-- Strix
-	self.pmm.CLIP_AMMO_MAX = 8
-	self.pmm.stats.damage = 24
-	self.pmm.stats.spread = 15
-	self.pmm.stats.recoil = 9
-	self.pmm.stats.concealment = 30
-	self.pmm.fire_mode_data.fire_rate = 60 / 600
-
 	-- Signature
 	self.p226.CLIP_AMMO_MAX = 12
 	self.p226.stats.damage = 30
@@ -1393,14 +1385,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sparrow.stats.concealment = 29
 	self.sparrow.fire_mode_data.fire_rate = 60 / 600
 
-	-- Gruber
-	self.ppk.CLIP_AMMO_MAX = 7
-	self.ppk.stats.damage = 36
-	self.ppk.stats.spread = 17
-	self.ppk.stats.recoil = 13
-	self.ppk.stats.concealment = 30
-	self.ppk.fire_mode_data.fire_rate = 60 / 600
-
 	-- Interceptor
 	self.usp.CLIP_AMMO_MAX = 12
 	self.usp.stats.damage = 36
@@ -1408,6 +1392,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.usp.stats.recoil = 8
 	self.usp.stats.concealment = 29
 	self.usp.fire_mode_data.fire_rate = 60 / 600
+	
+	-- Gruber
+	self.ppk.CLIP_AMMO_MAX = 7
+	self.ppk.stats.damage = 36
+	self.ppk.stats.spread = 16
+	self.ppk.stats.recoil = 10
+	self.ppk.stats.concealment = 30
+	self.ppk.fire_mode_data.fire_rate = 60 / 600
+
+	-- Strix
+	self.pmm.CLIP_AMMO_MAX = 8
+	self.pmm.stats.damage = 36
+	self.pmm.stats.spread = 14
+	self.pmm.stats.recoil = 12
+	self.pmm.stats.concealment = 30
+	self.pmm.fire_mode_data.fire_rate = 60 / 600
 
 	-- 5/7
 	self.lemming.CLIP_AMMO_MAX = 15
@@ -1565,45 +1565,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		}
 		self.deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
 		self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
-	end
-
-	self.init_stat_overrides.x_deagle = function()
-		self.x_deagle.stats.suppression = 7
-		self.x_deagle.stats.alert_size = 7
-		self.x_deagle.total_ammo_mul = nil
-		self.x_deagle.pickup_mul  = (71 / 100)
---		self.deagle.swap_speed_multiplier = 1.5
-		self.x_deagle.steelsight_move_speed_mul = 0.6
-		self.x_deagle.shake.fire_multiplier = 1.2
-		self.x_deagle.fire_mode_data.fire_rate = 60 / 400
-		self.x_deagle.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 0.6,
-				},
-				moving = {
-					hipfire = 1.8,
-					crouching = 1,
-					steelsight = 1.5,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.9,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.3,
-				},
-			},
-		}
-		self.x_deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
-		self.x_deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
 	end
 
 	--Peacemaker
