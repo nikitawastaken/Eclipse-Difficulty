@@ -501,6 +501,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
 						local kick_id = self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"
 
+				
 						if kick_tweak_data.on_hit and fired and fired.rays then
 							for _, ray in ipairs(fired.rays) do
 								if ray and not table.empty(ray) then
@@ -512,9 +513,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						end
 
 						local up, down, left, right = unpack(kick_tweak_data[kick_id])
-
-						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
-
+						
 						local apply_spray = false
 						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
