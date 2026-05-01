@@ -452,8 +452,20 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						if not params or not params.no_shake then
 							local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
 							local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-							local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+			
+							local on_hit_mul = false
+							if fired and fired.rays then
+								for _, ray in ipairs(fired.rays) do
+									if ray and not table.empty(ray) then
+										on_hit_mul = true
 
+										break
+									end
+								end
+							end
+
+							local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"])  * recoil_shake
+						
 							if self._state_data.in_steelsight then
 								self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
 							else
@@ -487,8 +499,23 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						-- Modify starting here
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
-						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
+						local kick_id = self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"
 
+						if kick_tweak_data.on_hit and fired and fired.rays then
+							for _, ray in ipairs(fired.rays) do
+								if ray and not table.empty(ray) then
+									kick_id = "on_hit"
+
+									break
+								end
+							end
+						end
+
+						local up, down, left, right = unpack(kick_tweak_data[kick_id])
+
+						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
+
+		
 						local apply_spray = false
 						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons

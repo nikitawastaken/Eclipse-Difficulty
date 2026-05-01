@@ -564,9 +564,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
 				weap_data.armor_piercing_chance = 1
 				weap_data.shake.fire_multiplier = 0.1
+				weap_data.shake.on_hit_multiplier = 1
+				weap_data.tank_damage_multiplier = 1.5
+				weap_data.lock_damage_multiplier = 3
 				weap_data.hit_alert_size_increase = 2
-				weap_data.tank_damage_multiplier = 2
-				weap_data.lock_damage_multiplier = 4
 			elseif is_turret then -- Yes, I had to bullshit it like this
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 4
@@ -1097,7 +1098,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sub2000.stats.spread = 18
 	self.sub2000.stats.recoil = 10
 	self.sub2000.stats.concealment = 28
-	self.sub2000.fire_mode_data.fire_rate = 60 / 700
+	self.sub2000.fire_mode_data.fire_rate = 60 / 500
 
 	self.init_stat_overrides.sub2000 = function(weap_data)
 		self.sub2000.stats.suppression = 16
@@ -1789,7 +1790,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1928.stats.spread = 14
 	self.m1928.stats.recoil = 16
 	self.m1928.stats.concealment = 23
-	self.m1928.fire_mode_data.fire_rate = 60 / 800
+	self.m1928.fire_mode_data.fire_rate = 60 / 700
 
 	-- Jacket's Piece
 	self.cobray.use_data.selection_index = 2
@@ -1820,7 +1821,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mac10.fire_mode_data.fire_rate = 60 / 1000
 
 	-- Uzi
-	self.uzi.CLIP_AMMO_MAX = 20
+	self.uzi.CLIP_AMMO_MAX = 32
 	self.uzi.stats.damage = 24
 	self.uzi.stats.spread = 14
 	self.uzi.stats.recoil = 16
@@ -1844,7 +1845,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.vityaz.stats.spread = 15
 	self.vityaz.stats.recoil = 15
 	self.vityaz.stats.concealment = 25
-	self.vityaz.fire_mode_data.fire_rate = 60 / 800
+	self.vityaz.fire_mode_data.fire_rate = 60 / 750
 	
 	-- Swedish K
 	self.m45.CLIP_AMMO_MAX = 36
@@ -1877,13 +1878,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.schakal.use_data.selection_index = 2
 	self.schakal.CLIP_AMMO_MAX = 25
 	self.schakal.stats.damage = 30
-	self.schakal.stats.spread = 15
-	self.schakal.stats.recoil = 15
+	self.schakal.stats.spread = 16
+	self.schakal.stats.recoil = 14
 	self.schakal.stats.concealment = 25
-	self.schakal.fire_mode_data.fire_rate = 60 / 600
+	self.schakal.fire_mode_data.fire_rate = 60 / 650
 
 	-- Ballerina
-	self.speen.use_data.selection_index = 2
 	self.speen.CLIP_AMMO_MAX = 15
 	self.speen.stats.damage = 36
 	self.speen.stats.spread = 17
@@ -2794,7 +2794,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	
 	-- OVE9000 Saw
 	self.saw.CLIP_AMMO_MAX = 100
-	self.saw.stats.damage = 24
+	self.saw.stats.damage = 30
 	self.saw.stats.spread = 3
 	self.saw.stats.recoil = 7
 	self.saw.stats.concealment = 20

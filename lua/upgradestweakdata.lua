@@ -33,6 +33,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
 
+	-- Saw Massacre (baseline)
+	self.saw_through_shield_dmg_mul = 0.5
+	
 	-- Sentry Gun civilian Intimidation
 	self.sentry_gun_intimidation = {
 		range = 1500,

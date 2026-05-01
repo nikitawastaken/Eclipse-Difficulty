@@ -1258,19 +1258,28 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_upg_i_burstfire.stats = { spread = 1, recoil = -3, value = 1 }
 
 	-- Saw mods
-	self.parts.wpn_fps_saw_m_blade_durable.stats.damage = -4
-	self.parts.wpn_fps_saw_m_blade_durable.stats.extra_ammo = 25
+	self.parts.wpn_fps_saw_m_blade_durable.stats.damage = -10
+	self.parts.wpn_fps_saw_m_blade_durable.stats.extra_ammo = 0
 	self.parts.wpn_fps_saw_m_blade_durable.stats.total_ammo_mod = 0
-	self.parts.wpn_fps_saw_m_blade_durable.custom_stats = { ammo_max_mul = 4 / 3 }
+	self.parts.wpn_fps_saw_m_blade_durable.custom_stats = {
+		ammo_offset = 50,
+		ammo_max_mul = 3 / 2,
+	}
 	self.parts.wpn_fps_saw_m_blade_durable.no_magazine_balancing = true
 
-	self.parts.wpn_fps_saw_m_blade_sharp.stats.damage = 4
-	self.parts.wpn_fps_saw_m_blade_sharp.stats.extra_ammo = -25
-	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = { ammo_max_mul = 2 / 3 }
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.damage = 6
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.extra_ammo = 0
+	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = {
+		ammo_offset = -25,
+		ammo_max_mul = 3 / 4,
+	}
 	self.parts.wpn_fps_saw_m_blade_sharp.no_magazine_balancing = true
 
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 9
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = 9
+
+	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
+	self.parts.wpn_fps_saw_body_speed.custom_stats.fire_rate_multiplier = 2
 
 	-- Dart Pistol parts
 

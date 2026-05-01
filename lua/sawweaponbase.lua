@@ -49,12 +49,16 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 		for i, hit in ipairs(col_ray) do
 			local is_shield = hit.unit:in_slot(8) and alive(hit.unit:parent())
 			local parent_unit_tweak = hit.unit:parent() and hit.unit:parent():base() and hit.unit:parent():base()._tweak_table
-			local no_penetration = parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].no_shield_penetration
+			local no_penetration = is_shield and parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].no_shield_penetration
 
-			if is_shield and no_penetration then
+			if no_penetration then
 				break
 			end
 
+			if is_shield then
+				damage = damage * (tweak_data.upgrades.saw_through_shield_dmg_mul or 1)
+			end
+			
 			if not ray_table_contains(hits, hit.unit) then
 				table.insert(hits, hit)
 			elseif hit.unit:character_damage() and hit.unit:character_damage().is_head and hit.unit:character_damage():is_head(hit.body) then
@@ -63,7 +67,7 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 		end
 
 		for i, hit in pairs(hits) do
-			hit_unit = SawHit:on_collision(hit, self._unit, user_unit, damage * (is_shield and 0.5 or 1), direction)
+			hit_unit = SawHit:on_collision(hit, self._unit, user_unit, damage, direction)
 		end
 
 		valid_hit = #col_ray > 0
