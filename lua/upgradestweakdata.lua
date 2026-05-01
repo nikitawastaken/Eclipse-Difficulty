@@ -432,6 +432,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"ching",
 				"sub2000",
+				"speen",
 				"wpn_prj_jav",
 			},
 		},
@@ -575,6 +576,8 @@ function UpgradesTweakData:init(tweak_data)
 				"legacy",
 				"c96",
 				"maxim9",
+				"pmm",
+				"laser_watch",
 			},
 		},
 		{ -- lvl 55
@@ -752,6 +755,12 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"m134",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"dart",
 			},
 		},
 		[100] = {
