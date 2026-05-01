@@ -54,6 +54,11 @@ local high_escape_enemy = {
 	[heavy_2] = 2,
 }
 local high_escape = { enemy = high_escape_enemy }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local atrium_spawn = {
 	values = {
 		interval = 10,
@@ -95,21 +100,24 @@ return {
 		reinforce = {
 			{
 				name = "atrium01",
-				force = 2,
-				position = Vector3(-450, 150, 0),
+				force = 3,
+				position = Vector3(-450, 1650, 0),
 			},
 			{
 				name = "atrium02",
-				force = 2,
+				force = 3,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
 				name = "atrium03",
-				force = 2,
-				position = Vector3(-450, -3350, 0),
+				force = 3,
+				position = Vector3(-450, -4850, 0),
 			},
 		},
 	},
+	-- Disable drill reinforce
+	[100676] = disabled,
+	[101138] = disabled,
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
 	[100082] = {
 		on_executed = {
@@ -129,7 +137,6 @@ return {
 	-- More or less a port of the original intervals with some twists as per usual.
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
-	[104838] = atrium_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
 	[102792] = cloaker_spawn,
