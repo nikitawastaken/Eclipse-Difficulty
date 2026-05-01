@@ -3611,7 +3611,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		},
 		-- The initial trade delay is not currently affected by on_enemy_weapons_hot delay multipliers
 		addend_delay_multipliers = {
-			on_enemy_weapons_hot = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.2, 1, 0.9, 0.8 }),
 			on_entered_sustain = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
 			on_entered_regroup = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
 			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
@@ -3845,10 +3845,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	local special_wgt = get_difficulty_specific_value({
 		6,
-		7,
 		8,
-		11,
-		14,
+		10,
+		13,
+		16,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.6, 1 } or { 0.4, 0.7, 1 })

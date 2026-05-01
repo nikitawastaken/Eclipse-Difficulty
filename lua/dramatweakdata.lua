@@ -15,15 +15,14 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 		tank = 0.15,
 		spooc = 0.075,
 		medic = 0.05,
-		marksman = 0.075,
+		marksman = 0.05,
 	}
 	self.drama_weight_muls = {
 		-- Drama decay rate
 		decay_rate = {
-			[0.1] = 1,
 			[0.4] = 1,
-			[0.7] = 1,
-			[1.0] = 1,
+			[0.6] = 0.8,
+			[1.0] = 0.6,
 		},
 		-- Special unit spawns
 		shield = {
