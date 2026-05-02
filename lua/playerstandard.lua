@@ -224,7 +224,7 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 		end
 	end
 
-	if managers.player:has_category_upgrade("player", "sidearm_move_speed_multiplier") and weap_base:is_category("revoler", "pistol") then
+	if managers.player:has_category_upgrade("player", "sidearm_move_speed_multiplier") and weap_base:is_category("revolver", "pistol") then
 		multiplier = multiplier * managers.player:upgrade_value("player", "sidearm_move_speed_multiplier", 1)
 	end
 
