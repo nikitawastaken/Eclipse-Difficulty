@@ -1408,6 +1408,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pmm.stats.recoil = 12
 	self.pmm.stats.concealment = 30
 	self.pmm.fire_mode_data.fire_rate = 60 / 600
+	self.pmm.weapon_hold = "glock"
+	self.pmm.animations.reload_name_id = "ppk"
 
 	-- 5/7
 	self.lemming.CLIP_AMMO_MAX = 15
