@@ -3225,6 +3225,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[16][9].multiperk3 = "1"
 
 	-- Kingpin
+	self.chico_injector_criminal_hurt_drama_mul = 0.1
 	self.specialization_descs[17][1].multiperk3 = "45"
 	self.specialization_descs[17][9].multiperk3 = "5 points"
 	self.specialization_descs[17][9].multiperk3 = "1"

@@ -325,15 +325,17 @@ end
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
 local _send_damage_drama_original = Hooks:GetFunction(PlayerDamage, "_send_damage_drama")
 Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack_data, health_subtracted, ...)
-	-- Team AI use this function too, but they don't have `get_real_armor`
-	if self.get_real_armor and self:get_real_armor() > 0 then
-		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
-	elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain reduction for armorless decks
-		health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
-	end
+	-- Team AI use this same `_send_damage_drama` function too, but they don't have `get_real_armor`
+	if self.get_real_armor then
+		if self:get_real_armor() > 0 then
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+		elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain reduction for armorless decks
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+		end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
-		health_subtracted = health_subtracted * 0.1
+		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
+			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
+		end
 	end
 
 	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
