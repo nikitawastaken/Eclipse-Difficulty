@@ -42,7 +42,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				force_tactics = {},
 			}
 ]]
-
+			if not level.env_params then
+				level.env_params = {}
+			end
+			
 			-- Add an option to disable year-round Christmas decorations
 			if disable_christmas and level.is_christmas_heist then
 				level.is_christmas_heist = false
@@ -1180,4 +1183,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
 	self.corp.custom_package = bellmead_security_package
+	
+	self.branchbank.random_environments = {
+		["branchbank01"] = 2,
+		["branchbank02"] = 2,
+		["branchbank03"] = 2,
+		["branchbank04"] = 2,
+		["branchbank05"] = 2,
+		["branchbank06"] = 2,
+		["branchbank07"] = 2,
+		["branchbank08"] = 2,
+		["default"] = 1,
+	}
 end)
