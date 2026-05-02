@@ -257,7 +257,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 
 				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
-					weap_data.fire_mode_data.fire_rate = 60 / 500
+					weap_data.fire_mode_data.fire_rate = 60 / 600
 				end
 			elseif cat_map.revolver then
 				weap_data.muzzleflash = "effects/payday2/particles/weapons/357_revolver_fps"
@@ -612,7 +612,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			end
 
 			-- Non category-specific stats
-			weap_data.stats.mobility = weap_data.mobility_scale and self:_calculate_mobility_stat(weap_data.stats.concealment, weap_data.mobility_scale) or 1
+			weap_data.stats.mobility = weap_data.mobility_scale and self:_calculate_mobility_stat(weap_data.stats.concealment, weap_data.mobility_scale) or 13
 			weap_data.stats.reload = 11
 			weap_data.panic_suppression_chance = 0.2
 			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
@@ -795,6 +795,11 @@ function WeaponTweakData:_init_weapons(overrides)
 							steelsight = 1.1,
 						},
 					}
+				end
+
+				-- Apply a ROF decrease to Akimbos but only if they cannot use full auto.
+				if weap_data.fire_mode_data and not weap_data.auto then
+					weap_data.fire_mode_data.fire_rate = weap_data.fire_mode_data.fire_rate * (5 / 4)
 				end
 			end
 
