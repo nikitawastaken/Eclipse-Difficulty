@@ -2339,7 +2339,7 @@ function CharacterTweakData:_set_presets()
 		get_difficulty_specific_value({ 1, 1, 1, 1.5, 1.75 }),
 		get_difficulty_specific_value({ 1, 1, 1, 1.25, 1.5 }),
 	}
-	self.tased_camera_limit_shocks = 1
+	self.tased_camera_limit_shocks = 2
 	self.tased_camera_limit = {
 		get_difficulty_specific_value({ 60, 60, 60, 40, 30 }),
 		get_difficulty_specific_value({ 40, 40, 40, 30, 20 }),
