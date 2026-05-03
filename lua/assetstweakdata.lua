@@ -19,7 +19,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"wwh",
 		"mex",
 		"mex_cooking",
-		-- Mexico		
+		-- Mexico
 		"bex",
 		"fex",
 		"pex",
@@ -28,7 +28,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"nail",
 		"help",
 	}
-	
+
 	local federales_heists = {
 		"bex",
 		"fex",
@@ -46,37 +46,36 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 
 	-- Ru mercs assets to White Xmas
 	table.insert(self.mad_russian_merc_cameras.stages, "pines")
-	
+
 	-- Federales risk assets setup
 	self.risk_federales_pd = {
 		name_id = "menu_asset_risklevel_0",
 		texture = "guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_federales",
 		stages = federales_heists,
-		risk_lock = 0
+		risk_lock = 0,
 	}
 	self.risk_federales_swat = {
 		name_id = "menu_asset_risklevel_1",
 		texture = "guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_federales",
 		stages = federales_heists,
-		risk_lock = 1
+		risk_lock = 1,
 	}
 	self.risk_federales_fbi = {
 		name_id = "menu_asset_risklevel_2",
 		texture = "guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales",
 		stages = federales_heists,
-		risk_lock = 2
+		risk_lock = 2,
 	}
 	self.risk_federales_death_squad = {
 		name_id = "menu_asset_risklevel_3",
 		texture = "guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_federales",
 		stages = federales_heists,
-		risk_lock = 3
+		risk_lock = 3,
 	}
 	self.risk_federales_easy_wish = {
 		name_id = "menu_asset_risklevel_4",
 		texture = "guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_federales",
 		stages = federales_heists,
-		risk_lock = 4
+		risk_lock = 4,
 	}
-	
 end)
