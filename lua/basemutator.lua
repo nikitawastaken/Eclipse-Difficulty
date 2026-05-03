@@ -781,7 +781,7 @@ function MutatorTaser:setup(data)
 	local incap_time = self:get_taser_incapacitation_time()
 
 	local tased_camera_limit = clone(tweak_data.character.tased_camera_limit)
-	
+
 	tweak_data.character.tased_camera_limit[1] = math.min(tased_camera_limit[1], cam_spin_limit)
 	tweak_data.character.tased_camera_limit[2] = math.min(tased_camera_limit[2], cam_pitch_limit)
 	tweak_data.character.tased_full_stun_shocks = full_stun_shocks
