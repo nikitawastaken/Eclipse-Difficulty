@@ -2331,15 +2331,21 @@ function CharacterTweakData:_set_presets()
 	self.cop_scared.surrender = self.presets.surrender.always
 	self.cop_scared.surrender_break_time = nil
 
-	self.flashbang_multiplier = is_eclipse and 1.4 or is_overkill and 1.2 or 1
+	self.flashbang_multiplier = get_difficulty_specific_value({ 1, 1, 1, 1.25, 1.5 })
 	self.concussion_multiplier = 1
 
-	self.tase_multiplier = {
-		is_eclipse and 1.75 or is_overkill and 1.5 or 1,
-		is_eclipse and 1.5 or is_overkill and 1.25 or 1,
+	self.tase_strength = { 5, 90 }
+	self.tase_strength_multiplier = {
+		get_difficulty_specific_value({ 1, 1, 1, 1.5, 1.75 }),
+		get_difficulty_specific_value({ 1, 1, 1, 1.25, 1.5 }),
+	}
+	self.tased_camera_limit_shocks = 1
+	self.tased_camera_limit = { 
+		get_difficulty_specific_value({ 60, 60, 60, 40, 30 }),
+		get_difficulty_specific_value({ 40, 40, 40, 30, 20 }),
 	}
 
-	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
+	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 1, 1, 1, 0.6, 0.4 })
 
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }

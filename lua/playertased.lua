@@ -50,12 +50,6 @@ function PlayerTased:enter(state_data, enter_data)
 	CopDamage.register_listener("on_criminal_tased", {
 		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
-
-	local tased_camera_limit = managers.mutators:modify_value("PlayerTased:TaserCameraLimit", false)
-	if tased_camera_limit and not self._camera_limit then
-		self._unit:camera():camera_unit():base():set_limits(tweak_data.character.tased_camera_spin_limit, tweak_data.character.tased_camera_pitch_limit)
-		self._camera_limit = true
-	end
 end
 
 Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
@@ -72,13 +66,21 @@ function PlayerTased:_check_action_shock(t, input, ...)
 
 	_check_action_shock_original(self, t, input, ...)
 
-	local tase_mul = tweak_data.character.tase_multiplier or { 1, 1 }
+	local tase_strength = tweak_data.character.tase_strength or { 5, 90 }
+	local tase_strength_mul = tweak_data.character.tase_strength_multiplier or { 1, 1 }
 	local last_man_standing_mul = managers.groupai:state():num_alive_criminals() == 1 and 0.5 or 1 -- weaker random pitch when last man standing / true solo
 	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
-	local shock_strength_h = 6 * tase_mul[1] * last_man_standing_mul * (1 - weaker_tase)
-	local shock_strength_v = 90 * tase_mul[2] * last_man_standing_mul * (1 - weaker_tase)
+	
+	local shock_strength_h = tase_strength[1] * tase_strength_mul[1] * last_man_standing_mul * (1 - weaker_tase)
+	local shock_strength_v = tase_strength[2] * tase_strength_mul[2] * last_man_standing_mul * (1 - weaker_tase)
 
 	if do_shock then
+		if tweak_data.character.tased_camera_limit_shocks and self._num_shocks > tweak_data.character.tased_camera_limit_shocks and not self._camera_limit then
+			self._unit:camera():camera_unit():base():set_limits(tweak_data.character.tased_camera_limit[1], tweak_data.character.tased_camera_limit[2])
+			
+			self._camera_limit = true
+		end
+		
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
 		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength_h, shock_strength_h), -shock_strength_v, shock_strength_v)
 		self._cam_start_pitch_t = t
@@ -96,7 +98,7 @@ function PlayerTased:_check_action_shock(t, input, ...)
 
 	local tased_full_stun = managers.mutators:modify_value("PlayerTased:TaserFullStun", false)
 	if tased_full_stun then
-		if tweak_data.character.full_stun_shocks and self._num_shocks >= tweak_data.character.full_stun_shocks then
+		if tweak_data.character.tased_full_stun_shocks and self._num_shocks >= tweak_data.character.tased_full_stun_shocks then
 			self._ext_camera:play_redirect(self:get_animation("tased_exit"))
 			self:_start_action_unequip_weapon(managers.player:player_timer():time(), {
 				selection_wanted = 1,
