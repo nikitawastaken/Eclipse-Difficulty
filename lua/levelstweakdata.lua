@@ -1184,15 +1184,83 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ranc.custom_package = bellmead_security_package
 	self.corp.custom_package = bellmead_security_package
 	
+	local dwpj_weight_value = 1
+	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+	if is_eclipse_pro then dwpj_weight_value = 999 * dwpj_weight_value else dwpj_weight_value = 0 end
+	
 	self.branchbank.random_environments = {
 		["branchbank01"] = 2,
 		["branchbank02"] = 2,
 		["branchbank03"] = 2,
-		["branchbank04"] = 2,
-		["branchbank05"] = 2,
-		["branchbank06"] = 2,
-		["branchbank07"] = 2,
-		["branchbank08"] = 2,
-		["default"] = 1,
+	}
+	self.four_stores.random_environments = {
+		["fourstores_01"] = 2,
+		["fourstores_02"] = 2,
+		["fourstores_03"] = 2,
+	}
+	self.jewelry_store.random_environments = {
+		["jewelry_01"] = 2,
+		["jewelry_02"] = 2,
+		["jewelry_03"] = 2,
+		["jewelry_04"] = 2,
+		["jewelry_05"] = 2,
+	}
+	self.nightclub.random_environments = {
+		["nightclub_01"] = 2,
+		["nightclub_02"] = 2,
+		["nightclub_03"] = 2,
+	}
+	self.mallcrasher.random_environments = {
+		["mallcrasher_01"] = 2,
+		["mallcrasher_02"] = 2,
+	}
+	self.gallery.random_environments = {
+		["framingframe1_01"] = 1,
+		["framingframe1_02"] = 2,
+	}
+	self.framing_frame_1.random_environments = {
+		["framingframe1_01"] = 1,
+		["framingframe1_02"] = 2,
+	}
+	self.framing_frame_2.random_environments = {
+		["framingframe2_01"] = 2,
+		["framingframe2_02"] = 2,
+		["framingframe2_03"] = 1,
+	}
+	self.framing_frame_3.random_environments = {
+		["framingframe3_01"] = 2,
+		["framingframe3_02"] = 1,
+		["framingframe3_03"] = 1,
+	}
+	self.rat.random_environments = {
+		["rats1_01"] = 2,
+		["rats1_02"] = 2,
+		["rats1_03"] = 2,
+		["rats1_04"] = 1,
+		["rats1_dwpj"] = dwpj_weight_value,
+		["rats1_dwpj_2"] = dwpj_weight_value,
+	}
+	self.alex_1.random_environments = {
+		["rats1_01"] = 2,
+		["rats1_02"] = 2,
+		["rats1_03"] = 2,
+		["rats1_04"] = 1,
+		["rats1_dwpj"] = dwpj_weight_value,
+		["rats1_dwpj_2"] = dwpj_weight_value,
+	}
+	self.alex_2.random_environments = {
+		["rats2_01"] = 2,
+		["rats2_02"] = 2,
+		["rats2_03"] = 2,
+	}
+	self.alex_3.random_environments = {
+		["rats3_01"] = 69,
+	}
+	self.ukrainian_job.random_environments = {
+		["jewelry_01"] = 2,
+		["jewelry_02"] = 2,
+		["jewelry_03"] = 2,
+		["jewelry_04"] = 2,
+		["jewelry_05"] = 2,
 	}
 end)
