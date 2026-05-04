@@ -218,6 +218,8 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
 			addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
 		end
+		
+		return addend
 	end
 
 	return addend * hostages
