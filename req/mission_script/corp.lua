@@ -25,8 +25,8 @@ local specials_list = {
 	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
 	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
 	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
-	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 1 }),
-	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
 }
 local specials = {
 	enemy = specials_list,
