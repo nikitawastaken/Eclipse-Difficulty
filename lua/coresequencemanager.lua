@@ -34,7 +34,7 @@ Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", functi
 	end
 	
 	if environment_data.flashlights_on ~= nil then
-		level_tweak.flashlight_on = environment_data.flashlights_on
+		level_tweak.flashlights_on = environment_data.flashlights_on
 	end
 
 	if environment_data.environment_override then

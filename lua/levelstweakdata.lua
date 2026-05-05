@@ -61,8 +61,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.flashlights_on = true
 	self.firestarter_1.flashlights_on = true
 	self.firestarter_2.flashlights_on = true
+	self.alex_1.flashlights_on = true
 	self.alex_2.flashlights_on = true
 	self.alex_3.flashlights_on = true
+	self.rat.flashlights_on = true
 	self.nightclub.flashlights_on = true
 	self.escape_cafe.flashlights_on = true
 	self.escape_park.flashlights_on = true
