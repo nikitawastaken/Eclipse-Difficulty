@@ -1306,13 +1306,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.concealment = -1
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.launch_speed_mul = 0.85
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.charge_speed_mul = 0.5
-
-	-- Underbarrel ammo types
-	table.insert(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
-	table.insert(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
-	table.delete(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
-	table.delete(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
-
+	
 	-- Flamethrower Tanks
 	self.parts.wpn_fps_fla_mk2_a_rare = {
 		type = "ammo",

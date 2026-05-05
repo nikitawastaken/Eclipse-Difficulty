@@ -162,11 +162,11 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 
 		if custom_stat.ammo_max_mul then
-			self._ammo_max_mul = (self._ammo_max_mul or 1) * custom_stat.ammo_max_mul
+			self._ammo_max_mul = custom_stat.ammo_max_mul
 		end
 
 		if custom_stat.steelsight_time_mul then
-			self._steelsight_time_mul = (self._steelsight_time_mul or 1) * custom_stat.steelsight_time_mul
+			self._steelsight_time_mul = custom_stat.steelsight_time_mul
 		end
 
 		local stats_stance_mul = custom_stat.stance_mul
@@ -732,8 +732,7 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
 		ammo_max_multiplier = ammo_max_multiplier * managers.player:upgrade_value(category, "extra_ammo_multiplier", 1)
 	end
-
-	ammo_max_multiplier = ammo_max_multiplier * ammo_max_multiplier * (self._ammo_max_mul or 1)
+	
 	ammo_max_multiplier = ammo_max_multiplier + ammo_max_multiplier * (self._total_ammo_mod or 0)
 
 	if managers.player:has_category_upgrade("player", "add_armor_stat_skill_ammo_mul") then
@@ -743,7 +742,7 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	ammo_max_multiplier = managers.modifiers:modify_value("WeaponBase:GetMaxAmmoMultiplier", ammo_max_multiplier)
 	ammo_max_multiplier = math.sqrt(ammo_max_multiplier)
 	local ammo_max_per_clip = self:calculate_ammo_max_per_clip()
-	local ammo_max = math.round((tweak_data.weapon[self._name_id].AMMO_MAX + managers.player:upgrade_value(self._name_id, "clip_amount_increase") * ammo_max_per_clip) * ammo_max_multiplier)
+	local ammo_max = math.round((tweak_data.weapon[self._name_id].AMMO_MAX + managers.player:upgrade_value(self._name_id, "clip_amount_increase") * ammo_max_per_clip) * ammo_max_multiplier) * (self._ammo_max_mul or 1)
 	ammo_max_per_clip = math.min(ammo_max_per_clip, ammo_max)
 
 	self:set_ammo_max_per_clip(ammo_max_per_clip)
