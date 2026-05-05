@@ -213,13 +213,11 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		addend = addend + self:upgrade_value("player", "passive_hostage_" .. category .. "_addend", 0)
 	else -- Hostage Taker rework
 		hostages = math.min(hostages, current_team_size)
-		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size * hostages
+		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size
 
 		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
 			addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
 		end
-
-		return addend
 	end
 
 	return addend * hostages
