@@ -508,9 +508,6 @@ function MenuCrimeNetCasinoInitiator:refresh_node(node)
 		rolls = node:item("rolls_item"):value(),
 		preferred = node:item("preferred_item"):value(),
 		infamous = node:item("increase_infamous"):value(),
-		card1 = node:item("secure_card_1"):value(),
-		card2 = node:item("secure_card_2"):value(),
-		card3 = node:item("secure_card_3"):value(),
 	}
 
 	node:clean_items()
