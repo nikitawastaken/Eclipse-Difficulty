@@ -1306,7 +1306,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.stats.concealment = -1
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.launch_speed_mul = 0.85
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.charge_speed_mul = 0.5
-	
+
 	-- Flamethrower Tanks
 	self.parts.wpn_fps_fla_mk2_a_rare = {
 		type = "ammo",
