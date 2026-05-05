@@ -351,11 +351,18 @@
 		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local.unit"/>
 			
 		<!-- Risk level assets -->
+		<!-- America -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
+		<!-- Federales-->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_federales.texture"/>
 	
 		<!-- Tips assets -->
 		<file name="guis/textures/loading/hints/general_skills.texture"/>

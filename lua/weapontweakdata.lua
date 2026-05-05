@@ -117,7 +117,9 @@ function WeaponTweakData:_init_weapons(overrides)
 			local single_weapon_data = self[single_weapon_id]
 			local is_akimbo = table.contains(weap_data.categories, "akimbo")
 
-			if is_akimbo then
+			if not single_weapon_data then
+				-- TODO: add a log here
+			elseif is_akimbo then
 				local akimbo_cat_tbl = { "akimbo" }
 				local single_cat_tbl = clone(single_weapon_data.categories)
 				

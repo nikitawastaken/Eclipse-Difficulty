@@ -763,14 +763,11 @@ function MutatorTaser:register_values(mutator_manager)
 	self:register_value("taser_camera_pitch_limit", 30, "ft")
 	self:register_value("taser_incapacitation_time", 10, "ft")
 	self:register_value("taser_full_stun_shocks", 3, "ft")
-	self:register_value("taser_camera_limit", false, "ftda")
 	self:register_value("taser_full_stun", false, "ftda")
 end
 
 function MutatorTaser:modify_value(id, value)
-	if id == "PlayerTased:TaserCameraLimit" and self:get_taser_camera_limit() then
-		return true
-	elseif id == "PlayerTased:TaserFullStun" and self:get_taser_full_stun() then
+	if id == "PlayerTased:TaserFullStun" and self:get_taser_full_stun() then
 		return true
 	end
 
@@ -780,13 +777,14 @@ end
 function MutatorTaser:setup(data)
 	local cam_spin_limit = self:get_taser_camera_spin_limit()
 	local cam_pitch_limit = self:get_taser_camera_pitch_limit()
-	local cam_pitch_limit = self:get_taser_camera_pitch_limit()
 	local full_stun_shocks = self:get_taser_full_stun_shocks()
 	local incap_time = self:get_taser_incapacitation_time()
 
-	tweak_data.character.tased_camera_spin_limit = cam_spin_limit
-	tweak_data.character.tased_camera_pitch_limit = cam_pitch_limit
-	tweak_data.character.full_stun_shocks = full_stun_shocks
+	local tased_camera_limit = clone(tweak_data.character.tased_camera_limit)
+
+	tweak_data.character.tased_camera_limit[1] = math.min(tased_camera_limit[1], cam_spin_limit)
+	tweak_data.character.tased_camera_limit[2] = math.min(tased_camera_limit[2], cam_pitch_limit)
+	tweak_data.character.tased_full_stun_shocks = full_stun_shocks
 
 	local old_tased_time = tweak_data.player.damage.TASED_TIME
 	tweak_data.player.damage.TASED_TIME = math.min(incap_time, old_tased_time)
@@ -822,10 +820,6 @@ end
 
 function MutatorTaser:get_taser_full_stun_shocks()
 	return self:value("taser_full_stun_shocks")
-end
-
-function MutatorTaser:get_taser_camera_limit()
-	return self:value("taser_camera_limit")
 end
 
 function MutatorTaser:get_taser_full_stun()
@@ -945,48 +939,6 @@ function MutatorTaser:setup_options_gui(node)
 	node:add_item(slider4)
 
 	params = {
-		name = "taser_camera_limit_toggle",
-		callback = "_update_mutator_value",
-		text_id = "menu_mutator_taser_camera_limit_toggle",
-		update_callback = callback(self, self, "_toggle_taser_camera_limit"),
-	}
-	data_node = {
-		{
-			w = 24,
-			y = 0,
-			h = 24,
-			s_y = 24,
-			value = "on",
-			s_w = 24,
-			s_h = 24,
-			s_x = 24,
-			_meta = "option",
-			icon = "guis/textures/menu_tickbox",
-			x = 24,
-			s_icon = "guis/textures/menu_tickbox",
-		},
-		{
-			w = 24,
-			y = 0,
-			h = 24,
-			s_y = 24,
-			value = "off",
-			s_w = 24,
-			s_h = 24,
-			s_x = 0,
-			_meta = "option",
-			icon = "guis/textures/menu_tickbox",
-			x = 0,
-			s_icon = "guis/textures/menu_tickbox",
-		},
-		type = "CoreMenuItemToggle.ItemToggle",
-	}
-	local toggle1 = node:create_item(data_node, params)
-
-	toggle1:set_value(self:get_taser_camera_limit() and "on" or "off")
-	node:add_item(toggle1)
-
-	params = {
 		name = "taser_full_stun_toggle",
 		callback = "_update_mutator_value",
 		text_id = "menu_mutator_taser_full_stun_toggle",
@@ -1023,10 +975,10 @@ function MutatorTaser:setup_options_gui(node)
 		},
 		type = "CoreMenuItemToggle.ItemToggle",
 	}
-	local toggle2 = node:create_item(data_node, params)
+	local toggle1 = node:create_item(data_node, params)
 
-	toggle2:set_value(self:get_taser_full_stun() and "on" or "off")
-	node:add_item(toggle2)
+	toggle1:set_value(self:get_taser_full_stun() and "on" or "off")
+	node:add_item(toggle1)
 
 	return new_item
 end
@@ -1045,10 +997,6 @@ end
 
 function MutatorTaser:_update_taser_full_stun_shocks(item)
 	self:set_value("taser_full_stun_shocks", item:value())
-end
-
-function MutatorTaser:_toggle_taser_camera_limit(item)
-	self:set_value("taser_camera_limit", item:value() == "on")
 end
 
 function MutatorTaser:_toggle_taser_full_stun(item)
@@ -1079,14 +1027,9 @@ function MutatorTaser:reset_to_default()
 			slider4:set_value(self:get_taser_full_stun_shocks())
 		end
 
-		local toggle1 = self._node:item("taser_camera_limit")
+		local toggle1 = self._node:item("taser_full_stun")
 		if toggle1 then
-			toggle1:set_value(self:get_taser_camera_limit())
-		end
-
-		local toggle2 = self._node:item("taser_full_stun")
-		if toggle2 then
-			toggle2:set_value(self:get_taser_full_stun())
+			toggle1:set_value(self:get_taser_full_stun())
 		end
 	end
 end

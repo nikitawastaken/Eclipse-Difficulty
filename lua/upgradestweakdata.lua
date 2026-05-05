@@ -904,6 +904,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.hostage_max_num.resistance = 4
+	self.hostage_max_num.health_regen = 4
 	self.values.player.hostage_damage_reduction_addend = { 0.05 }
 	self.definitions.player_hostage_damage_reduction_addend = {
 		category = "feature",
