@@ -774,7 +774,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		card1_item:set_enabled(preferred_item:value() ~= "none")
 	end
 
-	node:add_item(card1_item)
+	-- node:add_item(card1_item)
 
 	local card2_data = {
 		{
@@ -836,7 +836,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		card2_item:set_enabled(preferred_item:value() ~= "none")
 	end
 
-	node:add_item(card2_item)
+	-- node:add_item(card2_item)
 
 	local card3_data = {
 		{
@@ -898,7 +898,7 @@ function MenuCrimeNetCasinoInitiator:_create_items(node, options)
 		card3_item:set_enabled(preferred_item:value() ~= "none")
 	end
 
-	node:add_item(card3_item)
+	-- node:add_item(card3_item)
 	self:create_divider(node, "casino_cost")
 
 	local increase_infamous = infamous_item:value() == "on"
