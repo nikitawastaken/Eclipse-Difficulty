@@ -96,7 +96,6 @@ local spawn_random_cloakers = {
 	},
 }
 
-
 M.elements = {
 	-- Cloakers in the garage
 	Eclipse.mission_elements.gen_dummy(400000, "garage_spooc_1", Vector3(8467, 5939, -2400), Rotation(-90, 0, 0), optsCloaker_1),
@@ -113,6 +112,5 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400011, "spooc_hide_so_6", Vector3(9075, 7099, -2800), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 
 	Eclipse.mission_elements.gen_element_random(400012, "cloaker_ambush_event", spawn_random_cloakers),
-
 }
 return M
