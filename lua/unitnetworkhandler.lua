@@ -185,7 +185,8 @@ function UnitNetworkHandler:server_drop_carry(
 end
 
 -- Add player movement to bag throw
-function UnitNetworkHandler:sync_carry_data(
+-- Remade for compatibility with big lobby
+function UnitNetworkHandler:eclipse_sync_carry_data(
 	unit,
 	carry_id,
 	carry_multiplier,

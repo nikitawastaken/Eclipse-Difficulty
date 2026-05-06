@@ -1043,7 +1043,7 @@ function PlayerManager:server_drop_carry(
 	movement = movement or Vector3(0, 0, 0)
 
 	managers.network:session():send_to_peers_synched(
-		"sync_carry_data",
+		"eclipse_sync_carry_data",
 		unit,
 		carry_id,
 		carry_multiplier,
