@@ -28,6 +28,7 @@ local fbi_list = {
 	[fbi_1] = get_difficulty_group_specific_value({ 2, 1, 1 }),
 	[fbi_2] = get_difficulty_group_specific_value({ 1, 2, 3 }),
 	[fbi_3] = get_difficulty_group_specific_value({ 0, 2, 3 }),
+}
 local swat_harasser = {
 	enemy = diff_i < 4 and cops or swats,
 }
