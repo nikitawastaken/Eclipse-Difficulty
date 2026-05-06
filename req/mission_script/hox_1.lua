@@ -1,10 +1,15 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local diff_i = Eclipse.utils.difficulty_index()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
+local cop_4 = scripted_enemy.cop_4
+local fbi_1 = scripted_enemy.fbi_1
+local fbi_2 = scripted_enemy.fbi_2
+local fbi_3 = scripted_enemy.fbi_3
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local sniper = scripted_enemy.sniper
@@ -12,15 +17,24 @@ local cops = {
 	[cop_1] = 4,
 	[cop_3] = 2,
 	[cop_2] = 1,
+	[cop_4] = 1,
 }
 local swats = {
 	[swat_1] = 6,
 	[swat_2] = 2,
 	[sniper] = 2,
 }
+local fbi_list = {
+	[fbi_1] = get_difficulty_group_specific_value({ 2, 1, 1 }),
+	[fbi_2] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[fbi_3] = get_difficulty_group_specific_value({ 0, 2, 3 }),
 local swat_harasser = {
 	enemy = diff_i < 4 and cops or swats,
 }
+local fbi_agent = {
+	enemy = fbi_list,
+}
+local fbi_agents_chance = math.random() <= 0.5
 local street_spawn = {
 	values = {
 		interval = 10,
@@ -121,6 +135,37 @@ return {
 	[100006] = { -- extra_preferreds1
 		paused_difficulty_addends = {
 			on_entered_regroup = false,
+		},
+	},
+	-- Chance for hiding cloakers in the garage
+	[102077] = {
+		on_executed = {
+			{ id = 400012, delay = 0 },
+		},
+	},
+	-- restore unused spawns at the start of the heist and replace security with FBI agents
+	[100589] = fbi_agent,
+	[100590] = fbi_agent,
+	[100585] = fbi_agent,
+	[100191] = fbi_agent,
+	[100587] = fbi_agent,
+	[100586] = fbi_agent,
+	[100588] = fbi_agent,
+	[100190] = fbi_agent,
+	[100584] = fbi_agent,
+	[100583] = fbi_agent,
+	[100581] = {
+		values = {
+			enabled = normal_and_above and fbi_agents_chance,
+			amount = 2,
+			amount_random = 1,
+		},
+	},
+	[100582] = {
+		values = {
+			enabled = normal_and_above and fbi_agents_chance,
+			amount = 2,
+			amount_random = 1,
 		},
 	},
 	-- Spawn group intervals
