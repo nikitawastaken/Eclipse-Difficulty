@@ -369,13 +369,13 @@ return {
 			{ id = 100937, delay = 20 },
 		},
 	},
-	-- Disable vanilla preferreds at the very start 
+	-- Disable vanilla preferreds at the very start
 	[100613] = disabled, -- 1st preferred add
 	[103355] = disabled, -- 2nd preferred add
 	[102106] = disabled, -- 3rd preferred add
 	-- Add new spawngroups to existing preferreds
 	[101239] = { -- ai_enemy_prefered_add_009 (Inkwell)
-		values = { 
+		values = {
 			spawn_groups = {
 				103703,
 				103785,
@@ -387,7 +387,7 @@ return {
 		},
 	},
 	[101441] = { -- ai_enemy_prefered_add_016 (Finale)
-		values = { 
+		values = {
 			spawn_groups = {
 				103740,
 				101420,
@@ -422,7 +422,7 @@ return {
 	[102426] = { -- player_spawned
 		on_executed = {
 			{ id = 100742, remove = true }, -- startup music
-		}, 
+		},
 	},
 	[100830] = { -- trigger area Bruce
 		on_executed = {

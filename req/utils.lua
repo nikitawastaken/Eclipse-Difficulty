@@ -303,7 +303,7 @@ function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_d
 	return {
 		SO_access = so_access or "261600",
 		scan = true,
-		is_navigation_link = true, 
+		is_navigation_link = true,
 		align_position = true,
 		needs_pos_rsrv = true,
 		align_rotation = true,
@@ -314,7 +314,7 @@ function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_d
 		interval = interval or 2,
 		path_haste = "none",
 		path_stance = "none",
-		attitude = "avoid", 
+		attitude = "avoid",
 	}
 end
 

@@ -570,7 +570,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(410009, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
 	Eclipse.mission_elements.gen_preferedremove(410010, "eclipse_easy_st_preferedremove", optsPreferedRemove3), -- UNUSED
 
-	Eclipse.mission_elements.gen_preferedadd(410011, "eclipse_inkwell_preferedadd", optsPreferedAdd4),-- UNUSED
+	Eclipse.mission_elements.gen_preferedadd(410011, "eclipse_inkwell_preferedadd", optsPreferedAdd4), -- UNUSED
 	Eclipse.mission_elements.gen_preferedremove(410012, "eclipse_inkwell_preferedremove", optsPreferedRemove4), -- UNUSED
 
 	--uphill spawns

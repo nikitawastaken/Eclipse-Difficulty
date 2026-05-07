@@ -100,7 +100,7 @@ return {
 			time_easy_wish = 240,
 			time_overkill_290 = 240,
 			time_sm_wish = 240,
-		}
+		},
 	},
 	-- Disable crappy vanilla reinforce
 	[104207] = disable,
