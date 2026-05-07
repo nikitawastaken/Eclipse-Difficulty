@@ -67,7 +67,6 @@ local atrium_spawn = {
 local window_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -79,8 +78,8 @@ local cloaker_spawn = {
 return {
 	[104782] = {
 		ponr = {
-			length = 480,
-			length_balance_mul = { 1.5, 1.25, 1, 1 },
+			length = 800,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 	},
 	-- Combine some navigation areas
@@ -95,8 +94,8 @@ return {
 			{ 32, 120 },
 		},
 	},
-	-- New reinforce
-	[104306] = {
+	-- Add new reinforce
+	[102753] = { -- enable_preferrerds
 		reinforce = {
 			{
 				name = "atrium01",
@@ -112,6 +111,24 @@ return {
 				name = "atrium03",
 				force = 3,
 				position = Vector3(-450, -4850, 0),
+			},
+		},
+	},
+	[103554] = { -- breach_door
+		reinforce = {
+			{
+				name = "door01",
+				force = 2,
+				position = Vector3(625, -3600, 0),
+			},
+		},
+	},
+	[103559] = { -- breach_door
+		reinforce = {
+			{
+				name = "door02",
+				force = 2,
+				position = Vector3(925, 150, 0),
 			},
 		},
 	},

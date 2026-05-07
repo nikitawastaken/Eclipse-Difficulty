@@ -154,6 +154,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
+	self.alex_3.difficulty_scaling_preset = "regroup_aggressive"
 
 	self.roberts.difficulty_scaling_preset = "regroup_slow"
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
@@ -178,7 +179,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.deep.difficulty_scaling_preset = "regroup_slow"
 
 	self.glace.difficulty_scaling_preset = "regroup_random"
-	self.run.difficulty_scaling_preset = "regroup_random"
 	self.pbr2.difficulty_scaling_preset = "regroup_random"
 	self.sand.difficulty_scaling_preset = "regroup_random"
 
@@ -468,9 +468,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.group_ai_settings.assault_force_mul = 0.8
 
 	self.run.group_ai_settings = {
-		hostage_hesitation_delay_mul = 0.75,
-		sustain_duration_mul = 0.65,
-		assault_delay_mul = 1.25,
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {
@@ -478,6 +475,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					delay = 0,
 					time = 60,
 				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
 			},
 		},
 		special_limit_add = {
@@ -541,7 +541,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.sah.group_ai_settings = {
-		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {

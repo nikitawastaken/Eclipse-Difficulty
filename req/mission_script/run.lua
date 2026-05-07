@@ -66,16 +66,22 @@ local van_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
+local overpass_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+}
 local inkwell_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local inkwell_agile_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -86,12 +92,6 @@ local armitage_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local overpass_spawn = {
-	values = {
-		interval = 25,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
-	},
-}
 local overpass_agile_spawn = {
 	values = {
 		interval = 40,
@@ -99,9 +99,15 @@ local overpass_agile_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local armitage_far_spawn = {
+	values = {
+		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+}
 local scripted_diff_add = {
 	amount = 0.25,
-	time = { 30, 45 },
+	time = { 20, 30 },
 	delay = 0,
 }
 local swat_heli_incoming = {
@@ -301,9 +307,6 @@ return {
 		on_executed = {
 			{ id = 400089, delay = 0 },
 		},
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
-		},
 	},
 	[100641] = {
 		on_executed = {
@@ -366,21 +369,60 @@ return {
 			{ id = 100937, delay = 20 },
 		},
 	},
-	-- rework spawngroups for the entire chase section cause they're absolutely dogshit in vanilla
-	-- lots of comments here so that i don't lose track of anything
-
-	-- disable a bunch of cheaty vanilla preferreds
+	-- Disable vanilla preferreds at the very start 
 	[100613] = disabled, -- 1st preferred add
 	[103355] = disabled, -- 2nd preferred add
 	[102106] = disabled, -- 3rd preferred add
-	[102418] = disabled, -- 4th preferred add
-	[100256] = disabled, -- 8th preferred add
+	-- Add new spawngroups to existing preferreds
+	[101239] = { -- ai_enemy_prefered_add_009 (Inkwell)
+		values = { 
+			spawn_groups = {
+				103703,
+				103785,
+				100441,
+				103333,
+				400073,
+				400078,
+			},
+		},
+	},
+	[101441] = { -- ai_enemy_prefered_add_016 (Finale)
+		values = { 
+			spawn_groups = {
+				103740,
+				101420,
+				100029,
+				410048,
+				410053,
+			},
+		},
+	},
+	-- Scripted SWAT van spawns
+	[100430] = { -- reached_first_crashsite_trigger
+		on_executed = {
+			{ id = 410005, delay = 0 }, -- Major Ave. SWAT vans 1
+		},
+	},
+	[101434] = { -- before_crane_trigger
+		on_executed = {
+			{ id = 410007, delay = 0 }, -- Major Ave. SWAT vans 2
+		},
+	},
+	[100636] = { -- corner_trigger_area
+		on_executed = {
+			{ id = 410009, delay = 0 }, -- East St. SWAT vans
+		},
+	},
+	[100271] = { -- trigger_area_011
+		on_executed = {
+			{ id = 410042, delay = 0 }, -- Overpass SWAT vans 2
+		},
+	},
 	-- note: second preferred add is executed on player_spawned
 	[102426] = { -- player_spawned
 		on_executed = {
-			{ id = 101476, remove = true }, -- 10th preferred add
 			{ id = 100742, remove = true }, -- startup music
-		}, --  seriously what the fuck? why would you have enemies spawn all the way at the PARKING LOT - ARMITAGE AVE. ALLEYWAY while the players are only leaving SPAWN
+		}, 
 	},
 	[100830] = { -- trigger area Bruce
 		on_executed = {
@@ -388,20 +430,7 @@ return {
 			{ id = 101329, delay = 1 }, -- besiege start
 		},
 	},
-	[100570] = { -- trigger close to Eddie #2
-		on_executed = {
-			{ id = 410005, delay = 0, delay_rand = 5 }, -- first Major Ave preferred add
-		},
-	},
-	[102440] = { -- 5th preferred add
-		on_executed = {
-			{ id = 101476, delay = 0 }, -- 10th preferred add
-		},
-	},
 	[100430] = { -- reached Eddie crash site
-		on_executed = {
-			{ id = 410007, delay = 0, delay_rand = 5 }, -- second Major Ave preferred add
-		},
 		reinforce = { -- add crane "blockade" reinforce
 			{
 				name = "major_ave01",
@@ -417,7 +446,7 @@ return {
 	},
 	[102786] = { -- trigger area 53 (next to before crane #1 trigger)
 		on_executed = {
-			{ id = 400096, delay = 0 }, -- major ave. sniper
+			{ id = 400096, delay = 0 }, -- Major Ave. sniper
 		},
 	},
 	[100101] = { -- remove enemies trigger (reached the construction crane)
@@ -426,52 +455,30 @@ return {
 			{ name = "major_ave02" },
 		},
 	},
-	[100959] = { -- area player by street
-		on_executed = {
-			{ id = 410009, delay = 0, delay_rand = 5 }, -- East St. preferred add
-		},
-	},
 	[103726] = { -- remove_enemy_spawns trigger
 		on_executed = {
 			{ id = 400093, delay = 0 }, -- dozer ambush
 			{ id = 400094, delay = 0 },
 		},
 	},
-	[101339] = {
-		on_executed = {
-			{ id = 410011, delay = 0, delay_rand = 20 }, -- Inkwell Industrial preferred add
-			{ id = 101086, delay = 0, delay_rand = 20 }, -- 9th preferred add (vanilla)
-		},
+	[101339] = { -- trigger_area_009 (reached construction site)
 		reinforce = { -- add Inkwell reinforce
 			{
 				name = "inkwell",
-				force = 3,
+				force = 4,
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
-		difficulty_addends = { -- increase diff and enable regroup addends
+		difficulty_addends = { -- increase diff
 			scripted_diff_add,
-		},
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
 		},
 	},
 	[103883] = { -- Matt is out, go to parking
-		on_executed = {
-			{ id = 410005, delay = 0, delay_rand = 5 }, -- second Major Ave preferred add
-			{ id = 410012, delay = 0 }, -- Inkwell Industrial preferred remove
-		},
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
 		},
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
-		},
 	},
 	[103885] = { -- reached gate
-		on_executed = {
-			{ id = 410023, delay = 0, delay_rand = 5 }, -- Armitage Avenue preferred add
-		},
 		reinforce = { -- add alley "blockade" reinforce
 			{
 				name = "armitage_ave01",
@@ -484,10 +491,11 @@ return {
 				position = Vector3(-15500, -9500, 1050),
 			},
 		},
-	},
-	[100707] = { -- trigger area 4
+		difficulty_addends = { -- increase diff
+			scripted_diff_add,
+		},
 		on_executed = {
-			{ id = 410023, delay = 0 }, -- 13th preferred remove
+			{ id = 410023, delay = 0 },
 		},
 	},
 	[102486] = { -- trigger area 7
@@ -498,7 +506,7 @@ return {
 	},
 	[103492] = { -- remove spawns trigger
 		on_executed = {
-			{ id = 410035, delay = 0, delay_rand = 5 }, -- first Overpass preferred add
+			{ id = 410035, delay = 0 }, -- Overpass SWAT vans 1
 		},
 		reinforce = { -- add overpass "blockade" reinforce
 			{
@@ -513,26 +521,17 @@ return {
 			},
 		},
 	},
-	[101962] = { -- trigger area 8
-		on_executed = {
-			{ id = 410042, delay = 0, delay_rand = 5 }, -- second Overpass preferred add
-		},
-	},
 	[100271] = { -- trigger area 11
-		on_executed = {
-			{ id = 410053, delay = 0, delay_rand = 5 }, -- finale preferred add
-		},
 		reinforce = { -- remove overpass "blockade" reinforce
 			{ name = "overpass01" },
 			{ name = "overpass02" },
 		},
-		difficulty_addends = { -- increase diff and enable regroup addends
+		difficulty_addends = { -- increase diff
 			scripted_diff_add,
 		},
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
-		},
 	},
+	-- Disable one of the Inkwell van spawngroups (Eclipse has its own)
+	[103704] = disabled,
 	-- Spawn group intervals
 	[100071] = helicopter_guaranteed_spawn,
 	[100476] = helicopter_guaranteed_spawn,
@@ -556,7 +555,6 @@ return {
 	[103998] = overpass_spawn,
 	[100310] = van_spawn,
 	[103701] = van_spawn,
-	[103704] = van_spawn,
 	[103734] = van_spawn,
 	[400073] = van_spawn,
 	[400078] = van_spawn,
@@ -570,4 +568,5 @@ return {
 	[103333] = inkwell_agile_spawn,
 	[103785] = inkwell_agile_spawn,
 	[100029] = overpass_agile_spawn,
+	[101420] = overpass_agile_spawn,
 }

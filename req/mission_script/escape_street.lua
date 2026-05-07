@@ -1,9 +1,3 @@
-local preferred = Eclipse.preferred
-local standard_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 return {
 	[102508] = { -- activte all preferreds
 		reinforce = {
@@ -24,10 +18,4 @@ return {
 			},
 		},
 	},
-	-- Spawn group intervals
-	[101630] = standard_spawn,
-	[101726] = standard_spawn,
-	[102467] = standard_spawn,
-	[102475] = standard_spawn,
-	[102500] = standard_spawn,
 }
