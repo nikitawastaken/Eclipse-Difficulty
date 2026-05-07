@@ -15,7 +15,7 @@ local dozers_respawn = (is_eclipse and 300 or 360) - (is_eclipse_pro and 60 or i
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
 local enabled_chance_cloakers = math.random() <= 0.4 + (is_pro_job and 0.2 or 0)
-local ambush_units_amount = normal and 1 or hard and 2 or 3
+local ambush_units_amount = is_eclipse and 2 or 1
 
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
