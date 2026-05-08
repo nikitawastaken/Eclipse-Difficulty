@@ -345,7 +345,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 				rotation = Rotation(0, 0, -45),
 			}
 			part_data.stance_mod.wpn_fps_lmg_m60 = {
-				translation = Vector3(-2.75, 0, -11.15), --
+				translation = Vector3(-2.75, 0, -11.15), 
 				rotation = Rotation(0, 0, -45),
 			}
 		else
