@@ -1,4 +1,6 @@
 {
+	"menu_mutators_lobby_wait_title":  "",
+
 	"mutator_gracetroll": "Grace Troll",
 	"mutator_gracetroll_desc": "Customize the Grace Period behavior.",
 	"mutator_gracetroll_longdesc": "Damage grace on players and AI crewmembers is changed to a specific value. Damage grace affects how often instances of damage are calculated, lower values will cause you to take more damage in a shorter amount of time.\n\nNOTE: Custom Damage Grace value will be applied only if it is lower than difficulty based grace period.",
