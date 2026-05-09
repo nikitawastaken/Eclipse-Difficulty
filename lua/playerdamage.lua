@@ -329,8 +329,8 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 	if self.get_real_armor then
 		if self:get_real_armor() > 0 then
 			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
-		elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain reduction for armorless decks
-			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+		elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain scaling for armorless decks
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul_capped") or 1)
 		end
 
 		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
