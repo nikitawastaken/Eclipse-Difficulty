@@ -1648,19 +1648,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"deathguard",
 		},
 		taser_snk = {
-			"shield_cover",
 			"murder",
 			"flank",
 			"flash_grenade",
 		},
 		taser_agg = {
-			"shield_cover",
 			"murder",
 			"charge",
 			"smoke_grenade",
 		},
 		taser_spt = {
-			"shield",
 			"ranged_fire",
 			"murder",
 		},
