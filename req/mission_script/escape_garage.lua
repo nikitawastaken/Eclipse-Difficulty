@@ -1,13 +1,17 @@
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local preferred = Eclipse.preferred
+local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
-local swats = {
+local swats_close = {
 	enemy = {
-		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 7, 10 }),
-		[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 4, 6 }),
-		[scripted_enemy.swat_1] = 8,
-		[scripted_enemy.swat_2] = 4,
+		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
+		[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
+		[scripted_enemy.swat_1] = 5,
+		[scripted_enemy.swat_2] = 3,
 	},
+}
+local swats_far = {
+	enemy = is_eclipse and { [scripted_enemy.swat_1] = 4, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1
 }
 local enabled = {
 	values = {
@@ -37,6 +41,9 @@ return {
 			{ 4, 56 },
 		},
 	},
+	[102482] = { -- DifficultyUp_0.50
+		set_ponr_state = true,
+	},
 	-- Add new navlinks
 	[102514] = { -- EnableNavLinks
 		on_executed = {
@@ -46,7 +53,7 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
-	-- Enabled reinforce toggles and tweak the force value of one of the elements
+	-- Enable reinforce toggles and tweak the force value of one of the elements
 	[102369] = enabled,
 	[102370] = enabled,
 	[102377] = enabled,
@@ -63,20 +70,20 @@ return {
 	[101924] = garage_spawn,
 	[101925] = garage_spawn,
 	-- SWATs
-	[101912] = swats,
-	[101913] = swats,
-	[101914] = swats,
-	[101915] = swats,
-	[101916] = swats,
-	[101917] = swats,
-	[101918] = swats,
-	[101919] = swats,
-	[101920] = swats,
-	[101921] = swats,
-	[101949] = swats,
-	[101948] = swats,
-	[101729] = swats,
-	[101728] = swats,
-	[101727] = swats,
-	[101726] = swats,
+	[101912] = swats_close,
+	[101913] = swats_close,
+	[101914] = swats_close,
+	[101915] = swats_close,
+	[101916] = swats_close,
+	[101917] = swats_close,
+	[101918] = swats_close,
+	[101919] = swats_close,
+	[101920] = swats_close,
+	[101921] = swats_close,
+	[101949] = swats_close,
+	[101948] = swats_close,
+	[101729] = swats_far,
+	[101728] = swats_far,
+	[101727] = swats_far,
+	[101726] = swats_far,
 }

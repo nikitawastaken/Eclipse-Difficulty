@@ -5,46 +5,36 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local preferred = Eclipse.preferred
-local cloaker = scripted_enemy.cloaker
-local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
-local cloaker = scripted_enemy.cloaker
-local medic = scripted_enemy.medic_1
-local taser = scripted_enemy.taser_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
-local swats = { [swat_1] = 1, [swat_2] = 1 }
 local specials_list = {
-	[taser] = get_difficulty_group_specific_value({ 3, 2, 3 }),
-	[medic] = get_difficulty_group_specific_value({ 0, 1, 2 }),
-	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 3, 2, 3 }),
+	[scripted_enemy.medic_1] = get_difficulty_group_specific_value({ 0, 1, 2 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 1, 2, 3 }),
 }
 local random_special = specials_list
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 
-local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 local bulldozer_enemy = {
-	enemy = bulldozer,
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
 }
 local cloaker_enemy = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 }
-local swat_enemy = {
-	enemy = swats,
+local swats = {
+	enemy = { 
+		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1, 
+		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 1,
+	},
 }
 local shield_enemy = {
-	enemy = shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 }
 local special_enemy = {
 	enemy = random_special,
@@ -65,6 +55,7 @@ local apartment_spawn = {
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
+
 return {
 	[100043] = { -- player_spawned
 		paused_difficulty_addends = { -- disable addends
@@ -78,6 +69,7 @@ return {
 	},
 	-- Boss spawn
 	[100154] = {
+		add_drama = 1,
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },

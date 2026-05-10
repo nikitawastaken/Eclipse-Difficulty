@@ -85,9 +85,11 @@ return {
 		on_executed = { -- delay the double door spawn
 			{ id = 102109, delay = 30 },
 		},
+		force_end_assault = true,
 	},
 	-- Yufu spawned
 	[100765] = {
+		add_drama = 1,
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },

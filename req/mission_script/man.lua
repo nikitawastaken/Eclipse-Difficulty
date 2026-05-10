@@ -7,15 +7,6 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local ready_team_1 = scripted_enemy.ready_team_1
-local swat_1 = scripted_enemy.swat_1
-local heavy_2 = scripted_enemy.heavy_swat_2
-local medic_1 = scripted_enemy.medic_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
 local disabled = {
 	values = {
 		enabled = false,
@@ -46,26 +37,24 @@ local fbi_agent_enabled = {
 	},
 }
 local regular_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
-local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
-	enemy = harasser_enemy,
+	enemy = is_eclipse and { [scripted_enemy.swat_1] = 8, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1,
 }
-local harassers = overkill_and_above and 6 or 3
 local harasser_amount = {
 	values = {
-		amount = harassers,
+		amount = overkill_and_above and 6 or 3,
 	},
 }
 local harasser_counter = {
 	values = {
-		counter_target = harassers,
+		counter_target = overkill_and_above and 6 or 3,
 	},
 }
 local sniper_amount = {
@@ -85,13 +74,13 @@ local heli_enemy1 = {
 	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 }
 local heli_enemy2 = {
-	enemy = heavy_2,
+	enemy = scripted_enemy.heavy_swat_2,
 }
 local heli_enemy3 = {
-	enemy = heavy_2,
+	enemy = scripted_enemy.heavy_swat_2,
 }
 local heli_enemy4 = {
-	enemy = diff_i < 5 and heavy_2 or medic_1,
+	enemy = diff_i < 5 and scripted_enemy.heavy_swat_2 or scripted_enemy.medic_1,
 }
 local street_heli_amount = {
 	values = {
@@ -100,13 +89,7 @@ local street_heli_amount = {
 	},
 }
 local street_heli_enemy = {
-	enemy = ready_team_1,
-}
-local standard_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
+	enemy = scripted_enemy.ready_team_1,
 }
 local window_spawn = {
 	values = {
@@ -134,7 +117,7 @@ local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or
 local ffo_countdown = {
 	ponr = {
 		length = 1200,
-		length_balance_mul = { 1.25, 1, 0.75, 0.75 },
+		length_balance_mul = { 1.25, 1, 0.875, 0.75 },
 	},
 }
 
@@ -151,31 +134,8 @@ return {
 	--PONR
 	[400013] = ffo_countdown,
 	[400016] = ffo_countdown,
-	-- Add new reinforce
-	[100131] = { -- police_called
-		reinforce = {
-			{
-				name = "staircase_main01",
-				force = 2,
-				position = Vector3(-1250, -2750, 300),
-			},
-			{
-				name = "staircase_main02",
-				force = 2,
-				position = Vector3(-1250, -2750, 1000),
-			},
-			{
-				name = "staircase_side01",
-				force = 2,
-				position = Vector3(-1250, 975, 475),
-			},
-			{
-				name = "staircase_side02",
-				force = 2,
-				position = Vector3(-1850, 1000, 1375),
-			},
-		},
-		-- police called, call in da choppa
+	-- police called, call in da choppa
+	[100131] = { 
 		on_executed = {
 			{ id = 101608, delay = chopper_delay_init },
 		},
@@ -588,7 +548,30 @@ return {
 			trigger_times = 0,
 		},
 	},
+	-- Add new reinforce
 	[102010] = {
+		reinforce = {
+			{
+				name = "staircase_main01",
+				force = 2,
+				position = Vector3(-1250, -2750, 300),
+			},
+			{
+				name = "staircase_main02",
+				force = 2,
+				position = Vector3(-1250, -2750, 1000),
+			},
+			{
+				name = "staircase_side01",
+				force = 2,
+				position = Vector3(-1250, 975, 475),
+			},
+			{
+				name = "staircase_side02",
+				force = 2,
+				position = Vector3(-1850, 1000, 1375),
+			},
+		},
 		on_executed = {
 			{ id = 101608, remove = true },
 			{ id = 103765, delay = 15, delay_rand = 45 }, -- trigger the c4 breach during hacking objetives rather than in police_called
@@ -651,7 +634,7 @@ return {
 	-- Escape harassers amount
 	[102444] = {
 		values = {
-			amount = harassers,
+			amount = harasser_amount.values.amount,
 			amount_random = 3,
 		},
 	},
@@ -829,12 +812,6 @@ return {
 	-- disable the redundant cloaker group
 	[102429] = disabled,
 	-- Spawn group intervals
-	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
-	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
-	-- Window spawns are slower too, having enemies spawn right next to you is pretty annoying. They are still fast enough to give you a reason to plank off windows outside your holdout area.
-	[101567] = standard_spawn,
-	[101569] = standard_spawn,
-	[102368] = standard_spawn,
 	[101940] = window_spawn,
 	[101954] = window_spawn,
 	[101950] = window_spawn,

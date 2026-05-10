@@ -63,6 +63,7 @@ return {
 	},
 	-- Enter main hall
 	[103594] = {
+		add_drama = 1,
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },

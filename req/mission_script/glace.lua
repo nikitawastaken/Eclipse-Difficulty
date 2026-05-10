@@ -4,16 +4,6 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-local light_rifle = scripted_enemy.swat_1
-local light_sg = scripted_enemy.swat_2
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-
 local enabled = {
 	values = {
 		enabled = true,
@@ -24,23 +14,24 @@ local disabled = {
 		enabled = false,
 	},
 }
-local interrupter_enemy = {
-	[light_rifle] = 10,
-	[light_sg] = 7,
-	[cloaker] = get_difficulty_group_specific_value({ 0, 3, 5 }),
-	[taser] = get_difficulty_group_specific_value({ 0, 2, 4 }),
-}
+
 local interrupter = {
-	enemy = interrupter_enemy,
+	enemy = {
+		[scripted_enemy.swat_1] = 10,
+		[scripted_enemy.swat_2] = 7,
+		[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 3, 5 }),
+		[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 0, 2, 4 }),
+	},
 }
 local regular_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.bulldozer_2,
+	scripted_enemy.elite_bulldozer_2,
 }
+
 local construct_lower_spawn = {
 	values = {
 		interval = 15,
@@ -95,11 +86,8 @@ local scripted_diff_add = {
 
 return {
 	[100121] = { -- obj_link_complete_005 (Prisoner taken away)
-		difficulty_addends = { -- increase diff and disable regroup addends
+		difficulty_addends = { 
 			scripted_diff_add,
-		},
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
 		},
 		reinforce = { -- disable construction side reinforce
 			{ name = "construct01" },
@@ -117,9 +105,6 @@ return {
 	[100521] = disabled, -- disable hunt
 	-- Add new reinforce
 	[100529] = {
-		on_executed = {
-			{ id = 101591, delay = 45 }, -- saw spawns
-		},
 		reinforce = {
 			{
 				name = "bridge",
@@ -127,18 +112,18 @@ return {
 				position = Vector3(-1300, -15585, 5800),
 			},
 		},
+		on_executed = {
+			{ id = 101591, delay = 45 }, -- saw spawns
+		},
 	},
 	[102634] = { -- obj_link_complete_002 (Found the Prisoner)
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
+		difficulty_addends = { 
+			scripted_diff_add,
 		},
 	},
 	[102295] = { -- at the top
-		difficulty_addends = { -- increase diff and enable regroup addends
+		difficulty_addends = { 
 			scripted_diff_add,
-		},
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
 		},
 		reinforce = {
 			{ name = "bridge" }, -- disable construction bridge reinforce

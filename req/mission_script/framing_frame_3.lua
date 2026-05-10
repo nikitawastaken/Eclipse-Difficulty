@@ -8,17 +8,20 @@ local no_shields_and_dozers = {
 local standard_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local balcony_close_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local balcony_far_spawn = {
 	values = {
-		interval = 40,
+		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -142,5 +145,6 @@ return {
 	[100896] = balcony_close_spawn,
 	[105200] = balcony_close_spawn,
 	[105201] = balcony_close_spawn,
+	[105718] = balcony_close_spawn,
 	[105489] = balcony_far_spawn,
 }
