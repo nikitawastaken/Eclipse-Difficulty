@@ -322,6 +322,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 end
 
 -- Damage conversion into drama is affected by the armor you wear
+-- SWAT turrets inflict very little damage drama
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
 local _send_damage_drama_original = Hooks:GetFunction(PlayerDamage, "_send_damage_drama")
 Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack_data, health_subtracted, ...)
@@ -336,6 +337,10 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
 			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
 		end
+	end
+
+	if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().sentry_gun then
+		health_subtracted = health_subtracted * (tweak_data.upgrades.swat_turret_criminal_hurt_drama_mul or 0.25)
 	end
 
 	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
