@@ -170,7 +170,7 @@ function WeaponTweakData:_init_weapons(overrides)
 							moving = {
 								hipfire = 2,
 								crouching = 1,
-								steelsight = 1.6,
+								steelsight = 1.5,
 							},
 						},
 						recoil = {
@@ -236,12 +236,12 @@ function WeaponTweakData:_init_weapons(overrides)
 						standing = {
 							hipfire = 1.1,
 							crouching = 1,
-							steelsight = 0.7,
+							steelsight = 0.6,
 						},
 						moving = {
 							hipfire = 1.3,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 0.9,
 						},
 					},
 					recoil = {
@@ -253,7 +253,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						moving = {
 							hipfire = 1.2,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 0.9,
 						},
 					},
 				}
@@ -277,12 +277,12 @@ function WeaponTweakData:_init_weapons(overrides)
 						standing = {
 							hipfire = 1.4,
 							crouching = 1,
-							steelsight = 0.6,
+							steelsight = 0.5,
 						},
 						moving = {
-							hipfire = 1.8,
+							hipfire = 1.6,
 							crouching = 1,
-							steelsight = 1.5,
+							steelsight = 1.4,
 						},
 					},
 					recoil = {
@@ -294,7 +294,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						moving = {
 							hipfire = 1.4,
 							crouching = 1,
-							steelsight = 1.3,
+							steelsight = 1.2,
 						},
 					},
 				}
@@ -313,9 +313,9 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
-							hipfire = 1,
+							hipfire = 1.1,
 							crouching = 1,
-							steelsight = 0.6,
+							steelsight = 0.7,
 						},
 						moving = {
 							hipfire = 1.2,
@@ -411,14 +411,14 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
-							hipfire = 1.4,
+							hipfire = 1.3,
 							crouching = 0.8,
-							steelsight = 0.7,
+							steelsight = 0.6,
 						},
 						moving = {
-							hipfire = 1.6,
+							hipfire = 1.4,
 							crouching = 1,
-							steelsight = 1.5,
+							steelsight = 1.3,
 						},
 					},
 					recoil = {
@@ -428,9 +428,9 @@ function WeaponTweakData:_init_weapons(overrides)
 							steelsight = 0.9,
 						},
 						moving = {
-							hipfire = 1.4,
+							hipfire = 1.3,
 							crouching = 1,
-							steelsight = 1.3,
+							steelsight = 1.2,
 						},
 					},
 				}
@@ -507,7 +507,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						moving = {
 							hipfire = 1.4,
 							crouching = 1,
-							steelsight = 1.3,
+							steelsight = 1.4,
 						},
 					},
 				}
@@ -1520,12 +1520,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				standing = {
 					hipfire = 1.4,
 					crouching = 1,
-					steelsight = 0.6,
+					steelsight = 0.5,
 				},
 				moving = {
 					hipfire = 1.8,
 					crouching = 1,
-					steelsight = 1.5,
+					steelsight = 1.4,
 				},
 			},
 			recoil = {
@@ -1537,7 +1537,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				moving = {
 					hipfire = 1.4,
 					crouching = 1,
-					steelsight = 1.3,
+					steelsight = 1.2,
 				},
 			},
 		}

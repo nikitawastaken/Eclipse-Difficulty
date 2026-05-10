@@ -1853,8 +1853,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			rays = 1,
-			ammo_pickup_max_mul = 0.25,
-			ammo_pickup_min_mul = 0.25,
+			ammo_pickup_max_mul = 0.375,
+			ammo_pickup_min_mul = 0.375,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
 			ignore_statistic = true,
