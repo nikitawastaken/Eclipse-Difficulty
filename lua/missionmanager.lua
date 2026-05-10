@@ -394,7 +394,7 @@ function MissionManager.mission_script_patch_funcs.hunt(self, element, data)
 				managers.groupai:state():set_wave_mode(flag)
 			else
 				local key = "eclipse_script_patch_hunt_" .. element:id()
-				local events = { "enemy_weapons_hot", }
+				local events = { "enemy_weapons_hot" }
 				local function clbk()
 					managers.groupai:state():set_wave_mode(flag)
 					managers.groupai:state():remove_listener(key)
