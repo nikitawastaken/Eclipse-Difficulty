@@ -1307,9 +1307,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.nmh.random_environments = {
-		["no_mercy"] = 3,
-		["no_mercy_dwpj_madworld"] = dwpj_weight_value,
-		["default"] = 1,
+		["no_mercy"] = 69,
 	}
 	self.dah.random_environments = {
 		["diamond_heist"] = 69 
