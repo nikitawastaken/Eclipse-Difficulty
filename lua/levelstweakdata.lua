@@ -1194,11 +1194,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["branchbank01"] = 2,
 		["branchbank02"] = 2,
 		["branchbank03"] = 2,
+		["default"]	= 1,
 	}
 	self.four_stores.random_environments = {
 		["fourstores_01"] = 2,
 		["fourstores_02"] = 2,
 		["fourstores_03"] = 2,
+		["default"]	= 1,
 	}
 	self.jewelry_store.random_environments = {
 		["jewelry_01"] = 2,
@@ -1206,47 +1208,56 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["jewelry_03"] = 2,
 		["jewelry_04"] = 2,
 		["jewelry_05"] = 2,
+		["default"]	= 1,
 	}
 	self.nightclub.random_environments = {
 		["nightclub_01"] = 2,
-		["nightclub_02"] = 2,
+		["nightclub_02"] = 3,
 		["nightclub_03"] = 2,
+		["default"]	= 1,
 	}
 	self.mallcrasher.random_environments = {
 		["mallcrasher_01"] = 2,
 		["mallcrasher_02"] = 2,
+		["default"]	= 1,
 	}
 	self.gallery.random_environments = {
-		["framingframe1_01"] = 1,
-		["framingframe1_02"] = 2,
+		["framingframe1_01"] = 2,
+		["framingframe1_02"] = 3,
+		["default"]	= 1,
 	}
 	self.framing_frame_1.random_environments = {
-		["framingframe1_01"] = 1,
-		["framingframe1_02"] = 2,
+		["framingframe1_01"] = 2,
+		["framingframe1_02"] = 3,
+		["default"]	= 1,
 	}
 	self.framing_frame_2.random_environments = {
-		["framingframe2_01"] = 2,
-		["framingframe2_02"] = 2,
-		["framingframe2_03"] = 1,
+		["framingframe2_01"] = 3,
+		["framingframe2_02"] = 3,
+		["framingframe2_03"] = 2,
+		["default"]	= 1,
 	}
 	self.framing_frame_3.random_environments = {
-		["framingframe3_01"] = 2,
-		["framingframe3_02"] = 1,
-		["framingframe3_03"] = 1,
+		["framingframe3_01"] = 3,
+		["framingframe3_02"] = 2,
+		["framingframe3_03"] = 2,
+		["default"]	= 1,
 	}
 	self.rat.random_environments = {
-		["rats1_01"] = 2,
-		["rats1_02"] = 2,
-		["rats1_03"] = 2,
-		["rats1_04"] = 1,
+		["rats1_01"] = 3,
+		["rats1_02"] = 3,
+		["rats1_03"] = 3,
+		["rats1_04"] = 2,
+		["default"]	= 1,
 		["rats1_dwpj"] = dwpj_weight_value,
 		["rats1_dwpj_2"] = dwpj_weight_value,
 	}
 	self.alex_1.random_environments = {
-		["rats1_01"] = 2,
-		["rats1_02"] = 2,
-		["rats1_03"] = 2,
-		["rats1_04"] = 1,
+		["rats1_01"] = 3,
+		["rats1_02"] = 3,
+		["rats1_03"] = 3,
+		["rats1_04"] = 2,
+		["default"]	= 1,
 		["rats1_dwpj"] = dwpj_weight_value,
 		["rats1_dwpj_2"] = dwpj_weight_value,
 	}
@@ -1254,6 +1265,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats2_01"] = 2,
 		["rats2_02"] = 2,
 		["rats2_03"] = 2,
+		["default"]	= 1,
 	}
 	self.alex_3.random_environments = {
 		["rats3_01"] = 69,
@@ -1264,5 +1276,56 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["jewelry_03"] = 2,
 		["jewelry_04"] = 2,
 		["jewelry_05"] = 2,
+		["default"]	= 1,
+	}
+	self.watchdogs_1.random_environments = {
+		["watchdogs1_01_day"] = 3,
+		["watchdogs1_02_day"] = 3,
+		["watchdogs1_03_day"] = 3,
+		["watchdogs1_04_evening"] = 2,
+		["watchdogs1_05_evening"] = 2,
+		["default"]	= 1,
+	}
+	self.watchdogs_1_night.random_environments = {
+		["watchdogs1_01_night"] = 2,
+		["watchdogs1_02_night"] = 2,
+		["watchdogs1_03_night"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_2.random_environments = {
+		["watchdogs2_01_night"] = 2,
+		["watchdogs2_02_night"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_2_day.random_environments = {
+		["watchdogs2_01_day"] = 3,
+		["watchdogs2_02_day"] = 3,
+		["watchdogs2_03_evening"] = 2,
+		["default"] = 1,
+	}
+	self.run.random_environments = {
+		["heat_street_1"] = 3,
+		["heat_street_2"] = 2,
+		["heat_street_3"] = 3,
+		["heat_street_4"] = 3,
+		["heat_street_cheese"] = dwpj_weight_value,
+		["default"] = 1,
+	}
+	self.nmh.random_environments = {
+		["no_mercy"] = 3,
+		["no_mercy_dwpj_madworld"] = dwpj_weight_value,
+		["default"] = 1,
+	}
+	self.dah.random_environments = {
+		["diamond_heist"] = 69 
+	}
+	self.red2.random_environments = {
+		["first_world_bank_1"] = 3,
+		["first_world_bank_dwpj_bastard"] = dwpj_weight_value,
+		["first_world_bank_dwpj_matrix"] = dwpj_weight_value,
+	}
+	self.man.random_environments = {
+		["undercover"] = 3,
+		["undercover_dwpj_heavenhell"] = dwpj_weight_value,
 	}
 end)

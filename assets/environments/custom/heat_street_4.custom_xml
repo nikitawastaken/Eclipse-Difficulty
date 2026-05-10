@@ -1,0 +1,77 @@
+<environment>
+	<metadata>
+	</metadata>
+	<data>
+		<sky_orientation>
+			<param key="rotation" value="0" />
+		</sky_orientation>
+		<others>
+			<param key="sky_texture" value="units/world/architecture/suburbia/textures/sky_df"/>
+			<param key="global_world_overlay_mask_texture" value=""/>
+			<param key="underlay" value="core/environments/skies/sky_1846_low_sun_nice_clouds/sky_1846_low_sun_nice_clouds"/>
+			<param key="sun_ray_color_scale" value="5.9238367080688"/>
+			<param key="global_world_overlay_texture" value=""/>
+			<param key="sun_ray_color" value="1 0.78039222955704 0.42352944612503"/>
+			<param key="global_texture" value="environments/cubemaps/cubemap_street_01"/>
+		</others>
+		<post_effect>
+			<deferred>
+				<deferred_lighting>
+					<apply_ambient>
+						<param key="ambient_scale" value="0.76163613796234"/>
+						<param key="sky_bottom_color" value="0.19215688109398 0.23529413342476 0.28235295414925"/>
+						<param key="fog_start_color" value="0.74117648601532 0.83921575546265 1"/>
+						<param key="effect_light_scale" value="0.43500000238419"/>
+						<param key="fog_far_low_color" value="0.70588237047195 0.78431379795074 0.93333339691162"/>
+						<param key="ambient_falloff_scale" value="0.47014576196671"/>
+						<param key="sky_bottom_color_scale" value="0.70300000905991"/>
+						<param key="ambient_color_scale" value="0.32400000095367"/>
+						<param key="ambient_color" value="0.054901964962482 0.098039224743843 0.16470588743687"/>
+						<param key="fog_max_range" value="90741"/>
+						<param key="bloom_threshold" value="0.4210000038147"/>
+						<param key="sky_top_color_scale" value="3"/>
+						<param key="sky_top_color" value="0.0078431377187371 0.070588238537312 0.094117656350136"/>
+						<param key="fog_min_range" value="0"/>
+						<param key="fog_max_density" value="0.11200000345707"/>
+					</apply_ambient>
+				</deferred_lighting>
+			</deferred>
+			<shadow_processor>
+				<shadow_rendering>
+					<shadow_modifier>
+						<param key="slice3" value="9999 50000 0"/>
+						<param key="shadow_slice_depths" value="634 2367 10000"/>
+						<param key="slice0" value="0 634 0"/>
+						<param key="slice1" value="533 2367 0"/>
+						<param key="slice2" value="1566 10000 0"/>
+						<param key="shadow_slice_overlap" value="101 801 1"/>
+					</shadow_modifier>
+				</shadow_rendering>
+			</shadow_processor>
+			<fog_processor>
+			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
+			<bloom_combine_post_processor>
+				<bloom_combine>
+					<bloom_lense>
+						<param key="lense_intensity" value="0.30799999833107"/>
+						<param key="bloom_blur_size" value="4"/>
+						<param key="bloom_intensity" value="0.5"/>
+					</bloom_lense>
+				</bloom_combine>
+			</bloom_combine_post_processor>
+		</post_effect>
+		<underlay_effect>
+			<sky>
+				<param key="color0" value="0.77647066116333 0.75686281919479 1"/>
+				<param key="color2" value="0.70588237047195 0.68627452850342 0.57254904508591"/>
+				<param key="color2_scale" value="1.2669999599457"/>
+				<param key="color0_scale" value="0.47900000214577"/>
+			</sky>
+		</underlay_effect>
+		<environment_effects>
+			<param key="effects" value=""/>
+		</environment_effects>
+	</data>
+</environment>
