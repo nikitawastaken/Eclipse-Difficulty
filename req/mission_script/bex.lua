@@ -39,9 +39,6 @@ local cloaker_spawn = {
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
 local bags_required = {
 	values = {
 		counter_target = 4 + (is_pro_job and 2 or 0),
@@ -219,9 +216,6 @@ return {
 			},
 		},
 	},
-	-- Add scripted difficulty increases
-	[101003] = difficulty_add_20, -- open_door
-	[101485] = difficulty_add_20, -- open_vault
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason

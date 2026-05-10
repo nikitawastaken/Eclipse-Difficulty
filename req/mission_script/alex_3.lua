@@ -1,28 +1,26 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-local ready_team_1 = scripted_enemy.ready_team_1
-local fbi_1 = scripted_enemy.fbi_1
-local fbi_2 = scripted_enemy.fbi_2
-local fbi_3 = scripted_enemy.fbi_3
-local mendoza_enemy = {
-	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
-	Idstring("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"),
-	Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
-	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
+local mendoza = { 
+	enemy = {
+		Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
+		Idstring("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"),
+		Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
+		Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
+	},
 }
-local mendoza = { enemy = mendoza_enemy }
-local fbi_light_enemy = {
-	[fbi_2] = 2,
-	[fbi_1] = 1,
+local fbi_light = { 
+	enemy = {
+		[scripted_enemy.fbi_2] = 2,
+		[scripted_enemy.fbi_1] = 1,
+	},
 }
-local fbi_light = { enemy = fbi_light_enemy }
-local fbi_medium_enemy = {
-	[ready_team_1] = 2,
-	[fbi_3] = 1,
+local fbi_medium = { 
+	enemy = {
+		[scripted_enemy.ready_team_1] = 2,
+		[scripted_enemy.fbi_3] = 1,
+	},
 }
-local fbi_medium = { enemy = fbi_medium_enemy }
-local fbi_heavy_enemy = ready_team_1
-local fbi_heavy = { enemy = fbi_heavy_enemy }
+local fbi_heavy = { enemy = scripted_enemy.ready_team_1 }
 local gangster_team = {
 	values = {
 		team = "law1",
@@ -31,14 +29,25 @@ local gangster_team = {
 local bridge_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local cloaker_spawn = {
 	values = {
-		interval = 60,
+		interval = 30,
 	},
 }
 return {
+	[101284] = { -- activateEscape
+		ponr = {
+			length = 210,
+			length_balance_mul = { 1.5, 1.25, 1.125, 1 },
+		},
+	},
+	-- Infinite assault trigger
+	[101122] = { -- 75 (difficulty element) 
+		hunt = true,
+	},
 	-- Set gangsters to law team (they are not supposed to shoot the cops)
 	[100506] = gangster_team,
 	[100507] = gangster_team,
@@ -67,7 +76,6 @@ return {
 	[101156] = bridge_spawn,
 	[101162] = bridge_spawn,
 	[101173] = bridge_spawn,
-	-- For some reason Cloaker groups have really short intervals on this heist
 	[100973] = cloaker_spawn,
 	[100976] = cloaker_spawn,
 	[100977] = cloaker_spawn,

@@ -47,7 +47,7 @@ local boat_timer = {
 }
 local scripted_diff_add = {
 	amount = 0.25,
-	time = { 30, 45 },
+	time = { 20, 30 },
 	delay = 0,
 }
 
@@ -78,8 +78,8 @@ return {
 		},
 	},
 	[101369] = { -- input_close_first_gate
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
+		difficulty_addends = {
+			scripted_diff_add,
 		},
 		reinforce = {
 			{ name = "gate" },
@@ -88,20 +88,9 @@ return {
 			{ name = "warehouse_c" },
 		},
 	},
-	[100006] = { -- convergence_spawn001 (harbour office reached)
-		difficulty_addends = { -- increase diff and enable regroup addends
-			scripted_diff_add,
-		},
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
-		},
-	},
 	[103885] = { -- output_signal_activated
-		difficulty_addends = { -- increase diff and enable regroup addends
+		difficulty_addends = { 
 			scripted_diff_add,
-		},
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
 		},
 		reinforce = {
 			{

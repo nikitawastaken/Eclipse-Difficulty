@@ -65,21 +65,7 @@ local cloaker_spawn = {
 local difficulty_add_20 = {
 	difficulty_add = 0.20,
 }
-local enable_room_reinforce01 = {
-	on_executed = {
-		{ id = 400040, delay = 0 },
-	},
-}
-local enable_room_reinforce02 = {
-	on_executed = {
-		{ id = 400041, delay = 0 },
-	},
-}
-local enable_room_reinforce03 = {
-	on_executed = {
-		{ id = 400042, delay = 0 },
-	},
-}
+
 return {
 	[102964] = {
 		ponr = {

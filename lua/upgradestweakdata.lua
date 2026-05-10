@@ -25,6 +25,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
 		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
 		criminal_hurt_drama_mul = { 2.5, 1.66, 1.25, 1, 0.8, 0.6, 0.4 },
+		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
 	}
 
 	-- make sna less cancer
@@ -3395,6 +3396,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1

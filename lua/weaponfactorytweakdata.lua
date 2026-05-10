@@ -345,7 +345,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 				rotation = Rotation(0, 0, -45),
 			}
 			part_data.stance_mod.wpn_fps_lmg_m60 = {
-				translation = Vector3(-2.75, 0, -11.15), --
+				translation = Vector3(-2.75, 0, -11.15),
 				rotation = Rotation(0, 0, -45),
 			}
 		else
@@ -1307,12 +1307,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.launch_speed_mul = 0.85
 	self.parts.wpn_fps_spe_dart_magazine_high_capacity.custom_stats.charge_speed_mul = 0.5
 
-	-- Underbarrel ammo types
-	table.insert(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
-	table.insert(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_electric")
-	table.delete(self.wpn_fps_ass_groza.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
-	table.delete(self.wpn_fps_ass_groza_npc.uses_parts, "wpn_fps_upg_a_underbarrel_frag_groza")
-
 	-- Flamethrower Tanks
 	self.parts.wpn_fps_fla_mk2_a_rare = {
 		type = "ammo",
@@ -1859,8 +1853,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			rays = 1,
-			ammo_pickup_max_mul = 0.25,
-			ammo_pickup_min_mul = 0.25,
+			ammo_pickup_max_mul = 0.375,
+			ammo_pickup_min_mul = 0.375,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
 			ignore_statistic = true,

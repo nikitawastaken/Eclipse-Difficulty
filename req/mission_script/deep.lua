@@ -90,6 +90,18 @@ local door_ambush_dozer_chance = {
 	chance = door_ambush_dozer,
 }
 return {
+	-- Increase the PONR duration and add difficulty scaling
+	[102646] = {
+		values = {
+			time_normal = 300,
+			time_hard = 300,
+			time_overkill = 270,
+			time_overkill_145 = 270,
+			time_easy_wish = 240,
+			time_overkill_290 = 240,
+			time_sm_wish = 240,
+		},
+	},
 	-- Disable crappy vanilla reinforce
 	[104207] = disable,
 	[104208] = disable,
@@ -169,8 +181,8 @@ return {
 			spawn_groups = {
 				101777, -- 45s
 				101778, -- 45s
+				103986, -- 45s
 				--102086, -- 45s
-				--103986, -- 45s
 				--105278, -- 45s
 				400006, -- 20s
 				400012, -- 20s

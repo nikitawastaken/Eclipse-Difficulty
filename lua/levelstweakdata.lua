@@ -76,7 +76,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.gallery.flashlights_on = true
 	self.hox_3.flashlights_on = true
 	self.crojob3_night.flashlights_on = true
-	self.dark.flashlights_on = true
 	self.short1_stage1.flashlights_on = true
 	self.spa.flashlights_on = true
 	self.glace.flashlights_on = true -- PDTH vibes
@@ -142,27 +141,26 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.help.ai_group_type = "zombie"
 
 	-- Set difficulty scaling  presets
-	self.escape_park.difficulty_scaling_preset = "escape"
-	self.escape_cafe_day.difficulty_scaling_preset = "escape"
-	self.escape_park_day.difficulty_scaling_preset = "escape"
-	self.escape_cafe.difficulty_scaling_preset = "escape"
-	self.escape_street.difficulty_scaling_preset = "escape"
-	self.escape_overpass.difficulty_scaling_preset = "escape"
-	self.escape_overpass_night.difficulty_scaling_preset = "escape"
-	self.escape_garage.difficulty_scaling_preset = "escape"
-	self.framing_frame_2.difficulty_scaling_preset = "escape"
+	self.escape_park.difficulty_scaling_preset = "timed"
+	self.escape_cafe_day.difficulty_scaling_preset = "timed"
+	self.escape_park_day.difficulty_scaling_preset = "timed"
+	self.escape_cafe.difficulty_scaling_preset = "timed"
+	self.escape_street.difficulty_scaling_preset = "timed"
+	self.escape_overpass.difficulty_scaling_preset = "timed"
+	self.escape_overpass_night.difficulty_scaling_preset = "timed"
+	
+	self.escape_garage.difficulty_scaling_preset = "timed_fast"
+	self.framing_frame_2.difficulty_scaling_preset = "timed_fast"
+
+	self.alex_3.difficulty_scaling_preset = "timed_slow"
 
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
-	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"
-	self.watchdogs_2_day.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
 
-	self.roberts.difficulty_scaling_preset = "regroup_slow"
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
-	self.big.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
 	self.crojob2.difficulty_scaling_preset = "regroup_slow"
 	self.crojob3.difficulty_scaling_preset = "regroup_slow"
@@ -177,15 +175,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mad.difficulty_scaling_preset = "regroup_slow"
 	self.flat.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
-	self.dah.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
-	self.bex.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
-
-	self.glace.difficulty_scaling_preset = "regroup_random"
-	self.run.difficulty_scaling_preset = "regroup_random"
-	self.pbr2.difficulty_scaling_preset = "regroup_random"
-	self.sand.difficulty_scaling_preset = "regroup_random"
 
 	self.pex.difficulty_scaling_preset = "sustain"
 
@@ -193,6 +184,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.vit.difficulty_scaling_preset = "sustain_slow"
 	self.trai.difficulty_scaling_preset = "sustain_slow"
 
+	self.watchdogs_2.difficulty_scaling_preset = "sustain_aggressive"
+	self.watchdogs_2_day.difficulty_scaling_preset = "sustain_aggressive"
+	
 	-- Add Group AI settings
 	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
 	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
@@ -319,6 +313,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					delay = 60,
 					time = 60,
 				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
 			},
 		},
 		special_limit_add = {
@@ -473,9 +470,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.group_ai_settings.assault_force_mul = 0.8
 
 	self.run.group_ai_settings = {
-		hostage_hesitation_delay_mul = 0.75,
-		sustain_duration_mul = 0.65,
-		assault_delay_mul = 1.25,
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {
@@ -483,6 +477,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					delay = 0,
 					time = 60,
 				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
 			},
 		},
 		special_limit_add = {
@@ -546,7 +543,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.sah.group_ai_settings = {
-		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {
@@ -631,7 +627,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pex.group_ai_settings.sustain_duration_mul = 1.25 -- Bird flu
 
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.sand.group_ai_settings.difficulty_scaling = nil
 
 	self.chca.group_ai_settings.assault_force_mul = 0.8
 

@@ -19,13 +19,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -98,7 +91,7 @@ return {
 			{
 				name = "stairs",
 				force = 2,
-				position = Vector3(75, 600, 0),
+				position = Vector3(25, 600, 0),
 			},
 			{
 				name = "fountain",
@@ -120,12 +113,12 @@ return {
 			{
 				name = "sanctum_entrance01",
 				force = 2,
-				position = Vector3(-1125, 3350, 0),
+				position = Vector3(1850, 4700, -300),
 			},
 			{
 				name = "sanctum_entrance02",
 				force = 2,
-				position = Vector3(2050, 3900, 0),
+				position = Vector3(-1700, 5000, -300),
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
@@ -147,7 +140,7 @@ return {
 	},
 	[101162] = {
 		on_executed = {
-			{ id = 101161, delay = 300, delay_rand = chopper_delay },
+			{ id = 101161, delay = 180, delay_rand = chopper_delay },
 		},
 	},
 	-- change up swat van enemies
@@ -162,9 +155,6 @@ return {
 	--	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
-	[100007] = roof_spawn,
-	[103098] = roof_spawn,
-	[100131] = window_spawn,
 	[100132] = window_spawn,
 	[100133] = window_spawn,
 	[103491] = window_spawn,

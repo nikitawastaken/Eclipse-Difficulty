@@ -13,6 +13,7 @@ local filter_disable = {
 return {
 	-- Boss spawn
 	[100707] = {
+		add_drama = 1,
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },

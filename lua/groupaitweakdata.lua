@@ -1648,19 +1648,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"deathguard",
 		},
 		taser_snk = {
-			"shield_cover",
 			"murder",
 			"flank",
 			"flash_grenade",
 		},
 		taser_agg = {
-			"shield_cover",
 			"murder",
 			"charge",
 			"smoke_grenade",
 		},
 		taser_spt = {
-			"shield",
 			"ranged_fire",
 			"murder",
 		},
@@ -3209,12 +3206,30 @@ end
 -- TODO: rewrite this shit
 GroupAITweakData.difficulty_scaling_presets = {
 	-- Fast response, scales to max quite quickly
-	["escape"] = {
+	["timed_slow"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = { 150, 210 },
+			},
+		},
+	},
+	["timed"] = {
 		addends = {
 			on_enemy_weapons_hot = {
 				amount = 1,
 				delay = 15,
 				time = { 120, 180 },
+			},
+		},
+	},
+	["timed_fast"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = { 90, 150 },
 			},
 		},
 	},
@@ -3844,11 +3859,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 
 	local special_wgt = get_difficulty_specific_value({
-		6,
 		8,
 		10,
-		13,
-		16,
+		12,
+		15,
+		18,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.6, 1 } or { 0.4, 0.7, 1 })

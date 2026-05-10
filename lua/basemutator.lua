@@ -388,6 +388,7 @@ MutatorNoOutlines = MutatorNoOutlines or class(BaseMutator)
 MutatorNoOutlines._type = "MutatorNoOutlines"
 MutatorNoOutlines.name_id = "mutator_nooutlines"
 MutatorNoOutlines.desc_id = "mutator_nooutlines_desc"
+MutatorNoOutlines.has_options = true
 MutatorNoOutlines.categories = { "gameplay" }
 
 MutatorNoOutlines.icon_coords = {
@@ -395,11 +396,86 @@ MutatorNoOutlines.icon_coords = {
 	1,
 }
 
+function MutatorNoOutlines:register_values(mutator_manager)
+	self:register_value("no_outlines_teammate_panel", false, "notp")
+end
+
+function MutatorNoOutlines:get_no_outlines_teammate_panel()
+	return self:value("no_outlines_teammate_panel")
+end
+
 function MutatorNoOutlines:modify_value(id, value)
 	if id == "CoreEnvironmentControllerManager:NoOutlines" or id == "HUDManager:NoOutlines" or id == "ElementWaypoint:NoOutlines" then
 		return true
 	end
+	if id == "HUDTeammate:NoOutlines" and self:get_no_outlines_teammate_panel() then
+		return true
+	end
 	return value
+end
+
+function MutatorNoOutlines:setup_options_gui(node)
+	local params = {
+		name = "no_outlines_teammate_panel_toggle",
+		callback = "_update_mutator_value",
+		text_id = "menu_mutator_no_outlines_teammate_panel_toggle",
+		update_callback = callback(self, self, "_toggle_no_outlines_teammate_panel"),
+	}
+	local data_node = {
+		{
+			w = 24,
+			y = 0,
+			h = 24,
+			s_y = 24,
+			value = "on",
+			s_w = 24,
+			s_h = 24,
+			s_x = 24,
+			_meta = "option",
+			icon = "guis/textures/menu_tickbox",
+			x = 24,
+			s_icon = "guis/textures/menu_tickbox",
+		},
+		{
+			w = 24,
+			y = 0,
+			h = 24,
+			s_y = 24,
+			value = "off",
+			s_w = 24,
+			s_h = 24,
+			s_x = 0,
+			_meta = "option",
+			icon = "guis/textures/menu_tickbox",
+			x = 0,
+			s_icon = "guis/textures/menu_tickbox",
+		},
+		type = "CoreMenuItemToggle.ItemToggle",
+	}
+	local new_item = node:create_item(data_node, params)
+
+	new_item:set_value(self:get_no_outlines_teammate_panel() and "on" or "off")
+	node:add_item(new_item)
+
+	self._node = node
+
+	return new_item
+end
+
+function MutatorNoOutlines:_toggle_no_outlines_teammate_panel(item)
+	self:set_value("no_outlines_teammate_panel", item:value() == "on")
+end
+
+function MutatorNoOutlines:reset_to_default()
+	self:clear_values()
+
+	if self._node then
+		local toggle = self._node:item("no_outlines_teammate_panel_toggle")
+
+		if toggle then
+			toggle:set_value(self:get_no_outlines_teammate_panel() and "on" or "off")
+		end
+	end
 end
 
 -- One Down --

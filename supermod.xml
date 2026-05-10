@@ -58,6 +58,7 @@
 					<post :hook_id="hudassaultcorner"/>
 					<post :hook_id="hudhitconfirm"/>
 					<post :hook_id="hudblackscreen"/>
+					<post :hook_id="hudteammate"/>
 				</group>
 
 				<group :hook_id="menu/">

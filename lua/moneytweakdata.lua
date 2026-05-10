@@ -74,7 +74,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.ordinary_wine = 115000
 	self.bag_values.robot_toy = 105000
 	self.bag_values.rubies = 52500
-	self.bag_values.red_diamond = 100000
+	self.bag_values.red_diamond = 1500000
 	self.bag_values.old_wine = 75000
 	self.bag_values.chas_artifact = 420000
 	self.bag_values.chas_teaset = 240000

@@ -356,7 +356,7 @@ end
 function MissionManager.mission_script_patch_funcs.modify_list_value(self, element, data)
 	for k, v in pairs(data) do
 		if type(element._values[k]) ~= "table" then
-			Eclipse:log_console("warn", 'Invalid modify list value name "%s" on element "%s" (%s)!', k, element:editor_name(), element:id())
+			Eclipse:warn_console("Invalid modify list value name %s on %s", k, element:editor_name())
 		else
 			for id, enabled in pairs(v) do
 				if enabled then
@@ -378,14 +378,68 @@ end
 
 -- Thank you ASS :pray:
 function MissionManager.mission_script_patch_funcs.so_access_filter(self, element, data)
-	if not data then -- dont point fingers at sh if i fuck up
-		Eclipse:log_console("warn", 'Invalid SO access filter preset "%s" for element "%s" (%s)!', data, element:editor_name(), element:id())
-	else
-		element._values.SO_access_original = element._values.SO_access
-		element._values.SO_access = managers.navigation:convert_access_filter_to_number(data)
+	element._values.SO_access = managers.navigation:convert_access_filter_to_number(data)
 
-		Eclipse:log_console("Replaced SO access filter of element %s", element:editor_name())
-	end
+	Eclipse:log_console("Replaced SO access filter of element %s", element:editor_name())
+end
+
+-- Referenced from ElementAiGlobalEvent, lib\managers\mission\elementaiglobalevent
+function MissionManager.mission_script_patch_funcs.hunt(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_hunt_" .. element:id(), function()
+		local hunt_mode = managers.groupai:state()._hunt_mode
+		local flag = (data and not hunt_mode and "hunt") or (hunt_mode and not data and "besiege") or nil
+		if flag then
+			Eclipse:log_console("%s executed, setting wave mode to %s", element:editor_name(), flag)
+			if managers.groupai:state():enemy_weapons_hot() then
+				managers.groupai:state():set_wave_mode(flag)
+			else
+				local key = "eclipse_script_patch_hunt_" .. element:id()
+				local events = { "enemy_weapons_hot" }
+				local function clbk()
+					managers.groupai:state():set_wave_mode(flag)
+					managers.groupai:state():remove_listener(key)
+				end
+				managers.groupai:state():add_listener(key, events, clbk)
+			end
+		end
+	end)
+end
+
+-- true -> regroup, false -> fade
+function MissionManager.mission_script_patch_funcs.force_end_assault(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_force_end_assault_" .. element:id(), function()
+		Eclipse:log_console("%s executed, forcibly %s assault", element:editor_name(), data and "regrouping" or "fading")
+		managers.groupai:state():force_end_assault_phase(data)
+	end)
+end
+
+--[[
+	Format:
+	[696969] = {
+		add_drama = 0.5,
+	},
+	or
+	[696969] = {
+		add_drama = {
+			amount = 0.5,
+			balance_mul = { 1, 0.9, 0.8, 0.7 },
+			team_ai_balance_mul_weight = 0.5,
+		},
+	},
+]]
+function MissionManager.mission_script_patch_funcs.add_drama(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_add_drama_" .. element:id(), function()
+		local amount = 0
+		if type(data) == "table" then
+			amount = (data.amount or 0) * (managers.groupai:state():_get_balancing_multiplier(data.balance_mul, data.team_ai_balance_mul_weight) or 1)
+		else
+			amount = tonumber(data)
+		end
+		if amount and amount ~= 0 then
+			Eclipse:log_console("%s executed, added %s drama", element:editor_name(), tostring(amount))
+			managers.groupai:state():_add_drama(amount)
+		end
+	end)
 end
 
 Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)

@@ -7,33 +7,33 @@ local disabled = {
 local hub_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local garage_door_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local upper_spawn = {
 	values = {
 		interval = 25,
-	},
-}
-local escape_spawn = {
-	values = {
-		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local room_spawn = {
 	values = {
-		interval = 35,
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local flank_spawn = {
 	values = {
 		interval = 45,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -124,10 +124,6 @@ return {
 	[100919] = disabled, -- weapon preferreds 6
 	[101320] = disabled, -- biolab preferreds 6
 	[101334] = disabled, -- books preferreds 4
-	-- Disable non-cheaty preferreds that just suck
-	[107974] = disabled, -- wF
-	[107975] = disabled, -- entrance_preferreds
-	[101453] = disabled, -- entrance_preferreds004
 	-- Spawn group intervals
 	[102439] = hub_spawn,
 	[107909] = garage_door_spawn,
@@ -140,8 +136,8 @@ return {
 	[107975] = upper_spawn,
 	[107977] = upper_spawn,
 	[108290] = upper_spawn,
-	[108291] = escape_spawn,
-	[108292] = escape_spawn,
+	[108291] = upper_spawn,
+	[108292] = upper_spawn,
 	[100130] = room_spawn,
 	[100131] = room_spawn,
 	[100132] = room_spawn,

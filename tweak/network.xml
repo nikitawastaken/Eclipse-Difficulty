@@ -142,10 +142,22 @@
 		<search>
 			<network/>
 			<rpc/>
-			<message name="sync_carry_data"/>
 		</search>
 		<target mode="attach">
-			<param type="vector3"/> <!-- Add movement vector -->
+			<message name="eclipse_sync_carry_data" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />
+				<param type="string" />                <!-- Carry id -->
+				<param type="int" min="0" max="2" />   <!-- multiplier upgrade level for small loot -->
+				<param type="bool" />                  <!-- dye_initiated -->
+				<param type="bool" />                  <!-- has_dye_pack -->
+				<param type="int" min="0" max="100" /> <!-- dye_value_multiplier -->
+				<param type="vector3" />               <!-- position -->
+				<param type="vector3" />               <!-- direction -->
+				<param type="int" min="0" max="1" />   <!-- Upgrade level of throw distance multiplier -->
+				<param type="unit" />                  <!-- If attach to zipline -->
+				<param type="int" min="0" max="128" /> <!-- peer_id extended to 128 for big lobby -->
+				<param type="vector3" />			   <!-- movement -->
+			</message>
 		</target>
 	</tweak>
 	<!-- Add a custom "sync_hostage_interacted" message to allow clients to tell the server the amount of hostages they can have following -->

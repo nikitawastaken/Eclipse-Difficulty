@@ -12,7 +12,7 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 		text_id = "menu_equipment_grenade_case",
 		icon = "equipment_grenade_case",
 		description_id = "des_grenade_case",
-		visual_style = "throwables_bag",
+		visual_object = "g_toolbag",
 		quantity = {
 			1,
 		},
