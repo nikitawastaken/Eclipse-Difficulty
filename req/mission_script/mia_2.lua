@@ -28,8 +28,8 @@ local cloaker_enemy = {
 	enemy = scripted_enemy.cloaker,
 }
 local swats = {
-	enemy = { 
-		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1, 
+	enemy = {
+		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1,
 		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 1,
 	},
 }

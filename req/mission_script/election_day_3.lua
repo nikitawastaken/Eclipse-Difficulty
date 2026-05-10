@@ -3,17 +3,17 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local outside_cop = { 
-	enemy = { 
-		[scripted_enemy.cop_1] = 3, 
-		[scripted_enemy.cop_2] = 1, 
+local outside_cop = {
+	enemy = {
+		[scripted_enemy.cop_1] = 3,
+		[scripted_enemy.cop_2] = 1,
 		[scripted_enemy.cop_4] = 1,
 	},
 }
 local inside_cop = {
-	enemy = { 
-		[scripted_enemy.cop_3] = 2, 
-		[scripted_enemy.cop_2] = 1, 
+	enemy = {
+		[scripted_enemy.cop_3] = 2,
+		[scripted_enemy.cop_2] = 1,
 		[scripted_enemy.cop_1] = 1,
 	},
 }
@@ -26,7 +26,7 @@ local random_elite_dozers = {
 	scripted_enemy.elite_bulldozer_1,
 }
 local elevator_dozer = { enemy = is_eclipse_pro and random_elite_dozers or random_dozers }
-local low_harasser = { 
+local low_harasser = {
 	enemy = {
 		[scripted_enemy.cop_1] = 3,
 		[scripted_enemy.cop_3] = 2,
@@ -35,7 +35,7 @@ local low_harasser = {
 }
 local med_harasser = { enemy = scripted_enemy.swat_1 }
 local high_harasser = { enemy = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1 }
-local low_escape = { 
+local low_escape = {
 	enemy = {
 		[scripted_enemy.swat_1] = 4,
 		[scripted_enemy.swat_2] = 2,
@@ -43,13 +43,13 @@ local low_escape = {
 		[scripted_enemy.cop_4] = 3,
 	},
 }
-local med_escape = { 
+local med_escape = {
 	enemy = {
 		[scripted_enemy.swat_1] = 3,
 		[scripted_enemy.swat_2] = 2,
-	},	
+	},
 }
-local high_escape = { 
+local high_escape = {
 	enemy = {
 		[scripted_enemy.swat_1] = 3,
 		[scripted_enemy.swat_2] = 2,

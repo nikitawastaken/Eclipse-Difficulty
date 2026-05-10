@@ -11,7 +11,7 @@ local swats_close = {
 	},
 }
 local swats_far = {
-	enemy = is_eclipse and { [scripted_enemy.swat_1] = 4, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1
+	enemy = is_eclipse and { [scripted_enemy.swat_1] = 4, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1,
 }
 local enabled = {
 	values = {

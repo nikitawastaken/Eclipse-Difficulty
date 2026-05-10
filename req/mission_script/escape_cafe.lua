@@ -7,7 +7,7 @@ local standard_spawn = {
 }
 return {
 	-- Infinite assault at the very start
-	[101378] = { -- func_difficulty_001 
+	[101378] = { -- func_difficulty_001
 		hunt = true,
 	},
 	[100252] = { -- obj1_complete

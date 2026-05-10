@@ -6,7 +6,7 @@ local disabled = {
 
 return {
 	-- Infinite assault at the very start
-	[102194] = { -- func_difficulty_002 
+	[102194] = { -- func_difficulty_002
 		hunt = true,
 	},
 	[102047] = { -- obj1_complete

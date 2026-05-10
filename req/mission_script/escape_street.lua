@@ -1,6 +1,6 @@
-return {	
+return {
 	-- Infinite assault at the very start
-	[102461] = { -- func_difficulty_002 
+	[102461] = { -- func_difficulty_002
 		hunt = true,
 	},
 	[101970] = { -- obj1_complete

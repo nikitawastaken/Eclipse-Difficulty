@@ -1,6 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-local mendoza = { 
+local mendoza = {
 	enemy = {
 		Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
 		Idstring("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"),
@@ -8,13 +8,13 @@ local mendoza = {
 		Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 	},
 }
-local fbi_light = { 
+local fbi_light = {
 	enemy = {
 		[scripted_enemy.fbi_2] = 2,
 		[scripted_enemy.fbi_1] = 1,
 	},
 }
-local fbi_medium = { 
+local fbi_medium = {
 	enemy = {
 		[scripted_enemy.ready_team_1] = 2,
 		[scripted_enemy.fbi_3] = 1,
@@ -45,7 +45,7 @@ return {
 		},
 	},
 	-- Infinite assault trigger
-	[101122] = { -- 75 (difficulty element) 
+	[101122] = { -- 75 (difficulty element)
 		hunt = true,
 	},
 	-- Set gangsters to law team (they are not supposed to shoot the cops)

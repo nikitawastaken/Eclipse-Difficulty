@@ -143,7 +143,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_street.difficulty_scaling_preset = "timed"
 	self.escape_overpass.difficulty_scaling_preset = "timed"
 	self.escape_overpass_night.difficulty_scaling_preset = "timed"
-	
+
 	self.escape_garage.difficulty_scaling_preset = "timed_fast"
 	self.framing_frame_2.difficulty_scaling_preset = "timed_fast"
 
@@ -181,7 +181,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.watchdogs_2.difficulty_scaling_preset = "sustain_aggressive"
 	self.watchdogs_2_day.difficulty_scaling_preset = "sustain_aggressive"
-	
+
 	-- Add Group AI settings
 	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
 	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
