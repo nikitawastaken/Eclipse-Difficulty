@@ -210,7 +210,7 @@ tweak_data.projectiles.poison_gas_grenade.radius_blurzone_multiplier = tweak_dat
 -- Impact Grenade (formerly the Adhesive Grenade)
 tweak_data.projectiles.sticky_grenade.damage = 36
 tweak_data.projectiles.sticky_grenade.curve_pow = 1
-tweak_data.projectiles.sticky_grenade.range = 250
+tweak_data.projectiles.sticky_grenade.range = 200
 tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
 
 -- Launcher Grenades

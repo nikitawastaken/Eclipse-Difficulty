@@ -770,8 +770,9 @@ end)
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
 -- The zones are only used for that, which makes the phases inconsistent for no real reason
 function GroupAIStateBase:_add_drama(amount)
+	local drama_gain_mul = self._tweak_data and self:_get_difficulty_dependent_value(self._tweak_data.drama_gain_mul) or 1
 	if amount > 0 then
-		amount = amount * (self._tweak_data and self._tweak_data.drama_gain_mul or 1)
+		amount = amount * drama_gain_mul
 	end
 	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
 	self._drama_data.zone = nil
