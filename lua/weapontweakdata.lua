@@ -8,7 +8,7 @@ WeaponTweakData.AP_TOTAL_DMG_MUL = 1 / 2
 WeaponTweakData.AP_PICKUP_DMG_MUL = 1 / 4
 
 -- Remake stat tables to have linear scaling
-Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
+Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)	
 	self.stats.damage = {}
 	for i = 0, 1200, 1 do
 		table.insert(self.stats.damage, (math.lerp(0.1, 120.1, i / 1200)))
@@ -2807,6 +2807,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ranc_heavy_machine_gun.fire_mode_data.fire_rate = 60 / 400
 	self.ranc_heavy_machine_gun.stats_modifiers = { damage = 2 }
 
+	self.weapon_settings = {}
+	self.weapon_settings.no_autoreload = false
+	
 	-- Set up all the wepaon overrides before executing the _init_stats function
 
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!

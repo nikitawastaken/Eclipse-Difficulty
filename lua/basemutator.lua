@@ -1121,3 +1121,19 @@ function MutatorTaser:options_fill()
 		return self:_get_percentage_fill(self:_min_taser_full_stun_shocks(), self:_max_taser_full_stun_shocks(), self:get_taser_full_stun_shocks())
 	end
 end
+
+-- No Auto-Reload --
+MutatorManualReload = MutatorManualReload or class(BaseMutator)
+MutatorManualReload._type = "MutatorManualReload"
+MutatorManualReload.name_id = "mutator_manualreload"
+MutatorManualReload.desc_id = "mutator_manualreload_desc"
+MutatorManualReload.categories = { "gameplay" }
+
+MutatorManualReload.icon_coords = {
+	0,
+	0,
+}
+
+function MutatorManualReload:setup(data)
+	tweak_data.weapon.weapon_settings.no_autoreload = true
+end
