@@ -60,7 +60,7 @@ M["levels/instances/unique/sah/sah_first_responders/world/world"] = function(res
 		elseif sah_responders.swat_spawn[id] then
 			element.values.enemy = swat_sg
 		elseif sah_responders.disable_turret[id] then
-			element.values.enabled = false	
+			element.values.enabled = false
 		end
 	end
 end
