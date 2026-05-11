@@ -89,7 +89,11 @@ return {
 	},
 	-- Yufu spawned
 	[100765] = {
-		add_drama = 1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+		},
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },
