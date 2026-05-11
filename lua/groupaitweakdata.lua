@@ -107,7 +107,7 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function(self, tweak_da
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
 	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
-	
+
 	self.ai_tick_rate = 1 / 60
 end)
 
