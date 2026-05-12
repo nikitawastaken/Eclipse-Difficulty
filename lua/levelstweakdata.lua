@@ -1321,4 +1321,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["undercover"] = 3,
 		["undercover_dwpj_heavenhell"] = dwpj_weight_value,
 	}
+	self.mia_1.random_environments = {
+		["hotlinemiami_1"] = 3,
+		["hotlinemiami_2"] = 2,
+		["hotlinemiami_3"] = 2,
+		["hotlinemiami_4"] = 2,
+		["hotlinemiami_5_dwpj"] = dwpj_weight_value,
+		["default"] = 1,
+	}
+	self.mia_2.random_environments = {
+		["commissar"] = 69,
+	}
 end)
