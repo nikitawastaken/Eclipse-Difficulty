@@ -345,6 +345,8 @@
 
 	"menu_mutators_achievement_disabled": "",
 
+	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
+
 	"menu_cs_generating_rewards": "Generating Loot...",
 	"menu_cs_loot_drops_remaining": "Remaining Loot Drops: $loot;",
 	"menu_cs_loot_drops_not_shown": "Plus $remaining; more loot drops!",
