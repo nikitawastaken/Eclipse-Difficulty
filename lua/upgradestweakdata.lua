@@ -2298,7 +2298,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Quick Fix
 	self.values.first_aid_kit.movement_speed_upgrade = {
-		true
+		true,
 	}
 	self.definitions.first_aid_kit_movement_speed_upgrade = {
 		name_id = "menu_first_aid_kit_movement_speed_upgrade",
@@ -2306,8 +2306,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "movement_speed_upgrade",
-			category = "first_aid_kit"
-		}
+			category = "first_aid_kit",
+		},
 	}
 	self.values.temporary.first_aid_movement_speed_multiplier = { { 1.15, 10 } }
 	self.definitions.temporary_first_aid_movement_speed_multiplier = {
@@ -2316,8 +2316,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "first_aid_movement_speed_multiplier",
-			category = "temporary"
-		}
+			category = "temporary",
+		},
 	}
 	self.values.temporary.first_aid_damage_reduction[1] = { 0.8, 10 }
 	self.skill_descs.running_from_death.multibasic = "15%"
