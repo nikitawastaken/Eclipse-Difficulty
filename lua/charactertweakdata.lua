@@ -591,7 +591,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			light = 1,
 		},
 	}
-	presets.gang_member_damage.TASED_RECOVER_TIME = tweak_data.player.damage.TASED_RECOVER_TIME
 
 	-- escort speed stuff
 	presets.move_speed.escort_normal = deep_clone(presets.move_speed.normal)
