@@ -3425,6 +3425,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1
