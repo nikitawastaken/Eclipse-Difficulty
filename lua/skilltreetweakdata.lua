@@ -486,11 +486,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.nine_lives.icon_xy = { 1, 2 }
 
 	-- Quick Fix
-	self.skills.running_from_death[1].upgrades = { "first_aid_kit_deploy_time_multiplier" }
+	self.skills.running_from_death[1].upgrades = { "first_aid_kit_movement_speed_upgrade" }
 	self.skills.running_from_death[2].upgrades = { "first_aid_kit_damage_reduction_upgrade" }
 	self.skills.running_from_death.icon_xy = { 1, 11 }
-	self.skills.running_from_death.name_id = "menu_tea_time_beta"
-	self.skills.running_from_death.desc_id = "menu_tea_time_beta_desc"
+	self.skills.running_from_death.name_id = "menu_quick_fix"
+	self.skills.running_from_death.desc_id = "menu_quick_fix_desc"
 
 	-- More Blood to Bleed
 	self.skills.up_you_go[1].upgrades = { "player_bleed_out_health_multiplier" }
@@ -503,15 +503,20 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.feign_death[1].upgrades = { "first_aid_kit_hot_regen_1" }
 	self.skills.feign_death[2].upgrades = { "first_aid_kit_auto_recovery_1" }
 	self.skills.feign_death.icon_xy = { 2, 11 }
-	self.skills.feign_death.name_id = "menu_tea_cookies_beta"
-	self.skills.feign_death.desc_id = "menu_tea_cookies_beta_desc"
+	self.skills.feign_death.name_id = "menu_uppers"
+	self.skills.feign_death.desc_id = "menu_uppers_desc"
 
 	-- Swan Song
-	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
+	self.skills.perseverance[1].upgrades = { "player_bleedout_timer_multiplier" }
+	self.skills.perseverance[2].upgrades = { "temporary_berserker_damage_multiplier_1" }
+	self.skills.perseverance.name_id = "menu_swan_song"
+	self.skills.perseverance.desc_id = "menu_swan_song_desc"
 
 	-- Messiah
-	self.skills.messiah[1].upgrades = { "player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer" }
-	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1" }
+	self.skills.messiah[1].upgrades = { "player_bleedout_damage_multiplier" }
+	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_1" }
+	self.skills.messiah.name_id = "menu_messiah"
+	self.skills.messiah.desc_id = "menu_messiah_desc"
 
 	-- Underdog
 	self.skills.martial_arts[1].upgrades = { "player_damage_multiplier_outnumbered" }
@@ -1004,6 +1009,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
+	table.insert(self.default_upgrades, "temporary_first_aid_movement_speed_multiplier")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
 	table.insert(self.default_upgrades, "grenade_case")
 	table.insert(self.default_upgrades, "player_smoke_screen_armor_regen_mul")

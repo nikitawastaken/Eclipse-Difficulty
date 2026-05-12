@@ -391,6 +391,10 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
+						if managers.player:current_state() == "bleed_out" then
+							dmg_mul = dmg_mul * managers.player:upgrade_value("player", "bleedout_damage_multiplier", 1)
+						end
+
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:get_property("trigger_happy", 1)

@@ -14,8 +14,8 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	end
 end)
 
--- Upgrade that heals you when you revive others
 Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
+	-- Upgrade that heals you when you revive others
 	if managers.player:has_category_upgrade("player", "action_revive_health_regen") then
 		local function on_revive_interaction_success()
 			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
@@ -542,7 +542,7 @@ function PlayerDamage:revive(silent)
 	local player_damage_tweak = tweak_data.player.damage
 	self._down_time = math.max(
 		player_damage_tweak.DOWNED_TIME_MIN,
-		(player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
+		(player_damage_tweak.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if MusicManager.set_volume_multiplier then
@@ -799,7 +799,7 @@ function PlayerDamage:restore_lives(lives_restored)
 	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
 	self._down_time = math.max(
 		tweak_data.player.damage.DOWNED_TIME_MIN,
-		(tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
+		(tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
@@ -832,7 +832,7 @@ function PlayerDamage:_regenerated(from_medic_bag)
 		self._revives = Application:digest_value(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), true)
 		self._revive_health_i = 1
 		self._down_time_i = 0
-		self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0) -- an upgrade that increases bleedout timer
+		self._down_time = tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1) -- an upgrade that increases bleedout timer
 		self:_send_set_revives(true)
 	end
 

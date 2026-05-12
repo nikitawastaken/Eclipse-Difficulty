@@ -2297,8 +2297,33 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.swap_weapon_when_downed = { true }
 
 	-- Quick Fix
-	self.skill_descs.running_from_death.multipro = "10%"
-	self.skill_descs.running_from_death.multipro2 = "120"
+	self.values.first_aid_kit.movement_speed_upgrade = {
+		true
+	}
+	self.definitions.first_aid_kit_movement_speed_upgrade = {
+		name_id = "menu_first_aid_kit_movement_speed_upgrade",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "movement_speed_upgrade",
+			category = "first_aid_kit"
+		}
+	}
+	self.values.temporary.first_aid_movement_speed_multiplier = { { 1.15, 10 } }
+	self.definitions.temporary_first_aid_movement_speed_multiplier = {
+		name_id = "menu_temporary_first_aid_movement_speed_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "first_aid_movement_speed_multiplier",
+			category = "temporary"
+		}
+	}
+	self.values.temporary.first_aid_damage_reduction[1] = { 0.8, 10 }
+	self.skill_descs.running_from_death.multibasic = "15%"
+	self.skill_descs.running_from_death.multibasic2 = "10"
+	self.skill_descs.running_from_death.multipro = "20%"
+	self.skill_descs.running_from_death.multipro2 = "10"
 
 	-- More Blood to Bleed
 	self.definitions.player_health_multiplier = {
@@ -2342,33 +2367,37 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.feign_death.multipro2 = "120"
 
 	-- Swan Song
-	self.values.temporary.berserker_damage_multiplier[2] = { 1, 9 }
-	self.skill_descs.perseverance.multipro = "6"
-
-	-- Messiah
-	self.values.player.messiah_revive_from_bleed_out = { 1, 3 }
-	self.values.player.increased_bleedout_timer = { 10 }
-	self.definitions.player_messiah_revive_from_bleed_out_2 = {
-		name_id = "menu_player_pistol_revive_from_bleed_out",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "messiah_revive_from_bleed_out",
-			category = "player",
-		},
-	}
-	self.definitions.player_increased_bleedout_timer = {
-		name_id = "menu_player_increased_bleedout_timer",
+	self.values.player.bleedout_timer_multiplier = { 1.33 }
+	self.definitions.player_bleedout_timer_multiplier = {
+		name_id = "menu_player_bleedout_timer_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "increased_bleedout_timer",
+			upgrade = "bleedout_timer_multiplier",
 			category = "player",
 		},
 	}
-	self.skill_descs.messiah.multibasic = "1"
-	self.skill_descs.messiah.multibasic2 = "10"
-	self.skill_descs.messiah.multipro = "2"
+	self.values.temporary.berserker_damage_multiplier[1] = { 1, 10 }
+	self.berserker_movement_speed_multiplier = 0.6
+	self.skill_descs.perseverance.multibasic = "33%"
+	self.skill_descs.perseverance.multipro = "10"
+	self.skill_descs.perseverance.multipro2 = "40%"
+
+	-- Messiah
+	self.values.player.bleedout_damage_multiplier = { 2 }
+	self.definitions.player_bleedout_damage_multiplier = {
+		name_id = "menu_player_bleedout_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bleedout_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.messiah_revive_from_bleed_out[1] = 3
+	self.values.messiah_panic = { { chance = 1, area = 10000, amount = "panic" } }
+	self.skill_descs.messiah.multibasic = "100%"
+	self.skill_descs.messiah.multipro = "3"
 
 	-- Underdog
 	self.skill_descs.martial_arts.multibasic = "18"
@@ -3396,7 +3425,6 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
-	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1
