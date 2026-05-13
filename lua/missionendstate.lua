@@ -33,7 +33,7 @@ function MissionEndState:at_enter(old_state, params)
 	self._continue_block_timer = Application:time() + 1.5
 
 	-- delay disabling sound listener, so that victory voicelines have time to play
-    self._sound_stop_t = Application:time() + 4.0
+	self._sound_stop_t = Application:time() + 4.0
 
 	if Network:is_server() and not is_safehouse_combat then
 		managers.network.matchmake:set_server_joinable(false)
@@ -277,11 +277,11 @@ function MissionEndState:at_enter(old_state, params)
 	Telemetry:on_end_heist(self._type, total_exp_gained, self._moneythrower_spending_kills)
 end
 
-Hooks:PostHook( MissionEndState, "update",  "eclipse_update", function(self, t, dt)
+Hooks:PostHook(MissionEndState, "update", "eclipse_update", function(self, t, dt)
 	if self._sound_stop_t and self._sound_stop_t <= Application:time() then
 		self._sound_stop_t = nil
 
-	local player = managers.player:player_unit()
+		local player = managers.player:player_unit()
 
 		if player then
 			player:camera():remove_sound_listener()
