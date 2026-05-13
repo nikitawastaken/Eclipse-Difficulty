@@ -988,6 +988,18 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+
+	self.values.weapon.faster_spread_bloom_recovery = { 1.35 }
+	self.definitions.weapon_faster_spread_bloom_recovery = {
+		name_id = "menu_weapon_faster_spread_bloom_recovery",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "faster_spread_bloom_recovery",
+			category = "weapon",
+		},
+	}
+	
 	self.values.weapon.standing_spread_multiplier = { 0.8 }
 	self.definitions.weapon_standing_spread_multiplier = {
 		name_id = "menu_weapon_standing_spread_multiplier",
@@ -998,7 +1010,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.rifleman.multibasic = "15%"
+	self.skill_descs.rifleman.multibasic = "35%"
 	self.skill_descs.rifleman.multipro = "20%"
 
 	-- Marksman

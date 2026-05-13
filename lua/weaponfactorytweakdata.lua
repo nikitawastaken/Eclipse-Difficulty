@@ -1833,16 +1833,31 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	local slug_stance_muls = {
 		spread = {
 			standing = {
-				hipfire = 1.4,
+				hipfire = 1.3,
 				crouching = 1,
 				steelsight = 0.4,
 			},
 			moving = {
-				hipfire = 1.8,
+				hipfire = 1.4,
 				crouching = 1,
-				steelsight = 1.4,
+				steelsight = 1.3,
 			},
 		},
+	}
+	local slug_fire_mode_bloom = {
+		["single"] = {
+			per_shot = 1,
+			per_shot_steelsight = 0.6,
+		},
+		["auto"] = {
+			per_shot = 1,
+			per_shot_steelsight = 0.6,
+		},		
+	}
+	local slug_pread_bloom = {
+		max = 2.5,
+		recovery = 1.2,
+		recovery_wait_multiplier = 1.5,
 	}
 	local custom_stats_tbl = {
 		wpn_fps_upg_a_custom = {
@@ -1857,6 +1872,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			ammo_pickup_min_mul = 0.375,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
+			fire_mode_spread_bloom = slug_fire_mode_bloom,
+			spread_bloom = slug_pread_bloom,
 			ignore_statistic = true,
 			explosive_ammo = true,
 			ignore_crit_damage = true,
@@ -1870,6 +1887,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			max_nr_enemy_penetrations = 1,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
+			fire_mode_spread_bloom = slug_fire_mode_bloom,
+			spread_bloom = slug_pread_bloom,
 			check_additional_achievements = true,
 			can_shoot_through_shield = true,
 			can_shoot_through_wall = true,
@@ -1901,6 +1920,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			ammo_pickup_max_mul = 0.5,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
+			fire_mode_spread_bloom = slug_fire_mode_bloom,
+			spread_bloom = slug_pread_bloom,
 			dot_data_name = "ammo_rip",
 			bullet_class = "PoisonBulletBase",
 			muzzleflash = "effects/particles/weapons/sho_tomb",
@@ -2448,6 +2469,8 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 				or 1
 			custom_stats_tbl.stance_mul = deep_clone(reference_new_tweak.stance_multipliers or reference_old_tweak.stance_multipliers)
 			custom_stats_tbl.fire_mode_mul = deep_clone(reference_new_tweak.fire_mode_multipliers or reference_old_tweak.fire_mode_multipliers)
+			custom_stats_tbl.fire_mode_spread_bloom = deep_clone(reference_new_tweak.fire_mode_spread_bloom or reference_old_tweak.fire_mode_spread_bloom)
+			custom_stats_tbl.spread_bloom = deep_clone(reference_new_tweak.spread_bloom or reference_old_tweak.spread_bloom)
 
 			if reference_new_tweak.stats then
 				stats_tbl.alert_size = reference_new_tweak.stats.alert_size - reference_old_tweak.stats.alert_size
@@ -2779,14 +2802,14 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 		},
 		recoil = {
 			standing = {
-				hipfire = 1,
+				hipfire = 1.1,
 				crouching = 1,
-				steelsight = 1,
+				steelsight = 0.9,
 			},
 			moving = {
 				hipfire = 1.3,
 				crouching = 1,
-				steelsight = 1.3,
+				steelsight = 1.2,
 			},
 		},
 	}

@@ -10,8 +10,12 @@ local FIRE_MODE_IDS = {
 }
 
 Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
+	self._spread_firing = 0
+	self._spread_last_shot_t = 0
 	self._shots_fired_consecutively = 0
 	self._shield_knock = false
+	
+	self._unit:set_extension_update_enabled(Idstring("base"), true)
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self, disallow_replenish)
@@ -99,20 +103,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
 
-	self._fire_mode_multipliers = weapon_tweak.fire_mode_multipliers or {}
-
-	self._moving_steelsight_spread_mul = spread_muls and spread_muls.moving and spread_muls.moving.steelsight or 1
-
 	local recoil_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.recoil
 	local spread_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.spread
-
-	self._standing_hipfire_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.hipfire or 1
-	self._standing_crouching_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.crouching or 1
-	self._standing_steelsight_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.steelsight or 1
-
-	self._moving_hipfire_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.hipfire or 1
-	self._moving_crouching_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.crouching or 1
-	self._moving_steelsight_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.steelsight or 1
 
 	self._standing_hipfire_spread_mul = spread_muls and spread_muls.standing and spread_muls.standing.hipfire or 1
 	self._standing_crouching_spread_mul = spread_muls and spread_muls.standing and spread_muls.standing.crouching or 1
@@ -122,6 +114,19 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._moving_crouching_spread_mul = spread_muls and spread_muls.moving and spread_muls.moving.crouching or 1
 	self._moving_steelsight_spread_mul = spread_muls and spread_muls.moving and spread_muls.moving.steelsight or 1
 
+	self._standing_hipfire_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.hipfire or 1
+	self._standing_crouching_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.crouching or 1
+	self._standing_steelsight_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.steelsight or 1
+
+	self._moving_hipfire_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.hipfire or 1
+	self._moving_crouching_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.crouching or 1
+	self._moving_steelsight_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.steelsight or 1
+
+	self._fire_mode_multipliers = weapon_tweak.fire_mode_multipliers
+	
+	self._spread_bloom = weapon_tweak.spread_bloom
+	self._fire_mode_spread_bloom = weapon_tweak.fire_mode_spread_bloom
+	
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
 			self._explosive_ammo = self._ammo_data.explosive_ammo
@@ -157,10 +162,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			self._exit_run_speed_multiplier = self._exit_run_speed_multiplier * custom_stat.exit_run_speed_multiplier
 		end
 
-		if custom_stat.fire_mode_mul then
-			self._fire_mode_multipliers = custom_stat.fire_mode_mul
-		end
-
 		if custom_stat.ammo_max_mul then
 			self._ammo_max_mul = custom_stat.ammo_max_mul
 		end
@@ -169,9 +170,9 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			self._steelsight_time_mul = custom_stat.steelsight_time_mul
 		end
 
-		local stats_stance_mul = custom_stat.stance_mul
-
-		if stats_stance_mul then
+		if custom_stat.stance_mul then
+			local stats_stance_mul = deep_clone(custom_stat.stance_mul)
+			
 			if stats_stance_mul.spread then
 				if stats_stance_mul.spread.standing then
 					self._standing_hipfire_spread_mul = stats_stance_mul.spread.standing.hipfire
@@ -194,6 +195,18 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 					self._moving_steelsight_recoil_mul = stats_stance_mul.recoil.moving.steelsight
 				end
 			end
+		end
+
+		if custom_stat.fire_mode_mul then
+			self._fire_mode_multipliers = deep_clone(custom_stat.fire_mode_mul)
+		end
+
+		if custom_stat.fire_mode_spread_bloom then
+			self._fire_mode_spread_bloom = deep_clone(custom_stat.fire_mode_spread_bloom)
+		end
+		
+		if custom_stat.spread_bloom then
+			self._spread_bloom = deep_clone(custom_stat.spread_bloom)
 		end
 	end
 end)
@@ -237,6 +250,33 @@ function NewRaycastWeaponBase:steelsight_move_speed_multiplier()
 	return self._steelsight_move_speed_mul
 end
 
+function NewRaycastWeaponBase:update(unit, t, dt)
+	self._spread_last_shot_t = math.max((self._spread_last_shot_t or 0) - dt, 0)
+
+	local spread_bloom_recovery = (self._spread_bloom and self._spread_bloom.recovery or 1) * managers.player:upgrade_value("weapon", "faster_spread_bloom_recovery", 1)
+	
+	if self._spread_last_shot_t <= 0.0001 then
+		self._spread_firing = math.max((self._spread_firing or 0) - dt * spread_bloom_recovery, 0)
+	end
+end
+
+function NewRaycastWeaponBase:_get_fire_spread_add()
+	local fire_mode_spread_bloom = self._fire_mode_spread_bloom and self._fire_mode_spread_bloom[self:fire_mode()] or nil
+	
+	if not fire_mode_spread_bloom then
+		return 0
+	end
+
+	local user_unit = self._setup and self._setup.user_unit
+	local in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
+	
+	if in_steelsight then
+		return fire_mode_spread_bloom.per_shot_steelsight or 0
+	else
+		return fire_mode_spread_bloom.per_shot or 0
+	end
+end
+
 function NewRaycastWeaponBase:fire(...)
 	local ray_res = NewRaycastWeaponBase.super.fire(self, ...)
 
@@ -249,6 +289,11 @@ function NewRaycastWeaponBase:fire(...)
 		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
 	end
 
+	self._spread_firing = math.min((self._spread_firing or 0) + self:_get_fire_spread_add(), self._spread_bloom and self._spread_bloom.max or 2)
+	self._spread_last_shot_t = (self:weapon_tweak_data().fire_mode_data and self:weapon_tweak_data().fire_mode_data.fire_rate or 0) / self:fire_rate_multiplier() * (self._spread_bloom and self._spread_bloom.recovery_wait_multiplier or 1)
+	
+	Eclipse:log_chat(tostring(self._spread_firing))	
+	
 	return ray_res
 end
 
@@ -266,6 +311,53 @@ function NewRaycastWeaponBase:stop_shooting()
 	end
 
 	self._shots_fired_consecutively = 0 -- reset the shots counter when you stop spraying
+end
+
+function NewRaycastWeaponBase:_get_spread(user_unit)
+	local current_state = user_unit:movement()._current_state
+
+	if not current_state then
+		return 0, 0
+	end
+
+	local spread_values = self:weapon_tweak_data().spread
+
+	if not spread_values then
+		return 0, 0
+	end
+
+	local current_spread_value = spread_values[current_state:get_movement_state()] + (self._spread_firing or 0) 
+	local spread_x, spread_y = nil
+
+	if type(current_spread_value) == "number" then
+		spread_x = self:_get_spread_from_number(user_unit, current_state, current_spread_value)
+		spread_y = spread_x
+	else
+		spread_x, spread_y = self:_get_spread_from_table(user_unit, current_state, current_spread_value)
+	end
+--[[
+	if current_state:in_steelsight() then
+		local steelsight_tweak = spread_values.steelsight
+		local multi_x, multi_y = nil
+
+		if type(steelsight_tweak) == "number" then
+			multi_x = 1 + 1 - steelsight_tweak
+			multi_y = multi_x
+		else
+			multi_x = 1 + 1 - steelsight_tweak[1]
+			multi_y = 1 + 1 - steelsight_tweak[2]
+		end
+
+		spread_x = spread_x * multi_x
+		spread_y = spread_y * multi_y
+	end
+]]
+	if self._spread_multiplier then
+		spread_x = spread_x * self._spread_multiplier[1]
+		spread_y = spread_y * self._spread_multiplier[2]
+	end
+
+	return spread_x, spread_y
 end
 
 function NewRaycastWeaponBase:recoil_multiplier()
@@ -286,7 +378,9 @@ function NewRaycastWeaponBase:recoil_multiplier()
 
 	for _, fire_mode in ipairs(self._fire_modes) do
 		if self:fire_mode() == fire_mode then
-			multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].recoil or 1)
+			if self._fire_mode_multipliers then
+				multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].recoil or 1)
+			end
 		end
 	end
 
@@ -396,7 +490,9 @@ function NewRaycastWeaponBase:spread_multiplier()
 
 	for _, fire_mode in ipairs(self._fire_modes) do
 		if self:fire_mode() == fire_mode then
-			multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].spread or 1)
+			if self._fire_mode_multipliers then
+				multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].spread or 1)
+			end
 		end
 	end
 
@@ -474,7 +570,9 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	for _, fire_mode in ipairs(self._fire_modes) do
 		if self:fire_mode() == fire_mode then
-			multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].fire_rate or 1)
+			if self._fire_mode_multipliers then
+				multiplier = multiplier * (self._fire_mode_multipliers and self._fire_mode_multipliers[fire_mode] and self._fire_mode_multipliers[fire_mode].fire_rate or 1)
+			end
 		end
 	end
 

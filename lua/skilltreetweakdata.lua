@@ -86,7 +86,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot.icon_xy = { 9, 11 }
 
 	-- Rifleman
-	self.skills.rifleman[1].upgrades = { "player_steelsight_stamina_reduction_multiplier" }
+	self.skills.rifleman[1].upgrades = { "weapon_faster_spread_bloom_recovery" }
 	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
 	self.skills.rifleman.icon_xy = { 0, 5 }
 
