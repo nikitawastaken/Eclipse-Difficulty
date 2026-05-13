@@ -1852,7 +1852,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		["auto"] = {
 			per_shot = 1,
 			per_shot_steelsight = 0.6,
-		},		
+		},
 	}
 	local slug_pread_bloom = {
 		max = 2.5,

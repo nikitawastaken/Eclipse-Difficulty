@@ -14,7 +14,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._spread_last_shot_t = 0
 	self._shots_fired_consecutively = 0
 	self._shield_knock = false
-	
+
 	self._unit:set_extension_update_enabled(Idstring("base"), true)
 end)
 
@@ -123,10 +123,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._moving_steelsight_recoil_mul = recoil_muls and recoil_muls.moving and recoil_muls.moving.steelsight or 1
 
 	self._fire_mode_multipliers = weapon_tweak.fire_mode_multipliers
-	
+
 	self._spread_bloom = weapon_tweak.spread_bloom
 	self._fire_mode_spread_bloom = weapon_tweak.fire_mode_spread_bloom
-	
+
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
 			self._explosive_ammo = self._ammo_data.explosive_ammo
@@ -172,7 +172,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 		if custom_stat.stance_mul then
 			local stats_stance_mul = deep_clone(custom_stat.stance_mul)
-			
+
 			if stats_stance_mul.spread then
 				if stats_stance_mul.spread.standing then
 					self._standing_hipfire_spread_mul = stats_stance_mul.spread.standing.hipfire
@@ -204,7 +204,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if custom_stat.fire_mode_spread_bloom then
 			self._fire_mode_spread_bloom = deep_clone(custom_stat.fire_mode_spread_bloom)
 		end
-		
+
 		if custom_stat.spread_bloom then
 			self._spread_bloom = deep_clone(custom_stat.spread_bloom)
 		end
@@ -254,7 +254,7 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 	self._spread_last_shot_t = math.max((self._spread_last_shot_t or 0) - dt, 0)
 
 	local spread_bloom_recovery = (self._spread_bloom and self._spread_bloom.recovery or 1) * managers.player:upgrade_value("weapon", "faster_spread_bloom_recovery", 1)
-	
+
 	if self._spread_last_shot_t <= 0.0001 then
 		self._spread_firing = math.max((self._spread_firing or 0) - dt * spread_bloom_recovery, 0)
 	end
@@ -262,14 +262,14 @@ end
 
 function NewRaycastWeaponBase:_get_fire_spread_add()
 	local fire_mode_spread_bloom = self._fire_mode_spread_bloom and self._fire_mode_spread_bloom[self:fire_mode()] or nil
-	
+
 	if not fire_mode_spread_bloom then
 		return 0
 	end
 
 	local user_unit = self._setup and self._setup.user_unit
 	local in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
-	
+
 	if in_steelsight then
 		return fire_mode_spread_bloom.per_shot_steelsight or 0
 	else
@@ -290,10 +290,12 @@ function NewRaycastWeaponBase:fire(...)
 	end
 
 	self._spread_firing = math.min((self._spread_firing or 0) + self:_get_fire_spread_add(), self._spread_bloom and self._spread_bloom.max or 2)
-	self._spread_last_shot_t = (self:weapon_tweak_data().fire_mode_data and self:weapon_tweak_data().fire_mode_data.fire_rate or 0) / self:fire_rate_multiplier() * (self._spread_bloom and self._spread_bloom.recovery_wait_multiplier or 1)
-	
-	Eclipse:log_chat(tostring(self._spread_firing))	
-	
+	self._spread_last_shot_t = (self:weapon_tweak_data().fire_mode_data and self:weapon_tweak_data().fire_mode_data.fire_rate or 0)
+		/ self:fire_rate_multiplier()
+		* (self._spread_bloom and self._spread_bloom.recovery_wait_multiplier or 1)
+
+	Eclipse:log_chat(tostring(self._spread_firing))
+
 	return ray_res
 end
 
@@ -326,7 +328,7 @@ function NewRaycastWeaponBase:_get_spread(user_unit)
 		return 0, 0
 	end
 
-	local current_spread_value = spread_values[current_state:get_movement_state()] + (self._spread_firing or 0) 
+	local current_spread_value = spread_values[current_state:get_movement_state()] + (self._spread_firing or 0)
 	local spread_x, spread_y = nil
 
 	if type(current_spread_value) == "number" then
@@ -335,7 +337,7 @@ function NewRaycastWeaponBase:_get_spread(user_unit)
 	else
 		spread_x, spread_y = self:_get_spread_from_table(user_unit, current_state, current_spread_value)
 	end
---[[
+	--[[
 	if current_state:in_steelsight() then
 		local steelsight_tweak = spread_values.steelsight
 		local multi_x, multi_y = nil
