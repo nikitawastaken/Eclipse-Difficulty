@@ -54,9 +54,9 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
-	self._drama_data.drama_balance_mul = tweak_data.drama.drama_balance_mul
+	self._drama_data.drama_gain_balance_mul = tweak_data.drama.drama_gain_balance_mul
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_gain_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
@@ -780,9 +780,10 @@ end
 
 -- Support for variable drama decay rate
 Hooks:OverrideFunction(GroupAIStateBase, "_claculate_drama_value", function(self)
+	self._drama_data.drama_decay_rate_balance_mul = tweak_data.drama.drama_decay_rate_balance_mul
 	local drama_data = self._drama_data
 	local dt = self._t - drama_data.last_calculate_t
-	local dt_mod = self._get_drama_weight_mul and self:_get_drama_weight_mul("decay_rate") or 1
+	local dt_mod = (self._get_drama_weight_mul and self:_get_drama_weight_mul("decay_rate") or 1) * self:_get_balancing_multiplier(self._drama_data.drama_decay_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
 	local adj = -dt / drama_data.decay_period * dt_mod
 	drama_data.last_calculate_t = self._t
 
