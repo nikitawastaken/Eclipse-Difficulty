@@ -294,8 +294,6 @@ function NewRaycastWeaponBase:fire(...)
 		/ self:fire_rate_multiplier()
 		* (self._spread_bloom and self._spread_bloom.recovery_wait_multiplier or 1)
 
-	Eclipse:log_chat(tostring(self._spread_firing))
-
 	return ray_res
 end
 

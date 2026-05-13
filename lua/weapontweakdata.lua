@@ -1611,6 +1611,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				},
 			},
 		}
+		self.deagle.fire_mode_spread_bloom = {
+			["single"] = {
+				per_shot = 2,
+				per_shot_steelsight = 1.5,
+			},
+		}
+		self.deagle.spread_bloom = {
+			max = 3,
+			recovery = 1.4,
+			recovery_wait_multiplier = 1.8,
+		}
 		self.deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
 		self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
 	end
