@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+
+"""
+Script created to check for uncommented 
+instances of 'Eclipse:log_chat(...)'
+"""
+from glob import glob
+
+# Constants
+CommentText = "--"
+ExpressionText = "clipse:log_chat(*)"
+BlockCommentText = "--[["
+BlockCommentCloseText = "]]"
+
+# Don't check these files
+ExcludeList = [
+    "mod.lua",
+    "lua/coplogictravel.lua",
+    "lua/networkpeer.lua",
+    "req/log.lua",
+]
+
+class StateMachine:
+    def __init__(self, text):
+        self.text = text
+
+    def check_expression(self, start, expression, line_count):
+        """
+        Checks for an expression in self.text starting from index start
+        while keeping track of line_count.
+
+        Note: Check first character manually before using this function
+        """
+        if start > 1 and not self.text[start - 2].isspace():
+            return False, 0, 0
+
+        i = start
+        glob = False
+        for c in expression:
+            if not glob:
+                if self.text[i] == expression[i - start]:
+                    i += 1
+                    if c == "(":
+                        glob = True
+                else:
+                    return False, 0, 0
+            else:
+                single_quote_string = False
+                double_quote_string = False
+                while (double_quote_string or single_quote_string) or self.text[i] != ")":
+                    if self.text[i] == '"' and not single_quote_string and not self.text[i-1] == "\\":
+                        double_quote_string = not double_quote_string
+                    if self.text[i] == "'" and not double_quote_string and not self.text[i-1] == "\\":
+                        single_quote_string = not single_quote_string
+                    if self.text[i] == "\n":
+                        line_count += 1
+                    i+= 1
+
+                    if i >= len(self.text):
+                        i -= 1
+                        break
+
+                if self.text[i] == ")":
+                    return True, i, line_count
+                return False, 0, 0
+
+    def check_comment(self, start, line_count):
+        """
+        Checks for a comment literal starting from start and 
+        skips lines (and updates index) appropriately in line_count
+
+        Note: Check first character manually before using this function
+        """
+        i = start
+        if i < len(self.text) and self.text[i] == "-":
+            if (i+2) < len(self.text) and self.text[i+1] == "[" and self.text[i+2] == "[":
+                # block comment
+                i += 3
+                while i < len(self.text):
+                    if self.text[i] == "]":
+                        i += 1
+                        if self.text[i] == "]":
+                            return True, i + 1, line_count
+                        else:
+                            continue
+                    if self.text[i] == "\n":
+                        line_count += 1
+                    i += 1
+            else:
+                while i < len(self.text):
+                    if self.text[i] == "\n":
+                        return True, i + 1, line_count + 1
+                    i += 1
+
+        return False, 0, 0
+
+    def run(self):
+        """
+        Runs the state machine according to the text supplied
+        by the constructor.
+
+        Returns a list of all lines that contain a comment
+        """
+        line_count = 1
+        found = []
+
+        i = 0
+        while i < len(self.text):
+            c = self.text[i]
+
+            match c:
+                case "E":
+                    did_find, find_index, new_line_count = self.check_expression(i+1, ExpressionText, line_count)
+                    if did_find:
+                        found.append(line_count)
+                        i = find_index
+                        line_count = new_line_count
+                        continue
+                case "-":
+                    comment, new_index, new_line_count = self.check_comment(i+1, line_count)
+                    if comment:
+                        i = new_index
+                        line_count = new_line_count
+                        continue
+                case "\n":
+                    line_count += 1
+            i += 1
+        return found
+
+def main():
+    glob_path = "**/*.lua"
+
+    # Process text
+    found = {}
+    for file in glob(glob_path, recursive=True):
+        if file not in ExcludeList:
+            with open(file, "r", encoding="utf-8") as file_contents:
+                sm = StateMachine(file_contents.read())
+                results = sm.run()
+                if len(results) > 0: found[file] = results
+
+    if (len(found) > 0):
+        print("Found logs in:\n")
+        for file in found.keys():
+            print(f"\t{file}: line{len(found[file]) > 1 and "s" or ""} {", ".join([str(f) for f in found[file]])}")
+        return 1
+    return 0
+
+if __name__ == "__main__":
+    main()
+   main()

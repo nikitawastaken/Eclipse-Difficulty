@@ -1,0 +1,31 @@
+name: Check Extra Debug Logs
+on:
+  push:
+    branches: [ main, dev ]
+
+jobs:
+  check_comments:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Run Log Checker
+        id: logsChecking
+        run: |
+          logsOutput=$(./.github/check_logs)
+          echo "logsOutput=`echo $logsOutput  | sed 's/$/\n/'`" >> $GITHUB_OUTPUT
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          status: ${{ job.status }}
+          nodetail: true
+          username: "Your Dad"
+          color: 0xffff00
+          avatar_url: ${{ secrets.AVATAR_URL }}
+          title: "Extra Debug Log(s) Found"
+          description: |
+            ${{ steps.logsChecking.outputs.logsOutput }}
+
+            https://github.com/rockymoto517/Eclipse-Difficulty-test/commit/${{ github.sha }}
