@@ -26,7 +26,7 @@ class StateMachine:
 
     def check_expression(self, start, expression, line_count):
         """
-        Checks for an expression in self.text starting from index start
+        Checks for an expression in self.text starting from index 'start'
         while keeping track of line_count.
 
         Note: Check first character manually before using this function
@@ -37,17 +37,16 @@ class StateMachine:
         i = start
         glob = False
         for c in expression:
-            if not glob:
-                if self.text[i] == expression[i - start]:
-                    i += 1
-                    if c == "(":
-                        glob = True
-                else:
-                    return False, 0, 0
-            else:
+            if self.text[i] == expression[i - start]:
+                i += 1
+                if c == "(":
+                    glob = True
+            elif expression[i - start] == "*":
+                end_char = expression[i - start + 1]
+
                 single_quote_string = False
                 double_quote_string = False
-                while (double_quote_string or single_quote_string) or self.text[i] != ")":
+                while (double_quote_string or single_quote_string) or self.text[i] != end_char:
                     if self.text[i] == '"' and not single_quote_string and not self.text[i-1] == "\\":
                         double_quote_string = not double_quote_string
                     if self.text[i] == "'" and not double_quote_string and not self.text[i-1] == "\\":
@@ -60,8 +59,10 @@ class StateMachine:
                         i -= 1
                         break
 
-                if self.text[i] == ")":
+                if self.text[i] == end_char:
                     return True, i, line_count
+                return False, 0, 0
+            else:
                 return False, 0, 0
 
     def check_comment(self, start, line_count):
@@ -139,6 +140,7 @@ def main():
                 results = sm.run()
                 if len(results) > 0: found[file] = results
 
+    # For custom formatting, % is a newline due to github actions jank : )
     if (len(found) > 0):
         print("Found logs in:%%")
         found_keys = list(found.keys())

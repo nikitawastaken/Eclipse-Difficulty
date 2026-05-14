@@ -451,7 +451,7 @@ function PlayerManager:use_messiah_charge()
 		for _, unit in ipairs(enemies) do
 			if unit:character_damage() then
 				unit:character_damage():build_suppression(amount, chance)
-				Eclipse:log_chat("Messiah panic applied to a unit")
+				-- Eclipse:log_chat("Messiah panic applied to a unit")
 			end
 		end
 	end
