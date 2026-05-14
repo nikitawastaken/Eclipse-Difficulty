@@ -193,13 +193,13 @@ return {
 		on_executed = {
 			{ id = 400035, delay = 0 },
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
 		},
 	},
 	[102968] = {
 		on_executed = {
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
 		},
 	},
 	[102940] = {
