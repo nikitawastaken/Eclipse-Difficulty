@@ -81,6 +81,7 @@ local optsSniper_2 = {
 		{ id = 400016, delay = 0 },
 	},
 	enabled = enabled_chance_sniper_start,
+	trigger_times = 1,
 }
 local optsSWAT_Harasser_1 = {
 	enemy_table = harasser,
@@ -240,6 +241,7 @@ local optsSpawnVanDozers = {
 		{ id = 400030, delay = 0 },
 	},
 	enabled = overkill_and_above and dozer_van_chance,
+	trigger_times = 1,
 }
 local optsSpawnHarassers_1 = {
 	on_executed = {
