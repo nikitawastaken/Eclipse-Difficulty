@@ -35,7 +35,11 @@ local swat_harasser = {
 local fbi_agent = {
 	enemy = fbi_list,
 }
-local fbi_agents_chance = math.random() <= 0.5
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local street_spawn = {
 	values = {
 		interval = 10,
@@ -144,6 +148,84 @@ return {
 			{ id = 400012, delay = 0 },
 		},
 	},
+	-- fix one of SWAT spawngroup spawns having messed up positions
+	[100143] = {
+		values = {
+			position = Vector3(-4210.318, 98.610, -2020),
+			rotation = Rotation(30.276, 0, 0),
+		},
+	},
+	[100141] = {
+		values = {
+			position = Vector3(-4302.193, -1.811, -2020),
+			rotation = Rotation(-26.785, 0, 0),
+		},
+	},
+	[100142] = {
+		values = {
+			position = Vector3(-4280.948, 77.521, -2020),
+			rotation = Rotation(30.276, 0, 0),
+		},
+	},
+	[100139] = {
+		values = {
+			position = Vector3(-4313.807, 119.244, -2020),
+			rotation = Rotation(-20.627, 0, 0),
+		},
+	},
+	[100140] = {
+		values = {
+			position = Vector3(-4305.427, 175.010, -2020),
+			rotation = Rotation(35.230, 0, 0),
+		},
+	},
+	-- Add harassers through out the convoy section
+	[102958] = {
+		on_executed = {
+			{ id = 400033, delay = 0 },
+			{ id = 400034, delay = 0 },
+		},
+	},
+	[102946] = {
+		on_executed = {
+			{ id = 400035, delay = 0 },
+			{ id = 400036, delay = 0 },
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
+		},
+	},
+	[102968] = {
+		on_executed = {
+			{ id = 400036, delay = 0 },
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
+		},
+	},
+	[102940] = {
+		on_executed = {
+			{ id = 400037, delay = 0 },
+		},
+	},
+	[102955] = {
+		on_executed = {
+			{ id = 400037, delay = 0 },
+		},
+	},
+	-- enable harasser SOs that are disabled for some reason
+	[102001] = enabled,
+	[102004] = enabled,
+	[102005] = enabled,
+	[102008] = enabled,
+	-- possible sniper at the start of the heist
+	[100799] = {
+		on_executed = {
+			{ id = 400014, delay = 0 },
+		},
+	},
+	-- spawn sniper when the convoy drives straight (at the start)
+	[102913] = {
+		on_executed = {
+			{ id = 400013, delay = 0 },
+		},
+	},
 	-- restore unused spawns at the start of the heist and replace security with FBI agents
 	[100589] = fbi_agent,
 	[100590] = fbi_agent,
@@ -157,16 +239,22 @@ return {
 	[100583] = fbi_agent,
 	[100581] = {
 		values = {
-			enabled = normal_and_above and fbi_agents_chance,
+			enabled = normal_and_above,
 			amount = 2,
 			amount_random = 1,
 		},
 	},
 	[100582] = {
 		values = {
-			enabled = normal_and_above and fbi_agents_chance,
+			enabled = normal_and_above,
 			amount = 2,
 			amount_random = 1,
+		},
+	},
+	-- possible suprise cloaker at the start of the heist
+	[100580] = {
+		on_executed = {
+			{ id = 400038, delay = 0 },
 		},
 	},
 	-- Spawn group intervals
