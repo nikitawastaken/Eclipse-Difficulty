@@ -1,6 +1,6 @@
 Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.drama_actions = { criminal_hurt = 0.5, criminal_dead = 0.2, criminal_disabled = 0.1 }
-	self.drama_gain_balance_mul = { 1.35, 1.05, 0.75, 0.45 }
+	self.drama_gain_balance_mul = { 1.35, 0.9, 0.6, 0.45 }
 	self.drama_decay_rate_balance_mul = { 0.8, 0.9, 1, 1.1 }
 	self.decay_period = 30
 	self.max_dis = 6000

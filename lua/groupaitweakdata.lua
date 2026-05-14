@@ -3718,7 +3718,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = 0.5,
+		drama = 0.33,
 		spawn_rate = 0.5,
 		force = 0.5,
 		freq = 0.5,
