@@ -1334,6 +1334,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.born.random_environments = {
 		["bikerheist_1_01"] = 3,
+		["bikerheist_1_02"] = 2,
 		["default"] = 1,
 	}
 	self.chew.random_environments = {
@@ -1349,5 +1350,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["mad"] = 3,
 		["mad_night"] = 2,
 		["default"] = 1,
+	}
+	self.pex.random_environments = {
+		["tijuana_01"] = 1,
+		["default"] = 3,
+	}
+	self.mex.random_environments = {
+		["crossing_01"] = 1,
+		["default"] = 3,
+	}
+	self.bex.random_environments = {
+		["sanmartin_01"] = 1,
+		["sanmartin_02"] = 2,
+		["default"] = 3,
 	}
 end)
