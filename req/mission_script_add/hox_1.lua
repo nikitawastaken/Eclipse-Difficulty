@@ -311,11 +311,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400011, "spooc_hide_so_6", Vector3(9075, 7099, -2800), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 
 	Eclipse.mission_elements.gen_element_random(400012, "cloaker_ambush_event", spawn_random_cloakers),
-	
+
 	-- suprise cloaker at the start of the heist (so evil)
 	Eclipse.mission_elements.gen_dummy(400038, "spooc_ambush_1", Vector3(-7290, -8797, -2000), Rotation(-85, 0, 0), optsCloaker_Ambush),
 	Eclipse.mission_elements.gen_so(400039, "spooc_ambush_hide_so_1", Vector3(-7229.177, -8819.247, -2000), Rotation(-66, 0, 0), optsCloaker_Hide_SO_Ambush),
-	
+
 	-- Snipers and Harassers
 	Eclipse.mission_elements.gen_dummy(400013, "sniper_1", Vector3(1858, -7442, -1598.273), Rotation(0, 0, 0), optsSniper_1),
 	Eclipse.mission_elements.gen_dummy(400014, "sniper_2", Vector3(-3496, -5789, -1999.987), Rotation(133, 0, 0), optsSniper_2),
@@ -333,20 +333,19 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400025, "harasser_9", Vector3(2407, -182, -1200), Rotation(-180, 0, 0), optsSWAT_Harasser_9),
 	Eclipse.mission_elements.gen_dummy(400026, "harasser_10", Vector3(2908, -182, -1200), Rotation(-180, 0, 0), optsSWAT_Harasser_10),
 	Eclipse.mission_elements.gen_dummy(400027, "harasser_11", Vector3(3520, -182, -1200), Rotation(-180, 0, 0), optsSWAT_Harasser_11),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400033, "spawn_harassers_1", optsSpawnHarassers_1),
 	Eclipse.mission_elements.gen_missionscript(400034, "spawn_harassers_2", optsSpawnHarassers_2),
 	Eclipse.mission_elements.gen_missionscript(400035, "spawn_harassers_3", optsSpawnHarassers_3),
 	Eclipse.mission_elements.gen_missionscript(400036, "spawn_harassers_4", optsSpawnHarassers_4),
 	Eclipse.mission_elements.gen_missionscript(400037, "spawn_harassers_5", optsSpawnHarassers_5),
-	
+
 	-- Dozers coming out of the vans near parking garage entrance
 	Eclipse.mission_elements.gen_dummy(400028, "bulldozer_1", Vector3(5345, 5625, -2020), Rotation(48, 0, 0), optsDozerVan),
 	Eclipse.mission_elements.gen_dummy(400029, "bulldozer_2", Vector3(5255.336, 5525.419, -2020), Rotation(-14, 0, 0), optsDozerVan),
-	
+
 	Eclipse.mission_elements.gen_object_editor(400030, "open_swat_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors),
 	Eclipse.mission_elements.gen_so(400031, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt),
 	Eclipse.mission_elements.gen_missionscript(400032, "spawn_bulldozers", optsSpawnVanDozers),
-	
 }
 return M
