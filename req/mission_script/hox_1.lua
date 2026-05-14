@@ -257,14 +257,14 @@ return {
 	[100581] = {
 		values = {
 			enabled = normal_and_above,
-			amount = 2,
+			amount = 3,
 			amount_random = 1,
 		},
 	},
 	[100582] = {
 		values = {
 			enabled = normal_and_above,
-			amount = 2,
+			amount = 3,
 			amount_random = 1,
 		},
 	},
