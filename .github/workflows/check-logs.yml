@@ -14,11 +14,10 @@ jobs:
         id: logsChecking
         run: |
           logsOutput=$(./.github/check_logs)
-          echo $logsOutput
           echo "logsOutput=`echo $logsOutput`" >> $GITHUB_OUTPUT
           echo "logLines=`echo $logsOutput | wc -l`" >> $GITHUB_OUTPUT
       - uses: sarisia/actions-status-discord@v1
-        if: ${{ steps.logsChecking.outputs.logLines != '0' }}
+        if: ${{ steps.logsChecking.outputs.logLines != '1' }}
         id: webhook
         with:
           nofail: false
@@ -33,9 +32,9 @@ jobs:
             ${{ steps.logsChecking.outputs.logsOutput }}
 
             https://github.com/nikitawastaken/Eclipse-Difficulty/commit/${{ github.sha }}
-      - if: ${{ steps.logsChecking.outputs.logLines != '0' }}
+      - if: ${{ steps.logsChecking.outputs.logLines != '1' }}
         run: npm install axios
-      - if: ${{ steps.logsChecking.outputs.logLines != '0' }}
+      - if: ${{ steps.logsChecking.outputs.logLines != '1' }}
         uses: actions/github-script@v7
         env:
           WEBHOOK_PAYLOAD: ${{ steps.webhook.outputs.payload }}
