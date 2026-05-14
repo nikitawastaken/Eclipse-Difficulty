@@ -1181,9 +1181,27 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ranc.custom_package = bellmead_security_package
 	self.corp.custom_package = bellmead_security_package
 	
-	local dwpj_weight_value = 1
-	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-	if is_eclipse_pro then dwpj_weight_value = 999 * dwpj_weight_value else dwpj_weight_value = 0 end
+	local additive_weight_value = 1
+	
+	-- idk if this even works :xdd: not used atm
+	-- gonna leave it here until i can test it properly later
+	local is_full_moon = nil
+    local MoonReferenceTime = os.time{year=2026, month=1, day=1, hour=17, min=28}
+    local targetTime = os.time{year=year, month=month, day=day, hour=0, min=0}
+    local diff = os.difftime(targetTime, referenceTime) / 86400
+	local moon_age = diff % 29.53059
+    if moon_age => 16.61096 and not moon_age <= 20.30228 then
+		is_full_moon = true
+		print("full moon today! get the glommer!")
+	else
+		is_full_moon = false
+		print("no full moon today.. so sad.")
+	end
+	
+	local is_jason = os.date("%A %d") == "Friday 13"
+	local is_halloween = os.date("%B %d") == "October 31"
+	if is_jason or is_hallowen then 
+	additive_weight_value = 999 * additive_weight_value else additive_weight_value = 0 end
 	
 	self.branchbank.random_environments = {
 		["branchbank01"] = 2,
@@ -1244,8 +1262,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
 		["default"]	= 1,
-		["rats1_dwpj"] = dwpj_weight_value,
-		["rats1_dwpj_2"] = dwpj_weight_value,
+		["rats1_dwpj"] = additive_weight_value,
+		["rats1_dwpj_2"] = additive_weight_value,
 	}
 	self.alex_1.random_environments = {
 		["rats1_01"] = 3,
@@ -1253,8 +1271,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
 		["default"]	= 1,
-		["rats1_dwpj"] = dwpj_weight_value,
-		["rats1_dwpj_2"] = dwpj_weight_value,
+		["rats1_dwpj"] = additive_weight_value,
+		["rats1_dwpj_2"] = additive_weight_value,
 	}
 	self.alex_2.random_environments = {
 		["rats2_01"] = 2,
@@ -1303,7 +1321,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["heat_street_2"] = 2,
 		["heat_street_3"] = 3,
 		["heat_street_4"] = 3,
-		["heat_street_cheese"] = dwpj_weight_value,
+		["heat_street_cheese"] = additive_weight_value,
 		["default"] = 1,
 	}
 	self.nmh.random_environments = {
@@ -1314,19 +1332,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.red2.random_environments = {
 		["first_world_bank_1"] = 3,
-		["first_world_bank_dwpj_bastard"] = dwpj_weight_value,
-		["first_world_bank_dwpj_matrix"] = dwpj_weight_value,
+		["first_world_bank_dwpj_bastard"] = additive_weight_value,
+		["first_world_bank_dwpj_matrix"] = additive_weight_value,
 	}
 	self.man.random_environments = {
 		["undercover"] = 3,
-		["undercover_dwpj_heavenhell"] = dwpj_weight_value,
+		["undercover_dwpj_heavenhell"] = additive_weight_value,
 	}
 	self.mia_1.random_environments = {
 		["hotlinemiami_1"] = 3,
 		["hotlinemiami_2"] = 2,
 		["hotlinemiami_3"] = 2,
 		["hotlinemiami_4"] = 2,
-		["hotlinemiami_5_dwpj"] = dwpj_weight_value,
+		["hotlinemiami_5_dwpj"] = additive_weight_value,
 		["default"] = 1,
 	}
 	self.mia_2.random_environments = {
