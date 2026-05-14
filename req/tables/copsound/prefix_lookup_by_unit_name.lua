@@ -405,6 +405,8 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2",
 		"units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3",
 		"units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4",
+		-- The Dealer from Panic Room
+		"units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican",
 		-- Ernesto Sosa's gangsters
 		"units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_01/ene_bolivian_thug_outdoor_01",
 		"units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_02/ene_bolivian_thug_outdoor_02",

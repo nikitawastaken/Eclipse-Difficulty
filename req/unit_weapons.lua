@@ -148,6 +148,8 @@ local M = {
 	[("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
+	-- The Dealer From Panic room
+	[("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican"):key()] = { raging_bull = 6, c45 = 6, mossberg = 1 }, -- rare chance to use a shotgun
 	--Russian mobsters
 	[("units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, ak47 = 2 },
