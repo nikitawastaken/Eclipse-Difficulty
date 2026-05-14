@@ -140,12 +140,13 @@ def main():
                 if len(results) > 0: found[file] = results
 
     if (len(found) > 0):
-        print("Found logs in:\n")
-        for file in found.keys():
-            print(f"\t{file}: line{len(found[file]) > 1 and "s" or ""} {", ".join([str(f) for f in found[file]])}")
-        return 1
-    return 0
+        print("Found logs in:%%")
+        found_keys = list(found.keys())
+        for i in range(len(found_keys) - 1):
+            file = found_keys[i]
+            print(f"{file}: line{len(found[file]) > 1 and "s" or ""} {", ".join([str(f) for f in found[file]])}", end="%")
+        file = found_keys[len(found_keys)-1]
+        print(f"{file}: line{len(found[file]) > 1 and "s" or ""} {", ".join([str(f) for f in found[file]])}")
 
 if __name__ == "__main__":
     main()
-   main()
