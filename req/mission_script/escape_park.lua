@@ -4,7 +4,7 @@ local swat_spawn_fix = {
 }
 return {
 	-- Infinite assault at the very start
-	[101580] = { -- func_difficulty_001 
+	[101580] = { -- func_difficulty_001
 		hunt = true,
 	},
 	[100756] = { -- obj1_complete

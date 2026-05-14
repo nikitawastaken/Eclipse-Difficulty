@@ -89,7 +89,7 @@ return {
 		},
 	},
 	[103885] = { -- output_signal_activated
-		difficulty_addends = { 
+		difficulty_addends = {
 			scripted_diff_add,
 		},
 		reinforce = {

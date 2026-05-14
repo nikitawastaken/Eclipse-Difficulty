@@ -165,6 +165,8 @@
 	"ene_bulldozer_3": "Skulldozer",
 	"ene_bulldozer_minigun": "Mauldozer",
 	"ene_bulldozer_minigun_classic": "Mauldozer",
+	"ene_bulldozer_medic": "Medicdozer",
+	"ene_bulldozer_medic_classic": "Medicdozer",
 	"ene_bulldozer_5": "Headless Killdozer",
 	"ene_sniper_1": "SWAT Sniper",
 	"ene_sniper_2": "FBI Sniper",
@@ -344,6 +346,8 @@
 	"mad_txt_006": "ОПЕРАЦИОННАЯ",
 
 	"menu_mutators_achievement_disabled": "",
+
+	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
 
 	"menu_cs_generating_rewards": "Generating Loot...",
 	"menu_cs_loot_drops_remaining": "Remaining Loot Drops: $loot;",

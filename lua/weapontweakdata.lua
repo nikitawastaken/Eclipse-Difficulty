@@ -8,7 +8,7 @@ WeaponTweakData.AP_TOTAL_DMG_MUL = 1 / 2
 WeaponTweakData.AP_PICKUP_DMG_MUL = 1 / 4
 
 -- Remake stat tables to have linear scaling
-Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
+Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)	
 	self.stats.damage = {}
 	for i = 0, 1200, 1 do
 		table.insert(self.stats.damage, (math.lerp(0.1, 120.1, i / 1200)))
@@ -163,12 +163,12 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.stance_multipliers = {
 						spread = {
 							standing = {
-								hipfire = 1.5,
+								hipfire = 1.4,
 								crouching = 0.8,
 								steelsight = 0.4,
 							},
 							moving = {
-								hipfire = 2,
+								hipfire = 1.6,
 								crouching = 1,
 								steelsight = 1.5,
 							},
@@ -185,6 +185,21 @@ function WeaponTweakData:_init_weapons(overrides)
 								steelsight = 1.4,
 							},
 						},
+					}
+					weap_data.fire_mode_spread_bloom = {
+						["single"] = {
+							per_shot = 1.5,
+							per_shot_steelsight = 1.2,
+						},
+						["auto"] = {
+							per_shot = 2,
+							per_shot_steelsight = 1.6,
+						},
+					}
+					weap_data.spread_bloom = {
+						max = 4,
+						recovery = 1.2,
+						recovery_wait_multiplier = 2,
 					}
 				else
 					weap_data.stance_multipliers = {
@@ -214,10 +229,21 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					}
 					weap_data.fire_mode_multipliers = {
-						single = {
+						["single"] = {
 							recoil = 1.3,
 							spread = 0.7,
 						},
+					}
+					weap_data.fire_mode_spread_bloom = {
+						["single"] = {
+							per_shot = 0.7,
+							per_shot_steelsight = 0.5,
+						},
+					}
+					weap_data.spread_bloom = {
+						max = 2,
+						recovery = 5,
+						recovery_wait_multiplier = 1.7,
 					}
 				end
 			elseif cat_map.pistol then
@@ -257,7 +283,18 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					},
 				}
-
+				weap_data.fire_mode_spread_bloom = {
+					["single"] = {
+						per_shot = 0.5,
+						per_shot_steelsight = 0.3,
+					},
+				}
+				weap_data.spread_bloom = {
+					max = 2,
+					recovery = 5,
+					recovery_wait_multiplier = 1.7,
+				}
+					
 				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 600
 				end
@@ -298,7 +335,18 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					},
 				}
-
+				weap_data.fire_mode_spread_bloom = {
+					["single"] = {
+						per_shot = 2,
+						per_shot_steelsight = 1.5,
+					},
+				}
+				weap_data.spread_bloom = {
+					max = 3,
+					recovery = 1.4,
+					recovery_wait_multiplier = 1.8,
+				}
+				
 				if weap_data.fire_mode_data and not weap_data.auto then
 					weap_data.fire_mode_data.fire_rate = 60 / 300
 				end
@@ -337,10 +385,21 @@ function WeaponTweakData:_init_weapons(overrides)
 					},
 				}
 				weap_data.fire_mode_multipliers = {
-					single = {
+					["single"] = {
 						recoil = 1.2,
 						spread = 0.8,
 					},
+				}
+				weap_data.fire_mode_spread_bloom = {
+					["single"] = {
+						per_shot = 0.7,
+						per_shot_steelsight = 0.5,
+					},
+				}
+				weap_data.spread_bloom = {
+					max = 2,
+					recovery = 5,
+					recovery_wait_multiplier = 1.7,
 				}
 			elseif cat_map.shotgun then
 				weap_data.muzzleflash = "effects/particles/weapons/sho_default"
@@ -625,6 +684,8 @@ function WeaponTweakData:_init_weapons(overrides)
 			weap_data.damage_falloff = nil
 			weap_data.stance_multipliers = weap_data.stance_multipliers or nil
 			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil
+			weap_data.spread_bloom = weap_data.spread_bloom or nil
+			weap_data.fire_mode_spread_bloom = weap_data.fire_mode_spread_bloom or nil
 			weap_data.penetration = {
 				enemy = {
 					damage_mul = 0.75,
@@ -636,7 +697,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					damage_mul = 0.5,
 				},
 			}
-
+				
 			-- Recoil values defined per category
 			if weap_data.kick then
 				if is_turret then
@@ -756,7 +817,15 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.shake.fire_multiplier = (single_weapon_data.shake.fire_multiplier or 1) + 0.4
 					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (30 / 40)
 					weap_data.swap_speed_multiplier = nil
-					
+
+					if weap_data.damage_near then
+						weap_data.damage_near = weap_data.damage_near * 0.8
+					end
+
+					if weap_data.damage_far then
+						weap_data.damage_far = weap_data.damage_far * 0.8
+					end				
+
 					if not weap_data.rays then
 						weap_data.stance_multipliers.spread = {
 							standing = {
@@ -1216,7 +1285,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_m14.stats.recoil = 5
 	self.new_m14.stats.concealment = 18
 	self.new_m14.fire_mode_data.fire_rate = 60 / 700
-
+	
 	-- Little Friend
 	self.contraband.categories = dmr_category
 	self.contraband.CLIP_AMMO_MAX = 20
@@ -1506,6 +1575,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.concealment = 28
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
 
+
 	self.init_stat_overrides.deagle = function()
 		self.deagle.stats.suppression = 9
 		self.deagle.stats.alert_size = 7
@@ -1540,6 +1610,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 					steelsight = 1.2,
 				},
 			},
+		}
+		self.deagle.fire_mode_spread_bloom = {
+			["single"] = {
+				per_shot = 2,
+				per_shot_steelsight = 1.5,
+			},
+		}
+		self.deagle.spread_bloom = {
+			max = 3,
+			recovery = 1.4,
+			recovery_wait_multiplier = 1.8,
 		}
 		self.deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
 		self.deagle.muzzleflash = "effects/payday2/particles/weapons/45cal_deagle_fps"
@@ -2807,6 +2888,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ranc_heavy_machine_gun.fire_mode_data.fire_rate = 60 / 400
 	self.ranc_heavy_machine_gun.stats_modifiers = { damage = 2 }
 
+	self.weapon_settings = {}
+	self.weapon_settings.no_autoreload = false
+	
 	-- Set up all the wepaon overrides before executing the _init_stats function
 
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!

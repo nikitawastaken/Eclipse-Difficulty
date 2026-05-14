@@ -47,5 +47,8 @@
 	"menu_mutator_taser_incapacitation_time_slider": "Time to incapacitate",
 	"menu_mutator_taser_full_stun_shocks_slider": "Shocks to fully stun",
 	"menu_mutator_taser_camera_limit_toggle": "Limit camera movement",
-	"menu_mutator_taser_full_stun_toggle": "Full stun"
+	"menu_mutator_taser_full_stun_toggle": "Full stun",
+
+	"mutator_manualreload": "Rated R for Reload",
+	"mutator_manualreload_desc": "Trying to shoot while empty no longer starts a reload.",
 }

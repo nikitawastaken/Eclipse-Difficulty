@@ -135,7 +135,7 @@ return {
 	[400013] = ffo_countdown,
 	[400016] = ffo_countdown,
 	-- police called, call in da choppa
-	[100131] = { 
+	[100131] = {
 		on_executed = {
 			{ id = 101608, delay = chopper_delay_init },
 		},

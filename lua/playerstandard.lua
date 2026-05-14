@@ -290,7 +290,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						weap_base:dryfire()
 					end
 				elseif weap_base.clip_empty and weap_base:clip_empty() then
-					if params and params.no_reload or self:_is_using_bipod() then
+					if params and params.no_reload or self:_is_using_bipod() or tweak_data.weapon.weapon_settings.no_autoreload then
 						if input.btn_primary_attack_press then
 							weap_base:dryfire()
 						end
@@ -389,6 +389,10 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
 								dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_reload_damage_multiplier", 1)
 							end
+						end
+
+						if managers.player:current_state() == "bleed_out" then
+							dmg_mul = dmg_mul * managers.player:upgrade_value("player", "bleedout_damage_multiplier", 1)
 						end
 
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)

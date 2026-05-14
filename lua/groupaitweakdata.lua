@@ -107,6 +107,8 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function(self, tweak_da
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
 	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
+
+	self.ai_tick_rate = 1 / 60
 end)
 
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
@@ -3642,7 +3644,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- BESIEGE --
-	self.besiege.drama_gain_mul = 1
+	self.besiege.drama_gain_mul = { 1.25, 1, 0.75 }
 
 	if difficulty_index <= 3 then
 		self.besiege.scripted_tiers = {
@@ -3716,7 +3718,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = 0.5,
+		drama = 0.33,
 		spawn_rate = 0.5,
 		force = 0.5,
 		freq = 0.5,
@@ -3859,20 +3861,20 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 
 	local special_wgt = get_difficulty_specific_value({
+		7,
 		8,
-		10,
+		9,
 		12,
 		15,
-		18,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.6, 1 } or { 0.4, 0.7, 1 })
-	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.2, 0.5, 0.8 })
-	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.3, 0.6 } or { 0.2, 0.4, 0.6 })
-	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.1, 0.4 } or { 0, 0.2, 0.4 })
-	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.1, 0.4, 0.7 })
-	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.2, 0.6 })
-	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.3 })
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
+	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.4, 0.7, 1 })
+	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
+	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.6 } or { 0, 0.3, 0.6 })
+	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.2, 0.6, 1 })
+	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.3, 0.9 })
+	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.4 })
 
 	-- Spawngroups
 	if difficulty_index <= 2 then
@@ -4118,7 +4120,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
-	self.ponr.drama_gain_mul = 0.5
+	self.ponr.drama_gain_mul = { 0.5, 0.5, 0.5 }
 
 	-- Control
 	if short_ponr_heists[level_id] then

@@ -1,5 +1,6 @@
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local swats_close = {
@@ -11,12 +12,15 @@ local swats_close = {
 	},
 }
 local swats_far = {
-	enemy = is_eclipse and { [scripted_enemy.swat_1] = 4, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1
+	enemy = is_eclipse and { [scripted_enemy.swat_1] = 4, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1,
 }
 local enabled = {
 	values = {
 		enabled = true,
 	},
+}
+local exclude_shields_dozers = {
+	so_access_filter = so_access.no_heavyweight,
 }
 local garage_spawn = {
 	values = {
@@ -53,6 +57,11 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
+	-- tweak the navlinks to prevent dozers and shields from using it
+	[400000] = exclude_shields_dozers,
+	[400001] = exclude_shields_dozers,
+	[400002] = exclude_shields_dozers,
+	[400003] = exclude_shields_dozers,
 	-- Enable reinforce toggles and tweak the force value of one of the elements
 	[102369] = enabled,
 	[102370] = enabled,

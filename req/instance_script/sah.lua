@@ -49,7 +49,7 @@ M["levels/instances/unique/sah/sah_first_responders/world/world"] = function(res
 				{ id = 100041, delay = 0 },
 				{ id = 100017, delay = 0 },
 				{ id = 100042, delay = 0 },
-				{ id = 100042, delay = 3 },
+				{ id = 100042, delay = 2 },
 			}
 		elseif sah_responders.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
@@ -59,6 +59,8 @@ M["levels/instances/unique/sah/sah_first_responders/world/world"] = function(res
 			element.values.enemy_table = specials_list
 		elseif sah_responders.swat_spawn[id] then
 			element.values.enemy = swat_sg
+		elseif sah_responders.disable_turret[id] then
+			element.values.enabled = false
 		end
 	end
 end

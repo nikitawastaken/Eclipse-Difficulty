@@ -28,8 +28,8 @@ local cloaker_enemy = {
 	enemy = scripted_enemy.cloaker,
 }
 local swats = {
-	enemy = { 
-		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1, 
+	enemy = {
+		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1,
 		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 1,
 	},
 }
@@ -69,7 +69,11 @@ return {
 	},
 	-- Boss spawn
 	[100154] = {
-		add_drama = 1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+		},
 		forced_difficulty = {
 			amount = 0.1,
 			time = { 15, 30 },

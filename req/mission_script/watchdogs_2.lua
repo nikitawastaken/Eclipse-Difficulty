@@ -164,19 +164,19 @@ local invisible_walls_small = {
 		pos = Vector3(2900, 980, -20),
 		rot = invisible_walls_small_rot,
 		visible = false,
-	},	
+	},
 	{
 		name = invisible_walls_small_ids,
 		pos = Vector3(2900, -1000, -20),
 		rot = invisible_walls_small_rot,
 		visible = false,
-	},	
+	},
 	{
 		name = invisible_walls_small_ids,
 		pos = Vector3(2700, -570, 370),
 		rot = invisible_walls_small_rot,
 		visible = false,
-	},	
+	},
 }
 
 return {
@@ -295,7 +295,6 @@ return {
 				force = 2,
 				position = Vector3(-50, 2800, 0),
 			},
-
 		},
 	},
 	[103636] = { -- end_assault
@@ -382,7 +381,7 @@ return {
 		},
 	},
 	-- Add invisible walls to the warehouse if needed
-	[104004] = { 
+	[104004] = {
 		spawn = invisible_walls_small, -- Add invisible walls to the warehouse
 	},
 	-- the warehouse can either be closed or open on all difficulties

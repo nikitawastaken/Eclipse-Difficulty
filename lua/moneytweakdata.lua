@@ -749,15 +749,11 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.money_bundle = (money_mul * 10250)
 	end
 	if level_id == "arm_cro" or level_id == "arm_hcm" or level_id == "arm_fac" or level_id == "arm_par" or level_id == "arm_und" then
-		self.bag_values.default = 47500
-		self.bag_values.money = 75000
-		self.bag_values.gold = 155000
-		self.bag_values.diamonds = 35000
-		self.small_loot.vault_loot_gold = (money_mul * 19500)
-		self.small_loot.vault_loot_cash = (money_mul * 6500)
-		self.small_loot.vault_loot_coins = (money_mul * 5800)
+		self.small_loot.vault_loot_gold = (money_mul * 39500)
+		self.small_loot.vault_loot_cash = (money_mul * 8500)
+		self.small_loot.vault_loot_coins = (money_mul * 6800)
 		self.small_loot.vault_loot_ring = (money_mul * 12000)
-		self.small_loot.vault_loot_jewels = (money_mul * 8400)
+		self.small_loot.vault_loot_jewels = (money_mul * 9400)
 	end
 	if level_id == "hvh" or level_id == "nail" or level_id == "help" or level_id == "haunted" then
 		self.bag_values.sandwich = 950000

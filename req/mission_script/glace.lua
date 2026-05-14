@@ -86,7 +86,7 @@ local scripted_diff_add = {
 
 return {
 	[100121] = { -- obj_link_complete_005 (Prisoner taken away)
-		difficulty_addends = { 
+		difficulty_addends = {
 			scripted_diff_add,
 		},
 		reinforce = { -- disable construction side reinforce
@@ -117,12 +117,12 @@ return {
 		},
 	},
 	[102634] = { -- obj_link_complete_002 (Found the Prisoner)
-		difficulty_addends = { 
+		difficulty_addends = {
 			scripted_diff_add,
 		},
 	},
 	[102295] = { -- at the top
-		difficulty_addends = { 
+		difficulty_addends = {
 			scripted_diff_add,
 		},
 		reinforce = {

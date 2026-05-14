@@ -1,6 +1,7 @@
 Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.drama_actions = { criminal_hurt = 0.5, criminal_dead = 0.2, criminal_disabled = 0.1 }
-	self.drama_balance_mul = { 1.3, 1.1, 0.8, 0.4 }
+	self.drama_gain_balance_mul = { 1.35, 0.9, 0.6, 0.45 }
+	self.drama_decay_rate_balance_mul = { 0.8, 0.9, 1, 1.1 }
 	self.decay_period = 30
 	self.max_dis = 6000
 	self.max_dis_mul = 1
@@ -20,16 +21,17 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.drama_weight_muls = {
 		-- Drama decay rate
 		decay_rate = {
-			[0.4] = 1,
-			[0.6] = 0.8,
-			[1.0] = 0.6,
-		},
-		-- Special unit spawns
-		shield = {
-			[0.1] = 1.3,
+			[0.1] = 1.1,
 			[0.4] = 1,
 			[0.7] = 0.9,
 			[1.0] = 0.7,
+		},
+		-- Special unit spawns
+		shield = {
+			[0.1] = 1.2,
+			[0.4] = 1,
+			[0.7] = 0.9,
+			[1.0] = 0.8,
 		},
 		taser = {
 			[0.1] = 1.3,
@@ -50,16 +52,16 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 			[1.0] = 0.7,
 		},
 		marksman = {
-			[0.1] = 1.3,
+			[0.1] = 1.2,
 			[0.4] = 1,
 			[0.7] = 0.9,
-			[1.0] = 0.7,
+			[1.0] = 0.8,
 		},
 		supporting_special = {
-			[0.1] = 1.3,
+			[0.1] = 1.2,
 			[0.4] = 1,
 			[0.7] = 0.9,
-			[1.0] = 0.7,
+			[1.0] = 0.8,
 		},
 	}
 end)

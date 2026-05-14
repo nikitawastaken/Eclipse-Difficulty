@@ -434,6 +434,29 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 	end
 end
 
+-- Messiah self-revive also panics enemies
+function PlayerManager:use_messiah_charge()
+	if self._messiah_charges then
+		self._messiah_charges = math.max(self._messiah_charges - 1, 0)
+	end
+
+	local pos = self:player_unit():position()
+	local skill = tweak_data.upgrades.values.messiah_panic[1]
+	if skill then
+		local area = skill.area
+		local chance = skill.chance
+		local amount = skill.amount
+		local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
+
+		for _, unit in ipairs(enemies) do
+			if unit:character_damage() then
+				unit:character_damage():build_suppression(amount, chance)
+				-- Eclipse:log_chat("Messiah panic applied to a unit")
+			end
+		end
+	end
+end
+
 -- Killshot skills
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
@@ -725,6 +748,7 @@ local old_speed_multiplier = PlayerManager.movement_speed_multiplier
 function PlayerManager:movement_speed_multiplier(...)
 	local multi = old_speed_multiplier(self, ...)
 	multi = multi * (1 + managers.player:get_property("playercqb", 0))
+	multi = multi * self:temporary_upgrade_value("temporary", "first_aid_movement_speed_multiplier", 1)
 	return multi
 end
 
