@@ -1201,7 +1201,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local is_jason = os.date("%A %d") == "Friday 13"
 	local is_halloween = os.date("%B %d") == "October 31"
 	if is_jason or is_hallowen then 
-	additive_weight_value = 999 * additive_weight_value else additive_weight_value = 0 end
+	additive_weight_value = math.huge else additive_weight_value = 0 end
 	
 	self.branchbank.random_environments = {
 		["branchbank01"] = 2,
