@@ -76,6 +76,9 @@ return {
 		paused_difficulty_addends = { -- disable regroup addends
 			on_entered_regroup = 1,
 		},
+		on_executed = { -- possible suprise cloaker at the start of the heist
+			{ id = 400038, delay = 0 },
+		},
 	},
 	-- Combine some navigation areas
 	[102729] = {
@@ -190,13 +193,13 @@ return {
 		on_executed = {
 			{ id = 400035, delay = 0 },
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
 		},
 	},
 	[102968] = {
 		on_executed = {
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
+			{ id = 400032, delay = 0 }, -- chance based dozer van ambush 
 		},
 	},
 	[102940] = {
@@ -249,12 +252,6 @@ return {
 			enabled = normal_and_above,
 			amount = 2,
 			amount_random = 1,
-		},
-	},
-	-- possible suprise cloaker at the start of the heist
-	[100580] = {
-		on_executed = {
-			{ id = 400038, delay = 0 },
 		},
 	},
 	-- Spawn group intervals
