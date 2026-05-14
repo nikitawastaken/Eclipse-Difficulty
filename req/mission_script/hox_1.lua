@@ -34,6 +34,20 @@ local swat_harasser = {
 }
 local fbi_agent = {
 	enemy = fbi_list,
+	pre_func = function(element)
+		if Network:is_client() then
+			return
+		end
+		element:add_event_callback("spawn", function(unit)
+			local pos = unit:movement():m_pos()
+			unit:brain():set_objective({
+				type = "sniper",
+				pos = pos,
+				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
+				no_retreat = true,
+			})
+		end)
+	end,
 }
 local enabled = {
 	values = {
