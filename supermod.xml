@@ -199,6 +199,8 @@
 					</group>
 
 					<post :hook_id="civilianbrain"/>
+					<post :hook_id="civiliandamage"/>
+					<post :hook_id="huskciviliandamage"/>
 				</group>
 
 				<post :hook_id="environment/environmentfire"/>
@@ -335,6 +337,9 @@
 
 		<!-- Replace vanilla One Down modifier icon -->
 		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
+		
+		<!-- Replace vanilla "Pagers left" icon -->
+		<file name="guis/textures/pd2/pagers_used.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>

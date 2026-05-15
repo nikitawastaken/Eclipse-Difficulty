@@ -107,6 +107,9 @@ end
 
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
+	self._stealth_strikes = 0
+	self._nr_pager_answers = 0
+	
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
@@ -1296,4 +1299,40 @@ function GroupAIStateBase:_get_closest_group(from_pos, groups)
 		end
 	end
 	return best_group, best_group_dis
+end
+
+-- Stealth Strike System
+function GroupAIStateBase:register_strike(amount, reason, is_pager)
+	self._stealth_strikes = self._stealth_strikes + amount
+	
+	if is_pager then
+		self._nr_pager_answers = self._nr_pager_answers + 1
+	end
+	
+	local strike_reason = reason or "cop_alarm"
+	local total_amount = tweak_data.player.stealth_strikes.total_amount or 4
+	
+	if self._stealth_strikes >= total_amount then
+		self:on_police_called(strike_reason)
+	end
+	
+	local notification_string_id = "hint_stealth_strike_" .. strike_reason
+
+	managers.hud:show_hint({ text = managers.localization:text(notification_string_id) })
+end
+
+-- Returns the number of strikes that will show up in the UI
+function GroupAIStateBase:get_nr_successful_alarm_pager_bluffs() 
+	return math.floor(self._stealth_strikes)
+end
+
+-- Used to determine pager responses
+function GroupAIStateBase:_chk_nr_pagers()
+	local max_nr_pager_answers = math.ceil(tweak_data.player.stealth_strikes.total_amount / tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
+	
+	return self._nr_pager_answers, max_nr_pager_answers
+end
+
+function GroupAIStateBase:_chk_last_strike(amount)
+	return self._stealth_strikes + amount >= tweak_data.player.stealth_strikes.total_amount 
 end

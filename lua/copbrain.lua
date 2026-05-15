@@ -234,6 +234,153 @@ function CopBrain:convert_to_criminal(mastermind_criminal)
 	self._unit:sound():say("cn1", true, nil)
 end
 
+Hooks:OverrideFunction(CopBrain, "on_alarm_pager_interaction", function(self, status, player)
+	if not managers.groupai:state():whisper_mode() then
+		return
+	end
+
+	local is_dead = self._unit:character_damage():dead()
+	local pager_data = self._alarm_pager_data
+
+	if not pager_data then
+		return
+	end
+
+	if status == "started" then
+		self._unit:sound():stop()
+		self._unit:interaction():set_outline_flash_state(nil, true)
+
+		if pager_data.pager_clbk_id then
+			managers.enemy:remove_delayed_clbk(pager_data.pager_clbk_id)
+
+			pager_data.pager_clbk_id = nil
+		end
+	elseif status == "complete" then
+		local nr_previous_bluffs = managers.groupai:state():get_nr_successful_alarm_pager_bluffs()
+		local has_upgrade = nil
+
+		if player:base().is_local_player then
+			has_upgrade = managers.player:has_category_upgrade("player", "corpse_alarm_pager_bluff")
+		else
+			has_upgrade = player:base():upgrade_value("player", "corpse_alarm_pager_bluff")
+		end
+		
+		local sounded_alarm = managers.groupai:state():_chk_last_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
+
+		self._unit:sound():stop()
+
+		managers.groupai:state():register_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered, "alarm_pager_answered", true)
+	
+		local nr_pagers, max_nr_pagers = managers.groupai:state():_chk_nr_pagers()
+		local is_last_pager = max_nr_pagers - nr_pagers == 1
+		local cue_index = is_last_pager and 4 or 1
+
+		if not sounded_alarm then
+			if is_dead then
+				self._unit:sound():corpse_play(self:_get_radio_id("dsp_radio_fooled_" .. tostring(cue_index)), nil, true)
+			else
+				self._unit:sound():play(self:_get_radio_id("dsp_radio_fooled_" .. tostring(cue_index)), nil, true)
+			end
+		else
+			if is_dead then
+				self._unit:sound():corpse_play(self:_get_radio_id("dsp_radio_alarm_1"), nil, true)
+			else
+				self._unit:sound():play(self:_get_radio_id("dsp_radio_alarm_1"), nil, true)
+			end
+		end
+			
+		self._unit:interaction():set_active(false, true)
+
+		self:end_alarm_pager()
+		managers.mission:call_global_event("player_answer_pager")
+
+		if not self:_chk_enable_bodybag_interaction() then
+			self._unit:interaction():set_active(false, true)
+		end
+	elseif status == "interrupted" then
+		managers.groupai:state():register_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_hang_up, "alarm_pager_hang_up")
+		self._unit:interaction():set_active(false, true)
+		self._unit:sound():stop()
+
+		if is_dead then
+			self._unit:sound():corpse_play(self:_get_radio_id("dsp_radio_alarm_1"), nil, true)
+		else
+			self._unit:sound():play(self:_get_radio_id("dsp_radio_alarm_1"), nil, true)
+		end
+
+		self:end_alarm_pager()
+	end
+end)
+
+Hooks:OverrideFunction(CopBrain, "clbk_alarm_pager", function(self, ignore_this, data)
+	local pager_data = self._alarm_pager_data
+	local clbk_id = pager_data.pager_clbk_id
+	pager_data.pager_clbk_id = nil
+
+	if not managers.groupai:state():whisper_mode() then
+		self:end_alarm_pager()
+
+		return
+	end
+
+	if pager_data.nr_calls_made == 0 then
+		if managers.groupai:state():is_ecm_jammer_active("pager") then
+			self:end_alarm_pager()
+			self:begin_alarm_pager(true)
+
+			return
+		end
+
+		self._unit:sound():stop()
+
+		if self._unit:character_damage():dead() then
+			self._unit:sound():corpse_play(self:_get_radio_id("dsp_radio_query_1"), nil, true)
+		else
+			self._unit:sound():play(self:_get_radio_id("dsp_radio_query_1"), nil, true)
+		end
+
+		self._unit:interaction():set_tweak_data("corpse_alarm_pager")
+		self._unit:interaction():set_active(true, true)
+	elseif pager_data.nr_calls_made < pager_data.total_nr_calls then
+		self._unit:sound():stop()
+
+		if self._unit:character_damage():dead() then
+			self._unit:sound():corpse_play(self:_get_radio_id("dsp_radio_reminder_1"), nil, true)
+		else
+			self._unit:sound():play(self:_get_radio_id("dsp_radio_reminder_1"), nil, true)
+		end
+	elseif pager_data.nr_calls_made == pager_data.total_nr_calls then
+		self._unit:interaction():set_active(false, true)
+		managers.groupai:state():register_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_not_answered, "alarm_pager_not_answered")
+		self._unit:sound():stop()
+
+		local narrator_prefix = tweak_data.levels:get_narrator_prefix()
+		local sound_event = narrator_prefix .. "_alm_any_any"
+
+		if self._unit:character_damage():dead() then
+			self._unit:sound():corpse_play(sound_event, nil, true)
+		else
+			self._unit:sound():play(sound_event, nil, true)
+		end
+
+		self:end_alarm_pager()
+	end
+
+	if pager_data.nr_calls_made == pager_data.total_nr_calls - 1 then
+		self._unit:interaction():set_outline_flash_state(true, true)
+	end
+
+	pager_data.nr_calls_made = pager_data.nr_calls_made + 1
+
+	if pager_data.nr_calls_made <= pager_data.total_nr_calls then
+		local duration_settings = tweak_data.player.alarm_pager.call_duration[math.min(#tweak_data.player.alarm_pager.call_duration, pager_data.nr_calls_made)]
+		local call_delay = math.lerp(duration_settings[1], duration_settings[2], math.random())
+		self._alarm_pager_data.pager_clbk_id = clbk_id
+
+		managers.enemy:add_delayed_clbk(self._alarm_pager_data.pager_clbk_id, callback(self, self, "clbk_alarm_pager"), TimerManager:game():time() + call_delay)
+	end
+end)
+
 -- If Iter is installed and streamlined path option is used, don't make any further changes
 if Iter and Iter.settings and Iter.settings.streamline_path then
 	return
