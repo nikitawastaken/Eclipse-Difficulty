@@ -38,7 +38,7 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
 
 return {
 	[100720] = {

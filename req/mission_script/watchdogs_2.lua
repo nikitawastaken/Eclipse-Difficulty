@@ -7,11 +7,6 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local taser = scripted_enemy.taser
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_2
 local disabled = {
 	values = {
 		enabled = false,
@@ -22,14 +17,42 @@ local enabled = {
 		enabled = true,
 	},
 }
+
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_1,
+}
+
+local blockade_enemy1 = {
+	enemy = is_eclipse and random_elite_dozers or random_dozers,
+}
+local blockade_enemy2 = {
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+}
+local heli_enemy1 = {
+	enemy = scripted_enemy.taser,
+}
+local heli_enemy2 = {
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
+	values = {
+		trigger_times = 0,
+	},
+}
+
 local standard_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local ship_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -41,21 +64,7 @@ local no_participate_to_group_ai = {
 		participate_to_group_ai = false,
 	},
 }
-local blockade_enemy1 = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
-}
-local blockade_enemy2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
-}
-local heli_enemy1 = {
-	enemy = taser,
-}
-local heli_enemy2 = {
-	enemy = is_eclipse_pro and elite_bulldozer or bulldozer,
-	values = {
-		trigger_times = 0,
-	},
-}
+
 local heli_chance = (normal and 30 or hard and 40 or 60) * (is_pro_job and 1.5 or 0)
 local ship_sniper_delay = 30
 local ship_sniper_delay_rand = overkill_and_above and 60 or 90
@@ -122,7 +131,61 @@ else
 	john_dialogue_15 = "Play_bot_a06"
 end
 
+local invisible_walls_large_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
+local invisible_walls_large_rot = Rotation(90, 0, 0)
+local invisible_walls_small_ids = Idstring("units/dev_tools/level_tools/dev_collision_1m_2_bag")
+local invisible_walls_small_rot = Rotation(-90, 0, 0)
+
+local invisible_walls_large = {}
+for i = 0, 3 do
+	table.insert(invisible_walls_large, {
+		name = invisible_walls_large_ids,
+		pos = Vector3(-4370, -480 + (i * 480), 0),
+		rot = invisible_walls_large_rot,
+		visible = false,
+	})
+end
+
+local invisible_walls_small = {
+	{
+		name = invisible_walls_large_ids,
+		pos = Vector3(2460, 0, 0),
+		rot = invisible_walls_large_rot,
+		visible = false,
+	},
+	{
+		name = invisible_walls_small_ids,
+		pos = Vector3(3800, 980, 370),
+		rot = invisible_walls_small_rot,
+		visible = false,
+	},
+	{
+		name = invisible_walls_small_ids,
+		pos = Vector3(2900, 980, -20),
+		rot = invisible_walls_small_rot,
+		visible = false,
+	},
+	{
+		name = invisible_walls_small_ids,
+		pos = Vector3(2900, -1000, -20),
+		rot = invisible_walls_small_rot,
+		visible = false,
+	},
+	{
+		name = invisible_walls_small_ids,
+		pos = Vector3(2700, -570, 370),
+		rot = invisible_walls_small_rot,
+		visible = false,
+	},
+}
+
 return {
+	[100324] = { -- escapeHere
+		ponr = {
+			length = 240,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
 	-- 10% of pre beta boat driver taking it's place
 	-- lights are on
 	[101233] = {
@@ -218,29 +281,45 @@ return {
 	[100511] = {
 		reinforce = {
 			{
-				name = "warehouse01",
-				force = 2,
-				position = Vector3(875, -1175, 0),
-			},
-			{
-				name = "warehouse02",
-				force = 2,
-				position = Vector3(370, 1340, 0),
-			},
-			{
-				name = "warehouse03",
-				force = 2,
-				position = Vector3(1525, 2700, 0),
-			},
-			{
-				name = "warehouse04",
-				force = 2,
-				position = Vector3(4150, -1300, 0),
-			},
-			{
 				name = "gate",
 				force = 4,
 				position = Vector3(-2500, 1500, 0),
+			},
+			{
+				name = "besiege_init01",
+				force = 2,
+				position = Vector3(-800, -1500, 0),
+			},
+			{
+				name = "besiege_init02",
+				force = 2,
+				position = Vector3(-50, 2800, 0),
+			},
+		},
+	},
+	[103636] = { -- end_assault
+		reinforce = {
+			{ name = "besiege_init01" },
+			{ name = "besiege_init02" },
+			{
+				name = "besiege01",
+				force = 2,
+				position = Vector3(400, 1200, 0),
+			},
+			{
+				name = "besiege02",
+				force = 2,
+				position = Vector3(900, -800, 0),
+			},
+			{
+				name = "besiege03",
+				force = 2,
+				position = Vector3(2000, 1200, 0),
+			},
+			{
+				name = "besiege04",
+				force = 2,
+				position = Vector3(2400, -1600, 0),
 			},
 		},
 	},
@@ -301,6 +380,10 @@ return {
 			chance = 25,
 		},
 	},
+	-- Add invisible walls to the warehouse if needed
+	[104004] = {
+		spawn = invisible_walls_small, -- Add invisible walls to the warehouse
+	},
 	-- the warehouse can either be closed or open on all difficulties
 	[104003] = {
 		values = {
@@ -321,9 +404,6 @@ return {
 			{ id = 104000, remove = true },
 		},
 	},
-	-- disable some sketchy cheat sapwns
-	[101007] = disabled,
-	[100844] = disabled,
 	-- make early spawns not participate to group AI
 	[100761] = no_participate_to_group_ai,
 	[100765] = no_participate_to_group_ai,

@@ -1,5 +1,5 @@
 {
-	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.\nThis ammo type is harder to find.",
+	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.",
 	"bm_wp_upg_a_explosive_desc": "One deadly high explosive slug.\nIncreased precision.\nThis ammo type is harder to find.",
 	"bm_wp_upg_a_piercing_desc": "Pointed steel projectiles.\nOne shell contains 12 flechettes.\nArmor piercing.",
 	"bm_wp_upg_a_slug_desc": "One heavy lead slug.\nHeavily increased precision.\nArmor, shield, enemy, wall piercing.",
@@ -34,6 +34,7 @@
 	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
+	"bm_menu_armor_regen": "Armor Regen",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
@@ -47,6 +48,9 @@
 
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
+	"bm_grenade_sticky_grenade": "Impact Grenade",
+	"bm_grenade_sticky_grenade_desc": "A grenade that explode on impact with the surfaces or enemies.",
+	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic gas that melt enemies lungs. Also will destroy your and teammates respiratory systems too if you decide to stay inside the cloud without mask protection.",
 
 	"hud_stats_pagers_used": "STRIKES USED",
 	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
@@ -66,6 +70,15 @@
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
 
+	"debug_interact_gage_assignment_take": "PRESS $BTN_INTERACT TO PICK UP THE PACKAGE",
+
+	"menu_pp_asset_delay_police_10": "SILENT ALARM 20S. DELAY",
+	"menu_pp_asset_delay_police_10_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 20 seconds.",
+	"menu_pp_asset_delay_police_20": "SILENT ALARM 30S. DELAY",
+	"menu_pp_asset_delay_police_20_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 30 seconds.",
+	"menu_pp_asset_delay_police_30": "SILENT ALARM 40S. DELAY",
+	"menu_pp_asset_delay_police_30_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 40 seconds.",
+	
 	"hud_assault_america_assault": "Police Assault In Progress",
 	"hud_assault_russia_assault": "Mercenary Assault In Progress",
 	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",
@@ -158,6 +171,8 @@
 	"ene_bulldozer_3": "Skulldozer",
 	"ene_bulldozer_minigun": "Mauldozer",
 	"ene_bulldozer_minigun_classic": "Mauldozer",
+	"ene_bulldozer_medic": "Medicdozer",
+	"ene_bulldozer_medic_classic": "Medicdozer",
 	"ene_bulldozer_5": "Headless Killdozer",
 	"ene_sniper_1": "SWAT Sniper",
 	"ene_sniper_2": "FBI Sniper",
@@ -333,30 +348,34 @@
 	"bot_watchdogs_new_stage2_14_any_02": "Copy that, coming in at Dock 9!",
 	"bot_watchdogs_new_stage2_14_any_03": "Copy, coming in at Dock 9!",
 
+	"mad_txt_005": "\tКОМНАТА МЕДОСМОТРА",
+	"mad_txt_006": "ОПЕРАЦИОННАЯ",
 
 	"menu_mutators_achievement_disabled": "",
 
-	"menu_cs_generating_rewards" :	"Generating Loot...",
-	"menu_cs_loot_drops_remaining" :	"Remaining Loot Drops: $loot;",
-	"menu_cs_loot_drops_not_shown" :	"Plus $remaining; more loot drops!",
-	"menu_bet_offshore" :	"Offshore",
-	"menu_bet_cash" :	"Cash",
-	"menu_bet_coins" :	"Coins",
-	"menu_rolls_item" :	"Rolls",
-	"menu_bet_item" :	"Bet",
-	"menu_casino_stat_cash" :	"Spending Cash",
-	"menu_casino_stat_xp" :	"Experience",
-	"menu_sell_items" :	"Items",
-	"menu_disposal_item" :	"Pawn",
-	"menu_sell_payout_item" :	"Items to sell amount",
-	"menu_casino_sell_prefer_title" :	"Preferred item to sell",
-	"menu_casino_total_sell" :	"Overall Items Value: $casino_bet;",
-	"menu_generating_sells" :	"Selling Loot...",
-	"menu_loot_drops_selling" :	"Remaining Loot to be sold: $loot;",
-	"menu_loot_sells_not_shown" :	"Plus $remaining; more loot has been sold.",
-	"menu_cn_casino_pay_cash" :	"A fee will be deducted from your spending cash when you enter the casino.\n\nCost: $contract_fee;\nSpending cash: $offshore;",
-	"menu_cn_casino_pay_coins" :	"A fee will be deducted from your continental coins when you enter the casino.\n\nCost: $contract_fee;\nContinental coins: $offshore;",
-	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;"
+	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
 
-	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
+	"menu_cs_generating_rewards": "Generating Loot...",
+	"menu_cs_loot_drops_remaining": "Remaining Loot Drops: $loot;",
+	"menu_cs_loot_drops_not_shown": "Plus $remaining; more loot drops!",
+	"menu_bet_offshore": "Offshore",
+	"menu_bet_cash": "Cash",
+	"menu_bet_coins": "Coins",
+	"menu_rolls_item": "Rolls",
+	"menu_bet_item": "Bet",
+	"menu_casino_stat_cash": "Spending Cash",
+	"menu_casino_stat_xp": "Experience",
+	"menu_sell_items": "Items",
+	"menu_disposal_item": "Pawn",
+	"menu_sell_payout_item": "Items to sell amount",
+	"menu_casino_sell_prefer_title": "Preferred item to sell",
+	"menu_casino_total_sell": "Overall Items Value: $casino_bet;",
+	"menu_generating_sells": "Selling Loot...",
+	"menu_loot_drops_selling": "Remaining Loot to be sold: $loot;",
+	"menu_loot_sells_not_shown": "Plus $remaining; more loot has been sold.",
+	"menu_cn_casino_pay_cash": "A fee will be deducted from your spending cash when you enter the casino.\n\nCost: $contract_fee;\nSpending cash: $offshore;",
+	"menu_cn_casino_pay_coins": "A fee will be deducted from your continental coins when you enter the casino.\n\nCost: $contract_fee;\nContinental coins: $offshore;",
+	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;",
+	
+	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon",
 }

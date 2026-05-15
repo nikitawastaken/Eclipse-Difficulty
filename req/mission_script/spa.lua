@@ -53,8 +53,8 @@ return {
 		},
 	},
 	-- add scripted diff increases
-	[102255] = difficulty_add_25, -- obj_complete_004
-	[102137] = difficulty_add_25, -- swap_spawns_to_the_ground
+	--	[102255] = difficulty_add_25, -- obj_complete_004
+	--	[102137] = difficulty_add_25, -- swap_spawns_to_the_ground
 	-- tweak van arrival timer
 	[100483] = {
 		on_executed = {

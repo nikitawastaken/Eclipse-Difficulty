@@ -13,13 +13,13 @@ local humvee_crash_event_chance = {
 }
 local main_window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local oval_window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -28,16 +28,16 @@ local peoc_side_door_spawn = {
 		interval = 30,
 	},
 }
-local peoc_upper_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local escape_rappel_spawn = {
 	values = {
 		interval = 30,
 	},
+}
+local peoc_upper_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- Combine some navigation areas
@@ -52,7 +52,7 @@ return {
 	[100022] = {
 		ponr = { -- Alarm
 			length = 2100,
-			length_balance_mul = { 1.75, 1.25, 1.125, 1 },
+			length_balance_mul = { 1.75, 1.375, 1.125, 1 },
 		},
 	},
 	-- Add reinforce at the escape

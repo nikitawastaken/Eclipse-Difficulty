@@ -10,10 +10,9 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local sniper_amount = normal and 2 or hard and 3 or 4
-local sniper_amount_random = normal and 3 or hard and 4 or 5
 local dozer_random_amount = overkill_and_above and 2 or 1
 local elite_snipers_respawn = (is_eclipse and 180 or 240) - (is_pro_job and 30 or 0)
-local dozers_respawn = (is_eclipse and 240 or 300) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
+local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -438,7 +437,6 @@ local optsdozerspawned_8 = {
 }
 local spawn_random_snipers = {
 	amount = sniper_amount,
-	amount_random = sniper_amount_random,
 	trigger_times = 1,
 	on_executed = {
 		{ id = 400000, delay = 0 },

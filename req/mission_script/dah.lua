@@ -48,7 +48,7 @@ local roof_close_spawn = {
 local vault_spawn = {
 	values = {
 		interval = 45,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -123,9 +123,9 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
-	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
-	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
+	--	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
+	--	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
+	--	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,

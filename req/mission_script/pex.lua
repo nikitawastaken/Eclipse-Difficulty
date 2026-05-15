@@ -49,7 +49,7 @@ local sniper_amount = {
 }
 local roof_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -65,21 +65,7 @@ local cloaker_spawn = {
 local difficulty_add_20 = {
 	difficulty_add = 0.20,
 }
-local enable_room_reinforce01 = {
-	on_executed = {
-		{ id = 400040, delay = 0 },
-	},
-}
-local enable_room_reinforce02 = {
-	on_executed = {
-		{ id = 400041, delay = 0 },
-	},
-}
-local enable_room_reinforce03 = {
-	on_executed = {
-		{ id = 400042, delay = 0 },
-	},
-}
+
 return {
 	[102964] = {
 		ponr = {
@@ -132,10 +118,21 @@ return {
 	[104099] = disabled, -- point_area_min_police_force_armory_large
 	[104100] = disabled, -- point_area_min_police_force_armory_large
 	[104101] = disabled, -- point_area_min_police_force_armory_medium
+	-- Fix two of three Hajrudin look-at triggers poking out of the room
+	[102478] = {
+		values = {
+			position = Vector3(-3375, 4321, 125),
+		},
+	},
+	[103881] = {
+		values = {
+			position = Vector3(-1725, 3498, 125),
+		},
+	},
 	-- Add scripted difficulty increases
-	[101755] = difficulty_add_20, -- fire_is_done
-	[102193] = difficulty_add_20, -- main_door_opens
-	[101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
+	-- [101755] = difficulty_add_20, -- fire_is_done
+	-- [101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
+	-- [101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
 	-- Only activate certain preferreds after the first assault is over
 	[100021] = { -- completed_obj_fire
 		on_executed = {

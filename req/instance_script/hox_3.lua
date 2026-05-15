@@ -1,27 +1,26 @@
 ---@module Hoxton Revenge
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local fbi_ready_team = scripted_enemy.ready_team_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker = scripted_enemy.cloaker
-local medic = scripted_enemy.medic_1
-local taser = scripted_enemy.taser_1
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1, [elite_skull_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local specials_list = {
+	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[scripted_enemy.medic_1] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[scripted_enemy.bulldozer_1] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[scripted_enemy.bulldozer_2] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[scripted_enemy.elite_bulldozer_1] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[scripted_enemy.elite_bulldozer_2] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+}
+local specials = specials_list
 local law = so_access.law
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local patches = {
 	heli = {
-		fbi_ready_teams = table.set(100003, 100000),
-		specials = table.set(100002, 100004),
+		fbi_ready_teams = table.set(100003, 100004),
+		specials = table.set(100000, 100002),
 		hunt_so = table.set(100011),
 		filters_disable = table.set(100042, 100075, 100033),
 		filters_normal_above = table.set(100041),
@@ -36,7 +35,7 @@ return {
 			local id = element.id
 
 			if heli_fbi.fbi_ready_teams[id] then
-				element.values.enemy = fbi_ready_team
+				element.values.enemy = scripted_enemy.ready_team_1
 			elseif heli_fbi.specials[id] then
 				element.values.enemy_table = specials
 			elseif heli_fbi.hunt_so[id] then

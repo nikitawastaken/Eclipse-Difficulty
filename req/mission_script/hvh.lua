@@ -10,18 +10,22 @@ local standard_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
+local scripted_diff_add = {
+	difficulty_addends = {
+		amount = 0.25,
+		time = { 30, 45 },
+		delay = 0,
+	},
+}
+
 return {
 	-- instantly enter FFO when pressing the button on Pro Jobs
 	[100129] = {
 		set_ponr_state = true,
 	},
 	-- Increase difficulty when a safe is breached or you fail to open the safe
-	[101127] = {
-		difficulty_add = 0.2,
-	},
-	[100244] = {
-		difficulty_add = 0.2,
-	},
+	[101127] = scripted_diff_add,
+	[100244] = scripted_diff_add,
 	-- Spawn group intervals
 	-- This heist is microscopic.
 	[100651] = standard_spawn,

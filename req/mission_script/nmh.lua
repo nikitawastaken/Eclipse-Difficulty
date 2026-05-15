@@ -54,12 +54,19 @@ return {
 	-- begin FFO countdown when doing blood samples objective
 	[103450] = {
 		ponr = {
-			length = 900,
+			length = 810,
 			length_balance_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
 		},
 		-- begin dozers spam
 		on_executed = {
 			{ id = 400063, delay = 0 },
+		},
+		values = {
+			callback = function() -- Somebody call the National Guard!
+				if not normal then
+					managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
+				end
+			end,
 		},
 	},
 	-- add sniper access to SO navlinks
@@ -175,9 +182,9 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Add scripted difficulty increases
-	[102326] = difficulty_add_20, -- ICUsawDone
-	[102846] = difficulty_add_20, -- EnableValidationMachines
-	[102874] = difficulty_add_20, -- start_wait_for_elevator
+	--	[102326] = difficulty_add_20, -- ICUsawDone
+	--	[102846] = difficulty_add_20, -- EnableValidationMachines
+	--	[102874] = difficulty_add_20, -- start_wait_for_elevator
 	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,

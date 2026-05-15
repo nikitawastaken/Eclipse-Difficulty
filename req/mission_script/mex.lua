@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 -- add female bikers to spawn roster
 local biker_enemy = {
@@ -17,16 +17,10 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-}
 local window_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -37,10 +31,20 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		amount = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 return {
+	[100109] = { -- police
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 1,
+		},
+	},
+	[102226] = { -- mexico_preferreds
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
+		},
+	},
 	[100020] = {
 		ponr = {
 			length = 1200,
@@ -93,17 +97,6 @@ return {
 	[102881] = bags_required,
 	[102893] = bags_required,
 	-- Spawn group intervals
-	[100128] = standard_spawn, -- American side
-	[100131] = standard_spawn,
-	[100132] = standard_spawn,
-	[100694] = standard_spawn, -- Mexican side
-	[102227] = standard_spawn,
-	[102228] = standard_spawn,
-	[102254] = standard_spawn,
-	[102255] = standard_spawn,
-	[102423] = standard_spawn,
-	[102424] = standard_spawn,
-	[102442] = standard_spawn,
 	[103235] = window_spawn,
 	[103048] = window_spawn,
 	[103067] = window_spawn,

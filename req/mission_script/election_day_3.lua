@@ -3,57 +3,65 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local cop_4 = scripted_enemy.cop_4
-local swat_1 = scripted_enemy.swat_1
-local swat_2 = scripted_enemy.swat_2
-local heavy_1 = scripted_enemy.heavy_swat_1
-local heavy_2 = scripted_enemy.heavy_swat_2
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
-local outside_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
-local outside_cop = { enemy = outside_cop_enemy }
-local inside_cop_enemy = { [cop_3] = 2, [cop_2] = 1, [cop_1] = 1 }
-local inside_cop = { enemy = inside_cop_enemy }
+local outside_cop = {
+	enemy = {
+		[scripted_enemy.cop_1] = 3,
+		[scripted_enemy.cop_2] = 1,
+		[scripted_enemy.cop_4] = 1,
+	},
+}
+local inside_cop = {
+	enemy = {
+		[scripted_enemy.cop_3] = 2,
+		[scripted_enemy.cop_2] = 1,
+		[scripted_enemy.cop_1] = 1,
+	},
+}
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_1,
 }
 local elevator_dozer = { enemy = is_eclipse_pro and random_elite_dozers or random_dozers }
-local low_harasser_enemy = {
-	[cop_1] = 4,
-	[cop_3] = 2,
-	[cop_2] = 1,
+local low_harasser = {
+	enemy = {
+		[scripted_enemy.cop_1] = 3,
+		[scripted_enemy.cop_3] = 2,
+		[scripted_enemy.cop_2] = 1,
+	},
 }
-local low_harasser = { enemy = low_harasser_enemy }
-local med_harasser_enemy = swat_1
-local med_harasser = { enemy = med_harasser_enemy }
-local high_harasser_enemy = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local high_harasser = { enemy = high_harasser_enemy }
-local low_escape_enemy = {
-	[swat_1] = 3,
-	[cop_3] = 1,
-	[cop_4] = 1,
+local med_harasser = { enemy = scripted_enemy.swat_1 }
+local high_harasser = { enemy = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1 }
+local low_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 4,
+		[scripted_enemy.swat_2] = 2,
+		[scripted_enemy.cop_3] = 3,
+		[scripted_enemy.cop_4] = 3,
+	},
 }
-local low_escape = { enemy = low_escape_enemy }
-local med_escape_enemy = { Idstring(swat_1), Idstring(swat_2) }
-local med_escape = { enemy = med_escape_enemy }
-local high_escape_enemy = {
-	[swat_1] = 2,
-	[swat_2] = 1,
-	[heavy_1] = 4,
-	[heavy_2] = 2,
+local med_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 3,
+		[scripted_enemy.swat_2] = 2,
+	},
 }
-local high_escape = { enemy = high_escape_enemy }
+local high_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 3,
+		[scripted_enemy.swat_2] = 2,
+		[scripted_enemy.heavy_swat_1] = 4,
+		[scripted_enemy.heavy_swat_2] = 3,
+	},
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local atrium_spawn = {
 	values = {
 		interval = 10,
@@ -62,7 +70,6 @@ local atrium_spawn = {
 local window_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -74,8 +81,8 @@ local cloaker_spawn = {
 return {
 	[104782] = {
 		ponr = {
-			length = 420,
-			length_balance_mul = { 1.5, 1.25, 1, 1 },
+			length = 640,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 	},
 	-- Combine some navigation areas
@@ -90,26 +97,38 @@ return {
 			{ 32, 120 },
 		},
 	},
-	-- New reinforce
-	[104306] = {
+	-- Add new reinforce
+	[102753] = { -- enable_preferrerds
 		reinforce = {
 			{
 				name = "atrium01",
-				force = 2,
-				position = Vector3(-450, 150, 0),
+				force = 3,
+				position = Vector3(-450, 1200, 0),
 			},
 			{
 				name = "atrium02",
-				force = 2,
+				force = 3,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
 				name = "atrium03",
-				force = 2,
-				position = Vector3(-450, -3350, 0),
+				force = 3,
+				position = Vector3(-450, -4500, 0),
 			},
 		},
 	},
+	[103472] = { -- open_shutters
+		reinforce = {
+			{
+				name = "reception",
+				force = 2,
+				position = Vector3(500, -2750, 0),
+			},
+		},
+	},
+	-- Disable drill reinforce
+	[100676] = disabled,
+	[101138] = disabled,
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
 	[100082] = {
 		on_executed = {
@@ -129,7 +148,6 @@ return {
 	-- More or less a port of the original intervals with some twists as per usual.
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
-	[104838] = atrium_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
 	[102792] = cloaker_spawn,

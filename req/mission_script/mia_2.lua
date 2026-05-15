@@ -2,52 +2,39 @@ local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local preferred = Eclipse.preferred
-local cloaker = scripted_enemy.cloaker
-local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
-local cloaker = scripted_enemy.cloaker
-local medic = scripted_enemy.medic_1
-local taser = scripted_enemy.taser_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
-local swats = { [swat_1] = 1, [swat_2] = 1 }
-local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 1, [cloaker] = 2 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local random_special = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
-local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+local specials_list = {
+	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 3, 2, 3 }),
+	[scripted_enemy.medic_1] = get_difficulty_group_specific_value({ 0, 1, 2 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 1, 2, 3 }),
 }
-local random_normal_and_elite_dozers = {
-	green_bulldozer,
-	black_bulldozer,
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+local random_special = specials_list
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 
-local bulldozer = is_eclipse_pro and random_elite_dozers or is_eclipse and random_normal_and_elite_dozers or random_dozers
 local bulldozer_enemy = {
-	enemy = bulldozer,
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
 }
 local cloaker_enemy = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 }
-local swat_enemy = {
-	enemy = swats,
+local swats = {
+	enemy = {
+		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1,
+		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 1,
+	},
 }
 local shield_enemy = {
-	enemy = shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 }
 local special_enemy = {
 	enemy = random_special,
@@ -62,21 +49,44 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local roof_spawn = {
+local apartment_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
+
 return {
+	[100043] = { -- player_spawned
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 1,
+		},
+	},
+	[100512] = { -- add_spawn (apartment spawns)
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
+		},
+	},
 	-- Boss spawn
 	[100154] = {
-		difficulty_max = 0.1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
 	},
 	-- Boss dead
 	[100153] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		ponr = { -- FFO
+			length = 60,
+			length_balance_mul = { 2, 2, 1, 1 },
+		},
+		forced_difficulty = false, -- Disable forced diff
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
@@ -130,11 +140,12 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
-	[100629] = roof_spawn,
-	[100627] = roof_spawn,
-	[100629] = roof_spawn,
-	[100666] = roof_spawn,
-	[101034] = roof_spawn,
-	[101530] = roof_spawn,
-	[101534] = roof_spawn,
+	[101084] = apartment_spawn,
+	[101085] = apartment_spawn,
+	[100627] = apartment_spawn,
+	[100629] = apartment_spawn,
+	[100666] = apartment_spawn,
+	[101034] = apartment_spawn,
+	[101530] = apartment_spawn,
+	[101534] = apartment_spawn,
 }

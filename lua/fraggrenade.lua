@@ -99,13 +99,13 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		damage = self._damage,
 		ignore_unit = self._unit,
 		alert_radius = self._alert_radius,
-		user = self:thrower_unit() or self._unit,
+		user = self:thrower_unit() or self._thrower_unit,
 		owner = self._unit,
 	})
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360
-		local player_peer_id = managers.network:session():peer_by_unit(self:thrower_unit()):id()
+		local player_peer_id = managers.network:session():peer_by_unit(self._thrower_unit):id()
 		local dont_apply_player_velocity = true
 
 		for i = 0, 3 do
@@ -129,6 +129,7 @@ ClusterGrenade = ClusterGrenade or class(FragGrenade)
 
 function ClusterGrenade:_setup_from_tweak_data()
 	local grenade_entry = self._tweak_projectile_entry or "cluster"
+	self._tweak_projectile_entry = grenade_entry
 	local tweak_entry = tweak_data.projectiles[grenade_entry]
 	self._init_timer = tweak_entry.init_timer or 2.5
 	self._mass_look_up_modifier = tweak_entry.mass_look_up_modifier

@@ -19,7 +19,6 @@ GroupAITweakData.group_ai_presets = {
 		cs_bulldozer = 0.75,
 		fbi_bulldozer = 0.75,
 		elite_bulldozer = 0.75,
-		elite_bulldozer_shield = 0.75,
 
 		cs_defend_init = { 2, 1.5, 1 },
 		fbi_defend_init = { 1.5, 1, 1 },
@@ -56,10 +55,6 @@ GroupAITweakData.group_ai_presets = {
 		cs_stealth_init = { 1, 0.5, 0 },
 		fbi_stealth_init = { 1, 0.5, 0 },
 
-		cs_stealth_heavy = 2.5,
-		fbi_stealth_heavy = 2.5,
-	},
-	["street"] = {
 		cs_stealth_heavy = 2.5,
 		fbi_stealth_heavy = 2.5,
 	},
@@ -112,6 +107,8 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function(self, tweak_da
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
 	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
+
+	self.ai_tick_rate = 1 / 60
 end)
 
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
@@ -1653,19 +1650,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"deathguard",
 		},
 		taser_snk = {
-			"shield_cover",
 			"murder",
 			"flank",
 			"flash_grenade",
 		},
 		taser_agg = {
-			"shield_cover",
 			"murder",
 			"charge",
 			"smoke_grenade",
 		},
 		taser_spt = {
-			"shield",
 			"ranged_fire",
 			"murder",
 		},
@@ -1741,33 +1735,33 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"cloaker",
 		},
 		light_special = {
-			["medic_1"] = 3,
-			["medic_2"] = 2,
-			["cloaker"] = 2,
-		},
-		heavy_special = {
 			["medic_1"] = 4,
-			["medic_2"] = 3,
-			["taser_1"] = 3,
-			["taser_2"] = 2,
-		},
-		shield_special = {
-			["medic_1"] = 5,
-			["medic_2"] = 4,
-			["cloaker"] = 4,
-			["taser_1"] = 4,
-			["taser_2"] = 3,
-		},
-		taser_special = {
-			["medic_1"] = 3,
 			["cloaker"] = 3,
 			["medic_2"] = 2,
 		},
-		bulldozer_special = {
-			["medic_1"] = 3,
-			["taser_1"] = 3,
-			["medic_2"] = 2,
+		heavy_special = {
+			["medic_1"] = 5,
+			["taser_1"] = 4,
+			["medic_2"] = 3,
 			["taser_2"] = 2,
+		},
+		shield_special = {
+			["medic_1"] = 6,
+			["cloaker"] = 5,
+			["taser_1"] = 5,
+			["medic_2"] = 4,
+			["taser_2"] = 3,
+		},
+		taser_special = {
+			["cloaker"] = 4,
+			["medic_1"] = 3,
+			["medic_2"] = 2,
+		},
+		bulldozer_special = {
+			["taser_1"] = 5,
+			["medic_1"] = 4,
+			["taser_2"] = 3,
+			["medic_2"] = 2,
 		},
 	}
 
@@ -1972,7 +1966,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_shield = {
-		amount = { 3, 3 },
+		drama_category = "shield",
+		amount = { 4, 4 },
 		spawn = {
 			{
 				freq = 1,
@@ -1990,12 +1985,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					4 / self.group_difficulty_scale_lin,
 					2 / self.group_difficulty_scale_lin,
 				}, heavy_response and 0.25 or 1),
+				amount_max = 3,
 				rank = 2,
 				unit = "cs_swat",
 				tactics = self._tactics.shield_spt,
 			},
 			{
 				freq = 1,
+				amount_max = 3,
 				rank = 2,
 				unit = "cs_heavy",
 				tactics = self._tactics.shield_spt,
@@ -2028,6 +2025,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 1, 2 }),
 			[2] = 3,
@@ -2054,6 +2052,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[3] = get_difficulty_specific_value({ 2, 3 }),
 			[2] = 4,
@@ -2224,6 +2223,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 80,
 					self.group_difficulty_scale / 40,
 				},
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "taser",
@@ -2249,6 +2249,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				},
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "taser",
@@ -2292,6 +2293,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2343,6 +2345,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2353,7 +2356,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_shield = {
-		amount = { 4, 4 },
+		drama_category = "shield",
+		amount = { 4, 5 },
 		spawn = {
 			{
 				freq = 1,
@@ -2362,7 +2366,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.4, 0.6, 0.8, 1 },
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2377,12 +2381,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					6 / self.group_difficulty_scale_lin,
 					2 / self.group_difficulty_scale_lin,
 				}, heavy_response and 0.25 or 1),
+				amount_max = 3,
 				rank = 2,
 				unit = "fbi_swat",
 				tactics = self._tactics.shield_spt,
 			},
 			{
 				freq = 1,
+				amount_max = 3,
 				rank = 2,
 				unit = "fbi_heavy",
 				tactics = self._tactics.shield_spt,
@@ -2415,10 +2421,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2429,6 +2436,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
@@ -2461,10 +2469,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2475,6 +2484,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[3] = 5,
@@ -2507,10 +2517,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2521,6 +2532,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_cloaker = {
+		drama_category = "spooc",
 		amount_weighted = {
 			[2] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[1] = 2,
@@ -2651,6 +2663,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2702,6 +2715,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					self.group_difficulty_scale / 60,
 					self.group_difficulty_scale / 30,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2712,16 +2726,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_shield = {
-		amount = { 4, 4 },
+		drama_category = "shield",
+		amount = { 4, 5 },
 		spawn = {
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 400,
 					self.group_difficulty_scale / 180,
+					self.group_difficulty_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.4, 0.6, 0.8, 1 },
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2731,12 +2746,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 0.75,
+				amount_max = 3,
 				rank = 2,
 				unit = "elite_swat",
 				tactics = self._tactics.shield_spt,
 			},
 			{
 				freq = 0.75,
+				amount_max = 3,
 				rank = 2,
 				unit = "fbi_heavy",
 				tactics = self._tactics.shield_spt,
@@ -2745,10 +2762,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2759,6 +2777,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_taser = {
+		drama_category = "taser",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 2, 2, 2, 3, 4 }),
 			[3] = 4,
@@ -2791,10 +2810,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2805,6 +2825,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_bulldozer = {
+		drama_category = "tank",
 		amount_weighted = {
 			[4] = get_difficulty_specific_value({ 3, 3, 3, 4, 5 }),
 			[3] = 5,
@@ -2837,10 +2858,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					self.group_difficulty_scale / 80,
-					self.group_difficulty_scale / 40,
+					self.group_difficulty_scale / 90,
+					self.group_difficulty_scale / 45,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				drama_category = "supporting_special",
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2851,6 +2873,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_sniper = {
+		drama_category = "marksman",
 		amount_weighted = {
 			[2] = get_difficulty_specific_value({ 1, 1, 1, 1, 2 }),
 			[1] = 6,
@@ -2959,7 +2982,7 @@ GroupAITweakData.murky_response_heists = table.list_to_set({
 	"dinner",
 })
 GroupAITweakData.murky_response_heists_scripted = table.list_to_set({
-	"brb",
+	--	"brb",
 })
 GroupAITweakData.us_army_heists = table.list_to_set({
 	"arm_for",
@@ -2971,6 +2994,7 @@ GroupAITweakData.us_army_heists = table.list_to_set({
 GroupAITweakData.us_army_heists_scripted = table.list_to_set({
 	"roberts",
 	"peta2",
+	"nmh",
 })
 GroupAITweakData.gensec_tac_teams_heists = table.list_to_set({
 	"arm_cro",
@@ -3182,11 +3206,115 @@ function GroupAITweakData:_apply_group_ai_preset(preset)
 end
 
 -- TODO: rewrite this shit
+GroupAITweakData.difficulty_scaling_presets = {
+	-- Fast response, scales to max quite quickly
+	["timed_slow"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = { 150, 210 },
+			},
+		},
+	},
+	["timed"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = { 120, 180 },
+			},
+		},
+	},
+	["timed_fast"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 1,
+				delay = 15,
+				time = { 90, 150 },
+			},
+		},
+	},
+	-- Reaches max on assault #4's regroup (if on_enemy_weapons_hot is 0.25)
+	["regroup_slow"] = {
+		addends = {
+			on_entered_regroup = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+	},
+	-- Starts high, reaches max on assault #3's regroup
+	["regroup_aggressive"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.5,
+				delay = 45,
+				time = 120,
+			},
+			on_entered_regroup = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+	},
+	-- Randomized sustain addend meant to be used for levels with primarily scripted difficulty curves
+	["regroup_random"] = {
+		addends = {
+			on_entered_regroup = {
+				amount = { 0.125, 0.1875 },
+				delay = 0,
+				time = 45,
+			},
+		},
+	},
+	-- Reaches max on assault #3's sustain (if on_enemy_weapons_hot is 0.25, on_entered_sustain is 0.375)
+	["sustain"] = {
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+	-- Reaches max on assault #4's sustain (if on_enemy_weapons_hot is 0.25)
+	["sustain_slow"] = {
+		addends = {
+			on_entered_sustain = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+	-- Starts high, reaches max on assault #3's sustain
+	["sustain_aggressive"] = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.5,
+				delay = 45,
+				time = 120,
+			},
+			on_entered_sustain = {
+				amount = 0.25,
+				delay = 0,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
+			on_entered_sustain = true,
+		},
+	},
+}
 function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
 	self.difficulty_curve_points = level_settings.difficulty_curve_points or self.difficulty_curve_points
-	self.difficulty_step_time = level_settings.difficulty_step_time or self.difficulty_step_time
 
 	self.spawn_kill_distance = level_settings.spawn_kill_distance or self.spawn_kill_distance
 
@@ -3207,16 +3335,23 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	-- 	Utils.PrintTable(self.min_grenade_timeout)
 	-- end
 
-	if level_settings.difficulty_scaling then
-		for name, value in pairs(level_settings.difficulty_scaling) do
-			if self.difficulty_scaling[name] then
-				self.difficulty_scaling[name] = value
+	local function apply_difficulty_scaling(tbl)
+		if not tbl then
+			return
+		end
+		for key, value in pairs(tbl) do
+			if key == "steps" then
+				self.difficulty_scaling.steps = value
+			elseif self.difficulty_scaling[key] then
+				for category, data in pairs(value) do
+					self.difficulty_scaling[key][category] = data
+				end
 			end
-
-			-- Eclipse:log_console("Difficulty scaling for " .. level_id .. " set to: ")
-			-- Utils.PrintTable(self.difficulty_scaling)
 		end
 	end
+
+	apply_difficulty_scaling(self.difficulty_scaling_presets[lvl_tweak.difficulty_scaling_preset])
+	apply_difficulty_scaling(level_settings.difficulty_scaling)
 
 	if level_settings.use_equipment_reenforce ~= nil then
 		self.use_equipment_reenforce = level_settings.use_equipment_reenforce
@@ -3393,7 +3528,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local empty_tbl = { 0, 0, 0 }
 
 	-- Assault Data
-	--In-heist difficulty scaling
+	-- In-heist difficulty scaling
+	--[[
 	self.difficulty_scaling = {
 		assault_delay = 45,
 		diff_min = 0,
@@ -3404,8 +3540,112 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		assault_add = 0.25,
 		hostage_kill_add = is_pro_job and 0.15 or nil,
 	}
+	]]
+	-- Quick translations from the old system to the new one
+	-- assault_delay -> addends.on_enemy_weapons_hot.delay
+	-- diff_init -> addends.on_enemy_weapons_hot.amount
+	-- diff_min, diff_max -> mission scripting only, as "forced difficulty"
+	-- diff_step, diff_step_interval -> no more global target/step time, each addend has its own time
+	-- assault_add -> addends.on_entered_regroup
+	-- hostage_kill_add -> addends.on_hostage_killed
+	self.difficulty_scaling = {
+		-- New timed steps are added to the stack once the previous timed step has completed
+		steps = {
+			--[[
+			{
+				amount = 0,
+				delay = 0,
+				time = 0,
+			},
+			{
+				amount = 0,
+				delay = 0,
+				time = 0,
+			},
+			]]
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 45,
+				time = 60,
+			},
+			-- Not enabled by default, only allowed for assault 2+ if enabled
+			on_entered_sustain = {
+				amount = 0.375,
+				delay = 0,
+				time = 60,
+			},
+			on_entered_regroup = {
+				amount = 0.375,
+				delay = 0,
+				time = 60,
+			},
+			on_entered_full_force_onslaught = {
+				amount = 1,
+				delay = 0,
+				time = 60,
+			},
+			on_hostage_killed = {
+				amount = { 0.075, 0.125 },
+				delay = 0,
+				time = { 10, 15 },
+			},
+		},
+		-- So that certain heists may toggle addends on/off in tweakdata or mission scripting
+		-- Adding not-allowed addends is blocked completely
+		allowed_addends = {
+			on_enemy_weapons_hot = true,
+			on_entered_sustain = false,
+			on_entered_regroup = true,
+			on_entered_full_force_onslaught = is_pro_job and true or false,
+			on_hostage_killed = is_pro_job and true or false,
+		},
+		-- So that certain heists may pause addends in tweakdata or mission scripting
+		-- Adding paused addends caches them (up to a limit) to be added later, when they're unpaused
+		paused_addends = {
+			-- on_enemy_weapons_hot = 2,
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
+			on_entered_regroup = false,
+			on_entered_full_force_onslaught = false,
+			on_hostage_killed = false,
+		},
+		-- So that certain heists may change addends and have automatic difficulty scaling
+		addend_time_multipliers = {
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_sustain = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_regroup = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
+		},
+		addend_time_balance_muls = {
+			on_enemy_weapons_hot = { 1.45, 1.3, 1.15, 1 },
+			on_entered_sustain = { 1.45, 1.3, 1.15, 1 },
+			on_entered_regroup = { 1.45, 1.3, 1.15, 1 },
+			on_entered_full_force_onslaught = { 1.45, 1.3, 1.15, 1 },
+			on_hostage_killed = { 1.45, 1.3, 1.15, 1 },
+		},
+		-- The initial trade delay is not currently affected by on_enemy_weapons_hot delay multipliers
+		addend_delay_multipliers = {
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.2, 1, 0.9, 0.8 }),
+			on_entered_sustain = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_entered_regroup = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+			on_hostage_killed = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
+		},
+		addend_delay_balance_muls = {
+			on_enemy_weapons_hot = { 1, 1, 1, 1 },
+			on_entered_sustain = { 1, 1, 1, 1 },
+			on_entered_regroup = { 1, 1, 1, 1 },
+			on_entered_full_force_onslaught = { 1, 1, 1, 1 },
+			on_hostage_killed = { 1, 1, 1, 1 },
+		},
+	}
 
 	-- BESIEGE --
+	self.besiege.drama_gain_mul = { 1.25, 1, 0.75 }
+
 	if difficulty_index <= 3 then
 		self.besiege.scripted_tiers = {
 			"CS",
@@ -3477,11 +3717,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	self.use_team_ai_balance_mul_weights = true
-	self.team_ai_spawn_rate_balance_mul_weight = 0.5
-	self.team_ai_force_balance_mul_weight = 0.5
-	self.team_ai_freq_balance_mul_weight = 0.5
-	self.team_ai_ponr_length_balance_mul_weight = 0.5
-	self.team_ai_spawn_group_interval_balance_mul_weight = 0.5
+	self.team_ai_balance_mul_weights = {
+		drama = 0.33,
+		spawn_rate = 0.5,
+		force = 0.5,
+		freq = 0.5,
+		ponr_length = 0.5,
+		spawn_group_interval = 0.5,
+		difficulty_addend_time = 0.5,
+		difficulty_addend_delay = 0.5,
+	}
 
 	-- Spawn rate
 	self.spawn_kill_cooldown = get_difficulty_specific_value({
@@ -3501,7 +3746,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		6,
 	})
 
-	local spawn_rater_regular = get_difficulty_specific_value({
+	local spawn_rate_regular = get_difficulty_specific_value({
 		2,
 		1.9,
 		1.8,
@@ -3518,9 +3763,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.besiege.assault.spawn_rate = {
 		regular = {
-			spawn_rater_regular * 1.6,
-			spawn_rater_regular * 1.3,
-			spawn_rater_regular,
+			spawn_rate_regular * 1.6,
+			spawn_rate_regular * 1.3,
+			spawn_rate_regular,
 		},
 		fast = {
 			spawn_rate_fast * 1.4,
@@ -3543,11 +3788,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 	self.undershot_reenforce_interval_factor = 0.9
 	self.init_reenforce_delay = 15
+	self.use_loot_drop_reenforce = true
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = table.list_to_set({
 		"doctor_bag",
 		"ammo_bag",
 		"grenade_case",
+		"grenade_crate",
 	})
 
 	-- Recon spawn interval and spawncap
@@ -3617,16 +3864,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		7,
 		8,
 		9,
-		11,
-		13,
+		12,
+		15,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.7, 1.2 } or { 0.4, 0.8, 1.2 })
-	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.2, 0.6, 1 })
-	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.2, 0.5, 0.8 })
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
+	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.4, 0.7, 1 })
+	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
 	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.6 } or { 0, 0.3, 0.6 })
-	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.1, 0.5, 0.9 })
-	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.2, 0.8 })
+	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.2, 0.6, 1 })
+	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.3, 0.9 })
 	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.4 })
 
 	-- Spawngroups
@@ -3873,6 +4120,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
+	self.ponr.drama_gain_mul = { 0.5, 0.5, 0.5 }
 
 	-- Control
 	if short_ponr_heists[level_id] then
@@ -3914,19 +4162,19 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		12,
 	})
 	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
-	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1.2)
-	local ponr_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
-	local ponr_sniper_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.7)
-	local ponr_spook_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.8)
-	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.6)
-	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.6)
-	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.3)
+	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
+	local ponr_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.8)
+	local ponr_spook_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.6)
+	local ponr_sniper_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
+	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
+	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.4)
+	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.2)
 
 	-- Spawngroups
 	if difficulty_index <= 3 then
 		self.ponr.assault.groups = {
-			fbi_swats = { 20, 20, 20 },
-			fbi_heavies = { 20, 20, 20 },
+			fbi_swats = { 18, 18, 18 },
+			fbi_heavies = { 18, 18, 18 },
 			fbi_shield = ponr_shield_wgt,
 			fbi_taser = ponr_taser_wgt,
 			fbi_cloaker = ponr_spook_wgt,
@@ -3938,8 +4186,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index <= 5 then
 		self.ponr.assault.groups = {
-			elite_swats = { 20, 20, 20 },
-			fbi_heavies = { 20, 20, 20 },
+			elite_swats = { 18, 18, 18 },
+			fbi_heavies = { 18, 18, 18 },
 			fbi_shield = ponr_shield_wgt,
 			elite_shield = ponr_elite_shield_wgt,
 			elite_sniper = ponr_sniper_wgt,
@@ -3954,8 +4202,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.ponr.assault.groups = {
-			elite_swats = { 20, 20, 20 },
-			elite_heavies = { 20, 20, 20 },
+			elite_swats = { 18, 18, 18 },
+			elite_heavies = { 18, 18, 18 },
 			elite_shield = ponr_shield_wgt,
 			elite_sniper = ponr_sniper_wgt,
 			elite_taser = ponr_taser_wgt,

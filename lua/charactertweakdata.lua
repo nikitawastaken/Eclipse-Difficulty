@@ -14,9 +14,7 @@ local bellmead_response_heists = table.list_to_set({
 	"corp",
 	"deep",
 })
-local is_undercover = level_id == "man"
 local is_no_mercy = level_id == "nmh"
-local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
@@ -166,7 +164,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_dmg = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_speed = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.melee_retry_delay = nil
-	presets.weapon.eclipse_normal.akimbo_pistol.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.akimbo_pistol.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.akimbo_pistol.FALLOFF = {
 		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.15, 0.3 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
@@ -222,7 +220,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.is_smg = deep_clone(presets.weapon.eclipse_normal.is_rifle)
-	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.eclipse_normal.is_smg.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
@@ -239,7 +237,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.mini = deep_clone(presets.weapon.eclipse_normal.is_lmg)
-	presets.weapon.eclipse_normal.mini.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.mini.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.mini.autofire_rounds = { 50, 200 }
 	presets.weapon.eclipse_normal.mini.FALLOFF = {
 		{ dmg_mul = 1.5 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
@@ -274,7 +272,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_gangster = based_on(presets.weapon.eclipse_normal, {
 		melee_dmg = 14 * dmg_mul,
-		stance_acc_mul = nil,
+		stance_acc_mul = nil_value,
 	})
 
 	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
@@ -324,7 +322,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 500,
 		melee_retry_delay = { 1, 2 },
 		range = { close = 500, optimal = 1000, far = 2000 },
-		stance_acc_mul = nil,
+		stance_acc_mul = nil_value,
 	})
 
 	presets.weapon.eclipse_shield.is_pistol.RELOAD_SPEED = 0.9
@@ -381,9 +379,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_elite_sniper.is_sniper.stance_acc_mul = { running = 0.75, walking = 1, standing = 1 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
@@ -411,7 +409,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
 
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
-		stance_mul = nil_value,
+		stance_acc_mul = nil_value,
 	})
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.25, 0.5 }, mode = { 1, 0, 0, 0 } },
@@ -426,7 +424,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aim_delay = { 0, 1.5 },
 		melee_dmg = 30 * special_dmg_mul,
 		melee_force = 600,
-		stance_mul = nil_value,
+		stance_acc_mul = nil_value,
 	})
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.FALLOFF = {
@@ -997,14 +995,21 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cloaker = {
 		aggressive = true,
 		contact = true,
+		smoke = true,
+		flash_grenade = true,
 	}
 
 	return presets
 end
 
+CharacterTweakData.speed_preset_scaling_blacklist = table.list_to_set({
+	"civ_fast",
+	"escort_normal",
+	"escort_slow",
+})
 function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	for preset_name, preset in pairs(self.presets.move_speed) do
-		if preset_name ~= "civ_fast" then
+		if not self.speed_preset_scaling_blacklist[preset_name] then
 			for _, pose in pairs(preset) do
 				for haste_name, haste in pairs(pose) do
 					for stance_name, stance in pairs(haste) do
@@ -1199,7 +1204,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
 	self.fbi_heavy_swat.suppression = self.presets.suppression.hard_agg
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.fbi_heavy_swat.heavy_swat_plate_dmg_mul = 0.02
+	self.fbi_heavy_swat.heavy_swat_plate_dmg_mul = 1 / 40
 	self.fbi_heavy_swat.no_arrest = false
 
 	self.city_swat.HEALTH_INIT = 16
@@ -1420,7 +1425,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 2.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
-	self.chavez_boss.die_sound_event = "l3n_x01a_any_3p"
+	self.chavez_boss.die_sound_event = "lt1_x02a_any_3p"
 
 	self.hector_boss.HEALTH_INIT = 160
 	self.hector_boss.headshot_dmg_mul = 1.75
@@ -1438,7 +1443,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
-	self.biker_boss.die_sound_event = "fl1n_x02a_any_3p"
+	self.biker_boss.die_sound_event = "fl1n_x01a_any_3p"
 
 	self.drug_lord_boss.HEALTH_INIT = 160
 	self.drug_lord_boss.headshot_dmg_mul = 2.5
@@ -1446,11 +1451,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
-	self.drug_lord_boss.die_sound_event = "l2n_x01a_any_3p"
+	self.drug_lord_boss.die_sound_event = "lt2_x02a_any_3p"
 
 	self.drug_lord_boss_stealth.HEALTH_INIT = 4
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
-	self.drug_lord_boss_stealth.die_sound_event = "l2n_x01a_any_3p"
+	self.drug_lord_boss_stealth.die_sound_event = "lt2_x02a_any_3p"
 
 	self.triad_boss.HEALTH_INIT = 160
 	self.triad_boss.headshot_dmg_mul = 1.75
@@ -1462,6 +1467,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.triad_boss_no_armor.HEALTH_INIT = 4
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
+	self.triad_boss_no_armor.die_sound_event = "lt2_x02a_any_3p"
 
 	self.deep_boss.HEALTH_INIT = 200
 	self.deep_boss.headshot_dmg_mul = 1.75
@@ -1818,7 +1824,7 @@ function CharacterTweakData:character_map(...)
 	local char_map = character_map_original(self, ...)
 
 	local function safe_add(char_map_table, element)
-		if char_map_table and char_map_table.list then
+		if char_map_table and char_map_table.list and not table.contains(char_map_table.list, element) then
 			table.insert(char_map_table.list, element)
 		end
 	end
@@ -2138,6 +2144,7 @@ CharacterTweakData.access_ecm_vulnerability = {
 CharacterTweakData.access_surrender_blacklist = table.list_to_set({
 	"bolivian",
 	"bolivian_indoors",
+	"mute_security_undominatable",
 })
 CharacterTweakData.access_surrender = {
 	security = "easy",
@@ -2155,15 +2162,24 @@ function CharacterTweakData:_set_presets()
 		2.5,
 	})
 
+	-- Used to be at the end of this function but _multiply_all_speeds didn't affect Dozers
+	if is_overkill then
+		self:_multiply_all_speeds(1.05, 1.05)
+	elseif is_eclipse then
+		self:_multiply_all_speeds(1.05, 1.1)
+
+		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
+	end
+
+	local not_bosses = table.list_to_set({
+		"hector_boss_no_armor",
+		"drug_lord_boss_stealth",
+		"triad_boss_no_armor",
+	})
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
 		local char_access = char_preset.access
 
-		local not_bosses = table.list_to_set({
-			"hector_boss_no_armor",
-			"drug_lord_boss_stealth",
-			"triad_boss_no_armor",
-		})
 		local is_boss = name:match("_boss$") and not not_bosses[name]
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
 		local is_shadow_spooc = name == "shadow_spooc"
@@ -2216,23 +2232,7 @@ function CharacterTweakData:_set_presets()
 
 		-- Set up special units based on tags
 		local tag_map = type(char_preset.tags) == "table" and table.list_to_set(char_preset.tags) or {}
-		if tag_map.civilian then
-			char_preset.scare_max = { 10, 20 }
-			char_preset.scare_shot = 1
-			char_preset.scare_intimidate = -3
-			char_preset.submission_intimidate = 15
-			char_preset.submission_max = get_difficulty_specific_value({
-				{ 60, 120 },
-				{ 60, 120 },
-				{ 45, 90 },
-				{ 30, 60 },
-				{ 25, 50 },
-			})
-			char_preset.run_away_delay = {
-				5,
-				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
-			}
-		elseif tag_map.shield then
+		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
@@ -2333,25 +2333,44 @@ function CharacterTweakData:_set_presets()
 	self.cop_scared.surrender = self.presets.surrender.always
 	self.cop_scared.surrender_break_time = nil
 
-	self.flashbang_multiplier = is_eclipse and 1.4 or is_overkill and 1.2 or 1
+	self.flashbang_multiplier = get_difficulty_specific_value({ 1, 1, 1, 1.25, 1.5 })
 	self.concussion_multiplier = 1
 
-	self.tase_multiplier = {
-		is_eclipse and 1.75 or is_overkill and 1.5 or 1,
-		is_eclipse and 1.5 or is_overkill and 1.25 or 1,
+	self.tase_strength = { 5, 90 }
+	self.tase_strength_multiplier = {
+		get_difficulty_specific_value({ 1, 1, 1, 1.5, 1.75 }),
+		get_difficulty_specific_value({ 1, 1, 1, 1.25, 1.5 }),
+	}
+	self.tased_camera_limit_shocks = 2
+	self.tased_camera_limit = {
+		get_difficulty_specific_value({ 60, 60, 60, 40, 30 }),
+		get_difficulty_specific_value({ 40, 40, 40, 30, 20 }),
 	}
 
-	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
+	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 1, 1, 1, 0.6, 0.4 })
 
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
-	if is_overkill then
-		self:_multiply_all_speeds(1.05, 1.05)
-	elseif is_eclipse then
-		self:_multiply_all_speeds(1.05, 1.1)
-
-		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
+	-- Civilians are not in the enemy list
+	for _, char_preset in pairs(self) do
+		if type(char_preset) == "table" and char_preset.tags and table.contains(char_preset.tags, "civilian") then
+			char_preset.scare_max = { 10, 20 }
+			char_preset.scare_shot = 1
+			char_preset.scare_intimidate = -3
+			char_preset.submission_intimidate = 15
+			char_preset.submission_max = get_difficulty_specific_value({
+				{ 60, 120 },
+				{ 60, 120 },
+				{ 45, 90 },
+				{ 30, 60 },
+				{ 25, 50 },
+			})
+			char_preset.run_away_delay = {
+				5,
+				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
+			}
+		end
 	end
 end
 

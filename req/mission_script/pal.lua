@@ -142,13 +142,13 @@ return {
 			},
 			{
 				name = "mitchell_house01",
-				force = 3,
-				position = Vector3(-2525, 3900, 75),
+				force = 2,
+				position = Vector3(-2750, 3600, -325),
 			},
 			{
 				name = "mitchell_house02",
 				force = 2,
-				position = Vector3(-2750, 3600, -320),
+				position = Vector3(-2550, 3600, 75),
 			},
 			{
 				name = "wilson_house01",
@@ -158,7 +158,7 @@ return {
 			{
 				name = "wilson_house02",
 				force = 2,
-				position = Vector3(-2975, 1375, -325),
+				position = Vector3(-3000, 1450, -325),
 			},
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
@@ -194,8 +194,8 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[101436] = difficulty_add_20, -- open_doors_to_basement
-	[102623] = difficulty_add_20, -- complete_drill_finish
+	--	[101436] = difficulty_add_20, -- open_doors_to_basement
+	--	[102623] = difficulty_add_20, -- complete_drill_finish
 	-- disable vanilla's swat van randomizer
 	[102080] = disabled,
 	-- don't disable neighbour swat vans

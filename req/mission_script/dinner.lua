@@ -109,7 +109,7 @@ local murky_dozers = {
 return {
 	[101061] = {
 		ponr = {
-			length = 200,
+			length = 240,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},

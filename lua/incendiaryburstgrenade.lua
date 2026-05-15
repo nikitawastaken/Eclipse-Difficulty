@@ -56,6 +56,7 @@ IncendiaryClusterGrenade = IncendiaryClusterGrenade or class(IncendiaryBurstGren
 
 function IncendiaryClusterGrenade:_setup_from_tweak_data()
 	local grenade_entry = self._tweak_projectile_entry or "cluster_incendiary"
+	self._tweak_projectile_entry = grenade_entry
 	local tweak_entry = tweak_data.projectiles[grenade_entry]
 	self._init_timer = tweak_entry.init_timer or 2.5
 	self._mass_look_up_modifier = tweak_entry.mass_look_up_modifier

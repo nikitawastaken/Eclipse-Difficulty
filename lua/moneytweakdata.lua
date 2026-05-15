@@ -17,18 +17,19 @@ function MoneyTweakData:init(tweak_data)
 	self.cut_job_complete = self.cashout_without_player_alive * 0.15
 	self.cut_job_complete = self.cut_job_complete / self.cut_difficulty
 	self.bag_values = {}
-	self.bag_values.default = 15000
+	self.bag_values.default = 18500
 	self.bag_values.money = 45000
 	self.bag_values.gold = 120000
 	self.bag_values.goat = 100000
-	self.bag_values.diamonds = 18000
+	self.bag_values.diamonds = 22500
 	self.bag_values.diamonds_dah = 250000
 	self.bag_values.coke = 90000
 	self.bag_values.coke_pure = 110000
-	self.bag_values.meth = 80000
-	self.bag_values.meth_half = 40000
+	self.bag_values.meth = 100000
+	self.bag_values.meth_half = 50000
 	self.bag_values.weapon = 60000
 	self.bag_values.weapons = 120000
+	self.bag_values.ranc_weapon = 82500
 	self.bag_values.painting = 75000
 	self.bag_values.samurai_suit = 145000
 	self.bag_values.artifact_statue = 150000
@@ -37,10 +38,10 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.shells = 100000
 	self.bag_values.turret = 500000
 	self.bag_values.sandwich = 500000
-	self.bag_values.cro_loot = 500000
+	self.bag_values.cro_loot = 1050000
 	self.bag_values.hope_diamond = 2000000
 	self.bag_values.evidence_bag = 135000
-	self.bag_values.vehicle_falcogini = 250000
+	self.bag_values.vehicle_falcogini = 375000
 	self.bag_values.warhead = 500000
 	self.bag_values.unknown = 50000
 	self.bag_values.safe = 250000
@@ -49,37 +50,39 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.treasure = 180000
 	self.bag_values.counterfeit_money = 100000
 	self.bag_values.box_unknown = 10000
-	self.bag_values.black_tablet = 1000000
+	self.bag_values.black_tablet = 1800000
 	self.bag_values.masterpiece_painting = 250000
 	self.bag_values.master_server = 720000
 	self.bag_values.lost_artifact = 420000
 	self.bag_values.present = 100000
-	self.bag_values.mad_master_server_value_1 = 250000
-	self.bag_values.mad_master_server_value_2 = 500000
-	self.bag_values.mad_master_server_value_3 = 750000
-	self.bag_values.mad_master_server_value_4 = 1000000
+	self.bag_values.mad_master_server_value_1 = 500000
+	self.bag_values.mad_master_server_value_2 = 750000
+	self.bag_values.mad_master_server_value_3 = 1000000
+	self.bag_values.mad_master_server_value_4 = 1850000
 	self.bag_values.weapon_glock = 25000
 	self.bag_values.weapon_scar = 50000
-	self.bag_values.drk_bomb_part = 300000
-	self.bag_values.drone_control_helmet = 650000
+	self.bag_values.drk_bomb_part = 650000
+	self.bag_values.drone_control_helmet = 3250000
 	self.bag_values.toothbrush = 18000
 	self.bag_values.cloaker_gold = 35000
 	self.bag_values.cloaker_money = 35000
 	self.bag_values.cloaker_cocaine = 35000
 	self.bag_values.diamond_necklace = 65000
-	self.bag_values.vr_headset = 30000
-	self.bag_values.women_shoes = 25000
-	self.bag_values.expensive_vine = 45000
-	self.bag_values.ordinary_wine = 25000
-	self.bag_values.robot_toy = 15000
+	self.bag_values.vr_headset = 120000
+	self.bag_values.women_shoes = 115000
+	self.bag_values.expensive_vine = 135000
+	self.bag_values.ordinary_wine = 115000
+	self.bag_values.robot_toy = 105000
 	self.bag_values.rubies = 52500
-	self.bag_values.red_diamond = 100000
+	self.bag_values.red_diamond = 1500000
 	self.bag_values.old_wine = 75000
+	self.bag_values.chas_artifact = 420000
+	self.bag_values.chas_teaset = 240000
 	self.bag_values.garden_gnome = 69
-	self.bag_values.ranc_weapon = 36000
 	self.bag_values.turret_part = 25000
 	self.bag_values.corp_papers = 30000
 	self.bag_values.corp_prototype = 500000
+	self.bag_values.trai_printing_plates = 115000
 
 	self.bag_value_multiplier = 1
 	self.stage_completion = self._create_value_table(self.cut_stage_complete / 7 / self.offshore_rate, self.cut_stage_complete / self.offshore_rate, 7, true, 1)
@@ -663,13 +666,7 @@ function MoneyTweakData:init(tweak_data)
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local money_mul = get_difficulty_specific_value({
-		1,
-		1.1,
-		1.2,
-		1.3,
-		1.4,
-	})
+	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4 })
 	self.small_loot = {}
 	self.small_loot.money_bundle = (money_mul * 750)
 	self.small_loot.money_bundle_value = (money_mul * 10000)
@@ -696,7 +693,7 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.vault_loot_ring = (money_mul * 6000)
 	self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	self.small_loot.vault_loot_macka = 1
-	self.small_loot.federali_medal = 769
+	self.small_loot.federali_medal = 25000
 
 	-- Heist specific loot values
 	if level_id == "big" then
@@ -717,8 +714,24 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_ring = (money_mul * 6000)
 		self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	end
+	if level_id == "wwh" then
+		self.bag_values.money = 95000
+		self.bag_values.weapons = 180000
+	end
+	if level_id == "roberts" then
+		self.bag_values.money = 90000
+		self.small_loot.vault_loot_gold = (money_mul * 19500)
+		self.small_loot.vault_loot_cash = (money_mul * 6500)
+		self.small_loot.vault_loot_coins = (money_mul * 5800)
+		self.small_loot.vault_loot_ring = (money_mul * 12000)
+		self.small_loot.vault_loot_jewels = (money_mul * 8400)
+		self.small_loot.gen_atm = (money_mul * 72000)
+	end
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
+	end
+	if level_id == "arena" then
+		self.bag_values.money = 175000
 	end
 	if level_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = 50000
@@ -726,13 +739,27 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
 	if level_id == "red2" or level_id == "kenaz" then
-		self.bag_values.money = 90000 -- 90,000$
+		self.bag_values.money = 90000
+		self.bag_values.gold = 300000
 		self.small_loot.gen_atm = (money_mul * 36000)
 		self.small_loot.money_bundle = (money_mul * 8250)
 	end
 	if level_id == "dinner" then
-		self.bag_values.gold = 350000 -- 350,000$
+		self.bag_values.gold = 350000
 		self.small_loot.money_bundle = (money_mul * 10250)
+	end
+	if level_id == "arm_cro" or level_id == "arm_hcm" or level_id == "arm_fac" or level_id == "arm_par" or level_id == "arm_und" then
+		self.small_loot.vault_loot_gold = (money_mul * 39500)
+		self.small_loot.vault_loot_cash = (money_mul * 8500)
+		self.small_loot.vault_loot_coins = (money_mul * 6800)
+		self.small_loot.vault_loot_ring = (money_mul * 12000)
+		self.small_loot.vault_loot_jewels = (money_mul * 9400)
+	end
+	if level_id == "hvh" or level_id == "nail" or level_id == "help" or level_id == "haunted" then
+		self.bag_values.sandwich = 950000
+		self.bag_values.money = 450000
+		self.bag_values.warhead = 1150000
+		self.bag_values.painting = 175000
 	end
 
 	self.max_small_loot_value = 20000000
@@ -784,8 +811,8 @@ function MoneyTweakData:init(tweak_data)
 		self.loot_drop_cash.xone_bonus = 5000000
 	end
 
-	self.unlock_new_mask_slot_value = 250000
-	self.unlock_new_weapon_slot_value = 375000
+	self.unlock_new_mask_slot_value = 150000
+	self.unlock_new_weapon_slot_value = 225000
 	self.moneythrower = {
 		max_kills_per_session = 100,
 		kill_to_offshore_multiplier = 1000,

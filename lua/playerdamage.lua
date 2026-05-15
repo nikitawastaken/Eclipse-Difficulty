@@ -14,8 +14,8 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	end
 end)
 
--- Upgrade that heals you when you revive others
 Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
+	-- Upgrade that heals you when you revive others
 	if managers.player:has_category_upgrade("player", "action_revive_health_regen") then
 		local function on_revive_interaction_success()
 			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
@@ -286,12 +286,14 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
 
-			if pm:has_inactivate_temporary_upgrade("temporary", "armor_break_invulnerable") then
-				pm:activate_temporary_upgrade("temporary", "armor_break_invulnerable")
+			-- Failsafe Protocol (remake it to use the cooldown system instead of temporary)
+			if pm:has_enabled_cooldown_upgrade("cooldown", "armor_break_invulnerable") then
+				self._can_take_dmg_timer = tweak_data.upgrades.values.player.armor_break_invulnerable_duration[1] or 0
 
-				self._can_take_dmg_timer = pm:temporary_upgrade_value("temporary", "armor_break_invulnerable", 0)
+				pm:disable_cooldown_upgrade("cooldown", "armor_break_invulnerable")
 			end
 
+			-- Iron Curtain
 			if pm:has_enabled_cooldown_upgrade("cooldown", "crewmate_damage_reduction") then
 				managers.network:session():send_to_peers("sync_damage_reduction_from_crewmate")
 
@@ -319,8 +321,30 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 	return health_subtracted
 end
 
+-- Damage conversion into drama is affected by the armor you wear
+-- SWAT turrets inflict very little damage drama
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
-Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
+local _send_damage_drama_original = Hooks:GetFunction(PlayerDamage, "_send_damage_drama")
+Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack_data, health_subtracted, ...)
+	-- Team AI use this same `_send_damage_drama` function too, but they don't have `get_real_armor`
+	if self.get_real_armor then
+		if self:get_real_armor() > 0 then
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+		elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain scaling for armorless decks
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul_capped") or 1)
+		end
+
+		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
+			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
+		end
+	end
+
+	if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().sentry_gun then
+		health_subtracted = health_subtracted * (tweak_data.upgrades.swat_turret_criminal_hurt_drama_mul or 0.25)
+	end
+
+	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
+
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
 		self._can_take_dmg_timer = self._dmg_interval
 	end
@@ -375,7 +399,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
+	if managers.player:has_activate_temporary_upgrade("temporary", "health_ratio_invulnerable") then
 		return 0
 	end
 
@@ -403,16 +427,16 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if self._has_mrwi_health_invulnerable then
-		local health_threshold = self._mrwi_health_invulnerable_threshold or 0.5
-		local is_cooling_down = managers.player:get_temporary_property("mrwi_health_invulnerable", false)
+	-- Remake the <%X HP invuln upgrade to use the cooldown system instead of temporary
+	if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_ratio_invulnerable") then
+		local health_threshold = tweak_data.upgrades.values.player.health_ratio_invulnerable_ratio[1] or 0.5
 
-		-- Make <50%hp invuln upgrade not proc on armor hits
-		if self:health_ratio() <= health_threshold and health_subtracted > 0 and not is_cooling_down then -- was it so hard to just add one more check, overkill?
-			local cooldown_time = self._mrwi_health_invulnerable_cooldown or 10
+		-- Make <X% hp invuln upgrade not proc on armor hits
+		if self:health_ratio() <= health_threshold and health_subtracted > 0 then
+			self:set_health(self:_max_health() * health_threshold) -- make it so that your health doesn't drop below 25% when activating invuln
 
-			managers.player:activate_temporary_upgrade("temporary", "mrwi_health_invulnerable")
-			managers.player:activate_temporary_property("mrwi_health_invulnerable", cooldown_time, true)
+			managers.player:activate_temporary_upgrade("temporary", "health_ratio_invulnerable")
+			managers.player:disable_cooldown_upgrade("cooldown", "health_ratio_invulnerable")
 		end
 	end
 
@@ -518,7 +542,7 @@ function PlayerDamage:revive(silent)
 	local player_damage_tweak = tweak_data.player.damage
 	self._down_time = math.max(
 		player_damage_tweak.DOWNED_TIME_MIN,
-		(player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
+		(player_damage_tweak.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if MusicManager.set_volume_multiplier then
@@ -775,7 +799,7 @@ function PlayerDamage:restore_lives(lives_restored)
 	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
 	self._down_time = math.max(
 		tweak_data.player.damage.DOWNED_TIME_MIN,
-		(tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
+		(tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
@@ -808,7 +832,7 @@ function PlayerDamage:_regenerated(from_medic_bag)
 		self._revives = Application:digest_value(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), true)
 		self._revive_health_i = 1
 		self._down_time_i = 0
-		self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0) -- an upgrade that increases bleedout timer
+		self._down_time = tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1) -- an upgrade that increases bleedout timer
 		self:_send_set_revives(true)
 	end
 
@@ -845,6 +869,11 @@ end
 function PlayerDamage:_upd_suppression(t, dt)
 	-- crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
+		return
+	end
+
+	-- active frenzy blocks armor suppression
+	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
 		return
 	end
 

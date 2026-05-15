@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tweaks>
 	<!-- Make bosses markable -->
-	<tweak version="2" name="units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss" extension="object">
+	<tweak version="2" name="units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -12,76 +12,7 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	
-	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	
-	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2_husk" extension="object">
+	<tweak version="2" name="units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -93,7 +24,7 @@
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss" extension="object">
+	<tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -104,53 +35,7 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/pd2_dlc_flat/characters/npc_chavez/npc_chavez" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_dlc_flat/characters/npc_chavez/npc_chavez_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss_stealth/ene_drug_lord_boss_stealth" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss_stealth/eene_drug_lord_boss_stealth_husk" extension="object">
+	<tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -162,7 +47,7 @@
 		</target>
 	</tweak>
 	
-	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/ene_drug_lord_boss" extension="object">
+	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -173,7 +58,30 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/ene_drug_lord_boss_husk" extension="object">
+	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -185,7 +93,7 @@
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang" extension="object">
+	<tweak version="2" name="units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -196,30 +104,7 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang_husk" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	
-	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang_armored/npc_male_yufuwang_armored" extension="object">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang_armored/npc_male_yufuwang_armored_husk" extension="object">
+	<tweak version="2" name="units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -231,7 +116,7 @@
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask" extension="object">
+	<tweak version="2" name="units/pd2_dlc_flat/characters/npc_chavez/npc_chavez" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -242,7 +127,30 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask_husk" extension="object">
+	<tweak version="2" name="units/pd2_dlc_flat/characters/npc_chavez/npc_chavez_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss_stealth/ene_drug_lord_boss_stealth" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss_stealth/eene_drug_lord_boss_stealth_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -254,7 +162,7 @@
 		</target>
 	</tweak>
 	
-	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel" extension="object">
+	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/ene_drug_lord_boss" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -265,7 +173,30 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel_husk" extension="object">
+	<tweak version="2" name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/ene_drug_lord_boss_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -277,6 +208,74 @@
 		</target>
 	</tweak>
 	
+	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang_armored/npc_male_yufuwang_armored" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang_armored/npc_male_yufuwang_armored_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
 	<!-- Change ene_male_security_penthouse _tweak_table -->
 	<tweak version="2" name="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1" extension="unit">
 		<search>

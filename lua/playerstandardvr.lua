@@ -195,7 +195,19 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 			local weap_tweak_data = tweak_data.weapon[weap_base:get_name_id()]
 			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
 			local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-			local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+
+			local on_hit_mul = false
+			if fired and fired.rays then
+				for _, ray in ipairs(fired.rays) do
+					if ray and not table.empty(ray) then
+						on_hit_mul = true
+
+						break
+					end
+				end
+			end
+
+			local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"]) * recoil_shake
 
 			if self._state_data.in_steelsight then
 				self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)

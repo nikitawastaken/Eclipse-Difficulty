@@ -40,12 +40,13 @@ local unused_sniper_trigger_times = {
 local window_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local boat_spawn = {
 	values = {
-		interval = 40,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 45,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -136,9 +137,9 @@ return {
 	[100616] = chopper_trigger_times,
 	]]
 	-- Add scripted difficulty increases
-	[100867] = difficulty_add_20, -- obj_complete011 (the captain reached the ship)
-	[100042] = difficulty_add_20, -- obj_started010 (remove the ropes)
-	[100926] = difficulty_add_20, -- obj_started007 (defend the boat)
+	--	[100867] = difficulty_add_20, -- obj_complete011 (the captain reached the ship)
+	--	[100042] = difficulty_add_20, -- obj_started010 (remove the ropes)
+	--	[100926] = difficulty_add_20, -- obj_started007 (defend the boat)
 	-- Spawn group intervals
 	[100605] = window_spawn,
 	[100177] = boat_spawn,

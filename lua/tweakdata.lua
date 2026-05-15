@@ -1,11 +1,8 @@
--- Tear Gas damage is now a percentage of total HP
-tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
-
 local function create_explosive_arrow(base_arrow)
 	local explosive_arrow = deep_clone(base_arrow)
 	local damage = base_arrow.damage
-	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"
 	explosive_arrow.damage = damage * 1.5
+	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"
 	explosive_arrow.remove_on_impact = true
 
 	return explosive_arrow
@@ -14,19 +11,22 @@ end
 local function create_poison_arrow(base_arrow)
 	local poison_arrow = deep_clone(base_arrow)
 	local damage = base_arrow.damage
-	poison_arrow.bullet_class = "PoisonBulletBase"
 	poison_arrow.damage = damage * 0.25
+	poison_arrow.bullet_class = "PoisonBulletBase"
 
 	return poison_arrow
 end
 
-local function create_incendiary_grenade(base_grenade, class)
+local function create_incendiary_grenade(base_grenade)
 	local incendiary_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
-	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. class
-	incendiary_grenade.burn_duration = math.max(1, damage / 4)
-	incendiary_grenade.damage = math.round(damage / 4)
+	local tier_index = math.floor(damage / 12)
+	local tier = tier_index <= 2 and "light" or "heavy"
+
+	incendiary_grenade.damage = damage / 12
 	incendiary_grenade.burn_tick_period = 0.5
+	incendiary_grenade.burn_duration = math.map_range(damage, 24, 48, 5, 10)
+	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. tier
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 
 	return incendiary_grenade
@@ -35,28 +35,34 @@ end
 local function create_electric_grenade(base_grenade)
 	local electric_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
-	electric_grenade.damage = math.round(damage / 2)
-	electric_grenade.curve_pow = base_grenade.curve_pow * 3
-	electric_grenade.range = 4 * (base_grenade.range / 3)
-	electric_grenade.projectile_trail = true
+	electric_grenade.damage = damage / 2
+	electric_grenade.curve_pow = 1 -- 3
+	electric_grenade.range = base_grenade.range + 100
 	electric_grenade.sound_event = "gl_electric_explode"
+	electric_grenade.projectile_trail = true
 
 	return electric_grenade
 end
 
-local function create_poison_grenade(base_grenade, class)
+local function create_poison_grenade(base_grenade)
 	local poison_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
-	poison_grenade.poison_gas_dot_data_name = "proj_launcher_poison_" .. class
-	poison_grenade.poison_gas_range = (damage / 24) * 150
-	poison_grenade.poison_gas_duration = math.max(1, damage / 3)
-	poison_grenade.damage = math.round(damage / 8)
-	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration / 5
-	poison_grenade.poison_gas_tick_time = 0.5
+	local tier_index = math.floor(damage / 12)
+	local tier = tier_index <= 2 and "light" or "heavy"
+
+	poison_grenade.damage = damage / 12
+	poison_grenade.poison_gas_range = 300
+	poison_grenade.poison_gas_tick_time = 0.25
+	poison_grenade.poison_gas_duration = math.map_range(damage, 24, 48, 10, 15)
+	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration / 10
+	poison_grenade.poison_gas_dot_data_name = "proj_launcher_poison_" .. tier
 	poison_grenade.projectile_trail = true
 
 	return poison_grenade
 end
+
+-- Tear Gas damage is now a percentage of total HP
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
 
 -- Arrows
 tweak_data.projectiles.west_arrow = {
@@ -116,134 +122,171 @@ tweak_data.projectiles.ecp_arrow_poison = create_poison_arrow(tweak_data.project
 tweak_data.projectiles.frankish_poison_arrow = create_poison_arrow(tweak_data.projectiles.frankish_arrow)
 tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
 
--- Throwing Knives/Stars etc.
+tweak_data.projectiles.dart_arrow = {
+	mass_look_up_modifier = 1.25,
+	push_at_body_index = 0,
+	damage = 12,
+	projectile_trail = true,
+	adjust_z = -100,
+	launch_speed = 2500,
+}
+
+tweak_data.projectiles.dart_daze.damage = 0
+
+-- Throwing Knives/Axes/Stars etc.
+
+-- Shuriken
 tweak_data.projectiles.wpn_prj_four.damage = 4
 
+-- Ace of Spades
 tweak_data.projectiles.wpn_prj_ace.damage = 1
 
+-- Javelin
 tweak_data.projectiles.wpn_prj_jav.damage = 24
 
-tweak_data.projectiles.wpn_prj_hur.damage = 18
+--Throwing Knife
+tweak_data.projectiles.wpn_prj_hur.damage = 12
 
-tweak_data.projectiles.wpn_prj_target.damage = 18
+-- Throwing Axe
+tweak_data.projectiles.wpn_prj_target.damage = 12
 
 -- Throwable Grenades
+
+-- Frag Grenade
 tweak_data.projectiles.frag.damage = 48
 tweak_data.projectiles.frag.curve_pow = 1
 tweak_data.projectiles.frag.range = 500
 
+-- HEF Grenade
 tweak_data.projectiles.frag_com = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.frag_com.name_id = "bm_grenade_frag_com"
 
-tweak_data.projectiles.molotov.damage = 2
+-- Molotov Cocktail
+tweak_data.projectiles.molotov.damage = 4
 tweak_data.projectiles.molotov.curve_pow = 1
 
-tweak_data.projectiles.fir_com.damage = 2
+-- Incendiary Grenade
+tweak_data.projectiles.fir_com.damage = 4
 tweak_data.projectiles.fir_com.curve_pow = 1
 
-tweak_data.projectiles.dada_com = deep_clone(tweak_data.projectiles.frag)
-tweak_data.projectiles.dada_com.name_id = "bm_grenade_dada_com"
-tweak_data.projectiles.dada_com.sound_event = "mtl_explosion"
-
+-- Dynamite
 tweak_data.projectiles.dynamite = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.dynamite.name_id = "bm_grenade_frag"
 tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosions/dynamite_explosion"
 
+-- Flashbang (formerly Concussion Grenade)
 tweak_data.projectiles.concussion.damage = 1
 tweak_data.projectiles.concussion.curve_pow = 1
-tweak_data.projectiles.concussion.range = 900
+tweak_data.projectiles.concussion.range = 800
 
+-- X1-ZAPper
 tweak_data.projectiles.wpn_gre_electric.damage = 24
-tweak_data.projectiles.wpn_gre_electric.curve_pow = 3
-tweak_data.projectiles.wpn_gre_electric.range = 650
+tweak_data.projectiles.wpn_gre_electric.curve_pow = 1 -- 3
+tweak_data.projectiles.wpn_gre_electric.range = 600
 
+-- Matryoshka Grenade (now an alternative to the X1-ZAPper)
+tweak_data.projectiles.dada_com.damage = 24
+tweak_data.projectiles.dada_com.player_damage = 225
+tweak_data.projectiles.dada_com.curve_pow = 1 -- 3
+tweak_data.projectiles.dada_com.range = 600
+
+-- The Snowball
 tweak_data.projectiles.xmas_snowball.damage = 4
 tweak_data.projectiles.xmas_snowball.curve_pow = 1
 
-tweak_data.projectiles.poison_gas_grenade.damage = 6
+-- Viper Grenade
+tweak_data.projectiles.poison_gas_grenade.damage = 12
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
-tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 15
+tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
+tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 20
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
 tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.5
 
+-- FF related flags
+tweak_data.projectiles.poison_gas_grenade.gas_player_damage = tweak_data.projectiles.cs_grenade_quick.damage_per_tick * 0.5 -- Tear gas dmg when player inside viper grenade
+tweak_data.projectiles.poison_gas_grenade.damage_tick_period = tweak_data.projectiles.cs_grenade_quick.damage_tick_period -- dmg tick period for player FF
+tweak_data.projectiles.poison_gas_grenade.radius_blurzone_multiplier = tweak_data.projectiles.cs_grenade_quick.radius_blurzone_multiplier -- Blurzone modifier
+
+-- Impact Grenade (formerly the Adhesive Grenade)
 tweak_data.projectiles.sticky_grenade.damage = 36
 tweak_data.projectiles.sticky_grenade.curve_pow = 1
+tweak_data.projectiles.sticky_grenade.range = 200
+tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
 
 -- Launcher Grenades
 tweak_data.projectiles.launcher_frag.damage = 36
 tweak_data.projectiles.launcher_frag.curve_pow = 1
+tweak_data.projectiles.launcher_frag.range = 400
 
-tweak_data.projectiles.launcher_incendiary = create_incendiary_grenade(tweak_data.projectiles.launcher_frag, "heavy")
+tweak_data.projectiles.launcher_incendiary = create_incendiary_grenade(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_electric = create_electric_grenade(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_poison = create_poison_grenade(tweak_data.projectiles.launcher_frag, "heavy")
+tweak_data.projectiles.launcher_poison = create_poison_grenade(tweak_data.projectiles.launcher_frag)
 
 -- GL40
-tweak_data.projectiles.launcher_incendiary_m79 = create_incendiary_grenade(tweak_data.projectiles.launcher_frag, "heavy")
+tweak_data.projectiles.launcher_incendiary_m79 = create_incendiary_grenade(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_electric_m79 = create_electric_grenade(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_poison_m79 = create_poison_grenade(tweak_data.projectiles.launcher_frag, "heavy")
+tweak_data.projectiles.launcher_poison_m79 = create_poison_grenade(tweak_data.projectiles.launcher_frag)
 
 -- Compact-40
 tweak_data.projectiles.launcher_frag_slap = deep_clone(tweak_data.projectiles.launcher_frag)
-
-tweak_data.projectiles.launcher_incendiary_slap = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_slap, "heavy")
+tweak_data.projectiles.launcher_incendiary_slap = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_slap)
 tweak_data.projectiles.launcher_electric_slap = create_electric_grenade(tweak_data.projectiles.launcher_frag_slap)
-tweak_data.projectiles.launcher_poison_slap = create_poison_grenade(tweak_data.projectiles.launcher_frag_slap, "heavy")
+tweak_data.projectiles.launcher_poison_slap = create_poison_grenade(tweak_data.projectiles.launcher_frag_slap)
 
 -- Little Friend Underbarrel
-tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_m203.projectile_trail = true
+--tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.launcher_m203.projectile_trail = true
 
 -- Groza Underbarrel
-tweak_data.projectiles.underbarrel_m203_groza = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.underbarrel_m203_groza.projectile_trail = true
+--tweak_data.projectiles.underbarrel_m203_groza = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.underbarrel_m203_groza.projectile_trail = true
 
 -- Piglet
-tweak_data.projectiles.launcher_frag_m32 = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.launcher_frag_m32 = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_m32.damage = 24
 
-tweak_data.projectiles.launcher_incendiary_m32 = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m32, "medium")
+tweak_data.projectiles.launcher_incendiary_m32 = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m32)
 tweak_data.projectiles.launcher_electric_m32 = create_electric_grenade(tweak_data.projectiles.launcher_frag_m32)
-tweak_data.projectiles.launcher_poison_m32 = create_poison_grenade(tweak_data.projectiles.launcher_frag_m32, "medium")
+tweak_data.projectiles.launcher_poison_m32 = create_poison_grenade(tweak_data.projectiles.launcher_frag_m32)
 
 -- China Puff
-tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_china.damage = 36
 
-tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china, "medium")
+tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china)
 tweak_data.projectiles.launcher_electric_china = create_electric_grenade(tweak_data.projectiles.launcher_frag_china)
-tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china, "medium")
+tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china)
 
 -- Arbiter
-tweak_data.projectiles.launcher_frag_arbiter = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.launcher_frag_arbiter = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_arbiter.damage = 24
 tweak_data.projectiles.launcher_frag_arbiter.launch_speed = 7000
-tweak_data.projectiles.launcher_frag_arbiter.range = 200
+tweak_data.projectiles.launcher_frag_arbiter.range = 250
 
-tweak_data.projectiles.launcher_incendiary_arbiter = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter, "light")
+--tweak_data.projectiles.launcher_incendiary_arbiter = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter)
 tweak_data.projectiles.launcher_electric_arbiter = create_electric_grenade(tweak_data.projectiles.launcher_frag_arbiter)
-tweak_data.projectiles.launcher_poison_arbiter = create_poison_grenade(tweak_data.projectiles.launcher_frag_arbiter, "light")
+tweak_data.projectiles.launcher_poison_arbiter = create_poison_grenade(tweak_data.projectiles.launcher_frag_arbiter)
 
 -- Basilisk
-tweak_data.projectiles.launcher_frag_ms3gl = deep_clone(tweak_data.projectiles.launcher_frag)
+--tweak_data.projectiles.launcher_frag_ms3gl = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_ms3gl.damage = 24
 
-tweak_data.projectiles.launcher_incendiary_ms3gl = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_ms3gl, "light")
+tweak_data.projectiles.launcher_incendiary_ms3gl = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_ms3gl)
 tweak_data.projectiles.launcher_electric_ms3gl = create_electric_grenade(tweak_data.projectiles.launcher_frag_ms3gl)
-tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl, "light")
+tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl)
 
 -- RPG
 tweak_data.projectiles.launcher_rocket.damage = 480
 tweak_data.projectiles.launcher_rocket.curve_pow = 1
-tweak_data.projectiles.launcher_rocket.player_dmg_mul = 1 / 6
-tweak_data.projectiles.launcher_rocket.range = 500
+tweak_data.projectiles.launcher_rocket.player_dmg_mul = 1 / 8
+tweak_data.projectiles.launcher_rocket.range = 600
+tweak_data.projectiles.launcher_rocket.projectile_trail = true
 
 -- Commando 101
-tweak_data.projectiles.rocket_ray_frag = deep_clone(tweak_data.projectiles.launcher_rocket)
 tweak_data.projectiles.rocket_ray_frag.damage = 72
-tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 4
-tweak_data.projectiles.rocket_ray_frag.projectile_trail = true
-tweak_data.projectiles.rocket_ray_frag.adjust_z = 0
-tweak_data.projectiles.rocket_ray_frag.push_at_body_index = 0
+tweak_data.projectiles.rocket_ray_frag.curve_pow = 1
+tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 8
+tweak_data.projectiles.rocket_ray_frag.range = 600
 
 -- the c101 exclusive anim breaks for some reason when it's changed to primary with no fix
 tweak_data.scene_poses.weapon.ray = { "husk_generic1", "husk_generic2", "husk_generic3", "husk_generic4", required_pose = false }
@@ -254,7 +297,7 @@ tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
 tweak_data.projectiles.cluster.init_timer = 2.5
-tweak_data.projectiles.cluster.range = 200
+tweak_data.projectiles.cluster.range = 250
 
 -- Incendiary Cluster Grenade
 tweak_data.weapon_disable_crit_for_damage.cluster_incendiary = { explosion = false, fire = false }
@@ -263,6 +306,16 @@ tweak_data.projectiles.cluster_incendiary.name_id = "bm_grenade_cluster_incendia
 tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particles/explosions/cluster_incendiary_explosion"
 tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
+
+-- Set Friendly Fire damage
+for k, v in pairs(tweak_data.projectiles) do
+	if v.player_damage and v.damage then
+		v.player_damage = v.damage * (v.player_dmg_mul or 1 / 2)
+	end
+end
+
+-- Fix the Death Wish soundtrack being unavailable
+tweak_data.music.track_list[12].lock = nil
 
 -- Grenade Case HUD icon
 tweak_data.hud_icons.equipment_grenade_case = {
@@ -294,12 +347,6 @@ if _G.IS_VR then
 	tweak_data.point_of_no_returns.ffo.text_id = "hud_assault_full_force_onslaught"
 else
 	tweak_data.point_of_no_returns.ffo.text_id = "hud_assault_full_force_onslaught_in"
-end
-
-for _, projectile in pairs(tweak_data.projectiles) do
-	if projectile.player_damage and projectile.damage then
-		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 1 / 2)
-	end
 end
 
 -- LEVELING PROGRESION OVERHAUL --
@@ -401,38 +448,53 @@ end
 tweak_data.casino = {
 	unlock_level = 10,
 	entrance_level = {
-		14,
-		28,
+		10,
+		20,
+		30,
 		40,
-		45,
-		55,
-		65,
-		75,
+		50,
+		60,
+		70,
 	},
 	entrance_fee = {
-		300000,
-		300000,
-		300000,
-		300000,
-		300000,
-		350000,
-		400000,
+		75000,
+		90000,
+		105000,
+		120000,
+		135000,
+		150000,
+		165000,
 	},
-	prefer_cost = 500000,
-	prefer_chance = 0.1,
+	prefer_cost = 80000,
+	prefer_chance = 0.12,
 	secure_card_cost = {
-		250000,
-		500000,
-		750000,
+		35000,
+		60000,
+		95000,
 	},
 	secure_card_level = {
-		10,
-		40,
-		60,
+		1,
+		1,
+		1,
 	},
-	infamous_cost = 2500000,
+	infamous_cost = 200000,
 	infamous_chance = 3,
 }
+
+--[[ Add achievement-locked parts to card drops
+local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
+for k, v in pairs(achievement_parts) do
+	if tweak_data.weapon.factory.parts[k] and tweak_data.weapon.factory.parts[k].is_a_unlockable then
+		tweak_data.weapon.factory.parts[k].is_a_unlockable = nil
+		tweak_data.weapon.factory.parts[k].pcs = {
+			10,
+			20,
+			30,
+			40,
+		}
+	end
+end
+]]
 
 -- misc
 -- Python code for matplotlibing experience graphs

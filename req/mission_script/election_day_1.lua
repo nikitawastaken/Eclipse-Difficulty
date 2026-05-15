@@ -19,6 +19,7 @@ local harasser = {
 local standard_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local jumpdown_spawn = {

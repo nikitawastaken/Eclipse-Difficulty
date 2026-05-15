@@ -24,6 +24,8 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
 		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
 		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
+		criminal_hurt_drama_mul = { 1.45, 1.3, 1.15, 1, 0.8, 0.6, 0.4 },
+		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
 	}
 
 	-- make sna less cancer
@@ -31,6 +33,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
+
+	-- Saw Massacre (baseline)
+	self.saw_through_shield_dmg_mul = 0.5
 
 	-- Sentry Gun civilian Intimidation
 	self.sentry_gun_intimidation = {
@@ -153,6 +158,13 @@ function UpgradesTweakData:init(tweak_data)
 				"fear",
 				"chac",
 				"funder_strike",
+				"tenderizer",
+				"kabar",
+				"fork",
+				"poker",
+				"spatula",
+				"chef",
+				"shock",
 			},
 		},
 		{ -- skip level 1, it's reached too fast
@@ -406,6 +418,7 @@ function UpgradesTweakData:init(tweak_data)
 				"lemming",
 				"peacemaker",
 				"rsh12",
+				"welrod",
 			},
 		},
 		{ -- lvl 35
@@ -420,6 +433,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"ching",
 				"sub2000",
+				"speen",
 				"wpn_prj_jav",
 			},
 		},
@@ -563,6 +577,8 @@ function UpgradesTweakData:init(tweak_data)
 				"legacy",
 				"c96",
 				"maxim9",
+				"pmm",
+				"laser_watch",
 			},
 		},
 		{ -- lvl 55
@@ -645,7 +661,6 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"x_chinchilla",
-				"x_deagle",
 				"x_model3",
 				"poison_gas_grenade",
 			},
@@ -740,6 +755,12 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"m134",
+			},
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"dart",
 			},
 		},
 		[100] = {
@@ -883,7 +904,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.hostage_max_num.resistance = 4
+	self.hostage_max_num.damage_reduction = 4
+	self.hostage_max_num.health_regen = 4
 	self.values.player.hostage_damage_reduction_addend = { 0.05 }
 	self.definitions.player_hostage_damage_reduction_addend = {
 		category = "feature",
@@ -966,6 +988,18 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+
+	self.values.weapon.faster_spread_bloom_recovery = { 1.35 }
+	self.definitions.weapon_faster_spread_bloom_recovery = {
+		name_id = "menu_weapon_faster_spread_bloom_recovery",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "faster_spread_bloom_recovery",
+			category = "weapon",
+		},
+	}
+
 	self.values.weapon.standing_spread_multiplier = { 0.8 }
 	self.definitions.weapon_standing_spread_multiplier = {
 		name_id = "menu_weapon_standing_spread_multiplier",
@@ -976,7 +1010,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.rifleman.multibasic = "15%"
+	self.skill_descs.rifleman.multibasic = "35%"
 	self.skill_descs.rifleman.multipro = "20%"
 
 	-- Marksman
@@ -1457,6 +1491,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.sentry_targeting_package.multipro = "50%"
 
 	-- Ghost Wiring
+	self.silent_drill_min_force_delay = { 0, 60 }
+	self.skill_descs.jack_of_all_trades.multibasic = tostring(self.silent_drill_min_force_delay[2])
 	self.skill_descs.jack_of_all_trades.multipro = "1"
 	self.skill_descs.jack_of_all_trades.multipro2 = "25"
 
@@ -1641,7 +1677,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- 	},
 	-- }
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2m"
+	self.skill_descs.fire_trap.multibasic2 = "2.5m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
 	self.skill_descs.fire_trap.multibasic4 = "100%"
 	self.skill_descs.fire_trap.multipro = "30"
@@ -2273,8 +2309,33 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.swap_weapon_when_downed = { true }
 
 	-- Quick Fix
-	self.skill_descs.running_from_death.multipro = "10%"
-	self.skill_descs.running_from_death.multipro2 = "120"
+	self.values.first_aid_kit.movement_speed_upgrade = {
+		true,
+	}
+	self.definitions.first_aid_kit_movement_speed_upgrade = {
+		name_id = "menu_first_aid_kit_movement_speed_upgrade",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "movement_speed_upgrade",
+			category = "first_aid_kit",
+		},
+	}
+	self.values.temporary.first_aid_movement_speed_multiplier = { { 1.15, 10 } }
+	self.definitions.temporary_first_aid_movement_speed_multiplier = {
+		name_id = "menu_temporary_first_aid_movement_speed_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "first_aid_movement_speed_multiplier",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.first_aid_damage_reduction[1] = { 0.8, 10 }
+	self.skill_descs.running_from_death.multibasic = "15%"
+	self.skill_descs.running_from_death.multibasic2 = "10"
+	self.skill_descs.running_from_death.multipro = "20%"
+	self.skill_descs.running_from_death.multipro2 = "10"
 
 	-- More Blood to Bleed
 	self.definitions.player_health_multiplier = {
@@ -2318,39 +2379,53 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.feign_death.multipro2 = "120"
 
 	-- Swan Song
-	self.values.temporary.berserker_damage_multiplier[2] = { 1, 9 }
-	self.skill_descs.perseverance.multipro = "6"
-
-	-- Messiah
-	self.values.player.messiah_revive_from_bleed_out = { 1, 3 }
-	self.values.player.increased_bleedout_timer = { 10 }
-	self.definitions.player_messiah_revive_from_bleed_out_2 = {
-		name_id = "menu_player_pistol_revive_from_bleed_out",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "messiah_revive_from_bleed_out",
-			category = "player",
-		},
-	}
-	self.definitions.player_increased_bleedout_timer = {
-		name_id = "menu_player_increased_bleedout_timer",
+	self.values.player.bleedout_timer_multiplier = { 1.33 }
+	self.definitions.player_bleedout_timer_multiplier = {
+		name_id = "menu_player_bleedout_timer_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "increased_bleedout_timer",
+			upgrade = "bleedout_timer_multiplier",
 			category = "player",
 		},
 	}
-	self.skill_descs.messiah.multibasic = "1"
-	self.skill_descs.messiah.multibasic2 = "10"
-	self.skill_descs.messiah.multipro = "2"
+	self.values.temporary.berserker_damage_multiplier[1] = { 1, 10 }
+	self.berserker_movement_speed_multiplier = 0.6
+	self.skill_descs.perseverance.multibasic = "33%"
+	self.skill_descs.perseverance.multipro = "10"
+	self.skill_descs.perseverance.multipro2 = "40%"
+
+	-- Messiah
+	self.values.player.bleedout_damage_multiplier = { 2 }
+	self.definitions.player_bleedout_damage_multiplier = {
+		name_id = "menu_player_bleedout_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bleedout_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.messiah_revive_from_bleed_out[1] = 3
+	self.values.messiah_panic = { { chance = 1, area = 10000, amount = "panic" } }
+	self.skill_descs.messiah.multibasic = "100%"
+	self.skill_descs.messiah.multipro = "3"
+
+	-- Underdog
+	self.skill_descs.martial_arts.multibasic = "18"
+	self.skill_descs.martial_arts.multibasic2 = "15%"
+	self.skill_descs.martial_arts.multibasic3 = "7"
+	self.skill_descs.martial_arts.multipro = "18"
+	self.skill_descs.martial_arts.multipro2 = "10%"
+	self.skill_descs.martial_arts.multipro3 = "7"
 
 	-- Bloodthirst
 	self.values.player.non_special_melee_multiplier[1] = 1.33
 	self.values.player.melee_damage_multiplier[1] = 1.33
+	self.values.player.melee_knockdown_mul[1] = 1.33
 	self.values.player.melee_damage_stacking = { { max_multiplier = 8, melee_multiplier = 0.25 } }
 	self.skill_descs.bloodthirst.multibasic = "33%"
+	self.skill_descs.bloodthirst.multibasic2 = "33%"
 	self.skill_descs.bloodthirst.multipro = "25%"
 	self.skill_descs.bloodthirst.multipro2 = "800%"
 
@@ -2390,21 +2465,95 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.drop_soap.multipro = "30"
 
-	-- Zerker
-	self.values.player.melee_damage_health_ratio_multiplier[1] = 1.5
-	self.skill_descs.wolverine.multibasic = "50%"
-	self.skill_descs.wolverine.multibasic2 = "20%"
-	self.skill_descs.wolverine.multipro = "50%"
-	self.skill_descs.wolverine.multipro2 = "150%"
+	-- Berserker
+	self.definitions.player_berserker_hit_stacking = {
+		name_id = "menu_player_berserker_hit_stacking",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "berserker_hit_stacking",
+			category = "player",
+		},
+	}
+	self.values.player.berserker_hit_stacking = {
+		{
+			stacks_per_hit = 1,
+			max_stacks = 20,
+			stack_decay_t = 1,
+		},
+	}
+	self.values.player.berserker_melee_damage_addend = { 0.05 }
+	self.definitions.player_berserker_melee_damage_addend = {
+		name_id = "menu_player_berserker_melee_damage_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "berserker_melee_damage_addend",
+			category = "player",
+		},
+	}
+	self.values.player.berserker_ranged_damage_addend = { 0.025 }
+	self.definitions.player_berserker_ranged_damage_addend = {
+		name_id = "menu_player_berserker_ranged_damage_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "berserker_ranged_damage_addend",
+			category = "player",
+		},
+	}
+
+	self.skill_descs.wolverine.multibasic = "5%"
+	self.skill_descs.wolverine.multibasic2 = "20"
+	self.skill_descs.wolverine.multibasic3 = "1"
+	self.skill_descs.wolverine.multipro = "2.5%"
+	self.skill_descs.wolverine.multipro2 = "20"
+	self.skill_descs.wolverine.multipro3 = "1"
 
 	-- Frenzy
-	self.values.player.health_damage_reduction = { 0.85, 0.65 }
-	self.values.player.healing_reduction = { 0.25, 0 }
-	self.values.player.max_health_reduction = { 0.1 }
-	self.skill_descs.frenzy.multibasic = "10%"
-	self.skill_descs.frenzy.multibasic2 = "15%"
-	self.skill_descs.frenzy.multipro = "35%"
-	self.skill_descs.frenzy.multipro2 = "100%"
+	self.values.cooldown.melee_attack_frenzy = { { 1, 20 } }
+	self.definitions.cooldown_melee_attack_frenzy = {
+		name_id = "menu_cooldown_melee_attack_frenzy",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "melee_attack_frenzy",
+			category = "cooldown",
+		},
+	}
+	self.values.temporary.frenzy_damage_reduction = { { 0.8, 5 } }
+	self.definitions.temporary_frenzy_damage_reduction = {
+		name_id = "menu_temporary_frenzy_damage_reduction",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "frenzy_damage_reduction",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.frenzy_no_armor_suppression = { { true, 5 } }
+	self.definitions.temporary_frenzy_no_armor_suppression = {
+		name_id = "menu_temporary_frenzy_no_armor_suppression",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "frenzy_no_armor_suppression",
+			category = "temporary",
+		},
+	}
+	self.values.player.cooldown_reset_frenzy = { true }
+	self.definitions.player_cooldown_reset_frenzy = {
+		name_id = "menu_player_cooldown_reset_frenzy",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "cooldown_reset_frenzy",
+			category = "player",
+		},
+	}
+	self.skill_descs.frenzy.multibasic = "20%"
+	self.skill_descs.frenzy.multibasic2 = "5"
+	self.skill_descs.frenzy.multibasic3 = "20"
 
 	-- Perk Decks
 	-------------
@@ -2487,8 +2636,27 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Muscle (uses same extra hp upgrade as grinder)
 	self.values.player.uncover_multiplier[1] = 1.25
-	self.values.temporary.mrwi_health_invulnerable[1][1] = 0.25
-	self.values.temporary.mrwi_health_invulnerable[1][3] = 60
+	self.values.player.health_ratio_invulnerable_ratio = { 0.25 }
+	self.values.cooldown.health_ratio_invulnerable = { { 1, 60 } }
+	self.definitions.cooldown_health_ratio_invulnerable = {
+		name_id = "menu_cooldown_health_ratio_invulnerable",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "health_ratio_invulnerable",
+			category = "cooldown",
+		},
+	}
+	self.values.temporary.health_ratio_invulnerable = { { 1, 2 } }
+	self.definitions.temporary_health_ratio_invulnerable = {
+		name_id = "menu_temporary_health_ratio_invulnerable",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "health_ratio_invulnerable",
+			category = "temporary",
+		},
+	}
 	self.specialization_descs[2][3].multiperk = "30%"
 	self.specialization_descs[2][5].multiperk = "25%"
 	self.specialization_descs[2][7].multiperk = "25%"
@@ -2510,6 +2678,17 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
+	self.values.player.armor_break_invulnerable_duration = { 2 }
+	self.values.cooldown.armor_break_invulnerable = { { 1, 60 } }
+	self.definitions.cooldown_armor_break_invulnerable = {
+		name_id = "menu_cooldown_armor_break_invulnerable",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_break_invulnerable",
+			category = "cooldown",
+		},
+	}
 	self.values.temporary.damage_reduction_from_crewmate = { { 0.8, 10 } }
 	self.definitions.temporary_damage_reduction_from_crewmate = {
 		name_id = "menu_temporary_damage_reduction_from_crewmate",
@@ -2520,7 +2699,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "temporary",
 		},
 	}
-	self.values.temporary.armor_break_invulnerable = { { 2, 60 } }
 	self.specialization_descs[3][1].multiperk = "15%"
 	self.specialization_descs[3][3].multiperk = "20%"
 	self.specialization_descs[3][5].multiperk = "15%"
@@ -2738,7 +2916,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[7][9].multiperk2 = "100%"
 
 	-- Infiltrator
-	self.values.temporary.melee_life_leech[1] = { 1, 5 }
+	self.values.player.melee_kill_health_regen = { 1 }
+	self.values.cooldown.melee_kill_health_leech = { { 1, 5 } }
+	self.definitions.cooldown_melee_kill_health_leech = {
+		name_id = "menu_cooldown_melee_kill_health_leech",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "melee_kill_health_leech",
+			category = "cooldown",
+		},
+	}
 	self.specialization_descs[8][9].multiperk = "10"
 	self.specialization_descs[8][9].multiperk2 = "5"
 
@@ -2837,6 +3025,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
+	self.damage_to_hot_data.stacking_cooldown = 1
+	self.values.player.decreased_drama_hurt = { true }
+	self.definitions.player_decreased_drama_hurt = {
+		name_id = "menu_player_decreased_drama_hurt",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "decreased_drama_hurt",
+			category = "player",
+		},
+	}
 	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
 	self.definitions.player_extra_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
@@ -2878,7 +3077,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
-	self.specialization_descs[11][1].multiperk2 = "1.5"
+	self.specialization_descs[11][1].multiperk4 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "10"
@@ -3069,6 +3268,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[16][9].multiperk3 = "1"
 
 	-- Kingpin
+	self.chico_injector_criminal_hurt_drama_mul = 0.1
 	self.specialization_descs[17][1].multiperk3 = "45"
 	self.specialization_descs[17][9].multiperk3 = "5 points"
 	self.specialization_descs[17][9].multiperk3 = "1"
@@ -3237,6 +3437,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1

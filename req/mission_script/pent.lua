@@ -33,18 +33,21 @@ local roof_upper_spawn = {
 local garage_window_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local lobby_balcony_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -54,16 +57,54 @@ local cloaker_spawn = {
 	},
 }
 return {
+	[100109] = { -- police
+		reinforce = {
+			{
+				name = "lobby",
+				force = 3,
+				position = Vector3(200, 4200, -75),
+			},
+			{
+				name = "garage",
+				force = 3,
+				position = Vector3(-600, -1400, -425),
+			},
+		},
+		paused_difficulty_addends = { -- disable regroup addends
+			on_entered_regroup = 1,
+		},
+	},
+	[101790] = { -- outside_penthouse
+		reinforce = {
+			{ name = "lobby" },
+			{ name = "garage" },
+		},
+		paused_difficulty_addends = { -- enable regroup addends
+			on_entered_regroup = false,
+		},
+		on_executed = { -- delay the double door spawn
+			{ id = 102109, delay = 30 },
+		},
+		force_end_assault = true,
+	},
 	-- Yufu spawned
-	[100765] = { -- diff 10
-		difficulty_max = 0.1,
+	[100765] = {
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
 	},
 	[101607] = { -- Yufu is dead
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = false,
 		ponr = {
-			length = 180,
-			length_balance_mul = { 1.33, 1.15, 1, 0.85 },
+			length = 210,
+			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
 	},
 	[103595] = {

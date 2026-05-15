@@ -52,6 +52,17 @@ function GroupAIStateBase:remove_deployable_reenforce(unit, nav_seg_id)
 	self._deployable_nav_segs[nav_seg_id] = nil
 end
 
+-- Mark loot drop points for reinforce
+Hooks:PostHook(GroupAIStateBesiege, "add_enemy_loot_drop_point", "eclipse_add_enemy_loot_drop_point", function(self, id, pos)
+	if tweak_data.group_ai.use_loot_drop_reenforce then
+		self:set_area_min_police_force(id, 3, pos)
+	end
+end)
+
+Hooks:PostHook(GroupAIStateBesiege, "remove_enemy_loot_drop_point", "eclipse_remove_enemy_loot_drop_point", function(self, id)
+	self:set_area_min_police_force(id)
+end)
+
 -- Move the hostage hesitation delay to control instead of anticipation
 local _begin_assault_task_original = GroupAIStateBesiege._begin_assault_task
 function GroupAIStateBesiege:_begin_assault_task(...)
@@ -65,13 +76,17 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		self._mga_said_arrival = true
 	end
 
-	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_force_balance_mul_weight)
+	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.force)
 	local force_value = self:_get_difficulty_dependent_value(self._tweak_data.assault.force)
 	self._task_data.assault.force = math.ceil(force_value * force_mul)
 
 	if self._hostage_headcount > 0 then
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
 		self._task_data.assault.phase_end_t = self._t + anticipation_duration
+	end
+
+	if tweak_data.drama.assault_start_add then
+		self:_add_drama(tweak_data.drama.assault_start_add)
 	end
 end
 
@@ -131,10 +146,11 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 	end
 
 	if not self._enemy_weapons_hot then
+		local assault_delay = self._difficulty_scaling.addends.on_enemy_weapons_hot.delay
+		assault_delay = assault_delay and assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
 		self._task_data.assault.disabled = nil
-		self._task_data.assault.next_dispatch_t = self._t + (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
-		self._task_data.assault.first_response_trades_delay = self._t
-			+ (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)) / 2
+		self._task_data.assault.next_dispatch_t = self._t + assault_delay
+		self._task_data.assault.first_response_trades_delay = self._t + assault_delay * 0.5
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
@@ -233,13 +249,22 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 	local t = self._t
 
 	if not task_data.active then
+		task_data.did_sustain_addend = nil
 		return
 	end
 
-	if task_data.phase == "build" and not self._mga_said_start_assault then
-		managers.groupai:state():_post_megaphone_event("mga_generic_c")
-
-		self._mga_said_start_assault = true
+	if task_data.phase == "sustain" then
+		if not task_data.did_sustain_addend then
+			task_data.did_sustain_addend = true
+			if self._assault_number >= 2 then
+				self:add_difficulty_addend_by_category("on_entered_sustain")
+			end
+		end
+	elseif task_data.phase == "build" then
+		if not self._mga_said_start_assault then
+			self._mga_said_start_assault = true
+			self:_post_megaphone_event("mga_generic_c")
+		end
 	end
 
 	if task_data.phase ~= "fade" or self._hunt_mode then
@@ -283,8 +308,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 			managers.mission:call_global_event("end_assault")
 
 			self:_begin_regroup_task(force_regroup)
-
-			self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add)
 
 			return
 		end
@@ -923,8 +946,14 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	-- If players camp a specific area for too long, turn a smoke grenade into a teargas grenade instead
 	local use_teargas
-	if grenade_type == "smoke_grenade" and not assault_area.hostages and assault_area.criminal_entered_t and table.size(assault_area.neighbours) <= 2 then
+	local replace_flashbangs = managers.mutators:modify_value("GroupAIStateBesiege:TearGasReplacesFlashbangs", false)
+	local valid_grenade = replace_flashbangs or grenade_type == "smoke_grenade"
+	local ignore_hostages = managers.mutators:modify_value("GroupAIStateBesiege:TearGasCollateralDamage", false)
+	local hostage_check = ignore_hostages or not assault_area.hostages
+
+	if valid_grenade and hostage_check and assault_area.criminal_entered_t and table.size(assault_area.neighbours) <= 2 then
 		local teargas_chance_times = tweak_data.group_ai.cs_grenade_chance_times or { 60, 240 }
+
 		local teargas_chance = math.map_range(self._t - assault_area.criminal_entered_t, teargas_chance_times[1], teargas_chance_times[2], 0, 1)
 		if math.random() < teargas_chance then
 			local teargas_pos = managers.navigation:find_random_position_in_segment(assault_area.pos_nav_seg)
@@ -1174,6 +1203,7 @@ function GroupAIStateBesiege:_upd_group_spawning()
 	end
 end
 
+-- Scale the spawn rate based on drama, diff, and player count
 function GroupAIStateBesiege:spawn_rate()
 	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
 	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
@@ -1182,25 +1212,15 @@ function GroupAIStateBesiege:spawn_rate()
 		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
 	end
 
-	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight)
+	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.spawn_rate)
 	local spawn_rate = self._task_data.assault.phase == "sustain" and {
 		get_drama_spawn_rate_entry(1),
 		get_drama_spawn_rate_entry(2),
 		get_drama_spawn_rate_entry(3),
 	} or regular_spawnrate_tbl
 
-	--	Eclipse:log_chat("Balance multiplier is " .. spawn_rate_balance_mul)
-
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
-
-	--[[
-	if self._task_data.assault.phase == "sustain" then
-		Eclipse:log_chat("Spawn rate for drama value " .. self._drama_data.amount .. " set to " .. self:_get_difficulty_dependent_value(spawn_rate))
-	else
-		Eclipse:log_chat("Current phase is not sustain, so no drama-based spawnrate.")
-	end
-]]
 
 	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
 end
@@ -1341,8 +1361,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a dynamic enemy spawn rate that scales with player count and difficulty value
-	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate())
+	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate() * spawn_task.group.size)
 end
 
 local function spawn_group_id(spawn_group)
@@ -1423,7 +1442,14 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if spawn_entry.freq_balance_mul then
-			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_freq_balance_mul_weight)
+			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.freq)
+		end
+
+		if spawn_entry.drama_category then
+			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(spawn_entry.drama_category)
+		else
+			local category = tweak_data.group_ai.unit_categories[spawn_entry.unit]
+			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(category.drama_category or category.special_type)
 		end
 	end
 
@@ -1512,6 +1538,32 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
+function GroupAIStateBesiege:_get_drama_weight_mul(category)
+	local drama_category_data = tweak_data.drama.drama_weight_muls[category]
+	if not drama_category_data then
+		return 1
+	end
+	local current_drama = self._drama_data.amount
+	local min_drama, max_drama, min_mul, max_mul
+	local sorted_keys = table.map_keys(drama_category_data)
+	for _, drama in ipairs(sorted_keys) do
+		if not min_drama or drama < current_drama then
+			min_drama = drama
+			min_mul = drama_category_data[drama]
+		end
+	end
+	for _, drama in table.reverse_ipairs(sorted_keys) do
+		if not max_drama or drama > current_drama then
+			max_drama = drama
+			max_mul = drama_category_data[drama]
+		end
+	end
+	if min_mul == max_mul then
+		return min_mul or 1
+	end
+	return math.map_range_clamped(current_drama, min_drama, max_drama, min_mul, max_mul)
+end
+
 -- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
@@ -1534,7 +1586,7 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 			end
 
 			if cat_weights then
-				local cat_weight = self:_get_difficulty_dependent_value(cat_weights)
+				local cat_weight = self:_get_difficulty_dependent_value(cat_weights) * self:_get_drama_weight_mul(spawn_group_desc.drama_category)
 				local mod_weight = weight * cat_weight
 
 				table.insert(best_groups, {
@@ -1921,6 +1973,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 	})
 end)
 
+Hooks:PostHook(GroupAIStateBesiege, "_begin_regroup_task", "eclipse__begin_regroup_task", function(self)
+	self:add_difficulty_addend_by_category("on_entered_regroup")
+end)
+
 -- Would add receive hook in mod.lua but NetworkHelper is set up after Eclipse's earliest hook starts running
 NetworkHelper:AddReceiveHook("Eclipse", "early_control_music", function(data, sender)
 	if sender == 1 and data == "early_control_music" then
@@ -1948,7 +2004,8 @@ function GroupAIStatePonr:init(state, data)
 	self:_parse_teammate_comments()
 	self:sync_assault_mode(false)
 	self:set_bain_state(true)
-	self:set_difficulty(1)
+	-- self:set_difficulty(1)
+	self:add_difficulty_addend_by_category("on_entered_full_force_onslaught")
 	self:_set_rescue_state(true)
 	self:_init_unit_type_filters()
 	self:_init_team_tables()
@@ -1979,10 +2036,18 @@ function GroupAIStatePonr:_upd_assault_task(...)
 	local task_data = self._task_data.assault
 
 	if not task_data.active then
+		task_data.did_sustain_addend = nil
 		return
 	end
 
 	local t = self._t
+
+	if task_data.phase == "sustain" and not task_data.did_sustain_addend then
+		task_data.did_sustain_addend = true
+		if self._assault_number >= 2 then
+			self:add_difficulty_addend_by_category("on_entered_sustain")
+		end
+	end
 
 	if task_data.phase ~= "anticipation" then
 		return _upd_assault_task_original_ponr(self, ...)

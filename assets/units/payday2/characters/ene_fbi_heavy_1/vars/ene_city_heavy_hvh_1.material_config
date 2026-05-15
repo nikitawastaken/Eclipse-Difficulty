@@ -15,11 +15,11 @@
 	
 	<material name="mtr_body" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_city_heavy_nm" />
-		<diffuse_texture 		file="units/pd2_dlc_hvh/characters/ene_swat_hvh_1/swat_body_hvh_df" />
+		<diffuse_texture 		file="units/pd2_dlc_hvh/characters/shared_textures/ene_hvh_city_heavy_df" />
 	</material>
 	<material name="mtr_body_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_city_heavy_nm" mip="1" />
-		<diffuse_texture 		file="units/pd2_dlc_hvh/characters/ene_swat_hvh_1/swat_body_hvh_df" mip="1" />
+		<diffuse_texture 		file="units/pd2_dlc_hvh/characters/shared_textures/ene_hvh_city_heavy_df" mip="1" />
 	</material>
 	<material name="mtr_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_city_heavy_nm" mip="2" />

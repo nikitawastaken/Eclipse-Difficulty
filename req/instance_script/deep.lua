@@ -1,6 +1,7 @@
 ---@module Crude Awakening
 local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local swat_1 = scripted_enemy.swat_1
@@ -15,10 +16,14 @@ local elite_sniper = scripted_enemy.elite_sniper
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+}
+local specials = specials_list
 local light_harasser = { swat_1 }
 local heavy_harasser = diff_i > 5 and { [heavy_1] = 5, [elite_sniper] = 1 } or { heavy_1 }
 

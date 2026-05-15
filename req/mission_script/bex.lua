@@ -30,13 +30,6 @@ local enabled = {
 		enabled = true,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -45,9 +38,6 @@ local cloaker_spawn = {
 }
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
 }
 local bags_required = {
 	values = {
@@ -60,17 +50,17 @@ local bags_required_objective = {
 	},
 }
 local reenforce_office_1 = {
-	name = "office1",
+	name = "office01",
 	force = 2,
 	position = Vector3(700, -6000, 0),
 }
 local reenforce_office_2 = {
-	name = "office2",
+	name = "office02",
 	force = 2,
 	position = Vector3(-700, -6000, 0),
 }
 local reenforce_office_3 = {
-	name = "office3",
+	name = "office03",
 	force = 2,
 	position = Vector3(1150, -4400, 0),
 }
@@ -97,12 +87,6 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Delay initial preferreds
-	[103009] = { -- start police car drive in
-		on_executed = {
-			{ id = 100129, delay = 15 }, -- preferred
-		},
-	},
 	-- Add new reinforce
 	[100109] = { -- police
 		reinforce = {
@@ -126,6 +110,9 @@ return {
 				force = 3,
 				position = Vector3(-2250, -2350, 0),
 			},
+		},
+		on_executed = { -- preferred
+			{ id = 100129, delay = 45 }, -- vanilla: 30
 		},
 	},
 	[102311] = { -- func_sequence_trigger_003
@@ -229,9 +216,6 @@ return {
 			},
 		},
 	},
-	-- Add scripted difficulty increases
-	[101003] = difficulty_add_20, -- open_door
-	[101485] = difficulty_add_20, -- open_vault
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason
@@ -327,10 +311,6 @@ return {
 	[102382] = disabled,
 	[102781] = disabled,
 	-- Spawn group intervals
-	-- Slow down the side spawns to make the spawn group distribution more even on higher difficulties.
-	[100019] = close_spawn,
-	[100128] = close_spawn,
-	[100132] = close_spawn,
 	[400042] = cloaker_spawn,
 	[400043] = cloaker_spawn,
 	[400044] = cloaker_spawn,

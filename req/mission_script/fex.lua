@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local security_enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"
@@ -17,13 +18,6 @@ local disabled = {
 	values = {
 		enabled = false,
 	},
-}
-local roof_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
@@ -60,6 +54,8 @@ local swat_spawn = {
 		participate_to_group_ai = true,
 	},
 }
+local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
 
 return {
 	[102919] = { -- enable_safe_interaction_loud
@@ -95,7 +91,7 @@ return {
 			{
 				name = "stairs",
 				force = 2,
-				position = Vector3(75, 600, 0),
+				position = Vector3(25, 600, 0),
 			},
 			{
 				name = "fountain",
@@ -109,25 +105,25 @@ return {
 			},
 		},
 		on_executed = { -- preferreds
-			{ id = 100830, delay = 30 },
+			{ id = 100830, delay = 45 }, -- vanilla: 30
 		},
 	},
-	[103217] = {
+	[103217] = { -- inner_sanctum_and_loud
 		reinforce = {
 			{
 				name = "sanctum_entrance01",
 				force = 2,
-				position = Vector3(-1125, 3350, 0),
+				position = Vector3(1850, 4700, -300),
 			},
 			{
 				name = "sanctum_entrance02",
 				force = 2,
-				position = Vector3(2050, 3900, 0),
+				position = Vector3(-1700, 5000, -300),
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
-			{ id = 103216, delay = 0, delay_rand = 20 },
-			{ id = 103493, delay = 0, delay_rand = 20 },
+			{ id = 103216, delay = 0, delay_rand = 30 },
+			{ id = 103493, delay = 0, delay_rand = 30 },
 		},
 	},
 	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)
@@ -135,16 +131,16 @@ return {
 	[100708] = {
 		values = {
 			trigger_times = 1,
-			enabled = diff_i >= 5 and true or false,
+			enabled = diff_i >= 4 and true or false,
 		},
 		on_executed = {
 			{ id = 101160, remove = true },
-			{ id = 101161, delay = 60 },
+			{ id = 101161, delay = chopper_delay_init },
 		},
 	},
 	[101162] = {
 		on_executed = {
-			{ id = 101161, delay = 240, delay_rand = 60 },
+			{ id = 101161, delay = 180, delay_rand = chopper_delay },
 		},
 	},
 	-- change up swat van enemies
@@ -155,13 +151,10 @@ return {
 	[102903] = disabled,
 	[102904] = disabled,
 	-- Add scripted difficulty increases
-	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
-	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
+	--	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
+	--	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
-	[100007] = roof_spawn,
-	[103098] = roof_spawn,
-	[100131] = window_spawn,
 	[100132] = window_spawn,
 	[100133] = window_spawn,
 	[103491] = window_spawn,

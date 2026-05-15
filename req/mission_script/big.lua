@@ -4,20 +4,23 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local swat_1 = scripted_enemy.swat_1
-local sniper = scripted_enemy.sniper
-local heavy_1 = scripted_enemy.heavy_swat_1
-local elite_sniper = scripted_enemy.elite_sniper
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local harasser_c4 = is_eclipse and { [heavy_1] = 2, [sniper] = 3 } or { [swat_1] = 2, [sniper] = 3 }
-local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
+
+local light_harasser = scripted_enemy.swat_1
+local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
+local harasser = {
+	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+}
+local c4_harasser_escape = {
+	enemy = is_eclipse and { [scripted_enemy.heavy_swat_1] = 2, [scripted_enemy.sniper] = 3 } or { [scripted_enemy.swat_1] = 2, [scripted_enemy.sniper] = 3 },
+}
 
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
+
+local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 -- the evil one
 local timelock_normal_variant_1 = (is_eclipse and 300 or 240) + (is_pro_job and 60 or 0)
@@ -49,12 +52,6 @@ else
 	timelock_fast = timelock_fast_variant_3
 end
 
-local harasser = {
-	enemy = diff_i < 5 and light_harasser or heavy_harasser,
-}
-local harasser_c4_escape = {
-	enemy = harasser_c4,
-}
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
@@ -74,14 +71,15 @@ local swat_sniper_c4_escape_so = {
 }
 local roof_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local elevator_close_spawn = {
@@ -90,9 +88,6 @@ local elevator_close_spawn = {
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
 }
 local invisible_walls = {}
 local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
@@ -192,9 +187,6 @@ return {
 			},
 		},
 	},
-	-- Add scripted difficulty increases
-	[104397] = difficulty_add_20,
-	[105969] = difficulty_add_20,
 	--- Enable roof spawngroups
 	[100006] = {
 		values = {
@@ -297,10 +289,10 @@ return {
 	[105500] = elevator_spawn,
 	[400019] = elevator_close_spawn,
 	-- Harassers
-	[102883] = harasser_c4_escape,
-	[102893] = harasser_c4_escape,
-	[102898] = harasser_c4_escape,
-	[102901] = harasser_c4_escape,
+	[102883] = c4_harasser_escape,
+	[102893] = c4_harasser_escape,
+	[102898] = c4_harasser_escape,
+	[102901] = c4_harasser_escape,
 	[100883] = harasser,
 	[100884] = harasser,
 	[100885] = harasser,

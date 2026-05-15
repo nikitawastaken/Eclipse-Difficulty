@@ -134,7 +134,7 @@
 	</extensions>
 
 
-	<network sync="spawn" remote_unit="units/payday2/characters/ene_security_4/ene_security_4_husk"/>
+	<network sync="spawn" remote_unit="units/payday2/characters/ene_security_5/ene_security_5_husk"/>
 
 
 	<sounds>

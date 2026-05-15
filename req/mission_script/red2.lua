@@ -35,8 +35,8 @@ local disabled = {
 		enabled = false,
 	},
 }
-local filter_overkill_above = {
-	values = Eclipse.utils.set_diff_groups("overkill_above"),
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
 local filter_hard_above = {
 	values = Eclipse.utils.set_diff_groups("hard_above"),
@@ -100,13 +100,14 @@ local elevator_spawn = {
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -148,7 +149,7 @@ return {
 			{
 				name = "lobby",
 				force = 4,
-				position = Vector3(-2275, 25, -5),
+				position = Vector3(-2275, 25, 0),
 			},
 			{
 				name = "cafeteria",
@@ -158,7 +159,7 @@ return {
 			{
 				name = "offices",
 				force = 3,
-				position = Vector3(-2675, 2050, -25),
+				position = Vector3(-2675, 2050, -20),
 			},
 		},
 	},
@@ -168,8 +169,8 @@ return {
 	[105902] = disabled, -- left gate
 	[105904] = disabled, -- right gate
 	-- add scripted diff increases
-	[104168] = difficulty_add_20, -- area_player_in_vault_area
-	[103700] = difficulty_add_20, -- area_player_in_vault_loud
+	--	[104168] = difficulty_add_20, -- area_player_in_vault_area
+	--	[103700] = difficulty_add_20, -- area_player_in_vault_loud
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,
@@ -180,8 +181,8 @@ return {
 	[105719] = disabled,
 	[103945] = disabled,
 	-- allow Overdrill on overkill above
-	[104182] = filter_overkill_above,
-	[103962] = filter_overkill_above,
+	[104182] = filter_easy_above,
+	[103962] = filter_easy_above,
 	-- allow Bo's dozers on Normal+
 	[100682] = filter_normal_above,
 	-- disable forced manager flee objective
@@ -314,7 +315,7 @@ return {
 	-- vault ambush
 	[100225] = {
 		values = {
-			amount = is_pro_job and 3 or 2,
+			amount = is_pro_job and 2 or 1,
 		},
 	},
 	[103998] = filter_hard_above,

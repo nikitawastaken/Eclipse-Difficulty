@@ -96,6 +96,17 @@ function UnitNetworkHandler:unit_set_focus_enemy_unit(unit, focus_enemy_unit)
 	unit:brain():set_focus_enemy_unit(focus_enemy_unit)
 end
 
+function UnitNetworkHandler:sync_set_cloaker_goggles_on(unit, state)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(unit) then
+		return
+	end
+
+	local base_ext = unit:base()
+	if base_ext and base_ext.set_cloaker_goggles_on then
+		base_ext:set_cloaker_goggles_on(state)
+	end
+end
+
 -- Extra drill upgrades (additional electrocuting_drill argument)
 function UnitNetworkHandler:sync_drill_upgrades(unit, electrocuting_drill, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, sender_rpc)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender_rpc) then
@@ -174,7 +185,8 @@ function UnitNetworkHandler:server_drop_carry(
 end
 
 -- Add player movement to bag throw
-function UnitNetworkHandler:sync_carry_data(
+-- Remade for compatibility with big lobby
+function UnitNetworkHandler:eclipse_sync_carry_data(
 	unit,
 	carry_id,
 	carry_multiplier,

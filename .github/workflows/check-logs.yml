@@ -1,0 +1,50 @@
+name: Check Extra Debug Logs
+on:
+  push:
+    branches: [ main, dev ]
+
+jobs:
+  check_comments:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Run Log Checker
+        id: logsChecking
+        run: |
+          logsOutput=$(./.github/check_logs)
+          echo "logsOutput=`echo $logsOutput`" >> $GITHUB_OUTPUT
+          echo "logLines=`echo $logsOutput | wc -l`" >> $GITHUB_OUTPUT
+      - uses: sarisia/actions-status-discord@v1
+        if: ${{ steps.logsChecking.outputs.logLines != '1' }}
+        id: webhook
+        with:
+          nofail: false
+          ack_no_webhook: true
+          status: ${{ job.status }}
+          nodetail: true
+          username: "Your Dad"
+          color: 0xffff00
+          avatar_url: ${{ secrets.AVATAR_URL }}
+          title: "Extra Debug Log(s) Found"
+          description: |
+            ${{ steps.logsChecking.outputs.logsOutput }}
+
+            https://github.com/nikitawastaken/Eclipse-Difficulty/commit/${{ github.sha }}
+      - if: ${{ steps.logsChecking.outputs.logLines != '1' }}
+        run: npm install axios
+      - if: ${{ steps.logsChecking.outputs.logLines != '1' }}
+        uses: actions/github-script@v7
+        env:
+          WEBHOOK_PAYLOAD: ${{ steps.webhook.outputs.payload }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        with:
+          script: |
+            const axios = require("axios")
+            const { WEBHOOK_PAYLOAD, WEBHOOK_URL } = process.env
+            const payload = JSON.parse(WEBHOOK_PAYLOAD)
+      
+            // crude custom formatting
+            payload.embeds[0].description = payload.embeds[0].description.replace(/%/g, "\n")
+            axios.post(WEBHOOK_URL, payload)

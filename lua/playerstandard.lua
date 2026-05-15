@@ -17,6 +17,7 @@ function PlayerStandard:init(unit)
 	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
+	self._is_sidearm_pullout_damage_allowed = false
 	local pm = managers.player
 	local pickup_range_multiplier = 1
 
@@ -145,7 +146,7 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	local weap_base = self._equipped_unit:base()
 	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
-	multiplier = multiplier * (weap_base:concealment_to_handling() or 1)
+	multiplier = multiplier * weap_base:mobility_to_handling_mul()
 
 	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
 
@@ -223,7 +224,7 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 		end
 	end
 
-	if managers.player:has_category_upgrade("player", "sidearm_move_speed_multiplier") and weap_base:is_category("revoler", "pistol") then
+	if managers.player:has_category_upgrade("player", "sidearm_move_speed_multiplier") and weap_base:is_category("revolver", "pistol") then
 		multiplier = multiplier * managers.player:upgrade_value("player", "sidearm_move_speed_multiplier", 1)
 	end
 
@@ -289,7 +290,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						weap_base:dryfire()
 					end
 				elseif weap_base.clip_empty and weap_base:clip_empty() then
-					if params and params.no_reload or self:_is_using_bipod() then
+					if params and params.no_reload or self:_is_using_bipod() or tweak_data.weapon.weapon_settings.no_autoreload then
 						if input.btn_primary_attack_press then
 							weap_base:dryfire()
 						end
@@ -390,10 +391,15 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
+						if managers.player:current_state() == "bleed_out" then
+							dmg_mul = dmg_mul * managers.player:upgrade_value("player", "bleedout_damage_multiplier", 1)
+						end
+
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:get_property("trigger_happy", 1)
 						dmg_mul = dmg_mul * (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
+						dmg_mul = dmg_mul * (1 + managers.player:get_property("berserker_ranged_damage", 0))
 					end
 
 					local fired = nil
@@ -450,7 +456,19 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						if not params or not params.no_shake then
 							local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
 							local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-							local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+
+							local on_hit_mul = false
+							if fired and fired.rays then
+								for _, ray in ipairs(fired.rays) do
+									if ray and not table.empty(ray) then
+										on_hit_mul = true
+
+										break
+									end
+								end
+							end
+
+							local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"]) * recoil_shake
 
 							if self._state_data.in_steelsight then
 								self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
@@ -485,7 +503,19 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						-- Modify starting here
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
-						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
+						local kick_id = self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"
+
+						if kick_tweak_data.on_hit and fired and fired.rays then
+							for _, ray in ipairs(fired.rays) do
+								if ray and not table.empty(ray) then
+									kick_id = "on_hit"
+
+									break
+								end
+							end
+						end
+
+						local up, down, left, right = unpack(kick_tweak_data[kick_id])
 
 						local apply_spray = false
 						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
@@ -845,7 +875,7 @@ function PlayerStandard:_end_action_running(t)
 		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
 
 		local speed_multiplier = 1
-		--speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1)
+		speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier()
 		speed_multiplier = speed_multiplier * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
 
 		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier
@@ -902,6 +932,17 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 			return
 		end
 
+		if managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+			local weapon_unit_base = managers.player:equipped_weapon_unit():base()
+			local selection_index = weapon_unit_base and weapon_unit_base:selection_index() or 0
+
+			if selection_index == 2 then
+				self._is_sidearm_pullout_damage_allowed = true
+			else
+				self._is_sidearm_pullout_damage_allowed = false
+			end
+		end
+
 		self._unequip_weapon_expire_t = nil
 
 		if not self:_interacting() then
@@ -926,8 +967,13 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 		end
 
 		-- sidearm pullout extra damage
-		if managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol") then
+		if
+			self._is_sidearm_pullout_damage_allowed
+			and managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+			and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol")
+		then
 			managers.player:activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+			self._is_sidearm_pullout_damage_allowed = false
 		end
 
 		TestAPIHelper.on_event("load_weapon")
@@ -1271,3 +1317,211 @@ Hooks:PreHook(PlayerStandard, "_update_movement", "eclipse_update_movement", fun
 		end
 	end
 end)
+
+-- have to overwrite the whole function just to add a single damage multiplier for berserker :sob:
+function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_entry, hand_id)
+	melee_entry = melee_entry or managers.blackmarket:equipped_melee_weapon()
+	local instant_hit = tweak_data.blackmarket.melee_weapons[melee_entry].instant
+	local melee_damage_delay = tweak_data.blackmarket.melee_weapons[melee_entry].melee_damage_delay or 0
+	local charge_lerp_value = instant_hit and 0 or self:_get_melee_charge_lerp_value(t, melee_damage_delay)
+
+	self._ext_camera:play_shaker(table.random(PlayerStandard._MELEE_VARS), math.max(0.3, charge_lerp_value))
+
+	local sphere_cast_radius = 20
+	local col_ray = nil
+
+	if melee_hit_ray then
+		col_ray = melee_hit_ray ~= true and melee_hit_ray or nil
+	else
+		col_ray = self:_calc_melee_hit_ray(t, sphere_cast_radius)
+	end
+
+	if col_ray and alive(col_ray.unit) then
+		local damage, damage_effect = managers.blackmarket:equipped_melee_weapon_damage_info(charge_lerp_value)
+		local damage_effect_mul = math.max(
+			managers.player:upgrade_value("player", "melee_knockdown_mul", 1),
+			managers.player:upgrade_value(self._equipped_unit:base():weapon_tweak_data().categories and self._equipped_unit:base():weapon_tweak_data().categories[1], "melee_knockdown_mul", 1)
+		)
+		damage = damage * managers.player:get_melee_dmg_multiplier()
+		damage_effect = damage_effect * damage_effect_mul
+		col_ray.sphere_cast_radius = sphere_cast_radius
+		local hit_unit = col_ray.unit
+
+		if hit_unit:character_damage() then
+			if bayonet_melee then
+				self._unit:sound():play("fairbairn_hit_body", nil, false)
+			else
+				local hit_sfx = "hit_body"
+
+				if hit_unit:character_damage() and hit_unit:character_damage().melee_hit_sfx then
+					hit_sfx = hit_unit:character_damage():melee_hit_sfx()
+				end
+
+				self:_play_melee_sound(melee_entry, hit_sfx, self._melee_attack_var)
+			end
+
+			if not hit_unit:character_damage()._no_blood then
+				managers.game_play_central:play_impact_flesh({
+					col_ray = col_ray,
+				})
+				managers.game_play_central:play_impact_sound_and_effects({
+					no_decal = true,
+					no_sound = true,
+					col_ray = col_ray,
+				})
+			end
+
+			self._camera_unit:base():play_anim_melee_item("hit_body")
+		else
+			if self._on_melee_restart_drill and hit_unit:base() and (hit_unit:base().is_drill or hit_unit:base().is_saw) then
+				hit_unit:base():on_melee_hit(managers.network:session():local_peer():id())
+			end
+
+			if bayonet_melee then
+				self._unit:sound():play("knife_hit_gen", nil, false)
+			else
+				self:_play_melee_sound(melee_entry, "hit_gen", self._melee_attack_var)
+			end
+
+			self._camera_unit:base():play_anim_melee_item("hit_gen")
+			managers.game_play_central:play_impact_sound_and_effects({
+				no_decal = true,
+				no_sound = true,
+				col_ray = col_ray,
+				effect = Idstring("effects/payday2/particles/impacts/fallback_impact_pd2"),
+			})
+		end
+
+		local custom_data = nil
+
+		if _G.IS_VR and hand_id then
+			custom_data = {
+				engine = hand_id == 1 and "right" or "left",
+			}
+		end
+
+		managers.rumble:play("melee_hit", nil, nil, custom_data)
+		managers.game_play_central:physics_push(col_ray)
+
+		local character_unit, shield_knock = nil
+		local can_shield_knock = managers.player:has_category_upgrade("player", "shield_knock")
+
+		if can_shield_knock and hit_unit:in_slot(8) and alive(hit_unit:parent()) and not hit_unit:parent():character_damage():is_immune_to_shield_knockback() then
+			shield_knock = true
+			character_unit = hit_unit:parent()
+		end
+
+		character_unit = character_unit or hit_unit
+
+		if character_unit:character_damage() and character_unit:character_damage().damage_melee then
+			local dmg_multiplier = 1
+
+			if not managers.enemy:is_civilian(character_unit) and not managers.groupai:state():is_enemy_special(character_unit) then
+				dmg_multiplier = dmg_multiplier * managers.player:upgrade_value("player", "non_special_melee_multiplier", 1)
+			else
+				dmg_multiplier = dmg_multiplier * managers.player:upgrade_value("player", "melee_damage_multiplier", 1)
+			end
+
+			-- Berserker melee damage bonus
+			dmg_multiplier = dmg_multiplier * (1 + managers.player:get_property("berserker_melee_damage", 0))
+
+			dmg_multiplier = dmg_multiplier
+				* managers.player:upgrade_value("player", "melee_" .. tostring(tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type) .. "_damage_multiplier", 1)
+
+			if character_unit:base() and character_unit:base().char_tweak and character_unit:base():char_tweak().priority_shout then
+				dmg_multiplier = dmg_multiplier * (tweak_data.blackmarket.melee_weapons[melee_entry].stats.special_damage_multiplier or 1)
+			end
+
+			if managers.player:has_category_upgrade("melee", "stacking_hit_damage_multiplier") then
+				self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
+				self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
+					nil,
+					0,
+				}
+				local stack = self._state_data.stacking_dmg_mul.melee
+
+				if stack[1] and t < stack[1] then
+					dmg_multiplier = dmg_multiplier * (1 + managers.player:upgrade_value("melee", "stacking_hit_damage_multiplier", 0) * stack[2])
+				else
+					stack[2] = 0
+				end
+			end
+
+			local health_ratio = self._ext_damage:health_ratio()
+			local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, "melee")
+
+			if damage_health_ratio > 0 then
+				dmg_multiplier = dmg_multiplier * (1 + self._damage_health_ratio_mul_melee * damage_health_ratio)
+			end
+
+			dmg_multiplier = dmg_multiplier * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
+			local target_dead = character_unit:character_damage().dead and not character_unit:character_damage():dead()
+			local target_hostile = managers.enemy:is_enemy(character_unit) and not tweak_data.character[character_unit:base()._tweak_table].is_escort and character_unit:brain():is_hostile()
+			local life_leach_available = managers.player:has_category_upgrade("temporary", "melee_life_leech") and not managers.player:has_activate_temporary_upgrade("temporary", "melee_life_leech")
+
+			if target_dead and target_hostile and life_leach_available then
+				managers.player:activate_temporary_upgrade("temporary", "melee_life_leech")
+				self._unit:character_damage():restore_health(managers.player:temporary_upgrade_value("temporary", "melee_life_leech", 1))
+			end
+
+			local action_data = {
+				variant = "melee",
+			}
+
+			if _G.IS_VR and melee_entry == "weapon" and not bayonet_melee then
+				dmg_multiplier = 0.1
+			end
+
+			action_data.damage = shield_knock and 0 or damage * dmg_multiplier
+			action_data.damage_effect = damage_effect
+			action_data.attacker_unit = self._unit
+			action_data.col_ray = col_ray
+
+			if shield_knock then
+				action_data.shield_knock = can_shield_knock
+			end
+
+			action_data.name_id = melee_entry
+			action_data.charge_lerp_value = charge_lerp_value
+
+			if managers.player:has_category_upgrade("melee", "stacking_hit_damage_multiplier") then
+				self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
+				self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
+					nil,
+					0,
+				}
+				local stack = self._state_data.stacking_dmg_mul.melee
+
+				if character_unit:character_damage().dead and not character_unit:character_damage():dead() then
+					stack[1] = t + managers.player:upgrade_value("melee", "stacking_hit_expire_t", 1)
+					stack[2] = math.min(stack[2] + 1, tweak_data.upgrades.max_melee_weapon_dmg_mul_stacks or 5)
+				else
+					stack[1] = nil
+					stack[2] = 0
+				end
+			end
+
+			local defense_data = character_unit:character_damage():damage_melee(action_data)
+
+			self:_check_melee_special_damage(col_ray, character_unit, defense_data, melee_entry)
+			self:_perform_sync_melee_damage(hit_unit, col_ray, action_data.damage)
+
+			return defense_data
+		else
+			self:_perform_sync_melee_damage(hit_unit, col_ray, damage)
+		end
+	end
+
+	if managers.player:has_category_upgrade("melee", "stacking_hit_damage_multiplier") then
+		self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
+		self._state_data.stacking_dmg_mul.melee = self._state_data.stacking_dmg_mul.melee or {
+			nil,
+			0,
+		}
+		local stack = self._state_data.stacking_dmg_mul.melee
+		stack[1] = nil
+		stack[2] = 0
+	end
+
+	return col_ray
+end

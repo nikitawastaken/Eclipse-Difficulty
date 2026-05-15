@@ -209,7 +209,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
 				distance = distance * weight_mul
 
-				--Add a "target_vulnerable" tactic that makes an enemy go after isolated players
+				--[[ Add a "target_vulnerable" tactic that makes an enemy go after isolated players
 				if crim_record then
 					if target_vulnerable then
 						local closest_dis = nil
@@ -228,6 +228,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 						end
 					end
 				end
+				]]
 
 				local target_priority_slot
 				if attention_data.verified then
@@ -249,15 +250,19 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 						target_priority_slot = target_priority_slot - 1
 					end
 
-					local movement = att_unit and alive(att_unit) and att_unit.movement and att_unit:movement()
-					local current_state = movement and movement.current_state and movement:current_state()
-					local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
-					local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
-					local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
-
 					if target_vulnerable then
-						if current_state_reloading or current_state_changing_weapon or current_state_interacting then
-							target_priority_slot = target_priority_slot - 1
+						if attention_data.is_local_player then
+							local current_state = att_unit:movement():current_state()
+
+							if current_state:_is_reloading() then
+								target_priority_slot = target_priority_slot - 1
+								--		Eclipse:log_chat("Target vulnerable")
+							end
+						elseif attention_data.is_husk_player then
+							if att_unit.anim_data and att_unit:anim_data().reload then
+								target_priority_slot = target_priority_slot - 1
+								--		Eclipse:log_chat("Target vulnerable")
+							end
 						end
 					end
 

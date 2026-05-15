@@ -73,38 +73,42 @@ local right_side_upper_spawn = {
 local archives_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local atrium_skylight_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local atrium_elevator_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local atrium_upper_spawn = {
 	values = {
 		interval = 25,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields,
 }
 local left_side_upper_spawn = {
 	values = {
 		interval = 25,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local offices_upper_spawn = {
 	values = {
 		interval = 35,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -268,6 +272,7 @@ return {
 			{ name = "operations_room" },
 		},
 	},
+	--[[
 	-- Add reinforce around the operations room
 	[101843] = { -- ent_001
 		reinforce = {
@@ -305,6 +310,7 @@ return {
 			},
 		},
 	},
+]]
 	-- Randomise initial FBI agent amounts
 	[101195] = {
 		values = {

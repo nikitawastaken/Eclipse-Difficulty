@@ -35,13 +35,14 @@ return {
 			length_balance_mul = { 1.15, 1.15, 1, 1 },
 		},
 	},
-	[100145] = { -- Floor blown
+	--[[	[100145] = { -- Floor blown
 		values = {
 			callback = function()
 				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
 			end,
 		},
 	},
+]]
 	-- Combine some navigation areas
 	[100287] = {
 		ai_area = {
@@ -88,8 +89,8 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[100512] = difficulty_add_20, -- Open all doors
-	[100142] = difficulty_add_20, -- blowup
+	--	[100512] = difficulty_add_20, -- Open all doors
+	--	[100142] = difficulty_add_20, -- blowup
 	-- Spawn group intervals
 	[400020] = cloaker_spawn,
 	[400021] = cloaker_spawn,

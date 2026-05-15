@@ -10,9 +10,6 @@ local enabled = {
 	},
 }
 local courtyard_spawn = {
-	values = {
-		interval = 30,
-	},
 	groups = preferred.no_cops_agents,
 }
 local staircase_window_spawn = {
@@ -26,15 +23,21 @@ local matrix_window_spawn = {
 }
 local exhibit_rappel_spawn = {
 	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
+}
+local exhibit_slow_rappel_spawn = {
+	values = {
 		interval = 60,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local difficulty_add_20 = {
 	difficulty_add = 0.20,
 }
 local last_rappel_spawn = {
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_bulldozers,
 }
 return {
 	[102425] = {
@@ -81,8 +84,8 @@ return {
 				position = Vector3(0, -2500, -300),
 			},
 		},
-		on_executed = { -- standard preferreds
-			{ id = 100127, delay = 60 },
+		on_executed = { -- standard_preferreds
+			{ id = 100127, delay = 60 }, -- vanilla: 0
 		},
 	},
 	-- restore ground snipers
@@ -116,15 +119,15 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
-			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 45 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 45 }, -- add 41
+			{ id = 102129, delay = 0, delay_rand = 45 }, -- add 11
 		},
 	},
 	-- Add scripted difficulty increases
-	[101507] = difficulty_add_20, -- barrier_opened001
-	[101508] = difficulty_add_20, -- barrier_opened002
-	[101913] = difficulty_add_20, -- diamond_picked_up
+	--	[101507] = difficulty_add_20, -- barrier_opened001
+	--	[101508] = difficulty_add_20, -- barrier_opened002
+	--	[101913] = difficulty_add_20, -- diamond_picked_up
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,
@@ -134,12 +137,12 @@ return {
 	[102418] = staircase_window_spawn,
 	[102399] = matrix_window_spawn,
 	[102400] = matrix_window_spawn,
-	[100019] = exhibit_rappel_spawn,
-	[100809] = exhibit_rappel_spawn,
-	[100810] = exhibit_rappel_spawn,
-	[100021] = exhibit_rappel_spawn,
 	[101946] = exhibit_rappel_spawn,
 	[101959] = exhibit_rappel_spawn,
+	[100019] = exhibit_slow_rappel_spawn,
+	[100809] = exhibit_slow_rappel_spawn,
+	[100810] = exhibit_slow_rappel_spawn,
+	[100021] = exhibit_slow_rappel_spawn,
 	[101924] = last_rappel_spawn,
 	[101941] = last_rappel_spawn,
 	[101942] = last_rappel_spawn,

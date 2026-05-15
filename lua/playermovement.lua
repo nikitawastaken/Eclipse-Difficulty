@@ -33,7 +33,13 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 
 		if alivePlayers == 1 then -- if you're the last man standing, cloaker kicks deal a portion of your max health in damage instead
 			local spooc_kick_damage = self._unit:character_damage():_max_health() * (enemy_unit:base():char_tweak().spooc_kick_damage or 0.25)
+			local current_player_health = self._unit:character_damage():get_real_health()
 			local spooc_kick_push = self._m_fwd:with_z(0.1):normalized() * 1000
+
+			-- leave player at 1 hp if cloaker damage is more than the player's current health
+			if current_player_health < spooc_kick_damage then
+				spooc_kick_damage = current_player_health - 0.1
+			end
 
 			self._unit:character_damage():change_health(-spooc_kick_damage)
 

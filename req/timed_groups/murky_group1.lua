@@ -11,7 +11,7 @@ return function(timed_tactics, timed_random_tactics, spawn_point_ref)
 				team_id = "law1",
 				max_nr_simultaneous_groups = 2,
 				amount = { 2, 3 },
-				disable_timer = 300, -- 5 minutes
+				disable_timer = 420, -- 7 minutes
 				disable_diff = nil,
 				objective = function(spawn_group)
 					return {

@@ -299,6 +299,25 @@ function M.weighted_selector(t)
 	return selector
 end
 
+function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_dis, so_access)
+	return {
+		SO_access = so_access or "261600",
+		scan = true,
+		is_navigation_link = true,
+		align_position = true,
+		needs_pos_rsrv = true,
+		align_rotation = true,
+		interrupt_dmg = 0,
+		so_action = so_action,
+		search_position = search_position,
+		interrupt_dis = interrupt_dis or 7,
+		interval = interval or 2,
+		path_haste = "none",
+		path_stance = "none",
+		attitude = "avoid",
+	}
+end
+
 -- Based on Bank Heist's hiding Cloaker SO setup
 -- search_position must be the same for all GroupAI hiding SOs
 -- interrupt_dis is in meters
@@ -319,40 +338,6 @@ function M.get_hiding_cloaker_so_opts(so_action, search_position, interrupt_dis)
 		interrupt_dis = interrupt_dis or 7,
 		interval = -1,
 	}
-end
-
--- The original one isn't good enough
-function M.callback(o, base_class, base_func_name, ...)
-	if base_class and base_func_name and base_class[base_func_name] then
-		if #{ ... } > 0 then
-			local args = { ... }
-			if o then
-				return function(...)
-					return base_class[base_func_name](o, unpack(args), ...)
-				end
-			else
-				return function(...)
-					return base_class[base_func_name](unpack(args), ...)
-				end
-			end
-		elseif o then
-			return function(...)
-				return base_class[base_func_name](o, ...)
-			end
-		else
-			return function(...)
-				return base_class[base_func_name](...)
-			end
-		end
-	elseif base_class then
-		local class_name = base_class and CoreDebug.class_name(getmetatable(base_class) or base_class)
-
-		Eclipse:warn_console(string.format('Callback on class "%s" refers to a non-existing function "%s".', class_name, base_func_name))
-	elseif base_func_name then
-		Eclipse:warn_console(string.format('Callback to function "%s" is on a nil class.', base_func_name))
-	else
-		Eclipse:warn_console("Callback class and function was nil.")
-	end
 end
 
 -- Under GPL from

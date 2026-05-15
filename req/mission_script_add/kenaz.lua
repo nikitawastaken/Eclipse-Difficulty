@@ -3,7 +3,9 @@ local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
@@ -11,6 +13,123 @@ local sniper_amount = normal and 2 or hard and 3 or 4
 local snipers_respawn = (is_eclipse and 120 or 180) - (is_pro_job and 30 or 0)
 
 local sniper = scripted_enemy.sniper
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cloaker = scripted_enemy.cloaker
+local medic = scripted_enemy.medic_1
+local taser = scripted_enemy.taser_1
+local heavy_swat_sg = scripted_enemy.heavy_swat_2
+
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local bulldozers = is_eclipse_pro and random_elite_dozers or random_dozers
+local specials = {
+	[taser] = 3,
+	[medic] = 2,
+	[cloaker] = 1,
+}
+
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
+
+local optsHuntSO = {
+	SO_access = tostring(128 + 1024 + 2048 + 4096 + 8192),
+	path_style = "none",
+	scan = true,
+	use_instigator = true,
+	interval = 2,
+	so_action = "AI_hunt",
+}
+
+local optsSWAT_heli = {
+	enemy = heavy_swat_sg,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400050, delay = 0 } },
+	enabled = true,
+}
+local optsSpecial_heli = {
+	enemy_table = specials,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400050, delay = 0 } },
+	enabled = true,
+}
+local optsDozer_heli = {
+	enemy_table = bulldozers,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400050, delay = 0 } },
+	enabled = true,
+}
+
+local optsSWATChopper_intro = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "swat_night", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "heli_street_fifth_flyin", time = 0 },
+	},
+	on_executed = {
+		{ id = 400046, delay = 20 },
+		{ id = 400051, delay = 0 },
+	},
+}
+
+local optsSWATChopper_deploy = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "open_door_left", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "open_door_right", time = 0 },
+	},
+	on_executed = {
+		{ id = 400040, delay = 2 },
+		{ id = 400041, delay = 2.5 },
+		{ id = 400042, delay = 3 },
+		{ id = 400043, delay = 3.5 },
+		{ id = 400047, delay = 20 },
+	},
+}
+
+local optsSWATChopper_leave = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "close_door_left", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "close_door_right", time = 0 },
+		{ id = 3, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "heli_street_fifth_flyout", time = 3 },
+	},
+	on_executed = {
+		{ id = 400048, delay = 18 },
+	},
+}
+
+local optsSWATChopper_hide_loop = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 0 },
+	},
+	on_executed = {
+		{ id = 400045, delay = 300, delay_rand = chopper_delay },
+	},
+}
+
+local optsSWATChopper_hide_startup = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 0 },
+	},
+}
+
+local optsspawnswatchopper = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+	},
+	trigger_times = 1,
+	enabled = diff_i >= 4 and true or false,
+}
 
 local optsSniper_1 = {
 	enemy = sniper,
@@ -312,6 +431,10 @@ local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_06",
 }
 
+local Bain_chopperinbound = {
+	dialogue = "Play_pln_heli_01",
+}
+
 M.elements = {
 	-- snipers in the interior
 	Eclipse.mission_elements.gen_dummy(400000, "sniper_1", Vector3(1423, 2448, 598), Rotation(180, 0, 0), optsSniper_1),
@@ -353,5 +476,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400032, "enable_random_snipers", enable_sniper_mission_script),
 	Eclipse.mission_elements.gen_dialogue(400033, "they_sending_snipers", Bain_sendsnipers),
 	Eclipse.mission_elements.gen_missionscript(400034, "bfd_snipers_event_global", spawn_snipers_global),
+
+	-- swat chopper
+	Eclipse.mission_elements.gen_dummy(400040, "swat_heli_1", Vector3(-85, -2517, -147.500), Rotation(0, 0, 0), optsDozer_heli),
+	Eclipse.mission_elements.gen_dummy(400041, "swat_heli_2", Vector3(-10, -2517, -147.500), Rotation(0, 0, 0), optsSpecial_heli),
+	Eclipse.mission_elements.gen_dummy(400042, "swat_heli_3", Vector3(-89, -2345, -147.500), Rotation(-180, 0, 0), optsSWAT_heli),
+	Eclipse.mission_elements.gen_dummy(400043, "swat_heli_4", Vector3(-10, -2345, -147.500), Rotation(-180, 0, 0), optsSWAT_heli),
+	Eclipse.mission_elements.gen_object_editor(400044, "swat_heli_sequence_startup", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_startup),
+	Eclipse.mission_elements.gen_object_editor(400045, "swat_heli_sequence_intro", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_intro),
+	Eclipse.mission_elements.gen_object_editor(400046, "swat_heli_sequence_deploy", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_deploy),
+	Eclipse.mission_elements.gen_object_editor(400047, "swat_heli_sequence_leave", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_leave),
+	Eclipse.mission_elements.gen_object_editor(400048, "swat_heli_sequence_hide_and_loop", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_loop),
+	Eclipse.mission_elements.gen_missionscript(400049, "swat_heli_event", optsspawnswatchopper),
+
+	Eclipse.mission_elements.gen_so(400050, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
+	Eclipse.mission_elements.gen_dialogue(400051, "chopper_inbound", Bain_chopperinbound),
 }
 return M

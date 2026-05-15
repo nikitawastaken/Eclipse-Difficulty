@@ -218,11 +218,12 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	local is_gangster = CopDamage.is_gangster(self._unit:base()._tweak_table)
 	local is_cop = not is_civlian and not is_gangster
 	local is_tank = is_cop and self._unit:base():has_tag("tank")
-	local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "melee_dozer_knock")
+	local attacker_is_player = attack_data.attacker_unit and attack_data.attacker_unit == managers.player:player_unit()
+	local has_tank_knockdown = attacker_is_player and managers.player:has_enabled_cooldown_upgrade("cooldown", "melee_dozer_knock")
 	local head = self._head_body_name and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_head_body_name
 	local damage = attack_data.damage
 
-	if attack_data.attacker_unit and attack_data.attacker_unit == managers.player:player_unit() then
+	if attacker_is_player then
 		local critical_hit, crit_damage = self:roll_critical_hit(attack_data, damage)
 
 		if critical_hit then
@@ -348,7 +349,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 
 		managers.statistics:killed_by_anyone(data)
 
-		if attack_data.attacker_unit == managers.player:player_unit() then
+		if attacker_is_player then
 			self:_comment_death(attack_data.attacker_unit, self._unit)
 			self:_show_death_hint(self._unit:base()._tweak_table)
 			managers.statistics:killed(data)

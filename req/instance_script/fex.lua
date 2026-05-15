@@ -6,6 +6,9 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cloaker = scripted_enemy.cloaker
+local medic = scripted_enemy.medic_1
+local taser = scripted_enemy.taser_1
 local heavy_swat_sg = scripted_enemy.heavy_swat_2
 local random_dozers = {
 	green_bulldozer,
@@ -16,12 +19,18 @@ local random_elite_dozers = {
 	elite_skull_bulldozer,
 }
 local bulldozers = is_eclipse_pro and random_elite_dozers or random_dozers
+local specials = {
+	[taser] = 3,
+	[medic] = 2,
+	[cloaker] = 1,
+}
 
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_easy_above = Eclipse.utils.set_diff_groups("easy_above")
 local patches = {
 	mexican_heli = {
-		dozer_spawns = table.set(100018, 100019),
+		dozer_spawns = table.set(100018),
+		special_spawns = table.set(100019),
 		swat_spawns = table.set(100027, 100031),
 		filters_easy_above = table.set(100014),
 		filters_disable = table.set(100015, 100016, 100017),
@@ -40,6 +49,8 @@ M["levels/instances/unique/fex/fex_helicopter_backup/world/world"] = function(re
 			table.map_append(element.values, filter_disable)
 		elseif dozer_heli.dozer_spawns[id] then
 			element.values.enemy_table = bulldozers
+		elseif dozer_heli.special_spawns[id] then
+			element.values.enemy_table = specials
 		elseif dozer_heli.swat_spawns[id] then
 			element.values.enemy = heavy_swat_sg
 		end

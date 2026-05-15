@@ -7,7 +7,7 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local sewer_spawn = {
@@ -16,18 +16,22 @@ local sewer_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local difficulty_add_25 = {
-	difficulty_add = 0.25,
+local scripted_diff_add = {
+	difficulty_addends = {
+		amount = 0.25,
+		time = { 30, 45 },
+		delay = 0,
+	},
 }
 
 return {
-	[100104] = disabled,
 	[100980] = {
 		ponr = {
 			length = 60,
 			length_balance_mul = { 1.67, 1.34, 1, 1 },
 		},
 	},
+	[100104] = disabled,
 	-- Add new reinforce
 	[100653] = { -- Players are on the ground
 		reinforce = {
@@ -67,7 +71,7 @@ return {
 		},
 	},
 	-- Add scripted difficulty increases
-	[100668] = difficulty_add_25, -- done_with_a_pallet
+	[100668] = scripted_diff_add, -- done_with_a_pallet
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,

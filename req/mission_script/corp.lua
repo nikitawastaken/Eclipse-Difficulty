@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local bellmead_1 = scripted_enemy.bellmead_security_1
@@ -18,11 +19,17 @@ local disabled = {
 local bellmead_merc = {
 	enemy = bellmead_1,
 }
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1, [elite_skull_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+}
 local specials = {
-	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
+	enemy = specials_list,
 }
 local enemy_filter_dozers = {
 	values = {
@@ -50,9 +57,14 @@ local staircase_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
+local scripted_diff_add = {
+	difficulty_addends = {
+		amount = 0.25,
+		time = { 30, 45 },
+		delay = 0,
+	},
 }
+
 return {
 	-- A bunch of reinforce spots to fill up this pretty large level
 	[100115] = {
@@ -166,9 +178,9 @@ return {
 	[103644] = enemy_filter_dozers,
 ]]
 	-- Add scripted difficulty increases
-	[100760] = difficulty_add_20, -- link_completed_obj_004 (blackmail)
-	[101124] = difficulty_add_20, -- display_case_open (prototype found)
-	[102341] = difficulty_add_20, -- output_hack_done (documents accessible)
+	[100760] = scripted_diff_add, -- link_completed_obj_004 (blackmail)
+	[101124] = scripted_diff_add, -- display_case_open (prototype found)
+	[102341] = scripted_diff_add, -- output_hack_done (documents accessible)
 	-- Spawn group intervals
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,

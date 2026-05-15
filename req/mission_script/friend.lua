@@ -9,12 +9,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-}
 return {
 	-- Combine some navigation areas
 	[141003] = {
@@ -42,10 +36,6 @@ return {
 	},
 	-- Disable bad navlink
 	[101057] = disabled,
-	-- Enter main hall
-	[103594] = {
-		difficulty_max = 0.1,
-	},
 	-- Add some reinforce around the house
 	[100129] = { -- Preferred
 		reinforce = {
@@ -71,10 +61,22 @@ return {
 			},
 		},
 	},
+	-- Enter main hall
+	[103594] = {
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
+	},
 	-- Boss dead, safe objective
 	[101169] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = false, -- Disable forced diff
 		reinforce = {
 			{
 				name = "main_hall",
@@ -153,17 +155,4 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
-	-- Spawn group intervals
-	[100128] = standard_spawn,
-	[100130] = standard_spawn,
-	[100131] = standard_spawn,
-	[100132] = standard_spawn,
-	[100133] = standard_spawn,
-	[100206] = standard_spawn,
-	[102861] = standard_spawn,
-	[102381] = standard_spawn,
-	[101920] = standard_spawn,
-	[100719] = standard_spawn,
-	[100810] = standard_spawn,
-	[100921] = standard_spawn,
 }

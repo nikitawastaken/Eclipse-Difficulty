@@ -12,11 +12,12 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 		text_id = "menu_equipment_grenade_case",
 		icon = "equipment_grenade_case",
 		description_id = "des_grenade_case",
-		visual_style = "throwables_bag",
+		visual_object = "g_toolbag",
 		quantity = {
 			1,
 		},
 	}
+	self.max_amount.grenade_crate = 2
 	self.max_amount.grenade_case = 2
 	self.class_name_to_deployable_id.GrenadeCrateBase = "grenade_case"
 

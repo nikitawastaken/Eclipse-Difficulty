@@ -2,6 +2,7 @@
 local M = {}
 
 local diff_i = Eclipse.utils.difficulty_index()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -25,10 +26,17 @@ local elite_sniper = scripted_enemy.elite_sniper
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3, [cloaker] = 3, [elite_sniper] = 2, [elite_bulldozer_neil] = 2, [elite_bulldozer_skull] = 2 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 4, [cloaker] = 3, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }),
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }),
+	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+}
+local specials = specials_list
 
 local random_dozers = {
 	green_bulldozer,
@@ -274,7 +282,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
+	enabled = true,
 	elements = {
 		400068,
 	},
@@ -286,7 +294,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
+	enabled = true,
 	toggle = "off",
 	elements = {
 		100197,
@@ -500,8 +508,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400068, "enable_ambush_on_alarm", optsEnable_ambush_alarm),
 	Eclipse.mission_elements.gen_toggleelement(400069, "disable_locked_vault_door", optsdisable_locked_vault_door),
 	-- smoke bombs
-	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb),
-	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
+	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner

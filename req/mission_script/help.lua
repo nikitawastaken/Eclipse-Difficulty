@@ -8,23 +8,27 @@ local spawn_so = {
 local portal_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local upper_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local flank_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -75,8 +79,6 @@ return {
 	},
 	-- Spawn group intervals
 	-- This heist is pretty cramped and also has verticality, which makes having all those spawn groups packed so close to each other especially egregious. What's new?
-	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
-	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
 	[101143] = portal_spawn,
 	[101160] = portal_spawn,
 	[101161] = portal_spawn,

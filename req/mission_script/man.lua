@@ -7,15 +7,6 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local ready_team_1 = scripted_enemy.ready_team_1
-local swat_1 = scripted_enemy.swat_1
-local heavy_2 = scripted_enemy.heavy_swat_2
-local medic_1 = scripted_enemy.medic_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
 local disabled = {
 	values = {
 		enabled = false,
@@ -39,27 +30,31 @@ local fbi_agents = {
 local fbi_agent = {
 	enemy = fbi_agents,
 }
+local fbi_agent_enabled = {
+	enemy = fbi_agents,
+	values = {
+		enabled = true,
+	},
+}
 local regular_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
-local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
-	enemy = harasser_enemy,
+	enemy = is_eclipse and { [scripted_enemy.swat_1] = 8, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1,
 }
-local harassers = overkill_and_above and 6 or 3
 local harasser_amount = {
 	values = {
-		amount = harassers,
+		amount = overkill_and_above and 6 or 3,
 	},
 }
 local harasser_counter = {
 	values = {
-		counter_target = harassers,
+		counter_target = overkill_and_above and 6 or 3,
 	},
 }
 local sniper_amount = {
@@ -79,13 +74,13 @@ local heli_enemy1 = {
 	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 }
 local heli_enemy2 = {
-	enemy = heavy_2,
+	enemy = scripted_enemy.heavy_swat_2,
 }
 local heli_enemy3 = {
-	enemy = heavy_2,
+	enemy = scripted_enemy.heavy_swat_2,
 }
 local heli_enemy4 = {
-	enemy = diff_i < 5 and heavy_2 or medic_1,
+	enemy = diff_i < 5 and scripted_enemy.heavy_swat_2 or scripted_enemy.medic_1,
 }
 local street_heli_amount = {
 	values = {
@@ -94,19 +89,12 @@ local street_heli_amount = {
 	},
 }
 local street_heli_enemy = {
-	enemy = ready_team_1,
-}
-local breach_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
-	},
-	groups = preferred.no_shields_bulldozers,
+	enemy = scripted_enemy.ready_team_1,
 }
 local window_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -124,12 +112,12 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
 local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
 local ffo_countdown = {
 	ponr = {
 		length = 1200,
-		length_balance_mul = { 1.25, 1, 0.75, 0.75 },
+		length_balance_mul = { 1.25, 1, 0.875, 0.75 },
 	},
 }
 
@@ -146,31 +134,8 @@ return {
 	--PONR
 	[400013] = ffo_countdown,
 	[400016] = ffo_countdown,
-	-- Add new reinforce
-	[100131] = { -- police_called
-		reinforce = {
-			{
-				name = "staircase_main01",
-				force = 2,
-				position = Vector3(-1250, -2750, 300),
-			},
-			{
-				name = "staircase_main02",
-				force = 2,
-				position = Vector3(-1250, -2750, 1000),
-			},
-			{
-				name = "staircase_side01",
-				force = 2,
-				position = Vector3(-1250, 975, 475),
-			},
-			{
-				name = "staircase_side02",
-				force = 2,
-				position = Vector3(-1850, 1000, 1375),
-			},
-		},
-		-- police called, call in da choppa
+	-- police called, call in da choppa
+	[100131] = {
 		on_executed = {
 			{ id = 101608, delay = chopper_delay_init },
 		},
@@ -380,10 +345,15 @@ return {
 			{ id = 103798, remove = true },
 		},
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[102386] = {
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		},
+	},
+	-- prevent c4 wall blows up for happening early
 	[100130] = {
 		on_executed = {
-			{ id = 400005, delay = 0, delay_rand = 20 },
-			{ id = 400046, delay = 240, delay_rand = 60 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -578,11 +548,35 @@ return {
 			trigger_times = 0,
 		},
 	},
+	-- Add new reinforce
 	[102010] = {
+		reinforce = {
+			{
+				name = "staircase_main01",
+				force = 2,
+				position = Vector3(-1250, -2750, 300),
+			},
+			{
+				name = "staircase_main02",
+				force = 2,
+				position = Vector3(-1250, -2750, 1000),
+			},
+			{
+				name = "staircase_side01",
+				force = 2,
+				position = Vector3(-1250, 975, 475),
+			},
+			{
+				name = "staircase_side02",
+				force = 2,
+				position = Vector3(-1850, 1000, 1375),
+			},
+		},
 		on_executed = {
 			{ id = 101608, remove = true },
 			{ id = 103765, delay = 15, delay_rand = 45 }, -- trigger the c4 breach during hacking objetives rather than in police_called
 			{ id = 103766, delay = 15, delay_rand = 45 },
+			{ id = 400046, delay = 30 }, -- trigger dozer spam event
 		},
 	},
 	[103765] = {
@@ -622,10 +616,23 @@ return {
 	[104059] = street_heli_enemy,
 	[104060] = street_heli_enemy,
 	[104061] = street_heli_enemy,
+	-- restore 2 missing fbi agents
+	[102589] = {
+		on_executed = {
+			{ id = 102590, remove = true },
+			{ id = 400054, delay = 0 },
+		},
+	},
+	[102593] = {
+		on_executed = {
+			{ id = 102594, remove = true },
+			{ id = 400053, delay = 0 },
+		},
+	},
 	-- Escape harassers amount
 	[102444] = {
 		values = {
-			amount = harassers,
+			amount = harasser_amount.values.amount,
 			amount_random = 3,
 		},
 	},
@@ -709,6 +716,12 @@ return {
 		},
 	},
 	-- make the the ambush roof spawns near the end of the heist less ass
+	-- restore taser spawn from PDTH
+	[102423] = {
+		on_executed = {
+			{ id = 400052, delay = 0 },
+		},
+	},
 	-- increase the amount of units
 	[102424] = {
 		values = {
@@ -755,6 +768,7 @@ return {
 		},
 	},
 	-- change front shield's positions and their SOs
+	-- also fix missing access for all the SOs
 	[102410] = {
 		values = {
 			position = Vector3(-815.537, 2995.424, 1825),
@@ -768,16 +782,24 @@ return {
 		},
 	},
 	[102412] = {
+		so_access_filter = { "shield" },
 		values = {
 			position = Vector3(-720, 2954, 1842),
 			rotation = Rotation(-90, 0, 0),
 		},
 	},
 	[102413] = {
+		so_access_filter = { "shield" },
 		values = {
 			position = Vector3(-701.068, 3084.950, 1814),
 			rotation = Rotation(-102, 0, 0),
 		},
+	},
+	[102414] = {
+		so_access_filter = { "shield" },
+	},
+	[102415] = {
+		so_access_filter = { "shield" },
 	},
 	-- spawn both front and back shields on overkill above
 	[102430] = {
@@ -788,14 +810,10 @@ return {
 	-- disable the redundant cloaker group
 	[102429] = disabled,
 	-- Spawn group intervals
-	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
-	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
-	-- Window spawns are slower too, having enemies spawn right next to you is pretty annoying. They are still fast enough to give you a reason to plank off windows outside your holdout area.
 	[101940] = window_spawn,
 	[101954] = window_spawn,
 	[101950] = window_spawn,
 	[101951] = window_spawn,
-	[102368] = breach_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
 	[400019] = cloaker_spawn,
@@ -811,10 +829,10 @@ return {
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,
 	[102634] = fbi_agent,
-	[102591] = fbi_agent,
+	[102591] = fbi_agent_enabled,
 	[102592] = fbi_agent,
 	[102586] = fbi_agent,
-	[102588] = fbi_agent,
+	[102588] = fbi_agent_enabled,
 	-- set the undercover cops be on law team (so the FBI won't kill them)
 	[101609] = law_team,
 	[101612] = law_team,

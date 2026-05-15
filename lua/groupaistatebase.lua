@@ -13,13 +13,6 @@ GroupAIStateBase.MEGAPHONE_EVENTS = {
 }
 table.list_append(GroupAIStateBase.EVENT_SYNC, GroupAIStateBase.MEGAPHONE_EVENTS)
 
-Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
-	if self._ai_enabled and not self._enemy_weapons_hot then
-		self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.assault_delay
-		self:add_difficulty(tweak_data.group_ai.difficulty_scaling.diff_init)
-	end
-end)
-
 function GroupAIStateBase:_get_scripted_tier()
 	local scripted_tiers = self._tweak_data and self._tweak_data.scripted_tiers
 	if not scripted_tiers then
@@ -61,9 +54,9 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
-	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
+	self._drama_data.drama_gain_balance_mul = tweak_data.drama.drama_gain_balance_mul
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul, tweak_data.drama.team_ai_drama_balance_mul_weight)
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_gain_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
@@ -126,12 +119,263 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
 	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
 
-	self._difficulty_min = tweak_data.group_ai.difficulty_scaling.diff_min or 0
-	self._difficulty_max = tweak_data.group_ai.difficulty_scaling.diff_max or 1
-	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
-	self._difficulty_value = self._difficulty_value or 0
-	self._difficulty_point_index = self._difficulty_point_index or 1
-	self._difficulty_ramp = self._difficulty_ramp or 0
+	self._silent_alarm_delay = self._silent_alarm_delay or 0
+
+	self._difficulty_value = 0
+	self._difficulty_scaling = deep_clone(tweak_data.group_ai.difficulty_scaling)
+	self._difficulty_addends = {}
+	self._paused_difficulty_addends = {}
+	self._difficulty_update_dt = 0
+	self:_calculate_difficulty_ratio()
+end)
+
+function GroupAIStateBase:_finalize_difficulty_addend_data(data)
+	local category
+	if type(data) == "table" then
+		category = data.category or "generic"
+	else
+		category = data
+		data = self._difficulty_scaling.addends[data]
+		if type(data) ~= "table" then
+			return
+		end
+	end
+
+	local amount = data.amount and (tonumber(data.amount) or math.round(math.rand(unpack(data.amount)), 0.01)) or 0
+	if amount == 0 then
+		return
+	end
+
+	local team_ai_weights = tweak_data.group_ai.team_ai_balance_mul_weights
+	local delay = data.delay and (tonumber(data.delay) or math.rand(unpack(data.delay))) or 0
+	local delay_mul = data.delay_mul or self._difficulty_scaling.addend_delay_multipliers[category]
+	local delay_balance_mul = data.delay_balance_mul or self._difficulty_scaling.addend_delay_balance_muls[category]
+	local final_delay = delay * (delay_mul or 1) * (delay_balance_mul and self:_get_balancing_multiplier(delay_balance_mul, team_ai_weights.difficulty_addend_delay) or 1)
+	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
+	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
+	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
+	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, team_ai_weights.difficulty_addend_time) or 1)
+	local finalized = {
+		amount = amount,
+		delay = final_delay,
+		time = final_time,
+		category = category,
+	}
+	return finalized
+end
+
+-- Add a difficulty addend to the stack
+function GroupAIStateBase:add_difficulty_addend(data)
+	data = self:_finalize_difficulty_addend_data(data)
+	if not data then
+		return
+	end
+	-- Add the preplanning asset's delay_weapons_hot_t delay to the addend's base delay
+	if data.category == "on_enemy_weapons_hot" and self._has_silent_alarm then
+		data.delay = data.delay + self._silent_alarm_delay
+	end
+	if self._difficulty_scaling.paused_addends[data.category] then
+		local paused = self._paused_difficulty_addends[data.category] or {}
+		self._paused_difficulty_addends[data.category] = paused
+		if #paused < (tonumber(self._difficulty_scaling.paused_addends[data.category]) or 1) then
+			table.insert(paused, data)
+		end
+	else
+		table.insert(self._difficulty_addends, data)
+	end
+end
+
+-- Set whether an addend category is allowed to be added to the stack
+function GroupAIStateBase:set_difficulty_addend_category_allowed(category, allowed)
+	self._difficulty_scaling.allowed_addends[category] = allowed and true or false
+end
+
+-- Set whether an addend category is paused and will be added to a separate table, only getting added to the stack when unpaused
+function GroupAIStateBase:set_difficulty_addend_category_paused(category, cache_limit)
+	if cache_limit then
+		self._difficulty_scaling.paused_addends[category] = tonumber(cache_limit) or 1
+	else
+		self._difficulty_scaling.paused_addends[category] = false
+	end
+end
+
+-- If the category is currently allowed, add an addend to the stack
+function GroupAIStateBase:add_difficulty_addend_by_category(category)
+	if self._difficulty_scaling.allowed_addends[category] then
+		self:add_difficulty_addend(category)
+	end
+end
+
+function GroupAIStateBase:_finalize_difficulty_step_data(data)
+	local finalized = self:_finalize_difficulty_addend_data(data)
+	if finalized then
+		finalized.category = "step"
+	end
+	return finalized
+end
+
+-- Add a new timed difficulty step
+-- It does not go into the stack immediately, unless the last timed step has completed and this step is next
+function GroupAIStateBase:add_difficulty_step(data, goes_first)
+	if goes_first then
+		table.insert(self._difficulty_scaling.steps, 1, data)
+	else
+		table.insert(self._difficulty_scaling.steps, data)
+	end
+end
+
+function GroupAIStateBase:_add_difficulty_step_addend(data)
+	data = self:_finalize_difficulty_step_data(data)
+	if not data then
+		return
+	end
+	table.insert(self._difficulty_addends, data)
+end
+
+function GroupAIStateBase:_finalize_forced_difficulty_data(data)
+	local finalized = self:_finalize_difficulty_addend_data(data)
+	if finalized then
+		finalized.category = "forced_difficulty"
+	end
+	return finalized
+end
+
+function GroupAIStateBase:set_forced_difficulty(data)
+	if data then
+		self._forced_difficulty = self:_finalize_forced_difficulty_data(data)
+	elseif self._forced_difficulty then
+		self._forced_difficulty.recovering = true
+	end
+end
+
+-- 32 or even 16 would probably be more than enough, but there should be some room for tiny addends
+local MAX_DIFFICULTY_ADDENDS = 64
+function GroupAIStateBase:_update_difficulty_value(t, dt)
+	-- No need to update every frame
+	self._difficulty_update_dt = self._difficulty_update_dt + dt
+	if self._difficulty_update_dt < 1.5 then
+		return
+	end
+	local cached_dt = self._difficulty_update_dt
+	self._difficulty_update_dt = 0
+
+	-- No difficulty updates during stealth
+	if not self:enemy_weapons_hot() then
+		return
+	end
+
+	-- When a paused addend category becomes unpaused, add all of its cached addends to the stack
+	for category, addends in pairs(self._paused_difficulty_addends) do
+		if not self._difficulty_scaling.paused_addends[category] then
+			self._paused_difficulty_addends[category] = nil
+			while addends[1] do
+				table.insert(self._difficulty_addends, table.remove(addends, 1))
+			end
+		end
+	end
+
+	-- Don't want addends to pile up endlessly if someone leaves the game running for 3 days
+	-- Unlikely to be a concern, but remove oldest rather than newest addends
+	if #self._difficulty_addends > MAX_DIFFICULTY_ADDENDS then
+		for _ = 1, #self._difficulty_addends - MAX_DIFFICULTY_ADDENDS do
+			table.remove(self._difficulty_addends, 1)
+		end
+	end
+
+	local new_diff_value, steps_complete = self:_get_new_difficulty_value(t, cached_dt)
+
+	-- If all existing timed steps are complete, add the next one if it exists
+	if steps_complete and self._difficulty_scaling.steps[1] then
+		self:_add_difficulty_step_addend(self._difficulty_scaling.steps[1])
+		table.remove(self._difficulty_scaling.steps, 1)
+	end
+
+	self._difficulty_value = new_diff_value
+	self:_calculate_difficulty_ratio()
+end
+
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_diff_rework_update", GroupAIStateBase._update_difficulty_value)
+
+function GroupAIStateBase:_get_new_difficulty_value(t, dt)
+	local new_diff_value = 0
+	local steps_complete = true
+	for _, data in ipairs(self._difficulty_addends) do
+		if data.complete then
+			if data.category == "step" then
+				steps_complete = true
+			end
+			new_diff_value = new_diff_value + data.amount
+		elseif data.delay then
+			if data.category == "step" then
+				steps_complete = false
+			end
+			data.delay = data.delay - dt
+			if data.delay <= 0 then
+				data.delay = nil
+				data.start_t = t
+				data.end_t = t + data.time
+			end
+		else
+			if data.category == "step" then
+				steps_complete = false
+			end
+			if data.end_t <= t then
+				data.complete = true
+				new_diff_value = new_diff_value + data.amount
+			else
+				new_diff_value = new_diff_value + math.map_range_clamped(t, data.start_t, data.end_t, math.min_max(0, data.amount))
+			end
+		end
+	end
+	new_diff_value = math.clamp(new_diff_value, 0, 1)
+	return self:_apply_forced_difficulty(new_diff_value, t, dt), steps_complete
+end
+
+function GroupAIStateBase:_apply_forced_difficulty(new_diff_value, t, dt)
+	if not self._forced_difficulty then
+		return new_diff_value
+	end
+	local forced_diff_value
+	if self._forced_difficulty.recovering then
+		self._forced_difficulty.recovery_start_t = self._forced_difficulty.recovery_start_t or t
+		self._forced_difficulty.end_t = self._forced_difficulty.end_t or t + (self._forced_difficulty.time or 0)
+		if self._forced_difficulty.end_t <= t then
+			self._forced_difficulty = nil
+			return new_diff_value
+		end
+		forced_diff_value = math.map_range_clamped(t, self._forced_difficulty.recovery_start_t, self._forced_difficulty.end_t, math.min_max(self._forced_difficulty.amount, new_diff_value))
+	elseif self._forced_difficulty.delay then
+		self._forced_difficulty.delay = self._forced_difficulty.delay - dt
+		if self._forced_difficulty.delay <= 0 then
+			self._forced_difficulty.delay = nil
+		end
+	else
+		forced_diff_value = self._forced_difficulty.amount
+	end
+	return forced_diff_value or new_diff_value
+end
+
+-- Dummied out
+function GroupAIStateBase:set_difficulty(value) end
+
+-- TODO: update mission script patches to the new difficulty system
+function GroupAIStateBase:add_difficulty(value)
+	self:add_difficulty_addend({
+		amount = value,
+		time = value * 240,
+	})
+end
+
+-- Set Silent Alarm asset's delay and type
+function GroupAIStateBase:_set_silent_alarm(value, delay_type)
+	self._has_silent_alarm = value
+	self._silent_alarm_delay = tweak_data.preplanning.types[delay_type] and tweak_data.preplanning.types[delay_type].delay_weapons_hot_t or 0
+end
+
+Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
+	if self._ai_enabled and not self._enemy_weapons_hot then
+		self:add_difficulty_addend_by_category("on_enemy_weapons_hot")
+	end
 end)
 
 -- Add the marksman enemy to special unit types
@@ -156,7 +400,19 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		marksman = true,
 	}
 	if managers.mutators:modify_value("GroupAIStateBase:MaxDiff", false) then
-		self._difficulty_value = 1
+		self._difficulty_scaling.allowed_addends.on_enemy_weapons_hot = true
+		self._difficulty_scaling.addends.on_enemy_weapons_hot = {
+			amount = 1,
+			delay = 0,
+			time = 0,
+		}
+	end
+end)
+
+-- Add some drama when spawning a special unit
+Hooks:PostHook(GroupAIStateBase, "register_special_unit", "eclipse_register_special_unit", function(self, u_key, category_name)
+	if tweak_data.drama.special_spawn_drama_add[category_name] then
+		self:_add_drama(tweak_data.drama.special_spawn_drama_add[category_name])
 	end
 end)
 
@@ -219,68 +475,6 @@ function GroupAIStateBase:megaphone_announce_snipers()
 	end
 end
 
--- Make difficulty progress smoother
-function GroupAIStateBase:_update_difficulty_value()
-	-- No difficulty updates during stealth
-	if not self:enemy_weapons_hot() then
-		return
-	-- Check for difficulty min/max clamps if one was set after the last diff step
-	elseif self._next_difficulty_step_t and self._t < self._next_difficulty_step_t then
-		if self._check_difficulty_clamps then
-			self._check_difficulty_clamps = nil
-			self._difficulty_value = self:_get_clamped_difficulty(self._difficulty_value)
-			self:_calculate_difficulty_ratio()
-		end
-		return
-	end
-
-	self._check_difficulty_clamps = nil
-	self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
-
-	local is_decrease = self._difficulty_value > self._target_difficulty
-	local clamp_func = is_decrease and math.max or math.min
-	local diff_step = tweak_data.group_ai.difficulty_scaling.diff_step * (is_decrease and -1 or 1)
-	local new_diff = clamp_func(self._difficulty_value + diff_step, self._target_difficulty)
-	self._difficulty_value = self:_get_clamped_difficulty(new_diff)
-	self:_calculate_difficulty_ratio()
-end
-
-Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", GroupAIStateBase._update_difficulty_value)
-
--- Final diff can be extremely slightly off from the target when using math.clamp, floating point shenanigans
--- Unsure if "works funny on my machine" moment, 0.4 ~= 0.4000696969 as expected but sometimes 0.4 ~= 0.4 apparently anyway
-function GroupAIStateBase:_get_clamped_difficulty(value)
-	value = value or self._difficulty_value
-	if value > self._difficulty_max then
-		value = self._difficulty_max
-	elseif value < self._difficulty_min then
-		value = self._difficulty_min
-	end
-	return value
-end
-
-function GroupAIStateBase:set_difficulty(value)
-	self._target_difficulty = value
-	self:_update_difficulty_value()
-end
-
-function GroupAIStateBase:add_difficulty(value)
-	self._target_difficulty = self._target_difficulty + value
-	self:_update_difficulty_value()
-end
-
-function GroupAIStateBase:min_difficulty(value)
-	self._difficulty_min = value or self._difficulty_min
-	self._check_difficulty_clamps = true
-	self:_update_difficulty_value()
-end
-
-function GroupAIStateBase:max_difficulty(value)
-	self._difficulty_max = value or self._difficulty_max
-	self._check_difficulty_clamps = true
-	self:_update_difficulty_value()
-end
-
 -- Killing hostages in Pro Jobs increases diff
 Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self, killer_unit)
 	if not alive(killer_unit) then
@@ -312,10 +506,28 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 		end
 	end
 
-	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_kill_add
+	local time_modifier = 1
+	self._killed_hostage_times = self._killed_hostage_times or {}
+	for i, time in table.reverse_ipairs(self._killed_hostage_times) do
+		if self._t - time > 15 then
+			table.remove(self._killed_hostage_times, i)
+		end
+	end
+	local time_modifier = 1 + (#self._killed_hostage_times * 0.07)
+	table.insert(self._killed_hostage_times, self._t)
 
-	if hostage_kill_add then
-		self:add_difficulty(hostage_kill_add)
+	if self._difficulty_scaling.allowed_addends.on_hostage_killed then
+		local on_hostage_killed = deep_clone(self._difficulty_scaling.addends.on_hostage_killed)
+		on_hostage_killed.time_mul = self._difficulty_scaling.addend_time_multipliers.on_hostage_killed
+		on_hostage_killed.time_balance_mul = self._difficulty_scaling.addend_time_balance_muls.on_hostage_killed
+		if type(on_hostage_killed.time) == "table" then
+			for i, time in ipairs(on_hostage_killed.time) do
+				on_hostage_killed.time[i] = math.pow(time, time_modifier)
+			end
+		elseif on_hostage_killed.time then
+			on_hostage_killed.time = math.pow(on_hostage_killed.time, time_modifier)
+		end
+		self:add_difficulty_addend(on_hostage_killed)
 	end
 end)
 
@@ -561,9 +773,26 @@ end)
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
 -- The zones are only used for that, which makes the phases inconsistent for no real reason
 function GroupAIStateBase:_add_drama(amount)
+	local drama_gain_mul = self._tweak_data and self:_get_difficulty_dependent_value(self._tweak_data.drama_gain_mul) or 1
+	if amount > 0 then
+		amount = amount * drama_gain_mul
+	end
 	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
 	self._drama_data.zone = nil
 end
+
+-- Support for variable drama decay rate
+Hooks:OverrideFunction(GroupAIStateBase, "_claculate_drama_value", function(self)
+	self._drama_data.drama_decay_rate_balance_mul = tweak_data.drama.drama_decay_rate_balance_mul
+	local drama_data = self._drama_data
+	local dt = self._t - drama_data.last_calculate_t
+	local dt_mod = (self._get_drama_weight_mul and self:_get_drama_weight_mul("decay_rate") or 1)
+		* self:_get_balancing_multiplier(self._drama_data.drama_decay_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+	local adj = -dt / drama_data.decay_period * dt_mod
+	drama_data.last_calculate_t = self._t
+
+	self:_add_drama(adj)
+end)
 
 -- Set a minimum gunshot and bullet impact alert range in loud
 Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)

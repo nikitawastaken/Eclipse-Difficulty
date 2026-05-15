@@ -21,6 +21,9 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorNoOutlines:new(self),
 		MutatorOneDown:new(self),
 		MutatorBoFlashbang:new(self),
+		MutatorTearGas:new(self),
+		MutatorTaser:new(self),
+		MutatorManualReload:new(self),
 	}
 	self._active_mutators = {}
 	local activate = Global.mutators and Global.mutators.active_on_load

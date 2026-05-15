@@ -277,6 +277,33 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 	end
 end
 
+-- Prevents trades from auto-completing when all players are down but team AI survive
+-- The selected hostage will be based on a healthy player's position if possible
+-- If no healthy players are available, it'll try to find a tased player before considering downed players
+Hooks:OverrideFunction(TradeManager, "get_possible_criminals", function(...)
+	local possible_criminals = {}
+	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
+		if not u_data.status then
+			table.insert(possible_criminals, u_key)
+		end
+	end
+
+	if #possible_criminals == 0 then
+		for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
+			if u_data.status == "electrified" then
+				table.insert(possible_criminals, u_key)
+			end
+		end
+		if #possible_criminals == 0 then
+			for u_key in pairs(managers.groupai:state():all_player_criminals()) do
+				table.insert(possible_criminals, u_key)
+			end
+		end
+	end
+
+	return possible_criminals, nil
+end)
+
 function TradeManager:clbk_begin_hostage_trade()
 	local possible_criminals, is_instant_trade = self:get_possible_criminals()
 	local rescuing_criminal = possible_criminals[math.random(1, #possible_criminals)]
@@ -365,7 +392,10 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		local clbk_id = "Respawn_criminal_on_trade"
 		self._criminal_respawn_clbk = clbk_id
 
-		managers.enemy:add_delayed_clbk(clbk_id, Eclipse.utils.callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
+		-- Monitor the behavior of this...
+		managers.enemy:add_delayed_clbk(clbk_id, function()
+			callback(self, self, "clbk_respawn_criminal")(pos, rotation)
+		end, respawn_t)
 	elseif not is_custody_trade then
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true

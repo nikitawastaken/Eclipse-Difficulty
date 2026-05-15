@@ -13,6 +13,7 @@
 			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
 			<post :hook_id="managers/coresequencemanager"/>
 			<post :hook_id="managers/coreworldinstancemanager"/>
+			<post :hook_id="managers/mission/coreelementtimer"/>
 			<post :hook_id="units/coreunitdamage"/>
 		</group>
 
@@ -48,6 +49,7 @@
 					<post :hook_id="elementwaypoint"/>
 					<post :hook_id="missionscriptelement"/>
 					<post :hook_id="elementenemydummytrigger"/>
+					<post :hook_id="elementpreplanning"/>
 				</group>
 
 				<group :hook_id="hud/">
@@ -56,6 +58,7 @@
 					<post :hook_id="hudassaultcorner"/>
 					<post :hook_id="hudhitconfirm"/>
 					<post :hook_id="hudblackscreen"/>
+					<post :hook_id="hudteammate"/>
 				</group>
 
 				<group :hook_id="menu/">
@@ -72,6 +75,7 @@
 				<group :hook_id="player/">
 					<post :hook_id="snipergrazedamage"/>
 					<post :hook_id="smokescreeneffect"/>
+					<post :hook_id="poisongaseffect"/>
 				</group>
 
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
@@ -120,7 +124,8 @@
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
 				<post :hook_id="moneytweakdata"/>
-				<post :hook_id="tipstweakdata"/>
+				<post :hook_id="assetstweakdata"/>
+				<post :hook_id="tipstweakdata"/>				
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
@@ -296,6 +301,7 @@
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
 						<post :hook_id="electricgrenade"/>
+						<post :hook_id="poisongasgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
@@ -335,56 +341,165 @@
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
 
-		<!-- perk decks and skill trees icons -->
+		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
 
-		<!-- taser shock effect -->
-		<file name="effects/payday2/particles/character/taser_thread.effect"/>
-
-		<!-- shotgun ammo types -->
-		<file name="effects/particles/weapons/sho_buckshot.effect"/>
-		<file name="effects/particles/weapons/sho_default.effect"/>
-		<file name="effects/particles/weapons/sho_flechette.effect"/>
-		<file name="effects/particles/weapons/sho_tomb.effect"/>
-
-		<!-- sniper glare -->
-		<file name="effects/particles/weapons/sniper_glint.effect"/>
-		<file name="effects/particles/weapons/elite_sniper_glint.effect"/>
-		<file name="effects/textures/weapons/sniper_glint.dds"/>
-
-		<!-- cloaker goggle glow -->
-		<file name="effects/particles/character/hvh_cloaker_goggle.effect"/>
-		<file name="effects/particles/character/mad_cloaker_goggle.effect"/>
-
-		<!-- incendiary cluster grenade explosion -->
-		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
-
-		<!-- weapons -->
+		<!-- Weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
+		
+		<!-- Electric Matryoshka Grenade -->
+		<file name="units/pd2_dlc_mtl/weapons/wpn_fps_thr_dada/wpn_third_thr_dada.unit"/>
 
-		<!-- eclipse risk level asset -->
+		<!-- Add a non-poison tipped Dart Gun dart -->
+		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow.unit"/>
+		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local.unit"/>
+			
+		<!-- Risk level assets -->
+		<!-- America -->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
+		<!-- Federales-->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_federales.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_federales.texture"/>
+	
+		<!-- Tips assets -->
+		<file name="guis/textures/loading/hints/general_skills.texture"/>
+		<file name="guis/textures/loading/hints/general_perks.texture"/>
+		<file name="guis/textures/loading/hints/general_grenades.texture"/>
+		<file name="guis/textures/loading/hints/enemy_generic.texture"/>
+		<file name="guis/textures/loading/hints/enemy_sniper.texture"/>
+		<file name="guis/textures/loading/hints/enemy_marksman.texture"/>
+		<file name="guis/textures/loading/hints/enemy_gensec.texture"/>
+		<file name="guis/textures/loading/hints/enemy_elite_shield.texture"/>
+		<file name="guis/textures/loading/hints/enemy_army.texture"/>
+		<file name="guis/textures/loading/hints/weapon_sniper.texture"/>
+		<file name="guis/textures/loading/hints/weapon_marksman.texture"/>
+		<file name="guis/textures/loading/hints/weapon_lmg.texture"/>
+		<file name="guis/textures/loading/hints/weapon_special.texture"/>
+		<file name="guis/textures/loading/hints/equipment_fak.texture"/>
 
-		<group name="bruhh" target="scripted" load_group="eclipse_gun_echo_2">
-			<file :name="soundbanks/regular_sfx.bnk" path="assets/eclipse_soundbanks/oldschool_echo/regular_sfx.bnk" />
-			<file :name="soundbanks/regular_weapon_sfx.bnk" path="assets/eclipse_soundbanks/oldschool_echo/regular_weapon_sfx.bnk" />
-		</group>
+		<!-- Custom effects -->
+		<group name="effects/">
+			<group :name="textures/">
+				<file :name="weapons/sniper_glint.dds"/>
+				<file :name="effects_atlas.texture"/>
+			</group>
+			
+			<group :name="particles/">
+				<group :name="weapons/">
+					<file :name="sniper_glint.effect"/>
+					<file :name="elite_sniper_glint.effect"/>
+					<file :name="sho_buckshot.effect"/>
+					<file :name="sho_default.effect"/>
+					<file :name="sho_flechette.effect"/>
+					<file :name="sho_tomb.effect"/>
 
-		<group name="bruh" target="scripted" load_group="eclipse_gun_echo_3">
-			<file :name="soundbanks/regular_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_sfx.bnk" />
-			<file :name="soundbanks/regular_weapon_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_weapon_sfx.bnk" />
+					<file :name="shotgun_streak.effect"/>
+					<file :name="shotgun_streak_buck.effect"/>
+					<file :name="shotgun_streak_db.effect"/>
+					<file :name="shotgun_streak_flech.effect"/>
+					<file :name="sniper_trail_player.effect"/>
+					<file :name="weapon_trail.effect"/>
+					<file :name="weapon_trail_green.effect"/>
+					<file :name="weapon_trail_green_lmg.effect"/>
+					<file :name="weapon_trail_red.effect"/>
+					<file :name="weapon_trail_red_lmg.effect"/>
+					
+					<file :name="projectile_trail_green.effect"/>
+				</group>
+				
+				<group :name="explosions/">
+					<file :name="poison_gas.effect"/>
+					<file :name="smoke_grenade_smoke.effect"/>
+					<file :name="smoke_screen.effect"/>
+				</group>
+				
+				<!-- cloaker goggle glow -->
+				<group :name="character/">
+					<file :name="hvh_cloaker_goggle.effect"/>
+					<file :name="mad_cloaker_goggle.effect"/>
+				</group>
+			</group>
+			<group :name="payday2/">
+				<file :name="environment/cs_gas_damage_area.effect"/>
+				<file :name="environment/cs_gas_sealing_vent.effect"/>
+				<file :name="environment/gas_damage_area.effect"/>
+				
+				<group :name="particles/">
+					<file :name="explosions/cluster_incendiary_explosion.effect"/>
+					<file :name="character/taser_thread.effect"/>
+					
+					<group :name="weapons/">
+						<file :name="9mm_pistol_fps.effect"/>
+						<file :name="9mm_smg_fps.effect"/>
+						<file :name="45cal_deagle_fps.effect"/>
+						<file :name="45cal_pistol_fps.effect"/>
+						<file :name="45cal_smg_fps.effect"/>
+						<file :name="50cal_auto_fps.effect"/>
+						<file :name="357_revolver_fps.effect"/>
+						<file :name="556_auto_fps.effect"/>
+						<file :name="762_auto_fps.effect"/>
+						<file :name="big_762_auto_fps.effect"/>
+
+						<group :name="fps_parts/">
+							<file :name="big_fps_ball_flash.effect"/>
+							<file :name="big_fps_extra_long_flash.effect"/>
+							<file :name="extra_fps_big_sparse.effect"/>
+							<file :name="fps_ball_flash.effect"/>
+							<file :name="fps_big_flash_sniper.effect"/>
+							<file :name="fps_big_sparse.effect"/>
+							<file :name="fps_combo_light_all.effect"/>
+							<file :name="fps_exhaust_smoke.effect"/>
+							<file :name="fps_extra_long_flash.effect"/>
+							<file :name="fps_fireball.effect"/>
+							<file :name="fps_giant_flash.effect"/>
+							<file :name="fps_medium_light.effect"/>
+							<file :name="fps_small_silence_blue_flash.effect"/>
+							<file :name="fps_small_silence_flash.effect"/>
+							<file :name="fps_smoke_flash.effect"/>
+							<file :name="fps_spark_flash.effect"/>
+							<file :name="fps_sparse_flash.effect"/>
+							<file :name="muzzle_heat.effect"/>
+							<file :name="muzzle_smoke.effect"/>
+							<file :name="sniper_fps_extra_long_flash.effect"/>
+							<file :name="third_big_flash_sniper.effect"/>
+						</group>
+						
+						<group :name="parts/">
+							<file :name="big_light.effect"/>
+							<file :name="medium_light.effect"/>
+							<file :name="uneven_light.effect"/>
+						</group>
+
+						<group :name="streaks/">
+							<file :name="big_light_streak.effect"/>
+							<file :name="light_streak.effect"/>
+							<file :name="long_streak.effect"/>
+							<file :name="traveling_streak.effect"/>
+							<file :name="traveling_streak_green.effect"/>
+							<file :name="traveling_streak_red.effect"/>
+						</group>
+					</group>
+				</group>
+			</group>
 		</group>
 
 		<group name="soundbanks/">
-			<!-- old cook off bain lines -->
+			<!-- Old cook off bain lines -->
 			<file :name="job_h_rat_stage1.bnk"/>
 
-			<!-- increase volume of the Zeal Sniper Rifle sound -->
+			<!-- Increase volume of the Zeal Sniper Rifle sound -->
 			<file :name="weapon_zsniper.bnk"/>
 
-			<!-- mute turret announcement -->
+			<!-- Mute turret announcement -->
 			<group :name="streamed/npc_cpa/">
 				<file :name="5329107.stream"/>
 				<file :name="51493853.stream"/>
@@ -413,6 +528,8 @@
 			<file :name="classics/dinner/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>
+			<file :name="dentist/cas/world/world.continent"/>
+			<file :name="dentist/hox/stage_1/world/world.continent"/>
 			<file :name="bain/big/nav_manager_data.nav_data"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>
 			<file :name="classics/run/nav_manager_data.nav_data"/>

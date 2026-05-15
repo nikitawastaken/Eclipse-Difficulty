@@ -1,8 +1,10 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local bags_required = {
 	values = {
-		amount = normal and 4 or hard and 6 or 8,
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 local disabled = {
@@ -18,17 +20,18 @@ local enabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 }
 local rappel_horizontal_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local casino_balcony_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
@@ -42,8 +45,17 @@ local rappel_vertical_spawn = {
 local vent_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local vent_spawn_why_does_it_have_10_spawn_points = {
+	values = {
+		interval = vent_spawn.values.interval,
+		interval_balance_mul = vent_spawn.values.interval_balance_mul,
+		elements = { 102515, 102516, 102517, 102518, 102519 },
+	},
+	groups = vent_spawn.groups,
 }
 local los_blockers = {}
 local los_blocker_ids = Idstring("units/payday2/architecture/mkp/mkp_int_floor_4x4m_a")
@@ -56,6 +68,32 @@ for i = 0, 3 do
 	})
 end
 return {
+	-- Combine some navigation areas
+	[134066] = {
+		ai_area = {
+			{ 41, 42 },
+			{ 4, 34, 135 },
+			{ 3, 136, 137 },
+			{ 30, 31 },
+			{ 113, 117 },
+			{ 114, 115 },
+		},
+	},
+	-- FFOs
+	-- vault is open (default route)
+	[101331] = {
+		ponr = {
+			length = 480,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
+	-- 3 choppers went down (c4 route)
+	[101683] = {
+		ponr = {
+			length = 300,
+			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
 	-- Add LoS blockers
 	[143003] = {
 		spawn = los_blockers,
@@ -74,6 +112,21 @@ return {
 				position = Vector3(-9300, 9850, 0),
 			},
 			{
+				name = "casino",
+				force = 3,
+				position = Vector3(-9300, 2650, 100),
+			},
+			{
+				name = "courtyard",
+				force = 3,
+				position = Vector3(-9300, 8500, 0),
+			},
+			{
+				name = "spa",
+				force = 3,
+				position = Vector3(-9300, 11025, 400),
+			},
+			{
 				name = "corridor_right",
 				force = 2,
 				position = Vector3(-7975, 6800, 20),
@@ -84,14 +137,24 @@ return {
 				position = Vector3(-10575, 6800, 20),
 			},
 			{
-				name = "casino",
-				force = 3,
-				position = Vector3(-9300, 2500, 100),
+				name = "casino_left",
+				force = 2,
+				position = Vector3(-11600, 1900, 0),
 			},
 			{
-				name = "courtyard",
+				name = "casino_right",
 				force = 2,
-				position = Vector3(-9350, 7950, 0),
+				position = Vector3(-7100, 1900, 0),
+			},
+			{
+				name = "spa_left",
+				force = 2,
+				position = Vector3(-8000, 13300, 400),
+			},
+			{
+				name = "spa_right",
+				force = 2,
+				position = Vector3(-10650, 13300, 400),
 			},
 		},
 	},
@@ -106,25 +169,28 @@ return {
 			{ id = 100890, delay = 0 },
 		},
 		reinforce = {
-			{ name = "elevator" },
-			{ name = "corridor_right" },
-			{ name = "corridor_left" },
 			{ name = "casino" },
 			{ name = "courtyard" },
+			{ name = "corridor_right" },
+			{ name = "corridor_left" },
+			{ name = "casino_left" },
+			{ name = "casino_right" },
+			{ name = "spa_left" },
+			{ name = "spa_right" },
 			{
 				name = "helipad",
 				force = 4,
 				position = Vector3(-9300, 17000, 100),
 			},
 			{
-				name = "spa_outside01",
+				name = "spa_outside_left",
 				force = 2,
-				position = Vector3(-7500, 14250, 0),
+				position = Vector3(-7500, 14250, 400),
 			},
 			{
-				name = "spa_outside02",
+				name = "spa_outside_right",
 				force = 2,
-				position = Vector3(-11000, 14250, 0),
+				position = Vector3(-11025, 14250, 400),
 			},
 		},
 	},
@@ -164,5 +230,6 @@ return {
 	[100759] = rappel_vertical_spawn,
 	[100779] = rappel_vertical_spawn,
 	[101468] = rappel_vertical_spawn,
-	[101470] = vent_spawn,
+	[101469] = vent_spawn,
+	[101470] = vent_spawn_why_does_it_have_10_spawn_points,
 }

@@ -135,7 +135,7 @@ function MissionManager.mission_script_patch_funcs.ponr(self, element, data)
 	if is_pro_job then
 		local function set_ponr()
 			local ponr_timer_balance_mul = data.length_balance_mul
-					and managers.groupai:state():_get_balancing_multiplier(data.length_balance_mul, tweak_data.group_ai.team_ai_ponr_length_balance_mul_weight)
+					and managers.groupai:state():_get_balancing_multiplier(data.length_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.ponr_length)
 				or 1
 			managers.groupai:state():set_point_of_no_return_timer(data.length * ponr_timer_balance_mul, -1, "ffo")
 		end
@@ -204,20 +204,42 @@ function MissionManager.mission_script_patch_funcs.difficulty_add(self, element,
 	Eclipse:log_console("%s hooked as difficulty addition trigger", element:editor_name())
 end
 
-function MissionManager.mission_script_patch_funcs.difficulty_min(self, element, data)
-	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_min_" .. element:id(), function()
-		Eclipse:log_console("%s executed, set minimum difficulty to %.2g", element:editor_name(), data)
-		managers.groupai:state():min_difficulty(data)
+-- Addends, plural, so that you may add multiple at once if needed (eg, a small instant increase and a larger increase that takes a while)
+function MissionManager.mission_script_patch_funcs.difficulty_addends(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_addends" .. element:id(), function()
+		if data[1] then
+			Eclipse:log_console("%s executed, added %u difficulty addend(s)", element:editor_name(), #data)
+			for _, addend in pairs(data) do
+				managers.groupai:state():add_difficulty_addend(addend)
+			end
+		else
+			Eclipse:log_console("%s executed, added difficulty addend", element:editor_name())
+			managers.groupai:state():add_difficulty_addend(data)
+		end
 	end)
-	Eclipse:log_console("%s hooked as minimum difficulty trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as difficulty addends trigger", element:editor_name())
 end
 
-function MissionManager.mission_script_patch_funcs.difficulty_max(self, element, data)
-	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_max_" .. element:id(), function()
-		Eclipse:log_console("%s executed, set maximum difficulty to %.2g", element:editor_name(), data)
-		managers.groupai:state():max_difficulty(data)
+function MissionManager.mission_script_patch_funcs.forced_difficulty(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_forced_difficulty" .. element:id(), function()
+		managers.groupai:state():set_forced_difficulty(data)
 	end)
-	Eclipse:log_console("%s hooked as maximum difficulty trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.allowed_difficulty_addends(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_allowed_difficulty_addends" .. element:id(), function()
+		for category, allowed in pairs(data) do
+			managers.groupai:state():set_difficulty_addend_category_allowed(category, allowed)
+		end
+	end)
+end
+
+function MissionManager.mission_script_patch_funcs.paused_difficulty_addends(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_allowed_difficulty_addends" .. element:id(), function()
+		for category, cache_limit in pairs(data) do
+			managers.groupai:state():set_difficulty_addend_category_paused(category, cache_limit)
+		end
+	end)
 end
 
 function MissionManager.mission_script_patch_funcs.post_mga_event(self, element, data)
@@ -334,7 +356,7 @@ end
 function MissionManager.mission_script_patch_funcs.modify_list_value(self, element, data)
 	for k, v in pairs(data) do
 		if type(element._values[k]) ~= "table" then
-			Eclipse:log_console("warn", 'Invalid modify list value name "%s" on element "%s" (%s)!', k, element:editor_name(), element:id())
+			Eclipse:warn_console("Invalid modify list value name %s on %s", k, element:editor_name())
 		else
 			for id, enabled in pairs(v) do
 				if enabled then
@@ -356,14 +378,68 @@ end
 
 -- Thank you ASS :pray:
 function MissionManager.mission_script_patch_funcs.so_access_filter(self, element, data)
-	if not data then -- dont point fingers at sh if i fuck up
-		Eclipse:log_console("warn", 'Invalid SO access filter preset "%s" for element "%s" (%s)!', data, element:editor_name(), element:id())
-	else
-		element._values.SO_access_original = element._values.SO_access
-		element._values.SO_access = managers.navigation:convert_access_filter_to_number(data)
+	element._values.SO_access = managers.navigation:convert_access_filter_to_number(data)
 
-		Eclipse:log_console("Replaced SO access filter of element %s", element:editor_name())
-	end
+	Eclipse:log_console("Replaced SO access filter of element %s", element:editor_name())
+end
+
+-- Referenced from ElementAiGlobalEvent, lib\managers\mission\elementaiglobalevent
+function MissionManager.mission_script_patch_funcs.hunt(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_hunt_" .. element:id(), function()
+		local hunt_mode = managers.groupai:state()._hunt_mode
+		local flag = (data and not hunt_mode and "hunt") or (hunt_mode and not data and "besiege") or nil
+		if flag then
+			Eclipse:log_console("%s executed, setting wave mode to %s", element:editor_name(), flag)
+			if managers.groupai:state():enemy_weapons_hot() then
+				managers.groupai:state():set_wave_mode(flag)
+			else
+				local key = "eclipse_script_patch_hunt_" .. element:id()
+				local events = { "enemy_weapons_hot" }
+				local function clbk()
+					managers.groupai:state():set_wave_mode(flag)
+					managers.groupai:state():remove_listener(key)
+				end
+				managers.groupai:state():add_listener(key, events, clbk)
+			end
+		end
+	end)
+end
+
+-- true -> regroup, false -> fade
+function MissionManager.mission_script_patch_funcs.force_end_assault(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_force_end_assault_" .. element:id(), function()
+		Eclipse:log_console("%s executed, forcibly %s assault", element:editor_name(), data and "regrouping" or "fading")
+		managers.groupai:state():force_end_assault_phase(data)
+	end)
+end
+
+--[[
+	Format:
+	[696969] = {
+		add_drama = 0.5,
+	},
+	or
+	[696969] = {
+		add_drama = {
+			amount = 0.5,
+			balance_mul = { 1, 0.9, 0.8, 0.7 },
+			team_ai_balance_mul_weight = 0.5,
+		},
+	},
+]]
+function MissionManager.mission_script_patch_funcs.add_drama(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_add_drama_" .. element:id(), function()
+		local amount = 0
+		if type(data) == "table" then
+			amount = (data.amount or 0) * (managers.groupai:state():_get_balancing_multiplier(data.balance_mul, data.team_ai_balance_mul_weight) or 1)
+		else
+			amount = tonumber(data)
+		end
+		if amount and amount ~= 0 then
+			Eclipse:log_console("%s executed, added %s drama", element:editor_name(), tostring(amount))
+			managers.groupai:state():_add_drama(amount)
+		end
+	end)
 end
 
 Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)

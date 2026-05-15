@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<unit type="gen" slot="13">
+	<network sync="spawn" />
+	<object file="units/pd2_dlc_esp/weapons/wpn_prj_dart_poison/wpn_prj_dart_poison" />
+	<extensions>
+		<extension name="base" class="DartArrowBase" >
+			<var name="_tweak_projectile_entry" value="dart_arrow" />
+		</extension>
+		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="damage" class="UnitDamage" >
+			<var name="_skip_give_body_collision_damage" value="true" />
+		</extension>
+	</extensions>
+
+	<sounds>
+		<default_soundsource source="rp_proj_dart" />
+		<soundsource name="snd" source="rp_proj_dart" />
+	</sounds>
+</unit>

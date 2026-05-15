@@ -1,3 +1,6 @@
+Month = os.date("%m")
+Day = os.date("%d")
+
 local mat_vars = Eclipse:require("unit_material_vars")
 local mat_var_paths = table.list_to_set(mat_vars)
 local weighted_selector = Eclipse.utils.weighted_selector
@@ -145,6 +148,12 @@ function CopBase:_run_unit_sequences()
 					end
 				end
 
+				if Day == "01" and Month == "04" then -- Don't look :jerome:
+					if self._head_unit:damage():has_sequence("set_jerome_mode") then
+						self._head_unit:damage():run_sequence_simple("set_jerome_mode")
+					end
+				end
+
 				for _, sequence in pairs(head_sequences) do
 					if self._head_unit:damage():has_sequence(sequence) then
 						self._head_unit:damage():run_sequence_simple(sequence)
@@ -235,6 +244,11 @@ function CopBase:set_cloaker_goggles_on(state)
 	local damage_ext = self._unit:damage()
 	if damage_ext and damage_ext:has_sequence(sequence) then
 		damage_ext:run_sequence_simple(sequence)
+	end
+
+	if Network:is_server() then
+		self._unit:network():send("sync_set_cloaker_goggles_on", state or false)
+		-- managers.network:session():send_to_peers_synched("sync_set_cloaker_goggles_on", self._unit, state)
 	end
 end
 

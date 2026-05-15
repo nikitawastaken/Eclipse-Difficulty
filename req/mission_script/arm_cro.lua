@@ -33,7 +33,7 @@ local dozer_van_chance = {
 }
 local standard_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 }
 local cloaker_spawn = {
@@ -55,9 +55,9 @@ local bags_required_job_value = {
 }
 return {
 	-- Delay police response and add new reinforce
-	[100109] = {
-		on_executed = {
-			{ id = 100129, delay = 30 },
+	[100109] = { -- police
+		on_executed = { -- preferred
+			{ id = 100129, delay = 45 }, -- vanilla: 30
 		},
 		reinforce = {
 			{
@@ -79,6 +79,20 @@ return {
 				name = "south",
 				force = 2,
 				position = Vector3(0, 3200, -20),
+			},
+		},
+	},
+	-- Reduce the number of spawngroups to a more reasonable amount.
+	[100127] = { -- ai_enemy_prefered_add_001
+		values = {
+			spawn_groups = {
+				--	100128,
+				100130,
+				--	100131,
+				100132,
+				--	101844,
+				101843,
+				100133,
 			},
 		},
 	},

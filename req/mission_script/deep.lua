@@ -27,8 +27,15 @@ local sniper_trigger_times = {
 local rappel_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local pillar_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
 }
 local fueling_area_lower_spawn = {
 	values = {
@@ -36,19 +43,15 @@ local fueling_area_lower_spawn = {
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
-local pillar_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local tower_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local fueling_area_upper_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_shields_bulldozers,
@@ -56,6 +59,7 @@ local fueling_area_upper_spawn = {
 local drill_room_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -86,6 +90,18 @@ local door_ambush_dozer_chance = {
 	chance = door_ambush_dozer,
 }
 return {
+	-- Increase the PONR duration and add difficulty scaling
+	[102646] = {
+		values = {
+			time_normal = 300,
+			time_hard = 300,
+			time_overkill = 270,
+			time_overkill_145 = 270,
+			time_easy_wish = 240,
+			time_overkill_290 = 240,
+			time_sm_wish = 240,
+		},
+	},
 	-- Disable crappy vanilla reinforce
 	[104207] = disable,
 	[104208] = disable,
@@ -165,8 +181,8 @@ return {
 			spawn_groups = {
 				101777, -- 45s
 				101778, -- 45s
+				103986, -- 45s
 				--102086, -- 45s
-				--103986, -- 45s
 				--105278, -- 45s
 				400006, -- 20s
 				400012, -- 20s

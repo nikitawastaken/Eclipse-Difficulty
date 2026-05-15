@@ -86,7 +86,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot.icon_xy = { 9, 11 }
 
 	-- Rifleman
-	self.skills.rifleman[1].upgrades = { "player_steelsight_stamina_reduction_multiplier" }
+	self.skills.rifleman[1].upgrades = { "weapon_faster_spread_bloom_recovery" }
 	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
 	self.skills.rifleman.icon_xy = { 0, 5 }
 
@@ -115,6 +115,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.single_shot_ammo_return.desc_id = "menu_headshot_fury_desc"
 
 	-- ENFORCER --
+
+	-- original Underdog
+	self.skills.underdog[1].upgrades = { "" }
+	self.skills.underdog[2].upgrades = { "" }
+	self.skills.underdog.name_id = "menu_work_in_progress_beta"
+	self.skills.underdog.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.underdog.icon_xy = { 0, 0 }
 
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
@@ -479,11 +486,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.nine_lives.icon_xy = { 1, 2 }
 
 	-- Quick Fix
-	self.skills.running_from_death[1].upgrades = { "first_aid_kit_deploy_time_multiplier" }
+	self.skills.running_from_death[1].upgrades = { "first_aid_kit_movement_speed_upgrade" }
 	self.skills.running_from_death[2].upgrades = { "first_aid_kit_damage_reduction_upgrade" }
 	self.skills.running_from_death.icon_xy = { 1, 11 }
-	self.skills.running_from_death.name_id = "menu_tea_time_beta"
-	self.skills.running_from_death.desc_id = "menu_tea_time_beta_desc"
+	self.skills.running_from_death.name_id = "menu_quick_fix"
+	self.skills.running_from_death.desc_id = "menu_quick_fix_desc"
 
 	-- More Blood to Bleed
 	self.skills.up_you_go[1].upgrades = { "player_bleed_out_health_multiplier" }
@@ -496,19 +503,31 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.feign_death[1].upgrades = { "first_aid_kit_hot_regen_1" }
 	self.skills.feign_death[2].upgrades = { "first_aid_kit_auto_recovery_1" }
 	self.skills.feign_death.icon_xy = { 2, 11 }
-	self.skills.feign_death.name_id = "menu_tea_cookies_beta"
-	self.skills.feign_death.desc_id = "menu_tea_cookies_beta_desc"
+	self.skills.feign_death.name_id = "menu_uppers"
+	self.skills.feign_death.desc_id = "menu_uppers_desc"
 
 	-- Swan Song
-	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
+	self.skills.perseverance[1].upgrades = { "player_bleedout_timer_multiplier" }
+	self.skills.perseverance[2].upgrades = { "temporary_berserker_damage_multiplier_1" }
+	self.skills.perseverance.name_id = "menu_swan_song"
+	self.skills.perseverance.desc_id = "menu_swan_song_desc"
 
 	-- Messiah
-	self.skills.messiah[1].upgrades = { "player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer" }
-	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1" }
+	self.skills.messiah[1].upgrades = { "player_bleedout_damage_multiplier" }
+	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_1" }
+	self.skills.messiah.name_id = "menu_messiah"
+	self.skills.messiah.desc_id = "menu_messiah_desc"
+
+	-- Underdog
+	self.skills.martial_arts[1].upgrades = { "player_damage_multiplier_outnumbered" }
+	self.skills.martial_arts[2].upgrades = { "player_damage_dampener_outnumbered" }
+	self.skills.martial_arts.name_id = "menu_underdog_beta"
+	self.skills.martial_arts.desc_id = "menu_underdog_beta_desc"
+	self.skills.martial_arts.icon_xy = { 2, 1 }
 
 	-- Bloodthirst
-	self.skills.bloodthirst[1].upgrades = { "player_melee_damage_stacking_1" }
-	self.skills.bloodthirst[2].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier" }
+	self.skills.bloodthirst[1].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier", "player_melee_knockdown_mul" }
+	self.skills.bloodthirst[2].upgrades = { "player_melee_damage_stacking_1" }
 	self.skills.bloodthirst.name_id = "menu_bloodthirst"
 	self.skills.bloodthirst.desc_id = "menu_bloodthirst_desc"
 
@@ -527,8 +546,14 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.drop_soap.desc_id = "menu_counter_strike_desc"
 
 	-- Berserker
-	self.skills.wolverine[1].upgrades = { "player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier" }
-	self.skills.wolverine[2].upgrades = { "player_melee_damage_health_ratio_multiplier" }
+	self.skills.wolverine[1].upgrades = { "player_berserker_hit_stacking", "player_berserker_melee_damage_addend" }
+	self.skills.wolverine[2].upgrades = { "player_berserker_ranged_damage_addend" }
+	self.skills.wolverine.name_id = "menu_berserker"
+	self.skills.wolverine.desc_id = "menu_berserker_desc"
+
+	-- Frenzy
+	self.skills.frenzy[1].upgrades = { "cooldown_melee_attack_frenzy", "temporary_frenzy_damage_reduction", "temporary_frenzy_no_armor_suppression" }
+	self.skills.frenzy[2].upgrades = { "player_cooldown_reset_frenzy" }
 
 	-- MISC STUFF --
 	-- Medic Tree
@@ -680,7 +705,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[2][3].icon_xy = { 2, 1 }
 	self.specializations[2][5].upgrades = { "player_uncover_multiplier" }
 	self.specializations[2][5].icon_xy = { 1, 1 }
-	self.specializations[2][7].upgrades = { "temporary_mrwi_health_invulnerable_1" }
+	self.specializations[2][7].upgrades = { "cooldown_health_ratio_invulnerable", "temporary_health_ratio_invulnerable" }
 	self.specializations[2][7].texture_bundle_folder = "mrwi"
 	self.specializations[2][7].icon_xy = { 3, 0 }
 	self.specializations[2][9].upgrades = { "player_extra_health_multiplier_2" }
@@ -693,7 +718,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
 	self.specializations[3][7].upgrades = { "cooldown_crewmate_damage_reduction" }
 	self.specializations[3][7].icon_xy = { 1, 4 }
-	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[3][9].upgrades = { "cooldown_armor_break_invulnerable", "player_passive_loot_drop_multiplier" }
 	self.specializations[3][9].icon_xy = { 0, 4 }
 
 	-- rogue
@@ -737,6 +762,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[7][9].icon_xy = { 6, 8 }
 
+	-- infiltrator
+	self.specializations[8][9].upgrades = { "cooldown_melee_kill_health_leech", "player_passive_loot_drop_multiplier" }
+
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
 	self.specializations[9][5].upgrades = { "cooldown_melee_kill_armor_leech", "player_damage_dampener_close_contact_1" }
@@ -749,7 +777,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
 	-- Grinder
-	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
+	self.specializations[11][1].upgrades = { "player_damage_to_hot_1", "player_decreased_drama_hurt" }
 	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
@@ -808,6 +836,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- stoic
+	table.insert(self.specializations[19][1].upgrades, "player_decreased_drama_hurt")
 	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 
 	-- hacker
@@ -980,6 +1009,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
+	table.insert(self.default_upgrades, "temporary_first_aid_movement_speed_multiplier")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
 	table.insert(self.default_upgrades, "grenade_case")
 	table.insert(self.default_upgrades, "player_smoke_screen_armor_regen_mul")
