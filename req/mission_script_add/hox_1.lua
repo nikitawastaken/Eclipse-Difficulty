@@ -623,7 +623,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400091, "smoke_grenade_dozer_5", Vector3(5953, 4468, -2020), Rotation(0, 0, 0), Smoke_bomb_dozer_van),
 	Eclipse.mission_elements.gen_so(400031, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt),
 	Eclipse.mission_elements.gen_missionscript(400032, "spawn_bulldozers", optsSpawnVanDozers),
-	
+
 	-- SWAT choppers
 	Eclipse.mission_elements.gen_object_editor(400040, "swat_heli_sequence_startup", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_startup),
 	-- chopper 1
@@ -670,9 +670,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400078, "swat_heli_sequence_hide_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_4),
 	Eclipse.mission_elements.gen_missionscript(400079, "swat_heli_event_4", optsspawnswatchopper_4),
 	Eclipse.mission_elements.gen_spawngroup(400080, "swat_group_4", { 400071, 400072, 400073, 400074 }, 0, opts_swat_group),
-	
+
 	Eclipse.mission_elements.gen_dialogue(400081, "chopper_inbound", Bain_chopperinbound),
-	
+
 	Eclipse.mission_elements.gen_smokegrenade(400082, "smoke_grenade_heli_1", Vector3(5440, -1750, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
 	Eclipse.mission_elements.gen_smokegrenade(400083, "smoke_grenade_heli_2", Vector3(5455, 3098, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
 	Eclipse.mission_elements.gen_smokegrenade(400084, "smoke_grenade_heli_3", Vector3(-4200, -1396, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
