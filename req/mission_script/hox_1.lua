@@ -80,6 +80,9 @@ local upper_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local helicopter_guaranteed_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 return {
 	-- add point of no return
 	[100580] = {
@@ -92,6 +95,12 @@ return {
 		},
 		on_executed = { -- possible suprise cloaker at the start of the heist
 			{ id = 400038, delay = 0 },
+		},
+	},
+	-- hide choppers on startup
+	[100018] = {
+		on_executed = {
+			{ id = 400040, delay = 0 },
 		},
 	},
 	-- Combine some navigation areas
@@ -196,29 +205,31 @@ return {
 			rotation = Rotation(35.230, 0, 0),
 		},
 	},
-	-- Add harassers through out the convoy section
+	-- Add harassers/helicopter spawns through out the convoy section
 	[102958] = {
 		on_executed = {
 			{ id = 400033, delay = 0 },
 			{ id = 400034, delay = 0 },
+			{ id = 400069, delay = 0 },
 		},
 	},
 	[102946] = {
 		on_executed = {
 			{ id = 400035, delay = 0 },
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
+			{ id = 400059, delay = 0 },
 		},
 	},
 	[102968] = {
 		on_executed = {
 			{ id = 400036, delay = 0 },
-			{ id = 400032, delay = 0 }, -- chance based dozer van ambush
+			{ id = 400059, delay = 0 },
 		},
 	},
 	[102940] = {
 		on_executed = {
 			{ id = 400037, delay = 0 },
+			{ id = 400049, delay = 0 },
 		},
 	},
 	[102955] = {
@@ -226,11 +237,22 @@ return {
 			{ id = 400037, delay = 0 },
 		},
 	},
+	[102919] = {
+		on_executed = {
+			{ id = 400079, delay = 0 },
+		},
+	},
 	-- enable harasser SOs that are disabled for some reason
 	[102001] = enabled,
 	[102004] = enabled,
 	[102005] = enabled,
 	[102008] = enabled,
+	-- chance based dozer van ambush
+	[103611] = {
+		on_executed = {
+			{ id = 400032, delay = 0 },
+		},
+	},
 	-- possible sniper at the start of the heist
 	[100799] = {
 		on_executed = {
@@ -269,6 +291,10 @@ return {
 		},
 	},
 	-- Spawn group intervals
+	[400050] = helicopter_guaranteed_spawn,
+	[400060] = helicopter_guaranteed_spawn,
+	[400070] = helicopter_guaranteed_spawn,
+	[400080] = helicopter_guaranteed_spawn,
 	[101719] = street_spawn,
 	[101728] = street_spawn,
 	[101731] = street_spawn,
