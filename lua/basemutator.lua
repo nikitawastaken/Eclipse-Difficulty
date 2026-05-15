@@ -1135,5 +1135,5 @@ MutatorManualReload.icon_coords = {
 }
 
 function MutatorManualReload:setup(data)
-	tweak_data.weapon.weapon_settings.no_autoreload = true
+--	tweak_data.weapon.weapon_settings.no_autoreload = true
 end
