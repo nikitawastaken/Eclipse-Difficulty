@@ -142,25 +142,25 @@ function PlayerTweakData:_set_presets()
 	self.stealth_strikes = {
 		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }),
 		reason_addends = {
-				civilian_kill = 0.5,
-				alarm_pager_answered = 1,
-				alarm_pager_not_answered = 2,
-				alarm_pager_hang_up = 3,
+			civilian_kill = 0.5,
+			alarm_pager_answered = 1,
+			alarm_pager_not_answered = 2,
+			alarm_pager_hang_up = 3,
 		},
 	}
 	if is_pro_job then
 		self.stealth_strikes.total_amount = self.stealth_strikes.total_amount - 1
 	end
 
-	-- Alarm pager "bluff" tables are now only used in the UI. 
-	local function fill_pager_bluff_table(amount)	
-		local tbl = {}	
+	-- Alarm pager "bluff" tables are now only used in the UI.
+	local function fill_pager_bluff_table(amount)
+		local tbl = {}
 		for i = 0, math.max(0, amount - 1) do
 			table.insert(tbl, 1)
-		end	
+		end
 		return tbl
 	end
-	
+
 	self.alarm_pager.bluff_success_chance = fill_pager_bluff_table(self.stealth_strikes.total_amount)
 	self.alarm_pager.bluff_success_chance_w_skill = self.alarm_pager.bluff_success_chance
 end

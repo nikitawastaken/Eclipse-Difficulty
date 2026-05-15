@@ -9,7 +9,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 
 	--PEOC Pardons insta-pickup
 	self.take_pardons.timer = 0
-	
+
 	-- Reduce armored transport truck deposit box lockpick time
 	self.pick_lock_deposit_transport.timer = 10
 

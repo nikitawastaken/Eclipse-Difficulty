@@ -264,13 +264,13 @@ Hooks:OverrideFunction(CopBrain, "on_alarm_pager_interaction", function(self, st
 		else
 			has_upgrade = player:base():upgrade_value("player", "corpse_alarm_pager_bluff")
 		end
-		
+
 		local sounded_alarm = managers.groupai:state():_chk_last_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
 
 		self._unit:sound():stop()
 
 		managers.groupai:state():register_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered, "alarm_pager_answered", true)
-	
+
 		local nr_pagers, max_nr_pagers = managers.groupai:state():_chk_nr_pagers()
 		local is_last_pager = max_nr_pagers - nr_pagers == 1
 		local cue_index = is_last_pager and 4 or 1
@@ -288,7 +288,7 @@ Hooks:OverrideFunction(CopBrain, "on_alarm_pager_interaction", function(self, st
 				self._unit:sound():play(self:_get_radio_id("dsp_radio_alarm_1"), nil, true)
 			end
 		end
-			
+
 		self._unit:interaction():set_active(false, true)
 
 		self:end_alarm_pager()
