@@ -995,6 +995,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cloaker = {
 		aggressive = true,
 		contact = true,
+		smoke = true,
+		flash_grenade = true,
 	}
 
 	return presets
