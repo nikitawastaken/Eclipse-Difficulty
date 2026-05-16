@@ -3716,16 +3716,21 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
+	local function calculate_team_ai_wgt(team_ai_amount, total_wgt)
+		return (total_wgt - 1) / team_ai_amount
+	end
+	
+	self.team_ai_amount = is_pro_job and 2 or 3
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = 0.33,
-		spawn_rate = 0.5,
-		force = 0.5,
-		freq = 0.5,
-		ponr_length = 0.5,
-		spawn_group_interval = 0.5,
-		difficulty_addend_time = 0.5,
-		difficulty_addend_delay = 0.5,
+		drama = calculate_team_ai_wgt(self.team_ai_amount, 2),
+		spawn_rate = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		force = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		freq = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		ponr_length = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		spawn_group_interval = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		difficulty_addend_time = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		difficulty_addend_delay = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
 	}
 
 	-- Spawn rate
@@ -3786,7 +3791,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
-	self.undershot_reenforce_interval_factor = 0.9
+	self.undershot_reenforce_interval_factor = 1
 	self.init_reenforce_delay = 15
 	self.use_loot_drop_reenforce = true
 	self.use_equipment_reenforce = true
