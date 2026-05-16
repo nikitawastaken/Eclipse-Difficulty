@@ -3719,7 +3719,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local function calculate_team_ai_wgt(team_ai_amount, total_wgt)
 		return (total_wgt - 1) / team_ai_amount
 	end
-	
+
 	self.team_ai_amount = is_pro_job and 2 or 3
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
