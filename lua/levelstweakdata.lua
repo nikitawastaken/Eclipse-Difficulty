@@ -198,7 +198,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.watchdogs_1_night.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
-	
+
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
@@ -216,7 +216,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	
+
 	self.welcome_to_the_jungle_2.group_ai_settings.cloaker_interval_mul = 1.5
 
 	self.framing_frame_3.group_ai_settings = {
