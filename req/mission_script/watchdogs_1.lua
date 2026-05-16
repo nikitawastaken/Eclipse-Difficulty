@@ -54,9 +54,9 @@ return {
 			{ 127, 129 },
 		},
 	},
-	[101144] = { -- Car has been shot
+	[101146] = { -- activateSecondEscapeVehicle
 		ponr = {
-			length = 180,
+			length = 240,
 			length_balance_mul = { 1.375, 1.25, 1.125, 1 },
 		},
 	},

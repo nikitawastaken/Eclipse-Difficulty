@@ -5,33 +5,46 @@ local enabled = {
 		enabled = true,
 	},
 }
-local exclude_shields_dozers = {
-	so_access_filter = so_access.no_heavyweight,
-}
-local exclude_shields = {
-	so_access_filter = so_access.no_shield,
-}
-local warehouse_preferred_delay = {
-	on_executed = {
-		{ id = 101196, delay = 0, delay_rand = 20 },
-	},
+local filters_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
 	},
 }
-local building_spawn = {
+local exclude_shields_dozers = {
+	so_access_filter = so_access.no_heavyweight,
+}
+local exclude_shields = {
+	so_access_filter = so_access.no_shield,
+}
+local building_far_spawn = {
+	groups = preferred.no_cops_agents,
+}
+local alleyway_spawn = {
 	values = {
 		interval = 15,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_cops_agents,
 }
-local warehouse_spawn = {
+local warehouse_far_spawn = {
 	values = {
-		interval = 25,
+		interval = 15,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+}
+local building_close_spawn = {
+	values = {
+		interval = 20,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local warehouse_close_spawn = {
+	values = {
+		interval = 30,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -40,11 +53,16 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
+local warehouse_preferred_delay = {
+	on_executed = {
+		{ id = 101196, delay = 0, delay_rand = 20 },
+	},
+}
+local difficulty_add_20 = {
+	difficulty_add = 0.20,
 }
 return {
 	-- Add new reinforce
@@ -127,25 +145,6 @@ return {
 			{ id = 400040, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- Don't remove some preferreds
-	[100606] = {
-		on_executed = {
-			{ id = 102459, remove = true }, -- 3rd preferred remove
-		},
-	},
-	[100821] = {
-		on_executed = {
-			{ id = 102459, remove = true }, -- 3rd preferred remove
-		},
-	},
-	[100774] = {
-		on_executed = {
-			{ id = 102469, remove = true }, -- 5th preferred remove
-		},
-	},
-	-- Delay preferreds inside the warehouse
-	[101190] = warehouse_preferred_delay,
-	[101791] = warehouse_preferred_delay,
 	-- Restrict a few SOs
 	[101029] = exclude_shields, -- no Shields
 	[101031] = exclude_shields,
@@ -185,36 +184,35 @@ return {
 	[100375] = sniper_trigger_times,
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
-	-- Add scripted difficulty increases
-	--	[100942] = difficulty_add_20, -- found_vault_loud
-	--	[101655] = difficulty_add_20, -- drill_is_active
+	-- Enable spawngroups regardless of difficulty
+	[102712] = filters_easy_above, -- spawn_enemies_closer (Vanilla: Overkill+)
+	-- Delay preferreds when entering the basement
+	[101190] = warehouse_preferred_delay,
+	[101791] = warehouse_preferred_delay,
 	-- Spawn group intervals
-	-- The Dragon Heist is probably one of the less offensive revival era heists in terms of its spawn group distribution, but some improvements could definitely be made to improve their flow.
-	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).
-	-- Spawn groups that rappel directly onto the street/right next to the tea shop have also been slowed down and restricted to make them less oppressive.
-	-- Alleyway and front spawns are slower to improve pacing during early assaults.
-	[400007] = scripted_swat_van_spawn,
-	[400014] = scripted_swat_van_spawn,
-	[400021] = scripted_swat_van_spawn,
-	[400028] = scripted_swat_van_spawn,
-	[400035] = scripted_swat_van_spawn,
-	[400042] = scripted_swat_van_spawn,
-	[100133] = building_spawn,
-	[100692] = building_spawn,
-	[100694] = building_spawn,
-	[100033] = building_spawn,
-	[100693] = building_spawn,
-	[101006] = building_spawn,
-	[101047] = building_spawn,
-	[101053] = building_spawn,
-	[100007] = warehouse_spawn,
-	[100019] = warehouse_spawn,
-	[101201] = warehouse_spawn,
-	[101133] = warehouse_spawn,
+	[100132] = alleyway_spawn,
+	[101006] = alleyway_spawn,
+	[101047] = building_far_spawn,
+	[101053] = building_far_spawn,
+	[100133] = building_far_spawn,
+	[100033] = building_close_spawn,
+	[100692] = building_close_spawn,
+	[100693] = building_close_spawn,
+	[100694] = building_close_spawn,
+	[100019] = warehouse_far_spawn,
+	[101133] = warehouse_far_spawn,
+	[100007] = warehouse_close_spawn,
+	[101201] = warehouse_close_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
 	[100856] = cloaker_spawn,
 	[100860] = cloaker_spawn,
 	[100864] = cloaker_spawn,
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
+	[400021] = scripted_swat_van_spawn,
+	[400028] = scripted_swat_van_spawn,
+	[400035] = scripted_swat_van_spawn,
+	[400042] = scripted_swat_van_spawn,
 }

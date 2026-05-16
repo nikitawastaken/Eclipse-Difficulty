@@ -33,17 +33,23 @@ local ready_team_amount = {
 		amount_random = diff_i_no_easy,
 	},
 }
-local flank_spawn = {
+local flank_far_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+}
+local flank_close_spawn = {
 	values = {
 		interval = 15,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local van_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -70,6 +76,7 @@ return {
 			amount = 1,
 			balance_mul = { 1, 1, 1, 1 },
 			team_ai_balance_mul_weight = 1,
+			ignore_gain_mul = true,
 		},
 		forced_difficulty = {
 			amount = 0.1,
@@ -125,23 +132,54 @@ return {
 			{
 				name = "house_front",
 				force = 3,
-				position = Vector3(-1600, 0, 0),
+				position = Vector3(-1700, 0, 0),
 			},
 			{
 				name = "house_left",
 				force = 2,
-				position = Vector3(-650, 2500, -150),
+				position = Vector3(1900, 2000, 0),
 			},
 			{
 				name = "house_right",
 				force = 2,
-				position = Vector3(1600, -900, 0),
+				position = Vector3(1650, -1100, 0),
 			},
 			{
 				name = "house_back",
 				force = 3,
-				position = Vector3(3000, 800, 20),
+				position = Vector3(3000, 900, 20),
 			},
+		},
+	},
+	-- Enable reinforce based on the panic room's location
+	[101696] = { -- position_001
+		on_executed = {
+			{ id = 400091, delay = 0 },
+		},
+	},
+	[101697] = { -- position_002
+		on_executed = {
+			{ id = 400092, delay = 0 },
+		},
+	},
+	[101698] = { -- position_003
+		on_executed = {
+			{ id = 400093, delay = 0 },
+		},
+	},
+	[101699] = { -- position_004
+		on_executed = {
+			{ id = 400094, delay = 0 },
+		},
+	},
+	[101700] = { -- position_005
+		on_executed = {
+			{ id = 400095, delay = 0 },
+		},
+	},
+	[101701] = { -- position_006
+		on_executed = {
+			{ id = 400096, delay = 0 },
 		},
 	},
 	-- Ready Team enemy amount scales with difficulty (kind of, it's a bit random)
@@ -172,10 +210,10 @@ return {
 	[400017] = van_spawn,
 	[400026] = van_spawn,
 	[400035] = scripted_swat_van_spawn,
-	[100019] = flank_spawn,
-	[102424] = flank_spawn,
-	[102438] = flank_spawn,
-	[102459] = flank_spawn,
+	[100019] = flank_far_spawn,
+	[102424] = flank_far_spawn,
+	[102438] = flank_close_spawn,
+	[102459] = flank_close_spawn,
 	[400074] = cloaker_spawn,
 	[400075] = cloaker_spawn,
 	[400076] = cloaker_spawn,

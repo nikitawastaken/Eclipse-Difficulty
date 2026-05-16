@@ -1,13 +1,6 @@
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
-local roof_far_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-	groups = preferred.no_cops_agents,
-}
-local roof_close_spawn = {
+local objective_spawn = {
 	values = {
 		interval = 20,
 		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
@@ -38,7 +31,7 @@ local cop_car_crash_amount = {
 return {
 	[100115] = {
 		ponr = {
-			length = 900,
+			length = 750,
 			length_balance_mul = { 2, 1.25, 1, 1 },
 		},
 	},
@@ -114,12 +107,7 @@ return {
 	--	[101392] = difficulty_add_25, -- start_saw_pickup_location
 	--	[100727] = difficulty_add_25, -- start_escape
 	-- Spawn group intervals
-	[100007] = roof_far_spawn,
-	[100130] = roof_far_spawn,
-	[100131] = roof_far_spawn,
-	[101683] = roof_far_spawn,
-	[101820] = roof_far_spawn,
-	[100133] = roof_close_spawn,
-	[101715] = roof_close_spawn,
+	[100133] = objective_spawn,
+	[101715] = objective_spawn,
 	[100019] = mortuary_spawn,
 }

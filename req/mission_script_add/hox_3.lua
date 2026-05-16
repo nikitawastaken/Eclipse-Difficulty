@@ -275,6 +275,65 @@ local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sit_student_v
 local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_stand", hide_so_search_pos)
 
+local optsAreaMinPoliceForce = {
+	enabled = false,
+	amount = 2,
+}
+local optsenable_force_1 = {
+	enabled = true,
+	elements = {
+		400085,
+		400086,
+		400087,
+		400088,
+	},
+}
+local optsenable_force_2 = {
+	enabled = true,
+	elements = {
+		400085,
+		400086,
+		400087,
+		400088,
+	},
+}
+local optsenable_force_3 = {
+	enabled = true,
+	elements = {
+		400085,
+		400088,
+		400089,
+		400090,
+	},
+}
+local optsenable_force_4 = {
+	enabled = true,
+	elements = {
+		400085,
+		400088,
+		400089,
+		400090,
+	},
+}
+local optsenable_force_5 = {
+	enabled = true,
+	elements = {
+		400085,
+		400087,
+		400089,
+		400090,
+	},
+}
+local optsenable_force_6 = {
+	enabled = true,
+	elements = {
+		400085,
+		400087,
+		400089,
+		400090,
+	},
+}
+
 M.elements = {
 	-- swat van 1
 	Eclipse.mission_elements.gen_dummy(400001, "swat_van_spawn_1", Vector3(4063, -1547, 44.504), Rotation(-121, 0, 0), optsBesiegeDummy),
@@ -379,6 +438,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_preferedadd(400082, "revenge_cloaker_spawns", optsPreferedCloakerAdd1),
 	Eclipse.mission_elements.gen_sogroup(400083, "revenge_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
 	Eclipse.mission_elements.gen_missionscript(400084, "revenge_cloaker_spawn_global", optsAddCloakerHideGroup),
+	-- New reinforce points
+	-- They are toggled after the first assault. Their positions are based on Hector's panic room's postiion.
+	Eclipse.mission_elements.gen_area_min_police_force(400085, "revenge_house_force_01", Vector3(300, 0, 50), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_area_min_police_force(400086, "revenge_house_force_02", Vector3(-220, 475, -350), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_area_min_police_force(400087, "revenge_house_force_03", Vector3(-400, 1800, -150), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_area_min_police_force(400088, "revenge_house_force_04", Vector3(-450, 1425, 250), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_area_min_police_force(400089, "revenge_house_force_05", Vector3(550, -600, 450), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_area_min_police_force(400090, "revenge_house_force_06", Vector3(425, 600, 450), Rotation(0, 0, 0), optsAreaMinPoliceForce),
+	Eclipse.mission_elements.gen_toggleelement(400091, "enable_house_force_01", optsenable_force_1),
+	Eclipse.mission_elements.gen_toggleelement(400092, "enable_house_force_02", optsenable_force_2),
+	Eclipse.mission_elements.gen_toggleelement(400093, "enable_house_force_03", optsenable_force_3),
+	Eclipse.mission_elements.gen_toggleelement(400094, "enable_house_force_04", optsenable_force_4),
+	Eclipse.mission_elements.gen_toggleelement(400095, "enable_house_force_05", optsenable_force_5),
+	Eclipse.mission_elements.gen_toggleelement(400096, "enable_house_force_06", optsenable_force_6),
 }
 
 return M

@@ -772,9 +772,9 @@ end)
 
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
 -- The zones are only used for that, which makes the phases inconsistent for no real reason
-function GroupAIStateBase:_add_drama(amount)
+function GroupAIStateBase:_add_drama(amount, ignore_gain_mul)
 	local drama_gain_mul = self._tweak_data and self:_get_difficulty_dependent_value(self._tweak_data.drama_gain_mul) or 1
-	if amount > 0 then
+	if amount > 0 and not ignore_gain_mul then
 		amount = amount * drama_gain_mul
 	end
 	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
@@ -1310,9 +1310,9 @@ function GroupAIStateBase:register_strike(amount, reason, is_pager)
 	end
 
 	local strike_reason = reason or "cop_alarm"
-	local total_amount = tweak_data.player.stealth_strikes.total_amount or 4
+	local total_amount = tweak_data.player.stealth_strikes.total_amount
 
-	if self._stealth_strikes >= total_amount then
+	if total_amount - self._stealth_strikes < 0 then
 		self:on_police_called(strike_reason)
 	end
 
@@ -1331,6 +1331,10 @@ function GroupAIStateBase:_chk_nr_pagers()
 	local max_nr_pager_answers = math.ceil(tweak_data.player.stealth_strikes.total_amount / tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
 
 	return self._nr_pager_answers, max_nr_pager_answers
+end
+
+function GroupAIStateBase:_strike_ratio()
+	return self._stealth_strikes / tweak_data.player.stealth_strikes.total_amount
 end
 
 function GroupAIStateBase:_chk_last_strike(amount)
