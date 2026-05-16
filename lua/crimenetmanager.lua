@@ -112,8 +112,8 @@ function CrimeNetManager:_get_jobs_by_jc()
 
 		if pass_all_tests then
 			local job_data = tweak_data.narrative:job_data(job_id)
-			local start_difficulty = job_data.professional and 1 or 0
-			local num_difficulties = Global.SKIP_OVERKILL_290 and 5 or job_data.professional and 6 or 6
+			local start_difficulty = plvl >= 80 and 2 or plvl >= 40 and 1 or 0
+			local num_difficulties = 4
 
 			for i = start_difficulty, num_difficulties do
 				local job_jc = math.clamp(job_data.jc + i * 10, 0, 100)
