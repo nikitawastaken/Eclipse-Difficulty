@@ -512,35 +512,35 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 		name = "difficulty",
 		text_id = "menu_lobby_difficulty_title",
 		help_id = "menu_diff_help",
-		filter = true
+		filter = true,
 	}
 	local data_node = {
 		{
 			value = "normal",
 			text_id = "menu_difficulty_normal",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "hard",
 			text_id = "menu_difficulty_hard",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "overkill",
 			text_id = "menu_difficulty_very_hard",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "overkill_145",
 			text_id = "menu_difficulty_overkill",
-			_meta = "option"
+			_meta = "option",
 		},
 		{
 			value = "easy_wish",
 			text_id = "menu_difficulty_easy_wish",
-			_meta = "option"
+			_meta = "option",
 		},
-		type = "MenuItemMultiChoice"
+		type = "MenuItemMultiChoice",
 	}
 	local new_item = node:create_item(data_node, params)
 
@@ -550,7 +550,7 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 	params = {
 		callback = "_on_chill_change_one_down",
 		name = "toggle_one_down",
-		text_id = "menu_toggle_one_down"
+		text_id = "menu_toggle_one_down",
 	}
 	data_node = {
 		{
@@ -565,7 +565,7 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = "24",
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
 		{
 			w = "24",
@@ -579,9 +579,9 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 			_meta = "option",
 			icon = "guis/textures/menu_tickbox",
 			x = "0",
-			s_icon = "guis/textures/menu_tickbox"
+			s_icon = "guis/textures/menu_tickbox",
 		},
-		type = "CoreMenuItemToggle.ItemToggle"
+		type = "CoreMenuItemToggle.ItemToggle",
 	}
 	new_item = node:create_item(data_node, params)
 
@@ -593,7 +593,7 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 		callback = "play_chill_combat",
 		name = "CustomSafeHouseDefendBtn",
 		align = "left",
-		text_id = "menu_cn_chill_combat_defend"
+		text_id = "menu_cn_chill_combat_defend",
 	}
 	data_node = {}
 	new_item = node:create_item(data_node, params)
@@ -605,7 +605,7 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 		callback = "ignore_chill_combat",
 		name = "CustomSafeHouseIgnoreBtn",
 		align = "left",
-		text_id = "menu_cn_chill_combat_ignore_defend"
+		text_id = "menu_cn_chill_combat_ignore_defend",
 	}
 	data_node = {}
 	new_item = node:create_item(data_node, params)
@@ -619,7 +619,7 @@ function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
 		last_item = "true",
 		text_id = "menu_back",
 		align = "left",
-		previous_node = "true"
+		previous_node = "true",
 	}
 	data_node = {}
 	new_item = node:create_item(data_node, params)
