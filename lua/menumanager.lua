@@ -501,6 +501,136 @@ function MenuCallbackHandler:singleplayer_restart()
 		and not managers.job:stage_success()
 end
 
+-- Remove vanilla DW and DS from Safehouse Raid
+function MenuCrimeNetContactChillInitiator:modify_node(original_node, data)
+	local node = original_node
+
+	node:clean_items()
+
+	local params = {
+		callback = "_on_chill_change_difficulty",
+		name = "difficulty",
+		text_id = "menu_lobby_difficulty_title",
+		help_id = "menu_diff_help",
+		filter = true
+	}
+	local data_node = {
+		{
+			value = "normal",
+			text_id = "menu_difficulty_normal",
+			_meta = "option"
+		},
+		{
+			value = "hard",
+			text_id = "menu_difficulty_hard",
+			_meta = "option"
+		},
+		{
+			value = "overkill",
+			text_id = "menu_difficulty_very_hard",
+			_meta = "option"
+		},
+		{
+			value = "overkill_145",
+			text_id = "menu_difficulty_overkill",
+			_meta = "option"
+		},
+		{
+			value = "easy_wish",
+			text_id = "menu_difficulty_easy_wish",
+			_meta = "option"
+		},
+		type = "MenuItemMultiChoice"
+	}
+	local new_item = node:create_item(data_node, params)
+
+	new_item:set_enabled(true)
+	node:add_item(new_item)
+
+	params = {
+		callback = "_on_chill_change_one_down",
+		name = "toggle_one_down",
+		text_id = "menu_toggle_one_down"
+	}
+	data_node = {
+		{
+			w = "24",
+			y = "0",
+			h = "24",
+			s_y = "24",
+			value = "on",
+			s_w = "24",
+			s_h = "24",
+			s_x = "24",
+			_meta = "option",
+			icon = "guis/textures/menu_tickbox",
+			x = "24",
+			s_icon = "guis/textures/menu_tickbox"
+		},
+		{
+			w = "24",
+			y = "0",
+			h = "24",
+			s_y = "24",
+			value = "off",
+			s_w = "24",
+			s_h = "24",
+			s_x = "0",
+			_meta = "option",
+			icon = "guis/textures/menu_tickbox",
+			x = "0",
+			s_icon = "guis/textures/menu_tickbox"
+		},
+		type = "CoreMenuItemToggle.ItemToggle"
+	}
+	new_item = node:create_item(data_node, params)
+
+	new_item:set_value("off")
+	new_item:set_enabled(true)
+	node:add_item(new_item)
+
+	params = {
+		callback = "play_chill_combat",
+		name = "CustomSafeHouseDefendBtn",
+		align = "left",
+		text_id = "menu_cn_chill_combat_defend"
+	}
+	data_node = {}
+	new_item = node:create_item(data_node, params)
+
+	new_item:set_enabled(true)
+	node:add_item(new_item)
+
+	params = {
+		callback = "ignore_chill_combat",
+		name = "CustomSafeHouseIgnoreBtn",
+		align = "left",
+		text_id = "menu_cn_chill_combat_ignore_defend"
+	}
+	data_node = {}
+	new_item = node:create_item(data_node, params)
+
+	new_item:set_enabled(true)
+	node:add_item(new_item)
+
+	params = {
+		visible_callback = "is_pc_controller",
+		name = "back",
+		last_item = "true",
+		text_id = "menu_back",
+		align = "left",
+		previous_node = "true"
+	}
+	data_node = {}
+	new_item = node:create_item(data_node, params)
+
+	node:add_item(new_item)
+	node:set_default_item_name(self.DEFAULT_ITEM)
+	node:select_item(self.DEFAULT_ITEM)
+
+	return node
+end
+
 -- Offshore casino rework
 function MenuCrimeNetCasinoInitiator:refresh_node(node)
 	local options = {
