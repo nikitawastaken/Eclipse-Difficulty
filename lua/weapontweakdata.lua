@@ -3100,6 +3100,7 @@ function WeaponTweakData:_set_presets()
 		elseif k:match("_npc$") then
 			v.DAMAGE = 1
 			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 2.5 or 1) * (v.rays and 3 or 1) * (v.has_suppressor and 0.3 or 1)
+			v.stamina_strip_mul = 1 * (v.armor_piercing and 2 or 1) * (v.rays and 1.5 or 1)
 			v.alert_size = (alert_sizes[v.usage] or 5000) * (v.has_suppressor and 0.2 or 1)
 			v.spread = v.rays and v.rays > 1 and 6 or 0
 			v.trail_effect = v.rays and v.rays > 1 and "effects/particles/weapons/shotgun_streak" or v.trail_effect or nil
