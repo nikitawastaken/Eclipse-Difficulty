@@ -75,7 +75,7 @@ local difficulty_add_20 = {
 return {
 	[102964] = {
 		ponr = {
-			length = 240,
+			length = 270,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 		on_executed = {

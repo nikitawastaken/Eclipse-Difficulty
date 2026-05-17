@@ -103,7 +103,7 @@ return {
 			{
 				name = "atrium01",
 				force = 3,
-				position = Vector3(-450, 1200, 0),
+				position = Vector3(-450, 750, 0),
 			},
 			{
 				name = "atrium02",
@@ -113,16 +113,21 @@ return {
 			{
 				name = "atrium03",
 				force = 3,
-				position = Vector3(-450, -4500, 0),
+				position = Vector3(-450, -4100, 0),
 			},
 		},
 	},
-	[103472] = { -- open_shutters
+	[104525] = { -- explode_wall
 		reinforce = {
 			{
 				name = "reception",
 				force = 2,
 				position = Vector3(500, -2750, 0),
+			},
+			{
+				name = "breach",
+				force = 2,
+				position = Vector3(1050, -1275, 0),
 			},
 		},
 	},
