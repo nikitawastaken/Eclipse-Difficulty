@@ -48,7 +48,7 @@ local M = {
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
-			timer =  150 + is_pro_job and 30 or 0,
+			timer = 150 + is_pro_job and 30 or 0,
 		},
 	},
 	["glace"] = {
