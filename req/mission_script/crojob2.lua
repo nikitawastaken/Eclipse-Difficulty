@@ -38,17 +38,17 @@ local crowbar_amount = {
 local roof_navlink_interval = {
 	values = {
 		interval = 6, -- (Vanilla: 2s)
-	},	
+	},
 }
 local ship_navlink_interval = {
 	values = {
 		interval = 8, -- (Vanilla: 2s)
-	},	
+	},
 }
 local ladder_navlink_interval = {
 	values = {
 		interval = 10, -- (Vanilla: 2s)
-	},	
+	},
 }
 return {
 	-- Combine some navigation areas

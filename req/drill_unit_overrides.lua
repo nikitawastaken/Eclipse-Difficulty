@@ -1,6 +1,7 @@
 ---@module Drill Unit Overrides
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 
 local M = {
 	["arm_cro"] = {
@@ -48,7 +49,12 @@ local M = {
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
-			timer = 150 + is_pro_job and 30 or 0,
+			timer = 150 + (is_pro_job and 30 or 0),
+		},
+	},
+	["dah"] = {
+		[("units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit"):key()] = {
+			timer = 240,
 		},
 	},
 	["glace"] = {
@@ -79,6 +85,11 @@ local M = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {
 			timer = 240,
 			jam_times = 2,
+			can_jam = true,
+		},
+		[("units/pd2_dlc_pal/equipment/gen_interactable_drill_small_upright/gen_interactable_drill_small_upright"):key()] = {
+			timer = is_eclipse and 360 or 240,
+			jam_times = 2 + (is_pro_job and 1 or 0),
 			can_jam = true,
 		},
 	},
