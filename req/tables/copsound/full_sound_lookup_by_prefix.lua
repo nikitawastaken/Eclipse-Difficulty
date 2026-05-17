@@ -125,12 +125,16 @@ M.mbdz_ = bdz_tbl
 local clk_tbl = {
 	g90 = "clk_c01x_plu", -- Cloakers whistle in place of contact/taunt lines
 	c01 = "clk_c01x_plu",
+	d01 = "clk_c01x_plu",
+	d02 = "clk_c01x_plu",
 }
 M.clk_ = {
 	x01a_any_3p = "l2d_x01a_any_3p", -- Radio filtered hurt sound, lacks his own
 	x02a_any_3p = "clk_x02a_any_3p",
 	g90 = "clk_c01x_plu",
 	c01 = "clk_c01x_plu",
+	d01 = "clk_c01x_plu",
+	d02 = "clk_c01x_plu",
 }
 M.rclk_ = clk_tbl
 M.mclk_ = clk_tbl

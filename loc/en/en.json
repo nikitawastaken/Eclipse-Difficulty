@@ -52,6 +52,12 @@
 	"bm_grenade_sticky_grenade_desc": "A grenade that explode on impact with the surfaces or enemies.",
 	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic gas that melt enemies lungs. Also will destroy your and teammates respiratory systems too if you decide to stay inside the cloud without mask protection.",
 
+	"hud_stats_pagers_used": "STRIKES USED",
+	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
+	"hint_stealth_strike_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
+	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
+	"hint_stealth_strike_civ_too_many_killed": "Civilian killed. Suspicion increased.",
+
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
 	"hint_trade_offered_resources": "Set this hostage free in exchange for resources!",
@@ -369,5 +375,7 @@
 	"menu_loot_sells_not_shown": "Plus $remaining; more loot has been sold.",
 	"menu_cn_casino_pay_cash": "A fee will be deducted from your spending cash when you enter the casino.\n\nCost: $contract_fee;\nSpending cash: $offshore;",
 	"menu_cn_casino_pay_coins": "A fee will be deducted from your continental coins when you enter the casino.\n\nCost: $contract_fee;\nContinental coins: $offshore;",
-	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;"
+	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;",
+	
+	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon",
 }

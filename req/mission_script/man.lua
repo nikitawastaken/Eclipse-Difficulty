@@ -616,8 +616,6 @@ return {
 	[104059] = street_heli_enemy,
 	[104060] = street_heli_enemy,
 	[104061] = street_heli_enemy,
-	-- don't call FBI intro if the deal went south early
-	[103075] = disabled,
 	-- restore 2 missing fbi agents
 	[102589] = {
 		on_executed = {

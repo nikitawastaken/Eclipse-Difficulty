@@ -67,6 +67,7 @@ return {
 			amount = 1,
 			balance_mul = { 1, 1, 1, 1 },
 			team_ai_balance_mul_weight = 1,
+			ignore_gain_mul = true,
 		},
 		forced_difficulty = {
 			amount = 0.1,

@@ -107,6 +107,9 @@ end
 
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
+	self._stealth_strikes = 0
+	self._nr_pager_answers = 0
+
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
@@ -769,9 +772,9 @@ end)
 
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
 -- The zones are only used for that, which makes the phases inconsistent for no real reason
-function GroupAIStateBase:_add_drama(amount)
+function GroupAIStateBase:_add_drama(amount, ignore_gain_mul)
 	local drama_gain_mul = self._tweak_data and self:_get_difficulty_dependent_value(self._tweak_data.drama_gain_mul) or 1
-	if amount > 0 then
+	if amount > 0 and not ignore_gain_mul then
 		amount = amount * drama_gain_mul
 	end
 	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
@@ -1296,4 +1299,44 @@ function GroupAIStateBase:_get_closest_group(from_pos, groups)
 		end
 	end
 	return best_group, best_group_dis
+end
+
+-- Stealth Strike System
+function GroupAIStateBase:register_strike(amount, reason, is_pager)
+	self._stealth_strikes = self._stealth_strikes + amount
+
+	if is_pager then
+		self._nr_pager_answers = self._nr_pager_answers + 1
+	end
+
+	local strike_reason = reason or "cop_alarm"
+	local total_amount = tweak_data.player.stealth_strikes.total_amount
+
+	if total_amount - self._stealth_strikes < 0 then
+		self:on_police_called(strike_reason)
+	end
+
+	local notification_string_id = "hint_stealth_strike_" .. strike_reason
+
+	managers.hud:show_hint({ text = managers.localization:text(notification_string_id) })
+end
+
+-- Returns the number of strikes that will show up in the UI
+function GroupAIStateBase:get_nr_successful_alarm_pager_bluffs()
+	return math.floor(self._stealth_strikes)
+end
+
+-- Used to determine pager responses
+function GroupAIStateBase:_chk_nr_pagers()
+	local max_nr_pager_answers = math.ceil(tweak_data.player.stealth_strikes.total_amount / tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
+
+	return self._nr_pager_answers, max_nr_pager_answers
+end
+
+function GroupAIStateBase:_strike_ratio()
+	return self._stealth_strikes / tweak_data.player.stealth_strikes.total_amount
+end
+
+function GroupAIStateBase:_chk_last_strike(amount)
+	return self._stealth_strikes + amount >= tweak_data.player.stealth_strikes.total_amount
 end

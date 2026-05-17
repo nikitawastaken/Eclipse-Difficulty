@@ -47,10 +47,16 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local roof_spawn = {
+local police_roof_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+}
+local garage_roof_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -82,17 +88,17 @@ return {
 			{
 				name = "parking_lot01",
 				force = 3,
-				position = Vector3(1750, -500, -15),
+				position = Vector3(1750, -450, -15),
 			},
 			{
 				name = "parking_lot02",
 				force = 3,
-				position = Vector3(-1100, -500, -15),
+				position = Vector3(-1250, -1000, -15),
 			},
 			{
 				name = "entrance",
 				force = 3,
-				position = Vector3(525, 300, 100),
+				position = Vector3(500, 300, 100),
 			},
 		},
 	},
@@ -133,12 +139,7 @@ return {
 	-- [101755] = difficulty_add_20, -- fire_is_done
 	-- [101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
 	-- [101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
-	-- Only activate certain preferreds after the first assault is over
-	[100021] = { -- completed_obj_fire
-		on_executed = {
-			{ id = 101573, remove = true }, -- ai_enemy_prefered_garage_roof
-		},
-	},
+	-- Only activate roof preferreds after the first assault is over
 	[100129] = { -- preferred
 		on_executed = {
 			{ id = 101574, remove = true }, -- ai_preferred_police_roof
@@ -146,7 +147,6 @@ return {
 	},
 	[100123] = { -- end_assault
 		on_executed = {
-			{ id = 101573, delay = 0, delay_rand = 30 }, -- ai_enemy_prefered_garage_roof
 			{ id = 101574, delay = 0, delay_rand = 30 }, -- ai_preferred_police_roof
 		},
 	},
@@ -209,11 +209,11 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group intervals
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[100132] = roof_spawn,
-	[104091] = roof_spawn,
-	[100128] = roof_spawn,
-	[100692] = roof_spawn,
-	[104117] = roof_spawn,
+	[100128] = police_roof_spawn,
+	[100692] = police_roof_spawn,
+	[104117] = police_roof_spawn,
+	[100132] = garage_roof_spawn,
+	[104091] = garage_roof_spawn,
 	[400020] = scripted_swat_van_spawn,
 	[400027] = scripted_swat_van_spawn,
 	[400034] = scripted_swat_van_spawn,

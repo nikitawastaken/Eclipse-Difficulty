@@ -2889,7 +2889,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ranc_heavy_machine_gun.stats_modifiers = { damage = 2 }
 
 	self.weapon_settings = {}
-	self.weapon_settings.no_autoreload = false
+	self.weapon_settings.no_autoreload = true
 	
 	-- Set up all the wepaon overrides before executing the _init_stats function
 

@@ -1,9 +1,8 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
-local taser = scripted_enemy.taser_1
 local ambush_taser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 }
 local disabled = {
 	values = {
@@ -15,8 +14,8 @@ local exclude_shields_dozers = {
 }
 local rappel_far_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -129,9 +128,9 @@ return {
 	[101176] = ambush_taser,
 	[101207] = ambush_taser,
 	-- Spawn group intervals
-	[100019] = rappel_spawn_far,
-	[100128] = rappel_spawn_far,
-	[100131] = rappel_spawn_far,
+	[100019] = rappel_far_spawn,
+	[100128] = rappel_far_spawn,
+	[100131] = rappel_far_spawn,
 	[100132] = rappel_close_spawn,
 	[100133] = rappel_close_spawn,
 	[101598] = rappel_close_spawn,

@@ -437,7 +437,7 @@ function MissionManager.mission_script_patch_funcs.add_drama(self, element, data
 		end
 		if amount and amount ~= 0 then
 			Eclipse:log_console("%s executed, added %s drama", element:editor_name(), tostring(amount))
-			managers.groupai:state():_add_drama(amount)
+			managers.groupai:state():_add_drama(amount, data.ignore_gain_mul)
 		end
 	end)
 end

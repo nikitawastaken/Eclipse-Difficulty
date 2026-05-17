@@ -15,6 +15,7 @@
 			<post :hook_id="managers/coreworldinstancemanager"/>
 			<post :hook_id="managers/mission/coreelementtimer"/>
 			<post :hook_id="units/coreunitdamage"/>
+			<post :hook_id="utils/coremath"/>
 		</group>
 
 		<group hook_id="lib/">
@@ -29,6 +30,7 @@
 				<post :hook_id="ingamelobbymenu"/>
 				<post :hook_id="gameoverstate"/>
 				<post :hook_id="menumainstate"/>
+				<post :hook_id="ingameaccesscamera"/>
 			</group>
 
 			<group :hook_id="managers/">
@@ -50,6 +52,7 @@
 					<post :hook_id="missionscriptelement"/>
 					<post :hook_id="elementenemydummytrigger"/>
 					<post :hook_id="elementpreplanning"/>
+					<post :hook_id="elementsecuritycamera"/>
 				</group>
 
 				<group :hook_id="hud/">
@@ -199,6 +202,8 @@
 					</group>
 
 					<post :hook_id="civilianbrain"/>
+					<post :hook_id="civiliandamage"/>
+					<post :hook_id="huskciviliandamage"/>
 				</group>
 
 				<post :hook_id="environment/environmentfire"/>
@@ -335,6 +340,9 @@
 
 		<!-- Replace vanilla One Down modifier icon -->
 		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
+		
+		<!-- Replace vanilla "Pagers left" icon -->
+		<file name="guis/textures/pd2/pagers_used.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
@@ -524,7 +532,9 @@
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>
 			<file :name="dentist/cas/world/world.continent"/>
+			<file :name="dentist/hox/stage_1/world/world.continent"/>
 			<file :name="bain/big/nav_manager_data.nav_data"/>
+			<file :name="butcher/thebomb/stage_2/nav_manager_data.nav_data"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>
 			<file :name="classics/run/nav_manager_data.nav_data"/>
 			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
