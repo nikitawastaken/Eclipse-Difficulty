@@ -119,10 +119,10 @@ local function set_usage_damage(preset, usage, damage)
 	if not preset[usage] then
 		return
 	end
-	
+
 	for i, v in pairs(preset[usage].FALLOFF) do
-		if type(damage) == "table" then 
-			v.dmg_mul = damage[math.min(i, #damage)] 
+		if type(damage) == "table" then
+			v.dmg_mul = damage[math.min(i, #damage)]
 		else
 			v.dmg_mul = damage
 		end
@@ -306,10 +306,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	set_usage_damage(presets.weapon.eclipse_good, "is_rifle", 3)
 	set_usage_damage(presets.weapon.eclipse_good, "is_smg", 2.5)
 	set_usage_damage(presets.weapon.eclipse_good, "is_shotgun_pump", { 10, 8, 1.5 })
-	
+
 	presets.weapon.eclipse_fbi = based_on(presets.weapon.eclipse_good)
 	damage_multiplier(presets.weapon.eclipse_fbi, 1.25)
-	
+
 	presets.weapon.eclipse_expert = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.5 },
 		focus_delay = 0.3,
@@ -322,7 +322,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	set_usage_damage(presets.weapon.eclipse_expert, "is_rifle", 4)
 	set_usage_damage(presets.weapon.eclipse_expert, "is_smg", 3)
 	set_usage_damage(presets.weapon.eclipse_expert, "is_shotgun_pump", { 12.5, 10, 2 })
-	
+
 	presets.weapon.eclipse_deathwish = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0.2,
@@ -335,7 +335,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	set_usage_damage(presets.weapon.eclipse_deathwish, "is_rifle", 5.5)
 	set_usage_damage(presets.weapon.eclipse_deathwish, "is_smg", 4)
 	set_usage_damage(presets.weapon.eclipse_deathwish, "is_shotgun_pump", { 15, 12, 2.5 })
-	
+
 	presets.weapon.eclipse_murky = based_on(presets.weapon.eclipse_good)
 	damage_multiplier(presets.weapon.eclipse_murky, 1.25)
 	accuracy_addition(presets.weapon.eclipse_murky, 0.1)

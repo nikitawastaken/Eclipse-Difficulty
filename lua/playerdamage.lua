@@ -174,14 +174,14 @@ function PlayerDamage:damage_bullet(attack_data)
 	local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
 	local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
 	local stamina_strip_weapon_mul = weap_tweak_data.stamina_strip_mul or 1
-	
+
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
 		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
-	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_active_injector and 0 or 1) 
+	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_active_injector and 0 or 1)
 	self._unit:movement():subtract_stamina(stamina_mul)
 
 	if not _G.IS_VR then
