@@ -119,7 +119,18 @@ Hooks:OverrideFunction(IngameAccessCamera, "update", function(self, t, dt)
 		if World:in_view_with_options(unit:movement():m_head_pos(), 0, 0, 4000) then
 			local ray = nil
 			if camera_unit then
-				ray = self._cam_unit:raycast("ray", unit:movement():m_head_pos(), self._cam_unit:position(), "ray_type", "ai_vision", "slot_mask", managers.slot:get_mask("world_geometry"), "ignore_unit", camera_unit, "report")
+				ray = self._cam_unit:raycast(
+					"ray",
+					unit:movement():m_head_pos(),
+					self._cam_unit:position(),
+					"ray_type",
+					"ai_vision",
+					"slot_mask",
+					managers.slot:get_mask("world_geometry"),
+					"ignore_unit",
+					camera_unit,
+					"report"
+				)
 			else
 				ray = self._cam_unit:raycast("ray", unit:movement():m_head_pos(), self._cam_unit:position(), "ray_type", "ai_vision", "slot_mask", managers.slot:get_mask("world_geometry"), "report")
 			end
@@ -129,7 +140,15 @@ Hooks:OverrideFunction(IngameAccessCamera, "update", function(self, t, dt)
 
 				managers.hud:access_camera_track(amount, self._cam_unit:camera()._camera, unit:movement():m_head_pos())
 
-				if self._last_access_camera and not self._last_access_camera:value("destroyed") and managers.player:upgrade_value("player", "sec_camera_highlight", false) and unit:base()._tweak_table and (managers.groupai:state():whisper_mode() and tweak_data.character[unit:base()._tweak_table].silent_priority_shout or tweak_data.character[unit:base()._tweak_table].priority_shout) then
+				if
+					self._last_access_camera
+					and not self._last_access_camera:value("destroyed")
+					and managers.player:upgrade_value("player", "sec_camera_highlight", false)
+					and unit:base()._tweak_table
+					and (
+						managers.groupai:state():whisper_mode() and tweak_data.character[unit:base()._tweak_table].silent_priority_shout or tweak_data.character[unit:base()._tweak_table].priority_shout
+					)
+				then
 					managers.game_play_central:auto_highlight_enemy(unit, true)
 				end
 			end

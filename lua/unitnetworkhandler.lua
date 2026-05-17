@@ -287,7 +287,7 @@ function UnitNetworkHandler:camera_set_attention(cam_unit, target_unit)
 	cam_unit:base():set_target_attention({
 		unit = target_unit,
 		u_key = target_unit:key(),
-		handler = handler
+		handler = handler,
 	})
 end
 

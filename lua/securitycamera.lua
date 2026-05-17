@@ -123,7 +123,7 @@ function SecurityCamera:set_detection_enabled(state, settings, mission_element)
 		self._detection_interval = 0.1
 		self._SO_access_str = "security"
 		self._SO_access = managers.navigation:convert_access_filter_to_number({
-			self._SO_access_str
+			self._SO_access_str,
 		})
 		self._visibility_slotmask = managers.slot:get_mask("AI_visibility")
 
@@ -167,7 +167,7 @@ function SecurityCamera:set_detection_enabled(state, settings, mission_element)
 end
 
 local update_orig = Hooks:GetFunction(SecurityCamera, "update")
-Hooks:OverrideFunction(SecurityCamera, "update", function (self, unit, t, dt, ...)
+Hooks:OverrideFunction(SecurityCamera, "update", function(self, unit, t, dt, ...)
 	self:_update_camera_rotation(unit, t, dt)
 
 	if Network:is_server() and not self._detection_enabled then -- vanilla code can crash otherwise
@@ -402,11 +402,7 @@ function SecurityCamera:chk_update_state(state, ...)
 		return set_update_enabled_orig(self, false, ...)
 	end
 
-	local needs_update = state
-		or Network:is_server() and self._detection_enabled
-		or self:is_rotating()
-		or self:should_rotate_locally() and self._stalled_until
-		or self._tape_loop_restarting_t
+	local needs_update = state or Network:is_server() and self._detection_enabled or self:is_rotating() or self:should_rotate_locally() and self._stalled_until or self._tape_loop_restarting_t
 
 	return set_update_enabled_orig(self, needs_update, ...)
 end
@@ -454,9 +450,9 @@ function SecurityCamera:sync_control_state(state, peer_id)
 
 	if Network:is_server() then
 		managers.player:set_synced_controlled_camera(peer_id, state and self._unit or nil)
-		managers.network:session():send_to_peers_synched('camera_control_state', self._unit, peer_id, state)
+		managers.network:session():send_to_peers_synched("camera_control_state", self._unit, peer_id, state)
 	else
-		managers.network:session():send_to_host('camera_want_control', self._unit, state)
+		managers.network:session():send_to_host("camera_want_control", self._unit, state)
 	end
 end
 
@@ -487,7 +483,7 @@ function SecurityCamera:can_rotate()
 	if not self._can_rotate then
 		return false
 	end
-	
+
 	return not self._destroyed and self._yaw_obj and self._pitch_obj
 end
 
@@ -499,7 +495,7 @@ function SecurityCamera:current_rotation()
 	return self._yaw, self._pitch
 end
 
-Hooks:OverrideFunction(SecurityCamera, "apply_rotations", function (self, yaw, pitch)
+Hooks:OverrideFunction(SecurityCamera, "apply_rotations", function(self, yaw, pitch)
 	if yaw and self._yaw ~= yaw then
 		local yaw_obj = self._yaw_obj or self._unit:get_object(idstr_camera_yaw)
 		local original_yaw_rot = yaw_obj:local_rotation()
@@ -544,7 +540,8 @@ Hooks:OverrideFunction(SecurityCamera, "_upd_detect_attention_objects", function
 
 	for u_key, attention_info in pairs(detected_obj) do
 		if t >= attention_info.next_verify_t then
-			attention_info.next_verify_t = t + (attention_info.identified and attention_info.verified and attention_info.settings.verification_interval * 1.3 or attention_info.settings.verification_interval * 0.3)
+			attention_info.next_verify_t = t
+				+ (attention_info.identified and attention_info.verified and attention_info.settings.verification_interval * 1.3 or attention_info.settings.verification_interval * 0.3)
 
 			if not attention_info.identified then
 				local noticable = nil

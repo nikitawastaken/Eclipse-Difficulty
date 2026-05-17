@@ -19,8 +19,8 @@ function ElementSecurityCamera:on_executed(instigator)
 			suspicion_range = self._values.suspicion_range * 100,
 			detection_delay = {
 				self._values.detection_delay_min,
-				self._values.detection_delay_max
-			}
+				self._values.detection_delay_max,
+			},
 		}
 	end
 

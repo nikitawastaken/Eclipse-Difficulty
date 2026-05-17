@@ -68,7 +68,7 @@ end
 -- Security Cameras
 tweak_data.security_camera = {
 	can_rotate = overkill_above,
-	max_yaw = 60, 
+	max_yaw = 60,
 	max_pitch = 30,
 	stall_time = { 1.5, 2.5 },
 	turn_rate = 24, -- degrees/s
