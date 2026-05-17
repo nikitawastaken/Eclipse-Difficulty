@@ -1396,4 +1396,32 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["sanmartin_02"] = 2,
 		["default"] = 3,
 	}
+	self.pal.random_environments = {
+		["counterfeit_1"] = 3,
+		["counterfeit_2"] = 2,
+		["default"] = 1,
+	}
+	self.moon.random_environments = {
+		["stealingxmas_1"] = 3,
+		["stealingxmas_2"] = 2,
+		["default"] = 1,
+	}
+	self.pines.random_environments = {
+		["whitexmas_4"] = 3,
+		["whitexmas_2"] = 2,
+		["whitexmas_3"] = 2,
+		["whitexmas_1"] = 2,
+		["default"] = 1,
+	}
+	self.crojob3.random_environments = {
+		["croatian_forest_1"] = 2,
+		["default"] = 1,
+		{"croatian_forest_2"] = 1,
+	}
+	self.crojob2.random_environments = {
+		["croatian_dockyard_1"] = 3,
+		["croatian_dockyard_2"] = 2,
+		["croatian_dockyard_3"] = 2,
+		["default"] = 1,
+	}
 end)
