@@ -174,4 +174,37 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Rotating Cameras -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="camera_rotation" delivery="ordered" receiver="unit">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="int" min="0" max="255"/>   <!-- end yaw -->
+				<param type="int" min="0" max="255"/>   <!-- end pitch -->
+				<param type="bool" />     <!-- forced -->
+				<param type="float" min="0" max="255" step="0.1" exact="false"/>    <!-- duration -->
+			</message>
+			<message name="camera_set_attention" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- observer unit -->
+				<param type="unit" />	<!-- target unit -->
+			</message>
+			<message name="camera_set_attention_pos" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="vector3" />	<!-- target pos -->
+			</message>
+			<message name="camera_want_control" delivery="ordered" receiver="unit" check="client_to_server">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="bool" />  	<!-- state -->
+			</message>
+			<message name="camera_control_state" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="int" min="0" max="15"/> <!-- peer id -->
+				<param type="bool" />  	<!-- state -->
+			</message>
+		</target>
+	</tweak>
 </tweaks>

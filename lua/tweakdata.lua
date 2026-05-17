@@ -1,3 +1,7 @@
+local diff_i = Eclipse.utils.difficulty_index()
+local overkill_above = diff_i >= 5
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local function create_explosive_arrow(base_arrow)
 	local explosive_arrow = deep_clone(base_arrow)
 	local damage = base_arrow.damage
@@ -60,6 +64,15 @@ local function create_poison_grenade(base_grenade)
 
 	return poison_grenade
 end
+
+-- Security Cameras
+tweak_data.security_camera = {
+	can_rotate = overkill_above,
+	max_yaw = 60, 
+	max_pitch = 30,
+	stall_time = { 1.5, 2.5 },
+	turn_rate = 24, -- degrees/s
+}
 
 -- Tear Gas damage is now a percentage of total HP
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05

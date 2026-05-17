@@ -15,6 +15,7 @@
 			<post :hook_id="managers/coreworldinstancemanager"/>
 			<post :hook_id="managers/mission/coreelementtimer"/>
 			<post :hook_id="units/coreunitdamage"/>
+			<post :hook_id="utils/coremath"/>
 		</group>
 
 		<group hook_id="lib/">
@@ -29,6 +30,7 @@
 				<post :hook_id="ingamelobbymenu"/>
 				<post :hook_id="gameoverstate"/>
 				<post :hook_id="menumainstate"/>
+				<post :hook_id="ingameaccesscamera"/>
 			</group>
 
 			<group :hook_id="managers/">
@@ -50,6 +52,7 @@
 					<post :hook_id="missionscriptelement"/>
 					<post :hook_id="elementenemydummytrigger"/>
 					<post :hook_id="elementpreplanning"/>
+					<post :hook_id="elementsecuritycamera"/>
 				</group>
 
 				<group :hook_id="hud/">
