@@ -42,6 +42,12 @@ Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", functi
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
 		end
 	end
+	
+	if environment_data.sounds_override then
+		for k, v in pairs(environment_data.sounds_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
+		end
+	end
 --[[
 	if environment_data.particles then
 		for effect, spawn in pairs(environment_data.particles) do
