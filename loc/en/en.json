@@ -54,10 +54,10 @@
 
 	"hud_stats_pagers_used": "STRIKES USED",
 	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
-	"hint_stealth_strike_alarm_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
+	"hint_stealth_strike_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
 	"hint_stealth_strike_civ_too_many_killed": "Civilian killed. Suspicion increased.",
-	
+
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
 	"hint_trade_offered_resources": "Set this hostage free in exchange for resources!",

@@ -353,7 +353,7 @@ Hooks:OverrideFunction(CopBrain, "clbk_alarm_pager", function(self, ignore_this,
 		self._unit:interaction():set_active(false, true)
 		managers.groupai:state():register_strike(tweak_data.player.stealth_strikes.reason_addends.alarm_pager_not_answered, "alarm_pager_not_answered")
 		self._unit:sound():stop()
-
+--[[
 		local narrator_prefix = tweak_data.levels:get_narrator_prefix()
 		local sound_event = narrator_prefix .. "_alm_any_any"
 
@@ -362,7 +362,7 @@ Hooks:OverrideFunction(CopBrain, "clbk_alarm_pager", function(self, ignore_this,
 		else
 			self._unit:sound():play(sound_event, nil, true)
 		end
-
+]]
 		self:end_alarm_pager()
 	end
 

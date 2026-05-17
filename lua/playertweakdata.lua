@@ -62,23 +62,26 @@ function PlayerTweakData:_set_presets()
 	-- Multiplier on the range you can be detected from
 	-- Unsure if relevant in loud
 	self.suspicion.range_mul = get_difficulty_specific_value({
-		0.8,
+		0.9,
 		1,
-		1.2,
-		1.4,
-		1.7,
+		1.1,
+		1.3,
+		1.5,
 	})
 
 	-- Multiplier on how quickly you are detected
 	-- Unsure if relevant in loud
 	self.suspicion.buildup_mul = get_difficulty_specific_value({
-		0.8,
+		0.9,
 		1,
-		1.2,
-		1.4,
-		1.7,
+		1.1,
+		1.3,
+		1.5,
 	})
-
+	
+	-- Additioanl detection range and buildup multipliers that scale linearly based on the number of used Strikes
+	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or nil
+		
 	-- Time it takes for a player to exit the tased state
 	self.damage.TASED_RECOVER_TIME = get_difficulty_specific_value({
 		1,

@@ -31,3 +31,7 @@ function PlayerBase:sync_unit_upgrades()
 		end
 	end
 end
+
+Hooks:PreHook(PlayerBase, "set_suspicion_multiplier", "eclipse_set_suspicion_multiplier", function(self)
+	self._suspicion_settings.multipliers.strikes_used = math.lerp(1, tweak_data.player.suspicion.strikes_used_mul, managers.groupai:state():_strike_ratio())
+end)
