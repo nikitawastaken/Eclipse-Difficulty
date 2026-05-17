@@ -173,7 +173,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
 	local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
-	local stamina_strip_weapon_mul = weap_tweak_data.stamina_strip_mul or 1
+	local stamina_strip_weapon_mul = weap_tweak_data and weap_tweak_data.stamina_strip_mul or 1
 
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
