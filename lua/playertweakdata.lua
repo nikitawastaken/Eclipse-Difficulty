@@ -80,7 +80,7 @@ function PlayerTweakData:_set_presets()
 	})
 
 	-- Additioanl detection range and buildup multipliers that scale linearly based on the number of used Strikes
-	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or nil
+	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or 1
 
 	-- Time it takes for a player to exit the tased state
 	self.damage.TASED_RECOVER_TIME = get_difficulty_specific_value({
