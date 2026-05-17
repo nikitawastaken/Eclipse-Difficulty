@@ -104,7 +104,7 @@ return {
 			{
 				name = "tram_street",
 				force = 3,
-				position = Vector3(2650, 4300, 575),
+				position = Vector3(1850, 4500, 575),
 			},
 		},
 	},
