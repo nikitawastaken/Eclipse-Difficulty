@@ -46,6 +46,11 @@ local M = {
 			forbid_sabotage = true,
 		},
 	},
+	["chas"] = {
+		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
+			timer =  150 + is_pro_job and 30 or 0,
+		},
+	},
 	["glace"] = {
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = {
 			timer = 240,

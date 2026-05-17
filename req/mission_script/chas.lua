@@ -145,6 +145,19 @@ return {
 			{ id = 400040, delay = 0, delay_rand = 5 },
 		},
 	},
+	-- tear gas can be placed more than once
+	[101663] = {
+		on_executed = {
+			{ id = 101662, delay = 20, delay_rand = 10 },
+			{ id = 101661, remove = true },
+		},
+	},
+	-- disable tear gas SO once the drill is finished
+	[102704] = {
+		on_executed = {
+			{ id = 101661, delay = 0 },
+		},
+	},
 	-- Restrict a few SOs
 	[101029] = exclude_shields, -- no Shields
 	[101031] = exclude_shields,
