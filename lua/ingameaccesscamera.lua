@@ -146,7 +146,8 @@ Hooks:OverrideFunction(IngameAccessCamera, "update", function(self, t, dt)
 					and managers.player:upgrade_value("player", "sec_camera_highlight", false)
 					and unit:base()._tweak_table
 					and (
-						managers.groupai:state():whisper_mode() and tweak_data.character[unit:base()._tweak_table].silent_priority_shout or tweak_data.character[unit:base()._tweak_table].priority_shout
+						managers.groupai:state():whisper_mode() and tweak_data.character[unit:base()._tweak_table].silent_priority_shout
+						or tweak_data.character[unit:base()._tweak_table].priority_shout
 					)
 				then
 					managers.game_play_central:auto_highlight_enemy(unit, true)
