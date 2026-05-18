@@ -5,7 +5,6 @@ return {
 		"color_xgen",
 		"color_xxxgen",
 		"color_matrix_classic",
-		"color_sunsetstrip"
 	},
 	environment_override = { -- File override
 		["environments/pd2_run/run_inside"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/heat_street_cheeseworld.custom_xml",
