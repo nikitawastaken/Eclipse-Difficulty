@@ -6,6 +6,7 @@ return {
 		"color_xgen",
 		"color_xxxgen",		
 		"color_matrix_classic",
+		"color_matrix",
 		"color_payday",		
 	},
 	environment_override = { -- File override

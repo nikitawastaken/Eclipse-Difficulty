@@ -1424,4 +1424,58 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["croatian_dockyard_3"] = 2,
 		["default"] = 1,
 	}
+	self.arm_cro.random_environments = {
+		["arm_cro_1"] = 2,
+		["arm_cro_2"] = 2,
+		["arm_cro_3"] = 2,
+		["arm_cro_4"] = 2,
+		["default"] = 1,
+	}
+	self.arm_par.random_environments = {
+		["arm_par_1"] = 3,
+		["arm_par_2"] = 3,
+		["default"] = 1,
+	}
+	self.arm_fac.random_environments = {
+		["arm_fac_3"] = 3,
+		["arm_fac_2"] = 2,
+		["arm_fac_1"] = 2,
+		["default"] = 1,
+	}
+	self.arm_hcm.random_environments = {
+		["arm_hcm_1"] = 2,
+		["arm_hcm_2"] = 2,
+		["arm_hcm_3"] = 2,
+		["default"] = 1,
+	}
+	self.arm_und.random_environments = {
+		["arm_und_1"] = 4,
+		["arm_und_2"] = 3,
+		["arm_und_3"] = 4,
+		["arm_und_4"] = 3,
+		["arm_und_5"] = 2,
+		["default"] = 1,
+	}
+	self.arm_for.random_environments = {
+		["arm_for_1"] = 2,
+		["arm_for_2"] = 2,
+		["arm_for_3"] = 3,
+		["arm_for_4"] = 3,
+		["default"] = 1,
+	}
+	self.firestarter_1.random_environments = {
+		["firestarter1_1"] = 2,
+		["firestarter1_2"] = 3,
+		["firestarter1_3"] = 2,
+		["firestarter1_4"] = 3,
+	}
+	self.firestarter_2.random_environments = {
+		["firestarter2_1"] = 2,
+		["firestarter2_2"] = 2,
+	}
+	self.firestarter_3.random_environments = {
+		["firestarter3_1"] = 3,
+		["firestarter3_2"] = 2,
+		["firestarter3_3"] = 2,
+	}
 end)
