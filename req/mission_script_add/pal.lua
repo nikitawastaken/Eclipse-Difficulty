@@ -263,7 +263,8 @@ local optsChopperMitchell_fix = {
 		{ id = 8, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 40 },
 	},
 	on_executed = {
-		{ id = 101713, delay = 9 },
+		{ id = 101713, delay = 13 },
+		{ id = 102360, delay = 8 },
 	},
 }
 local optsChopperWilson_fix = {
