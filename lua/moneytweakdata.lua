@@ -1,7 +1,6 @@
 function MoneyTweakData:init(tweak_data)
 	local difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
 	local difficulty_index = tweak_data:difficulty_to_index(difficulty)
-	local level_id = Global.game_settings and Global.game_settings.level_id
 	self.biggest_score = 4000000
 	self.biggest_cashout = 800000
 	self.offshore_rate = self.biggest_cashout / self.biggest_score
@@ -696,6 +695,7 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.federali_medal = 25000
 
 	-- Heist specific loot values
+	local level_id = Global.game_settings and Global.game_settings.level_id
 	if level_id == "big" then
 		self.bag_values.money = 75000
 		self.small_loot.money_bundle = (money_mul * 1000)
