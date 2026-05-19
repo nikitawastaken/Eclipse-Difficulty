@@ -488,7 +488,7 @@ function SecurityCamera:can_rotate()
 	if managers.groupai:state():enemy_weapons_hot() then
 		return false
 	end
-	
+
 	return not self._destroyed and self._yaw_obj and self._pitch_obj
 end
 
