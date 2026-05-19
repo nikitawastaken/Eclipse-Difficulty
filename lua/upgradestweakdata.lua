@@ -3046,8 +3046,16 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.cooldown.headshot_regen_health_bonus = { { 1, 5 } }
-	self.values.player.headshot_regen_health_bonus = { 1 }
+	self.values.player.body_armor.headshot_regen_health_bonus = { 
+		{ 1, 3 }, 
+		{ 1.25, 4 }, 
+		{ 1.5, 5 }, 
+		{ 1.75, 6 }, 
+		{ 2.5, 8 }, 
+		{ 3.25, 10 }, 
+		{ 4, 12 }, 
+	}
+	self.values.cooldown.headshot_regen_health_bonus = { { 1, 0 } } -- Cooldown set to 0. The body armor value acts as an addend that sets the actual cooldown.
 	self.definitions.cooldown_headshot_regen_health_bonus = {
 		name_id = "menu_cooldown_headshot_regen_health_bonus",
 		category = "feature",
