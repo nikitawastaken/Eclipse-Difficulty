@@ -58,6 +58,7 @@ function SecurityCamera:_sound_the_alarm(detected_unit, ...)
 	DelayedCalls:Add("cam_stop_sound" .. tostring(self._unit:key()), 1, callback(self, self, "_stop_all_sounds"))
 end
 
+-- Rotating cameras
 local tmp_vec = Vector3()
 
 local tmp_rot = Rotation()
@@ -484,6 +485,10 @@ function SecurityCamera:can_rotate()
 		return false
 	end
 
+	if managers.groupai:state():enemy_weapons_hot() then
+		return false
+	end
+	
 	return not self._destroyed and self._yaw_obj and self._pitch_obj
 end
 
