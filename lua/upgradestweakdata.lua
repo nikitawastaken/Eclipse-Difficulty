@@ -165,6 +165,8 @@ function UpgradesTweakData:init(tweak_data)
 				"spatula",
 				"chef",
 				"shock",
+				"bonk",
+				"bonk2",
 			},
 		},
 		{ -- skip level 1, it's reached too fast
