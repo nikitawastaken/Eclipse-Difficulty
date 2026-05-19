@@ -293,7 +293,6 @@ function PlayerManager:on_headshot_dealt()
 	local has_headshot_regen_health = self:has_enabled_cooldown_upgrade("cooldown", "headshot_regen_health_bonus")
 	local regen_health_bonus = self:body_armor_value("headshot_regen_health_bonus", nil, 1)
 
-
 	if damage_ext and has_headshot_regen_health then
 		damage_ext:restore_health(regen_health_bonus[1], true)
 		self:disable_cooldown_upgrade("cooldown", "headshot_regen_health_bonus", regen_health_bonus[2])
