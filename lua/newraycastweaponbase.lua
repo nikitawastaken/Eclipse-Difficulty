@@ -364,7 +364,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	local is_moving = false
 	local is_crouching = false
 	local in_steelsight = false
-	local multiplier = managers.blackmarket:recoil_multiplier(self._name_id, self:weapon_tweak_data().categories, self._silencer, self._blueprint, is_moving)
+	local multiplier = managers.blackmarket:recoil_multiplier(self._name_id, self:categories(), self._silencer, self._blueprint, is_moving)
 	local user_unit = self._setup and self._setup.user_unit
 
 	if user_unit then
@@ -470,7 +470,7 @@ function NewRaycastWeaponBase:spread_multiplier()
 	local in_steelsight = false
 	local multiplier = managers.blackmarket:accuracy_multiplier(
 		self._name_id,
-		self:weapon_tweak_data().categories,
+		self:categories(),
 		self._silencer,
 		current_state,
 		self._spread_moving,
@@ -514,7 +514,7 @@ function NewRaycastWeaponBase:spread_multiplier()
 		end
 	end
 
-	local categories = self:weapon_tweak_data().categories
+	local categories = self:categories()
 
 	if not in_steelsight then
 		for _, category in ipairs(categories) do
@@ -564,7 +564,7 @@ end
 function NewRaycastWeaponBase:fire_rate_multiplier()
 	local user_unit = self._setup and self._setup.user_unit
 	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
-	local multiplier = managers.blackmarket:fire_rate_multiplier(self._name_id, self:weapon_tweak_data().categories, self._silencer, nil, current_state, self._blueprint)
+	local multiplier = managers.blackmarket:fire_rate_multiplier(self._name_id, self:categories(), self._silencer, nil, current_state, self._blueprint)
 
 	multiplier = multiplier * self._fire_rate_multiplier
 
@@ -599,7 +599,7 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_empty_speed_multiplier or 1)
 	end
 
-	for _, category in ipairs(self:weapon_tweak_data().categories) do
+	for _, category in ipairs(self:categories()) do
 		multiplier = multiplier + 1 - pm:upgrade_value(category, "reload_speed_multiplier", 1)
 
 		if category == "shotgun" then -- shotgun reload speed stuff
@@ -827,7 +827,7 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	local ammo_max_multiplier = managers.player:upgrade_value("player", "extra_ammo_multiplier", 1)
 	local extra_start_ammo_multiplier = is_starting_out_with_extra_ammo and managers.player:upgrade_value("player", "start_out_ammo_multiplier", 1) or 1
 
-	for _, category in ipairs(self:weapon_tweak_data().categories) do
+	for _, category in ipairs(self:categories()) do
 		ammo_max_multiplier = ammo_max_multiplier * managers.player:upgrade_value(category, "extra_ammo_multiplier", 1)
 	end
 

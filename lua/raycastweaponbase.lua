@@ -37,7 +37,7 @@ function RaycastWeaponBase:exit_run_speed_multiplier()
 
 	multiplier = multiplier * (weapon_tweak.exit_run_speed_multiplier or 1)
 
-	for _, category in ipairs(self:weapon_tweak_data().categories) do
+	for _, category in ipairs(self:categories()) do
 		multiplier = multiplier * managers.player:upgrade_value(category, "exit_run_speed_multiplier", 1)
 	end
 
@@ -52,13 +52,13 @@ function RaycastWeaponBase:_get_spread(user_unit)
 	local current_state = user_unit:movement()._current_state
 
 	if current_state._moving then
-		for _, category in ipairs(self:weapon_tweak_data().categories) do
+		for _, category in ipairs(self:categories()) do
 			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "move_spread_multiplier", 1)
 		end
 	end
 
 	if not current_state:in_steelsight() then
-		for _, category in ipairs(self:weapon_tweak_data().categories) do
+		for _, category in ipairs(self:categories()) do
 			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "hip_fire_spread_multiplier", 1)
 		end
 	end

@@ -2824,6 +2824,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.rpg7.min_max_clips = 3
 	end
 
+	self.flun.CLIP_AMMO_MAX = 1
+	self.flun.stats.damage = 24
+	self.flun.stats.spread = 19
+	self.flun.stats.recoil = 18
+	self.flun.stats.concealment = 27
+	self.flun.fire_mode_data.fire_rate = 60 / 22
+
+	self.init_stat_overrides.flun = function(weap_data)
+		self.flun.total_ammo_mul = 1 / 10
+		self.flun.pickup_mul = 1 / 25
+		self.flun.max_clips_round = 2
+	end
+	
 	-- Flamethrowers
 
 	-- MK2

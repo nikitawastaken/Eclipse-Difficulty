@@ -320,6 +320,10 @@ tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particl
 tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
 
+-- Flare Gun
+tweak_data.projectiles.flun_flare.damage = 4
+tweak_data.projectiles.flun_flare.airdrop_unit = nil
+
 -- Set Friendly Fire damage
 for k, v in pairs(tweak_data.projectiles) do
 	if v.player_damage and v.damage then

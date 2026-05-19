@@ -115,7 +115,7 @@ function NPCRaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, s
 		end
 
 		if is_player then
-			for _, category in ipairs(self:weapon_tweak_data().categories) do
+			for _, category in ipairs(self:categories()) do
 				if managers.player:has_category_upgrade(category, "consume_no_ammo_chance") then
 					local roll = math.rand(1)
 					local chance = managers.player:upgrade_value(category, "consume_no_ammo_chance", 0)
