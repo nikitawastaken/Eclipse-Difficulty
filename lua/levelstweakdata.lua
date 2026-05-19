@@ -700,9 +700,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
 	self.election_day_1.ghost_bonus = 0.03
 	self.election_day_2.ghost_bonus = 0.07
-	-- Firestarter (5% in day 2 and 10% for day 3)
+	-- Firestarter (5% for all days, resulting in 15% stealth bonus max)
+	self.firestarter_1.ghost_bonus = 0.05
 	self.firestarter_2.ghost_bonus = 0.05
-	self.firestarter_3.ghost_bonus = 0.1
+	self.firestarter_3.ghost_bonus = 0.05
 
 	-- heists that shouldn't have stealth bonus (they're not possible to beat)
 	self.nmh.ghost_bonus = nil
