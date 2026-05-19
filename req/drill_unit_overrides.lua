@@ -4,6 +4,55 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
 local M = {
+	--[[
+	-- For testing, now serves as examples
+	["branchbank"] = {
+		-- Mission door (rear security office door)
+		[104625] = {
+			drill = {
+				{
+					timer = 69,
+					jam_times = {
+						is_balance_mul = true,
+						team_ai_balance_mul_weight = 1,
+						1,
+						2,
+						3,
+						15,
+					},
+				},
+			},
+		},
+		-- Mission door (front security office door)
+		[100207] = {
+			drill = {
+				{
+					timer = 96,
+					jam_times = {
+						is_balance_mul = true,
+						{ 1, 2 },
+						{ 1, 3 },
+						{ 1, 3 },
+						{ 6, 7 },
+					},
+				},
+			},
+		},
+		-- Rear lance
+		[104466] = {
+			timer = 69,
+			jam_times = 9,
+		},
+		-- Front lance
+		[104674] = {
+			timer = 96,
+			jam_times = {
+				4,
+				4,
+			},
+		},
+	},
+	]]
 	["arm_cro"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
 			forbid_reenforce = true,
