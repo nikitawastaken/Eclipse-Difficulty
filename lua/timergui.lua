@@ -74,7 +74,8 @@ function TimerGui:_get_jammed_times()
 
 	local jammed_times
 	if self._jam_times_tbl then
-		local times = self._jam_times_tbl.is_balance_mul and managers.groupai:state():_get_balancing_multiplier(self._jam_times_tbl, self._jam_times_tbl.team_ai_balance_mul_weight) or self._jam_times_tbl
+		local times = self._jam_times_tbl.is_balance_mul and managers.groupai:state():_get_balancing_multiplier(self._jam_times_tbl, self._jam_times_tbl.team_ai_balance_mul_weight)
+			or self._jam_times_tbl
 		if type(times) == "table" then
 			local min, max = math.min_max(unpack(times))
 			jammed_times = math.random(math.round(min), math.round(max))
