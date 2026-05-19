@@ -17,7 +17,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 	end
 
 	managers.explosion:play_sound_and_effects(pos, normal, range, self._custom_params)
-	
+
 	local hit_units, splinters = managers.fire:detect_and_give_dmg({
 		player_damage = 0,
 		hit_pos = pos,
@@ -29,7 +29,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
 		owner = self._unit,
-		dot_data = self._dot_data
+		dot_data = self._dot_data,
 	})
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then

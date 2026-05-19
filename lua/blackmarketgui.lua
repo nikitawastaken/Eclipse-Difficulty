@@ -2620,7 +2620,7 @@ local function check_show_pellet_stats(weapon_tweak, weapon_id, blueprint)
 		local ammo_mods = managers.weapon_factory:get_parts_from_weapon_by_type_or_perk("ammo", factory_id, blueprint)
 		for _, id in ipairs(ammo_mods) do
 			local part = managers.weapon_factory:_part_data(id, factory_id)
-			
+
 			if part.sub_type and part.sub_type == "ammo_hornet" then
 				return true
 			end

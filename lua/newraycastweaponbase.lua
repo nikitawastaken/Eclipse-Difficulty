@@ -468,16 +468,8 @@ function NewRaycastWeaponBase:spread_multiplier()
 	local is_moving = false
 	local is_crouching = false
 	local in_steelsight = false
-	local multiplier = managers.blackmarket:accuracy_multiplier(
-		self._name_id,
-		self:categories(),
-		self._silencer,
-		current_state,
-		self._spread_moving,
-		self:fire_mode(),
-		self._blueprint,
-		self:is_single_shot()
-	)
+	local multiplier =
+		managers.blackmarket:accuracy_multiplier(self._name_id, self:categories(), self._silencer, current_state, self._spread_moving, self:fire_mode(), self._blueprint, self:is_single_shot())
 	local user_unit = self._setup and self._setup.user_unit
 
 	if user_unit then
