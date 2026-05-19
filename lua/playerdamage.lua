@@ -939,7 +939,7 @@ function PlayerDamage:_regenerate_armor(no_sound)
 
 	self._regenerate_speed = nil
 
-	if self:get_real_armor() <= 0 then
+	if self:get_real_armor() and self:get_real_armor() <= 0 then
 		-- Cooldown temporary damage reduction on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
 			managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")
