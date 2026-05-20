@@ -18,7 +18,7 @@ local M = {
 	green_security_2 = "units/payday2/characters/ene_security_5/ene_security_5",
 	green_security_3 = "units/payday2/characters/ene_security_6/ene_security_6",
 	green_security_4 = "units/payday2/characters/ene_security_7/ene_security_7",
-	
+
 	prison_security_1 = "units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1",
 	prison_security_2 = "units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1",
 

@@ -19,18 +19,18 @@ local heavy_harasser = diff_i > 5 and { [scripted_enemy.heavy_swat_1] = 3, [scri
 local harasser = diff_i >= 5 and heavy_harasser or light_harasser
 
 local swats_blockade = {
-		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
-		[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
-		[scripted_enemy.elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 3 }),
-		[scripted_enemy.swat_1] = 5,
-		[scripted_enemy.swat_2] = 3,
+	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
+	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
+	[scripted_enemy.elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 3 }),
+	[scripted_enemy.swat_1] = 5,
+	[scripted_enemy.swat_2] = 3,
 }
 
 local cloakers_in_the_garage_chance = is_eclipse and math.random() <= 1 or math.random() <= 0.4 + (is_pro_job and 0.2 or 0)
 local ambush_cloaker_chance = math.random() <= 0.5
 local dozer_van_chance = math.random() <= 0.8
 local sniper_at_the_start_chance = math.random() <= 0.4
-local garage_dozer_chance =  math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
+local garage_dozer_chance = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
 
 local hiding_convoy_cloakers_near_car_shop = math.random() <= 0.5
 local hiding_cloaker_in_a_car_shop = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
@@ -1036,7 +1036,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400003, "garage_cloaker_4", Vector3(12247, 5204, -2400), Rotation(-68, 0, 0), optsCloaker_4),
 	Eclipse.mission_elements.gen_dummy(400004, "garage_cloaker_5", Vector3(10769, 7915, -2578.823), Rotation(-90, 0, 0), optsCloaker_5),
 	Eclipse.mission_elements.gen_dummy(400005, "garage_cloaker_6", Vector3(9069, 6929, -2800), Rotation(0, 0, 0), optsCloaker_6),
-	
+
 	Eclipse.mission_elements.gen_so(400006, "garage_cloaker_hide_so_1", Vector3(8494, 5938, -2400), Rotation(-90, 0, 0), optsCloaker_Hide_SO_1),
 	Eclipse.mission_elements.gen_so(400007, "garage_cloaker_hide_so_2", Vector3(11874, 6997, -2000.458), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400008, "garage_cloaker_hide_so_3", Vector3(11602, 5075, -2800), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
@@ -1144,7 +1144,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400083, "smoke_grenade_heli_2", Vector3(5455, 3098, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
 	Eclipse.mission_elements.gen_smokegrenade(400084, "smoke_grenade_heli_3", Vector3(-4200, -1396, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
 	Eclipse.mission_elements.gen_smokegrenade(400085, "smoke_grenade_heli_4", Vector3(543, 3475, -2020), Rotation(0, 0, 0), Smoke_bomb_heli),
-	
+
 	-- More prison guards (more accurate to live action trailer)
 	Eclipse.mission_elements.gen_dummy(400100, "prison_guard_1", Vector3(-8805.185, -12079.866, -2400), Rotation(-90, 0, 0), optsPrison_Guard_1),
 	Eclipse.mission_elements.gen_dummy(400101, "prison_guard_2", Vector3(-7294.185, -12079.866, -2400), Rotation(90, 0, 0), optsPrison_Guard_2),
@@ -1152,86 +1152,86 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400103, "prison_guard_4", Vector3(-7007, -9911, -2400), Rotation(90, 0, 0), optsPrison_Guard_4),
 	Eclipse.mission_elements.gen_dummy(400104, "prison_guard_5", Vector3(-6980, -10022, -2400), Rotation(90, 0, 0), optsPrison_Guard_5),
 	Eclipse.mission_elements.gen_dummy(400105, "prison_guard_6", Vector3(-7125, -10116, -2400), Rotation(70, 0, 0), optsPrison_Guard_6),
-	
+
 	Eclipse.mission_elements.gen_so(400106, "guard_defend_so_1", Vector3(-8673.288, -12056.150, -2400), Rotation(-95, 0, 0), optsDefendGuard_SO),
 	Eclipse.mission_elements.gen_so(400107, "guard_defend_so_2", Vector3(-7528.275, -12083.048, -2400), Rotation(95, 0, 0), optsDefendGuard_SO),
 	Eclipse.mission_elements.gen_so(400108, "guard_defend_so_3", Vector3(-7113, -9815, -2400), Rotation(110, 0, 0), optsDefendGuard_SO),
 	Eclipse.mission_elements.gen_so(400109, "guard_defend_so_4", Vector3(-7007, -9911, -2400), Rotation(90, 0, 0), optsDefendGuard_SO),
 	Eclipse.mission_elements.gen_so(400110, "guard_defend_so_5", Vector3(-6980, -10022, -2400), Rotation(90, 0, 0), optsDefendGuard_SO),
 	Eclipse.mission_elements.gen_so(400111, "guard_defend_so_6", Vector3(-7125, -10116, -2400), Rotation(70, 0, 0), optsDefendGuard_SO),
-	
+
 	-- Scripted hiding cloakers for the convoy part
 	-- near car shop
 	Eclipse.mission_elements.gen_dummy(400120, "cloaker_conovy_1", Vector3(-1716, -1703, -2020), Rotation(-180, 0, 0), optsCloaker_Convoy_1),
 	Eclipse.mission_elements.gen_dummy(400121, "cloaker_conovy_2", Vector3(-1628, -1703, -2020), Rotation(-180, 0, 0), optsCloaker_Convoy_2),
 	Eclipse.mission_elements.gen_dummy(400122, "cloaker_conovy_3", Vector3(-1548, -1703, -2020), Rotation(-180, 0, 0), optsCloaker_Convoy_3),
 	Eclipse.mission_elements.gen_dummy(400123, "cloaker_conovy_4", Vector3(-1449, -1703, -2020), Rotation(-180, 0, 0), optsCloaker_Convoy_4),
-	
+
 	Eclipse.mission_elements.gen_so(400124, "cloaker_convoy_so_1", Vector3(-1264, -1950, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400125, "cloaker_convoy_so_2", Vector3(-651, -1950, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400126, "cloaker_convoy_so_3", Vector3(-651, -1451, -2020), Rotation(90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400127, "cloaker_convoy_so_4", Vector3(-3057, -1961, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400128, "area_trigger_spooc_point_1", Vector3(-4023, -4583, -2020), Rotation(0, 0, 0), optsAreaTriggerPoint_1),
 	Eclipse.mission_elements.gen_missionscript(400129, "spawn_hiding_cloakers_near_car_shop", optsSpawnConvoyCloakersCarShop),
 	Eclipse.mission_elements.gen_element_random(400130, "random_convoy_cloakers_car_shop", spawn_random_convoy_cloakers_car_shop),
-	
+
 	Eclipse.mission_elements.gen_dummy(400164, "cloaker_car_shop_1", Vector3(-1816, 1095, -1996), Rotation(-90, 0, 0), optsCloaker_Car_Shop_Ambush_1),
-	
+
 	Eclipse.mission_elements.gen_so(400165, "cloaker_car_shop_so_1", Vector3(-1253, 64, -1998.406), Rotation(-180, 0, 0), optsCloaker_Hide_SO_1),
 	Eclipse.mission_elements.gen_so(400166, "cloaker_car_shop_so_2", Vector3(-1737, -346, -1998.406), Rotation(0, 0, 0), optsCloaker_Hide_SO_3),
 	Eclipse.mission_elements.gen_so(400167, "cloaker_car_shop_so_3", Vector3(-589.621, -324.240, -1998.406), Rotation(39, 0, 0), optsCloaker_Hide_SO_3),
 	Eclipse.mission_elements.gen_so(400168, "cloaker_car_shop_so_4", Vector3(-1737.788, 158.081, -1998.406), Rotation(-90, 0, 0), optsCloaker_Hide_SO_1),
 	Eclipse.mission_elements.gen_so(400169, "cloaker_car_shop_so_5", Vector3(-791.788, 318.081, -1998.406), Rotation(90, 0, 0), optsCloaker_Hide_SO_1),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400170, "spawn_ambush_cloaker_in_car_shop", optsSpawnAmbushCloakerinCarShop),
 	Eclipse.mission_elements.gen_element_random(400171, "choose_random_hiding_spot", choose_random_hiding_spot),
-	
+
 	-- near crossroad
 	Eclipse.mission_elements.gen_dummy(400131, "cloaker_conovy_5", Vector3(603, -3735, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_5),
 	Eclipse.mission_elements.gen_dummy(400132, "cloaker_conovy_6", Vector3(603, -3793, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_6),
 	Eclipse.mission_elements.gen_dummy(400133, "cloaker_conovy_7", Vector3(603, -3853, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_7),
 	Eclipse.mission_elements.gen_dummy(400134, "cloaker_conovy_8", Vector3(603, -3914, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_8),
-	
+
 	Eclipse.mission_elements.gen_so(400135, "cloaker_convoy_so_5", Vector3(861, -5553, -2020), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400136, "cloaker_convoy_so_6", Vector3(861, -2883, -2020), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400137, "cloaker_convoy_so_7", Vector3(340, -2650, -2020), Rotation(-180, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400138, "cloaker_convoy_so_8", Vector3(346, -3392, -2020), Rotation(-180, 0, 0), optsCloaker_Hide_SO_2),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400139, "area_trigger_spooc_point_2", Vector3(-2950, -6543, -2020), Rotation(0, 0, 0), optsAreaTriggerPoint_2),
 	Eclipse.mission_elements.gen_missionscript(400140, "spawn_hiding_cloakers_near_crossroad", optsSpawnConvoyCloakersCrossroad),
 	Eclipse.mission_elements.gen_element_random(400141, "random_convoy_cloakers_crossroad", spawn_random_convoy_cloakers_crossroad),
-	
+
 	-- near garage entrance (left side)
 	Eclipse.mission_elements.gen_dummy(400142, "cloaker_conovy_9", Vector3(3155, 3098, -2020), Rotation(0, 0, 0), optsCloaker_Convoy_9),
 	Eclipse.mission_elements.gen_dummy(400143, "cloaker_conovy_10", Vector3(3093, 3098, -2020), Rotation(0, 0, 0), optsCloaker_Convoy_10),
 	Eclipse.mission_elements.gen_dummy(400144, "cloaker_conovy_11", Vector3(3024, 3098, -2020), Rotation(0, 0, 0), optsCloaker_Convoy_11),
 	Eclipse.mission_elements.gen_dummy(400145, "cloaker_conovy_12", Vector3(2958, 3098, -2020), Rotation(0, 0, 0), optsCloaker_Convoy_12),
-	
+
 	Eclipse.mission_elements.gen_so(400146, "cloaker_convoy_so_9", Vector3(4109, 3356, -2020), Rotation(90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400147, "cloaker_convoy_so_10", Vector3(4211, 2846, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400148, "cloaker_convoy_so_11", Vector3(3385, 2846, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400149, "cloaker_convoy_so_12", Vector3(1800, 2846, -2020), Rotation(-90, 0, 0), optsCloaker_Hide_SO_2),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400150, "area_trigger_spooc_point_3", Vector3(572, 557, -2020), Rotation(90, 0, 0), optsAreaTriggerPoint_3),
 	Eclipse.mission_elements.gen_missionscript(400151, "spawn_hiding_cloakers_near_parking_garage_left", optsSpawnConvoyCloakersParkingGarageLeft),
 	Eclipse.mission_elements.gen_element_random(400152, "random_convoy_cloakers_parking_garage_left", spawn_random_convoy_cloakers_parking_garage_left),
-	
+
 	-- near garage entrance (right side)
 	Eclipse.mission_elements.gen_dummy(400153, "cloaker_conovy_13", Vector3(5402, 649, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_13),
 	Eclipse.mission_elements.gen_dummy(400154, "cloaker_conovy_14", Vector3(5402, 709, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_14),
 	Eclipse.mission_elements.gen_dummy(400155, "cloaker_conovy_15", Vector3(5402, 774, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_15),
 	Eclipse.mission_elements.gen_dummy(400156, "cloaker_conovy_16", Vector3(5402, 843, -2020), Rotation(90, 0, 0), optsCloaker_Convoy_16),
-	
+
 	Eclipse.mission_elements.gen_so(400157, "cloaker_convoy_so_13", Vector3(5148, 1440, -2020), Rotation(-180, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400158, "cloaker_convoy_so_14", Vector3(5596, 1715, -2020), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400159, "cloaker_convoy_so_15", Vector3(5649, 5, -2020), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
 	Eclipse.mission_elements.gen_so(400160, "cloaker_convoy_so_16", Vector3(5646, -642, -2020), Rotation(0, 0, 0), optsCloaker_Hide_SO_2),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400161, "area_trigger_spooc_point_4", Vector3(2577, -2098, -2020), Rotation(90, 0, 0), optsAreaTriggerPoint_4),
 	Eclipse.mission_elements.gen_missionscript(400162, "spawn_hiding_cloakers_near_parking_garage_right", optsSpawnConvoyCloakersParkingGarageRight),
 	Eclipse.mission_elements.gen_element_random(400163, "random_convoy_cloakers_parking_garage_right", spawn_random_convoy_cloakers_parking_garage_right),
-	
+
 	-- Swat Garage Blockade
 	Eclipse.mission_elements.gen_dummy(400180, "swat_garage_1", Vector3(8671.368, 6053.832, -2400), Rotation(-178, 0, 0), optsSWATB_Garage_1),
 	Eclipse.mission_elements.gen_dummy(400181, "swat_garage_2", Vector3(8832.157, 5997.328, -2400), Rotation(-175, 0, 0), optsSWATB_Garage_2),
@@ -1247,7 +1247,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400191, "swat_garage_12", Vector3(9508, 4553, -2400), Rotation(147, 0, 0), optsSWATB_Garage_12),
 	Eclipse.mission_elements.gen_dummy(400192, "swat_garage_13", Vector3(9958, 4378, -2400), Rotation(90, 0, 0), optsSWATB_Garage_13),
 	Eclipse.mission_elements.gen_dummy(400193, "swat_garage_14", Vector3(8845.293, 6406.062, -2400), Rotation(-104, 0, 0), optsSWATB_Garage_14),
-	
+
 	Eclipse.mission_elements.gen_so(400194, "swat_garage_defend_so_1", Vector3(8718.022, 5826.465, -2400), Rotation(-176, 0, 0), optsDefendSWAT_SO),
 	Eclipse.mission_elements.gen_so(400195, "swat_garage_defend_so_2", Vector3(8852.694, 5835.882, -2400), Rotation(-176, 0, 0), optsDefendSWAT_SO),
 	Eclipse.mission_elements.gen_so(400196, "swat_garage_defend_so_3", Vector3(9003.327, 5846.415, -2400), Rotation(-176, 0, 0), optsDefendSWAT_SO),
@@ -1261,12 +1261,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400204, "swat_garage_defend_so_11", Vector3(9465.558, 4668.043, -2400), Rotation(142, 0, 0), optsDefendSWAT_SO),
 	Eclipse.mission_elements.gen_so(400205, "swat_garage_defend_so_12", Vector3(9456, 4508, -2400), Rotation(142, 0, 0), optsDefendSWAT_SO),
 	Eclipse.mission_elements.gen_so(400206, "swat_garage_defend_so_13", Vector3(8942, 6272, -2400), Rotation(-90, 0, 0), optsCoverCop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400207, "spawn_swat_garage_blockade", optsSpawnSWATBlockade),
-	
-	-- misc 
+
+	-- misc
 	-- open swat doors for spawns
 	Eclipse.mission_elements.gen_object_editor(400208, "open_swat_spawn_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatSpawnVanDoors),
-	
 }
 return M
