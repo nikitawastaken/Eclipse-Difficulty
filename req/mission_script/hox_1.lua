@@ -3,6 +3,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local diff_i = Eclipse.utils.difficulty_index()
+local fbi_agents_chance = math.random() <= 0.5
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
@@ -98,9 +99,11 @@ return {
 		},
 	},
 	-- hide choppers on startup
+	-- open swat van doors for spawns
 	[100018] = {
 		on_executed = {
 			{ id = 400040, delay = 0 },
+			{ id = 400208, delay = 0 },
 		},
 	},
 	-- Combine some navigation areas
@@ -168,10 +171,16 @@ return {
 			on_entered_regroup = false,
 		},
 	},
+	-- spawn swat blockade when the parking garage doors are opening
+	[102095] = {
+		on_executed = {
+			{ id = 400207, delay = 1 },
+		},
+	},
 	-- Chance for hiding cloakers in the garage
 	[102077] = {
 		on_executed = {
-			{ id = 400012, delay = 0 },
+			{ id = 400209, delay = 0 },
 		},
 	},
 	-- fix one of SWAT spawngroup spawns having messed up positions
@@ -230,6 +239,7 @@ return {
 		on_executed = {
 			{ id = 400037, delay = 0 },
 			{ id = 400049, delay = 0 },
+			{ id = 400112, delay = 0 },
 		},
 	},
 	[102955] = {
@@ -265,6 +275,23 @@ return {
 			{ id = 400013, delay = 0 },
 		},
 	},
+	-- add more prison guards to be more accurate to live action trailer
+	-- spooled
+	[101424] = {
+		on_executed = {
+			{ id = 400100, delay = 0 },
+			{ id = 400101, delay = 0 },
+		},
+	},
+	-- on leaving
+	[100205] = {
+		on_executed = {
+			{ id = 400102, delay = 0 },
+			{ id = 400103, delay = 0 },
+			{ id = 400104, delay = 0 },
+			{ id = 400105, delay = 0 },
+		},
+	},
 	-- restore unused spawns at the start of the heist and replace security with FBI agents
 	[100589] = fbi_agent,
 	[100590] = fbi_agent,
@@ -276,18 +303,24 @@ return {
 	[100190] = fbi_agent,
 	[100584] = fbi_agent,
 	[100583] = fbi_agent,
-	[100581] = {
-		values = {
-			enabled = normal_and_above,
-			amount = 3,
-			amount_random = 1,
+	-- nuke the other elementrandom and and remaining dummies to in one
+	[100580] = {
+		on_executed = {
+			{ id = 100581, remove = true },
 		},
 	},
 	[100582] = {
 		values = {
-			enabled = normal_and_above,
+			enabled = normal_and_above and fbi_agents_chance,
 			amount = 3,
 			amount_random = 1,
+		},
+		on_executed = {
+			{ id = 100190, delay = 0 },
+			{ id = 100585, delay = 0 },
+			{ id = 100586, delay = 0 },
+			{ id = 100587, delay = 0 },
+			{ id = 100589, delay = 0 },
 		},
 	},
 	-- Spawn group intervals
