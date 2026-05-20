@@ -6,7 +6,6 @@ return {
 		"color_nice",
 		"color_xgen",
 		"color_xxxgen",
-		"color_matrix",
 	},
 	environment_override = { -- forest_evening
 		["environments/pd2_env_mountain/pd2_env_mountain"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_forest_evening.custom_xml",

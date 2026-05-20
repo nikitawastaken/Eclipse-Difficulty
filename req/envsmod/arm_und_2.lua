@@ -6,7 +6,6 @@ return {
 		"color_nice",
 		"color_xgen",
 		"color_xxxgen",
-		"color_matrix",
 		"color_matrix_classic",
 	},
 	environment_override = { -- clouds
