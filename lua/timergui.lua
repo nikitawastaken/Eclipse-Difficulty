@@ -1,5 +1,4 @@
-local level_id = Eclipse.utils.level_id()
-
+local level_id = Eclipse.utils.clean_level_id()
 TimerGui.drill_unit_overrides = Eclipse:require("drill_unit_overrides")
 
 function TimerGui:_get_drill_unit_override()

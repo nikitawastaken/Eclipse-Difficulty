@@ -1,6 +1,7 @@
+local level_id = Eclipse.utils.clean_level_id()
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 function MoneyTweakData:init(tweak_data)
-	local difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
-	local difficulty_index = tweak_data:difficulty_to_index(difficulty)
 	self.biggest_score = 4000000
 	self.biggest_cashout = 800000
 	self.offshore_rate = self.biggest_cashout / self.biggest_score
@@ -664,8 +665,8 @@ function MoneyTweakData:init(tweak_data)
 	self.preplanning_asset_cost_chas_tram = 15000
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
-	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4 })
+	
 	self.small_loot = {}
 	self.small_loot.money_bundle = (money_mul * 750)
 	self.small_loot.money_bundle_value = (money_mul * 10000)
@@ -695,7 +696,6 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.federali_medal = 25000
 
 	-- Heist specific loot values
-	local level_id = Global.game_settings and Global.game_settings.level_id
 	if level_id == "big" then
 		self.bag_values.money = 75000
 		self.small_loot.money_bundle = (money_mul * 1000)

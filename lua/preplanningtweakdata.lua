@@ -2,8 +2,9 @@ PrePlanningTweakData.expensive_ilija_heists = table.list_to_set({
 	"trai",
 })
 
-local level_id = Eclipse.utils.level_id()
+local level_id = Eclipse.utils.clean_level_id()
 local is_bex = level_id == "bex"
+
 local silent_alarm_short = 20
 local silent_alarm_medium = 30
 local silent_alarm_long = 40
