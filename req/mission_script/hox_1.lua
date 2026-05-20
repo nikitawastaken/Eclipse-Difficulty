@@ -94,8 +94,9 @@ return {
 		paused_difficulty_addends = { -- disable regroup addends
 			on_entered_regroup = 1,
 		},
-		on_executed = { -- possible suprise cloaker at the start of the heist
-			{ id = 400038, delay = 0 },
+		on_executed = {
+			{ id = 400038, delay = 0 }, -- possible suprise cloaker at the start of the heist
+			{ id = 100581, remove = true }, -- nuke the other elementrandom and and remaining dummies to in one
 		},
 	},
 	-- hide choppers on startup
@@ -303,12 +304,6 @@ return {
 	[100190] = fbi_agent,
 	[100584] = fbi_agent,
 	[100583] = fbi_agent,
-	-- nuke the other elementrandom and and remaining dummies to in one
-	[100580] = {
-		on_executed = {
-			{ id = 100581, remove = true },
-		},
-	},
 	[100582] = {
 		values = {
 			enabled = normal_and_above and fbi_agents_chance,

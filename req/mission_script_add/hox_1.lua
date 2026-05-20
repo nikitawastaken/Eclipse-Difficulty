@@ -32,11 +32,11 @@ local dozer_van_chance = math.random() <= 0.8
 local sniper_at_the_start_chance = math.random() <= 0.4
 local garage_dozer_chance = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
 
-local hiding_convoy_cloakers_near_car_shop = math.random() <= 0.5
+local hiding_convoy_cloakers_near_car_shop =is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
 local hiding_cloaker_in_a_car_shop = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
-local hiding_convoy_cloakers_near_parking_garage_left_side = math.random() <= 0.5
-local hiding_convoy_cloakers_near_parking_garage_right_side = math.random() <= 0.5
-local hiding_convoy_cloakers_near_crossroad = math.random() <= 0.5
+local hiding_convoy_cloakers_near_parking_garage_left_side = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
+local hiding_convoy_cloakers_near_parking_garage_right_side = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
+local hiding_convoy_cloakers_near_crossroad = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
 
 -- BEGINNING OF THE HEIST
 local optsPrison_Guard_1 = {
@@ -324,7 +324,7 @@ local optsSpawnConvoyCloakersCrossroad = {
 	on_executed = {
 		{ id = 400141, delay = 0 },
 	},
-	enabled = normal_and_above and hiding_convoy_cloakers_near_car_shop,
+	enabled = normal_and_above and hiding_convoy_cloakers_near_crossroad,
 }
 local spawn_random_convoy_cloakers_crossroad = {
 	amount = cloaker_convoy_amount,
@@ -419,12 +419,12 @@ local optsAreaTriggerPoint_4 = {
 	depth = 2400,
 	height = 500,
 	on_executed = {
-		{ id = 400151, delay = 0 },
+		{ id = 400162, delay = 0 },
 	},
 }
 local optsSpawnConvoyCloakersParkingGarageRight = {
 	on_executed = {
-		{ id = 400152, delay = 0 },
+		{ id = 400163, delay = 0 },
 	},
 	enabled = normal_and_above and hiding_convoy_cloakers_near_parking_garage_right_side,
 }
@@ -937,7 +937,7 @@ local optsDefendSWAT_SO = {
 	align_rotation = true,
 	use_instigator = true,
 	interval = 2,
-	so_action = "AI_defend",
+	so_action = "AI_sniper",
 }
 local optsCoverCop_SO = {
 	SO_access = "32",
