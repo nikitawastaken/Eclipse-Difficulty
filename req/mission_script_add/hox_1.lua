@@ -32,7 +32,7 @@ local dozer_van_chance = math.random() <= 0.8
 local sniper_at_the_start_chance = math.random() <= 0.4
 local garage_dozer_chance = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
 
-local hiding_convoy_cloakers_near_car_shop =is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
+local hiding_convoy_cloakers_near_car_shop = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
 local hiding_cloaker_in_a_car_shop = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
 local hiding_convoy_cloakers_near_parking_garage_left_side = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
 local hiding_convoy_cloakers_near_parking_garage_right_side = is_eclipse and math.random() <= 0.75 or math.random() <= 0.45
