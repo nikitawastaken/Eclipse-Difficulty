@@ -324,7 +324,7 @@ function SecurityCamera:set_target_attention(attention)
 					managers.network:session():send_to_peers_synched("camera_set_attention_pos", self._unit, mvec3_cpy(attention.handler:get_detection_m_pos()))
 				end
 
-				self:_add_attention_destroy_listener(attention)
+				CopMovement:_add_attention_destroy_listener(self, attention)
 			else
 				managers.network:session():send_to_peers_synched("camera_set_attention_pos", self._unit, attention.pos)
 			end
