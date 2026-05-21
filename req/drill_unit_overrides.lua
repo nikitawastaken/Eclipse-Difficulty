@@ -55,11 +55,15 @@ local M = {
 	]]
 	["arm_cro"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
+			timer = 150,
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
 	["arm_fac"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
+			timer = 150,
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
@@ -70,21 +74,35 @@ local M = {
 	},
 	["arm_hcm"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
+			timer = 150,
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
 	["arm_par"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
+			timer = 150,
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
 	["arm_und"] = {
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
+			timer = 150,
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
 	["bex"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
+			jam_times = {
+				is_balance_mul = true,
+				team_ai_balance_mul_weight = is_pro_job and 0.5 or 0.33,
+				1,
+				2,
+				3,
+				4,
+			},
 			forbid_sabotage = true,
 		},
 		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small_no_jam"):key()] = {
@@ -93,6 +111,14 @@ local M = {
 	},
 	["big"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
+			jam_times = {
+				is_balance_mul = true,
+				team_ai_balance_mul_weight = is_pro_job and 0.5 or 0.33,
+				{ 1, 2 },
+				{ 2, 3 },
+				{ 3, 4 },
+				{ 4, 5 },
+			},
 			forbid_sabotage = true,
 		},
 	},
@@ -104,20 +130,26 @@ local M = {
 	["dah"] = {
 		[("units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit"):key()] = {
 			timer = 240,
+			jam_times = 2,
+			can_jam = true,
 		},
 	},
 	["glace"] = {
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = {
 			timer = 240,
-			jam_times = 2,
+			jam_times = { 2, 3 },
 			can_jam = true,
 			forbid_reenforce = true,
 		},
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam_rotated"):key()] = {
 			timer = 240,
-			jam_times = 2,
+			jam_times = { 2, 3 },
 			can_jam = true,
 			forbid_reenforce = true,
+		},
+		[105077] = { -- SWAT van saw at the end
+			timer = 60,
+			jam_times = 1,
 		},
 	},
 	["hox_1"] = {

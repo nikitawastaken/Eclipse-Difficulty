@@ -7,12 +7,6 @@ local sniper_trigger_times = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_over_3m",
 }
-local roof_spawn = {
-	values = {
-		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-}
 local dock_spawn = {
 	values = {
 		interval = 30,
@@ -20,12 +14,11 @@ local dock_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local vent_spawn = {
+local agile_spawn = {
 	values = {
-		interval = 60,
+		interval = 30,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
@@ -34,34 +27,49 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "gate01",
-				force = 5,
-				position = Vector3(2100, 4875, 400),
-			},
-			{
-				name = "gate02",
-				force = 5,
-				position = Vector3(5325, 1500, 400),
-			},
-			{
-				name = "gate03",
-				force = 5,
-				position = Vector3(2025, -4500, 400),
-			},
-			{
 				name = "fork",
-				force = 5,
-				position = Vector3(-1800, -50, 200),
+				force = 4,  
+				position = Vector3(-2015, -145, 200),
 			},
 			{
-				name = "fork_corner01",
-				force = 3,
-				position = Vector3(-1440, -3970, 200),
+				name = "main_gate1",
+				force = 4, 
+				position = Vector3(5670, 1125, 400),
 			},
 			{
-				name = "fork_corner02",
+				name = "main_gate2",
+				force = 4,
+				position = Vector3(5310, -1090, 400),
+			},
+			{
+				name = "outside_garage",
+				force = 2,
+				position = Vector3(7875, -9315, 400),
+			},
+			{
+				name = "such_a_nice_car",
+				force = 2,
+				position = Vector3(2985, -7040, 400), 
+			},
+			{
+				name = "barn1",
+				force = 2,
+				position = Vector3(6755, 5320, 400),  
+			},
+			{
+				name = "barn2",
+				force = 2,
+				position = Vector3(4285, 5215, 400), 
+			},
+			{
+				name = "workshop_a",  
 				force = 3,
-				position = Vector3(-315, 4935, 400),
+				position = Vector3(3070, 2890, 400),
+			},
+			{
+				name = "workshop_c",  
+				force = 3,
+				position = Vector3(9215, 1625, 450),
 			},
 		},
 	},
@@ -93,13 +101,12 @@ return {
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
 	-- Spawn group intervals
-	[400007] = scripted_swat_van_spawn,
-	[400014] = scripted_swat_van_spawn,
-	[400021] = scripted_swat_van_spawn,
-	[100911] = roof_spawn,
-	[100019] = roof_spawn,
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,
 	[102397] = dock_spawn,
-	[102484] = vent_spawn,
+	[100019] = agile_spawn,
+	[102484] = agile_spawn,
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
+	[400021] = scripted_swat_van_spawn,
 }

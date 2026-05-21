@@ -415,6 +415,16 @@ local opts_swat_van_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
+local optsAssaultEnd = {
+	global_event = "end_assault",
+}
+local optsEnableAssaultEnd = {
+	enabled = true,
+	elements = {
+		410073,
+	},
+}
+
 M.elements = {
 	-- 193+ alike shield wall on turning the corner on major ave.
 	Eclipse.mission_elements.gen_dummy(400000, "eclipse_shield_wall_1", Vector3(-6805, -2965, 50), Rotation(0, 0, 0), optsShieldWall1),
@@ -623,7 +633,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(410050, "eclipse_besiege_swat_75", Vector3(72.330, -9104.707, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410051, "eclipse_besiege_swat_76", Vector3(178.468, -9151.223, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410052, "eclipse_besiege_swat_77", Vector3(115.671, -9070.846, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410053, "eclipse_swat_van_besiege_17", { 410048, 410049, 410050, 410051 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(410053, "eclipse_swat_van_besiege_17", { 410049, 410050, 410051, 410052 }, 0),
 
 	Eclipse.mission_elements.gen_preferedadd(410054, "eclipse_finale_preferedadd", optsPreferedAdd8), -- UNUSED
 	Eclipse.mission_elements.gen_preferedremove(410055, "eclipse_finale_preferedremove", optsPreferedRemove8), -- UNUSED
@@ -649,6 +659,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(410070, "spawn_major_ave_shield_wall", optsspawnmajorshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410072, "spawn_parking_spoocs", optsspawnparkingspoocs),
+
+	-- assault_end trigger
+	Eclipse.mission_elements.gen_global_event(410073, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
+	Eclipse.mission_elements.gen_toggleelement(410074, "enable_assault_end", optsEnableAssaultEnd),
 }
 
 return M

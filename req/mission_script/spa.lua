@@ -2,25 +2,33 @@ local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
 local van_arrive_timer = 60 + (is_pro_job and 60 or 0)
 local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
-local rappel_init_spawn = {
+local building_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
-local roof_spawn = {
+local building_init_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
-local rappel_spawn = {
+local agile_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
+}
+local agile_final_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local difficulty_add_25 = {
 	difficulty_add = 0.25,
@@ -63,22 +71,22 @@ return {
 	},
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[102667] = rappel_init_spawn,
-	[102668] = rappel_init_spawn,
-	[107262] = rappel_init_spawn,
-	[107263] = rappel_init_spawn,
-	[102664] = rappel_init_spawn,
-	[104472] = rappel_init_spawn,
-	[102139] = roof_spawn,
-	[102140] = roof_spawn,
-	[102151] = roof_spawn,
-	[104336] = roof_spawn,
-	[104337] = roof_spawn,
-	[104347] = roof_spawn,
-	[107260] = roof_spawn,
-	[107261] = roof_spawn,
-	[100750] = rappel_spawn,
-	[101012] = rappel_spawn,
-	[102138] = rappel_spawn,
-	[104338] = rappel_spawn,
+	[102667] = building_init_spawn,
+	[102668] = building_init_spawn,
+	[107262] = building_init_spawn,
+	[107263] = building_init_spawn,
+	[102664] = building_init_spawn,
+	[104472] = building_init_spawn,
+	[107260] = building_init_spawn,
+	[107261] = building_init_spawn,
+	[102139] = building_spawn,
+	[102140] = building_spawn,
+	[104336] = building_spawn,
+	[104337] = building_spawn,
+	[100750] = agile_spawn,
+	[101012] = agile_spawn,
+	[102138] = agile_spawn,
+	[104338] = agile_spawn,
+	[102151] = agile_final_spawn,
+	[104347] = agile_final_spawn,
 }

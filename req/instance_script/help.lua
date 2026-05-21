@@ -22,6 +22,7 @@ M["levels/instances/unique/help/escape/world/world"] = function(result)
 	for _, element in ipairs(result.default.elements) do
 		if patches.bridge_group[element.id] then
 			element.values.interval = 30
+			element.values.interval_balance_mul = { 1.1, 1, 0.9, 0.8 }
 		elseif patches.bridge_snipers[element.id] then
 			element.values.enabled = is_pro_job
 		end

@@ -57,11 +57,22 @@ local staircase_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local scripted_diff_add = {
+local objective_diff_add = {
 	difficulty_addends = {
-		amount = 0.25,
-		time = { 30, 45 },
-		delay = 0,
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
 	},
 }
 
@@ -70,12 +81,12 @@ return {
 	[100115] = {
 		reinforce = {
 			{
-				name = "meetingroom1",
+				name = "meetingroom01",
 				force = 2,
 				position = Vector3(3700, 2200, 500),
 			},
 			{
-				name = "meetingroom2",
+				name = "meetingroom02",
 				force = 2,
 				position = Vector3(5300, 2000, 900),
 			},
@@ -95,12 +106,12 @@ return {
 				position = Vector3(7200, -3900, 10),
 			},
 			{
-				name = "labroof1",
+				name = "labroof01",
 				force = 2,
 				position = Vector3(4000, 400, 670),
 			},
 			{
-				name = "labroof2",
+				name = "labroof02",
 				force = 2,
 				position = Vector3(-1200, 2600, 670),
 			},
@@ -120,8 +131,8 @@ return {
 	},
 	[100761] = { -- player_inside_office_building
 		on_executed = {
-			{ id = 100006, delay = 0, delay_rand = 20 },
-			{ id = 100021, delay = 0, delay_rand = 20 },
+			{ id = 100006, delay = 0, delay_rand = 30 },
+			{ id = 100021, delay = 0, delay_rand = 30 },
 		},
 	},
 	-- Disable the sketchy killzone crap
@@ -177,10 +188,10 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
-	-- Add scripted difficulty increases
-	[100760] = scripted_diff_add, -- link_completed_obj_004 (blackmail)
-	[101124] = scripted_diff_add, -- display_case_open (prototype found)
-	[102341] = scripted_diff_add, -- output_hack_done (documents accessible)
+	-- Difficulty scaling
+	[101124] = objective_diff_add, -- display_case_open (prototype found)
+	[102341] = objective_diff_add, -- output_hack_done (documents accessible)
+	[100123] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,

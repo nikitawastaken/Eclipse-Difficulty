@@ -12,9 +12,11 @@ local standard_spawn = {
 }
 local scripted_diff_add = {
 	difficulty_addends = {
-		amount = 0.25,
-		time = { 30, 45 },
-		delay = 0,
+		{
+			amount = 0.25,
+			time = 30,
+			delay = 0,
+		},
 	},
 }
 

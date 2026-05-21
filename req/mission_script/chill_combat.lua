@@ -38,12 +38,12 @@ local money_pile_reinforce01 = {
 local money_pile_reinforce02 = {
 	reinforce = {
 		{
-			name = "upstairs1",
+			name = "upstairs01",
 			force = 2,
 			position = Vector3(1000, 400, 400),
 		},
 		{
-			name = "upstairs2",
+			name = "upstairs02",
 			force = 2,
 			position = Vector3(450, -550, 400),
 		},
@@ -76,13 +76,13 @@ return {
 	[100979] = {
 		reinforce = {
 			{
-				name = "touch_grass1",
-				force = 3,
+				name = "touch_grass01",
+				force = 2,
 				position = Vector3(-1500, 800, 300),
 			},
 			{
-				name = "touch_grass2",
-				force = 3,
+				name = "touch_grass02",
+				force = 2,
 				position = Vector3(-500, 2150, 300),
 			},
 		},

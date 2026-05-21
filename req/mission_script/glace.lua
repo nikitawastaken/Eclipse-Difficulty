@@ -78,17 +78,27 @@ local escape_guaranteed_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local scripted_diff_add = {
-	amount = 0.25,
-	time = { 30, 45 },
-	delay = 0,
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			time = 60,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 20,
+			delay = 0,
+		},
+	},
 }
 
 return {
 	[100121] = { -- obj_link_complete_005 (Prisoner taken away)
-		difficulty_addends = {
-			scripted_diff_add,
-		},
 		reinforce = { -- disable construction side reinforce
 			{ name = "construct01" },
 			{ name = "construct02" },
@@ -116,15 +126,7 @@ return {
 			{ id = 101591, delay = 45 }, -- saw spawns
 		},
 	},
-	[102634] = { -- obj_link_complete_002 (Found the Prisoner)
-		difficulty_addends = {
-			scripted_diff_add,
-		},
-	},
 	[102295] = { -- at the top
-		difficulty_addends = {
-			scripted_diff_add,
-		},
 		reinforce = {
 			{ name = "bridge" }, -- disable construction bridge reinforce
 			{
@@ -263,6 +265,14 @@ return {
 				101847,
 			},
 		},
+	},
+	-- Difficulty scaling
+	[102633] = objective_diff_add, -- obj_link_started_003 (reached scaffolding)
+	[100558] = { -- assault_ended
+		values = {
+			trigger_times = 0, -- (Vanilla: 2)
+		},
+		difficulty_addends = assault_end_diff_add.difficulty_addends[1], -- end_assault
 	},
 	-- Spawn group intervals
 	[101244] = construct_lower_spawn,

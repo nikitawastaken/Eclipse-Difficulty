@@ -117,17 +117,12 @@ return {
 			},
 		},
 	},
-	[104525] = { -- explode_wall
+	[103472] = { -- open_shutters
 		reinforce = {
 			{
 				name = "reception",
 				force = 2,
 				position = Vector3(500, -2750, 0),
-			},
-			{
-				name = "breach",
-				force = 2,
-				position = Vector3(1050, -1275, 0),
 			},
 		},
 	},

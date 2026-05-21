@@ -18,19 +18,13 @@ local enabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-}
-local waterfront_spawn = {
-	values = {
-		interval = 20,
+		interval = 15,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -45,62 +39,27 @@ local boat_timer = {
 		timer = 90 + (is_pro_job and 60 or 0),
 	},
 }
-local scripted_diff_add = {
-	amount = 0.25,
-	time = { 20, 30 },
-	delay = 0,
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			time = 20,
+			delay = 0,
+		},
+	},
 }
 
 return {
-	-- Add new reinforce
-	[100109] = { -- police
-		reinforce = {
-			{
-				name = "gate",
-				force = 3,
-				position = Vector3(2925, -3225, 0),
-			},
-			{
-				name = "warehouse_a",
-				force = 3,
-				position = Vector3(-325, 2150, 0),
-			},
-			{
-				name = "warehouse_b",
-				force = 3,
-				position = Vector3(1200, -120, 0),
-			},
-			{
-				name = "warehouse_c",
-				force = 3,
-				position = Vector3(450, -2750, 0),
-			},
-		},
-	},
-	[101369] = { -- input_close_first_gate
-		difficulty_addends = {
-			scripted_diff_add,
-		},
-		reinforce = {
-			{ name = "gate" },
-			{ name = "warehouse_a" },
-			{ name = "warehouse_b" },
-			{ name = "warehouse_c" },
-		},
-	},
-	[103885] = { -- output_signal_activated
-		difficulty_addends = {
-			scripted_diff_add,
-		},
-		reinforce = {
-			{
-				name = "harbor",
-				force = 5,
-				position = Vector3(15275, -3225, -300),
-			},
-		},
-	},
-	--power box SO cooldown (taken from ASS)
+	--Power box SO cooldown (taken from ASS)
 	[100549] = {
 		on_executed = {
 			{ id = 103658, delay = 10, delay_rand = 10 },
@@ -111,7 +70,54 @@ return {
 			{ id = 103828, delay = 10, delay_rand = 10 },
 		},
 	},
-	-- boat arrival timer
+	-- Add new reinforce
+	[100109] = { -- police	
+		reinforce = {
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(-2925, -3225, 0),
+			},
+			{
+				name = "warehouse_a",
+				force = 3,
+				position = Vector3(-300, 2100, 0),
+			},
+			{
+				name = "warehouse_b",
+				force = 3,
+				position = Vector3(1000, -150, 0),
+			},
+			{
+				name = "warehouse_c",
+				force = 3,
+				position = Vector3(450, -2600, 0),
+			},
+		},
+	},
+	[101369] = { -- input_close_first_gate
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 1.375, 1.125, 1, 0.875 },
+		},
+		difficulty_addends = objective_diff_add.difficulty_addends[1],
+		reinforce = {
+			{ name = "gate" },
+			{ name = "warehouse_a" },
+			{ name = "warehouse_b" },
+			{ name = "warehouse_c" },
+		},
+	},
+	[103885] = { -- output_signal_activated
+		reinforce = {
+			{
+				name = "harbor",
+				force = 5,
+				position = Vector3(15275, -3225, -300),
+			},
+		},
+	},
+	-- Boat arrival timer
 	[103662] = boat_timer,
 	[103257] = disabled,
 	-- Delay roof rappels at the start
@@ -122,21 +128,24 @@ return {
 			{ id = 101272, delay = 30 }, -- roof 3
 		},
 	},
-	-- make sure both harbour office spawns are enabled regardless of difficulty
+	-- Make sure both harbour office spawns are enabled regardless of difficulty
 	[103106] = filter_easy_above,
-	-- disable the helicopter turret since it does nothing anyway
+	-- Disable the helicopter turret since it does nothing anyway
 	[101257] = disabled,
-	-- enable unused sniper spawns
+	-- Enable unused sniper spawns
 	[100376] = enabled,
 	[100375] = enabled,
 	[100374] = enabled,
 	[100372] = enabled,
-	-- ambush bulldozers
+	-- Ambush bulldozers
 	[101723] = dozer_chance,
 	[101779] = dozer_chance,
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
-	--Spawn group intervals
+	-- Difficulty scaling
+	[104374] = objective_diff_add, -- add_harbor_office_roof_spawns (harbor office)
+	[100123] = assault_end_diff_add, -- end_assault
+	-- Spawn group intervals (so fucking many)
 	[100128] = standard_spawn,
 	[100130] = standard_spawn,
 	[100131] = standard_spawn,
@@ -171,10 +180,11 @@ return {
 	[101961] = standard_spawn,
 	[101965] = standard_spawn,
 	[104810] = standard_spawn,
-	[105463] = waterfront_spawn,
+	[105463] = standard_spawn,
+	[105463] = standard_spawn,
+	[101266] = standard_spawn,
 	[100693] = rappel_spawn,
 	[101265] = rappel_spawn,
-	[101266] = rappel_spawn,
 	[101963] = rappel_spawn,
 	[101967] = rappel_spawn,
 	[101969] = rappel_spawn,

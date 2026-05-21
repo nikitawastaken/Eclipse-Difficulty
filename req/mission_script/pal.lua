@@ -148,7 +148,7 @@ return {
 			{
 				name = "mitchell_house02",
 				force = 2,
-				position = Vector3(-2550, 3600, 75),
+				position = Vector3(-2525, 3900, 75),
 			},
 			{
 				name = "wilson_house01",
@@ -158,7 +158,7 @@ return {
 			{
 				name = "wilson_house02",
 				force = 2,
-				position = Vector3(-3000, 1450, -325),
+				position = Vector3(-2975, 1375, -325),
 			},
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
