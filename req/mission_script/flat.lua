@@ -90,7 +90,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100290] = {  -- spawn_swat
+	[100290] = { -- spawn_swat
 		reinforce = {
 			{
 				name = "alley01",
