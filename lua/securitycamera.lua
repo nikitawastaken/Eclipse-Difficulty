@@ -59,6 +59,8 @@ function SecurityCamera:_sound_the_alarm(detected_unit, ...)
 end
 
 -- Rotating cameras
+local mvec3_cpy = mvector3.copy
+
 local tmp_vec = Vector3()
 
 local tmp_rot = Rotation()
@@ -308,7 +310,7 @@ function SecurityCamera:set_target_attention(attention)
 		return
 	end
 
-	self:_remove_attention_destroy_listener(old_attention)
+	CopMovement._remove_attention_destroy_listener(self, old_attention)
 
 	self:stop_current_rotation(not attention)
 
@@ -319,7 +321,7 @@ function SecurityCamera:set_target_attention(attention)
 				if attention_unit:id() ~= -1 then
 					managers.network:session():send_to_peers_synched("camera_set_attention", self._unit, attention_unit)
 				else
-					managers.network:session():send_to_peers_synched("camera_set_attention_pos", self._unit, attention.handler:get_detection_m_pos())
+					managers.network:session():send_to_peers_synched("camera_set_attention_pos", self._unit, mvec3_cpy(attention.handler:get_detection_m_pos()))
 				end
 
 				self:_add_attention_destroy_listener(attention)
@@ -330,50 +332,12 @@ function SecurityCamera:set_target_attention(attention)
 			managers.network:session():send_to_peers_synched("camera_set_attention", self._unit, nil)
 		end
 	elseif attention and attention.handler then
-		self:_add_attention_destroy_listener(attention)
+		CopMovement._add_attention_destroy_listener(self, attention)
 	end
 
 	self._target_attention = attention
 
 	self:chk_update_state()
-end
-
-function SecurityCamera:_add_attention_destroy_listener(attention)
-	if not attention or not attention.unit then
-		return
-	end
-
-	local listener_class = attention.unit:base() and attention.unit:base().add_destroy_listener and attention.unit:base()
-		or attention.unit:unit_data() and attention.unit:unit_data().add_destroy_listener and attention.unit:unit_data()
-
-	if not listener_class then
-		return
-	end
-
-	local listener_key = "SecurityCamera" .. tostring(self._unit:key())
-	attention.destroy_listener_key = listener_key
-
-	listener_class:add_destroy_listener(listener_key, callback(self, self, "attention_unit_destroy_clbk"))
-end
-
-function SecurityCamera:_remove_attention_destroy_listener(attention)
-	if not attention or not attention.destroy_listener_key then
-		return
-	end
-
-	if not alive(attention.unit) then
-		attention.destroy_listener_key = nil
-		return
-	end
-
-	local listener_class = attention.unit:base() and attention.unit:base().remove_destroy_listener and attention.unit:base()
-		or attention.unit:unit_data() and attention.unit:unit_data().remove_destroy_listener and attention.unit:unit_data()
-
-	if listener_class then
-		listener_class:remove_destroy_listener(attention.destroy_listener_key)
-	end
-
-	attention.destroy_listener_key = nil
 end
 
 function SecurityCamera:attention_unit_destroy_clbk(unit)
@@ -689,7 +653,7 @@ Hooks:PostHook(SecurityCamera, "generate_cooldown", "camerarot_generate_cooldown
 end)
 
 Hooks:PostHook(SecurityCamera, "destroy", "camerarot_destroy", function(self)
-	self:_remove_attention_destroy_listener(self._target_attention)
+	CopMovement._remove_attention_destroy_listener(self, self._target_attention)
 	self:chk_update_state()
 end)
 
