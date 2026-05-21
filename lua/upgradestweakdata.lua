@@ -22,7 +22,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
 		damage_shake = { 1, 0.9, 0.8, 0.7, 0.55, 0.4, 0.25 },
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
-		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
+		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.5, 5 },
 		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
 		criminal_hurt_drama_mul = { 1.45, 1.3, 1.15, 1, 0.8, 0.6, 0.4 },
 		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
