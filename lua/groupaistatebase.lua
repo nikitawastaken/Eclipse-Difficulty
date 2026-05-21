@@ -1,4 +1,4 @@
-local level_id = Eclipse.utils.level_id()
+local level_id = Eclipse.utils.clean_level_id()
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",

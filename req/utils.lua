@@ -116,8 +116,8 @@ end
 
 -- Returns whether the game is Holdout
 function M.is_skirmish()
-	local level_tweak = M.access_table(tweak_data, "levels", M.level_id())
-	return level_tweak and level_tweak.group_ai_state == "skirmish" or managers and managers.skirmish and managers.skirmish:is_skirmish()
+	local levels_tweak = M.access_table(tweak_data, "levels", M.level_id())
+	return levels_tweak and levels_tweak.group_ai_state == "skirmish" or managers and managers.skirmish and managers.skirmish:is_skirmish()
 end
 
 -- Returns whether the difficulty is Normal or above, and Overkill or above

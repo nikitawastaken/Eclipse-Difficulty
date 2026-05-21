@@ -2,7 +2,7 @@ local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
-local level_id = Eclipse.utils.level_id()
+local level_id = Eclipse.utils.clean_level_id()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()

@@ -68,7 +68,7 @@ local van_spawn = {
 }
 local overpass_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
@@ -105,11 +105,6 @@ local armitage_far_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local scripted_diff_add = {
-	amount = 0.25,
-	time = { 20, 30 },
-	delay = 0,
-}
 local swat_heli_incoming = {
 	values = {
 		comment = "p41",
@@ -123,12 +118,36 @@ local garage_event_triggered = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			time = 20,
+			delay = 0,
+		},
+	},
+}
 
 return {
 	[101356] = {
 		ponr = {
 			length = 480,
 			length_balance_mul = { 2.5, 2, 1.5, 1 },
+		},
+	},
+	-- enable end_assault global event trigger
+	[103749] = { -- dff_0_6
+		on_executed = {
+			{ id = 410074, delay = 0 },
 		},
 	},
 	-- restore events from PDTH
@@ -469,9 +488,6 @@ return {
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
-		difficulty_addends = { -- increase diff
-			scripted_diff_add,
-		},
 	},
 	[103883] = { -- Matt is out, go to parking
 		reinforce = { -- remove Inkwell reinforce
@@ -490,9 +506,6 @@ return {
 				force = 3,
 				position = Vector3(-15500, -9500, 1050),
 			},
-		},
-		difficulty_addends = { -- increase diff
-			scripted_diff_add,
 		},
 		on_executed = {
 			{ id = 410023, delay = 0 },
@@ -526,12 +539,13 @@ return {
 			{ name = "overpass01" },
 			{ name = "overpass02" },
 		},
-		difficulty_addends = { -- increase diff
-			scripted_diff_add,
-		},
 	},
 	-- Disable one of the Inkwell van spawngroups (Eclipse has its own)
 	[103704] = disabled,
+	-- Difficulty scaling
+	[103750] = objective_diff_add, -- diff_0_75
+	[103751] = objective_diff_add, -- diff_1
+	[410073] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
 	[100071] = helicopter_guaranteed_spawn,
 	[100476] = helicopter_guaranteed_spawn,

@@ -158,6 +158,10 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 		if part.sub_type and part.sub_type == "ammo_hornet" then
 			sting = true
 		end
+
+		if equipped_name == "flun" and id ~= "wpn_fps_upg_a_flun_flare" then
+			sting = true
+		end
 	end
 	if not shotgun and not sting then
 		return

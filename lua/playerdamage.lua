@@ -173,7 +173,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
 	local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
-	local stamina_strip_weapon_mul = weap_tweak_data.stamina_strip_mul or 1
+	local stamina_strip_weapon_mul = weap_tweak_data and weap_tweak_data.stamina_strip_mul or 1
 
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
@@ -933,13 +933,16 @@ end
 
 -- On-armor-regen upgrades
 function PlayerDamage:_regenerate_armor(no_sound)
-	if self._unit:sound() and not no_sound then
+	local max_armor = self:_max_armor()
+	local armor = not no_sound and self:get_real_armor()
+
+	if self._unit:sound() and armor and armor < max_armor then
 		self._unit:sound():play("shield_full_indicator")
 	end
 
 	self._regenerate_speed = nil
 
-	if self:get_real_armor() <= 0 then
+	if armor and armor <= 0 then
 		-- Cooldown temporary damage reduction on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
 			managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")

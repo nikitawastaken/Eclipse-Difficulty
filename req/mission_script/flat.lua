@@ -89,6 +89,26 @@ return {
 			length_balance_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
+	-- Add new reinforce
+	[100290] = {  -- spawn_swat
+		reinforce = {
+			{
+				name = "alley01",
+				force = 2,
+				position = Vector3(-2320, 1070, -25),
+			},
+			{
+				name = "alley02",
+				force = 2,
+				position = Vector3(-845, 1990, -25),
+			},
+			{
+				name = "alley03",
+				force = 2,
+				position = Vector3(725, 1385, 0),
+			},
+		},
+	},
 	-- Restore roof access blockade
 	[100095] = {
 		on_executed = {
@@ -182,21 +202,6 @@ return {
 			{ id = 400091, delay = 0 }, -- disable some window blinders
 		},
 	},
-	-- Add new reinforce
-	[100533] = { -- saws are done, roof objectives begin
-		reinforce = {
-			{
-				name = "third_floor",
-				force = 2,
-				position = Vector3(-925, 600, 700),
-			},
-			{
-				name = "fourth_floor",
-				force = 2,
-				position = Vector3(-1600, 500, 1025),
-			},
-		},
-	},
 	-- add missing navlinks
 	[103247] = {
 		on_executed = {
@@ -270,6 +275,23 @@ return {
 	[100247] = {
 		on_executed = {
 			{ id = 104456, delay = 120 },
+		},
+		reinforce = { -- Add new reinforce
+			{
+				name = "floor2",
+				force = 3,
+				position = Vector3(-825, 620, 375),
+			},
+			{
+				name = "floor41",
+				force = 2,
+				position = Vector3(-485, 585, 1025),
+			},
+			{
+				name = "floor42",
+				force = 2,
+				position = Vector3(-75, 490, 1025),
+			},
 		},
 	},
 	[100001] = {

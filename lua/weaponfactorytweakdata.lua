@@ -2579,6 +2579,38 @@ function WeaponFactoryTweakData:_convert_concealment_to_mobility(tweak_data)
 	end
 end
 
+function WeaponFactoryTweakData:_create_flun_ammo(tweak_data)
+--[[	local flun_shotgun_ammos = {
+		"wpn_fps_upg_a_piercing",
+		"wpn_fps_upg_a_slug",
+	}
+
+	for _, ammo_id in ipairs(flun_shotgun_ammos) do
+		local ammo_override = self.wpn_fps_spe_flun.override[ammo_id] or {}
+		ammo_override.parent = "lower_body"
+		ammo_override.a_obj = "a_shell"
+		ammo_override.unit = "units/pd2_dlc_unk/weapons/wpn_fps_spe_flun_pts/ammos/wpn_fps_upg_a_flun_shot"
+		ammo_override.bullet_objects = {
+			amount = 1,
+			prefix = "g_bullet_",
+		}
+		ammo_override.sound_switch = {
+			suppressed = "regular_b",
+		}
+		ammo_override.stats = deep_clone(self.parts[ammo_id].stats)
+		ammo_override.stats.total_ammo_mod = (ammo_override.stats.total_ammo_mod or 0) + 5
+		ammo_override.custom_stats = deep_clone(self.parts[ammo_id].custom_stats)
+		ammo_override.custom_stats.weapon_unit = "units/pd2_dlc_unk/weapons/wpn_fps_spe_flun/wpn_fps_sho_flun"
+		ammo_override.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+		ammo_override.custom_stats.ammo_pickup_min_mul = ammo_override.custom_stats.ammo_pickup_min_mul and ammo_override.custom_stats.ammo_pickup_min_mul * 2 or 2
+		ammo_override.custom_stats.ammo_pickup_max_mul = ammo_override.custom_stats.ammo_pickup_max_mul and ammo_override.custom_stats.ammo_pickup_max_mul * 2 or 2
+		self.wpn_fps_spe_flun.override[ammo_id] = ammo_override
+
+		table.insert(self.wpn_fps_spe_flun.uses_parts, ammo_id)
+	end
+]]
+end
+
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
 	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
@@ -2714,6 +2746,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_akimbo(tweak_data)
 	self:_wipe_burst_fire_mode(tweak_data)
 	self:_convert_concealment_to_mobility()
+	self:_create_flun_ammo(tweak_data)
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze

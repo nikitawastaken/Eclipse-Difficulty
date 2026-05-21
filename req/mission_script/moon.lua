@@ -1,8 +1,6 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
-local security_4 = scripted_enemy.green_security_1
-local security_5 = scripted_enemy.green_security_2
 local disabled = {
 	values = {
 		enabled = false,
@@ -31,10 +29,10 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 local mall_guard_1 = {
-	enemy = security_4,
+	enemy = scripted_enemy.green_security_1,
 }
 local mall_guard_2 = {
-	enemy = security_5,
+	enemy = scripted_enemy.green_security_2,
 }
 return {
 	-- Add new reinforce

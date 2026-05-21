@@ -1,4 +1,5 @@
 local vanilla_outfits = Eclipse.settings.player_styles == 1
+local vanilla_outfits = Eclipse.settings.player_styles == 1
 local expanded_outfits = Eclipse.settings.player_styles == 2
 local no_outfits = Eclipse.settings.player_styles == 3
 local disable_christmas = Eclipse.settings.disable_christmas
@@ -159,7 +160,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
-
+	self.rvd1.difficulty_scaling_preset = "regroup_aggressive"
+	
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
 	--	self.crojob2.difficulty_scaling_preset = "regroup_slow"
@@ -176,6 +178,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	--	self.flat.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
+	self.ranc.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
 
 	self.pex.difficulty_scaling_preset = "sustain"
@@ -481,15 +484,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.friend.group_ai_settings.assault_force_mul = 1.2
 
-	self.moon.group_ai_settings.assault_force_mul = 0.8
-
-	self.run.group_ai_settings = {
+	self.run.group_ai_settings = {	
+		use_equipment_reenforce = false,
+		hostage_hesitation_delay_mul = 0.75,
+		sustain_duration_mul = 0.75,
+		assault_delay_mul = 1.25,
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {
-					amount = 0.25,
+					amount = 0.375,
 					delay = 0,
-					time = 60,
+					time = 30,
 				},
 			},
 			allowed_addends = {
@@ -505,10 +510,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_settings.difficulty_scaling = {
 		addends = {
 			on_enemy_weapons_hot = {
-				amount = 0.25,
+				amount = 0.375,
 				delay = 75,
 				time = 60,
 			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
 		},
 	}
 
@@ -640,8 +648,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pex.group_ai_settings.sustain_duration_mul = 1.25 -- Bird flu
 
-	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
-
+	self.sand.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 60,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
+		},
+	}
+	
 	self.chca.group_ai_settings.assault_force_mul = 0.8
 
 	self.trai.group_ai_settings = {
@@ -705,9 +726,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
 	self.election_day_1.ghost_bonus = 0.03
 	self.election_day_2.ghost_bonus = 0.07
-	-- Firestarter (5% in day 2 and 10% for day 3)
+	-- Firestarter (5% for all days, resulting in 15% stealth bonus max)
+	self.firestarter_1.ghost_bonus = 0.05
 	self.firestarter_2.ghost_bonus = 0.05
-	self.firestarter_3.ghost_bonus = 0.1
+	self.firestarter_3.ghost_bonus = 0.05
 
 	-- heists that shouldn't have stealth bonus (they're not possible to beat)
 	self.nmh.ghost_bonus = nil

@@ -274,7 +274,7 @@ return {
 			{
 				name = "such_an_ugly_car",
 				force = 2,
-				position = Vector3(-380, 1350, 1200),
+				position = Vector3(-400, 1350, 1200),
 			},
 			{
 				name = "redeyes",
@@ -288,10 +288,7 @@ return {
 			},
 		},
 	},
-	-- disable vanilla reinforce
-	[100942] = disabled,
-	[100973] = disabled,
-	-- add new unused spawngroup
+	-- Add new unused spawngroup
 	[100937] = {
 		values = {
 			spawn_groups = {
@@ -300,7 +297,20 @@ return {
 			},
 		},
 	},
-	[101525] = mendoza, -- gangsters
+	-- Spawn group intervals
+	[100467] = standard_spawn,
+	[100550] = standard_spawn,
+	[100671] = standard_spawn,
+	[100840] = standard_spawn,
+	[100880] = standard_spawn,
+	[100672] = close_spawn,
+	[100924] = close_spawn,
+	[100863] = close_spawn,
+	[100874] = close_spawn,
+	[100925] = flank_spawn,
+	[400007] = flank_spawn,
+	-- Gangstas
+	[101525] = mendoza, 
 	[101527] = mendoza,
 	[100825] = mendoza,
 	[100826] = mendoza,
@@ -320,16 +330,4 @@ return {
 	[100431] = mendoza,
 	[101262] = mendoza,
 	[101263] = mendoza,
-	-- spawn Group delays
-	[100467] = standard_spawn,
-	[100550] = standard_spawn,
-	[100671] = standard_spawn,
-	[100840] = standard_spawn,
-	[100880] = standard_spawn,
-	[100672] = close_spawn,
-	[100924] = close_spawn,
-	[100863] = close_spawn,
-	[100874] = close_spawn,
-	[100925] = flank_spawn,
-	[400007] = flank_spawn,
 }
