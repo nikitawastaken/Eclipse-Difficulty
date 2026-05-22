@@ -774,7 +774,7 @@ local optsSWATChopper_hide_startup = {
 local optsBesiegeDummy_Heli_1 = {
 	participate_to_group_ai = true,
 	enabled = true,
-	spawn_action = "e_sp_dwn_17m_var2",
+	spawn_action = "e_sp_down_17m_var2",
 }
 
 local optsBesiegeDummy_Heli_2 = {
