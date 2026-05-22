@@ -5,6 +5,7 @@ CopBrain._logic_variants.hector_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.drug_lord_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.biker_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.fbi_boss = CopBrain._logic_variants.triad_boss
+CopBrain._logic_variants.fbi_female_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.city_tank = CopBrain._logic_variants.tank
 CopBrain._logic_variants.hrt = CopBrain._logic_variants.swat
 CopBrain._logic_variants.murky = CopBrain._logic_variants.swat
