@@ -37,11 +37,7 @@ function HuskPlayerMovement:set_visual_carry(carry_id)
 	end
 end
 
--- proper 3rd person idle stance, broken in u150
-local orig = HuskPlayerMovement.sync_stance
-function HuskPlayerMovement:sync_stance(code, ...)
-	return orig(self, code > 1 and 2 or code, ...)
-end
+-- disable gadgets making players aim up permanently
 function HuskPlayerMovement:set_cbt_permanent() end
 
 -- Transparency loud target priority multiplier

@@ -1525,3 +1525,16 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 
 	return col_ray
 end
+
+local function set_hos(self)
+    self._ext_network:send("set_stance", 2, false, false)
+end
+
+local function set_cbt(self)
+    self._ext_network:send("set_stance", 3, false, false)
+end
+
+Hooks:PostHook(PlayerStandard, "_enter", "_enter_hos", set_hos)
+Hooks:PostHook(PlayerStandard, "_start_action_steelsight", "_start_action_steelsight_hos", set_cbt)
+Hooks:PostHook(PlayerStandard, "_end_action_steelsight", "_end_action_steelsight_hos", set_hos)
+Hooks:PostHook(PlayerStandard, "set_running", "set_running_hos", set_hos)
