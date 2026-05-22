@@ -1527,11 +1527,11 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 end
 
 local function set_hos(self)
-    self._ext_network:send("set_stance", 2, false, false)
+	self._ext_network:send("set_stance", 2, false, false)
 end
 
 local function set_cbt(self)
-    self._ext_network:send("set_stance", 3, false, false)
+	self._ext_network:send("set_stance", 3, false, false)
 end
 
 Hooks:PostHook(PlayerStandard, "_enter", "_enter_hos", set_hos)
