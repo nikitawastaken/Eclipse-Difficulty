@@ -40,12 +40,26 @@ local M = {
 		},
 		-- Rear lance
 		[104466] = {
-			timer = 69,
+			timer = 240,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = 0.5,
+				0.25,
+				0.5,
+				0.75,
+				1,
+			},
 			jam_times = 9,
 		},
 		-- Front lance
 		[104674] = {
-			timer = 96,
+			timer = 420,
+			timer_dt_balance_mul = {
+				team_ai_balance_mul_weight = 0.5,
+				0.25,
+				0.5,
+				0.75,
+				1,
+			},
 			jam_times = {
 				4,
 				4,
