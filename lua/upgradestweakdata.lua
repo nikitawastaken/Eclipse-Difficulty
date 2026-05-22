@@ -504,6 +504,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"china",
+				"flun"
 			},
 		},
 		{
