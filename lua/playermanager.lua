@@ -2446,7 +2446,7 @@ function PlayerManager:_attempt_copr_ability()
 	managers.enemy:add_delayed_clbk("copr_ability_active", callback(self, self, "clbk_copr_ability_ended"), expire_time)
 	managers.hud:activate_teammate_ability_radial(HUDManager.PLAYER_PANEL, duration)
 
-	local bonus_health = self:upgrade_value("player", "copr_activate_bonus_health_ratio", tweak_data.upgrades.values.player.copr_activate_bonus_health_ratio[1])
+	local bonus_health = character_damage:_max_health() * self:upgrade_value("player", "copr_activate_bonus_health_ratio", tweak_data.upgrades.values.player.copr_activate_bonus_health_ratio[1])
 
 	character_damage:restore_health(bonus_health)
 	character_damage:set_armor(0)
