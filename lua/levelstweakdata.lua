@@ -1500,4 +1500,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["firestarter3_2"] = 2,
 		["firestarter3_3"] = 2,
 	}
+	self.brb.random_environments = {
+		["brb_1"] = 3,
+		["brb_2"] = 3,
+	}
+	self.hox_1.random_environments = {
+		["hox_1_1"] = 3,
+		["hox_1_2"] = 2,
+		["default"] = 1,
+	}
+	self.flat.random_environments = {
+		["flat_1"] = 4,
+		["flat_2"] = 3,
+		["default"] = 1,
+	}
+	self.dinner.random_environments = {
+		["slaughterhouse_1"] = 4,
+		["slaughterhouse_2"] = 3,
+		["default"] = 1,
+	}
+	self.friend.random_environments = {
+		["scarface_1"] = 4,
+		["default"] = 2,
+		["scarface_2"] = 2,
+	}
 end)
