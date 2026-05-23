@@ -346,7 +346,6 @@
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
-		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
 
 		<!-- Weapons -->
