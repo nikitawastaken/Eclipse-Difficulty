@@ -46,9 +46,9 @@ local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local patches = {
 	elevator_group = table.set(100013),
 	bulldozer_server_room = {
-		dozers = table.set(100061, 100062),
-		filters_disable = table.set(100063, 100065),
-		filters_normal_above = table.set(100064),
+		dozers = table.set(100061, 100001),
+		filters_disable = table.set(100063, 100065, 100007, 100009),
+		filters_normal_above = table.set(100064, 100008),
 	},
 	road_blockade = {
 		cops = table.set(100093, 100094),

@@ -21,7 +21,6 @@ local harasser = diff_i >= 5 and heavy_harasser or light_harasser
 local swats_blockade = {
 	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
 	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
-	[scripted_enemy.elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 3 }),
 	[scripted_enemy.swat_1] = 5,
 	[scripted_enemy.swat_2] = 3,
 }
@@ -856,14 +855,14 @@ local optsSWATB_Garage_3 = {
 	enabled = true,
 }
 local optsSWATB_Garage_4 = {
-	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy_table = swats_blockade,
 	on_executed = {
 		{ id = 400197, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSWATB_Garage_5 = {
-	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy_table = swats_blockade,
 	on_executed = {
 		{ id = 400198, delay = 0 },
 	},
@@ -931,13 +930,13 @@ local optsSWATB_Garage_14 = {
 }
 
 local optsDefendSWAT_SO = {
-	SO_access = tostring(128 + 2048),
+	SO_access = "128",
 	scan = true,
 	align_position = true,
 	align_rotation = true,
 	use_instigator = true,
 	interval = 2,
-	so_action = "AI_sniper",
+	so_action = "AI_defend",
 }
 local optsCoverCop_SO = {
 	SO_access = "32",
