@@ -838,7 +838,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Stoic
 	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier", "player_decreased_drama_hurt" }
 	self.specializations[19][7].upgrades = { "player_emergency_throwable_regen_speed" }
-	
+
 	-- Hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	self.specializations[21][3].texture_bundle_folder = nil
@@ -850,27 +850,26 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 
 	-- Leech
-	self.specializations[22][1].upgrades = { 
+	self.specializations[22][1].upgrades = {
 		"temporary_copr_ability_new_1",
 		"copr_ability",
 		"player_copr_kill_life_leech_1",
 		"player_copr_activate_bonus_health_ratio_1",
 	}
-	self.specializations[22][5].upgrades = { 
+	self.specializations[22][5].upgrades = {
 		"temporary_copr_ability_new_2",
 		"player_copr_teammate_heal_1",
 	}
-	self.specializations[22][7].upgrades = { 
+	self.specializations[22][7].upgrades = {
 		"player_emergency_throwable_regen_speed",
 	}
-	self.specializations[22][9].upgrades = { 
+	self.specializations[22][9].upgrades = {
 		"player_passive_loot_drop_multiplier",
 		"player_passive_health_multiplier_3",
 		"player_copr_kill_life_leech_2",
 		"player_copr_teammate_heal_2",
-		
 	}
-	
+
 	local wildcard_perkdeck = {
 		{
 			cost = 200,

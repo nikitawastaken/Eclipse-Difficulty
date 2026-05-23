@@ -3343,7 +3343,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
-	self.values.player.emergency_throwable_regen_speed = { 
+	self.values.player.emergency_throwable_regen_speed = {
 		{ 1.35, 0.25 },
 	}
 	self.definitions.player_emergency_throwable_regen_speed = {
@@ -3352,10 +3352,10 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "emergency_throwable_regen_speed",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
-	
+
 	self.specialization_descs[19][1].multiperk3 = "16"
 	self.specialization_descs[19][3].multiperk = "50%"
 	self.specialization_descs[19][7].multiperk = "25%"
@@ -3416,9 +3416,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.copr_activate_bonus_health_ratio = { 0.25 }
 	self.values.player.copr_out_of_health_move_slow = { 0.4 }
 	self.values.player.copr_teammate_heal = { 0.2, 0.4 }
-	
+
 	self.values.temporary.copr_ability_new = deep_clone(self.values.temporary.copr_ability)
-	
+
 	self.definitions.temporary_copr_ability_new_1 = {
 		name_id = "menu_temporary_copr_ability_1",
 		category = "temporary",
@@ -3426,8 +3426,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "copr_ability_new",
 			synced = true,
-			category = "temporary"
-		}
+			category = "temporary",
+		},
 	}
 	self.definitions.temporary_copr_ability_new_2 = {
 		name_id = "menu_temporary_copr_ability_2",
@@ -3436,8 +3436,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 2,
 			upgrade = "copr_ability_new",
 			synced = true,
-			category = "temporary"
-		}
+			category = "temporary",
+		},
 	}
 
 	self.specialization_descs[22][1].multiperk = "25%"
@@ -3450,7 +3450,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[22][7].multiperk2 = "35%"
 	self.specialization_descs[22][9].multiperk = "20%"
 	self.specialization_descs[22][9].multiperk2 = "4"
-				
+
 	-- Wildcard Perkdeck
 	self.values.player.passive_xp_multiplier = { 1.1, 1.25, 1.45 }
 	self.definitions.passive_player_xp_multiplier_2 = {

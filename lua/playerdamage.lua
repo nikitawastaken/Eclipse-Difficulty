@@ -341,12 +341,12 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
 			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
 		end
-		
+
 		if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
 			health_subtracted = health_subtracted * (tweak_data.upgrades.copr_ability_criminal_hurt_drama_mul or 0.1)
 		end
 	end
-	
+
 	if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().sentry_gun then
 		health_subtracted = health_subtracted * (tweak_data.upgrades.swat_turret_criminal_hurt_drama_mul or 0.25)
 	end
@@ -429,7 +429,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 
 	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and health_subtracted > 0 then
 		self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("copr_static_damage_grace_period") -- Extended grace period when losing Leech health chunks
-		
+
 		local teammate_heal_level = managers.player:upgrade_level_nil("player", "copr_teammate_heal")
 
 		if teammate_heal_level and self:get_real_health() > 0 then
@@ -978,7 +978,7 @@ end
 -- The number of Leech segments depends on the armor you're wearing
 function PlayerDamage:copr_update_attack_data(attack_data)
 	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
-		local static_damage_ratio =  managers.player:body_armor_value("copr_static_damage_ratio")
+		local static_damage_ratio = managers.player:body_armor_value("copr_static_damage_ratio")
 
 		if static_damage_ratio and attack_data.damage > 0 then
 			local high_damage_tweak = tweak_data.upgrades.copr_high_damage_multiplier

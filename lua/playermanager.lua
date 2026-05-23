@@ -109,7 +109,7 @@ Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t, dt)
 
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
-	
+
 	self:_update_timers_new(t, dt)
 end)
 
@@ -538,8 +538,8 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	-- Leech Ampule
 	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
 		local kill_life_leech = self:upgrade_value_nil("player", "copr_kill_life_leech")
-		local static_damage_ratio =	self:body_armor_value("copr_static_damage_ratio")
-		
+		local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio")
+
 		if kill_life_leech and static_damage_ratio and damage_ext then
 			self._copr_kill_life_leech_new_num = (self._copr_kill_life_leech_new_num or 0) + 1
 
@@ -2501,10 +2501,10 @@ end
 
 function PlayerManager:throwable_regen_speed_multiplier()
 	local multiplier = 1
-	
+
 	local player_unit = self:local_player()
 	local character_damage = alive(player_unit) and player_unit:character_damage()
-	
+
 	if self:has_category_upgrade("player", "emergency_throwable_regen_speed") then
 		if character_damage and character_damage:health_ratio() <= self:upgrade_value("player", "emergency_throwable_regen_speed")[2] then
 			multiplier = multiplier * self:upgrade_value("player", "emergency_throwable_regen_speed")[1]
@@ -2520,9 +2520,9 @@ function PlayerManager:_update_timers() end
 
 function PlayerManager:_update_timers_new(t, dt)
 	local timers_copy = table.map_copy(self._timers)
-	
+
 	for key, timer in pairs(timers_copy) do
-		timer.t  = math.max(timer.t  - dt * self:throwable_regen_speed_multiplier(), 0)
+		timer.t = math.max(timer.t - dt * self:throwable_regen_speed_multiplier(), 0)
 
 		local peer_id = managers.network:session():local_peer():id()
 		local grenade = self._global.synced_grenades[peer_id].grenade

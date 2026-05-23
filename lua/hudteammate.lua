@@ -48,12 +48,12 @@ function HUDTeammate:set_health(data)
 
 		self:update_delayed_damage()
 	else
-		radial_health:animate(function (o)
+		radial_health:animate(function(o)
 			local s = radial_health:color().r
 			local e = red
 			local health_ratio = nil
 
-			over(0.2, function (p)
+			over(0.2, function(p)
 				health_ratio = math.lerp(s, e, p)
 
 				radial_health:set_color(Color(1, health_ratio, 1, 1))
@@ -76,4 +76,3 @@ function HUDTeammate:set_health(data)
 		end)
 	end
 end
-
