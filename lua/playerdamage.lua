@@ -565,7 +565,7 @@ function PlayerDamage:_check_bleed_out(can_activate_berserker, ignore_movement_s
 	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and managers.player:has_category_upgrade("player", "copr_out_of_health_move_slow") then
 		return
 	end
-	
+
 	_check_bleed_out_old(self, can_activate_berserker, ignore_movement_state, ignore_reduce_revive)
 end
 
