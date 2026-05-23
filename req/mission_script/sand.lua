@@ -71,7 +71,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100109] = { -- police	
+	[100109] = { -- police
 		reinforce = {
 			{
 				name = "gate",

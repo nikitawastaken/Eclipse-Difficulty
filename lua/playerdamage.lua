@@ -341,6 +341,10 @@ Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack
 		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
 			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
 		end
+
+		if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+			health_subtracted = health_subtracted * (tweak_data.upgrades.copr_ability_criminal_hurt_drama_mul or 0.1)
+		end
 	end
 
 	if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().sentry_gun then
@@ -423,7 +427,9 @@ function PlayerDamage:_calc_health_damage(attack_data)
 
 	health_subtracted = health_subtracted - self:get_real_health()
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability") and health_subtracted > 0 then
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and health_subtracted > 0 then
+		self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("copr_static_damage_grace_period") -- Extended grace period when losing Leech health chunks
+
 		local teammate_heal_level = managers.player:upgrade_level_nil("player", "copr_teammate_heal")
 
 		if teammate_heal_level and self:get_real_health() > 0 then
@@ -552,6 +558,15 @@ function PlayerDamage:revive(silent)
 	if MusicManager.set_volume_multiplier then
 		managers.music:set_volume_multiplier("downed", 1, 1)
 	end
+end
+
+local _check_bleed_out_old = PlayerDamage._check_bleed_out
+function PlayerDamage:_check_bleed_out(can_activate_berserker, ignore_movement_state, ignore_reduce_revive)
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and managers.player:has_category_upgrade("player", "copr_out_of_health_move_slow") then
+		return
+	end
+
+	_check_bleed_out_old(self, can_activate_berserker, ignore_movement_state, ignore_reduce_revive)
 end
 
 -- Proper fall damage that scales based on height
@@ -743,12 +758,6 @@ function PlayerDamage:restore_health_percentage(health_restored, _, chk_health_r
 	return self:change_health(max_health * health_restored * self._healing_reduction)
 end
 
--- lower the on-kill godmode length for leech
-function PlayerDamage:on_copr_killshot()
-	self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + 0.45, true)
-	self._last_received_dmg = self:_max_health()
-end
-
 -- FAKs only heal a small portion but then heal you over time
 function PlayerDamage:band_aid_health(hot_regen)
 	if managers.platform:presence() == "Playing" and (self:arrested() or self:need_revive()) then
@@ -910,7 +919,7 @@ function PlayerDamage:_upd_suppression(t, dt)
 	end
 end
 
--- suppression multiplier also affects decay timer
+-- Suppression multiplier also affects decay timer
 function PlayerDamage:build_suppression(amount)
 	if self:_chk_suppression_too_soon(amount) then
 		return
@@ -973,4 +982,25 @@ function PlayerDamage:_regenerate_armor(no_sound)
 	self:_send_set_armor()
 
 	self._current_state = nil
+end
+
+-- The number of Leech segments depends on the armor you're wearing
+function PlayerDamage:copr_update_attack_data(attack_data)
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		local static_damage_ratio = managers.player:body_armor_value("copr_static_damage_ratio")
+
+		if static_damage_ratio and attack_data.damage > 0 then
+			local high_damage_tweak = tweak_data.upgrades.copr_high_damage_multiplier
+			local damage_multiplier = high_damage_tweak[1] <= attack_data.damage and high_damage_tweak[2] or 1
+			attack_data.damage = self:_max_health() * static_damage_ratio * damage_multiplier
+		end
+	end
+end
+
+-- Leech's on-kill I-frame depends on the armor you're wearing
+function PlayerDamage:on_copr_killshot(new)
+	if new then -- add this check so that it doesn't proc twice
+		self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + managers.player:body_armor_value("copr_life_leech_invulnerable"), true)
+		self._last_received_dmg = self:_max_health()
+	end
 end

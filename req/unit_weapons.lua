@@ -61,7 +61,6 @@ local M = {
 	[("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"):key()] = { c45 = 3, raging_bull = 1 },
-	[("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"):key()] = "raging_bull", --she's Riker's partner so give her bronco
 	[("units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"):key()] = { c45 = 3, raging_bull = 1 },

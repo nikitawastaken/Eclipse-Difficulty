@@ -54,10 +54,32 @@ function TimerGui:_check_drill_unit_override()
 		if unit_override.timer then
 			self:set_override_timer(unit_override.timer)
 		end
+
+		self._timer_init_balance_mul = unit_override.timer_init_balance_mul
+		self._timer_dt_balance_mul = unit_override.timer_dt_balance_mul
 	end
 end
 
-Hooks:PreHook(TimerGui, "start", "eclipse_start", TimerGui._check_drill_unit_override)
+-- Set up unit override if it exists
+-- If this drill has a balance multiplier for its initial timer, apply it
+Hooks:PreHook(TimerGui, "start", "eclipse_start", function(self, timer)
+	self:_check_drill_unit_override()
+
+	if self._timer_init_balance_mul then
+		local balance_mul = managers.groupai:state():_get_balancing_multiplier(self._timer_init_balance_mul, self._timer_init_balance_mul.team_ai_balance_mul_weight)
+		self:set_override_timer((self._override_timer or timer) * balance_mul)
+	end
+end)
+
+-- If this drill has a balance multiplier for its delta time, apply it
+-- The time remaining shown on the display will change when the number of criminals changes
+-- Prefer using initial timer balance multipliers if possible, this jump in remaining time is blatant and unintuitive to witness
+Hooks:PostHook(TimerGui, "get_timer_multiplier", "eclipse_get_timer_multiplier", function(self)
+	if self._timer_dt_balance_mul then
+		local balance_mul = managers.groupai:state():_get_balancing_multiplier(self._timer_dt_balance_mul, self._timer_dt_balance_mul.team_ai_balance_mul_weight)
+		return math.max(Hooks:GetReturn() * balance_mul, 0.01)
+	end
+end)
 
 -- Skip next scheduled jam if it's going to happen very shortly after unjamming
 Hooks:PostHook(TimerGui, "set_jammed", "sh_set_jammed", function(self, jammed)

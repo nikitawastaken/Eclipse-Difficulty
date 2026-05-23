@@ -47,6 +47,29 @@
 		</target>
 	</tweak>
 	
+	<tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+		</search>
+		<target mode="attach">
+			<var name="can_be_marked" value="true"/>
+		</target>
+	</tweak>
+	
 	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
@@ -354,7 +377,7 @@
 	</tweak>
 
     <!-- change fbi office agents _tweak_table -->
-    <!-- make agent Riker as an actual boss fight -->
+    <!-- make agent Riker and his partner Jordan as the actual duo boss fight  -->
     <tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
@@ -377,6 +400,30 @@
 		</search>
 		<target mode="attributes">
 			<attr name="value" value="fbi_boss"/>
+		</target>
+	</tweak>
+    <tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="fbi_female_boss"/>
+		</target>
+	</tweak>
+    <tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="fbi_female_boss"/>
 		</target>
 	</tweak>
 

@@ -161,7 +161,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
 	self.rvd1.difficulty_scaling_preset = "regroup_aggressive"
-	
+
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
 	--	self.crojob2.difficulty_scaling_preset = "regroup_slow"
@@ -484,7 +484,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.friend.group_ai_settings.assault_force_mul = 1.2
 
-	self.run.group_ai_settings = {	
+	self.run.group_ai_settings = {
 		use_equipment_reenforce = false,
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.75,
@@ -662,7 +662,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.chca.group_ai_settings.assault_force_mul = 0.8
 
 	self.trai.group_ai_settings = {

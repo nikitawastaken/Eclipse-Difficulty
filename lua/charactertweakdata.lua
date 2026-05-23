@@ -1444,6 +1444,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 	self.chavez_boss.die_sound_event = "lt1_x02a_any_3p"
 
+	self.fbi_female_boss = deep_clone(self.chavez_boss)
+	self.fbi_female_boss.melee_weapon = "taser"
+	self.fbi_female_boss.access = "fbi"
+	self.fbi_female_boss.HEALTH_INIT = self.chavez_boss.HEALTH_INIT * 0.5
+	self.fbi_female_boss.die_sound_event = "fl1n_x01a_any_3p"
+	table.insert(self._enemy_list, "fbi_boss")
+
 	self.hector_boss.HEALTH_INIT = 160
 	self.hector_boss.headshot_dmg_mul = 1.75
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -2084,6 +2091,7 @@ CharacterTweakData.tweak_table_weapon = {
 	triad_boss = "eclipse_boss",
 	deep_boss = "eclipse_boss",
 	fbi_boss = "eclipse_boss",
+	fbi_female_boss = "eclipse_boss",
 }
 CharacterTweakData.access_weapon = {
 	fbi = "eclipse_fbi",
@@ -2109,6 +2117,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	bank_manager = "normal",
 	chavez_boss = "normal",
 	fbi_boss = "normal",
+	fbi_female_boss = "normal",
 	mobster_boss = "normal",
 	security_fat = "slow",
 	cop_fat = "slow",
@@ -2150,6 +2159,7 @@ CharacterTweakData.tweak_table_ecm_vulnerability = {
 	triad_boss = ecm_vuln_none,
 	deep_boss = ecm_vuln_none,
 	fbi_boss = ecm_vuln_none,
+	fbi_female_boss = ecm_vuln_none,
 	city_shield = ecm_vuln_none,
 }
 CharacterTweakData.access_ecm_vulnerability = {

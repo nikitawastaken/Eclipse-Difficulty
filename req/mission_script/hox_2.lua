@@ -318,21 +318,28 @@ return {
 			amount_random = diff_i,
 		},
 	},
-	-- Force Riker spawn
+	-- Force Riker and Griffin spawns
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
 			force_pickup = Riker_keycard and "keycard" or "none",
 		},
 	},
+	[101207] = {
+		values = {
+			participate_to_group_ai = false,
+		},
+	},
 	[101210] = {
 		on_executed = {
 			{ id = 101198, delay = 0 },
+			{ id = 101207, delay = 0 },
 		},
 	},
 	[101212] = {
 		on_executed = {
 			{ id = 101198, remove = true },
+			{ id = 101207, remove = true },
 		},
 	},
 	-- Exit Bulldozer

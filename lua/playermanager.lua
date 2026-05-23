@@ -98,7 +98,7 @@ Hooks:PostHook(PlayerManager, "_setup", "camerarot_setup", function(self)
 	self._global.sync_controlled_cameras = {}
 end)
 
-Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
+Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t, dt)
 	local local_player = self:local_player()
 
 	if self:has_category_upgrade("player", "near_teammate_damage_multiplier") and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
@@ -109,6 +109,8 @@ Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
+
+	self:_update_timers_new(t, dt)
 end)
 
 -- Additional skills
@@ -529,6 +531,30 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 
 		self:disable_cooldown_upgrade("cooldown", "melee_attack_frenzy")
+	end
+
+	local damage_ext = self:player_unit():character_damage()
+
+	-- Leech Ampule
+	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		local kill_life_leech = self:upgrade_value_nil("player", "copr_kill_life_leech")
+		local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio")
+
+		if kill_life_leech and static_damage_ratio and damage_ext then
+			self._copr_kill_life_leech_new_num = (self._copr_kill_life_leech_new_num or 0) + 1
+
+			if kill_life_leech <= self._copr_kill_life_leech_new_num then
+				self._copr_kill_life_leech_new_num = 0
+				local current_health_ratio = damage_ext:health_ratio()
+				local wanted_health_ratio = math.floor((current_health_ratio + 0.01 + static_damage_ratio) / static_damage_ratio) * static_damage_ratio
+				local health_regen = damage_ext:_max_health() * (wanted_health_ratio - current_health_ratio)
+
+				if health_regen > 0 then
+					damage_ext:restore_health(health_regen)
+					damage_ext:on_copr_killshot(true)
+				end
+			end
+		end
 	end
 end
 
@@ -1464,7 +1490,7 @@ function PlayerManager:clbk_super_syndrome_respawn(data)
 end
 
 -- Players receive penalties when leaving custody
-Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function(self)
+Hooks:PostHook(PlayerManager, "_internal_load", "eclipse_internal_load", function(self)
 	if self._respawn then
 		local player_unit = managers.player:player_unit()
 		local ammo_confiscated = tweak_data.player.damage.custody_ammo_confiscated
@@ -2393,6 +2419,138 @@ function PlayerManager:speed_up_grenade_cooldown(time)
 	return
 end
 
+-- The number of Leech segments depends on the armor you're wearing
+function PlayerManager:_attempt_copr_ability()
+	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		return false
+	end
+
+	local character_damage = self:local_player():character_damage()
+	local duration = self:upgrade_value("temporary", "copr_ability_new")[2]
+	local now = managers.game_play_central:get_heist_timer()
+
+	managers.network:session():send_to_peers("sync_ability_hud", now + duration, duration)
+
+	local is_downed = game_state_machine:verify_game_state(GameStateFilters.downed)
+
+	self:set_property("copr_risen", is_downed)
+
+	if is_downed then
+		character_damage:revive(true)
+	end
+
+	self:activate_temporary_upgrade("temporary", "copr_ability_new")
+
+	local expire_time = self:get_activate_temporary_expire_time("temporary", "copr_ability_new")
+
+	managers.enemy:add_delayed_clbk("copr_ability_active", callback(self, self, "clbk_copr_ability_ended"), expire_time)
+	managers.hud:activate_teammate_ability_radial(HUDManager.PLAYER_PANEL, duration)
+
+	local bonus_health = character_damage:_max_health() * self:upgrade_value("player", "copr_activate_bonus_health_ratio", tweak_data.upgrades.values.player.copr_activate_bonus_health_ratio[1])
+
+	character_damage:restore_health(bonus_health)
+	character_damage:set_armor(0)
+	character_damage:send_set_status()
+
+	local speed_up_on_kill_time = self:upgrade_value("player", "copr_speed_up_on_kill", 0)
+
+	if speed_up_on_kill_time > 0 then
+		local function speed_up_on_kill_func()
+			managers.player:speed_up_grenade_cooldown(speed_up_on_kill_time)
+		end
+
+		self:register_message(Message.OnEnemyKilled, "speed_up_copr_ability", speed_up_on_kill_func)
+	end
+
+	character_damage:on_copr_ability_activated()
+
+	self._copr_kill_life_leech_new_num = 0
+	local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio")
+
+	managers.hud:set_copr_indicator(true, static_damage_ratio)
+
+	if is_downed then
+		self:register_message("ability_activated", "copr_risen_cooldown_key", callback(self, self, "add_copr_risen_cooldown"))
+	end
+
+	return true
+end
+
+function PlayerManager:clbk_copr_ability_ended()
+	self:deactivate_temporary_upgrade("temporary", "copr_ability_new")
+
+	local player_unit = self:local_player()
+	local character_damage = alive(player_unit) and player_unit:character_damage()
+
+	if character_damage then
+		local health_ratio = character_damage:health_ratio()
+		local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio") - 1e-08
+		local out_of_health = health_ratio < static_damage_ratio
+		local risen_from_dead = self:get_property("copr_risen", false) == true
+
+		character_damage:on_copr_ability_deactivated()
+
+		if out_of_health or risen_from_dead then
+			character_damage:force_into_bleedout(false, risen_from_dead)
+		end
+	end
+
+	self:set_property("copr_risen", nil)
+	managers.hud:set_copr_indicator(false)
+end
+
+function PlayerManager:throwable_regen_speed_multiplier()
+	local multiplier = 1
+
+	local player_unit = self:local_player()
+	local character_damage = alive(player_unit) and player_unit:character_damage()
+
+	if self:has_category_upgrade("player", "emergency_throwable_regen_speed") then
+		if character_damage and character_damage:health_ratio() <= self:upgrade_value("player", "emergency_throwable_regen_speed")[2] then
+			multiplier = multiplier * self:upgrade_value("player", "emergency_throwable_regen_speed")[1]
+		end
+	end
+
+	return multiplier
+end
+
+-- Make throwable timers use delta time. Kind of hacky, but it works.
+-- Dummy out the original function so that the updated one can be called without executing everything twice.
+function PlayerManager:_update_timers() end
+
+function PlayerManager:_update_timers_new(t, dt)
+	local timers_copy = table.map_copy(self._timers)
+
+	for key, timer in pairs(timers_copy) do
+		timer.t = math.max(timer.t - dt * self:throwable_regen_speed_multiplier(), 0)
+
+		local peer_id = managers.network:session():local_peer():id()
+		local grenade = self._global.synced_grenades[peer_id].grenade
+		local tweak = tweak_data.blackmarket.projectiles[grenade]
+
+		managers.hud:set_player_grenade_cooldown({
+			end_time = managers.game_play_central:get_heist_timer() + timer.t,
+			duration = tweak.base_cooldown,
+		})
+
+		if timer.t <= 0 then
+			self._timers[key] = nil
+
+			if timer.func then
+				timer.func(key)
+			end
+		end
+	end
+end
+
+function PlayerManager:start_timer(key, duration, callback)
+	self._timers[key] = {
+		t = duration,
+		func = callback,
+	}
+end
+
+-- Rotating Cameras implementation
 function PlayerManager:set_synced_controlled_camera(peer_id, cam_unit)
 	local controlled_cameras = self._global.sync_controlled_cameras
 	local prev_camera = controlled_cameras[peer_id]

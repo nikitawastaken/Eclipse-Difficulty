@@ -777,8 +777,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
 	-- Grinder
-	self.specializations[11][1].upgrades = { "player_damage_to_hot_1", "player_decreased_drama_hurt" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
+	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier", "player_decreased_drama_hurt" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
@@ -822,24 +822,28 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[15][7].upgrades = { "player_health_decrease_2" }
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
-	-- kingpin
+	-- Kingpin
 	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
 
-	-- sicario
+	-- Sicario
 	self.specializations[18][3].upgrades = { "player_smoke_grenade_no_armor_suppression" }
-	self.specializations[18][3].icon_xy = { 1, 1 }
+	self.specializations[18][3].texture_bundle_folder = "eclipse"
+	self.specializations[18][3].icon_xy = { 0, 10 }
 	self.specializations[18][5].upgrades = { "player_passive_dodge_chance_1", "player_passive_dodge_chance_2", "player_passive_dodge_chance_3" }
 	self.specializations[18][5].texture_bundle_folder = nil
 	self.specializations[18][5].icon_xy = { 3, 2 }
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
-	self.specializations[18][7].icon_xy = { 2, 1 }
+	self.specializations[18][7].texture_bundle_folder = "eclipse"
+	self.specializations[18][7].icon_xy = { 1, 10 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
-	-- stoic
-	table.insert(self.specializations[19][1].upgrades, "player_decreased_drama_hurt")
-	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
+	-- Stoic
+	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier", "player_decreased_drama_hurt" }
+	self.specializations[19][7].upgrades = { "player_emergency_throwable_regen_speed" }
+	self.specializations[19][7].texture_bundle_folder = "eclipse"
+	self.specializations[19][7].icon_xy = { 2, 10 }
 
-	-- hacker
+	-- Hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	self.specializations[21][3].texture_bundle_folder = nil
 	self.specializations[21][3].icon_xy = { 1, 6 }
@@ -849,9 +853,30 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[21][7].icon_xy = { 2, 6 }
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 
-	-- leech
-	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
-	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
+	-- Leech
+	self.specializations[22][1].upgrades = {
+		"temporary_copr_ability_new_1",
+		"copr_ability",
+		"player_copr_kill_life_leech_1",
+		"player_copr_activate_bonus_health_ratio_1",
+	}
+	self.specializations[22][3].texture_bundle_folder = "eclipse"
+	self.specializations[22][3].icon_xy = { 6, 9 }
+	self.specializations[22][5].upgrades = {
+		"temporary_copr_ability_new_2",
+		"player_copr_teammate_heal_1",
+	}
+	self.specializations[22][7].upgrades = {
+		"player_emergency_throwable_regen_speed",
+	}
+	self.specializations[22][7].texture_bundle_folder = "eclipse"
+	self.specializations[22][7].icon_xy = { 7, 9 }
+	self.specializations[22][9].upgrades = {
+		"player_passive_loot_drop_multiplier",
+		"player_passive_health_multiplier_3",
+		"player_copr_kill_life_leech_2",
+		"player_copr_teammate_heal_2",
+	}
 
 	local wildcard_perkdeck = {
 		{

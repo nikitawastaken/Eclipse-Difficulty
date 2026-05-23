@@ -22,7 +22,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
 		damage_shake = { 1, 0.9, 0.8, 0.7, 0.55, 0.4, 0.25 },
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
-		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
+		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.5, 5 },
 		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
 		criminal_hurt_drama_mul = { 1.45, 1.3, 1.15, 1, 0.8, 0.6, 0.4 },
 		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
@@ -504,6 +504,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"china",
+				"flun",
 			},
 		},
 		{
@@ -3342,8 +3343,23 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
+	self.values.player.emergency_throwable_regen_speed = {
+		{ 1.35, 0.25 },
+	}
+	self.definitions.player_emergency_throwable_regen_speed = {
+		name_id = "menu_player_emergency_throwable_regen_speed",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "emergency_throwable_regen_speed",
+			category = "player",
+		},
+	}
+
 	self.specialization_descs[19][1].multiperk3 = "16"
 	self.specialization_descs[19][3].multiperk = "50%"
+	self.specialization_descs[19][7].multiperk = "25%"
+	self.specialization_descs[19][7].multiperk2 = "35%"
 
 	-- Tag Team
 	self.values.player.tag_team_base.kill_health_gain = 0.5
@@ -3367,21 +3383,73 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[21][9].multiperk = "5"
 
 	-- Leech
-	self.values.player.copr_kill_life_leech[2] = 1
 	self.copr_ability_cooldown = 60
-	self.values.temporary.copr_ability[1][2] = 4
-	self.values.temporary.copr_ability[2][2] = 8
-	self.values.player.copr_static_damage_ratio[2] = 0.0625
-	self.values.player.copr_teammate_heal = { 0.15, 0.3 }
-	self.values.player.copr_activate_bonus_health_ratio[1] = 50
-	self.specialization_descs[22][1].multiperk3 = "0.45"
-	self.specialization_descs[22][1].multiperk4 = "1.5"
-	self.specialization_descs[22][1].multiperk5 = "4"
-	self.specialization_descs[22][1].multiperk6 = "60"
-	self.specialization_descs[22][5].multiperk = "8"
-	self.specialization_descs[22][5].multiperk3 = "3"
-	self.specialization_descs[22][9].multiperk = "6.25%"
-	self.specialization_descs[22][9].multiperk2 = "40%"
+	self.copr_ability_criminal_hurt_drama_mul = 0.1
+	self.copr_high_damage_multiplier = { 6, 2 }
+	self.values.player.body_armor.copr_static_damage_ratio = {
+		1 / 8,
+		1 / 10,
+		1 / 12,
+		1 / 14,
+		1 / 16,
+		1 / 18,
+		1 / 20,
+	}
+	self.values.player.body_armor.copr_static_damage_grace_period = {
+		0.25,
+		0.225,
+		0.2,
+		0.175,
+		0.15,
+		0.125,
+		0.1,
+	}
+	self.values.player.body_armor.copr_life_leech_invulnerable = {
+		1,
+		0.875,
+		0.75,
+		0.625,
+		0.5,
+		0.375,
+		0.25,
+	}
+	self.values.player.copr_activate_bonus_health_ratio = { 0.25 }
+	self.values.player.copr_out_of_health_move_slow = { 0.4 }
+	self.values.player.copr_teammate_heal = { 0.2, 0.4 }
+
+	self.values.temporary.copr_ability_new = deep_clone(self.values.temporary.copr_ability)
+
+	self.definitions.temporary_copr_ability_new_1 = {
+		name_id = "menu_temporary_copr_ability_1",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "copr_ability_new",
+			synced = true,
+			category = "temporary",
+		},
+	}
+	self.definitions.temporary_copr_ability_new_2 = {
+		name_id = "menu_temporary_copr_ability_2",
+		category = "temporary",
+		upgrade = {
+			value = 2,
+			upgrade = "copr_ability_new",
+			synced = true,
+			category = "temporary",
+		},
+	}
+
+	self.specialization_descs[22][1].multiperk = "25%"
+	self.specialization_descs[22][1].multiperk2 = "2"
+	self.specialization_descs[22][1].multiperk3 = "6"
+	self.specialization_descs[22][1].multiperk4 = "60"
+	self.specialization_descs[22][3].multiperk2 = "60%"
+	self.specialization_descs[22][5].multiperk2 = "2"
+	self.specialization_descs[22][7].multiperk = "25%"
+	self.specialization_descs[22][7].multiperk2 = "35%"
+	self.specialization_descs[22][9].multiperk = "20%"
+	self.specialization_descs[22][9].multiperk2 = "4"
 
 	-- Wildcard Perkdeck
 	self.values.player.passive_xp_multiplier = { 1.1, 1.25, 1.45 }

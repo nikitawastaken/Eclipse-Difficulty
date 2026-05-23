@@ -216,8 +216,8 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 		multiplier = multiplier * managers.player:temporary_upgrade_value("temporary", "increased_movement_speed", 1)
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability") then
-		local out_of_health = self._unit:character_damage():health_ratio() + 0.01 < managers.player:upgrade_value("player", "copr_static_damage_ratio", 0)
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		local out_of_health = self._unit:character_damage():health_ratio() + 0.01 < managers.player:body_armor_value("copr_static_damage_ratio")
 
 		if out_of_health then
 			multiplier = multiplier * managers.player:upgrade_value("player", "copr_out_of_health_move_slow", 1)
@@ -1525,3 +1525,16 @@ function PlayerStandard:_do_melee_damage(t, bayonet_melee, melee_hit_ray, melee_
 
 	return col_ray
 end
+
+local function set_hos(self)
+	self._ext_network:send("set_stance", 2, false, false)
+end
+
+local function set_cbt(self)
+	self._ext_network:send("set_stance", 3, false, false)
+end
+
+Hooks:PostHook(PlayerStandard, "_enter", "_enter_hos", set_hos)
+Hooks:PostHook(PlayerStandard, "_start_action_steelsight", "_start_action_steelsight_hos", set_cbt)
+Hooks:PostHook(PlayerStandard, "_end_action_steelsight", "_end_action_steelsight_hos", set_hos)
+Hooks:PostHook(PlayerStandard, "set_running", "set_running_hos", set_hos)

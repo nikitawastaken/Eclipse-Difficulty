@@ -2580,7 +2580,7 @@ function WeaponFactoryTweakData:_convert_concealment_to_mobility(tweak_data)
 end
 
 function WeaponFactoryTweakData:_create_flun_ammo(tweak_data)
---[[	local flun_shotgun_ammos = {
+	--[[	local flun_shotgun_ammos = {
 		"wpn_fps_upg_a_piercing",
 		"wpn_fps_upg_a_slug",
 	}

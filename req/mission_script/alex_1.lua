@@ -310,7 +310,7 @@ return {
 	[100925] = flank_spawn,
 	[400007] = flank_spawn,
 	-- Gangstas
-	[101525] = mendoza, 
+	[101525] = mendoza,
 	[101527] = mendoza,
 	[100825] = mendoza,
 	[100826] = mendoza,

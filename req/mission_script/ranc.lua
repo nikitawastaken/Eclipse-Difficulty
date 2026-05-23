@@ -28,12 +28,12 @@ return {
 		reinforce = {
 			{
 				name = "fork",
-				force = 4,  
+				force = 4,
 				position = Vector3(-2015, -145, 200),
 			},
 			{
 				name = "main_gate1",
-				force = 4, 
+				force = 4,
 				position = Vector3(5670, 1125, 400),
 			},
 			{
@@ -49,25 +49,25 @@ return {
 			{
 				name = "such_a_nice_car",
 				force = 2,
-				position = Vector3(2985, -7040, 400), 
+				position = Vector3(2985, -7040, 400),
 			},
 			{
 				name = "barn1",
 				force = 2,
-				position = Vector3(6755, 5320, 400),  
+				position = Vector3(6755, 5320, 400),
 			},
 			{
 				name = "barn2",
 				force = 2,
-				position = Vector3(4285, 5215, 400), 
+				position = Vector3(4285, 5215, 400),
 			},
 			{
-				name = "workshop_a",  
+				name = "workshop_a",
 				force = 3,
 				position = Vector3(3070, 2890, 400),
 			},
 			{
-				name = "workshop_c",  
+				name = "workshop_c",
 				force = 3,
 				position = Vector3(9215, 1625, 450),
 			},
