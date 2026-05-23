@@ -179,7 +179,7 @@ tweak_data.projectiles.molotov.damage = 4
 tweak_data.projectiles.molotov.curve_pow = 1
 
 -- Incendiary Grenade
-tweak_data.projectiles.fir_com.damage = 4
+tweak_data.projectiles.fir_com.damage = 0.4
 tweak_data.projectiles.fir_com.curve_pow = 1
 
 -- Dynamite
@@ -321,7 +321,7 @@ tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
 
 -- Flare Gun
-tweak_data.projectiles.flun_flare.damage = 4
+tweak_data.projectiles.flun_flare.damage = 0.4
 tweak_data.projectiles.flun_flare.airdrop_unit = nil
 
 -- Set Friendly Fire damage
