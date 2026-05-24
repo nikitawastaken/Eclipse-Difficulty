@@ -85,7 +85,7 @@ local computer_hack_time_rand = 60 + (is_pro_job and 30 or 0)
 return {
 	[104782] = {
 		ponr = {
-			length = 640,
+			length = 720,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 	},
@@ -127,7 +127,7 @@ return {
 	-- Increase the hack duration
 	[103568] = { -- backup_started_link
 		on_executed = {
-			{ id = 103575, delay = 120, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
+			{ id = 103575, delay = 90, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
 		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
