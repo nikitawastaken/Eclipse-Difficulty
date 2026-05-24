@@ -3718,7 +3718,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	self.max_nr_team_ai = is_pro_job and 2 or 3
-	
+
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
 		drama = calculate_team_ai_weight(self.max_nr_team_ai, 2),

@@ -44,7 +44,7 @@ return {
 		set_ponr_state = true,
 	},
 	[100628] = disabled,
-	-- Increase drama when Snipers spawn 
+	-- Increase drama when Snipers spawn
 	[100366] = { -- spawn_snipers
 		add_drama = {
 			amount = 0.25,

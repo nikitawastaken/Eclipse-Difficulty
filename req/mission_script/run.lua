@@ -316,7 +316,7 @@ return {
 	[102866] = disabled,
 	[102880] = disabled, -- disabled vanilla ponr
 	-- delay the beginning of besiege
---[[	
+	--[[	
 	[100631] = { -- area_player_spawn
 		on_executed = {
 			{ id = 400089, delay = 0 },
@@ -441,7 +441,7 @@ return {
 	},
 	[100830] = { -- trigger area Bruce
 		on_executed = {
-	--		{ id = 101757, delay = 0 }, -- fake assault end
+			--		{ id = 101757, delay = 0 }, -- fake assault end
 			{ id = 101329, delay = 1 }, -- besiege start
 		},
 	},

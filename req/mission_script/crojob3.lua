@@ -11,7 +11,8 @@ local disabled = {
 	},
 }
 local us_soldiers = { [scripted_enemy.soldier_2] = 4, [scripted_enemy.soldier_2] = 2, [scripted_enemy.soldier_3] = 1 }
-local specials_list_eclipse = { [scripted_enemy.taser_1] = 2, [scripted_enemy.cloaker] = 2, [scripted_enemy.cloaker] = 2, [scripted_enemy.elite_bulldozer_1] = 1, [scripted_enemy.elite_bulldozer_2] = 1 }
+local specials_list_eclipse =
+	{ [scripted_enemy.taser_1] = 2, [scripted_enemy.cloaker] = 2, [scripted_enemy.cloaker] = 2, [scripted_enemy.elite_bulldozer_1] = 1, [scripted_enemy.elite_bulldozer_2] = 1 }
 local specials_list_hard_ovk = { [scripted_enemy.taser_1] = 4, [scripted_enemy.cloaker] = 3, [scripted_enemy.cloaker] = 2, [scripted_enemy.bulldozer_1] = 1, [scripted_enemy.bulldozer_2] = 1 }
 local specials_list_easy_normal = { [scripted_enemy.taser_1] = 3, [scripted_enemy.cloaker] = 1 }
 local specials = {
