@@ -31,6 +31,13 @@ function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai
 
 	local nr_criminals_floor = math.floor(nr_criminals)
 	local current_mul, next_mul = balance_multipliers[nr_criminals_floor], balance_multipliers[math.ceil(nr_criminals)]
+	if type(current_mul) == "table" then
+		local result = {}
+		for k, v in pairs(current_mul) do
+			result[k] = math.lerp(v, next_mul[k], nr_criminals - nr_criminals_floor)
+		end
+		return result
+	end
 	return math.lerp(current_mul, next_mul, nr_criminals - nr_criminals_floor)
 end
 
