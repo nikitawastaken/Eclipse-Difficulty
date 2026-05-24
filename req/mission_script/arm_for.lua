@@ -87,7 +87,7 @@ return {
 	[100023] = {
 		ponr = {
 			length = 1200,
-			length_balance_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
 		},
 	},
 	-- Play the background sirens that are supposed to play
@@ -106,6 +106,8 @@ return {
 			team_ai_balance_mul_weight = 1 / 3,
 		},
 	},
+	-- Disable boat escape
+	[104979] = disabled,
 	-- Disable a pointless reinforce spot
 	[100907] = disabled,
 	-- loop the choppers
