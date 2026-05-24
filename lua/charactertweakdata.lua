@@ -1445,11 +1445,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.chavez_boss.die_sound_event = "lt1_x02a_any_3p"
 
 	self.fbi_female_boss = deep_clone(self.chavez_boss)
+	self.fbi_female_boss.HEALTH_INIT = 80
+	self.fbi_female_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.fbi_female_boss.melee_weapon = "taser"
 	self.fbi_female_boss.access = "fbi"
-	self.fbi_female_boss.HEALTH_INIT = self.chavez_boss.HEALTH_INIT * 0.5
 	self.fbi_female_boss.die_sound_event = "fl1n_x01a_any_3p"
-	table.insert(self._enemy_list, "fbi_boss")
+	table.insert(self._enemy_list, "fbi_female_boss")
 
 	self.hector_boss.HEALTH_INIT = 160
 	self.hector_boss.headshot_dmg_mul = 1.75
@@ -2116,15 +2117,15 @@ CharacterTweakData.tweak_table_move_speed = {
 	city_sniper = "normal",
 	bank_manager = "normal",
 	chavez_boss = "normal",
-	fbi_boss = "normal",
 	fbi_female_boss = "normal",
 	mobster_boss = "normal",
 	security_fat = "slow",
 	cop_fat = "slow",
+	drug_lord_boss = "slow",
 	escort_undercover = "slow",
 	escort_sand = "slow",
+	fbi_boss = "slow",
 	spa_vip_hurt = "slow",
-	drug_lord_boss = "slow",
 	triad_boss = "slow",
 	hector_boss = "very_slow",
 	biker_boss = "very_slow",

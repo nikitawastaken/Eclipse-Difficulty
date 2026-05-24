@@ -5,19 +5,6 @@ local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_s
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
-local army_guard = scripted_enemy.soldier_1
-local us_soldier_1 = scripted_enemy.soldier_2
-local us_soldier_2 = scripted_enemy.soldier_3
-local us_soldier_3 = scripted_enemy.soldier_4
---local us_soldier_tank = scripted_enemy.soldier_bulldozer
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker = scripted_enemy.cloaker
-local medic = scripted_enemy.medic_1
-local taser = scripted_enemy.taser_1
-local elite_sniper = scripted_enemy.elite_sniper
 local enabled = {
 	values = {
 		enabled = true,
@@ -29,12 +16,12 @@ local disabled = {
 	},
 }
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 local army_dozer_vault = {
 	enemy = is_eclipse and random_elite_dozers or random_dozers,
@@ -43,21 +30,21 @@ local army_dozer_vault = {
 	},
 }
 local security_army = {
-	enemy = army_guard,
+	enemy = scripted_enemy.soldier_1,
 }
-local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
+local us_soldiers = { [scripted_enemy.soldier_2] = 4, [scripted_enemy.soldier_3] = 2, [scripted_enemy.soldier_4] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }
 local specials_list = {
-	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
-	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
-	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
-	[elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
-	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }), -- no scripted green/blackdozers heli spawns on DW
-	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
-	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 2 }),
-	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[scripted_enemy.elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[scripted_enemy.bulldozer_1] = get_difficulty_group_specific_value({ 0, 1, 0 }), -- no scripted green/blackdozers heli spawns on DW
+	[scripted_enemy.bulldozer_2] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[scripted_enemy.elite_bulldozer_1] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[scripted_enemy.elite_bulldozer_2] = get_difficulty_group_specific_value({ 0, 0, 2 }),
 }
 local specials = {
 	enemy = specials_list,
@@ -92,7 +79,7 @@ local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 return {
@@ -100,17 +87,29 @@ return {
 	[100023] = {
 		ponr = {
 			length = 1200,
-			length_balance_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
 		},
 	},
-	-- play the background sirens that are supposed to play
+	-- Play the background sirens that are supposed to play
 	[100022] = {
 		on_executed = {
 			{ id = 103046, delay = 30 },
 		},
 	},
-	-- restores unused sniper spawn
+	-- Restores unused sniper spawn
 	[100370] = enabled,
+	-- Increase drama when Snipers spawn
+	[100366] = { -- spawn_snipers
+		add_drama = {
+			amount = 0.25,
+			balance_mul = { 1.2, 1, 0.8, 0.6 },
+			team_ai_balance_mul_weight = 1 / 3,
+		},
+	},
+	-- Disable boat escape
+	[104979] = disabled,
+	-- Disable a pointless reinforce spot
+	[100907] = disabled,
 	-- loop the choppers
 	[102767] = {
 		on_executed = {
@@ -123,8 +122,6 @@ return {
 		},
 	},
 	[104694] = disabled,
-	-- Remove a pointless reinforce spot
-	[100907] = disabled,
 	-- Thermal Drill Lottery (feat. Bile The Pilot)
 	[102893] = {
 		values = {
@@ -141,7 +138,7 @@ return {
 			amount = bile_lottery,
 		},
 	},
-	-- tweak the amount of required ammo shells
+	-- Tweak the amount of required ammo shells
 	[105577] = shells_required,
 	[105578] = shells_required,
 	[105579] = shells_required,

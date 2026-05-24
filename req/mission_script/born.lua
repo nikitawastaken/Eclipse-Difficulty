@@ -19,7 +19,6 @@ local exclude_cop_agents_shields_dozers = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local roof_spawn = {
@@ -45,6 +44,14 @@ return {
 		set_ponr_state = true,
 	},
 	[100628] = disabled,
+	-- Increase drama when Snipers spawn
+	[100366] = { -- spawn_snipers
+		add_drama = {
+			amount = 0.25,
+			balance_mul = { 1.2, 1, 0.8, 0.6 },
+			team_ai_balance_mul_weight = 1 / 3,
+		},
+	},
 	-- Disable reinforce inside the garage
 	[101596] = disabled,
 	-- Disable forced spawns inside the garage THEY SUCK
@@ -149,7 +156,6 @@ return {
 	[101627] = participate,
 	[101672] = participate,
 	-- Spawn group intervals
-	[400001] = scripted_swat_heli_spawn,
 	[100130] = standard_spawn,
 	[100131] = standard_spawn,
 	[100019] = standard_spawn,
@@ -168,4 +174,5 @@ return {
 	[100864] = cloaker_spawn,
 	[100868] = cloaker_spawn,
 	[100873] = cloaker_spawn,
+	[400001] = scripted_swat_heli_spawn,
 }

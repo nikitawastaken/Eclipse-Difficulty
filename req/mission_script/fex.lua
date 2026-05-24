@@ -3,22 +3,42 @@ local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local security_enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local heavy_swat_sg = scripted_enemy.heavy_swat_2
-local taser = scripted_enemy.taser_1
-
-local bulldozers = is_eclipse_pro and random_elite_dozers or random_dozers
-local security = { enemy = security_enemy }
 
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
+
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
+local bulldozers = is_eclipse_pro and random_elite_dozers or random_dozers
+local dozer_spawn = {
+	enemy = diff_i < 4 and scripted_enemy.heavy_swat_2 or bulldozers,
+	values = {
+		participate_to_group_ai = true,
+	},
+}
+local taser_spawn = {
+	enemy = scripted_enemy.taser_1,
+	values = {
+		participate_to_group_ai = true,
+	},
+}
+local swat_spawn = {
+	enemy = scripted_enemy.heavy_swat_2,
+	values = {
+		participate_to_group_ai = true,
+	},
+}
+local security = { enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex" }
+
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -29,29 +49,6 @@ local window_spawn = {
 local cloaker_spawn = {
 	values = {
 		interval = 90,
-	},
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
-local dozer_spawn = {
-	enemy = diff_i < 4 and heavy_swat_sg or bulldozers,
-	values = {
-		participate_to_group_ai = true,
-	},
-}
-
-local taser_spawn = {
-	enemy = taser,
-	values = {
-		participate_to_group_ai = true,
-	},
-}
-
-local swat_spawn = {
-	enemy = heavy_swat_sg,
-	values = {
-		participate_to_group_ai = true,
 	},
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
@@ -150,9 +147,6 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
-	-- Add scripted difficulty increases
-	--	[100950] = difficulty_add_20, -- completed_obj_010 (Secret area found)
-	--	[100954] = difficulty_add_20, -- completed_obj_012 (Buluc is dead)
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100132] = window_spawn,

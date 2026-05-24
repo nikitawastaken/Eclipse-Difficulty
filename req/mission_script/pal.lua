@@ -50,12 +50,8 @@ local crowbar_amount = {
 local van_spawn = {
 	values = {
 		interval = 45,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
 }
 return {
 	-- Combine some navigation areas
@@ -193,9 +189,6 @@ return {
 			},
 		},
 	},
-	-- Add scripted difficulty increases
-	--	[101436] = difficulty_add_20, -- open_doors_to_basement
-	--	[102623] = difficulty_add_20, -- complete_drill_finish
 	-- disable vanilla's swat van randomizer
 	[102080] = disabled,
 	-- don't disable neighbour swat vans

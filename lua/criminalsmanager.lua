@@ -1,1 +1,1 @@
-CriminalsManager.MAX_NR_TEAM_AI = tweak_data.group_ai.team_ai_amount
+CriminalsManager.MAX_NR_TEAM_AI = tweak_data.group_ai.max_nr_team_ai

@@ -21,7 +21,6 @@ local harasser = diff_i >= 5 and heavy_harasser or light_harasser
 local swats_blockade = {
 	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
 	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
-	[scripted_enemy.elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 3 }),
 	[scripted_enemy.swat_1] = 5,
 	[scripted_enemy.swat_2] = 3,
 }
@@ -856,14 +855,14 @@ local optsSWATB_Garage_3 = {
 	enabled = true,
 }
 local optsSWATB_Garage_4 = {
-	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy_table = swats_blockade,
 	on_executed = {
 		{ id = 400197, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSWATB_Garage_5 = {
-	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy_table = swats_blockade,
 	on_executed = {
 		{ id = 400198, delay = 0 },
 	},
@@ -931,13 +930,13 @@ local optsSWATB_Garage_14 = {
 }
 
 local optsDefendSWAT_SO = {
-	SO_access = tostring(128 + 2048),
+	SO_access = "128",
 	scan = true,
 	align_position = true,
 	align_rotation = true,
 	use_instigator = true,
 	interval = 2,
-	so_action = "AI_sniper",
+	so_action = "AI_defend",
 }
 local optsCoverCop_SO = {
 	SO_access = "32",
@@ -1025,6 +1024,16 @@ local optsOpenSwatSpawnVanDoors = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 102586, notify_unit_sequence = "door_open_right_back", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 102587, notify_unit_sequence = "door_open_left_back", time = 0 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 102587, notify_unit_sequence = "door_open_right_back", time = 0 },
+	},
+}
+
+local optsAssaultEnd = {
+	global_event = "end_assault",
+}
+local optsEnableAssaultEnd = {
+	enabled = true,
+	elements = {
+		400210,
 	},
 }
 
@@ -1267,5 +1276,9 @@ M.elements = {
 	-- misc
 	-- open swat doors for spawns
 	Eclipse.mission_elements.gen_object_editor(400208, "open_swat_spawn_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatSpawnVanDoors),
+
+	-- assault_end trigger
+	Eclipse.mission_elements.gen_global_event(400210, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
+	Eclipse.mission_elements.gen_toggleelement(400211, "enable_assault_end", optsEnableAssaultEnd),
 }
 return M

@@ -52,6 +52,7 @@ local police_roof_spawn = {
 		interval = 10,
 		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
+	groups = preferred.no_cops_agents,
 }
 local garage_roof_spawn = {
 	values = {
@@ -68,15 +69,12 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
 
 return {
 	[102964] = {
 		ponr = {
-			length = 240,
-			length_balance_mul = { 1.5, 1.25, 1, 1 },
+			length = 270,
+			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
 		},
 		on_executed = {
 			{ id = 400049, delay = 0 }, -- enable parking hiding spots when Almor has been found
@@ -135,10 +133,6 @@ return {
 			position = Vector3(-1725, 3498, 125),
 		},
 	},
-	-- Add scripted difficulty increases
-	-- [101755] = difficulty_add_20, -- fire_is_done
-	-- [101460] = difficulty_add_20, -- play animation (on interacted with door breacher)
-	-- [101309] = difficulty_add_20, -- wanker_exit_garage_anim_done
 	-- Only activate roof preferreds after the first assault is over
 	[100129] = { -- preferred
 		on_executed = {

@@ -13,14 +13,23 @@ local standard_spawn = {
 local sewer_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local scripted_diff_add = {
 	difficulty_addends = {
-		amount = 0.25,
+		amount = 0.125,
 		time = { 30, 45 },
 		delay = 0,
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			time = 60,
+			delay = 0,
+		},
 	},
 }
 
@@ -28,7 +37,7 @@ return {
 	[100980] = {
 		ponr = {
 			length = 60,
-			length_balance_mul = { 1.67, 1.34, 1, 1 },
+			length_balance_mul = { 1.625, 1.375, 1, 1 },
 		},
 	},
 	[100104] = disabled,
@@ -66,12 +75,18 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 0, delay_rand = 20 }, -- Car Shop preferred
-			{ id = 100534, delay = 0, delay_rand = 20 }, -- Hardware preferred
+			{ id = 100531, delay = 0, delay_rand = 30 }, -- Car Shop preferred
+			{ id = 100534, delay = 0, delay_rand = 30 }, -- Hardware preferred
 		},
 	},
 	-- Add scripted difficulty increases
 	[100668] = scripted_diff_add, -- done_with_a_pallet
+	[100123] = { -- end_assault
+		values = {
+			trigger_times = 0, -- (Vanilla: 1)
+		},
+		difficulty_addends = assault_end_diff_add.difficulty_addends[1], -- end_assault
+	},
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,

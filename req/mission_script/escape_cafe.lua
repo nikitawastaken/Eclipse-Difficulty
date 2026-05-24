@@ -1,8 +1,7 @@
-local preferred = Eclipse.preferred
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
 	},
 }
 return {

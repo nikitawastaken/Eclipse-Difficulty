@@ -30,9 +30,6 @@ local cloaker_respawn_trigger = {
 		trigger_times = cloaker_respawn_amount,
 	},
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
 local terminator_dozer_1 = {
 	enemy = is_eclipse and ben_dozer or green_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
@@ -131,20 +128,6 @@ return {
 	[103706] = disabled,
 	[103707] = disabled,
 	[103847] = disabled,
-	[102551] = { -- ALARM ALARM
-		reinforce = {
-			{
-				name = "reception",
-				force = 2,
-				position = Vector3(900, 650, 0),
-			},
-			{
-				name = "canteen",
-				force = 2,
-				position = Vector3(3350, 1175, 0),
-			},
-		},
-	},
 	-- alert all civs on mask up and delay panic button SO
 	[102518] = {
 		on_executed = {
@@ -178,13 +161,9 @@ return {
 	-- also change their position and spawn anim to match their spawn arrival from PDTH
 	[104113] = terminator_dozer_1,
 	[104112] = terminator_dozer_2,
-	-- tweak elevator cloakers respawns (up to 6 cloakers on DW)
+	-- Tweak elevator cloakers respawns (up to 6 cloakers on DW)
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
-	-- Add scripted difficulty increases
-	--	[102326] = difficulty_add_20, -- ICUsawDone
-	--	[102846] = difficulty_add_20, -- EnableValidationMachines
-	--	[102874] = difficulty_add_20, -- start_wait_for_elevator
 	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,

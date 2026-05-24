@@ -144,12 +144,6 @@ return {
 			length_balance_mul = { 2.5, 2, 1.5, 1 },
 		},
 	},
-	-- enable end_assault global event trigger
-	[103749] = { -- dff_0_6
-		on_executed = {
-			{ id = 410074, delay = 0 },
-		},
-	},
 	-- restore events from PDTH
 	-- inkwell industrial
 	-- replace PDTH SWAT leftovers
@@ -322,11 +316,13 @@ return {
 	[102866] = disabled,
 	[102880] = disabled, -- disabled vanilla ponr
 	-- delay the beginning of besiege
+	--[[	
 	[100631] = { -- area_player_spawn
 		on_executed = {
 			{ id = 400089, delay = 0 },
 		},
 	},
+]]
 	[100641] = {
 		on_executed = {
 			{ id = 101329, remove = true },
@@ -445,7 +441,7 @@ return {
 	},
 	[100830] = { -- trigger area Bruce
 		on_executed = {
-			{ id = 101757, delay = 0 }, -- fake assault end
+			--		{ id = 101757, delay = 0 }, -- fake assault end
 			{ id = 101329, delay = 1 }, -- besiege start
 		},
 	},
@@ -487,6 +483,9 @@ return {
 				force = 4,
 				position = Vector3(-9250, -12775, 75),
 			},
+		},
+		on_executed = { -- enable end_assault global event trigger
+			{ id = 410074, delay = 0 },
 		},
 	},
 	[103883] = { -- Matt is out, go to parking

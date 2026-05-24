@@ -8,7 +8,9 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local gensec_security = scripted_enemy.gensec_2
+-- TODO: investigate crashes that may be related to GenSec red guards
+-- local gensec_security = scripted_enemy.gensec_2
+local gensec_security = scripted_enemy.secret_service_2
 local swat_rifle = scripted_enemy.swat_1
 local swat_sg = scripted_enemy.swat_2
 local swat_smg = scripted_enemy.swat_1

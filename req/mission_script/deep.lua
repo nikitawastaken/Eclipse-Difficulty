@@ -3,13 +3,6 @@ local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local bellmead_1 = scripted_enemy.bellmead_security_1
-local bellmead_2 = scripted_enemy.bellmead_security_1
-local bellmead_3 = scripted_enemy.bellmead_security_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
@@ -64,22 +57,22 @@ local drill_room_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local bellmeads = {
-	bellmead_1,
-	bellmead_2,
-	bellmead_3,
+	scripted_enemy.bellmead_security_1,
+	scripted_enemy.bellmead_security_1,
+	scripted_enemy.bellmead_security_1,
 }
 local bellmead_enemy = {
 	enemy = bellmeads,
 }
 local ambush_bulldozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local ambush_bulldozers_eclipse = {
-	[green_bulldozer] = 3,
-	[black_bulldozer] = 3,
-	[elite_ben_bulldozer] = 2,
-	[elite_skull_bulldozer] = 2,
+	[scripted_enemy.bulldozer_1] = 3,
+	[scripted_enemy.bulldozer_2] = 3,
+	[scripted_enemy.elite_bulldozer_1] = 2,
+	[scripted_enemy.elite_bulldozer_2] = 2,
 }
 local ambush_bulldozer_enemy = {
 	enemy = is_eclipse and ambush_bulldozers_eclipse or ambush_bulldozers,

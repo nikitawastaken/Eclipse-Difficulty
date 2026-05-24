@@ -5,14 +5,17 @@ AmmoBagBase._BULLET_STORM = {
 }
 
 -- Bulletstorm 60s duration fix
+-- Weapons can be set to take more ammo for a full refill, but they shouldn't get increased Bulletstorm durations
+-- `taken` is used for Bulletstorm durations
 function AmmoBagBase:_take_ammo(unit)
 	local taken = 0
 	local inventory = unit:inventory()
 
 	if inventory then
 		for _, weapon in pairs(inventory:available_selections()) do
-			local took = self:round_value(weapon.unit:base():add_ammo_from_bag(self._ammo_amount))
-			taken = taken + took
+			local took, ammo_bag_consumption_mul = weapon.unit:base():add_ammo_from_bag(self._ammo_amount)
+			took = self:round_value(took)
+			taken = taken + took / (ammo_bag_consumption_mul or 1)
 			self._ammo_amount = self:round_value(self._ammo_amount - took)
 
 			if self._ammo_amount <= 0 then

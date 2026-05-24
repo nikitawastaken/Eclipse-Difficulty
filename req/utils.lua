@@ -71,6 +71,11 @@ function M.clean_level_id(end_patterns)
 	return level_id
 end
 
+-- Calculates Team AI balance multipliers weights
+function M.calculate_team_ai_weight(nr_team_ai, total_wgt)
+	return (total_wgt - 1) / nr_team_ai
+end
+
 -- Returns the current job ID
 function M.job_id()
 	return M.access_table(Global, "job_manager", "current_job", "job_id")
