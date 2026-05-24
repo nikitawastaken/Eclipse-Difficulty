@@ -25,6 +25,7 @@ StatisticsManager.special_unit_ids = {
 	"hector_boss",
 	"hector_boss_no_armor",
 	"fbi_boss",
+	"fbi_female_boss",
 	"tank_medic",
 	"tank_mini",
 	"marshal_marksman",
@@ -48,6 +49,13 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.fbi_female_boss = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}	
 	self._defaults.killed.fbi_office = {
 		count = 0,
 		head_shots = 0,

@@ -2,25 +2,6 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local gensec_security = scripted_enemy.gensec_1
-local cops = {
-	cop_1,
-	cop_2,
-	cop_3,
-	cop_1,
-}
-local beat_cops = {
-	enemy = cops,
-	values = {
-		participate_to_group_ai = true,
-	},
-}
-local gensec_enemy = {
-	enemy = gensec_security,
-}
 local enabled = {
 	values = {
 		enabled = true,
@@ -30,6 +11,21 @@ local disabled = {
 	values = {
 		enabled = false,
 	},
+}
+local cops = {
+	scripted_enemy.cop_1,
+	scripted_enemy.cop_1,
+	scripted_enemy.cop_3,
+	scripted_enemy.cop_1,
+}
+local beat_cops = {
+	enemy = cops,
+	values = {
+		participate_to_group_ai = true,
+	},
+}
+local gensec_enemy = {
+	enemy = scripted_enemy.gensec_1,
 }
 local roof_far_spawn = {
 	values = {
@@ -51,9 +47,6 @@ local vault_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
 }
 local bags_required = {
 	values = {
@@ -122,10 +115,6 @@ return {
 			},
 		},
 	},
-	-- Add scripted difficulty increases
-	--	[103049] = difficulty_add_20, -- obj_completed_013 (hacks done)
-	--	[100066] = difficulty_add_20, -- obj_complete004 (CFO escort done)
-	--	[100168] = difficulty_add_20, -- obj_started008 (vault is open)
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,

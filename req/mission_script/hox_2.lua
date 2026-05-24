@@ -32,83 +32,68 @@ local fbi_agents = {
 local fbi_agent = {
 	enemy = fbi_agents,
 }
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
 local regular_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 local exit_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
 local Riker_keycard = math.random() <= 0.5
 local exit_dozer_chance = (is_pro_job and 1.5 or 1) * (diff_i * 10)
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
+local light_harasser = scripted_enemy.swat_1
+local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
 local left_side_lower_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local right_side_upper_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields,
 }
 local archives_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local atrium_skylight_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local atrium_elevator_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local atrium_upper_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields,
 }
 local left_side_upper_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local offices_upper_spawn = {
 	values = {
 		interval = 35,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -272,45 +257,6 @@ return {
 			{ name = "operations_room" },
 		},
 	},
-	--[[
-	-- Add reinforce around the operations room
-	[101843] = { -- ent_001
-		reinforce = {
-			{
-				name = "entrance01",
-				force = 2,
-				position = Vector3(-200, 2200, -100),
-			},
-		},
-	},
-	[101844] = { -- ent_002
-		reinforce = {
-			{
-				name = "entrance02",
-				force = 2,
-				position = Vector3(975, 2200, -100),
-			},
-		},
-	},
-	[101845] = { -- ent_003
-		reinforce = {
-			{
-				name = "entrance03",
-				force = 2,
-				position = Vector3(1800, 625, -100),
-			},
-		},
-	},
-	[101846] = { -- ent_004
-		reinforce = {
-			{
-				name = "entrance04",
-				force = 2,
-				position = Vector3(1800, -600, -100),
-			},
-		},
-	},
-]]
 	-- Randomise initial FBI agent amounts
 	[101195] = {
 		values = {

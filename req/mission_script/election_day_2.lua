@@ -14,22 +14,22 @@ local enabled = {
 }
 local window_far_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local skylight_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local window_close_spawn = {
 	values = {
-		interval = 40,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 30,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

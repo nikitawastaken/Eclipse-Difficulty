@@ -4,13 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local sniper_amount = {
 	values = {
 		amount = easy and 1 or normal and 2 or 3,
@@ -26,12 +19,12 @@ local money_pile_reinforce01 = {
 		{
 			name = "armory",
 			force = 2,
-			position = Vector3(800, -1200, 0),
+			position = Vector3(900, -1050, 0),
 		},
 		{
 			name = "staircase",
 			force = 2,
-			position = Vector3(2050, -600, 200),
+			position = Vector3(400, -100, 0),
 		},
 	},
 }
@@ -45,24 +38,47 @@ local money_pile_reinforce02 = {
 		{
 			name = "upstairs02",
 			force = 2,
-			position = Vector3(450, -550, 400),
+			position = Vector3(500, -550, 400),
 		},
 		{
 			name = "kitchen",
 			force = 2,
-			position = Vector3(400, 1200, 400),
+			position = Vector3(400, 1350, 400),
 		},
 	},
+}
+local street_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+}
+local bush_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+}
+local roof_vertical_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+	},
+	groups = preferred.no_cops_agents,
+}
+local roof_horizontal_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[102510] = { -- 1st wave complete
 		on_executed = {
-			{ id = 400003, delay = 0, delay_rand = 20 }, -- custom roof preferreds
-			{ id = 400004, delay = 0, delay_rand = 20 }, -- custom window preferreds
+			{ id = 400003, delay = 0, delay_rand = 30 }, -- custom roof preferreds
+			{ id = 400004, delay = 0, delay_rand = 30 }, -- custom window preferreds
 		},
-	},
-	[102511] = { -- 2nd wave complete
-		difficulty = 1,
 	},
 	-- Change how preferreds are distributed
 	[100982] = { -- preferred
@@ -99,14 +115,13 @@ return {
 	[102590] = disabled,
 	-- disable vanilla's bags to defend objective (it's handled by a new one in mission_script_add)
 	[101600] = disabled,
-	--[[set sniper amounts
-	[102450] = sniper_amount,
-	[102451] = sniper_amount,
-	]]
 	-- Spawn group intervals
-	[101038] = roof_spawn,
-	[101204] = roof_spawn,
-	[101656] = roof_spawn,
-	[101859] = roof_spawn,
-	[101864] = roof_spawn,
+	[101178] = street_spawn,
+	[100994] = street_spawn,
+	[100993] = bush_spawn,
+	[101131] = bush_spawn,
+	[101038] = roof_vertical_spawn,
+	[101204] = roof_vertical_spawn,
+	[101859] = roof_horizontal_spawn,
+	[101864] = roof_horizontal_spawn,
 }

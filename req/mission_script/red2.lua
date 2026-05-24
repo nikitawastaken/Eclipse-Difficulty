@@ -83,36 +83,33 @@ local mga_thermite_event = {
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
-local skylight_spawn = {
-	values = {
-		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
-	},
-	groups = preferred.no_cops_agents,
-}
 local elevator_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local skylight_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+	},
+	groups = preferred.no_cops_agents,
 }
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
 }
 local forced_off = {
 	values = {
@@ -149,7 +146,7 @@ return {
 			{
 				name = "lobby",
 				force = 4,
-				position = Vector3(-2275, 25, 0),
+				position = Vector3(-1500, 25, 0),
 			},
 			{
 				name = "cafeteria",
@@ -168,9 +165,6 @@ return {
 	[105910] = disabled, -- vault
 	[105902] = disabled, -- left gate
 	[105904] = disabled, -- right gate
-	-- add scripted diff increases
-	--	[104168] = difficulty_add_20, -- area_player_in_vault_area
-	--	[103700] = difficulty_add_20, -- area_player_in_vault_loud
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,

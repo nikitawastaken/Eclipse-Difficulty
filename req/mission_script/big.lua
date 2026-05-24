@@ -60,32 +60,26 @@ local bags_required = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-local mga_thermite_event = {
-	post_mga_event = "mga_thermite",
-}
-local mga_vault_event = {
-	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
-}
 local swat_sniper_c4_escape_so = {
 	so_access_filter = { "swat", "sniper" },
 }
 local roof_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local elevator_close_spawn = {
 	values = {
-		interval = 45,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 30,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

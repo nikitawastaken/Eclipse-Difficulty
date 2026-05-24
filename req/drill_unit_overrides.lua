@@ -1,7 +1,37 @@
 ---@module Drill Unit Overrides
 local is_pro_job = Eclipse.utils.is_pro_job()
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+
+local max_nr_team_ai = tweak_data.group_ai.max_nr_team_ai
+local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
+
+local transport_drill_solo_friendly = {
+	timer = 180,
+	timer_init_balance_mul = {
+		team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+		4 / 6,
+		5 / 6,
+		1,
+		1,
+	},
+	jam_times = { 1, 2 },
+	forbid_reenforce = true,
+}
+local security_door_solo_friendly = {
+	drill = {
+		{
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				1 / 2,
+				2 / 3,
+				1,
+				1,
+			},
+			jam_times = 1,
+		},
+	},
+}
 
 local M = {
 	--[[
@@ -68,54 +98,36 @@ local M = {
 	},
 	]]
 	["arm_cro"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
-			timer = 150,
-			jam_times = 1,
-			forbid_reenforce = true,
-		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
 	},
 	["arm_fac"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
-			timer = 150,
-			jam_times = 1,
-			forbid_reenforce = true,
-		},
-	},
-	["arm_for"] = {
-		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
-			forbid_reenforce = true,
-		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
 	},
 	["arm_hcm"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
-			timer = 150,
-			jam_times = 1,
-			forbid_reenforce = true,
-		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
 	},
 	["arm_par"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
-			timer = 150,
-			jam_times = 1,
-			forbid_reenforce = true,
-		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
 	},
 	["arm_und"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = {
-			timer = 150,
-			jam_times = 1,
-			forbid_reenforce = true,
-		},
+		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
 	},
 	["bex"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
+			timer_dt_balance_mul = {
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				8 / 10,
+				9 / 10,
+				1,
+				1,
+			},
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = is_pro_job and 0.5 or 0.33,
-				1,
-				2,
-				3,
-				4,
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				{ 1, 2 },
+				{ 2, 2 },
+				{ 2, 3 },
+				{ 3, 4 },
 			},
 			forbid_sabotage = true,
 		},
@@ -125,9 +137,16 @@ local M = {
 	},
 	["big"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
+			timer_dt_balance_mul = {
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				8 / 10,
+				9 / 10,
+				1,
+				1,
+			},
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = is_pro_job and 0.5 or 0.33,
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
 				{ 1, 2 },
 				{ 2, 3 },
 				{ 3, 4 },
@@ -135,6 +154,16 @@ local M = {
 			},
 			forbid_sabotage = true,
 		},
+		[101490] = security_door_solo_friendly,
+		[102834] = security_door_solo_friendly,
+		[103009] = security_door_solo_friendly,
+		[104582] = security_door_solo_friendly,
+		[104584] = security_door_solo_friendly,
+		[104585] = security_door_solo_friendly,
+		[100331] = security_door_solo_friendly,
+		[103322] = security_door_solo_friendly,
+		[105317] = security_door_solo_friendly,
+		[106336] = security_door_solo_friendly,
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
@@ -190,6 +219,14 @@ local M = {
 	},
 	["red2"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			jam_times = {
+				is_balance_mul = true,
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				{ 1, 2 },
+				{ 2, 2 },
+				{ 2, 3 },
+				{ 3, 3 },
+			},
 			forbid_sabotage = true,
 		},
 	},

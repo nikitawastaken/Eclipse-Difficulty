@@ -6,18 +6,21 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() <= (is_eclipse and 0.65 or 0.45) + (is_pro_job and 0.1 or 0)
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local elite_sniper = scripted_enemy.elite_sniper
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local cop_4 = scripted_enemy.cop_4
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local blockade_cops = {
-	[cop_1] = 4,
-	[cop_3] = 2,
-	[cop_4] = 2,
-	[cop_2] = 1,
+	[scripted_enemy.cop_1] = 4,
+	[scripted_enemy.cop_3] = 2,
+	[scripted_enemy.cop_4] = 2,
+	[scripted_enemy.cop_2] = 1,
 }
 local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
@@ -30,17 +33,7 @@ local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
 local chavez_dealer = Idstring("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican")
-local harasser = diff_i < 5 and swat_1 or is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local enabled = {
-	values = {
-		enabled = true,
-	},
-}
-local disabled = {
-	values = {
-		enabled = false,
-	},
-}
+local harasser = diff_i < 5 and scripted_enemy.swat_1 or is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
 local sniper_kills = {
 	values = {
 		counter_target = normal and 6 or hard and 8 or 10,
@@ -54,7 +47,6 @@ local retrigger = {
 local roof_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -81,6 +73,12 @@ local dealer_walk_so = {
 		patrol_path = "inpath2",
 	},
 }
+local roof_navlink_interval = {
+	values = {
+		interval = 7, -- (Vanilla: 5s)
+	},
+}
+
 return {
 	-- Add point of no return
 	[101016] = {
@@ -463,7 +461,37 @@ return {
 	[101888] = dealer_walk_so,
 	[101891] = dealer_walk_so,
 	[101899] = dealer_walk_so,
-	-- change gangster spawns
+	-- Increase navlink intervals
+	-- e_nl_up_1_fwd_1_5m
+	[100832] = roof_navlink_interval,
+	[103338] = roof_navlink_interval,
+	[101718] = roof_navlink_interval,
+	[103336] = roof_navlink_interval,
+	[100435] = roof_navlink_interval,
+	[102534] = roof_navlink_interval,
+	[102530] = roof_navlink_interval,
+	[101931] = roof_navlink_interval,
+	[101930] = roof_navlink_interval,
+	[101929] = roof_navlink_interval,
+	[102529] = roof_navlink_interval,
+	[102745] = roof_navlink_interval,
+	[103250] = roof_navlink_interval,
+	[100607] = roof_navlink_interval,
+	[100609] = roof_navlink_interval,
+	[100604] = roof_navlink_interval,
+	[100606] = roof_navlink_interval,
+	[100605] = roof_navlink_interval,
+	-- Spawn group intervals
+	[104650] = roof_spawn,
+	[100504] = roof_spawn,
+	[100505] = roof_spawn,
+	[100509] = roof_spawn,
+	[100396] = roof_spawn,
+	[400053] = cloaker_spawn,
+	[400054] = cloaker_spawn,
+	[400055] = cloaker_spawn,
+	[400056] = cloaker_spawn,
+	-- Change gangster spawns
 	-- outside
 	[102333] = gangster,
 	[101881] = gangster,
@@ -568,14 +596,4 @@ return {
 	[103234] = gangster,
 	[103235] = gangster,
 	[103236] = gangster,
-	-- slow down roof spawns, these are really fuckng annoying
-	[104650] = roof_spawn,
-	[100504] = roof_spawn,
-	[100505] = roof_spawn,
-	[100509] = roof_spawn,
-	[100396] = roof_spawn,
-	[400053] = cloaker_spawn,
-	[400054] = cloaker_spawn,
-	[400055] = cloaker_spawn,
-	[400056] = cloaker_spawn,
 }

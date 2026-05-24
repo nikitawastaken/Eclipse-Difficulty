@@ -65,11 +65,13 @@ local disabled = {
 local atrium_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local window_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -78,6 +80,8 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local computer_hack_time_rand = 60 + (is_pro_job and 30 or 0)
+
 return {
 	[104782] = {
 		ponr = {
@@ -103,32 +107,29 @@ return {
 			{
 				name = "atrium01",
 				force = 3,
-				position = Vector3(-450, 750, 0),
+				position = Vector3(-450, 100, 0),
 			},
 			{
 				name = "atrium02",
 				force = 3,
-				position = Vector3(-1300, -1600, 0),
+				position = Vector3(-1100, -1600, 0),
 			},
 			{
 				name = "atrium03",
 				force = 3,
-				position = Vector3(-450, -4100, 0),
-			},
-		},
-	},
-	[103472] = { -- open_shutters
-		reinforce = {
-			{
-				name = "reception",
-				force = 2,
-				position = Vector3(500, -2750, 0),
+				position = Vector3(-450, -3500, 0),
 			},
 		},
 	},
 	-- Disable drill reinforce
 	[100676] = disabled,
 	[101138] = disabled,
+	-- Increase the hack duration
+	[103568] = { -- backup_started_link
+		on_executed = {
+			{ id = 103575, delay = 120, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
+		},
+	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
 	[100082] = {
 		on_executed = {
@@ -145,7 +146,6 @@ return {
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
 	-- Spawn group intervals
-	-- More or less a port of the original intervals with some twists as per usual.
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
 	[103702] = window_spawn,

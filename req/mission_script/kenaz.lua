@@ -13,7 +13,6 @@ local standard_spawn = {
 local rappel_spawn = {
 	values = {
 		interval = 35,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

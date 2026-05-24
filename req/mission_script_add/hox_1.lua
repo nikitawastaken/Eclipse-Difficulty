@@ -1027,6 +1027,16 @@ local optsOpenSwatSpawnVanDoors = {
 	},
 }
 
+local optsAssaultEnd = {
+	global_event = "end_assault",
+}
+local optsEnableAssaultEnd = {
+	enabled = true,
+	elements = {
+		400210,
+	},
+}
+
 M.elements = {
 	-- Cloakers in the garage
 	Eclipse.mission_elements.gen_dummy(400000, "garage_cloaker_1", Vector3(8400, 5939, -2400), Rotation(-90, 0, 0), optsCloaker_1),
@@ -1266,5 +1276,9 @@ M.elements = {
 	-- misc
 	-- open swat doors for spawns
 	Eclipse.mission_elements.gen_object_editor(400208, "open_swat_spawn_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatSpawnVanDoors),
+
+	-- assault_end trigger
+	Eclipse.mission_elements.gen_global_event(400210, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
+	Eclipse.mission_elements.gen_toggleelement(400211, "enable_assault_end", optsEnableAssaultEnd),
 }
 return M

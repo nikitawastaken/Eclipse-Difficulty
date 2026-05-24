@@ -7,6 +7,7 @@ local short_ponr_heists = Eclipse:require("short_ponr_heists")
 local diff_lerp = Eclipse.utils.diff_lerp
 local table_multiplier = Eclipse.utils.table_multiplier
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
 
 GroupAITweakData.group_ai_presets = {
 	["small_urban"] = {
@@ -3716,21 +3717,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
-	local function calculate_team_ai_wgt(team_ai_amount, total_wgt)
-		return (total_wgt - 1) / team_ai_amount
-	end
-
-	self.team_ai_amount = is_pro_job and 2 or 3
+	self.max_nr_team_ai = is_pro_job and 2 or 3
+	
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = calculate_team_ai_wgt(self.team_ai_amount, 2),
-		spawn_rate = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		force = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		freq = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		ponr_length = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		spawn_group_interval = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		difficulty_addend_time = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
-		difficulty_addend_delay = calculate_team_ai_wgt(self.team_ai_amount, 2.5),
+		drama = calculate_team_ai_weight(self.max_nr_team_ai, 2),
+		ponr_length = calculate_team_ai_weight(self.max_nr_team_ai, 2),
+		spawn_rate = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		force = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		freq = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		spawn_group_interval = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		difficulty_addend_time = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		difficulty_addend_delay = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
 	}
 
 	-- Spawn rate

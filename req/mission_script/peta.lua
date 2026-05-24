@@ -32,7 +32,7 @@ local wave_cop_count = {
 local rappel_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -48,6 +48,14 @@ local apartment_guaranteed_spawn = {
 	groups = preferred.no_cops_agents,
 }
 return {
+	-- Increase drama when Snipers spawn
+	[100366] = { -- spawn_snipers
+		add_drama = {
+			amount = 0.25,
+			balance_mul = { 1.2, 1, 0.8, 0.6 },
+			team_ai_balance_mul_weight = 1 / 3,
+		},
+	},
 	-- Scale goat requirements
 	[100086] = goats_required,
 	[100087] = goats_required,
@@ -60,6 +68,9 @@ return {
 	[103482] = random_goats,
 	[105634] = random_goats,
 	[100159] = disabled,
+	-- Spawn group intervals
+	[100131] = rappel_spawn,
+	[100694] = rappel_spawn,
 	-- Scale initial cop amount
 	[103446] = scene_cop_count, -- scene cops
 	[103445] = scene_cop_count,
@@ -88,7 +99,4 @@ return {
 	[106166] = apartment_guaranteed_spawn,
 	[106170] = apartment_guaranteed_spawn,
 	[106162] = apartment_guaranteed_spawn,
-	-- Spawn group intervals
-	[100131] = rappel_spawn,
-	[100694] = rappel_spawn,
 }

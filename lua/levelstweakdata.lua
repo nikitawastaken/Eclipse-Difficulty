@@ -105,7 +105,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.group_ai_preset = "small_urban"
 	self.family.group_ai_preset = "small_urban"
 	self.gallery.group_ai_preset = "small_urban"
-	self.chill_combat.group_ai_preset = "small_urban"
 	self.arm_for.group_ai_preset = "heavy_response"
 	self.watchdogs_2.group_ai_preset = "heavy_response"
 	self.watchdogs_2_day.group_ai_preset = "heavy_response"
@@ -253,9 +252,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				time = 5,
 			},
 			{
-				amount = 0.5,
+				amount = 0.25,
 				delay = 30,
-				time = { 300, 360 },
+				time = { 150, 180 },
+			},
+			{
+				amount = 0.25,
+				delay = 45,
+				time = { 180, 210 },
 			},
 		},
 		addends = {
@@ -264,14 +268,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				delay = 15,
 				time = 0,
 			},
-			on_entered_regroup = {
-				amount = 0.25,
-				delay = 0,
-				time = 60,
-			},
 		},
 		allowed_addends = {
 			on_enemy_weapons_hot = false,
+			on_entered_regroup = false,
 			on_entered_sustain = false,
 		},
 	}
@@ -321,7 +321,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		difficulty_scaling = {
 			addends = {
 				on_enemy_weapons_hot = {
-					amount = 0.25,
+					amount = 0.375,
 					delay = 60,
 					time = 60,
 				},

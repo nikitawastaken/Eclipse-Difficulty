@@ -4,31 +4,21 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local diff_i = Eclipse.utils.difficulty_index()
 local fbi_agents_chance = math.random() <= 0.5
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local cop_4 = scripted_enemy.cop_4
-local fbi_1 = scripted_enemy.fbi_1
-local fbi_2 = scripted_enemy.fbi_2
-local fbi_3 = scripted_enemy.fbi_3
-local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local sniper = scripted_enemy.sniper
 local cops = {
-	[cop_1] = 4,
-	[cop_3] = 2,
-	[cop_2] = 1,
-	[cop_4] = 1,
+	[scripted_enemy.cop_1] = 4,
+	[scripted_enemy.cop_3] = 2,
+	[scripted_enemy.cop_2] = 1,
+	[scripted_enemy.cop_4] = 1,
 }
 local swats = {
-	[swat_1] = 6,
-	[swat_2] = 2,
-	[sniper] = 2,
+	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 6,
+	[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 2,
+	[scripted_enemy.sniper] = 2,
 }
 local fbi_list = {
-	[fbi_1] = get_difficulty_group_specific_value({ 2, 1, 1 }),
-	[fbi_2] = get_difficulty_group_specific_value({ 1, 2, 3 }),
-	[fbi_3] = get_difficulty_group_specific_value({ 0, 2, 3 }),
+	[scripted_enemy.fbi_1] = get_difficulty_group_specific_value({ 2, 1, 1 }),
+	[scripted_enemy.fbi_2] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[scripted_enemy.fbi_3] = get_difficulty_group_specific_value({ 0, 2, 3 }),
 }
 local swat_harasser = {
 	enemy = diff_i < 4 and cops or swats,
@@ -58,41 +48,44 @@ local enabled = {
 local street_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local van_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local avalon_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local upper_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local helicopter_guaranteed_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			time = 60,
+			delay = 0,
+		},
+	},
+}
+
 return {
 	-- add point of no return
 	[100580] = {
 		ponr = {
 			length = 800,
 			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
-		},
-		paused_difficulty_addends = { -- disable regroup addends
-			on_entered_regroup = 1,
 		},
 		on_executed = {
 			{ id = 400038, delay = 0 }, -- possible suprise cloaker at the start of the heist
@@ -165,11 +158,6 @@ return {
 		},
 		on_executed = {
 			{ id = 100006, delay = 30 },
-		},
-	},
-	[100006] = { -- extra_preferreds1
-		paused_difficulty_addends = {
-			on_entered_regroup = false,
 		},
 	},
 	-- spawn swat blockade when the parking garage doors are opening
@@ -318,6 +306,13 @@ return {
 			{ id = 100589, delay = 0 },
 		},
 	},
+	-- Difficulty scaling
+	[100006] = { -- extra_preferreds1
+		on_executed = {
+			{ id = 400211, delay = 0 },
+		},
+	},
+	[400210] = assault_end_diff_add,
 	-- Spawn group intervals
 	[400050] = helicopter_guaranteed_spawn,
 	[400060] = helicopter_guaranteed_spawn,
