@@ -280,7 +280,7 @@ local begin_ambush_event_left = {
 	on_executed = { { id = 400066, delay = 2 }, { id = 400079, delay = 2 } },
 }
 local begin_ambush_event_right = {
-	on_executed = { { id = 400065, delay = 2 }, { id = 400080, delay = 2 } },
+	on_executed = { { id = 400067, delay = 2 }, { id = 400080, delay = 2 } },
 }
 local left_ambush_amount = {
 	amount = 1,
