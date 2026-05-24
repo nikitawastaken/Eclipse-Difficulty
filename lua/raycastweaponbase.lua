@@ -574,7 +574,13 @@ function RaycastWeaponBase:ammo_full()
 	return true
 end
 
+-- Weapons can be set to take more ammo for a full refill from ammo bags
+function RaycastWeaponBase:get_ammo_bag_consumption_mul()
+	return 1
+end
+
 function RaycastWeaponBase:add_ammo_from_bag(available)
+	local ammo_bag_consumption_mul = self.get_ammo_bag_consumption_mul and self:get_ammo_bag_consumption_mul() or 1
 	local function process_ammo(ammo_base, amount_available)
 		if ammo_base:get_ammo_max() <= ammo_base:get_ammo_total() then
 			return 0
@@ -582,11 +588,11 @@ function RaycastWeaponBase:add_ammo_from_bag(available)
 
 		local ammo_max = ammo_base:get_ammo_max()
 		local ammo_total = ammo_base:get_ammo_total()
-		local wanted = 1 - ammo_total / ammo_max
+		local wanted = (1 - ammo_total / ammo_max) * ammo_bag_consumption_mul
 		local can_have = math.min(wanted, amount_available)
 
 		ammo_base:set_ammo_total(math.min(ammo_max, ammo_total + math.ceil(can_have * ammo_max)))
-		print(wanted, can_have, math.ceil(can_have * ammo_max), ammo_base:get_ammo_total())
+		-- print(wanted, can_have, math.ceil(can_have * ammo_max), ammo_base:get_ammo_total())
 
 		return can_have
 	end
@@ -604,7 +610,7 @@ function RaycastWeaponBase:add_ammo_from_bag(available)
 		end
 	end
 
-	return can_have
+	return can_have, ammo_bag_consumption_mul
 end
 
 function RaycastWeaponBase:add_ammo(ratio, add_amount_override)
