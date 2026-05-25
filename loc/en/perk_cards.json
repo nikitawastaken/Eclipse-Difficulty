@@ -221,7 +221,7 @@
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
 	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Anytime you take damage, your crewmates are healed for ##$multiperk2## health.",
 	"menu_deck22_7_short": "While your health is below ##$multiperk## your Leech Ampule recharges ##$multiperk2## faster.",
-	"menu_deck22_9_short": "Your maximum health is increased by ##$multiperk##. Taking damage heals crewmates for ##$multiperk2## health.",
+	"menu_deck22_9_short": "Your maximum health is increased by ##$multiperk##. Taking damage now heals crewmates for ##$multiperk2## health.",
 
 
 	"menu_st_spec_23": "Wildcard",
