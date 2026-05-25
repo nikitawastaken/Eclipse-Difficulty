@@ -213,6 +213,7 @@
 	"menu_deck18_9_short": "While the smoke screen is active, you and your crew will retain its effects for ##$multiperk## seconds after exiting it.",
 	"menu_deck19_1_short": "Unlocks and equips the Stoic Hip Flask.",
 	"menu_deck19_3_short": "All of your armor is converted and applied to your health. You take ##$multiperk## less damage when falling from non-lethal heights.",
+	"menu_deck19_7_short": "While your health is below ##$multiperk## your Stoic Hip Flask recharges ##$multiperk2## faster.",
 	"menu_deck20_1_short": "Unlocks and equips the Gas Dispenser.",
 	"menu_deck21_5_short": "Killing the enemy while the feedback is active will regenerate ##$multiperk## health. Your chance to dodge is increased by ##$multiperk2##.",
 	"menu_deck21_7_short": "You gain ##$multiperk## additional health.",
