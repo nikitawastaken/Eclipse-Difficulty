@@ -993,7 +993,7 @@ function PlayerDamage:consume_armor_stored_health(amount)
 	end
 
 	if amount then
-		self:add_armor_stored_health(-amount)
+		self:add_armor_stored_health(-math.min(amount, self._armor_stored_health))
 	else
 		self:clear_armor_stored_health()
 	end
