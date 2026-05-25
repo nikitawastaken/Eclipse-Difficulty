@@ -290,7 +290,11 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						weap_base:dryfire()
 					end
 				elseif weap_base.clip_empty and weap_base:clip_empty() then
-					if params and params.no_reload or self:_is_using_bipod() or (tweak_data.weapon.weapon_settings.no_autoreload and not managers.player:has_category_upgrade("player", "can_autoreload")) then
+					if
+						params and params.no_reload
+						or self:_is_using_bipod()
+						or (tweak_data.weapon.weapon_settings.no_autoreload and not managers.player:has_category_upgrade("player", "can_autoreload"))
+					then
 						if input.btn_primary_attack_press then
 							weap_base:dryfire()
 						end
