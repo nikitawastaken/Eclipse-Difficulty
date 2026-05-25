@@ -790,7 +790,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Ex-President
 	self.specializations[13][5].upgrades = { "player_armor_max_health_store_multiplier", "player_armor_health_store_no_waste" }
 	self.specializations[13][7].upgrades = { "player_armor_health_store_amount_3", "player_passive_health_multiplier_2" }
-	
+
 	-- yakuza
 	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
 	self.specializations[12][3].upgrades = { "weapon_passive_swap_speed_multiplier_1" }

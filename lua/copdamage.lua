@@ -135,7 +135,7 @@ end
 -- Teammate kills do not fill Ex-President's health storage
 -- Always remove contours on death
 Hooks:OverrideFunction(CopDamage, "_on_death", function(self, variant)
---	managers.player:chk_store_armor_health_kill_counter(self._unit, variant)
+	--	managers.player:chk_store_armor_health_kill_counter(self._unit, variant)
 	managers.player:chk_wild_kill_counter(self._unit, variant)
 
 	local contour = self._unit.contour and self._unit:contour()
@@ -912,4 +912,3 @@ function CopDamage:drop_pickup(extra, has_extra_dmg_double_drop)
 		})
 	end
 end
-

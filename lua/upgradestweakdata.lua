@@ -3140,10 +3140,10 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "armor_health_store_no_waste",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
-	
+
 	self.specialization_descs[13][1].multiperk = "2"
 	self.specialization_descs[13][3].multiperk = "2"
 	self.specialization_descs[13][3].multiperk2 = "10%"

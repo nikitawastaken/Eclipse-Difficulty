@@ -374,9 +374,9 @@ function PlayerDamage:set_armor(armor)
 
 		if current_armor == 0 and armor ~= 0 then
 			local health_diff = self:_max_health() - self:get_real_health()
-			
+
 			self:consume_armor_stored_health(managers.player:has_category_upgrade("player", "armor_health_store_no_waste") and health_diff or nil)
-			
+
 			if has_armor_dodge then
 				self._armor_broken_dodge = false
 				managers.player:disable_cooldown_upgrade("cooldown", "dodge_on_armor_break")
