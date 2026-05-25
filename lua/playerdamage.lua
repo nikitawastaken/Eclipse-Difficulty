@@ -373,8 +373,10 @@ function PlayerDamage:set_armor(armor)
 		local has_armor_dodge = managers.player:has_enabled_cooldown_upgrade("cooldown", "dodge_on_armor_break")
 
 		if current_armor == 0 and armor ~= 0 then
-			self:consume_armor_stored_health()
-
+			local health_diff = self:_max_health() - self:get_real_health()
+			
+			self:consume_armor_stored_health(managers.player:has_category_upgrade("player", "armor_health_store_no_waste") and health_diff or nil)
+			
 			if has_armor_dodge then
 				self._armor_broken_dodge = false
 				managers.player:disable_cooldown_upgrade("cooldown", "dodge_on_armor_break")
@@ -982,6 +984,19 @@ function PlayerDamage:_regenerate_armor(no_sound)
 	self:_send_set_armor()
 
 	self._current_state = nil
+end
+
+-- Ex-President
+function PlayerDamage:consume_armor_stored_health(amount)
+	if self._armor_stored_health and not self._dead and not self._bleed_out and not self._check_berserker_done then
+		self:change_health(self._armor_stored_health)
+	end
+
+	if amount then
+		self:add_armor_stored_health(-amount)
+	else
+		self:clear_armor_stored_health()
+	end
 end
 
 -- The number of Leech segments depends on the armor you're wearing

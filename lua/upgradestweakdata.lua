@@ -3129,11 +3129,27 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[12][9].multiperk = "30%"
 
 	-- Ex-President
-	self.values.player.body_armor.skill_max_health_store = { 6, 5, 4, 3, 2.5, 2, 1 }
-	self.values.player.armor_health_store_amount = { 0.1, 0.3, 0.5 }
-	self.specialization_descs[13][1].multiperk = "1"
+	self.values.player.body_armor.skill_max_health_store = { 4, 3.75, 3.5, 3.25, 2.5, 1.75, 1 }
+	self.values.player.body_armor.skill_kill_change_regenerate_speed = { 6, 5.5, 5, 4.5, 4, 3, 2 }
+	self.values.player.armor_health_store_amount = { 0.2, 0.4, 0.6 }
+	self.values.player.armor_health_store_no_waste = { true }
+
+	self.definitions.player_armor_health_store_no_waste = {
+		name_id = "menu_player_armor_health_store_no_waste",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_health_store_no_waste",
+			category = "player"
+		}
+	}
+	
+	self.specialization_descs[13][1].multiperk = "2"
 	self.specialization_descs[13][3].multiperk = "2"
+	self.specialization_descs[13][3].multiperk2 = "10%"
+	self.specialization_descs[13][5].multiperk = "50%"
 	self.specialization_descs[13][7].multiperk = "2"
+	self.specialization_descs[13][7].multiperk2 = "10%"
 
 	-- Maniac
 	self.cocaine_stacks_convert_levels = { 600 / 8, 60 }

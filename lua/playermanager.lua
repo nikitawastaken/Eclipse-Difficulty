@@ -534,7 +534,11 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	end
 
 	local damage_ext = self:player_unit():character_damage()
-
+	
+	-- Ex-President
+	-- Moved from CopDamage:_on_death
+	self:chk_store_armor_health_kill_counter(killed_unit, variant)
+	
 	-- Leech Ampule
 	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
 		local kill_life_leech = self:upgrade_value_nil("player", "copr_kill_life_leech")
