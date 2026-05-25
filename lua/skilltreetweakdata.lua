@@ -127,7 +127,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.underdog[2].upgrades = { "player_run_and_reload" }
 	self.skills.underdog.name_id = "menu_hot_pursuit"
 	self.skills.underdog.desc_id = "menu_hot_pursuit_desc"
-	self.skills.underdog.icon_xy = { 0, 0 }
+	self.skills.underdog.icon_xy = { 10, 6 }
 
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
