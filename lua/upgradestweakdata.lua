@@ -3130,7 +3130,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = { 4, 3.75, 3.5, 3.25, 2.5, 1.75, 1 }
-	self.values.player.body_armor.skill_kill_change_regenerate_speed = { 6, 5.5, 5, 4.5, 4, 3, 2 }
+	self.values.player.body_armor.skill_kill_change_regenerate_speed = { 5, 4.5, 4, 3.5, 3, 2.5, 2 }
 	self.values.player.armor_health_store_amount = { 0.2, 0.4, 0.6 }
 	self.values.player.armor_health_store_no_waste = { true }
 
