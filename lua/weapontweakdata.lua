@@ -817,7 +817,9 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.shake.fire_multiplier = (single_weapon_data.shake.fire_multiplier or 1) + 0.4
 					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (30 / 40)
 					weap_data.swap_speed_multiplier = nil
-
+					weap_data.fire_mode_spread_bloom = single_weapon_data.fire_mode_spread_bloom and deep_clone(single_weapon_data.fire_mode_spread_bloom) or nil
+					weap_data.spread_bloom = single_weapon_data.spread_bloom and deep_clone(single_weapon_data.spread_bloom) or nil
+					
 					if weap_data.damage_near then
 						weap_data.damage_near = weap_data.damage_near * 0.8
 					end
