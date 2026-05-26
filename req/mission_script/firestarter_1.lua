@@ -87,11 +87,15 @@ return {
 			{ id = 103437, remove = true },
 		},
 	},
+	-- Currently disabled cause of amazing devs of Sidetrack Games fucking it up
+	-- will re-enable it once they *fix* it
+	--[[
 	[103136] = {
 		on_executed = {
 			{ id = 103437, delay = 0 },
 		},
 	},
+	]]--
 	[103422] = heli_enemy1,
 	[103422] = heli_enemy4,
 	[103424] = heli_enemy2,
