@@ -95,7 +95,8 @@ return {
 			{ id = 103437, delay = 0 },
 		},
 	},
-	]]--
+	]]
+	--
 	[103422] = heli_enemy1,
 	[103422] = heli_enemy4,
 	[103424] = heli_enemy2,
