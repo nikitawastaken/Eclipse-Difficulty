@@ -1524,4 +1524,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 2,
 		["scarface_2"] = 2,
 	}
+	self.nail.random_environments = {
+		["lab_rats_01"] = 3,
+		["lab_rats_02"] = 2,
+		["lab_rats_03"] = 1,
+	}
+	self.help.random_environments = {
+		["prison_01"] = 3,
+		["prison_02"] = 2,
+		["prison_03"] = 1,
+	}
+	self.haunted.random_environments = {
+		["horrorhouse_01"] = 4,
+		["horrorhouse_02"] = 1,
+		["horrorhouse_03"] = 3,
+		["horrorhouse_04"] = 2,
+		["horrorhouse_05"] = 2,
+	}
 end)

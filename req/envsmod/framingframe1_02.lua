@@ -1,5 +1,5 @@
 return {
-	flashlights_on = false, -- Flashlights
+	flashlights_on = true, -- Flashlights
 	color_grading = { -- Randomized color gradings
 		"color_xxxgen",
 		"color_xgen",
