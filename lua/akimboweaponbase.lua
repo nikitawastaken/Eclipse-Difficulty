@@ -10,3 +10,6 @@ function NPCAkimboWeaponBase:fire(...)
 		return self.super.fire(self, ...)
 	end
 end
+
+-- Add spread bloom decay updates from NewRaycastWeaponBase
+Hooks:PostHook(AkimboWeaponBase, "update", "eclipse_update", AkimboWeaponBase.super.update)
