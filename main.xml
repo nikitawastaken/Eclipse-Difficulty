@@ -30,5 +30,17 @@
 		<texture path="guis/textures/pd2/blackmarket/icons/weapons/outline/olympic"/>
 		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/weapons/shepheard"/>
 		<texture path="guis/dlcs/joy/textures/pd2/blackmarket/icons/weapons/outline/shepheard"/>
+		
+		<!-- Color gradings -->
+		<texture path="core/textures/cg_pdth_bhd"/>
+		<texture path="core/textures/cg_pdth_heat"/>
+		<texture path="core/textures/cg_pdth_nice"/>
+		<texture path="core/textures/cg_pdth_payday"/>
+		<texture path="core/textures/cg_pdth_xgen"/>
+		<texture path="core/textures/cg_pdth_xxxgen"/>
+		<texture path="core/textures/cg_plus"/>
+		<texture path="core/textures/cg_force"/>
+		<texture path="core/textures/cg_e3nice"/>
+		<texture path="core/textures/cg_cgreyscale"/>
 	</AddFiles>
 </table>

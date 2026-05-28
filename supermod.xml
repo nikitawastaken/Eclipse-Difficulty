@@ -6,6 +6,7 @@
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
+	<tweak definition="tweak/colorgradings.xml"/>
 
 	<hooks script_path="mod.lua">
 

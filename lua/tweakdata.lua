@@ -498,6 +498,19 @@ tweak_data.casino = {
 	infamous_chance = 3,
 }
 
+-- Color Gradings
+table.insert( tweak_data.color_grading, { value = "color_bhd_classic", text_id = "menu_color_bhd_classic" })
+table.insert( tweak_data.color_grading, { value = "color_heat_classic", text_id = "menu_color_heat_classic" })
+table.insert( tweak_data.color_grading, { value = "color_nice_classic", text_id = "menu_color_nice_classic" })
+table.insert( tweak_data.color_grading, { value = "color_payday_classic", text_id = "menu_color_payday_classic" })
+table.insert( tweak_data.color_grading, { value = "color_xgen_classic", text_id = "menu_color_xgen_classic" })
+table.insert( tweak_data.color_grading, { value = "color_xxxgen_classic", text_id = "menu_color_xxxgen_classic" })
+table.insert( tweak_data.color_grading, { value = "color_plus", text_id = "menu_color_plus" })
+table.insert( tweak_data.color_grading, { value = "color_force", text_id = "menu_color_force" })
+table.insert( tweak_data.color_grading, { value = "color_e3nice", text_id = "menu_color_e3nice" })
+table.insert( tweak_data.color_grading, { value = "color_subzero", text_id = "menu_color_subzero" })
+table.insert( tweak_data.color_grading, { value = "color_cgreyscale", text_id = "menu_color_cgreyscale" })
+
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
 for k, v in pairs(achievement_parts) do
