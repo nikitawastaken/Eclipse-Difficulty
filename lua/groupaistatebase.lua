@@ -1103,7 +1103,7 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
 			managers.hud:post_event("cloaker_spawn")
 		end
-		
+
 		self:_delay_new_hiding_cloakers(data, data.interval)
 	end
 

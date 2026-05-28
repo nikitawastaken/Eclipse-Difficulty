@@ -1214,11 +1214,11 @@ end
 function GroupAIStateBesiege:spawn_rate()
 	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.spawn_rate)
 	local spawn_rate_drama_mul = self:_get_drama_weight_mul("spawn_rate")
-	
+
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
 
-	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate) * spawn_rate_drama_mul * spawn_rate_balance_mul * police_comms_mul 
+	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate) * spawn_rate_drama_mul * spawn_rate_balance_mul * police_comms_mul
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
