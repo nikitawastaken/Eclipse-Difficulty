@@ -1,16 +1,16 @@
 Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
-	self.drama_actions = { criminal_hurt = 0.5, criminal_dead = 0.2, criminal_disabled = 0.1 }
-	self.drama_gain_balance_mul = { 1.35, 0.9, 0.6, 0.45 }
-	self.drama_decay_rate_balance_mul = { 0.7, 0.85, 1, 1.15 }
-	self.decay_period = 30
-	self.max_dis = 6000
-	self.max_dis_mul = 1
-	self.low = 0.1
-	self.peak = 1
-	self.assault_fade_end = 0.15
-	self.spawn_rate_scaling = { 0.1, 0.4 }
-	self.assault_start_add = 1
-	self.special_spawn_drama_add = {
+	self.drama_actions = { -- player actions that build drama, identical to Vanilla
+		criminal_hurt = 0.5, 
+		criminal_dead = 0.2, 
+		criminal_disabled = 0.1,
+	}
+	self.max_dis_mul = 1 -- distance does not affect 'criminal_hurt' drama gain
+	self.drama_gain_team_ai_mul = 0.5 -- additional 'criminal_hurt' drama gain multiplier for Team AI
+	self.assault_fade_end = 0.15 -- drama threshold for ending the regroup phase
+	self.assault_start_add = 1 -- drama spike during the anticipation phase
+	self.drama_gain_balance_mul = { 1.3, 0.9, 0.6, 0.4 } -- 'criminal_hurt' drama gain balance multiplier
+	self.drama_decay_rate_balance_mul = { 0.7, 0.8, 0.9, 1 } 
+	self.special_spawn_drama_add = { 
 		shield = 0.05,
 		taser = 0.075,
 		tank = 0.15,
@@ -21,11 +21,25 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 	self.drama_weight_muls = {
 		-- Drama decay rate
 		decay_rate = {
-			[0.1] = 0.7,
+			[0.1] = 0.8,
 			[0.4] = 1,
 			[0.7] = 1.1,
 			[1.0] = 1.2,
 		},
+		-- Spawn rate
+		spawn_rate = {
+			[0.1] = 0.7,
+			[0.4] = 1,
+			[0.7] = 1,
+			[1.0] = 1.3,			
+		},
+		-- Hiding Cloaker respawn interval
+		cloaker_interval = {
+			[0.1] = 0.8,
+			[0.4] = 1,
+			[0.7] = 1.1,
+			[1.0] = 1.2,
+		},			
 		-- Special unit spawns
 		shield = {
 			[0.1] = 1.2,
@@ -57,7 +71,7 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 			[0.7] = 0.9,
 			[1.0] = 0.8,
 		},
-		supporting_special = {
+		supporting_special = { -- Medics as well as Tasers and Cloakers outside their dedicated groups
 			[0.1] = 1.2,
 			[0.4] = 1,
 			[0.7] = 0.9,
