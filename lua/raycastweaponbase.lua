@@ -298,8 +298,6 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 
 				if roll < chance then
 					ammo_usage = 0
-
-					print("NO AMMO COST")
 				end
 			end
 		end
@@ -323,17 +321,17 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 		end
 
 		if ammo_in_clip > 0 and remaining_ammo <= (self.AKIMBO and 1 or 0) then
-			local w_td = self:weapon_tweak_data()
+			local weapon_tweak = self:weapon_tweak_data()
 
-			if w_td.animations and w_td.animations.magazine_empty then
+			if weapon_tweak.animations and weapon_tweak.animations.magazine_empty then
 				self:tweak_data_anim_play("magazine_empty")
 			end
 
-			if w_td.sounds and w_td.sounds.magazine_empty then
+			if weapon_tweak.sounds and weapon_tweak.sounds.magazine_empty then
 				self:play_tweak_data_sound("magazine_empty")
 			end
 
-			if w_td.effects and w_td.effects.magazine_empty then
+			if weapon_tweak.effects and weapon_tweak.effects.magazine_empty then
 				self:_spawn_tweak_data_effect("magazine_empty")
 			end
 
@@ -576,7 +574,7 @@ end
 
 -- Weapons can be set to take more ammo for a full refill from ammo bags
 function RaycastWeaponBase:get_ammo_bag_consumption_mul()
-	return 1
+	return self._ammo_bag_consumption_mul
 end
 
 function RaycastWeaponBase:add_ammo_from_bag(available)

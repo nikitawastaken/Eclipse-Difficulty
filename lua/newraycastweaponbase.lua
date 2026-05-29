@@ -86,6 +86,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._explosive_ammo = weapon_tweak.explosive_ammo
 	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
 	self._max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
+	self._ammo_bag_consumption_mul = weapon_tweak.ammo_bag_consumption_mul
 
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
@@ -144,6 +145,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 		if custom_stat.max_nr_enemy_penetrations then
 			self._max_nr_enemy_penetrations = custom_stat.max_nr_enemy_penetrations
+		end
+
+		if custom_stat.ammo_bag_consumption_mul then
+			self._ammo_bag_consumption_mul = custom_stat.ammo_bag_consumption_mul
 		end
 
 		if custom_stat.swap_speed_multiplier then
@@ -714,7 +719,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
-		local max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
+		local max_nr_enemy_penetrations = self._max_nr_enemy_penetrations
 		if max_nr_enemy_penetrations then
 			for _, category in ipairs(self:categories()) do
 				max_nr_enemy_penetrations = max_nr_enemy_penetrations + managers.player:upgrade_value(category, "max_enemy_penetrations_addend", 1)

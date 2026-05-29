@@ -1419,9 +1419,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.start_out_ammo_multiplier = { 1.5 }
+	self.values.player.start_out_ammo_multiplier = { 1.33 }
 
-	self.skill_descs.ammo_reservoir.multibasic = "50%"
+	self.skill_descs.ammo_reservoir.multibasic = "33%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Mag Plus
@@ -1691,7 +1691,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- 	},
 	-- }
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2.5m"
+	self.skill_descs.fire_trap.multibasic2 = "3m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
 	self.skill_descs.fire_trap.multibasic4 = "100%"
 	self.skill_descs.fire_trap.multipro = "30"
@@ -3088,6 +3088,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+
+	self.values.player.damage_to_hot_extra_ticks[1] = 5
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
 	self.damage_to_hot_data.add_stack_sources.fire = false
 	self.damage_to_hot_data.add_stack_sources.poison = false
@@ -3107,7 +3109,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][7].multiperk = "30%"
 	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
-	self.specialization_descs[11][9].multiperk3 = "3"
+	self.specialization_descs[11][9].multiperk3 = "4.5"
 
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = { 0.30 }

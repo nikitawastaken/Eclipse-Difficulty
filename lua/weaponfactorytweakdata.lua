@@ -1830,12 +1830,16 @@ WeaponFactoryTweakData.shotgun_ammo_override_map = {
 
 -- Automatically balance Shotgun ammo types
 function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
+	local slug_spread_mul = {
+		2.5 / 3.5,
+		2.5 / 3.5,
+	}
 	local slug_stance_muls = {
 		spread = {
 			standing = {
 				hipfire = 1.3,
 				crouching = 1,
-				steelsight = 0.4,
+				steelsight = 0.5,
 			},
 			moving = {
 				hipfire = 1.4,
@@ -1846,18 +1850,18 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	}
 	local slug_fire_mode_bloom = {
 		["single"] = {
-			per_shot = 1,
-			per_shot_steelsight = 0.6,
+			per_shot = 1.5,
+			per_shot_steelsight = 1,
 		},
 		["auto"] = {
-			per_shot = 1,
-			per_shot_steelsight = 0.6,
+			per_shot = 1.5,
+			per_shot_steelsight = 1,
 		},
 	}
 	local slug_pread_bloom = {
 		max = 2.5,
 		recovery = 1.2,
-		recovery_wait_multiplier = 1.5,
+		recovery_wait_multiplier = 1.4,
 	}
 	local custom_stats_tbl = {
 		wpn_fps_upg_a_custom = {
@@ -1868,8 +1872,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			rays = 1,
-			ammo_pickup_max_mul = 0.375,
-			ammo_pickup_min_mul = 0.375,
+			ammo_pickup_max_mul = 0.4,
+			ammo_pickup_min_mul = 0.4,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
 			fire_mode_spread_bloom = slug_fire_mode_bloom,
@@ -1907,8 +1911,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		wpn_fps_upg_a_dragons_breath = {
 			rays = 12,
 			armor_piercing_add = 1,
-			ammo_pickup_min_mul = 0.75,
-			ammo_pickup_max_mul = 0.75,
+			ammo_pickup_min_mul = 0.7,
+			ammo_pickup_max_mul = 0.7,
 			dot_data_name = "ammo_dragons_breath",
 			bullet_class = "FlameBulletBase",
 			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
@@ -1916,8 +1920,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_rip = {
 			rays = 1,
-			ammo_pickup_min_mul = 0.5,
-			ammo_pickup_max_mul = 0.5,
+			ammo_pickup_min_mul = 0.6,
+			ammo_pickup_max_mul = 0.6,
 			damage_near_mul = 10,
 			stance_mul = slug_stance_muls,
 			fire_mode_spread_bloom = slug_fire_mode_bloom,
@@ -1976,19 +1980,19 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
-				stats = { damage = 216, total_ammo_mod = -8, recoil = -1, spread = 2 },
+				stats = { damage = 216, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 180, total_ammo_mod = -8, recoil = -1, spread = 2 },
+				stats = { damage = 180, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 144, total_ammo_mod = -8, recoil = -1, spread = 2 },
+				stats = { damage = 144, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			light = { -- semi autos
-				stats = { damage = 108, total_ammo_mod = -8, recoil = -1, spread = 2 },
+				stats = { damage = 108, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
 			},
 			very_light = { -- full autos
@@ -1998,23 +2002,23 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_slug = {
 			very_heavy = { -- double barrels
-				stats = { damage = 104, total_ammo_mod = -6, recoil = -2, spread = 4 },
+				stats = { damage = 104, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 76, total_ammo_mod = -6, recoil = -2, spread = 4 },
+				stats = { damage = 76, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 64, total_ammo_mod = -6, recoil = -2, spread = 4 },
+				stats = { damage = 64, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			light = { -- semi autos
-				stats = { damage = 52, total_ammo_mod = -6, recoil = -2, spread = 4 },
+				stats = { damage = 52, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 			very_light = { -- full autos
-				stats = { damage = 38, total_ammo_mod = -6, recoil = -2, spread = 4 },
+				stats = { damage = 38, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
 			},
 		},
@@ -2064,23 +2068,23 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_rip = {
 			very_heavy = { -- double barrels
-				stats = { damage = 72, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 72, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 60, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 60, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 48, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 48, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			light = { -- semi autos
-				stats = { damage = 36, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 36, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 			very_light = { -- full autos
-				stats = { damage = 26, total_ammo_mod = -8, spread = 2 },
+				stats = { damage = 26, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
 				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
 			},
 		},
@@ -2823,12 +2827,12 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 	local shotgun_stance_muls = {
 		spread = {
 			standing = {
-				hipfire = 1,
+				hipfire = 0.9,
 				crouching = 1,
 				steelsight = 0.7,
 			},
 			moving = {
-				hipfire = 1,
+				hipfire = 0.9,
 				crouching = 1,
 				steelsight = 0.8,
 			},
@@ -2863,6 +2867,8 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 	local sting_custom_stats = {
 		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 		armor_piercing_add = 1,
+		max_nr_enemy_penetrations = 1,
+		ammo_bag_consumption_mul = 1,
 		is_explosive = false,
 		can_shoot_through_shield = true,
 		can_shoot_through_enemy = true,

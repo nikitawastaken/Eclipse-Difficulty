@@ -388,6 +388,7 @@
 		<file name="guis/textures/loading/hints/weapon_lmg.texture"/>
 		<file name="guis/textures/loading/hints/weapon_special.texture"/>
 		<file name="guis/textures/loading/hints/equipment_fak.texture"/>
+		<file name="guis/textures/loading/hints/badass.texture"/>
 
 		<!-- Custom effects -->
 		<group name="effects/">
