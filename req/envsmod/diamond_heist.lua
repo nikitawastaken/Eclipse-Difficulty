@@ -3,7 +3,7 @@ return {
 	color_grading = { -- Randomized color gradings
 		"color_matrix_classic",
 		"color_xxxgen",
-		"color_payday"
+		"color_payday",
 		"color_bhd_classic",
 		"color_heat_classic",
 		"color_payday_classic",

@@ -5,7 +5,7 @@ return {
 		"color_xgen",
 		"color_xxxgen",
 		"color_payday",
-		"color_matrix_classic"
+		"color_matrix_classic",
 		"color_heat_classic",
 		"color_plus",
 	},

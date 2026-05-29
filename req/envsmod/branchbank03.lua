@@ -4,7 +4,7 @@ return {
 		"color_heat",
 		"color_bhd",
 		"color_payday",
-		"color_matrix_classic"
+		"color_matrix_classic",
 		"color_bhd_classic",
 		"color_heat_classic",
 		"color_payday_classic",
