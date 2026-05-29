@@ -93,7 +93,7 @@ function PlayerTased:_check_action_shock(t, input, ...)
 		else
 			local pitch = math.map_range(t, self._cam_start_pitch_t, self._cam_target_pitch_t, self._cam_start_pitch, self._cam_target_pitch)
 			self._unit:camera():camera_unit():base():set_pitch(pitch)
-			
+
 			-- Full suppression
 			self._ext_damage:build_suppression(tweak_data.player.suppression.max_value)
 		end
