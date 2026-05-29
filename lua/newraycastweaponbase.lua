@@ -150,7 +150,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if custom_stat.ammo_bag_consumption_mul then
 			self._ammo_bag_consumption_mul = custom_stat.ammo_bag_consumption_mul
 		end
-		
+
 		if custom_stat.swap_speed_multiplier then
 			self._swap_speed_multiplier = self._swap_speed_multiplier * custom_stat.swap_speed_multiplier
 		end

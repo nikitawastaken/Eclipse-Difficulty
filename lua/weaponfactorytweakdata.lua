@@ -1830,9 +1830,9 @@ WeaponFactoryTweakData.shotgun_ammo_override_map = {
 
 -- Automatically balance Shotgun ammo types
 function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
-	local slug_spread_mul = { 
-		2.5 / 3.5, 
-		2.5 / 3.5, 
+	local slug_spread_mul = {
+		2.5 / 3.5,
+		2.5 / 3.5,
 	}
 	local slug_stance_muls = {
 		spread = {
