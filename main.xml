@@ -42,5 +42,6 @@
 		<texture path="core/textures/cg_force"/>
 		<texture path="core/textures/cg_e3nice"/>
 		<texture path="core/textures/cg_cgreyscale"/>
+		<texture path="core/textures/cg_tasered"/>
 	</AddFiles>
 </table>

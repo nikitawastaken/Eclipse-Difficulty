@@ -50,6 +50,10 @@ function PlayerTased:enter(state_data, enter_data)
 	CopDamage.register_listener("on_criminal_tased", {
 		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
+	
+	self._saved_default_color_grading = managers.environment_controller:default_color_grading()
+	managers.environment_controller:set_default_color_grading("color_tasered", true)
+	managers.environment_controller:refresh_render_settings()
 end
 
 Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
@@ -58,6 +62,9 @@ Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
 		self._unit:camera():camera_unit():base():remove_limits()
 		self._camera_limit = nil
 	end
+	
+	managers.environment_controller:set_default_color_grading(self._saved_default_color_grading)
+	managers.environment_controller:refresh_render_settings()
 end)
 
 local _check_action_shock_original = PlayerTased._check_action_shock

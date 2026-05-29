@@ -86,6 +86,13 @@
             <reflection_texture file="core/textures/cg_he"/> <!-- Fire LUT -->
             <filter_color_texture file="core/textures/cg_cgreyscale"/>
         </material>
+        <material name="cg_tasered">
+            <variable name="LUT_settings_a" type="vector3" value="0 0 0"/>
+            <variable name="LUT_settings_b" type="vector3" value="0 0 0"/>
+            <variable name="contrast" type="scalar" value="0"/>
+            <reflection_texture file="core/textures/cg_he"/> <!-- Fire LUT -->
+            <filter_color_texture file="core/textures/cg_tasered"/>
+        </material>
     </materials>
 	
         <!-- Color BHD Classic -->
@@ -186,6 +193,15 @@
             <else/>
                 <combiner src_respect_viewport="false" dst_respect_viewport="false" diffuse_texture="low_target_6" dst="lut_target" render_template="post_color_grading_prepare" material="cg_cgreyscale" scriptable="lut_settings"/>
                 <combiner diffuse_texture="bb" self_illumination_texture="lut_target" dst="back_buffer" render_template="post_color_grading" material="cg_cgreyscale" scriptable="lut_settings"/>
+            </defined>
+        </effect>
+        <effect name="color_tasered">
+            <defined platform="PS3 X360">
+                <combiner diffuse_texture="low_target_6" dst="lut_target" render_template="post_color_grading_prepare" material="cg_tasered" scriptable="lut_settings"/>
+                <combiner diffuse_texture="albedo" self_illumination_texture="lut_target" dst="bb" render_template="post_color_grading" material="cg_tasered" scriptable="lut_settings"/>
+            <else/>
+                <combiner src_respect_viewport="false" dst_respect_viewport="false" diffuse_texture="low_target_6" dst="lut_target" render_template="post_color_grading_prepare" material="cg_tasered" scriptable="lut_settings"/>
+                <combiner diffuse_texture="bb" self_illumination_texture="lut_target" dst="back_buffer" render_template="post_color_grading" material="cg_tasered" scriptable="lut_settings"/>
             </defined>
         </effect>
     </target>
