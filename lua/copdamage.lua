@@ -132,8 +132,12 @@ function CopDamage:_sync_dismember(attacker_unit, ...)
 	end
 end
 
+-- Teammate kills do not fill Ex-President's health storage
 -- Always remove contours on death
-Hooks:PostHook(CopDamage, "_on_death", "eclipse_on_death", function(self)
+Hooks:OverrideFunction(CopDamage, "_on_death", function(self, variant)
+	--	managers.player:chk_store_armor_health_kill_counter(self._unit, variant)
+	managers.player:chk_wild_kill_counter(self._unit, variant)
+
 	local contour = self._unit.contour and self._unit:contour()
 	if not contour or not contour._contour_list then
 		return

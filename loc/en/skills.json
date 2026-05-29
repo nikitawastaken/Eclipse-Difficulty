@@ -19,9 +19,12 @@
 	"menu_joker_beta_desc": "BASIC: ##$basic##\nYou can now convert a non-special enemy to fight on your side.\n\nYour converted enemy deals ##$multibasic## more damage and takes ##$multibasic2## less damage.\n\nACE: ##$pro##\nYour converted enemy now takes an additional ##$multipro## less damage.\n\nThe time to convert an enemy is reduced by ##$multipro2##.",
 	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nHostages will not flee the scene after being rescued by law enforcers.\n\nNearby untied civilians have a chance of reviving you if you interact with them.\n\nACE: ##$pro##\nYou receive ##$multipro## damage reduction for every hostage that you and your crew control.\n\nStacks up to ##$multipro2## times.",
 	"menu_control_freak_beta_desc": "BASIC: ##$basic##\nYour converted enemy is ##$multibasic## more likely to be targeted when close to you or your crew.\n\nACE: ##$pro##\nYour converted enemy counts towards hostage related bonuses.",
-	"menu_stable_shot_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nThe time it takes for your aim to recenter after last shot is reduced by ##$multipro##.",
-	"menu_rifleman_beta_desc": "BASIC: ##$basic##\nYour accuracy recovers ##$multibasic## faster.\n\nACE: ##$pro##\nYour weapon spread is reduced by ##$multipro## while standing still.",
-	"menu_sharpshooter_beta_desc": "BASIC: ##$basic##\nYour aimpunch is reduced by ##$multibasic## while aiming down sights.\n\nACE: ##$pro##\nYour weapon recoil is reduced by ##$multipro## while aiming down sights.",
+	"menu_stable_shot": "Stable Shot",
+	"menu_stable_shot_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nYour aimpunch is reduced by ##$multipro## while aiming down sights.",
+	"menu_rifleman": "Rifleman",
+	"menu_rifleman_desc": "BASIC: ##$basic##\nThe time it takes for your aim to recenter after the last shot is reduced by ##$multibasic##.\n\nACE: ##$pro##\nThe time it takes for your weapon's accuracy to recover after the last shot in single fire mode is reduced by ##$multipro##.",
+	"menu_marksman": "Marksman",
+	"menu_marksman_desc": "BASIC: ##$basic##\nYour weapon spread is reduced by ##$multibasic## while standing still.\n\nACE: ##$pro##\nYour weapon recoil is reduced by ##$multipro## while aiming down sights.",
 	"menu_ammo_efficiency": "Ammo Efficiency",
 	"menu_ammo_efficiency_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in less than ##$multibasic2## seconds with either Assault, Marksman or Sniper Rifles set to single fire mode will refund ##$multibasic3## bullet into your reserves.\n\nMissing a headshot in any capacity resets the chain.\n\nACE: ##$pro##\nThe time required to finish the headshot chain is increased to ##$multipro## seconds.\n\nThe bullet will instead be refunded ##straight into the magazine##.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Assault, Marksman and Sniper Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot with either Assault, Marksman or Sniper Rifles set to single fire mode will increase your reload speed by ##$multipro## for ##$multipro2## seconds.",
@@ -29,6 +32,8 @@
 	"menu_headshot_fury_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times. Missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle without firing for at least ##$multipro## consecutive seconds, your next headshot will deal ##$multipro2## of the bullet's damage to the closest enemy in a ##$multipro3## radius.\n\nThis effect chains up to ##$multipro4## times with each instance dealing ##$multipro5## less damage than the previous one.",
 
 
+	"menu_hot_pursuit": "Hot Pursuit",
+	"menu_hot_pursuit_desc": "BASIC: ##$basic##\nYou are able to fire your weapons after sprinting ##$multibasic## faster.\n\nACE: ##$pro##\nYou are able to reload your weapons while sprinting.",
 	"menu_point_blank": "Point Blank",
 	"menu_point_blank_desc": "BASIC: ##$basic##\nEach successful kill grants you a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\n\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage within a ##$multipro2## range.",
 	"menu_heavy_impact": "Heavy Impact",
@@ -139,7 +144,7 @@
 
 	"menu_equilibrium_beta_desc": "BASIC: ##$basic##\nYour movement speed penalty while aiming down sights is reduced by ##$multibasic##.\n\nACE: ##$pro##\nYou snap your weapons to zoom ##$multipro## faster.",
 	"menu_dance_instructor": "Field Operator",
-	"menu_dance_instructor_desc": "BASIC: ##$basic##\nYou are able to fire your weapons after sprinting ##$multibasic## faster.\n\nACE: ##$pro##\nYou swap your weapons ##$multipro## faster.",
+	"menu_dance_instructor_desc": "BASIC: ##$basic##\nYou can now automatically reload your weapons by pressing the ##fire weapon key## when empty.\n\nACE: ##$pro##\nYou swap your weapons ##$multipro## faster.",
 	"menu_akimbo_skill_beta": "Sidearm Savvy",
 	"menu_akimbo_skill_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster with your Pistol or Revolver equipped.\n\nACE: ##$pro##\nScoring ##$multipro## kills in ##$multipro2## seconds with your secondary Pistol or Revolver will automatically reload your primary weapon.",
 	"menu_gun_fighter_beta": "Trigger Overdrive",

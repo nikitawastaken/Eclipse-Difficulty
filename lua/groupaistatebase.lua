@@ -54,10 +54,13 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
+	self._drama_data.drama_gain_team_ai_mul = tweak_data.drama.drama_gain_team_ai_mul
 	self._drama_data.drama_gain_balance_mul = tweak_data.drama.drama_gain_balance_mul
+
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_gain_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
-	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
+	local drama_team_ai_mul = self:is_unit_team_AI(unit) and drama_data.drama_gain_team_ai_mul or 1
+	local drama_gain_balance_mul = self:_get_balancing_multiplier(drama_data.drama_gain_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_team_ai_mul * drama_gain_balance_mul
 
 	if alive(attacker) then
 		local dis_lerp = math.min(1, mvector3.distance(attacker:movement():m_pos(), unit:movement():m_pos()) / drama_data.max_dis)

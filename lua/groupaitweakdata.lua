@@ -3749,33 +3749,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		6,
 	})
 
-	local spawn_rate_regular = get_difficulty_specific_value({
-		2,
-		1.9,
-		1.8,
-		1.7,
-		1.6,
+	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
+		{ 3, 2.5, 2 },
+		{ 3, 2.5, 2 },
+		{ 2.75, 2.25, 1.75 },
+		{ 2.75, 2.25, 1.75 },
+		{ 2.5, 2, 1.5 },
 	})
-	local spawn_rate_fast = get_difficulty_specific_value({
-		1.4,
-		1.3,
-		1.2,
-		1.1,
-		1,
-	})
-
-	self.besiege.assault.spawn_rate = {
-		regular = {
-			spawn_rate_regular * 1.6,
-			spawn_rate_regular * 1.3,
-			spawn_rate_regular,
-		},
-		fast = {
-			spawn_rate_fast * 1.4,
-			spawn_rate_fast * 1.2,
-			spawn_rate_fast,
-		},
-	}
 	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
 	local spawn_rate_entry
 	for i = 0, 21, 1 do

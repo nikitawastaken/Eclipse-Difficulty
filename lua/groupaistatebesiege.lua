@@ -1212,24 +1212,13 @@ end
 
 -- Scale the spawn rate based on drama, diff, and player count
 function GroupAIStateBesiege:spawn_rate()
-	local regular_spawnrate_tbl = self._tweak_data.assault.spawn_rate["regular"]
-	local fast_spawnrate_tbl = self._tweak_data.assault.spawn_rate["fast"]
-
-	local function get_drama_spawn_rate_entry(k)
-		return math.map_range_clamped(self._drama_data.amount, tweak_data.drama.spawn_rate_scaling[1], tweak_data.drama.spawn_rate_scaling[2], fast_spawnrate_tbl[k], regular_spawnrate_tbl[k])
-	end
-
 	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.spawn_rate)
-	local spawn_rate = self._task_data.assault.phase == "sustain" and {
-		get_drama_spawn_rate_entry(1),
-		get_drama_spawn_rate_entry(2),
-		get_drama_spawn_rate_entry(3),
-	} or regular_spawnrate_tbl
+	local spawn_rate_drama_mul = self:_get_drama_weight_mul("spawn_rate")
 
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
 	local police_comms_mul = are_police_comms_ecm_jammed and jammed_police_comms_mul or 1
 
-	return self:_get_difficulty_dependent_value(spawn_rate) * spawn_rate_balance_mul * police_comms_mul
+	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate) * spawn_rate_drama_mul * spawn_rate_balance_mul * police_comms_mul
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)

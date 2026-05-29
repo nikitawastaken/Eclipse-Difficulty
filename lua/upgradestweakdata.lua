@@ -966,19 +966,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multipro2 = "7m"
 
 	-- Stable Shot
-	self.definitions.weapon_faster_recoil_recentering = {
-		name_id = "menu_weapon_faster_recoil_recentering",
+	self.values.player.weapon_accuracy_increase[1] = 1
+	self.values.player.steelsight_aimpunch_multiplier = { 0.8 }
+	self.definitions.player_steelsight_aimpunch_multiplier = {
+		name_id = "menu_player_steelsight_aimpunch_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "faster_recoil_recentering",
-			category = "weapon",
+			upgrade = "steelsight_aimpunch_multiplier",
+			category = "player",
 		},
 	}
-	self.values.player.weapon_accuracy_increase[1] = 1
-	self.values.weapon.faster_recoil_recentering = { 2 }
 	self.skill_descs.stable_shot.multibasic = "4"
-	self.skill_descs.stable_shot.multipro = "50%"
+	self.skill_descs.stable_shot.multipro = "20%"
 
 	-- Rifleman
 	self.values.player.steelsight_stamina_reduction_multiplier = { 0.85 }
@@ -991,8 +991,16 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-
-	self.values.weapon.faster_spread_bloom_recovery = { 1.35 }
+	self.definitions.weapon_faster_recoil_recentering = {
+		name_id = "menu_weapon_faster_recoil_recentering",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "faster_recoil_recentering",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.faster_recoil_recentering = { 1.66 }
 	self.definitions.weapon_faster_spread_bloom_recovery = {
 		name_id = "menu_weapon_faster_spread_bloom_recovery",
 		category = "feature",
@@ -1002,8 +1010,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
+	self.values.weapon.faster_spread_bloom_recovery = { 1.5 }
+	self.skill_descs.rifleman.multibasic = "33%"
+	self.skill_descs.rifleman.multipro = "50%"
 
-	self.values.weapon.standing_spread_multiplier = { 0.8 }
+	-- Marksman
+	self.values.weapon.standing_spread_multiplier = { 0.85 }
 	self.definitions.weapon_standing_spread_multiplier = {
 		name_id = "menu_weapon_standing_spread_multiplier",
 		category = "feature",
@@ -1011,20 +1023,6 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "standing_spread_multiplier",
 			category = "weapon",
-		},
-	}
-	self.skill_descs.rifleman.multibasic = "35%"
-	self.skill_descs.rifleman.multipro = "20%"
-
-	-- Marksman
-	self.values.player.steelsight_aimpunch_multiplier = { 0.85 }
-	self.definitions.player_steelsight_aimpunch_multiplier = {
-		name_id = "menu_player_steelsight_aimpunch_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "steelsight_aimpunch_multiplier",
-			category = "player",
 		},
 	}
 	self.values.weapon.steelsight_recoil_multiplier = { 0.8 }
@@ -1122,6 +1120,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.single_shot_ammo_return.multipro5 = "33%"
 
 	-- Enforcer --
+
+	-- Hot Pursuit
+	self.values.player.sprint_to_fire_multiplier = { 1.25 }
+	self.definitions.player_sprint_to_fire_multiplier = {
+		name_id = "menu_player_sprint_to_fire_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sprint_to_fire_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.underdog.multibasic = "25%"
 
 	-- Point Blank
 	self.values.player.speed_stack_on_kill = {
@@ -2117,7 +2128,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Fugitive --
 
-	-- Gun Drill Savvy
+	-- Equilibrium
 	self.values.weapon.steelsight_move_speed_penalty_multiplier = { 0.8 }
 	self.definitions.weapon_steelsight_move_speed_penalty_multiplier = {
 		incremental = true,
@@ -2133,17 +2144,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.equilibrium.multibasic = "20%"
 	self.skill_descs.equilibrium.multipro = "30%"
 
-	-- Gunfighter
-	self.values.player.sprint_to_fire_multiplier = { 1.25 }
-	self.definitions.player_sprint_to_fire_multiplier = {
-		name_id = "menu_player_sprint_to_fire_multiplier",
+	-- Field Operator
+	self.definitions.player_can_autoreload = {
+		name_id = "menu_player_can_autoreload",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "sprint_to_fire_multiplier",
+			upgrade = "can_autoreload",
 			category = "player",
 		},
 	}
+	self.values.player.can_autoreload = { true }
 	self.values.weapon.swap_speed_multiplier[1] = 1.25
 	self.skill_descs.dance_instructor.multibasic = "25%"
 	self.skill_descs.dance_instructor.multipro = "25%"
@@ -3129,11 +3140,27 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[12][9].multiperk = "30%"
 
 	-- Ex-President
-	self.values.player.body_armor.skill_max_health_store = { 6, 5, 4, 3, 2.5, 2, 1 }
-	self.values.player.armor_health_store_amount = { 0.1, 0.3, 0.5 }
-	self.specialization_descs[13][1].multiperk = "1"
+	self.values.player.body_armor.skill_max_health_store = { 4, 3.75, 3.5, 3.25, 2.5, 1.75, 1 }
+	self.values.player.body_armor.skill_kill_change_regenerate_speed = { 5, 4.5, 4, 3.5, 3, 2.5, 2 }
+	self.values.player.armor_health_store_amount = { 0.2, 0.4, 0.6 }
+	self.values.player.armor_health_store_no_waste = { true }
+
+	self.definitions.player_armor_health_store_no_waste = {
+		name_id = "menu_player_armor_health_store_no_waste",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_health_store_no_waste",
+			category = "player",
+		},
+	}
+
+	self.specialization_descs[13][1].multiperk = "2"
 	self.specialization_descs[13][3].multiperk = "2"
+	self.specialization_descs[13][3].multiperk2 = "10%"
+	self.specialization_descs[13][5].multiperk = "50%"
 	self.specialization_descs[13][7].multiperk = "2"
+	self.specialization_descs[13][7].multiperk2 = "10%"
 
 	-- Maniac
 	self.cocaine_stacks_convert_levels = { 600 / 8, 60 }

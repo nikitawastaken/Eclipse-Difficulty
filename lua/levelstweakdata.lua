@@ -1063,7 +1063,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	if not no_outfits then
 		if expanded_outfits or vanilla_outfits then -- Vanilla setting, the same as vanilla, also on for the Expanded setting
-			self.pal.player_style = "raincoat"
+			self.glace.player_style = "raincoat"
 			self.dah.player_style = "sneak_suit"
 			self.wwh.player_style = "winter_suit"
 			self.sah.player_style = "tux"

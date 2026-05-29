@@ -82,18 +82,24 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Stable Shot
 	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
-	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
+	self.skills.stable_shot[2].upgrades = { "player_steelsight_aimpunch_multiplier" }
 	self.skills.stable_shot.icon_xy = { 9, 11 }
+	self.skills.stable_shot.name_id = "menu_stable_shot"
+	self.skills.stable_shot.desc_id = "menu_stable_shot_desc"
 
 	-- Rifleman
-	self.skills.rifleman[1].upgrades = { "weapon_faster_spread_bloom_recovery" }
-	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
+	self.skills.rifleman[1].upgrades = { "weapon_faster_recoil_recentering" }
+	self.skills.rifleman[2].upgrades = { "weapon_faster_spread_bloom_recovery" }
 	self.skills.rifleman.icon_xy = { 0, 5 }
+	self.skills.rifleman.name_id = "menu_rifleman"
+	self.skills.rifleman.desc_id = "menu_rifleman_desc"
 
 	-- Marksman
-	self.skills.sharpshooter[1].upgrades = { "player_steelsight_aimpunch_multiplier" }
+	self.skills.sharpshooter[1].upgrades = { "weapon_standing_spread_multiplier" }
 	self.skills.sharpshooter[2].upgrades = { "weapon_steelsight_recoil_multiplier" }
 	self.skills.sharpshooter.icon_xy = { 6, 5 }
+	self.skills.sharpshooter.name_id = "menu_marksman"
+	self.skills.sharpshooter.desc_id = "menu_marksman_desc"
 
 	-- Ammo Efficiency
 	self.skills.spotter_teamwork[1].upgrades = { "head_shot_ammo_return_1" }
@@ -116,12 +122,12 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- ENFORCER --
 
-	-- original Underdog
-	self.skills.underdog[1].upgrades = { "" }
-	self.skills.underdog[2].upgrades = { "" }
-	self.skills.underdog.name_id = "menu_work_in_progress_beta"
-	self.skills.underdog.desc_id = "menu_work_in_progress_beta_desc"
-	self.skills.underdog.icon_xy = { 0, 0 }
+	-- Hot Pursuit
+	self.skills.underdog[1].upgrades = { "player_sprint_to_fire_multiplier" }
+	self.skills.underdog[2].upgrades = { "player_run_and_reload" }
+	self.skills.underdog.name_id = "menu_hot_pursuit"
+	self.skills.underdog.desc_id = "menu_hot_pursuit_desc"
+	self.skills.underdog.icon_xy = { 10, 6 }
 
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
@@ -456,7 +462,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.equilibrium.icon_xy = { 0, 9 }
 
 	-- Field Operator
-	self.skills.dance_instructor[1].upgrades = { "player_sprint_to_fire_multiplier" }
+	self.skills.dance_instructor[1].upgrades = { "player_can_autoreload" }
 	self.skills.dance_instructor[2].upgrades = { "weapon_swap_speed_multiplier" }
 	self.skills.dance_instructor.icon_xy = { 4, 10 }
 
@@ -788,9 +794,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President
-	table.delete(self.specializations[13][3].upgrades, "player_passive_health_multiplier_1")
-	table.delete(self.specializations[13][5].upgrades, "player_passive_health_multiplier_2")
-	table.delete(self.specializations[13][7].upgrades, "player_passive_health_multiplier_3")
+	self.specializations[13][5].upgrades = { "player_armor_max_health_store_multiplier", "player_armor_health_store_no_waste" }
+	self.specializations[13][7].upgrades = { "player_armor_health_store_amount_3", "player_passive_health_multiplier_2" }
 
 	-- yakuza
 	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
