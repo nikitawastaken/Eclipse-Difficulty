@@ -3088,6 +3088,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+
+	self.values.player.damage_to_hot_extra_ticks[1] = 5
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
 	self.damage_to_hot_data.add_stack_sources.fire = false
 	self.damage_to_hot_data.add_stack_sources.poison = false
@@ -3107,7 +3109,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][7].multiperk = "30%"
 	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
-	self.specialization_descs[11][9].multiperk3 = "3"
+	self.specialization_descs[11][9].multiperk3 = "4.5"
 
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = { 0.30 }
