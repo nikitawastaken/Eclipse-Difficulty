@@ -1419,9 +1419,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.start_out_ammo_multiplier = { 1.5 }
+	self.values.player.start_out_ammo_multiplier = { 1.33 }
 
-	self.skill_descs.ammo_reservoir.multibasic = "50%"
+	self.skill_descs.ammo_reservoir.multibasic = "33%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Mag Plus
