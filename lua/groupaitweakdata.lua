@@ -3722,13 +3722,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
 		drama = calculate_team_ai_weight(self.max_nr_team_ai, 2),
-		ponr_length = calculate_team_ai_weight(self.max_nr_team_ai, 2),
 		spawn_rate = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
 		force = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
 		freq = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
 		spawn_group_interval = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
-		difficulty_addend_time = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		difficulty_addend_time = calculate_team_ai_weight(self.max_nr_team_ai, 2),
 		difficulty_addend_delay = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
+		ponr_length = calculate_team_ai_weight(self.max_nr_team_ai, 2),
 	}
 
 	-- Spawn rate
