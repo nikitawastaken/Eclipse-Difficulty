@@ -53,6 +53,7 @@ function PlayerTased:enter(state_data, enter_data)
 	
 	self._saved_default_color_grading = managers.environment_controller:default_color_grading()
 	managers.environment_controller:set_default_color_grading("color_tasered", true)
+	managers.environment_controller:set_downed_value(40)
 	managers.environment_controller:refresh_render_settings()
 end
 
@@ -64,6 +65,7 @@ Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
 	end
 	
 	managers.environment_controller:set_default_color_grading(self._saved_default_color_grading)
+	managers.environment_controller:set_downed_value(0)
 	managers.environment_controller:refresh_render_settings()
 end)
 
