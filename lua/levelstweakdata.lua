@@ -1398,7 +1398,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 3,
 	}
 	self.bex.random_environments = {
-		["sanmartin_01"] = 1,
 		["sanmartin_02"] = 2,
 		["default"] = 3,
 	}
@@ -1527,5 +1526,25 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.pbr2.random_environments = {
 		["birth_of_sky"] = 69,
+	}
+	self.roberts.random_environments = {
+		["roberts_1"] = 2,
+		["roberts_2"] = 2,
+		["roberts_3"] = 2,
+	}
+	self.arena.random_environments = {
+		["arena_cg"] = 69,
+	}
+	self.glace.random_environments = {
+		["glace_1"] = 69,
+	}
+	self.mus.random_environments = {
+		["dadiamond_cg"] = 69,
+	}
+	self.chas.random_environments = {
+		["chas_cg"] = 69,
+	}
+	self.spa.random_environments = {
+		["spa_01"] = 69,
 	}
 end)
