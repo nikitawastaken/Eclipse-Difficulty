@@ -11,7 +11,7 @@
 			<param key="underlay" value="core/environments/skies/default/default"/>
 			<param key="sun_ray_color_scale" value="0.47014576196671"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="0.47058826684952 0.34901961684227 0.63921570777893"/>
+			<param key="sun_ray_color" value="0.47058826684952 0.5137255191803 0.63921570777893"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_night_df"/>
 		</others>
 		<post_effect>
@@ -27,7 +27,7 @@
 						<param key="sky_bottom_color_scale" value="0.47014576196671"/>
 						<param key="ambient_color_scale" value="0.17000000178814"/>
 						<param key="ambient_color" value="0.1294117718935 0.19215688109398 0.27843138575554"/>
-						<param key="fog_max_range" value="94029.1484375"/>
+						<param key="fog_max_range" value="108133.5234375"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
 						<param key="sky_top_color_scale" value="0.47014576196671"/>
 						<param key="sky_top_color" value="0.12156863510609 0.34901961684227 0.42352944612503"/>
@@ -49,22 +49,18 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
-						<param key="lense_intensity" value="0.5"/>
+						<param key="lense_intensity" value="0.15044663846493"/>
 						<param key="bloom_blur_size" value="4"/>
 						<param key="bloom_intensity" value="0.5"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>

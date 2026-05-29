@@ -20,19 +20,19 @@
 					<apply_ambient>
 						<param key="ambient_scale" value="0.084626235067844"/>
 						<param key="sky_bottom_color" value="0.1294117718935 0.15294118225574 0.18823531270027"/>
-						<param key="fog_start_color" value="0.19607844948769 0.23137256503105 0.29803922772408"/>
+						<param key="fog_start_color" value="1 0.85490202903748 0.58431375026703"/>
 						<param key="effect_light_scale" value="1"/>
-						<param key="fog_far_low_color" value="0.19607844948769 0.23137256503105 0.29803922772408"/>
+						<param key="fog_far_low_color" value="1 0.85490202903748 0.58431375026703"/>
 						<param key="ambient_falloff_scale" value="0.7522332072258"/>
 						<param key="sky_bottom_color_scale" value="0.716000020504"/>
-						<param key="ambient_color_scale" value="0"/>
+						<param key="ambient_color_scale" value="1.2999999523163"/>
 						<param key="ambient_color" value="0.11372549831867 0.12156863510609 0.15686275064945"/>
-						<param key="fog_max_range" value="51716.03125"/>
+						<param key="fog_max_range" value="42313.1171875"/>
 						<param key="bloom_threshold" value="0.54536908864975"/>
 						<param key="sky_top_color_scale" value="0.62699997425079"/>
 						<param key="sky_top_color" value="0.19607844948769 0.23137256503105 0.29803922772408"/>
-						<param key="fog_min_range" value="1108.6037597656"/>
-						<param key="fog_max_density" value="0.38551950454712"/>
+						<param key="fog_min_range" value="1334.2736816406"/>
+						<param key="fog_max_density" value="1"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -61,8 +61,8 @@
 		<underlay_effect>
 			<sky>
 				<param key="color0" value="0.32156863808632 0.43529415130615 0.50196081399918"/>
-				<param key="color2" value="0.35294118523598 0.4078431725502 0.54117649793625"/>
-				<param key="color2_scale" value="0.84626233577728"/>
+				<param key="color2" value="1 0.74509805440903 0.50196081399918"/>
+				<param key="color2_scale" value="1.2223789691925"/>
 				<param key="color0_scale" value="0.47014576196671"/>
 			</sky>
 		</underlay_effect>

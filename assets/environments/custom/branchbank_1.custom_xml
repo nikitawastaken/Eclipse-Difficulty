@@ -18,7 +18,7 @@
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.33850494027138"/>
+						<param key="ambient_scale" value="0.25387871265411"/>
 						<param key="sky_bottom_color" value="1 0.89803928136826 0.74901962280273"/>
 						<param key="fog_start_color" value="0.80392163991928 0.89411771297455 1"/>
 						<param key="effect_light_scale" value="1"/>

@@ -1,8 +1,11 @@
 return {
 	flashlights_on = true, -- Flashlights
 	color_grading = { -- Randomized color gradings
+		"color_payday",
+		"color_heat"
+		"color_bhd_classic",
+		"color_heat_classic",
 		"color_payday_classic",
-		"color_payday_heat"
 	},
 	environment_override = { -- File override
 		["environments/pd2_mad_outdoor/pd2_mad_outdoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/mad_night.custom_xml",

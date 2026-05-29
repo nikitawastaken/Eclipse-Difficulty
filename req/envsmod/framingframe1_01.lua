@@ -5,7 +5,11 @@ return {
 		"color_bhd",
 		"color_xgen",
 		"color_xxxgen",
-		"color_payday"
+		"color_payday",
+		"color_bhd_classic",
+		"color_heat_classic",
+		"color_payday_classic",
+		"color_xgen_classic",
 	},
 	environment_override = { -- File override
 		["environments/pd2_env_framing_frame_stage_2/pd2_env_framing_frame_stage_2"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/framing_frame_1_1.custom_xml",

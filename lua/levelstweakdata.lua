@@ -1218,22 +1218,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.corp.custom_package = bellmead_security_package
 	
 	local additive_weight_value = 1
-	
-	--[[idk if this even works :xdd: not used atm
-	-- gonna leave it here until i can test it properly later
-	local is_full_moon = nil
-    local MoonReferenceTime = os.time{year=2026, month=1, day=1, hour=17, min=28}
-    local targetTime = os.time(year=year, month=month, day=day, hour=0, min=0)
-    local diff = os.difftime(targetTime, referenceTime) / 86400
-	local moon_age = diff % 29.53059
-    if moon_age >= 16.61096 and not moon_age <= 20.30228 then
-		is_full_moon = true
-		print("full moon today! get the glommer!")
-	else
-		is_full_moon = false
-		print("no full moon today.. so sad.")
-	end
-	]]
 	local is_jason = os.date("%A %d") == "Friday 13"
 	local is_halloween = os.date("%B %d") == "October 31"
 	if is_jason or is_halloween then 
@@ -1540,5 +1524,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["horrorhouse_03"] = 3,
 		["horrorhouse_04"] = 2,
 		["horrorhouse_05"] = 2,
+	}
+	self.pbr2.random_environments = {
+		["birth_of_sky"] = 69,
 	}
 end)

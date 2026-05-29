@@ -6,7 +6,11 @@ return {
 		"color_payday",
 		"color_bhd",
 		"color_xgen",
-		"color_xxxgen"
+		"color_xxxgen",
+		"color_heat_classic",
+		"color_nice_classic",
+		"color_payday_classic",
+		"color_xxxgen_classic",
 	},
 	environment_override = { -- File override
 		["environments/pd2_run/run_inside"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/heat_street_4.custom_xml",

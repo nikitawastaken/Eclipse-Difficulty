@@ -27,12 +27,12 @@
 						<param key="sky_bottom_color_scale" value="0.15000000596046"/>
 						<param key="ambient_color_scale" value="0"/>
 						<param key="ambient_color" value="0.031372550874949 0.031372550874949 0.031372550874949"/>
-						<param key="fog_max_range" value="79924.78125"/>
+						<param key="fog_max_range" value="51716.03125"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
 						<param key="sky_top_color_scale" value="0.15000000596046"/>
 						<param key="sky_top_color" value="0.67058825492859 0.80784320831299 1"/>
-						<param key="fog_min_range" value="564.17492675781"/>
-						<param key="fog_max_density" value="0.037611659616232"/>
+						<param key="fog_min_range" value="995.76879882813"/>
+						<param key="fog_max_density" value="0.16925247013569"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -49,9 +49,9 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,16 +61,12 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>
 				<param key="color0" value="0.12549020349979 0.10980392992496 0.074509806931019"/>
 				<param key="color2" value="0.66274511814117 0.73333334922791 0.84705889225006"/>
-				<param key="color2_scale" value="1"/>
+				<param key="color2_scale" value="1.5984956026077"/>
 				<param key="color0_scale" value="1"/>
 			</sky>
 		</underlay_effect>

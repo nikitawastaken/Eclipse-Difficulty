@@ -5,6 +5,12 @@ return {
 		"color_xxxgen",
 		"color_matrix_classic",
 		"color_payday",
+		"color_nice_classic",
+		"color_payday_classic",
+		"color_xgen_classic",
+		"color_plus",
+		"color_force",
+		"color_e3nice",
 	},
 	environment_override = {
 		["environments/suburbia_env/suburbia_env"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/counterfeit_evening.custom_xml",

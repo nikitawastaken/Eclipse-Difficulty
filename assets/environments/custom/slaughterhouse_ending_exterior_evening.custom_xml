@@ -6,7 +6,7 @@
 			<param key="rotation" value="0" />
 		</sky_orientation>
 		<others>
-			<param key="sky_texture" value="units/world/architecture/suburbia/textures/sky_df"/>
+			<param key="sky_texture" value="core/environments/skies/sky_1930_sunset_heavy_clouds/sky_1930_sunset_heavy_clouds"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_1930_sunset_heavy_clouds/sky_1930_sunset_heavy_clouds"/>
 			<param key="sun_ray_color_scale" value="0.28208744525909"/>

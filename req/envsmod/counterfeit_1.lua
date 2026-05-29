@@ -3,6 +3,9 @@ return {
 	color_grading = { -- Randomized color gradings
 		"color_matrix_classic",
 		"color_payday",
+		"color_xxxgen",
+		"color_bhd_classic",
+		"color_payday_classic",
 	},
 	environment_override = {
 		["environments/suburbia_env/suburbia_env"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/counterfeit.custom_xml",

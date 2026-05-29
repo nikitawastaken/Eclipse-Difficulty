@@ -6,6 +6,8 @@ return {
 		"color_xgen",
 		"color_xxxgen",
 		"color_payday",
+		"color_heat_classic",
+		"color_payday_classic",
 	},
 	environment_override = { -- File override
 		["environments/pd2_dinner_room/pd2_dinner_room"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_start_exterior.custom_xml",

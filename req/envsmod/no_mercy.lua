@@ -1,7 +1,10 @@
 return {
 	flashlights_on = false, -- Flashlights
 	color_grading = { -- Randomized color gradings
-		"color_xxxgen"
+		"color_xxxgen",
+		"color_bhd_classic",
+		"color_heat_classic",
+		"color_payday_classic",
 	},
 	environment_override = { -- File override
 		["units/pd2_dlc_des/environments/des_indoor/des_indoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/no_mercy_darkness.custom_xml",

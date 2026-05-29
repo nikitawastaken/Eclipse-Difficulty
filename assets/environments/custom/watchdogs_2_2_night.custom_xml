@@ -9,7 +9,7 @@
 			<param key="sky_texture" value="core/environments/skies/sky_0200_night_moon_stars/sky_0200_night_moon_stars"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_2100_moon/sky_2100_moon"/>
-			<param key="sun_ray_color_scale" value="0.47014576196671"/>
+			<param key="sun_ray_color_scale" value="0"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.17254902422428 0.19215688109398 0.22745099663734"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_night_df"/>
@@ -22,17 +22,17 @@
 						<param key="sky_bottom_color" value="0.062745101749897 0.047058828175068 0.04313725605607"/>
 						<param key="fog_start_color" value="0.12156863510609 0.15686275064945 0.21176472306252"/>
 						<param key="effect_light_scale" value="1"/>
-						<param key="fog_far_low_color" value="0.094117656350136 0.098039224743843 0.10980392992496"/>
+						<param key="fog_far_low_color" value="0.43529415130615 0.48235297203064 0.52941179275513"/>
 						<param key="ambient_falloff_scale" value="1.25"/>
 						<param key="sky_bottom_color_scale" value="0.10800000280142"/>
-						<param key="ambient_color_scale" value="0.31999999284744"/>
+						<param key="ambient_color_scale" value="0.94029152393341"/>
 						<param key="ambient_color" value="0.10588236153126 0.10588236153126 0.10588236153126"/>
-						<param key="fog_max_range" value="98730.609375"/>
+						<param key="fog_max_range" value="56417.48828125"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
 						<param key="sky_top_color_scale" value="0.10800000280142"/>
 						<param key="sky_top_color" value="0.16470588743687 0.16470588743687 0.16470588743687"/>
 						<param key="fog_min_range" value="657.26385498047"/>
-						<param key="fog_max_density" value="0.33850494027138"/>
+						<param key="fog_max_density" value="1"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -48,10 +48,6 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -66,7 +62,7 @@
 			<sky>
 				<param key="color0" value="0 0 0"/>
 				<param key="color2" value="0.80392163991928 0.90980398654938 1"/>
-				<param key="color2_scale" value="0.28700000047684"/>
+				<param key="color2_scale" value="0.94029152393341"/>
 				<param key="color0_scale" value="0.25"/>
 			</sky>
 		</underlay_effect>
