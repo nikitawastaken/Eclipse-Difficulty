@@ -89,6 +89,8 @@ function PlayerTased:_check_action_shock(t, input, ...)
 
 			self._camera_limit = true
 		end
+		
+		managers.hud:taser_effect_screen(1, {0, 0, 0.35})
 
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
 		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength_h, shock_strength_h), -shock_strength_v, shock_strength_v)

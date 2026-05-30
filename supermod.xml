@@ -344,6 +344,9 @@
 		
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
+		
+		<!-- Vignette texture. Currently used for Taser screen effect -->
+		<file name="guis/textures/pd2/screen_vignette.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
