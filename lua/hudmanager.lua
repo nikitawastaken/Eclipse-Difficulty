@@ -41,7 +41,7 @@ Hooks:PostHook(HUDManager, "_update_name_labels", "_update_name_labels_mutator_n
 end)
 
 -- Taser screen effect setup
-Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_test_effect", function(self)
+Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effect", function(self)
     local hud = self:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
 		
 	self._taser_effect_panel = hud.panel:bitmap({
