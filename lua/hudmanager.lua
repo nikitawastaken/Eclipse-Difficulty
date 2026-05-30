@@ -84,38 +84,3 @@ function HUDManager:_fadeout_effect_screen()
 	self._taser_effect_panel:set_alpha(0)
 	self._active = false
 end
-
--- OG Kingpin effect code
---[[
-local ability_radial = HUDManager.set_teammate_ability_radial
-function HUDManager:set_teammate_ability_radial(i, data)
-	local hud = managers.hud:script( PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-	if not hud.panel:child("chico_injector_left") then
-		local chico_injector_left = hud.panel:bitmap({
-			name = "chico_injector_left",
-			visible = false,
-			texture = "guis/textures/alphawipe_test",
-			layer = 0,
-			color = Color(0, 0, 1),
-			blend_mode = "add",
-			w = hud.panel:w(),
-			h = hud.panel:h(),
-			x = 0,
-			y = 0 
-		})
-	end
-	local chico_injector_left = hud.panel:child("chico_injector_left")
-	if i == 4 and data.current < data.total and data.current > 0 and chico_injector_left then
-		chico_injector_left:set_visible(true)
-		local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
-		chico_injector_left:animate(hudinfo.flash_icon, 1000000)
-	elseif hud.panel:child("chico_injector_left") then
-		chico_injector_left:stop()
-		chico_injector_left:set_visible(false)
-	end
-	if chico_injector_left and data.current == 0 then
-		chico_injector_left:set_visible(false)
-	end
-	return ability_radial(self, i, data)
-end
---]]
