@@ -2600,7 +2600,7 @@ end
 
 local function get_pellets_from_blueprint(name, blueprint, category, slot)
 	local new_rays = WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
-	if table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
+	if not name == "flun" and table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
 		-- Grenade launchers have a base rays stat of 8 even though
 		-- the stat is only used when sting grenades are equipped...
 		return 1, tweak_data.weapon[name].rays
