@@ -347,6 +347,7 @@
 		
 		<!-- Vignette texture. Currently used for Taser screen effect -->
 		<file name="guis/textures/pd2/screen_vignette.texture"/>
+		<file name="guis/textures/pd2/screen_vignette_reversed.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>

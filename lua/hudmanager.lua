@@ -57,6 +57,19 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 		x = 0,
 		y = 0 
 	})
+	self._screen_vignette_reversed_panel = hud.panel:bitmap({
+        name = "screen_vignette_reversed_panel",
+        visible = true,
+        texture = "guis/textures/pd2/screen_vignette_reversed",
+        layer = 1,
+        color = Color(0.5, 0.5, 0.5),
+        alpha = 0,
+        blend_mode = "add",
+        w = hud.panel:w(),
+        h = hud.panel:h(),
+        x = 0,
+        y = 0 
+    })
 end)
 
 -- Screen effect functions
