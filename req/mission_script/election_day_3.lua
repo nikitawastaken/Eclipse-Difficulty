@@ -122,12 +122,14 @@ return {
 		},
 	},
 	-- Disable drill reinforce
+	[100584] = disabled,
 	[100676] = disabled,
 	[101138] = disabled,
+	[103527] = disabled,
 	-- Increase the hack duration
 	[103568] = { -- backup_started_link
 		on_executed = {
-			{ id = 103575, delay = 90, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
+			{ id = 103575, delay = 120, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
 		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
