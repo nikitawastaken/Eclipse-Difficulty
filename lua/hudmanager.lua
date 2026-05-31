@@ -40,12 +40,12 @@ Hooks:PostHook(HUDManager, "_update_name_labels", "_update_name_labels_mutator_n
 	end
 end)
 
--- Taser screen effect setup
+-- Various screen effects setup
 Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effect", function(self)
     local hud = self:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
 		
-	self._taser_effect_panel = hud.panel:bitmap({
-		name = "taser_effect_panel",
+	self._screen_vignette_panel = hud.panel:bitmap({
+		name = "screen_vignette_panel",
 		visible = true,
 		texture = "guis/textures/pd2/screen_vignette",
 		layer = 0,
@@ -59,28 +59,33 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 	})
 end)
 
--- Taser screen effect functions
-function HUDManager:taser_effect_screen(duration, color)	
+-- Screen effect functions
+function HUDManager:effect_screen(duration, color, effect_name)
 	if not _G.is_vr then
-		self._taser_effect_panel:set_alpha(1)
+		if effect_name == nil then
+			effect_name = "screen_vignette"
+		end
+		local screen_effect_panel = "_"..effect_name.."_panel"
+		screen_effect_panel = self[screen_effect_panel]		
+		screen_effect_panel:set_alpha(1)
 		self._duration = duration
-		self._taser_effect_panel:set_color(Color(color[1], color[2], color[3]))
+		screen_effect_panel:set_color(Color(color[1], color[2], color[3]))
 		if self._active or stop then
-			self._taser_effect_panel:stop()
+			screen_effect_panel:stop()
 		end
 		self._active = true
-		self._taser_effect_panel:animate(callback(self, self, "_fadeout_effect_screen"))
+		screen_effect_panel:animate(callback(self, self, "_fadeout_effect_screen"), screen_effect_panel)
 	end
 end
 
-function HUDManager:_fadeout_effect_screen()
+function HUDManager:_fadeout_effect_screen(screen_effect_panel)
 	local start_time = Application:time()
 	local curr_time = start_time
 	while curr_time - start_time < self._duration do
 		curr_time = Application:time()
-		self._taser_effect_panel:set_alpha(1 - ((curr_time - start_time) / self._duration))
+		screen_effect_panel:set_alpha(1 - ((curr_time - start_time) / self._duration))
 		coroutine.yield()
 	end
-	self._taser_effect_panel:set_alpha(0)
+	screen_effect_panel:set_alpha(0)
 	self._active = false
 end
