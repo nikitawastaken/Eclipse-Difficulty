@@ -145,7 +145,7 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 
 	local shotgun = table.contains(weapon_tweak.categories, "shotgun")
 	local flun = equipped_name == "flun" and id ~= "wpn_fps_upg_a_flun_flare"
-	
+
 	-- Maybe there's a less verbose way to get your equipped
 	-- weapon's mods and filter them but I'm not sure
 	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(equipped_name)
@@ -163,7 +163,7 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 
 		if equipped_name == "flun" and id ~= "wpn_fps_upg_a_flun_flare" then
 			flun = true
-		end	
+		end
 	end
 	if not shotgun and not sting and not flun then
 		return

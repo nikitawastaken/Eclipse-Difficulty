@@ -39,7 +39,7 @@ WeaponFactoryTweakData.parts_from_template = {
 
 function WeaponFactoryTweakData:_get_table_from_category_template(tweak_data, category, tbl)
 	local cat_template_id = self.category_templates[category]
-	
+
 	return cat_template_id and tweak_data.weapon and tweak_data.weapon[cat_template_id] and tweak_data.weapon[cat_template_id][tbl] or {}
 end
 
@@ -1855,8 +1855,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	local slug_fire_mode_bloom = deep_clone(self._fire_mode_bloom_presets.shotgun_slug)
 	local slug_spread_bloom = deep_clone(self._spread_bloom_presets.shotgun_slug)
 
-	self.parts.wpn_fps_upg_a_custom.stats = { 
-		damage = 8, 
+	self.parts.wpn_fps_upg_a_custom.stats = {
+		damage = 8,
 		recoil = -3,
 	}
 	self.parts.wpn_fps_upg_a_custom.custom_stats = {
@@ -1866,8 +1866,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		trail_effect = "effects/particles/weapons/shotgun_streak_buck",
 	}
 
-	self.parts.wpn_fps_upg_a_custom_free.stats = { 
-		damage = 8, 
+	self.parts.wpn_fps_upg_a_custom_free.stats = {
+		damage = 8,
 		recoil = -3,
 	}
 	self.parts.wpn_fps_upg_a_custom_free.custom_stats = {
@@ -1876,13 +1876,13 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		muzzleflash = "effects/particles/weapons/sho_buckshot",
 		trail_effect = "effects/particles/weapons/shotgun_streak_buck",
 	}
-	
-	self.parts.wpn_fps_upg_a_explosive.stats = { 
-		damage = 144, 
-		total_ammo_mod = -8, 
-		recoil = -1, 
-		spread = 2, 
-		spread_multi = slug_spread_mul,		
+
+	self.parts.wpn_fps_upg_a_explosive.stats = {
+		damage = 144,
+		total_ammo_mod = -8,
+		recoil = -1,
+		spread = 2,
+		spread_multi = slug_spread_mul,
 	}
 	self.parts.wpn_fps_upg_a_explosive.custom_stats = {
 		rays = 1,
@@ -1900,12 +1900,12 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 		trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
 	}
-	
-	self.parts.wpn_fps_upg_a_slug.stats = { 
-		damage = 64, 
-		total_ammo_mod = -6, 
-		recoil = -2, 
-		spread = 3, 
+
+	self.parts.wpn_fps_upg_a_slug.stats = {
+		damage = 64,
+		total_ammo_mod = -6,
+		recoil = -2,
+		spread = 3,
 		spread_multi = slug_spread_mul,
 	}
 	self.parts.wpn_fps_upg_a_slug.custom_stats = {
@@ -1923,9 +1923,9 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 		trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
 	}
-	
-	self.parts.wpn_fps_upg_a_piercing.stats = { 
-		damage = -8, 
+
+	self.parts.wpn_fps_upg_a_piercing.stats = {
+		damage = -8,
 		spread = 1,
 	}
 	self.parts.wpn_fps_upg_a_piercing.custom_stats = {
@@ -1936,10 +1936,10 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		muzzleflash = "effects/particles/weapons/sho_flechette",
 		trail_effect = "effects/particles/weapons/shotgun_streak_flech",
 	}
-	
-	self.parts.wpn_fps_upg_a_dragons_breath.stats = { 
-		damage = -8, 
-		total_ammo_mod = -6, 
+
+	self.parts.wpn_fps_upg_a_dragons_breath.stats = {
+		damage = -8,
+		total_ammo_mod = -6,
 		spread = -2,
 	}
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats = {
@@ -1952,13 +1952,13 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
 		trail_effect = "effects/particles/weapons/shotgun_streak_db",
 	}
-	self.parts.wpn_fps_upg_a_rip.stats = { 
-		damage = 48, 
-		total_ammo_mod = -8, 
-		spread = 1, 
+	self.parts.wpn_fps_upg_a_rip.stats = {
+		damage = 48,
+		total_ammo_mod = -8,
+		spread = 1,
 		spread_multi = slug_spread_mul,
 	}
-	self.parts.wpn_fps_upg_a_rip.custom_stats = {		
+	self.parts.wpn_fps_upg_a_rip.custom_stats = {
 		rays = 1,
 		ammo_pickup_min_mul = 0.6,
 		ammo_pickup_max_mul = 0.6,
@@ -1974,24 +1974,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 
 	local shotgun_ammo_stat_overrides = {
 		wpn_fps_upg_a_custom = {
-			very_heavy = { 
-				stats = { damage = 12 },
-			},
-			heavy = { 
-				stats = { damage = 10 },
-			},
-			medium = {
-				stats = { damage = 8 },
-			},
-			light = { 
-				stats = { damage = 6 },
-			},
-			very_light = { 
-				stats = { damage = 6 },
-			},
-		},
-		wpn_fps_upg_a_custom_free = {
-			very_heavy = { 
+			very_heavy = {
 				stats = { damage = 12 },
 			},
 			heavy = {
@@ -2000,7 +1983,24 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			medium = {
 				stats = { damage = 8 },
 			},
-			light = { 
+			light = {
+				stats = { damage = 6 },
+			},
+			very_light = {
+				stats = { damage = 6 },
+			},
+		},
+		wpn_fps_upg_a_custom_free = {
+			very_heavy = {
+				stats = { damage = 12 },
+			},
+			heavy = {
+				stats = { damage = 10 },
+			},
+			medium = {
+				stats = { damage = 8 },
+			},
+			light = {
 				stats = { damage = 6 },
 			},
 			very_light = {
@@ -2008,7 +2008,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			},
 		},
 		wpn_fps_upg_a_explosive = {
-			very_heavy = { 
+			very_heavy = {
 				stats = { damage = 216 },
 			},
 			heavy = {
@@ -2017,27 +2017,27 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			medium = {
 				stats = { damage = 144 },
 			},
-			light = { 
+			light = {
 				stats = { damage = 108 },
 			},
-			very_light = { 
+			very_light = {
 				stats = { damage = 86 },
 			},
 		},
 		wpn_fps_upg_a_slug = {
-			very_heavy = { 
+			very_heavy = {
 				stats = { damage = 104 },
 			},
 			heavy = {
 				stats = { damage = 76 },
 			},
-			medium = { 
+			medium = {
 				stats = { damage = 64 },
 			},
-			light = { 
+			light = {
 				stats = { damage = 52 },
 			},
-			very_light = { 
+			very_light = {
 				stats = { damage = 38 },
 			},
 		},
@@ -2048,44 +2048,44 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			heavy = {
 				stats = { damage = -10 },
 			},
-			medium = { 
+			medium = {
 				stats = { damage = -8 },
 			},
-			light = { 
+			light = {
 				stats = { damage = -6 },
 			},
-			very_light = { 
+			very_light = {
 				stats = { damage = -5 },
 			},
 		},
 		wpn_fps_upg_a_dragons_breath = {
-			very_heavy = { 
+			very_heavy = {
 				stats = { damage = -12 },
 			},
-			heavy = { 
+			heavy = {
 				stats = { damage = -10 },
 			},
-			medium = { 
+			medium = {
 				stats = { damage = -8 },
 			},
-			light = { 
+			light = {
 				stats = { damage = -6 },
 			},
-			very_light = { 
+			very_light = {
 				stats = { damage = -5 },
 			},
 		},
 		wpn_fps_upg_a_rip = {
-			very_heavy = { 
+			very_heavy = {
 				stats = { damage = 72 },
 			},
-			heavy = { 
+			heavy = {
 				stats = { damage = 60 },
 			},
-			medium = { 
+			medium = {
 				stats = { damage = 48 },
 			},
-			light = { 
+			light = {
 				stats = { damage = 36 },
 			},
 			very_light = {
@@ -2120,13 +2120,13 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					self[factory_id].override = {}
 				end
 
-				if shotgun_ammo_stat_overrides[part_id] and shotgun_ammo_stat_overrides[part_id][ammo_tier] then	
+				if shotgun_ammo_stat_overrides[part_id] and shotgun_ammo_stat_overrides[part_id][ammo_tier] then
 					local part_override = shotgun_ammo_stat_overrides[part_id][ammo_tier]
-					
+
 					for stats_tbl_type, stats_tbl in pairs(part_override) do
 						self[factory_id].override[part_id] = {}
 						self[factory_id].override[part_id][stats_tbl_type] = deep_clone(self.parts[part_id][stats_tbl_type])
-						
+
 						for stat, stat_value in pairs(stats_tbl) do
 							self[factory_id].override[part_id][stats_tbl_type][stat] = stat_value
 						end
@@ -2602,7 +2602,7 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 	self.parts.wpn_fps_upg_a_flun_flare.stats.total_ammo_mod = -10
 	self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_min_mul = base_pickup_mul / sec_gl_pickup_mul
 	self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_max_mul = self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_min_mul
-	
+
 	local flun_shotgun_ammos = {
 		"wpn_fps_upg_a_explosive",
 		"wpn_fps_upg_a_slug",
@@ -2627,7 +2627,7 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 			stats = { damage = 72 },
 		},
 	}
-	
+
 	for _, ammo_id in ipairs(flun_shotgun_ammos) do
 		local ammo_override = self.wpn_fps_spe_flun.override[ammo_id] or {}
 		ammo_override.parent = "lower_body"
@@ -2644,7 +2644,7 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 		ammo_override.custom_stats = deep_clone(self.parts[ammo_id].custom_stats)
 		ammo_override.custom_stats.stance_mul = deep_clone(self._stance_multiplier_presets.shotgun)
 		ammo_override.custom_stats.weapon_unit = "units/pd2_dlc_unk/weapons/wpn_fps_spe_flun/wpn_fps_sho_flun"
-		
+
 		self.wpn_fps_spe_flun.override[ammo_id] = ammo_override
 
 		local part_override = flun_ammo_stat_overrides[ammo_id]
@@ -2653,7 +2653,7 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 				ammo_override[stats_tbl_type][stat] = stat_value
 			end
 		end
-			
+
 		table.insert(self.wpn_fps_spe_flun.uses_parts, ammo_id)
 	end
 end
@@ -2691,13 +2691,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 		},
 	}
 	self._spread_bloom_presets = {
-		shotgun_slug = 	{
+		shotgun_slug = {
 			max = 2.5,
 			recovery = 1.2,
 			recovery_wait_multiplier = 1.4,
 		},
-	}	
-	
+	}
+
 	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
 	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
@@ -2834,7 +2834,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_convert_concealment_to_mobility()
 end)
 
-
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
 function WeaponFactoryTweakData:_init_hornet_grenade()
 	local hornet_unit_folder = "units/pd2_dlc_pxp3/weapons/wpn_fps_grenade_launcher_hornet/"
@@ -2905,7 +2904,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			},
 		},
 	}
-	
+
 	local shotgun_stance_muls = {
 		spread = {
 			standing = {
