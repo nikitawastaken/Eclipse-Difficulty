@@ -207,4 +207,17 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Sync ammo pickup upgrades -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="eclipse_sync_pickup_upgrade" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />
+				<param type="bool" />                  <!-- upgrade -->
+			</message>
+		</target>
+	</tweak>
 </tweaks>
