@@ -120,7 +120,7 @@ local so_hunt_fix = {
 	so_access_filter = { "swat", "taser" },
 }
 return {
-    -- FFO
+	-- FFO
 	[400093] = {
 		ponr = {
 			length = 300,
@@ -199,8 +199,8 @@ return {
 			},
 		},
 	},
-    -- add spawn lobby ambushes
-    [101660] = {
+	-- add spawn lobby ambushes
+	[101660] = {
 		on_executed = {
 			{ id = 400000, delay = 0 },
 			{ id = 400001, delay = 1 },
