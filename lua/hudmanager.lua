@@ -73,32 +73,67 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 end)
 
 -- Screen effect functions
+-- Helper function
 function HUDManager:effect_screen(duration, color, effect_name)
-	if not _G.is_vr then
-		if effect_name == nil then
-			effect_name = "screen_vignette"
-		end
-		local screen_effect_panel = "_"..effect_name.."_panel"
-		screen_effect_panel = self[screen_effect_panel]		
-		screen_effect_panel:set_alpha(1)
-		self._duration = duration
-		screen_effect_panel:set_color(Color(color[1], color[2], color[3]))
-		if self._active or stop then
-			screen_effect_panel:stop()
-		end
-		self._active = true
-		screen_effect_panel:animate(callback(self, self, "_fadeout_effect_screen"), screen_effect_panel)
+	if effect_name == nil then
+		effect_name = "screen_vignette"
+	end
+		
+	if effect_name == "screen_vignette" then
+		self:_do_effect_screen_vignette_panel(duration, color)
+	elseif effect_name == "screen_vignette_reversed" then
+		self:_do_effect_screen_vignette_reversed_panel(duration, color)
 	end
 end
 
-function HUDManager:_fadeout_effect_screen(screen_effect_panel)
+-- Functions that do effect related stuff
+function HUDManager:_do_effect_screen_vignette_panel(duration, color)	
+	if not _G.is_vr then
+		self._screen_vignette_panel:set_alpha(1)
+		self._screen_vignette_panel_duration = duration
+		self._screen_vignette_panel:set_color(Color(color[1], color[2], color[3]))
+		if self._screen_vignette_panel_active then
+			self._screen_vignette_panel:stop()
+		end
+		self._screen_vignette_panel_active = true
+		self._screen_vignette_panel:animate(callback(self, self, "_fadeout_effect_screen_vignette_panel"))
+	end
+end
+
+function HUDManager:_fadeout_effect_screen_vignette_panel()
 	local start_time = Application:time()
 	local curr_time = start_time
-	while curr_time - start_time < self._duration do
+	while curr_time - start_time < self._screen_vignette_panel_duration do
 		curr_time = Application:time()
-		screen_effect_panel:set_alpha(1 - ((curr_time - start_time) / self._duration))
+		self._screen_vignette_panel:set_alpha(1 - ((curr_time - start_time) / self._screen_vignette_panel_duration))
 		coroutine.yield()
 	end
-	screen_effect_panel:set_alpha(0)
-	self._active = false
+	self._screen_vignette_panel:set_alpha(0)
+	self._screen_vignette_panel_active = false
+end
+
+
+function HUDManager:_do_effect_screen_vignette_reversed_panel(duration, color)	
+	if not _G.is_vr then
+		self._screen_vignette_reversed_panel:set_alpha(1)
+		self._screen_vignette_reversed_panel_duration = duration
+		self._screen_vignette_reversed_panel:set_color(Color(color[1], color[2], color[3]))
+		if self._screen_vignette_reversed_panel_active then
+			self._screen_vignette_reversed_panel:stop()
+		end
+		self._screen_vignette_reversed_panel_active = true
+		self._screen_vignette_reversed_panel:animate(callback(self, self, "_fadeout_effect_screen_vignette_reversed_panel_duration"))
+	end
+end
+
+function HUDManager:_fadeout_effect_screen_vignette_reversed_panel_duration()
+	local start_time = Application:time()
+	local curr_time = start_time
+	while curr_time - start_time < self._screen_vignette_reversed_panel_duration do
+		curr_time = Application:time()
+		self._screen_vignette_reversed_panel:set_alpha(1 - ((curr_time - start_time) / self._screen_vignette_reversed_panel_duration))
+		coroutine.yield()
+	end
+	self._screen_vignette_reversed_panel:set_alpha(0)
+	self._screen_vignette_panel_active = false
 end
