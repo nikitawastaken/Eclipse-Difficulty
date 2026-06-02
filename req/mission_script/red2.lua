@@ -120,24 +120,11 @@ local so_hunt_fix = {
 	so_access_filter = { "swat", "taser" },
 }
 return {
-	-- add ffo and spawn lobby ambushes
-	[101660] = {
+	-- FFO
+	[400093] = {
 		ponr = {
-			length = 180,
-			length_balance_mul = { 1.25, 1, 0.75, 0.5 },
-		},
-		on_executed = {
-			{ id = 400000, delay = 0 },
-			{ id = 400001, delay = 1 },
-			{ id = 400002, delay = 2 },
-			{ id = 400003, delay = 3 },
-			{ id = 400004, delay = 4 },
-			{ id = 400005, delay = 5 },
-			{ id = 400006, delay = 6 },
-			{ id = 400007, delay = 7 },
-			{ id = 400027, delay = 8 },
-			{ id = 400028, delay = 9 },
-			{ id = 105913, remove = true },
+			length = 300,
+			length_balance_mul = { 1.25, 1, 0.85, 0.75 },
 		},
 	},
 	-- Add new reinforce
@@ -181,12 +168,6 @@ return {
 	[100682] = filter_normal_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
-	-- disable the right vault path
-	[105496] = {
-		on_executed = {
-			{ id = 105498, remove = true },
-		},
-	},
 	-- fix ai_hunt used by scripted heli enemies not having access
 	[106874] = so_hunt_fix,
 	-- Rework the opening vault ambush
@@ -216,6 +197,22 @@ return {
 				105114,
 				101132,
 			},
+		},
+	},
+	-- add spawn lobby ambushes
+	[101660] = {
+		on_executed = {
+			{ id = 400000, delay = 0 },
+			{ id = 400001, delay = 1 },
+			{ id = 400002, delay = 2 },
+			{ id = 400003, delay = 3 },
+			{ id = 400004, delay = 4 },
+			{ id = 400005, delay = 5 },
+			{ id = 400006, delay = 6 },
+			{ id = 400007, delay = 7 },
+			{ id = 400027, delay = 8 },
+			{ id = 400028, delay = 9 },
+			{ id = 105913, remove = true },
 		},
 	},
 	-- disable the instance that starts spawning snipers (when the drill jams)

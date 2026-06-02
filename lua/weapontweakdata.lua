@@ -154,7 +154,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.pickup_mul = weap_data.pickup_mul or is_dmr and (30 / 50) or 1
 				weap_data.shake.fire_multiplier = is_dmr and 1.3 or 1
 				weap_data.can_shoot_through_enemy = is_dmr and true or nil
-				weap_data.mobility_scale = is_dmr and { 16, 24, 10, 14 } or { 20, 26, 12, 18 }
+				weap_data.mobility_scale = is_dmr and { 14, 24, 10, 14 } or { 20, 26, 12, 18 }
 
 				if is_dmr then
 					weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
@@ -424,7 +424,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						moving = {
 							hipfire = 0.9,
 							crouching = 1,
-							steelsight = 0.8,
+							steelsight = 0.9,
 						},
 					},
 					recoil = {
@@ -2159,9 +2159,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m590.stats.damage = 16
 	self.m590.stats.spread = 14
 	self.m590.stats.recoil = 9
-	self.m590.stats.concealment = 19
+	self.m590.stats.concealment = 18
 	self.m590.fire_mode_data.fire_rate = 60 / 120
-	self.m590.fire_rate_multiplier = 120 / 120
 
 	-- GSPS
 	self.m37.CLIP_AMMO_MAX = 4
@@ -2177,9 +2176,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.boot.stats.damage = 24
 	self.boot.stats.spread = 15
 	self.boot.stats.recoil = 8
-	self.boot.stats.concealment = 20
-	self.boot.fire_mode_data.fire_rate = 75 / 60
-	self.boot.fire_rate_multiplier = 75 / 60
+	self.boot.stats.concealment = 21
+	self.boot.fire_mode_data.fire_rate = 60 / 80
+	self.boot.fire_rate_multiplier = 75 / 80
 
 	-- Reinfeld 88
 	self.m1897.CLIP_AMMO_MAX = 5
@@ -2195,7 +2194,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.supernova.stats.damage = 20
 	self.supernova.stats.spread = 15
 	self.supernova.stats.recoil = 8
-	self.supernova.stats.concealment = 17
+	self.supernova.stats.concealment = 18
 	self.supernova.fire_mode_data.fire_rate = 60 / 90
 	self.supernova.alt_fire_data = nil
 
@@ -2834,20 +2833,21 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.init_stat_overrides.rpg7 = function(weap_data)
 		self.rpg7.pickup_mul = 0
-		self.rpg7.min_max_clips = 3
+		self.rpg7.min_max_clips = 2
 		self.rpg7.ammo_bag_consumption_mul = 2
 	end
 
 	self.flun.CLIP_AMMO_MAX = 1
 	self.flun.stats.damage = 24
-	self.flun.stats.spread = 19
+	self.flun.stats.spread = 14
 	self.flun.stats.recoil = 18
 	self.flun.stats.concealment = 27
 	self.flun.fire_mode_data.fire_rate = 60 / 22
 
 	self.init_stat_overrides.flun = function(weap_data)
-		self.flun.total_ammo_mul = 1 / 10
-		self.flun.pickup_mul = 1 / 25
+		self.flun.rays = 8
+		self.flun.total_ammo_mul = (1 / self.flun.rays) * (50 / 40)
+		self.flun.pickup_mul = (1 / self.flun.rays) * (40 / 30)
 		self.flun.max_clips_round = 2
 	end
 	

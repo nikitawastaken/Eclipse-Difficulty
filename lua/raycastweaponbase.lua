@@ -430,9 +430,10 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 		} or nil
 	end
 
-	local can_shoot_through_wall = setup_data.can_shoot_through_wall
-	local can_shoot_through_shield = setup_data.can_shoot_through_shield
-	local can_shoot_through_enemy = setup_data.can_shoot_through_enemy
+	local has_temp_piercing_upgrade = managers.player:has_activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
+	local can_shoot_through_wall = setup_data.can_shoot_through_wall or has_temp_piercing_upgrade
+	local can_shoot_through_shield = setup_data.can_shoot_through_shield or has_temp_piercing_upgrade
+	local can_shoot_through_enemy = setup_data.can_shoot_through_enemy or has_temp_piercing_upgrade
 	local wall_mask = setup_data.wall_mask
 	local shield_mask = setup_data.shield_mask
 	local ai_vision_ids = Idstring("ai_vision")

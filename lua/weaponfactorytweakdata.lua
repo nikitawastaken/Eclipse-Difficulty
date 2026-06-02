@@ -1,3 +1,14 @@
+WeaponFactoryTweakData.category_templates = {
+	assault_rifle = "amcar",
+	dmr = "new_m14",
+	pistol = "glock_17",
+	revolver = "new_raging_bull",
+	smg = "new_mp5",
+	shotgun = "r870",
+	lmg = "m249",
+	minigun = "m134",
+	snp = "msr",
+}
 WeaponFactoryTweakData.part_type_stat_blacklist = {
 	body = true,
 	bolt = true,
@@ -25,6 +36,12 @@ WeaponFactoryTweakData.parts_from_template = {
 	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
 	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
 }
+
+function WeaponFactoryTweakData:_get_table_from_category_template(tweak_data, category, tbl)
+	local cat_template_id = self.category_templates[category]
+
+	return cat_template_id and tweak_data.weapon and tweak_data.weapon[cat_template_id] and tweak_data.weapon[cat_template_id][tbl] or {}
+end
 
 function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
 	local upgrade_definitions = tweak_data.upgrades.definitions
@@ -1834,258 +1851,245 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		2.5 / 3.5,
 		2.5 / 3.5,
 	}
-	local slug_stance_muls = {
-		spread = {
-			standing = {
-				hipfire = 1.3,
-				crouching = 1,
-				steelsight = 0.5,
-			},
-			moving = {
-				hipfire = 1.4,
-				crouching = 1,
-				steelsight = 1.3,
-			},
-		},
+	local slug_stance_muls = deep_clone(self._stance_multiplier_presets.shotgun_slug)
+	local slug_fire_mode_bloom = deep_clone(self._fire_mode_bloom_presets.shotgun_slug)
+	local slug_spread_bloom = deep_clone(self._spread_bloom_presets.shotgun_slug)
+
+	self.parts.wpn_fps_upg_a_custom.stats = {
+		damage = 8,
+		recoil = -3,
 	}
-	local slug_fire_mode_bloom = {
-		["single"] = {
-			per_shot = 1.5,
-			per_shot_steelsight = 1,
-		},
-		["auto"] = {
-			per_shot = 1.5,
-			per_shot_steelsight = 1,
-		},
-	}
-	local slug_pread_bloom = {
-		max = 2.5,
-		recovery = 1.2,
-		recovery_wait_multiplier = 1.4,
-	}
-	local custom_stats_tbl = {
-		wpn_fps_upg_a_custom = {
-			rays = 6,
-			damage_near_mul = 0.5,
-			muzzleflash = "effects/particles/weapons/sho_buckshot",
-			trail_effect = "effects/particles/weapons/shotgun_streak_buck",
-		},
-		wpn_fps_upg_a_explosive = {
-			rays = 1,
-			ammo_pickup_max_mul = 0.4,
-			ammo_pickup_min_mul = 0.4,
-			damage_near_mul = 10,
-			stance_mul = slug_stance_muls,
-			fire_mode_spread_bloom = slug_fire_mode_bloom,
-			spread_bloom = slug_pread_bloom,
-			ignore_statistic = true,
-			explosive_ammo = true,
-			ignore_crit_damage = true,
-			bullet_class = "InstantExplosiveBulletBase",
-			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
-		},
-		wpn_fps_upg_a_slug = {
-			rays = 1,
-			armor_piercing_add = 1,
-			max_nr_enemy_penetrations = 1,
-			damage_near_mul = 10,
-			stance_mul = slug_stance_muls,
-			fire_mode_spread_bloom = slug_fire_mode_bloom,
-			spread_bloom = slug_pread_bloom,
-			check_additional_achievements = true,
-			can_shoot_through_shield = true,
-			can_shoot_through_wall = true,
-			can_shoot_through_enemy = true,
-			muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
-			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
-		},
-		wpn_fps_upg_a_piercing = {
-			rays = 12,
-			armor_piercing_add = 1,
-			max_nr_enemy_penetrations = 1,
-			can_shoot_through_enemy = true,
-			muzzleflash = "effects/particles/weapons/sho_flechette",
-			trail_effect = "effects/particles/weapons/shotgun_streak_flech",
-		},
-		wpn_fps_upg_a_dragons_breath = {
-			rays = 12,
-			armor_piercing_add = 1,
-			ammo_pickup_min_mul = 0.7,
-			ammo_pickup_max_mul = 0.7,
-			dot_data_name = "ammo_dragons_breath",
-			bullet_class = "FlameBulletBase",
-			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
-			trail_effect = "effects/particles/weapons/shotgun_streak_db",
-		},
-		wpn_fps_upg_a_rip = {
-			rays = 1,
-			ammo_pickup_min_mul = 0.6,
-			ammo_pickup_max_mul = 0.6,
-			damage_near_mul = 10,
-			stance_mul = slug_stance_muls,
-			fire_mode_spread_bloom = slug_fire_mode_bloom,
-			spread_bloom = slug_pread_bloom,
-			dot_data_name = "ammo_rip",
-			bullet_class = "PoisonBulletBase",
-			muzzleflash = "effects/particles/weapons/sho_tomb",
-			trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak_green",
-		},
+	self.parts.wpn_fps_upg_a_custom.custom_stats = {
+		rays = 6,
+		damage_near_mul = 0.5,
+		muzzleflash = "effects/particles/weapons/sho_buckshot",
+		trail_effect = "effects/particles/weapons/shotgun_streak_buck",
 	}
 
-	local shotgun_ammo_overrides = {
+	self.parts.wpn_fps_upg_a_custom_free.stats = {
+		damage = 8,
+		recoil = -3,
+	}
+	self.parts.wpn_fps_upg_a_custom_free.custom_stats = {
+		rays = 6,
+		damage_near_mul = 0.5,
+		muzzleflash = "effects/particles/weapons/sho_buckshot",
+		trail_effect = "effects/particles/weapons/shotgun_streak_buck",
+	}
+
+	self.parts.wpn_fps_upg_a_explosive.stats = {
+		damage = 144,
+		total_ammo_mod = -8,
+		recoil = -1,
+		spread = 2,
+		spread_multi = slug_spread_mul,
+	}
+	self.parts.wpn_fps_upg_a_explosive.custom_stats = {
+		rays = 1,
+		ammo_pickup_max_mul = 0.4,
+		ammo_pickup_min_mul = 0.4,
+		damage_near_mul = 10,
+		ammo_bag_consumption_mul = 1.5,
+		stance_mul = slug_stance_muls,
+		fire_mode_spread_bloom = slug_fire_mode_bloom,
+		spread_bloom = slug_spread_bloom,
+		ignore_statistic = true,
+		explosive_ammo = true,
+		ignore_crit_damage = true,
+		bullet_class = "InstantExplosiveBulletBase",
+		muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
+		trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
+	}
+
+	self.parts.wpn_fps_upg_a_slug.stats = {
+		damage = 64,
+		total_ammo_mod = -6,
+		recoil = -2,
+		spread = 3,
+		spread_multi = slug_spread_mul,
+	}
+	self.parts.wpn_fps_upg_a_slug.custom_stats = {
+		rays = 1,
+		armor_piercing_add = 1,
+		max_nr_enemy_penetrations = 1,
+		damage_near_mul = 10,
+		stance_mul = slug_stance_muls,
+		fire_mode_spread_bloom = slug_fire_mode_bloom,
+		spread_bloom = slug_spread_bloom,
+		check_additional_achievements = true,
+		can_shoot_through_shield = true,
+		can_shoot_through_wall = true,
+		can_shoot_through_enemy = true,
+		muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
+		trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak",
+	}
+
+	self.parts.wpn_fps_upg_a_piercing.stats = {
+		damage = -8,
+		spread = 1,
+	}
+	self.parts.wpn_fps_upg_a_piercing.custom_stats = {
+		rays = 12,
+		armor_piercing_add = 1,
+		max_nr_enemy_penetrations = 1,
+		can_shoot_through_enemy = true,
+		muzzleflash = "effects/particles/weapons/sho_flechette",
+		trail_effect = "effects/particles/weapons/shotgun_streak_flech",
+	}
+
+	self.parts.wpn_fps_upg_a_dragons_breath.stats = {
+		damage = -8,
+		total_ammo_mod = -6,
+		spread = -2,
+	}
+	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats = {
+		rays = 12,
+		armor_piercing_add = 1,
+		ammo_pickup_min_mul = 0.7,
+		ammo_pickup_max_mul = 0.7,
+		dot_data_name = "ammo_dragons_breath",
+		bullet_class = "FlameBulletBase",
+		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
+		trail_effect = "effects/particles/weapons/shotgun_streak_db",
+	}
+	self.parts.wpn_fps_upg_a_rip.stats = {
+		damage = 48,
+		total_ammo_mod = -8,
+		spread = 1,
+		spread_multi = slug_spread_mul,
+	}
+	self.parts.wpn_fps_upg_a_rip.custom_stats = {
+		rays = 1,
+		ammo_pickup_min_mul = 0.6,
+		ammo_pickup_max_mul = 0.6,
+		damage_near_mul = 10,
+		stance_mul = slug_stance_muls,
+		fire_mode_spread_bloom = slug_fire_mode_bloom,
+		spread_bloom = slug_spread_bloom,
+		dot_data_name = "ammo_rip",
+		bullet_class = "PoisonBulletBase",
+		muzzleflash = "effects/particles/weapons/sho_tomb",
+		trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak_green",
+	}
+
+	local shotgun_ammo_stat_overrides = {
 		wpn_fps_upg_a_custom = {
-			very_heavy = { -- double barrels
-				stats = { damage = 12, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			very_heavy = {
+				stats = { damage = 12 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 10, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			heavy = {
+				stats = { damage = 10 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 8, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			medium = {
+				stats = { damage = 8 },
 			},
-			light = { -- semi autos
-				stats = { damage = 6, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			light = {
+				stats = { damage = 6 },
 			},
-			very_light = { -- full autos
-				stats = { damage = 6, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			very_light = {
+				stats = { damage = 6 },
 			},
 		},
 		wpn_fps_upg_a_custom_free = {
-			very_heavy = { -- double barrels
-				stats = { damage = 12, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			very_heavy = {
+				stats = { damage = 12 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 10, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			heavy = {
+				stats = { damage = 10 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 8, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			medium = {
+				stats = { damage = 8 },
 			},
-			light = { -- semi autos
-				stats = { damage = 6, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			light = {
+				stats = { damage = 6 },
 			},
-			very_light = { -- full autos
-				stats = { damage = 6, recoil = -3 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_custom),
+			very_light = {
+				stats = { damage = 6 },
 			},
 		},
 		wpn_fps_upg_a_explosive = {
-			very_heavy = { -- double barrels
-				stats = { damage = 216, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
+			very_heavy = {
+				stats = { damage = 216 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 180, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
+			heavy = {
+				stats = { damage = 180 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 144, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
+			medium = {
+				stats = { damage = 144 },
 			},
-			light = { -- semi autos
-				stats = { damage = 108, total_ammo_mod = -8, recoil = -1, spread = 2, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
+			light = {
+				stats = { damage = 108 },
 			},
-			very_light = { -- full autos
-				stats = { damage = 86, total_ammo_mod = -8, recoil = -1, spread = 2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_explosive),
+			very_light = {
+				stats = { damage = 86 },
 			},
 		},
 		wpn_fps_upg_a_slug = {
-			very_heavy = { -- double barrels
-				stats = { damage = 104, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
+			very_heavy = {
+				stats = { damage = 104 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 76, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
+			heavy = {
+				stats = { damage = 76 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 64, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
+			medium = {
+				stats = { damage = 64 },
 			},
-			light = { -- semi autos
-				stats = { damage = 52, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
+			light = {
+				stats = { damage = 52 },
 			},
-			very_light = { -- full autos
-				stats = { damage = 38, total_ammo_mod = -6, recoil = -2, spread = 3, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_slug),
+			very_light = {
+				stats = { damage = 38 },
 			},
 		},
 		wpn_fps_upg_a_piercing = {
-			very_heavy = { -- double barrels
-				stats = { damage = -12, spread = 1 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
+			very_heavy = {
+				stats = { damage = -12 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -10, spread = 1 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
+			heavy = {
+				stats = { damage = -10 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -8, spread = 1 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
+			medium = {
+				stats = { damage = -8 },
 			},
-			light = { -- semi autos
-				stats = { damage = -6, spread = 1 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
+			light = {
+				stats = { damage = -6 },
 			},
-			very_light = { -- full autos
-				stats = { damage = -5, spread = 1 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_piercing),
+			very_light = {
+				stats = { damage = -5 },
 			},
 		},
 		wpn_fps_upg_a_dragons_breath = {
-			very_heavy = { -- double barrels
-				stats = { damage = -12, total_ammo_mod = -6, spread = -2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
+			very_heavy = {
+				stats = { damage = -12 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -10, total_ammo_mod = -6, spread = -2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
+			heavy = {
+				stats = { damage = -10 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -8, total_ammo_mod = -6, spread = -2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
+			medium = {
+				stats = { damage = -8 },
 			},
-			light = { -- semi autos
-				stats = { damage = -6, total_ammo_mod = -6, spread = -2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
+			light = {
+				stats = { damage = -6 },
 			},
-			very_light = { -- full autos
-				stats = { damage = -5, total_ammo_mod = -6, spread = -2 },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_dragons_breath),
+			very_light = {
+				stats = { damage = -5 },
 			},
 		},
 		wpn_fps_upg_a_rip = {
-			very_heavy = { -- double barrels
-				stats = { damage = 72, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
+			very_heavy = {
+				stats = { damage = 72 },
 			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 60, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
+			heavy = {
+				stats = { damage = 60 },
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 48, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
+			medium = {
+				stats = { damage = 48 },
 			},
-			light = { -- semi autos
-				stats = { damage = 36, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
+			light = {
+				stats = { damage = 36 },
 			},
-			very_light = { -- full autos
-				stats = { damage = 26, total_ammo_mod = -8, spread = 1, spread_multi = slug_spread_mul },
-				custom_stats = deep_clone(custom_stats_tbl.wpn_fps_upg_a_rip),
+			very_light = {
+				stats = { damage = 26 },
 			},
 		},
 	}
@@ -2109,15 +2113,24 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		end
 
 		for part_id, part_data in pairs(self.parts) do
-			local ammo_override = self.shotgun_ammo_override_map[based_on_factory_id or factory_id] or "medium"
+			local ammo_tier = self.shotgun_ammo_override_map[based_on_factory_id or factory_id] or "medium"
 
 			if self[factory_id] then
 				if not self[factory_id].override then
 					self[factory_id].override = {}
 				end
 
-				if shotgun_ammo_overrides[part_id] and shotgun_ammo_overrides[part_id][ammo_override] then
-					self[factory_id].override[part_id] = shotgun_ammo_overrides[part_id][ammo_override]
+				if shotgun_ammo_stat_overrides[part_id] and shotgun_ammo_stat_overrides[part_id][ammo_tier] then
+					local part_override = shotgun_ammo_stat_overrides[part_id][ammo_tier]
+
+					for stats_tbl_type, stats_tbl in pairs(part_override) do
+						self[factory_id].override[part_id] = {}
+						self[factory_id].override[part_id][stats_tbl_type] = deep_clone(self.parts[part_id][stats_tbl_type])
+
+						for stat, stat_value in pairs(stats_tbl) do
+							self[factory_id].override[part_id][stats_tbl_type][stat] = stat_value
+						end
+					end
 				end
 			end
 		end
@@ -2436,18 +2449,6 @@ function WeaponFactoryTweakData:_balance_silencer(part_id, is_barrel_ext)
 	end
 end
 
-WeaponFactoryTweakData.category_templates = {
-	assault_rifle = "amcar",
-	dmr = "new_m14",
-	pistol = "glock_17",
-	revolver = "new_raging_bull",
-	smg = "new_mp5",
-	shotgun = "r870",
-	lmg = "m249",
-	minigun = "m134",
-	snp = "msr",
-}
-
 -- Automatically balance conversion kits based on damage
 function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, part_id, damage, category, round_total_ammo)
 	local upgrade_definitions = tweak_data.upgrades.definitions
@@ -2583,10 +2584,48 @@ function WeaponFactoryTweakData:_convert_concealment_to_mobility(tweak_data)
 	end
 end
 
-function WeaponFactoryTweakData:_create_flun_ammo(tweak_data)
-	--[[	local flun_shotgun_ammos = {
-		"wpn_fps_upg_a_piercing",
+-- Balance Flare Gun ammunition types
+function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
+	self.parts.wpn_fps_upg_a_flun_shell.stats.spread = nil
+	self.parts.wpn_fps_upg_a_flun_shell.stats.total_ammo_mod = nil
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.rays = 8
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.ammo_pickup_min_mul = nil
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.ammo_pickup_max_mul = nil
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.stance_mul = deep_clone(self._stance_multiplier_presets.shotgun)
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.muzzleflash = "effects/particles/weapons/sho_default"
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.trail_effect = "effects/particles/weapons/shotgun_streak"
+
+	local base_pickup_mul = tweak_data.weapon and tweak_data.weapon.flun and tweak_data.weapon.flun.pickup_mul or 1
+	local sec_gl_pickup_mul = tweak_data.weapon and tweak_data.weapon.gre_m79 and tweak_data.weapon.gre_m79.pickup_mul or 1
+
+	self.parts.wpn_fps_upg_a_flun_flare.stats.spread = 6
+	self.parts.wpn_fps_upg_a_flun_flare.stats.total_ammo_mod = -10
+	self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_min_mul = base_pickup_mul / sec_gl_pickup_mul
+	self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_max_mul = self.parts.wpn_fps_upg_a_flun_flare.custom_stats.ammo_pickup_min_mul
+
+	local flun_shotgun_ammos = {
+		"wpn_fps_upg_a_explosive",
 		"wpn_fps_upg_a_slug",
+		"wpn_fps_upg_a_piercing",
+		"wpn_fps_upg_a_dragons_breath",
+		"wpn_fps_upg_a_rip",
+	}
+	local flun_ammo_stat_overrides = {
+		wpn_fps_upg_a_explosive = {
+			stats = { damage = 216 },
+		},
+		wpn_fps_upg_a_slug = {
+			stats = { damage = 104 },
+		},
+		wpn_fps_upg_a_piercing = {
+			stats = { damage = -12 },
+		},
+		wpn_fps_upg_a_dragons_breath = {
+			stats = { damage = -12 },
+		},
+		wpn_fps_upg_a_rip = {
+			stats = { damage = 72 },
+		},
 	}
 
 	for _, ammo_id in ipairs(flun_shotgun_ammos) do
@@ -2602,21 +2641,63 @@ function WeaponFactoryTweakData:_create_flun_ammo(tweak_data)
 			suppressed = "regular_b",
 		}
 		ammo_override.stats = deep_clone(self.parts[ammo_id].stats)
-		ammo_override.stats.total_ammo_mod = (ammo_override.stats.total_ammo_mod or 0) + 5
 		ammo_override.custom_stats = deep_clone(self.parts[ammo_id].custom_stats)
+		ammo_override.custom_stats.stance_mul = deep_clone(self._stance_multiplier_presets.shotgun)
 		ammo_override.custom_stats.weapon_unit = "units/pd2_dlc_unk/weapons/wpn_fps_spe_flun/wpn_fps_sho_flun"
-		ammo_override.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
-		ammo_override.custom_stats.ammo_pickup_min_mul = ammo_override.custom_stats.ammo_pickup_min_mul and ammo_override.custom_stats.ammo_pickup_min_mul * 2 or 2
-		ammo_override.custom_stats.ammo_pickup_max_mul = ammo_override.custom_stats.ammo_pickup_max_mul and ammo_override.custom_stats.ammo_pickup_max_mul * 2 or 2
+
 		self.wpn_fps_spe_flun.override[ammo_id] = ammo_override
+
+		local part_override = flun_ammo_stat_overrides[ammo_id]
+		for stats_tbl_type, stats_tbl in pairs(part_override) do
+			for stat, stat_value in pairs(stats_tbl) do
+				ammo_override[stats_tbl_type][stat] = stat_value
+			end
+		end
 
 		table.insert(self.wpn_fps_spe_flun.uses_parts, ammo_id)
 	end
-]]
 end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
+	self._stance_multiplier_presets = {
+		dmr = self:_get_table_from_category_template(tweak_data, "dmr", "stance_multipliers"),
+		shotgun = self:_get_table_from_category_template(tweak_data, "shotgun", "stance_multipliers"),
+		shotgun_slug = {
+			spread = {
+				standing = {
+					hipfire = 1.2,
+					crouching = 1,
+					steelsight = 0.5,
+				},
+				moving = {
+					hipfire = 1.4,
+					crouching = 1,
+					steelsight = 1,
+				},
+			},
+		},
+	}
+	self._fire_mode_bloom_presets = {
+		shotgun_slug = {
+			["single"] = {
+				per_shot = 1.5,
+				per_shot_steelsight = 1,
+			},
+			["auto"] = {
+				per_shot = 1.5,
+				per_shot_steelsight = 1,
+			},
+		},
+	}
+	self._spread_bloom_presets = {
+		shotgun_slug = {
+			max = 2.5,
+			recovery = 1.2,
+			recovery_wait_multiplier = 1.4,
+		},
+	}
+
 	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
 	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
@@ -2748,9 +2829,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_shotgun_ammo(tweak_data)
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_akimbo(tweak_data)
+	self:_balance_flun_ammo(tweak_data)
 	self:_wipe_burst_fire_mode(tweak_data)
 	self:_convert_concealment_to_mobility()
-	self:_create_flun_ammo(tweak_data)
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
@@ -2834,7 +2915,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			moving = {
 				hipfire = 0.9,
 				crouching = 1,
-				steelsight = 0.8,
+				steelsight = 0.9,
 			},
 		},
 		recoil = {
@@ -2852,15 +2933,15 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 	}
 	local sting_stats = {
 		light = {
-			damage = -36,
+			damage = -37,
 			spread = -6,
 		},
 		medium = {
-			damage = -46,
+			damage = -37,
 			spread = -6,
 		},
 		heavy = {
-			damage = -55,
+			damage = -56,
 			spread = -6,
 		},
 	}
@@ -2878,7 +2959,6 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			fire_single = "hornet_fire",
 		},
 	}
-
 	local grenade_launchers = {
 		wpn_fps_gre_arbiter = {
 			stats = sting_stats.light,

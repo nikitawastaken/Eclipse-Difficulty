@@ -328,3 +328,17 @@ function UnitNetworkHandler:camera_control_state(cam_unit, peer_id, state)
 
 	managers.player:set_synced_controlled_camera(peer_id, state and cam_unit or nil)
 end
+
+-- Force sync bgh ammo boxes, I guess
+function UnitNetworkHandler:eclipse_sync_pickup_upgrade(ammo_unit, upgrade, rpc)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(rpc)
+	if not alive(ammo_unit) or not peer then
+		return
+	end
+
+	ammo_unit:pickup():set_upgrades(upgrade)
+end

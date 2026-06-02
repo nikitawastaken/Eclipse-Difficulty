@@ -1,7 +1,7 @@
 {
-	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.",
+	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.\nLoses effectiveness at long-range.",
 	"bm_wp_upg_a_explosive_desc": "One deadly high explosive slug.\nIncreased precision.\nThis ammo type is harder to find.",
-	"bm_wp_upg_a_piercing_desc": "Pointed steel projectiles.\nOne shell contains 12 flechettes.\nArmor piercing.",
+	"bm_wp_upg_a_piercing_desc": "Pointed steel projectiles.\nOne shell contains 12 flechettes.\nArmor and enemy piercing.",
 	"bm_wp_upg_a_slug_desc": "One heavy lead slug.\nHeavily increased precision.\nArmor, shield, enemy, wall piercing.",
 	"bm_wp_upg_a_dragons_breath_desc": "Special type of Incendiary-effect rounds.\nOne shell contains 12 magnesium pellets.\nThe stronger the shotgun type, the more effective the burn and the range are.\nThis ammo type is harder to find.",
 	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
@@ -47,10 +47,13 @@
 	"bm_equipment_ecm_jammer_desc": "To use the ECM Jammer, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved and it will be active for 20 seconds.$NL;$NL;The ECM Jammer can be used to open certain electronic doors.$NL;$NL;The ECM Jammer will delay pagers while active.$NL;$NL;You can toggle the ECM Jammer by pressing $BTN_INTERACT;. The ECM Jammer then has a chance to incapacitate your enemies within a certain radius. When consumed, it stops working.$NL;$NL;An Electronic Countermeasure (ECM) is an electronic device designed to trick radar, sonar and other detection systems, easing your way towards your goal.",
 
 	"bm_concussion": "Flashbang",
-	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
+	"bm_concussion_desc": "Originally a device used by law enforcement to defuse hostage situations and other critical situations where the element of surprise is key. It is now used by heisters to create said hostage situations due to its non-lethality and disorienting anyone affected, including heisters themselves.",
 	"bm_grenade_sticky_grenade": "Impact Grenade",
-	"bm_grenade_sticky_grenade_desc": "A grenade that explode on impact with the surfaces or enemies.",
-	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic gas that melt enemies lungs. Also will destroy your and teammates respiratory systems too if you decide to stay inside the cloud without mask protection.",
+	"bm_grenade_sticky_grenade_desc": "This baseball-shaped grenade is based on an old CIA design. Due to its shape and small size it is capable of being thrown further and also fly faster towards it's target than a regular Frag Grenade would have at the cost of the strength of it's explosive payload.",
+	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic chemical-based gas that can dissolve people's lungs within seconds. It will also destroy your and teammates' respiratory systems if you decide to stay too long inside of the cloud without proper protection.",
+	"bm_grenade_dada_com_desc": "The Matryoshka Grenade is a throwable stun device. Outer layers of the doll hide its sinister inner workings. Stuns (or even kills) everything around itself as it detonates with a shocking tribute to the motherland.",
+	
+	"bm_wp_upg_a_grenade_launcher_incendiary_desc": "Fires a round which sets anyone ablaze near its impact. It also leaves a small pool of fire behind.",
 
 	"hud_stats_pagers_used": "STRIKES USED",
 	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",

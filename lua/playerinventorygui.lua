@@ -107,7 +107,7 @@ end)
 
 local function get_pellets_from_blueprint(name, blueprint, category, slot)
 	local new_rays = WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
-	if table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
+	if not name == "flun" and table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
 		-- Grenade launchers have a base rays stat of 8 even though
 		-- the stat is only used when sting grenades are equipped...
 		return 1, tweak_data.weapon[name].rays
@@ -144,6 +144,7 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 	end
 
 	local shotgun = table.contains(weapon_tweak.categories, "shotgun")
+	local flun = equipped_name == "flun" and id ~= "wpn_fps_upg_a_flun_flare"
 
 	-- Maybe there's a less verbose way to get your equipped
 	-- weapon's mods and filter them but I'm not sure
@@ -153,6 +154,7 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 	local equipped_blueprint = managers.blackmarket:get_weapon_blueprint(category, equipped_slot)
 	local ammo_mods = managers.weapon_factory:get_parts_from_weapon_by_type_or_perk("ammo", factory_id, equipped_blueprint)
 	local sting = false
+	local flun = false
 	for _, id in ipairs(ammo_mods) do
 		local part = managers.weapon_factory:_part_data(id, factory_id)
 		if part.sub_type and part.sub_type == "ammo_hornet" then
@@ -160,10 +162,10 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 		end
 
 		if equipped_name == "flun" and id ~= "wpn_fps_upg_a_flun_flare" then
-			sting = true
+			flun = true
 		end
 	end
-	if not shotgun and not sting then
+	if not shotgun and not sting and not flun then
 		return
 	end
 
