@@ -414,12 +414,12 @@ end)
 
 -- Add some drama when spawning a special unit
 Hooks:PostHook(GroupAIStateBase, "register_special_unit", "eclipse_register_special_unit", function(self, u_key, category_name)
-	local balance_mul = 1 
+	local balance_mul = 1
 	if tweak_data.drama.special_spawn_drama_add[category_name] then
-		if tweak_data.drama.special_spawn_drama_add_balance_mul[category_name] then 
+		if tweak_data.drama.special_spawn_drama_add_balance_mul[category_name] then
 			balance_mul = self:_get_balancing_multiplier(tweak_data.drama.special_spawn_drama_add_balance_mul[category_name], tweak_data.group_ai.team_ai_balance_mul_weights.drama)
 		end
-		
+
 		self:_add_drama(tweak_data.drama.special_spawn_drama_add[category_name] * balance_mul)
 	end
 end)
