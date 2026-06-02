@@ -220,4 +220,15 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Add env string to join_request_reply -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="join_request_reply"/>
+		</search>
+		<target mode="attach">
+			<param type="string" /> <!-- environment string -->
+		</target>
+	</tweak>
 </tweaks>
