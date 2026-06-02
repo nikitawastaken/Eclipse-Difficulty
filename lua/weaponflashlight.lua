@@ -22,7 +22,7 @@ function WeaponFlashLight:init(unit)
 	self._light_effect = World:effect_manager():spawn({
 		force_synch = true,
 		effect = Idstring(effect_path),
-		parent = self._a_flashlight_obj
+		parent = self._a_flashlight_obj,
 	})
 
 	World:effect_manager():set_hidden(self._light_effect, true)
@@ -38,7 +38,7 @@ function WeaponFlashLight:set_npc()
 	local effect_path = is_haunted and "effects/particles/weapons/flashlight_spooky/flashlight" or "effects/particles/weapons/flashlight/flashlight"
 	self._light_effect = World:effect_manager():spawn({
 		effect = Idstring(effect_path),
-		parent = obj
+		parent = obj,
 	})
 
 	World:effect_manager():set_hidden(self._light_effect, true)
