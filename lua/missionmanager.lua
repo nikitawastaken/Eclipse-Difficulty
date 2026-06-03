@@ -472,18 +472,18 @@ end)
 
 -- Effect spawners
 Hooks:PostHook(MissionScript, "activate", "eclipse_activate", function(self)
-	local environment_name = managers.sequence:environment_name()
+	local environment_name = Eclipse.current_environment
 	local environment_data = environment_name and Eclipse:require("envsmod/" .. environment_name)
 	
 	if environment_data then
 		local effect_spawner = environment_data.effect_spawner	
 		if effect_spawner then
 			for effect_name, effect_data in pairs(effect_spawner) do
-				for _, pos in pairs(effect_data) do
+				for k, v in pairs(effect_data) do
 					World:effect_manager():spawn({
 						effect = Idstring(effect_name),
-						position = pos.position,
-						rotation = pos.rotation
+						position = v.position,
+						rotation = v.rotation
 					})
 				end
 			end

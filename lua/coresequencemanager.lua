@@ -26,19 +26,6 @@ local function load_environment(level_tweak, environment_name)
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
 		end
 	end
-	--[[
-	if environment_data.particles then
-		for effect, spawn in pairs(environment_data.particles) do
-			for i, v in pairs(spawn) do
-				World:effect_manager():spawn({
-					effect = Idstring(effect),
-					position = v.position,
-					rotation = v.rotation
-				})
-			end
-		end
-	end
-]]
 end
 
 Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", function()
