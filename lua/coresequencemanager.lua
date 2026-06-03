@@ -1,34 +1,3 @@
-local function load_environment(level_tweak, environment_name)
-	Eclipse:log_chat("Loading environment: " .. environment_name)
-	local environment_data = Eclipse:require("envsmod/" .. environment_name)
-
-	if not environment_data then
-		return
-	end
-
-	local new_color_grading = type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
-
-	if new_color_grading then
-		level_tweak.env_params.color_grading = new_color_grading
-	end
-
-	if environment_data.flashlights_on ~= nil then
-		level_tweak.flashlights_on = environment_data.flashlights_on
-	end
-
-	if environment_data.environment_override then
-		for k, v in pairs(environment_data.environment_override) do
-			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
-		end
-	end
-
-	if environment_data.sounds_override then
-		for k, v in pairs(environment_data.sounds_override) do
-			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
-		end
-	end
-end
-
 Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", function()
 	if not Global.load_level then
 		return
@@ -54,7 +23,7 @@ Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", functi
 		return
 	end
 
-	load_environment(level_tweak, Eclipse.current_environment)
+	Eclipse.utils.load_environment(level_tweak, Eclipse.current_environment)
 end)
 
 local ids_scene = Idstring("scene")

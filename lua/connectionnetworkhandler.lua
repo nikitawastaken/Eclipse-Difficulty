@@ -32,6 +32,6 @@ function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, sen
 		return
 	end
 
-	Eclipse:log_chat("Set environment to: " .. environment_name)
 	Eclipse.current_environment = environment_name or "default"
+	Eclipse.utils.load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment)
 end
