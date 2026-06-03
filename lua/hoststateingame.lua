@@ -50,7 +50,7 @@ function HostStateInGame:on_join_auth_received(data, auth_ticket, sender)
 		alternative_job_stage,
 		interupt_job_stage_level_index,
 		server_xuid,
-		managers.sequence:environment_name(),
+		Eclipse.current_environment,
 	}
 
 	new_peer:send("join_request_reply", unpack(params))

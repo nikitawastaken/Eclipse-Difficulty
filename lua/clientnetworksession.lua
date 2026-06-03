@@ -69,7 +69,7 @@ function ClientNetworkSession:on_join_request_reply(
 		Global.game_settings.one_down = one_down
 		Global.game_settings.mission = mission
 		Global.game_settings.join_state_index = state_index
-		managers.sequence:environment_name(env_string)
+		Eclipse.current_environment = env_string or "default"
 
 		self._server_peer:set_character(server_character)
 		self._server_peer:set_xuid(xuid)
