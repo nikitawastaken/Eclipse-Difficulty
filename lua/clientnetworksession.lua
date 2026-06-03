@@ -14,8 +14,8 @@ function ClientNetworkSession:on_join_request_reply(
 	alternative_job_stage,
 	interupt_job_stage_level_index,
 	xuid,
-	sender,
-	env_string
+	env_string,
+	sender
 )
 	if not sender then
 		print("[ClientNetworkSession:on_join_request_reply] Invalid sender")

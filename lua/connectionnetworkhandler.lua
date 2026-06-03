@@ -43,8 +43,8 @@ function ConnectionNetworkHandler:join_request_reply(
 	alternative_job_stage,
 	interupt_job_stage_level_index,
 	xuid,
-	sender,
-	env_string
+	env_string,
+	sender
 )
 	if not self._verify_in_client_session() or not managers.network:session() or not managers.network:session().on_join_request_reply then
 		return
@@ -66,7 +66,7 @@ function ConnectionNetworkHandler:join_request_reply(
 		alternative_job_stage,
 		interupt_job_stage_level_index,
 		xuid,
-		sender,
-		env_string
+		env_string,
+		sender
 	)
 end

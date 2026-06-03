@@ -226,9 +226,11 @@
 			<network/>
 			<rpc/>
 			<message name="join_request_reply"/>
+			<param type="longstring" />
 		</search>
-		<target mode="attach">
-			<param type="string" /> <!-- environment string -->
+		<target mode="replace">
+			<param type="longstring" /> <!-- sender -->
+			<param type="string" />		<!-- environment string -->
 		</target>
 	</tweak>
 </tweaks>
