@@ -1,36 +1,38 @@
-Hooks:PostHook(CoreSequenceManager.SequenceManager, "init", "eclipse_csm_post_init", function(self)
-	if not Global.load_level then
-		return
-	end
+if CoreSequenceManager then
+	Hooks:PostHook(CoreSequenceManager.SequenceManager, "init", "eclipse_csm_post_init", function(self)
+		if not Global.load_level then
+			return
+		end
 
-	local level_id = Eclipse.utils.level_id()
-	local level_tweak = tweak_data.levels[level_id]
+		local level_id = Eclipse.utils.level_id()
+		local level_tweak = tweak_data.levels[level_id]
 
-	if not level_tweak then
-		return
-	end
+		if not level_tweak then
+			return
+		end
 
-	if not level_tweak.random_environments then
-		return
-	end
+		if not level_tweak.random_environments then
+			return
+		end
 
-	local environment_name = self._eclipse_environment_name
-	if NetworkHelper:IsHost() then
-		local weighted_selector = Eclipse.utils.weighted_selector
-		environment_name = weighted_selector(level_tweak.random_environments):select()
-		self._eclipse_environment_name = environment_name
-	end
+		local environment_name = self._eclipse_environment_name
+		if NetworkHelper:IsHost() then
+			local weighted_selector = Eclipse.utils.weighted_selector
+			environment_name = weighted_selector(level_tweak.random_environments):select()
+			self._eclipse_environment_name = environment_name
+		end
 
-	if environment_name == "default" then
-		return
-	end
+		if environment_name == "default" then
+			return
+		end
 
-	self:load_environment(level_tweak, environment_name)
-end)
+		self:load_environment(level_tweak, environment_name)
+	end)
+end
 
 local ids_scene = Idstring("scene")
 
-Hooks:Add("BeardLibPreProcessScriptData", "RestorationCreateEnvironment", function(PackManager, path, raw_data)
+Hooks:Add("BeardLibPreProcessScriptData", "CreateEnvironment", function(PackManager, path, raw_data)
 	if managers.dyn_resource then
 		local skies = {
 			"sky_1930_twillight",
@@ -112,17 +114,4 @@ function SequenceManager:load_environment(level_tweak, environment_name)
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
 		end
 	end
-	--[[
-	if environment_data.particles then
-		for effect, spawn in pairs(environment_data.particles) do
-			for i, v in pairs(spawn) do
-				World:effect_manager():spawn({
-					effect = Idstring(effect),
-					position = v.position,
-					rotation = v.rotation
-				})
-			end
-		end
-	end
-]]
 end

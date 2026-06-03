@@ -442,6 +442,12 @@ function MissionManager.mission_script_patch_funcs.add_drama(self, element, data
 	end)
 end
 
+function MissionManager:set_ponr_state()
+	managers.groupai:set_state("ponr")
+	managers.groupai:state():on_police_called("default")
+	managers.groupai:state():set_difficulty(1)
+end
+
 Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)
 	local mission_script_elements = Eclipse:mission_script_patches()
 	if not mission_script_elements then
@@ -464,8 +470,23 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 	end
 end)
 
-function MissionManager:set_ponr_state()
-	managers.groupai:set_state("ponr")
-	managers.groupai:state():on_police_called("default")
-	managers.groupai:state():set_difficulty(1)
-end
+-- Effect spawners
+Hooks:PostHook(MissionScript, "activate", "eclipse_activate", function(self)
+	local environment_name = managers.sequence:environment_name()
+	local environment_data = environment_name and Eclipse:require("envsmod/" .. environment_name)
+	
+	if environment_data then
+		local effect_spawner = environment_data.effect_spawner	
+		if effect_spawner then
+			for effect_name, effect_data in pairs(effect_spawner) do
+				for _, pos in pairs(effect_data) do
+					World:effect_manager():spawn({
+						effect = Idstring(effect_name),
+						position = pos.position,
+						rotation = pos.rotation
+					})
+				end
+			end
+		end
+	end
+end)
