@@ -38,10 +38,10 @@ function FirstAidKitBase:setup(bits)
 end
 
 function FirstAidKitBase:_get_upgrade_levels(bits)
-	local hot_regen = Bitwise:rshift(bits, FirstAidKitBase.hot_regen_shift)
+	local hot_regen = Bitwise:rshift(bits, FirstAidKitBase.hot_regen_shift) % 2
 	local auto_recovery = Bitwise:rshift(bits, FirstAidKitBase.auto_recovery_shift) % 2
 	local upgrade_lvl = Bitwise:rshift(bits, FirstAidKitBase.upgrade_lvl_shift) % 2 ^ FirstAidKitBase.upgrade_lvl_shift
-	local movement_speed = Bitwise:rshift(bits, FirstAidKitBase.movement_speed_shift) % 2
+	local movement_speed = Bitwise:rshift(bits, FirstAidKitBase.movement_speed_shift)
 
 	return upgrade_lvl, auto_recovery, hot_regen, movement_speed
 end

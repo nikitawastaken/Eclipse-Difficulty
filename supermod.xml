@@ -327,6 +327,7 @@
 					<post :hook_id="newnpcraycastweaponbase"/>
 					<post :hook_id="npcraycastweaponbase"/>
 					<post :hook_id="weaponammo"/>
+					<post :hook_id="weaponflashlight"/>
 					<post :hook_id="weaponliongadget1"/>
 					<post :hook_id="projectileweaponbase"/>
 				</group>
@@ -424,6 +425,11 @@
 					<file :name="weapon_trail_red_lmg.effect"/>
 					
 					<file :name="projectile_trail_green.effect"/>
+					
+					<file :name="flashlight/flashlight.effect"/>
+					<file :name="flashlight/flashlight_multicolor.effect"/>
+					<file :name="flashlight/fp_flashlight.effect"/>
+					<file :name="flashlight/fp_flashlight_multicolor.effect"/>
 				</group>
 				
 				<group :name="explosions/">
