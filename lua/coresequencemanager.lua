@@ -1,4 +1,5 @@
 local function load_environment(level_tweak, environment_name)
+	Eclipse:log_chat("Loading environment: " .. environment_name)
 	local environment_data = Eclipse:require("envsmod/" .. environment_name)
 
 	if not environment_data then
