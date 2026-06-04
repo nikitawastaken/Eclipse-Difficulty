@@ -1,4 +1,3 @@
-Hooks:PostHook(HostStateInGame, "on_handshake_confirmation", "eclipse_post_handshake_confirm", function(self, _, peer)
-	Eclipse:log_chat("sending env sync request with env: " .. Eclipse.current_environment)
-	managers.network:session():send_to_peer(peer, "eclipse_sync_environment", Eclipse.current_environment)
+Hooks:PostHook(HostStateInGame, "on_peer_finished_loading", "eclipse_post_on_peer_finished_loading", function(_, _, peer)
+	peer:send("eclipse_sync_environment", Eclipse.current_environment)
 end)
