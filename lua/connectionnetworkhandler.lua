@@ -28,10 +28,13 @@ function ConnectionNetworkHandler:sync_damage_reduction_from_crewmate(sender)
 end
 
 function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, sender)
-	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame_playing) or not alive(managers.player:player_unit()) then
+	Eclipse.log("Sync environment rq sent with env name: " .. tostring(environment_name))
+	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame_playing) then
+		Eclipse.log("Early return from env sync")
 		return
 	end
 
+	Eclipse.log(environment_name)
 	Eclipse.current_environment = environment_name or "default"
 	Eclipse.utils.load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment)
 end
