@@ -468,4 +468,41 @@ function M.load_environment(level_tweak, environment_name)
 	end
 end
 
+---Load environment from tweak data and env name for clients
+function M.client_load_environment(level_tweak, environment_name, color_grading)
+	local environment_data = Eclipse:require("envsmod/" .. environment_name)
+
+	if not environment_data then
+		return
+	end
+
+	local new_color_grading = color_grading or type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
+
+	if new_color_grading then
+		local viewport = managers.viewport:first_active_viewport()
+		if viewport then
+			Eclipse.log("Force changing color grading to " .. new_color_grading)
+			viewport:vp():set_post_processor_effect("World", Idstring("color_grading_post"), Idstring(new_color_grading))
+		else
+			Eclipse.log("no viewport found somehow?")
+		end
+	end
+
+	if environment_data.flashlights_on ~= nil then
+		managers.game_play_central:set_flashlights_on(level_tweak.flahslights_on)
+	end
+
+	if environment_data.environment_override then
+		for k, v in pairs(environment_data.environment_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
+		end
+	end
+
+	if environment_data.sounds_override then
+		for k, v in pairs(environment_data.sounds_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
+		end
+	end
+end
+
 return M

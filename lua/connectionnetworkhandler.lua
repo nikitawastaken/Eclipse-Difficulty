@@ -35,5 +35,5 @@ function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, sen
 	end
 
 	Eclipse.current_environment = environment_name or "default"
-	Eclipse.utils.load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment)
+	Eclipse.utils.client_load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment --[[ random_value to be added ]])
 end
