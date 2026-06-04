@@ -1604,7 +1604,13 @@ function PlayerStandard:_get_intimidation_action(prime_target, char_table, amoun
 
 								managers.player:player_unit():movement():set_inspire_charges(rally_skill_data.charges - 1)
 							end
-						elseif is_human_player and not is_arrested and not needs_revive and rally_skill_data.morale_boost_delay_t and rally_skill_data.morale_boost_delay_t < managers.player:player_timer():time() then
+						elseif
+							is_human_player
+							and not is_arrested
+							and not needs_revive
+							and rally_skill_data.morale_boost_delay_t
+							and rally_skill_data.morale_boost_delay_t < managers.player:player_timer():time()
+						then
 							voice_type = "boost"
 							amount = 1
 						end
@@ -1618,7 +1624,7 @@ function PlayerStandard:_get_intimidation_action(prime_target, char_table, amoun
 					prime_target.unit,
 					amount,
 					self._unit,
-					secondary or false
+					secondary or false,
 				})
 			end
 
@@ -1733,7 +1739,17 @@ function PlayerStandard:_get_intimidation_action(prime_target, char_table, amoun
 end
 
 -- fuck this shit, i have to overwrite the whole function because of one single variable (this is still part of reworking inspire aced)
-function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimidate_civilians, intimidate_teammates, only_special_enemies, intimidate_escorts, intimidation_amount, primary_only, detect_only, secondary)
+function PlayerStandard:_get_unit_intimidation_action(
+	intimidate_enemies,
+	intimidate_civilians,
+	intimidate_teammates,
+	only_special_enemies,
+	intimidate_escorts,
+	intimidation_amount,
+	primary_only,
+	detect_only,
+	secondary
+)
 	local char_table = {}
 	local unit_type_enemy = 0
 	local unit_type_civilian = 1
@@ -1764,7 +1780,7 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 	local is_whisper_mode = managers.groupai:state():whisper_mode()
 	local special_area_param = {
 		45,
-		15
+		15,
 	}
 
 	if intimidate_enemies then
@@ -1772,7 +1788,13 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 		local highlight_range_sq = highlight_range * highlight_range
 
 		for u_key, u_data in pairs(managers.enemy:all_enemies()) do
-			if my_foes[u_data.unit:movement():team().id] and not u_data.unit:anim_data().hands_tied and not u_data.unit:anim_data().long_dis_interact_disabled and (not u_data.unit:character_damage() or not u_data.unit:character_damage():dead()) and (not only_special_enemies or u_data.char_tweak.priority_shout) then
+			if
+				my_foes[u_data.unit:movement():team().id]
+				and not u_data.unit:anim_data().hands_tied
+				and not u_data.unit:anim_data().long_dis_interact_disabled
+				and (not u_data.unit:character_damage() or not u_data.unit:character_damage():dead())
+				and (not only_special_enemies or u_data.char_tweak.priority_shout)
+			then
 				if is_whisper_mode then
 					if u_data.unit:movement():cool() then
 						if u_data.char_tweak.silent_priority_shout then
@@ -1790,7 +1812,7 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 					if u_data.unit:base():has_tag("sniper") and highlight_range_sq < mvec3_dis_sq(self._pos, u_data.m_pos) then
 						area_param = {
 							15,
-							5
+							5,
 						}
 						range = nil
 					end
@@ -1805,7 +1827,12 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 
 	if intimidate_civilians then
 		for u_key, u_data in pairs(managers.enemy:all_civilians()) do
-			if alive(u_data.unit) and (u_data.unit:in_slot(21) or not u_data.unit:anim_data().drop and u_data.unit:in_slot(22)) and not u_data.unit:movement():cool() and not u_data.unit:anim_data().long_dis_interact_disabled then
+			if
+				alive(u_data.unit)
+				and (u_data.unit:in_slot(21) or not u_data.unit:anim_data().drop and u_data.unit:in_slot(22))
+				and not u_data.unit:movement():cool()
+				and not u_data.unit:anim_data().long_dis_interact_disabled
+			then
 				local is_escort = u_data.char_tweak.is_escort
 
 				if (not is_escort or intimidate_escorts) and (is_escort or not u_data.unit:anim_data().drop or not u_data.unit:anim_data().tied) then
@@ -1820,7 +1847,8 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 
 	if intimidate_teammates and not managers.groupai:state():whisper_mode() then
 		local rally_skill_data = self._ext_movement:rally_skill_data()
-		local can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive") or rally_skill_data.charges > 0
+		local can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive")
+			or rally_skill_data.charges > 0
 
 		for u_key, u_data in pairs(managers.groupai:state():all_char_criminals()) do
 			if u_key ~= self._unit:key() then
@@ -1842,7 +1870,13 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 					end
 				end
 
-				if not added and (not secondary or u_data.ai and not u_data.unit:movement():should_stay()) and not u_data.is_deployable and not u_data.unit:movement():downed() and not u_data.unit:anim_data().long_dis_interact_disabled then
+				if
+					not added
+					and (not secondary or u_data.ai and not u_data.unit:movement():should_stay())
+					and not u_data.is_deployable
+					and not u_data.unit:movement():downed()
+					and not u_data.unit:anim_data().long_dis_interact_disabled
+				then
 					self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_teammate, intimidate_range_teammates, true, not secondary, 0.01, my_head_pos, cam_fwd)
 				end
 			end
@@ -1853,7 +1887,13 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 		for u_key, u_data in pairs(managers.enemy:all_enemies()) do
 			local is_escort = u_data.char_tweak.is_escort
 
-			if (not is_escort or intimidate_escorts) and not u_data.unit:movement():cool() and not u_data.unit:anim_data().long_dis_interact_disabled and u_data.unit:movement():team() and u_data.unit:movement():team().id == "criminal1" then
+			if
+				(not is_escort or intimidate_escorts)
+				and not u_data.unit:movement():cool()
+				and not u_data.unit:anim_data().long_dis_interact_disabled
+				and u_data.unit:movement():team()
+				and u_data.unit:movement():team().id == "criminal1"
+			then
 				local dist = is_escort and intimidate_range_escort or intimidate_range_civ
 				local prio = is_escort and 100000 or 0.001
 
@@ -1867,9 +1907,14 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 			local dist = tweak_data.player.long_dis_interaction.highlight_range_cameras * range_mul * spotting_mul
 
 			for _, unit in ipairs(SecurityCamera.cameras) do
-				if alive(unit) and unit:enabled() and not unit:base():destroyed() and (unit:base().is_friendly or unit:interaction() and unit:interaction():active() and not unit:interaction():disabled()) then
+				if
+					alive(unit)
+					and unit:enabled()
+					and not unit:base():destroyed()
+					and (unit:base().is_friendly or unit:interaction() and unit:interaction():active() and not unit:interaction():disabled())
+				then
 					self:_add_unit_to_char_table(char_table, unit, unit_type_camera, dist, false, false, 0.0001, my_head_pos, cam_fwd, {
-						unit
+						unit,
 					})
 				end
 			end
@@ -1878,7 +1923,7 @@ function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimi
 		for u_key, unit in pairs(managers.groupai:state():turrets()) do
 			if alive(unit) and not unit:character_damage():dead() and unit:movement():team().foes[self._ext_movement:team().id] then
 				self:_add_unit_to_char_table(char_table, unit, unit_type_turret, highlight_range, false, special_area_param, 150, my_head_pos, cam_fwd, {
-					unit
+					unit,
 				})
 			end
 		end
