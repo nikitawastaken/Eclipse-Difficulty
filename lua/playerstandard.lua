@@ -1,4 +1,5 @@
 local is_pro_job = Eclipse.utils.is_pro_job()
+local mvec3_dis_sq = mvector3.distance_sq
 
 -- Friendly Fire
 local original_init = PlayerStandard.init
@@ -1542,3 +1543,348 @@ Hooks:PostHook(PlayerStandard, "_enter", "_enter_hos", set_hos)
 Hooks:PostHook(PlayerStandard, "_start_action_steelsight", "_start_action_steelsight_hos", set_cbt)
 Hooks:PostHook(PlayerStandard, "_end_action_steelsight", "_end_action_steelsight_hos", set_hos)
 Hooks:PostHook(PlayerStandard, "set_running", "set_running_hos", set_hos)
+
+-- Ranged revive inspire rework
+function PlayerStandard:_get_intimidation_action(prime_target, char_table, amount, primary_only, detect_only, secondary)
+	local voice_type, new_action, plural = nil
+	local unit_type_enemy = 0
+	local unit_type_civilian = 1
+	local unit_type_teammate = 2
+	local unit_type_camera = 3
+	local unit_type_turret = 4
+	local is_whisper_mode = managers.groupai:state():whisper_mode()
+
+	if prime_target then
+		if prime_target.unit_type == unit_type_teammate then
+			local is_human_player, record = nil
+
+			if not detect_only then
+				record = managers.groupai:state():all_criminals()[prime_target.unit:key()]
+
+				if record.ai then
+					if not prime_target.unit:brain():player_ignore() then
+						prime_target.unit:movement():set_cool(false)
+						prime_target.unit:brain():on_long_dis_interacted(0, self._unit, secondary)
+					end
+				else
+					is_human_player = true
+				end
+			end
+
+			local amount = 0
+
+			if not secondary then
+				local current_state_name = self._unit:movement():current_state_name()
+
+				if current_state_name ~= "arrested" and current_state_name ~= "bleed_out" and current_state_name ~= "fatal" and current_state_name ~= "incapacitated" then
+					local rally_skill_data = self._ext_movement:rally_skill_data()
+
+					if rally_skill_data and mvec3_dis_sq(self._pos, record.m_pos) < rally_skill_data.range_sq then
+						local needs_revive, is_arrested = nil
+
+						if prime_target.unit:base().is_husk_player then
+							is_arrested = prime_target.unit:movement():current_state_name() == "arrested"
+							needs_revive = prime_target.unit:interaction():active() and prime_target.unit:movement():need_revive() and not is_arrested
+						else
+							is_arrested = prime_target.unit:character_damage():arrested()
+							needs_revive = prime_target.unit:character_damage():need_revive()
+						end
+
+						if needs_revive then
+							if managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive") then
+								voice_type = "revive"
+
+								if rally_skill_data.charges > 0 then
+									managers.player:player_unit():movement():set_inspire_charges(rally_skill_data.charges - 1)
+								else
+									managers.player:player_unit():movement():set_inspire_charges(tweak_data.upgrades.values.init_inspire_charges - 1)
+								end
+							elseif rally_skill_data.charges > 0 then
+								voice_type = "revive"
+
+								managers.player:player_unit():movement():set_inspire_charges(rally_skill_data.charges - 1)
+							end
+						elseif is_human_player and not is_arrested and not needs_revive and rally_skill_data.morale_boost_delay_t and rally_skill_data.morale_boost_delay_t < managers.player:player_timer():time() then
+							voice_type = "boost"
+							amount = 1
+						end
+					end
+				end
+			end
+
+			if is_human_player then
+				prime_target.unit:network():send_to_unit({
+					"long_dis_interaction",
+					prime_target.unit,
+					amount,
+					self._unit,
+					secondary or false
+				})
+			end
+
+			voice_type = voice_type or secondary and "ai_stay" or "come"
+			plural = false
+		else
+			local prime_target_key = prime_target.unit:key()
+
+			if prime_target.unit_type == unit_type_enemy then
+				plural = false
+
+				if prime_target.unit:anim_data().hands_back then
+					voice_type = "cuff_cop"
+				elseif prime_target.unit:anim_data().surrender then
+					voice_type = "down_cop"
+				elseif is_whisper_mode and prime_target.unit:movement():cool() and prime_target.unit:base():char_tweak().silent_priority_shout then
+					voice_type = "mark_cop_quiet"
+				elseif prime_target.unit:base():char_tweak().priority_shout then
+					voice_type = "mark_cop"
+				else
+					voice_type = "stop_cop"
+				end
+			elseif prime_target.unit_type == unit_type_camera then
+				plural = false
+				voice_type = "mark_camera"
+			elseif prime_target.unit_type == unit_type_turret then
+				plural = false
+				voice_type = "mark_turret"
+			elseif prime_target.unit:base():char_tweak().is_escort then
+				plural = false
+				local e_guy = prime_target.unit
+
+				if e_guy:anim_data().move or e_guy:anim_data().standing_hesitant then
+					voice_type = "escort_keep"
+				elseif e_guy:anim_data().panic then
+					voice_type = "escort_go"
+				else
+					voice_type = prime_target.unit:base():char_tweak().speech_escort or "escort"
+				end
+			else
+				if prime_target.unit:anim_data().drop then
+					voice_type = "down_stay"
+				elseif prime_target.unit:anim_data().tied or prime_target.unit:movement():stance_name() == "cbt" then
+					voice_type = "come"
+				elseif prime_target.unit:anim_data().move then
+					voice_type = "stop"
+				else
+					voice_type = "down"
+				end
+
+				local num_affected = 0
+
+				if voice_type ~= "come" then
+					for _, char in pairs(char_table) do
+						if char.unit_type == unit_type_civilian then
+							if voice_type == "stop" and char.unit:anim_data().move then
+								num_affected = num_affected + 1
+							elseif voice_type == "down_stay" and char.unit:anim_data().drop then
+								num_affected = num_affected + 1
+							elseif voice_type == "down" and not char.unit:anim_data().move and not char.unit:anim_data().drop then
+								num_affected = num_affected + 1
+							end
+
+							if num_affected > 1 then
+								break
+							end
+						end
+					end
+				end
+
+				if num_affected > 1 then
+					plural = true
+				else
+					plural = false
+				end
+			end
+
+			if detect_only then
+				voice_type = "come"
+			else
+				local max_inv_wgt = 0
+
+				for _, char in pairs(char_table) do
+					if max_inv_wgt < char.inv_wgt then
+						max_inv_wgt = char.inv_wgt
+					end
+				end
+
+				if max_inv_wgt < 1 then
+					max_inv_wgt = 1
+				end
+
+				amount = amount or tweak_data.player.long_dis_interaction.intimidate_strength
+				local amount_civ = amount * managers.player:upgrade_value("player", "civ_intimidation_mul", 1) * managers.player:team_upgrade_value("player", "civ_intimidation_mul", 1)
+
+				for _, char in pairs(char_table) do
+					if char.unit_type ~= unit_type_camera and char.unit_type ~= unit_type_teammate and (not is_whisper_mode or not char.unit:movement():cool()) then
+						local int_amount = char.unit_type == unit_type_civilian and amount_civ or amount
+
+						if prime_target_key == char.unit:key() then
+							voice_type = char.unit:brain():on_intimidated(int_amount, self._unit) or voice_type
+						elseif not primary_only and char.unit_type ~= unit_type_enemy then
+							char.unit:brain():on_intimidated(int_amount * char.inv_wgt / max_inv_wgt, self._unit)
+						end
+					end
+				end
+			end
+		end
+	end
+
+	return voice_type, plural, prime_target
+end
+
+-- fuck this shit, i have to overwrite the whole function because of one single variable (this is still part of reworking inspire aced)
+function PlayerStandard:_get_unit_intimidation_action(intimidate_enemies, intimidate_civilians, intimidate_teammates, only_special_enemies, intimidate_escorts, intimidation_amount, primary_only, detect_only, secondary)
+	local char_table = {}
+	local unit_type_enemy = 0
+	local unit_type_civilian = 1
+	local unit_type_teammate = 2
+	local unit_type_camera = 3
+	local unit_type_turret = 4
+	local cam_fwd = self._ext_camera:forward()
+	local my_head_pos = self._ext_movement:m_head_pos()
+
+	if _G.IS_VR then
+		local hand_unit = self._unit:hand():hand_unit(self._interact_hand)
+
+		if hand_unit:raycast("ray", hand_unit:position(), my_head_pos, "slot_mask", 1) then
+			return
+		end
+
+		cam_fwd = hand_unit:rotation():y()
+		my_head_pos = hand_unit:position()
+	end
+
+	local spotting_mul = managers.player:upgrade_value("player", "marked_distance_mul", 1)
+	local range_mul = managers.player:upgrade_value("player", "intimidate_range_mul", 1) * managers.player:upgrade_value("player", "passive_intimidate_range_mul", 1)
+	local intimidate_range_escort = tweak_data.player.long_dis_interaction.intimidate_range_escorts
+	local intimidate_range_civ = tweak_data.player.long_dis_interaction.intimidate_range_civilians * range_mul
+	local intimidate_range_ene = tweak_data.player.long_dis_interaction.intimidate_range_enemies * range_mul
+	local highlight_range = tweak_data.player.long_dis_interaction.highlight_range * range_mul * spotting_mul
+	local intimidate_range_teammates = tweak_data.player.long_dis_interaction.intimidate_range_teammates
+	local is_whisper_mode = managers.groupai:state():whisper_mode()
+	local special_area_param = {
+		45,
+		15
+	}
+
+	if intimidate_enemies then
+		local my_foes = self._unit:movement():team().foes
+		local highlight_range_sq = highlight_range * highlight_range
+
+		for u_key, u_data in pairs(managers.enemy:all_enemies()) do
+			if my_foes[u_data.unit:movement():team().id] and not u_data.unit:anim_data().hands_tied and not u_data.unit:anim_data().long_dis_interact_disabled and (not u_data.unit:character_damage() or not u_data.unit:character_damage():dead()) and (not only_special_enemies or u_data.char_tweak.priority_shout) then
+				if is_whisper_mode then
+					if u_data.unit:movement():cool() then
+						if u_data.char_tweak.silent_priority_shout then
+							self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_enemy, highlight_range, false, false, 0.01, my_head_pos, cam_fwd)
+						end
+					elseif u_data.char_tweak.priority_shout then
+						self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_enemy, highlight_range, false, special_area_param, 200, my_head_pos, cam_fwd)
+					elseif u_data.char_tweak.surrender and not u_data.char_tweak.surrender.impossible then
+						self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_enemy, intimidate_range_ene, false, false, 100, my_head_pos, cam_fwd, nil, "ai_vision mover")
+					end
+				elseif u_data.char_tweak.priority_shout then
+					local area_param = special_area_param
+					local range = highlight_range
+
+					if u_data.unit:base():has_tag("sniper") and highlight_range_sq < mvec3_dis_sq(self._pos, u_data.m_pos) then
+						area_param = {
+							15,
+							5
+						}
+						range = nil
+					end
+
+					self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_enemy, range, false, area_param, 200, my_head_pos, cam_fwd)
+				elseif u_data.char_tweak.surrender and not u_data.char_tweak.surrender.impossible then
+					self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_enemy, intimidate_range_ene, false, false, 100, my_head_pos, cam_fwd, nil, "ai_vision mover")
+				end
+			end
+		end
+	end
+
+	if intimidate_civilians then
+		for u_key, u_data in pairs(managers.enemy:all_civilians()) do
+			if alive(u_data.unit) and (u_data.unit:in_slot(21) or not u_data.unit:anim_data().drop and u_data.unit:in_slot(22)) and not u_data.unit:movement():cool() and not u_data.unit:anim_data().long_dis_interact_disabled then
+				local is_escort = u_data.char_tweak.is_escort
+
+				if (not is_escort or intimidate_escorts) and (is_escort or not u_data.unit:anim_data().drop or not u_data.unit:anim_data().tied) then
+					local dist = is_escort and intimidate_range_escort or intimidate_range_civ
+					local prio = is_escort and 100000 or 0.001
+
+					self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_civilian, dist, false, false, prio, my_head_pos, cam_fwd)
+				end
+			end
+		end
+	end
+
+	if intimidate_teammates and not managers.groupai:state():whisper_mode() then
+		local rally_skill_data = self._ext_movement:rally_skill_data()
+		local can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive") or rally_skill_data.charges > 0
+
+		for u_key, u_data in pairs(managers.groupai:state():all_char_criminals()) do
+			if u_key ~= self._unit:key() then
+				local added = nil
+
+				if can_long_dis_revive then
+					local needs_revive = nil
+
+					if u_data.unit:base().is_husk_player then
+						needs_revive = u_data.unit:interaction():active() and u_data.unit:movement():need_revive() and u_data.unit:movement():current_state_name() ~= "arrested"
+					elseif not u_data.is_deployable then
+						needs_revive = u_data.unit:character_damage():need_revive()
+					end
+
+					if needs_revive and mvec3_dis_sq(self._pos, u_data.m_pos) < rally_skill_data.range_sq then
+						added = true
+
+						self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_teammate, nil, true, true, 100000, my_head_pos, cam_fwd)
+					end
+				end
+
+				if not added and (not secondary or u_data.ai and not u_data.unit:movement():should_stay()) and not u_data.is_deployable and not u_data.unit:movement():downed() and not u_data.unit:anim_data().long_dis_interact_disabled then
+					self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_teammate, intimidate_range_teammates, true, not secondary, 0.01, my_head_pos, cam_fwd)
+				end
+			end
+		end
+	end
+
+	if intimidate_enemies and intimidate_teammates then
+		for u_key, u_data in pairs(managers.enemy:all_enemies()) do
+			local is_escort = u_data.char_tweak.is_escort
+
+			if (not is_escort or intimidate_escorts) and not u_data.unit:movement():cool() and not u_data.unit:anim_data().long_dis_interact_disabled and u_data.unit:movement():team() and u_data.unit:movement():team().id == "criminal1" then
+				local dist = is_escort and intimidate_range_escort or intimidate_range_civ
+				local prio = is_escort and 100000 or 0.001
+
+				self:_add_unit_to_char_table(char_table, u_data.unit, unit_type_civilian, dist, false, false, prio, my_head_pos, cam_fwd)
+			end
+		end
+	end
+
+	if intimidate_enemies then
+		if managers.groupai:state():whisper_mode() then
+			local dist = tweak_data.player.long_dis_interaction.highlight_range_cameras * range_mul * spotting_mul
+
+			for _, unit in ipairs(SecurityCamera.cameras) do
+				if alive(unit) and unit:enabled() and not unit:base():destroyed() and (unit:base().is_friendly or unit:interaction() and unit:interaction():active() and not unit:interaction():disabled()) then
+					self:_add_unit_to_char_table(char_table, unit, unit_type_camera, dist, false, false, 0.0001, my_head_pos, cam_fwd, {
+						unit
+					})
+				end
+			end
+		end
+
+		for u_key, unit in pairs(managers.groupai:state():turrets()) do
+			if alive(unit) and not unit:character_damage():dead() and unit:movement():team().foes[self._ext_movement:team().id] then
+				self:_add_unit_to_char_table(char_table, unit, unit_type_turret, highlight_range, false, special_area_param, 150, my_head_pos, cam_fwd, {
+					unit
+				})
+			end
+		end
+	end
+
+	local prime_target = self:_get_interaction_target(char_table, my_head_pos, cam_fwd, secondary)
+
+	return self:_get_intimidation_action(prime_target, char_table, intimidation_amount, primary_only, detect_only, secondary)
+end

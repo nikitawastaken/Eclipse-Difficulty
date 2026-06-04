@@ -1,10 +1,23 @@
 Hooks:PostHook(PlayerMovement, "init", "eclipse_init", function(self)
 	if managers.player:has_category_upgrade("player", "morale_boost") or managers.player:has_category_upgrade("cooldown", "long_dis_revive") then
 		self._rally_skill_data.range_sq = 490000
+		self._rally_skill_data.charges = tweak_data.upgrades.values.init_inspire_charges
 	end
 
 	self._underdog_skill_data.has_dodge = managers.player:has_category_upgrade("temporary", "dodge_outnumbered")
 end)
+
+-- Helper functions
+function PlayerMovement:set_inspire_charges(charges)
+	self._rally_skill_data.charges = charges
+
+	-- begin the cooldown (repurposed to be a reset timer) specifically whenever the first inspire charge is used
+	if self._rally_skill_data.charges == (tweak_data.upgrades.values.init_inspire_charges - 1) then
+		managers.player:disable_cooldown_upgrade("cooldown", "long_dis_revive")
+	end
+
+	Eclipse:log_chat("Inspire charges set to: " .. charges)
+end
 
 function PlayerMovement:on_SPOOCed(enemy_unit)
 	if self._unit:character_damage()._god_mode or self._unit:character_damage():get_mission_blocker("invulnerable") then
