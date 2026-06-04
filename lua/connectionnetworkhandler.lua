@@ -27,14 +27,13 @@ function ConnectionNetworkHandler:sync_damage_reduction_from_crewmate(sender)
 	managers.player:activate_temporary_upgrade("temporary", "damage_reduction_from_crewmate")
 end
 
+-- TODO: Force load the env on the client. load_environment doesn't seem to
+-- behave as expected on client but the env data is at least received
 function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, sender)
-	Eclipse.log("Sync environment rq sent with env name: " .. tostring(environment_name))
-	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame_playing) then
-		Eclipse.log("Early return from env sync")
+	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
 		return
 	end
 
-	Eclipse.log(environment_name)
 	Eclipse.current_environment = environment_name or "default"
 	Eclipse.utils.load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment)
 end
