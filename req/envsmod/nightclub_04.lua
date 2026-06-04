@@ -1,19 +1,13 @@
 return {
 	flashlights_on = true, -- Flashlights
 	color_grading = { -- Randomized color gradings
-		"color_matrix_classic",
-		"color_xxxgen",
-		"color_xgen",
-		"color_bhd",
-		"color_nice",
-		"color_payday",
-		"color_bhd_classic",
-		"color_heat_classic",
-		"color_payday_classic",
-		"color_xxxgen_classic",
+		"bhd_classic",
+		"heat_classic",
+		"payday_classic",
+		"xxxgen_classic",
 	},
 	environment_override = { -- File override
-		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/nightclub_3.custom_xml",
+		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/nightclub_foggy.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
 		["effects/payday2/environment/club_smoke_machine"] = {

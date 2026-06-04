@@ -18,21 +18,21 @@
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.6864128112793"/>
+						<param key="ambient_scale" value="0.25387871265411"/>
 						<param key="sky_bottom_color" value="0.10196079313755 0.11372549831867 0.14117647707462"/>
 						<param key="fog_start_color" value="0.24705883860588 0.28235295414925 0.29803922772408"/>
 						<param key="effect_light_scale" value="1"/>
-						<param key="fog_far_low_color" value="1 1 0.86274516582489"/>
+						<param key="fog_far_low_color" value="1 1 0.85098046064377"/>
 						<param key="ambient_falloff_scale" value="0.18805830180645"/>
-						<param key="sky_bottom_color_scale" value="1.3164081573486"/>
-						<param key="ambient_color_scale" value="0.18805830180645"/>
+						<param key="sky_bottom_color_scale" value="3.7611660957336"/>
+						<param key="ambient_color_scale" value="0.5"/>
 						<param key="ambient_color" value="0.49803924560547 0.54117649793625 0.58823531866074"/>
-						<param key="fog_max_range" value="32910.203125"/>
+						<param key="fog_max_range" value="42313.1171875"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
-						<param key="sky_top_color_scale" value="0.56417489051819"/>
+						<param key="sky_top_color_scale" value="4.7014575004578"/>
 						<param key="sky_top_color" value="0.10196079313755 0.11372549831867 0.14117647707462"/>
-						<param key="fog_min_range" value="-1599.4357910156"/>
-						<param key="fog_max_density" value="0.3761166036129"/>
+						<param key="fog_min_range" value="6000"/>
+						<param key="fog_max_density" value="1"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -49,9 +49,9 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,10 +61,6 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>

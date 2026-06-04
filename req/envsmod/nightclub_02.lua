@@ -17,15 +17,15 @@ return {
 		["effects/payday2/environment/club_smoke_machine"] = {
 			{
 				position = Vector3(2779, -5599, 78),
-				rotation = Rotation(88, -17, 0) --0, 0, -0,707107
+				rotation = Rotation(88, -17, 0)
 			},
 			{
 				position = Vector3(2779, -5599, 78),
-				rotation = Rotation(47, -17, 0) --0, 0, -0,707107
+				rotation = Rotation(47, -17, 0)
 			},
 			{
 				position = Vector3(2779, -5599, 78),
-				rotation = Rotation(137, -17, 0) --0, 0, -0,707107
+				rotation = Rotation(137, -17, 0)
 			}
 		}
 	},

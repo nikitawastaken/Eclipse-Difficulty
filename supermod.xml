@@ -403,7 +403,25 @@
 				<file :name="weapons/sniper_glint.dds"/>
 				<file :name="effects_atlas.texture"/>
 			</group>
-			
+
+			<group :name="envsmod/">
+				<group :name="day_time/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+				<group :name="in_between/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+				<group :name="night_time/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+			</group>
+
 			<group :name="particles/">
 				<group :name="weapons/">
 					<file :name="sniper_glint.effect"/>

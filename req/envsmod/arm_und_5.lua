@@ -17,5 +17,5 @@ return {
 	},
 	environment_override = { -- sunset
 		["environments/pd2_env_foggy_bright/pd2_env_foggy_bright"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_und_sunset2.custom_xml",
-	}
+	} -- use in_between blue fog here
 }

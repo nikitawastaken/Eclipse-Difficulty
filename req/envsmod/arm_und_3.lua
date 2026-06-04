@@ -16,5 +16,5 @@ return {
 	},
 	environment_override = { -- dark
 		["environments/pd2_env_foggy_bright/pd2_env_foggy_bright"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_und_dark.custom_xml",
-	}
+	} -- use in between fog blue
 }
