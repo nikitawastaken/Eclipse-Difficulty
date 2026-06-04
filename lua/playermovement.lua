@@ -16,7 +16,7 @@ function PlayerMovement:set_inspire_charges(charges)
 		managers.player:disable_cooldown_upgrade("cooldown", "long_dis_revive")
 	end
 
-	Eclipse:log_chat("Inspire charges set to: " .. charges)
+	-- Eclipse:log_chat("Inspire charges set to: " .. charges)
 end
 
 function PlayerMovement:on_SPOOCed(enemy_unit)
