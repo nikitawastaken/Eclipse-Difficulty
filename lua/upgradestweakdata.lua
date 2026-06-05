@@ -836,7 +836,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.revive_interaction_speed_multiplier = { 2 / 3 }
 	self.skill_descs.tea_cookies.multibasic = "40%"
 	self.skill_descs.tea_cookies.multibasic2 = "5"
-	self.skill_descs.tea_cookies.multipro = "50%"
+	self.skill_descs.tea_cookies.multipro = "33%"
 	self.skill_descs.tea_cookies.multipro2 = "25%"
 	self.skill_descs.tea_cookies.multipro3 = "10"
 
