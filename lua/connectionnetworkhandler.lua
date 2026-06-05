@@ -29,11 +29,11 @@ end
 
 -- TODO: Force load the env on the client. load_environment doesn't seem to
 -- behave as expected on client but the env data is at least received
-function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, sender)
+function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, color_grading, sender)
 	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
 		return
 	end
 
-	Eclipse.current_environment = environment_name or "default"
-	Eclipse.utils.client_load_environment(tweak_data.levels[Eclipse.utils.level_id()], Eclipse.current_environment --[[ random_value to be added ]])
+	Eclipse.current_environment = environment_name
+	Eclipse.color_grading = color_grading
 end

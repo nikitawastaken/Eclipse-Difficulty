@@ -3,27 +3,27 @@ Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", functi
 		return
 	end
 
-	local level_id = Eclipse.utils.level_id()
-	local level_tweak = tweak_data.levels[level_id]
-
-	if not level_tweak then
-		return
-	end
-
-	if not level_tweak.random_environments then
-		return
-	end
-
 	if NetworkHelper:IsHost() then
+		local level_id = Eclipse.utils.level_id()
+		local level_tweak = tweak_data.levels[level_id]
+
+		if not level_tweak then
+			return
+		end
+
+		if not level_tweak.random_environments then
+			return
+		end
+
 		local weighted_selector = Eclipse.utils.weighted_selector
 		Eclipse.current_environment = weighted_selector(level_tweak.random_environments):select()
-	end
 
-	if Eclipse.current_environment == "default" or not Eclipse.current_environment then
-		return
-	end
+		if Eclipse.current_environment == "default" or not Eclipse.current_environment then
+			return
+		end
 
-	Eclipse.utils.load_environment(level_tweak, Eclipse.current_environment)
+		Eclipse.utils.load_environment(level_tweak, Eclipse.current_environment)
+	end
 end)
 
 local ids_scene = Idstring("scene")

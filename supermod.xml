@@ -119,6 +119,7 @@
 
 			<group :hook_id="network/">
 				<post :hook_id="base/handlers/connectionnetworkhandler"/>
+				<post :hook_id="base/clientnetworksession"/>
 				<post :hook_id="base/session_states/hoststateingame"/>
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="base/networkpeer"/>

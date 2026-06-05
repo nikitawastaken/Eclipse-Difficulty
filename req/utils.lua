@@ -448,6 +448,7 @@ function M.load_environment(level_tweak, environment_name)
 	local new_color_grading = type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
 
 	if new_color_grading then
+		Eclipse.color_grading = new_color_grading
 		level_tweak.env_params.color_grading = new_color_grading
 	end
 

@@ -229,6 +229,7 @@
 		<target mode="attach">
 			<message name="eclipse_sync_environment" delivery="ordered" receiver="connection" check="server_to_client">
 				<param type="string" />       <!-- environment_name -->
+				<param type="string" />       <!-- color_grading -->
 			</message>
 		</target>
 	</tweak>
