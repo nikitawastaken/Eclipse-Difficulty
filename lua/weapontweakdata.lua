@@ -3024,6 +3024,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.svdsil_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
 
+	self.vhs_crew.hold = "rifle"
+	self.vhs_crew.reload = "bullpup"
+	self.komodo_crew.hold = "rifle"
+	self.komodo_crew.reload = "bullpup"
 	self.contender_crew.reload = "looped"
 	self.hailstorm_crew.looped_reload_single = true
 	self.hailstorm_crew.reload = "looped"
