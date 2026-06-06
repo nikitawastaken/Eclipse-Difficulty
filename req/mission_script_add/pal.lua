@@ -7,15 +7,12 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local enabled_chance_elite_shield_blockade = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
 
-local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser_1
-local elite_shield = scripted_enemy.elite_shield
 local elite_sniper = scripted_enemy.elite_sniper
 
 local overkill_above = diff_i >= 5
 
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400057, delay = 0 },
 		{ id = 400057, delay = 30 },
@@ -24,7 +21,7 @@ local optsSniper_1 = {
 	enabled = true,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400006, delay = 0 },
 		{ id = 400006, delay = 30 },
@@ -33,7 +30,7 @@ local optsSniper_2 = {
 	enabled = true,
 }
 local optsSniper_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400007, delay = 0 },
 		{ id = 400007, delay = 30 },
@@ -42,7 +39,7 @@ local optsSniper_3 = {
 	enabled = overkill_above,
 }
 local optsSniper_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = {
 		{ id = 400008, delay = 0 },
@@ -52,7 +49,7 @@ local optsSniper_4 = {
 	enabled = overkill_above,
 }
 local optsSniper_5 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_up_2_75_down_1_25m",
 	on_executed = {
 		{ id = 400009, delay = 0 },
@@ -60,35 +57,35 @@ local optsSniper_5 = {
 	enabled = is_eclipse,
 }
 local optsTaserDefend_1 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400021, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
 local optsTaserDefend_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400022, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
 local optsTaserDefend_3 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400023, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
 local optsTaserDefend_4 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400024, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
 local optsShieldDefend_1 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = {
 		{ id = 400033, delay = 0 },
@@ -96,7 +93,7 @@ local optsShieldDefend_1 = {
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_2 = {
-	enemy = elite_sniper,
+	enemy = scripted_enemy.elite_sniper,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = {
 		{ id = 400034, delay = 0 },
@@ -104,7 +101,7 @@ local optsShieldDefend_2 = {
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_3 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = {
 		{ id = 400035, delay = 0 },
@@ -112,21 +109,21 @@ local optsShieldDefend_3 = {
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_4 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400060, delay = 0 },
 	},
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_5 = {
-	enemy = elite_sniper,
+	enemy = scripted_enemy.elite_sniper,
 	on_executed = {
 		{ id = 400061, delay = 0 },
 	},
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_6 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400062, delay = 0 },
 	},

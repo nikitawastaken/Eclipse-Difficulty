@@ -4,18 +4,21 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
-
 local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
 
-local green_bulldozer = scripted_enemy.bulldozer_1
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker = scripted_enemy.cloaker
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
 local enabled_chance_dozers = math.random() <= 0.4
 
 local optsDwTrailer_Dozer_1 = {
-	enemy = elite_skull_bulldozer,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = {
 		{ id = 400002, delay = 0 },
@@ -24,7 +27,7 @@ local optsDwTrailer_Dozer_1 = {
 	enabled = true,
 }
 local optsDwTrailer_Dozer_2 = {
-	enemy = elite_skull_bulldozer,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = {
 		{ id = 400003, delay = 0 },
@@ -33,7 +36,7 @@ local optsDwTrailer_Dozer_2 = {
 	enabled = true,
 }
 local optVaultDozer = {
-	enemy = is_eclipse and elite_ben_bulldozer or green_bulldozer,
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
 	enabled = overkill_and_above and enabled_chance_dozers,
 }
 local optsBesiegeDummy = {
@@ -43,21 +46,21 @@ local optsBesiegeDummy = {
 }
 local optsBesiegeDummyCloaker_1 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_repel_into_window",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_2 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_window_down_4m",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_3 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = true,
 }

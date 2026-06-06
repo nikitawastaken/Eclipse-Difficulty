@@ -9,24 +9,15 @@ local ambush_amount = 1 + (is_pro_job and 1 or 0)
 
 local enabled_chance_snipers = math.random() <= 0.45
 
-local shield = scripted_enemy.shield
-local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
-local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-
 local bags_required = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
 
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_bulldozer_neil,
-	elite_bulldozer_skull,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 
 local spawn_cloakers = {
@@ -76,35 +67,35 @@ local optsBesiegeDummy = {
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsCloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
 	enabled = true,
 }
 local optsTaser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
 	enabled = true,
 }
 local optsShield = {
-	enemy = shield,
+	enemy = scripted_enemy.shield,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
 	enabled = true,
 }
 local optsBulldozer_Ambush = {
-	enemy = green_bulldozer,
+	enemy_table = scripted_enemy.random_dozers,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
 	enabled = true,
 }
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_up_ledge",
 	on_executed = {
 		{ id = 400029, delay = 0 },
@@ -112,7 +103,7 @@ local optsSniper_1 = {
 	enabled = true,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy =scripted_enemy.sniper,
 	spawn_action = "e_sp_up_ledge",
 	on_executed = {
 		{ id = 400030, delay = 0 },
@@ -134,7 +125,7 @@ local spawn_dozer_2 = {
 	},
 }
 local optsBulldozer = {
-	enemy = green_bulldozer,
+	enemy_table = scripted_enemy.random_dozers,
 	on_executed = {
 		{ id = 400021, delay = 0 },
 	},
@@ -211,13 +202,13 @@ local optsSpecialChopper = {
 	},
 }
 local optsTaser_heli = {
-	enemy = taser,
+	enemy = scripted_enemy.taser,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400057, delay = 0 } },
 	enabled = true,
 }
 local optsCloaker_heli = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	spawn_action = "e_sp_down_16m_left",
 	on_executed = { { id = 400057, delay = 0 } },
 	enabled = true,
