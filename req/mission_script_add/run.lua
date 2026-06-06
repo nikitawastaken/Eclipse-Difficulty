@@ -43,7 +43,7 @@ local optsShieldWall3 = {
 	enabled = normal_and_above,
 }
 local optsShieldWall4 = {
-	enemy = is_eclipse andscripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400007, delay = 0 } },
 	enabled = normal_and_above,
 }
