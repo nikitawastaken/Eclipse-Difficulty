@@ -224,7 +224,7 @@ local optsEscapeShield7 = {
 	enabled = is_eclipse_pro or (overkill_and_above and enabled_chance_escape_hallway_wall),
 }
 local optsShieldArmy_1 = {
-	enemy = is_eclipse and scripted_enemy.elite_shield, or scripted_enemy.shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400060, delay = 0 } },
 	enabled = true,
