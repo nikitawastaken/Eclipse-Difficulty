@@ -12,31 +12,31 @@ return {
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/in_between/fog_very_faint_bright_white"] = {
 			{
-				position = Vector3(-1869, 321, -19)	
+				position = Vector3(-1869, 321, -19),
 				rotation = Rotation(0, 0, -0)
 			},
 			{
-				position = Vector3(-1936, 3661, -19)
+				position = Vector3(-1936, 3661, -19),
 				rotation = Rotation(0, 0, -0)
 			},
 			{
-				position = Vector3(-2080, -2027, -19)
+				position = Vector3(-2080, -2027, -19),
 				rotation = Rotation(0, 0, -0)
 			}
 		},
 		["effects/envsmod/spotlight"] = {
 			{
-				position = Vector3(-2321, 277, 79)
+				position = Vector3(-2321, 277, 79),
 				rotation = Rotation(-92, 7, 0)
 			}
 		},
 		["effects/envsmod/spotlight_long"] = {
 			{
-				position = Vector3(-1723, 5255, 82)
+				position = Vector3(-1723, 5255, 82),
 				rotation = Rotation(166, 2, 0)
 			},
 			{
-				position = Vector3(-2375, -3206, 79)
+				position = Vector3(-2375, -3206, 79),
 				rotation = Rotation(-19, 0, -0)
 			}
 		}
