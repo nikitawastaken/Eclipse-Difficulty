@@ -1847,7 +1847,7 @@ function PlayerStandard:_get_unit_intimidation_action(
 
 	if intimidate_teammates and not managers.groupai:state():whisper_mode() then
 		local rally_skill_data = self._ext_movement:rally_skill_data()
-		local can_long_dis_revive = nil		
+		local can_long_dis_revive = nil
 		if rally_skill_data then
 			can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive")
 				or rally_skill_data.charges > 0
