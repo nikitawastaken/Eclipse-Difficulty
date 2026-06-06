@@ -4,7 +4,7 @@ Hooks:Add("BeardLibCreateScriptDataMods", "TODCallBeardLibSequenceFuncs", functi
 	end
 
 	if NetworkHelper:IsHost() then
-		local level_id = Eclipse.utils.level_id()
+		local level_id = Eclipse.utils.clean_level_id()
 		local level_tweak = tweak_data.levels[level_id]
 
 		if not level_tweak then
