@@ -850,12 +850,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.morale_boost_reload_speed_bonus = 1.2
 	self.morale_boost_suppression_resistance = 0.9
 	self.morale_boost_time = 7
-	self.values.cooldown.long_dis_revive[1][2] = 120
+	self.values.init_inspire_charges = 3
+	self.values.cooldown.long_dis_revive[1][2] = 360
 	self.skill_descs.inspire.multibasic = "7m"
 	self.skill_descs.inspire.multibasic2 = "20%"
 	self.skill_descs.inspire.multibasic3 = "10%"
 	self.skill_descs.inspire.multibasic4 = "7"
-	self.skill_descs.inspire.multipro = "120"
+	self.skill_descs.inspire.multipro = "7m"
+	self.skill_descs.inspire.multipro2 = "3"
+	self.skill_descs.inspire.multipro3 = "360"
 
 	-- Forced Friendship
 	self.values.cable_tie.interact_speed_multiplier[1] = 0.75

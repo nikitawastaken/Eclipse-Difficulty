@@ -32,6 +32,7 @@ function FPCameraPlayerBase:_vertical_recoil_kick(t, dt)
 		r_value = n - self._recoil_kick.current
 		self._recoil_kick.current = n
 	elseif self._recoil_wait then
+		self._recoil_kick.current = nil
 		self._recoil_wait = self._recoil_wait - dt * 0.5
 		if self._recoil_wait < 0 then
 			self._recoil_wait = nil
@@ -61,6 +62,7 @@ function FPCameraPlayerBase:_horizonatal_recoil_kick(t, dt)
 		r_value = n - self._recoil_kick.h.current
 		self._recoil_kick.h.current = n
 	elseif self._recoil_wait then
+		self._recoil_kick.h.current = nil
 		self._recoil_wait = self._recoil_wait - dt * 0.5
 		if self._recoil_wait < 0 then
 			self._recoil_wait = nil
