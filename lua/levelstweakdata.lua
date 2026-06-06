@@ -1550,4 +1550,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["breakingballot_02"] = 1,
 		["breakingballot_03"] = 1,
 	}
+	self.election_day_3_skip1.random_environments = self.election_day_3.random_environments
+	self.election_day_3_skip2.random_environments = self.election_day_3.random_environments
 end)
