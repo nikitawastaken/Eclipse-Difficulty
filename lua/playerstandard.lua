@@ -1845,10 +1845,13 @@ function PlayerStandard:_get_unit_intimidation_action(
 		end
 	end
 
-	if intimidate_teammates and not managers.groupai:state():whisper_mode() and self._ext_movement:rally_skill_data() ~= nil then
+	if intimidate_teammates and not managers.groupai:state():whisper_mode() then
 		local rally_skill_data = self._ext_movement:rally_skill_data()
-		local can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive")
-			or rally_skill_data.charges > 0
+		local can_long_dis_revive = nil
+		if rally_skill_data then
+			can_long_dis_revive = not secondary and rally_skill_data and rally_skill_data.long_dis_revive and managers.player:has_enabled_cooldown_upgrade("cooldown", "long_dis_revive")
+				or rally_skill_data.charges > 0
+		end
 
 		for u_key, u_data in pairs(managers.groupai:state():all_char_criminals()) do
 			if u_key ~= self._unit:key() then

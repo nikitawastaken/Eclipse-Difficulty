@@ -1,25 +1,20 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local heli_chance = is_eclipse_pro and 100 or eclipse and 85 or 12.5 * diff_i
-local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
-local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1
-local garage_swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local garage_swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local garage_shield = eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
-local dozer_spawn_chance = eclipse and 50 or 25
+local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
+local dozer_spawn_chance = is_eclipse and 50 or 25
 local heli_spawn1 = {
-	enemy = heli_enemy1,
+	enemy = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1,
 }
 local heli_spawn2 = {
-	enemy = heli_enemy2,
+	enemy = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1,
 }
 local garage_swat_spawn_1 = {
-	enemy = garage_swat_1,
+	enemy = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	values = {
 		enabled = true,
 		participate_to_group_ai = false,
@@ -29,7 +24,7 @@ local garage_swat_spawn_1 = {
 	},
 }
 local garage_swat_spawn_2 = {
-	enemy = garage_swat_2,
+	enemy = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2,
 	values = {
 		enabled = true,
 		participate_to_group_ai = false,
@@ -39,7 +34,7 @@ local garage_swat_spawn_2 = {
 	},
 }
 local garage_shield_spawn = {
-	enemy = garage_shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	values = {
 		enabled = true,
 		participate_to_group_ai = false,

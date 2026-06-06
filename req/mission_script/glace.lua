@@ -17,10 +17,10 @@ local disabled = {
 
 local interrupter = {
 	enemy = {
-		[scripted_enemy.swat_1] = 10,
-		[scripted_enemy.swat_2] = 7,
-		[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 3, 5 }),
-		[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 0, 2, 4 }),
+		[scripted_enemy.swat_1] = 8,
+		[scripted_enemy.swat_2] = 6,
+		[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 4, 6 }),
+		[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 0, 3, 5 }),
 	},
 }
 local regular_dozers = {

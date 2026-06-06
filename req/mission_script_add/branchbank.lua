@@ -10,22 +10,18 @@ local ambush_event_chance = math.random() <= 0.5
 
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
-local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_bulldozer_neil,
-	elite_bulldozer_skull,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 
 local optsBulldozer = {
-	enemy = elite_bulldozer_skull,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	on_executed = {
 		{ id = 400002, delay = 0 },
 	},
@@ -64,13 +60,13 @@ local optsBesiegeDummy_Heli = {
 	spawn_action = "e_sp_down_16m_right",
 }
 local optsDozerChopper_1 = {
-	enemy = elite_bulldozer_neil,
+	enemy = scripted_enemy.elite_bulldozer_1,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400028, delay = 0 }, { id = 400023, delay = 0 }, { id = 400022, delay = 3 }, { id = 400022, delay = 3.5 } },
 	enabled = true,
 }
 local optsDozerChopper_2 = {
-	enemy = elite_bulldozer_skull,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400028, delay = 0 } },
 	enabled = true,
@@ -265,11 +261,11 @@ local optsDozerAmbush = {
 	enabled = true,
 }
 local optsCloakerAmbush = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	enabled = true,
 }
 local optsTaserAmbush = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	enabled = true,
 }
 

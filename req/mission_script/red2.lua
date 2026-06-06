@@ -9,30 +9,27 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
 
-local security_guard_1 = scripted_enemy.security_1
-local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
-local cloaker = scripted_enemy.cloaker
-local heavy_swat = scripted_enemy.heavy_swat_2
-local taser = scripted_enemy.taser_1
-local bulldozer = scripted_enemy.bulldozer_1
-local bulldozer_2 = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local close_shutters_chance = (normal and 10 or hard and 30 or 60) + (is_pro_job and 30 or 0)
 local basement_ambush_chance = (normal and 30 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_enemies_amount = 2
 local shield_army_chance = (is_eclipse and 30 or 20) + (is_pro_job and 10 or 0)
+
 local random_dozers = {
-	bulldozer,
-	bulldozer_2,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 local disabled = {
 	values = {
 		enabled = false,
+	},
+}
+local forced_off = {
+	values = {
+		forced = false,
 	},
 }
 local filter_easy_above = {
@@ -54,24 +51,30 @@ local bags_required_objective = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
+local security_spawn = {
+	enemy = scripted_enemy.security_1,
+}
+local shield_spawn = {
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+}
 local bulldozer_spawn = {
 	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
 }
 local taser_cloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 }
 local cloaker_escape = {
-	enemy = normal and heavy_swat or cloaker,
+	enemy = normal and scripted_enemy.heavy_swat_2 or scripted_enemy.cloaker,
 }
 local taser_spawn_1 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	spawn_action = "e_sp_kick_enter",
 	values = {
 		position = Vector3(4819, -1821, -735),
 	},
 }
 local taser_spawn_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	spawn_action = "e_sp_kick_enter",
 	values = {
 		position = Vector3(5358, 588, -733),
@@ -111,11 +114,6 @@ local vent_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local forced_off = {
-	values = {
-		forced = false,
-	},
-}
 local so_hunt_fix = {
 	so_access_filter = { "swat", "taser" },
 }
@@ -123,8 +121,8 @@ return {
 	-- FFO
 	[101658] = {
 		ponr = {
-			length = 390,
-			length_balance_mul = { 1.25, 1, 0.85, 0.75 },
+			length = 300,
+			length_balance_mul = { 1.5, 1.25, 1.125, 1 },
 		},
 	},
 	-- Add new reinforce
@@ -148,8 +146,6 @@ return {
 		},
 	},
 	-- disable a few vanilla reinforce spots
-	[105905] = disabled, -- counting rooms
-	[105910] = disabled, -- vault
 	[105902] = disabled, -- left gate
 	[105904] = disabled, -- right gate
 	-- change the required amount of money bags
@@ -408,13 +404,13 @@ return {
 	[103395] = cloaker_escape,
 	-- make the rest of vanilla escape spawns turn into gensec on E/PJ
 	-- 2 shields at the bottom of the staircase, replaced one shield with bulldozer
-	[103693] = { enemy = shield },
+	[103693] = shield_spawn,
 	[103697] = bulldozer_spawn,
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
 	-- why is there a beat cop instead of security guard in the vault???
-	[104001] = { enemy = security_guard_1 },
+	[104001] = security_spawn,
 	-- Spawn group intervals
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

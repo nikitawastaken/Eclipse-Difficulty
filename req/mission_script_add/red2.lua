@@ -11,21 +11,14 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
 local bags_required = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
 
-local heavy_rifle = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local light_rifle = scripted_enemy.swat_1
-local light_sg = scripted_enemy.swat_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
-local security_guard_1 = scripted_enemy.security_1
-local security_guard_2 = scripted_enemy.security_2
-local security_guard_3 = scripted_enemy.security_3
-local security = { [security_guard_1] = 2, [security_guard_2] = 2, [security_guard_3] = 1 }
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
 local enabled_chance_escape_snipers = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
 local enabled_chance_vault_shields = math.random() <= (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0)
@@ -41,226 +34,230 @@ local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.2 or
 local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.2 or 0)
 
 local optsSecurity = {
-	enemy_table = security,
+	enemy_table = {
+		[scripted_enemy.security_1] = 2,
+		[scripted_enemy.security_2] = 2,
+		[scripted_enemy.security_3] = 1,
+	},
 	enabled = true,
 }
 local optsShield_1 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 100696, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsShield_2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 100695, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 103091, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 103090, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 103117, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400008, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
 }
 local optsSniper_5 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400009, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
 }
 local optsSniper_6 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400010, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
 }
 local optsVaultShield1 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400025, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
 }
 local optsVaultShield2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400026, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
 }
 local optsBulldozer_BO = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = overkill_and_above,
 }
 local optsBulldozer_193 = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = is_eclipse,
 }
 local optsBulldozerVault = {
-	enemy = elite_bulldozer,
+	enemy_table = random_elite_dozers,
 	spawn_action = "e_sp_clk_3_5m_dwn_vent",
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = is_eclipse_pro and enabled_chance_vault_dozers,
 }
 local optsDozerElevatorAmbush1 = {
-	enemy = elite_bulldozer,
+	enemy_table = random_elite_dozers,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_down_10m_swing_in_var2",
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = is_eclipse_pro and enabled_chance_escape_dozers,
 }
 local optsDozerElevatorAmbush2 = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_down_10m_swing_in_var2",
 	on_executed = { { id = 400014, delay = 4 } },
 	enabled = is_eclipse_pro and enabled_chance_escape_dozers,
 }
 local optsSpoocAmbush1 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = { { id = 400029, delay = 3 } },
 	enabled = is_eclipse_pro and enabled_chance_escape_cloakers,
 }
 local optsSpoocAmbush2 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = { { id = 400030, delay = 0 } },
 	enabled = is_eclipse_pro and enabled_chance_escape_cloakers,
 }
 local optsTaserEscape = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG2 = {
-	enemy = heavy_sg,
+	enemy = scripted_enemy.heavy_swat_2,
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsTaser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	on_executed = { { id = 102421, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG = {
-	enemy = heavy_sg,
+	enemy = scripted_enemy.heavy_swat_2,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400049, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavyRifle = {
-	enemy = heavy_rifle,
+	enemy = scripted_enemy.heavy_swat_1,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400046, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightRifle = {
-	enemy = light_rifle,
+	enemy = scripted_enemy.swat_1,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400048, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightSG = {
-	enemy = light_sg,
+	enemy = scripted_enemy.swat_2,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400047, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsEscapeShield1 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400032, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above,
 }
 local optsEscapeShield2 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400035, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (is_eclipse and enabled_chance_escape_shield_wall),
 }
 local optsEscapeShield3 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400037, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (is_eclipse and enabled_chance_escape_shield_wall),
 }
 local optsEscapeShield4 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400039, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (is_eclipse and enabled_chance_escape_shield_wall),
 }
 local optsEscapeShield5 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400041, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (is_eclipse and enabled_chance_escape_shield_wall),
 }
 local optsEscapeShield6 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400052, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (overkill_and_above and enabled_chance_escape_hallway_wall),
 }
 local optsEscapeShield7 = {
-	enemy = shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = { { id = 400053, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = is_eclipse_pro or (overkill_and_above and enabled_chance_escape_hallway_wall),
 }
 local optsShieldArmy_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400060, delay = 0 } },
 	enabled = true,
 }
 local optsShieldArmy_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400060, delay = 0 } },
 	enabled = true,
 }
 local optsShieldArmy_3 = {
-	enemy = elite_bulldozer,
+	enemy_table = random_elite_dozers,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400060, delay = 0 } },
 	enabled = is_eclipse,
 }
 local optsTaserGarbagetruck = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = { { id = 400078, delay = 0 } },
 	enabled = true,
 }
 local optsCloakerAmbush_193 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	enabled = true,
 }
 local optsTaserConferenceRoom = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	spawn_action = "e_sp_repel_into_window",
 	participate_to_group_ai = true,
 	enabled = true,
 }
 local optsCloakerConferenceRoom = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	spawn_action = "e_sp_repel_into_window",
 	participate_to_group_ai = true,
 	enabled = true,
@@ -276,47 +273,47 @@ local optsShieldVaultAmbush_2 = {
 	enabled = true,
 }
 local optsTaserVaultAmbush_1 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = { { id = 400106, delay = 0 } },
 	enabled = true,
 }
 local optsTaserVaultAmbush_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = { { id = 400109, delay = 0 } },
 	enabled = true,
 }
 local optsCloakerVaultAmbush_1 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400110, delay = 0 } },
 	enabled = true,
 }
 local optsCloakerVaultAmbush_2 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400111, delay = 0 } },
 	enabled = true,
 }
 local optsSniperVaultAmbush_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400114, delay = 0 } },
 	enabled = true,
 }
 local optsSniperVaultAmbush_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400115, delay = 0 } },
 	enabled = true,
 }
 local optsSwatVaultAmbush_1 = {
-	enemy = heavy_rifle,
+	enemy = scripted_enemy.heavy_swat_1,
 	on_executed = { { id = 400112, delay = 0 } },
 	enabled = true,
 }
 local optsSwatVaultAmbush_2 = {
-	enemy = heavy_rifle,
+	enemy = scripted_enemy.heavy_swat_1,
 	on_executed = { { id = 400113, delay = 0 } },
 	enabled = true,
 }
 local optsBulldozerVaultAmbush = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	enabled = true,
 }
 

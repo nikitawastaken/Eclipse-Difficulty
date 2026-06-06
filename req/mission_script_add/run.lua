@@ -7,19 +7,14 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
-local cop_sg = scripted_enemy.cop_4
-local swat_rifle = scripted_enemy.swat_1
-local swat_sg = scripted_enemy.swat_2
-local swat_smg = scripted_enemy.swat_1
-local heavy_rifle = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
 local enabled_chance_alleyway_wall = math.random() <= 0.6
 local enabled_chance_alleyway_dozer = math.random() <= 0.3
@@ -33,97 +28,97 @@ local enabled_chance_sniper_armitage_rooftop = math.random() <= 0.2
 local enabled_chance_inkwell_dozer = math.random() <= 0.8
 
 local optsShieldWall1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400004, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400005, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400006, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall4 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400007, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsInkwellDozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400095, delay = 0 } },
 	enabled = is_eclipse and enabled_chance_inkwell_dozer,
 }
 local optsLateShield1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400010, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400011, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400092, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateDozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_alleyway_dozer,
 }
 local optsDozerDoor = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
 	spawn_action = "e_sp_kick",
 	enabled = true,
 }
 local optsSpoocAmbush1 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = overkill_and_above and enabled_chance_alleyway_spook1,
 }
 local optsSpoocAmbush2 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400017, delay = 0 } },
 	enabled = overkill_and_above and enabled_chance_alleyway_spook2,
 }
 local optsSpoocAmbush3 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400019, delay = 2 } },
 	spawn_action = "e_sp_armored_truck_1st",
 	enabled = overkill_and_above and enabled_chance_parkinglot_spook1,
 }
 local optsSpoocAmbush4 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400021, delay = 2 } },
 	spawn_action = "e_sp_armored_truck_1st",
 	enabled = overkill_and_above and enabled_chance_parkinglot_spook2,
 }
 local optsMissingBeatCop = {
-	enemy = cop_sg,
+	enemy = scripted_enemy.cop_4,
 	spawn_action = "e_sp_car_exit_to_cbt_front_r",
 	enabled = true,
 }
 local optsArmitageSniper_01 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400086, delay = 0 } },
 	trigger_times = 1,
 	enabled = normal_and_above and enabled_chance_sniper_armitage_underpass,
 }
 local optsArmitageSniper_02 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400088, delay = 0 } },
 	trigger_times = 1,
 	enabled = normal_and_above and enabled_chance_sniper_armitage_rooftop,
 }
 local optsMajorSniper_01 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400097, delay = 0 } },
 	trigger_times = 1,
 	enabled = overkill_and_above and enabled_chance_sniper_major_rooftop,
@@ -134,32 +129,32 @@ local optsBesiegeDummy = {
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsShieldWallFirstStreet1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410062, delay = 0 } },
 	enabled = true,
 }
 local optsShieldWallFirstStreet2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410063, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet1 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410064, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet2 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410065, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet3 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410066, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet4 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410067, delay = 0 } },
 	enabled = true,
 }

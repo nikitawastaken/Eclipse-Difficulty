@@ -4,45 +4,43 @@ local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 
-local sniper = scripted_enemy.sniper
-
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400007, delay = 0 } },
 	enabled = true,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400008, delay = 0 } },
 	enabled = true,
 }
 local optsSniper_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400009, delay = 0 } },
 	enabled = true,
 }
 local optsSniper_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400010, delay = 0 } },
 	enabled = true,
 }
 local optsSniper_5 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400011, delay = 0 } },
 	enabled = true,
 }
 local optsSniper_6 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400012, delay = 0 } },
 	enabled = true,
 }
 local optsGroundSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400025, delay = 0 } },
 	enabled = true,
 }
 local optsGroundSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400029, delay = 0 } },
 	enabled = true,
 }

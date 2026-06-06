@@ -1,6 +1,7 @@
 ---@module Diamond Heist
 local M = {}
 
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
@@ -8,22 +9,24 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
+
 -- TODO: investigate crashes that may be related to GenSec red guards
 -- local gensec_security = scripted_enemy.gensec_2
 local gensec_security = scripted_enemy.secret_service_2
-local swat_rifle = scripted_enemy.swat_1
-local swat_sg = scripted_enemy.swat_2
-local swat_smg = scripted_enemy.swat_1
-local heavy_rifle = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
-local elite_sniper = scripted_enemy.elite_sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
+local swat_ambush_table = {
+	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 6, 8 }),
+	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 4, 6 }),
+	[scripted_enemy.swat_1] = 5,
+	[scripted_enemy.swat_2] = 3,
+}
 
 local bags_required = 4 + (is_pro_job and 2 or 0)
 
@@ -32,7 +35,7 @@ local enabled_chance_helipad_shields = math.random() <= 0.4
 local enabled_chance_helipad_dozer = math.random() <= 0.4
 
 local optsCloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	on_executed = {
@@ -41,35 +44,35 @@ local optsCloaker = {
 	enabled = true,
 }
 local optsSniperAmbush_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400014, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400017, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400016, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400015, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniper_escape = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400060, delay = 0 },
 	},
@@ -77,7 +80,7 @@ local optsSniper_escape = {
 	enabled = true,
 }
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400074, delay = 0 },
 	},
@@ -85,7 +88,7 @@ local optsSniper_1 = {
 	enabled = overkill_and_above,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400075, delay = 0 },
 	},
@@ -93,7 +96,7 @@ local optsSniper_2 = {
 	enabled = overkill_and_above,
 }
 local optsShield_roofblockade_1 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
@@ -101,7 +104,7 @@ local optsShield_roofblockade_1 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_2 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
@@ -109,7 +112,7 @@ local optsShield_roofblockade_2 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_3 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400057, delay = 0 },
 	},
@@ -117,7 +120,7 @@ local optsShield_roofblockade_3 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_4 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400058, delay = 0 },
 	},
@@ -125,7 +128,7 @@ local optsShield_roofblockade_4 = {
 	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_1 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400050, delay = 0 },
 	},
@@ -133,7 +136,7 @@ local optsTaser_roofblockade_1 = {
 	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400056, delay = 0 },
 	},
@@ -141,12 +144,12 @@ local optsTaser_roofblockade_2 = {
 	enabled = is_eclipse,
 }
 local optsBulldozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_extra_elevator_spawns,
 }
 local optsBulldozer_helipad = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400069, delay = 0 },
@@ -154,36 +157,36 @@ local optsBulldozer_helipad = {
 	enabled = overkill_and_above and enabled_chance_helipad_dozer,
 }
 local optsShield_helipad_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400070, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_helipad_shields,
 }
 local optsShield_helipad_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400071, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_helipad_shields,
 }
 local optsTaser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_extra_elevator_spawns,
 }
 local optsBulldozer_Ambush = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = is_eclipse,
 }
 local optsCloaker_Ambush = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = normal_and_above,
 }
 local optsTaser_Ambush = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	enabled = normal_and_above,
 }
