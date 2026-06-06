@@ -1338,11 +1338,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.run.random_environments = {
 		["heat_street_1"] = 3,
-		["heat_street_2"] = 2,
 		["heat_street_3"] = 3,
 		["heat_street_4"] = 3,
 		["heat_street_cheese"] = additive_weight_value,
-		["default"] = 1,
 	}
 	self.nmh.random_environments = {
 		["no_mercy"] = 69,
@@ -1546,5 +1544,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.spa.random_environments = {
 		["spa_01"] = 69,
+	}
+	self.election_day_3.random_environments = {
+		["breakingballot_01"] = 2,
+		["breakingballot_02"] = 1,
+		["breakingballot_03"] = 1,
 	}
 end)

@@ -406,6 +406,10 @@
 			</group>
 
 			<group :name="envsmod/">
+				<file :name="cheap_godray_ballot.effect"/>
+				<file :name="cheap_godray_fwb.effect"/>
+				<file :name="spotlight.effect"/>
+				<file :name="spotlight_long.effect"/>
 				<group :name="day_time/">
 					<file :name="fog_very_faint_blue.effect"/>
 					<file :name="fog_very_faint_bright_white.effect"/>

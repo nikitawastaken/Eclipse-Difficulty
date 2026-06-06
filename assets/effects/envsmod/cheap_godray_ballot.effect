@@ -1,0 +1,30 @@
+<effect force_synch="false">
+    <atom name="default0" min_size="18" max_size="18" lifetime="-1" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="2" fade_out_start="20" spawn_cull_policy="initialize" cull_policy="freeze" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <lightcone axis="0 1 0" start="0">
+                <distance_keys loop="false">
+                    <key t="0" v="25"/>
+                    <key t="11.184465408325" v="45"/>
+                    <key t="26" v="65"/>
+                    <key t="605.82525634766" v="75"/>
+                </distance_keys>
+                <size_keys loop="false">
+                    <key t="0" v="500 1000"/>
+                    <key t="350" v="500 1000"/>
+                </size_keys>
+                <opacity_keys loop="false">
+                    <key t="0" v="12"/>
+                    <key t="27.184465408325" v="25"/>
+                    <key t="250.48544311523" v="75"/>
+                    <key t="755.33978271484" v="0"/>
+                </opacity_keys>
+            </lightcone>
+        </initializerstack>
+        <simulatorstack>
+            <worldtransform transform_rotations="false"/>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/particles/weapons/flashlight/e_gradient_radial2" intensity="match" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="normal" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="255 232.00001525879 210.00001525879" opacity_input="constant" opacity="18" rotation_input="constant" rotation="0" rotation_axis="0 1 0" uv_size="1 1" uv_offset_input="constant" uv_offset="0 0"/>
+        </visualizerstack>
+    </atom>
+</effect>
