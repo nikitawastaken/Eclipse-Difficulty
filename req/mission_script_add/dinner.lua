@@ -103,7 +103,7 @@ local optsSniper_1 = {
 	enabled = true,
 }
 local optsSniper_2 = {
-	enemy =scripted_enemy.sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_up_ledge",
 	on_executed = {
 		{ id = 400030, delay = 0 },

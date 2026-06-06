@@ -21,7 +21,7 @@ local random_elite_dozers = {
 -- TODO: investigate crashes that may be related to GenSec red guards
 -- local gensec_security = scripted_enemy.gensec_2
 local gensec_security = scripted_enemy.secret_service_2
-local swat_ambush_table = { 
+local swat_ambush_table = {
 	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 6, 8 }),
 	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 4, 6 }),
 	[scripted_enemy.swat_1] = 5,

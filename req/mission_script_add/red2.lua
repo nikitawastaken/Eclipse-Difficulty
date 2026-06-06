@@ -34,10 +34,10 @@ local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.2 or
 local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.2 or 0)
 
 local optsSecurity = {
-	enemy_table = { 
-		[scripted_enemy.security_1] = 2, 
-		[scripted_enemy.security_2] = 2, 
-		[scripted_enemy.security_3] = 1 
+	enemy_table = {
+		[scripted_enemy.security_1] = 2,
+		[scripted_enemy.security_2] = 2,
+		[scripted_enemy.security_3] = 1,
 	},
 	enabled = true,
 }
@@ -152,7 +152,7 @@ local optsSWAT_HeavySG2 = {
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsTaser = {
-	enemy =  scripted_enemy.taser_1,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	on_executed = { { id = 102421, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_escape_swats,
