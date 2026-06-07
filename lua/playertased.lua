@@ -52,7 +52,7 @@ function PlayerTased:enter(state_data, enter_data)
 	}, callback(self, self, "_on_tased_event"))
 	
 	self._saved_default_color_grading = managers.environment_controller:default_color_grading()
-	managers.environment_controller:set_default_color_grading("color_tasered", true)
+	managers.environment_controller:set_default_color_grading("color_bhd_classic", true)
 	managers.environment_controller:set_downed_value(40)
 	managers.environment_controller:refresh_render_settings()
 end
