@@ -3437,12 +3437,8 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			end
 
 			if assault_state.cloaker then
-				assault_state.cloaker.interval = table_multiplier(assault_state.cloaker.interval, level_settings.cloaker_interval_mul or 1)
-
-				-- if level_group_ai_state and level_settings.cloaker_interval_mul ~= 1 then
-				-- 	Eclipse:log_console("Cloaker spawn intervals for " .. level_id .. " set to: ")
-				-- 	Utils.PrintTable(assault_state.cloaker.interval)
-				-- end
+				assault_state.cloaker.interval_min = table_multiplier(assault_state.cloaker.interval_min, level_settings.cloaker_interval_mul or 1)
+				assault_state.cloaker.interval_max = table_multiplier(assault_state.cloaker.interval_max, level_settings.cloaker_interval_mul or 1)
 			end
 
 			if assault_state.push_delay then
@@ -3976,12 +3972,19 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- New data for the reworked Cloaker task
 	self.use_reworked_cloaker_task = true
-	self.besiege.cloaker.interval = get_difficulty_specific_value({
-		{ 60, 120 },
-		{ 60, 120 },
-		{ 40, 60 },
-		{ 30, 50 },
-		{ 20, 40 },
+	self.besiege.cloaker.interval_min = get_difficulty_specific_value({
+		{ 60, 67.5, 75 },
+		{ 60, 67.5, 75 },
+		{ 40, 45, 50 },
+		{ 30, 33.75, 37.5 },
+		{ 20, 22.5, 25 },
+	})
+	self.besiege.cloaker.interval_max = get_difficulty_specific_value({
+		{ 120, 135, 150 },
+		{ 120, 135, 150 },
+		{ 60, 67.5, 75 },
+		{ 50, 56.25, 62.5 },
+		{ 40, 45, 50 },
 	})
 	self.besiege.cloaker.group_removed_delay_t = {
 		2,
@@ -4067,7 +4070,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"murkywater_timed_group",
 		"army_timed_group",
 	})
-	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
+	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = {
+		self.besiege.cloaker.interval_min[1],
+		self.besiege.cloaker.interval_max[1],
+	}
 
 	self.besiege.assault.groups.single_spooc = empty_tbl
 	self.besiege.assault.groups.Phalanx = empty_tbl

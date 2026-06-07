@@ -1109,15 +1109,20 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 			managers.hud:post_event("cloaker_spawn")
 		end
 
-		self:_delay_new_hiding_cloakers(data, data.interval)
+		self:_delay_new_hiding_cloakers(data)
 	end
 
 	return new_group and true
 end
 
 function GroupAIStateBase:_delay_new_hiding_cloakers(data, time_tbl)
-	time_tbl = time_tbl or data.interval or { 20, 40 }
-	data.delay_t = math.max(data.delay_t, self._t + math.rand(time_tbl[1], time_tbl[2]))
+	local hiding_cloaker_tweak = self._tweak_data.cloaker
+	time_tbl = time_tbl or {
+		self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_min or { 20, 22.5, 25 }),
+		self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_max or { 40, 45, 50 }),
+	}
+	local added_delay = math.rand(time_tbl[1], time_tbl[2]) * (self._get_drama_weight_mul and self:_get_drama_weight_mul("hiding_cloaker_interval") or 1)
+	data.delay_t = math.max(data.delay_t, self._t + added_delay)
 end
 
 function GroupAIStateBase:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)

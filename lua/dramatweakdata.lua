@@ -42,7 +42,7 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 			[1.0] = 1.3,
 		},
 		-- Hiding Cloaker respawn interval
-		cloaker_interval = {
+		hiding_cloaker_interval = {
 			[0.1] = 0.8,
 			[0.4] = 1,
 			[0.7] = 1.1,
