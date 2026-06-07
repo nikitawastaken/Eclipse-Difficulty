@@ -1117,10 +1117,11 @@ end
 
 function GroupAIStateBase:_delay_new_hiding_cloakers(data, time_tbl)
 	local hiding_cloaker_tweak = self._tweak_data.cloaker
-	time_tbl = time_tbl or {
-		self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_min or { 20, 22.5, 25 }),
-		self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_max or { 40, 45, 50 }),
-	}
+	time_tbl = time_tbl
+		or {
+			self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_min or { 20, 22.5, 25 }),
+			self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_max or { 40, 45, 50 }),
+		}
 	local added_delay = math.rand(time_tbl[1], time_tbl[2]) * (self._get_drama_weight_mul and self:_get_drama_weight_mul("hiding_cloaker_interval") or 1)
 	data.delay_t = math.max(data.delay_t, self._t + added_delay)
 end
