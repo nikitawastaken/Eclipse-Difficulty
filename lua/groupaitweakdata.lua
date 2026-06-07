@@ -3987,7 +3987,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 40, 45, 50 },
 	})
 	self.besiege.cloaker.group_removed_delay_t = {
-		2,
+		0,
 		7,
 	}
 	self.besiege.cloaker.hide_durations = {
