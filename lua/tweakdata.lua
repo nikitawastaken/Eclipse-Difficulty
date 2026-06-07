@@ -511,6 +511,9 @@ table.insert( tweak_data.color_grading, { value = "color_e3nice", text_id = "men
 table.insert( tweak_data.color_grading, { value = "color_subzero", text_id = "menu_color_subzero" })
 table.insert( tweak_data.color_grading, { value = "color_cgreyscale", text_id = "menu_color_cgreyscale" })
 
+-- Main Menu Color Grading
+tweak_data.scene_environments.standard.color_grading = "color_bhd_classic"
+
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
 for k, v in pairs(achievement_parts) do
