@@ -12,7 +12,7 @@ return {
 		["environments/pd2_env_mid_day/pd2_env_mid_day"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/breakingballot_01.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
-		["effects/envsmod/cheap_godray_ballot"] = {
+		["effects/envsmod/godrays/cheap_godray_ballot"] = {
 			{
 				position = Vector3(-878, 1981, 627),
 				rotation = Rotation(-30, 0, 50)
