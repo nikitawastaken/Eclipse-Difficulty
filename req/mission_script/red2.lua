@@ -119,7 +119,7 @@ local so_hunt_fix = {
 }
 return {
 	-- FFO
-	[101658] = {
+	[101657] = {
 		ponr = {
 			length = 300,
 			length_balance_mul = { 1.5, 1.25, 1.125, 1 },
