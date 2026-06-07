@@ -448,7 +448,7 @@ function MissionManager:set_ponr_state()
 	managers.groupai:state():set_difficulty(1)
 end
 
-Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)
+Hooks:PreHook(MissionManager, "_activate_mission", "eclipse__activate_mission", function(self)
 	local mission_script_elements = Eclipse:mission_script_patches()
 	if not mission_script_elements then
 		return
@@ -468,10 +468,8 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 			end
 		end
 	end
-end)
 
--- Effect spawners
-Hooks:PostHook(MissionScript, "activate", "eclipse_activate", function(self)
+	-- Effect spawners
 	local environment_name = Eclipse.current_environment
 	local environment_data = environment_name and Eclipse:require("envsmod/" .. environment_name)
 	
