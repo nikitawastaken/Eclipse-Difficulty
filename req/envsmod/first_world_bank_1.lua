@@ -16,7 +16,7 @@ return {
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/cheap_godray_fwb"] = {
 			{
-				position = Vector3(-2851, 2829, 1275),
+				position = Vector3(-2851, 979, 1275),
 				rotation = Rotation(-30, 0, 50)
 			},
 			{
