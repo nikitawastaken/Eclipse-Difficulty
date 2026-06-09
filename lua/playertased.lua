@@ -75,7 +75,7 @@ function PlayerTased:_check_action_shock(t, input, ...)
 	local shock_strength_v = tase_strength[2] * tase_strength_mul[2] * last_man_standing_mul * (1 - weaker_tase)
 
 	if do_shock then
-		if not weaker_tase and tweak_data.character.tased_camera_limit_shocks and self._num_shocks > tweak_data.character.tased_camera_limit_shocks and not self._camera_limit then
+		if weaker_tase ~= 0 and tweak_data.character.tased_camera_limit_shocks and self._num_shocks > tweak_data.character.tased_camera_limit_shocks and not self._camera_limit then
 			self._unit:camera():camera_unit():base():set_limits(tweak_data.character.tased_camera_limit[1], tweak_data.character.tased_camera_limit[2])
 
 			self._camera_limit = true
