@@ -100,6 +100,11 @@ return {
 	-- Disable pointless reinforce on the bridge
 	[101385] = disabled,
 	[101386] = disabled,
+	-- Less ass control room
+	-- disable tear gas as it actually hurts in Eclipse
+	[102005] = disabled,
+	-- STOP OPENING THE GOD DAMN SHUTTERS WHEN I WANT TO JUST TURN THE BRIDGE AROUND :void:
+	[101670] = disabled,
 	-- Spawn group intervals
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.

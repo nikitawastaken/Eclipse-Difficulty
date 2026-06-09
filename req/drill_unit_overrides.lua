@@ -217,6 +217,12 @@ local M = {
 			can_jam = true,
 		},
 	},
+	["peta2"] = {
+		[("units/pd2_dlc_peta/equipment/pta_interactable_door_drill/pta_interactable_door_drill"):key()] = {
+			timer = 60,
+			jam_times = 1,
+		},
+	},
 	["red2"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			jam_times = {
