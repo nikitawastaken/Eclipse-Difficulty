@@ -163,6 +163,9 @@ tweak_data.projectiles.wpn_prj_hur.damage = 12
 -- Throwing Axe
 tweak_data.projectiles.wpn_prj_target.damage = 12
 
+-- Increase the Laser Chronometer's fire rate but decrease the damage (higher ammo consumption)
+tweak_data.projectiles.laser_watch.damage = tweak_data.projectiles.laser_watch.damage / 2
+
 -- Throwable Grenades
 
 -- Frag Grenade

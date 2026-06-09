@@ -75,7 +75,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.robot_toy = 105000
 	self.bag_values.rubies = 52500
 	self.bag_values.red_diamond = 1500000
-	self.bag_values.old_wine = 75000
+	self.bag_values.old_wine = 180000
 	self.bag_values.chas_artifact = 420000
 	self.bag_values.chas_teaset = 240000
 	self.bag_values.garden_gnome = 69
@@ -739,7 +739,7 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
 	if level_id == "red2" or level_id == "kenaz" then
-		self.bag_values.money = 90000
+		self.bag_values.money = 145000
 		self.bag_values.gold = 300000
 		self.small_loot.gen_atm = (money_mul * 36000)
 		self.small_loot.money_bundle = (money_mul * 8250)

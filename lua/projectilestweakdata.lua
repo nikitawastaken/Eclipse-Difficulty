@@ -31,6 +31,9 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.poison_gas_grenade.animation = self.projectiles.frag_com.animation -- ditto
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
 
+	-- Increase the Laser Chronometer's fire rate but decrease the damage (higher ammo consumption)
+	self.projectiles.laser_watch.reuse_expire_t = self.projectiles.laser_watch.reuse_expire_t / 2
+
 	-- Increase Flashbang expire_t and repeat_expire_t to match other grenades
 	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
 
