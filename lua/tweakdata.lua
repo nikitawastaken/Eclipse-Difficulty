@@ -75,7 +75,7 @@ tweak_data.security_camera = {
 }
 
 -- Tear Gas damage is now a percentage of total HP
-tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = tweak_data.projectiles.cs_grenade_quick.damage_per_tick * 2
 
 -- Arrows
 tweak_data.projectiles.west_arrow = {
