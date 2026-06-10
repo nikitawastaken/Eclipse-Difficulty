@@ -184,10 +184,12 @@ return {
 		},
 	},
 	-- trigger swat choppers on end assault
+	-- also add harrassers when the assault ends for the first time
 	[101304] = {
 		on_executed = {
 			{ id = 400080, delay = 10 },
 			{ id = 400081, delay = 10 },
+			{ id = 400108, delay = 0 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
