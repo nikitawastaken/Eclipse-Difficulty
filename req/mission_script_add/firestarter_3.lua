@@ -649,7 +649,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner_dw", chopper_amount_dw),
 	Eclipse.mission_elements.gen_element_filter(400080, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
 	Eclipse.mission_elements.gen_element_filter(400081, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
-	
+
 	-- Harassers
 	Eclipse.mission_elements.gen_dummy(400090, "harasser_1", Vector3(1935, 4336, 1300), Rotation(-180, 0, 0), optsSWAT_Harasser_1),
 	Eclipse.mission_elements.gen_dummy(400091, "harasser_2", Vector3(-5075, 200, 850), Rotation(0, 0, 0), optsSWAT_Harasser_2),
@@ -657,14 +657,14 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400093, "harasser_4", Vector3(-3343, -2323, 889), Rotation(0, 0, 0), optsSWAT_Harasser_4),
 	Eclipse.mission_elements.gen_dummy(400094, "harasser_5", Vector3(-709, -2075, 400), Rotation(0, 0, 0), optsSWAT_Harasser_5),
 	Eclipse.mission_elements.gen_dummy(400095, "harasser_6", Vector3(-714, -2051, 400), Rotation(0, 0, 0), optsSWAT_Harasser_6),
-	
+
 	Eclipse.mission_elements.gen_dummytrigger(400096, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_1),
 	Eclipse.mission_elements.gen_dummytrigger(400097, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_2),
 	Eclipse.mission_elements.gen_dummytrigger(400098, "respawn_harasser_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_3),
 	Eclipse.mission_elements.gen_dummytrigger(400099, "respawn_harasser_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_4),
 	Eclipse.mission_elements.gen_dummytrigger(400100, "respawn_harasser_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_5),
 	Eclipse.mission_elements.gen_dummytrigger(400101, "respawn_harasser_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_6),
-	
+
 	Eclipse.mission_elements.gen_so(400102, "harasser_spot_so_1", Vector3(1656, 4320, 1300), Rotation(106, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400103, "harasser_spot_so_2", Vector3(-4880, 425, 850), Rotation(-96, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400104, "harasser_spot_so_3", Vector3(-5622, -1614, 889.535), Rotation(-45, 0, 0), optsSniper_SO),
