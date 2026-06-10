@@ -25,7 +25,7 @@
             <worldtransform transform_rotations="false"/>
         </simulatorstack>
         <visualizerstack>
-            <billboard texture="effects/particles/weapons/flashlight/e_gradient_radial2" intensity="candle" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="normal" render_template="effect_geometry_fade_out_add" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="255 255 255" opacity_input="constant" opacity="14" rotation_input="constant" rotation="0" rotation_axis="0 1 0" uv_size="1 1" uv_offset_input="constant" uv_offset="0 0"/>
+            <billboard texture="effects/particles/weapons/flashlight/e_gradient_radial2" intensity="candle" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="normal" render_template="effect_geometry_fade_out_add" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="255 255 255" opacity_input="constant" opacity="12" rotation_input="constant" rotation="0" rotation_axis="0 1 0" uv_size="1 1" uv_offset_input="constant" uv_offset="0 0"/>
             <light per_particle_age="false" shadow_caster="true" specular="false" color_input="constant" color="255 255 255" multiplier_input="constant" multiplier="0.1" far_range_input="constant" far_range="750"/>
         </visualizerstack>
     </atom>
