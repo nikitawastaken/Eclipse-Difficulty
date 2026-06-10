@@ -595,14 +595,15 @@ function PlayerDamage:damage_fall(data)
 		return
 	end
 
-	local height_limit = 400
-	local death_limit = 630
+	local height_limit = 300
+	local death_limit = 631
 
 	if data.height < height_limit then
 		return
 	end
 
 	local die = death_limit < data.height
+	local fall_multiplier = 0
 
 	self._unit:sound():play("player_hit")
 	managers.environment_controller:hit_feedback_down()
@@ -612,8 +613,6 @@ function PlayerDamage:damage_fall(data)
 		return
 	end
 
-	local fall_damage_ramp
-	local fall_multiplier = player_tweak.fall_health_damage
 	if die then
 		managers.player:force_end_copr_ability()
 
@@ -627,12 +626,13 @@ function PlayerDamage:damage_fall(data)
 			self:_send_set_revives()
 		end
 	else
-		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
+		fall_multiplier = 1
+		local fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
 
-		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
+		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and tweak_data.player.fall_damage_armor_mul or 1)
 		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1) * managers.player:upgrade_value("player", "fall_damage_multiplier_cat", 1)
 
-		local fall_damage = self:_max_health() * fall_multiplier
+		local fall_damage = tweak_data.player.fall_health_damage * fall_multiplier
 
 		if managers.player:has_category_upgrade("player", "armor_absorbs_fall_damage") then
 			self:change_armor(-fall_damage)
@@ -717,7 +717,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		prevents_running = true,
 	})
 
-	attack_data.damage = managers.player:modify_value("damage_taken", self:_max_health() * attack_data.damage, attack_data) * math.max(0, self._teargas_damage_ramp)
+	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * math.max(0, self._teargas_damage_ramp)
 
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)

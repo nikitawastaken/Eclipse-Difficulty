@@ -190,7 +190,8 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
 	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 
-	self.fall_health_damage = 0.6
+	self.fall_health_damage = self.fall_health_damage * 3.5
+	self.fall_damage_armor_mul = 0.75
 
 	self.speak_alert_size = 500
 	self.running_alert_size = 400

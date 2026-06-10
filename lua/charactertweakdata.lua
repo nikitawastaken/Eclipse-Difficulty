@@ -1392,6 +1392,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
 	self.tank_medic.die_sound_event = self.tank.die_sound_event
 	self.tank_medic.chatter = self.tank.chatter
+	self.tank_medic.spawn_sound_event = self.tank.spawn_sound_event
 
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
@@ -1400,7 +1401,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_hw.melee_weapon = "helloween"
 	self.tank_hw.die_sound_event = self.tank.die_sound_event
 	self.tank_hw.chatter = self.tank.chatter
-	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
+	self.tank_hw.spawn_sound_event = self.tank.spawn_sound_event
 
 	self.city_tank = deep_clone(self.tank)
 	self.city_tank.HEALTH_INIT = 800
