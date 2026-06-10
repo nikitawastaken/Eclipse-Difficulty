@@ -603,6 +603,7 @@ function PlayerDamage:damage_fall(data)
 	end
 
 	local die = death_limit < data.height
+	local fall_multiplier = 0
 
 	self._unit:sound():play("player_hit")
 	managers.environment_controller:hit_feedback_down()
@@ -625,7 +626,7 @@ function PlayerDamage:damage_fall(data)
 			self:_send_set_revives()
 		end
 	else
-		local fall_multiplier = 1
+		fall_multiplier = 1
 		local fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
 
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and tweak_data.player.fall_damage_armor_mul or 1)
