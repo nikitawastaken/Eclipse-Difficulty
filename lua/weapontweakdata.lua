@@ -1413,6 +1413,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pl14.stats.recoil = 14
 	self.pl14.stats.concealment = 29
 	self.pl14.fire_mode_data.fire_rate = 60 / 600
+	self.pl14.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Contractor
 	self.packrat.CLIP_AMMO_MAX = 15
@@ -1421,6 +1422,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.packrat.stats.recoil = 15
 	self.packrat.stats.concealment = 29
 	self.packrat.fire_mode_data.fire_rate = 60 / 600
+	self.packrat.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Holt
 	self.holt.CLIP_AMMO_MAX = 15
@@ -1469,6 +1471,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.p226.stats.recoil = 10
 	self.p226.stats.concealment = 29
 	self.p226.fire_mode_data.fire_rate = 60 / 600
+	self.p226.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Chimano Custom
 	self.g22c.CLIP_AMMO_MAX = 16
@@ -1477,6 +1480,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g22c.stats.recoil = 12
 	self.g22c.stats.concealment = 29
 	self.g22c.fire_mode_data.fire_rate = 60 / 600
+	self.g22c.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- LEO
 	self.hs2000.CLIP_AMMO_MAX = 16
@@ -1485,6 +1489,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hs2000.stats.recoil = 12
 	self.hs2000.stats.concealment = 29
 	self.hs2000.fire_mode_data.fire_rate = 60 / 600
+	self.hs2000.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Baby Deagle
 	self.sparrow.CLIP_AMMO_MAX = 12
@@ -1493,6 +1498,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sparrow.stats.recoil = 10
 	self.sparrow.stats.concealment = 29
 	self.sparrow.fire_mode_data.fire_rate = 60 / 600
+	self.sparrow.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Interceptor
 	self.usp.CLIP_AMMO_MAX = 12
@@ -1501,6 +1507,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.usp.stats.recoil = 8
 	self.usp.stats.concealment = 29
 	self.usp.fire_mode_data.fire_rate = 60 / 600
+	self.usp.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 	
 	-- Gruber
 	self.ppk.CLIP_AMMO_MAX = 7
@@ -1527,6 +1534,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.lemming.stats.recoil = 10
 	self.lemming.stats.concealment = 28
 	self.lemming.fire_mode_data.fire_rate = 60 / 600
+	self.lemming.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Crosskill Guard
 	self.shrew.CLIP_AMMO_MAX = 8
@@ -1535,6 +1543,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shrew.stats.recoil = 10
 	self.shrew.stats.concealment = 31
 	self.shrew.fire_mode_data.fire_rate = 60 / 600
+	self.shrew.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Crosskill
 	self.colt_1911.CLIP_AMMO_MAX = 8
@@ -1543,6 +1552,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.colt_1911.stats.recoil = 8
 	self.colt_1911.stats.concealment = 29
 	self.colt_1911.fire_mode_data.fire_rate = 60 / 600
+	self.colt_1911.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Crosskill Chunky Compact
 	self.m1911.CLIP_AMMO_MAX = 8
@@ -1551,6 +1561,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1911.stats.recoil = 8
 	self.m1911.stats.concealment = 29
 	self.m1911.fire_mode_data.fire_rate = 60 / 600
+	self.m1911.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Kang Arms
 	self.type54.CLIP_AMMO_MAX = 8
@@ -1887,6 +1898,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.cobray.timers.reload_not_empty = 1.9
 	self.cobray.timers.reload_empty = 4.35
 	self.cobray.reload_empty_speed_multiplier = 1.45
+	self.cobray.muzzleflash = "effects/payday2/particles/weapons/45cal_smg_fps"
 
 	-- Heather
 	self.sr2.CLIP_AMMO_MAX = 30
@@ -1903,6 +1915,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mac10.stats.recoil = 17
 	self.mac10.stats.concealment = 27
 	self.mac10.fire_mode_data.fire_rate = 60 / 1000
+	self.mac10.muzzleflash = "effects/payday2/particles/weapons/45cal_smg_fps"
 
 	-- Uzi
 	self.uzi.CLIP_AMMO_MAX = 32
@@ -1966,6 +1979,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.schakal.stats.recoil = 14
 	self.schakal.stats.concealment = 25
 	self.schakal.fire_mode_data.fire_rate = 60 / 650
+	self.schakal.muzzleflash = "effects/payday2/particles/weapons/45cal_smg_fps"
 
 	-- Ballerina
 	self.speen.CLIP_AMMO_MAX = 15
