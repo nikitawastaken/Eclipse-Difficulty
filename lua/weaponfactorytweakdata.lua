@@ -2809,8 +2809,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
@@ -2820,8 +2820,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.trail_effect = "effects/payday2/particles/weapons/streaks/traveling_streak"
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
