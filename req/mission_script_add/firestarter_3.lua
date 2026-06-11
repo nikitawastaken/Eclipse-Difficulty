@@ -268,7 +268,7 @@ local optsrespawn_harasser_5 = {
 		{ id = 400095, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
-		400096,
+		400095,
 	},
 	event = "death",
 }
