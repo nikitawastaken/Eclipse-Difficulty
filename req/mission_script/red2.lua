@@ -166,6 +166,7 @@ return {
 	[100665] = disabled,
 	-- fix ai_hunt used by scripted heli enemies not having access
 	[106874] = so_hunt_fix,
+	[106876] = so_hunt_fix,
 	-- Rework the opening vault ambush
 	-- add new system for the ambush
 	[103705] = {

@@ -21,6 +21,8 @@ function FragGrenade:set_thrower_unit(unit, ...)
 			"launcher_poison_slap",
 			"launcher_m203",
 			"underbarrel_m203_groza",
+			"underbarrel_electric_groza",
+			"underbarrel_electric",
 			"launcher_frag_m32",
 			"launcher_incendiary_m32",
 			"launcher_electric_m32",

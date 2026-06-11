@@ -263,12 +263,12 @@ local optsCloakerConferenceRoom = {
 	enabled = true,
 }
 local optsShieldVaultAmbush_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400107, delay = 0 } },
 	enabled = true,
 }
 local optsShieldVaultAmbush_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400108, delay = 0 } },
 	enabled = true,
 }

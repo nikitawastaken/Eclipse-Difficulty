@@ -24,6 +24,11 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local elite_sniper = scripted_enemy.elite_sniper
 
+local light_harasser = { scripted_enemy.swat_1 }
+local heavy_harasser = diff_i > 5 and { [scripted_enemy.heavy_swat_1] = 3, [scripted_enemy.elite_sniper] = 1 } or { scripted_enemy.heavy_swat_1 }
+
+local harasser = diff_i >= 5 and heavy_harasser or light_harasser
+
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
 local specials_list = {
@@ -153,6 +158,133 @@ local optsTaserAmbush = {
 	enemy = taser,
 	enabled = true,
 }
+
+local optsSWAT_Harasser_1 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400102, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_2 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400103, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_3 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400104, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_4 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400105, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_5 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400106, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_6 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400107, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSniper_SO = {
+	SO_access = "128",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	use_instigator = true,
+	path_stance = "cbt",
+	interval = 2,
+	so_action = "AI_sniper",
+}
+
+local optsSpawnHarassers = {
+	on_executed = {
+		{ id = 400090, delay = 0 },
+		{ id = 400091, delay = 0 },
+		{ id = 400092, delay = 0 },
+		{ id = 400093, delay = 0 },
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400109, delay = 0 },
+	},
+	enabled = true,
+	trigger_times = 1,
+}
+
+local optsrespawn_harasser_1 = {
+	on_executed = {
+		{ id = 400090, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400090,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_2 = {
+	on_executed = {
+		{ id = 400091, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400091,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_3 = {
+	on_executed = {
+		{ id = 400092, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400093,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_4 = {
+	on_executed = {
+		{ id = 400094, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400094,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_5 = {
+	on_executed = {
+		{ id = 400095, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400096,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_6 = {
+	on_executed = {
+		{ id = 400096, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400096,
+	},
+	event = "death",
+}
+local Bain_harrasersinbound = {
+	dialogue = "play_pln_gen_att_02",
+}
+
 local optsOpenSwatVanDoors_1 = {
 	enabled = true,
 	trigger_list = {
@@ -517,6 +649,31 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner_dw", chopper_amount_dw),
 	Eclipse.mission_elements.gen_element_filter(400080, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
 	Eclipse.mission_elements.gen_element_filter(400081, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
+
+	-- Harassers
+	Eclipse.mission_elements.gen_dummy(400090, "harasser_1", Vector3(1935, 4336, 1300), Rotation(-180, 0, 0), optsSWAT_Harasser_1),
+	Eclipse.mission_elements.gen_dummy(400091, "harasser_2", Vector3(-5075, 200, 850), Rotation(0, 0, 0), optsSWAT_Harasser_2),
+	Eclipse.mission_elements.gen_dummy(400092, "harasser_3", Vector3(-5510, -2293, 889.535), Rotation(0, 0, 0), optsSWAT_Harasser_3),
+	Eclipse.mission_elements.gen_dummy(400093, "harasser_4", Vector3(-3343, -2323, 889), Rotation(0, 0, 0), optsSWAT_Harasser_4),
+	Eclipse.mission_elements.gen_dummy(400094, "harasser_5", Vector3(-709, -2075, 400), Rotation(0, 0, 0), optsSWAT_Harasser_5),
+	Eclipse.mission_elements.gen_dummy(400095, "harasser_6", Vector3(-714, -2051, 400), Rotation(0, 0, 0), optsSWAT_Harasser_6),
+
+	Eclipse.mission_elements.gen_dummytrigger(400096, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_1),
+	Eclipse.mission_elements.gen_dummytrigger(400097, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_2),
+	Eclipse.mission_elements.gen_dummytrigger(400098, "respawn_harasser_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_3),
+	Eclipse.mission_elements.gen_dummytrigger(400099, "respawn_harasser_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_4),
+	Eclipse.mission_elements.gen_dummytrigger(400100, "respawn_harasser_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_5),
+	Eclipse.mission_elements.gen_dummytrigger(400101, "respawn_harasser_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_6),
+
+	Eclipse.mission_elements.gen_so(400102, "harasser_spot_so_1", Vector3(1656, 4320, 1300), Rotation(106, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400103, "harasser_spot_so_2", Vector3(-4880, 425, 850), Rotation(-96, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400104, "harasser_spot_so_3", Vector3(-5622, -1614, 889.535), Rotation(-45, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400105, "harasser_spot_so_4", Vector3(-3378, -1658.935, 889), Rotation(-33, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400106, "harasser_spot_so_5", Vector3(-689, -1735, 400), Rotation(0, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400107, "harasser_spot_so_6", Vector3(-101, -1706, 400), Rotation(0, 0, 0), optsSniper_SO),
+
+	Eclipse.mission_elements.gen_missionscript(400108, "spawn_harassers", optsSpawnHarassers),
+	Eclipse.mission_elements.gen_dialogue(400109, "harassers_inbound", Bain_harrasersinbound),
 }
 
 return M
