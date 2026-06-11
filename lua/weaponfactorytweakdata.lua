@@ -2739,8 +2739,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {}
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.fire_rate_multiplier = 750 / 450
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.muzzleflash = "effects/payday2/particles/weapons/556_auto_fps"
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.trail_effect = "effects/particles/weapons/weapon_trail"
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.muzzleflash = "effects/payday2/particles/weapons/556_auto_fps"
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.trail_effect = "effects/particles/weapons/weapon_trail"
 	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 36, "assault_rifle", true)
 	self:_balance_magazine(tweak_data, "wpn_fps_lmg_hcar_body_conversionkit", true)
 
@@ -2762,7 +2762,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 0
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -3
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.custom_stats.muzzleflash = "effects/payday2/particles/weapons/45cal_smg_fps"
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.muzzleflash = "effects/payday2/particles/weapons/45cal_smg_fps"
 	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
 
 	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
