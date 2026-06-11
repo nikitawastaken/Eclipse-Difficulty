@@ -1425,18 +1425,18 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_m_high.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	-- Barrel Extensions, Silencers --
-	
+
 	-- Delete KS-12 barrel extensions from most weapons
 	for k, v in pairs(self) do
 		if v.uses_parts and table.contains(v.uses_parts, "wpn_fps_ass_shak12_ns_muzzle") then
-			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_muzzle") 
+			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_muzzle")
 		end
 
 		if v.uses_parts and table.contains(v.uses_parts, "wpn_fps_ass_shak12_ns_suppressor") then
-			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_suppressor") 
+			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_suppressor")
 		end
 	end
-	
+
 	-- Generic Extensions and Silencers
 	local barrel_ext_stats = {
 		balanced = { value = 1, recoil = 1, spread = 1, concealment = -2 },
