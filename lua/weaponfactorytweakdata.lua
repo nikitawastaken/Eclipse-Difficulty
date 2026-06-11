@@ -1166,7 +1166,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.recoil = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.concealment = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {
-		total_ammo_mul = 300 / 600,
+		total_ammo_mul = 1 / 2,
 		movement_speed = 1.15,
 	}
 
@@ -1362,8 +1362,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
 		value = 1,
 		damage = -2,
-		extra_ammo = 25,
-		total_ammo_mod = 5,
+	}
+	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {
+		ammo_offset = 25,
+		total_ammo_mul = 3 / 2,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
@@ -1373,8 +1375,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
 		value = 1,
 		damage = 2,
-		extra_ammo = -25,
-		total_ammo_mod = -5,
+	}
+	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {
+		ammo_offset = -25,
+		total_ammo_mul = 2 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
@@ -1395,8 +1399,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_m_low.stats = {
 		value = 1,
 		damage = -2,
-		extra_ammo = 25,
-		total_ammo_mod = 5,
+	}
+	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
+		ammo_offset = 25,
+		total_ammo_mul = 5 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
@@ -1409,13 +1415,28 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		extra_ammo = -25,
 		total_ammo_mod = -5,
 	}
+	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
+		ammo_offset = -25,
+		total_ammo_mul = 3 / 4,
+	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
 	self.parts.wpn_fps_fla_system_m_high.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	-- Barrel Extensions, Silencers --
+	
+	-- Delete KS-12 barrel extensions from most weapons
+	for k, v in pairs(self) do
+		if v.uses_parts and table.contains(v.uses_parts, "wpn_fps_ass_shak12_ns_muzzle") then
+			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_muzzle") 
+		end
 
+		if v.uses_parts and table.contains(v.uses_parts, "wpn_fps_ass_shak12_ns_suppressor") then
+			table.delete(v.uses_parts, "wpn_fps_ass_shak12_ns_suppressor") 
+		end
+	end
+	
 	-- Generic Extensions and Silencers
 	local barrel_ext_stats = {
 		balanced = { value = 1, recoil = 1, spread = 1, concealment = -2 },
@@ -1469,7 +1490,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	-- Rami
 	self.parts.wpn_fps_lmg_kacchainsaw_ns_suppressor.stats = barrel_ext_stats.medium_silencer
 	-- KS-12 Suppressor (to be restricted from all but ks12)
-	self.parts.wpn_fps_ass_shak12_ns_suppressor.stats = barrel_ext_stats.massive_silencer
+	self.parts.wpn_fps_ass_shak12_ns_suppressor.stats = barrel_ext_stats.huge_silencer
 	-- Federation
 	self.parts.wpn_fps_upg_ak_ns_tgp.stats = barrel_ext_stats.medium_silencer
 
@@ -1789,23 +1810,23 @@ end
 function WeaponFactoryTweakData:factory_part_post_process()
 	local smallify_scopes = self:_get_smallify_scopes()
 
-	for factory_id, weapon_data in pairs(self) do
-		if weapon_data.default_blueprint then
-			local is_weapon, weapon_id = managers.weapon_factory:is_factory_id_real_weapon_id(factory_id)
+	for k, v in pairs(self) do
+		if v.default_blueprint then
+			local is_weapon, weapon_id = managers.weapon_factory:is_factory_id_real_weapon_id(k)
 
 			if is_weapon and tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].categories and table.contains(tweak_data.weapon[weapon_id].categories, "snp") then
 				for _, part_id in ipairs(smallify_scopes) do
 					local original_stats = self.parts[part_id].stats and deep_clone(self.parts[part_id].stats) or {}
-					weapon_data.override = weapon_data.override or {}
-					weapon_data.override[part_id] = weapon_data.override[part_id] or {}
-					weapon_data.override[part_id].stats = weapon_data.override[part_id].stats or original_stats
+					v.override = v.override or {}
+					v.override[part_id] = v.override[part_id] or {}
+					v.override[part_id].stats = v.override[part_id].stats or original_stats
 
-					if weapon_data.override[part_id].stats.concealment then
-						weapon_data.override[part_id].stats.concealment = (original_stats.concealment or 0) + 2
+					if v.override[part_id].stats.concealment then
+						v.override[part_id].stats.concealment = (original_stats.concealment or 0) + 2
 					end
 
-					if weapon_data.override[part_id].stats.recoil then
-						weapon_data.override[part_id].stats.recoil = (original_stats.recoil or 0) - 2
+					if v.override[part_id].stats.recoil then
+						v.override[part_id].stats.recoil = (original_stats.recoil or 0) - 2
 					end
 				end
 			end
