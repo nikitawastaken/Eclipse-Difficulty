@@ -8,8 +8,8 @@
 		<others>
 			<param key="sky_texture" value="core/environments/skies/sky_1830_low_sun_clouds/sky_1830_low_sun_clouds"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
-			<param key="underlay" value="core/environments/skies/sky_1945_sunset/sky_1945_sunset"/>
-			<param key="sun_ray_color_scale" value="5.8298072814941"/>
+			<param key="underlay" value="core/environments/skies/sky_1930_twillight/sky_1930_twillight"/>
+			<param key="sun_ray_color_scale" value="0.84626233577728"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="1 0.3647058904171 0.33725491166115"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_night_df"/>

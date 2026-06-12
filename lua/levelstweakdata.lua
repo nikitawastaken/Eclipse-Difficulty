@@ -1227,6 +1227,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["branchbank01"] = 2,
 		["branchbank02"] = 2,
 		["branchbank03"] = 2,
+		["branchbank04"] = 2,
+		["branchbank05"] = 2,
 		["default"]	= 1,
 	}
 	self.four_stores.random_environments = {
@@ -1380,6 +1382,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
+		["bigbank_02"] = 3,
 		["default"] = 1,
 	}
 	self.mad.random_environments = {
@@ -1402,7 +1405,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pal.random_environments = {
 		["counterfeit_1"] = 3,
 		["counterfeit_2"] = 2,
-		["default"] = 1,
+		["counterfeit_3"] = 1,
 	}
 	self.moon.random_environments = {
 		["stealingxmas_1"] = 3,
@@ -1552,4 +1555,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.election_day_3_skip1.random_environments = self.election_day_3.random_environments
 	self.election_day_3_skip2.random_environments = self.election_day_3.random_environments
+	self.jolly.random_environments = {
+		["aftershock_01"] = 2,
+		["aftershock_02"] = 1,
+	}
+	self.peta.random_environments = {
+		["peta_01"] = 2,
+	}
+	self.kosugi.random_environments = {
+		["shadowraid_01"] = 2,
+		["shadowraid_02"] = 1,
+	}
 end)
