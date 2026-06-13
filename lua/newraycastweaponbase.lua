@@ -290,13 +290,13 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 		if self._kick_pattern_reset_t > 0 then
 			self._kick_pattern_reset_t = self._kick_pattern_reset_t - dt
 		end
-		
+
 		if self._kick_pattern_reset_t <= 0 then
 			self._kick_pattern_shots_fired = 0
 			self._kick_pattern_index = 1
 			self._use_persist_pattern = false
 
-		--	Eclipse:log_chat("Reset kick pattern!")
+			--	Eclipse:log_chat("Reset kick pattern!")
 		end
 	end
 end
@@ -340,30 +340,29 @@ function NewRaycastWeaponBase:fire(...)
 	local in_steelsight = user_unit and alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
 	local kick_pattern = self._kick_pattern and self._kick_pattern[self:fire_mode()] and self._kick_pattern[self:fire_mode()][in_steelsight and "steelsight" or "standing"]
 
---		Eclipse:log_chat("Shots Fired: " .. tostring(self._kick_pattern_shots_fired))
---		Eclipse:log_chat("Pattern Index: " .. tostring(self._kick_pattern_index))
-			
+	--		Eclipse:log_chat("Shots Fired: " .. tostring(self._kick_pattern_shots_fired))
+	--		Eclipse:log_chat("Pattern Index: " .. tostring(self._kick_pattern_index))
+
 	if kick_pattern and kick_pattern[self._kick_pattern_index] then
 		if kick_pattern[self._kick_pattern_index][2] and kick_pattern[self._kick_pattern_index][2] <= self._kick_pattern_shots_fired then
 			self._kick_pattern_index = math.min(self._kick_pattern_index + 1, #kick_pattern)
-			
 		elseif kick_pattern[self._kick_pattern_index].persist and not self._use_persist_pattern then
 			self._use_persist_pattern = true
-			
+
 			if self._use_persist_pattern then
---				Eclipse:log_chat("Using persist pattern!")
+				--				Eclipse:log_chat("Using persist pattern!")
 			end
 		end
 	end
 
 	if self:weapon_tweak_data().kick_pattern_reset_t then
 		self._kick_pattern_reset_t = self:weapon_tweak_data().kick_pattern_reset_t
-		
+
 		if self._kick_pattern_reset_t == self:weapon_tweak_data().kick_pattern_reset_t then
-		--	Eclipse:log_chat("Kick pattern reset time: " .. tostring(self._kick_pattern_reset_t))
+			--	Eclipse:log_chat("Kick pattern reset time: " .. tostring(self._kick_pattern_reset_t))
 		end
 	end
-	
+
 	return ray_res
 end
 

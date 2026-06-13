@@ -519,15 +519,15 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 								end
 							end
 						end
-						
-						local kick_pattern_tweak_data 
+
+						local kick_pattern_tweak_data
 						if weap_tweak_data.kick_pattern then
 							local pattern = weap_tweak_data.kick_pattern[fire_mode] and weap_tweak_data.kick_pattern[fire_mode][kick_id]
 							if pattern then
 								kick_pattern_tweak_data = pattern[weap_base:_get_kick_pattern_index()][1]
 							end
 						end
-						
+
 						local up, down, left, right = unpack(kick_pattern_tweak_data or kick_tweak_data[kick_id])
 
 						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
