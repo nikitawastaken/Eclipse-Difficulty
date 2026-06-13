@@ -519,24 +519,18 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 								end
 							end
 						end
-
-						local up, down, left, right = unpack(kick_tweak_data[kick_id])
-
-						local apply_spray = false
-						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
-						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
-							pattern_tweak_data = weap_tweak_data.spray.pattern -- first part of spray pattern
-							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
-							recoil_recovery = weap_tweak_data.recoil_recovery_timer
-							apply_spray = true
+						
+						local kick_pattern_tweak_data 
+						if weap_tweak_data.kick_pattern then
+							local pattern = weap_tweak_data.kick_pattern[fire_mode] and weap_tweak_data.kick_pattern[fire_mode][kick_id]
+							if pattern then
+								kick_pattern_tweak_data = pattern[weap_base:_get_kick_pattern_index()][1]
+							end
 						end
+						
+						local up, down, left, right = unpack(kick_pattern_tweak_data or kick_tweak_data[kick_id])
 
-						if apply_spray and not _G.IS_VR then
-							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
-						else
-							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
-						end
-						-- End modification
+						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 
 						if self._shooting_t then
 							local time_shooting = t - self._shooting_t

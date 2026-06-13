@@ -13,6 +13,9 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._spread_firing = 0
 	self._spread_last_shot_t = 0
 	self._shots_fired_consecutively = 0
+	self._kick_pattern_shots_fired = 0
+	self._kick_pattern_index = 1
+	self._use_persist_pattern = false
 	self._shield_knock = false
 
 	self._unit:set_extension_update_enabled(Idstring("base"), true)
@@ -128,6 +131,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._moving_transition = weapon_tweak.moving_transition
 	self._spread_bloom = weapon_tweak.spread_bloom
 	self._fire_mode_spread_bloom = weapon_tweak.fire_mode_spread_bloom
+	self._kick_pattern = weapon_tweak.kick_pattern
 
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
@@ -281,6 +285,20 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 	elseif not is_moving then
 		self._moving_transition_progress = math.clamp((self._moving_transition_progress or 0) - dt * (self._moving_transition and self._moving_transition.exit_rate or 1), 0, 1)
 	end
+
+	if self._kick_pattern_reset_t then
+		if self._kick_pattern_reset_t > 0 then
+			self._kick_pattern_reset_t = self._kick_pattern_reset_t - dt
+		end
+		
+		if self._kick_pattern_reset_t <= 0 then
+			self._kick_pattern_shots_fired = 0
+			self._kick_pattern_index = 1
+			self._use_persist_pattern = false
+
+		--	Eclipse:log_chat("Reset kick pattern!")
+		end
+	end
 end
 
 function NewRaycastWeaponBase:_get_fire_spread_add()
@@ -310,6 +328,7 @@ function NewRaycastWeaponBase:fire(...)
 	local is_player = self._setup.user_unit == managers.player:player_unit()
 	if is_player then
 		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
+		self._kick_pattern_shots_fired = self._kick_pattern_shots_fired + 1
 	end
 
 	self._spread_firing = math.min((self._spread_firing or 0) + self:_get_fire_spread_add(), self._spread_bloom and self._spread_bloom.max or 2)
@@ -317,6 +336,34 @@ function NewRaycastWeaponBase:fire(...)
 		/ self:fire_rate_multiplier()
 		* (self._spread_bloom and self._spread_bloom.recovery_wait_multiplier or 1)
 
+	local user_unit = self._setup and self._setup.user_unit
+	local in_steelsight = user_unit and alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
+	local kick_pattern = self._kick_pattern and self._kick_pattern[self:fire_mode()] and self._kick_pattern[self:fire_mode()][in_steelsight and "steelsight" or "standing"]
+
+--		Eclipse:log_chat("Shots Fired: " .. tostring(self._kick_pattern_shots_fired))
+--		Eclipse:log_chat("Pattern Index: " .. tostring(self._kick_pattern_index))
+			
+	if kick_pattern and kick_pattern[self._kick_pattern_index] then
+		if kick_pattern[self._kick_pattern_index][2] and kick_pattern[self._kick_pattern_index][2] <= self._kick_pattern_shots_fired then
+			self._kick_pattern_index = math.min(self._kick_pattern_index + 1, #kick_pattern)
+			
+		elseif kick_pattern[self._kick_pattern_index].persist and not self._use_persist_pattern then
+			self._use_persist_pattern = true
+			
+			if self._use_persist_pattern then
+--				Eclipse:log_chat("Using persist pattern!")
+			end
+		end
+	end
+
+	if self:weapon_tweak_data().kick_pattern_reset_t then
+		self._kick_pattern_reset_t = self:weapon_tweak_data().kick_pattern_reset_t
+		
+		if self._kick_pattern_reset_t == self:weapon_tweak_data().kick_pattern_reset_t then
+		--	Eclipse:log_chat("Kick pattern reset time: " .. tostring(self._kick_pattern_reset_t))
+		end
+	end
+	
 	return ray_res
 end
 
@@ -839,4 +886,12 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	end
 
 	self:update_damage()
+end
+
+function NewRaycastWeaponBase:_check_use_persist_pattern()
+	return self._use_persist_pattern
+end
+
+function NewRaycastWeaponBase:_get_kick_pattern_index()
+	return self._kick_pattern_index
 end
