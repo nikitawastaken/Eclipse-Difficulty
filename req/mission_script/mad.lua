@@ -35,14 +35,12 @@ local wall_far_spawn = {
 local lab_lower_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields,
 }
 local lab_upper_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_bulldozers,
 }

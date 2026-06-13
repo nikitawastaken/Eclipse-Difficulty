@@ -6,10 +6,13 @@
 	<use name="effects/payday2/particles/weapons/fps_parts/big_fps_ball_flash"/>
     <use_random>
 		<effect name="effects/payday2/particles/weapons/fps_parts/fps_big_sparse"/>
+		<effect name="effects/payday2/particles/weapons/fps_parts/extra_fps_big_sparse"/>
 		<effect name="effects/payday2/particles/weapons/fps_parts/big_fps_extra_long_flash"/>
         <effect name="effects/payday2/particles/weapons/fps_parts/fps_sparse_flash"/>
+		<effect name="effects/payday2/particles/weapons/fps_parts/extra_fps_big_sparse"/>
 		<effect name="effects/payday2/particles/weapons/fps_parts/big_fps_extra_long_flash"/>
         <effect name="effects/payday2/particles/weapons/fps_parts/fps_smoke_flash"/>
+		<effect name="effects/payday2/particles/weapons/fps_parts/extra_fps_big_sparse"/>
         <effect name="effects/payday2/particles/weapons/fps_parts/fps_big_sparse"/>
 		<effect name="effects/payday2/particles/weapons/fps_parts/big_fps_extra_long_flash"/>
     </use_random>

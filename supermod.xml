@@ -491,6 +491,10 @@
 						<file :name="556_auto_fps.effect"/>
 						<file :name="762_auto_fps.effect"/>
 						<file :name="big_762_auto_fps.effect"/>
+						<file :name="9mm_silenced.effect"/>
+						<file :name="45cal_silenced.effect"/>
+						<file :name="556_silenced.effect"/>
+						<file :name="762_silenced.effect"/>
 
 						<group :name="fps_parts/">
 							<file :name="big_fps_ball_flash.effect"/>
