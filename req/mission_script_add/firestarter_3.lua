@@ -256,6 +256,15 @@ local optsrespawn_harasser_3 = {
 }
 local optsrespawn_harasser_4 = {
 	on_executed = {
+		{ id = 400093, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400093,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_5 = {
+	on_executed = {
 		{ id = 400094, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
@@ -263,21 +272,12 @@ local optsrespawn_harasser_4 = {
 	},
 	event = "death",
 }
-local optsrespawn_harasser_5 = {
+local optsrespawn_harasser_6 = {
 	on_executed = {
 		{ id = 400095, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400095,
-	},
-	event = "death",
-}
-local optsrespawn_harasser_6 = {
-	on_executed = {
-		{ id = 400096, delay = is_eclipse and 60 or 90, delay_rand = 30 },
-	},
-	elements = {
-		400096,
 	},
 	event = "death",
 }

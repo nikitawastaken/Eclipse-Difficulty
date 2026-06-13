@@ -63,9 +63,12 @@ local lumber_upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- instantly start FFO when grabbing the server
+	-- Start FFO when grabbing the server
 	[100176] = {
-		set_ponr_state = true,
+		ponr = {
+			length = 60,
+			length_balance_mul = { 2, 1.5, 1, 0.75 },
+		},
 		reinforce = {
 			{ name = "lab_room01" },
 			{ name = "lab_room02" },

@@ -75,6 +75,13 @@ local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
 return {
+	-- FFO
+	[101032] = {
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_enemy,
 	[101572] = cloaker_enemy,
