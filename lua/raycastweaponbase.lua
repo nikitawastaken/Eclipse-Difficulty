@@ -46,26 +46,6 @@ function RaycastWeaponBase:exit_run_speed_multiplier()
 	return multiplier
 end
 
--- Only use standing stance spread, the rest is now handled by stance multipliers
-function RaycastWeaponBase:_get_spread(user_unit)
-	local spread_multiplier = self:spread_multiplier()
-	local current_state = user_unit:movement()._current_state
-
-	if current_state._moving then
-		for _, category in ipairs(self:categories()) do
-			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "move_spread_multiplier", 1)
-		end
-	end
-
-	if not current_state:in_steelsight() then
-		for _, category in ipairs(self:categories()) do
-			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "hip_fire_spread_multiplier", 1)
-		end
-	end
-
-	return self._spread * tweak_data.weapon[self._name_id].spread["standing"] * spread_multiplier
-end
-
 local mvec_to = Vector3()
 local mvec_right_ax = Vector3()
 local mvec_up_ay = Vector3()
@@ -93,13 +73,10 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	mvec3_norm(mvec_up_ay)
 	mvec3_set(mvec_spread_direction, direction)
 
-	local r = math.random()
 	local theta = math.random() * 360
-	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
-	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax, math.cos(theta) * math.tan(r * spread_x))
-	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
+	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * math.random() * spread_x * spread_mul))
+	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * math.random() * spread_y * spread_mul))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
 	mvec3_set(mvec_to, mvec_spread_direction)

@@ -125,6 +125,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._fire_mode_multipliers = weapon_tweak.fire_mode_multipliers
 
+	self._moving_transition = weapon_tweak.moving_transition
 	self._spread_bloom = weapon_tweak.spread_bloom
 	self._fire_mode_spread_bloom = weapon_tweak.fire_mode_spread_bloom
 
@@ -213,6 +214,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if custom_stat.spread_bloom then
 			self._spread_bloom = deep_clone(custom_stat.spread_bloom)
 		end
+
+		if custom_stat.moving_trasnition then
+			self._moving_trasnition = deep_clone(custom_stat.moving_trasnition)
+		end
 	end
 end)
 
@@ -262,6 +267,19 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 
 	if self._spread_last_shot_t <= 0.0001 then
 		self._spread_firing = math.max((self._spread_firing or 0) - dt * spread_bloom_recovery, 0)
+	end
+
+	local is_moving = false
+	local user_unit = self._setup and self._setup.user_unit
+
+	if user_unit then
+		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
+	end
+
+	if is_moving then
+		self._moving_transition_progress = math.clamp((self._moving_transition_progress or 0) + dt * (self._moving_transition and self._moving_transition.enter_rate or 1), 0, 1)
+	elseif not is_moving then
+		self._moving_transition_progress = math.clamp((self._moving_transition_progress or 0) - dt * (self._moving_transition and self._moving_transition.exit_rate or 1), 0, 1)
 	end
 end
 
@@ -340,23 +358,7 @@ function NewRaycastWeaponBase:_get_spread(user_unit)
 	else
 		spread_x, spread_y = self:_get_spread_from_table(user_unit, current_state, current_spread_value)
 	end
-	--[[
-	if current_state:in_steelsight() then
-		local steelsight_tweak = spread_values.steelsight
-		local multi_x, multi_y = nil
 
-		if type(steelsight_tweak) == "number" then
-			multi_x = 1 + 1 - steelsight_tweak
-			multi_y = multi_x
-		else
-			multi_x = 1 + 1 - steelsight_tweak[1]
-			multi_y = 1 + 1 - steelsight_tweak[2]
-		end
-
-		spread_x = spread_x * multi_x
-		spread_y = spread_y * multi_y
-	end
-]]
 	if self._spread_multiplier then
 		spread_x = spread_x * self._spread_multiplier[1]
 		spread_y = spread_y * self._spread_multiplier[2]
@@ -388,27 +390,15 @@ function NewRaycastWeaponBase:recoil_multiplier()
 			end
 		end
 	end
-
-	if not is_moving then
-		if not in_steelsight then
-			multiplier = multiplier * self._standing_hipfire_recoil_mul
-		else
-			multiplier = multiplier * self._standing_steelsight_recoil_mul
-		end
-
-		if is_crouching then
-			multiplier = multiplier * self._standing_crouching_recoil_mul
-		end
+	
+	if not in_steelsight then
+		multiplier = multiplier * math.lerp(self._standing_hipfire_recoil_mul, self._moving_hipfire_recoil_mul, self._moving_transition_progress)
 	else
-		if not in_steelsight then
-			multiplier = multiplier * self._moving_hipfire_recoil_mul
-		else
-			multiplier = multiplier * self._moving_steelsight_recoil_mul
-		end
+		multiplier = multiplier * math.lerp(self._standing_steelsight_recoil_mul, self._moving_steelsight_recoil_mul, self._moving_transition_progress)
+	end
 
-		if is_crouching then
-			multiplier = multiplier * self._moving_crouching_recoil_mul
-		end
+	if is_crouching then
+		multiplier = multiplier * math.lerp(self._standing_crouching_recoil_mul, self._moving_crouching_recoil_mul, self._moving_transition_progress)
 	end
 
 	local categories = weapon_tweak_data.categories
@@ -493,22 +483,14 @@ function NewRaycastWeaponBase:spread_multiplier()
 		end
 	end
 
-	if not is_moving then
-		if not in_steelsight then
-			multiplier = multiplier * self._standing_hipfire_spread_mul
-		else
-			multiplier = multiplier * self._standing_steelsight_spread_mul
-		end
+	if not in_steelsight then
+		multiplier = multiplier * math.lerp(self._standing_hipfire_spread_mul, self._moving_hipfire_spread_mul, self._moving_transition_progress)
 	else
-		if not in_steelsight then
-			multiplier = multiplier * self._moving_hipfire_spread_mul
-		else
-			multiplier = multiplier * self._moving_steelsight_spread_mul
-		end
+		multiplier = multiplier * math.lerp(self._standing_steelsight_spread_mul, self._moving_steelsight_spread_mul, self._moving_transition_progress)
+	end
 
-		if is_crouching then
-			multiplier = multiplier * self._moving_crouching_spread_mul
-		end
+	if is_crouching then
+		multiplier = multiplier * math.lerp(self._standing_crouching_spread_mul, self._moving_crouching_spread_mul, self._moving_transition_progress)
 	end
 
 	local categories = self:categories()
