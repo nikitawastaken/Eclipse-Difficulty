@@ -390,7 +390,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 			end
 		end
 	end
-	
+
 	if not in_steelsight then
 		multiplier = multiplier * math.lerp(self._standing_hipfire_recoil_mul, self._moving_hipfire_recoil_mul, self._moving_transition_progress)
 	else
