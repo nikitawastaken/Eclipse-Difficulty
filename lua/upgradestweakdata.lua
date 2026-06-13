@@ -1447,7 +1447,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.ammo_2x.multipro = "2"
 
 	-- Big Game Hunters
-	self.values.temporary.double_drop_damage_multiplier = { { 1.25, 5 } }
+	self.values.temporary.double_drop_damage_multiplier = { { 1.25, 8 } }
 	self.definitions.temporary_double_drop_damage_multiplier = {
 		name_id = "menu_temporary_double_drop_damage_multiplier",
 		category = "temporary",
@@ -1469,7 +1469,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.carbon_blade.multibasic = "6th"
 	self.skill_descs.carbon_blade.multipro = "25%"
-	self.skill_descs.carbon_blade.multipro2 = "5"
+	self.skill_descs.carbon_blade.multipro2 = "8"
 
 	-- Bulletstorm
 	self.skill_descs.bandoliers.multibasic = "12"
