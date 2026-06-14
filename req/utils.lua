@@ -479,10 +479,9 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 
 	local new_color_grading = color_grading or type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
 
+	local viewport = managers.viewport:first_active_viewport()
 	if new_color_grading then
-		local viewport = managers.viewport:first_active_viewport()
 		if viewport then
-			Eclipse.log("Force changing color grading to " .. new_color_grading)
 			viewport:vp():set_post_processor_effect("World", Idstring("color_grading_post"), Idstring(new_color_grading))
 		else
 			Eclipse.log("no viewport found somehow?")
@@ -496,6 +495,9 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 	if environment_data.environment_override then
 		for k, v in pairs(environment_data.environment_override) do
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
+			local em = managers.viewport:_get_environment_manager()
+			em._env_data_map[k] = em:_load(k)
+			managers.viewport:set_default_environment(k, nil, nil)
 		end
 	end
 
