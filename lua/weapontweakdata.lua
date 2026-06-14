@@ -809,10 +809,51 @@ function WeaponTweakData:_init_weapons(overrides)
 			if weap_data.kick then
 				if is_turret then
 					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
-
+					
 				elseif cat_map.lmg then
 					weap_data.kick.standing = { 0.3, 0.6, -0.8, 1 }
-
+--[[				weap_data.kick_pattern = {
+						["auto"] = {
+							standing = {	
+								{ 
+									{ -0.1, 0.4, 0, 0.6 },
+									10,
+								},
+								{ 
+									{ 0.1, 0.5, -0.6, 0 },
+									 16,
+								},
+								{ 
+									{ 0.3, 0.6, -0.4, 0.6 }, 
+									 24,
+								},
+								{ 
+									{ 0.4, 0.8, -0.8, 1 },
+									persist = true,
+								},
+							},
+							steelsight = {	
+								{ 
+									{ -0.1, 0.4, 0, 0.6 },
+									10,
+								},
+								{ 
+									{ 0.1, 0.5, -0.6, 0 },
+									 16,
+								},
+								{ 
+									{ 0.3, 0.6, -0.4, 0.6 }, 
+									 24,
+								},
+								{ 
+									{ 0.4, 0.8, -0.8, 1 },
+									persist = true,
+								},
+							},
+						},
+					}
+					weap_data.kick_pattern_reset_t = 2
+]]
 				elseif cat_map.minigun then
 					weap_data.kick.standing = { 0.1, 0.2, -0.3, 0.4 }
 
@@ -821,7 +862,7 @@ function WeaponTweakData:_init_weapons(overrides)
 
 				elseif cat_map.assault_rifle then
 					weap_data.kick.standing = { 0.8, 1, -0.6, 0.6 }
-
+					
 				elseif cat_map.revolver then
 					weap_data.kick.standing = { 2, 2.4, -0.3, 0.3 }
 
