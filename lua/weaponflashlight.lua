@@ -8,10 +8,10 @@ function WeaponFlashLight:init(unit)
 	self._g_light = self._unit:get_object(Idstring("g_light"))
 	local texture = is_haunted and "units/lights/spot_light_projection_textures/spotprojection_22_flashlight_df" or "units/lights/spot_light_projection_textures/spotprojection_11_flashlight_df"
 	self._light = World:create_light("spot|specular|plane_projection", texture)
-	self._light_multiplier = is_haunted and 2 or 0.8
+	self._light_multiplier = is_haunted and 2 or 1
 	self._current_light_multiplier = self._light_multiplier
 
-	self._light:set_spot_angle_end(40)
+	self._light:set_spot_angle_end(52)
 	self._light:set_far_range(is_haunted and 10000 or 2000)
 	self._light:set_multiplier(self._current_light_multiplier)
 	self._light:link(self._a_flashlight_obj)
