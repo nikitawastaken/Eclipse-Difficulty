@@ -197,7 +197,7 @@ M.elements = {
 
 	-- ATM tweaks
 	Eclipse.mission_elements.gen_object_editor(400021, "atm_tweaks", Vector3(0, 0, 0), Rotation(0, 0, 0), optsATM_Tweaks),
-	
+
 	-- hide floating traffic light
 	Eclipse.mission_elements.gen_disable_unit(400022, "hide_floating_light", Vector3(0, 0, 0), Rotation(0, 0, 0), optshidefloatinglight),
 }
