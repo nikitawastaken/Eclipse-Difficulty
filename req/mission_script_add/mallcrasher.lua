@@ -11,6 +11,7 @@ local optsATM_Tweaks = {
 		{ id = 5, name = "run_sequence", notify_unit_id = 301130, notify_unit_sequence = "generic", time = 0 },
 		{ id = 6, name = "run_sequence", notify_unit_id = 301122, notify_unit_sequence = "generic", time = 0 },
 		{ id = 7, name = "run_sequence", notify_unit_id = 301136, notify_unit_sequence = "generic", time = 0 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 301114, notify_unit_sequence = "generic", time = 0 },
 	},
 }
 
