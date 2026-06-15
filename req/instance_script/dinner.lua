@@ -86,7 +86,7 @@ M["levels/instances/unique/dinner/container_dozer_spawn/world/world"] = function
 		if dozer_event.dozers[id] then
 			element.values.enemy_table = container_dozer
 		elseif dozer_event.spawn_event_fix[id] then
-			element.values.event = "spawn"	
+			element.values.event = "spawn"
 		elseif dozer_event.filters_hard_above[id] then
 			table.map_append(element.values, filter_hard_above)
 		elseif dozer_event.filters_disable[id] then
