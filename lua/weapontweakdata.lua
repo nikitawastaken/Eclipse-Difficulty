@@ -645,7 +645,7 @@ function WeaponTweakData:_init_weapons(overrides)
 						standing = {
 							hipfire = 2,
 							crouching = 0.8,
-							steelsight = 0.1,
+							steelsight = 0.05,
 						},
 						moving = {
 							hipfire = 4,
@@ -789,7 +789,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil
 			weap_data.spread_bloom = weap_data.spread_bloom or nil
 			weap_data.fire_mode_spread_bloom = weap_data.fire_mode_spread_bloom or nil
-			weap_data.moving_transition = {
+			weap_data.moving_transition = weap_data.moving_transition or {
 				enter_rate = 2,
 				exit_rate = 3,
 			}			
