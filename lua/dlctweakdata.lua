@@ -39,6 +39,9 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	-- remove viper gas achievement unlock
+	self.ach_pxp1_01.content.upgrades = nil
+
 	-- don't give a bunch of stuff by default at level 0
 	self.armored_transport.content.upgrades = nil
 	self.pd2_clan_lgl.content.upgrades = nil
