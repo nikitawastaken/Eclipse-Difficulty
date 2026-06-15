@@ -1566,4 +1566,38 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["shadowraid_01"] = 2,
 		["shadowraid_02"] = 1,
 	}
+	self.welcome_to_the_jungle_1.random_environments = {
+		["big_oil_1_2"] = 3,
+		["big_oil_1_3"] = 2,
+		["big_oil_1_4"] = 2,
+		["big_oil_1_5"] = 1,
+	}
+	self.welcome_to_the_jungle_1_night.random_environments = {
+		["big_oil_1_1"] = 3,
+		["big_oil_1_6"] = 2,
+		["big_oil_1_7"] = 1,
+		["big_oil_1_8"] = 2,
+	}
+	self.welcome_to_the_jungle_2.random_environments = {
+		["big_oil_2_cg"] = 1,
+	}
+	self.shoutout_raid.random_environments = {
+		["meltdown_01"] = 3,
+		["meltdown_02"] = 2,
+		["meltdown_03"] = 1,
+	}
+	self.rvd1.random_environments = {
+		["reservoir_1_1"] = 1,
+		["reservoir_1_2"] = 2,
+	}
+	self.rvd2.random_environments = {
+		["reservoir_2_1"] = 1,
+		["reservoir_2_2"] = 2,
+	}
+	self.pbr.random_environments = {
+		["pbr_cg"] = 1,
+	}
+	self.wwh.random_environments = {
+		["wwh_cg"] = 1,
+	}
 end)

@@ -413,6 +413,8 @@
 					<file :name="cheap_godray_fwb.effect"/>
 					<file :name="cheap_godray_fwb2.effect"/>
 					<file :name="cheap_godray_lamp.effect"/>
+					<file :name="cheap_godray_swine_a.effect"/>
+					<file :name="cheap_godray_swine_b.effect"/>
 				</group>
 				<group :name="day_time/">
 					<file :name="fog_very_faint_blue.effect"/>
