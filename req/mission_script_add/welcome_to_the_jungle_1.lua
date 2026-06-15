@@ -117,7 +117,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400005, "spawn_swats", optsspawnvanSWATs),
 	Eclipse.mission_elements.gen_object_editor(400006, "open_swat_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors),
 	Eclipse.mission_elements.gen_spawngroup(400007, "swat_group", { 400001, 400002, 400003, 400004 }, 0, opts_swat_group),
-	
+
 	-- restore birds event
 	Eclipse.mission_elements.gen_toggleelement(400010, "enable_birds_1", optsenable_birds_area_1),
 	Eclipse.mission_elements.gen_toggleelement(400011, "enable_birds_2", optsenable_birds_area_2),
@@ -130,9 +130,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400018, "enable_birds_9", optsenable_birds_area_9),
 	Eclipse.mission_elements.gen_toggleelement(400019, "enable_birds_10", optsenable_birds_area_10),
 	Eclipse.mission_elements.gen_toggleelement(400020, "enable_birds_11", optsenable_birds_area_11),
-	
+
 	Eclipse.mission_elements.gen_element_random(400021, "enable_random_birds_location", spawn_random_birds),
-	
 }
 
 return M
