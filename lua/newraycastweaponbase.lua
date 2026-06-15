@@ -13,6 +13,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._spread_firing = 0
 	self._spread_last_shot_t = 0
 	self._shots_fired_consecutively = 0
+	self._moving_transition_progress = 0
 	self._kick_pattern_shots_fired = 0
 	self._kick_pattern_index = 1
 	self._use_persist_pattern = false
