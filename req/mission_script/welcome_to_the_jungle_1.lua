@@ -4,6 +4,11 @@ local disabled = {
 		enabled = false,
 	},
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local so_access = Eclipse.access_filter
 -- add female bikers to spawn roster
 local biker_enemy = {
@@ -24,6 +29,12 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- restore birds event
+	[100092] = {
+		on_executed = {
+			{ id = 400021, delay = 0 },
+		},
+	},
 	-- Add new reinforce
 	[103714] = { -- preferred 1
 		reinforce = {
@@ -59,6 +70,8 @@ return {
 	[103153] = disabled,
 	[103154] = disabled,
 	[103157] = disabled,
+	-- restore alert trigger from gunfire or explosions (which result the heist going loud)
+	[103293] = enabled,
 	-- Drop units from swat van
 	[102439] = {
 		on_executed = {
