@@ -1224,66 +1224,66 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	additive_weight_value = math.huge else additive_weight_value = 0 end
 
 	self.branchbank.random_environments = {
-		["branchbank01"] = 2,
-		["branchbank02"] = 2,
-		["branchbank03"] = 2,
-		["branchbank04"] = 2,
-		["branchbank05"] = 2,
-		["default"]	= 1,
+		["branchbank01"] = 1,
+		["branchbank02"] = 1,
+		["branchbank03"] = 1,
+		["branchbank04"] = 1,
+		["branchbank05"] = 1,
+		["default"]	= 3,
 	}
 	self.four_stores.random_environments = {
-		["fourstores_01"] = 2,
-		["fourstores_02"] = 2,
-		["fourstores_03"] = 2,
-		["default"]	= 1,
+		["fourstores_01"] = 1,
+		["fourstores_02"] = 1,
+		["fourstores_03"] = 1,
+		["default"]	= 2,
 	}
 	self.jewelry_store.random_environments = {
-		["jewelry_01"] = 2,
-		["jewelry_02"] = 2,
-		["jewelry_03"] = 2,
-		["jewelry_04"] = 2,
-		["jewelry_05"] = 2,
-		["default"]	= 1,
+		["jewelry_01"] = 1,
+		["jewelry_02"] = 1,
+		["jewelry_03"] = 1,
+		["jewelry_04"] = 1,
+		["jewelry_05"] = 1,
+		["default"]	= 3,
 	}
 	self.nightclub.random_environments = {
-		["nightclub_01"] = 2,
-		["nightclub_02"] = 3,
-		["nightclub_03"] = 2,
-		["default"]	= 1,
+		["nightclub_01"] = 1,
+		["nightclub_02"] = 1,
+		["nightclub_03"] = 1,
+		["default"]	= 2,
 	}
 	self.mallcrasher.random_environments = {
-		["mallcrasher_01"] = 2,
-		["mallcrasher_02"] = 2,
-		["default"]	= 1,
+		"mallcrasher_01",
+		"mallcrasher_02",
+		"default",
 	}
 	self.gallery.random_environments = {
 		["framingframe1_01"] = 2,
 		["framingframe1_02"] = 3,
-		["default"]	= 1,
+		["default"]	= 4,
 	}
 	self.framing_frame_1.random_environments = {
 		["framingframe1_01"] = 2,
 		["framingframe1_02"] = 3,
-		["default"]	= 1,
+		["default"]	= 4,
 	}
 	self.framing_frame_2.random_environments = {
-		["framingframe2_01"] = 3,
-		["framingframe2_02"] = 3,
-		["framingframe2_03"] = 2,
-		["default"]	= 1,
+		"framingframe2_01",
+		"framingframe2_02",
+		"framingframe2_03",
+		"default",
 	}
 	self.framing_frame_3.random_environments = {
-		["framingframe3_01"] = 3,
-		["framingframe3_02"] = 2,
-		["framingframe3_03"] = 2,
-		["default"]	= 1,
+		"framingframe3_01",
+		"framingframe3_02",
+		"framingframe3_03",
+		"default",
 	}
 	self.rat.random_environments = {
 		["rats1_01"] = 3,
 		["rats1_02"] = 3,
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
-		["default"]	= 1,
+		["default"]	= 6,
 		["rats1_dwpj"] = additive_weight_value,
 		["rats1_dwpj_2"] = additive_weight_value,
 	}
@@ -1292,71 +1292,65 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats1_02"] = 3,
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
-		["default"]	= 1,
+		["default"]	= 6,
 		["rats1_dwpj"] = additive_weight_value,
 		["rats1_dwpj_2"] = additive_weight_value,
 	}
 	self.alex_2.random_environments = {
-		["rats2_01"] = 2,
-		["rats2_02"] = 2,
-		["rats2_03"] = 2,
-		["default"]	= 1,
+		["rats2_01"] = 1,
+		["rats2_02"] = 1,
+		["rats2_03"] = 1,
+		["default"]	= 2,
 	}
-	self.alex_3.random_environments = {
-		["rats3_01"] = 69,
-	}
+	self.alex_3.random_environments = { "rats3_01" }
 	self.ukrainian_job.random_environments = {
-		["jewelry_01"] = 2,
-		["jewelry_02"] = 2,
-		["jewelry_03"] = 2,
-		["jewelry_04"] = 2,
-		["jewelry_05"] = 2,
-		["default"]	= 1,
+		["jewelry_01"] = 1,
+		["jewelry_02"] = 1,
+		["jewelry_03"] = 1,
+		["jewelry_04"] = 1,
+		["jewelry_05"] = 1,
+		["default"]	= 3,
 	}
 	self.watchdogs_1.random_environments = {
-		["watchdogs1_01_day"] = 3,
-		["watchdogs1_02_day"] = 3,
-		["watchdogs1_03_day"] = 3,
-		["watchdogs1_04_evening"] = 2,
-		["watchdogs1_05_evening"] = 2,
-		["default"]	= 1,
+		["watchdogs1_01_day"] = 2,
+		["watchdogs1_02_day"] = 2,
+		["watchdogs1_03_day"] = 2,
+		["watchdogs1_04_evening"] = 1,
+		["watchdogs1_05_evening"] = 1,
+		["default"]	= 6,
 	}
 	self.watchdogs_1_night.random_environments = {
-		["watchdogs1_01_night"] = 2,
-		["watchdogs1_02_night"] = 2,
-		["watchdogs1_03_night"] = 2,
-		["default"] = 1,
+		"watchdogs1_01_night",
+		"watchdogs1_02_night",
+		"watchdogs1_03_night",
+		"default",
 	}
 	self.watchdogs_2.random_environments = {
-		["watchdogs2_01_night"] = 2,
-		["watchdogs2_02_night"] = 2,
-		["default"] = 1,
+		"watchdogs2_01_night",
+		"watchdogs2_02_night",
+		"default",
 	}
 	self.watchdogs_2_day.random_environments = {
-		["watchdogs2_01_day"] = 3,
-		["watchdogs2_02_day"] = 3,
-		["watchdogs2_03_evening"] = 2,
-		["default"] = 1,
+		["watchdogs2_01_day"] = 2,
+		["watchdogs2_02_day"] = 2,
+		["watchdogs2_03_evening"] = 1,
+		["default"] = 3,
 	}
 	self.run.random_environments = {
-		["heat_street_1"] = 3,
-		["heat_street_3"] = 3,
-		["heat_street_4"] = 3,
+		["heat_street_1"] = 1,
+		["heat_street_3"] = 1,
+		["heat_street_4"] = 1,
 		["heat_street_cheese"] = additive_weight_value,
 	}
-	self.nmh.random_environments = {
-		["no_mercy"] = 69,
-	}
-	self.dah.random_environments = {
-		["diamond_heist"] = 69 
-	}
+	self.nmh.random_environments = { "no_mercy" }
+	self.dah.random_environments = { "diamond_heist" }
 	self.red2.random_environments = {
-		["first_world_bank_1"] = 3,
+		["first_world_bank_1"] = 1,
 		["first_world_bank_dwpj_bastard"] = additive_weight_value,
 		["first_world_bank_dwpj_matrix"] = additive_weight_value,
 	}
 	self.man.random_environments = {
-		["undercover"] = 3,
+		["undercover"] = 1,
 		["undercover_dwpj_heavenhell"] = additive_weight_value,
 	}
 	self.mia_1.random_environments = {
@@ -1364,31 +1358,29 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["hotlinemiami_2"] = 2,
 		["hotlinemiami_3"] = 2,
 		["hotlinemiami_4"] = 2,
+		["default"] = 6,
 		["hotlinemiami_5_dwpj"] = additive_weight_value,
-		["default"] = 1,
 	}
-	self.mia_2.random_environments = {
-		["commissar"] = 69,
-	}
+	self.mia_2.random_environments = { "commissar" }
 	self.born.random_environments = {
-		["bikerheist_1_01"] = 3,
-		["bikerheist_1_02"] = 2,
-		["default"] = 1,
+		"bikerheist_1_01",
+		"bikerheist_1_02",
+		"default",
 	}
 	self.chew.random_environments = {
-		["bikerheist_2_01"] = 2,
-		["bikerheist_2_02"] = 3,
-		["default"] = 1,
+		"bikerheist_2_01",
+		"bikerheist_2_02",
+		"default",
 	}
 	self.big.random_environments = {
-		["bigbank_01"] = 3,
-		["bigbank_02"] = 3,
-		["default"] = 1,
+		"bigbank_01",
+		"bigbank_02",
+		"default",
 	}
 	self.mad.random_environments = {
-		["mad"] = 3,
-		["mad_night"] = 2,
-		["default"] = 1,
+		["mad"] = 2,
+		["mad_night"] = 1,
+		["default"] = 3,
 	}
 	self.pex.random_environments = {
 		["tijuana_01"] = 1,
@@ -1398,8 +1390,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["crossing_01"] = 1,
 		["default"] = 3,
 	}
+	self.mex_cooking.random_environments = {
+		["crossing_01"] = 1,
+		["default"] = 3,
+	}
 	self.bex.random_environments = {
-		["sanmartin_02"] = 2,
+		["sanmartin_02"] = 1,
 		["default"] = 3,
 	}
 	self.pal.random_environments = {
@@ -1421,26 +1417,26 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.crojob3.random_environments = {
 		["croatian_forest_1"] = 2,
-		["default"] = 1,
 		["croatian_forest_2"] = 1,
+		["default"] = 3,
 	}
 	self.crojob2.random_environments = {
 		["croatian_dockyard_1"] = 3,
 		["croatian_dockyard_2"] = 2,
 		["croatian_dockyard_3"] = 2,
-		["default"] = 1,
+		["default"] = 4,
 	}
 	self.arm_cro.random_environments = {
-		["arm_cro_1"] = 2,
-		["arm_cro_2"] = 2,
-		["arm_cro_3"] = 2,
-		["arm_cro_4"] = 2,
-		["default"] = 1,
+		["arm_cro_1"] = 1,
+		["arm_cro_2"] = 1,
+		["arm_cro_3"] = 1,
+		["arm_cro_4"] = 1,
+		["default"] = 3,
 	}
 	self.arm_par.random_environments = {
-		["arm_par_1"] = 3,
-		["arm_par_2"] = 3,
-		["default"] = 1,
+		"arm_par_1",
+		"arm_par_2",
+		"default",
 	}
 	self.arm_fac.random_environments = {
 		["arm_fac_3"] = 3,
@@ -1449,10 +1445,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.arm_hcm.random_environments = {
-		["arm_hcm_1"] = 2,
-		["arm_hcm_2"] = 2,
-		["arm_hcm_3"] = 2,
-		["default"] = 1,
+		["arm_hcm_1"] = 1,
+		["arm_hcm_2"] = 1,
+		["arm_hcm_3"] = 1,
+		["default"] = 2,
 	}
 	self.arm_und.random_environments = {
 		["arm_und_1"] = 4,
@@ -1460,14 +1456,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["arm_und_3"] = 4,
 		["arm_und_4"] = 3,
 		["arm_und_5"] = 2,
-		["default"] = 1,
+		["default"] = 8,
 	}
 	self.arm_for.random_environments = {
 		["arm_for_1"] = 2,
 		["arm_for_2"] = 2,
 		["arm_for_3"] = 3,
 		["arm_for_4"] = 3,
-		["default"] = 1,
+		["default"] = 6,
 	}
 	self.firestarter_1.random_environments = {
 		["firestarter1_1"] = 2,
@@ -1485,28 +1481,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["firestarter3_3"] = 2,
 	}
 	self.brb.random_environments = {
-		["brb_1"] = 3,
-		["brb_2"] = 3,
+		"brb_1",
+		"brb_2",
 	}
 	self.hox_1.random_environments = {
-		["hox_1_1"] = 3,
-		["hox_1_2"] = 2,
-		["default"] = 1,
+		"hox_1_1",
+		"hox_1_2",
+		"default",
 	}
 	self.flat.random_environments = {
-		["flat_1"] = 4,
-		["flat_2"] = 3,
+		["flat_1"] = 3,
+		["flat_2"] = 2,
 		["default"] = 1,
 	}
 	self.dinner.random_environments = {
-		["slaughterhouse_1"] = 4,
-		["slaughterhouse_2"] = 3,
+		["slaughterhouse_1"] = 3,
+		["slaughterhouse_2"] = 2,
 		["default"] = 1,
 	}
 	self.friend.random_environments = {
-		["scarface_1"] = 4,
+		["scarface_1"] = 2,
 		["default"] = 2,
-		["scarface_2"] = 2,
+		["scarface_2"] = 1,
 	}
 	self.nail.random_environments = {
 		["lab_rats_01"] = 3,
@@ -1525,33 +1521,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["horrorhouse_04"] = 2,
 		["horrorhouse_05"] = 2,
 	}
-	self.pbr2.random_environments = {
-		["birth_of_sky"] = 69,
-	}
+	self.pbr2.random_environments = { "birth_of_sky" }
 	self.roberts.random_environments = {
-		["roberts_1"] = 2,
-		["roberts_2"] = 2,
-		["roberts_3"] = 2,
+		"roberts_1",
+		"roberts_2",
+		"roberts_3",
 	}
-	self.arena.random_environments = {
-		["arena_cg"] = 69,
-	}
-	self.glace.random_environments = {
-		["glace_1"] = 69,
-	}
-	self.mus.random_environments = {
-		["dadiamond_cg"] = 69,
-	}
-	self.chas.random_environments = {
-		["chas_cg"] = 69,
-	}
-	self.spa.random_environments = {
-		["spa_01"] = 69,
-	}
+	self.arena.random_environments = { "arena_cg" }
+	self.glace.random_environments = { "glace_1" }
+	self.mus.random_environments = { "dadiamond_cg" }
+	self.chas.random_environments = { "chas_cg" }
+	self.spa.random_environments = { "spa_01" }
 	self.election_day_3.random_environments = {
-		["breakingballot_01"] = 2,
-		["breakingballot_02"] = 1,
-		["breakingballot_03"] = 1,
+		"breakingballot_01",
+		"breakingballot_02",
+		"breakingballot_03",
 	}
 	self.election_day_3_skip1.random_environments = self.election_day_3.random_environments
 	self.election_day_3_skip2.random_environments = self.election_day_3.random_environments
@@ -1559,9 +1543,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["aftershock_01"] = 2,
 		["aftershock_02"] = 1,
 	}
-	self.peta.random_environments = {
-		["peta_01"] = 2,
-	}
+	self.peta.random_environments = { "peta_01" }
 	self.kosugi.random_environments = {
 		["shadowraid_01"] = 2,
 		["shadowraid_02"] = 1,
@@ -1578,9 +1560,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["big_oil_1_7"] = 1,
 		["big_oil_1_8"] = 2,
 	}
-	self.welcome_to_the_jungle_2.random_environments = {
-		["big_oil_2_cg"] = 1,
-	}
+	self.welcome_to_the_jungle_2.random_environments = { "big_oil_2_cg" }
 	self.shoutout_raid.random_environments = {
 		["meltdown_01"] = 3,
 		["meltdown_02"] = 2,
@@ -1594,10 +1574,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["reservoir_2_1"] = 1,
 		["reservoir_2_2"] = 2,
 	}
-	self.pbr.random_environments = {
-		["pbr_cg"] = 1,
-	}
-	self.wwh.random_environments = {
-		["wwh_cg"] = 1,
-	}
+	self.pbr.random_environments = { "pbr_cg" }
+	self.wwh.random_environments = { "wwh_cg" }
 end)
