@@ -1430,9 +1430,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.arm_cro.random_environments = {
 		["arm_cro_1"] = 2,
-		["arm_cro_2"] = 2,
-		["arm_cro_3"] = 2,
-		["arm_cro_4"] = 2,
 		["default"] = 1,
 	}
 	self.arm_par.random_environments = {
