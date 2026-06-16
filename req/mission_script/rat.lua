@@ -1,23 +1,17 @@
 local preferred = Eclipse.preferred
-local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local meth_lab_in_basement_chance = math.random() < 0.2
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 -- credit for these changes goes to ASS, thanks miki <3
 local mendoza_enemy = {
@@ -47,7 +41,7 @@ local cloaker_enemy = {
 	enemy = normal and scripted_enemy.heavy_swat_1 or scripted_enemy.cloaker,
 }
 local exclude_cop_agents_shields_dozers = {
-	so_access_filter = so_access.acrobatic,
+	so_access_filter = { "swat", "taser", "spooc" },
 }
 local chopper_amount = is_eclipse and 2 or 1
 local sniper_respawn_1 = (is_eclipse and 80 or hard and 100 or 140) - (is_pro_job and 30 or 0)
@@ -76,7 +70,27 @@ local filter_easy_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
+local meth_lab_in_basement_chance = math.random() < 0.25
+
 return {
+	--[[ Instant FFO after cooking 15 bags
+	[102452] = { -- methbag_produced
+		on_executed = {
+			{ id = 400011, delay = 0 },
+		},
+	},
+	[400012] = { -- cooked bags
+		set_ponr_state = true,	
+	},
+	]]
+	-- Add new navlinks
+	[102141] = { -- activate_navlinks_and_SOs
+		on_executed = {
+			{ id = 400013, delay = 0 },
+			{ id = 400014, delay = 0 },
+			{ id = 400015, delay = 0 },
+		},
+	},
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_enemy,
 	[101572] = cloaker_enemy,

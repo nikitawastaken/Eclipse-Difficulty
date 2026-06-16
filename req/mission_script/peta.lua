@@ -29,13 +29,6 @@ local wave_cop_count = {
 		amount_random = 6,
 	},
 }
-local rappel_spawn = {
-	values = {
-		interval = 10,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -68,9 +61,6 @@ return {
 	[103482] = random_goats,
 	[105634] = random_goats,
 	[100159] = disabled,
-	-- Spawn group intervals
-	[100131] = rappel_spawn,
-	[100694] = rappel_spawn,
 	-- Scale initial cop amount
 	[103446] = scene_cop_count, -- scene cops
 	[103445] = scene_cop_count,

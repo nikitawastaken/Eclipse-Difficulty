@@ -6,19 +6,16 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local max_nr_team_ai = tweak_data.group_ai.max_nr_team_ai
 local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
 
-local transport_drill_solo_friendly = {
-	timer = 180,
-	timer_init_balance_mul = {
-		team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
-		4 / 6,
-		5 / 6,
-		1,
-		1,
+local armadillo_drill = { -- Armored Transport Trucks in Transport heists
+	drill = {
+		{
+			timer = 120,
+			jam_times = { 1, 2 },
+			forbid_reenforce = true,
+		},
 	},
-	jam_times = { 1, 2 },
-	forbid_reenforce = true,
 }
-local security_door_solo_friendly = {
+local security_door_solo_friendly = { 
 	drill = {
 		{
 			timer_init_balance_mul = {
@@ -98,19 +95,70 @@ local M = {
 	},
 	]]
 	["arm_cro"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
+		[100006] = armadillo_drill,
+		[100007] = armadillo_drill,
+		[100021] = armadillo_drill,
+		[100022] = armadillo_drill,
+		[100023] = armadillo_drill,
+		[100024] = armadillo_drill,
+		[100025] = armadillo_drill,
+		[100097] = armadillo_drill,
+		[100100] = armadillo_drill,
+		[100101] = armadillo_drill,
+		[100226] = armadillo_drill,
+		[100227] = armadillo_drill,
 	},
 	["arm_fac"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
+		[100006] = armadillo_drill,
+		[100007] = armadillo_drill,
+		[100021] = armadillo_drill,
+		[100022] = armadillo_drill,
+		[100023] = armadillo_drill,
+		[100024] = armadillo_drill,
+		[100025] = armadillo_drill,
+		[100097] = armadillo_drill,
+		[100100] = armadillo_drill,
+		[100101] = armadillo_drill,
+		[100226] = armadillo_drill,
+		[100227] = armadillo_drill,
 	},
 	["arm_hcm"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
+		[100006] = armadillo_drill,
+		[100007] = armadillo_drill,
+		[100021] = armadillo_drill,
+		[100022] = armadillo_drill,
+		[100023] = armadillo_drill,
+		[100024] = armadillo_drill,
+		[100025] = armadillo_drill,
+		[100097] = armadillo_drill,
+		[100100] = armadillo_drill,
+		[100101] = armadillo_drill,
+		[100226] = armadillo_drill,
+		[100227] = armadillo_drill,
 	},
 	["arm_par"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
+		[100006] = armadillo_drill,
+		[100007] = armadillo_drill,
+		[100021] = armadillo_drill,
+		[100022] = armadillo_drill,
+		[100023] = armadillo_drill,
+		[100024] = armadillo_drill,
+		[100025] = armadillo_drill,
+		[100097] = armadillo_drill,
+		[100100] = armadillo_drill,
+		[100101] = armadillo_drill,
+		[100226] = armadillo_drill,
+		[100227] = armadillo_drill,
 	},
 	["arm_und"] = {
-		[("units/payday2/equipment/gen_interactable_drill_small/gen_interactable_drill_small"):key()] = transport_drill_solo_friendly,
+		[100007] = armadillo_drill,
+		[100021] = armadillo_drill,
+		[100022] = armadillo_drill,
+		[100023] = armadillo_drill,
+		[100024] = armadillo_drill,
+		[100025] = armadillo_drill,
+		[100097] = armadillo_drill,
+		[100100] = armadillo_drill,
 	},
 	["bex"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
@@ -127,7 +175,7 @@ local M = {
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
-				{ 3, 4 },
+				{ 3, 3 },
 			},
 			forbid_sabotage = true,
 		},
@@ -154,7 +202,7 @@ local M = {
 			},
 			forbid_sabotage = true,
 		},
-		[101490] = security_door_solo_friendly,
+		[101490] = security_door_solo_friendly, -- Steel security doors
 		[102834] = security_door_solo_friendly,
 		[103009] = security_door_solo_friendly,
 		[104582] = security_door_solo_friendly,
@@ -164,6 +212,14 @@ local M = {
 		[103322] = security_door_solo_friendly,
 		[105317] = security_door_solo_friendly,
 		[106336] = security_door_solo_friendly,
+		[103891] = security_door_solo_friendly, -- Gates inside the vault
+		[102905] = security_door_solo_friendly,
+		[103298] = security_door_solo_friendly,
+		[103351] = security_door_solo_friendly,
+		[103340] = security_door_solo_friendly,
+		[103637] = security_door_solo_friendly,
+		[104082] = security_door_solo_friendly,
+		[101729] = security_door_solo_friendly,
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
@@ -205,6 +261,19 @@ local M = {
 			timer = 240,
 		},
 	},
+	["mia_2"] = {
+		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			jam_times = {
+				is_balance_mul = true,
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				{ 1, 2 },
+				{ 2, 2 },
+				{ 2, 3 },
+				{ 3, 3 },
+			},
+			forbid_sabotage = true,
+		},
+	},
 	["pal"] = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {
 			timer = 240,
@@ -219,7 +288,14 @@ local M = {
 	},
 	["peta2"] = {
 		[("units/pd2_dlc_peta/equipment/pta_interactable_door_drill/pta_interactable_door_drill"):key()] = {
-			timer = 60,
+			timer = 90,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				4 / 6,
+				5 / 6,
+				1,
+				1,
+			},
 			jam_times = 1,
 		},
 	},

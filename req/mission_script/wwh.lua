@@ -31,12 +31,8 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local unused_sniper_trigger_times = {
-	values = {
-		trigger_times = 0,
-		enabled = true,
-	},
-}
+local unused_sniper_trigger_times = deep_clone(sniper_trigger_times)
+unused_sniper_trigger_times.values.enabled = true
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -57,13 +53,11 @@ local chopper_trigger_times = {
 local window_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local boat_spawn = {
 	values = {
-		interval = 45,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -88,7 +82,7 @@ return {
 	[100525] = sniper_trigger_times,
 	[100529] = sniper_trigger_times,
 	[100534] = sniper_trigger_times,
-	[100540] = unused_sniper_trigger_times,
+	--[100540] = unused_sniper_trigger_times,
 	[100545] = unused_sniper_trigger_times,
 	--[100549] = unused_sniper_trigger_times,
 	[100553] = sniper_trigger_times,

@@ -55,6 +55,13 @@ local apartment_spawn = {
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
+local skylight_navlink_interval = {
+	values = {
+		interval = 6, -- (Vanilla: 10s)
+	},
+}
+local skylight_navlink_interval_enable = deep_clone(skylight_navlink_interval)
+skylight_navlink_interval_enable.values.enabled = true
 
 return {
 	[100043] = { -- player_spawned
@@ -65,6 +72,9 @@ return {
 	[100512] = { -- add_spawn (apartment spawns)
 		paused_difficulty_addends = { -- enable addends
 			on_entered_regroup = false,
+		},
+		on_executed = { -- Don't remove 3rd floor spawngroups
+			{ id = 100511, remove = true }, -- ai_enemy_prefered_remove_002
 		},
 	},
 	-- Boss spawn
@@ -85,7 +95,7 @@ return {
 	[100153] = {
 		ponr = { -- FFO
 			length = 60,
-			length_balance_mul = { 2, 2, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 		forced_difficulty = false, -- Disable forced diff
 	},
@@ -105,11 +115,11 @@ return {
 		},
 	},
 	[101166] = special_enemy,
-	-- randomize all dozers in the room
+	-- Randomize all dozers in the room
 	[101133] = bulldozer_enemy,
 	[101137] = bulldozer_enemy,
 	[101141] = bulldozer_enemy,
-	-- tweak other scripted spawns
+	-- Tweak other scripted spawns
 	[101977] = bulldozer_enemy,
 	[102018] = bulldozer_enemy,
 	[101970] = shield_enemy,
@@ -122,8 +132,6 @@ return {
 	[102016] = swat_enemy,
 	[102019] = swat_enemy,
 	[102020] = swat_enemy,
-	-- Disable reinforce (the drill already has it)
-	[100183] = disabled,
 	--Should decrease sniper spawn intensity (I hope)
 	[101202] = {
 		values = {
@@ -140,6 +148,19 @@ return {
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
+	-- Decrease skylight navlink intervals
+	-- e_nl_down_4m
+	[101055] = skylight_navlink_interval,
+	[101086] = skylight_navlink_interval_enable,
+	[101087] = skylight_navlink_interval_enable,
+	[101089] = skylight_navlink_interval,
+	[101090] = skylight_navlink_interval,
+	[101091] = skylight_navlink_interval,
+	[101092] = skylight_navlink_interval,
+	[101093] = skylight_navlink_interval,
+	[101094] = skylight_navlink_interval,
+	[101185] = skylight_navlink_interval,
+	[101190] = skylight_navlink_interval,
 	-- Spawn group intervals
 	[101084] = apartment_spawn,
 	[101085] = apartment_spawn,

@@ -1,21 +1,17 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local diff_i = Eclipse.utils.difficulty_index()
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 -- credit for these changes goes to ASS, thanks miki <3
 local mendoza_enemy = {
@@ -80,6 +76,14 @@ return {
 		ponr = {
 			length = 1200,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	-- Add new navlinks
+	[100853] = { -- startEnemyNavLinks
+		on_executed = {
+			{ id = 400013, delay = 0 },
+			{ id = 400014, delay = 0 },
+			{ id = 400015, delay = 0 },
 		},
 	},
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties

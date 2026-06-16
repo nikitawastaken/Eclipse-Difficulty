@@ -44,17 +44,17 @@ return {
 	[100533] = { -- Police
 		reinforce = {
 			{
-				name = "entrace01",
+				name = "entrance01",
 				force = 2,
 				position = Vector3(-1110, 1400, 0),
 			},
 			{
-				name = "entrace02",
+				name = "entrance02",
 				force = 2,
-				position = Vector3(-3000, -925, 0),
+				position = Vector3(-2875, -925, 0),
 			},
 			{
-				name = "entrace03",
+				name = "entrance03",
 				force = 2,
 				position = Vector3(-900, -2600, 0),
 			},
