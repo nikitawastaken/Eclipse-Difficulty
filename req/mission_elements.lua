@@ -585,7 +585,6 @@ function M.gen_counter_trigger(id, name, opts)
 	return counter_trigger
 end
 
-
 ---Generate a global event element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference

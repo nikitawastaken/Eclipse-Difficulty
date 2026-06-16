@@ -95,9 +95,9 @@ return {
 	-- Increase the valve SO re-activation delay (vanilla: 30 + 0-10)
 	[101227] = { -- start_interrupt_again001
 		on_executed = {
-			{ id = 100590, delay = 30, delay_rand = 30 }, -- SO_valve001 
+			{ id = 100590, delay = 30, delay_rand = 30 }, -- SO_valve001
 		},
-	},	
+	},
 	[101496] = { -- start_interrupt_again002
 		on_executed = {
 			{ id = 101176, delay = 30, delay_rand = 30 }, -- SO_valve002

@@ -15,7 +15,7 @@ local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 		},
 	},
 }
-local security_door_solo_friendly = { 
+local security_door_solo_friendly = {
 	drill = {
 		{
 			timer_init_balance_mul = {
