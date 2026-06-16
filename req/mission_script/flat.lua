@@ -462,7 +462,7 @@ return {
 	[101891] = dealer_walk_so,
 	[101899] = dealer_walk_so,
 	-- Increase navlink intervals
-	-- e_nl_up_1_fwd_1_5m
+	--[[ e_nl_up_1_fwd_1_5m
 	[100832] = roof_navlink_interval,
 	[103338] = roof_navlink_interval,
 	[101718] = roof_navlink_interval,
@@ -481,6 +481,7 @@ return {
 	[100604] = roof_navlink_interval,
 	[100606] = roof_navlink_interval,
 	[100605] = roof_navlink_interval,
+	]]
 	-- Spawn group intervals
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,

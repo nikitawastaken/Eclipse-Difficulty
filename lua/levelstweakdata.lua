@@ -168,13 +168,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	--	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
 	self.arena.difficulty_scaling_preset = "regroup_slow"
 	--	self.red2.difficulty_scaling_preset = "regroup_slow"
-	--	self.dinner.difficulty_scaling_preset = "regroup_slow"
+	self.dinner.difficulty_scaling_preset = "regroup_slow"
 	self.kenaz.difficulty_scaling_preset = "regroup_slow"
 	self.pbr.difficulty_scaling_preset = "regroup_slow"
 	self.peta.difficulty_scaling_preset = "regroup_slow"
 	self.peta2.difficulty_scaling_preset = "regroup_slow"
+	self.pal.difficulty_scaling_preset = "regroup_slow"
 	self.mad.difficulty_scaling_preset = "regroup_slow"
-	--	self.flat.difficulty_scaling_preset = "regroup_slow"
+	self.flat.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
 	self.ranc.difficulty_scaling_preset = "regroup_slow"
@@ -239,7 +240,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			addends = {
 				on_enemy_weapons_hot = {
 					amount = 0.25,
-					delay = 60,
+					delay = 75, -- Increase the preset's delay
 					time = 60,
 				},
 			},

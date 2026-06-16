@@ -49,7 +49,7 @@ local crowbar_amount = {
 }
 local van_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -90,6 +90,22 @@ return {
 	[100897] = {
 		values = {
 			time = 30,
+		},
+	},
+	-- Increase the valve SO re-activation delay (vanilla: 30 + 0-10)
+	[101227] = { -- start_interrupt_again001
+		on_executed = {
+			{ id = 100590, delay = 30, delay_rand = 30 }, -- SO_valve001
+		},
+	},
+	[101496] = { -- start_interrupt_again002
+		on_executed = {
+			{ id = 101176, delay = 30, delay_rand = 30 }, -- SO_valve002
+		},
+	},
+	[101502] = { -- start_interrupt_again002
+		on_executed = {
+			{ id = 101217, delay = 30, delay_rand = 30 }, -- SO_valve003
 		},
 	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
@@ -134,7 +150,7 @@ return {
 			{
 				name = "bbq",
 				force = 3,
-				position = Vector3(-3700, 2100, 25),
+				position = Vector3(-3800, 2200, 25),
 			},
 			{
 				name = "mitchell_house01",
@@ -196,8 +212,7 @@ return {
 	[101852] = disabled,
 	[101853] = disabled,
 	[101854] = disabled,
-	-- disable vanilla's reinforce points
-	[100218] = disabled,
+	-- disable a few vanilla reinforce points
 	[101635] = disabled,
 	[101636] = disabled,
 	-- only let swats, tasers, snipers and cloakers use climbing SOs

@@ -147,6 +147,13 @@ return {
 			{ id = 101692, delay = 0 },
 		},
 	},
+	-- Enables/disables NPCs flashlights when the power is off/on
+	[100898] = { -- power_interrupted
+		flashlight = true,
+	},
+	[100899] = { -- power_resumed
+		flashlight = false,
+	},
 	-- Spawn group intervals
 	[100052] = wall_far_spawn,
 	[100286] = wall_far_spawn,

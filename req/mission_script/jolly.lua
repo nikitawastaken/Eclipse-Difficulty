@@ -4,10 +4,10 @@ local disabled = {
 		enabled = false,
 	},
 }
-local train_spawn = {
+local construction_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 15,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local bridge_spawn = {
@@ -61,11 +61,10 @@ return {
 	[400006] = scripted_swat_wall_spawn,
 	[400012] = scripted_swat_wall_spawn,
 	-- Spawn group intervals
-	[100944] = train_spawn,
-	[100945] = train_spawn,
-	[100979] = train_spawn,
-	[100996] = train_spawn,
-	[100997] = train_spawn,
+	[101063] = construction_spawn,
+	[100979] = construction_spawn,
+	[100996] = construction_spawn,
+	[100997] = construction_spawn,
 	[100381] = bridge_spawn,
 	[100532] = bridge_spawn,
 	[100214] = bridge_spawn,

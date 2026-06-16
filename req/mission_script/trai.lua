@@ -14,13 +14,6 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local warehouse_spawn = {
-	values = {
-		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 return {
 	-- Reinforce spots on traincars, it just works.
 	[102477] = {
@@ -56,8 +49,6 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
-	-- Spawn group intervals
-	[100133] = warehouse_spawn,
 	-- Replace generic security with soldiers (SO MANY GUARDS)
 	[100670] = security_army,
 	[100671] = security_army,

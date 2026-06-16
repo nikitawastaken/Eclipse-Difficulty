@@ -42,7 +42,7 @@ local flank_spawn = {
 local e_nl_up_1m_down_5m_swing_interval = {
 	so_access_filter = so_access.acrobatic,
 	values = {
-		interval = 9, -- (Vanilla: 5s)
+		interval = 10, -- (Vanilla: 5s)
 	},
 }
 

@@ -532,6 +532,59 @@ function M.gen_counter(id, name, opts)
 	return counter
 end
 
+---Generate a counter operator element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_counter_operator(id, name, opts)
+	opts = opts or {}
+	local counter_operator = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementCounter",
+		class = "ElementCounterOperator",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			on_executed = opts.on_executed or {},
+			trigger_times = opts.trigger_times or 0,
+			amount = opts.amount or 0,
+			enabled = opts.enabled or false,
+			operation = opts.operation or "add",
+			elements = opts.elements or {},
+			base_delay = opts.base_delay or 0,
+			callback = opts.callback or false,
+		},
+	}
+
+	return counter_operator
+end
+
+---Generate a counter trigger element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_counter_trigger(id, name, opts)
+	opts = opts or {}
+	local counter_trigger = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementCounter",
+		class = "ElementCounterTrigger",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			on_executed = opts.on_executed or {},
+			trigger_times = opts.trigger_times or 0,
+			enabled = opts.enabled or false,
+			amount = opts.amount or 0,
+			elements = opts.elements or {},
+			base_delay = opts.base_delay or 0,
+			callback = opts.callback or false,
+		},
+	}
+
+	return counter_trigger
+end
+
 ---Generate a global event element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference

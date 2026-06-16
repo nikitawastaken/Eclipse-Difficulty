@@ -665,7 +665,6 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"x_chinchilla",
 				"x_model3",
-				"poison_gas_grenade",
 			},
 		},
 		{

@@ -352,6 +352,13 @@ return {
 	[105188] = only_cloakers_so,
 	[105189] = only_cloakers_so,
 	[105190] = only_cloakers_so,
+	-- Enables NPC flashlights inside the slaughterhouse
+	[101346] = { -- entered_slaughterhouse
+		flashlight = true,
+	},
+	[101179] = { -- start_sniper_spawn (triggered by activate_container_area)
+		flashlight = false,
+	},
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,

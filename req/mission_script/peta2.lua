@@ -26,8 +26,9 @@ local close_spawn = {
 		interval = 20,
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
-	groups = preferred.no_shields_bulldozers,
 }
+local bush_spawn = deep_clone(close_spawn)
+bush_spawn.values.groups = preferred.no_shields_bulldozers
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -50,8 +51,8 @@ return {
 	-- Tweak one of the bridge spawngroups
 	[102374] = {
 		values = {
-			interval = 10,
-			interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+			interval = far_spawn.values.interval,
+			interval_balance_mul = far_spawn.values.interval_balance_mul,
 			elements = {
 				102376,
 				102377,
@@ -112,13 +113,13 @@ return {
 	[100131] = far_spawn,
 	[100132] = far_spawn,
 	[100693] = far_spawn,
-	[101217] = close_spawn,
 	[100007] = close_spawn,
 	[100128] = close_spawn,
 	[100130] = close_spawn,
 	[100133] = close_spawn,
 	[100692] = close_spawn,
 	[100694] = close_spawn,
+	[101217] = bush_spawn,
 	[400006] = scripted_swat_van_spawn,
 	[400012] = scripted_swat_van_spawn,
 	[400018] = scripted_swat_van_spawn,

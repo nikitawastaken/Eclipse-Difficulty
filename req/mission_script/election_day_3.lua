@@ -85,8 +85,8 @@ local computer_hack_time_rand = 60 + (is_pro_job and 30 or 0)
 return {
 	[104782] = {
 		ponr = {
-			length = 720,
-			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+			length = 600,
+			length_balance_mul = { 1.5, 1.25, 1.125, 1 },
 		},
 	},
 	-- Combine some navigation areas
