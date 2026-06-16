@@ -1331,9 +1331,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.random_environments = {
 		["watchdogs2_01_night"] = 2,
 		["watchdogs2_02_night"] = 2,
-		["default"] = 1,
-	}
-	self.watchdogs_2_day.random_environments = {
 		["watchdogs2_01_day"] = 3,
 		["watchdogs2_02_day"] = 3,
 		["watchdogs2_03_evening"] = 2,
