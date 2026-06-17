@@ -1470,9 +1470,20 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.carbon_blade.multipro = "25%"
 	self.skill_descs.carbon_blade.multipro2 = "8"
 
-	-- Bulletstorm
-	self.skill_descs.bandoliers.multibasic = "12"
-	self.skill_descs.bandoliers.multipro2 = "30"
+	-- Firestarter
+	self.values.autoreload_mag_funnel_multiplier = 2
+	self.values.ammo_bag.auto_reload = { true }
+	self.definitions.ammo_bag_auto_reload = {
+		name_id = "menu_ammo_bag_auto_reload",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "auto_reload",
+			category = "ammo_bag",
+		},
+	}
+	self.skill_descs.bandoliers.multibasic = "100%"
+	self.skill_descs.bandoliers.multipro = "30"
 
 	-- Technician --
 

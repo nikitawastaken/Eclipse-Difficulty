@@ -18,6 +18,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._kick_pattern_index = 1
 	self._use_persist_pattern = false
 	self._shield_knock = false
+	self._is_incendiary_bstorm_active = false
 
 	self._unit:set_extension_update_enabled(Idstring("base"), true)
 end)
@@ -299,6 +300,12 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 
 			--	Eclipse:log_chat("Reset kick pattern!")
 		end
+	end
+
+	if self._is_incendiary_bstorm_active and self:bullet_class() == FlameBulletBase and not managers.player:has_active_temporary_property("bullet_storm") then
+		self._is_incendiary_bstorm_active = false
+
+		self:override_bullet_class(self._ammo_data.bullet_class or "InstantBulletBase")
 	end
 end
 
@@ -886,6 +893,19 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	end
 
 	self:update_damage()
+end
+
+-- Firestarter Incendiary Ammo activation
+function NewRaycastWeaponBase:activate_firestarter_incendiary_ammo()
+	if
+		self:is_category("saw", "grenade_launcher", "flamethrower", "bow", "crossbow", "minigun")
+		or (self:is_category("shotgun") and self:bullet_class() == InstantExplosiveBulletBase or self:bullet_class() == FlameBulletBase)
+	then
+		return
+	end
+
+	self._is_incendiary_bstorm_active = true
+	self:override_bullet_class("FlameBulletBase")
 end
 
 function NewRaycastWeaponBase:_check_use_persist_pattern()

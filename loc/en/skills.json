@@ -69,9 +69,9 @@
 	"menu_mag_plus_beta_desc": "BASIC: ##$basic##\nFiring a weapon has a ##$multibasic## chance to not consume any ammo.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nYour weapons gain ##$multipro## more rounds in their magazine.\n\nNote: Does not affect the Aced ##\"Sleight of Hand\"## Skill.",
 	"menu_ammo_2x_beta_desc": "BASIC: ##$basic##\nYour ammo bag now holds ##$multibasic## more ammunition.\n\nACE: ##$pro##\nYou can now carry an additional ammo bag.",
 	"menu_big_game_hunters": "Big Game Hunters",
-	"menu_big_game_hunters_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nA member of the crew who picks up the extra ammo box will be granted a ##$multipro## damage increase and full ##Armor Piercing## capabilities for ##$multipro2## seconds.",
-	"menu_ammo_reservoir_beta_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##$multibasic## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##$multipro2## seconds.",
-
+	"menu_big_game_hunters_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nA member of the crew who picks up the extra ammo box will be granted a ##$multipro## damage increase and ##full penetration## capabilities for ##$multipro2## seconds.",
+	"menu_firestarter": "Firestarter",
+	"menu_firestarter_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant crew members an automatic instant reload upon interacting with them. The automatic reload will funnel an additional ##$multibasic## ammo into the magazine.\n\nNote: The automatic reload affects both weapons.\n\nACE: ##$pro##\nAmmo bags placed by you grant crew members ##Incendiary Ammo## for up to ##$multipro## seconds after interacting with them. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect Special Weapons and Shotguns loaded with HE Rounds or Dragon's Breath Rounds.",
 
 	"menu_defense_up_beta": "Daredevil",
 	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
@@ -101,7 +101,7 @@
 	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## stability.\n\nACE: ##$pro##\nYour moving recoil penalty is decreased by ##$multipro##.",
 	"menu_fast_fire_beta": "Lock N' Load",
 	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have a movement speed penalty when wielding Heavy Weaponry.",
-	"menu_body_expertise_beta_desc": "BASIC: ##$basic##\nAll of your ranged weapons can now pierce through enemy body armor.\n\nDoes not apply to throwable weapons.\n\nACE: ##$pro##\n##$multipro## of the bonus headshot damage is permanently applied to hitting enemies on the body.\n\nThis skill is only activated by ##LMGs## or ##Miniguns##.",
+	"menu_body_expertise_beta_desc": "BASIC: ##$basic##\nAll of your ranged weapons can now pierce through enemy body armor.\n\nDoes not apply to throwable weapons.\n\nACE: ##$pro##\n##$multipro## of the bonus headshot damage is permanently applied to hitting enemies on the body.\n\nNote: This skill is only activated by LMGs and Miniguns.",
 	"menu_sleight_of_hand": "Sleight of Hand",
 	"menu_sleight_of_hand_desc": "BASIC: ##$basic##\nYou reload your SMGs and LMGs ##$multibasic## faster.\n\nACE: ##$pro##\nKilling ##$multipro## enemies with SMGs, LMGs or Special Weapons set on automatic fire mode will increase your next reload speed by up to ##$multipro2##. This bonus is reduced by ##$multipro3## for each bullet above ##$multipro4## in the total magazine size, down to a maximum of ##$multipro5## reload speed increase.",
 	"menu_oppressor_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more effective at threatening enemies.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage to enemies that are currently suppressed or panicking.",

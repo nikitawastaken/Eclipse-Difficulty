@@ -220,6 +220,32 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Auto reload on ammo bag use -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="place_ammo_bag"/>
+			<param type="int"/>
+		</search>
+		<target mode="replace">
+			<param type="int"/> <!-- look for the integer node before inserting -->
+			<param type="bool"/> <!-- auto reload? -->
+		</target>
+	</tweak>
+	<!-- Auto reload on ammo bag use -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_ammo_bag_setup"/>
+			<param type="int"/>
+		</search>
+		<target mode="replace">
+			<param type="int"/> <!-- look for the integer node before inserting -->
+			<param type="bool"/> <!-- auto reload? -->
+		</target>
+	</tweak>
 	<!-- Add env string message -->
 	<tweak version="2" name="settings/network" extension="network_settings">
 		<search>

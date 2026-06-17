@@ -1,3 +1,30 @@
+function PlayerEquipment:use_ammo_bag()
+	local ray = self:valid_shape_placement("ammo_bag")
+
+	if ray then
+		local pos = ray.position
+		local rot = self:_m_deploy_rot()
+		rot = Rotation(rot:yaw(), 0, 0)
+
+		PlayerStandard.say_line(self, "s01x_plu")
+		managers.statistics:use_ammo_bag()
+
+		local ammo_upgrade_lvl = managers.player:upgrade_level("ammo_bag", "ammo_increase")
+		local bullet_storm_level = managers.player:upgrade_level("player", "no_ammo_cost")
+		local auto_reload = managers.player:has_category_upgrade("ammo_bag", "auto_reload")
+
+		if Network:is_client() then
+			managers.network:session():send_to_host("place_ammo_bag", pos, rot, ammo_upgrade_lvl, bullet_storm_level, auto_reload)
+		else
+			local unit = AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, managers.network:session():local_peer():id(), bullet_storm_level, auto_reload)
+		end
+
+		return true
+	end
+
+	return false
+end
+
 function PlayerEquipment:use_first_aid_kit()
 	local ray = self:valid_shape_placement("first_aid_kit")
 
