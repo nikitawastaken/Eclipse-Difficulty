@@ -1589,32 +1589,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_pis_pmm_ns_suppressor.stats = pistol_barrel_ext_stats.medium_silencer_var1
 
-	local function smallify_barrel_exts(factory_id, part_list)
-		if not self[factory_id].override then
-			self[factory_id].override = {}
-		end
-
-		for _, part_id in pairs(part_list) do
-			if not self[factory_id].override[part_id] then
-				self[factory_id].override[part_id] = {}
-			end
-
-			if not self[factory_id].override[part_id].stats then
-				self[factory_id].override[part_id].stats = {}
-			end
-
-			local part_data = self.parts[part_id]
-			local part_stats = part_data and part_data.stats or {}
-
-			self[factory_id].override[part_id].stats = deep_clone(part_stats)
-			self[factory_id].override[part_id].stats.spread = (part_stats.spread or 0) - 1
-			self[factory_id].override[part_id].stats.recoil = (part_stats.recoil or 0) - 1
-			self[factory_id].override[part_id].stats.concealment = (part_stats.concealment or 0) + 2
-		end
-	end
-
-	smallify_barrel_exts("wpn_fps_pis_welrod", pistol_barrel_exts)
-
 	-- Split the team boost into two bonuses
 	self.parts.wpn_fps_upg_bonus_team_exp = {
 		exclude_from_challenge = true,
