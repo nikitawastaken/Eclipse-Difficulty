@@ -1608,8 +1608,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["escape_park_day_4"] = 3,
 	}
 	self.escape_overpass.random_environments = {
-		["escape_park_day_1"] = 4,
-		["escape_park_day_2"] = 3,
+		["escape_overpass_1"] = 4,
+		["escape_overpass_2"] = 3,
 		["escape_overpass_day"] = 2,
 	}
 	self.escape_overpass_night.random_environments = self.escape_overpass.random_environments
