@@ -372,3 +372,37 @@ function IntimitateInteractionExt:interact(player)
 		old_intimitate_interact(self, player)
 	end
 end
+
+
+-- Firestarter Incendiary Rounds activation
+function AmmoBagInteractionExt:interact(player)
+	AmmoBagInteractionExt.super.super.interact(self, player)
+
+	local interacted, bullet_storm, auto_reload = self._unit:base():take_ammo(player)
+
+	for id, weapon in pairs(player:inventory():available_selections()) do
+		if auto_reload and auto_reload ~= false then
+			local can_reload = weapon.unit:base() and weapon.unit:base().can_reload and weapon.unit:base():can_reload()
+
+			if can_reload then
+				local ammo_base = weapon.unit:base()._reload_ammo_base or weapon.unit:base():ammo_base()
+				local amount = ammo_base and ammo_base:get_ammo_max_per_clip() * tweak_data.upgrades.values.autoreload_mag_funnel_multiplier or 1
+
+				weapon.unit:base():on_reload(amount)
+				managers.statistics:reloaded()
+			end
+		end
+
+		managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
+	end
+
+	if bullet_storm and bullet_storm ~= false then
+		for id, weapon in pairs(player:inventory():available_selections()) do
+			weapon.unit:base():activate_firestarter_incendiary_ammo()
+		end
+
+		managers.player:add_to_temporary_property("bullet_storm", bullet_storm, 1)
+	end
+
+	return interacted
+end

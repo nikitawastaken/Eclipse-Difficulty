@@ -342,3 +342,30 @@ function UnitNetworkHandler:eclipse_sync_pickup_upgrade(ammo_unit, upgrade, rpc)
 
 	ammo_unit:pickup():set_upgrades(upgrade)
 end
+
+-- additional argument for autoreload ammo bags
+function UnitNetworkHandler:place_ammo_bag(pos, rot, upgrade_lvl, bullet_storm_level, auto_reload, rpc)
+	local peer = self._verify_sender(rpc)
+
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not peer then
+		return
+	end
+
+	if not managers.player:verify_equipment(peer:id(), "ammo_bag") then
+		return
+	end
+
+	local unit = AmmoBagBase.spawn(pos, rot, upgrade_lvl, peer:id(), bullet_storm_level, auto_reload)
+
+	if unit then
+		unit:base():set_server_information(peer:id())
+	end
+end
+
+function UnitNetworkHandler:sync_ammo_bag_setup(unit, upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
+	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	unit:base():sync_setup(upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
+end

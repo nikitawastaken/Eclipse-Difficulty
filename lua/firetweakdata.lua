@@ -4,6 +4,7 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 		fire_type.dot_length = 6
 		fire_type.dot_tick_period = 0.5
 		fire_type.dot_trigger_max_distance = false
+		fire_type.dot_grace_period = 0
 	end
 
 	local trigger_chance_flamethrower = 1 / 5

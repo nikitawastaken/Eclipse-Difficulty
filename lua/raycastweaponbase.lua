@@ -228,7 +228,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	return result
 end
 
--- Make explsoive weaposn not benefit from infinite ammo upgrades / add no ammo consumption chance upgrade
+-- add no ammo consumption chance upgrade
 function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
 	if managers.player:has_activate_temporary_upgrade("temporary", "no_ammo_cost_buff") then
 		managers.player:deactivate_temporary_upgrade("temporary", "no_ammo_cost_buff")
@@ -253,12 +253,7 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 
 	local is_player = self._setup.user_unit == managers.player:player_unit()
 	local is_explosive = self:is_explosive()
-	local consume_ammo = is_explosive
-		or not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade(
-			"player",
-			"berserker_no_ammo_cost"
-		))
-		or not is_player
+	local consume_ammo = not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost") or not is_player
 	local ammo_usage = self:ammo_usage()
 
 	if consume_ammo and (is_player or Network:is_server()) then
@@ -729,4 +724,69 @@ function RaycastWeaponBase:add_ammo_to_mag(ammo, index)
 
 	self:ammo_base():set_ammo_remaining_in_clip(new_ammo)
 	managers.hud:set_ammo_amount(index, self:ammo_info())
+end
+
+function RaycastWeaponBase:can_reload()
+	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and self:ammo_base():clip_ratio() >= 1
+end
+
+-- Firestarter Incendiary Ammo DoT
+function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, shield_knock, knock_down, stagger, variant)
+	local action_data = {
+		variant = variant or self.VARIANT,
+		damage = damage,
+		weapon_unit = weapon_unit,
+		attacker_unit = user_unit,
+		col_ray = col_ray,
+		armor_piercing = armor_piercing,
+		shield_knock = shield_knock,
+		knock_down = knock_down,
+		stagger = stagger
+	}
+	local defense_data = col_ray.unit:character_damage():damage_fire(action_data)
+
+	if defense_data and defense_data ~= "friendly_fire" then
+		local char_dmg_ext = alive(col_ray.unit) and col_ray.unit:character_damage()
+
+		if char_dmg_ext and char_dmg_ext.damage_dot and (not char_dmg_ext.dead or not char_dmg_ext:dead()) then
+			local fs_incendiary_dot = {
+				PROCESSED = true,
+				name = "firestarter",
+				variant = "fire",
+				damage_class = "FlameBulletBase",
+				dot_damage = math.sqrt(damage) * 4,
+				dot_length = 3,
+				dot_trigger_chance = 1,
+				dot_trigger_max_distance = 1500 * damage,
+				dot_grace_period = 0,
+				dot_tick_period = 0.5
+			}
+
+			local dot_data = managers.player:has_active_temporary_property("bullet_storm") and fs_incendiary_dot or DOTBulletBase._dot_data_by_weapon(self, weapon_unit)
+
+			if dot_data then
+				self:start_dot_damage(col_ray, weapon_unit, dot_data, nil, user_unit, defense_data)
+			end
+		end
+	end
+
+	return defense_data
+end
+
+-- Ammo Bag autoreload mag multiplier
+function RaycastWeaponBase:on_reload(amount)
+	local ammo_base = self._reload_ammo_base or self:ammo_base()
+	amount = amount or ammo_base:get_ammo_max_per_clip()
+
+	if self._setup.expend_ammo then
+		ammo_base:set_ammo_remaining_in_clip(math.min(ammo_base:get_ammo_total(), amount))
+	else
+		ammo_base:set_ammo_remaining_in_clip(amount)
+		ammo_base:set_ammo_total(amount)
+	end
+
+	managers.job:set_memory("kill_count_no_reload_" .. tostring(self._name_id), nil, true)
+
+	self._reload_ammo_base = nil
+	self._next_fire_allowed = self._unit:timer():time()
 end
