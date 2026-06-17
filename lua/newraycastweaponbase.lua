@@ -897,7 +897,10 @@ end
 
 -- Firestarter Incendiary Ammo activation
 function NewRaycastWeaponBase:activate_firestarter_incendiary_ammo()
-	if self:is_category("saw", "grenade_launcher", "flamethrower", "bow", "crossbow") or (self:is_category("shotgun") and self:bullet_class() == InstantExplosiveBulletBase or self:bullet_class() == FlameBulletBase) then
+	if
+		self:is_category("saw", "grenade_launcher", "flamethrower", "bow", "crossbow")
+		or (self:is_category("shotgun") and self:bullet_class() == InstantExplosiveBulletBase or self:bullet_class() == FlameBulletBase)
+	then
 		return
 	end
 

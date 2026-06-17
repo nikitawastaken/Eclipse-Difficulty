@@ -373,7 +373,6 @@ function IntimitateInteractionExt:interact(player)
 	end
 end
 
-
 -- Firestarter Incendiary Rounds activation
 function AmmoBagInteractionExt:interact(player)
 	AmmoBagInteractionExt.super.super.interact(self, player)

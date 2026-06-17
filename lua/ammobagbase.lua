@@ -80,7 +80,7 @@ function AmmoBagBase:setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
 				position = ray.body:position(),
 				rotation = ray.body:rotation(),
 				index = 1,
-				max_index = 3
+				max_index = 3,
 			}
 
 			self._unit:set_extension_update_enabled(Idstring("base"), true)

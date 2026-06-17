@@ -936,13 +936,13 @@ function CopDamage:damage_fire(attack_data)
 		if self:check_medic_heal() then
 			result = {
 				type = "healed",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 		else
 			attack_data.damage = self._health
 			result = {
 				type = "death",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 
 			self:die(attack_data)
@@ -953,7 +953,7 @@ function CopDamage:damage_fire(attack_data)
 		local result_type = "dmg_rcv"
 		result = {
 			type = result_type,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		self:_apply_damage_to_health(damage)
@@ -977,12 +977,20 @@ function CopDamage:damage_fire(attack_data)
 			weapon_unit = attack_data.weapon_unit,
 			variant = attack_data.variant,
 			head_shot = head,
-			is_molotov = attack_data.is_molotov
+			is_molotov = attack_data.is_molotov,
 		}
 
 		managers.statistics:killed_by_anyone(data)
 
-		if not is_civilian and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier") and attacker_unit == managers.player:player_unit() and alive(attack_data.weapon_unit) and not attack_data.weapon_unit:base().thrower_unit and attack_data.weapon_unit:base().is_category and attack_data.weapon_unit:base():is_category("shotgun", "saw") then
+		if
+			not is_civilian
+			and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier")
+			and attacker_unit == managers.player:player_unit()
+			and alive(attack_data.weapon_unit)
+			and not attack_data.weapon_unit:base().thrower_unit
+			and attack_data.weapon_unit:base().is_category
+			and attack_data.weapon_unit:base():is_category("shotgun", "saw")
+		then
 			managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
 		end
 
