@@ -1230,7 +1230,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["branchbank03"] = 2,
 		["branchbank04"] = 2,
 		["branchbank05"] = 2,
-		["default"]	= 1,
+		["branchbank_old"] = 1,
 	}
 	self.four_stores.random_environments = {
 		["fourstores_01"] = 2,
@@ -1594,5 +1594,39 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.wwh.random_environments = {
 		["wwh_cg"] = 1,
+	}
+	self.escape_park.random_environments = {
+		["escape_park_1"] = 3,
+		["escape_park_2"] = 1,
+		["escape_park_3"] = 1,
+		["escape_park_4"] = 2,
+	}
+	self.escape_park_day.random_environments = {
+		["escape_park_day_1"] = 2,
+		["escape_park_day_2"] = 1,
+		["escape_park_day_3"] = 1,
+		["escape_park_day_4"] = 3,
+	}
+	self.escape_overpass.random_environments = {
+		["escape_park_day_1"] = 4,
+		["escape_park_day_2"] = 3,
+		["escape_overpass_day"] = 2,
+	}
+	self.escape_overpass_night.random_environments = self.escape_overpass.random_environments
+	self.escape_cafe_day.random_environments = {
+		["escape_cafe_day_1"] = 1,
+		["escape_cafe_day_2"] = 1,
+	}
+	self.escape_garage.random_environments = {
+		["escape_garage_01"] = 1,
+		["escape_garage_02"] = 1,
+	}
+	self.escape_street.random_environments = {
+		["escape_street_1"] = 1,
+		["escape_street_2"] = 1,
+	}
+	self.family.random_environments = {
+		["family_1"] = 1,
+		["family_2"] = 1,
 	}
 end)
