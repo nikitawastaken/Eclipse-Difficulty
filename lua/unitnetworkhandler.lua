@@ -344,7 +344,7 @@ function UnitNetworkHandler:eclipse_sync_pickup_upgrade(ammo_unit, upgrade, rpc)
 end
 
 -- additional argument for autoreload ammo bags
-function UnitNetworkHandler:place_ammo_bag(pos, rot, upgrade_lvl, bullet_storm_level, auto_reload, rpc)
+function UnitNetworkHandler:place_ammo_bag(pos, rot, upgrade_lvl, auto_reload, bullet_storm_level, rpc)
 	local peer = self._verify_sender(rpc)
 
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not peer then
@@ -362,7 +362,7 @@ function UnitNetworkHandler:place_ammo_bag(pos, rot, upgrade_lvl, bullet_storm_l
 	end
 end
 
-function UnitNetworkHandler:sync_ammo_bag_setup(unit, upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
+function UnitNetworkHandler:sync_ammo_bag_setup(unit, upgrade_lvl, auto_reload, peer_id, bullet_storm_level)
 	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
 		return
 	end
