@@ -9,16 +9,16 @@
 			<param key="sky_texture" value="units/world/architecture/suburbia/textures/sky_df"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_1008_cloudy/sky_1008_cloudy"/>
-			<param key="sun_ray_color_scale" value="7.9924778938293"/>
+			<param key="sun_ray_color_scale" value="7.9920001029968"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="1 0.83137261867523 0.70196080207825"/>
-			<param key="global_texture" value="environments/cubemaps/cubemap_bank_01"/>
+			<param key="global_texture" value="units/payday2/cubemaps/cubemap_zero_df"/>
 		</others>
 		<post_effect>
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.20686413347721"/>
+						<param key="ambient_scale" value="0.15044663846493"/>
 						<param key="sky_bottom_color" value="1 0.88235300779343 0.78039222955704"/>
 						<param key="fog_start_color" value="1 1 0.85490202903748"/>
 						<param key="effect_light_scale" value="1"/>
@@ -28,7 +28,7 @@
 						<param key="ambient_color_scale" value="2"/>
 						<param key="ambient_color" value="0 0.031372550874949 0.031372550874949"/>
 						<param key="fog_max_range" value="211565.59375"/>
-						<param key="bloom_threshold" value="0.55000001192093"/>
+						<param key="bloom_threshold" value="0.21626704931259"/>
 						<param key="sky_top_color_scale" value="0.85000002384186"/>
 						<param key="sky_top_color" value="0.67058825492859 0.80784320831299 1"/>
 						<param key="fog_min_range" value="645"/>
@@ -48,12 +48,16 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
+			<fog_processor>
+			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
-						<param key="lense_intensity" value="0.19746121764183"/>
+						<param key="lense_intensity" value="0.10000000149012"/>
 						<param key="bloom_blur_size" value="4"/>
-						<param key="bloom_intensity" value="1"/>
+						<param key="bloom_intensity" value="0.62000000476837"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>

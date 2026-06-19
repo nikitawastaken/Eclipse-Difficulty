@@ -3,8 +3,7 @@ return {
 	color_grading = { -- Randomized color gradings
 		"color_nice",
 		"color_xgen",
-		"color_bhd_classic",
-		"color_heat_classic",
+		"color_xxxgen",
 		"color_payday_classic",
 	},
 	environment_override = { -- File override

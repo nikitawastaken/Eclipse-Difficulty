@@ -18,7 +18,7 @@
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.41372826695442"/>
+						<param key="ambient_scale" value="0"/>
 						<param key="sky_bottom_color" value="0.85098046064377 0.72156864404678 0.64313727617264"/>
 						<param key="fog_start_color" value="0.80392163991928 0.89411771297455 1"/>
 						<param key="effect_light_scale" value="1"/>
@@ -28,7 +28,7 @@
 						<param key="ambient_color_scale" value="0.5"/>
 						<param key="ambient_color" value="0.33333334326744 0.33333334326744 0.46666669845581"/>
 						<param key="fog_max_range" value="500000"/>
-						<param key="bloom_threshold" value="0.55000001192093"/>
+						<param key="bloom_threshold" value="0"/>
 						<param key="sky_top_color_scale" value="0.30000001192093"/>
 						<param key="sky_top_color" value="0.57254904508591 0.6745098233223 1"/>
 						<param key="fog_min_range" value="806"/>
@@ -51,9 +51,9 @@
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
-						<param key="lense_intensity" value="0.5"/>
-						<param key="bloom_blur_size" value="4"/>
-						<param key="bloom_intensity" value="0.5"/>
+						<param key="lense_intensity" value="0.19746121764183"/>
+						<param key="bloom_blur_size" value="2.5796897411346"/>
+						<param key="bloom_intensity" value="1.25"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>

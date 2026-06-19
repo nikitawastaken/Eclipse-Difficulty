@@ -67,6 +67,7 @@
 			</sky>
 		</underlay_effect>
 		<environment_effects>
+			<param key="effects" value=""/>
 		</environment_effects>
 	</data>
 </environment>
