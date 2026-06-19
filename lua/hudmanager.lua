@@ -74,7 +74,7 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 		name = "screen_vignette_friendly_fire",
 		visible = true,
 		texture = "guis/textures/pd2/screen_vignette",
-		layer = 0,
+		layer = 2,
 		color = Color(1, 1, 1),
 		alpha = 0,
 		blend_mode = "add",
