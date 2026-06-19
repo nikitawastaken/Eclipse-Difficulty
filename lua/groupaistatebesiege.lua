@@ -2399,3 +2399,15 @@ function GroupAIStateBesiege:enable_timed_spawngroup(timer_id, group_id)
 	end
 end
 -- Timed groups end
+
+if UsefulBots then
+	return
+end
+
+-- Improve bot reaction time after exiting travel logic
+local on_defend_travel_end_original = GroupAIStateBesiege.on_defend_travel_end
+function GroupAIStateBesiege:on_defend_travel_end(unit, ...)
+	if not self:is_unit_team_AI(unit) then
+		return on_defend_travel_end_original(self, unit, ...)
+	end
+end

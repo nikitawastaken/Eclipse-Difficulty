@@ -212,6 +212,7 @@
 					<post :hook_id="boss/logics/bosslogicattack"/>
 
 					<group :hook_id="cop/">
+						<post :hook_id="actions/full_body/copactionact"/>
 						<post :hook_id="actions/full_body/copactionhurt"/>
 
 						<group :hook_id="actions/lower_body/">
@@ -283,9 +284,11 @@
 				<group :hook_id="player_team/">
 					<post :hook_id="logics/teamailogicassault"/>
 					<post :hook_id="logics/teamailogicidle"/>
+					<post :hook_id="logics/teamailogicbase"/>
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
+					<post :hook_id="teamaibrain"/>
 					<post :hook_id="huskteamaidamage"/>
 					<post :hook_id="huskteamaimovement"/>
 				</group>
