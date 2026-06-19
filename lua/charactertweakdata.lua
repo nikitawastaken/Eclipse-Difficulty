@@ -2395,7 +2395,7 @@ function CharacterTweakData:_set_presets()
 				{ 30, 60 },
 				{ 25, 50 },
 			})
-			char_preset.run_away_delay = {
+			char_preset.run_away_delay = char_preset.run_away_delay and {
 				5,
 				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
 			}
