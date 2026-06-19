@@ -138,7 +138,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 		self:_call_listeners(damage_info)
 		self:play_whizby(attack_data.col_ray.position)
-		self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attacK_dir)
+		self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attack_dir)
 
 		self._next_allowed_dmg_t = Application:digest_value(pm:player_timer():time() + self._dmg_interval, true)
 		self._last_received_dmg = attack_data.damage
@@ -188,7 +188,7 @@ function PlayerDamage:damage_bullet(attack_data)
 		managers.rumble:play("damage_bullet")
 	end
 
-	self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attacK_dir)
+	self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attack_dir)
 	pm:check_damage_carry(attack_data)
 
 	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data)
@@ -799,6 +799,7 @@ function PlayerDamage:is_friendly_fire(unit)
 	local friendly_fire_mutator_active = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire_mutator_active) == false
 	if not attacked_by_foe then
 		if is_pro_job or friendly_fire_mutator_active then
+			managers.hud:effect_screen(1, { 0.7, 0, 0 }, "screen_vignette_friendly_fire")
 			return false
 		end
 		return true

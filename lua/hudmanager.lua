@@ -70,6 +70,19 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
         x = 0,
         y = 0 
     })
+	self._screen_vignette_friendly_fire_panel = hud.panel:bitmap({
+		name = "screen_vignette_friendly_fire",
+		visible = true,
+		texture = "guis/textures/pd2/screen_vignette",
+		layer = 0,
+		color = Color(1, 1, 1),
+		alpha = 0,
+		blend_mode = "add",
+		w = hud.panel:w(),
+		h = hud.panel:h(),
+		x = 0,
+		y = 0 
+	})
 end)
 
 -- Screen effect functions
@@ -83,6 +96,8 @@ function HUDManager:effect_screen(duration, color, effect_name)
 		self:_do_effect_screen_vignette_panel(duration, color)
 	elseif effect_name == "screen_vignette_reversed" then
 		self:_do_effect_screen_vignette_reversed_panel(duration, color)
+	elseif effect_name == "screen_vignette_friendly_fire" then
+		self:_do_effect_screen_vignette_friendly_fire_panel(duration, color)
 	end
 end
 
@@ -136,4 +151,29 @@ function HUDManager:_fadeout_effect_screen_vignette_reversed_panel_duration()
 	end
 	self._screen_vignette_reversed_panel:set_alpha(0)
 	self._screen_vignette_panel_active = false
+end
+
+function HUDManager:_do_effect_screen_vignette_friendly_fire_panel(duration, color)	
+	if not _G.is_vr then
+		self._screen_vignette_friendly_fire_panel:set_alpha(1)
+		self._screen_vignette_friendly_fire_panel_duration = duration
+		self._screen_vignette_friendly_fire_panel:set_color(Color(color[1], color[2], color[3]))
+		if self._screen_vignette_friendly_fire_panel_active then
+			self._screen_vignette_friendly_fire_panel:stop()
+		end
+		self._screen_vignette_friendly_fire_panel_active = true
+		self._screen_vignette_friendly_fire_panel:animate(callback(self, self, "_fadeout_effect_screen_vignette_friendly_fire_panel"))
+	end
+end
+
+function HUDManager:_fadeout_effect_screen_vignette_friendly_fire_panel()
+	local start_time = Application:time()
+	local curr_time = start_time
+	while curr_time - start_time < self._screen_vignette_friendly_fire_panel_duration do
+		curr_time = Application:time()
+		self._screen_vignette_friendly_fire_panel:set_alpha(1 - ((curr_time - start_time) / self._screen_vignette_friendly_fire_panel_duration))
+		coroutine.yield()
+	end
+	self._screen_vignette_friendly_fire_panel:set_alpha(0)
+	self._screen_vignette_friendly_fire_panel_active = false
 end
