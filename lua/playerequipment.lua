@@ -14,7 +14,7 @@ function PlayerEquipment:use_ammo_bag()
 		local auto_reload = managers.player:has_category_upgrade("ammo_bag", "auto_reload")
 
 		if Network:is_client() then
-			managers.network:session():send_to_host("place_ammo_bag", pos, rot, ammo_upgrade_lvl, bullet_storm_level, auto_reload)
+			managers.network:session():send_to_host("place_ammo_bag", pos, rot, ammo_upgrade_lvl, auto_reload, bullet_storm_level)
 		else
 			local unit = AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, managers.network:session():local_peer():id(), bullet_storm_level, auto_reload)
 		end
