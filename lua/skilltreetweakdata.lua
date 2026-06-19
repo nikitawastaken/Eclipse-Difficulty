@@ -235,11 +235,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.carbon_blade.desc_id = "menu_big_game_hunters_desc"
 	self.skills.carbon_blade.icon_xy = { 10, 2 }
 
-	-- Firestarter
+	-- Firestorm
 	self.skills.bandoliers[1].upgrades = { "ammo_bag_auto_reload" }
 	self.skills.bandoliers[2].upgrades = { "temporary_no_ammo_cost_1" }
-	self.skills.bandoliers.name_id = "menu_firestarter"
-	self.skills.bandoliers.desc_id = "menu_firestarter_desc"
+	self.skills.bandoliers.name_id = "menu_firestorm"
+	self.skills.bandoliers.desc_id = "menu_firestorm_desc"
 	self.skills.bandoliers.icon_xy = { 4, 5 }
 
 	-- TECHNICIAN --

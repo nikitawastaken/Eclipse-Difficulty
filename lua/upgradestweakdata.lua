@@ -1470,7 +1470,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.carbon_blade.multipro = "25%"
 	self.skill_descs.carbon_blade.multipro2 = "8"
 
-	-- Firestarter
+	-- Firestorm
 	self.values.autoreload_mag_funnel_multiplier = 2
 	self.values.ammo_bag.auto_reload = { true }
 	self.definitions.ammo_bag_auto_reload = {

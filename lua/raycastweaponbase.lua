@@ -732,7 +732,7 @@ function RaycastWeaponBase:can_reload()
 	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and self:ammo_base():clip_ratio() >= 1
 end
 
--- Firestarter Incendiary Ammo DoT
+-- Firestorm Incendiary Ammo DoT
 function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, shield_knock, knock_down, stagger, variant)
 	local action_data = {
 		variant = variant or self.VARIANT,
@@ -753,7 +753,7 @@ function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damag
 		if char_dmg_ext and char_dmg_ext.damage_dot and (not char_dmg_ext.dead or not char_dmg_ext:dead()) then
 			local fs_incendiary_dot = {
 				PROCESSED = true,
-				name = "firestarter",
+				name = "firestorm",
 				variant = "fire",
 				damage_class = "FlameBulletBase",
 				dot_damage = math.sqrt(damage) * 4,

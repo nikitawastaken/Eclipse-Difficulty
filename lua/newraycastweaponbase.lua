@@ -895,8 +895,8 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	self:update_damage()
 end
 
--- Firestarter Incendiary Ammo activation
-function NewRaycastWeaponBase:activate_firestarter_incendiary_ammo()
+-- Firestorm Incendiary Ammo activation
+function NewRaycastWeaponBase:activate_firestorm_incendiary_ammo()
 	if
 		self:is_category("saw", "grenade_launcher", "flamethrower", "bow", "crossbow", "minigun")
 		or (self:is_category("shotgun") and self:bullet_class() == InstantExplosiveBulletBase or self:bullet_class() == FlameBulletBase)
