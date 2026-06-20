@@ -80,6 +80,15 @@ function M.team_ai_force_attention(attention_unit)
 		TeamAILogicBase.force_attention(logic_data, logic_data.internal_data, attention_unit)
 	end
 end
+
+function M.team_ai_unregister_unit(unit)
+	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
+		local logic_data = c_data.unit:brain()._logic_data
+		if logic_data._latest_follow_unit == unit then
+			logic_data._latest_follow_unit = nil
+		end
+	end
+end
 -- Team AI helper functions end
 
 -- Returns the difficulty index associated with the current difficulty
