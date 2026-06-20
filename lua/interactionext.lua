@@ -373,7 +373,7 @@ function IntimitateInteractionExt:interact(player)
 	end
 end
 
--- Firestarter Incendiary Rounds activation
+-- Firestorm Incendiary Rounds activation
 function AmmoBagInteractionExt:interact(player)
 	AmmoBagInteractionExt.super.super.interact(self, player)
 
@@ -397,7 +397,7 @@ function AmmoBagInteractionExt:interact(player)
 
 	if bullet_storm and bullet_storm ~= false then
 		for id, weapon in pairs(player:inventory():available_selections()) do
-			weapon.unit:base():activate_firestarter_incendiary_ammo()
+			weapon.unit:base():activate_firestorm_incendiary_ammo()
 		end
 
 		managers.player:add_to_temporary_property("bullet_storm", bullet_storm, 1)

@@ -1,4 +1,4 @@
--- Firestarter timer
+-- Firestorm timer
 AmmoBagBase._BULLET_STORM = {
 	15,
 	15,
