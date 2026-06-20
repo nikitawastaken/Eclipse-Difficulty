@@ -73,16 +73,19 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	mvec3_norm(mvec_up_ay)
 	mvec3_set(mvec_spread_direction, direction)
 
+	local r = math.random()
 	local theta = math.random() * 360
+	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
+	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * math.random() * spread_x * spread_mul))
-	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * math.random() * spread_y * spread_mul))
+	mvec3_mul(mvec_right_ax,  math.cos(theta) * math.tan(r * spread_x))
+	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
 	mvec3_set(mvec_to, mvec_spread_direction)
 	mvec3_mul(mvec_to, ray_distance)
 	mvec3_add(mvec_to, from_pos)
-
+	
 	local ray_hits, hit_enemy, enemies_hit = self:_collect_hits(from_pos, mvec_to)
 
 	if self._autoaim and self._autohit_data then
