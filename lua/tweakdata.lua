@@ -501,6 +501,9 @@ tweak_data.casino = {
 	infamous_chance = 3,
 }
 
+-- Safehouse Unlock Level
+tweak_data.difficulty_level_locks = 25
+
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
 for k, v in pairs(achievement_parts) do

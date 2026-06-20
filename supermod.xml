@@ -84,6 +84,7 @@
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
+				<post :hook_id="customsafehousemanager"/>
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="moneymanager"/>
 				<post :hook_id="experiencemanager"/>
