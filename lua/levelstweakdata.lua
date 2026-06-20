@@ -1634,9 +1634,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["family_2"] = 1,
 	}
 	self.safehouse.random_environments = {
-		["safehouse_old_01"] = 2,
-		["safehouse_old_02"] = 3,
-		["safehouse_old_03"] = 2,
+		["safehouse_old_01"] = 1,
+		["safehouse_old_02"] = 1,
+		["safehouse_old_03"] = 1,
 	}
 	self.chill.random_environments = {
 		["safehouse_new_01"] = 1,
