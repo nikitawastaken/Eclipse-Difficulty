@@ -1944,7 +1944,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		ammo_pickup_max_mul = 0.7,
 		dot_data_name = "ammo_dragons_breath",
 		bullet_class = "FlameBulletBase",
-		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath",
+		muzzleflash = "effects/particles/weapons/sho_dragons_breath",
 		trail_effect = "effects/particles/weapons/shotgun_streak_db",
 	}
 	self.parts.wpn_fps_upg_a_rip.stats = {

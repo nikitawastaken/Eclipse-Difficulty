@@ -402,6 +402,7 @@
 					<file :name="sniper_glint.effect"/>
 					<file :name="elite_sniper_glint.effect"/>
 					<file :name="sho_buckshot.effect"/>
+					<file :name="sho_dragons_breath.effect"/>
 					<file :name="sho_default.effect"/>
 					<file :name="sho_flechette.effect"/>
 					<file :name="sho_tomb.effect"/>
@@ -461,14 +462,19 @@
 						<file :name="45cal_silenced.effect"/>
 						<file :name="556_silenced.effect"/>
 						<file :name="762_silenced.effect"/>
+						<file :name="incendiary_muzzleflash.effect"/>
 
 						<group :name="fps_parts/">
 							<file :name="big_fps_ball_flash.effect"/>
+							<file :name="incendiary/big_fps_ball_flash.effect"/>
 							<file :name="big_fps_extra_long_flash.effect"/>
+							<file :name="incendiary/big_fps_extra_long_flash.effect"/>
 							<file :name="extra_fps_big_sparse.effect"/>
+							<file :name="incendiary/extra_fps_big_sparse.effect"/>
 							<file :name="fps_ball_flash.effect"/>
 							<file :name="fps_big_flash_sniper.effect"/>
 							<file :name="fps_big_sparse.effect"/>
+							<file :name="incendiary/fps_big_sparse.effect"/>
 							<file :name="fps_combo_light_all.effect"/>
 							<file :name="fps_exhaust_smoke.effect"/>
 							<file :name="fps_extra_long_flash.effect"/>
@@ -481,7 +487,9 @@
 							<file :name="fps_spark_flash.effect"/>
 							<file :name="fps_sparse_flash.effect"/>
 							<file :name="muzzle_heat.effect"/>
+							<file :name="muzzle_heat_incendiary.effect"/>
 							<file :name="muzzle_smoke.effect"/>
+							<file :name="muzzle_sparks.effect"/>
 							<file :name="sniper_fps_extra_long_flash.effect"/>
 							<file :name="third_big_flash_sniper.effect"/>
 						</group>
@@ -497,6 +505,7 @@
 							<file :name="light_streak.effect"/>
 							<file :name="long_streak.effect"/>
 							<file :name="traveling_streak.effect"/>
+							<file :name="traveling_streak_incendiary.effect"/>
 							<file :name="traveling_streak_green.effect"/>
 							<file :name="traveling_streak_red.effect"/>
 						</group>
