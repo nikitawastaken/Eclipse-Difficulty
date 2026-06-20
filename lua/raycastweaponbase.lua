@@ -732,7 +732,8 @@ function RaycastWeaponBase:add_ammo_to_mag(ammo, index)
 end
 
 function RaycastWeaponBase:can_reload()
-	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and self:ammo_base():clip_ratio() >= 1
+	local clip_ratio = self:ammo_base().clip_ratio and self:ammo_base():clip_ratio() or 0
+	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and clip_ratio >= 1
 end
 
 -- Firestorm Incendiary Ammo DoT
