@@ -306,7 +306,7 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 		self._is_incendiary_bstorm_active = false
 
 		self:override_bullet_class(self._ammo_data.bullet_class or "InstantBulletBase")
-		
+
 		self:change_fire_effect()
 		self:change_trail_effect()
 	end
