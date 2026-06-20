@@ -3385,6 +3385,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
+	self.values.player.body_armor.damage_control_passive = {
+		{ 75, 9 },
+		{ 70, 9 },
+		{ 65, 9 },
+		{ 60, 9 },
+		{ 55, 9 },
+		{ 50, 9 },
+		{ 45, 9 },
+	}
 	self.values.player.emergency_throwable_regen_speed = {
 		{ 1.35, 0.25 },
 	}

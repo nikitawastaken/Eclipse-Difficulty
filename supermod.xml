@@ -81,6 +81,7 @@
 					<post :hook_id="poisongaseffect"/>
 				</group>
 
+				<post :hook_id="player_actions/skills/playeractiondamagecontrol"/>
 				<post :hook_id="player_actions/skills/playeractiontagteam"/>
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
