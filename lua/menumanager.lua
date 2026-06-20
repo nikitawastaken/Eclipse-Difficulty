@@ -1093,13 +1093,13 @@ function MenuCallbackHandler:play_safehouse(params)
 			MenuCallbackHandler:play_single_player()
 			MenuCallbackHandler:start_single_player_job({
 				difficulty = "normal",
-				job_id = "safehouse"
+				job_id = "safehouse",
 			})
 		else
 			Global.mission_manager.has_played_tutorial = true
 			MenuCallbackHandler:start_job({
 				difficulty = "normal",
-				job_id = "safehouse"
+				job_id = "safehouse",
 			})
 		end
 	end
@@ -1111,6 +1111,6 @@ function MenuCallbackHandler:play_safehouse(params)
 	end
 
 	managers.menu:show_play_safehouse_question({
-		yes_func = yes_func
+		yes_func = yes_func,
 	})
 end
