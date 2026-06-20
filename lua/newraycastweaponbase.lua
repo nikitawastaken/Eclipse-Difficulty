@@ -306,6 +306,9 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 		self._is_incendiary_bstorm_active = false
 
 		self:override_bullet_class(self._ammo_data.bullet_class or "InstantBulletBase")
+
+		self:change_fire_effect()
+		self:change_trail_effect()
 	end
 end
 
@@ -906,6 +909,11 @@ function NewRaycastWeaponBase:activate_firestorm_incendiary_ammo()
 
 	self._is_incendiary_bstorm_active = true
 	self:override_bullet_class("FlameBulletBase")
+
+	if not self._silencer then
+		self:change_fire_effect(self:weapon_tweak_data().muzzleflash_incendiary)
+		self:change_trail_effect(self:weapon_tweak_data().trail_effect_incendiary)
+	end
 end
 
 function NewRaycastWeaponBase:_check_use_persist_pattern()

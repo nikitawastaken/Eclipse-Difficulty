@@ -149,6 +149,7 @@ function WeaponTweakData:_set_muzzleflashes()
 		if new_muzzleflash then	 
 			weap_data.muzzleflash = new_muzzleflash
 			weap_data.muzzleflash_silenced = self.SILENCED_MUZZLEFLASH_MAP[weap_data.muzzleflash] or weap_data.muzzleflash_silenced or nil
+			weap_data.muzzleflash_incendiary = "effects/payday2/particles/weapons/incendiary_muzzleflash"
 		end
 	end
 end
@@ -159,6 +160,7 @@ function WeaponTweakData:_set_trail_effects()
 		local new_trail_effect = self.WEAPON_TRAIL_EFFECTS[weap_id] or self.CATEGORY_TRAIL_EFFECTS[self:_get_primary_category(weap_id)] or nil
 		if new_trail_effect then	 
 			weap_data.trail_effect = new_trail_effect
+			weap_data.trail_effect_incendiary = "effects/payday2/particles/weapons/streaks/traveling_streak_incendiary"
 		end
 	end
 end
