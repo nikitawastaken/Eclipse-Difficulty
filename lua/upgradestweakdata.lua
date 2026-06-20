@@ -3404,13 +3404,41 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[19][7].multiperk2 = "35%"
 
 	-- Tag Team
+	self.values.player.tag_team_kill_extension = {
+		{
+			tagged = 0,
+			owner = 1.5,
+		},
+		{
+			tagged = 2.5,
+			owner = 2.5,
+		}
+	}	
+	self.definitions.player_tag_team_kill_extension_1 = {
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "tag_team_kill_extension",
+			category = "player"
+		}
+	}
+	self.definitions.player_tag_team_kill_extension_2 = {
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "tag_team_kill_extension",
+			category = "player"
+		}
+	}
 	self.values.player.tag_team_base.kill_health_gain = 0.5
 	self.values.player.tag_team_base.tagged_health_gain_ratio = 1
 	self.values.player.tag_team_damage_absorption = { { kill_gain = 0.15, max = 0.6 } }
 	self.specialization_descs[20][1].multiperk2 = "5"
 	self.specialization_descs[20][1].multiperk3 = "5"
+	self.specialization_descs[20][1].multiperk4 = "1.5"
 	self.specialization_descs[20][5].multiperk = "1.5"
 	self.specialization_descs[20][5].multiperk2 = "6"
+	self.specialization_descs[20][9].multiperk = "2.5"
 
 	-- Hacker
 	self.values.player.pocket_ecm_heal_on_kill = {
