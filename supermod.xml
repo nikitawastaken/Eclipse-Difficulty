@@ -31,6 +31,7 @@
 				<post :hook_id="gameoverstate"/>
 				<post :hook_id="menumainstate"/>
 				<post :hook_id="ingameaccesscamera"/>
+				<post :hook_id="victorystate"/>
 			</group>
 
 			<group :hook_id="managers/">
