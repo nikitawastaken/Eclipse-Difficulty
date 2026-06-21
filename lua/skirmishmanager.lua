@@ -1,1 +1,3 @@
-function SkirmishManager:is_unlocked() return false end
+function SkirmishManager:is_unlocked()
+	return false
+end

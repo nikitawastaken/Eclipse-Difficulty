@@ -1,1 +1,3 @@
-function CrimeSpreeManager:unlocked() return false end
+function CrimeSpreeManager:unlocked()
+	return false
+end
