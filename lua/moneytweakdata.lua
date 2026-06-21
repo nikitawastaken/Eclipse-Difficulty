@@ -764,6 +764,9 @@ function MoneyTweakData:init(tweak_data)
 	if level_id == "safehouse" then
 		self.small_loot.money_bundle = 50000
 	end
+	if level_id == "chill_combat" or level_id == "chill" then
+		self.bag_values.money = 0
+	end
 
 	self.max_small_loot_value = 20000000
 	self.skilltree = {
