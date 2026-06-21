@@ -7,5 +7,5 @@ end
 
 -- Disable Safehouse raid native mechanic due it's purchasable heist now
 function CustomSafehouseManager:is_being_raided()
-	return false 
+	return false
 end
