@@ -327,8 +327,8 @@ return {
 	},
 	-- Add new unused spawngroup
 	[100937] = { -- The last one is behind the fence; there is no navigation there, sad.
-		enabled = true,
 		values = {
+			enabled = true,
 			spawn_groups = {
 				400007,
 				400030,
