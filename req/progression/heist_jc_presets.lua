@@ -54,7 +54,7 @@ local M = {
 	skm_mallcrasher = "common",
 	skm_mus = "common",
 	skm_watchdogs_stage2 = "common",
-	
+
 	alex = "slightly_rare",
 	election_day = "slightly_rare",
 	firestarter = "slightly_rare",
