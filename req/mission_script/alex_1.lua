@@ -320,13 +320,13 @@ return {
 		},
 	},
 	-- Add new unused spawngroup
-	[100937] = { -- Re-enable this preferred and add new spawngroups 
+	[100937] = { -- Re-enable this preferred and add new spawngroups
 		enabled = true,
 		values = {
 			spawn_groups = {
 				400007,
 				400030,
-			--	100925,
+				--	100925,
 			}, -- The last one is behind the fence; there is no navigation there, sad.
 		},
 	},
