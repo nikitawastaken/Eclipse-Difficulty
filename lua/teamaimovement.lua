@@ -71,8 +71,7 @@ Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", funct
 	end
 end)
 
-
-Hooks:PreHook(TeamAIMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function (self, unit)
+Hooks:PreHook(TeamAIMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function(self, unit)
 	self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
 	local bag_unit = unit or self._carry_unit
 	if bag_unit then
