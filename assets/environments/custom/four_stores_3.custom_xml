@@ -8,7 +8,7 @@
 		<others>
 			<param key="sky_texture" value="units/world/architecture/suburbia/textures/sky_df"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
-			<param key="underlay" value="core/environments/skies/sky_1224_clear_sky/sky_1224_clear_sky"/>
+			<param key="underlay" value="core/environments/skies/default/default"/>
 			<param key="sun_ray_color_scale" value="7.5"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="1 0.94509810209274 0.8117647767067"/>
@@ -25,11 +25,11 @@
 						<param key="fog_far_low_color" value="0.80392163991928 0.89411771297455 1"/>
 						<param key="ambient_falloff_scale" value="0.68000000715256"/>
 						<param key="sky_bottom_color_scale" value="0.11999999731779"/>
-						<param key="ambient_color_scale" value="0.47499999403954"/>
+						<param key="ambient_color_scale" value="0.66500002145767"/>
 						<param key="ambient_color" value="0.24313727021217 0.30588236451149 0.41176474094391"/>
-						<param key="fog_max_range" value="500000"/>
-						<param key="bloom_threshold" value="0.55000001192093"/>
-						<param key="sky_top_color_scale" value="0.5"/>
+						<param key="fog_max_range" value="141043.71875"/>
+						<param key="bloom_threshold" value="0.19746121764183"/>
+						<param key="sky_top_color_scale" value="1"/>
 						<param key="sky_top_color" value="0.8666667342186 0.94901967048645 1"/>
 						<param key="fog_min_range" value="806"/>
 						<param key="fog_max_density" value="1"/>
@@ -48,16 +48,12 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
 						<param key="lense_intensity" value="0.25"/>
-						<param key="bloom_blur_size" value="4"/>
-						<param key="bloom_intensity" value="0.25"/>
+						<param key="bloom_blur_size" value="3.1438646316528"/>
+						<param key="bloom_intensity" value="0.41999998688698"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
@@ -66,7 +62,7 @@
 			<sky>
 				<param key="color0" value="0.12549020349979 0.10980392992496 0.074509806931019"/>
 				<param key="color2" value="0.66274511814117 0.73333334922791 0.84705889225006"/>
-				<param key="color2_scale" value="1"/>
+				<param key="color2_scale" value="1.6925246715546"/>
 				<param key="color0_scale" value="1"/>
 			</sky>
 		</underlay_effect>

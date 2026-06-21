@@ -3,8 +3,6 @@ return {
 	color_grading = { -- Randomized color gradings
 		"color_nice",
 		"color_xgen",
-		"color_xxxgen",
-		"color_payday",
 		"color_nice_classic",
 		"color_payday_classic",
 	},
