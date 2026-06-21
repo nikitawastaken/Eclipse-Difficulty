@@ -14,6 +14,11 @@ setmetatable(HuskPlayerMovement.reload_times, {
 	end,
 })
 
+-- link to HuskPlayerMovement for bag carrying
+TeamAIMovement.set_visual_carry = HuskPlayerMovement.set_visual_carry
+TeamAIMovement._destroy_current_carry_unit = HuskPlayerMovement._destroy_current_carry_unit
+TeamAIMovement._create_carry_unit = HuskPlayerMovement._create_carry_unit
+
 -- Properly load secondary weapons from factory IDs
 function TeamAIMovement:add_weapons()
 	if Network:is_server() then
@@ -63,5 +68,21 @@ Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", funct
 		self._reload_speed_multiplier = (0.45 * (weap_tweak.looped_reload_single and 1 or weap_tweak.CLIP_AMMO_MAX)) / self._looped_reload_time
 	else
 		self._reload_speed_multiplier = HuskPlayerMovement:get_reload_animation_time(weap_tweak.reload or weap_tweak.hold) / weap_tweak.reload_time
+	end
+end)
+
+
+Hooks:PreHook(TeamAIMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function (self, unit)
+	self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
+	local bag_unit = unit or self._carry_unit
+	if bag_unit then
+		bag_unit:set_visible(not unit)
+	end
+	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
+	if name_label then
+		local bag_panel = name_label.panel and name_label.panel:child("bag")
+		if bag_panel then
+			bag_panel:set_visible(unit)
+		end
 	end
 end)
