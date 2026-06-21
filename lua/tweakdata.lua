@@ -501,6 +501,9 @@ tweak_data.casino = {
 	infamous_chance = 3,
 }
 
+-- Safehouse Unlock Level
+tweak_data.safehouse_unlock_level = 50
+
 -- Color Gradings
 table.insert( tweak_data.color_grading, { value = "color_bhd_classic", text_id = "menu_color_bhd_classic" })
 table.insert( tweak_data.color_grading, { value = "color_heat_classic", text_id = "menu_color_heat_classic" })

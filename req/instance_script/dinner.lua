@@ -2,6 +2,7 @@
 local M = {}
 
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local scripted_enemy = Eclipse.scripted_enemy
 local chance_fewest_pigs = normal and 0 or hard and 0.01 or 0.02
 local fewest_pigs = math.random() < chance_fewest_pigs

@@ -73,10 +73,13 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	mvec3_norm(mvec_up_ay)
 	mvec3_set(mvec_spread_direction, direction)
 
+	local r = math.random()
 	local theta = math.random() * 360
+	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
+	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * math.random() * spread_x * spread_mul))
-	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * math.random() * spread_y * spread_mul))
+	mvec3_mul(mvec_right_ax, math.cos(theta) * math.tan(r * spread_x))
+	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
 	mvec3_set(mvec_to, mvec_spread_direction)
@@ -729,7 +732,8 @@ function RaycastWeaponBase:add_ammo_to_mag(ammo, index)
 end
 
 function RaycastWeaponBase:can_reload()
-	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and self:ammo_base():clip_ratio() >= 1
+	local clip_ratio = self:ammo_base().clip_ratio and self:ammo_base():clip_ratio() or 0
+	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and clip_ratio >= 1
 end
 
 -- Firestorm Incendiary Ammo DoT
