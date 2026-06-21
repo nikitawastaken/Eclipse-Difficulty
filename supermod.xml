@@ -31,6 +31,7 @@
 				<post :hook_id="gameoverstate"/>
 				<post :hook_id="menumainstate"/>
 				<post :hook_id="ingameaccesscamera"/>
+				<post :hook_id="victorystate"/>
 			</group>
 
 			<group :hook_id="managers/">
@@ -84,6 +85,7 @@
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
+				<post :hook_id="customsafehousemanager"/>
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="moneymanager"/>
 				<post :hook_id="experiencemanager"/>
@@ -114,6 +116,8 @@
 				<post :hook_id="mutatorsmanager"/>
 				<post :hook_id="consolessafehousemanager"/>
 				<post :hook_id="gageassignmentmanager"/>
+				<post :hook_id="skirmishmanager"/>
+				<post :hook_id="crimespreemanager"/>
 			</group>
 
 			<group :hook_id="network/">
@@ -156,7 +160,6 @@
 				<post :hook_id="gageassignmenttweakdata"/>
 				<post :hook_id="attentiontweakdata"/>
 				<post :hook_id="achievementstweakdata"/>
-				<post :hook_id="skirmishtweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
@@ -351,6 +354,9 @@
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
+		
+		<!-- Safehouse Raid contract broker image (by Jarey) -->
+		<file name="guis/dlcs/bro/textures/pd2/crimenet/chill_combat.texture"/>
 
 		<!-- Weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>

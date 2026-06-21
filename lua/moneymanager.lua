@@ -47,8 +47,7 @@ function MoneyManager:get_bag_value(carry_id, multiplier)
 	local job_id = managers.job:current_job_id()
 
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-	local diff_tbl = get_difficulty_specific_value({ 0.95, 1, 1.005, 1.005, 1.010 })
-	local jc_tbl = { 0.9, 0.95, 1, 1, 1, 1, 1.005, 1.010, 1.015, 1.020 }
+	local diff_tbl = get_difficulty_specific_value({ 0.8, 0.9, 1, 1.1, 1.2 })
 
 	if value then
 		value = value
@@ -56,7 +55,6 @@ function MoneyManager:get_bag_value(carry_id, multiplier)
 		local bag_value_id = tweak_data.carry[carry_id].bag_value or "default"
 		value = self:get_tweak_value("money_manager", "bag_values", bag_value_id)
 		value = value * diff_tbl
-		value = value * jc_tbl[math.ceil(tweak_data.narrative:job_data(job_id).jc * 0.1)]
 	end
 
 	return math.round(value)

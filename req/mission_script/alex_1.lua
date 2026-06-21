@@ -22,6 +22,11 @@ local mendoza_enemy = {
 }
 local mendoza = { enemy = mendoza_enemy }
 local heli_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -52,17 +57,17 @@ local standard_spawn = {
 		interval = 10,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local flank_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
@@ -100,6 +105,21 @@ return {
 			{ id = 100376, delay = 3.25 },
 		},
 	},
+	-- start spawning recurring cloakers
+	[101945] = { -- trigger_global_event_005
+		on_executed = {
+			{ id = 400024, delay = 0 },
+		},
+	},
+	-- enable a few disable hide SOs
+	[101954] = enabled,
+	[101956] = enabled,
+	[101957] = enabled,
+	[101959] = enabled,
+	[101961] = enabled,
+	[101962] = enabled,
+	[101963] = enabled,
+	[101966] = enabled,
 	-- more snipers on higher difficulties
 	[101070] = sniper_groups,
 	-- prevent snipers from stacking up
@@ -295,31 +315,38 @@ return {
 			{
 				name = "basement",
 				force = 2,
-				position = Vector3(1875, 900, 950),
+				position = Vector3(2050, 1000, 950),
 			},
 		},
 	},
 	-- Add new unused spawngroup
-	[100937] = {
+	[100937] = { -- The last one is behind the fence; there is no navigation there, sad.
 		values = {
+			enabled = true,
 			spawn_groups = {
 				400007,
-				100925,
-			},
+				400030,
+				--	100925,
+			}, -- The last one is behind the fence; there is no navigation there, sad.
 		},
 	},
 	-- Spawn group intervals
 	[100467] = standard_spawn,
 	[100550] = standard_spawn,
 	[100671] = standard_spawn,
+	[100672] = standard_spawn,
 	[100840] = standard_spawn,
 	[100880] = standard_spawn,
-	[100672] = close_spawn,
-	[100924] = close_spawn,
-	[100863] = close_spawn,
-	[100874] = close_spawn,
+	[100924] = standard_spawn,
+	[100863] = standard_spawn,
+	[100874] = standard_spawn,
+	[400007] = standard_spawn,
+	[400030] = standard_spawn,
 	[100925] = flank_spawn,
-	[400007] = flank_spawn,
+	[400020] = cloaker_spawn,
+	[400021] = cloaker_spawn,
+	[400022] = cloaker_spawn,
+	[400023] = cloaker_spawn,
 	-- Gangstas
 	[101525] = mendoza,
 	[101527] = mendoza,

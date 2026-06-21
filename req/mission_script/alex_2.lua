@@ -9,14 +9,9 @@ local cobra_enemy = {
 }
 local cobra = { enemy = cobra_enemy }
 local agile_spawn = {
-	values = {
-		interval = 15,
-	},
 	groups = preferred.no_shields_bulldozers,
 }
 return {
-	[104480] = agile_spawn,
-	[102793] = agile_spawn,
 	-- Sniper gangstas
 	[101928] = {
 		values = {
@@ -24,6 +19,8 @@ return {
 			amount_random = diff_i_no_easy,
 		},
 	},
+	[104480] = agile_spawn,
+	[102793] = agile_spawn,
 	-- Random Cobras
 	[100109] = cobra,
 	[100576] = cobra,
