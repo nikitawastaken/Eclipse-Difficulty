@@ -13,7 +13,6 @@ local M = {
 	branchbank_deposit = "very_common",
 	branchbank_prof = "very_common",
 	chill = "very_common",
-	chill_combat = "very_common",
 	family = "very_common",
 	four_stores = "very_common",
 	gallery = "very_common",
@@ -79,6 +78,7 @@ local M = {
 	sand = "rare",
 	tag = "rare",
 	wwh = "rare",
+	chill_combat = "rare",
 
 	arena = "slightly_very_rare",
 	big = "slightly_very_rare",
