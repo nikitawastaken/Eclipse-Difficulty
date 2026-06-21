@@ -349,6 +349,9 @@
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
+		
+		<!-- Safehouse Raid contract broker image (by Jarey) -->
+		<file name="guis/dlcs/bro/textures/pd2/crimenet/chill_combat.texture"/>
 
 		<!-- Weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>

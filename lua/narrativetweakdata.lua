@@ -173,7 +173,15 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		"cn_nightc2",
 		"cn_nightc3",
 	}
-
+	
+	-- Safehouse Raid in contract broker
+	self.jobs.chill_combat.contact = "bain"
+	self.jobs.chill_combat.contract_visuals = {}
+	self.jobs.chill_combat.contract_visuals.preview_image = {
+		id = "chill_combat"
+	}
+	self.jobs.chill_combat.marker_dot_color = nil
+	 
 	-- If you want money, you stay and get additional loot- otherwise all you get is mainly XP
 	-- These are base values only, the rest is handled by difficulty_multiplier_payout for now (moneytweakdata)
 	self.jobs.jewelry_store.payout = { 25000 }
