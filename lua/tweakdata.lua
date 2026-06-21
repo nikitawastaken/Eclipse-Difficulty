@@ -502,7 +502,7 @@ tweak_data.casino = {
 }
 
 -- Safehouse Unlock Level
-tweak_data.difficulty_level_locks = 50
+tweak_data.safehouse_unlock_level = 50
 
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
