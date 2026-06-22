@@ -37,7 +37,7 @@ function M.team_ai_get_assist_SO(unit)
 		usage_amount = 1,
 		AI_group = "friendlies",
 		search_pos = unit:position(),
-		objective = self:team_ai_get_assist_objective(unit)
+		objective = M.team_ai_get_assist_objective(unit),
 	}
 end
 
