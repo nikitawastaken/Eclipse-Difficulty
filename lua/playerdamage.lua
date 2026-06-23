@@ -801,7 +801,7 @@ function PlayerDamage:is_friendly_fire(unit)
 		if is_pro_job or friendly_fire_mutator_active then
 			-- Team AI and sentries/turrets reuse this function
 			-- Don't show the screen effect unless we're actually the local player taking friendly fire
-			if getmetatable(self) == PlayerDamage then
+			if self._unit == managers.player:player_unit() then
 				managers.hud:effect_screen(1, { 0.7, 0, 0 }, "screen_vignette_friendly_fire")
 			end
 			return false
