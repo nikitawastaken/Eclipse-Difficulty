@@ -119,21 +119,32 @@ function CrimeNetManager:_get_jobs_by_jc()
 				local job_jc = math.clamp(job_data.jc + i * 10, 0, 100)
 				local difficulty_id = 2 + i
 				local difficulty = tweak_data:index_to_difficulty(difficulty_id)
-				local one_down_active = math.random() <= 0.2 and difficulty ~= "normal" and 1 or 0
+				local one_down_active = Global.game_settings.one_down or 1
 				local level_lock = tweak_data.difficulty_level_locks[difficulty_id] or 0
 				local is_not_level_locked = prank >= 1 or level_lock <= plvl
 
 				if is_not_level_locked then
 					t[job_jc] = t[job_jc] or {}
+
 					-- Pro Job popup chance
-					table.insert(t[job_jc], {
-						job_id = job_id,
-						difficulty_id = difficulty_id,
-						difficulty = difficulty,
-						marker_dot_color = job_data.marker_dot_color or nil,
-						color_lerp = job_data.color_lerp or nil,
-						one_down = one_down_active,
-					})
+					if math.random() <= 0.2 and difficulty ~= "normal" then
+						table.insert(t[job_jc], {
+							job_id = job_id,
+							difficulty_id = difficulty_id,
+							difficulty = difficulty,
+							marker_dot_color = job_data.marker_dot_color or nil,
+							color_lerp = job_data.color_lerp or nil,
+							one_down = one_down_active,
+						})
+					else
+						table.insert(t[job_jc], {
+							job_id = job_id,
+							difficulty_id = difficulty_id,
+							difficulty = difficulty,
+							marker_dot_color = job_data.marker_dot_color or nil,
+							color_lerp = job_data.color_lerp or nil,
+						})
+					end
 				end
 			end
 		else
