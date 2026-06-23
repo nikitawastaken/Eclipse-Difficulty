@@ -275,6 +275,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.boss.payout = { 50000 }
 	self.jobs.nmh.payout = { 1350000 }
 	self.jobs.sah.payout = { 100000 }
+	self.jobs.chill.payout = { 0 }
+	self.jobs.chill_combat.payout = { 0 }
 
 	-- Hide contracts from broker (can still appear on CRIME.NET)
 	self.contacts.bain_no_variation.hidden = true
