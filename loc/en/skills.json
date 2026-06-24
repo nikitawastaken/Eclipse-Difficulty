@@ -132,7 +132,7 @@
 	"menu_jail_diet_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## chance to dodge for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nWhile your armor is broken, dodging will fully regenerate it.\n\nThis cannot occur more than once every ##$multipro## seconds.",
 	"st_menu_ghost_silencer": "Specialized Killing",
 	"menu_scavenger_beta": "Resilient Assault",
-	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nCritical hits deal ##$multibasic2## damage.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
+	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nCritical hits deal ##$multibasic2## damage.\n\nNote: Critical hits do not affect Grenade Launchers and Rocket Launchers.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
 	"menu_silenced_damage": "Silent Killer",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYour silenced weapons gain ##$multibasic## stability and accuracy, as well as a ##$multibasic2## chance to pierce enemy armor.\n\nACE: ##$pro##\nYour silenced weapons gain a ##$multipro## damage increase.",
 	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\nYou snap to zoom ##$multibasic## faster with silenced weapons.\n\nACE: ##$pro##\nYou gain ##$multipro## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multipro2##.",
