@@ -293,8 +293,8 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					}
 					weap_data.spread_bloom = {
-						max = 4,
-						recovery = 1.2,
+						max = 3,
+						recovery = 1.5,
 						recovery_wait_multiplier = 2,
 					}
 				else
@@ -338,8 +338,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					}
 					weap_data.spread_bloom = {
 						max = 2,
-						recovery = 5,
-						recovery_wait_multiplier = 1.7,
+						recovery = 4,
+						recovery_wait_multiplier = 1.75,
 					}
 				end
 			elseif cat_map.pistol then
@@ -386,8 +386,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 2,
-					recovery = 5,
-					recovery_wait_multiplier = 1.7,
+					recovery = 3,
+					recovery_wait_multiplier = 1.5,
 				}
 					
 				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
@@ -440,8 +440,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 3,
-					recovery = 1.4,
-					recovery_wait_multiplier = 1.8,
+					recovery = 1.25,
+					recovery_wait_multiplier = 1.75,
 				}
 				
 				if weap_data.fire_mode_data and not weap_data.auto then
@@ -498,8 +498,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 2,
-					recovery = 5,
-					recovery_wait_multiplier = 1.7,
+					recovery = 4,
+					recovery_wait_multiplier = 1.75,
 				}
 			elseif cat_map.shotgun then
 				weap_data.double_barrel = is_doublebarrel
