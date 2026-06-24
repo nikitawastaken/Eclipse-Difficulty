@@ -1082,7 +1082,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			damage_mul_addend = 0.2,
 			max_headshots = 5,
-			lose_on_miss = 2
+			lose_on_miss = 2,
 		},
 	}
 	self.definitions.snp_consecutive_headshots = {
