@@ -703,26 +703,24 @@ function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
 		}
 	end
 
-	if not UsefulBots then
-		local brain = unit:brain()
-		local movement = unit:movement()
-		if movement._should_stay and movement._should_stay_pos then
-			return {
-				type = "defend_area",
-				scan = true,
-				pos = movement._should_stay_pos,
-				nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos)
-			}
-		elseif alive(brain._logic_data._latest_follow_unit) then
-			return {
-				type = "follow",
-				scan = true,
-				is_default = true,
-				follow_unit = brain._logic_data._latest_follow_unit
-			}
-		end
+	local brain = unit:brain()
+	local movement = unit:movement()
+	if movement._should_stay and movement._should_stay_pos then
+		return {
+			type = "defend_area",
+			scan = true,
+			pos = movement._should_stay_pos,
+			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos)
+		}
+	elseif alive(brain._logic_data._latest_follow_unit) then
+		return {
+			type = "follow",
+			scan = true,
+			is_default = true,
+			follow_unit = brain._logic_data._latest_follow_unit
+		}
 	end
-	
+
 	return _determine_objective_for_criminal_AI_original(self, unit, ...)
 end
 
@@ -756,25 +754,23 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "eclipse_add_special_ob
 			break
 		end
 	end
-	
-	if not UsefulBots then
-		if type(id) ~= "string" then
-			return
-		end
 
-		local player_assist = id:match("^Playerrevive") or id:match("^PlayerHusk_revive")
-		local bot_assist = id:match("^TeamAIrevive") or id:match("^TeamAIDamage_assistance")
-		if not player_assist and not bot_assist then
-			return
-		end
+	if type(id) ~= "string" then
+		return
+	end
 
-		if bot_assist then
-			objective_data.search_dis_sq = 1500 ^ 2
-		end
+	local player_assist = id:match("^Playerrevive") or id:match("^PlayerHusk_revive")
+	local bot_assist = id:match("^TeamAIrevive") or id:match("^TeamAIDamage_assistance")
+	if not player_assist and not bot_assist then
+		return
+	end
 
-		if objective_data.interval then
-			objective_data.interval = math.min(4, objective_data.interval)
-		end
+	if bot_assist then
+		objective_data.search_dis_sq = 1500 ^ 2
+	end
+
+	if objective_data.interval then
+		objective_data.interval = math.min(4, objective_data.interval)
 	end
 end)
 
@@ -1395,9 +1391,6 @@ function GroupAIStateBase:_chk_last_strike(amount)
 	return self._stealth_strikes + amount >= tweak_data.player.stealth_strikes.total_amount
 end
 
-if UsefulBots then
-	return
-end
 
 -- more accurate distance check for team ai revive SO
 local _execute_so_original = GroupAIStateBase._execute_so
@@ -1489,12 +1482,57 @@ function GroupAIStateBase:_execute_so(so_data, so_rooms, so_administered, ...)
 	return closest_u_data
 end
 
+-- Increase bot revive distance
+Hooks:PreHook(GroupAIStateBase, "add_special_objective", "add_special_objective_ub", function(self, id, objective_data)
+	if type(id) ~= "string" then
+		return
+	end
+
+	local player_assist = id:match("^Playerrevive") or id:match("^PlayerHusk_revive")
+	local bot_assist = id:match("^TeamAIrevive") or id:match("^TeamAIDamage_assistance")
+	if not player_assist and not bot_assist then
+		return
+	end
+
+	if bot_assist then
+		objective_data.search_dis_sq = 2500 ^ 2
+	end
+
+	if objective_data.interval then
+		objective_data.interval = math.min(4, objective_data.interval)
+	end
+end)
+
 Hooks:PreHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub", function(self, unit)
 	Eclipse.utils.team_ai_unregister_unit(unit)
 end)
 
 if Keepers then
 	return
+end
+
+-- Make bots return to their previous objective
+local _determine_objective_for_criminal_AI_original = GroupAIStateBase._determine_objective_for_criminal_AI
+function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
+	local brain = unit:brain()
+	local movement = unit:movement()
+	if movement._should_stay and movement._should_stay_pos then
+		return {
+			type = "defend_area",
+			scan = true,
+			pos = movement._should_stay_pos,
+			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos)
+		}
+	elseif alive(brain._logic_data._latest_follow_unit) then
+		return {
+			type = "follow",
+			scan = true,
+			is_default = true,
+			follow_unit = brain._logic_data._latest_follow_unit
+		}
+	end
+
+	return _determine_objective_for_criminal_AI_original(self, unit, ...)
 end
 
 Hooks:PostHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub", function(self)

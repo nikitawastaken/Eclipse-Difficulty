@@ -111,10 +111,6 @@ function PlayerTased:_check_action_shock(t, input, ...)
 	end
 end
 
-if UsefulBots then
-	return
-end
-
 if not Network:is_server() then
 	return
 end

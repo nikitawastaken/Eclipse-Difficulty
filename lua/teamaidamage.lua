@@ -19,6 +19,15 @@ Hooks:PostHook(TeamAIDamage, "damage_fire", "eclipse_teamai_damage_fire", functi
 	end
 end)
 
+-- Announce low health
+Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function (self)
+	local t = TimerManager:game():time()
+	if (not self._said_hurt_t or self._said_hurt_t + 10 < t) and self._health_ratio < 0.33 and not self:need_revive() and not self._unit:sound():speaking() then
+		self._said_hurt_t = t
+		self._unit:sound():say("g80x_plu", true, true)
+	end
+end)
+
 Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	if self._bleed_out or self._fatal then
 		self._health = self._HEALTH_INIT
@@ -46,20 +55,7 @@ Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	self:_clear_damage_transition_callbacks()
 end)
 
-if UsefulBots then
-	return
-end
-
--- Announce low health
-Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function (self)
-	local t = TimerManager:game():time()
-	if (not self._said_hurt_t or self._said_hurt_t + 10 < t) and self._health_ratio < 0.33 and not self:need_revive() and not self._unit:sound():speaking() then
-		self._said_hurt_t = t
-		self._unit:sound():say("g80x_plu", true, true)
-	end
-end)
-
--- mark taser when tased
+-- Mark the Taser when tased
 local damage_tase_original = TeamAIDamage.damage_tase
 function TeamAIDamage:damage_tase(attack_data, ...)
 	local result = damage_tase_original(self, attack_data, ...)
@@ -81,25 +77,11 @@ function TeamAIDamage:damage_tase(attack_data, ...)
 	return result
 end
 
-Hooks:PostHook(TeamAIDamage, "on_tase_ended", "on_tase_ended_ub", function (self)
+Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function (self)
 	if self._assist_SO_id then
 		managers.groupai:state():remove_special_objective(self._assist_SO_id)
 		Eclipse.utils.team_ai_stop_assist_objective(self._unit)
 		self._assist_SO_id = nil
 	end
 end)
-
--- fix for bots losing their i-frames in rare cases
-local damage_bullet_original = TeamAIDamage.damage_bullet
-function TeamAIDamage:damage_bullet(...)
-	local result = damage_bullet_original(self, ...)
-
-	if result then
-		-- _chk_dmg_too_soon uses managers.player:player_timer():time() so use it here too
-		self._next_allowed_dmg_t = managers.player:player_timer():time() + self._dmg_interval
-	end
-
-	return result
-end
-
 

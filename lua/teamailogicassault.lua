@@ -14,14 +14,24 @@ function TeamAILogicAssault.enter(data, ...)
 	movement.set_stance = set_stance ~= getmetatable(movement).set_stance and set_stance or nil
 end
 
-if UsefulBots then
-	return
-end
-
 -- Don't carry over "firing" variable, it has a chance to stopp bots from shooting
 Hooks:PostHook(TeamAILogicAssault, "enter", "eclipse_enter", function (data)
 	data.internal_data.firing = nil
 end)
+
+TeamAILogicAssault._mark_special_chk_t = math.huge  -- hacky way to stop the vanilla special mark code
+
+function TeamAILogicAssault.mark_enemy(data, criminal, to_mark)
+	if to_mark:base().char_tweak then
+		criminal:sound():say(to_mark:base():char_tweak().priority_shout .. "x_any", true)
+	end
+	managers.network:session():send_to_peers_synched("play_distance_interact_redirect", data.unit, "cmd_point")
+	data.unit:movement():play_redirect("cmd_point")
+	to_mark:contour():add("mark_enemy", true)
+end
+
+-- This function is disabled in vanilla but is not part of TeamAILogicAssault so it might crash in other logics when called with data.logic._upd_sneak_spotting
+function TeamAILogicAssault._upd_sneak_spotting() end
 
 -- Fix attention unit reset
 Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk_ub", function (data, action)
@@ -47,25 +57,3 @@ Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk
 		TeamAILogicIdle._check_objective_pos(data)
 	end
 end)
-
-function TeamAILogicAssault._chk_wants_to_take_cover(data, my_data)
-	if not data.attention_obj or data.attention_obj.reaction < AIAttentionObject.REACT_COMBAT then
-		return
-	end
-	
-	if data.unit:movement()._should_stay then
-		return
-	end
-	
-	if data.unit:character_damage():health_ratio() < 0.5 then
-		return true
-	end
-	
-	if my_data.moving_to_cover then 
-		return true
-	end
-	
-	if data.attention_obj and data.attention_obj.dangerous_special then
-		return true
-	end
-end

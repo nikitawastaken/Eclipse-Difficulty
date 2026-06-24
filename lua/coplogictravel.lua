@@ -74,7 +74,9 @@ end
 
 -- Fix need for another queued task to update pathing after expired cover leave time
 -- Reposition when the current destination position is too far from the follow unit
-Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
+-- Stop moving towards revive target if a dangerous special is close to the bot
+local upd_advance_original = CopLogicTravel.upd_advance
+function CopLogicTravel.upd_advance(data, ...)
 	local unit = data.unit
 	local my_data = data.internal_data
 	local t = TimerManager:game():time()
@@ -83,7 +85,55 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	end
 
 	CopLogicTravel._chk_relocate(data, my_data)
-end)
+	
+	if not data.is_team_ai then
+		return upd_advance_original(data, ...)
+	end
+
+	local revive_unit = data.objective and data.objective.type == "revive" and data.objective.follow_unit
+	if not alive(revive_unit) or mvector3.distance_sq(data.m_pos, revive_unit:position()) > 250000 then
+		return upd_advance_original(data, ...)
+	end
+
+	if data.unit:character_damage():health_ratio() < 0.5 then
+		return upd_advance_original(data, ...)
+	end
+
+	local timer = math.huge
+	if revive_unit:base().is_local_player then
+		timer = revive_unit:character_damage()._downed_timer or timer
+	elseif revive_unit:interaction().get_waypoint_time then
+		timer = revive_unit:interaction():get_waypoint_time() or timer
+	end
+
+	if timer < 10 then
+		return upd_advance_original(data, ...)
+	end
+
+	local my_data = data.internal_data
+	local focus_enemy = data.attention_obj
+	if focus_enemy and focus_enemy.verified and focus_enemy.dis < 1000 and focus_enemy.unit:base() and focus_enemy.unit:base().has_tag then
+		if focus_enemy.unit:base():has_tag("spooc") or focus_enemy.unit:base():has_tag("taser") then
+			if my_data.advancing then
+				data.unit:brain():action_request({
+					body_part = 2,
+					type = "idle"
+				})
+			end
+
+			if not my_data.turning then
+				CopLogicAttack._chk_request_action_turn_to_enemy(data, my_data, data.m_pos, focus_enemy.m_pos)
+			end
+			TeamAILogicAssault._upd_aim(data, my_data)
+
+			data.unit:movement():set_allow_fire(true)
+
+			return
+		end
+	end
+
+	return upd_advance_original(data, ...)
+end
 
 function CopLogicTravel._chk_relocate(data, my_data, max_dis)
 	local objective = data.objective
@@ -541,60 +591,4 @@ function CopLogicTravel.enter(data, new_logic_name, enter_params)
 	end
 
 	data.unit:brain():set_update_enabled_state(false)
-end
-
-if UsefulBots then
-	return
-end
-
--- Stop moving towards revive target if a dangerous special is close to the bot
-local upd_advance_original = CopLogicTravel.upd_advance
-function CopLogicTravel.upd_advance(data, ...)
-	if not data.is_team_ai then
-		return upd_advance_original(data, ...)
-	end
-
-	local revive_unit = data.objective and data.objective.type == "revive" and data.objective.follow_unit
-	if not alive(revive_unit) or mvector3.distance_sq(data.m_pos, revive_unit:position()) > 250000 then
-		return upd_advance_original(data, ...)
-	end
-
-	if data.unit:character_damage():health_ratio() < 0.5 then
-		return upd_advance_original(data, ...)
-	end
-
-	local timer = math.huge
-	if revive_unit:base().is_local_player then
-		timer = revive_unit:character_damage()._downed_timer or timer
-	elseif revive_unit:interaction().get_waypoint_time then
-		timer = revive_unit:interaction():get_waypoint_time() or timer
-	end
-
-	if timer < 10 then
-		return upd_advance_original(data, ...)
-	end
-
-	local my_data = data.internal_data
-	local focus_enemy = data.attention_obj
-	if focus_enemy and focus_enemy.verified and focus_enemy.dis < 1000 and focus_enemy.unit:base() and focus_enemy.unit:base().has_tag then
-		if focus_enemy.unit:base():has_tag("spooc") or focus_enemy.unit:base():has_tag("taser") then
-			if my_data.advancing then
-				data.unit:brain():action_request({
-					body_part = 2,
-					type = "idle"
-				})
-			end
-
-			if not my_data.turning then
-				CopLogicAttack._chk_request_action_turn_to_enemy(data, my_data, data.m_pos, focus_enemy.m_pos)
-			end
-			TeamAILogicAssault._upd_aim(data, my_data)
-
-			data.unit:movement():set_allow_fire(true)
-
-			return
-		end
-	end
-
-	return upd_advance_original(data, ...)
 end

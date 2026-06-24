@@ -1,7 +1,3 @@
-if UsefulBots then
-	return
-end
-
 if not Network:is_server() then
 	return
 end

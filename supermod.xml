@@ -280,18 +280,24 @@
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
-				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
 				<post :hook_id="interactions/interactionext"/>
 
+				<group :hook_id="vehicles/">
+					<post :hook_id="animatedvehiclebase"/>
+					<post :hook_id="vehicledrivingext"/>
+				</group>
+				
 				<group :hook_id="player_team/">
 					<post :hook_id="logics/teamailogicassault"/>
 					<post :hook_id="logics/teamailogicidle"/>
 					<post :hook_id="logics/teamailogicbase"/>
+					<post :hook_id="logics/teamailogictravel"/>
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
 					<post :hook_id="teamaibrain"/>
+					<post :hook_id="teamaibase"/>
 					<post :hook_id="huskteamaidamage"/>
 					<post :hook_id="huskteamaimovement"/>
 				</group>

@@ -23,10 +23,6 @@ function PlayerBleedOut:exit(...)
 	return exit_data
 end
 
-if UsefulBots then
-	return
-end
-
 -- Stop bots from dropping light bags when going to revive a player
 local on_rescue_SO_administered_original = PlayerBleedOut.on_rescue_SO_administered
 function PlayerBleedOut:on_rescue_SO_administered(revive_SO_data, receiver_unit, ...)

@@ -1,25 +1,3 @@
--- Improved Team AI following
--- From Super Serious Shooter
-local _check_should_relocate_original = TeamAILogicIdle._check_should_relocate
-function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
-	local ub_follow_behavior = UsefulBots and UsefulBots.player_settings and UsefulBots:player_settings(objective.follow_unit).follow_behavior
-	if ub_follow_behavior and ub_follow_behavior ~= 1 then
-		return _check_should_relocate_original(data, my_data, objective, ...)
-	end
-
-	local follow_movement = objective.follow_unit:movement()
-	if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
-		return true
-	end
-
-	local follow_pos = follow_movement:m_newest_pos()
-	return math.abs(follow_pos.z - data.m_pos.z) > 200 or mvector3.distance_sq(follow_pos, data.m_pos) > 600 ^ 2
-end
-
-if UsefulBots then
-	return
-end
-
 function TeamAILogicIdle.is_high_priority(unit_movement)
 	if type(unit_movement._active_actions) ~= "table" then
 		return false
@@ -32,6 +10,142 @@ function TeamAILogicIdle.is_high_priority(unit_movement)
 	end
 		
 	return false
+end
+
+
+function TeamAILogicIdle._find_intimidateable_civilians(criminal, use_default_shout_shape, max_angle, max_dis)
+	local head_pos = criminal:movement():m_head_pos()
+	local look_vec = criminal:movement():m_rot():y()
+	local intimidateable_civilians = {}
+	local best_civ, best_civ_wgt
+	local highest_wgt = 1
+	local my_tracker = criminal:movement():nav_tracker()
+	local unit, unit_movement, unit_base, unit_anim_data, unit_brain, intimidatable, escort
+	local ai_visibility_slotmask = managers.slot:get_mask("AI_visibility")
+	max_angle = max_angle or 90
+	max_dis = use_default_shout_shape and 1200 or max_dis or 400
+	for key, u_data in pairs(managers.enemy:all_civilians()) do
+		unit = u_data.unit
+		unit_movement = unit:movement()
+		unit_base = unit:base()
+		unit_anim_data = unit:anim_data()
+		unit_brain = unit:brain()
+		escort = tweak_data.character[unit_base._tweak_table].is_escort
+		intimidatable = escort and (unit_anim_data.panic or unit_anim_data.standing_hesitant) or tweak_data.character[unit_base._tweak_table].intimidateable and not unit_base.unintimidateable and not unit_anim_data.unintimidateable
+		if my_tracker.check_visibility(my_tracker, unit_movement:nav_tracker()) and not unit_movement:cool() and intimidatable and not unit_brain:is_tied() and not unit:unit_data().disable_shout and (not unit_anim_data.drop or (unit_brain._logic_data.internal_data.submission_meter or 0) < (unit_brain._logic_data.internal_data.submission_max or 0) * 0.25) then
+			local u_head_pos = unit_movement:m_head_pos() + math.UP * 30
+			local vec = u_head_pos - head_pos
+			local dis = mvector3.normalize(vec)
+			local angle = vec:angle(look_vec)
+			if dis < (escort and 800 or max_dis) and angle < (use_default_shout_shape and math.max(8, math.lerp(90, 30, dis / 1200)) or max_angle) then
+				local ray = World:raycast("ray", head_pos, u_head_pos, "slot_mask", ai_visibility_slotmask)
+				if not ray then
+					local inv_wgt = dis * dis * (1 - vec:dot(look_vec))
+					if escort then
+						return unit, inv_wgt, { { unit = unit, key = key, inv_wgt = inv_wgt } }
+					end
+					table.insert(intimidateable_civilians, {
+						unit = unit,
+						key = key,
+						inv_wgt = inv_wgt
+					})
+					if not best_civ_wgt or best_civ_wgt > inv_wgt then
+						best_civ_wgt = inv_wgt
+						best_civ = unit
+					end
+					if highest_wgt < inv_wgt then
+						highest_wgt = inv_wgt
+					end
+				end
+			end
+		end
+	end
+	return best_civ, highest_wgt, intimidateable_civilians
+end
+
+function TeamAILogicIdle.intimidate_civilians(data, criminal)
+	if data.unit:movement():chk_action_forbidden("action") then
+		return
+	end
+
+	if data._next_intimidate_t and data.t < data._next_intimidate_t then
+		return
+	end
+
+	data._next_intimidate_t = data.t + 2
+
+	local best_civ, highest_wgt, intimidateable_civilians = TeamAILogicIdle._find_intimidateable_civilians(criminal, true)
+	if #intimidateable_civilians <= 0 then
+		return
+	end
+
+	local is_escort = tweak_data.character[best_civ:base()._tweak_table].is_escort
+	local sound_name = is_escort and "f40_any" or (best_civ:anim_data().drop and "f03a_" or "f02x_") .. (#intimidateable_civilians > 1 and "plu" or "sin")
+	criminal:sound():say(sound_name, true)
+	criminal:brain():action_request({
+		align_sync = true,
+		body_part = 3,
+		type = "act",
+		variant = is_escort and "cmd_point" or best_civ:anim_data().move and "gesture_stop" or "arrest"
+	})
+	for _, civ in ipairs(intimidateable_civilians) do
+		local amount = civ.inv_wgt / highest_wgt
+		if best_civ == civ.unit then
+			amount = 1
+		end
+		civ.unit:brain():on_intimidated(amount, criminal)
+	end
+end
+
+function TeamAILogicIdle.is_valid_intimidation_target(unit, unit_tweak, unit_anim, unit_damage, data, distance)
+	if unit:unit_data().disable_shout then
+		return false
+	end
+	local surrender = unit_tweak.surrender
+	if not surrender or surrender == tweak_data.character.presets.surrender.never or unit_anim.hands_tied then
+		-- unit can't surrender
+		return false
+	end
+	local t = TimerManager:game():time()
+	local surrender_window = unit:brain()._logic_data.surrender_window
+	if surrender_window and t > surrender_window.window_expire_t then
+		-- unit will not surrender
+		return false
+	end
+	local intimidate_range_enemies = tweak_data.player.long_dis_interaction.intimidate_range_enemies
+	if distance > intimidate_range_enemies then
+		-- unit is too far away
+		return false
+	end
+	if unit_anim.hands_back or unit_anim.surrender then
+		-- unit is already surrendering
+		return true
+	else
+-- elseif not managers.player:has_category_upgrade("team", "crew_ai_intimidate_enemies_independent")) then
+		return false
+	end
+	if not managers.groupai:state():has_room_for_police_hostage() then
+		-- no room for police hostage
+		return false
+	end
+	if surrender_window and t > surrender_window.window_expire_t - surrender_window.window_duration + 0.75 then
+		-- intimidation attempt was started
+		return true
+	end
+
+	return true
+end
+
+function TeamAILogicIdle.intimidate_cop(data, target)
+	local anim = target:anim_data()
+	data.unit:sound():say(anim.hands_back and "l03x_sin" or anim.surrender and "l02x_sin" or "l01x_sin", true)
+	data.unit:brain():action_request({
+		type = "act",
+		variant = (anim.hands_back or anim.surrender) and "arrest" or "gesture_stop",
+		body_part = 3,
+		align_sync = true
+	})
+	target:brain():on_intimidated(tweak_data.player.long_dis_interaction.intimidate_strength, data.unit)
 end
 
 local tmp_vec = Vector3()
@@ -250,18 +364,18 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 	if not Keepers and secondary then
 		local tracker = other_unit:movement():nav_tracker()
 		movement:set_should_stay(true, tracker:lost() and tracker:field_position() or tracker:position())
-			
+
 		return
 	end
-
 	on_long_dis_interacted_original(data, other_unit, secondary, ...)
 
 	local objective_type = data.objective and data.objective.type
-	if objective_type == "revive" and had_bag and move_speed_modifier > 0.75 and not movement:carrying_bag() then
+	if objective_type == "revive" and had_bag and move_speed_modifier > 1 - UsefulBots.settings.drop_bag_percentage and not movement:carrying_bag() then
 		had_bag:carry_data():link_to(data.unit, false)
 		movement:set_carrying_bag(had_bag)
 	end
 end
+
 
 function TeamAILogicIdle._check_objective_pos(data)
 	if data.path_fail_t and data.t - data.path_fail_t < 6 then
@@ -326,3 +440,40 @@ Hooks:OverrideFunction(TeamAILogicIdle, "on_new_objective", function(data, old_o
 		old_objective.fail_clbk(data.unit)
 	end
 end)
+
+local update_original = TeamAILogicIdle.update
+function TeamAILogicIdle.update(data, ...)
+	if not TeamAILogicBase._check_deliver_bag(data) then
+		return update_original(data, ...)
+	end
+end
+
+local _check_should_relocate_original = TeamAILogicIdle._check_should_relocate
+function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
+	if not objective or not alive(objective.follow_unit) then
+		return
+	end
+
+	if not data.is_team_ai then
+		return _check_should_relocate_original(data, my_data, objective, ...)
+	end
+
+	local max_allowed_dis_xy = 500 
+	local max_allowed_dis_z = 250 
+
+	local follow_movement = objective.follow_unit:movement()
+	if follow_movement:nav_tracker():nav_segment() == data.unit:movement():nav_tracker():nav_segment() then
+		max_allowed_dis_xy = max_allowed_dis_xy * 2
+	end
+	if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
+		max_allowed_dis_xy = max_allowed_dis_xy / 2
+	end
+	
+	local dir = follow_movement:m_newest_pos() - data.m_pos
+	if math.abs(dir.z) > max_allowed_dis_z then
+		return true
+	end
+
+	mvector3.set_z(dir, 0)
+	return mvector3.length(dir) > max_allowed_dis_xy
+end

@@ -1,3 +1,8 @@
+-- link to HuskPlayerMovement for bag carrying
+TeamAIMovement.set_visual_carry = HuskPlayerMovement.set_visual_carry
+TeamAIMovement._destroy_current_carry_unit = HuskPlayerMovement._destroy_current_carry_unit
+TeamAIMovement._create_carry_unit = HuskPlayerMovement._create_carry_unit
+
 -- Fix for some broken reload anim time check code
 setmetatable(HuskPlayerMovement.reload_times, {
 	__index = function(t, k)
@@ -13,11 +18,6 @@ setmetatable(HuskPlayerMovement.reload_times, {
 		return 2
 	end,
 })
-
--- link to HuskPlayerMovement for bag carrying
-TeamAIMovement.set_visual_carry = HuskPlayerMovement.set_visual_carry
-TeamAIMovement._destroy_current_carry_unit = HuskPlayerMovement._destroy_current_carry_unit
-TeamAIMovement._create_carry_unit = HuskPlayerMovement._create_carry_unit
 
 -- Properly load secondary weapons from factory IDs
 function TeamAIMovement:add_weapons()
@@ -84,5 +84,36 @@ Hooks:PreHook(TeamAIMovement, "set_carrying_bag", "eclipse_set_carrying_bag", fu
 		if bag_panel then
 			bag_panel:set_visible(unit)
 		end
+	end
+end)
+
+if not Network:is_server() then
+	return
+end
+
+-- queued actions are not initialized for some reason
+Hooks:PostHook(TeamAIMovement, "init", "init_ub", function (self)
+	self._queued_actions = {}
+end)
+
+Hooks:PostHook(TeamAIMovement, "set_allow_fire", "set_allow_fire_ub", function (self, state)
+	if state then
+		self._switch_upper_body_to_idle_t = nil
+	end
+end)
+
+if Keepers then
+	return
+end
+
+TeamAIMovement.chk_action_forbidden = CopMovement.chk_action_forbidden
+
+Hooks:PostHook(TeamAIMovement, "set_should_stay", "set_should_stay_ub", function (self, should_stay, pos)
+	if should_stay and pos then
+		self._should_stay_pos = mvector3.copy(pos)
+	end
+	local objective = self._ext_brain:objective()
+	if not objective or not objective.forced then
+		self._ext_brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(self._unit))
 	end
 end)

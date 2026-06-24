@@ -584,15 +584,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	local team_ai_hp = get_difficulty_specific_value({
+	presets.gang_member_damage.HEALTH_INIT = get_difficulty_specific_value({
+		32,
+		40,
 		48,
-		60,
-		72,
-		96,
-		120,
-	})
-
-	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+		64,
+		80,
+	}) 
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
 	presets.gang_member_damage.REGENERATE_RATIO = 1 / 40
 	presets.gang_member_damage.REGENERATE_TIME = 1

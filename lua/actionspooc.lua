@@ -106,10 +106,6 @@ function ActionSpooc:_use_christmas_sounds()
 	return tweak and tweak.is_christmas_heist
 end
 
-if UsefulBots then
-	return
-end
-
 if not Network:is_server() then
 	return
 end
