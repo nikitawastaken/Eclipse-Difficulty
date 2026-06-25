@@ -68,7 +68,6 @@ end)
 -- Should not be possible, yet somehow it was for some people
 Hooks:PostHook(CarryData, "_chk_register_steal_SO", "_chk_register_steal_SO_ub", function (self)
 	if self._steal_SO_data and not self._steal_SO_data.secure_pos then
-		log("[UsefulBots] Bag steal SO without a secure pos!")
 		self:_unregister_steal_SO()
 	end
 end)

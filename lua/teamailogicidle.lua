@@ -378,7 +378,7 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 	on_long_dis_interacted_original(data, other_unit, secondary, ...)
 
 	local objective_type = data.objective and data.objective.type
-	if objective_type == "revive" and had_bag and move_speed_modifier > 1 - UsefulBots.settings.drop_bag_percentage and not movement:carrying_bag() then
+	if objective_type == "revive" and had_bag and move_speed_modifier > 0.75 and not movement:carrying_bag() then
 		had_bag:carry_data():link_to(data.unit, false)
 		movement:set_carrying_bag(had_bag)
 	end
