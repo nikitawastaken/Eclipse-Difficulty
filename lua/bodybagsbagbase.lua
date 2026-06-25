@@ -5,7 +5,7 @@ function BodyBagsBagBase:take_bodybag(unit)
 
 	local can_take_bodybag = self:_can_take_bodybag() and 1 or 0
 	local can_take_cable_tie = managers.player:can_pickup_equipment("cable_tie")
-	
+
 	if can_take_cable_tie or can_take_bodybag == 1 then
 		unit:sound():play("pickup_ammo")
 		managers.player:add_body_bags_amount(1)
