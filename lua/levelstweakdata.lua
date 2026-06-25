@@ -1425,6 +1425,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["croatian_forest_1"] = 2,
 		["default"] = 1,
 		["croatian_forest_2"] = 1,
+		["croatian_forest_3"] = 3,
+		["croatian_forest_4"] = 2,
 	}
 	self.crojob2.random_environments = {
 		["croatian_dockyard_1"] = 3,
