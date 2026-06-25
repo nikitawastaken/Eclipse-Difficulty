@@ -2583,9 +2583,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.stats_modifiers = nil
 
 	-- Kang Arms
+	self.qbu88.use_data.selection_index = 1
 	self.qbu88.CLIP_AMMO_MAX = 10
 	self.qbu88.stats.damage = 64
-	self.qbu88.stats.spread = 21
+	self.qbu88.stats.spread = 19
 	self.qbu88.stats.recoil = 13
 	self.qbu88.stats.concealment = 19
 	self.qbu88.fire_mode_data.fire_rate = 60 / 250

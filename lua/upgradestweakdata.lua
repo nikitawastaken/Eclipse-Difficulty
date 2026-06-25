@@ -1082,6 +1082,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			damage_mul_addend = 0.2,
 			max_headshots = 5,
+			lose_on_miss = 2,
 		},
 	}
 	self.definitions.snp_consecutive_headshots = {
@@ -1115,6 +1116,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.skill_descs.single_shot_ammo_return.multibasic = "20%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
+	self.skill_descs.single_shot_ammo_return.multibasic3 = "2"
 	self.skill_descs.single_shot_ammo_return.multipro = "2"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "4m"
