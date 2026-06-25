@@ -263,10 +263,12 @@
 						<post :hook_id="tankmediccopdamage"/>
 					</group>
 
-					<post :hook_id="medic/medicdamage"/>
-
+					<group :hook_id="medic/">
+						<post :hook_id="actions/upper_body/medicactionheal"/>
+						<post :hook_id="medicdamage"/>
+					</group>
+	
 					<post :hook_id="shield/logics/shieldlogicattack"/>
-
 					<post :hook_id="taser/logics/taserlogicattack"/>
 				</group>
 

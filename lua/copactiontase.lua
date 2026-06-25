@@ -7,12 +7,6 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 
--- Make bots aware of cloaker attacks
-Hooks:PostHook(CopActionTase, "init", "eclipse_init", function (self)
-	self._is_sabotaging_action = true
-	Eclipse.utils.team_ai_force_attention(self._unit)
-end)
-
 -- Make tasers more consistent by allowing to tase through enemies and ignoring attention when already discharging
 function CopActionTase:on_attention(attention)
 	if not attention then
@@ -194,3 +188,13 @@ function CopActionTase:update(t)
 		end
 	end
 end
+
+if not Network:is_server() then
+	return
+end
+
+-- Make bots aware of Taser attacks
+Hooks:PostHook(CopActionTase, "init", "eclipse_init", function (self)
+	self._is_sabotaging_action = true
+	Eclipse.utils.team_ai_force_attention(self._unit)
+end)

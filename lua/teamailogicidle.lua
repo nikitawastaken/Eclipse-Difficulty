@@ -148,6 +148,15 @@ function TeamAILogicIdle.intimidate_cop(data, target)
 	target:brain():on_intimidated(tweak_data.player.long_dis_interaction.intimidate_strength, data.unit)
 end
 
+local tag_priority_muls = {
+	cloaker = 1.8,
+	taser = 1.7,
+	sniper = 1.6,
+	tank = 1.6,
+	medic = 1.5, 
+	marksman = 1.5,
+}
+
 local tmp_vec = Vector3()
 local _get_priority_attention_original = TeamAILogicIdle._get_priority_attention
 function TeamAILogicIdle._get_priority_attention(data, attention_objects, reaction_func, ...)
@@ -205,7 +214,6 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 				local been_marked = attention_data.mark_t and data.t - attention_data.mark_t < 10
 				local is_tied = att_anim.hands_tied
 				local is_special = attention_data.is_very_dangerous or att_tweak.priority_shout
-				local is_carrying_bag = att_movement:carrying_bag()
 				local high_priority = TeamAILogicIdle.is_high_priority(att_movement)
 				local invulnerable = att_damage._invulnerable or att_damage._immortal and att_damage._health <= 1 or (att_damage._health_ratio or 0) <= (att_damage._lower_health_percentage_limit or -1)
 
@@ -241,9 +249,20 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						target_priority = target_priority * 2
 					end
 
+					-- increase priority of enemies marked by the player
 					if marked_by_player then
 						target_priority = target_priority * 1.5
 					end					
+
+					-- decrease priority of turrets
+					if att_base.sentry_gun then
+						target_priority = target_priority * 0.5
+					end
+						
+					-- increase priority of special enemies
+					for _, tag in pairs(att_unit:base():get_tags()) do
+						target_priority = target_priority * (tag_priority_muls[tag] or 1)
+					end
 					
 					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
 					if attacking_player then
@@ -256,7 +275,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 
 						local is_sniper = att_unit:base():has_tag("sniper") or att_unit:base():has_tag("marksman")
 						if is_sniper then
-							target_priority = target_priority * 2
+							target_priority = target_priority * 1.5
 						end
 						
 						local att_player_damage = logic_data.attention_obj.unit:character_damage()
@@ -286,11 +305,6 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						if has_damaged then
 							target_priority = target_priority * 1.1
 						end
-	
-						-- target turrets but with a much lower attention weight
-						if att_base.sentry_gun then
-							target_priority = target_priority * 0.2
-						end
 						
 						-- reduce priority if we would hit a shield
 						if TeamAILogicIdle._ignore_shield(data.unit, attention_data) then
@@ -301,12 +315,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						if not should_intimidate and is_being_intimdated then
 							target_priority = target_priority * 0.01
 						end
-
-						-- prioritise enemies who are carrying bags
-						if is_carrying_bag then
-							target_priority = target_priority * 1.5
-						end
-		
+						
 						-- prefer shooting enemies the player is not aiming at
 						if follow_head_pos then
 							local att_head_pos = att_movement:m_head_pos()
@@ -362,8 +371,7 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 	end
 
 	if not Keepers and secondary then
-		local tracker = other_unit:movement():nav_tracker()
-		movement:set_should_stay(true, tracker:lost() and tracker:field_position() or tracker:position())
+		movement:set_should_stay(true, data.m_pos)
 
 		return
 	end

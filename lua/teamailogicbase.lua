@@ -43,7 +43,7 @@ Hooks:PostHook(TeamAILogicBase, "_set_attention_obj", "eclipse__set_attention_ob
 					if not World:raycast("ray", data.m_pos, att.m_pos, "slot_mask", data.visibility_slotmask, "report") then
 						TeamAILogicAssault.mark_enemy(data, data.unit, att.unit)
 						att.mark_t = data.t
-						data._next_mark_t = data.t + 16
+						data._next_mark_t = data.t + 5
 						return
 					end
 				end
@@ -126,6 +126,7 @@ function TeamAILogicBase._get_logic_state_from_reaction(data, reaction)
 
 	return state
 end
+
 
 -- Bag movement
 function TeamAILogicBase._find_closest_secure_zone(data, carry_unit)
