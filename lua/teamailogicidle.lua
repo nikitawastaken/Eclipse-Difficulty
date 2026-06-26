@@ -261,7 +261,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						
 					-- increase priority of special enemies
 					if att_unit:base().get_tags then
-						for _, tag in pairs(att_unit:base():get_tags()) do
+						for _, tag in pairs(att_unit:base():get_tags() or {}) do
 							target_priority = target_priority * (tag_priority_muls[tag] or 1)
 						end
 					end
