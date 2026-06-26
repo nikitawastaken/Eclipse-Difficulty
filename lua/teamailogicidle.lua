@@ -260,8 +260,10 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					end
 						
 					-- increase priority of special enemies
-					for _, tag in pairs(att_unit:base():get_tags()) do
-						target_priority = target_priority * (tag_priority_muls[tag] or 1)
+					if att_unit:base().get_tags then
+						for _, tag in pairs(att_unit:base():get_tags()) do
+							target_priority = target_priority * (tag_priority_muls[tag] or 1)
+						end
 					end
 					
 					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
