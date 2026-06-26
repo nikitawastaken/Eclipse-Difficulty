@@ -1402,9 +1402,10 @@ function GroupAIStateBase:_execute_so(so_data, so_rooms, so_administered, ...)
 
 	-- If someone else is reviving, ignore SO
 	if so_objective.type == "revive" and alive(so_objective.follow_unit) then
-		if so_objective.follow_unit:interaction() and so_objective.follow_unit:interaction()._block_revive_SO then
+		local unit = so_objective.follow_unit
+		if unit:interaction() and unit:interaction()._block_revive_SO then
 			return
-		elseif so_objective.follow_unit:character_damage() and so_objective.follow_unit:character_damage()._downed_paused_counter ~= 0 then
+		elseif unit:character_damage() and unit:character_damage()._downed_paused_counter and unit:character_damage()._downed_paused_counter ~= 0 then
 			return
 		end
 	end
