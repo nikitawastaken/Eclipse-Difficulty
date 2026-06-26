@@ -280,6 +280,7 @@
 					<post :hook_id="ecm_jammer/ecmjammerbase"/>
 					<post :hook_id="first_aid_kit/firstaidkitbase"/>
 					<post :hook_id="grenade_crate/grenadecratebase"/>
+					<post :hook_id="bodybags_bag/bodybagsbagbase"/>
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
