@@ -396,6 +396,14 @@ function CopLogicTravel.cancel_advance(data)
 	end
 end
 
+-- Sanity checks
+local _chk_stop_for_follow_unit_original = CopLogicTravel._chk_stop_for_follow_unit
+function CopLogicTravel._chk_stop_for_follow_unit(data, my_data, ...)
+	if data.objective and alive(data.objective.follow_unit) and my_data.coarse_path_index and my_data.coarse_path and my_data.coarse_path[my_data.coarse_path_index + 1] then
+		return _chk_stop_for_follow_unit_original(data, my_data, ...)
+	end
+end
+
 -- Fix enemies sometimes disappearing when they are told to retire
 -- Basically this function doesn't check if the retiring unit reached their actual retire spot
 local _on_destination_reached_original = CopLogicTravel._on_destination_reached

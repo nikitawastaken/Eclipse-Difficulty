@@ -1404,6 +1404,8 @@ function GroupAIStateBase:_execute_so(so_data, so_rooms, so_administered, ...)
 	if so_objective.type == "revive" and alive(so_objective.follow_unit) then
 		if so_objective.follow_unit:interaction() and so_objective.follow_unit:interaction()._block_revive_SO then
 			return
+		elseif so_objective.follow_unit:character_damage() and so_objective.follow_unit:character_damage()._downed_paused_counter ~= 0 then
+			return
 		end
 	end
 

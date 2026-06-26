@@ -440,6 +440,13 @@ Hooks:PostHook(ReviveInteractionExt, "set_waypoint_paused", "set_waypoint_paused
 		return
 	end
 
+	local internal_data = reviving_bot:brain()._logic_data.internal_data
+	local revive_complete_clbk_id = internal_data and internal_data.revive_complete_clbk_id
+	local revive_complete_t = revive_complete_clbk_id and managers.enemy:get_delayed_clbk_exec_t(revive_complete_clbk_id)
+	if revive_complete_t and revive_complete_t - TimerManager:game():time() < 2 then
+		return
+	end
+	
 	reviving_bot:brain():set_objective(nil)
 	reviving_bot:movement():action_request({
 		body_part = 4,
