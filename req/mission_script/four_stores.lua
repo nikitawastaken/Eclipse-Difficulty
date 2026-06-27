@@ -18,6 +18,11 @@ local cloaker_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local reduce_objective_requirement = {
+	values = {
+		amount = 2800,
+	},
+}
 
 return {
 	-- Combine some navigation areas
@@ -169,4 +174,7 @@ return {
 	[103546] = cloaker_spawn,
 	[103547] = cloaker_spawn,
 	[103548] = cloaker_spawn,
+	
+	-- Reduce 15.000$ objective to 2.800$
+	[100938] = reduce_objective_requirement,
 }

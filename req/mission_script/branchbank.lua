@@ -85,6 +85,11 @@ local cloaker_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local reduce_objective_requirement = {
+	values = {
+		amount = 8000,
+	},
+}
 return {
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
@@ -322,4 +327,7 @@ return {
 	[103525] = cloaker_spawn,
 	[103550] = cloaker_spawn,
 	[103562] = cloaker_spawn,
+	
+	-- Reduce 25.000$ objective to 8.000$
+	[104638] = reduce_objective_requirement,
 }
