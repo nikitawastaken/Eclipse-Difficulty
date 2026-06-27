@@ -14,9 +14,6 @@ function MedicDamage:heal_unit(...)
 		type = "idle",
 	})
 
-	self._unit:movement()._is_sabotaging_action = true	
-	Eclipse.utils.team_ai_force_attention(self._unit)
-
 	return heal_unit_original(self, ...)
 end
 
