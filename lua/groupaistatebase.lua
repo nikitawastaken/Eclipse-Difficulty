@@ -1391,6 +1391,9 @@ function GroupAIStateBase:_chk_last_strike(amount)
 	return self._stealth_strikes + amount >= tweak_data.player.stealth_strikes.total_amount
 end
 
+if not Network:is_server() then
+	return
+end
 
 -- more accurate distance check for team ai revive SO
 local _execute_so_original = GroupAIStateBase._execute_so
