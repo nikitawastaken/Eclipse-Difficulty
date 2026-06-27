@@ -1,4 +1,5 @@
 local level_id = Eclipse.utils.clean_level_id()
+local job_id = Eclipse.utils.job_id()
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 function MoneyTweakData:init(tweak_data)
@@ -27,8 +28,8 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.coke_pure = 110000
 	self.bag_values.meth = 100000
 	self.bag_values.meth_half = 50000
-	self.bag_values.weapon = 60000
-	self.bag_values.weapons = 120000
+	self.bag_values.weapon = 56000
+	self.bag_values.weapons = 64000
 	self.bag_values.ranc_weapon = 82500
 	self.bag_values.painting = 75000
 	self.bag_values.samurai_suit = 145000
@@ -55,10 +56,10 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.master_server = 720000
 	self.bag_values.lost_artifact = 420000
 	self.bag_values.present = 100000
-	self.bag_values.mad_master_server_value_1 = 500000
-	self.bag_values.mad_master_server_value_2 = 750000
-	self.bag_values.mad_master_server_value_3 = 1000000
-	self.bag_values.mad_master_server_value_4 = 1850000
+	self.bag_values.mad_master_server_value_1 = 69
+	self.bag_values.mad_master_server_value_2 = 69
+	self.bag_values.mad_master_server_value_3 = 69
+	self.bag_values.mad_master_server_value_4 = 69
 	self.bag_values.weapon_glock = 25000
 	self.bag_values.weapon_scar = 50000
 	self.bag_values.drk_bomb_part = 650000
@@ -696,7 +697,7 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.federali_medal = 25000
 
 	-- Heist specific loot values
-	if level_id == "big" then
+	if job_id == "big" then
 		self.bag_values.money = 75000
 		self.small_loot.money_bundle = (money_mul * 1000)
 		self.small_loot.money_bundle_value = (money_mul * 10000)
@@ -714,11 +715,17 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_ring = (money_mul * 6000)
 		self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	end
-	if level_id == "wwh" then
+	if job_id == "wwh" then
 		self.bag_values.money = 95000
 		self.bag_values.weapons = 180000
 	end
-	if level_id == "roberts" then
+	if job_id == "mad" then
+		self.bag_values.mad_master_server_value_1 = 150000
+		self.bag_values.mad_master_server_value_2 = 300000
+		self.bag_values.mad_master_server_value_3 = 450000
+		self.bag_values.mad_master_server_value_4 = 600000
+	end
+	if job_id == "roberts" then
 		self.bag_values.money = 90000
 		self.small_loot.vault_loot_gold = (money_mul * 19500)
 		self.small_loot.vault_loot_cash = (money_mul * 6500)
@@ -730,25 +737,25 @@ function MoneyTweakData:init(tweak_data)
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
 	end
-	if level_id == "arena" then
+	if job_id == "arena" then
 		self.bag_values.money = 175000
 	end
-	if level_id == "dah" then
+	if job_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = 50000
 		self.small_loot.diamondheist_vault_diamond = 15000
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
-	if level_id == "red2" or level_id == "kenaz" then
+	if job_id == "red2" or job_id == == "kenaz" then
 		self.bag_values.money = 145000
 		self.bag_values.gold = 300000
 		self.small_loot.gen_atm = (money_mul * 36000)
 		self.small_loot.money_bundle = (money_mul * 8250)
 	end
-	if level_id == "dinner" then
+	if job_id == "dinner" then
 		self.bag_values.gold = 350000
 		self.small_loot.money_bundle = (money_mul * 10250)
 	end
-	if level_id == "arm_cro" or level_id == "arm_hcm" or level_id == "arm_fac" or level_id == "arm_par" or level_id == "arm_und" then
+	if job_id == "arm_cro" or job_id == "arm_hcm" or job_id == "arm_fac" or job_id == "arm_par" or job_id == "arm_und" then
 		self.small_loot.vault_loot_gold = (money_mul * 39500)
 		self.small_loot.vault_loot_cash = (money_mul * 8500)
 		self.small_loot.vault_loot_coins = (money_mul * 6800)
@@ -761,7 +768,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.warhead = 1150000
 		self.bag_values.painting = 175000
 	end
-	if level_id == "safehouse" then
+	if job_id == "safehouse" then
 		self.small_loot.money_bundle = 50000
 	end
 	if level_id == "chill_combat" or level_id == "chill" then
