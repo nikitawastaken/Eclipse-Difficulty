@@ -745,7 +745,7 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_vault_diamond = 15000
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
-	if job_id == "red2" or job_id == == "kenaz" then
+	if job_id == "red2" or job_id == "kenaz" then
 		self.bag_values.money = 145000
 		self.bag_values.gold = 300000
 		self.small_loot.gen_atm = (money_mul * 36000)
