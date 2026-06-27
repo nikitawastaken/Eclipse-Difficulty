@@ -254,11 +254,11 @@ function SecurityCamera:chk_begin_rotation()
 	if not self._rotation_enabled then
 		return
 	end
-	
+
 	if managers.groupai:state():enemy_weapons_hot() then
 		return
 	end
-	
+
 	if not self:can_rotate() or not self:should_rotate_locally() then
 		return
 	end
