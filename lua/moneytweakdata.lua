@@ -801,7 +801,7 @@ function MoneyTweakData:init(tweak_data)
 	if level_id == "chill_combat" or level_id == "chill" then
 		self.bag_values.money = 0
 	end
-	
+
 	self.max_small_loot_value = 20000000
 	self.skilltree = {
 		respec = {},

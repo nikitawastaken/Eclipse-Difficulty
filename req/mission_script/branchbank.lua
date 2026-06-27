@@ -327,7 +327,7 @@ return {
 	[103525] = cloaker_spawn,
 	[103550] = cloaker_spawn,
 	[103562] = cloaker_spawn,
-	
+
 	-- Reduce 25.000$ objective to 8.000$
 	[104638] = reduce_objective_requirement,
 }
