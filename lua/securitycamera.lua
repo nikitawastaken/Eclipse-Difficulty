@@ -70,7 +70,7 @@ local idstr_camera_lens = Idstring("CameraLens")
 local idstr_camera_yaw = Idstring("CameraYaw")
 local idstr_camera_pitch = Idstring("CameraPitch")
 
-SecurityCamera._can_rotate = tweak_data.security_camera.can_rotate
+SecurityCamera._rotation_enabled = tweak_data.security_camera.rotation_enabled
 SecurityCamera._max_yaw = tweak_data.security_camera.max_yaw
 SecurityCamera._max_pitch = tweak_data.security_camera.max_pitch
 SecurityCamera._stall_time = tweak_data.security_camera.stall_time
@@ -251,6 +251,14 @@ function SecurityCamera:_get_local_yaw_pitch_to_position(target_pos)
 end
 
 function SecurityCamera:chk_begin_rotation()
+	if not self._rotation_enabled then
+		return
+	end
+
+	if managers.groupai:state():enemy_weapons_hot() then
+		return
+	end
+
 	if not self:can_rotate() or not self:should_rotate_locally() then
 		return
 	end
@@ -445,14 +453,6 @@ function SecurityCamera:should_rotate_locally()
 end
 
 function SecurityCamera:can_rotate()
-	if not self._can_rotate then
-		return false
-	end
-
-	if managers.groupai:state():enemy_weapons_hot() then
-		return false
-	end
-
 	return not self._destroyed and self._yaw_obj and self._pitch_obj
 end
 

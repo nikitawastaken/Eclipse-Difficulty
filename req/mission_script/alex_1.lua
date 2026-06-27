@@ -294,23 +294,18 @@ return {
 			amount_random = 3,
 		},
 	},
-	-- some new reenforce spots
+	-- Add new reinforce spots
 	[100941] = {
 		reinforce = {
 			{
 				name = "such_a_nice_car",
-				force = 2,
-				position = Vector3(675, -1200, 875),
+				force = 3,
+				position = Vector3(250, -1500, 900),
 			},
 			{
 				name = "such_an_ugly_car",
-				force = 2,
+				force = 3,
 				position = Vector3(-400, 1350, 1200),
-			},
-			{
-				name = "redeyes",
-				force = 2,
-				position = Vector3(3050, -900, 900),
 			},
 			{
 				name = "basement",

@@ -1147,6 +1147,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_1.custom_package = ready_team_package
 	self.firestarter_2.custom_package = ready_team_package
 	self.firestarter_3.custom_package = ready_team_package
+	self.alex_1.custom_package = ready_team_package
+	self.alex_2.custom_package = ready_team_package
 	self.alex_3.custom_package = ready_team_package
 	self.hox_2.custom_package = ready_team_package
 	self.man.custom_package = ready_team_package

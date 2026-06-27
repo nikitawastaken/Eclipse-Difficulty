@@ -1,4 +1,5 @@
 local level_id = Eclipse.utils.clean_level_id()
+local job_id = Eclipse.utils.job_id()
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 function MoneyTweakData:init(tweak_data)
@@ -17,72 +18,72 @@ function MoneyTweakData:init(tweak_data)
 	self.cut_job_complete = self.cashout_without_player_alive * 0.15
 	self.cut_job_complete = self.cut_job_complete / self.cut_difficulty
 	self.bag_values = {}
-	self.bag_values.default = 18500
-	self.bag_values.money = 45000
-	self.bag_values.gold = 120000
-	self.bag_values.goat = 100000
-	self.bag_values.diamonds = 22500
-	self.bag_values.diamonds_dah = 250000
-	self.bag_values.coke = 90000
-	self.bag_values.coke_pure = 110000
-	self.bag_values.meth = 100000
-	self.bag_values.meth_half = 50000
-	self.bag_values.weapon = 60000
-	self.bag_values.weapons = 120000
-	self.bag_values.ranc_weapon = 82500
-	self.bag_values.painting = 75000
-	self.bag_values.samurai_suit = 145000
-	self.bag_values.artifact_statue = 150000
-	self.bag_values.mus_artifact_bag = 100000
-	self.bag_values.circuit = 175000
-	self.bag_values.shells = 100000
-	self.bag_values.turret = 500000
-	self.bag_values.sandwich = 500000
-	self.bag_values.cro_loot = 1050000
-	self.bag_values.hope_diamond = 2000000
-	self.bag_values.evidence_bag = 135000
-	self.bag_values.vehicle_falcogini = 375000
-	self.bag_values.warhead = 500000
+	self.bag_values.default = 6205
+	self.bag_values.money = 8250
+	self.bag_values.gold = 24000
+	self.bag_values.goat = 9500
+	self.bag_values.diamonds = 10500
+	self.bag_values.diamonds_dah = 47500
+	self.bag_values.coke = 12535
+	self.bag_values.coke_pure = 18350
+	self.bag_values.meth = 18500
+	self.bag_values.meth_half = 9900
+	self.bag_values.weapon = 12750
+	self.bag_values.weapons = 24500
+	self.bag_values.ranc_weapon = 40200
+	self.bag_values.painting = 32000
+	self.bag_values.samurai_suit = 115000
+	self.bag_values.artifact_statue = 42000
+	self.bag_values.mus_artifact_bag = 12000
+	self.bag_values.circuit = 90000 -- this is server
+	self.bag_values.shells = 16000
+	self.bag_values.turret = 100000
+	self.bag_values.sandwich = 75000
+	self.bag_values.cro_loot = 125000
+	self.bag_values.hope_diamond = 1000000
+	self.bag_values.evidence_bag = 50000
+	self.bag_values.vehicle_falcogini = 87500
+	self.bag_values.warhead = 185000
 	self.bag_values.unknown = 50000
-	self.bag_values.safe = 250000
-	self.bag_values.prototype = 1000000
-	self.bag_values.faberge_egg = 500000
-	self.bag_values.treasure = 180000
-	self.bag_values.counterfeit_money = 100000
+	self.bag_values.safe = 150000
+	self.bag_values.prototype = 500000
+	self.bag_values.faberge_egg = 75000
+	self.bag_values.treasure = 24500
+	self.bag_values.counterfeit_money = 32000
 	self.bag_values.box_unknown = 10000
-	self.bag_values.black_tablet = 1800000
-	self.bag_values.masterpiece_painting = 250000
-	self.bag_values.master_server = 720000
-	self.bag_values.lost_artifact = 420000
-	self.bag_values.present = 100000
-	self.bag_values.mad_master_server_value_1 = 500000
-	self.bag_values.mad_master_server_value_2 = 750000
-	self.bag_values.mad_master_server_value_3 = 1000000
-	self.bag_values.mad_master_server_value_4 = 1850000
-	self.bag_values.weapon_glock = 25000
-	self.bag_values.weapon_scar = 50000
-	self.bag_values.drk_bomb_part = 650000
-	self.bag_values.drone_control_helmet = 3250000
-	self.bag_values.toothbrush = 18000
-	self.bag_values.cloaker_gold = 35000
-	self.bag_values.cloaker_money = 35000
-	self.bag_values.cloaker_cocaine = 35000
-	self.bag_values.diamond_necklace = 65000
-	self.bag_values.vr_headset = 120000
-	self.bag_values.women_shoes = 115000
-	self.bag_values.expensive_vine = 135000
-	self.bag_values.ordinary_wine = 115000
-	self.bag_values.robot_toy = 105000
-	self.bag_values.rubies = 52500
-	self.bag_values.red_diamond = 1500000
-	self.bag_values.old_wine = 180000
-	self.bag_values.chas_artifact = 420000
-	self.bag_values.chas_teaset = 240000
+	self.bag_values.black_tablet = 750000
+	self.bag_values.masterpiece_painting = 92000
+	self.bag_values.master_server = 175000
+	self.bag_values.lost_artifact = 120000
+	self.bag_values.present = 34000
+	self.bag_values.mad_master_server_value_1 = 50
+	self.bag_values.mad_master_server_value_2 = 50
+	self.bag_values.mad_master_server_value_3 = 50
+	self.bag_values.mad_master_server_value_4 = 50
+	self.bag_values.weapon_glock = 14250
+	self.bag_values.weapon_scar = 27550
+	self.bag_values.drk_bomb_part = 100000
+	self.bag_values.drone_control_helmet = 625000
+	self.bag_values.toothbrush = 12
+	self.bag_values.cloaker_gold = 12500
+	self.bag_values.cloaker_money = 12500
+	self.bag_values.cloaker_cocaine = 12500
+	self.bag_values.diamond_necklace = 12500
+	self.bag_values.vr_headset = 8240
+	self.bag_values.women_shoes = 7240
+	self.bag_values.expensive_vine = 9275
+	self.bag_values.ordinary_wine = 7760
+	self.bag_values.robot_toy = 6520
+	self.bag_values.rubies = 16240
+	self.bag_values.red_diamond = 1000000
+	self.bag_values.old_wine = 12000
+	self.bag_values.chas_artifact = 10000
+	self.bag_values.chas_teaset = 32000
 	self.bag_values.garden_gnome = 69
 	self.bag_values.turret_part = 25000
 	self.bag_values.corp_papers = 30000
 	self.bag_values.corp_prototype = 500000
-	self.bag_values.trai_printing_plates = 115000
+	self.bag_values.trai_printing_plates = 75000
 
 	self.bag_value_multiplier = 1
 	self.stage_completion = self._create_value_table(self.cut_stage_complete / 7 / self.offshore_rate, self.cut_stage_complete / self.offshore_rate, 7, true, 1)
@@ -117,12 +118,12 @@ function MoneyTweakData:init(tweak_data)
 	}
 	self.difficulty_multiplier_payout = {
 		1,
-		1.28,
-		1.56,
-		1.79,
-		2.03,
-		2.27,
-		2.53,
+		1.12,
+		1.44,
+		1.88,
+		2.06,
+		2.52,
+		3,
 	}
 	self.small_loot_difficulty_multiplier = self._create_value_table(0, 0, 6, false, 1)
 	self.alive_humans_multiplier = self._create_value_table(1, self.alive_players_max, tweak_data.max_players, false, 1)
@@ -130,7 +131,7 @@ function MoneyTweakData:init(tweak_data)
 	self.limited_bonus_multiplier = 1
 	self.sell_weapon_multiplier = 0.25
 	self.sell_mask_multiplier = 0.25
-	self.killing_civilian_deduction = self._create_value_table(10000, 50000, 10, true, 2) --self.killing_civilian_deduction = self._create_value_table(2000, 50000, 10, true, 2)
+	self.killing_civilian_deduction = self._create_value_table(6000, 35000, 10, true, 2) --self.killing_civilian_deduction = self._create_value_table(2000, 50000, 10, true, 2)
 	self.buy_premium_multiplier = {
 		hard = 1,
 		overkill = 1,
@@ -340,16 +341,16 @@ function MoneyTweakData:init(tweak_data)
 	}
 	local smallest_cashout = (2500 + 2500) * 0.2 -- (self.stage_completion[1] + self.job_completion[1]) * self.offshore_rate
 	local smallest_cashout_mod = (2500 + 2500) * 0.28
-	local biggest_mask_cost = math.round(250000 * 2)
+	local biggest_mask_cost = 50000 -- math.round(250000 * 2)
 	local biggest_mask_cost_deinfamous = math.round(biggest_mask_cost / self.global_value_multipliers.infamous)
 	local biggest_mask_part_cost = math.round(smallest_cashout * 20)
 	local smallest_mask_part_cost = math.round(smallest_cashout * 68)
-	local biggest_weapon_cost = math.round(250000 * 4) -- (og value - 2.5) highest price 1,000,000$ at level 100, change table_size value to change cost peak level
-	local smallest_weapon_cost = math.round(smallest_cashout * 95) -- lowest price 25,000 at level 0, change curve value to change the price difference between levels (lower value = higher difference)
-	local biggest_weapon_mod_cost = math.round(250000 * 0.3) -- peak cost reached at level 10 (?)
-	local smallest_weapon_mod_cost = math.round(smallest_cashout_mod * 15) --13
-	self.weapon_cost = self._create_value_table(smallest_weapon_cost, biggest_weapon_cost, 100, true, 1.2) -- (min, max, table_size, round, curve)
-	self.modify_weapon_cost = self._create_value_table(smallest_weapon_mod_cost, biggest_weapon_mod_cost, 10, true, 0.6)
+	local biggest_weapon_cost = 500000 -- math.round(250000 * 4)
+	local smallest_weapon_cost = 24250 -- math.round(smallest_cashout * 95) lowest price 25,000 at level 0, change curve value to change the price difference between levels (lower value = higher difference)
+	local biggest_weapon_mod_cost = 16000 -- math.round(250000 * 0.3) peak cost reached at level 10 (?)
+	local smallest_weapon_mod_cost = 4200 --13
+	self.weapon_cost = self._create_value_table(smallest_weapon_cost, biggest_weapon_cost, 100, true, 0.75) -- 1.2 (min, max, table_size, round, curve)
+	self.modify_weapon_cost = self._create_value_table(smallest_weapon_mod_cost, biggest_weapon_mod_cost, 100, true, 0.3)
 	self.remove_weapon_mod_cost_multiplier = self._create_value_table(1, 1, 10, true, 1)
 	self.masks = {
 		mask_value = self._create_value_table(smallest_mask_part_cost, smallest_mask_part_cost * 2, 10, true, 2),
@@ -358,130 +359,126 @@ function MoneyTweakData:init(tweak_data)
 		color_value = self._create_value_table(smallest_mask_part_cost, biggest_mask_part_cost, 10, true, 0.4),
 	}
 
-	local function millions(value)
-		return value * 1000000
-	end
-
 	self.skill_switch_cost = {
 		{
 			spending = 0,
-			offshore = millions(0),
+			offshore = 0,
 		},
 		{
-			spending = 0,
-			offshore = millions(0),
+			spending = 25000,
+			offshore = 75000,
 		},
 		{
-			spending = 0,
-			offshore = millions(3),
+			spending = 75000,
+			offshore = 150000,
 		},
 		{
-			spending = 0,
-			offshore = millions(3),
+			spending = 100000,
+			offshore = 200000,
 		},
 		{
-			spending = 0,
-			offshore = millions(3),
+			spending = 125000,
+			offshore = 225000,
 		},
 		{
-			spending = 0,
-			offshore = millions(3),
+			spending = 150000,
+			offshore = 250000,
 		},
 		{
-			spending = 0,
-			offshore = millions(5),
+			spending = 150000,
+			offshore = 275000,
 		},
 		{
-			spending = 0,
-			offshore = millions(5),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(5),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(5),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(6),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(6),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(6),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(6),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(6),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(7),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(7),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(7),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(7),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(7),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(8),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(8),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(8),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(8),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(8),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(9),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(9),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(9),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(9),
+			spending = 150000,
+			offshore = 300000,
 		},
 		{
-			spending = 0,
-			offshore = millions(9),
+			spending = 150000,
+			offshore = 300000,
 		},
 	}
 	self.old_skill_switch_cost = {
@@ -562,33 +559,33 @@ function MoneyTweakData:init(tweak_data)
 		1,
 	}
 	self.mission_asset_cost_multiplier_by_risk = {
-		5,
-		6,
-		7,
-		8,
-		9,
-		10,
-		11,
+		1,
+		1.3,
+		1.6,
+		1.9,
+		2.2,
+		2.5,
+		2.8,
 	}
-	self.mission_asset_cost_small = self._create_value_table(5000, 25000, 10, true, 1) -- (2500, 15000, 10, true, 1)
-	self.mission_asset_cost_medium = self._create_value_table(20000, 60000, 10, true, 1) -- (10000, 45000, 10, true, 1)
-	self.mission_asset_cost_large = self._create_value_table(75000, 400000, 10, true, 1) -- (55000, 400000, 10, true, 1)
+	self.mission_asset_cost_small = self._create_value_table(5500, 15750, 10, true, 1)
+	self.mission_asset_cost_medium = self._create_value_table(13500, 27500, 10, true, 1)
+	self.mission_asset_cost_large = self._create_value_table(29500, 62000, 10, true, 1)
 	self.preplaning_asset_cost_multiplier_by_risk = {
 		1,
+		1.3,
 		1.6,
-		2,
-		2.4,
-		2.6,
+		1.9,
+		2.2,
+		2.5,
 		2.8,
-		3,
 	}
-	self.preplaning_asset_cost_thermite = 80000
-	self.preplaning_asset_cost_escapebig = 65000
-	self.preplaning_asset_cost_spycam = 12000
-	self.preplaning_asset_cost_delay10 = 8000
-	self.preplaning_asset_cost_delay20 = 12000
-	self.preplaning_asset_cost_delay30 = 16000
-	self.preplaning_asset_cost_timelock60 = 20000
+	self.preplaning_asset_cost_thermite = 30000
+	self.preplaning_asset_cost_escapebig = 15000
+	self.preplaning_asset_cost_spycam = 7000
+	self.preplaning_asset_cost_delay10 = 6000
+	self.preplaning_asset_cost_delay20 = 9000
+	self.preplaning_asset_cost_delay30 = 12000
+	self.preplaning_asset_cost_timelock60 = 10000
 	self.preplaning_asset_cost_cake = 12000
 	self.preplaning_asset_cost_extracameras = 7500
 	self.preplaning_asset_cost_accesscameras = 35000
@@ -665,104 +662,141 @@ function MoneyTweakData:init(tweak_data)
 	self.preplanning_asset_cost_chas_tram = 15000
 
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
-	local money_mul = get_difficulty_specific_value({ 1, 1.1, 1.2, 1.3, 1.4 })
+	local money_mul = get_difficulty_specific_value({ 0.8, 0.9, 1, 1.15, 1.3 })
 
 	self.small_loot = {}
-	self.small_loot.money_bundle = (money_mul * 750)
-	self.small_loot.money_bundle_value = (money_mul * 10000)
+	self.small_loot.money_bundle = (money_mul * 125)
+	self.small_loot.money_bundle_value = (money_mul * 125)
 	self.small_loot.ring_band = 1954
-	self.small_loot.diamondheist_vault_bust = (money_mul * 4750)
-	self.small_loot.diamondheist_vault_diamond = (money_mul * 6250)
-	self.small_loot.diamondheist_big_diamond = (money_mul * 9000)
+	self.small_loot.diamondheist_vault_bust = (money_mul * 1365)
+	self.small_loot.diamondheist_vault_diamond = (money_mul * 3175)
+	self.small_loot.diamondheist_big_diamond = (money_mul * 4350)
 	self.small_loot.mus_small_artifact = (money_mul * 700)
 	self.small_loot.value_gold = (money_mul * 10000)
-	self.small_loot.gen_atm = (money_mul * 36000)
+	self.small_loot.gen_atm = (money_mul * 18000)
 	self.small_loot.special_deposit_box = (money_mul * 3500)
 	self.small_loot.slot_machine_payout = (money_mul * 75000)
-	self.small_loot.vault_loot_chest = (money_mul * 9000)
-	self.small_loot.vault_loot_diamond_chest = (money_mul * 14000)
-	self.small_loot.vault_loot_banknotes = (money_mul * 9000)
-	self.small_loot.vault_loot_silver = (money_mul * 9650)
-	self.small_loot.vault_loot_diamond_collection = (money_mul * 11500)
-	self.small_loot.vault_loot_trophy = (money_mul * 12500)
-	self.small_loot.money_wrap_single_bundle_vscaled = (money_mul * 385)
-	self.small_loot.spawn_bucket_of_money = (money_mul * 20000)
-	self.small_loot.vault_loot_gold = (money_mul * 17500)
-	self.small_loot.vault_loot_cash = (money_mul * 2500)
-	self.small_loot.vault_loot_coins = (money_mul * 1800)
-	self.small_loot.vault_loot_ring = (money_mul * 6000)
+	self.small_loot.vault_loot_chest = (money_mul * 5545)
+	self.small_loot.vault_loot_diamond_chest = (money_mul * 10550)
+	self.small_loot.vault_loot_banknotes = (money_mul * 4200)
+	self.small_loot.vault_loot_silver = (money_mul * 7250)
+	self.small_loot.vault_loot_diamond_collection = (money_mul * 16250)
+	self.small_loot.vault_loot_trophy = (money_mul * 3250)
+	self.small_loot.money_wrap_single_bundle_vscaled = (money_mul * 8525)
+	self.small_loot.spawn_bucket_of_money = (money_mul * 7200)
+	self.small_loot.vault_loot_gold = (money_mul * 11250)
+	self.small_loot.vault_loot_cash = (money_mul * 750)
+	self.small_loot.vault_loot_coins = (money_mul * 825)
+	self.small_loot.vault_loot_ring = (money_mul * 1000)
 	self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	self.small_loot.vault_loot_macka = 1
-	self.small_loot.federali_medal = 25000
+	self.small_loot.federali_medal = 1200
 
 	-- Heist specific loot values
-	if level_id == "big" then
-		self.bag_values.money = 75000
-		self.small_loot.money_bundle = (money_mul * 1000)
-		self.small_loot.money_bundle_value = (money_mul * 10000)
-		self.small_loot.value_gold = (money_mul * 1000)
-		self.small_loot.gen_atm = (money_mul * 72000)
-		self.small_loot.vault_loot_chest = (money_mul * 9000)
-		self.small_loot.vault_loot_diamond_chest = (money_mul * 14000)
-		self.small_loot.vault_loot_banknotes = (money_mul * 9000)
-		self.small_loot.vault_loot_silver = (money_mul * 9650)
-		self.small_loot.vault_loot_diamond_collection = (money_mul * 11500)
-		self.small_loot.vault_loot_trophy = (money_mul * 12500)
-		self.small_loot.vault_loot_gold = (money_mul * 17500)
-		self.small_loot.vault_loot_cash = (money_mul * 2500)
-		self.small_loot.vault_loot_coins = (money_mul * 1800)
-		self.small_loot.vault_loot_ring = (money_mul * 6000)
+	if job_id == "big" then
+		self.bag_values.money = 12450
+		self.bag_values.gold = 56450
+		self.small_loot.money_bundle = (money_mul * 85)
+		self.small_loot.money_bundle_value = (money_mul * 85)
+		self.small_loot.value_gold = (money_mul * 10000)
+		self.small_loot.gen_atm = (money_mul * 18000)
+		self.small_loot.vault_loot_chest = (money_mul * 3500)
+		self.small_loot.vault_loot_diamond_chest = (money_mul * 7500)
+		self.small_loot.vault_loot_banknotes = (money_mul * 2200)
+		self.small_loot.vault_loot_silver = (money_mul * 4250)
+		self.small_loot.vault_loot_diamond_collection = (money_mul * 6250)
+		self.small_loot.vault_loot_trophy = (money_mul * 1250)
+		self.small_loot.vault_loot_gold = (money_mul * 10000)
+		self.small_loot.vault_loot_cash = (money_mul * 750)
+		self.small_loot.vault_loot_coins = (money_mul * 425)
+		self.small_loot.vault_loot_ring = (money_mul * 1000)
 		self.small_loot.vault_loot_jewels = (money_mul * 1400)
 	end
-	if level_id == "wwh" then
-		self.bag_values.money = 95000
-		self.bag_values.weapons = 180000
+	if job_id == "mad" then
+		self.bag_values.mad_master_server_value_1 = 250000
+		self.bag_values.mad_master_server_value_2 = 500000
+		self.bag_values.mad_master_server_value_3 = 750000
+		self.bag_values.mad_master_server_value_4 = 1000000
 	end
-	if level_id == "roberts" then
-		self.bag_values.money = 90000
+	if job_id == "mallcrasher" then
+		self.bag_values.default = 15205
+	end
+	if job_id == "wwh" then
+		self.bag_values.money = 24500
+		self.bag_values.weapons = 62300
+	end
+	if job_id == "roberts" then
+		self.bag_values.money = 14650
 		self.small_loot.vault_loot_gold = (money_mul * 19500)
-		self.small_loot.vault_loot_cash = (money_mul * 6500)
-		self.small_loot.vault_loot_coins = (money_mul * 5800)
-		self.small_loot.vault_loot_ring = (money_mul * 12000)
-		self.small_loot.vault_loot_jewels = (money_mul * 8400)
-		self.small_loot.gen_atm = (money_mul * 72000)
+		self.small_loot.vault_loot_cash = (money_mul * 2500)
+		self.small_loot.vault_loot_coins = (money_mul * 1800)
+		self.small_loot.vault_loot_ring = (money_mul * 3000)
+		self.small_loot.vault_loot_jewels = (money_mul * 4400)
+		self.small_loot.gen_atm = (money_mul * 12000)
 	end
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
 	end
-	if level_id == "arena" then
-		self.bag_values.money = 175000
+	if job_id == "arena" then
+		self.bag_values.money = 25000
 	end
-	if level_id == "dah" then
+	if job_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = 50000
 		self.small_loot.diamondheist_vault_diamond = 15000
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
-	if level_id == "red2" or level_id == "kenaz" then
-		self.bag_values.money = 145000
-		self.bag_values.gold = 300000
-		self.small_loot.gen_atm = (money_mul * 36000)
-		self.small_loot.money_bundle = (money_mul * 8250)
+	if job_id == "red2" or job_id == "kenaz" or job_id == "chca" then
+		self.bag_values.money = 22600
+		self.bag_values.gold = 75000
+		self.small_loot.gen_atm = (money_mul * 26000)
+		self.small_loot.money_bundle = (money_mul * 4250)
 	end
-	if level_id == "dinner" then
-		self.bag_values.gold = 350000
+	if job_id == "dinner" then
+		self.bag_values.gold = 92000
 		self.small_loot.money_bundle = (money_mul * 10250)
 	end
-	if level_id == "arm_cro" or level_id == "arm_hcm" or level_id == "arm_fac" or level_id == "arm_par" or level_id == "arm_und" then
-		self.small_loot.vault_loot_gold = (money_mul * 39500)
-		self.small_loot.vault_loot_cash = (money_mul * 8500)
-		self.small_loot.vault_loot_coins = (money_mul * 6800)
-		self.small_loot.vault_loot_ring = (money_mul * 12000)
-		self.small_loot.vault_loot_jewels = (money_mul * 9400)
+	if job_id == "arm_cro" or job_id == "arm_hcm" or job_id == "arm_fac" or job_id == "arm_par" or job_id == "arm_und" or job_id == "glace" then
+		self.small_loot.vault_loot_gold = (money_mul * 16000)
+		self.small_loot.vault_loot_cash = (money_mul * 4200)
+		self.small_loot.vault_loot_coins = (money_mul * 3800)
+		self.small_loot.vault_loot_ring = (money_mul * 2400)
+		self.small_loot.vault_loot_jewels = (money_mul * 3400)
+		self.bag_values.money = 14250
+		self.bag_values.default = 10200
+		self.bag_values.gold = 23375
 	end
-	if level_id == "hvh" or level_id == "nail" or level_id == "help" or level_id == "haunted" then
-		self.bag_values.sandwich = 950000
-		self.bag_values.money = 450000
-		self.bag_values.warhead = 1150000
+	if job_id == "hvh" or job_id == "nail" or job_id == "help" or job_id == "haunted" then
+		self.bag_values.sandwich = 150000
+		self.bag_values.money = 220000
+		self.bag_values.warhead = 350000
 		self.bag_values.painting = 175000
 	end
-	if level_id == "safehouse" then
-		self.small_loot.money_bundle = 50000
+	if job_id == "brb" then
+		self.bag_values.gold = 37500
+	end
+	if job_id == "framing_frame" then
+		self.bag_values.money = 32000
+		self.bag_values.gold = 75000
+	end
+	if job_id == "nightclub" then
+		self.bag_values.money = 14350
+		self.bag_values.coke = 20000
+	end
+	if job_id == "friend" then
+		self.bag_values.money = 14350
+		self.bag_values.coke = 22050
+		self.bag_values.coke_pure = 22050
+	end
+	if job_id == "fish" then
+		self.bag_values.money = 50000
+	end
+	if job_id == "mia" then
+		self.small_loot.money_bundle = (money_mul * 2500)
+		self.bag_values.coke = 24535
+		self.bag_values.money = 15600
+	end
+	if job_id == "safehouse" then
+		self.small_loot.money_bundle = 10000
 	end
 	if level_id == "chill_combat" or level_id == "chill" then
 		self.bag_values.money = 0
@@ -798,18 +832,18 @@ function MoneyTweakData:init(tweak_data)
 	self.skilltree.respec.respec_refund_multiplier = 0.6
 	self.skilltree.respec.point_cost = 0
 	self.skilltree.respec.point_multiplier_cost = 1
-	local loot_drop_value = 10000
+	local loot_drop_value = 7250
 	self.loot_drop_cash = {
-		cash10 = loot_drop_value * 2,
-		cash20 = loot_drop_value * 4,
-		cash30 = loot_drop_value * 6,
-		cash40 = loot_drop_value * 8,
-		cash50 = loot_drop_value * 9,
-		cash60 = loot_drop_value * 10,
-		cash70 = loot_drop_value * 11,
-		cash80 = loot_drop_value * 12,
-		cash90 = loot_drop_value * 13,
-		cash100 = loot_drop_value * 14,
+		cash10 = loot_drop_value,
+		cash20 = 2 * loot_drop_value,
+		cash30 = 2 * loot_drop_value,
+		cash40 = 3 * loot_drop_value,
+		cash50 = 3 * loot_drop_value,
+		cash60 = 4 * loot_drop_value,
+		cash70 = 4 * loot_drop_value,
+		cash80 = 5 * loot_drop_value,
+		cash90 = 5 * loot_drop_value,
+		cash100 = 6 * loot_drop_value,
 		cash_preorder = self.biggest_cashout / 10,
 	}
 
