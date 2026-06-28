@@ -135,7 +135,11 @@ function MoneyManager:get_money_by_params(params)
 	base_static_value = static_value - risk_static_value
 
 	if static_value then
-		small_value = real_small_value + managers.loot:get_real_total_postponed_small_loot_value()
+		if managers.job:skip_money() then
+			small_value = managers.loot:get_real_total_postponed_small_loot_value()
+		else
+			small_value = real_small_value
+		end
 
 		if tweak_data:get_value("money_manager", "max_small_loot_value") < small_value then
 			print("[MoneyManager:get_money_by_params] - Small Loot drop was too much", small_value, tweak_data.carry.max_small_loot_value)

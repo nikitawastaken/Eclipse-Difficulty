@@ -39,6 +39,14 @@ local difficulty_add_20 = {
 local last_rappel_spawn = {
 	groups = preferred.no_cops_agents_bulldozers,
 }
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+	},
+}
 return {
 	[102425] = {
 		ponr = {
@@ -124,6 +132,30 @@ return {
 			{ id = 102129, delay = 0, delay_rand = 45 }, -- add 11
 		},
 	},
+	-- replace regular security with green security
+	[100670] = green_security,
+	[100671] = green_security,
+	[100672] = green_security,
+	[100673] = green_security,
+	[100674] = green_security,
+	[100675] = green_security,
+	[100676] = green_security,
+	[100677] = green_security,
+	[101371] = green_security,
+	[101372] = green_security,
+	[101373] = green_security,
+	[101368] = green_security,
+	[101369] = green_security,
+	[101677] = green_security,
+	[101678] = green_security,
+	[101758] = green_security,
+	[101759] = green_security,
+	[101760] = green_security,
+	[100512] = green_security,
+	[100720] = green_security,
+	[101388] = green_security,
+	[101568] = green_security,
+	[101576] = green_security,
 	-- Add scripted difficulty increases
 	--	[101507] = difficulty_add_20, -- barrier_opened001
 	--	[101508] = difficulty_add_20, -- barrier_opened002

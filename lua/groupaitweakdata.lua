@@ -2974,6 +2974,8 @@ GroupAITweakData.fbi_heists = table.list_to_set({
 	"firestarter_1",
 	"firestarter_2",
 	"firestarter_3",
+	"alex_1",
+	"alex_2",
 	"alex_3",
 	"hox_2",
 	"hox_3",
