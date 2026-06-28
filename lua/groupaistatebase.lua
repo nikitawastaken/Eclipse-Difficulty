@@ -1501,7 +1501,7 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "add_special_objective_
 	end
 
 	if bot_assist then
-		objective_data.search_dis_sq = 2500 ^ 2
+		objective_data.search_dis_sq = 1500 ^ 2
 	end
 
 	if objective_data.interval then
