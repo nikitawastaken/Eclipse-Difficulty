@@ -86,12 +86,12 @@ function CopLogicTravel.upd_advance(data, ...)
 
 	CopLogicTravel._chk_relocate(data, my_data)
 	
-	if not data.is_team_ai then
+	if not data.is_team_ai or not data.objective then
 		return upd_advance_original(data, ...)
 	end
 
-	local revive_unit = data.objective and data.objective.type == "revive" and data.objective.follow_unit
-	if not alive(revive_unit) or mvector3.distance_sq(data.m_pos, revive_unit:position()) > 250000 then
+	local assist_unit = data.objective.type == "revive" and data.objective.follow_unit or data.objective.assist_unit
+	if not alive(assist_unit) or mvector3.distance_sq(data.m_pos, assist_unit:position()) > 250000 then
 		return upd_advance_original(data, ...)
 	end
 
@@ -100,10 +100,10 @@ function CopLogicTravel.upd_advance(data, ...)
 	end
 
 	local timer = math.huge
-	if revive_unit:base().is_local_player then
-		timer = revive_unit:character_damage()._downed_timer or timer
-	elseif revive_unit:interaction().get_waypoint_time then
-		timer = revive_unit:interaction():get_waypoint_time() or timer
+	if assist_unit:base().is_local_player then
+		timer = assist_unit:character_damage()._downed_timer or timer
+	elseif assist_unit:interaction().get_waypoint_time then
+		timer = assist_unit:interaction():get_waypoint_time() or timer
 	end
 
 	if timer < 10 then
