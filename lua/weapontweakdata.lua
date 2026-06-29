@@ -1014,7 +1014,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 
 				-- Apply a ROF decrease to Akimbos but only if they cannot use full auto.
-				if weap_data.fire_mode_data then
+				if weap_data.fire_mode_data and single_weapon_data then
 					weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate * (weap_data.CAN_TOGGLE_FIREMODE and 1 or 5 / 4)
 				end
 			end
