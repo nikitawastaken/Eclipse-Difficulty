@@ -1071,10 +1071,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.bph.player_style = "sneak_suit"
 			self.vit.player_style = "murky_suit"
 			self.pal.player_style = "poolrepair"
+			self.dinner.player_style = "slaughterhouse"
 		end
 
 		if expanded_outfits then -- Expanded setting, fitting default outfits for more heists
 			-- Tactical BDU
+			self.firestarter_1.player_style = "sneak_suit"
 			self.firestarter_2.player_style = "sneak_suit"
 			self.framing_frame_1.player_style = "sneak_suit"
 			self.framing_frame_2.player_style = "sneak_suit"
@@ -1090,6 +1092,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.bph.player_style = "sneak_suit"
 			self.pex.player_style = "sneak_suit"
 			self.sand.player_style = "sneak_suit"
+			self.corp.player_style = "sneak_suit"
 			self.skm_mus.player_style = "sneak_suit"
 
 			-- Winter Camo Parka
@@ -1104,13 +1107,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_cas.player_style = "tux"
 
 			-- Murkywater Uniform
-			self.pbr.player_style = "murky_suit"
 			self.pbr2.player_style = "murky_suit"
-			self.des.player_style = "murky_suit"
 			self.vit.player_style = "murky_suit"
 
 			-- Legacy Tactical
+			self.arm_for.player_style = "slaughterhouse"
 			self.alex_1.player_style = "slaughterhouse"
+			self.alex_2.player_style = "slaughterhouse"
 			self.alex_3.player_style = "slaughterhouse"
 			self.rat.player_style = "slaughterhouse"
 			self.welcome_to_the_jungle_1.player_style = "slaughterhouse"
@@ -1120,16 +1123,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.watchdogs_1_night.player_style = "slaughterhouse"
 			self.watchdogs_2.player_style = "slaughterhouse"
 			self.watchdogs_2_day.player_style = "slaughterhouse"
-			self.firestarter_1.player_style = "slaughterhouse"
 			self.mia_1.player_style = "slaughterhouse"
 			self.mia_2.player_style = "slaughterhouse"
 			self.crojob2.player_style = "slaughterhouse"
 			self.crojob3.player_style = "slaughterhouse"
 			self.crojob3_night.player_style = "slaughterhouse"
 			self.shoutout_raid.player_style = "slaughterhouse"
-			self.dinner.player_style = "slaughterhouse"
 			self.man.player_style = "slaughterhouse"
 			self.spa.player_style = "slaughterhouse"
+			self.pbr.player_style = "slaughterhouse"
+			self.des.player_style = "slaughterhouse"
 			self.mex.player_style = "slaughterhouse"
 			self.mex_cooking.player_style = "slaughterhouse"
 			self.ranc.player_style = "slaughterhouse"

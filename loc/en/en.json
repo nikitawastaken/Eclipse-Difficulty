@@ -37,6 +37,7 @@
 	"bm_menu_armor_regen": "Armor Regen",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
+	"menu_asset_lock_additional_assets": "Requires the Blending In perk deck card to unlock",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
 
 	"bm_equipment_doctor_bag_desc": "To use the Doctor Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT; to regain health. Using the doctor bag will give the player one life back, meaning the player can get downed once more before going into custody. It can only be used twice.$NL;$NL;When the Doctor Bag is consumed, it disappears. You can see how many uses are left by looking at the Doctor Bag. $NL;$NL;The Doctor Bag is a portable bag, usually used by a physician or other medical profession to transport medical supplies and medicine.",
@@ -153,6 +154,8 @@
 	"hud_arm_forest5_hl": "Secure turret ammo bags",
 	"hud_arm_forest6_hl": "Secure turret ammo bags",
 	"hud_arm_forest7_hl": "Secure turret ammo bags",
+	
+	"hud_v_four_stores_mission2_hl": "Steal $2.800",
 
 	"bot_watchdogs_new_stage2_01_any_02": "This is the boat. I see the signal, will be there soon.",
 	"bot_watchdogs_new_stage2_01_any_03": "This is the boat. Signal on sight, I'm on my way.",

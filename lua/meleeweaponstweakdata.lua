@@ -81,7 +81,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		data.stats.min_damage_effect = math.round((math.map_range(expire, min_expire, max_expire, 30, 350) + (data.melee_damage_delay or 0) * 350) * effect_mul, 10)
 		data.stats.max_damage_effect = data.stats.min_damage_effect
 		data.stats.charge_time = data.stats.charge_time and data.stats.charge_time * 0.5
-		data.stats.headshot_damage_mul = is_blunt and 1.5 or 1
+		data.stats.headshot_damage_mul = data.tase_data and 0 or is_blunt and 1.5 or is_sharp and 0.6 or 1
 		data.stats.remove_weapon_movement_penalty = nil
 	end
 end)
