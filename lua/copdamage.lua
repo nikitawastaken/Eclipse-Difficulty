@@ -248,12 +248,13 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 		end
 	end
 
-	local melee_entry = managers.blackmarket:equipped_melee_weapon()
-	local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
-
 	if not (self._char_tweak.ignore_melee_headshot or self._char_tweak.ignore_headshot) and not self._damage_reduction_multiplier and head then
 		if self._char_tweak.headshot_dmg_mul then
-			damage = damage * self._char_tweak.headshot_dmg_mul * melee_headshot_mul
+			local melee_entry = managers.blackmarket:equipped_melee_weapon()
+			local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
+			local headshot_mul = 1 + (math.max(0, self._char_tweak.headshot_dmg_mul - 1) * melee_headshot_mul)
+			
+			damage = damage * headshot_mul
 		else
 			damage = self._health * 10
 		end
