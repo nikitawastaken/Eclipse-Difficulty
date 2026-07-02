@@ -73,7 +73,8 @@
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
 					<post :hook_id="missionbriefinggui"/>
-					<post :hook_id="menucomponentmanager"/>					
+					<post :hook_id="menucomponentmanager"/>			
+					<post :hook_id="crewmanagementgui"/>
 				</group>
 
 				<group :hook_id="player/">

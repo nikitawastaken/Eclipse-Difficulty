@@ -191,19 +191,17 @@ function Drill:set_jammed(jammed)
 
 	self:_change_num_jammed_drills(self._jammed and 1 or -1)
 
-	if Network:is_server() then
+	if Network:is_server() then		
 		if jammed then
 			self:_unregister_sabotage_SO()
+			
+			if not self._jammed_bot_so_id then
+				self:_register_fix_SO()
+			end
 		else
+			self:_unregister_fix_SO()
 			self:_register_sabotage_SO()
 		end
---[[
-		if not jammed then
-			self:_unregister_fix_SO()
-		elseif not self._jammed_bot_so_id then
-			self:_register_fix_SO()
-		end
-]]
 	end
 end
 
@@ -245,7 +243,7 @@ function Drill:on_melee_hit(peer_id)
 	end
 end
 
---[[
+-- Team AI drill repair ability
 if not Network:is_server() then
 	return
 end
@@ -304,6 +302,10 @@ function Drill:_register_fix_SO()
 		return
 	end
 
+	if int._tweak_data.special_equipment then
+		return
+	end
+	
 	local objective_pos = self._nav_tracker:field_position()
 	local objective_rot = Rotation((self._unit:position() - objective_pos):with_z(0):normalized(), math.UP)
 	local objective_nav = self._nav_tracker:nav_segment()
@@ -390,4 +392,3 @@ function Drill:_unregister_fix_SO()
 	managers.groupai:state():remove_special_objective(self._jammed_bot_so_id)
 	self._jammed_bot_so_id = nil
 end
-]]

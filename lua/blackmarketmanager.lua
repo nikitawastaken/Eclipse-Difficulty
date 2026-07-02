@@ -173,7 +173,7 @@ end)
 -- Bandaid for removing team AI abilities/boosts
 function BlackMarketManager:verify_has_crew_skill() end
 
-function BlackMarketManager:verify_has_crew_ability() end
+-- function BlackMarketManager:verify_has_crew_ability() end
 
 -- Extra throwables upgrade
 function BlackMarketManager:equipped_grenade()

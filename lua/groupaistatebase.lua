@@ -870,9 +870,31 @@ Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function(self, sta
 	self._rescue_allowed = state
 end)
 
--- disable ai trades when all players are in custody, if you fucked up - you fucked up
+-- Team AI custody trade ability
 function GroupAIStateBase:is_ai_trade_possible()
-	return false
+	if not managers.player:has_category_upgrade("team", "crew_ai_custody_trade") then
+		return false
+	end
+
+	if managers.groupai:state():whisper_mode() then
+		return false
+	end
+
+	if next(self._player_criminals) then
+		return false
+	end
+
+	local ai_disabled = true
+
+	for u_key, u_data in pairs(self._ai_criminals) do
+		if u_data.status ~= "dead" and u_data.status ~= "disabled" then
+			ai_disabled = false
+
+			break
+		end
+	end
+
+	return not ai_disabled and (self._hostage_headcount > 0 or next(self._converted_police) or managers.trade:is_trading())
 end
 
 -- Overhaul hiding Cloaker task

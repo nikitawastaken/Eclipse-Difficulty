@@ -1,3 +1,7 @@
+-- Add interaction animations to make sure they appear properly for clients
+table.insert(CopActionAct._act_redirects.script, "interact_enter")
+table.insert(CopActionAct._act_redirects.script, "interact_exit")
+
 if not Network:is_server() then
 	return
 end
