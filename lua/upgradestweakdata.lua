@@ -3600,16 +3600,16 @@ end
 
 -- Add Team AI ability definitions
 Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse__crew_definitions", function(self)
-	self.crew_ability_definitions.crew_ai_custody_trade = {
-		name_id = "menu_crew_ai_custody_trade",
-		icon = "ability_4"
-	}
 	self.crew_ability_definitions.crew_ai_fix_drill = {
 		name_id = "menu_crew_ai_fix_drill",
-		icon = "ability_4"
+		icon = "ability_2"
 	}
+	self.crew_ability_definitions.crew_ai_custody_trade = {
+		name_id = "menu_crew_ai_custody_trade",
+		icon = "ability_3"
+	}	
 	self.crew_ability_definitions.crew_ai_dominator = {
 		name_id = "menu_crew_ai_dominator",
-		icon = "ability_4"
+		icon = "ability_5"
 	}
 end)

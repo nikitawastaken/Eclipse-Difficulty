@@ -360,6 +360,9 @@
 		
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
+		
+		<!-- Crew AI icons -->
+		<file name="guis/dlcs/mom/textures/pd2/ai_abilities.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
