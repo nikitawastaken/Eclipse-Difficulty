@@ -97,19 +97,17 @@ function TeamAILogicIdle.intimidate_civilians(data, criminal)
 	end
 end
 
-function TeamAILogicIdle.is_valid_intimidation_target(unit, unit_tweak, unit_anim, unit_damage, data, distance)
-	if unit:unit_data().disable_shout then
+function TeamAILogicIdle.is_valid_intimidation_target(other_data, data, distance)
+	if data.cool then
 		return false
 	end
-	local surrender = unit_tweak.surrender
-	if not surrender or surrender == tweak_data.character.presets.surrender.never or unit_anim.hands_tied then
+	if not alive(other_data.unit) or other_data.unit:unit_data().disable_shout then
+		return false
+	end
+	local surrender = other_data.char_tweak.surrender
+	local anim_data = other_data.unit:anim_data()
+	if not surrender or surrender == tweak_data.character.presets.surrender.never or anim_data.hands_tied then
 		-- unit can't surrender
-		return false
-	end
-	local t = TimerManager:game():time()
-	local surrender_window = unit:brain()._logic_data.surrender_window
-	if surrender_window and t > surrender_window.window_expire_t then
-		-- unit will not surrender
 		return false
 	end
 	local intimidate_range_enemies = tweak_data.player.long_dis_interaction.intimidate_range_enemies
@@ -117,22 +115,49 @@ function TeamAILogicIdle.is_valid_intimidation_target(unit, unit_tweak, unit_ani
 		-- unit is too far away
 		return false
 	end
-	if unit_anim.hands_back or unit_anim.surrender then
+	if anim_data.hands_back or anim_data.surrender then
 		-- unit is already surrendering
 		return true
-	else
--- elseif not managers.player:has_category_upgrade("team", "crew_ai_intimidate_enemies_independent")) then
-		return false
 	end
 	if not managers.groupai:state():has_room_for_police_hostage() then
 		-- no room for police hostage
 		return false
 	end
-	if surrender_window and t > surrender_window.window_expire_t - surrender_window.window_duration + 0.75 then
+	local surrender_window = other_data.surrender_window
+	if surrender_window and TimerManager:game():time() > surrender_window.window_expire_t - surrender_window.window_duration + 0.75 then
 		-- intimidation attempt was started
 		return true
 	end
-
+	if not managers.player:has_category_upgrade("team", "crew_ai_dominator") then
+		-- unit is not surrendering and we only allow domination assists
+		return false
+	end
+	if distance > intimidate_range_enemies * 0.75 then
+		-- only start new domination attempts if enemy is close
+		return false
+	end
+	local on_surrender_chance = rawget(other_data.brain, "on_surrender_chance")
+	other_data.brain.on_surrender_chance = function() end --vanilla calls this (unneccessarily) during _evaluate_reason_to_surrender
+	local hold_chance = CopLogicBase._evaluate_reason_to_surrender(other_data, other_data.internal_data, data.unit)
+	other_data.brain.on_surrender_chance = on_surrender_chance
+	local hostage_count = managers.groupai:state():police_hostage_count()
+	local target_hold_chance = math.map_range_clamped(hostage_count, 0, 4, 0.5, 0)
+	if not hold_chance or hold_chance >= target_hold_chance then
+		-- unit won't surrender or chance too low
+		return false
+	end
+	local num = 0
+	local max_dis = intimidate_range_enemies * 1.5
+	for _, v in pairs(data.detected_attention_objects) do
+		local u_damage = v.unit and v.unit.character_damage and v.unit:character_damage()
+		if v.verified and v.unit ~= other_data.unit and v.dis < max_dis and u_damage and not u_damage:dead() then
+			num = num + 1
+			if num > 2 then
+				-- too many detected attention objects
+				return false
+			end
+		end
+	end
 	return true
 end
 
@@ -227,11 +252,11 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 				-- fine tune target priority
 				if att_unit:in_slot(data.enemy_slotmask) and not is_tied and attention_data.verified then
 					local logic_data = att_unit:brain()._logic_data or {}
-					local should_intimidate = can_intimidate and not high_priority and TeamAILogicIdle.is_valid_intimidation_target(att_unit, att_tweak, att_anim, att_damage, data, distance)
+					local should_intimidate = can_intimidate and not high_priority and TeamAILogicIdle.is_valid_intimidation_target(logic_data, data, distance)
 					local is_being_intimdated = logic_data.surrender_window and logic_data.surrender_window.window_expire_t > data.t - 1
 					local marked_contour = att_unit:contour() and att_unit:contour():find_id_match("^mark_enemy")
 					local marked_by_player = marked_contour and (marked_contour ~= "mark_enemy" or not been_marked)
-					
+		
 					-- check for reaction changes
 					if should_intimidate then
 						reaction = AIAttentionObject.REACT_ARREST

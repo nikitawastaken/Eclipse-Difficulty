@@ -27,8 +27,8 @@ Hooks:PostHook(TeamAILogicBase, "_set_attention_obj", "eclipse__set_attention_ob
 
 	-- intimidate
 	if react == AIAttentionObject.REACT_ARREST and (not data._next_intimidate_t or data._next_intimidate_t < data.t) then
-		local act_action = att.unit:movement():_get_latest_act_action()
-		if not act_action or not act_action._enter_t or act_action._enter_t + 1 < data.t then
+		local logic_data = att.unit:brain()._logic_data
+		if not logic_data._next_intimidate_t or logic_data._next_intimidate_t < data.t then
 			TeamAILogicIdle.intimidate_cop(data, att.unit)
 			data._next_intimidate_t = data.t + tweak_data.player.movement_state.interaction_delay
 			return

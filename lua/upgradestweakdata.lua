@@ -3558,6 +3558,11 @@ function UpgradesTweakData:init(tweak_data)
 		name_id = "menu_equipment_grenade_case",
 	}
 
+	-- Team AI Abilities
+--	self.values.team.crew_ai_custody_trade = { true }
+--	self.values.team.crew_ai_fix_drill = { true }
+--	self.values.team.crew_ai_dominator = { true }
+		
 	-- misc
 	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
@@ -3571,3 +3576,21 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end
+
+--[[
+-- Add Team AI ability definitions
+Hooks:PostHook(CopBrain, "_crew_definitions", "eclipse_crew_definitions", function(self)
+	self.crew_ability_definitions.crew_ai_custody_trade = {
+		name_id = "menu_crew_ai_custody_trade",
+		icon = "ability_4"
+	}
+	self.crew_ability_definitions.crew_ai_fix_drill = {
+		name_id = "menu_crew_ai_fix_drill",
+		icon = "ability_4"
+	}
+	self.crew_ability_definitions.crew_ai_dominator = {
+		name_id = "menu_crew_ai_dominator",
+		icon = "ability_4"
+	}
+end)
+]]
