@@ -368,7 +368,8 @@ CopLogicBase.surrender_chk_funcs = {
 
 	weapon_down = function(data, aggressor_unit, surrender_data)
 		local anim_data = data.unit:anim_data()
-		if anim_data.reload or data.unit:inventory():equipped_unit():base():get_ammo_remaining_in_clip() == 0 then
+		local weapon = data.unit:inventory():equipped_unit()
+		if anim_data.reload or alive(weapon) and weapon:base():get_ammo_remaining_in_clip() == 0 then
 			return 1 - surrender_data
 		elseif anim_data.hurt then
 			return 1 - surrender_data * 0.8

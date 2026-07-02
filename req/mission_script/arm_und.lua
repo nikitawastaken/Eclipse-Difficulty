@@ -48,7 +48,7 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
-local bags_required_amount = normal and 2 or hard and 5 or 6
+local bags_required_amount = normal and 2 or hard and 3 or 4
 local bags_required = {
 	values = {
 		amount = bags_required_amount,

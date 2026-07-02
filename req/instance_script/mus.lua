@@ -4,7 +4,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local green_security = scripted_enemy.green_security_4
 
 local patches = {
-	gensec_suv = table.set(100017),
+	guard_suv = table.set(100017),
 }
 
 local security_room = patches.guard_suv
