@@ -50,7 +50,9 @@ local M = {
 	"no screen shake 2.0",
 	"Reduced Screen Shake",
 	"No Screen Shake Deluxe",
-	"Useful Bots", -- Temporary Addition
+	"Bot Weapons and Equipment",
+	"Auto-Fire Sound Fix",
+	"NFS",
 }
 
 return table.list_to_set(M)

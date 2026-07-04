@@ -5,6 +5,17 @@ local M = {
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"):key()] = { "pl14_tactical", "asval_smg" },
+	[("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/payday2/characters/ene_tazer_1/ene_tazer_1"):key()] = "m4",
+	[("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870"):key()] = "r870",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1"):key()] = "m4",
+	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870"):key()] = "r870",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale"):key()] = "m4",
+	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870"):key()] = "r870",
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security
@@ -40,13 +51,16 @@ local M = {
 	--Prison guards (accurate to Hoxton Breakout's live action trailer)
 	[("units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1"):key()] = "m4",
 	[("units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1"):key()] = "c45",
+	-- Murkywater guards
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3"):key()] = "r870", --stronger camera man
 	--FBI office agents
 	--they have either c45 or bronco
 	[("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"):key()] = { c45 = 3, raging_bull = 1 },
-	[("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"):key()] = "raging_bull", --she's Riker's partner so give her bronco
 	[("units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"):key()] = { c45 = 3, raging_bull = 1 },
@@ -55,7 +69,7 @@ local M = {
 	[("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
 	--casino guard gets silenced pistol
 	[("units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"):key()] = { beretta92 = 6, raging_bull = 1 },
-	--murky sercret service
+	--Murkywater sercret service
 	[("units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"):key()] = { c45 = 3, ump = 1 },
 	--Black Cat guards
 	[("units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"):key()] = { beretta92 = 6, raging_bull = 1 },
@@ -96,11 +110,11 @@ local M = {
 	--Bosses
 	--the Commissar has now rpk instead of m249
 	[("units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss"):key()] = "rpk_lmg",
-	--Biker boss has a saiga shotgun on lower diffs and rpk on eclipse
+	--Biker boss has a saiga shotgun on lower diffs and rpk on Death Wish
 	[("units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss"):key()] = diff_i < 6 and "saiga" or "rpk_lmg",
-	--Hector Moralez has a aa12 shotgun on lower diffs and m249 on eclipse
+	--Hector Moralez has a aa12 shotgun on lower diffs and m249 on Death Wish
 	[("units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2"):key()] = diff_i < 6 and "aa12" or "m249",
-	--Gabriel has a aa12 shotgun on lower diffs and m249 on eclipse
+	--Gabriel has a aa12 shotgun on lower diffs and m249 on Death Wish
 	[("units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel"):key()] = diff_i < 6 and "aa12" or "m249",
 	--Riker has aa12 shotgun and is stronger than in vanilla
 	[("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = "aa12",
@@ -133,6 +147,8 @@ local M = {
 	[("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"):key()] = { raging_bull = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
+	-- The Dealer From Panic room
+	[("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican"):key()] = { raging_bull = 6, c45 = 6, mossberg = 1 }, -- rare chance to use a shotgun
 	--Russian mobsters
 	[("units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, ak47 = 2 },
 	[("units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, ak47 = 2 },
@@ -178,10 +194,10 @@ local M = {
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_1/ene_triad_cruise_1"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_3/ene_triad_cruise_3"):key()] = { c45 = 3, raging_bull = 1 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
 	--The Army
 	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = { c45 = 3, mp5 = 1 },
 }

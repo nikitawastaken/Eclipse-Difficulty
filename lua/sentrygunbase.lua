@@ -69,3 +69,34 @@ function SentryGunBase:_update_omniscience(t, dt)
 		self._state_data.omniscience_t = t + tweak_data.player.omniscience.interval_t
 	end
 end
+
+function SentryGunBase:update(unit, t, dt)
+	self:_check_body()
+	self:_update_omniscience(t, dt)
+
+	self.intimidate_t = self.intimidate_t or t + tweak_data.upgrades.sentry_gun_intimidation.interval
+
+	if self.intimidate_t <= t then
+		local nearby_civilians = World:find_units_quick("sphere", self._unit:movement():m_pos(), tweak_data.upgrades.sentry_gun_intimidation.range, managers.slot:get_mask("civilians"))
+
+		for _, civilian_unit in ipairs(nearby_civilians) do
+			local slot_mask = managers.slot:get_mask("AI_visibility_sentry_gun")
+			if World:raycast("ray", self._unit:movement():m_head_pos(), civilian_unit:movement():m_head_pos(), "slot_mask", slot_mask, "ray_type", "ai_vision", "report") then
+				--	Eclipse:log_chat("Intimidation failed")
+
+				break
+			else
+				-- Nothing
+			end
+
+			local is_tied = civilian_unit:brain():is_tied()
+
+			if alive(civilian_unit) and not is_tied then
+				civilian_unit:brain():on_intimidated(1, self._unit)
+
+				--	Eclipse:log_chat("Intimidated")
+			end
+		end
+		self.intimidate_t = t + tweak_data.upgrades.sentry_gun_intimidation.interval
+	end
+end

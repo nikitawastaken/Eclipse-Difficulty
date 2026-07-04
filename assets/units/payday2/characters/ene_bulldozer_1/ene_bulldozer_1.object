@@ -476,6 +476,102 @@
 				</object>			
 			</lod_object>
 
+			<lod_object name="lod_face_hvh_a">		
+				<object name="g_face_hvh_a" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_a_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_b">		
+				<object name="g_face_hvh_b" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_b_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_c">		
+				<object name="g_face_hvh_c" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_c_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_d">		
+				<object name="g_face_hvh_d" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_d_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_e">		
+				<object name="g_face_hvh_e" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head_alt" max_distance="1000" />
+					<material materials="mtr_head_alt_lod_1" max_distance="1500" />
+					<material materials="mtr_head_alt_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_e_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head_alt" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_alt_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_f">		
+				<object name="g_face_hvh_f" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head_alt" max_distance="1000" />
+					<material materials="mtr_head_alt_lod_1" max_distance="1500" />
+					<material materials="mtr_head_alt_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_f_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head_alt" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_alt_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_g">		
+				<object name="g_face_hvh_g" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head_alt" max_distance="1000" />
+					<material materials="mtr_head_alt_lod_1" max_distance="1500" />
+					<material materials="mtr_head_alt_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_g_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head_alt" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_alt_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_face_hvh_h">		
+				<object name="g_face_hvh_h" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_head_alt" max_distance="1000" />
+					<material materials="mtr_head_alt_lod_1" max_distance="1500" />
+					<material materials="mtr_head_alt_lod_2" />				
+				</object>			
+				<object name="g_face_hvh_h_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_head_alt" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_head_alt_lod_2" />			
+				</object>			
+			</lod_object>
+			
 			<lod_object name="lod_gear_body_a">		
 				<object name="g_gear_body_a" 				enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
 					<material materials="mtr_swat, mtr_equipment" max_distance="1000" />

@@ -4,11 +4,22 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local elite_sniper = scripted_enemy.elite_sniper
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
+
+local light_harasser = scripted_enemy.swat_1
+local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
+local harasser = {
+	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+}
+local c4_harasser_escape = {
+	enemy = is_eclipse and { [scripted_enemy.heavy_swat_1] = 2, [scripted_enemy.sniper] = 3 } or { [scripted_enemy.swat_1] = 2, [scripted_enemy.sniper] = 3 },
+}
+
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 -- the evil one
@@ -41,14 +52,6 @@ else
 	timelock_fast = timelock_fast_variant_3
 end
 
-local harasser = {
-	enemy = diff_i < 5 and light_harasser or heavy_harasser,
-}
-local wall_c4_chance = {
-	values = {
-		chance = (normal and 40 or 60) * (is_pro_job and 1.5 or 1),
-	},
-}
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
@@ -57,38 +60,53 @@ local bags_required = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-local mga_thermite_event = {
-	post_mga_event = "mga_thermite",
-}
-local mga_vault_event = {
-	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
+local swat_sniper_c4_escape_so = {
+	so_access_filter = { "swat", "sniper" },
 }
 local roof_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local elevator_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local invisible_walls = {}
+local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
+for i = 0, 10 do
+	table.insert(invisible_walls, {
+		name = invisible_wall_ids,
+		pos = Vector3(-1342, -930, -595.679),
+		visible = false,
+	})
+	table.insert(invisible_walls, {
+		name = invisible_wall_ids,
+		pos = Vector3(-1009, -930, -595.679),
+		visible = false,
+	})
+end
+
 return {
 	[100809] = {
 		ponr = {
-			length = 240,
-			player_mul = { 2, 1.25, 1, 1 },
+			length = 300,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
-	-- Combine some navigation areas
 	[100017] = {
+		-- Combine some navigation areas
 		ai_area = {
 			{ 25, 26, 119 },
 			{ 27, 120, 121 },
@@ -97,56 +115,90 @@ return {
 			{ 41, 42, 50, 66 },
 			{ 43, 44, 51 },
 		},
+		-- Additional flee points
+		flee_point = {
+			{ name = "right_side", position = Vector3(3500, 2500, -1200) },
+			{ name = "left_side", position = Vector3(3800, -4450, -1050) },
+		},
+		-- disable ambush cloakers on startup
+		on_executed = {
+			{ id = 400011, delay = 0 },
+		},
+		spawn = invisible_walls, -- Add invisible walls to elevator spawn
 	},
+	-- Add new reinforce
 	[100109] = { -- Police
 		reinforce = {
 			{
 				name = "entrance",
 				force = 3,
-				position = Vector3(4400, 0, -1100),
+				position = Vector3(3875, 0, -1100),
 			},
 		},
 	},
-	[100833] = { -- C4 Escape
+	[104680] = { -- open gate (downstairs)
 		reinforce = {
 			{
-				name = "meetingroom",
+				name = "gate",
 				force = 2,
-				position = Vector3(-3400, 1000, -600),
+				position = Vector3(-175, -25, -1000),
 			},
 		},
 	},
-	[100834] = { -- Elevator Escape
+	[104681] = { -- open gate (upstairs)
 		reinforce = {
 			{
-				name = "elevator",
+				name = "gate",
 				force = 2,
-				position = Vector3(-1200, -650, -900),
+				position = Vector3(-175, -25, -600),
 			},
 		},
 	},
-	[104523] = { -- Bus Escape
+	[104369] = { -- explode wall (downstairs)
 		reinforce = {
 			{
-				name = "bus",
+				name = "breach",
 				force = 2,
-				position = Vector3(-2150, -2050, -500),
+				position = Vector3(-175, -25, -1000),
 			},
 		},
 	},
-	-- Disable Titan Cams
-	[106265] = {
-		values = {
-			enabled = false,
+	[104367] = { -- explode wall (upstairs)
+		reinforce = {
+			{
+				name = "breach",
+				force = 2,
+				position = Vector3(-175, -25, -600),
+			},
 		},
 	},
-	-- Enable roof spawngroups
+	[105792] = { -- Player entered vault
+		reinforce = {
+			{
+				name = "vault",
+				force = 3,
+				position = Vector3(-3300, 350, -1000),
+			},
+		},
+	},
+	--- Enable roof spawngroups
 	[100006] = {
 		values = {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
-	-- add new elevator spawngroup
+	-- Disable Titan Cams
+	[106265] = disabled,
+	-- Disable vanilla reinforce points
+	[101978] = disabled,
+	[102207] = disabled,
+	[102436] = disabled,
+	[102439] = disabled,
+	[104114] = disabled,
+	[104146] = disabled,
+	[104153] = disabled,
+	[104169] = disabled,
+	-- Add new elevator spawngroup
 	[103316] = {
 		on_executed = {
 			{ id = 400020, delay = 0 },
@@ -174,28 +226,39 @@ return {
 	-- change amount of required bags
 	[101868] = bags_required,
 	[103961] = bags_required,
-	-- Wall c4 chance
-	[102451] = wall_c4_chance,
-	[102469] = wall_c4_chance,
-	-- Disable cheat spawns
-	[102267] = {
-		values = {
-			enabled = false,
-		},
-	},
 	-- Prevent shields/dozers from disabling the timelock
 	[101195] = no_shields_and_dozers,
 	[102268] = no_shields_and_dozers,
+	-- include swat access in c4 sniper SOs
+	[102890] = swat_sniper_c4_escape_so,
+	[102896] = swat_sniper_c4_escape_so,
+	[102900] = swat_sniper_c4_escape_so,
+	[102906] = swat_sniper_c4_escape_so,
+	-- make c4 sniper respawns bit more random
+	[102762] = {
+		on_executed = {
+			{ id = 102883, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102777] = {
+		on_executed = {
+			{ id = 102893, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102787] = {
+		on_executed = {
+			{ id = 102898, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
+	[102796] = {
+		on_executed = {
+			{ id = 102901, delay = is_eclipse and 20 or 30, delay_rand = 20 },
+		},
+	},
 	-- trigger ambush cloakers when the time lock door opens
 	[104397] = {
 		on_executed = {
 			{ id = 400012, delay = 0 },
-		},
-	},
-	-- disable ambush cloakers on startup
-	[100017] = {
-		on_executed = {
-			{ id = 400011, delay = 3 },
 		},
 	},
 	-- enable ambush cloakers on loud
@@ -204,27 +267,26 @@ return {
 			{ id = 400010, delay = 0 },
 		},
 	},
-	-- Make server hack guranteed when solo
+	-- Sever hack chance in solo
 	[104494] = {
 		pre_func = function(self)
 			if table.size(managers.network:session():peers()) == 0 then
-				self._chance = 100
+				self._chance = is_pro_job and 75 or 100
 			end
 		end,
 	},
-	-- Play megaphone cop voice lines
-	[105842] = mga_thermite_event,
-	[105792] = mga_vault_event,
-	-- Spawn Group delays
-	[100692] = roof_spawn,
+	-- Spawn group intervals
 	[100007] = roof_spawn,
+	[100692] = roof_spawn,
+	[105434] = elevator_spawn,
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
-	[105434] = elevator_spawn,
-	[400027] = elevator_spawn,
-	[400034] = elevator_spawn,
 	[400019] = elevator_close_spawn,
 	-- Harassers
+	[102883] = c4_harasser_escape,
+	[102893] = c4_harasser_escape,
+	[102898] = c4_harasser_escape,
+	[102901] = c4_harasser_escape,
 	[100883] = harasser,
 	[100884] = harasser,
 	[100885] = harasser,

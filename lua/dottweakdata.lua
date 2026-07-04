@@ -6,7 +6,7 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	end
 
 	self.dot_entries.poison.ammo_proj_bow.damage_class = "ProjectilesPoisonBulletBase"
-	self.dot_entries.poison.ammo_proj_bow.hurt_animation_chance = 1 / 2
+	self.dot_entries.poison.ammo_proj_bow.hurt_animation_chance = 3 / 5
 
 	self.dot_entries.poison.ammo_proj_crossbow = clone(self.dot_entries.poison.ammo_proj_bow)
 	self.dot_entries.poison.ammo_proj_arblast = clone(self.dot_entries.poison.ammo_proj_bow)
@@ -15,7 +15,7 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.poison.ammo_proj_ecp = clone(self.dot_entries.poison.ammo_proj_bow)
 	self.dot_entries.poison.ammo_proj_elastic = clone(self.dot_entries.poison.ammo_proj_bow)
 
-	self.dot_entries.poison.ammo_rip.hurt_animation_chance = 1 / 4
+	self.dot_entries.poison.ammo_rip.hurt_animation_chance = 1 / 5
 	self.dot_entries.poison.ammo_rip.use_weapon_damage_falloff = true
 
 	self.dot_entries.poison.ammo_rip_light = deep_clone(self.dot_entries.poison.ammo_rip)
@@ -23,7 +23,7 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.poison.ammo_rip_heavy = deep_clone(self.dot_entries.poison.ammo_rip)
 
 	self.dot_entries.poison.proj_gas_grenade_cloud.dot_damage = 1
-	self.dot_entries.poison.proj_gas_grenade_cloud.dot_length = 15
+	self.dot_entries.poison.proj_gas_grenade_cloud.dot_length = 20
 	self.dot_entries.poison.proj_gas_grenade_cloud.hurt_animation_chance = 1 / 10
 	self.dot_entries.poison.proj_gas_grenade_cloud.apply_hurt_once = true
 
@@ -32,8 +32,6 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.poison.proj_launcher_poison_light = deep_clone(self.dot_entries.poison.proj_launcher_poison)
 	self.dot_entries.poison.proj_launcher_poison_light.dot_damage = 0.4
-
-	self.dot_entries.poison.proj_launcher_poison_medium = deep_clone(self.dot_entries.poison.proj_launcher_poison)
 
 	self.dot_entries.poison.proj_launcher_poison_heavy = deep_clone(self.dot_entries.poison.proj_launcher_poison)
 	self.dot_entries.poison.proj_launcher_poison_heavy.dot_damage = 0.8

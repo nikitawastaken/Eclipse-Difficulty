@@ -21,7 +21,7 @@ local white_office_cop = { enemy = white_office_cops }
 local random_office_cops = { [office_cop_1] = 3, [office_cop_2] = 3, [office_cop_3] = 2, [office_cop_4] = 2 }
 local random_office_cop = { enemy = random_office_cops }
 local interrogation_cop = {
-	enemy = is_eclipse_pro and cloaker or blue_office_cops,
+	enemy = blue_office_cops,
 }
 local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
@@ -47,14 +47,17 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local alley_spawn = {
+local police_roof_spawn = {
+	values = {
+		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+	groups = preferred.no_cops_agents,
+}
+local garage_roof_spawn = {
 	values = {
 		interval = 15,
-	},
-}
-local roof_spawn = {
-	values = {
-		interval = 25,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -66,66 +69,94 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+
 return {
-	[101397] = {
+	[102964] = {
 		ponr = {
-			length = 240,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length = 270,
+			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
 		},
-		on_executed = { -- don't disable back cell preferreds
-			{ id = 102194, remove = true },
+		on_executed = {
+			{ id = 400049, delay = 0 }, -- enable parking hiding spots when Almor has been found
 		},
 	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
 			{
-				name = "main_entrance",
+				name = "parking_lot01",
 				force = 3,
-				position = Vector3(525, 300, 100),
+				position = Vector3(1750, -450, -15),
 			},
 			{
-				name = "parking_lot1",
+				name = "parking_lot02",
 				force = 3,
-				position = Vector3(-1100, -400, 0),
+				position = Vector3(-1250, -1000, -15),
 			},
 			{
-				name = "parking_lot2",
+				name = "entrance",
 				force = 3,
-				position = Vector3(1800, -400, 0),
+				position = Vector3(500, 300, 100),
 			},
 		},
 	},
-	-- Add new preferreds and adjust existing ones
-	--  Delay default preferreds slightly
-	[100129] = { -- initial preferreds
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
 		on_executed = {
-			{ id = 101574, remove = true }, -- roof preferreds
-			{ id = 100127, delay = 20 },
+			{ id = 100800, delay = 0 },
+			{ id = 100765, remove = true },
 		},
 	},
-	[100021] = {
+	[100800] = {
 		on_executed = {
-			{ id = 101573, remove = true }, -- garage roof preferreds
+			{ id = 400050, delay = 0 },
+			{ id = 101186, remove = true },
 		},
 	},
-	-- Don't remove roof preferreds
-	[104087] = {
-		on_executed = {
-			{ id = 101572, remove = true }, -- remove garage roof preferreds
+	-- Disable vanilla reinforce
+	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
+	[104095] = disabled, -- point_area_min_police_force_protect_fire
+	[104099] = disabled, -- point_area_min_police_force_armory_large
+	[104100] = disabled, -- point_area_min_police_force_armory_large
+	[104101] = disabled, -- point_area_min_police_force_armory_medium
+	-- Fix two of three Hajrudin look-at triggers poking out of the room
+	[102478] = {
+		values = {
+			position = Vector3(-3375, 4321, 125),
 		},
 	},
-	[101571] = { -- fire started, enable roof preferreds
-		on_executed = {
-			{ id = 101574, delay = 0, delay_rand = 20 },
+	[103881] = {
+		values = {
+			position = Vector3(-1725, 3498, 125),
 		},
 	},
-	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
+	-- Only activate roof preferreds after the first assault is over
+	[100129] = { -- preferred
 		on_executed = {
-			{ id = 101573, delay = 0, delay_rand = 20 },
+			{ id = 101574, remove = true }, -- ai_preferred_police_roof
 		},
 	},
-	-- replace the turret with a spawngroup
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 101574, delay = 0, delay_rand = 30 }, -- ai_preferred_police_roof
+		},
+	},
+	-- Don't disable cell preferreds
+	[101397] = {
+		on_executed = {
+			{ id = 102194, remove = true }, -- ai_enemy_prefered_remove_cells_back_spawn
+		},
+	},
+	-- Don't assign roof preferreds to an area trigger
+	[101225] = { -- link_completed_cut lose the prisoner
+		on_executed = {
+			{ id = 104087, remove = true }, -- enable_trigger_to_spawn_ai
+		},
+	},
+	-- Replace the turret with a spawngroup
 	[104070] = { -- arrive 1
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 5 },
@@ -141,14 +172,11 @@ return {
 			{ id = 400019, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- Disable pointless area triggers
-	[104087] = disabled,
-	-- Disable pointless vanilla reinforce
-	[104094] = disabled,
-	[104099] = disabled,
-	[104100] = disabled,
-	[104101] = disabled,
-	[104111] = disabled,
+	[104141] = { -- arrive 4
+		on_executed = {
+			{ id = 400026, delay = 0, delay_rand = 5 },
+		},
+	},
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
 	[100359] = sniper_amount,
@@ -175,14 +203,11 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group intervals
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[100019] = alley_spawn,
-	[100131] = alley_spawn,
-	[104123] = alley_spawn,
-	[100132] = roof_spawn,
-	[104091] = roof_spawn,
-	[100128] = roof_spawn,
-	[100692] = roof_spawn,
-	[104117] = roof_spawn,
+	[100128] = police_roof_spawn,
+	[100692] = police_roof_spawn,
+	[104117] = police_roof_spawn,
+	[100132] = garage_roof_spawn,
+	[104091] = garage_roof_spawn,
 	[400020] = scripted_swat_van_spawn,
 	[400027] = scripted_swat_van_spawn,
 	[400034] = scripted_swat_van_spawn,

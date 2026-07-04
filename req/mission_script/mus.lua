@@ -1,9 +1,5 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-local diff_i = Eclipse.utils.difficulty_index()
-local easy = diff_i == 2
-local normal_and_hard = diff_i == 3 or diff_i == 4
-local overkill = diff_i == 5
-local deathwish = diff_i == 6
 local disabled = {
 	values = {
 		enabled = false,
@@ -15,31 +11,45 @@ local enabled = {
 	},
 }
 local courtyard_spawn = {
-	values = {
-		interval = 20,
-	},
 	groups = preferred.no_cops_agents,
 }
 local staircase_window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local matrix_window_spawn = {
+	values = {
+		interval = 30,
+	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local exhibit_rappel_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
+}
+local exhibit_slow_rappel_spawn = {
 	values = {
 		interval = 60,
 	},
 	groups = preferred.no_cops_agents,
 }
 local last_rappel_spawn = {
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+	},
 }
 return {
 	[102425] = {
 		ponr = {
 			length = 240,
-			player_mul = { 1.25, 1.25, 1, 1 },
+			length_balance_mul = { 1.25, 1.125, 1, 1 },
 		},
 	},
 	-- Combine some navigation areas
@@ -54,6 +64,11 @@ return {
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
+			{
+				name = "entrance",
+				force = 3,
+				position = Vector3(-3475, 225, -700),
+			},
 			{
 				name = "south",
 				force = 2,
@@ -75,8 +90,8 @@ return {
 				position = Vector3(0, -2500, -300),
 			},
 		},
-		on_executed = { -- standard preferreds
-			{ id = 100127, delay = 60 },
+		on_executed = { -- standard_preferreds
+			{ id = 100127, delay = 60 }, -- vanilla: 0
 		},
 	},
 	-- restore ground snipers
@@ -110,9 +125,9 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
-			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 45 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 45 }, -- add 41
+			{ id = 102129, delay = 0, delay_rand = 45 }, -- add 11
 		},
 	},
 	-- Spawn group intervals
@@ -124,14 +139,38 @@ return {
 	[102418] = staircase_window_spawn,
 	[102399] = matrix_window_spawn,
 	[102400] = matrix_window_spawn,
-	[100019] = exhibit_rappel_spawn,
-	[100809] = exhibit_rappel_spawn,
-	[100810] = exhibit_rappel_spawn,
-	[100021] = exhibit_rappel_spawn,
 	[101946] = exhibit_rappel_spawn,
 	[101959] = exhibit_rappel_spawn,
+	[100019] = exhibit_slow_rappel_spawn,
+	[100809] = exhibit_slow_rappel_spawn,
+	[100810] = exhibit_slow_rappel_spawn,
+	[100021] = exhibit_slow_rappel_spawn,
 	[101924] = last_rappel_spawn,
 	[101941] = last_rappel_spawn,
 	[101942] = last_rappel_spawn,
 	[101943] = last_rappel_spawn,
+	-- Replace regular security with green security
+	[100670] = green_security,
+	[100671] = green_security,
+	[100672] = green_security,
+	[100673] = green_security,
+	[100674] = green_security,
+	[100675] = green_security,
+	[100676] = green_security,
+	[100677] = green_security,
+	[101371] = green_security,
+	[101372] = green_security,
+	[101373] = green_security,
+	[101368] = green_security,
+	[101369] = green_security,
+	[101677] = green_security,
+	[101678] = green_security,
+	[101758] = green_security,
+	[101759] = green_security,
+	[101760] = green_security,
+	[100512] = green_security,
+	[100720] = green_security,
+	[101388] = green_security,
+	[101568] = green_security,
+	[101576] = green_security,
 }

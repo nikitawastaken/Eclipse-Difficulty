@@ -1,17 +1,12 @@
-local scripted_enemy = Eclipse.scripted_enemy
-local is_eclipse = Eclipse.utils.is_eclipse()
-local headless_dozer_black = scripted_enemy.headless_bulldozer_1
-local headless_dozer_white = scripted_enemy.headless_bulldozer_2
-local headless_tanks = is_eclipse and { [headless_dozer_black] = 2, [headless_dozer_white] = 1 } or headless_dozer_black
-local headless_tank = {
-	enemy = headless_tanks,
+local disabled = {
 	values = {
-		participate_to_group_ai = true,
+		enabled = false,
 	},
 }
 local ledge_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 return {
@@ -19,17 +14,17 @@ return {
 	[101610] = { -- start up spawns
 		reinforce = {
 			{
-				name = "pillow1",
+				name = "pillow01",
 				force = 2,
 				position = Vector3(-6650, 1000, 200),
 			},
 			{
-				name = "pillow2",
+				name = "pillow02",
 				force = 2,
 				position = Vector3(-4550, -975, 200),
 			},
 			{
-				name = "pillow3",
+				name = "pillow03",
 				force = 2,
 				position = Vector3(-2050, 1000, 200),
 			},
@@ -54,15 +49,8 @@ return {
 			},
 		},
 	},
-	[100342] = headless_tank,
-	[100343] = headless_tank,
-	[100344] = headless_tank,
-	[100345] = headless_tank,
-	[100346] = headless_tank,
-	[100347] = headless_tank,
-	[100348] = headless_tank,
-	[100349] = headless_tank,
-	[100350] = headless_tank,
+	-- Disable scripted headless dozers
+	[100351] = disabled,
 	-- Spawn group intervals
 	[101601] = ledge_spawn,
 	[101603] = ledge_spawn,

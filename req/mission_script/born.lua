@@ -16,28 +16,42 @@ local disabled = {
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = so_access.acrobatic,
 }
+local standard_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local scripted_swat_heli_spawn = {
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
+	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
+local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
 
 return {
 	[100720] = {
 		set_ponr_state = true,
 	},
 	[100628] = disabled,
+	-- Increase drama when Snipers spawn
+	[100366] = { -- spawn_snipers
+		add_drama = {
+			amount = 0.25,
+			balance_mul = { 1.2, 1, 0.8, 0.6 },
+			team_ai_balance_mul_weight = 1 / 3,
+		},
+	},
 	-- Disable reinforce inside the garage
 	[101596] = disabled,
 	-- Disable forced spawns inside the garage THEY SUCK
@@ -98,6 +112,14 @@ return {
 	[101839] = exclude_cop_agents_shields_dozers,
 	[101840] = exclude_cop_agents_shields_dozers,
 	[100493] = exclude_cop_agents_shields_dozers,
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400033, delay = 0 },
+			{ id = 100845, remove = true },
+			{ id = 101186, remove = true },
+		},
+	},
 	-- loopable heli
 	-- trigger in alarm rather than in the second assault
 	[100022] = {
@@ -134,9 +156,16 @@ return {
 	[101627] = participate,
 	[101672] = participate,
 	-- Spawn group intervals
-	[400001] = scripted_swat_heli_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100019] = standard_spawn,
+	[100133] = standard_spawn,
 	[100007] = roof_spawn,
 	[100128] = roof_spawn,
+	[400027] = cloaker_spawn,
+	[400028] = cloaker_spawn,
+	[400029] = cloaker_spawn,
+	[400030] = cloaker_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
@@ -145,4 +174,5 @@ return {
 	[100864] = cloaker_spawn,
 	[100868] = cloaker_spawn,
 	[100873] = cloaker_spawn,
+	[400001] = scripted_swat_heli_spawn,
 }

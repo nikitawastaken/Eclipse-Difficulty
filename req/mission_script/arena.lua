@@ -6,15 +6,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local rappel_spawn = {
+local standard_spawn = {
 	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents,
-}
-local upper_spawn = {
-	values = {
-		interval = 30,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -30,41 +24,43 @@ local elevator_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local bags_required = {
 	values = {
-		counter_target = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+		counter_target = 4 + (is_pro_job and 2 or 0),
 	},
 }
 return {
-	-- Add new reinforce
-	[101577] = {
-		reinforce = {
-			{
-				name = "lobby",
-				force = 4,
-				position = Vector3(-300, 550, 0),
-			},
+	-- Add a new loot drop point
+	[100405] = disabled,
+	[102864] = {
+		loot_drop = {
+			{ name = "player_spawn", position = Vector3(-300, -250, 0) },
 		},
 	},
-	-- change amount of required bags
-	-- the amount of required bags in vanilla sucks so hard
+	-- Change amount of required bags
+	-- The amount of required bags in vanilla sucks so hard
 	[101753] = bags_required,
 	[101758] = bags_required,
 	[101759] = bags_required,
 	[101760] = bags_required,
 	[101761] = bags_required,
 	[100470] = disabled,
-	-- remove curly spawns
-	[101653] = disabled,
 	-- Spawn group intervals
-	[101166] = rappel_spawn,
-	[104406] = rappel_spawn,
-	[100128] = rappel_spawn,
-	[101309] = rappel_spawn,
-	[104471] = upper_spawn,
-	[100132] = upper_spawn,
+	[100128] = standard_spawn,
+	[100132] = standard_spawn,
+	[101166] = standard_spawn,
+	[101309] = standard_spawn,
+	[104406] = standard_spawn,
+	[104471] = standard_spawn,
 	[101310] = garage_spawn,
 	[102066] = garage_spawn,
 	[100805] = elevator_spawn,
 	[101555] = elevator_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
 }

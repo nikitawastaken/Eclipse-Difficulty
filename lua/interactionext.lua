@@ -1,5 +1,11 @@
+-- The Inspire changes that were done here blow the game up
+-- There is no _ext_movement on BaseInteractionExt
+-- Not sure if it's needed here, PlayerStandard:_get_interaction_speed() was changed to do something similar
 function BaseInteractionExt:_get_timer()
 	local modified_timer = self:_get_modified_timer()
+	-- local dt = managers.player:player_timer():delta_time()
+	-- local morale_boost_bonus = self._ext_movement:morale_boost()
+	-- local is_inspired = dt * morale_boost_bonus.move_speed_bonus
 
 	if modified_timer then
 		return modified_timer
@@ -23,6 +29,7 @@ function BaseInteractionExt:_get_timer()
 
 	multiplier = multiplier * managers.player:upgrade_value("player", "total_interaction_timer_multiplier", 1)
 
+	-- return self:_timer_value() * multiplier * is_inspired * managers.player:toolset_value()
 	return self:_timer_value() * multiplier * managers.player:toolset_value()
 end
 
@@ -317,4 +324,84 @@ function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player
 	end
 
 	return can_place
+end
+
+function can_pickup(player, item)
+	return Network:is_server() and item and managers.player:player_unit() == player and managers.player:can_pickup_equipment(item)
+end
+
+function UseInteractionExt:can_select(player)
+	return BaseInteractionExt.can_select(self, player) or can_pickup(player, self._tweak_data.special_equipment_block)
+end
+
+function UseInteractionExt:can_interact(player)
+	return BaseInteractionExt.can_interact(self, player) or can_pickup(player, self._tweak_data.special_equipment_block)
+end
+
+local old_intimitate_sync_interacted = IntimitateInteractionExt.sync_interacted
+function IntimitateInteractionExt:sync_interacted(peer, player, status, skip_alive_check, max_following_hostages)
+	if self.tweak_data == "hostage_move" then
+		local unit = player
+
+		if not unit then
+			unit = peer and peer:unit()
+		end
+
+		if Network:is_server() and self._unit:brain():on_hostage_move_interaction(unit, "move", max_following_hostages) then
+			self:remove_interact()
+		end
+	else
+		old_intimitate_sync_interacted(self, peer, player, status, skip_alive_check)
+	end
+end
+
+local old_intimitate_interact = IntimitateInteractionExt.interact
+function IntimitateInteractionExt:interact(player)
+	if self.tweak_data == "hostage_move" then
+		if Network:is_server() then
+			if self._unit:brain():on_hostage_move_interaction(player, "move") then
+				self:remove_interact()
+			end
+		else
+			local max_following_hostages = tweak_data.player.max_nr_following_hostages
+				+ (player:base():upgrade_value("player", "extra_hostages") or 0)
+				+ (player:base():upgrade_value("player", "extra_hostages_chief") or 0)
+			managers.network:session():send_to_host("sync_hostage_interacted", self._unit, max_following_hostages, 1)
+		end
+	else
+		old_intimitate_interact(self, player)
+	end
+end
+
+-- Firestorm Incendiary Rounds activation
+function AmmoBagInteractionExt:interact(player)
+	AmmoBagInteractionExt.super.super.interact(self, player)
+
+	local interacted, bullet_storm, auto_reload = self._unit:base():take_ammo(player)
+
+	for id, weapon in pairs(player:inventory():available_selections()) do
+		if auto_reload and auto_reload ~= false then
+			local can_reload = weapon.unit:base() and weapon.unit:base().can_reload and weapon.unit:base():can_reload()
+
+			if can_reload then
+				local ammo_base = weapon.unit:base()._reload_ammo_base or weapon.unit:base():ammo_base()
+				local amount = ammo_base and ammo_base:get_ammo_max_per_clip() * tweak_data.upgrades.values.autoreload_mag_funnel_multiplier or 1
+
+				weapon.unit:base():on_reload(amount)
+				managers.statistics:reloaded()
+			end
+		end
+
+		managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
+	end
+
+	if bullet_storm and bullet_storm ~= false then
+		for id, weapon in pairs(player:inventory():available_selections()) do
+			weapon.unit:base():activate_firestorm_incendiary_ammo()
+		end
+
+		managers.player:add_to_temporary_property("bullet_storm", bullet_storm, 1)
+	end
+
+	return interacted
 end

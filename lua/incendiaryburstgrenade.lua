@@ -11,9 +11,14 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 	local slot_mask = managers.slot:get_mask("explosion_targets")
 
 	managers.fire:give_local_player_dmg(pos, range, self._player_damage)
+
+	if self._timer and self._timer > 0 then
+		self._custom_params.effect = self._impact_effect_name or self._custom_params.effect
+	end
+
 	managers.explosion:play_sound_and_effects(pos, normal, range, self._custom_params)
 
-	local params = {
+	local hit_units, splinters = managers.fire:detect_and_give_dmg({
 		player_damage = 0,
 		hit_pos = pos,
 		range = range,
@@ -25,8 +30,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 		user = self:thrower_unit() or self._unit,
 		owner = self._unit,
 		dot_data = self._dot_data,
-	}
-	managers.fire:detect_and_give_dmg(params)
+	})
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360
@@ -43,19 +47,23 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 		end
 	end
 
-	if self._unit:id() ~= -1 then
+	if self._unit:id() ~= -1 and managers.network:session() then
 		managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "base", GrenadeBase.EVENT_IDS.detonate)
 	end
 
-	local destruction_delay = self._dot_data and self._dot_data.dot_length + 1
+	self:_handle_hiding_and_destroying(true, self:_destruct_delay())
+	self:_check_stop_flyby_sound()
 
-	self:_handle_hiding_and_destroying(true, destruction_delay)
+	if Network:is_server() and self._airdrop_unit then
+		managers.game_play_central:server_spawn_pubg_cargos(self._airdrop_unit, self._unit:position(), (self:thrower_unit() or self._unit):position())
+	end
 end
 
 IncendiaryClusterGrenade = IncendiaryClusterGrenade or class(IncendiaryBurstGrenade)
 
 function IncendiaryClusterGrenade:_setup_from_tweak_data()
 	local grenade_entry = self._tweak_projectile_entry or "cluster_incendiary"
+	self._tweak_projectile_entry = grenade_entry
 	local tweak_entry = tweak_data.projectiles[grenade_entry]
 	self._init_timer = tweak_entry.init_timer or 2.5
 	self._mass_look_up_modifier = tweak_entry.mass_look_up_modifier

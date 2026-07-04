@@ -39,14 +39,16 @@ function TankCopLogicAttack.update(data)
 
 	local enemy_visible = focus_enemy.verified
 	if focus_enemy.reaction >= AIAttentionObject.REACT_COMBAT then
-		--[[ Stop running if we're close enough
-		if enemy_visible and focus_enemy.dis < 400 and unit:anim_data().run then
-			unit:brain():action_request({
-				body_part = 2,
-				type = "idle",
-			})
+		-- Check if the Bulldozer can sprint
+		if data.char_tweak.tank_run_speed_mul then
+			-- Stop running if we're close enough
+			if enemy_visible and focus_enemy.dis < 400 and unit:anim_data().run then
+				unit:brain():action_request({
+					body_part = 2,
+					type = "idle",
+				})
+			end
 		end
-		]]
 
 		if my_data.walking_to_chase_pos then
 			-- Check if the current chase pos is too far from our focus enemy and if so, cancel chase to get a better pos

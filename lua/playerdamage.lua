@@ -8,16 +8,20 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	if is_pro_job then
 		self._lives_init = 4
 	end
+	-- One Down mutator
+	if managers.mutators:modify_value("PlayerDamage:OneDown", false) then
+		self._lives_init = 2
+	end
 end)
 
--- Upgrade that heals you when you revive others
 Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
+	-- Upgrade that heals you when you revive others
 	if managers.player:has_category_upgrade("player", "action_revive_health_regen") then
 		local function on_revive_interaction_success()
 			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
 		end
 
-		self._listener_holder:add("on_revive_interaction_success", {
+		self._listener_holder:add("on_revive_interaction_success_revive_health_regen", {
 			"on_revive_interaction_success",
 		}, on_revive_interaction_success)
 	end
@@ -158,22 +162,26 @@ function PlayerDamage:damage_bullet(attack_data)
 	local has_active_injector = managers.player:has_activate_temporary_upgrade("temporary", "chico_injector")
 	local is_in_steelsight = self._unit:movement():current_state()._state_data.in_full_steelsight
 	local shake_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1) or 1)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
 
-	local shake_mul = math.clamp(attack_data.damage, 1, 12) * shake_armor_multiplier * (has_active_injector and 0.5 or 1)
+	local shake_mul = math.clamp(attack_data.damage, 1, 10) * shake_armor_multiplier * (has_active_injector and 0.5 or 1)
 	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
+
+	local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
+	local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
+	local stamina_strip_weapon_mul = weap_tweak_data and weap_tweak_data.stamina_strip_mul or 1
 
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
-	local stamina_mul = math.clamp(attack_data.damage, 1, 12) * stamina_strip_armor_multiplier * (has_active_injector and 0 or 1)
+	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_active_injector and 0 or 1)
 	self._unit:movement():subtract_stamina(stamina_mul)
 
 	if not _G.IS_VR then
@@ -225,31 +233,128 @@ function PlayerDamage:damage_bullet(attack_data)
 	self:_call_listeners(damage_info)
 end
 
--- Grace period protects no matter the new potential damage but is shorter in general (sh)
-function PlayerDamage:_chk_dmg_too_soon()
+-- Grace piercing mechanics from Hoppip's Reduced I-Frame Damage mod (you only take the difference in damage if you would take damage during an i-frame)
+function PlayerDamage:_chk_dmg_too_soon(damage)
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)
-	return managers.player:player_timer():time() < next_allowed_dmg_t
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if vanilla_grace_piercing then
+		if damage <= self._last_received_dmg + 0.01 and managers.player:player_timer():time() < next_allowed_dmg_t then
+			return true
+		end
+	end
+
+	local t = managers.player:player_timer():time()
+	if damage <= self._last_received_dmg + 0.01 and next_allowed_dmg_t > t then
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+		return true
+	end
+	if next_allowed_dmg_t > t then
+		self._old_last_received_dmg = self._last_received_dmg
+		self._old_next_allowed_dmg_t = next_allowed_dmg_t
+	end
 end
 
--- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
-local _calc_armor_damage_original = PlayerDamage._calc_armor_damage
-function PlayerDamage:_calc_armor_damage(...)
+function PlayerDamage:_calc_armor_damage(attack_data)
+	local health_subtracted = 0
 	local had_armor = self:get_real_armor() > 0
-	local health_subtracted = _calc_armor_damage_original(self, ...)
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
 
+	if self:get_real_armor() > 0 then
+		health_subtracted = self:get_real_armor()
+
+		self:change_armor(-attack_data.damage)
+
+		health_subtracted = health_subtracted - self:get_real_armor()
+
+		self:_damage_screen()
+		SoundDevice:set_rtpc("shield_status", self:armor_ratio() * 100)
+		self:_send_set_armor()
+
+		if self:get_real_armor() <= 0 then
+			self._unit:sound():play("player_armor_gone_stinger")
+
+			if attack_data.armor_piercing then
+				self._unit:sound():play("player_sniper_hit_armor_gone")
+			end
+
+			local pm = managers.player
+
+			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
+
+			-- Failsafe Protocol (remake it to use the cooldown system instead of temporary)
+			if pm:has_enabled_cooldown_upgrade("cooldown", "armor_break_invulnerable") then
+				self._can_take_dmg_timer = tweak_data.upgrades.values.player.armor_break_invulnerable_duration[1] or 0
+
+				pm:disable_cooldown_upgrade("cooldown", "armor_break_invulnerable")
+			end
+
+			-- Iron Curtain
+			if pm:has_enabled_cooldown_upgrade("cooldown", "crewmate_damage_reduction") then
+				managers.network:session():send_to_peers("sync_damage_reduction_from_crewmate")
+
+				pm:disable_cooldown_upgrade("cooldown", "crewmate_damage_reduction")
+			end
+		end
+	end
+
+	managers.hud:damage_taken()
+
+	-- For Grace Troll Mutator setting
+	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
+
+	-- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
 	if had_armor and self:get_real_armor() <= 0 then
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
-			self._can_take_dmg_timer = self._dmg_interval + (tweak_data.player.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL or 0.15)
+			if disable_armor_break_grace then
+				self._can_take_dmg_timer = self._dmg_interval
+			else
+				self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
+			end
 		end
 	end
 
 	return health_subtracted
 end
 
+-- Damage conversion into drama is affected by the armor you wear
+-- SWAT turrets inflict very little damage drama
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
-Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
+local _send_damage_drama_original = Hooks:GetFunction(PlayerDamage, "_send_damage_drama")
+Hooks:OverrideFunction(PlayerDamage, "_send_damage_drama", function(self, attack_data, health_subtracted, ...)
+	-- Team AI use this same `_send_damage_drama` function too, but they don't have `get_real_armor`
+	if self.get_real_armor then
+		if self:get_real_armor() > 0 then
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul") or 1)
+		elseif managers.player:has_category_upgrade("player", "decreased_drama_hurt") then -- hidden on-hurt drama gain scaling for armorless decks
+			health_subtracted = health_subtracted * (managers.player:body_armor_value("criminal_hurt_drama_mul_capped") or 1)
+		end
+
+		if managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") then
+			health_subtracted = health_subtracted * (tweak_data.upgrades.chico_injector_criminal_hurt_drama_mul or 0.1)
+		end
+
+		if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+			health_subtracted = health_subtracted * (tweak_data.upgrades.copr_ability_criminal_hurt_drama_mul or 0.1)
+		end
+	end
+
+	if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().sentry_gun then
+		health_subtracted = health_subtracted * (tweak_data.upgrades.swat_turret_criminal_hurt_drama_mul or 0.25)
+	end
+
+	_send_damage_drama_original(self, attack_data, health_subtracted, ...)
+
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval / 2
+		self._can_take_dmg_timer = self._dmg_interval
 	end
 end)
 
@@ -268,7 +373,9 @@ function PlayerDamage:set_armor(armor)
 		local has_armor_dodge = managers.player:has_enabled_cooldown_upgrade("cooldown", "dodge_on_armor_break")
 
 		if current_armor == 0 and armor ~= 0 then
-			self:consume_armor_stored_health()
+			local health_diff = self:_max_health() - self:get_real_health()
+
+			self:consume_armor_stored_health(managers.player:has_category_upgrade("player", "armor_health_store_no_waste") and health_diff or nil)
 
 			if has_armor_dodge then
 				self._armor_broken_dodge = false
@@ -302,18 +409,29 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
+	if managers.player:has_activate_temporary_upgrade("temporary", "health_ratio_invulnerable") then
 		return 0
 	end
 
 	local health_subtracted = 0
+	-- For Grace Troll mutator (Vanilla Grace Piercing behaviour)
+	local vanilla_grace_piercing = managers.mutators:modify_value("PlayerDamage:VanillaGracePiercing", false)
+	if not vanilla_grace_piercing then
+		attack_data.damage = attack_data.damage - (self._old_last_received_dmg or 0)
+		self._next_allowed_dmg_t = self._old_next_allowed_dmg_t and Application:digest_value(self._old_next_allowed_dmg_t, true) or self._next_allowed_dmg_t
+		self._old_last_received_dmg = nil
+		self._old_next_allowed_dmg_t = nil
+	end
+
 	health_subtracted = self:get_real_health()
 
 	self:change_health(-attack_data.damage)
 
 	health_subtracted = health_subtracted - self:get_real_health()
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability") and health_subtracted > 0 then
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and health_subtracted > 0 then
+		self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("copr_static_damage_grace_period") -- Extended grace period when losing Leech health chunks
+
 		local teammate_heal_level = managers.player:upgrade_level_nil("player", "copr_teammate_heal")
 
 		if teammate_heal_level and self:get_real_health() > 0 then
@@ -321,16 +439,16 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		end
 	end
 
-	if self._has_mrwi_health_invulnerable then
-		local health_threshold = self._mrwi_health_invulnerable_threshold or 0.5
-		local is_cooling_down = managers.player:get_temporary_property("mrwi_health_invulnerable", false)
+	-- Remake the <%X HP invuln upgrade to use the cooldown system instead of temporary
+	if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_ratio_invulnerable") then
+		local health_threshold = tweak_data.upgrades.values.player.health_ratio_invulnerable_ratio[1] or 0.5
 
-		-- Make <50%hp invuln upgrade not proc on armor hits
-		if self:health_ratio() <= health_threshold and health_subtracted > 0 and not is_cooling_down then -- was it so hard to just add one more check, overkill?
-			local cooldown_time = self._mrwi_health_invulnerable_cooldown or 10
+		-- Make <X% hp invuln upgrade not proc on armor hits
+		if self:health_ratio() <= health_threshold and health_subtracted > 0 then
+			self:set_health(self:_max_health() * health_threshold) -- make it so that your health doesn't drop below 25% when activating invuln
 
-			managers.player:activate_temporary_upgrade("temporary", "mrwi_health_invulnerable")
-			managers.player:activate_temporary_property("mrwi_health_invulnerable", cooldown_time, true)
+			managers.player:activate_temporary_upgrade("temporary", "health_ratio_invulnerable")
+			managers.player:disable_cooldown_upgrade("cooldown", "health_ratio_invulnerable")
 		end
 	end
 
@@ -436,12 +554,21 @@ function PlayerDamage:revive(silent)
 	local player_damage_tweak = tweak_data.player.damage
 	self._down_time = math.max(
 		player_damage_tweak.DOWNED_TIME_MIN,
-		(player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
+		(player_damage_tweak.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if MusicManager.set_volume_multiplier then
 		managers.music:set_volume_multiplier("downed", 1, 1)
 	end
+end
+
+local _check_bleed_out_old = PlayerDamage._check_bleed_out
+function PlayerDamage:_check_bleed_out(can_activate_berserker, ignore_movement_state, ignore_reduce_revive)
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") and managers.player:has_category_upgrade("player", "copr_out_of_health_move_slow") then
+		return
+	end
+
+	_check_bleed_out_old(self, can_activate_berserker, ignore_movement_state, ignore_reduce_revive)
 end
 
 -- Proper fall damage that scales based on height
@@ -468,14 +595,15 @@ function PlayerDamage:damage_fall(data)
 		return
 	end
 
-	local height_limit = 400
-	local death_limit = 630
+	local height_limit = 300
+	local death_limit = 631
 
 	if data.height < height_limit then
 		return
 	end
 
 	local die = death_limit < data.height
+	local fall_multiplier = 0
 
 	self._unit:sound():play("player_hit")
 	managers.environment_controller:hit_feedback_down()
@@ -485,8 +613,6 @@ function PlayerDamage:damage_fall(data)
 		return
 	end
 
-	local fall_damage_ramp
-	local fall_multiplier = player_tweak.fall_health_damage
 	if die then
 		managers.player:force_end_copr_ability()
 
@@ -500,19 +626,25 @@ function PlayerDamage:damage_fall(data)
 			self:_send_set_revives()
 		end
 	else
-		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.25, 1)
+		fall_multiplier = 1
+		local fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
 
-		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
-		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1)
+		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and tweak_data.player.fall_damage_armor_mul or 1)
+		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1) * managers.player:upgrade_value("player", "fall_damage_multiplier_cat", 1)
 
-		local fall_damage = self:_max_health() * fall_multiplier
+		local fall_damage = tweak_data.player.fall_health_damage * fall_multiplier
 
-		self:change_health(-fall_damage)
+		if managers.player:has_category_upgrade("player", "armor_absorbs_fall_damage") then
+			self:change_armor(-fall_damage)
+		else
+			self:change_health(-fall_damage)
+		end
+
 		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
 	end
 
 	if die or fall_multiplier > 0 then
-		local alert_rad = player_tweak.fall_damage_alert_size or 500
+		local alert_rad = (player_tweak.fall_damage_alert_size or 500) * managers.player:upgrade_value("player", "fall_damage_noise_multiplier", 1)
 		local new_alert = {
 			"vo_cbt",
 			self._unit:movement():m_head_pos(),
@@ -557,7 +689,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then
 		self:_call_listeners(damage_info)
 		return
-	elseif self:incapacitated() or self._unit:movement():current_state().immortal then
+	elseif self:is_downed() or self._unit:movement():current_state().immortal then
 		self._last_teargas_hit_t = nil
 		return
 	end
@@ -585,7 +717,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		prevents_running = true,
 	})
 
-	attack_data.damage = managers.player:modify_value("damage_taken", self:_max_health() * attack_data.damage, attack_data) * math.max(0, self._teargas_damage_ramp)
+	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * math.max(0, self._teargas_damage_ramp)
 
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
@@ -626,12 +758,6 @@ function PlayerDamage:restore_health_percentage(health_restored, _, chk_health_r
 	local max_health = self:_max_health()
 
 	return self:change_health(max_health * health_restored * self._healing_reduction)
-end
-
--- lower the on-kill godmode length for leech
-function PlayerDamage:on_copr_killshot()
-	self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + 0.45, true)
-	self._last_received_dmg = self:_max_health()
 end
 
 -- FAKs only heal a small portion but then heal you over time
@@ -688,7 +814,7 @@ function PlayerDamage:restore_lives(lives_restored)
 	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
 	self._down_time = math.max(
 		tweak_data.player.damage.DOWNED_TIME_MIN,
-		(tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
+		(tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
 	)
 
 	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
@@ -721,7 +847,7 @@ function PlayerDamage:_regenerated(from_medic_bag)
 		self._revives = Application:digest_value(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), true)
 		self._revive_health_i = 1
 		self._down_time_i = 0
-		self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0) -- an upgrade that increases bleedout timer
+		self._down_time = tweak_data.player.damage.DOWNED_TIME * managers.player:upgrade_value("player", "bleedout_timer_multiplier", 1) -- an upgrade that increases bleedout timer
 		self:_send_set_revives(true)
 	end
 
@@ -734,11 +860,11 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 
 	if can_revive and managers.player:has_category_upgrade("player", "cheat_death_chance") then
 		local r = math.rand(1)
-		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_headshot_cheat_death", 0)
+		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_hitman_cheat_death", 0)
 
 		if r <= self_revive_chance then
 			self._auto_revive_timer = 1
-			managers.player:remove_property("chain_headshot_cheat_death")
+			managers.player:remove_property("chain_hitman_cheat_death")
 		end
 	end
 
@@ -758,6 +884,11 @@ end
 function PlayerDamage:_upd_suppression(t, dt)
 	-- crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
+		return
+	end
+
+	-- active frenzy blocks armor suppression
+	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
 		return
 	end
 
@@ -790,15 +921,39 @@ function PlayerDamage:_upd_suppression(t, dt)
 	end
 end
 
+-- Suppression multiplier also affects decay timer
+function PlayerDamage:build_suppression(amount)
+	if self:_chk_suppression_too_soon(amount) then
+		return
+	end
+
+	local data = self._supperssion_data
+	amount = amount * managers.player:upgrade_value("player", "suppressed_multiplier", 1)
+	local morale_boost_bonus = self._unit:movement():morale_boost()
+
+	if morale_boost_bonus then
+		amount = amount * morale_boost_bonus.suppression_resistance
+	end
+
+	amount = amount * tweak_data.player.suppression.receive_mul
+	data.value = math.min(tweak_data.player.suppression.max_value, (data.value or 0) + amount * tweak_data.player.suppression.receive_mul)
+	self._last_received_sup = amount
+	self._next_allowed_sup_t = managers.player:player_timer():time() + self._dmg_interval
+	data.decay_start_t = managers.player:player_timer():time() + tweak_data.player.suppression.decay_start_delay * managers.player:upgrade_value("player", "suppressed_multiplier", 1)
+end
+
 -- On-armor-regen upgrades
 function PlayerDamage:_regenerate_armor(no_sound)
-	if self._unit:sound() and not no_sound then
+	local max_armor = self:_max_armor()
+	local armor = not no_sound and self:get_real_armor()
+
+	if self._unit:sound() and armor and armor < max_armor then
 		self._unit:sound():play("shield_full_indicator")
 	end
 
 	self._regenerate_speed = nil
 
-	if self:get_real_armor() <= 0 then
+	if armor and armor <= 0 then
 		-- Cooldown temporary damage reduction on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
 			managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")
@@ -807,10 +962,21 @@ function PlayerDamage:_regenerate_armor(no_sound)
 
 		-- Cooldown health regen on armor regen
 		if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
+			local armor_init = tweak_data.player.damage.ARMOR_INIT
+			local base_max_armor = armor_init + managers.player:body_armor_value("armor") + managers.player:body_armor_skill_addend()
 			local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
+			local armor_bonus = tweak_data.upgrades.values.player.armor_regen_plating_bonus
+			local extra_cooldown = 0
+			local extra_health = 0
 
-			self:restore_health(health_to_restore)
-			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+			-- Extra health regen addend and cooldown length for every 20 base armor points
+			for i = 1, (base_max_armor / 2) do
+				extra_health = extra_health + armor_bonus.extra_health
+				extra_cooldown = extra_cooldown + armor_bonus.extra_cooldown
+			end
+
+			self:restore_health(health_to_restore + extra_health)
+			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen", extra_cooldown)
 		end
 	end
 
@@ -818,4 +984,38 @@ function PlayerDamage:_regenerate_armor(no_sound)
 	self:_send_set_armor()
 
 	self._current_state = nil
+end
+
+-- Ex-President
+function PlayerDamage:consume_armor_stored_health(amount)
+	if self._armor_stored_health and not self._dead and not self._bleed_out and not self._check_berserker_done then
+		self:change_health(self._armor_stored_health)
+	end
+
+	if amount then
+		self:add_armor_stored_health(-math.min(amount, self._armor_stored_health))
+	else
+		self:clear_armor_stored_health()
+	end
+end
+
+-- The number of Leech segments depends on the armor you're wearing
+function PlayerDamage:copr_update_attack_data(attack_data)
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		local static_damage_ratio = managers.player:body_armor_value("copr_static_damage_ratio")
+
+		if static_damage_ratio and attack_data.damage > 0 then
+			local high_damage_tweak = tweak_data.upgrades.copr_high_damage_multiplier
+			local damage_multiplier = high_damage_tweak[1] <= attack_data.damage and high_damage_tweak[2] or 1
+			attack_data.damage = self:_max_health() * static_damage_ratio * damage_multiplier
+		end
+	end
+end
+
+-- Leech's on-kill I-frame depends on the armor you're wearing
+function PlayerDamage:on_copr_killshot(new)
+	if new then -- add this check so that it doesn't proc twice
+		self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + managers.player:body_armor_value("copr_life_leech_invulnerable"), true)
+		self._last_received_dmg = self:_max_health()
+	end
 end

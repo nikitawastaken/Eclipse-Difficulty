@@ -1,25 +1,49 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local diff_i = Eclipse.utils.difficulty_index()
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local sniper = scripted_enemy.sniper
+local fbi_agents_chance = math.random() <= 0.5
 local cops = {
-	[cop_1] = 4,
-	[cop_3] = 2,
-	[cop_2] = 1,
+	[scripted_enemy.cop_1] = 4,
+	[scripted_enemy.cop_3] = 2,
+	[scripted_enemy.cop_2] = 1,
+	[scripted_enemy.cop_4] = 1,
 }
 local swats = {
-	[swat_1] = 6,
-	[swat_2] = 2,
-	[sniper] = 2,
+	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 6,
+	[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 2,
+	[scripted_enemy.sniper] = 2,
+}
+local fbi_list = {
+	[scripted_enemy.fbi_1] = get_difficulty_group_specific_value({ 2, 1, 1 }),
+	[scripted_enemy.fbi_2] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[scripted_enemy.fbi_3] = get_difficulty_group_specific_value({ 0, 2, 3 }),
 }
 local swat_harasser = {
-	enemy = diff_i < 5 and cops or swats,
+	enemy = diff_i < 4 and cops or swats,
+}
+local fbi_agent = {
+	enemy = fbi_list,
+	pre_func = function(element)
+		if Network:is_client() then
+			return
+		end
+		element:add_event_callback("spawn", function(unit)
+			local pos = unit:movement():m_pos()
+			unit:brain():set_objective({
+				type = "sniper",
+				pos = pos,
+				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
+				no_retreat = true,
+			})
+		end)
+	end,
+}
+local enabled = {
+	values = {
+		enabled = true,
+	},
 }
 local street_spawn = {
 	values = {
@@ -43,12 +67,84 @@ local upper_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local helicopter_guaranteed_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			time = 60,
+			delay = 0,
+		},
+	},
+}
+
 return {
 	-- add point of no return
 	[100580] = {
 		ponr = {
-			length = 600,
-			player_mul = { 1.8, 1.5, 1.3, 1.2 },
+			length = 800,
+			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
+		},
+		on_executed = {
+			{ id = 400038, delay = 0 }, -- possible suprise cloaker at the start of the heist
+			{ id = 100581, remove = true }, -- nuke the other elementrandom and and remaining dummies to in one
+		},
+	},
+	-- hide choppers on startup
+	-- open swat van doors for spawns
+	[100018] = {
+		on_executed = {
+			{ id = 400040, delay = 0 },
+			{ id = 400208, delay = 0 },
+		},
+	},
+	-- Combine some navigation areas
+	[102729] = {
+		ai_area = {
+			{ 17, 18, 91 },
+			{ 7, 10, 90, 171 },
+			{ 5, 6, 11, 89 },
+			{ 12, 13, 88 },
+			{ 14, 16, 87 },
+			{ 86, 115, 116 },
+			{ 1, 19, 20 },
+			{ 2, 21, 22 },
+			{ 71, 100, 101, 102, 103 },
+			{ 70, 96, 97 },
+			{ 69, 98, 99 },
+			{ 68, 104, 105 },
+			{ 29, 30, 84 },
+			{ 27, 28, 83 },
+			{ 76, 110, 111, 112 },
+			{ 150, 151, 170 },
+			{ 77, 108, 109 },
+			{ 78, 106, 107 },
+			{ 79, 117, 118 },
+			{ 25, 26, 81 },
+			{ 23, 24, 82 },
+			{ 33, 72 },
+			{ 31, 73 },
+			{ 74, 113, 114 },
+			{ 8, 94, 214 },
+			{ 3, 9, 93 },
+			{ 54, 160, 161 },
+			{ 162, 163 },
+			{ 53, 164, 165 },
+			{ 47, 48, 215 },
+			{ 52, 55, 166 },
+			{ 56, 57 },
+			{ 58, 59 },
+			{ 60, 61, 216 },
+			{ 62, 126, 128 },
+			{ 63, 64, 127 },
+			{ 66, 167, 168 },
+			{ 38, 39, 168 },
+			{ 40, 41 },
+			{ 34, 35, 36 },
+			{ 43, 44 },
+			{ 45, 46 },
 		},
 	},
 	-- Add new reinforce
@@ -60,17 +156,168 @@ return {
 				position = Vector3(10600, 5500, -2400),
 			},
 		},
+		on_executed = {
+			{ id = 100006, delay = 30 },
+		},
 	},
-	-- tweak harassers
-	[102029] = swat_harasser,
-	[102031] = swat_harasser,
-	[102033] = swat_harasser,
-	[102035] = swat_harasser,
-	[102037] = swat_harasser,
-	[102039] = swat_harasser,
-	[102041] = swat_harasser,
-	[102043] = swat_harasser,
+	-- spawn swat blockade when the parking garage doors are opening
+	[102095] = {
+		on_executed = {
+			{ id = 400207, delay = 1 },
+		},
+	},
+	-- Chance for hiding cloakers in the garage
+	[102077] = {
+		on_executed = {
+			{ id = 400209, delay = 0 },
+		},
+	},
+	-- fix one of SWAT spawngroup spawns having messed up positions
+	[100143] = {
+		values = {
+			position = Vector3(-4210.318, 98.610, -2020),
+			rotation = Rotation(30.276, 0, 0),
+		},
+	},
+	[100141] = {
+		values = {
+			position = Vector3(-4302.193, -1.811, -2020),
+			rotation = Rotation(-26.785, 0, 0),
+		},
+	},
+	[100142] = {
+		values = {
+			position = Vector3(-4280.948, 77.521, -2020),
+			rotation = Rotation(30.276, 0, 0),
+		},
+	},
+	[100139] = {
+		values = {
+			position = Vector3(-4313.807, 119.244, -2020),
+			rotation = Rotation(-20.627, 0, 0),
+		},
+	},
+	[100140] = {
+		values = {
+			position = Vector3(-4305.427, 175.010, -2020),
+			rotation = Rotation(35.230, 0, 0),
+		},
+	},
+	-- Add harassers/helicopter spawns through out the convoy section
+	[102958] = {
+		on_executed = {
+			{ id = 400033, delay = 0 },
+			{ id = 400034, delay = 0 },
+			{ id = 400069, delay = 0 },
+		},
+	},
+	[102946] = {
+		on_executed = {
+			{ id = 400035, delay = 0 },
+			{ id = 400036, delay = 0 },
+			{ id = 400059, delay = 0 },
+		},
+	},
+	[102968] = {
+		on_executed = {
+			{ id = 400036, delay = 0 },
+			{ id = 400059, delay = 0 },
+		},
+	},
+	[102940] = {
+		on_executed = {
+			{ id = 400037, delay = 0 },
+			{ id = 400049, delay = 0 },
+			{ id = 400112, delay = 0 },
+		},
+	},
+	[102955] = {
+		on_executed = {
+			{ id = 400037, delay = 0 },
+		},
+	},
+	[102919] = {
+		on_executed = {
+			{ id = 400079, delay = 0 },
+		},
+	},
+	-- enable harasser SOs that are disabled for some reason
+	[102001] = enabled,
+	[102004] = enabled,
+	[102005] = enabled,
+	[102008] = enabled,
+	-- chance based dozer van ambush
+	[103611] = {
+		on_executed = {
+			{ id = 400032, delay = 0 },
+		},
+	},
+	-- possible sniper at the start of the heist
+	[100799] = {
+		on_executed = {
+			{ id = 400014, delay = 0 },
+		},
+	},
+	-- spawn sniper when the convoy drives straight (at the start)
+	[102913] = {
+		on_executed = {
+			{ id = 400013, delay = 0 },
+		},
+	},
+	-- add more prison guards to be more accurate to live action trailer
+	-- spooled
+	[101424] = {
+		on_executed = {
+			{ id = 400100, delay = 0 },
+			{ id = 400101, delay = 0 },
+		},
+	},
+	-- on leaving
+	[100205] = {
+		on_executed = {
+			{ id = 400102, delay = 0 },
+			{ id = 400103, delay = 0 },
+			{ id = 400104, delay = 0 },
+			{ id = 400105, delay = 0 },
+		},
+	},
+	-- restore unused spawns at the start of the heist and replace security with FBI agents
+	[100589] = fbi_agent,
+	[100590] = fbi_agent,
+	[100585] = fbi_agent,
+	[100191] = fbi_agent,
+	[100587] = fbi_agent,
+	[100586] = fbi_agent,
+	[100588] = fbi_agent,
+	[100190] = fbi_agent,
+	[100584] = fbi_agent,
+	[100583] = fbi_agent,
+	[100582] = {
+		values = {
+			enabled = normal_and_above and fbi_agents_chance,
+			amount = 3,
+			amount_random = 1,
+		},
+		on_executed = {
+			{ id = 100190, delay = 0 },
+			{ id = 100585, delay = 0 },
+			{ id = 100586, delay = 0 },
+			{ id = 100587, delay = 0 },
+			{ id = 100589, delay = 0 },
+		},
+	},
+	-- Difficulty scaling
+	[100006] = { -- extra_preferreds1
+		on_executed = {
+			{ id = 400211, delay = 0 },
+		},
+	},
+	[400210] = assault_end_diff_add,
 	-- Spawn group intervals
+	[400050] = helicopter_guaranteed_spawn,
+	[400060] = helicopter_guaranteed_spawn,
+	[400070] = helicopter_guaranteed_spawn,
+	[400080] = helicopter_guaranteed_spawn,
 	[101719] = street_spawn,
 	[101728] = street_spawn,
 	[101731] = street_spawn,
@@ -84,4 +331,13 @@ return {
 	[101737] = upper_spawn,
 	[101789] = upper_spawn,
 	[101734] = upper_spawn,
+	-- Tweak harassers
+	[102029] = swat_harasser,
+	[102031] = swat_harasser,
+	[102033] = swat_harasser,
+	[102035] = swat_harasser,
+	[102037] = swat_harasser,
+	[102039] = swat_harasser,
+	[102041] = swat_harasser,
+	[102043] = swat_harasser,
 }

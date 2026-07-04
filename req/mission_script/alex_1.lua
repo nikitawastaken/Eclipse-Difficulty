@@ -1,21 +1,17 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local diff_i = Eclipse.utils.difficulty_index()
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 -- credit for these changes goes to ASS, thanks miki <3
 local mendoza_enemy = {
@@ -26,6 +22,11 @@ local mendoza_enemy = {
 }
 local mendoza = { enemy = mendoza_enemy }
 local heli_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -56,19 +57,40 @@ local standard_spawn = {
 		interval = 10,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local flank_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 return {
+	-- FFO
+	[101032] = {
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	-- Add new navlinks
+	[100853] = { -- startEnemyNavLinks
+		on_executed = {
+			{ id = 400013, delay = 0 },
+			{ id = 400014, delay = 0 },
+			{ id = 400015, delay = 0 },
+		},
+	},
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_enemy,
 	[101572] = cloaker_enemy,
@@ -83,6 +105,21 @@ return {
 			{ id = 100376, delay = 3.25 },
 		},
 	},
+	-- start spawning recurring cloakers
+	[101945] = { -- trigger_global_event_005
+		on_executed = {
+			{ id = 400024, delay = 0 },
+		},
+	},
+	-- enable a few disable hide SOs
+	[101954] = enabled,
+	[101956] = enabled,
+	[101957] = enabled,
+	[101959] = enabled,
+	[101961] = enabled,
+	[101962] = enabled,
+	[101963] = enabled,
+	[101966] = enabled,
 	-- more snipers on higher difficulties
 	[101070] = sniper_groups,
 	-- prevent snipers from stacking up
@@ -110,11 +147,14 @@ return {
 	[101435] = exclude_cop_agents_shields_dozers,
 	[101436] = exclude_cop_agents_shields_dozers,
 	[101507] = exclude_cop_agents_shields_dozers,
+	-- disable nuke meth explosion on Death Wish
+	[101985] = filter_easy_above,
+	[101984] = filter_disable,
 	-- cops now use climbing SOs on first assault (Eclipse exclusive event)
-	-- disable this on Eclipse
+	-- disable this on Death Wish
 	[101496] = {
 		values = {
-			enabled = is_eclipse and false,
+			enabled = not is_eclipse and true or false,
 		},
 	},
 	-- hell
@@ -166,7 +206,7 @@ return {
 			{ id = 100965, delay = 180, delay_rand = 120 },
 		},
 	},
-	-- loop the choppa+2 chopper spawns on Eclipse
+	-- loop the choppa+2 chopper spawns on Death Wish
 	[100965] = {
 		on_executed = {
 			{ id = 400009, delay = 0 },
@@ -254,44 +294,56 @@ return {
 			amount_random = 3,
 		},
 	},
-	-- some new reenforce spots
+	-- Add new reinforce spots
 	[100941] = {
 		reinforce = {
 			{
 				name = "such_a_nice_car",
-				force = 2,
-				position = Vector3(675, -1200, 875),
+				force = 3,
+				position = Vector3(250, -1500, 900),
 			},
 			{
 				name = "such_an_ugly_car",
-				force = 2,
-				position = Vector3(-380, 1350, 1200),
-			},
-			{
-				name = "redeyes",
-				force = 2,
-				position = Vector3(3050, -900, 900),
+				force = 3,
+				position = Vector3(-400, 1350, 1200),
 			},
 			{
 				name = "basement",
 				force = 2,
-				position = Vector3(1875, 900, 950),
+				position = Vector3(2050, 1000, 950),
 			},
 		},
 	},
-	-- disable vanilla reinforce
-	[100942] = disabled,
-	[100973] = disabled,
-	-- add new unused spawngroup
-	[100937] = {
+	-- Add new unused spawngroup
+	[100937] = { -- The last one is behind the fence; there is no navigation there, sad.
 		values = {
+			enabled = true,
 			spawn_groups = {
 				400007,
-				100925,
-			},
+				400030,
+				--	100925,
+			}, -- The last one is behind the fence; there is no navigation there, sad.
 		},
 	},
-	[101525] = mendoza, -- gangsters
+	-- Spawn group intervals
+	[100467] = standard_spawn,
+	[100550] = standard_spawn,
+	[100671] = standard_spawn,
+	[100672] = standard_spawn,
+	[100840] = standard_spawn,
+	[100880] = standard_spawn,
+	[100924] = standard_spawn,
+	[100863] = standard_spawn,
+	[100874] = standard_spawn,
+	[400007] = standard_spawn,
+	[400030] = standard_spawn,
+	[100925] = flank_spawn,
+	[400020] = cloaker_spawn,
+	[400021] = cloaker_spawn,
+	[400022] = cloaker_spawn,
+	[400023] = cloaker_spawn,
+	-- Gangstas
+	[101525] = mendoza,
 	[101527] = mendoza,
 	[100825] = mendoza,
 	[100826] = mendoza,
@@ -311,16 +363,4 @@ return {
 	[100431] = mendoza,
 	[101262] = mendoza,
 	[101263] = mendoza,
-	-- spawn Group delays
-	[100467] = standard_spawn,
-	[100550] = standard_spawn,
-	[100671] = standard_spawn,
-	[100840] = standard_spawn,
-	[100880] = standard_spawn,
-	[100672] = close_spawn,
-	[100924] = close_spawn,
-	[100863] = close_spawn,
-	[100874] = close_spawn,
-	[100925] = flank_spawn,
-	[400007] = flank_spawn,
 }

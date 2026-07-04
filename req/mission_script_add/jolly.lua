@@ -71,6 +71,7 @@ local optsHideSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 }
 local optsSniperSO = {
@@ -78,6 +79,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }

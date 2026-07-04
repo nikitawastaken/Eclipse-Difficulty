@@ -7,125 +7,118 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
-local cop_sg = scripted_enemy.cop_4
-local swat_rifle = scripted_enemy.swat_1
-local swat_sg = scripted_enemy.swat_2
-local swat_smg = scripted_enemy.swat_1
-local heavy_rifle = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_alleyway_wall = math.random() <= diff_scaling
-local enabled_chance_alleyway_dozer = math.random() <= diff_scaling
-local enabled_chance_alleyway_spook1 = math.random() <= diff_scaling
-local enabled_chance_alleyway_spook2 = math.random() <= diff_scaling
-local enabled_chance_parkinglot_spook1 = math.random() <= diff_scaling
-local enabled_chance_parkinglot_spook2 = math.random() <= diff_scaling
-local enabled_chance_sniper_major_rooftop = math.random() <= diff_scaling
-local enabled_chance_sniper_armitage_underpass = math.random() <= diff_scaling
-local enabled_chance_sniper_armitage_rooftop = math.random() <= diff_scaling
+local enabled_chance_alleyway_wall = math.random() <= 0.6
+local enabled_chance_alleyway_dozer = math.random() <= 0.3
+local enabled_chance_alleyway_spook1 = math.random() <= 0.4
+local enabled_chance_alleyway_spook2 = math.random() <= 0.4
+local enabled_chance_parkinglot_spook1 = math.random() <= 0.4
+local enabled_chance_parkinglot_spook2 = math.random() <= 0.4
+local enabled_chance_sniper_major_rooftop = math.random() <= 0.2
+local enabled_chance_sniper_armitage_underpass = math.random() <= 0.2
+local enabled_chance_sniper_armitage_rooftop = math.random() <= 0.2
 local enabled_chance_inkwell_dozer = math.random() <= 0.8
 
 local optsShieldWall1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400004, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400005, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400006, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsShieldWall4 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400007, delay = 0 } },
 	enabled = normal_and_above,
 }
 local optsInkwellDozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400095, delay = 0 } },
 	enabled = is_eclipse and enabled_chance_inkwell_dozer,
 }
 local optsLateShield1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400010, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400011, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400092, delay = 0 } },
 	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateDozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_alleyway_dozer,
 }
 local optsDozerDoor = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
 	spawn_action = "e_sp_kick",
 	enabled = true,
 }
 local optsSpoocAmbush1 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = overkill_and_above and enabled_chance_alleyway_spook1,
 }
 local optsSpoocAmbush2 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400017, delay = 0 } },
 	enabled = overkill_and_above and enabled_chance_alleyway_spook2,
 }
 local optsSpoocAmbush3 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400019, delay = 2 } },
 	spawn_action = "e_sp_armored_truck_1st",
 	enabled = overkill_and_above and enabled_chance_parkinglot_spook1,
 }
 local optsSpoocAmbush4 = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	on_executed = { { id = 400021, delay = 2 } },
 	spawn_action = "e_sp_armored_truck_1st",
 	enabled = overkill_and_above and enabled_chance_parkinglot_spook2,
 }
 local optsMissingBeatCop = {
-	enemy = cop_sg,
+	enemy = scripted_enemy.cop_4,
 	spawn_action = "e_sp_car_exit_to_cbt_front_r",
 	enabled = true,
 }
 local optsArmitageSniper_01 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400086, delay = 0 } },
 	trigger_times = 1,
 	enabled = normal_and_above and enabled_chance_sniper_armitage_underpass,
 }
 local optsArmitageSniper_02 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400088, delay = 0 } },
 	trigger_times = 1,
 	enabled = normal_and_above and enabled_chance_sniper_armitage_rooftop,
 }
 local optsMajorSniper_01 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = { { id = 400097, delay = 0 } },
 	trigger_times = 1,
 	enabled = overkill_and_above and enabled_chance_sniper_major_rooftop,
@@ -136,32 +129,32 @@ local optsBesiegeDummy = {
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsShieldWallFirstStreet1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410062, delay = 0 } },
 	enabled = true,
 }
 local optsShieldWallFirstStreet2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410063, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet1 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410064, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet2 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410065, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet3 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410066, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet4 = {
-	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	enemy = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1,
 	on_executed = { { id = 410067, delay = 0 } },
 	enabled = true,
 }
@@ -225,6 +218,7 @@ local optsGarageHunt = {
 	path_style = "none",
 	pose = "crouch",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsFirstStreet_AIsniper = {
@@ -233,6 +227,7 @@ local optsFirstStreet_AIsniper = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	scan = true,
 	so_action = "AI_sniper",
 }
@@ -283,6 +278,7 @@ local optsDozerHuntSO = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsShieldSO = {
@@ -291,6 +287,7 @@ local optsShieldSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "crouch",
 	path_stance = "cbt",
@@ -301,6 +298,7 @@ local optsHideSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 	interrupt_dis = 10,
 }
@@ -310,6 +308,7 @@ local optsHideCarSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_hide_under_car_enter",
 	interrupt_dis = 10,
 }
@@ -318,6 +317,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "stand",
 }
@@ -330,10 +330,10 @@ local optsBesiegeStart = {
 }
 local optsPreferedAdd1 = { -- Major Ave. 1
 	on_executed = {
-		{ id = 400027, delay = 0 },
-		{ id = 400032, delay = 0 },
-		{ id = 400037, delay = 0 },
-		{ id = 400042, delay = 0 },
+		{ id = 400027, delay = 0, delay_rand = 5 },
+		{ id = 400032, delay = 0, delay_rand = 5 },
+		{ id = 400037, delay = 0, delay_rand = 5 },
+		{ id = 400042, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -342,8 +342,8 @@ local optsPreferedRemove1 = { -- Major Ave. 1
 }
 local optsPreferedAdd2 = {
 	on_executed = {
-		{ id = 400048, delay = 0 },
-		{ id = 400053, delay = 0 },
+		{ id = 400048, delay = 0, delay_rand = 5 },
+		{ id = 400053, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -352,9 +352,9 @@ local optsPreferedRemove2 = { -- Major Ave. 2
 }
 local optsPreferedAdd3 = { -- Easy St.
 	on_executed = {
-		{ id = 400058, delay = 0 },
-		{ id = 400063, delay = 0 },
-		{ id = 400068, delay = 0 },
+		{ id = 400058, delay = 0, delay_rand = 5 },
+		{ id = 400063, delay = 0, delay_rand = 5 },
+		{ id = 400068, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -371,8 +371,8 @@ local optsPreferedRemove4 = { -- Inkwell
 }
 local optsPreferedAdd5 = { -- Armitage Ave.
 	on_executed = {
-		{ id = 410017, delay = 0 },
-		{ id = 410022, delay = 0 },
+		{ id = 410017, delay = 0, delay_rand = 5 },
+		{ id = 410022, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -381,8 +381,8 @@ local optsPreferedRemove5 = { -- Armitage Ave.
 }
 local optsPreferedAdd6 = { -- Overpass 1
 	on_executed = {
-		{ id = 410029, delay = 0 },
-		{ id = 410034, delay = 0 },
+		{ id = 410029, delay = 0, delay_rand = 5 },
+		{ id = 410034, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -391,8 +391,7 @@ local optsPreferedRemove6 = { -- Overpass 1
 }
 local optsPreferedAdd7 = { -- Overpass 2
 	on_executed = {
-		{ id = 103998, delay = 0 },
-		{ id = 410041, delay = 0 },
+		{ id = 410041, delay = 0, delay_rand = 5 },
 	},
 	enabled = true,
 }
@@ -411,6 +410,16 @@ local opts_swat_van_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
+local optsAssaultEnd = {
+	global_event = "end_assault",
+}
+local optsEnableAssaultEnd = {
+	enabled = true,
+	elements = {
+		410073,
+	},
+}
+
 M.elements = {
 	-- 193+ alike shield wall on turning the corner on major ave.
 	Eclipse.mission_elements.gen_dummy(400000, "eclipse_shield_wall_1", Vector3(-6805, -2965, 50), Rotation(0, 0, 0), optsShieldWall1),
@@ -558,16 +567,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(410004, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
 
 	Eclipse.mission_elements.gen_missionscript(410005, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
-	Eclipse.mission_elements.gen_preferedremove(410006, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
+	Eclipse.mission_elements.gen_preferedremove(410006, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1), -- UNUSED
 
 	Eclipse.mission_elements.gen_missionscript(410007, "eclipse_major_ave_preferedadd_2", optsPreferedAdd2),
-	Eclipse.mission_elements.gen_preferedremove(410008, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2),
+	Eclipse.mission_elements.gen_preferedremove(410008, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2), -- UNUSED
 
 	Eclipse.mission_elements.gen_missionscript(410009, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
-	Eclipse.mission_elements.gen_preferedremove(410010, "eclipse_easy_st_preferedremove", optsPreferedRemove3),
+	Eclipse.mission_elements.gen_preferedremove(410010, "eclipse_easy_st_preferedremove", optsPreferedRemove3), -- UNUSED
 
-	Eclipse.mission_elements.gen_preferedadd(410011, "eclipse_inkwell_preferedadd", optsPreferedAdd4),
-	Eclipse.mission_elements.gen_preferedremove(410012, "eclipse_inkwell_preferedremove", optsPreferedRemove4),
+	Eclipse.mission_elements.gen_preferedadd(410011, "eclipse_inkwell_preferedadd", optsPreferedAdd4), -- UNUSED
+	Eclipse.mission_elements.gen_preferedremove(410012, "eclipse_inkwell_preferedremove", optsPreferedRemove4), -- UNUSED
 
 	--uphill spawns
 	Eclipse.mission_elements.gen_dummy(410013, "eclipse_besiege_swat_49", Vector3(-17529.900, -10240.912, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
@@ -583,7 +592,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(410022, "eclipse_swat_van_besiege_12", { 410018, 410019, 410020, 410021 }, 0, opts_swat_van_group),
 
 	Eclipse.mission_elements.gen_missionscript(410023, "eclipse_armitage_ave_preferedadd", optsPreferedAdd5),
-	Eclipse.mission_elements.gen_preferedremove(410025, "eclipse_armitage_ave_preferedremove", optsPreferedRemove5),
+	Eclipse.mission_elements.gen_preferedremove(410025, "eclipse_armitage_ave_preferedremove", optsPreferedRemove5), -- UNUSED
 
 	Eclipse.mission_elements.gen_dummy(410025, "eclipse_besiege_swat_57", Vector3(-8183, -10629, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410026, "eclipse_besiege_swat_59", Vector3(-8208.882, -10532.407, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
@@ -598,7 +607,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(410034, "eclipse_swat_van_besiege_14", { 410030, 410031, 410032, 410033 }, 0, opts_swat_van_group),
 
 	Eclipse.mission_elements.gen_missionscript(410035, "eclipse_overpass_preferedadd_1", optsPreferedAdd6),
-	Eclipse.mission_elements.gen_preferedremove(410036, "eclipse_overpass_preferedremove_1", optsPreferedRemove6),
+	Eclipse.mission_elements.gen_preferedremove(410036, "eclipse_overpass_preferedremove_1", optsPreferedRemove6), -- UNUSED
 
 	Eclipse.mission_elements.gen_dummy(410037, "eclipse_besiege_swat_66", Vector3(-3760.446, -11386.476, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410038, "eclipse_besiege_swat_67", Vector3(-3691.239, -11420.230, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
@@ -607,22 +616,22 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(410041, "eclipse_swat_van_besiege_15", { 410037, 410038, 410039, 410040 }, 0, opts_swat_van_group),
 
 	Eclipse.mission_elements.gen_missionscript(410042, "eclipse_overpass_preferedadd_2", optsPreferedAdd7),
-	Eclipse.mission_elements.gen_preferedremove(410043, "eclipse_overpass_preferedremove_2", optsPreferedRemove7),
+	Eclipse.mission_elements.gen_preferedremove(410043, "eclipse_overpass_preferedremove_2", optsPreferedRemove7), -- UNUSED
 
 	Eclipse.mission_elements.gen_dummy(410044, "eclipse_besiege_swat_70", Vector3(365, -10482, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410045, "eclipse_besiege_swat_71", Vector3(382.257, -10400.814, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410046, "eclipse_besiege_swat_72", Vector3(415.325, -10504.966, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410047, "eclipse_besiege_swat_73", Vector3(435.077, -10412.042, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410048, "eclipse_swat_van_besiege_16", { 410043, 410044, 410045, 410046 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(410048, "eclipse_swat_van_besiege_16", { 410044, 410045, 410046, 410047 }, 0),
 
 	Eclipse.mission_elements.gen_dummy(410049, "eclipse_besiege_swat_74", Vector3(127.124, -9174.840, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410050, "eclipse_besiege_swat_75", Vector3(72.330, -9104.707, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410051, "eclipse_besiege_swat_76", Vector3(178.468, -9151.223, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(410052, "eclipse_besiege_swat_77", Vector3(115.671, -9070.846, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410053, "eclipse_swat_van_besiege_17", { 410048, 410049, 410050, 410051 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(410053, "eclipse_swat_van_besiege_17", { 410049, 410050, 410051, 410052 }, 0),
 
-	Eclipse.mission_elements.gen_preferedadd(410054, "eclipse_finale_preferedadd", optsPreferedAdd8),
-	Eclipse.mission_elements.gen_preferedremove(410055, "eclipse_finale_preferedremove", optsPreferedRemove8),
+	Eclipse.mission_elements.gen_preferedadd(410054, "eclipse_finale_preferedadd", optsPreferedAdd8), -- UNUSED
+	Eclipse.mission_elements.gen_preferedremove(410055, "eclipse_finale_preferedremove", optsPreferedRemove8), -- UNUSED
 
 	-- first street blockade on ovk above
 	Eclipse.mission_elements.gen_dummy(410056, "shield_wall_1", Vector3(5473, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet1),
@@ -645,6 +654,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(410070, "spawn_major_ave_shield_wall", optsspawnmajorshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410072, "spawn_parking_spoocs", optsspawnparkingspoocs),
+
+	-- assault_end trigger
+	Eclipse.mission_elements.gen_global_event(410073, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
+	Eclipse.mission_elements.gen_toggleelement(410074, "enable_assault_end", optsEnableAssaultEnd),
 }
 
 return M

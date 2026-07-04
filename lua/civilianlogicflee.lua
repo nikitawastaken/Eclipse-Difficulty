@@ -1,5 +1,5 @@
 -- Tweak hostage rescue conditions
-function CivilianLogicFlee.rescue_SO_verification(self, params, unit, ...)
+function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit)
 	if unit:movement():cool() then
 		return false
 	end
@@ -20,7 +20,7 @@ function CivilianLogicFlee.rescue_SO_verification(self, params, unit, ...)
 end
 
 -- Workaround for civilians being unresponsive when intimidated
-function CivilianLogicFlee._delayed_intimidate_clbk(self, params)
+function CivilianLogicFlee._delayed_intimidate_clbk(ignore_this, params)
 	local data = params[1]
 	local amount = params[2]
 	local aggressor_unit = params[3]
@@ -56,4 +56,28 @@ function CivilianLogicFlee._delayed_intimidate_clbk(self, params)
 		amount = amount,
 		aggressor_unit = aggressor_unit,
 	})
+end
+
+-- Remove civilians as soon as they reached their flee point instead of waiting for the next logic update
+Hooks:PostHook(CivilianLogicFlee, "action_complete_clbk", "sh_action_complete_clbk", function(data, action)
+	if action:type() ~= "walk" then
+		return
+	end
+
+	local coarse_path = data.internal_data.coarse_path
+	local coarse_path_index = data.internal_data.coarse_path_index
+	if not coarse_path or coarse_path_index ~= #coarse_path then
+		return
+	end
+
+	data.internal_data.next_action_t = 0
+	CivilianLogicFlee.update(data)
+end)
+
+-- Security Camera Rework by Hoppip
+local on_new_objective_original = CivilianLogicFlee.on_new_objective
+function CivilianLogicFlee.on_new_objective(data, ...)
+	if not data.forced_police_call_attention or managers.groupai:state():enemy_weapons_hot() then
+		return on_new_objective_original(data, ...)
+	end
 end

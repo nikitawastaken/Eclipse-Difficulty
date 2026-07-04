@@ -2,9 +2,33 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local dozer_random_amount = overkill_and_above and 2 or 1
+local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
+local dozer_event = not normal or (is_pro_job and normal) and true or false
+local taser_roof_chance = math.random() <= 0.4
+
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local optsBesiegeDummyCloaker = {
 	trigger_times = 0,
@@ -15,7 +39,12 @@ local optsBesiegeDummyCloaker = {
 }
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400019, 400020, 400021, 400022, 400023, 400024, 400025, 400026, 400027 },
-	enabled = normal_and_above,
+	on_executed = {
+		{ id = 103804, delay = 0 },
+		{ id = 103805, delay = 0 },
+		{ id = 103806, delay = 0 },
+	},
+	enabled = true,
 }
 local optsTaser = {
 	enemy = taser,
@@ -23,11 +52,41 @@ local optsTaser = {
 	on_executed = { { id = 400012, delay = 0 } },
 	enabled = true,
 }
+local optsTaser_Ambush = {
+	enemy = taser,
+	on_executed = { { id = 400051, delay = 0 } },
+	enabled = true,
+}
+local optsBulldozer = {
+	enemy_table = bulldozer,
+	on_executed = {
+		{ id = 400032, delay = 2 },
+	},
+	enabled = true,
+}
+local optsDozerHunt_SO = {
+	SO_access = "4096",
+	scan = true,
+	use_instigator = true,
+	interval = 2,
+	so_action = "AI_hunt",
+}
 local optsHuntSO = {
 	SO_access = "8192",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
+}
+local optsTaser_Sniper_SO = {
+	SO_access = "8192",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	use_instigator = true,
+	interval = 2,
+	so_action = "AI_sniper",
 }
 local optsTaserChopper = {
 	enabled = true,
@@ -45,6 +104,10 @@ local optsTaserChopper = {
 local optsspawntaserchopper = {
 	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 } },
 	enabled = normal_and_above,
+}
+local optsrooftaser = {
+	on_executed = { { id = 400050, delay = 0 } },
+	enabled = taser_roof_chance,
 }
 local optslowerNewComputerHack_1 = {
 	trigger_list = {
@@ -94,6 +157,150 @@ local optshigherNewComputerHack_3 = {
 		{ id = 102829, delay = 0 },
 	},
 }
+local optsFBISuv_1 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100045, notify_unit_sequence = "open_door_left_back", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100045, notify_unit_sequence = "open_door_left_front", time = 0 },
+	},
+	on_executed = {
+		{ id = 102592, delay = 0.5 },
+		{ id = 102591, delay = 1 },
+	},
+}
+local optsFBISuv_2 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100044, notify_unit_sequence = "open_door_left_back", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100044, notify_unit_sequence = "open_door_left_front", time = 0 },
+	},
+	on_executed = {
+		{ id = 102588, delay = 1 },
+		{ id = 102586, delay = 0.5 },
+	},
+}
+
+local choose_dozer_spawnpoint = {
+	amount = 1,
+	trigger_times = 1,
+	on_executed = {
+		{ id = 400034, delay = 0 },
+		{ id = 400035, delay = 0 },
+	},
+}
+local dozer_amount_1 = {
+	amount = dozer_random_amount,
+	on_executed = {
+		{ id = 400028, delay = 0 },
+		{ id = 400029, delay = 0 },
+	},
+}
+local dozer_amount_2 = {
+	amount = dozer_random_amount,
+	on_executed = {
+		{ id = 400030, delay = 0 },
+		{ id = 400031, delay = 0 },
+	},
+}
+local optsdisable_random_dozers = {
+	enabled = true,
+	toggle = "off",
+	elements = {
+		400033,
+	},
+}
+local optsenable_random_dozers = {
+	enabled = true,
+	set_trigger_times = 1,
+	elements = {
+		400033,
+	},
+}
+local spawn_dozer_global = {
+	enabled = dozer_event,
+	trigger_times = 1,
+	on_executed = {
+		{ id = 400033, delay = 0 },
+		{ id = 400047, delay = 0 },
+	},
+}
+
+local optsdozerdied_1 = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+		{ id = 400033, delay = dozers_respawn },
+	},
+	elements = {
+		400028,
+	},
+	event = "death",
+}
+local optsdozerdied_2 = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+		{ id = 400033, delay = dozers_respawn },
+	},
+	elements = {
+		400029,
+	},
+	event = "death",
+}
+local optsdozerdied_3 = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+		{ id = 400033, delay = dozers_respawn },
+	},
+	elements = {
+		400030,
+	},
+	event = "death",
+}
+local optsdozerdied_4 = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+		{ id = 400033, delay = dozers_respawn },
+	},
+	elements = {
+		400031,
+	},
+	event = "death",
+}
+local optsdozerspawned_1 = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	elements = {
+		400028,
+	},
+}
+local optsdozerspawned_2 = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	elements = {
+		400029,
+	},
+}
+local optsdozerspawned_3 = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	elements = {
+		400030,
+	},
+}
+local optsdozerspawned_4 = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	elements = {
+		400031,
+	},
+}
+
+local Bain_senddozers = {
+	dialogue = "play_pln_gen_pol_03",
+}
 
 M.elements = {
 	-- restore cloaker vent spawns and add missing spawns
@@ -113,6 +320,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
 	Eclipse.mission_elements.gen_so(400012, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
+
+	-- add back missing taser spawn from PDTH
+	Eclipse.mission_elements.gen_dummy(400050, "taser_ambush", Vector3(279.099, 1948.238, 1734.858), Rotation(90, 0, 0), optsTaser_Ambush),
+
+	Eclipse.mission_elements.gen_so(400051, "taser_sniper_so", Vector3(153, 2051, 1734.858), Rotation(115, 0, 0), optsTaser_Sniper_SO),
+
+	Eclipse.mission_elements.gen_missionscript(400052, "spawn_roof_taser", optsrooftaser),
+
+	-- restore two missing fbi agents
+	Eclipse.mission_elements.gen_object_editor(400053, "fbi_open_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_1),
+	Eclipse.mission_elements.gen_object_editor(400054, "fbi_open_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsFBISuv_2),
 
 	-- buff the hack timer (use PDTH values)
 	-- lower PC
@@ -134,5 +352,29 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400025, "new_cloaker_spawngroup_07", { 103797 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400026, "new_cloaker_spawngroup_08", { 103800 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400027, "new_cloaker_spawngroup_09", { 103801 }, 0),
+
+	-- scripted dozers
+	Eclipse.mission_elements.gen_dummy(400028, "bulldozer_1", Vector3(-770, -4037, -45.121), Rotation(90, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400029, "bulldozer_2", Vector3(-840, -4037, -45.121), Rotation(90, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400030, "bulldozer_3", Vector3(-3069, 542, -50.370), Rotation(0, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400031, "bulldozer_4", Vector3(-3069, 480, -50.370), Rotation(0, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_so(400032, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt_SO),
+
+	-- scripted dozers stuff
+	Eclipse.mission_elements.gen_element_random(400033, "dozer_spawnpoint_select", choose_dozer_spawnpoint),
+	Eclipse.mission_elements.gen_element_random(400034, "left_staircase", dozer_amount_1),
+	Eclipse.mission_elements.gen_element_random(400035, "right_staircase", dozer_amount_2),
+	Eclipse.mission_elements.gen_dummytrigger(400036, "dozer_spawned_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_1),
+	Eclipse.mission_elements.gen_dummytrigger(400037, "dozer_spawned_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_2),
+	Eclipse.mission_elements.gen_dummytrigger(400038, "dozer_spawned_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_3),
+	Eclipse.mission_elements.gen_dummytrigger(400039, "dozer_spawned_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_4),
+	Eclipse.mission_elements.gen_dummytrigger(400040, "dozer_died_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_1),
+	Eclipse.mission_elements.gen_dummytrigger(400041, "dozer_died_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_2),
+	Eclipse.mission_elements.gen_dummytrigger(400042, "dozer_died_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_3),
+	Eclipse.mission_elements.gen_dummytrigger(400043, "dozer_died_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerdied_4),
+	Eclipse.mission_elements.gen_toggleelement(400044, "disable_random_dozers", optsdisable_random_dozers),
+	Eclipse.mission_elements.gen_toggleelement(400045, "enable_random_dozers", optsenable_random_dozers),
+	Eclipse.mission_elements.gen_missionscript(400046, "hello_its_me_the_angry_man", spawn_dozer_global),
+	Eclipse.mission_elements.gen_dialogue(400047, "they_sending_dozers", Bain_senddozers),
 }
 return M

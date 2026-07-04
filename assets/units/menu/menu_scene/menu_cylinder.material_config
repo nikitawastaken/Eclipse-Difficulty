@@ -1,0 +1,27 @@
+<materials version="3">
+    <material name="background" render_template="generic:DIFFUSE_TEXTURE" version="2">
+        <diffuse_texture file="units/menu/menu_scene/menu_cylinder_texture"/>
+    </material>
+    <material name="logo" render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE" version="2">
+        <variable value="streetlight" type="scalar" name="intensity"/>
+        <diffuse_texture file="units/menu/menu_scene/menu_cylinder_logo"/>
+    </material>
+    <material name="smoke" render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE:DIFFUSE0_UVANIM:VIEW_ANGLE_FALLOFF_OP" version="2">
+        <diffuse_texture file="units/menu/menu_scene/menu_cylinder_smoke"/>
+        <variable value="streetlight" type="scalar" name="intensity"/>
+        <variable value="-0.0099999997764826 -0.0099999997764826 0" type="vector3" name="uv0_speed"/>
+        <variable value="25" type="scalar" name="falloff_exp"/>
+    </material>
+    <material name="smoke_tile" render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE:DIFFUSE0_UVANIM:VIEW_ANGLE_FALLOFF_OP" version="2">
+        <diffuse_texture file="units/menu/menu_scene/menu_cylinder_smoke_tile"/>
+        <variable value="searchlight" type="scalar" name="intensity"/>
+        <variable value="-0.019999999552965 0 0" type="vector3" name="uv0_speed"/>
+        <variable value="10" type="scalar" name="falloff_exp"/>
+    </material>
+    <material name="pattern" render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE:DIFFUSE0_UVANIM:VIEW_ANGLE_FALLOFF_OP" version="2">
+        <variable value="streetlight" type="scalar" name="intensity"/>
+        <diffuse_texture file="units/menu/menu_scene/menu_background_pattern"/>
+        <variable value="96.150100708008" type="scalar" name="falloff_exp"/>
+        <variable value="0.0020000000949949 0 0" type="vector3" name="uv0_speed"/>
+    </material>
+</materials>

@@ -4,16 +4,11 @@ local standard_spawn = {
 		interval = 10,
 	},
 }
-local upper_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 return {
 	[102064] = {
 		ponr = {
-			length = 30,
-			player_mul = { 4, 3, 2, 1 },
+			length = 60,
+			length_balance_mul = { 2.5, 1.75, 1.25, 1 },
 		},
 	},
 	-- add SWATs that come out of the vans
@@ -27,8 +22,8 @@ return {
 	-- Spawn group intervals
 	[103530] = standard_spawn,
 	[103531] = standard_spawn,
-	[101583] = upper_spawn,
-	[102299] = upper_spawn,
-	[103423] = upper_spawn,
-	[103424] = upper_spawn,
+	[101583] = standard_spawn,
+	[102299] = standard_spawn,
+	[103423] = standard_spawn,
+	[103424] = standard_spawn,
 }

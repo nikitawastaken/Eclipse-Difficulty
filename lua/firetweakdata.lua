@@ -4,11 +4,12 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 		fire_type.dot_length = 6
 		fire_type.dot_tick_period = 0.5
 		fire_type.dot_trigger_max_distance = false
+		fire_type.dot_grace_period = 0
 	end
 
 	local trigger_chance_flamethrower = 1 / 5
-	local trigger_chance_dragons = 1 / 4
-	local trigger_chance_spoon = 1 / 4
+	local trigger_chance_dragons = 1 / 5
+	local trigger_chance_spoon = 1 / 5
 	local trigger_chance_molotov = 1
 
 	self.dot_entries.fire.default_fire.dot_trigger_chance = 1
@@ -63,8 +64,6 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.fire.proj_launcher_incendiary_light = clone(self.dot_entries.fire.proj_launcher_incendiary)
 	self.dot_entries.fire.proj_launcher_incendiary_light.dot_damage = 2
-
-	self.dot_entries.fire.proj_launcher_incendiary_medium = clone(self.dot_entries.fire.proj_launcher_incendiary)
 
 	self.dot_entries.fire.proj_launcher_incendiary_heavy = clone(self.dot_entries.fire.proj_launcher_incendiary)
 	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_damage = 4

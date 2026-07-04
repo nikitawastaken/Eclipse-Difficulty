@@ -1,4 +1,4 @@
-function SmokeScreenEffect:init(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit)
+function SmokeScreenEffect:init(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus)
 	self._timer = time
 	self._position = position
 	self._radius = 400
@@ -18,7 +18,7 @@ function SmokeScreenEffect:init(position, normal, time, has_armor_bonus, has_dod
 	})
 	self._variant = grenade_unit and grenade_unit:base() and grenade_unit:base()._projectile_entry
 	self._mine = grenade_unit and grenade_unit:base():thrower_unit() == managers.player:player_unit()
-	self._linger_time = linger_bonus -- lingering shadows
+	self._linger_time = linger_bonus or 0 -- lingering shadows
 	self._smoke_history = {}
 end
 

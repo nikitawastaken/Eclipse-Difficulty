@@ -13,12 +13,21 @@ local filter_disable = {
 return {
 	-- Boss spawn
 	[100707] = {
-		difficulty_max = 0.1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+			ignore_gain_mul = true,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
 	},
 	-- Boss dead
 	[100645] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = false, -- Disable forced diff
 	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,

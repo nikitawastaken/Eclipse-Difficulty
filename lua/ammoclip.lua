@@ -79,6 +79,14 @@ function AmmoClip:_pickup(unit)
 				player_manager:activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
 			end
 
+			-- Scavenger BASIC: restore stamina on ammo pickup
+			if player_manager:has_category_upgrade("player", "stamina_regen_on_ammo_pickup") then
+				local max_stamina = unit:movement():_max_stamina()
+				local stamina_regen_percentage = player_manager:upgrade_value("player", "stamina_regen_on_ammo_pickup") or 0
+
+				unit:movement():add_stamina(max_stamina * stamina_regen_percentage)
+			end
+
 			if has_cable_tie_pickup then
 				local rand = math.random()
 				local chance = player_manager:upgrade_value("cable_tie", "pickup_chance", 0) or 0

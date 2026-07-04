@@ -1,3 +1,6 @@
+Month = os.date("%m")
+Day = os.date("%d")
+
 local mat_vars = Eclipse:require("unit_material_vars")
 local mat_var_paths = table.list_to_set(mat_vars)
 local weighted_selector = Eclipse.utils.weighted_selector
@@ -145,6 +148,12 @@ function CopBase:_run_unit_sequences()
 					end
 				end
 
+				if Day == "01" and Month == "04" then -- Don't look :jerome:
+					if self._head_unit:damage():has_sequence("set_jerome_mode") then
+						self._head_unit:damage():run_sequence_simple("set_jerome_mode")
+					end
+				end
+
 				for _, sequence in pairs(head_sequences) do
 					if self._head_unit:damage():has_sequence(sequence) then
 						self._head_unit:damage():run_sequence_simple(sequence)
@@ -155,12 +164,26 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
+CopBase.cloaker_light_RGB = {
+	[Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"):key()] = { 200, 1, 1 },
+	[Idstring("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { 355, 1, 1 },
+}
+
 -- Check for weapon changes and run unit sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 
 	-- Always glow cloakers (like in PDTH)
 	self:set_cloaker_goggles_on(true)
+
+	-- Change Cloaker light glow colour
+	local lights = self._unit:get_objects_by_type(Idstring("light"))
+	local new_RGB = self.cloaker_light_RGB[self._unit:name():key()]
+	if new_RGB then
+		for k, v in pairs(lights) do
+			v:set_color(Color(hsv_to_rgb(unpack(new_RGB))))
+		end
+	end
 
 	if Network:is_client() then
 		return
@@ -222,10 +245,15 @@ function CopBase:set_cloaker_goggles_on(state)
 	if damage_ext and damage_ext:has_sequence(sequence) then
 		damage_ext:run_sequence_simple(sequence)
 	end
+
+	if Network:is_server() then
+		self._unit:network():send("sync_set_cloaker_goggles_on", state or false)
+		-- managers.network:session():send_to_peers_synched("sync_set_cloaker_goggles_on", self._unit, state)
+	end
 end
 
 -- No idea if play() needs source_name or sync arguments here
-function CopBase:set_cloaker_noise_on(state, whistle)
+function CopBase:set_cloaker_noise_on(state)
 	if not self:has_tag("spooc") then
 		return
 	end
@@ -242,9 +270,6 @@ function CopBase:set_cloaker_noise_on(state, whistle)
 
 	local sound_event = state and char_tweak.spawn_sound_event or char_tweak.die_sound_event
 	sound_ext:play(sound_event)
-	if whistle then
-		sound_ext:play("clk_c01x_plu")
-	end
 end
 
 ContourSwapBase = class()

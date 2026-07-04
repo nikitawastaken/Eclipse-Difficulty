@@ -27,6 +27,8 @@ local function format_round(val, round_value)
 	end
 end
 
+local function trivial_function() end
+
 --[[
 --	{
 --		name: string		(required)
@@ -992,20 +994,20 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				name = "bm_menu_btn_customize_gloves",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "customize_glove_callback"),
+				callback = self.customize_glove_callback and callback(self, self, "customize_glove_callback") or trivial_function,
 			},
 			hnd_mod_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_suit_variation",
-				callback = callback(self, self, "equip_glove_variation_callback"),
+				callback = self.equip_glove_variation_callback and callback(self, self, "equip_glove_variation_callback") or trivial_function,
 			},
 			hnd_mod_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_suit_variation",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_glove_variation_callback"),
+				callback = self.preview_glove_variation_callback and callback(self, self, "preview_glove_variation_callback") or trivial_function,
 			},
 			m_equip = {
 				btn = "BTN_A",
@@ -1927,6 +1929,11 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					name = "damage_shake",
 				},
 				{
+					name = "armor_regen",
+					inverted = true,
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
+				},
+				{
 					name = "stamina",
 				},
 			}
@@ -2121,6 +2128,112 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						h = panel:h(),
 					})
 					self._mweapon_stats_texts[stat.name][column.name] = text_panel:text({
+						layer = 1,
+						font_size = small_font_size,
+						font = small_font,
+						align = column.align,
+						alpha = column.alpha,
+						blend_mode = column.blend,
+						color = column.color or tweak_data.screen_colors.text,
+					})
+					x = x + column.size
+
+					if column.name == "total" then
+						text_panel:set_x(190)
+					end
+				end
+			end
+
+			self._throwable_stats_shown = {
+				{
+					range = true,
+					name = "damage",
+				},
+				{
+					range = true,
+					name = "range",
+				},
+				{
+					inverse = true,
+					name = "cooldown",
+					num_decimals = 1,
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
+				},
+				{
+					index = true,
+					name = "amount",
+				},
+			}
+			local x = 0
+			local y = 20
+			local text_panel = nil
+			self._throwable_stats_texts = {}
+			local text_columns = {
+				{
+					size = 100,
+					name = "name",
+				},
+				{
+					align = "right",
+					name = "equip",
+					blend = "add",
+					alpha = 0.75,
+					size = 55,
+				},
+				{
+					align = "right",
+					name = "base",
+					blend = "add",
+					alpha = 0.75,
+					size = 60,
+				},
+				{
+					align = "right",
+					name = "skill",
+					blend = "add",
+					alpha = 0.75,
+					size = 65,
+					color = tweak_data.screen_colors.resource,
+				},
+				{
+					size = 55,
+					name = "total",
+					align = "right",
+				},
+			}
+			self._throwable_stats_panel = self._stats_panel:panel({
+				visible = false,
+			})
+
+			for i, stat in ipairs(self._throwable_stats_shown) do
+				panel = self._throwable_stats_panel:panel({
+					h = 20,
+					layer = 1,
+					name = stat.name,
+					y = y,
+					w = self._throwable_stats_panel:w(),
+				})
+
+				if math.mod(i, 2) == 0 and not panel:child(tostring(i)) then
+					panel:rect({
+						name = tostring(i),
+						color = Color.black:with_alpha(0.3),
+					})
+				end
+
+				x = 2
+				y = y + 20
+				self._throwable_stats_texts[stat.name] = {}
+
+				for _, column in ipairs(text_columns) do
+					text_panel = panel:panel({
+						layer = 0,
+						x = x,
+						w = column.size,
+						h = panel:h(),
+					})
+					self._throwable_stats_texts[stat.name][column.name] = text_panel:text({
+						rotation = 360,
 						layer = 1,
 						font_size = small_font_size,
 						font = small_font,
@@ -2487,7 +2600,7 @@ end
 
 local function get_pellets_from_blueprint(name, blueprint, category, slot)
 	local new_rays = WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
-	if table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
+	if not name == "flun" and table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
 		-- Grenade launchers have a base rays stat of 8 even though
 		-- the stat is only used when sting grenades are equipped...
 		return 1, tweak_data.weapon[name].rays
@@ -2507,7 +2620,12 @@ local function check_show_pellet_stats(weapon_tweak, weapon_id, blueprint)
 		local ammo_mods = managers.weapon_factory:get_parts_from_weapon_by_type_or_perk("ammo", factory_id, blueprint)
 		for _, id in ipairs(ammo_mods) do
 			local part = managers.weapon_factory:_part_data(id, factory_id)
+
 			if part.sub_type and part.sub_type == "ammo_hornet" then
+				return true
+			end
+
+			if weapon_id == "flun" and id ~= "wpn_fps_upg_a_flun_flare" then
 				return true
 			end
 		end
@@ -2878,6 +2996,36 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 	end
 end
 
+local old_armor_stats = BlackMarketGui._get_armor_stats
+function BlackMarketGui:_get_armor_stats(name)
+	local base_stats, mods_stats, skill_stats = old_armor_stats(self, name)
+
+	local bm_armor_tweak = tweak_data.blackmarket.armors[name]
+	local upgrade_level = bm_armor_tweak.upgrade_level
+
+	local base = 0
+	local mod = managers.player:body_armor_value("regen_timer", upgrade_level)
+	local mul1 = managers.player:body_armor_regen_multiplier(false, 1)
+	local mul2 = managers.player:upgrade_value("player", "armor_regen_time_mul", 1)
+	base_stats.armor_regen = {
+		value = (base + mod),
+	}
+
+	local armor_grinding_data = managers.player:upgrade_value("player", "armor_grinding", nil)
+	if armor_grinding_data and armor_grinding_data ~= 0 then
+		local target_tick = armor_grinding_data[upgrade_level][2]
+		skill_stats.armor_regen = {
+			value = target_tick - (base + mod),
+		}
+	else
+		skill_stats.armor_regen = {
+			value = (base + mod) * (mul1 * mul2 - 1),
+		}
+	end
+
+	return base_stats, mods_stats, skill_stats
+end
+
 function BlackMarketGui:show_stats_blackmarket_armors_page()
 	local category = self._slot_data.category
 
@@ -2943,18 +3091,28 @@ function BlackMarketGui:show_stats_blackmarket_armors_page()
 			local base = base_stats[stat.name].value
 
 			self._armor_stats_texts[stat.name].equip:set_alpha(1)
-			self._armor_stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
-			self._armor_stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
-			self._armor_stats_texts[stat.name].skill:set_text(
-				skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
-			)
+			local equip_text = format_round(value, stat.round_value)
+			local base_text = format_round(base, stat.round_value)
+			local skill_text = skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
+
+			if stat.suffix then
+				equip_text = equip_text .. tostring(stat.suffix)
+				base_text = base_text .. tostring(stat.suffix)
+				if skill_text ~= "" then
+					skill_text = skill_text .. tostring(stat.suffix)
+				end
+			end
+
+			self._armor_stats_texts[stat.name].equip:set_text(equip_text)
+			self._armor_stats_texts[stat.name].base:set_text(base_text)
+			self._armor_stats_texts[stat.name].skill:set_text(skill_text)
 			self._armor_stats_texts[stat.name].total:set_text("")
 			self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
 
 			if value ~= 0 and base < value then
-				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_positive)
+				self._armor_stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 			elseif value ~= 0 and value < base then
-				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_negative)
+				self._armor_stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 			else
 				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
 			end
@@ -2963,16 +3121,24 @@ function BlackMarketGui:show_stats_blackmarket_armors_page()
 		else
 			local equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
 
+			local equip_text = format_round(equip, stat.round_value)
+			local total_text = format_round(value, stat.round_value)
+
+			if stat.suffix then
+				equip_text = equip_text .. tostring(stat.suffix)
+				total_text = total_text .. tostring(stat.suffix)
+			end
+
 			self._armor_stats_texts[stat.name].equip:set_alpha(0.75)
-			self._armor_stats_texts[stat.name].equip:set_text(format_round(equip, stat.round_value))
+			self._armor_stats_texts[stat.name].equip:set_text(equip_text)
 			self._armor_stats_texts[stat.name].base:set_text("")
 			self._armor_stats_texts[stat.name].skill:set_text("")
-			self._armor_stats_texts[stat.name].total:set_text(format_round(value, stat.round_value))
+			self._armor_stats_texts[stat.name].total:set_text(total_text)
 
 			if equip < value then
-				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_positive)
+				self._armor_stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 			elseif value < equip then
-				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_negative)
+				self._armor_stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 			else
 				self._armor_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.text)
 			end
@@ -3494,6 +3660,93 @@ function BlackMarketGui:show_stats_attachments_page()
 	end
 end
 
+function BlackMarketGui:show_stats_throwables_page()
+	self:hide_melee_weapon_stats()
+	self:hide_armor_stats()
+	self:hide_weapon_stats()
+	self._throwable_stats_panel:show()
+
+	for _, title in pairs(self._stats_titles) do
+		title:hide()
+	end
+
+	self:set_stats_titles({
+		show = true,
+		name = "total",
+	}, {
+		name = "equip",
+		text_id = "bm_menu_equipped",
+		alpha = 0.75,
+		x = 105,
+		show = true,
+	})
+
+	local equipped_item = managers.blackmarket:equipped_item(category)
+	local equip_base_stats, equip_mods_stats, equip_skill_stats = self:_get_grenade_stats(equipped_item)
+	local base_stats, mods_stats, skill_stats = self:_get_grenade_stats(self._slot_data.name)
+	local no_data_string = managers.localization:to_upper_text("bm_menu_damage_falloff_no_data")
+
+	for _, stat in ipairs(self._throwable_stats_shown) do
+		self._throwable_stats_texts[stat.name].name:set_text(utf8.to_upper(managers.localization:text("bm_menu_" .. stat.name)))
+
+		local equip = equip_base_stats[stat.name].value
+		value = base_stats[stat.name].value
+
+		if equip or value then
+			local equip_text = equip and format_round(equip, stat.round_value) or no_data_string
+			local total_text = value and format_round(value, stat.round_value) or no_data_string
+
+			if stat.suffix then
+				if equip then
+					equip_text = equip_text .. tostring(stat.suffix) or equip_text
+				end
+
+				if value then
+					total_text = total_text .. tostring(stat.suffix) or total_text
+				end
+			end
+
+			if stat.prefix then
+				if equip then
+					equip_text = tostring(stat.prefix) .. equip_text or equip_text
+				end
+
+				if value then
+					total_text = tostring(stat.prefix) .. total_text or total_text
+				end
+			end
+
+			self._throwable_stats_panel:child(stat.name):show()
+			self._throwable_stats_texts[stat.name].equip:set_alpha(0.75)
+			self._throwable_stats_texts[stat.name].equip:set_text(equip_text)
+			self._throwable_stats_texts[stat.name].base:set_text("")
+			self._throwable_stats_texts[stat.name].skill:set_text("")
+			self._throwable_stats_texts[stat.name].total:set_text(total_text)
+
+			local positive = value and equip and equip < value
+			local negative = value and equip and value < equip
+
+			if stat.inverse then
+				local temp = positive
+				positive = negative
+				negative = temp
+			end
+
+			if positive then
+				self._throwable_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_positive)
+			elseif negative then
+				self._throwable_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.stats_negative)
+			else
+				self._throwable_stats_texts[stat.name].total:set_color(tweak_data.screen_colors.text)
+			end
+
+			self._throwable_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
+		else
+			self._throwable_stats_panel:child(stat.name):hide()
+		end
+	end
+end
+
 function BlackMarketGui:show_stats()
 	if not self._stats_panel or not self._rweapon_stats_panel or not self._armor_stats_panel or not self._mweapon_stats_panel then
 		return
@@ -3536,6 +3789,9 @@ function BlackMarketGui:show_stats()
 	elseif tweak_data.blackmarket.melee_weapons[self._slot_data.name] then
 		-- Melee stats in your inventory melee page
 		self:show_stats_inventory_melees_page()
+	elseif tweak_data.blackmarket.projectiles[self._slot_data.name] then
+		-- Throwable stats in your inventory throwables page
+		self:show_stats_throwables_page()
 	else
 		-- Weapon stats shown in the attachments page
 		self:show_stats_attachments_page()
@@ -3555,6 +3811,16 @@ function BlackMarketGui:show_stats()
 	elseif self._mweapon_stats_panel:visible() then
 		for _, child in ipairs(self._mweapon_stats_panel:children()) do
 			y = math.max(y, child:bottom())
+		end
+	elseif self._throwable_stats_panel:visible() then
+		y = 20
+
+		for i, child in ipairs(self._throwable_stats_panel:children()) do
+			if child:visible() then
+				child:set_y(y)
+
+				y = math.max(y, child:bottom())
+			end
 		end
 	end
 
@@ -3623,6 +3889,7 @@ function BlackMarketGui:_get_melee_weapon_stats(name)
 	base.reswing_time.real_value = base.reswing_time.value
 	skill.reswing_time.real_value = skill.reswing_time.value
 	local weapon_type = stats.weapon_type
+	weapon_type = utf8.to_upper(weapon_type)
 	base.type = {
 		min_value = weapon_type,
 		max_value = weapon_type,

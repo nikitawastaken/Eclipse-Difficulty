@@ -1,12 +1,3 @@
-local mvec3_add = mvector3.add
-local mvec3_dir = mvector3.direction
-local mvec3_dis_sq = mvector3.distance_sq
-local mvec3_dot = mvector3.dot
-local mvec3_mul = mvector3.multiply
-local mvec3_neg = mvector3.negate
-local mvec3_set = mvector3.set
-local mvec3_set_z = mvector3.set_z
-local mvec3_sub = mvector3.subtract
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
@@ -36,8 +27,8 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 	if not alive(cover_unit) or cover_unit:character_damage():dead() then
 		local followers = {}
 		for u_key, u_data in pairs(data.group.units) do
-			local logic_data = u_data.unit:brain()._logic_data
-			if logic_data.tactics then
+			local logic_data = alive(u_data.unit) and u_data.unit:brain()._logic_data
+			if logic_data and logic_data.tactics then
 				if logic_data.tactics.shield_cover or logic_data.tactics.unit_cover then
 					local unit = logic_data.objective and logic_data.objective.cover_unit
 					if alive(unit) and not unit:character_damage():dead() then
@@ -109,9 +100,9 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 
 	local enemy_dir = tmp_vec3
 	if data.attention_obj and data.attention_obj.reaction >= AIAttentionObject.REACT_COMBAT then
-		mvec3_set(enemy_dir, data.attention_obj.m_pos)
-		mvec3_sub(enemy_dir, data.m_pos)
-		mvec3_set_z(enemy_dir, 0)
+		mvector3.set(enemy_dir, data.attention_obj.m_pos)
+		mvector3.subtract(enemy_dir, data.m_pos)
+		mvector3.set_z(enemy_dir, 0)
 		mvector3.normalize(enemy_dir)
 	else
 		mvector3.set(enemy_dir, math.UP)
@@ -121,7 +112,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	local dodge_dir = mvector3.copy(enemy_dir)
 	mvector3.cross(dodge_dir, enemy_dir, math.UP)
 	if math.random() < 0.5 then
-		mvec3_neg(dodge_dir)
+		mvector3.negate(dodge_dir)
 	end
 
 	local test_space, available_space, min_space, prefered_space = 0, 0, 90, 130
@@ -131,14 +122,14 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 		pos_to = tmp_vec1,
 	}
 
-	mvec3_set(ray_params.pos_to, dodge_dir)
-	mvec3_mul(ray_params.pos_to, prefered_space)
-	mvec3_add(ray_params.pos_to, data.m_pos)
+	mvector3.set(ray_params.pos_to, dodge_dir)
+	mvector3.multiply(ray_params.pos_to, prefered_space)
+	mvector3.add(ray_params.pos_to, data.m_pos)
 	local ray_hit1 = managers.navigation:raycast(ray_params)
 	if ray_hit1 then
-		mvec3_set(tmp_vec2, ray_params.trace[1])
-		mvec3_sub(tmp_vec2, data.m_pos)
-		mvec3_set_z(tmp_vec2, 0)
+		mvector3.set(tmp_vec2, ray_params.trace[1])
+		mvector3.subtract(tmp_vec2, data.m_pos)
+		mvector3.set_z(tmp_vec2, 0)
 		test_space = mvector3.length(tmp_vec2)
 	else
 		test_space = prefered_space
@@ -148,14 +139,14 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 		available_space = test_space
 	end
 
-	mvec3_set(ray_params.pos_to, dodge_dir)
-	mvec3_mul(ray_params.pos_to, -prefered_space)
-	mvec3_add(ray_params.pos_to, data.m_pos)
+	mvector3.set(ray_params.pos_to, dodge_dir)
+	mvector3.multiply(ray_params.pos_to, prefered_space)
+	mvector3.add(ray_params.pos_to, data.m_pos)
 	local ray_hit2 = managers.navigation:raycast(ray_params)
 	if ray_hit2 then
-		mvec3_set(tmp_vec2, ray_params.trace[1])
-		mvec3_sub(tmp_vec2, data.m_pos)
-		mvec3_set_z(tmp_vec2, 0)
+		mvector3.set(tmp_vec2, ray_params.trace[1])
+		mvector3.subtract(tmp_vec2, data.m_pos)
+		mvector3.set_z(tmp_vec2, 0)
 		test_space = mvector3.length(tmp_vec2)
 	elseif available_space < prefered_space then
 		test_space = prefered_space
@@ -163,19 +154,19 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 
 	if test_space >= min_space and test_space > available_space then
 		available_space = test_space
-		mvec3_neg(dodge_dir)
+		mvector3.negate(dodge_dir)
 	end
 
 	-- Give enemies a chance to dodge backwards if dodging to the side is not possible or if dodging backwards has more space
 	if available_space < min_space or data.attention_obj and math.random() < math.max(0, 1 - data.attention_obj.dis / 500) then
-		mvec3_set(ray_params.pos_to, enemy_dir)
-		mvec3_mul(ray_params.pos_to, -prefered_space)
-		mvec3_add(ray_params.pos_to, data.m_pos)
+		mvector3.set(ray_params.pos_to, enemy_dir)
+		mvector3.multiply(ray_params.pos_to, -prefered_space)
+		mvector3.add(ray_params.pos_to, data.m_pos)
 		local ray_hit3 = managers.navigation:raycast(ray_params)
 		if ray_hit3 then
-			mvec3_set(tmp_vec2, ray_params.trace[1])
-			mvec3_sub(tmp_vec2, data.m_pos)
-			mvec3_set_z(tmp_vec2, 0)
+			mvector3.set(tmp_vec2, ray_params.trace[1])
+			mvector3.subtract(tmp_vec2, data.m_pos)
+			mvector3.set_z(tmp_vec2, 0)
 			test_space = mvector3.length(tmp_vec2)
 		else
 			test_space = prefered_space
@@ -183,8 +174,8 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 
 		if test_space >= min_space and test_space >= available_space then
 			available_space = test_space
-			mvec3_set(dodge_dir, enemy_dir)
-			mvec3_neg(dodge_dir)
+			mvector3.set(dodge_dir, enemy_dir)
+			mvector3.negate(dodge_dir)
 		end
 	end
 
@@ -193,8 +184,8 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	end
 
 	mrotation.x(data.unit:movement():m_rot(), tmp_vec1)
-	local right_dot = mvec3_dot(dodge_dir, tmp_vec1)
-	local fwd_dot = mvec3_dot(dodge_dir, data.unit:movement():m_fwd())
+	local right_dot = mvector3.dot(dodge_dir, tmp_vec1)
+	local fwd_dot = mvector3.dot(dodge_dir, data.unit:movement():m_fwd())
 	local dodge_side = math.abs(fwd_dot) > 0.6 and (fwd_dot > 0 and "fwd" or "bwd") or right_dot > 0 and "r" or "l"
 
 	local rand_nr = math.random()
@@ -314,10 +305,10 @@ function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
 		max_dot = math.lerp(max_dot * 0.75, max_dot, attention_obj.dis / 1000)
 	end
 
-	mvec3_set(tmp_vec1, attention_obj.unit:movement():detect_look_dir())
-	mvec3_dir(tmp_vec2, attention_obj.m_head_pos, data.unit:movement():m_com())
+	mvector3.set(tmp_vec1, attention_obj.unit:movement():detect_look_dir())
+	mvector3.direction(tmp_vec2, attention_obj.m_head_pos, data.unit:movement():m_com())
 
-	return max_dot < mvec3_dot(tmp_vec2, tmp_vec1)
+	return max_dot < mvector3.dot(tmp_vec2, tmp_vec1)
 end
 
 -- Reduce maximum update delay
@@ -328,7 +319,114 @@ function CopLogicBase._upd_attention_obj_detection(data, ...)
 end
 
 -- Fix incorrect checks and improve surrender conditions
-function CopLogicBase._evaluate_reason_to_surrender(data, _, aggressor_unit)
+-- Move surrender reason checks outside so they are easier to extend for other mods
+CopLogicBase.surrender_chk_funcs = {
+	health = function(data, aggressor_unit, surrender_data)
+		local health_ratio = data.unit:character_damage():health_ratio()
+		if health_ratio >= 1 then
+			return
+		end
+
+		local min_ratio, max_ratio, min_chance, max_chance
+		for ratio, chance in pairs(surrender_data) do
+			if not min_ratio or ratio < min_ratio then
+				min_ratio = ratio
+				min_chance = chance
+			end
+
+			if not max_ratio or ratio > max_ratio then
+				max_ratio = ratio
+				max_chance = chance
+			end
+		end
+
+		if health_ratio < max_ratio then
+			return 1 - math.map_range_clamped(health_ratio, min_ratio, max_ratio, min_chance, max_chance)
+		end
+	end,
+
+	aggressor_dis = function(data, aggressor_unit, surrender_data)
+		local agg_dis = mvector3.distance(data.m_pos, aggressor_unit:movement():m_pos())
+		local min_dis, max_dis, min_chance, max_chance
+
+		for dis, chance in pairs(surrender_data) do
+			if not min_dis or dis < min_dis then
+				min_dis = dis
+				min_chance = chance
+			end
+
+			if not max_dis or dis > max_dis then
+				max_dis = dis
+				max_chance = chance
+			end
+		end
+
+		if agg_dis < max_dis then
+			return 1 - math.map_range_clamped(agg_dis, min_dis, max_dis, min_chance, max_chance)
+		end
+	end,
+
+	weapon_down = function(data, aggressor_unit, surrender_data)
+		local anim_data = data.unit:anim_data()
+		local weapon = data.unit:inventory():equipped_unit()
+		if anim_data.reload or alive(weapon) and weapon:base():get_ammo_remaining_in_clip() == 0 then
+			return 1 - surrender_data
+		elseif anim_data.hurt then
+			return 1 - surrender_data * 0.8
+		end
+	end,
+
+	flanked = function(data, aggressor_unit, surrender_data)
+		mvector3.direction(tmp_vec1, data.m_pos, aggressor_unit:movement():m_pos())
+		local fwd_dot = mvector3.dot(data.unit:movement():m_fwd(), tmp_vec1)
+		if fwd_dot < 0 then
+			return 1 - surrender_data * math.abs(fwd_dot)
+		end
+	end,
+
+	unaware_of_aggressor = function(data, aggressor_unit, surrender_data)
+		local att_info = data.detected_attention_objects[aggressor_unit:key()]
+		if not att_info or not att_info.identified or data.t - att_info.identified_t < 1 then
+			return 1 - surrender_data
+		end
+	end,
+
+	enemy_weap_cold = function(data, aggressor_unit, surrender_data)
+		if not managers.groupai:state():enemy_weapons_hot() then
+			return 1 - surrender_data
+		end
+	end,
+
+	isolated = function(data, aggressor_unit, surrender_data)
+		if not data.group or not data.group.has_spawned or data.group.initial_size <= 1 then
+			return
+		end
+
+		local max_dis_sq = 800 ^ 2
+		for u_key, u_data in pairs(data.group.units) do
+			if u_key ~= data.key and mvector3.distance_sq(data.m_pos, u_data.m_pos) < max_dis_sq then
+				return
+			end
+		end
+
+		return 1 - surrender_data
+	end,
+
+	pants_down = function(data, aggressor_unit, surrender_data)
+		local not_cool_t = data.unit:movement():not_cool_t()
+		if (not not_cool_t or data.t - not_cool_t < 1.5) and not managers.groupai:state():enemy_weapons_hot() then
+			return 1 - surrender_data
+		end
+	end,
+
+	not_assault = function(data, aggressor_unit, surrender_data)
+		if not managers.groupai:state():get_assault_mode() then
+			return 1 - surrender_data
+		end
+	end,
+}
+
+function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_unit)
 	local surrender_tweak = data.char_tweak.surrender
 	if not surrender_tweak then
 		return
@@ -338,135 +436,18 @@ function CopLogicBase._evaluate_reason_to_surrender(data, _, aggressor_unit)
 		return 0
 	end
 
-	local t = data.t
-
-	if data.surrender_window and data.surrender_window.window_expire_t < t then
+	if data.surrender_window and data.t > data.surrender_window.window_expire_t then
 		return
 	end
 
 	local hold_chance = 1 - surrender_tweak.base_chance
-	local surrender_chk = {
-		health = function(health_surrender)
-			local health_ratio = data.unit:character_damage():health_ratio()
-			if health_ratio < 1 then
-				local min_setting, max_setting
-
-				for k, v in pairs(health_surrender) do
-					if not min_setting or k < min_setting.k then
-						min_setting = {
-							k = k,
-							v = v,
-						}
-					end
-
-					if not max_setting or max_setting.k < k then
-						max_setting = {
-							k = k,
-							v = v,
-						}
-					end
-				end
-
-				if health_ratio < max_setting.k then
-					hold_chance = hold_chance * (1 - math.map_range_clamped(health_ratio, min_setting.k, max_setting.k, min_setting.v, max_setting.v))
-				end
-			end
-		end,
-
-		aggressor_dis = function(agg_dis_surrender)
-			local agg_dis = mvec3_dis_sq(data.m_pos, aggressor_unit:movement():m_pos())
-			local min_setting, max_setting
-
-			for k, v in pairs(agg_dis_surrender) do
-				if not min_setting or k < min_setting.k then
-					min_setting = {
-						k = k,
-						v = v,
-					}
-				end
-
-				if not max_setting or max_setting.k < k then
-					max_setting = {
-						k = k,
-						v = v,
-					}
-				end
-			end
-
-			if agg_dis < max_setting.k ^ 2 then
-				hold_chance = hold_chance * (1 - math.map_range_clamped(agg_dis, min_setting.k, max_setting.k, min_setting.v, max_setting.v))
-			end
-		end,
-
-		-- selene: allow(if_same_then_else)
-		weapon_down = function(weap_down_surrender)
-			local anim_data = data.unit:anim_data()
-			if anim_data.reload or data.unit:inventory():equipped_unit():base():get_ammo_remaining_in_clip() == 0 then
-				hold_chance = hold_chance * (1 - weap_down_surrender)
-			elseif anim_data.hurt then
-				hold_chance = hold_chance * (1 - weap_down_surrender)
-			else
-				local stance_name = data.unit:movement():stance_name()
-				if stance_name == "ntl" then
-					hold_chance = hold_chance * (1 - weap_down_surrender)
-				elseif stance_name == "hos" then
-					hold_chance = hold_chance * (1 - weap_down_surrender * 0.25)
-				end
-			end
-		end,
-
-		flanked = function(flanked_surrender)
-			local fwd_dot = mvec3_dot(data.unit:movement():m_fwd(), tmp_vec1)
-			if fwd_dot < 0 then
-				hold_chance = hold_chance * (1 - flanked_surrender * math.abs(fwd_dot))
-			end
-		end,
-
-		unaware_of_aggressor = function(unaware_of_aggressor_surrender)
-			local att_info = data.detected_attention_objects[aggressor_unit:key()]
-			if not att_info or not att_info.identified or t - att_info.identified_t < 1 then
-				hold_chance = hold_chance * (1 - unaware_of_aggressor_surrender)
-			end
-		end,
-
-		enemy_weap_cold = function(enemy_weap_cold_surrender)
-			if not managers.groupai:state():enemy_weapons_hot() then
-				hold_chance = hold_chance * (1 - enemy_weap_cold_surrender)
-			end
-		end,
-
-		isolated = function(isolated_surrender)
-			if data.group and data.group.has_spawned and data.group.initial_size > 1 then
-				local has_support
-				for u_key, u_data in pairs(data.group.units) do
-					if u_key ~= data.key and mvec3_dis_sq(data.m_pos, u_data.m_pos) < 640000 then
-						has_support = true
-						break
-					end
-				end
-
-				if not has_support then
-					hold_chance = hold_chance * (1 - isolated_surrender)
-				end
-			end
-		end,
-
-		pants_down = function(pants_down_surrender)
-			local not_cool_t = data.unit:movement():not_cool_t()
-			if (not not_cool_t or t - not_cool_t < 1.5) and not managers.groupai:state():enemy_weapons_hot() then
-				hold_chance = hold_chance * (1 - pants_down_surrender)
-			end
-		end,
-
-		not_assault = function(not_assault_surrender)
-			if not managers.groupai:state():get_assault_mode() then
-				hold_chance = hold_chance * (1 - not_assault_surrender)
-			end
-		end,
-	}
 
 	for reason, reason_data in pairs(surrender_tweak.reasons) do
-		surrender_chk[reason](reason_data)
+		if CopLogicBase.surrender_chk_funcs[reason] then
+			hold_chance = hold_chance * (CopLogicBase.surrender_chk_funcs[reason](data, aggressor_unit, reason_data) or 1)
+		else
+			Eclipse:warn_console("CopLogicBase.surrender_chk_funcs.%s does not exist", reason)
+		end
 	end
 
 	if hold_chance > 1 - (surrender_tweak.significant_chance or 0) then
@@ -474,7 +455,11 @@ function CopLogicBase._evaluate_reason_to_surrender(data, _, aggressor_unit)
 	end
 
 	for factor, factor_data in pairs(surrender_tweak.factors) do
-		surrender_chk[factor](factor_data)
+		if CopLogicBase.surrender_chk_funcs[factor] then
+			hold_chance = hold_chance * (CopLogicBase.surrender_chk_funcs[factor](data, aggressor_unit, factor_data) or 1)
+		else
+			Eclipse:warn_console("CopLogicBase.surrender_chk_funcs.%s does not exist", factor)
+		end
 	end
 
 	if data.surrender_window then
@@ -484,7 +469,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, _, aggressor_unit)
 	if surrender_tweak.violence_timeout then
 		local violence_t = data.unit:character_damage():last_suppression_t()
 		if violence_t then
-			local violence_dt = t - violence_t
+			local violence_dt = data.t - violence_t
 			if violence_dt < surrender_tweak.violence_timeout then
 				hold_chance = hold_chance + (1 - hold_chance) * (1 - violence_dt / surrender_tweak.violence_timeout)
 			end
@@ -517,7 +502,7 @@ function CopLogicBase._chk_alert_obstructed(listen_pos, alert_data)
 		return true
 	end
 
-	local my_dis_sq = mvec3_dis_sq(listen_pos, alert_epicenter)
+	local my_dis_sq = mvector3.distance_sq(listen_pos, alert_epicenter)
 	local effective_dis_sq = (alert_data[3] * math.map_range_clamped(alert_data[3], 0, 10000, 0.75, 1)) ^ 2
 
 	return my_dis_sq > effective_dis_sq
@@ -534,7 +519,19 @@ Hooks:PostHook(CopLogicBase, "death_clbk", "sh_death_clbk", function(data, damag
 		managers.groupai:state():_chk_say_group(data.group, "trip_mine")
 	elseif weapon_base and weapon_base.is_category and weapon_base:is_category("saw") and math.random() < 0.75 then
 		managers.groupai:state():_chk_say_group(data.group, "saw")
-	elseif math.random() < 0.15 then
+	elseif math.random() < (damage_info.variant == "melee" and 0.75 or 0.25) then
 		managers.groupai:state():_chk_say_group(data.group, "group_death")
 	end
 end)
+
+-- Disable forced voicelines
+local empty_chatter = {}
+local _set_attention_obj_original = CopLogicBase._set_attention_obj
+function CopLogicBase._set_attention_obj(data, ...)
+	local chatter = data.char_tweak.chatter
+	data.char_tweak.chatter = empty_chatter
+
+	_set_attention_obj_original(data, ...)
+
+	data.char_tweak.chatter = chatter
+end

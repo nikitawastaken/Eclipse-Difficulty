@@ -1,28 +1,28 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
-local taser = scripted_enemy.taser_1
 local ambush_taser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
 }
 local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
 }
-local building_spawn = {
+local rappel_far_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
+local rappel_close_spawn = {
 	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local escape_spawn = {
-	values = {
-		interval = 45,
+		interval = 20,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -31,11 +31,6 @@ local filter_easy_above = {
 }
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
-}
-local disabled = {
-	values = {
-		enabled = false,
-	},
 }
 
 return {
@@ -47,34 +42,43 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "street1",
-				force = 3,
+				name = "street01",
+				force = 2,
 				position = Vector3(1200, 900, 0),
 			},
 			{
-				name = "street2",
-				force = 3,
-				position = Vector3(1250, 3250, 0),
+				name = "street02",
+				force = 2,
+				position = Vector3(825, 3225, 0),
 			},
 			{
-				name = "street3",
-				force = 3,
-				position = Vector3(3000, 1050, 0),
+				name = "street03",
+				force = 2,
+				position = Vector3(2925, 250, 0),
 			},
 		},
 	},
-	[100123] = { -- End assault
+	[100969] = { -- Interacted with zipline 1
 		reinforce = {
 			{
-				name = "boutique1",
+				name = "zipline",
 				force = 2,
-				position = Vector3(2600, 3400, 0),
+				position = Vector3(6550, 5875, 0),
 			},
+		},
+	},
+	[100912] = { -- Interacted with zipline 2
+		reinforce = {
 			{
-				name = "boutique2",
+				name = "zipline",
 				force = 2,
-				position = Vector3(2900, 2325, 0),
+				position = Vector3(3550, 4085, 0),
 			},
+		},
+	},
+	[100953] = {
+		reinforce = {
+			{ name = "zipline" },
 		},
 	},
 	-- tweak swat vans
@@ -124,11 +128,11 @@ return {
 	[101176] = ambush_taser,
 	[101207] = ambush_taser,
 	-- Spawn group intervals
-	[100019] = building_spawn,
-	[100128] = building_spawn,
-	[100131] = building_spawn,
-	[100132] = window_spawn,
-	[100133] = window_spawn,
-	[101598] = escape_spawn,
-	[101604] = escape_spawn,
+	[100019] = rappel_far_spawn,
+	[100128] = rappel_far_spawn,
+	[100131] = rappel_far_spawn,
+	[100132] = rappel_close_spawn,
+	[100133] = rappel_close_spawn,
+	[101598] = rappel_close_spawn,
+	[101604] = rappel_close_spawn,
 }

@@ -113,7 +113,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local dmg_mul = managers.player:temporary_upgrade_value("temporary", "dmg_multiplier_outnumbered", 1)
 		dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 
-		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun", "saw") then
+		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun") then
 			dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)
 		end
 
@@ -132,7 +132,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local damage_health_ratio = managers.player:get_damage_health_ratio(health_ratio, primary_category)
 
 		if damage_health_ratio > 0 then
-			local upgrade_name = weap_base:is_category("saw") and "melee_damage_health_ratio_multiplier" or "damage_health_ratio_multiplier"
+			local upgrade_name = "damage_health_ratio_multiplier"
 			local damage_ratio = damage_health_ratio
 			dmg_mul = dmg_mul * (1 + managers.player:upgrade_value("player", upgrade_name, 0) * damage_ratio)
 		end
@@ -195,7 +195,19 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 			local weap_tweak_data = tweak_data.weapon[weap_base:get_name_id()]
 			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
 			local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-			local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+
+			local on_hit_mul = false
+			if fired and fired.rays then
+				for _, ray in ipairs(fired.rays) do
+					if ray and not table.empty(ray) then
+						on_hit_mul = true
+
+						break
+					end
+				end
+			end
+
+			local shake_multiplier = (on_hit_mul and shake_tweak_data["on_hit_multiplier"] or shake_tweak_data["fire_multiplier"]) * recoil_shake
 
 			if self._state_data.in_steelsight then
 				self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)

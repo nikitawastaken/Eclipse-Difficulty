@@ -4,9 +4,49 @@ function ElectricGrenade:set_thrower_unit(unit, ...)
 	ElectricGrenade.super.set_thrower_unit(self, unit, ...)
 
 	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value then
+		self._has_launchers_allow_clusters_bonus = self._thrower_unit:base():upgrade_value("weapon", "launchers_allow_clusters") or nil
+		local launcher_grenades = {
+			"launcher_frag",
+			"launcher_incendiary",
+			"launcher_electric",
+			"launcher_poison",
+			"launcher_incendiary_m79",
+			"launcher_electric_m79",
+			"launcher_poison_m79",
+			"launcher_frag_slap",
+			"launcher_incendiary_slap",
+			"launcher_electric_slap",
+			"launcher_poison_slap",
+			"launcher_m203",
+			"underbarrel_m203_groza",
+			"underbarrel_electric_groza",
+			"underbarrel_electric",
+			"launcher_frag_m32",
+			"launcher_incendiary_m32",
+			"launcher_electric_m32",
+			"launcher_poison_m32",
+			"launcher_frag_china",
+			"launcher_incendiary_china",
+			"launcher_electric_china",
+			"launcher_poison_china",
+			"launcher_frag_arbiter",
+			"launcher_incendiary_arbiter",
+			"launcher_electric_arbiter",
+			"launcher_poison_arbiter",
+			"launcher_frag_ms3gl",
+			"launcher_incendiary_ms3gl",
+			"launcher_electric_ms3gl",
+			"launcher_poison_ms3gl",
+			"launcher_rocket",
+			"rocket_ray_frag",
+		}
+
+		local cluster_allowed = not table.contains(launcher_grenades, self._tweak_projectile_entry)
+			or self._has_launchers_allow_clusters_bonus and table.contains(launcher_grenades, self._tweak_projectile_entry)
+
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
-		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
+		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") and cluster_allowed or nil
 		self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
 
 		self._range = self._range * self._explosive_range_multiplier
@@ -24,7 +64,7 @@ function ElectricGrenade:_detonate(tag, unit, body, other_unit, other_body, posi
 	local pos = self._unit:position()
 	local normal = math.UP
 	local range = self._range
-	local slot_mask = managers.slot:get_mask("explosion_targets")
+	local slot_mask = managers.slot:get_mask("explosion_targets") - managers.slot:get_mask("all_criminals")
 
 	managers.explosion:play_sound_and_effects(pos, normal, range, self._custom_params)
 
@@ -64,4 +104,20 @@ function ElectricGrenade:_detonate(tag, unit, body, other_unit, other_body, posi
 
 	self:_tase_player()
 	self:_handle_hiding_and_destroying(true, nil)
+end
+
+-- Tase player now require LoS check
+function ElectricGrenade:_tase_player()
+	local player = managers.player:player_unit()
+
+	if alive(player) then
+		local detonate_pos = self._unit:position() + math.UP * 100
+		local range = self._range
+		local affected, line_of_sight, travel_dis, linear_dis = QuickFlashGrenade._chk_dazzle_local_player(self, detonate_pos, range)
+		local los = managers.environment_controller:test_line_of_sight_explosion(detonate_pos, range) or false
+
+		if affected and los then
+			player:character_damage():on_self_tased(0.2)
+		end
+	end
 end

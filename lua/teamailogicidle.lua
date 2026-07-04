@@ -1,25 +1,17 @@
-local tmp_vec = Vector3()
-
--- Improve following in big nav segments
-function TeamAILogicIdle._check_should_relocate(data, _, objective)
-	local follow_movement = objective.follow_unit:movement()
-
-	local max_allowed_dis_xy = 500
-	local max_allowed_dis_z = 250
-
-	if follow_movement:nav_tracker():nav_segment() == data.unit:movement():nav_tracker():nav_segment() then
-		max_allowed_dis_xy = max_allowed_dis_xy * 3
-	elseif data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
-		max_allowed_dis_xy = max_allowed_dis_xy / 2
+-- Improved Team AI following
+-- From Super Serious Shooter
+local _check_should_relocate_original = TeamAILogicIdle._check_should_relocate
+function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
+	local ub_follow_behavior = UsefulBots and UsefulBots.player_settings and UsefulBots:player_settings(objective.follow_unit).follow_behavior
+	if ub_follow_behavior and ub_follow_behavior ~= 1 then
+		return _check_should_relocate_original(data, my_data, objective, ...)
 	end
 
-	mvector3.set(tmp_vec, follow_movement:m_newest_pos())
-	mvector3.subtract(tmp_vec, data.m_pos)
-
-	if math.abs(tmp_vec.z) > max_allowed_dis_z then
+	local follow_movement = objective.follow_unit:movement()
+	if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
 		return true
 	end
 
-	mvector3.set_z(tmp_vec, 0)
-	return mvector3.length(tmp_vec) > max_allowed_dis_xy
+	local follow_pos = follow_movement:m_newest_pos()
+	return math.abs(follow_pos.z - data.m_pos.z) > 200 or mvector3.distance_sq(follow_pos, data.m_pos) > 600 ^ 2
 end

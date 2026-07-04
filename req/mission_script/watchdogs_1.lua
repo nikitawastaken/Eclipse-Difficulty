@@ -1,5 +1,10 @@
 local preferred = Eclipse.preferred
-
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 local shield_so = {
 	pre_func = function(element)
 		if Network:is_client() then
@@ -16,22 +21,21 @@ local shield_so = {
 		end)
 	end,
 }
-local street_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local catwalk_spawn = {
 	values = {
-		interval = 25,
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local roof_spawn = {
+local street_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local roof_spawn = deep_clone(catwalk_spawn)
+roof_spawn.groups = preferred.no_shields_bulldozers
+
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -46,13 +50,13 @@ return {
 			{ 127, 129 },
 		},
 	},
-	[101144] = { -- Car has been shot
+	[101146] = { -- activateSecondEscapeVehicle
 		ponr = {
-			length = 180,
-			player_mul = { 1.375, 1.25, 1.125, 1 },
+			length = 240,
+			length_balance_mul = { 1.375, 1.25, 1.125, 1 },
 		},
 	},
-	-- replace the turrets with spawngroups
+	-- Replace the turrets with spawngroups
 	[100450] = {
 		on_executed = {
 			{ id = 101164, remove = true },
@@ -65,6 +69,9 @@ return {
 			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
+	-- Disable the catwalk gap
+	[101407] = filter_disable,
+	[103762] = filter_easy_above,
 	-- Set shields to stay in place
 	[102848] = shield_so,
 	[102849] = shield_so,

@@ -1,5 +1,4 @@
-local level_id = Eclipse.utils.level_id()
-local ffo_heists = Eclipse:require("ffo_heists")
+local level_id = Eclipse.utils.clean_level_id()
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",
@@ -13,10 +12,6 @@ GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_leave",
 }
 table.list_append(GroupAIStateBase.EVENT_SYNC, GroupAIStateBase.MEGAPHONE_EVENTS)
-
-Hooks:PostHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
-	self._on_enemy_weapons_hot_t = self._on_enemy_weapons_hot_t or self._t
-end)
 
 function GroupAIStateBase:_get_scripted_tier()
 	local scripted_tiers = self._tweak_data and self._tweak_data.scripted_tiers
@@ -59,10 +54,13 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calcul
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
-	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
+	self._drama_data.drama_gain_team_ai_mul = tweak_data.drama.drama_gain_team_ai_mul
+	self._drama_data.drama_gain_balance_mul = tweak_data.drama.drama_gain_balance_mul
+
 	local drama_data = self._drama_data
-	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul)
-	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
+	local drama_team_ai_mul = self:is_unit_team_AI(unit) and drama_data.drama_gain_team_ai_mul or 1
+	local drama_gain_balance_mul = self:_get_balancing_multiplier(drama_data.drama_gain_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_team_ai_mul * drama_gain_balance_mul
 
 	if alive(attacker) then
 		local dis_lerp = math.min(1, mvector3.distance(attacker:movement():m_pos(), unit:movement():m_pos()) / drama_data.max_dis)
@@ -84,11 +82,8 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 		end
 	end
 
-	if ffo_heists[level_id] then
-		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
-	end
-
 	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
+		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
 		if self._point_of_no_return_timer <= 0 then
 			if Network:is_server() then
 				managers.groupai:set_state("ponr")
@@ -115,6 +110,9 @@ end
 
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
+	self._stealth_strikes = 0
+	self._nr_pager_answers = 0
+
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
@@ -124,12 +122,263 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
 	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
 
-	self._difficulty_min = tweak_data.group_ai.difficulty_scaling.diff_min or 0
-	self._difficulty_max = tweak_data.group_ai.difficulty_scaling.diff_max or 1
-	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
-	self._difficulty_value = self._difficulty_value or 0
-	self._difficulty_point_index = self._difficulty_point_index or 1
-	self._difficulty_ramp = self._difficulty_ramp or 0
+	self._silent_alarm_delay = self._silent_alarm_delay or 0
+
+	self._difficulty_value = 0
+	self._difficulty_scaling = deep_clone(tweak_data.group_ai.difficulty_scaling)
+	self._difficulty_addends = {}
+	self._paused_difficulty_addends = {}
+	self._difficulty_update_dt = 0
+	self:_calculate_difficulty_ratio()
+end)
+
+function GroupAIStateBase:_finalize_difficulty_addend_data(data)
+	local category
+	if type(data) == "table" then
+		category = data.category or "generic"
+	else
+		category = data
+		data = self._difficulty_scaling.addends[data]
+		if type(data) ~= "table" then
+			return
+		end
+	end
+
+	local amount = data.amount and (tonumber(data.amount) or math.round(math.rand(unpack(data.amount)), 0.01)) or 0
+	if amount == 0 then
+		return
+	end
+
+	local team_ai_weights = tweak_data.group_ai.team_ai_balance_mul_weights
+	local delay = data.delay and (tonumber(data.delay) or math.rand(unpack(data.delay))) or 0
+	local delay_mul = data.delay_mul or self._difficulty_scaling.addend_delay_multipliers[category]
+	local delay_balance_mul = data.delay_balance_mul or self._difficulty_scaling.addend_delay_balance_muls[category]
+	local final_delay = delay * (delay_mul or 1) * (delay_balance_mul and self:_get_balancing_multiplier(delay_balance_mul, team_ai_weights.difficulty_addend_delay) or 1)
+	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
+	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
+	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
+	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, team_ai_weights.difficulty_addend_time) or 1)
+	local finalized = {
+		amount = amount,
+		delay = final_delay,
+		time = final_time,
+		category = category,
+	}
+	return finalized
+end
+
+-- Add a difficulty addend to the stack
+function GroupAIStateBase:add_difficulty_addend(data)
+	data = self:_finalize_difficulty_addend_data(data)
+	if not data then
+		return
+	end
+	-- Add the preplanning asset's delay_weapons_hot_t delay to the addend's base delay
+	if data.category == "on_enemy_weapons_hot" and self._has_silent_alarm then
+		data.delay = data.delay + self._silent_alarm_delay
+	end
+	if self._difficulty_scaling.paused_addends[data.category] then
+		local paused = self._paused_difficulty_addends[data.category] or {}
+		self._paused_difficulty_addends[data.category] = paused
+		if #paused < (tonumber(self._difficulty_scaling.paused_addends[data.category]) or 1) then
+			table.insert(paused, data)
+		end
+	else
+		table.insert(self._difficulty_addends, data)
+	end
+end
+
+-- Set whether an addend category is allowed to be added to the stack
+function GroupAIStateBase:set_difficulty_addend_category_allowed(category, allowed)
+	self._difficulty_scaling.allowed_addends[category] = allowed and true or false
+end
+
+-- Set whether an addend category is paused and will be added to a separate table, only getting added to the stack when unpaused
+function GroupAIStateBase:set_difficulty_addend_category_paused(category, cache_limit)
+	if cache_limit then
+		self._difficulty_scaling.paused_addends[category] = tonumber(cache_limit) or 1
+	else
+		self._difficulty_scaling.paused_addends[category] = false
+	end
+end
+
+-- If the category is currently allowed, add an addend to the stack
+function GroupAIStateBase:add_difficulty_addend_by_category(category)
+	if self._difficulty_scaling.allowed_addends[category] then
+		self:add_difficulty_addend(category)
+	end
+end
+
+function GroupAIStateBase:_finalize_difficulty_step_data(data)
+	local finalized = self:_finalize_difficulty_addend_data(data)
+	if finalized then
+		finalized.category = "step"
+	end
+	return finalized
+end
+
+-- Add a new timed difficulty step
+-- It does not go into the stack immediately, unless the last timed step has completed and this step is next
+function GroupAIStateBase:add_difficulty_step(data, goes_first)
+	if goes_first then
+		table.insert(self._difficulty_scaling.steps, 1, data)
+	else
+		table.insert(self._difficulty_scaling.steps, data)
+	end
+end
+
+function GroupAIStateBase:_add_difficulty_step_addend(data)
+	data = self:_finalize_difficulty_step_data(data)
+	if not data then
+		return
+	end
+	table.insert(self._difficulty_addends, data)
+end
+
+function GroupAIStateBase:_finalize_forced_difficulty_data(data)
+	local finalized = self:_finalize_difficulty_addend_data(data)
+	if finalized then
+		finalized.category = "forced_difficulty"
+	end
+	return finalized
+end
+
+function GroupAIStateBase:set_forced_difficulty(data)
+	if data then
+		self._forced_difficulty = self:_finalize_forced_difficulty_data(data)
+	elseif self._forced_difficulty then
+		self._forced_difficulty.recovering = true
+	end
+end
+
+-- 32 or even 16 would probably be more than enough, but there should be some room for tiny addends
+local MAX_DIFFICULTY_ADDENDS = 64
+function GroupAIStateBase:_update_difficulty_value(t, dt)
+	-- No need to update every frame
+	self._difficulty_update_dt = self._difficulty_update_dt + dt
+	if self._difficulty_update_dt < 1.5 then
+		return
+	end
+	local cached_dt = self._difficulty_update_dt
+	self._difficulty_update_dt = 0
+
+	-- No difficulty updates during stealth
+	if not self:enemy_weapons_hot() then
+		return
+	end
+
+	-- When a paused addend category becomes unpaused, add all of its cached addends to the stack
+	for category, addends in pairs(self._paused_difficulty_addends) do
+		if not self._difficulty_scaling.paused_addends[category] then
+			self._paused_difficulty_addends[category] = nil
+			while addends[1] do
+				table.insert(self._difficulty_addends, table.remove(addends, 1))
+			end
+		end
+	end
+
+	-- Don't want addends to pile up endlessly if someone leaves the game running for 3 days
+	-- Unlikely to be a concern, but remove oldest rather than newest addends
+	if #self._difficulty_addends > MAX_DIFFICULTY_ADDENDS then
+		for _ = 1, #self._difficulty_addends - MAX_DIFFICULTY_ADDENDS do
+			table.remove(self._difficulty_addends, 1)
+		end
+	end
+
+	local new_diff_value, steps_complete = self:_get_new_difficulty_value(t, cached_dt)
+
+	-- If all existing timed steps are complete, add the next one if it exists
+	if steps_complete and self._difficulty_scaling.steps[1] then
+		self:_add_difficulty_step_addend(self._difficulty_scaling.steps[1])
+		table.remove(self._difficulty_scaling.steps, 1)
+	end
+
+	self._difficulty_value = new_diff_value
+	self:_calculate_difficulty_ratio()
+end
+
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_diff_rework_update", GroupAIStateBase._update_difficulty_value)
+
+function GroupAIStateBase:_get_new_difficulty_value(t, dt)
+	local new_diff_value = 0
+	local steps_complete = true
+	for _, data in ipairs(self._difficulty_addends) do
+		if data.complete then
+			if data.category == "step" then
+				steps_complete = true
+			end
+			new_diff_value = new_diff_value + data.amount
+		elseif data.delay then
+			if data.category == "step" then
+				steps_complete = false
+			end
+			data.delay = data.delay - dt
+			if data.delay <= 0 then
+				data.delay = nil
+				data.start_t = t
+				data.end_t = t + data.time
+			end
+		else
+			if data.category == "step" then
+				steps_complete = false
+			end
+			if data.end_t <= t then
+				data.complete = true
+				new_diff_value = new_diff_value + data.amount
+			else
+				new_diff_value = new_diff_value + math.map_range_clamped(t, data.start_t, data.end_t, math.min_max(0, data.amount))
+			end
+		end
+	end
+	new_diff_value = math.clamp(new_diff_value, 0, 1)
+	return self:_apply_forced_difficulty(new_diff_value, t, dt), steps_complete
+end
+
+function GroupAIStateBase:_apply_forced_difficulty(new_diff_value, t, dt)
+	if not self._forced_difficulty then
+		return new_diff_value
+	end
+	local forced_diff_value
+	if self._forced_difficulty.recovering then
+		self._forced_difficulty.recovery_start_t = self._forced_difficulty.recovery_start_t or t
+		self._forced_difficulty.end_t = self._forced_difficulty.end_t or t + (self._forced_difficulty.time or 0)
+		if self._forced_difficulty.end_t <= t then
+			self._forced_difficulty = nil
+			return new_diff_value
+		end
+		forced_diff_value = math.map_range_clamped(t, self._forced_difficulty.recovery_start_t, self._forced_difficulty.end_t, math.min_max(self._forced_difficulty.amount, new_diff_value))
+	elseif self._forced_difficulty.delay then
+		self._forced_difficulty.delay = self._forced_difficulty.delay - dt
+		if self._forced_difficulty.delay <= 0 then
+			self._forced_difficulty.delay = nil
+		end
+	else
+		forced_diff_value = self._forced_difficulty.amount
+	end
+	return forced_diff_value or new_diff_value
+end
+
+-- Dummied out
+function GroupAIStateBase:set_difficulty(value) end
+
+-- TODO: update mission script patches to the new difficulty system
+function GroupAIStateBase:add_difficulty(value)
+	self:add_difficulty_addend({
+		amount = value,
+		time = value * 240,
+	})
+end
+
+-- Set Silent Alarm asset's delay and type
+function GroupAIStateBase:_set_silent_alarm(value, delay_type)
+	self._has_silent_alarm = value
+	self._silent_alarm_delay = tweak_data.preplanning.types[delay_type] and tweak_data.preplanning.types[delay_type].delay_weapons_hot_t or 0
+end
+
+Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
+	if self._ai_enabled and not self._enemy_weapons_hot then
+		self:add_difficulty_addend_by_category("on_enemy_weapons_hot")
+	end
 end)
 
 -- Add the marksman enemy to special unit types
@@ -153,10 +402,30 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		spooc = true,
 		marksman = true,
 	}
+	if managers.mutators:modify_value("GroupAIStateBase:MaxDiff", false) then
+		self._difficulty_scaling.allowed_addends.on_enemy_weapons_hot = true
+		self._difficulty_scaling.addends.on_enemy_weapons_hot = {
+			amount = 1,
+			delay = 0,
+			time = 0,
+		}
+	end
+end)
+
+-- Add some drama when spawning a special unit
+Hooks:PostHook(GroupAIStateBase, "register_special_unit", "eclipse_register_special_unit", function(self, u_key, category_name)
+	local balance_mul = 1
+	if tweak_data.drama.special_spawn_drama_add[category_name] then
+		if tweak_data.drama.special_spawn_drama_add_balance_mul[category_name] then
+			balance_mul = self:_get_balancing_multiplier(tweak_data.drama.special_spawn_drama_add_balance_mul[category_name], tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+		end
+
+		self:_add_drama(tweak_data.drama.special_spawn_drama_add[category_name] * balance_mul)
+	end
 end)
 
 -- Add a function to check if a deployble is within a nav_seg
-function GroupAIStateBase:check_deployable_nav_seg(nav_seg_id)
+function GroupAIStateBase:chk_deployable_nav_seg(nav_seg_id)
 	return self._deployable_nav_segs[nav_seg_id]
 end
 
@@ -214,68 +483,24 @@ function GroupAIStateBase:megaphone_announce_snipers()
 	end
 end
 
--- Make difficulty progress smoother
-function GroupAIStateBase:_update_difficulty_value()
-	if self:enemy_weapons_hot() and self._t >= ((self._on_enemy_weapons_hot_t or 0) + tweak_data.group_ai.difficulty_scaling.assault_delay) then
-		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
-			local diff_step = tweak_data.group_ai.difficulty_scaling.diff_step * (self._difficulty_value > self._target_difficulty and -1 or 1)
-
-			self._difficulty_value = math.min(self._difficulty_value + diff_step, self._target_difficulty)
-			self._difficulty_value = math.clamp(self._difficulty_value, self._difficulty_min, self._difficulty_max)
-
-			if self._difficulty_value >= self._target_difficulty then
-				self._target_difficulty = self._difficulty_value
-			else
-				self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
-			end
-			self:_calculate_difficulty_ratio()
-		end
-	end
-end
-
-function GroupAIStateBase:set_difficulty(forced_value)
-	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
-
-	if not self._set_initial_diff then
-		self._difficulty_value = 0
-		self._target_difficulty = tweak_data.group_ai.difficulty_scaling.diff_init
-
-		self._set_initial_diff = true
-
-		self:_update_difficulty_value()
-
+-- Killing hostages in Pro Jobs increases diff
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self, killer_unit)
+	if not alive(killer_unit) then
 		return
 	end
 
-	if forced_value then
-		self._target_difficulty = forced_value
-
-		self:_update_difficulty_value()
+	if killer_unit:base() and killer_unit:base().thrower_unit then
+		killer_unit = killer_unit:base():thrower_unit()
+		if not alive(killer_unit) then
+			return
+		end
 	end
-end
 
-Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
+	local criminal = self._criminals[killer_unit:key()]
+	if not criminal then
+		return
+	end
 
-function GroupAIStateBase:add_difficulty(value)
-	self._target_difficulty = self._target_difficulty + value
-
-	self:_update_difficulty_value()
-end
-
-function GroupAIStateBase:min_difficulty(value)
-	self._difficulty_min = value or self._difficulty_min
-
-	self:_update_difficulty_value()
-end
-
-function GroupAIStateBase:max_difficulty(value)
-	self._difficulty_max = value or self._difficulty_max
-
-	self:_update_difficulty_value()
-end
-
---Killing hostages in Pro Jobs increases diff
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
 	if not self._hunt_mode and self._assault_number and self._assault_number >= 1 then
 		self._mga_hostage_kills = self._mga_hostage_kills + 1 -- have to track separately to self._hostages_killed because some may be killed before going loud
 
@@ -289,26 +514,34 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 		end
 	end
 
-	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
+	local time_modifier = 1
+	self._killed_hostage_times = self._killed_hostage_times or {}
+	for i, time in table.reverse_ipairs(self._killed_hostage_times) do
+		if self._t - time > 15 then
+			table.remove(self._killed_hostage_times, i)
+		end
+	end
+	local time_modifier = 1 + (#self._killed_hostage_times * 0.07)
+	table.insert(self._killed_hostage_times, self._t)
 
-	if hostage_kill_add then
-		self:add_difficulty(hostage_kill_add)
+	if self._difficulty_scaling.allowed_addends.on_hostage_killed then
+		local on_hostage_killed = deep_clone(self._difficulty_scaling.addends.on_hostage_killed)
+		on_hostage_killed.time_mul = self._difficulty_scaling.addend_time_multipliers.on_hostage_killed
+		on_hostage_killed.time_balance_mul = self._difficulty_scaling.addend_time_balance_muls.on_hostage_killed
+		if type(on_hostage_killed.time) == "table" then
+			for i, time in ipairs(on_hostage_killed.time) do
+				on_hostage_killed.time[i] = math.pow(time, time_modifier)
+			end
+		elseif on_hostage_killed.time then
+			on_hostage_killed.time = math.pow(on_hostage_killed.time, time_modifier)
+		end
+		self:add_difficulty_addend(on_hostage_killed)
 	end
 end)
 
 -- Limit the number of dominated cops to 4 in all cases
 function GroupAIStateBase:has_room_for_police_hostage()
 	return self._police_hostage_headcount + table.size(self._converted_police) < 4
-end
-
--- Fully count all criminals for the balancing multiplier
-function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
-end
-
--- Balancing multiplier for players only (used for hostage situation aced)
-function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
 end
 
 -- Delay spawn points when enemies die close to them
@@ -318,36 +551,18 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 	end
 
 	local e_data = self._police[unit:key()]
-	if not e_data.group or not e_data.group.has_spawned then
+	if not e_data.group or not e_data.group.has_spawned or not e_data.spawn_group then
 		return
 	end
 
-	local spawn_point = unit:unit_data().mission_element
-	if not spawn_point then
-		return
-	end
-
-	local max_dis = tweak_data.group_ai.spawn_kill_distance or 1500
-	local dis = mvector3.distance(spawn_point:value("position"), e_data.m_pos)
+	local dis = mvector3.distance(e_data.spawn_group.pos, e_data.m_pos)
+	local max_dis = tweak_data.group_ai.spawn_kill_max_dis
 	if dis > max_dis then
 		return
 	end
 
-	for _, area in pairs(self._area_data) do
-		if area.spawn_groups then
-			for _, group in pairs(area.spawn_groups) do
-				if group.spawn_pts then
-					for _, point in pairs(group.spawn_pts) do
-						if point.mission_element == spawn_point then
-							local delay_t = self._t + math.lerp(tweak_data.group_ai.spawn_kill_cooldown, 0, dis / max_dis)
-							group.delay_t = math.max(group.delay_t, delay_t)
-							return
-						end
-					end
-				end
-			end
-		end
-	end
+	local delay_t = self._t + math.map_range(dis, 0, max_dis, tweak_data.group_ai.spawn_kill_cooldown, 0)
+	e_data.spawn_group.delay_t = math.max(e_data.spawn_group.delay_t, delay_t)
 end)
 
 -- Fix this function doing nothing
@@ -496,7 +711,7 @@ GroupAIStateBase.dynamic_SO_adjustment_funcs = {}
 function GroupAIStateBase.dynamic_SO_adjustment_funcs.carrysteal(self, objective_data)
 	objective_data.interval = 4
 	objective_data.search_dis_sq = 4000000
-	objective_data.objective.interrupt_dis = 600
+	objective_data.objective.interrupt_dis = 800
 	objective_data.objective.interrupt_health = 0.8
 	objective_data.objective.pose = nil
 end
@@ -520,6 +735,22 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "eclipse_add_special_ob
 			func(self, objective_data)
 			break
 		end
+	end
+end)
+
+-- Additional handling for interval balance multipliers to work
+-- GroupAI keeps its own record of the interval rather than asking the spawn group element each time
+Hooks:PostHook(GroupAIStateBase, "create_spawn_group", "eclipse_create_spawn_group", function(self, id, spawn_group)
+	local new_spawn_group_data = Hooks:GetReturn()
+	if new_spawn_group_data then
+		new_spawn_group_data.interval = nil
+		setmetatable(new_spawn_group_data, {
+			__index = function(t, k)
+				if k == "interval" then
+					return spawn_group:value("interval")
+				end
+			end,
+		})
 	end
 end)
 
@@ -549,10 +780,27 @@ end)
 
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
 -- The zones are only used for that, which makes the phases inconsistent for no real reason
-function GroupAIStateBase:_add_drama(amount)
+function GroupAIStateBase:_add_drama(amount, ignore_gain_mul)
+	local drama_gain_mul = self._tweak_data and self:_get_difficulty_dependent_value(self._tweak_data.drama_gain_mul) or 1
+	if amount > 0 and not ignore_gain_mul then
+		amount = amount * drama_gain_mul
+	end
 	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
 	self._drama_data.zone = nil
 end
+
+-- Support for variable drama decay rate
+Hooks:OverrideFunction(GroupAIStateBase, "_claculate_drama_value", function(self)
+	self._drama_data.drama_decay_rate_balance_mul = tweak_data.drama.drama_decay_rate_balance_mul
+	local drama_data = self._drama_data
+	local dt = self._t - drama_data.last_calculate_t
+	local dt_mod = (self._get_drama_weight_mul and self:_get_drama_weight_mul("decay_rate") or 1)
+		* self:_get_balancing_multiplier(self._drama_data.drama_decay_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.drama)
+	local adj = -dt / drama_data.decay_period * dt_mod
+	drama_data.last_calculate_t = self._t
+
+	self:_add_drama(adj)
+end)
 
 -- Set a minimum gunshot and bullet impact alert range in loud
 Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)
@@ -568,7 +816,7 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 
 	local max_dis_sq = 3000 ^ 2
 	for _, event_data in pairs(self._spawn_events) do
-		if (event_data.task_type == task_type or event_data.task_type == "any") and mvec_dis_sq(target_pos, event_data.pos) < max_dis_sq then
+		if (event_data.task_type == task_type or event_data.task_type == "any") and mvector3.distance_sq(target_pos, event_data.pos) < max_dis_sq then
 			if force or math.random() < event_data.chance then
 				self._anticipated_police_force = self._anticipated_police_force + event_data.amount
 				self._police_force = self._police_force + event_data.amount
@@ -595,10 +843,10 @@ end
 -- Make it less prone to spamming Cloakers (tweakdata delay is applied on spawn, not when junk groups are found)
 -- Add a tweakdata limit on the number of hiding Cloaker groups
 -- Reduced hide durations - see elementspecialobjectivegroup
--- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting - NOT FULLY IMPLEMENTED YET
--- Cloakers getting new hide SOs can be set to not use the same one they just used - NOT IMPLEMENTED YET
+-- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting
 -- Spawn noise being used is now a tweakdata flag
 -- Idle noise and goggles being on while hiding are now tweakdata flags
+local hiding_cloaker_vec1, hiding_cloaker_vec2 = Vector3(), Vector3()
 local junk_reason_group_nil = "group_nil"
 local junk_reason_group_mismatch = "groups_mismatched"
 local junk_reason_group_empty = "group_empty"
@@ -610,7 +858,8 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
 	end
 
-	if not tweak_data.group_ai.use_reworked_cloaker_task then
+	local hiding_cloaker_tweak = self._tweak_data.cloaker
+	if not hiding_cloaker_tweak or not tweak_data.group_ai.use_reworked_cloaker_task then
 		if _process_recurring_grp_SO_original(self, recurring_id, data, ...) then
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
 			managers.hud:post_event("cloaker_spawn")
@@ -619,16 +868,10 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 		return
 	end
 
-	local hiding_cloaker_tweak = self._tweak_data.cloaker
-	if not hiding_cloaker_tweak then
-		Eclipse:error_console("Hiding Cloaker task tweakdata missing!")
-		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
-	end
-
 	data.interval = hiding_cloaker_tweak.interval or data.interval
 
 	if data.groups then
-		local junk_groups = self:_evaluate_hiding_cloaker_groups(data.groups, hiding_cloaker_tweak)
+		local junk_groups = self:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)
 		if junk_groups then
 			self:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
 		end
@@ -637,44 +880,101 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 	return self:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 end
 
-function GroupAIStateBase:_get_hiding_cloaker_SO(elements, last_element, hiding_cloaker_tweak)
-	if last_element then
-		local min_elements = math.max(2, hiding_cloaker_tweak.avoid_repeat_hiding_spots_min_elements or 2)
-		if #elements < min_elements or hiding_cloaker_tweak.avoid_repeat_hiding_spots == false then
-			last_element = nil
-		end
+-- Prioritize hide SOs near criminals rather than picking at complete random
+function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not data.followups or #data.followups == 0 then
+		return
 	end
 
+	local repeat_hiding_spots = hiding_cloaker_tweak.repeat_hiding_spots or {
+		avoid = true,
+		min_elements = 3,
+		min_distance = 1500,
+	}
+	local last_element = group and group.last_element
+	if not repeat_hiding_spots.avoid or #data.followups < repeat_hiding_spots.min_elements then
+		last_element = nil
+	end
+	local last_element_pos = last_element and last_element:value("position")
+
+	local SO_weighting = hiding_cloaker_tweak.SO_weighting or {
+		near_distance = 1000,
+		far_distance = 3000,
+		far_chance_mul = 0.1,
+		too_far_distance = 5000,
+		too_close_distance = 1000,
+	}
+	local element_weights = {}
 	local total_w = 0
-	for _, element in ipairs(elements) do
-		if not last_element or last_element ~= element then
-			total_w = total_w + element:value("base_chance")
+	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
+	local pos_is_zero = not criminal_pos or mvector3.is_zero(criminal_pos)
+
+	local function should_continue(element, element_pos, so_grp)
+		if not element then
+			Eclipse:warn_console("Nil element in _get_hiding_cloaker_SO()! SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif not element_pos then
+			Eclipse:warn_console("Nil element pos in _get_hiding_cloaker_SO()! Element ID: " .. (element:id() or "missing") .. " SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif last_element and last_element == element then
+			return true
+		elseif last_element_pos and mvector3.distance(element_pos, last_element_pos) < repeat_hiding_spots.min_distance then
+			return true
+		elseif not data.groups then
+			return false
 		end
-	end
 
-	local rand_w = total_w * math.random()
-	for _, element in ipairs(elements) do
-		if not last_element or last_element ~= element then
-			rand_w = rand_w - element:value("base_chance")
-
-			if rand_w <= 0 then
-				return element
+		for _, grp in pairs(data.groups) do
+			if grp ~= group and grp.last_element == element then
+				return true
 			end
 		end
 	end
 
-	Eclipse:error_console("GroupAIStateBase:_get_hiding_cloaker_SO() had no return, picking element at random!")
-	return table.random(elements)
+	local function collect_element_weights(skip_ignore_distances)
+		for _, followup_data in ipairs(data.followups) do
+			local element, element_w, so_grp = followup_data[1], followup_data[2], followup_data[3]
+			local element_pos = element:value("position")
+			if should_continue(element, element_pos, so_grp) then
+				goto __continue
+			end
+
+			if pos_is_zero then
+				table.insert(element_weights, { element, element_w })
+				total_w = total_w + element_w
+			else
+				local element_dis = mvector3.distance(criminal_pos, element_pos)
+				if skip_ignore_distances or SO_weighting.too_far_distance > element_dis and SO_weighting.too_close_distance < element_dis then
+					element_w = math.map_range_clamped(element_dis, SO_weighting.near_distance, SO_weighting.far_distance, element_w, element_w * SO_weighting.far_chance_mul)
+					table.insert(element_weights, { element, element_w })
+					total_w = total_w + element_w
+				end
+			end
+
+			::__continue::
+		end
+	end
+
+	collect_element_weights()
+	if #element_weights == 0 then
+		last_element, last_element_pos = nil
+		collect_element_weights(true)
+	end
+
+	local rand_w = total_w * math.random()
+	for _, weight_data in ipairs(element_weights) do
+		rand_w = rand_w - weight_data[2]
+		if rand_w <= 0 then
+			return weight_data[1]
+		end
+	end
 end
 
-function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker_tweak)
+function GroupAIStateBase:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)
 	local junk_groups = nil
-	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or {
-		10,
-		20,
-	}
+	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or { 10, 20 }
 
-	for group_id, group in pairs(groups) do
+	for group_id, group in pairs(data.groups) do
 		if not group.objective.hide_retry_delay then
 			group.objective.hide_retry_delay = math.lerp(hide_retry_delay[1], hide_retry_delay[2], math.random())
 		end
@@ -689,9 +989,9 @@ function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker
 
 			if not junk_reason then
 				junk_reason = junk_reason_group_empty
-				for u_key, unit_data in pairs(group.units) do
+				for _, u_data in pairs(group.units) do
 					junk_reason = junk_reason_no_objective
-					local objective = unit_data.unit:brain():objective()
+					local objective = u_data.unit:brain():objective()
 					if not objective then
 						-- Nothing, probably waiting to be assigned
 					elseif objective.grp_objective == group.objective then
@@ -709,21 +1009,21 @@ function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker
 							-- Eclipse:log_console(string.format("Retry delay has not expired for hiding Cloaker %s", group_id))
 							junk_reason = nil
 						else
-							Eclipse:log_console(string.format("Retry delay expired for hiding Cloaker %s", group_id))
+							-- Eclipse:log_console(string.format("Retry delay expired for hiding Cloaker %s", group_id))
 						end
 					else
-						Eclipse:log_console(string.format("Objective failed for hiding Cloaker %s", group_id))
+						-- Eclipse:log_console(string.format("Objective failed for hiding Cloaker %s", group_id))
 						group.objective.fail_t = self._t
 						junk_reason = nil
 					end
 				elseif group.objective.fail_t then
-					Eclipse:log_console(string.format("Hiding Cloaker %s is no longer junk", group_id))
+					-- Eclipse:log_console(string.format("Hiding Cloaker %s is no longer junk", group_id))
 					group.objective.fail_t = nil
 				end
 			end
 
 			if junk_reason then
-				Eclipse:log_console(string.format("Found junk hiding Cloaker %s: %s", group_id, junk_reason))
+				-- Eclipse:log_console(string.format("Found junk hiding Cloaker %s: %s", group_id, junk_reason))
 				junk_groups = junk_groups or {}
 				junk_groups[group_id] = junk_reason
 			end
@@ -740,19 +1040,16 @@ local remove_group_reasons = table.list_to_set({
 	junk_reason_group_empty,
 })
 
--- TODO: figure out rehiding
 function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
-	local assault_chance = hiding_cloaker_tweak.assault_on_objective_failed_chance or 0.5
 	for group_id, junk_reason in pairs(junk_groups) do
-		local assault = assault_chance == 1 or math.random() < assault_chance
 		local group = data.groups[group_id]
-		data.groups[group_id] = nil
+		local assault = group and ((group.rehide_attempts or 0) >= (group.max_rehide_attempts or 0))
 		if not group or remove_group_reasons[junk_reason] then
-			-- Nothing
+			data.groups[group_id] = nil
 		elseif assault then
 			self:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		else
-			self:_assign_group_to_retire(group)
+			self:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		end
 	end
 
@@ -765,6 +1062,7 @@ function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, 
 end
 
 -- _spawn_in_group() still returns a new group even if the group cannot actually spawn
+-- TODO: detach hiding Cloakers from regular Cloaker spawn limits while hiding
 function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 	if self._t < data.delay_t then
 		return
@@ -783,46 +1081,276 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 		return
 	end
 
-	local element = self:_get_hiding_cloaker_SO(data.elements, nil, hiding_cloaker_tweak)
-	local grp_objective = element:get_grp_objective()
-	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, element:value("position"), nil, nil)
+	local so_element = self:_get_hiding_cloaker_SO(data, nil, hiding_cloaker_tweak)
+	if not so_element then
+		-- Eclipse:log_console("No SO element")
+		return
+	end
+
+	local grp_objective = so_element:get_grp_objective()
+	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, so_element:value("position"), nil, nil)
 	if not spawn_group then
-		Eclipse:log_console("No spawn group")
+		-- Eclipse:log_console("No spawn group")
 		return
 	end
 
 	local new_group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, nil)
 	if new_group then
+		local max_rehide_attempts = hiding_cloaker_tweak.max_rehide_attempts or { 0, 3 }
 		data.groups = data.groups or {}
 		data.groups[new_group.id] = new_group
-		new_group.last_element = element
+		new_group.hiding_cloaker_data = data
+		new_group.last_element = so_element
+		new_group.rehide_attempts = 0
+		new_group.max_rehide_attempts = math.random(max_rehide_attempts[1], max_rehide_attempts[2])
 
 		if hiding_cloaker_tweak.use_spawn_noise ~= false then
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
 			managers.hud:post_event("cloaker_spawn")
 		end
-	end
 
-	data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
+		self:_delay_new_hiding_cloakers(data)
+	end
 
 	return new_group and true
 end
 
--- TODO: prioritize nearby groups
--- TODO? forbid certain group types that should not be joinable
--- TODO: fall back on rehiding before retiring once implemented
-function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
-	data.groups[group_id] = nil
+function GroupAIStateBase:_delay_new_hiding_cloakers(data, time_tbl)
+	local hiding_cloaker_tweak = self._tweak_data.cloaker
+	time_tbl = time_tbl
+		or {
+			self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_min or { 20, 22.5, 25 }),
+			self:_get_difficulty_dependent_value(hiding_cloaker_tweak.interval_max or { 40, 45, 50 }),
+		}
+	local added_delay = math.rand(time_tbl[1], time_tbl[2]) * (self._get_drama_weight_mul and self:_get_drama_weight_mul("hiding_cloaker_interval") or 1)
+	data.delay_t = math.max(data.delay_t, self._t + added_delay)
+end
 
-	for _, grp in pairs(self._groups) do
-		if grp.objective.type == "assault_area" then
+function GroupAIStateBase:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	data.groups[group_id] = nil
+	self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	self:_assign_group_to_retire(group)
+end
+
+function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	local group_center_pos = self:_get_units_center_pos(group.units)
+	local no_join_groups = hiding_cloaker_tweak.no_join_groups or {}
+	local function try_reassign_to_task(obj_type)
+		local grps = {}
+		for grp_id, grp in pairs(self._groups) do
+			if not data.groups[grp_id] and not no_join_groups[grp.type] and grp.objective.type == obj_type then
+				table.insert(grps, grp)
+			end
+		end
+
+		local new_grp = self:_get_closest_group(group_center_pos, grps)
+		if new_grp then
+			data.groups[group_id] = nil
+			self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
 			for u_key, u_data in pairs(group.units) do
 				self:unit_leave_group(u_data.unit, false)
-				self:_add_group_member(grp, u_data.unit:key())
+				self:_add_group_member(new_grp, u_key)
 			end
-			return
+			return true
 		end
 	end
 
-	self:_assign_group_to_retire(group)
+	local ordered_obj_types = {
+		"assault_area",
+		-- "recon_area",
+		-- "reenforce_area",
+	}
+	for _, obj_type in ipairs(ordered_obj_types) do
+		if try_reassign_to_task(obj_type) then
+			return true
+		end
+	end
+
+	self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	return false
+end
+
+-- interrupt_health being set before assignment can cause the objective to fail immediately if the Cloaker was damaged
+-- Set it only after assignment so the Cloaker hides again but is also interrupted by any new damage
+function GroupAIStateBase:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	local so_element = self:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not so_element then
+		self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+		return false
+	end
+
+	group.last_element = so_element
+	local grp_objective = so_element:get_grp_objective()
+	self:_set_objective_to_enemy_group(group, grp_objective)
+
+	for u_key, u_data in pairs(group.units) do
+		local objective = so_element:get_random_SO(u_data.unit)
+		if not objective then
+			self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+			return false
+		end
+
+		objective.interrupt_health = nil
+		objective.grp_objective = grp_objective
+
+		local u_brain = u_data.unit:brain()
+		if u_brain:objective() and not u_brain:is_available_for_assignment(objective) then
+			u_brain:set_followup_objective(objective)
+		else
+			self:set_enemy_assigned(objective.area or grp_objective.area, u_key)
+
+			if objective.element then
+				objective.element:clbk_objective_administered(u_data.unit)
+			end
+
+			u_brain:set_objective(objective)
+		end
+		objective.interrupt_health = u_data.unit:character_damage():health_ratio() - 0.01
+
+		local u_objective = u_brain:objective()
+		if not u_objective or (u_objective ~= objective and u_objective.followup_objective ~= objective) then
+			self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+			return false
+		end
+	end
+
+	group.rehide_attempts = (group.rehide_attempts or 0) + 1
+
+	return true
+end
+
+-- _remove_group_member() returns true if the group was emptied
+Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "eclipse__remove_group_member", function(self, group, _, is_casualty)
+	local data = is_casualty and Hooks:GetReturn() and group.hiding_cloaker_data
+	if data and data.delay_t then
+		local hiding_cloaker_tweak = self._tweak_data.cloaker
+		self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak and hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	end
+end)
+
+-- Make getting individual SOs for hiding Cloakers easier
+Hooks:PostHook(GroupAIStateBase, "_process_grp_SO", "eclipse__process_grp_SO", function(self, grp_so_id, element)
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data then
+		return
+	end
+
+	local followup_elements = element:value("followup_elements")
+	if not followup_elements then
+		return
+	end
+
+	local base_chance = element:value("base_chance")
+	for _, id in ipairs(followup_elements) do
+		local followup = element:get_mission_element(id)
+		if followup then
+			grp_SO_data.followups = grp_SO_data.followups or {}
+			table.insert(grp_SO_data.followups, { followup, followup:chance() * base_chance, element })
+		end
+	end
+end)
+
+-- Vanilla code doesn't seem to properly support removing SO groups
+-- Add it here for hiding Cloaker use
+Hooks:PostHook(GroupAIStateBase, "remove_grp_SO", "eclipse_remove_grp_SO", function(self, id)
+	local element = managers.mission:get_element_by_id(id)
+	if not element then
+		return
+	end
+
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data then
+		return
+	end
+
+	if grp_SO_data.elements then
+		for i, elmnt in table.reverse_ipairs(grp_SO_data.elements) do
+			if elmnt == element then
+				table.remove(grp_SO_data.elements, i)
+			end
+		end
+	end
+
+	if grp_SO_data.followups then
+		for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
+			if followup_data[3] == element then
+				table.remove(grp_SO_data.followups, i)
+			end
+		end
+	end
+end)
+
+function GroupAIStateBase:_distance_to_units_center(from_pos, units, as_square)
+	local mvec_func = as_square and mvector3.distance_sq or mvector3.distance
+	return mvec_func(from_pos, self:_get_units_center_pos(units))
+end
+
+-- Adapted from GroupAIStateBesiege:_draw_enemy_activity(...)
+-- Use with an enemy group's units, or GroupAI's criminals tables
+function GroupAIStateBase:_get_units_center_pos(units)
+	local center_pos = Vector3()
+	local nr_units = 0
+	for _, u_data in pairs(units) do
+		local movement_ext = alive(u_data.unit) and u_data.unit:movement()
+		if movement_ext and movement_ext.m_pos then
+			nr_units = nr_units + 1
+			mvector3.add(center_pos, movement_ext:m_pos())
+		end
+	end
+	if nr_units > 1 then
+		mvector3.divide(center_pos, nr_units)
+	end
+	return center_pos
+end
+
+function GroupAIStateBase:_get_closest_group(from_pos, groups)
+	local best_group, best_group_dis
+	for _, group in pairs(groups) do
+		local group_dis = self:_distance_to_units_center(from_pos, group.units)
+		if not best_group or group_dis < best_group_dis then
+			best_group = group
+			best_group_dis = group_dis
+		end
+	end
+	return best_group, best_group_dis
+end
+
+-- Stealth Strike System
+function GroupAIStateBase:register_strike(amount, reason, is_pager)
+	self._stealth_strikes = self._stealth_strikes + amount
+
+	if is_pager then
+		self._nr_pager_answers = self._nr_pager_answers + 1
+	end
+
+	local strike_reason = reason or "cop_alarm"
+	local total_amount = tweak_data.player.stealth_strikes.total_amount
+
+	if total_amount - self._stealth_strikes < 0 then
+		self:on_police_called(strike_reason)
+	end
+
+	local notification_string_id = "hint_stealth_strike_" .. strike_reason
+
+	managers.hud:show_hint({ text = managers.localization:text(notification_string_id) })
+end
+
+-- Returns the number of strikes that will show up in the UI
+function GroupAIStateBase:get_nr_successful_alarm_pager_bluffs()
+	return math.floor(self._stealth_strikes)
+end
+
+-- Used to determine pager responses
+function GroupAIStateBase:_chk_nr_pagers()
+	local max_nr_pager_answers = math.ceil(tweak_data.player.stealth_strikes.total_amount / tweak_data.player.stealth_strikes.reason_addends.alarm_pager_answered)
+
+	return self._nr_pager_answers, max_nr_pager_answers
+end
+
+function GroupAIStateBase:_strike_ratio()
+	return self._stealth_strikes / tweak_data.player.stealth_strikes.total_amount
+end
+
+function GroupAIStateBase:_chk_last_strike(amount)
+	return self._stealth_strikes + amount >= tweak_data.player.stealth_strikes.total_amount
 end

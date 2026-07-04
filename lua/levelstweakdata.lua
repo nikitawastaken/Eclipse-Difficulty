@@ -1,22 +1,24 @@
 local vanilla_outfits = Eclipse.settings.player_styles == 1
+local vanilla_outfits = Eclipse.settings.player_styles == 1
 local expanded_outfits = Eclipse.settings.player_styles == 2
 local no_outfits = Eclipse.settings.player_styles == 3
+local disable_christmas = Eclipse.settings.disable_christmas
 
 Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	for _, level in pairs(self) do
 		if level.world_name then
 			level.player_style = nil
+			level.group_ai_settings = {}
+			-- List of all the group AI settings for reference
+			--[[ 
 			level.group_ai_settings = {
 				difficulty_curve_points = { 0.5 },
-				spawn_kill_distance = 1500,
-				spawn_kill_cooldown = 10,
 				cloaker_interval_mul = 1,
 				hostage_hesitation_delay_mul = 1,
 				sustain_duration_mul = 1,
 				assault_delay_mul = 1,
 				assault_force_mul = 1,
 				spawnrate_mul = 1,
-				reenforce_min_interval_mul = 1,
 				reenforce_interval_mul = 1,
 				recon_interval_variation_mul = 1,
 				recon_force_mul = 1,
@@ -40,10 +42,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				},
 				force_tactics = {},
 			}
+]]
+
+			-- Add an option to disable year-round Christmas decorations
+			if disable_christmas and level.is_christmas_heist then
+				level.is_christmas_heist = false
+			end
 		end
 	end
 
-	-- add flashlights to more heists
+	-- Add flashlights to more heists
 	self.welcome_to_the_jungle_1_night.flashlights_on = true
 	self.framing_frame_1.flashlights_on = true
 	self.election_day_2.flashlights_on = true
@@ -64,7 +72,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.gallery.flashlights_on = true
 	self.hox_3.flashlights_on = true
 	self.crojob3_night.flashlights_on = true
-	self.dark.flashlights_on = true
 	self.short1_stage1.flashlights_on = true
 	self.spa.flashlights_on = true
 	self.glace.flashlights_on = true -- PDTH vibes
@@ -72,320 +79,303 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sah.flashlights_on = true
 	self.deep.flashlights_on = true
 
-	-- add Group AI settings
-	self.jewelry_store.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
-	self.jewelry_store.group_ai_preset = "small_urban"
-
-	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.ukrainian_job.group_ai_preset = "small_urban"
-
-	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
-	self.branchbank.group_ai_preset = "small_urban"
+	--  Enable megaphone cop announcemens on specific levels
 	self.branchbank.has_megaphone_cop = true
-
-	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.four_stores.group_ai_preset = "small_urban"
 	self.four_stores.has_megaphone_cop = true
-
-	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
-	self.mallcrasher.group_ai_preset = "small_urban"
 	self.mallcrasher.has_megaphone_cop = true
-
-	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.nightclub.group_ai_preset = "small_urban"
-
-	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.family.group_ai_preset = "small_urban"
 	self.family.has_megaphone_cop = true
+	self.firestarter_3.has_megaphone_cop = true
+	self.election_day_3.has_megaphone_cop = true
+	self.election_day_3_skip1.has_megaphone_cop = true
+	self.election_day_3_skip2.has_megaphone_cop = true
+	self.roberts.has_megaphone_cop = true
+	self.big.has_megaphone_cop = true
+	self.red2.has_megaphone_cop = true
+	self.man.has_megaphone_cop = true
+	self.moon.has_megaphone_cop = true
+	self.brb.has_megaphone_cop = true
+	self.chas.has_megaphone_cop = true
 
-	self.gallery.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	-- Set Group AI presets that determine spawngroup composition and distribution
+	self.jewelry_store.group_ai_preset = "small_urban"
+	self.ukrainian_job.group_ai_preset = "small_urban"
+	self.branchbank.group_ai_preset = "small_urban"
+	self.four_stores.group_ai_preset = "small_urban"
+	self.mallcrasher.group_ai_preset = "small_urban"
+	self.nightclub.group_ai_preset = "small_urban"
+	self.family.group_ai_preset = "small_urban"
 	self.gallery.group_ai_preset = "small_urban"
-
-	self.arm_par.group_ai_settings = {
-		sustain_duration_mul = 0.75,
-		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			assault_add = 0.3,
-		},
-	}
-
-	self.arm_fac.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-
-	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_cro.group_ai_settings.assault_force_mul = 0.7
-
-	self.arm_for.group_ai_settings = {
-		special_limit_add = {
-			shield = -1,
-		},
-	}
 	self.arm_for.group_ai_preset = "heavy_response"
+	self.watchdogs_2.group_ai_preset = "heavy_response"
+	self.watchdogs_2_day.group_ai_preset = "heavy_response"
+	self.firestarter_2.group_ai_preset = "heavy_response"
+	self.firestarter_3.group_ai_preset = "heavy_response"
+	self.man.group_ai_preset = "heavy_response"
+	self.crojob2.group_ai_preset = "heavy_response"
+	self.crojob3.group_ai_preset = "heavy_response"
+	self.crojob3_night.group_ai_preset = "heavy_response"
+	self.rvd2.group_ai_preset = "heavy_response"
+	self.vit.group_ai_preset = "heavy_response"
+	self.trai.group_ai_preset = "heavy_response"
+	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
+	self.peta2.group_ai_preset = "remote"
+	self.chew.group_ai_preset = "remote"
+	self.wwh.group_ai_preset = "remote"
+	self.mex.group_ai_preset = "remote"
+	self.mex_cooking.group_ai_preset = "remote"
+	self.chca.group_ai_preset = "remote"
+	self.deep.group_ai_preset = "remote"
 
-	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.escape_park.group_ai_settings.difficulty_scaling = {
-		diff_init = 0.5,
-		assault_delay = 0,
-		assault_add = 0.25,
-	}
+	-- Set AI group types (factions)
+	self.kosugi.ai_group_type = "murkywater"
+	self.dark.ai_group_type = "murkywater"
+	self.shoutout_raid.ai_group_type = "murkywater"
+	self.wwh.ai_group_type = "murkywater"
+	self.pines.ai_group_type = "russia"
+	self.nail.ai_group_type = "zombie"
+	self.help.ai_group_type = "zombie"
 
-	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_park_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_cafe.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_street.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_overpass.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_overpass_night.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	self.escape_garage.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
+	-- Set difficulty scaling  presets
+	self.escape_park.difficulty_scaling_preset = "timed"
+	self.escape_cafe_day.difficulty_scaling_preset = "timed"
+	self.escape_park_day.difficulty_scaling_preset = "timed"
+	self.escape_cafe.difficulty_scaling_preset = "timed"
+	self.escape_street.difficulty_scaling_preset = "timed"
+	self.escape_overpass.difficulty_scaling_preset = "timed"
+	self.escape_overpass_night.difficulty_scaling_preset = "timed"
+
+	self.escape_garage.difficulty_scaling_preset = "timed_fast"
+	self.framing_frame_2.difficulty_scaling_preset = "timed_fast"
+
+	self.alex_3.difficulty_scaling_preset = "timed_slow"
+
+	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
+	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
+	self.rvd1.difficulty_scaling_preset = "regroup_aggressive"
+
+	self.arm_for.difficulty_scaling_preset = "regroup_slow"
+	self.hox_2.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob2.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob3.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
+	self.arena.difficulty_scaling_preset = "regroup_slow"
+	--	self.red2.difficulty_scaling_preset = "regroup_slow"
+	self.dinner.difficulty_scaling_preset = "regroup_slow"
+	self.kenaz.difficulty_scaling_preset = "regroup_slow"
+	self.pbr.difficulty_scaling_preset = "regroup_slow"
+	self.peta.difficulty_scaling_preset = "regroup_slow"
+	self.peta2.difficulty_scaling_preset = "regroup_slow"
+	self.pal.difficulty_scaling_preset = "regroup_slow"
+	self.mad.difficulty_scaling_preset = "regroup_slow"
+	self.flat.difficulty_scaling_preset = "regroup_slow"
+	self.friend.difficulty_scaling_preset = "regroup_slow"
+	self.des.difficulty_scaling_preset = "regroup_slow"
+	self.ranc.difficulty_scaling_preset = "regroup_slow"
+	self.deep.difficulty_scaling_preset = "regroup_slow"
+
+	self.pex.difficulty_scaling_preset = "sustain"
+
+	self.man.difficulty_scaling_preset = "sustain_slow"
+	self.vit.difficulty_scaling_preset = "sustain_slow"
+	self.trai.difficulty_scaling_preset = "sustain_slow"
+
+	self.watchdogs_2.difficulty_scaling_preset = "sustain_aggressive"
+	self.watchdogs_2_day.difficulty_scaling_preset = "sustain_aggressive"
+
+	-- Add Group AI settings
+	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
+	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
 
 	self.watchdogs_1.group_ai_settings = {
 		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 60,
-			assault_add = 0.25,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 60, -- Increase the preset's delay
+					time = 120,
+				},
+			},
 		},
 	}
-
 	self.watchdogs_1_night.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
 
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 30,
-			assault_add = 0.25,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 15, -- Reduce the preset's delay
+					time = 120,
+				},
+			},
 		},
 		special_limit_add = {
 			shield = 1,
 		},
 	}
-	self.watchdogs_2.group_ai_preset = "heavy_response"
-
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
-	self.firestarter_3.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 60,
-			assault_add = 0.25,
-		},
-	}
-	self.firestarter_3.has_megaphone_cop = true
-
-	self.rat.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.2,
-		},
-	}
-
-	self.welcome_to_the_jungle_2.group_ai_settings = {
-		cloaker_interval_mul = 1.25,
-		assault_force_mul = 0.85,
-	}
-	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
-
-	self.framing_frame_2.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
+	self.welcome_to_the_jungle_2.group_ai_settings.cloaker_interval_mul = 1.5
 
 	self.framing_frame_3.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.85,
-		grenade_timeout_mul = {
-			flash_grenade = 0.75,
-		},
+		assault_force_mul = 0.8,
 		special_limit_add = {
 			shield = -1,
 			marksman = -1,
 		},
 	}
 
-	self.election_day_1.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
-	}
-
-	self.election_day_3.group_ai_settings = deep_clone(self.election_day_1.group_ai_settings)
-	self.election_day_3.has_megaphone_cop = true
-
-	self.election_day_3_skip1.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip1.has_megaphone_cop = true
-	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip2.has_megaphone_cop = true
-
-	self.roberts.group_ai_settings = {
-		assault_force_mul = 0.85,
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
-			},
-		},
-	}
-	self.roberts.has_megaphone_cop = true
-
-	self.big.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
-	}
-	self.big.has_megaphone_cop = true
-
 	self.mia_1.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 90,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 75, -- Increase the preset's delay
+					time = 60,
+				},
+			},
 		},
 	}
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.mia_2.group_ai_settings.assault_force_mul = 0.55
-	self.mia_2.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
+	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
-	self.hox_1.group_ai_settings = {
-		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 0,
-			assault_add = 0.25,
+	self.hox_1.group_ai_settings.difficulty_scaling = {
+		steps = {
+			{
+				amount = 0.25,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.25,
+				delay = 30,
+				time = { 150, 180 },
+			},
+			{
+				amount = 0.25,
+				delay = 45,
+				time = { 180, 210 },
+			},
 		},
-	}
-
-	self.mus.group_ai_settings = {
-		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			assault_delay = 60,
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0,
+				delay = 15,
+				time = 0,
+			},
 		},
-	}
-
-	self.arena.group_ai_settings = {
-		hostage_hesitation_delay_mul = 1.5,
-		difficulty_scaling = {
-			assault_add = 0.15,
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_regroup = false,
+			on_entered_sustain = false,
 		},
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
-	self.crojob2.group_ai_preset = "heavy_response"
-
-	self.crojob3.group_ai_settings = {
-		assault_delay_mul = 1.25,
-		difficulty_scaling = {
-			assault_delay = 75,
-		},
-	}
-	self.crojob3.group_ai_preset = "heavy_response"
-
-	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
-	self.crojob3_night.group_ai_preset = "heavy_response"
-
-	self.shoutout_raid.group_ai_settings = {
-		assault_force_mul = 1.15,
-	}
-
-	self.kenaz.group_ai_settings = {
-		hostage_hesitation_delay_mul = 1.5,
-		assault_force_mul = 1.15,
-		difficulty_scaling = {
-			assault_add = 0.15,
-			assault_delay = 75,
-		},
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
+	self.crojob2.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 60,
+				time = 60,
 			},
 		},
 	}
 
+	self.crojob3.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 60,
+				time = 60,
+			},
+		},
+	}
+
+	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
+
+	self.shoutout_raid.group_ai_settings.assault_force_mul = 1.2
+
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 75,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
 		},
 	}
 
-	self.red2.has_megaphone_cop = true
-
-	self.pbr.group_ai_settings = {
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
-			},
-		},
-	}
-
 	self.pbr2.group_ai_settings = {
-		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
-			assault_delay = 90,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 60,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
 		},
 		special_limit_add = {
 			shield = -1,
 		},
 	}
 
-	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
-	self.nail.group_ai_settings.difficulty_scaling = nil
-	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
-
-	self.cane.group_ai_settings = deep_clone(self.rat.group_ai_settings)
-
-	self.peta.group_ai_settings = {
-		assault_force_mul = 1.15,
-		assault_delay_mul = 1.25,
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
+	self.kenaz.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
 			},
 		},
 	}
 
-	self.peta2.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.85,
-	}
-	self.peta2.group_ai_preset = "remote"
+	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
+	self.nail.group_ai_settings.difficulty_scaling = nil
 
-	self.mad.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
+	self.peta.group_ai_settings.assault_force_mul = 1.2
+
+	self.peta2.group_ai_settings.assault_force_mul = 0.8
 
 	self.man.group_ai_settings = {
-		cloaker_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 0.85,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
-			assault_delay = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 0,
+					time = 60,
+				},
+			},
 		},
 		special_limit_add = {
 			cloaker = 1,
-		},
-	}
-	self.man.group_ai_preset = "heavy_response"
-	self.man.has_megaphone_cop = true
-
-	self.born.group_ai_settings = {
-		assault_force_mul = 0.85,
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
-			},
 		},
 	}
 
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
 		assault_force_mul = 0.4,
-		cs_grenade_chance_times_mul = 1.5,
+		cs_grenade_chance_times_mul = 2,
 		special_limit_add = {
 			shield = -2,
 			cloaker = -1,
@@ -407,37 +397,67 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 			shield_def = {
 				ranged_fire = false,
-				door_ambush = false,
 			},
-			bulldozer_def = {
-				door_ambush = false,
+		},
+		difficulty_scaling = {
+			steps = {
+				{
+					amount = 0.1,
+					delay = 30,
+					time = 15,
+				},
+				{
+					amount = 0.3,
+					delay = 30,
+					time = 30,
+				},
+				{
+					amount = 0.6,
+					delay = 30,
+					time = 45,
+				},
+			},
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0,
+					delay = 30,
+					time = 0,
+				},
+			},
+			allowed_addends = {
+				on_enemy_weapons_hot = false,
+				on_entered_sustain = false,
+				on_entered_regroup = false,
 			},
 		},
 	}
-	self.chew.group_ai_preset = "remote"
-
-	self.flat.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
 
 	self.chill_combat.group_ai_settings = {
-		sustain_duration_mul = 0.75,
-		assault_force_mul = 0.55,
+		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
-			diff_init = 0.33,
-			assault_delay = 15,
-			assault_add = 0.33,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 1 / 3,
+					delay = 15,
+					time = 60,
+				},
+				on_entered_regroup = {
+					amount = 1 / 3,
+					delay = 0,
+					time = 60,
+				},
+			},
 		},
 		grenade_timeout_mul = {
 			cs_grenade = 0.5,
 		},
 		force_tactics = {
-			hrt_def = {
+			hrt_init = {
 				smoke_grenade = true,
 				flash_grenade = true,
 			},
-			hrt_snk = {
+			hrt = {
 				smoke_grenade = true,
 				flash_grenade = true,
 			},
@@ -447,69 +467,73 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			swat_agg = {
 				rescue = true,
 			},
-		},
-	}
-	self.chill_combat.group_ai_preset = "small_urban"
-
-	self.help.group_ai_settings = {
-		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
-		difficulty_scaling = {
-			assault_delay = 30,
-		},
-		special_limit_add = {
-			cloaker = 1,
+			swat_snk = {
+				rescue = true,
+			},
+			swat_snk_agg = {
+				rescue = true,
+			},
 		},
 	}
 
-	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
-	self.friend.group_ai_settings.difficulty_scaling = nil
+	self.help.group_ai_settings.assault_force_mul = 0.8
 
-	self.moon.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
-	self.moon.has_megaphone_cop = true
-
-	self.spa.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
+	self.friend.group_ai_settings.assault_force_mul = 1.2
 
 	self.run.group_ai_settings = {
+		use_equipment_reenforce = false,
 		hostage_hesitation_delay_mul = 0.75,
-		sustain_duration_mul = 0.65,
-		assault_delay_mul = 1.35,
-		reenforce_min_interval_mul = 0.5,
+		sustain_duration_mul = 0.75,
+		assault_delay_mul = 1.25,
 		difficulty_scaling = {
-			assault_delay = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 0,
+					time = 30,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
 		},
 		special_limit_add = {
 			taser = 2,
 		},
 	}
-	self.run.group_ai_preset = "street"
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 90 }
-	self.glace.group_ai_preset = "street"
-
-	self.wwh.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.7,
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_add = 0.25,
+	self.glace.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.375,
+				delay = 75,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
 		},
 	}
-	self.wwh.group_ai_preset = "remote"
+
+	self.wwh.group_ai_settings.assault_force_mul = 0.8
 
 	self.hvh.group_ai_settings = {
 		use_equipment_reenforce = false,
-		spawn_kill_distance = 1000,
-		assault_force_mul = 0.55,
-		recon_force_mul = 0.7,
-		cs_grenade_chance_times_mul = 1.5,
+		assault_force_mul = 0.6,
+		recon_force_mul = 0.75,
+		cs_grenade_chance_times_mul = 2,
 		difficulty_scaling = {
-			assault_add = 0,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.2,
+					delay = 0,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
 		},
 		grenade_timeout_mul = {
 			smoke_grenade = 1.25,
@@ -521,41 +545,35 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.rvd1.group_ai_settings = {
-		recon_interval_variation_mul = 0.5,
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_add = 0.25,
-		},
-		special_limit_add = {
-			shield = 1,
-		},
-	}
-
-	self.rvd2.group_ai_settings = {
-		assault_force_mul = 0.7,
-	}
-	self.rvd2.group_ai_preset = "heavy_response"
-
-	self.brb.has_megaphone_cop = true
+	self.rvd2.group_ai_settings.assault_force_mul = 0.8
 
 	self.des.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 15,
+					time = 60,
+				},
+			},
+		},
 	}
 
 	self.sah.group_ai_settings = {
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
-			assault_delay = 60,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
 		},
 	}
 
 	self.nmh.group_ai_settings = {
-		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
+		assault_force_mul = 0.8,
 		special_limit_add = {
 			shield = -1,
 			marksman = -1,
@@ -563,90 +581,98 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	self.bph.group_ai_settings.difficulty_scaling = nil
+	self.bph.group_ai_settings.difficulty_scaling = {
+		steps = {
+			{
+				amount = 0.2,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.2,
+				delay = 150,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0,
+				delay = 15,
+				time = 0,
+			},
+		},
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
+			on_entered_regroup = false,
+		},
+	}
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 1.5,
-		difficulty_scaling = {
-			assault_add = 0.15,
-		},
 		special_limit_add = {
 			shield = -1,
 			tank = 1,
 			marksman = -1,
 		},
 	}
-	self.vit.group_ai_preset = "heavy_response"
-
-	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
-	self.mex.group_ai_preset = "remote"
-
-	self.mex_cooking.group_ai_settings = deep_clone(self.born.group_ai_settings)
-	self.mex_cooking.group_ai_settings.difficulty_scaling = { diff_init = 0.2 }
-	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
-		assault_force_mul = 1.15,
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
+		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 			taser = 1,
 		},
 	}
 
-	self.pex.group_ai_settings = {
-		sustain_duration_mul = 1.25, -- Bird flu
-	}
+	self.pex.group_ai_settings.sustain_duration_mul = 1.25 -- Bird flu
 
-	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-
-	self.chas.has_megaphone_cop = true
-
-	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
-	self.sand.group_ai_preset = "street"
-
-	self.chca.group_ai_settings = {
-		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+	self.sand.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 75,
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 60,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
 		},
 	}
-	self.chca.group_ai_preset = "remote"
 
-	self.pent.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
-
-	self.ranc.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 75,
-		},
-	}
+	self.chca.group_ai_settings.assault_force_mul = 0.8
 
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 			tank = 1,
 		},
 	}
-	self.trai.group_ai_preset = "heavy_response"
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
-		assault_force_mul = 1.3,
+		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
-		reenforce_min_interval_mul = 0.5,
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_add = 0.25,
-		},
 		special_limit_add = {
 			shield = 2,
 			taser = 1,
@@ -655,18 +681,54 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.deep.group_ai_settings = {
-		spawn_kill_distance = 2000,
-		assault_force_mul = 0.7,
-		assault_delay_mul = 1.25,
-	}
-	self.deep.group_ai_preset = "remote"
+	self.deep.group_ai_settings.assault_force_mul = 0.8
 
-	self.short2_stage2b.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 0,
-		},
-	}
+	-- stealth bonus changes
+	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
+	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
+	-- low risk heists
+	self.gallery.ghost_bonus = 0.05 -- to be consistent with Framing Frame Day 1
+	self.mallcrasher.ghost_bonus = 0.05 -- it's possible to stealth mallcrasher, i'm serious
+	self.nightclub.ghost_bonus = 0.05 -- it's a basic heist (from 10%)
+	self.branchbank.ghost_bonus = 0.05 -- same as here (from 10%)
+	-- normal risks heists
+	self.kosugi.ghost_bonus = 0.1 -- increase the bonus to 10% (from 5%)
+	self.dark.ghost_bonus = 0.1 -- decrease the bonus to 10% (from 15%)
+	self.hox_3.ghost_bonus = 0.15 -- increase the bonus to 15% (from 10%)
+	self.bex.ghost_bonus = 0.1 -- Slik Road, City of Gold and Texas Heat heists all have bonus decreased to 10% (except final heists, Border Crossing and Lost In Transit)
+	self.pex.ghost_bonus = 0.1
+	self.chas.ghost_bonus = 0.1
+	self.sand.ghost_bonus = 0.1
+	self.chca.ghost_bonus = 0.1
+	self.ranc.ghost_bonus = 0.1
+	self.corp.ghost_bonus = 0.1
+	-- high risk heists
+	self.mex.ghost_bonus = 0.15 -- tedious heist
+	self.arm_for.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.arena.ghost_bonus = 0.15 -- Alesso Heist is pretty long even on stealth
+	self.kenaz.ghost_bonus = 0.15 -- same as GGC
+	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
+	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
+	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+
+	-- multi day heists
+	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
+	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
+	self.welcome_to_the_jungle_1_night.ghost_bonus = 0.05
+	-- Framing Frame (5% in day 1, 3% in day 2 and 7% on day 3 to reach the max 15% stealth bonus)
+	self.framing_frame_1.ghost_bonus = 0.05
+	self.framing_frame_2.ghost_bonus = 0.03
+	self.framing_frame_3.ghost_bonus = 0.07
+	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
+	self.election_day_1.ghost_bonus = 0.03
+	self.election_day_2.ghost_bonus = 0.07
+	-- Firestarter (5% for all days, resulting in 15% stealth bonus max)
+	self.firestarter_1.ghost_bonus = 0.05
+	self.firestarter_2.ghost_bonus = 0.05
+	self.firestarter_3.ghost_bonus = 0.05
+
+	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	self.nmh.ghost_bonus = nil
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
@@ -935,6 +997,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.package = {
 		"packages/vlad_nightclub",
 		"levels/narratives/dentist/mia/stage2/world_sounds",
+		"levels/narratives/classics/dah/world_sounds",
 	}
 	self.jolly.package = {
 		"packages/jolly",
@@ -996,17 +1059,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	if not no_outfits then
 		if expanded_outfits or vanilla_outfits then -- Vanilla setting, the same as vanilla, also on for the Expanded setting
-			self.pal.player_style = "raincoat"
+			self.glace.player_style = "raincoat"
 			self.dah.player_style = "sneak_suit"
 			self.wwh.player_style = "winter_suit"
 			self.sah.player_style = "tux"
 			self.bph.player_style = "sneak_suit"
 			self.vit.player_style = "murky_suit"
 			self.pal.player_style = "poolrepair"
+			self.dinner.player_style = "slaughterhouse"
 		end
 
 		if expanded_outfits then -- Expanded setting, fitting default outfits for more heists
 			-- Tactical BDU
+			self.firestarter_1.player_style = "sneak_suit"
 			self.firestarter_2.player_style = "sneak_suit"
 			self.framing_frame_1.player_style = "sneak_suit"
 			self.framing_frame_2.player_style = "sneak_suit"
@@ -1022,6 +1087,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.bph.player_style = "sneak_suit"
 			self.pex.player_style = "sneak_suit"
 			self.sand.player_style = "sneak_suit"
+			self.corp.player_style = "sneak_suit"
 			self.skm_mus.player_style = "sneak_suit"
 
 			-- Winter Camo Parka
@@ -1036,13 +1102,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_cas.player_style = "tux"
 
 			-- Murkywater Uniform
-			self.pbr.player_style = "murky_suit"
 			self.pbr2.player_style = "murky_suit"
-			self.des.player_style = "murky_suit"
 			self.vit.player_style = "murky_suit"
 
 			-- Legacy Tactical
+			self.arm_for.player_style = "slaughterhouse"
 			self.alex_1.player_style = "slaughterhouse"
+			self.alex_2.player_style = "slaughterhouse"
 			self.alex_3.player_style = "slaughterhouse"
 			self.rat.player_style = "slaughterhouse"
 			self.welcome_to_the_jungle_1.player_style = "slaughterhouse"
@@ -1052,16 +1118,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.watchdogs_1_night.player_style = "slaughterhouse"
 			self.watchdogs_2.player_style = "slaughterhouse"
 			self.watchdogs_2_day.player_style = "slaughterhouse"
-			self.firestarter_1.player_style = "slaughterhouse"
 			self.mia_1.player_style = "slaughterhouse"
 			self.mia_2.player_style = "slaughterhouse"
 			self.crojob2.player_style = "slaughterhouse"
 			self.crojob3.player_style = "slaughterhouse"
 			self.crojob3_night.player_style = "slaughterhouse"
 			self.shoutout_raid.player_style = "slaughterhouse"
-			self.dinner.player_style = "slaughterhouse"
 			self.man.player_style = "slaughterhouse"
 			self.spa.player_style = "slaughterhouse"
+			self.pbr.player_style = "slaughterhouse"
+			self.des.player_style = "slaughterhouse"
 			self.mex.player_style = "slaughterhouse"
 			self.mex_cooking.player_style = "slaughterhouse"
 			self.ranc.player_style = "slaughterhouse"
@@ -1070,4 +1136,85 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
 		end
 	end
+
+	local ready_team_package = { "packages/ready_teams" }
+	self.watchdogs_1.custom_package = ready_team_package
+	self.watchdogs_1_night.custom_package = ready_team_package
+	self.watchdogs_2.custom_package = ready_team_package
+	self.watchdogs_2_day.custom_package = ready_team_package
+	self.firestarter_1.custom_package = ready_team_package
+	self.firestarter_2.custom_package = ready_team_package
+	self.firestarter_3.custom_package = ready_team_package
+	self.alex_1.custom_package = ready_team_package
+	self.alex_2.custom_package = ready_team_package
+	self.alex_3.custom_package = ready_team_package
+	self.hox_2.custom_package = ready_team_package
+	self.man.custom_package = ready_team_package
+
+	self.welcome_to_the_jungle_1.custom_package = {}
+	self.welcome_to_the_jungle_1_night.custom_package = {}
+	self.cane.custom_package = {}
+	self.mex.custom_package = {}
+	self.dinner.custom_package = {}
+	self.trai.custom_package = {}
+
+	--[[
+	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
+	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
+	table.insert(self.cane.custom_package, "packages/female_bikers")
+	table.insert(self.mex.custom_package, "packages/female_bikers")
+	]]
+	--
+
+	local us_army_package = { "packages/us_army" }
+	self.arm_for.custom_package = us_army_package
+	self.roberts.custom_package = us_army_package
+	self.crojob2.custom_package = us_army_package
+	self.crojob3.custom_package = us_army_package
+	self.jolly.custom_package = us_army_package
+	self.peta2.custom_package = us_army_package
+	self.nmh.custom_package = us_army_package
+	table.insert(self.trai.custom_package, "packages/us_army")
+
+	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
+	self.dah.custom_package = gensec_tactical_security_package
+	self.arena.custom_package = gensec_tactical_security_package
+
+	local russian_mercs_package = { "packages/akan_mercs" }
+	self.pines.custom_package = russian_mercs_package
+
+	local murky_dozers_package = { "packages/murky_bulldozers" }
+	self.pbr2.custom_package = murky_dozers_package
+	table.insert(self.dinner.custom_package, "packages/murky_bulldozers")
+
+	local murky_mercs_package = { "packages/murky_mercs" }
+	self.kosugi.custom_package = murky_mercs_package
+	self.shoutout_raid.custom_package = murky_mercs_package
+	self.dark.custom_package = murky_mercs_package
+	self.wwh.custom_package = murky_mercs_package
+
+	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
+	--	self.brb.custom_package = murky_mercs_scripted_package
+
+	local zombie_faction_package = { "packages/zombie_cops" }
+	self.nail.custom_package = zombie_faction_package
+	self.help.custom_package = zombie_faction_package
+
+	local lapd_package = { "packages/lapd" }
+	self.kenaz.custom_package = lapd_package
+	self.pal.custom_package = lapd_package
+	self.friend.custom_package = lapd_package
+	table.insert(self.jolly.custom_package, "packages/lapd")
+
+	local coast_guard_package = { "packages/coast_guard" }
+	self.chca.custom_package = coast_guard_package
+	self.deep.custom_package = coast_guard_package
+
+	local texas_rangers_package = { "packages/texas_rangers" }
+	table.insert(self.dinner.custom_package, "packages/texas_rangers")
+	table.insert(self.trai.custom_package, "packages/texas_rangers")
+
+	local bellmead_security_package = { "packages/bellmead_security" }
+	self.ranc.custom_package = bellmead_security_package
+	self.corp.custom_package = bellmead_security_package
 end)

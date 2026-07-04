@@ -61,10 +61,46 @@
 			<rpc/>
 		</search>
 		<target mode="attach">
+			<!-- create a sync_damage_reduction_from_crewmate message for `ConnectionHandler` -->
+			<message name="sync_damage_reduction_from_crewmate" delivery="ordered" receiver="connection" />
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
 			<!-- create a unit_suppressed message for `UnitHandler` -->
 			<message name="unit_suppressed" delivery="ordered" receiver="unit">
 				<param type="unit" />
 				<param type="bool" />
+			</message>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- create a unit_set_focus_enemy_unit message for `UnitHandler` -->
+			<message name="unit_set_focus_enemy_unit" delivery="ordered" receiver="unit">
+				<param type="unit" />
+				<param type="unit" />
+			</message>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- Create a sync_set_cloaker_goggles_on message for `UnitHandler` -->
+			<message name="sync_set_cloaker_goggles_on" delivery="ordered" receiver="unit">
+				<param type="unit" /> <!-- Enemy unit -->
+				<param type="bool" /> <!-- Goggles on? -->
 			</message>
 		</target>
 	</tweak>
@@ -106,12 +142,108 @@
 		<search>
 			<network/>
 			<rpc/>
-			<message name="sync_carry_data"/>
-			<param type="int" min="0" max="15"/>
+		</search>
+		<target mode="attach">
+			<message name="eclipse_sync_carry_data" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />
+				<param type="string" />                <!-- Carry id -->
+				<param type="int" min="0" max="2" />   <!-- multiplier upgrade level for small loot -->
+				<param type="bool" />                  <!-- dye_initiated -->
+				<param type="bool" />                  <!-- has_dye_pack -->
+				<param type="int" min="0" max="100" /> <!-- dye_value_multiplier -->
+				<param type="vector3" />               <!-- position -->
+				<param type="vector3" />               <!-- direction -->
+				<param type="int" min="0" max="1" />   <!-- Upgrade level of throw distance multiplier -->
+				<param type="unit" />                  <!-- If attach to zipline -->
+				<param type="int" min="0" max="128" /> <!-- peer_id extended to 128 for big lobby -->
+				<param type="vector3" />			   <!-- movement -->
+			</message>
+		</target>
+	</tweak>
+	<!-- Add a custom "sync_hostage_interacted" message to allow clients to tell the server the amount of hostages they can have following -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="sync_hostage_interacted" delivery="ordered" receiver="unit">
+				<param type="unit" /> <!-- hostage unit -->
+				<param type="int" min="0" max="15" /> <!-- max number of following hostages -->
+				<param type="int" min="1" max="256" /> <!-- status -->
+			</message>
+		</target>
+	</tweak>
+	<!-- Rotating Cameras -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="camera_rotation" delivery="ordered" receiver="unit">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="int" min="0" max="255"/>   <!-- end yaw -->
+				<param type="int" min="0" max="255"/>   <!-- end pitch -->
+				<param type="bool" />     <!-- forced -->
+				<param type="float" min="0" max="255" step="0.1" exact="false"/>    <!-- duration -->
+			</message>
+			<message name="camera_set_attention" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- observer unit -->
+				<param type="unit" />	<!-- target unit -->
+			</message>
+			<message name="camera_set_attention_pos" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="vector3" />	<!-- target pos -->
+			</message>
+			<message name="camera_want_control" delivery="ordered" receiver="unit" check="client_to_server">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="bool" />  	<!-- state -->
+			</message>
+			<message name="camera_control_state" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />	<!-- camera unit -->
+				<param type="int" min="0" max="15"/> <!-- peer id -->
+				<param type="bool" />  	<!-- state -->
+			</message>
+		</target>
+	</tweak>
+	<!-- Sync ammo pickup upgrades -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="eclipse_sync_pickup_upgrade" delivery="ordered" receiver="unit" check="server_to_client">
+				<param type="unit" />
+				<param type="bool" />                  <!-- upgrade -->
+			</message>
+		</target>
+	</tweak>
+	<!-- Auto reload on ammo bag use -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="place_ammo_bag"/>
+			<param type="int"/>
 		</search>
 		<target mode="replace">
-			<param type="vector3"/> <!-- Add movement vector -->
-			<param type="int" min="0" max="15"/> <!-- peer_id -->
+			<param type="int"/> <!-- look for the integer node before inserting -->
+			<param type="bool"/> <!-- auto reload? -->
+		</target>
+	</tweak>
+	<!-- Auto reload on ammo bag use -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_ammo_bag_setup"/>
+			<param type="int"/>
+		</search>
+		<target mode="replace">
+			<param type="int"/> <!-- look for the integer node before inserting -->
+			<param type="bool"/> <!-- auto reload? -->
 		</target>
 	</tweak>
 </tweaks>

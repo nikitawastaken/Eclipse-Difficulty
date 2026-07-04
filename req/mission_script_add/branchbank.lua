@@ -3,12 +3,25 @@ local M = {}
 
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local scripted_enemy = Eclipse.scripted_enemy
 
-local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
+local ambush_event_chance = math.random() <= 0.5
+
+local cloaker = scripted_enemy.cloaker
+local taser = scripted_enemy.taser_1
+
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
 local optsBulldozer = {
-	enemy = elite_bulldozer_skull,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	on_executed = {
 		{ id = 400002, delay = 0 },
 	},
@@ -19,6 +32,7 @@ local optsDefend_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -46,13 +60,13 @@ local optsBesiegeDummy_Heli = {
 	spawn_action = "e_sp_down_16m_right",
 }
 local optsDozerChopper_1 = {
-	enemy = elite_bulldozer_neil,
+	enemy = scripted_enemy.elite_bulldozer_1,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400028, delay = 0 }, { id = 400023, delay = 0 }, { id = 400022, delay = 3 }, { id = 400022, delay = 3.5 } },
 	enabled = true,
 }
 local optsDozerChopper_2 = {
-	enemy = elite_bulldozer_skull,
+	enemy = scripted_enemy.elite_bulldozer_2,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400028, delay = 0 } },
 	enabled = true,
@@ -76,10 +90,42 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local chopper_amount = {
-	amount = is_eclipse and 2 or 1,
+local optsChopper_trigger_overkill_below = {
+	on_executed = {
+		{ id = 400043, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsChopper_trigger_death_wish = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local chopper_amount_dw = {
+	amount = 2,
 	on_executed = {
 		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400034, delay = 0, delay_rand = 10 },
+		{ id = 400041, delay = 0, delay_rand = 10 },
+	},
+}
+local chopper_amount_ovk_below = {
+	amount = 1,
+	on_executed = {
 		{ id = 400034, delay = 0, delay_rand = 10 },
 		{ id = 400041, delay = 0, delay_rand = 10 },
 	},
@@ -114,6 +160,7 @@ local optsHuntSO = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -182,8 +229,108 @@ local opts_swat_group = {
 	amount = 4,
 }
 
+local ambush_event_global = {
+	enabled = (ambush_event_chance and is_eclipse) and true or false,
+	on_executed = { { id = 400076, delay = 0 }, { id = 400078, delay = 0 } },
+}
+local optsEnable_ambush = {
+	enabled = true,
+	elements = {
+		400077,
+	},
+}
+local optsEnable_ambush_alarm = {
+	elements = {
+		400064,
+		400065,
+	},
+}
+local optsdisable_locked_vault_door = {
+	enabled = true,
+	toggle = "off",
+	elements = {
+		100197,
+		100198,
+		102716,
+		102717,
+	},
+}
+
+local optsDozerAmbush = {
+	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
+	enabled = true,
+}
+local optsCloakerAmbush = {
+	enemy = scripted_enemy.cloaker,
+	enabled = true,
+}
+local optsTaserAmbush = {
+	enemy = scripted_enemy.taser_1,
+	enabled = true,
+}
+
+local Smoke_bomb_ambush = {
+	duration = 7,
+}
+local begin_ambush_event_left = {
+	on_executed = { { id = 400066, delay = 2 }, { id = 400079, delay = 2 } },
+}
+local begin_ambush_event_right = {
+	on_executed = { { id = 400067, delay = 2 }, { id = 400080, delay = 2 } },
+}
+local left_ambush_amount = {
+	amount = 1,
+	on_executed = {
+		{ id = 400068, delay = 0 },
+		{ id = 400069, delay = 0 },
+		{ id = 400070, delay = 0 },
+		{ id = 400071, delay = 0 },
+	},
+}
+local right_ambush_amount = {
+	amount = 1,
+	on_executed = {
+		{ id = 400072, delay = 0 },
+		{ id = 400073, delay = 0 },
+		{ id = 400074, delay = 0 },
+		{ id = 400075, delay = 0 },
+	},
+}
+local three_cloakers_left = {
+	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 } },
+	enabled = true,
+}
+local two_dozers_left = {
+	on_executed = { { id = 400050, delay = 0 }, { id = 400051, delay = 0 } },
+	enabled = true,
+}
+local taser_dozer_left = {
+	on_executed = { { id = 400052, delay = 0 }, { id = 400051, delay = 0 } },
+	enabled = true,
+}
+local cloaker_dozer_left = {
+	on_executed = { { id = 400053, delay = 0 }, { id = 400051, delay = 0 } },
+	enabled = true,
+}
+local three_cloakers_right = {
+	on_executed = { { id = 400061, delay = 0 }, { id = 400062, delay = 0 }, { id = 400063, delay = 0 } },
+	enabled = true,
+}
+local two_dozers_right = {
+	on_executed = { { id = 400057, delay = 0 }, { id = 400058, delay = 0 } },
+	enabled = true,
+}
+local taser_dozer_right = {
+	on_executed = { { id = 400058, delay = 0 }, { id = 400059, delay = 0 } },
+	enabled = true,
+}
+local cloaker_dozer_right = {
+	on_executed = { { id = 400058, delay = 0 }, { id = 400060, delay = 0 } },
+	enabled = true,
+}
+
 M.elements = {
-	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
+	-- skulldozer nearby the van on Death Wish (based on DW Trailer)
 	Eclipse.mission_elements.gen_dummy(400001, "van_dozer", Vector3(-8305, -3511, 0), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400002, "dozer_defend_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsDefend_SO),
 	Eclipse.mission_elements.gen_toggleelement(400003, "enable_dozervan", optsEnable_DWDozer),
@@ -234,7 +381,52 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400041, "swat_heli_event_2", optsspawnswatchopper_2),
 	Eclipse.mission_elements.gen_spawngroup(400042, "swat_group_4", { 400036, 400037, 400038, 400039 }, 0, opts_swat_group),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400043, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400043, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
+	Eclipse.mission_elements.gen_element_random(400044, "random_chopper_spawner_dw", chopper_amount_dw),
+	Eclipse.mission_elements.gen_element_filter(400045, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
+	Eclipse.mission_elements.gen_element_filter(400046, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
+
+	-- vault ambush
+	-- left
+	Eclipse.mission_elements.gen_dummy(400050, "dozer_ambush_left_1", Vector3(-2168, 1941, 0), Rotation(180, 0, 0), optsDozerAmbush),
+	Eclipse.mission_elements.gen_dummy(400051, "dozer_ambush_left_2", Vector3(-2245, 1941, 0), Rotation(180, 0, 0), optsDozerAmbush),
+	Eclipse.mission_elements.gen_dummy(400052, "taser_ambush_left_1", Vector3(-2168, 1941, 0), Rotation(180, 0, 0), optsTaserAmbush),
+	Eclipse.mission_elements.gen_dummy(400053, "cloaker_ambush_left_1", Vector3(-2168, 1941, 0), Rotation(180, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400054, "cloaker_ambush_left_2", Vector3(-2254, 2032, 0), Rotation(180, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400055, "cloaker_ambush_left_3", Vector3(-2195, 2032, 0), Rotation(180, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400056, "cloaker_ambush_left_4", Vector3(-2138, 2032, 0), Rotation(180, 0, 0), optsCloakerAmbush),
+	-- right
+	Eclipse.mission_elements.gen_dummy(400057, "dozer_ambush_right_1", Vector3(-1930.721, 2145.005, 0), Rotation(-90, 0, 0), optsDozerAmbush),
+	Eclipse.mission_elements.gen_dummy(400058, "dozer_ambush_right_2", Vector3(-1933.652, 2228.954, 0), Rotation(-90, 0, 0), optsDozerAmbush),
+	Eclipse.mission_elements.gen_dummy(400059, "taser_ambush_right_1", Vector3(-1930.721, 2145.005, 0), Rotation(-90, 0, 0), optsTaserAmbush),
+	Eclipse.mission_elements.gen_dummy(400060, "cloaker_ambush_right_1", Vector3(-1930.721, 2145.005, 0), Rotation(-90, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400061, "cloaker_ambush_right_2", Vector3(-2008.708, 2143.282, 0), Rotation(-90, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400062, "cloaker_ambush_right_3", Vector3(-2011.151, 2213.240, 0), Rotation(-90, 0, 0), optsCloakerAmbush),
+	Eclipse.mission_elements.gen_dummy(400063, "cloaker_ambush_right_4", Vector3(-2014.641, 2273.215, 0), Rotation(-90, 0, 0), optsCloakerAmbush),
+	-- random elements
+	Eclipse.mission_elements.gen_missionscript(400064, "begin_ambush_left", begin_ambush_event_left),
+	Eclipse.mission_elements.gen_missionscript(400065, "begin_ambush_right", begin_ambush_event_right),
+	Eclipse.mission_elements.gen_element_random(400066, "left_ambush_select", left_ambush_amount),
+	Eclipse.mission_elements.gen_element_random(400067, "right_ambush_select", right_ambush_amount),
+	-- left
+	Eclipse.mission_elements.gen_missionscript(400068, "three_cloakers", three_cloakers_left),
+	Eclipse.mission_elements.gen_missionscript(400069, "two_dozers", two_dozers_left),
+	Eclipse.mission_elements.gen_missionscript(400070, "taser_dozer", taser_dozer_left),
+	Eclipse.mission_elements.gen_missionscript(400071, "cloaker_dozer", cloaker_dozer_left),
+	-- right
+	Eclipse.mission_elements.gen_missionscript(400072, "three_cloakers", three_cloakers_right),
+	Eclipse.mission_elements.gen_missionscript(400073, "two_dozers", two_dozers_right),
+	Eclipse.mission_elements.gen_missionscript(400074, "taser_dozer", taser_dozer_right),
+	Eclipse.mission_elements.gen_missionscript(400075, "cloaker_dozer", cloaker_dozer_right),
+	-- toggle element
+	Eclipse.mission_elements.gen_toggleelement(400076, "enable_ambushes", optsEnable_ambush),
+	Eclipse.mission_elements.gen_toggleelement(400077, "enable_ambush_on_alarm", optsEnable_ambush_alarm),
+	Eclipse.mission_elements.gen_toggleelement(400078, "disable_locked_vault_door", optsdisable_locked_vault_door),
+	-- smoke bombs
+	Eclipse.mission_elements.gen_smokegrenade(400079, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
+	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
+	-- chance
+	Eclipse.mission_elements.gen_missionscript(400081, "ambush_event", ambush_event_global),
 }
 
 return M

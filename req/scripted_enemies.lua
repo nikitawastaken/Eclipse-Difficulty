@@ -4,6 +4,10 @@ local M = {
 	security_2 = "units/payday2/characters/ene_security_2/ene_security_2",
 	security_3 = "units/payday2/characters/ene_security_3/ene_security_3",
 
+	murky_security_1 = "units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1",
+	murky_security_2 = "units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2",
+	murky_security_3 = "units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3",
+
 	secret_service_1 = "units/payday2/characters/ene_secret_service_1/ene_secret_service_1",
 	secret_service_2 = "units/payday2/characters/ene_secret_service_2/ene_secret_service_2",
 
@@ -14,6 +18,9 @@ local M = {
 	green_security_2 = "units/payday2/characters/ene_security_5/ene_security_5",
 	green_security_3 = "units/payday2/characters/ene_security_6/ene_security_6",
 	green_security_4 = "units/payday2/characters/ene_security_7/ene_security_7",
+
+	prison_security_1 = "units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1",
+	prison_security_2 = "units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1",
 
 	ready_team_1 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1",
 	ready_team_2 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2",
@@ -84,6 +91,14 @@ local M = {
 	headless_bulldozer_1 = "units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5",
 
 	headless_bulldozer_2 = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4",
+
+	murky_bulldozer_1 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1",
+
+	murky_bulldozer_2 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2",
+
+	murky_elite_bulldozer_1 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4",
+
+	murky_elite_bulldozer_2 = "units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3",
 }
 
 return M

@@ -11,7 +11,7 @@ local standard_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -28,10 +28,18 @@ local fbi_with_keycard = {
 return {
 	[107143] = {
 		ponr = {
-			length = 60,
-			player_mul = { 2.5, 1.5, 1, 1 },
+			length = 90,
+			length_balance_mul = { 2.5, 1.5, 1, 1 },
 		},
 	},
+	-- Additional flee points
+	[102375] = {
+		flee_point = {
+			{ name = "side", position = Vector3(-3900, -50, 1) },
+			{ name = "street", position = Vector3(4600, 4600, 1) },
+		},
+	},
+	-- Increase reinforce
 	[101871] = reinforce_amount,
 	[105167] = reinforce_amount,
 	-- give keycard to fbi_1

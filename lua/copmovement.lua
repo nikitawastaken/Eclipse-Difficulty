@@ -1,4 +1,3 @@
-CopMovement._action_variants.cobra = CopMovement._action_variants.gangster
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.city_tank = CopMovement._action_variants.tank
 CopMovement._action_variants.hrt = CopMovement._action_variants.swat
@@ -24,6 +23,7 @@ CopMovement._action_variants.zeal_medic = CopMovement._action_variants.swat
 CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
 CopMovement._action_variants.fbi_boss = CopMovement._action_variants.security
+CopMovement._action_variants.fbi_female_boss = CopMovement._action_variants.security
 
 local mvec3_set = mvector3.set
 local mvec3_add = mvector3.add
@@ -44,11 +44,9 @@ function CopMovement:speed_modifier()
 		final_modifier = final_modifier * (move_speed_mul and move_speed_mul.walk or 1)
 	end
 
-	local spooc_action = self._active_actions[1]
-
 	-- Cloakers move faster while charging
-	if spooc_action and spooc_action:type() == "spooc" then
-		final_modifier = final_modifier * (self._tweak_data.spooc_charge_move_speed_mul or 1.5)
+	if self._active_actions[1] and self._active_actions[1]:type() == "spooc" then
+		final_modifier = final_modifier * (self._tweak_data.spooc_attack_move_speed_mul or 1)
 	end
 
 	if self._carry_speed_modifier then

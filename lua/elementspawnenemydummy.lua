@@ -188,6 +188,7 @@ function ElementSpawnEnemyDummy:_process_enemy_tbl(enemy_tbl)
 end
 
 local access_replacement = {
+	gensec = "fbi",
 	cop = "fbi",
 }
 

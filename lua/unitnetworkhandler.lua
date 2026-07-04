@@ -87,6 +87,26 @@ function UnitNetworkHandler:unit_suppressed(unit, is_suppressed)
 	unit:brain():on_suppressed(is_suppressed)
 end
 
+-- is_suppressed check for clients
+function UnitNetworkHandler:unit_set_focus_enemy_unit(unit, focus_enemy_unit)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(unit) then
+		return
+	end
+
+	unit:brain():set_focus_enemy_unit(focus_enemy_unit)
+end
+
+function UnitNetworkHandler:sync_set_cloaker_goggles_on(unit, state)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(unit) then
+		return
+	end
+
+	local base_ext = unit:base()
+	if base_ext and base_ext.set_cloaker_goggles_on then
+		base_ext:set_cloaker_goggles_on(state)
+	end
+end
+
 -- Extra drill upgrades (additional electrocuting_drill argument)
 function UnitNetworkHandler:sync_drill_upgrades(unit, electrocuting_drill, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, sender_rpc)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender_rpc) then
@@ -165,7 +185,8 @@ function UnitNetworkHandler:server_drop_carry(
 end
 
 -- Add player movement to bag throw
-function UnitNetworkHandler:sync_carry_data(
+-- Remade for compatibility with big lobby
+function UnitNetworkHandler:eclipse_sync_carry_data(
 	unit,
 	carry_id,
 	carry_multiplier,
@@ -176,8 +197,8 @@ function UnitNetworkHandler:sync_carry_data(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	movement,
 	peer_id,
+	movement,
 	sender
 )
 	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
@@ -196,7 +217,155 @@ function UnitNetworkHandler:sync_carry_data(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		movement,
-		peer_id
+		peer_id,
+		movement
 	)
+end
+
+-- Add max number of following hostages
+function UnitNetworkHandler:sync_hostage_interacted(unit, max_following_hostages, status, sender)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(sender)
+
+	if not peer then
+		return
+	end
+
+	if alive(unit) and unit:interaction() then
+		if unit:interaction()._special_equipment and unit:interaction().apply_item_pickup then
+			managers.network:session():send_to_peer(peer, "special_eq_response", unit)
+
+			if unit:interaction():can_remove_item() then
+				unit:set_slot(0)
+			end
+		end
+
+		local char_unit = managers.criminals:character_unit_by_peer_id(peer:id())
+
+		unit:interaction():sync_interacted(peer, char_unit, status, false, max_following_hostages)
+	end
+end
+
+function UnitNetworkHandler:camera_rotation(cam_unit, end_yaw, end_pitch, forced, duration, rpc)
+	if not alive(cam_unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(rpc)
+	if not peer:is_host() and cam_unit:base():controlling_peer() ~= peer:id() then
+		return
+	end
+
+	if not cam_unit:base():can_rotate() then
+		return
+	end
+
+	local target_yaw = (360 * (end_yaw / 255)) - 180
+	local target_pitch = (180 * (end_pitch / 255)) - 90
+
+	cam_unit:base():set_target_rotation(target_yaw, target_pitch, forced, duration)
+end
+
+function UnitNetworkHandler:camera_set_attention(cam_unit, target_unit)
+	if not alive(cam_unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	if not alive(target_unit) then
+		cam_unit:base():set_target_attention(nil)
+		return
+	end
+
+	local handler = target_unit:attention()
+		or target_unit:brain() and target_unit:brain().attention_handler and target_unit:brain():attention_handler()
+		or target_unit:movement() and target_unit:movement().attention_handler and target_unit:movement():attention_handler()
+		or target_unit:base() and target_unit:base().attention_handler and target_unit:base():attention_handler()
+
+	cam_unit:base():set_target_attention({
+		unit = target_unit,
+		u_key = target_unit:key(),
+		handler = handler,
+	})
+end
+
+function UnitNetworkHandler:camera_set_attention_pos(cam_unit, pos)
+	if not alive(cam_unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	cam_unit:base():set_target_attention({ pos = pos })
+end
+
+function UnitNetworkHandler:camera_want_control(cam_unit, state, rpc)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(rpc)
+	if not alive(cam_unit) or not peer then
+		return
+	end
+
+	cam_unit:base():sync_control_state(state, peer:id())
+end
+
+function UnitNetworkHandler:camera_control_state(cam_unit, peer_id, state)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = managers.network:session():peer(peer_id)
+	if not alive(cam_unit) or not peer then
+		return
+	end
+
+	if cam_unit:base():destroyed() then
+		return
+	end
+
+	managers.player:set_synced_controlled_camera(peer_id, state and cam_unit or nil)
+end
+
+-- Force sync bgh ammo boxes, I guess
+function UnitNetworkHandler:eclipse_sync_pickup_upgrade(ammo_unit, upgrade, rpc)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(rpc)
+	if not alive(ammo_unit) or not peer then
+		return
+	end
+
+	ammo_unit:pickup():set_upgrades(upgrade)
+end
+
+-- additional argument for autoreload ammo bags
+function UnitNetworkHandler:place_ammo_bag(pos, rot, upgrade_lvl, auto_reload, bullet_storm_level, rpc)
+	local peer = self._verify_sender(rpc)
+
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not peer then
+		return
+	end
+
+	if not managers.player:verify_equipment(peer:id(), "ammo_bag") then
+		return
+	end
+
+	local unit = AmmoBagBase.spawn(pos, rot, upgrade_lvl, peer:id(), bullet_storm_level, auto_reload)
+
+	if unit then
+		unit:base():set_server_information(peer:id())
+	end
+end
+
+function UnitNetworkHandler:sync_ammo_bag_setup(unit, upgrade_lvl, auto_reload, peer_id, bullet_storm_level)
+	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	unit:base():sync_setup(upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
 end

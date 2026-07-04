@@ -123,11 +123,13 @@
 		<sequence editable_state="true" name="'body_a'" once="true" triggable="true"/>
 		
 		<sequence editable_state="true" name="'body_b'" once="true" triggable="true">
+		<!--
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
+		-->
 		</sequence>
 	<!--GLASSES SEQUENCES-->
 		<sequence editable_state="true" name="'random_goggles_a'" triggable="true" >

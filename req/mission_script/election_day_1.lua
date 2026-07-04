@@ -2,12 +2,9 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
-local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local disabled = {
 	values = {
 		enabled = false,
@@ -17,20 +14,114 @@ local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
 }
 local harasser = {
-	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+	enemy = diff_i > 5 and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1,
 }
 local standard_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 }
 local jumpdown_spawn = {
 	values = {
-		interval = 45,
+		interval = 20,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_heli_spawn = {
+	groups = preferred.no_cops_agents,
+}
+
 return {
+	-- Add power cut SO delay
+	[102675] = {
+		values = {
+			base_delay = 30,
+			base_delay_rand = 30,
+		},
+	},
+	-- Combine some navigation areas
+	[101786] = {
+		ai_area = {
+			{ 125, 139, 140 },
+			{ 75, 188, 199, 200, 213, 224 },
+			{ 73, 74, 205 },
+			{ 225, 226 },
+			{ 178, 180 },
+			{ 181, 219 },
+			{ 76, 187, 227, 228, 230 },
+			{ 78, 184 },
+			{ 77, 185 },
+			{ 79, 80, 183 },
+			{ 186, 206 },
+			{ 203, 211 },
+			{ 190, 191, 192, 193, 194, 195, 196, 197, 214, 215, 216, 217, 218 },
+			{ 120, 122 },
+			{ 143, 144 },
+			{ 145, 146 },
+			{ 202, 223 },
+		},
+	},
+	-- Add new reinforce
+	[100150] = { -- poFuckinLice
+		reinforce = {
+			{
+				name = "warehouse01",
+				force = 2,
+				position = Vector3(1800, 3135, 5),
+			},
+			{
+				name = "warehouse02",
+				force = 2,
+				position = Vector3(1900, 1850, 5),
+			},
+			{
+				name = "warehouse03",
+				force = 2,
+				position = Vector3(525, -500, 5),
+			},
+			{
+				name = "warehouse04",
+				force = 2,
+				position = Vector3(5575, 2825, 105),
+			},
+		},
+	},
+	-- Disable choppers before the first assault
+	[100183] = { -- first_time
+		on_executed = {
+			{ id = 104073, remove = true }, -- setup_flyin_choppers
+		},
+	},
+	-- Choppers drop SWATs after assaults
+	[104133] = {
+		on_executed = {
+			{ id = 400019, delay = 0, delay_rand = 10 },
+		},
+	},
+	-- 1st chopper
+	[104074] = {
+		on_executed = {
+			{ id = 104075, delay = 45 },
+			{ id = 400005, delay = 33 },
+		},
+	},
+	-- 2nd chopper
+	[104125] = {
+		on_executed = {
+			{ id = 104128, delay = 45 },
+			{ id = 400011, delay = 33 },
+		},
+	},
+	-- 3rd chopper
+	[104126] = {
+		on_executed = {
+			{ id = 104129, delay = 45 },
+			{ id = 400017, delay = 33 },
+		},
+	},
+	-- fly outs are handled in their on_executed now
+	[104127] = disabled,
 	-- Disable harassers
 	[104156] = disabled,
 	[104157] = disabled,
@@ -40,6 +131,8 @@ return {
 	[104197] = disabled,
 	[104206] = disabled,
 	[104215] = disabled,
+	-- Disable the silly water preferreds
+	[101095] = disabled,
 	-- Keep Shields and Dozers from using some of the jump SOs
 	[103164] = exclude_shields_dozers,
 	[103423] = exclude_shields_dozers,
@@ -69,12 +162,16 @@ return {
 	[101189] = standard_spawn,
 	[101196] = standard_spawn,
 	[101211] = standard_spawn,
+	[104063] = standard_spawn,
 	[104110] = jumpdown_spawn,
 	[104324] = jumpdown_spawn,
 	[104330] = jumpdown_spawn,
 	[104410] = jumpdown_spawn,
 	[104111] = jumpdown_spawn,
 	[104321] = jumpdown_spawn,
+	[400006] = scripted_heli_spawn,
+	[400012] = scripted_heli_spawn,
+	[400018] = scripted_heli_spawn,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,

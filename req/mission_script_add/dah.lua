@@ -1,6 +1,7 @@
 ---@module Diamond Heist
 local M = {}
 
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
@@ -8,30 +9,33 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local secret_service = scripted_enemy.secret_service_1
-local swat_rifle = scripted_enemy.swat_1
-local swat_sg = scripted_enemy.swat_2
-local swat_smg = scripted_enemy.swat_1
-local heavy_rifle = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
-local elite_sniper = scripted_enemy.elite_sniper
-local taser = scripted_enemy.taser_1
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
 
-local diff_scaling = diff_i / 8
+-- TODO: investigate crashes that may be related to GenSec red guards
+-- local gensec_security = scripted_enemy.gensec_2
+local gensec_security = scripted_enemy.secret_service_2
+local swat_ambush_table = {
+	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 6, 8 }),
+	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 4, 6 }),
+	[scripted_enemy.swat_1] = 5,
+	[scripted_enemy.swat_2] = 3,
+}
+
 local bags_required = 4 + (is_pro_job and 2 or 0)
 
-local enabled_chance_extra_elevator_spawns = math.random() <= diff_scaling
-local enabled_chance_helipad_shields = math.random() <= diff_scaling
-local enabled_chance_helipad_dozer = math.random() <= diff_scaling
+local enabled_chance_extra_elevator_spawns = math.random() <= 0.6
+local enabled_chance_helipad_shields = math.random() <= 0.4
+local enabled_chance_helipad_dozer = math.random() <= 0.4
 
 local optsCloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	on_executed = {
@@ -40,35 +44,35 @@ local optsCloaker = {
 	enabled = true,
 }
 local optsSniperAmbush_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400014, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400017, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400016, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniperAmbush_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400015, delay = 0 },
 	},
 	enabled = is_eclipse_pro,
 }
 local optsSniper_escape = {
-	enemy = is_eclipse and elite_sniper or sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400060, delay = 0 },
 	},
@@ -76,7 +80,7 @@ local optsSniper_escape = {
 	enabled = true,
 }
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400074, delay = 0 },
 	},
@@ -84,7 +88,7 @@ local optsSniper_1 = {
 	enabled = overkill_and_above,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400075, delay = 0 },
 	},
@@ -92,7 +96,7 @@ local optsSniper_2 = {
 	enabled = overkill_and_above,
 }
 local optsShield_roofblockade_1 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
@@ -100,7 +104,7 @@ local optsShield_roofblockade_1 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_2 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
@@ -108,7 +112,7 @@ local optsShield_roofblockade_2 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_3 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400057, delay = 0 },
 	},
@@ -116,7 +120,7 @@ local optsShield_roofblockade_3 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_4 = {
-	enemy = elite_shield,
+	enemy = scripted_enemy.elite_shield,
 	on_executed = {
 		{ id = 400058, delay = 0 },
 	},
@@ -124,7 +128,7 @@ local optsShield_roofblockade_4 = {
 	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_1 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400050, delay = 0 },
 	},
@@ -132,7 +136,7 @@ local optsTaser_roofblockade_1 = {
 	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_2 = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400056, delay = 0 },
 	},
@@ -140,12 +144,12 @@ local optsTaser_roofblockade_2 = {
 	enabled = is_eclipse,
 }
 local optsBulldozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_extra_elevator_spawns,
 }
 local optsBulldozer_helipad = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400069, delay = 0 },
@@ -153,36 +157,36 @@ local optsBulldozer_helipad = {
 	enabled = overkill_and_above and enabled_chance_helipad_dozer,
 }
 local optsShield_helipad_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400070, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_helipad_shields,
 }
 local optsShield_helipad_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400071, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_helipad_shields,
 }
 local optsTaser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_extra_elevator_spawns,
 }
 local optsBulldozer_Ambush = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	enabled = is_eclipse,
 }
 local optsCloaker_Ambush = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = normal_and_above,
 }
 local optsTaser_Ambush = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	participate_to_group_ai = true,
 	enabled = normal_and_above,
 }
@@ -192,70 +196,46 @@ local optsSWAT_Ambush = {
 	enabled = true,
 }
 local optsSecret_Service_1 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400088, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_2 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400089, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_3 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400092, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_4 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 400093, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_5 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 400098, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_6 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 400099, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_7 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 410000, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_8 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 410001, delay = 0 },
-	},
+	enemy = gensec_security,
 	enabled = true,
 }
 local optsSecret_Service_9 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 410004, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_10 = {
-	enemy = secret_service,
+	enemy = gensec_security,
 	on_executed = {
 		{ id = 410005, delay = 0 },
 	},
@@ -267,6 +247,7 @@ local optsDefend_and_Sniper_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -276,6 +257,7 @@ local optsDefendDozer_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -283,6 +265,7 @@ local optsCloaker_SO = {
 	SO_access = "1024",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -292,12 +275,13 @@ local optsSecret_Service_Defend = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
 local optsrespawn_taser_1 = {
 	on_executed = {
-		{ id = 400047, delay = 45 },
+		{ id = 400047, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400047,
@@ -306,7 +290,7 @@ local optsrespawn_taser_1 = {
 }
 local optsrespawn_shield_1 = {
 	on_executed = {
-		{ id = 400048, delay = 45 },
+		{ id = 400048, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400048,
@@ -315,7 +299,7 @@ local optsrespawn_shield_1 = {
 }
 local optsrespawn_shield_2 = {
 	on_executed = {
-		{ id = 400049, delay = 45 },
+		{ id = 400049, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400049,
@@ -324,7 +308,7 @@ local optsrespawn_shield_2 = {
 }
 local optsrespawn_taser_2 = {
 	on_executed = {
-		{ id = 400053, delay = 45 },
+		{ id = 400053, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400053,
@@ -333,7 +317,7 @@ local optsrespawn_taser_2 = {
 }
 local optsrespawn_shield_3 = {
 	on_executed = {
-		{ id = 400054, delay = 45 },
+		{ id = 400054, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400054,
@@ -342,7 +326,7 @@ local optsrespawn_shield_3 = {
 }
 local optsrespawn_shield_4 = {
 	on_executed = {
-		{ id = 400055, delay = 45 },
+		{ id = 400055, delay = 45, delay_rand = is_pro_job and 45 or 75 },
 	},
 	elements = {
 		400055,
@@ -487,34 +471,27 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(-3291, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400081, "smoke_grenade_3", Vector3(-4283, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 
-	-- Secret Service that tries to defend the CFO
+	-- GenSec Security that tries to defend the CFO
 	-- left spawn
-	Eclipse.mission_elements.gen_dummy(400086, "secret_service_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
-	Eclipse.mission_elements.gen_dummy(400087, "secret_service_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
-	Eclipse.mission_elements.gen_so(400088, "secret_service_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400089, "secret_service_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(400086, "gensec_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
+	Eclipse.mission_elements.gen_dummy(400087, "gensec_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
+	Eclipse.mission_elements.gen_so(400088, "gensec_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400089, "gensec_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
 
 	-- middle spawn
-	Eclipse.mission_elements.gen_dummy(400090, "secret_service_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
-	Eclipse.mission_elements.gen_dummy(400091, "secret_service_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
-	Eclipse.mission_elements.gen_so(400092, "secret_service_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400093, "secret_service_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(400090, "gensec_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
+	Eclipse.mission_elements.gen_dummy(400091, "gensec_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
+	Eclipse.mission_elements.gen_so(400092, "gensec_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400093, "gensec_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
 
 	-- right spawn
-	Eclipse.mission_elements.gen_dummy(400094, "secret_service_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
-	Eclipse.mission_elements.gen_dummy(400095, "secret_service_6", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_6),
-	Eclipse.mission_elements.gen_dummy(400096, "secret_service_7", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_7),
-	Eclipse.mission_elements.gen_dummy(400097, "secret_service_8", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_8),
-	Eclipse.mission_elements.gen_so(400098, "secret_service_so_5", Vector3(-5264, 1152, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400099, "secret_service_so_6", Vector3(-5254.397, 1220.328, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410000, "secret_service_so_7", Vector3(-4891.752, 1152.085, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410001, "secret_service_so_8", Vector3(-4885.969, 1261.932, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(400094, "gensec_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
 
 	-- upper middle spawn
-	Eclipse.mission_elements.gen_dummy(410002, "secret_service_9", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
-	Eclipse.mission_elements.gen_dummy(410003, "secret_service_10", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
-	Eclipse.mission_elements.gen_so(410004, "secret_service_so_9", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410005, "secret_service_so_10", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(410002, "gensec_6", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
+	Eclipse.mission_elements.gen_dummy(410003, "gensec_7", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
+	Eclipse.mission_elements.gen_so(410004, "gensec_so_6", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410005, "gensec_so_7", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(410006, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }

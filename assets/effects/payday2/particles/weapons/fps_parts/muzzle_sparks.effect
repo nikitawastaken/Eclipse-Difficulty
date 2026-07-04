@@ -1,0 +1,25 @@
+<effect force_synch="false">
+    <atom name="spark" min_size="20" max_size="40" lifetime="0.5" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <boxrandomposition relative="effect" min="0 0 0" max="0 0 0"/>
+            <boxrandomrotation relative="effect" min="0 0 0" max="0 0 0" min_rot="0" max_rot="0"/>
+            <boxrandomvelocity relative="effect" min="-850 250 -200" max="850 2000 850"/>
+        </initializerstack>
+        <simulatorstack>
+            <constantacceleration relative="world" acceleration="0 0 -982"/>
+            <velocityintegrator channel="world"/>
+            <rotationbyvelocity velocity="9000"/>
+            <particleworldcollision radius="1" elasticity="1"/>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/textures/add_atlas_df" intensity="sun" billboard_type="normal_locked" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_halo" origo="0.5 0.5" per_particle_age="false" size_input="constant" size="0.5 22" color_input="constant" color="255 100.00000762939 31.000001907349" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.03125 0.0078125" uv_offset_input="constant" uv_offset="0.8125 0.1425">
+                <opacity_keys loop="false">
+                    <key t="0" v="255"/>
+                    <key t="0.065" v="165"/>
+                    <key t="0.15" v="65"/>
+                    <key t="0.2" v="0"/>
+                </opacity_keys>
+            </billboard>
+        </visualizerstack>
+    </atom>
+</effect>

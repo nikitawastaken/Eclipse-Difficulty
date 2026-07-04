@@ -3,103 +3,133 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local cop_1 = scripted_enemy.cop_1
-local cop_2 = scripted_enemy.cop_2
-local cop_3 = scripted_enemy.cop_3
-local cop_4 = scripted_enemy.cop_4
-local swat_1 = scripted_enemy.swat_1
-local swat_2 = scripted_enemy.swat_2
-local heavy_1 = scripted_enemy.heavy_swat_1
-local heavy_2 = scripted_enemy.heavy_swat_2
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
-local outside_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
-local outside_cop = { enemy = outside_cop_enemy }
-local inside_cop_enemy = { [cop_3] = 2, [cop_2] = 1, [cop_1] = 1 }
-local inside_cop = { enemy = inside_cop_enemy }
+local outside_cop = {
+	enemy = {
+		[scripted_enemy.cop_1] = 3,
+		[scripted_enemy.cop_2] = 1,
+		[scripted_enemy.cop_4] = 1,
+	},
+}
+local inside_cop = {
+	enemy = {
+		[scripted_enemy.cop_3] = 2,
+		[scripted_enemy.cop_2] = 1,
+		[scripted_enemy.cop_1] = 1,
+	},
+}
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_1,
 }
 local elevator_dozer = { enemy = is_eclipse_pro and random_elite_dozers or random_dozers }
-local low_harasser_enemy = {
-	[cop_1] = 4,
-	[cop_3] = 2,
-	[cop_2] = 1,
+local low_harasser = {
+	enemy = {
+		[scripted_enemy.cop_1] = 3,
+		[scripted_enemy.cop_3] = 2,
+		[scripted_enemy.cop_2] = 1,
+	},
 }
-local low_harasser = { enemy = low_harasser_enemy }
-local med_harasser_enemy = swat_1
-local med_harasser = { enemy = med_harasser_enemy }
-local high_harasser_enemy = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local high_harasser = { enemy = high_harasser_enemy }
-local low_escape_enemy = {
-	[swat_1] = 3,
-	[cop_3] = 1,
-	[cop_4] = 1,
+local med_harasser = { enemy = scripted_enemy.swat_1 }
+local high_harasser = { enemy = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1 }
+local low_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 4,
+		[scripted_enemy.swat_2] = 2,
+		[scripted_enemy.cop_3] = 3,
+		[scripted_enemy.cop_4] = 3,
+	},
 }
-local low_escape = { enemy = low_escape_enemy }
-local med_escape_enemy = { Idstring(swat_1), Idstring(swat_2) }
-local med_escape = { enemy = med_escape_enemy }
-local high_escape_enemy = {
-	[swat_1] = 2,
-	[swat_2] = 1,
-	[heavy_1] = 4,
-	[heavy_2] = 2,
+local med_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 3,
+		[scripted_enemy.swat_2] = 2,
+	},
 }
-local high_escape = { enemy = high_escape_enemy }
-local mall_spawn = {
+local high_escape = {
+	enemy = {
+		[scripted_enemy.swat_1] = 3,
+		[scripted_enemy.swat_2] = 2,
+		[scripted_enemy.heavy_swat_1] = 4,
+		[scripted_enemy.heavy_swat_2] = 3,
+	},
+}
+local disabled = {
 	values = {
-		interval = 10,
+		enabled = false,
 	},
 }
 local atrium_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
+local computer_hack_time_rand = 60 + (is_pro_job and 30 or 0)
+
 return {
 	[104782] = {
 		ponr = {
-			length = 420,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length = 600,
+			length_balance_mul = { 1.5, 1.25, 1.125, 1 },
 		},
 	},
-	-- New reinforce
-	[104306] = {
+	-- Combine some navigation areas
+	[100063] = {
+		ai_area = {
+			{ 52, 54, 55, 56, 57, 58, 59, 69 },
+			{ 35, 36 },
+			{ 33, 34 },
+			{ 11, 26 },
+			{ 132, 133 },
+			{ 42, 124, 125, 126 },
+			{ 32, 120 },
+		},
+	},
+	-- Add new reinforce
+	[102753] = { -- enable_preferrerds
 		reinforce = {
 			{
-				name = "atrium_left",
-				force = 2,
-				position = Vector3(-450, 150, 0),
+				name = "atrium01",
+				force = 3,
+				position = Vector3(-450, 100, 0),
 			},
 			{
-				name = "atrium_middle",
-				force = 2,
-				position = Vector3(-1300, -1600, 0),
+				name = "atrium02",
+				force = 3,
+				position = Vector3(-1100, -1600, 0),
 			},
 			{
-				name = "atrium_right",
-				force = 2,
-				position = Vector3(-450, -3350, 0),
+				name = "atrium03",
+				force = 3,
+				position = Vector3(-450, -3500, 0),
 			},
+		},
+	},
+	-- Disable drill reinforce
+	[100584] = disabled,
+	[100676] = disabled,
+	[101138] = disabled,
+	[103527] = disabled,
+	-- Increase the hack duration
+	[103568] = { -- backup_started_link
+		on_executed = {
+			{ id = 103575, delay = 120, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
 		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
@@ -113,19 +143,13 @@ return {
 			{ id = 100321, delay = 0 },
 		},
 	},
-	-- elevator Dozer
+	-- Elevator Dozer
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
 	-- Spawn group intervals
-	-- More or less a port of the original intervals with some twists as per usual.
-	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
-	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
-	[100424] = mall_spawn,
-	[100435] = mall_spawn,
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
-	[104838] = atrium_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
 	[102792] = cloaker_spawn,

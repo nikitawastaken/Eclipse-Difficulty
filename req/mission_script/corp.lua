@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local bellmead_1 = scripted_enemy.bellmead_security_1
@@ -8,8 +9,6 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
-local medic = scripted_enemy.medic_1
-local taser = scripted_enemy.taser_1
 local disabled = {
 	values = {
 		enabled = false,
@@ -18,11 +17,17 @@ local disabled = {
 local bellmead_merc = {
 	enemy = bellmead_1,
 }
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1, [elite_skull_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
+local specials_list = {
+	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[scripted_enemy.medic_1] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+}
 local specials = {
-	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
+	enemy = specials_list,
 }
 local enemy_filter_dozers = {
 	values = {
@@ -36,34 +41,50 @@ local enemy_filter_dozers = {
 		},
 	},
 }
-local elevator_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local office_window_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local staircase_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+
 return {
 	-- A bunch of reinforce spots to fill up this pretty large level
 	[100115] = {
 		reinforce = {
 			{
-				name = "meetingroom1",
+				name = "meetingroom01",
 				force = 2,
 				position = Vector3(3700, 2200, 500),
 			},
 			{
-				name = "meetingroom2",
+				name = "meetingroom02",
 				force = 2,
 				position = Vector3(5300, 2000, 900),
 			},
@@ -83,12 +104,12 @@ return {
 				position = Vector3(7200, -3900, 10),
 			},
 			{
-				name = "labroof1",
+				name = "labroof01",
 				force = 2,
 				position = Vector3(4000, 400, 670),
 			},
 			{
-				name = "labroof2",
+				name = "labroof02",
 				force = 2,
 				position = Vector3(-1200, 2600, 670),
 			},
@@ -106,10 +127,10 @@ return {
 			{ id = 100021, remove = true },
 		},
 	},
-	[100124] = { -- diff 0.75
+	[100761] = { -- player_inside_office_building
 		on_executed = {
-			{ id = 100006, delay = 0, delay_rand = 20 },
-			{ id = 100021, delay = 0, delay_rand = 20 },
+			{ id = 100006, delay = 0, delay_rand = 30 },
+			{ id = 100021, delay = 0, delay_rand = 30 },
 		},
 	},
 	-- Disable the sketchy killzone crap
@@ -138,7 +159,7 @@ return {
 	[103575] = bellmead_merc,
 	[103571] = specials,
 	[103579] = bellmead_merc,
-	-- eclipse
+	-- death wish
 	[103574] = bellmead_merc,
 	[103570] = specials,
 	[103578] = bellmead_merc,
@@ -151,7 +172,7 @@ return {
 	[103590] = bellmead_merc,
 	[103598] = specials,
 	[103594] = bellmead_merc,
-	-- eclipse
+	-- death wish
 	[103591] = bellmead_merc,
 	[103599] = specials,
 	[103595] = bellmead_merc,
@@ -165,9 +186,11 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
+	-- Difficulty scaling
+	[101124] = objective_diff_add, -- display_case_open (prototype found)
+	[102341] = objective_diff_add, -- output_hack_done (documents accessible)
+	[100123] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
-	[102784] = elevator_spawn,
-	[102828] = elevator_spawn,
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,
 	[102376] = staircase_spawn,

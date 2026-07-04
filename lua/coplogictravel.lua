@@ -85,7 +85,7 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	CopLogicTravel._chk_relocate(data, my_data)
 end)
 
-function CopLogicTravel._chk_relocate(data, my_data)
+function CopLogicTravel._chk_relocate(data, my_data, max_dis)
 	local objective = data.objective
 	if not objective or not alive(objective.follow_unit) or not my_data.advancing or not my_data.coarse_path or my_data.processing_coarse_path then
 		return
@@ -93,7 +93,7 @@ function CopLogicTravel._chk_relocate(data, my_data)
 
 	local destination_pos = my_data.coarse_path[#my_data.coarse_path][2]
 	local follow_pos = objective.follow_unit:movement():nav_tracker():field_position()
-	if not destination_pos or mvector3.distance_sq(destination_pos, follow_pos) < 3000 ^ 2 then
+	if not destination_pos or mvector3.distance_sq(destination_pos, follow_pos) < (max_dis or 3000) ^ 2 then
 		return
 	end
 

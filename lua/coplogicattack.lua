@@ -49,6 +49,9 @@ function CopLogicAttack._upd_aim(data, my_data)
 	end
 
 	CopLogicAttack.aim_allow_fire(shoot, aim, data, my_data)
+
+	-- save the focus enemy
+	data.unit:brain():set_focus_enemy_unit((verified or nearly_visible) and focus_enemy)
 end
 
 -- Helper function to reuse in other enemy logic _upd_aim functions
@@ -113,19 +116,45 @@ function CopLogicAttack._chk_say_chatter(data, chatter_type, cooldown)
 	end
 end
 
-Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(shoot, aim, data, my_data)
+Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "eclipse_aim_allow_fire", function(shoot, aim, data, my_data)
 	local chatter = data.char_tweak.chatter
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
+	local focus_enemy = data.attention_obj
+	local is_reloading = focus_enemy and focus_enemy.is_local_player and focus_enemy.unit:movement():current_state():_is_reloading()
+	local is_husk = focus_enemy and focus_enemy.unit and focus_enemy.unit.base and focus_enemy.unit:base() and focus_enemy.unit:base().is_husk_player
+	local is_husk_reloading = is_husk and focus_enemy.unit.anim_data and focus_enemy.unit:anim_data().reload
 	if not chatter then
 		return
-	elseif data.unit:in_slot(16) then
+	end
+
+	if data.unit:in_slot(16) then
 		if aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
 			data.unit:sound():say(shoot and "lk3a" or "lk3b", true)
 			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
 		end
-	elseif shoot and not my_data.firing and chatter.contact then
-		CopLogicAttack._chk_say_chatter(data, data.attention_obj.is_deployable and "sentry_gun" or "contact", math.rand(5, 10))
-	elseif aim and is_off_cooldown and chatter.aggressive then
+		return
+	end
+
+	if shoot and not my_data.firing then
+		if chatter.detect and not managers.groupai:state():enemy_weapons_hot() then
+			local not_cool_t = data.unit:movement():not_cool_t() or -100
+			if data.t - not_cool_t < 2 then
+				CopLogicAttack._chk_say_chatter(data, "detect", math.rand(10, 20))
+				return
+			end
+		end
+
+		if chatter.contact then
+			CopLogicAttack._chk_say_chatter(
+				data,
+				focus_enemy.is_deployable and "sentry_gun" or (is_reloading or is_husk_reloading) and math.random() < 0.5 and "reloading" or "contact",
+				math.rand(10, 20)
+			)
+			return
+		end
+	end
+
+	if aim and is_off_cooldown and chatter.aggressive then
 		CopLogicAttack._chk_say_chatter(data, "aggressive", math.rand(10, 20))
 	end
 end)
@@ -134,7 +163,7 @@ end)
 local _find_retreat_position_original = CopLogicAttack._find_retreat_position
 function CopLogicAttack._find_retreat_position(from_pos, ...)
 	local to_pos = _find_retreat_position_original(from_pos, ...)
-	if to_pos and (from_pos.x ~= to_pos.x or from_pos.y ~= to_pos.y) then
+	if to_pos and mvector3.distance_sq(from_pos, to_pos) >= 100 then
 		return to_pos
 	end
 end
@@ -151,7 +180,7 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 	end
 
 	local to_pos = CopLogicTravel._get_pos_on_wall(from_pos, 500)
-	if from_pos.x == to_pos.x and from_pos.y == to_pos.y then
+	if mvector3.distance_sq(from_pos, to_pos) < 100 then
 		return
 	end
 

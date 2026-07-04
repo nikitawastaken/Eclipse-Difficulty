@@ -5,6 +5,28 @@ Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._charged_shot_allowed = false
 	self._standstill_damage_reduction_active = false
 	self._eclipse_bags_carried = 0
+	self._kleptomaniac_allowed_equipment = {
+		"bank_manager_key",
+		"acid",
+		"caustic_soda",
+		"hydrogen_chloride",
+		"thermite_paste",
+		"gas",
+		"harddrive",
+		"c4",
+		"printer_ink",
+		"paper_roll",
+		"liquid_nitrogen",
+		"thermite",
+		"blood_sample",
+		"blood_sample_verified",
+		"mayan_gold_bar",
+		"lance_part",
+		"stock",
+		"barrel",
+		"receiver",
+		"ranc_acid",
+	}
 end)
 
 -- Helper fuctions
@@ -72,7 +94,11 @@ local function add_hud_item(amount, icon)
 end
 -- end
 
-Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
+Hooks:PostHook(PlayerManager, "_setup", "camerarot_setup", function(self)
+	self._global.sync_controlled_cameras = {}
+end)
+
+Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t, dt)
 	local local_player = self:local_player()
 
 	if self:has_category_upgrade("player", "near_teammate_damage_multiplier") and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
@@ -83,6 +109,8 @@ Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
+
+	self:_update_timers_new(t, dt)
 end)
 
 -- Additional skills
@@ -102,10 +130,10 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	end
 
 	-- Hitman headshot killchain
-	if self:has_category_upgrade("player", "chain_headshot_kills") then
-		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	if self:has_category_upgrade("player", "chain_hitman_kills") then
+		self:register_message(Message.OnEnemyKilled, "chain_hitman_kills", callback(self, self, "_on_enter_chain_hitman_kills_event"))
 	else
-		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+		self:unregister_message(Message.OnEnemyKilled, "chain_hitman_kills")
 	end
 
 	-- Second Wind ACED
@@ -158,6 +186,13 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 		self:unregister_message(Message.OnWeaponFired, "sidearmlamentricochet")
 	end
 
+	-- Base Berserker functionality
+	if self:has_category_upgrade("player", "berserker_hit_stacking") then
+		self:register_message(Message.OnPlayerDamage, "berserker_hit_stacking", callback(self, self, "_on_enter_berserker_hit_stacking_event"))
+	else
+		self:unregister_message(Message.OnPlayerDamage, "berserker_hit_stacking")
+	end
+
 	self:set_property("pistols_reload_primary_kills", 0)
 end)
 
@@ -184,7 +219,7 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		addend = addend + self:upgrade_value("player", "passive_hostage_" .. category .. "_addend", 0)
 	else -- Hostage Taker rework
 		hostages = math.min(hostages, current_team_size)
-		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size * hostages
+		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size
 
 		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
 			addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
@@ -258,11 +293,11 @@ function PlayerManager:on_headshot_dealt()
 
 	local damage_ext = player_unit:character_damage()
 	local has_headshot_regen_health = self:has_enabled_cooldown_upgrade("cooldown", "headshot_regen_health_bonus")
-	local regen_health_bonus = tweak_data.upgrades.values.player.headshot_regen_health_bonus[1]
+	local regen_health_bonus = self:body_armor_value("headshot_regen_health_bonus", nil, 1)
 
 	if damage_ext and has_headshot_regen_health then
-		damage_ext:restore_health(regen_health_bonus, true)
-		self:disable_cooldown_upgrade("cooldown", "headshot_regen_health_bonus")
+		damage_ext:restore_health(regen_health_bonus[1], true)
+		self:disable_cooldown_upgrade("cooldown", "headshot_regen_health_bonus", regen_health_bonus[2])
 	end
 
 	-- snp_charged_shot has to be put here because check_skills() is only called once at the initialization
@@ -405,6 +440,29 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 	end
 end
 
+-- Messiah self-revive also panics enemies
+function PlayerManager:use_messiah_charge()
+	if self._messiah_charges then
+		self._messiah_charges = math.max(self._messiah_charges - 1, 0)
+	end
+
+	local pos = self:player_unit():position()
+	local skill = tweak_data.upgrades.values.messiah_panic[1]
+	if skill then
+		local area = skill.area
+		local chance = skill.chance
+		local amount = skill.amount
+		local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
+
+		for _, unit in ipairs(enemies) do
+			if unit:character_damage() then
+				unit:character_damage():build_suppression(amount, chance)
+				-- Eclipse:log_chat("Messiah panic applied to a unit")
+			end
+		end
+	end
+end
+
 -- Killshot skills
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
@@ -435,8 +493,22 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 	end
 
-	local has_socio_melee_armor = self:has_enabled_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
-	if variant == "melee" and has_socio_melee_armor then
+	-- Infiltrator health leech redone to be a proper cooldown ability
+	local has_melee_health_leech = self:has_enabled_cooldown_upgrade("cooldown", "melee_kill_health_leech")
+	if variant == "melee" and has_melee_health_leech then
+		local damage_ext = self:player_unit():character_damage()
+		local skill = tweak_data.upgrades.values.player.melee_kill_health_regen[1] or 0
+
+		if damage_ext and skill > 0 then
+			damage_ext:restore_health(skill)
+		end
+
+		self:disable_cooldown_upgrade("cooldown", "melee_kill_health_leech")
+	end
+
+	-- Sociopath armor leech
+	local has_melee_armor_leech = self:has_enabled_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
+	if variant == "melee" and has_melee_armor_leech then
 		local damage_ext = self:player_unit():character_damage()
 		local skill = tweak_data.upgrades.values.player.melee_kill_armor_regen[1] or 0
 
@@ -445,6 +517,64 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 
 		self:disable_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
+	end
+
+	-- Entire Frenzy skill functionality
+	local has_active_frenzy = self:has_enabled_cooldown_upgrade("cooldown", "melee_attack_frenzy")
+	local has_frenzy_cooldown_reset = self:has_category_upgrade("player", "cooldown_reset_frenzy")
+	if variant == "melee" and has_active_frenzy then
+		self:activate_temporary_upgrade("temporary", "frenzy_damage_reduction")
+		self:activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression")
+
+		if has_frenzy_cooldown_reset then
+			self:reset_all_cooldown_upgrades()
+		end
+
+		self:disable_cooldown_upgrade("cooldown", "melee_attack_frenzy")
+	end
+
+	local damage_ext = self:player_unit():character_damage()
+
+	-- Ex-President
+	-- Moved from CopDamage:_on_death
+	self:chk_store_armor_health_kill_counter(killed_unit, variant)
+
+	-- Leech Ampule
+	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		local kill_life_leech = self:upgrade_value_nil("player", "copr_kill_life_leech")
+		local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio")
+
+		if kill_life_leech and static_damage_ratio and damage_ext then
+			self._copr_kill_life_leech_new_num = (self._copr_kill_life_leech_new_num or 0) + 1
+
+			if kill_life_leech <= self._copr_kill_life_leech_new_num then
+				self._copr_kill_life_leech_new_num = 0
+				local current_health_ratio = damage_ext:health_ratio()
+				local wanted_health_ratio = math.floor((current_health_ratio + 0.01 + static_damage_ratio) / static_damage_ratio) * static_damage_ratio
+				local health_regen = damage_ext:_max_health() * (wanted_health_ratio - current_health_ratio)
+
+				if health_regen > 0 then
+					damage_ext:restore_health(health_regen)
+					damage_ext:on_copr_killshot(true)
+				end
+			end
+		end
+	end
+end
+
+function PlayerManager:reset_all_cooldown_upgrades()
+	if not self._global.cooldown_upgrades then
+		return
+	end
+
+	for category, upgrades in pairs(self._global.cooldown_upgrades) do
+		if upgrades then
+			for upgrade, data in pairs(upgrades) do
+				if data then
+					data.cooldown_time = 0
+				end
+			end
+		end
 	end
 end
 
@@ -489,30 +619,27 @@ function PlayerManager:_on_enter_playercqb_event(weapon_unit, variant)
 	end
 end
 
--- Hitman headshot kills chain
+-- Hitman killchain
 PlayerAction.JohnWickKillChain = {
 	Priority = 1,
 	Function = function(player_manager, target_kills, target_time)
 		local co = coroutine.running()
 		local time = Application:time()
 		local kills = 1
-		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_hitman_dodge")
 		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
-		local function on_lethal_headshot(attack_data)
-			local attacker_unit = attack_data.attacker_unit
-			local variant = attack_data.variant
-
-			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+		local function on_killshot(weapon_unit, variant)
+			if variant == "bullet" then
 				kills = kills + 1
 
 				if kills == target_kills then
 					if has_chain_dodge then
-						player_manager:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+						player_manager:activate_temporary_upgrade("temporary", "chain_hitman_dodge")
 					end
 
 					if cheat_death_upgrade_value ~= 0 then
-						player_manager:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+						player_manager:add_to_property("chain_hitman_cheat_death", cheat_death_upgrade_value)
 					end
 
 					time = target_time
@@ -520,7 +647,7 @@ PlayerAction.JohnWickKillChain = {
 			end
 		end
 
-		player_manager:register_message(Message.OnLethalHeadShot, co, on_lethal_headshot)
+		player_manager:register_message(Message.OnEnemyKilled, co, on_killshot)
 
 		while time < target_time do
 			time = Application:time()
@@ -528,19 +655,15 @@ PlayerAction.JohnWickKillChain = {
 			coroutine.yield(co)
 		end
 
-		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
-
-function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
-	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
-
-	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
-		local data = self:upgrade_value("player", "chain_headshot_kills", 0)
+function PlayerManager:_on_enter_chain_hitman_kills_event(weapon_unit, variant)
+	if variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+		local data = self:upgrade_value("player", "chain_hitman_kills", 0)
 
 		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.headshot_kills, Application:time() + data.max_time)
+			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.kills, Application:time() + data.max_time)
 		end
 	end
 end
@@ -558,9 +681,19 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 		return
 	end
 
-	if not weapon_unit:base():is_category("snp") or not result.hit_enemy then
+	if not weapon_unit:base():is_category("snp") then
 		self._consecutive_headshots = 0
 		self:remove_property("snp_consecutive_headshots_mul")
+		return
+	end
+
+	if not result.hit_enemy then
+		self._consecutive_headshots = math.min(self._consecutive_headshots - upgrade_value.lose_on_miss, 0)
+
+		if self._consecutive_headshots <= 0 then
+			self:remove_property("snp_consecutive_headshots_mul")
+		end
+
 		return
 	end
 
@@ -586,8 +719,11 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 			self._consecutive_headshots = self._consecutive_headshots + 1
 			break
 		else
-			self._consecutive_headshots = 0
-			self:remove_property("snp_consecutive_headshots_mul")
+			self._consecutive_headshots = math.min(self._consecutive_headshots - upgrade_value.lose_on_miss, 0)
+
+			if self._consecutive_headshots <= 0 then
+				self:remove_property("snp_consecutive_headshots_mul")
+			end
 		end
 	end
 end
@@ -659,6 +795,7 @@ local old_speed_multiplier = PlayerManager.movement_speed_multiplier
 function PlayerManager:movement_speed_multiplier(...)
 	local multi = old_speed_multiplier(self, ...)
 	multi = multi * (1 + managers.player:get_property("playercqb", 0))
+	multi = multi * self:temporary_upgrade_value("temporary", "first_aid_movement_speed_multiplier", 1)
 	return multi
 end
 
@@ -673,7 +810,7 @@ function PlayerManager:skill_dodge_chance(...)
 		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
 	end
 
-	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_hitman_dodge", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
@@ -704,7 +841,7 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 	local time = tweak_data.projectiles.smoke_screen_grenade.duration
 	self._smoke_screen_effects = self._smoke_screen_effects or {}
 
-	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit))
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus))
 
 	if alive(self._smoke_grenade) and Network:is_server() then
 		self._smoke_grenade:set_slot(0)
@@ -764,6 +901,16 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	if self:has_category_upgrade("player", "hostage_damage_reduction_addend") then
 		multiplier = multiplier * (1 - self:get_hostage_bonus_addend("damage_reduction"))
 		--Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
+	end
+
+	-- armorer iron curtain crewmate  reduction
+	if self:has_activate_temporary_upgrade("temporary", "damage_reduction_from_crewmate") then
+		multiplier = multiplier * self:temporary_upgrade_value("temporary", "damage_reduction_from_crewmate", 1)
+	end
+
+	-- frenzy basic damage reduction
+	if self:has_activate_temporary_upgrade("temporary", "frenzy_damage_reduction") then
+		multiplier = multiplier * self:temporary_upgrade_value("temporary", "frenzy_damage_reduction", 1)
 	end
 
 	return multiplier
@@ -851,6 +998,10 @@ function PlayerManager:drop_carry(zipline_unit)
 		if self._current_state == "carry" then
 			managers.player:set_player_state("standard")
 		end
+	else
+		local current_carry = carry_list[1]
+		managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, current_carry.carry_id, managers.loot:get_real_value(current_carry.carry_id, current_carry.multiplier or 1))
+		managers.hud:temp_show_carry_bag(current_carry.carry_id, managers.loot:get_real_value(current_carry.carry_id, current_carry.multiplier or 1))
 	end
 
 	self:update_removed_synced_carry_to_peers()
@@ -954,7 +1105,7 @@ function PlayerManager:server_drop_carry(
 	movement,
 	peer
 )
-	if not self:verify_carry(peer, carry_id) then
+	if peer and not self:verify_carry(peer, carry_id) then
 		return
 	end
 
@@ -963,7 +1114,7 @@ function PlayerManager:server_drop_carry(
 	movement = movement or Vector3(0, 0, 0)
 
 	managers.network:session():send_to_peers_synched(
-		"sync_carry_data",
+		"eclipse_sync_carry_data",
 		unit,
 		carry_id,
 		carry_multiplier,
@@ -974,8 +1125,8 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		movement,
-		peer and peer:id() or 0
+		peer and peer:id() or 0,
+		movement
 	)
 	self:sync_carry_data(
 		unit,
@@ -988,8 +1139,8 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
-		movement,
-		peer and peer:id() or 0
+		peer and peer:id() or 0,
+		movement
 	)
 
 	if unit:carry_data()._global_event then
@@ -1010,8 +1161,8 @@ function PlayerManager:sync_carry_data(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
-	movement,
-	peer_id
+	peer_id,
+	movement
 )
 	local throw_distance_multiplier = self:upgrade_value_by_level("carry", "throw_distance_multiplier", throw_distance_multiplier_upgrade_level, 1)
 	local carry_type = tweak_data.carry[carry_id].type
@@ -1068,7 +1219,7 @@ function PlayerManager:peer_dropped_out(peer)
 
 				local dir = Vector3(0, 0, 0)
 
-				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, peer)
+				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, Vector3(0, 0, 0), peer)
 			end
 		end
 
@@ -1093,6 +1244,8 @@ function PlayerManager:peer_dropped_out(peer)
 	self:update_cocaine_hud()
 	self:remove_from_player_list(peer_unit)
 	managers.vehicle:remove_player_from_all_vehicles(peer_unit)
+
+	self:set_synced_controlled_camera(peer:id(), nil)
 end
 
 function PlayerManager:bank_carry(carry_data)
@@ -1111,57 +1264,63 @@ end
 
 function PlayerManager:force_drop_carry()
 	local carry_list = self:get_my_carry_data()
-	local carry_data = carry_list and carry_list[#carry_list]
-
-	if not carry_data then
+	if not carry_list then
 		return
 	end
 
+	local carry_data = table.remove(carry_list, #carry_list)
 	local player = self:player_unit()
-
 	if not alive(player) then
 		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
 
 		return
 	end
-
-	local dye_initiated = carry_data.dye_initiated
-	local has_dye_pack = carry_data.has_dye_pack
-	local dye_value_multiplier = carry_data.dye_value_multiplier
 	local camera_ext = player:camera()
+	local v_zero = Vector3(0, 0, 0)
 
-	if Network:is_client() then
-		managers.network:session():send_to_host(
-			"server_drop_carry",
-			carry_data.carry_id,
-			carry_data.multiplier,
-			dye_initiated,
-			has_dye_pack,
-			dye_value_multiplier,
-			camera_ext:position(),
-			camera_ext:rotation(),
-			Vector3(0, 0, 0),
-			0,
-			nil
-		)
-	else
-		self:server_drop_carry(
-			carry_data.carry_id,
-			carry_data.multiplier,
-			dye_initiated,
-			has_dye_pack,
-			dye_value_multiplier,
-			camera_ext:position(),
-			camera_ext:rotation(),
-			Vector3(0, 0, 0),
-			0,
-			nil,
-			managers.network:session():local_peer()
-		)
+	while carry_data do
+		local dye_initiated = carry_data.dye_initiated
+		local has_dye_pack = carry_data.has_dye_pack
+		local dye_value_multiplier = carry_data.dye_value_multiplier
+
+		if Network:is_client() then
+			managers.network:session():send_to_host(
+				"server_drop_carry",
+				carry_data.carry_id,
+				carry_data.multiplier,
+				dye_initiated,
+				has_dye_pack,
+				dye_value_multiplier,
+				camera_ext:position(),
+				camera_ext:rotation(),
+				v_zero,
+				0,
+				nil,
+				v_zero
+			)
+		else
+			self:server_drop_carry(
+				carry_data.carry_id,
+				carry_data.multiplier,
+				dye_initiated,
+				has_dye_pack,
+				dye_value_multiplier,
+				camera_ext:position(),
+				camera_ext:rotation(),
+				v_zero,
+				0,
+				nil,
+				v_zero,
+				managers.network:session():local_peer()
+			)
+		end
+
+		carry_data = table.remove(carry_list, #carry_list)
 	end
 
 	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 	managers.hud:temp_hide_carry_bag()
+	self._eclipse_bags_carried = 0
 	self:update_removed_synced_carry_to_peers()
 end
 
@@ -1184,7 +1343,7 @@ function PlayerManager:clear_carry(soft_reset)
 	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 	managers.hud:temp_hide_carry_bag()
 	self:update_removed_synced_carry_to_peers()
-	self:subtract_bags_carried()
+	self._eclipse_bags_carried = 0
 
 	if self._current_state == "carry" then
 		managers.player:set_player_state("standard")
@@ -1348,7 +1507,7 @@ function PlayerManager:clbk_super_syndrome_respawn(data)
 end
 
 -- Players receive penalties when leaving custody
-Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function(self)
+Hooks:PostHook(PlayerManager, "_internal_load", "eclipse_internal_load", function(self)
 	if self._respawn then
 		local player_unit = managers.player:player_unit()
 		local ammo_confiscated = tweak_data.player.damage.custody_ammo_confiscated
@@ -1991,3 +2150,434 @@ Hooks:PostHook(PlayerManager, "sync_tag_team", "sync_tag_team_sound_effect", fun
 		self:local_player():sound():play(tweak_data.blackmarket.projectiles.tag_team.sounds.activate)
 	end
 end)
+
+function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
+	if special_equipment.amount then
+		local equipment = tweak_data.equipments.specials[name]
+		local extra = self:_equipped_upgrade_value(equipment)
+		local multiplier = table.contains(self._kleptomaniac_allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		local max_quantity = (equipment.max_quantity or equipment.quantity or 1) * multiplier
+
+		return Application:digest_value(special_equipment.amount, false) < max_quantity + extra, not not equipment.max_quantity
+	end
+
+	return false
+end
+
+function PlayerManager:add_special(params)
+	local name = params.equipment or params.name
+
+	if not tweak_data.equipments.specials[name] then
+		Application:error("Special equipment " .. name .. " doesn't exist!")
+
+		return
+	end
+
+	local unit = self:player_unit()
+	local equipment = tweak_data.equipments.specials[name]
+	local special_equipment = self._equipment.specials[name]
+	local respawn = params.amount and true or false
+	local amount = params.amount or equipment.quantity or 1
+	local extra = self:_equipped_upgrade_value(equipment) + self:upgrade_value(name, "quantity")
+	local is_cable_tie = name == "cable_tie"
+
+	if is_cable_tie then
+		extra = self:upgrade_value(name, "quantity_1") + self:upgrade_value(name, "quantity_2")
+	end
+
+	if special_equipment then
+		local multiplier = table.contains(self._kleptomaniac_allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		if equipment.max_quantity or equipment.quantity or params.transfer and equipment.transfer_quantity or params.dropped_out or multiplier > 1 then
+			local dedigested_amount = special_equipment.amount and Application:digest_value(special_equipment.amount, false) or 1
+			local max_amount = nil
+
+			if not params.dropped_out then
+				if params.transfer then
+					max_amount = equipment.transfer_quantity or 1
+
+					if equipment.max_quantity or equipment.quantity then
+						max_amount = math.max(max_amount, (equipment.max_quantity or equipment.quantity or 1) + extra)
+					end
+				else
+					max_amount = (equipment.max_quantity or equipment.quantity or 1) + extra
+				end
+			end
+			max_amount = (max_amount or 1) * multiplier
+
+			local new_amount = self:has_category_upgrade(name, "quantity_unlimited") and -1 or params.dropped_out and dedigested_amount + amount or math.min(dedigested_amount + amount, max_amount)
+			special_equipment.amount = Application:digest_value(new_amount, true)
+
+			if special_equipment.is_cable_tie then
+				managers.hud:set_cable_ties_amount(HUDManager.PLAYER_PANEL, new_amount)
+				self:update_synced_cable_ties_to_peers(new_amount)
+			else
+				managers.hud:set_special_equipment_amount(name, new_amount)
+				self:update_equipment_possession_to_peers(name, new_amount)
+			end
+		end
+
+		return
+	end
+
+	local icon = equipment.icon
+	local action_message = equipment.action_message
+
+	if not params.silent then
+		local text = managers.localization:text(equipment.text_id)
+		local title = managers.localization:text("present_obtained_mission_equipment_title")
+
+		managers.hud:present_mid_text({
+			time = 4,
+			text = text,
+			title = title,
+			icon = icon,
+		})
+
+		if action_message and alive(unit) then
+			managers.network:session():send_to_peers_synched("sync_show_action_message", unit, action_message)
+		end
+	end
+
+	local quantity = nil
+
+	if is_cable_tie or not params.transfer and not params.dropped_out then
+		quantity = self:has_category_upgrade(name, "quantity_unlimited") and -1
+			or equipment.quantity
+				and (respawn and math.min(params.amount, (equipment.max_quantity or equipment.quantity or 1) + extra) or equipment.quantity and math.min(
+					amount + extra,
+					(equipment.max_quantity or equipment.quantity or 1) + extra
+				))
+
+		if not quantity and not equipment.avoid_transfer then
+			quantity = 1
+		end
+	else
+		quantity = params.amount
+	end
+
+	if is_cable_tie then
+		managers.hud:set_cable_tie(HUDManager.PLAYER_PANEL, {
+			icon = icon,
+			amount = quantity or nil,
+		})
+		self:update_synced_cable_ties_to_peers(quantity)
+	else
+		managers.hud:add_special_equipment({
+			id = name,
+			icon = icon,
+			amount = quantity or not equipment.avoid_tranfer and 1 or nil,
+		})
+		self:update_equipment_possession_to_peers(name, quantity)
+	end
+
+	self._equipment.specials[name] = {
+		amount = quantity and Application:digest_value(quantity, true) or nil,
+		is_cable_tie = is_cable_tie,
+	}
+
+	if equipment.player_rule then
+		self:set_player_rule(equipment.player_rule, true)
+	end
+end
+
+-- Detection risk transparency upgrade
+function PlayerManager:transparency_value(detection_risk)
+	local value = 0
+
+	local detection_risk_transparency = managers.player:upgrade_value("player", "detection_risk_transparency")
+	value = value + self:get_value_from_risk_upgrade(detection_risk_transparency, detection_risk)
+
+	return value
+end
+
+-- Extra cooldown argument for the cooldown upgrades, used for regen plating aced dynamic cooldown
+function PlayerManager:disable_cooldown_upgrade(category, upgrade, extra_cooldown_time)
+	local upgrade_value = self:upgrade_value(category, upgrade)
+
+	if upgrade_value == 0 then
+		return
+	end
+
+	local time = upgrade_value[2]
+	self._global.cooldown_upgrades[category] = self._global.cooldown_upgrades[category] or {}
+	self._global.cooldown_upgrades[category][upgrade] = {
+		cooldown_time = Application:time() + time + (extra_cooldown_time or 0),
+	}
+end
+
+function PlayerManager:_update_damage_dealt(t, dt)
+	local local_peer_id = managers.network:session() and managers.network:session():local_peer():id()
+	if not local_peer_id or not self:has_category_upgrade("player", "cocaine_stacking") then
+		return
+	end
+	self._damage_dealt_to_cops_t = self._damage_dealt_to_cops_t or t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+	self._damage_dealt_to_cops_decay_t = self._damage_dealt_to_cops_decay_t or t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+	local cocaine_stack = self:get_synced_cocaine_stacks(local_peer_id)
+	local amount = cocaine_stack and cocaine_stack.amount or 0
+	local new_amount = amount
+	if self._damage_dealt_to_cops_t <= t then
+		self._damage_dealt_to_cops_t = t + (tweak_data.upgrades.cocaine_stacks_tick_t or 1)
+		local new_stacks = (self._damage_dealt_to_cops or 0) * (tweak_data.gui.stats_present_multiplier or 10) * self:upgrade_value("player", "cocaine_stacking", 0)
+		self._damage_dealt_to_cops = 0
+		new_amount = new_amount + math.min(new_stacks, tweak_data.upgrades.max_cocaine_stacks_per_tick or 20)
+	end
+	if self._damage_dealt_to_cops_decay_t <= t then
+		self._damage_dealt_to_cops_decay_t = t + (tweak_data.upgrades.cocaine_stacks_decay_t or 5)
+		local decay = amount * (tweak_data.upgrades.cocaine_stacks_decay_percentage_per_tick or 0)
+		decay = decay + (tweak_data.upgrades.cocaine_stacks_decay_amount_per_tick or 20) * self:upgrade_value("player", "cocaine_stacks_decay_multiplier", 1)
+		new_amount = new_amount - decay
+	end
+	new_amount = math.clamp(math.floor(new_amount), 0, tweak_data.upgrades.max_total_cocaine_stacks or 2047)
+	if new_amount ~= amount then
+		self:update_synced_cocaine_stacks_to_peers(new_amount, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
+	end
+end
+
+-- An upgrade that increases the amount of carried throwables
+function PlayerManager:get_max_grenades(grenade_id)
+	grenade_id = grenade_id or managers.blackmarket:equipped_grenade()
+	local max_amount = tweak_data:get_raw_value("blackmarket", "projectiles", grenade_id, "max_amount") or 0
+
+	local grenade_tweak = tweak_data.blackmarket.projectiles[managers.blackmarket:equipped_grenade()]
+	if not grenade_tweak.base_cooldown then
+		max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
+
+		max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+	end
+
+	return math.ceil(max_amount)
+end
+
+-- Berserker on-hit buffs stacking
+PlayerAction.BerserkerHitStacking = {
+	Priority = 1,
+	Function = function(player_manager, stacks_per_hit, max_stacks, stack_decay_t)
+		local co = coroutine.running()
+		local time = Application:time()
+		local player_unit_damage_ext = player_manager:player_unit() and player_manager:player_unit():character_damage()
+		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
+		local target_time = time + stack_decay_t
+		local stacks = (stacks_per_hit * (is_armor_broken and 2 or 1))
+		local berserker_melee_damage_addend = player_manager:upgrade_value("player", "berserker_melee_damage_addend", 0)
+		local berserker_ranged_damage_addend = player_manager:upgrade_value("player", "berserker_ranged_damage_addend", 0)
+
+		local function on_receive_hit(attack_data)
+			local variant = attack_data.variant
+			if variant == "bullet" then
+				stacks = math.min(stacks + (stacks_per_hit * (is_armor_broken and 2 or 1)), max_stacks)
+
+				if berserker_melee_damage_addend ~= 0 then
+					player_manager:set_property("berserker_melee_damage", berserker_melee_damage_addend * stacks)
+				end
+
+				if berserker_ranged_damage_addend ~= 0 then
+					player_manager:set_property("berserker_ranged_damage", berserker_ranged_damage_addend * stacks)
+				end
+			end
+		end
+
+		player_manager:register_message(Message.OnPlayerDamage, co, on_receive_hit)
+
+		while stacks > 0 do
+			time = Application:time()
+
+			if time >= target_time then
+				stacks = stacks - 1
+				target_time = target_time + stack_decay_t
+
+				if berserker_melee_damage_addend ~= 0 then
+					player_manager:set_property("berserker_melee_damage", berserker_melee_damage_addend * stacks)
+				end
+
+				if berserker_ranged_damage_addend ~= 0 then
+					player_manager:set_property("berserker_ranged_damage", berserker_ranged_damage_addend * stacks)
+				end
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnPlayerDamage, co)
+	end,
+}
+function PlayerManager:_on_enter_berserker_hit_stacking_event(attack_data)
+	local variant = attack_data.variant
+
+	if variant == "bullet" and not self._coroutine_mgr:is_running("berserker_hit_stacking") then
+		local data = self:upgrade_value("player", "berserker_hit_stacking", 0)
+		local player_unit_damage_ext = self:player_unit() and self:player_unit():character_damage()
+		local is_armor_broken = player_unit_damage_ext and player_unit_damage_ext:get_real_armor() <= 0 or false
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("berserker_hit_stacking", PlayerAction.BerserkerHitStacking, self, data.stacks_per_hit, data.max_stacks, data.stack_decay_t)
+		end
+	end
+end
+
+-- dummy this function out because we speeding up CD on-kill is a relic of vanilla design
+function PlayerManager:speed_up_grenade_cooldown(time)
+	-- local timer = self._timers.replenish_grenades
+
+	-- if not timer then
+	-- 	return
+	-- end
+
+	-- timer.t = timer.t - time
+	-- local peer_id = managers.network:session():local_peer():id()
+	-- local grenade = self._global.synced_grenades[peer_id].grenade
+	-- local tweak = tweak_data.blackmarket.projectiles[grenade]
+	-- local time_left = self:get_timer_remaining("replenish_grenades") or 0
+
+	-- managers.hud:set_player_grenade_cooldown({
+	-- 	end_time = managers.game_play_central:get_heist_timer() + time_left,
+	-- 	duration = tweak.base_cooldown
+	-- })
+
+	return
+end
+
+-- The number of Leech segments depends on the armor you're wearing
+function PlayerManager:_attempt_copr_ability()
+	if self:has_activate_temporary_upgrade("temporary", "copr_ability_new") then
+		return false
+	end
+
+	local character_damage = self:local_player():character_damage()
+	local duration = self:upgrade_value("temporary", "copr_ability_new")[2]
+	local now = managers.game_play_central:get_heist_timer()
+
+	managers.network:session():send_to_peers("sync_ability_hud", now + duration, duration)
+
+	local is_downed = game_state_machine:verify_game_state(GameStateFilters.downed)
+
+	self:set_property("copr_risen", is_downed)
+
+	if is_downed then
+		character_damage:revive(true)
+	end
+
+	self:activate_temporary_upgrade("temporary", "copr_ability_new")
+
+	local expire_time = self:get_activate_temporary_expire_time("temporary", "copr_ability_new")
+
+	managers.enemy:add_delayed_clbk("copr_ability_active", callback(self, self, "clbk_copr_ability_ended"), expire_time)
+	managers.hud:activate_teammate_ability_radial(HUDManager.PLAYER_PANEL, duration)
+
+	local bonus_health = character_damage:_max_health() * self:upgrade_value("player", "copr_activate_bonus_health_ratio", tweak_data.upgrades.values.player.copr_activate_bonus_health_ratio[1])
+
+	character_damage:restore_health(bonus_health)
+	character_damage:set_armor(0)
+	character_damage:send_set_status()
+
+	local speed_up_on_kill_time = self:upgrade_value("player", "copr_speed_up_on_kill", 0)
+
+	if speed_up_on_kill_time > 0 then
+		local function speed_up_on_kill_func()
+			managers.player:speed_up_grenade_cooldown(speed_up_on_kill_time)
+		end
+
+		self:register_message(Message.OnEnemyKilled, "speed_up_copr_ability", speed_up_on_kill_func)
+	end
+
+	character_damage:on_copr_ability_activated()
+
+	self._copr_kill_life_leech_new_num = 0
+	local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio")
+
+	managers.hud:set_copr_indicator(true, static_damage_ratio)
+
+	if is_downed then
+		self:register_message("ability_activated", "copr_risen_cooldown_key", callback(self, self, "add_copr_risen_cooldown"))
+	end
+
+	return true
+end
+
+function PlayerManager:clbk_copr_ability_ended()
+	self:deactivate_temporary_upgrade("temporary", "copr_ability_new")
+
+	local player_unit = self:local_player()
+	local character_damage = alive(player_unit) and player_unit:character_damage()
+
+	if character_damage then
+		local health_ratio = character_damage:health_ratio()
+		local static_damage_ratio = self:body_armor_value("copr_static_damage_ratio") - 1e-08
+		local out_of_health = health_ratio < static_damage_ratio
+		local risen_from_dead = self:get_property("copr_risen", false) == true
+
+		character_damage:on_copr_ability_deactivated()
+
+		if out_of_health or risen_from_dead then
+			character_damage:force_into_bleedout(false, risen_from_dead)
+		end
+	end
+
+	self:set_property("copr_risen", nil)
+	managers.hud:set_copr_indicator(false)
+end
+
+function PlayerManager:throwable_regen_speed_multiplier()
+	local multiplier = 1
+
+	local player_unit = self:local_player()
+	local character_damage = alive(player_unit) and player_unit:character_damage()
+
+	if self:has_category_upgrade("player", "emergency_throwable_regen_speed") then
+		if character_damage and character_damage:health_ratio() <= self:upgrade_value("player", "emergency_throwable_regen_speed")[2] then
+			multiplier = multiplier * self:upgrade_value("player", "emergency_throwable_regen_speed")[1]
+		end
+	end
+
+	return multiplier
+end
+
+-- Make throwable timers use delta time. Kind of hacky, but it works.
+-- Dummy out the original function so that the updated one can be called without executing everything twice.
+function PlayerManager:_update_timers() end
+
+function PlayerManager:_update_timers_new(t, dt)
+	local timers_copy = table.map_copy(self._timers)
+
+	for key, timer in pairs(timers_copy) do
+		timer.t = math.max(timer.t - dt * self:throwable_regen_speed_multiplier(), 0)
+
+		local peer_id = managers.network:session():local_peer():id()
+		local grenade = self._global.synced_grenades[peer_id].grenade
+		local tweak = tweak_data.blackmarket.projectiles[grenade]
+
+		managers.hud:set_player_grenade_cooldown({
+			end_time = managers.game_play_central:get_heist_timer() + timer.t,
+			duration = tweak.base_cooldown,
+		})
+
+		if timer.t <= 0 then
+			self._timers[key] = nil
+
+			if timer.func then
+				timer.func(key)
+			end
+		end
+	end
+end
+
+function PlayerManager:start_timer(key, duration, callback)
+	self._timers[key] = {
+		t = duration,
+		func = callback,
+	}
+end
+
+-- Rotating Cameras implementation
+function PlayerManager:set_synced_controlled_camera(peer_id, cam_unit)
+	local controlled_cameras = self._global.sync_controlled_cameras
+	local prev_camera = controlled_cameras[peer_id]
+	if alive(prev_camera) then
+		prev_camera:base():player_control_state(peer_id, false)
+	end
+
+	controlled_cameras[peer_id] = cam_unit
+
+	if cam_unit then
+		cam_unit:base():player_control_state(peer_id, true)
+	end
+end

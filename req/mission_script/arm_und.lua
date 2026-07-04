@@ -1,13 +1,4 @@
 local preferred = Eclipse.preferred
-local disabled = {
-	values = {
-		enabled = false,
-	},
-}
-local gensec_operators = {
-	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
-	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
-}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -19,8 +10,10 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local greendozer_only = {
-	green_bulldozer,
+local disabled = {
+	values = {
+		enabled = false,
+	},
 }
 local random_dozers = {
 	green_bulldozer,
@@ -32,9 +25,6 @@ local random_elite_dozers = {
 }
 local gensec_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
-local gensec = {
-	enemy = overkill_and_above and gensec_operators,
-}
 local gensec_tank = {
 	enemy = gensec_dozer,
 }
@@ -42,20 +32,31 @@ local dozer_chance = (eclipse and 25 or hard and 15 or 0) + (is_pro_job and 20 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
 }
 local overpass_spawn = {
 	values = {
-		interval = 25,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
+local bags_required_amount = normal and 2 or hard and 3 or 4
 local bags_required = {
 	values = {
-		amount = normal and 3 or hard and 5 or 7,
+		amount = bags_required_amount,
+	},
+}
+local bags_required_job_value = {
+	values = {
+		value = bags_required_amount,
 	},
 }
 return {
@@ -65,22 +66,22 @@ return {
 			{
 				name = "north",
 				force = 3,
-				position = Vector3(-5000, 550, 300),
+				position = Vector3(-5025, 550, 300),
 			},
 			{
 				name = "west",
-				force = 3,
-				position = Vector3(1100, 2100, 300),
+				force = 2,
+				position = Vector3(-875, -1245, 305),
 			},
 			{
 				name = "east",
-				force = 3,
-				position = Vector3(-800, -1300, 300),
+				force = 2,
+				position = Vector3(1125, 2125, 305),
 			},
 			{
 				name = "south",
 				force = 3,
-				position = Vector3(6000, 550, 300),
+				position = Vector3(6000, 545, 300),
 			},
 		},
 	},
@@ -97,6 +98,10 @@ return {
 	[100260] = bags_required,
 	[100261] = bags_required,
 	[100262] = bags_required,
+	[101818] = bags_required_job_value,
+	[101819] = bags_required_job_value,
+	[101820] = bags_required_job_value,
+	[101822] = bags_required_job_value,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
@@ -124,31 +129,6 @@ return {
 	[101127] = dozer_van_chance,
 	[101128] = dozer_van_chance,
 	-- GenSec scripted spawns
-	-- drivers
-	[100279] = gensec,
-	[100281] = gensec,
-	[100280] = gensec,
-	[100282] = gensec,
-	[100283] = gensec,
-	[100284] = gensec,
-	[100285] = gensec,
-	[100286] = gensec,
-	[100287] = gensec,
-	[100288] = gensec,
-	[100289] = gensec,
-	[100290] = gensec,
-	[100291] = gensec,
-	[100292] = gensec,
-	[100293] = gensec,
-	[100294] = gensec,
-	[100295] = gensec,
-	[100296] = gensec,
-	[100297] = gensec,
-	[100298] = gensec,
-	[100299] = gensec,
-	[100300] = gensec,
-	[100301] = gensec,
-	[100302] = gensec,
 	-- van bulldozers
 	[103750] = gensec_tank,
 	[103751] = gensec_tank,
@@ -163,9 +143,11 @@ return {
 	[103760] = gensec_tank,
 	[103761] = gensec_tank,
 	-- Spawn group intervals
-	[100128] = street_spawn,
-	[100130] = street_spawn,
-	[100131] = street_spawn,
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
 	[100132] = overpass_spawn,
 	[100133] = overpass_spawn,
+	[103252] = cloaker_spawn,
+	[103255] = cloaker_spawn,
 }

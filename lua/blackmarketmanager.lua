@@ -11,65 +11,6 @@ function BlackMarketManager:is_weapon_category_allowed_for_crew(weapon_category)
 	return not not ALLOWED_CREW_WEAPON_CATEGORIES[weapon_category]
 end
 
-function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
-	if damage_falloff and custom_stats then
-		for _, stats in pairs(custom_stats) do
-			if stats.falloff_override then
-				damage_falloff.optimal_distance = stats.falloff_override.optimal_distance or damage_falloff.optimal_distance
-				damage_falloff.optimal_range = stats.falloff_override.optimal_range or damage_falloff.optimal_range
-				damage_falloff.near_falloff = stats.falloff_override.near_falloff or damage_falloff.near_falloff
-				damage_falloff.far_falloff = stats.falloff_override.far_falloff or damage_falloff.far_falloff
-				damage_falloff.near_mul = stats.falloff_override.near_mul or damage_falloff.near_mul
-				damage_falloff.far_mul = stats.falloff_override.far_mul or damage_falloff.far_mul
-			end
-
-			if stats.far_falloff_mul ~= nil then
-				damage_falloff.far_falloff = damage_falloff.far_falloff * stats.far_falloff_mul
-			end
-
-			if stats.falloff_mul ~= nil then
-				damage_falloff.optimal_distance = damage_falloff.optimal_distance * stats.falloff_mul
-				damage_falloff.optimal_range = damage_falloff.optimal_range * stats.falloff_mul
-				damage_falloff.near_falloff = damage_falloff.near_falloff * stats.falloff_mul
-				damage_falloff.far_falloff = damage_falloff.far_falloff * stats.falloff_mul
-			end
-
-			if stats.near_damage_mul ~= nil then
-				damage_falloff.near_mul = damage_falloff.near_mul * stats.near_damage_mul
-			end
-
-			if stats.far_damage_mul ~= nil then
-				damage_falloff.far_mul = damage_falloff.far_mul * stats.far_damage_mul
-			end
-
-			if stats.falloff_damage_mul ~= nil then
-				damage_falloff.near_mul = damage_falloff.near_mul * stats.falloff_damage_mul
-				damage_falloff.far_mul = damage_falloff.far_mul * stats.falloff_damage_mul
-			end
-
-			if stats.damage_near_mul ~= nil then
-				damage_falloff.optimal_range = damage_falloff.optimal_range * stats.damage_near_mul
-			end
-
-			if stats.damage_far_mul ~= nil then
-				damage_falloff.far_falloff = damage_falloff.far_falloff * stats.damage_far_mul
-			end
-
-			if stats.optimal_range_mul ~= nil then
-				damage_falloff.optimal_range = damage_falloff.optimal_range * stats.optimal_range_mul
-			end
-
-			-- Optimal Distance stuff
-			if stats.optimal_distance_addend ~= nil then
-				damage_falloff.optimal_distance = damage_falloff.optimal_distance + stats.optimal_distance_addend
-			end
-			if stats.near_falloff_addend ~= nil then
-				damage_falloff.near_falloff = damage_falloff.near_falloff + stats.near_falloff_addend
-			end
-		end
-	end
-end
-
 -- Uncouple melee knockdown from damage
 Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", function(self, lerp_value)
 	lerp_value = lerp_value or 0
@@ -166,10 +107,11 @@ function BlackMarketManager:get_reload_time(weapon_id)
 
 	-- Add custom reload time multipliers
 	local mult = tweak_data.weapon[weapon_id].reload_speed_multiplier
-	if mult then
-		result_empty = result_empty / mult
-		result_tactical = result_tactical / mult
-	end
+	local empty_mult = tweak_data.weapon[weapon_id].reload_empty_speed_multiplier
+	local not_empty_mult = tweak_data.weapon[weapon_id].reload_not_empty_speed_multiplier
+
+	result_empty = result_empty / (empty_mult or mult or 1)
+	result_tactical = result_tactical / (not_empty_mult or mult or 1)
 
 	return result_empty, result_tactical
 end
@@ -216,7 +158,44 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	multiplier = multiplier + 1 - managers.player:get_property("trigger_happy", 1)
 
-	multiplier = multiplier + 1 - (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
+	multiplier = multiplier - managers.player:get_property("snp_consecutive_headshots_mul", 0)
+
+	multiplier = multiplier - managers.player:get_property("berserker_ranged_damage", 0)
 
 	return self:_convert_add_to_mul(multiplier)
+end
+
+-- set default throwable to be the cards
+Hooks:PostHook(BlackMarketManager, "_setup", "eclipse__setup", function(self)
+	self._defaults.grenade = "wpn_prj_ace"
+end)
+
+-- Bandaid for removing team AI abilities/boosts
+function BlackMarketManager:verify_has_crew_skill() end
+
+function BlackMarketManager:verify_has_crew_ability() end
+
+-- Extra throwables upgrade
+function BlackMarketManager:equipped_grenade()
+	local forced_throwable = self:forced_throwable()
+
+	if forced_throwable then
+		if forced_throwable == "none" then
+			return self._defaults.grenade, 0
+		else
+			return forced_throwable, math.ceil(Global.blackmarket_manager.grenades[forced_throwable].amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1))
+		end
+	end
+
+	local grenade = nil
+
+	for grenade_id, tweak in pairs(tweak_data.blackmarket.projectiles) do
+		grenade = Global.blackmarket_manager.grenades[grenade_id]
+
+		if grenade and grenade.equipped and grenade.unlocked then
+			return grenade_id, math.ceil(grenade.amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1)) or 0
+		end
+	end
+
+	return self._defaults.grenade, math.ceil(Global.blackmarket_manager.grenades[self._defaults.grenade].amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1))
 end

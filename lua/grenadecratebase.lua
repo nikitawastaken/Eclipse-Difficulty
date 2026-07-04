@@ -185,7 +185,7 @@ Hooks:PostHook(GrenadeCrateBase, "setup", "eclipse_setup", function(self)
 end)
 
 Hooks:PostHook(GrenadeCrateBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
+	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
 		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
 	elseif self._empty then
 		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
@@ -357,7 +357,7 @@ Hooks:PostHook(GrenadeCrateDeployableBase, "setup", "eclipse_setup", function(se
 end)
 
 Hooks:PostHook(GrenadeCrateDeployableBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
+	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
 		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
 	elseif self._empty then
 		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)

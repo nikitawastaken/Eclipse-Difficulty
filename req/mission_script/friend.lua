@@ -4,60 +4,84 @@ local mobster_team = {
 		team = "mobster1",
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
 return {
+	-- Combine some navigation areas
+	[141003] = {
+		ai_area = {
+			{ 2, 66 },
+			{ 16, 72 },
+			{ 29, 88 },
+			{ 31, 95, 96 },
+			{ 34, 81 },
+			{ 36, 47, 179 },
+			{ 38, 89 },
+			{ 39, 86 },
+			{ 53, 80 },
+			{ 55, 105 },
+			{ 71, 78 },
+			{ 79, 82 },
+			{ 87, 90, 91, 92, 93, 94 },
+		},
+	},
 	[101103] = {
 		ponr = {
 			length = 360,
-			player_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 79, 82 },
-			{ 16, 72 },
-			{ 14, 15 },
-			{ 51, 80 },
-			{ 19, 77 },
-			{ 99, 101 },
-			{ 84, 100 },
-			{ 24, 76 },
-			{ 25, 75 },
-			{ 20, 23, 85 },
-			{ 3, 4, 181 },
-			{ 36, 47, 179 },
-			{ 2, 66, 108 },
-			{ 31, 95, 96 },
-			{ 55, 105, 106 },
-			{ 38, 39, 59, 86 },
-			{ 29, 83, 108, 109 },
-			{ 32, 48, 49, 67, 68 },
-			{ 87, 88, 89, 90, 91, 92, 93, 94 },
+	-- Disable bad navlink
+	[101057] = disabled,
+	-- Add some reinforce around the house
+	[100129] = { -- Preferred
+		reinforce = {
+			{
+				name = "mansion_left",
+				force = 2,
+				position = Vector3(-1500, -5250, -50),
+			},
+			{
+				name = "mansion_back",
+				force = 2,
+				position = Vector3(-3500, -1900, -50),
+			},
+			{
+				name = "mansion_front",
+				force = 2,
+				position = Vector3(4100, -3175, -150),
+			},
+			{
+				name = "mansion_right",
+				force = 2,
+				position = Vector3(1400, 2650, -175),
+			},
 		},
 	},
 	-- Enter main hall
 	[103594] = {
-		difficulty_max = 0.1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+			ignore_gain_mul = true,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = false, -- Disable forced diff
 		reinforce = {
 			{
 				name = "main_hall",
-				force = 4,
+				force = 3,
 				position = Vector3(-1700, -1075, 50),
 			},
 		},
@@ -76,7 +100,7 @@ return {
 			sound_event = "Play_bos_fri_04",
 		},
 	},
-	-- disable vanilla bag instance requirments
+	-- Disable vanilla bag instance requirments
 	[100165] = disabled,
 	-- Disable vanilla reinforce
 	-- Timed objective/escape zone reinforce BORING
@@ -84,31 +108,10 @@ return {
 	[100207] = disabled,
 	[100208] = disabled,
 	[100210] = disabled,
-	-- Add some reinforce around the house
-	[100129] = { -- Preferred
-		reinforce = {
-			{
-				name = "mansion_left",
-				force = 3,
-				position = Vector3(-1500, -5250, -50),
-			},
-			{
-				name = "mansion_back",
-				force = 3,
-				position = Vector3(-3500, -1900, -50),
-			},
-			{
-				name = "mansion_front",
-				force = 3,
-				position = Vector3(4100, -3175, -150),
-			},
-			{
-				name = "mansion_right",
-				force = 3,
-				position = Vector3(1400, 2650, -175),
-			},
-		},
-	},
+	-- Only boat escape
+	[100213] = disabled,
+	[100214] = disabled,
+	[103446] = disabled,
 	--You're Sosa's men, not undercover cops
 	[100852] = mobster_team,
 	[100854] = mobster_team,
@@ -153,27 +156,4 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
-	-- Van escapes disable nearby spawngroups and reinforce
-	[100240] = { -- add loot bag van 1
-		reinforce = {
-			{ name = "mansion_right" },
-		},
-		on_executed = {
-			{ id = 400002, delay = 0 },
-		},
-	},
-	[101208] = { -- add loot bag van 2
-		reinforce = {
-			{ name = "mansion_front" },
-		},
-		on_executed = {
-			{ id = 400004, delay = 0 },
-		},
-	},
-	-- Spawn group intervals
-	[100206] = roof_spawn,
-	[100719] = roof_spawn,
-	[100810] = roof_spawn,
-	[100921] = roof_spawn,
-	[101920] = roof_spawn,
 }

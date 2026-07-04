@@ -1,23 +1,27 @@
 NPCRaycastWeaponBase.flashlight_blacklist = {
+	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_mp5_tactical/wpn_npc_mp5_tactical"):key()] = true,
-	[Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92"):key()] = true,
+	[Idstring("units/payday2/weapons/wpn_npc_usp_tactical/wpn_npc_usp_tactical"):key()] = true,
+	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_asval/wpn_npc_asval"):key()] = true,
+	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pl14_tactical/wpn_npc_pl14_tactical"):key()] = true,
+	[Idstring("units/pd2_dlc_uno/weapons/wpn_npc_smoke/wpn_npc_smoke"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"):key()] = true,
 	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"):key()] = true,
-	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_asval/wpn_npc_asval"):key()] = true,
+	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"):key()] = true,
 	[Idstring("units/pd2_dlc_spa/weapons/wpn_npc_svd_silenced/wpn_npc_svd_silenced"):key()] = true,
 	[Idstring("units/pd2_dlc_drm/weapons/wpn_npc_heavy_zeal_sniper/wpn_npc_heavy_zeal_sniper"):key()] = true,
-	[Idstring("units/pd2_dlc_uno/weapons/wpn_npc_smoke/wpn_npc_smoke"):key()] = true,
 	[Idstring("units/pd2_dlc_usm1/weapons/wpn_npc_dmr/wpn_npc_dmr"):key()] = true,
-	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_mp5_bulldozer/wpn_npc_mp5_bulldozer"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer"):key()] = true,
+	[Idstring("units/payday2/weapons/wpn_npc_saiga_bulldozer/wpn_npc_saiga_bulldozer"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer"):key()] = true,
 	[Idstring("units/pd2_dlc_pent/weapons/wpn_npc_flamethrower_bulldozer/wpn_npc_flamethrower_bulldozer"):key()] = true,
 	[Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"):key()] = true,
+	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"):key()] = true,
 }
 
 Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
@@ -111,7 +115,7 @@ function NPCRaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, s
 		end
 
 		if is_player then
-			for _, category in ipairs(self:weapon_tweak_data().categories) do
+			for _, category in ipairs(self:categories()) do
 				if managers.player:has_category_upgrade(category, "consume_no_ammo_chance") then
 					local roll = math.rand(1)
 					local chance = managers.player:upgrade_value(category, "consume_no_ammo_chance", 0)

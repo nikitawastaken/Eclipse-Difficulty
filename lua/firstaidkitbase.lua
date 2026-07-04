@@ -1,9 +1,11 @@
 -- faks give HoT regen on use
 FirstAidKitBase.hot_regen_shift = 6
+FirstAidKitBase.movement_speed_shift = 8
 function FirstAidKitBase:setup(bits)
-	local upgrade_lvl, auto_recovery, hot_regen = self:_get_upgrade_levels(bits)
+	local upgrade_lvl, auto_recovery, hot_regen, movement_speed = self:_get_upgrade_levels(bits)
 	self._damage_reduction_upgrade = upgrade_lvl == 1
 	self._hot_regen = false
+	self._movement_speed_upgrade = movement_speed == 1
 
 	if Network:is_server() then
 		local from_pos = self._unit:position() + self._unit:rotation():z() * 10
@@ -36,11 +38,12 @@ function FirstAidKitBase:setup(bits)
 end
 
 function FirstAidKitBase:_get_upgrade_levels(bits)
-	local hot_regen = Bitwise:rshift(bits, FirstAidKitBase.hot_regen_shift)
+	local hot_regen = Bitwise:rshift(bits, FirstAidKitBase.hot_regen_shift) % 2
 	local auto_recovery = Bitwise:rshift(bits, FirstAidKitBase.auto_recovery_shift) % 2
 	local upgrade_lvl = Bitwise:rshift(bits, FirstAidKitBase.upgrade_lvl_shift) % 2 ^ FirstAidKitBase.upgrade_lvl_shift
+	local movement_speed = Bitwise:rshift(bits, FirstAidKitBase.movement_speed_shift)
 
-	return upgrade_lvl, auto_recovery, hot_regen
+	return upgrade_lvl, auto_recovery, hot_regen, movement_speed
 end
 
 function FirstAidKitBase:take(unit)
@@ -52,6 +55,10 @@ function FirstAidKitBase:take(unit)
 
 	if self._damage_reduction_upgrade then
 		managers.player:activate_temporary_upgrade("temporary", "first_aid_damage_reduction")
+	end
+
+	if self._movement_speed_upgrade then
+		managers.player:activate_temporary_upgrade("temporary", "first_aid_movement_speed_multiplier")
 	end
 
 	if managers.network:session() then

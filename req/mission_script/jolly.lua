@@ -4,14 +4,16 @@ local disabled = {
 		enabled = false,
 	},
 }
-local train_spawn = {
+local construction_spawn = {
 	values = {
-		interval = 30,
+		interval = 15,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local bridge_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -23,7 +25,7 @@ return {
 	[100082] = {
 		ponr = {
 			length = 120,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
+			length_balance_mul = { 1.25, 1.25, 1, 1 },
 		},
 	},
 	-- Disable hunt
@@ -59,11 +61,10 @@ return {
 	[400006] = scripted_swat_wall_spawn,
 	[400012] = scripted_swat_wall_spawn,
 	-- Spawn group intervals
-	[100944] = train_spawn,
-	[100945] = train_spawn,
-	[100979] = train_spawn,
-	[100996] = train_spawn,
-	[100997] = train_spawn,
+	[101063] = construction_spawn,
+	[100979] = construction_spawn,
+	[100996] = construction_spawn,
+	[100997] = construction_spawn,
 	[100381] = bridge_spawn,
 	[100532] = bridge_spawn,
 	[100214] = bridge_spawn,

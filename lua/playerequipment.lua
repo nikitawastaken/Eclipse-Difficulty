@@ -1,3 +1,30 @@
+function PlayerEquipment:use_ammo_bag()
+	local ray = self:valid_shape_placement("ammo_bag")
+
+	if ray then
+		local pos = ray.position
+		local rot = self:_m_deploy_rot()
+		rot = Rotation(rot:yaw(), 0, 0)
+
+		PlayerStandard.say_line(self, "s01x_plu")
+		managers.statistics:use_ammo_bag()
+
+		local ammo_upgrade_lvl = managers.player:upgrade_level("ammo_bag", "ammo_increase")
+		local bullet_storm_level = managers.player:upgrade_level("player", "no_ammo_cost")
+		local auto_reload = managers.player:has_category_upgrade("ammo_bag", "auto_reload")
+
+		if Network:is_client() then
+			managers.network:session():send_to_host("place_ammo_bag", pos, rot, ammo_upgrade_lvl, auto_reload, bullet_storm_level)
+		else
+			local unit = AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, managers.network:session():local_peer():id(), bullet_storm_level, auto_reload)
+		end
+
+		return true
+	end
+
+	return false
+end
+
 function PlayerEquipment:use_first_aid_kit()
 	local ray = self:valid_shape_placement("first_aid_kit")
 
@@ -10,11 +37,13 @@ function PlayerEquipment:use_first_aid_kit()
 		managers.statistics:use_first_aid()
 
 		local upgrade_lvl = managers.player:has_category_upgrade("first_aid_kit", "damage_reduction_upgrade") and 1 or 0
+		local movement_speed = managers.player:has_category_upgrade("first_aid_kit", "movement_speed_upgrade") and 1 or 0
 		local auto_recovery = managers.player:has_category_upgrade("first_aid_kit", "first_aid_kit_auto_recovery") and 1 or 0
 		local hot_regen = managers.player:has_category_upgrade("first_aid_kit", "first_aid_kit_hot_regen") and 1 or 0
 		local bits = Bitwise:lshift(auto_recovery, FirstAidKitBase.auto_recovery_shift)
 			+ Bitwise:lshift(upgrade_lvl, FirstAidKitBase.upgrade_lvl_shift)
 			+ Bitwise:lshift(hot_regen, FirstAidKitBase.hot_regen_shift)
+			+ Bitwise:lshift(movement_speed, FirstAidKitBase.movement_speed_shift)
 
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "FirstAidKitBase", pos, rot, bits)
@@ -36,6 +65,7 @@ function PlayerEquipment:use_grenade_case()
 		local rot = self:_m_deploy_rot()
 		rot = Rotation(rot:yaw() - 180, 0, 0)
 
+		PlayerStandard.say_line(self, "s01x_plu")
 		managers.statistics:use_grenade_crate()
 
 		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_case", "amount_increase")
@@ -60,6 +90,7 @@ function PlayerEquipment:use_grenade_crate()
 		local rot = self:_m_deploy_rot()
 		rot = Rotation(rot:yaw(), 0, 0)
 
+		PlayerStandard.say_line(self, "s01x_plu")
 		managers.statistics:use_grenade_crate()
 
 		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_crate", "amount_increase")

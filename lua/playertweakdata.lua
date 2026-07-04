@@ -62,21 +62,33 @@ function PlayerTweakData:_set_presets()
 	-- Multiplier on the range you can be detected from
 	-- Unsure if relevant in loud
 	self.suspicion.range_mul = get_difficulty_specific_value({
-		0.8,
+		0.9,
 		1,
-		1.2,
-		1.4,
-		1.7,
+		1.1,
+		1.3,
+		1.5,
 	})
 
 	-- Multiplier on how quickly you are detected
 	-- Unsure if relevant in loud
 	self.suspicion.buildup_mul = get_difficulty_specific_value({
-		0.8,
+		0.9,
 		1,
-		1.2,
-		1.4,
-		1.7,
+		1.1,
+		1.3,
+		1.5,
+	})
+
+	-- Additioanl detection range and buildup multipliers that scale linearly based on the number of used Strikes
+	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or 1
+
+	-- Time it takes for a player to exit the tased state
+	self.damage.TASED_RECOVER_TIME = get_difficulty_specific_value({
+		1,
+		1,
+		1,
+		2,
+		3,
 	})
 
 	-- On Pro Jobs, reduce the down timer per down by this many seconds, down to a minimum
@@ -128,6 +140,32 @@ function PlayerTweakData:_set_presets()
 	else
 		self.damage.automatic_respawn_time = nil
 	end
+
+	-- Stealth strike system
+	self.stealth_strikes = {
+		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }),
+		reason_addends = {
+			civilian_kill = 0.5,
+			alarm_pager_answered = 1,
+			alarm_pager_not_answered = 2,
+			alarm_pager_hang_up = 3,
+		},
+	}
+	if is_pro_job then
+		self.stealth_strikes.total_amount = self.stealth_strikes.total_amount - 1
+	end
+
+	-- Alarm pager "bluff" tables are now only used in the UI.
+	local function fill_pager_bluff_table(amount)
+		local tbl = {}
+		for i = 0, math.max(0, amount - 1) do
+			table.insert(tbl, 1)
+		end
+		return tbl
+	end
+
+	self.alarm_pager.bluff_success_chance = fill_pager_bluff_table(self.stealth_strikes.total_amount)
+	self.alarm_pager.bluff_success_chance_w_skill = self.alarm_pager.bluff_success_chance
 end
 
 PlayerTweakData._set_easy = PlayerTweakData._set_presets
@@ -146,16 +184,17 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 
 	self.gravity = -(982 * 1.5)
 
-	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
-
 	self.damage.respawn_time_penalty = 10
-	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
 
 	self.movement_state.standard.movement.jump_velocity.z = self.movement_state.standard.movement.jump_velocity.z * 1.25
 	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
 	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 
-	self.fall_health_damage = 0.6
+	self.fall_health_damage = self.fall_health_damage * 3.5
+	self.fall_damage_armor_mul = 0.75
+
+	self.speak_alert_size = 500
+	self.running_alert_size = 400
 
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
@@ -164,4 +203,25 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
+end)
+
+-- LMG Steelsights
+Hooks:PostHook(PlayerTweakData, "_init_new_stances", "eclipse_init_new_stances", function(self)
+	self.stances.hk21.steelsight.shoulders.translation = Vector3(-8.6, 6, 3.3)
+	self.stances.hk21.steelsight.shoulders.rotation = Rotation(-0.108, 0.0860001, -0.628)
+
+	self.stances.m249.steelsight.shoulders.translation = Vector3(-10.75, 6.6, 0.42)
+	self.stances.m249.steelsight.shoulders.rotation = Rotation(-0.108, 0.086001, -0.628)
+
+	self.stances.rpk.steelsight.shoulders.translation = Vector3(-10.745, -10.371, 4.81)
+	self.stances.rpk.steelsight.shoulders.rotation = Rotation(-0.107988, 0.087, -0.628)
+
+	self.stances.mg42.steelsight.shoulders.translation = Vector3(-10.78, -2.15, -0.9)
+	self.stances.mg42.steelsight.shoulders.rotation = Rotation(-0.108, 0.286, 1.32881e-009)
+
+	self.stances.par.steelsight.shoulders.translation = Vector3(-10.05, 9.631, 3.85)
+	self.stances.par.steelsight.shoulders.rotation = Rotation(-0.108, 0.0860001, -0.628)
+
+	self.stances.m60.steelsight.shoulders.translation = Vector3(-10.75, -6.369, -0.1)
+	self.stances.m60.steelsight.shoulders.rotation = Rotation(-0.208001, 0.286, 5.21102e-011)
 end)

@@ -1,10 +1,23 @@
 Hooks:PostHook(PlayerMovement, "init", "eclipse_init", function(self)
 	if managers.player:has_category_upgrade("player", "morale_boost") or managers.player:has_category_upgrade("cooldown", "long_dis_revive") then
 		self._rally_skill_data.range_sq = 490000
+		self._rally_skill_data.charges = tweak_data.upgrades.values.init_inspire_charges
 	end
 
 	self._underdog_skill_data.has_dodge = managers.player:has_category_upgrade("temporary", "dodge_outnumbered")
 end)
+
+-- Helper functions
+function PlayerMovement:set_inspire_charges(charges)
+	self._rally_skill_data.charges = charges
+
+	-- begin the cooldown (repurposed to be a reset timer) specifically whenever the first inspire charge is used
+	if self._rally_skill_data.charges == (tweak_data.upgrades.values.init_inspire_charges - 1) then
+		managers.player:disable_cooldown_upgrade("cooldown", "long_dis_revive")
+	end
+
+	-- Eclipse:log_chat("Inspire charges set to: " .. charges)
+end
 
 function PlayerMovement:on_SPOOCed(enemy_unit)
 	if self._unit:character_damage()._god_mode or self._unit:character_damage():get_mission_blocker("invulnerable") then
@@ -33,7 +46,13 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 
 		if alivePlayers == 1 then -- if you're the last man standing, cloaker kicks deal a portion of your max health in damage instead
 			local spooc_kick_damage = self._unit:character_damage():_max_health() * (enemy_unit:base():char_tweak().spooc_kick_damage or 0.25)
+			local current_player_health = self._unit:character_damage():get_real_health()
 			local spooc_kick_push = self._m_fwd:with_z(0.1):normalized() * 1000
+
+			-- leave player at 1 hp if cloaker damage is more than the player's current health
+			if current_player_health < spooc_kick_damage then
+				spooc_kick_damage = current_player_health - 0.1
+			end
 
 			self._unit:character_damage():change_health(-spooc_kick_damage)
 
@@ -112,4 +131,36 @@ function PlayerMovement:_upd_underdog_skill(t)
 	end
 
 	data.chk_t = t + (activated and data.chk_interval_active or data.chk_interval_inactive)
+end
+
+-- Transparency loud target priority multiplier
+function PlayerMovement:_apply_attention_setting_modifications(setting)
+	setting.detection = self._unit:base():detection_settings()
+
+	if managers.player:has_category_upgrade("player", "detection_risk_transparency") then
+		local transparency_value = managers.player:transparency_value()
+
+		setting.weight_mul = (setting.weight_mul or 1) * (1 - (0.05 * transparency_value))
+	end
+
+	if managers.player:has_category_upgrade("player", "camouflage_bonus") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "camouflage_bonus", 1)
+	end
+
+	if managers.player:has_category_upgrade("player", "camouflage_multiplier") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "camouflage_multiplier", 1)
+	end
+
+	if managers.player:has_category_upgrade("player", "uncover_multiplier") then
+		setting.weight_mul = (setting.weight_mul or 1) * managers.player:upgrade_value("player", "uncover_multiplier", 1)
+	end
+end
+
+-- Security Camera Rework by Hoppip
+local on_uncovered_original = PlayerMovement.on_uncovered
+function PlayerMovement:on_uncovered(enemy_unit, ...)
+	local enemy_base = alive(enemy_unit) and enemy_unit:base()
+	if not enemy_base or not enemy_base._get_operator or not enemy_base:_get_operator() then
+		return on_uncovered_original(self, enemy_unit, ...)
+	end
 end

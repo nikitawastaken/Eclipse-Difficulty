@@ -14,6 +14,9 @@ if not Eclipse then
 			flavor_text_tips = false,
 			team_ai_weapons = 1,
 			improved_gun_echo = 2,
+			welcome_message = true,
+			disable_christmas = false,
+			early_control_music = true,
 		},
 		loaded_elements = false,
 	}
@@ -26,6 +29,18 @@ if not Eclipse then
 	function Eclipse:require_lua(file)
 		local path = self.mod_path .. "lua/" .. file .. ".lua"
 		return io.file_is_readable(path) and blt.vm.dofile(path)
+	end
+
+	-- Similar to Eclipse:require() but does all found files in a folder
+	-- Supports only single returns for each file
+	function Eclipse:require_all_in_folder(folder)
+		local results = {}
+		local path = self.mod_path .. "req/" .. folder .. "/"
+		for _, file in pairs(file.GetFiles(path)) do
+			local result = blt.vm.dofile(path .. file)
+			table.insert(results, result)
+		end
+		return next(results) and results
 	end
 
 	function Eclipse:instance_script_patches()
@@ -60,18 +75,18 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-	function Eclipse:log_console(...)
+	function Eclipse:log_console(str, ...)
 		if self.logging then
-			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
+			log("[EclipseOverhaul] " .. str:format(...))
 		end
 	end
 
-	function Eclipse:warn_console(...)
-		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
+	function Eclipse:warn_console(str, ...)
+		log("[EclipseOverhaul][Warning] " .. str:format(...))
 	end
 
-	function Eclipse:error_console(...)
-		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
+	function Eclipse:error_console(str, ...)
+		log("[EclipseOverhaul][Error] " .. str:format(...))
 	end
 
 	function Eclipse:log_chat(...)
@@ -103,6 +118,12 @@ if not Eclipse then
 		else
 			Eclipse:log_chat(unpack(vals))
 			Eclipse._old_chat_vals = vals
+		end
+	end
+
+	function Eclipse:play_early_control_music()
+		if self.settings.early_control_music and managers.music then
+			managers.music:post_event(tweak_data.levels:get_music_event("control"))
 		end
 	end
 
@@ -203,6 +224,11 @@ if not Eclipse then
 			Eclipse.settings.flavor_text_tips = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_disable_christmas_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.disable_christmas = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -219,6 +245,11 @@ if not Eclipse then
 			local value = item:value()
 
 			Eclipse.settings.improved_gun_echo = value
+		end
+
+		function MenuCallbackHandler:eclipse_early_control_music_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.early_control_music = enabled
 		end
 
 		function MenuCallbackHandler:eclipse_save()
@@ -311,17 +342,37 @@ if not Eclipse then
 			priority = 100,
 		})
 
-		MenuHelper:AddMultipleChoice({
-			id = "improved_gun_echo",
-			title = "eclipse_menu_improved_gun_echo",
-			desc = "eclipse_menu_improved_gun_echo_desc",
-			callback = "eclipse_improved_gun_echo_setting",
-			items = {
-				"eclipse_menu_improved_gun_echo_vanilla",
-				"eclipse_menu_improved_gun_echo_oldschool",
-				"eclipse_menu_improved_gun_echo_heat",
-			},
-			value = Eclipse.settings.improved_gun_echo,
+		-- MenuHelper:AddMultipleChoice({
+		-- 	id = "improved_gun_echo",
+		-- 	title = "eclipse_menu_improved_gun_echo",
+		-- 	desc = "eclipse_menu_improved_gun_echo_desc",
+		-- 	callback = "eclipse_improved_gun_echo_setting",
+		-- 	items = {
+		-- 		"eclipse_menu_improved_gun_echo_vanilla",
+		-- 		"eclipse_menu_improved_gun_echo_oldschool",
+		-- 		"eclipse_menu_improved_gun_echo_heat",
+		-- 	},
+		-- 	value = Eclipse.settings.improved_gun_echo,
+		-- 	menu_id = menu_id,
+		-- 	priority = 100,
+		-- })
+
+		MenuHelper:AddToggle({
+			id = "disable_christmas",
+			title = "eclipse_menu_disable_christmas",
+			desc = "eclipse_menu_disable_christmas_desc",
+			callback = "eclipse_disable_christmas_toggle",
+			value = Eclipse.settings.disable_christmas,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "early_control_music",
+			title = "eclipse_menu_early_control_music",
+			desc = "eclipse_menu_early_control_music_desc",
+			callback = "eclipse_early_control_music_toggle",
+			value = Eclipse.settings.early_control_music,
 			menu_id = menu_id,
 			priority = 100,
 		})
@@ -376,6 +427,9 @@ if not Eclipse then
 	TheFixesPreventer.fix_ai_set_attention = true
 	TheFixesPreventer.tank_walk_near_players = true
 	TheFixesPreventer.fix_hostages_not_moving = true
+
+	-- Remove this function cause it (somehow) causes crashes in a very convoluted way that's difficult to fix in a "sane" way
+	function CoreDebug.class_name(...) end
 end
 
 if RequiredScript and not Eclipse.required[RequiredScript] then

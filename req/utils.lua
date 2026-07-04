@@ -71,6 +71,11 @@ function M.clean_level_id(end_patterns)
 	return level_id
 end
 
+-- Calculates Team AI balance multipliers weights
+function M.calculate_team_ai_weight(nr_team_ai, total_wgt)
+	return (total_wgt - 1) / nr_team_ai
+end
+
 -- Returns the current job ID
 function M.job_id()
 	return M.access_table(Global, "job_manager", "current_job", "job_id")
@@ -116,8 +121,8 @@ end
 
 -- Returns whether the game is Holdout
 function M.is_skirmish()
-	local level_tweak = M.access_table(tweak_data, "levels", M.level_id())
-	return level_tweak and level_tweak.group_ai_state == "skirmish" or managers and managers.skirmish and managers.skirmish:is_skirmish()
+	local levels_tweak = M.access_table(tweak_data, "levels", M.level_id())
+	return levels_tweak and levels_tweak.group_ai_state == "skirmish" or managers and managers.skirmish and managers.skirmish:is_skirmish()
 end
 
 -- Returns whether the difficulty is Normal or above, and Overkill or above
@@ -257,6 +262,17 @@ function M.get_difficulty_specific_value(t)
 	return t[#t]
 end
 
+-- Grab a value from a list based on difficulty group
+-- Easy/Normal, Hard/Overkill, and Death Wish are the three groups
+function M.get_difficulty_group_specific_value(t)
+	local difficulty_index = M.difficulty_index()
+	local group_index = difficulty_index < 4 and 1 or difficulty_index < 6 and 2 or 3
+	if t[group_index] ~= nil then
+		return t[group_index]
+	end
+	return t[#t]
+end
+
 -- Easily multiply the values in a list-style table such as { X, Y, Z }
 -- Can supply a mul A (for all values) or { A, B, C } (for corresponding values)
 function M.table_multiplier(target_table, mul)
@@ -288,38 +304,45 @@ function M.weighted_selector(t)
 	return selector
 end
 
--- The original one isn't good enough
-function M.callback(o, base_class, base_func_name, ...)
-	if base_class and base_func_name and base_class[base_func_name] then
-		if #{ ... } > 0 then
-			local args = { ... }
-			if o then
-				return function(...)
-					return base_class[base_func_name](o, unpack(args), ...)
-				end
-			else
-				return function(...)
-					return base_class[base_func_name](unpack(args), ...)
-				end
-			end
-		elseif o then
-			return function(...)
-				return base_class[base_func_name](o, ...)
-			end
-		else
-			return function(...)
-				return base_class[base_func_name](...)
-			end
-		end
-	elseif base_class then
-		local class_name = base_class and CoreDebug.class_name(getmetatable(base_class) or base_class)
+function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_dis, so_access)
+	return {
+		SO_access = so_access or "261600",
+		scan = true,
+		is_navigation_link = true,
+		align_position = true,
+		needs_pos_rsrv = true,
+		align_rotation = true,
+		interrupt_dmg = 0,
+		so_action = so_action,
+		search_position = search_position,
+		interrupt_dis = interrupt_dis or 7,
+		interval = interval or 2,
+		path_haste = "none",
+		path_stance = "none",
+		attitude = "avoid",
+	}
+end
 
-		Eclipse:warn_console(string.format('Callback on class "%s" refers to a non-existing function "%s".', class_name, base_func_name))
-	elseif base_func_name then
-		Eclipse:warn_console(string.format('Callback to function "%s" is on a nil class.', base_func_name))
-	else
-		Eclipse:warn_console("Callback class and function was nil.")
-	end
+-- Based on Bank Heist's hiding Cloaker SO setup
+-- search_position must be the same for all GroupAI hiding SOs
+-- interrupt_dis is in meters
+-- The SO group element must also be in AI navigation (or at least able to be found by GroupAI)
+function M.get_hiding_cloaker_so_opts(so_action, search_position, interrupt_dis)
+	return {
+		SO_access = "1024",
+		scan = true,
+		align_position = true,
+		needs_pos_rsrv = true,
+		align_rotation = true,
+		no_arrest = true,
+		interrupt_dmg = 0,
+		action_duration_min = 120,
+		action_duration_max = 180,
+		so_action = so_action,
+		search_position = search_position,
+		interrupt_dis = interrupt_dis or 7,
+		interval = -1,
+	}
 end
 
 -- Under GPL from

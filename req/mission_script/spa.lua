@@ -1,26 +1,51 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
-local van_arrive_time = 60 + (is_pro_job and 30 or 0)
-local skylight_spawn = {
+local van_arrive_timer = 60 + (is_pro_job and 60 or 0)
+local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
+local building_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
+local building_init_spawn = {
+	values = {
+		interval = 15,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+	groups = preferred.no_cops_agents,
+}
+local agile_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+	},
+	groups = preferred.no_cops_agents,
+}
+local agile_final_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+local difficulty_add_25 = {
+	difficulty_add = 0.25,
 }
 return {
+	-- add point of no return and disable endless assault
+	[100875] = {
+		ponr = { -- Set hunt, waiting for escape
+			length = 300,
+			length_balance_mul = { 1.25, 1, 0.875, 0.75 },
+		},
+	},
+	[100877] = {
+		values = {
+			enabled = false,
+		},
+	},
 	-- Combine some navigation areas
 	[100303] = {
 		ai_area = {
@@ -35,56 +60,33 @@ return {
 			{ 63, 162 },
 		},
 	},
-	-- add point of no return and disable endless assault
-	[100875] = {
-		ponr = { -- Set hunt, waiting for escape
-			length = 200,
-			player_mul = { 1.25, 1, 0.875, 0.75 },
-		},
-	},
-	[100877] = {
-		values = {
-			enabled = false,
-		},
-	},
+	-- add scripted diff increases
+	--	[102255] = difficulty_add_25, -- obj_complete_004
+	--	[102137] = difficulty_add_25, -- swap_spawns_to_the_ground
 	-- tweak van arrival timer
-	--[[
-	[101543] = {
-		values = {
-			time = van_arrive_time,
+	[100483] = {
+		on_executed = {
+			{ id = 100549, delay = van_arrive_timer, delay_rand = van_arrive_timer_random },
 		},
 	},
-	[101312] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	[101631] = {
-		values = {
-			time = van_arrive_time,
-		},
-	},
-	[101201] = {
-		values = {
-			timer = van_arrive_timer,
-		},
-	},
-	]]
-	--
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[100750] = window_spawn,
-	[101012] = window_spawn,
-	[102138] = window_spawn,
-	[102664] = window_spawn,
-	[104338] = window_spawn,
-	[104472] = window_spawn,
-	[102139] = skylight_spawn,
-	[102140] = skylight_spawn,
-	[104336] = skylight_spawn,
-	[104337] = skylight_spawn,
-	[107260] = skylight_spawn,
-	[107261] = skylight_spawn,
-	[102151] = roof_spawn,
-	[104347] = roof_spawn,
+	[102667] = building_init_spawn,
+	[102668] = building_init_spawn,
+	[107262] = building_init_spawn,
+	[107263] = building_init_spawn,
+	[102664] = building_init_spawn,
+	[104472] = building_init_spawn,
+	[107260] = building_init_spawn,
+	[107261] = building_init_spawn,
+	[102139] = building_spawn,
+	[102140] = building_spawn,
+	[104336] = building_spawn,
+	[104337] = building_spawn,
+	[100750] = agile_spawn,
+	[101012] = agile_spawn,
+	[102138] = agile_spawn,
+	[104338] = agile_spawn,
+	[102151] = agile_final_spawn,
+	[104347] = agile_final_spawn,
 }

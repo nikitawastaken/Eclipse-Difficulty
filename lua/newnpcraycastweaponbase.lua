@@ -184,7 +184,7 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 				user_unit,
 				self._shoot_through_data.from,
 				mvector3.copy(direction),
-				dmg_mul,
+				dmg_mul * (self._shoot_through_data.has_passed_shield and 0.5 or 1),
 				shoot_player,
 				self._shoot_through_data
 			)

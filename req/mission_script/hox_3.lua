@@ -5,20 +5,27 @@ local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
+
+local light_harasser = scripted_enemy.swat_1
+local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
+local harasser = {
+	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+}
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
+local ready_team_dozer = {
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
+}
+local ready_team_dozer_chance = {
+	values = {
+		chance = (diff_i * 10) * (is_pro_job and 1.25 or 1),
+	},
 }
 local ready_team_amount = {
 	values = {
@@ -26,49 +33,66 @@ local ready_team_amount = {
 		amount_random = diff_i_no_easy,
 	},
 }
-local ready_team_dozer = {
-	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer,
-}
-local ready_team_dozer_chance = {
+local flank_far_spawn = {
 	values = {
-		chance = (diff_i * 10) * (is_pro_job and 1.25 or 1),
+		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
-local harasser = {
-	enemy = diff_i < 5 and light_harasser or heavy_harasser,
-}
-local flank_spawn = {
+local flank_close_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local van_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+
 return {
 	[101735] = {
 		ponr = {
 			length = 180,
-			player_mul = { 1.25, 1.15, 1, 1 },
+			length_balance_mul = { 1.25, 1.15, 1, 1 },
 		},
 	},
 	-- Boss spawn
 	[102107] = {
-		difficulty_max = 0.1,
+		add_drama = {
+			amount = 1,
+			balance_mul = { 1, 1, 1, 1 },
+			team_ai_balance_mul_weight = 1,
+			ignore_gain_mul = true,
+		},
+		forced_difficulty = {
+			amount = 0.1,
+			time = { 15, 30 },
+			delay = 0,
+		},
 	},
 	-- Boss dead
 	[100788] = {
-		difficulty_max = 1,
-		difficulty_min = 1,
+		forced_difficulty = false, -- Disable forced diff
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400084, delay = 0 },
+		},
 	},
 	-- replace the turret with spawngroup
 	[103524] = {
@@ -108,23 +132,54 @@ return {
 			{
 				name = "house_front",
 				force = 3,
-				position = Vector3(-1600, 0, 0),
+				position = Vector3(-1700, 0, 0),
 			},
 			{
 				name = "house_left",
-				force = 3,
-				position = Vector3(-650, 2500, -150),
+				force = 2,
+				position = Vector3(1900, 2000, 0),
 			},
 			{
 				name = "house_right",
-				force = 3,
-				position = Vector3(1600, -900, 0),
+				force = 2,
+				position = Vector3(1650, -1100, 0),
 			},
 			{
 				name = "house_back",
 				force = 3,
-				position = Vector3(3000, 800, 20),
+				position = Vector3(3000, 900, 20),
 			},
+		},
+	},
+	-- Enable reinforce based on the panic room's location
+	[101696] = { -- position_001
+		on_executed = {
+			{ id = 400091, delay = 0 },
+		},
+	},
+	[101697] = { -- position_002
+		on_executed = {
+			{ id = 400092, delay = 0 },
+		},
+	},
+	[101698] = { -- position_003
+		on_executed = {
+			{ id = 400093, delay = 0 },
+		},
+	},
+	[101699] = { -- position_004
+		on_executed = {
+			{ id = 400094, delay = 0 },
+		},
+	},
+	[101700] = { -- position_005
+		on_executed = {
+			{ id = 400095, delay = 0 },
+		},
+	},
+	[101701] = { -- position_006
+		on_executed = {
+			{ id = 400096, delay = 0 },
 		},
 	},
 	-- Ready Team enemy amount scales with difficulty (kind of, it's a bit random)
@@ -155,10 +210,18 @@ return {
 	[400017] = van_spawn,
 	[400026] = van_spawn,
 	[400035] = scripted_swat_van_spawn,
-	[100019] = flank_spawn,
-	[102424] = flank_spawn,
-	[102438] = flank_spawn,
-	[102459] = flank_spawn,
+	[100019] = flank_far_spawn,
+	[102424] = flank_far_spawn,
+	[102438] = flank_close_spawn,
+	[102459] = flank_close_spawn,
+	[400074] = cloaker_spawn,
+	[400075] = cloaker_spawn,
+	[400076] = cloaker_spawn,
+	[400077] = cloaker_spawn,
+	[400078] = cloaker_spawn,
+	[400079] = cloaker_spawn,
+	[400080] = cloaker_spawn,
+	[400081] = cloaker_spawn,
 	-- Harassers
 	[100883] = harasser,
 	[100884] = harasser,

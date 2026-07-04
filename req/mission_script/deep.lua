@@ -3,13 +3,6 @@ local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local bellmead_1 = scripted_enemy.bellmead_security_1
-local bellmead_2 = scripted_enemy.bellmead_security_1
-local bellmead_3 = scripted_enemy.bellmead_security_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
@@ -27,53 +20,59 @@ local sniper_trigger_times = {
 local rappel_spawn = {
 	values = {
 		interval = 15,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local pillar_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
 }
 local fueling_area_lower_spawn = {
 	values = {
 		interval = 20,
-	},
-}
-local pillar_spawn = {
-	values = {
-		interval = 30,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local tower_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local fueling_area_upper_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local drill_room_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local bellmeads = {
-	bellmead_1,
-	bellmead_2,
-	bellmead_3,
+	scripted_enemy.bellmead_security_1,
+	scripted_enemy.bellmead_security_1,
+	scripted_enemy.bellmead_security_1,
 }
 local bellmead_enemy = {
 	enemy = bellmeads,
 }
 local ambush_bulldozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local ambush_bulldozers_eclipse = {
-	[green_bulldozer] = 3,
-	[black_bulldozer] = 3,
-	[elite_ben_bulldozer] = 2,
-	[elite_skull_bulldozer] = 2,
+	[scripted_enemy.bulldozer_1] = 3,
+	[scripted_enemy.bulldozer_2] = 3,
+	[scripted_enemy.elite_bulldozer_1] = 2,
+	[scripted_enemy.elite_bulldozer_2] = 2,
 }
 local ambush_bulldozer_enemy = {
 	enemy = is_eclipse and ambush_bulldozers_eclipse or ambush_bulldozers,
@@ -84,6 +83,18 @@ local door_ambush_dozer_chance = {
 	chance = door_ambush_dozer,
 }
 return {
+	-- Increase the PONR duration and add difficulty scaling
+	[102646] = {
+		values = {
+			time_normal = 300,
+			time_hard = 300,
+			time_overkill = 270,
+			time_overkill_145 = 270,
+			time_easy_wish = 240,
+			time_overkill_290 = 240,
+			time_sm_wish = 240,
+		},
+	},
 	-- Disable crappy vanilla reinforce
 	[104207] = disable,
 	[104208] = disable,
@@ -96,17 +107,17 @@ return {
 				position = Vector3(4375, 150, 4500),
 			},
 			{
-				name = "stairs1",
+				name = "stairs01",
 				force = 2,
 				position = Vector3(2900, 3800, 4000),
 			},
 			{
-				name = "stairs2",
+				name = "stairs02",
 				force = 2,
 				position = Vector3(4500, 2800, 3800),
 			},
 			{
-				name = "stairs3",
+				name = "stairs03",
 				force = 2,
 				position = Vector3(1300, -875, 4000),
 			},
@@ -163,8 +174,8 @@ return {
 			spawn_groups = {
 				101777, -- 45s
 				101778, -- 45s
+				103986, -- 45s
 				--102086, -- 45s
-				--103986, -- 45s
 				--105278, -- 45s
 				400006, -- 20s
 				400012, -- 20s

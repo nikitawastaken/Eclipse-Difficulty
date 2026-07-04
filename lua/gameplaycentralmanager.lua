@@ -83,9 +83,10 @@ function GamePlayCentralManager:spawn_pickup(params)
 
 	local unit_name = tweak_data.pickups[params.name].unit
 
-	unit = safe_spawn_unit(unit_name, params.position, params.rotation)
+	local unit = safe_spawn_unit(unit_name, params.position, params.rotation)
 
 	if unit and unit:pickup() then
 		unit:pickup():set_upgrades(params.has_extra_dmg_double_drop)
+		managers.network:session():send_to_peers_synched("eclipse_sync_pickup_upgrade", unit, params.has_extra_dmg_double_drop)
 	end
 end

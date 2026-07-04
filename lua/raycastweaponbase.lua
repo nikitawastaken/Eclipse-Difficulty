@@ -4,6 +4,7 @@ RaycastWeaponBase.autofire_fix_blacklist = {
 	["flamethrower_mk2"] = true,
 	["money"] = true,
 	["system"] = true,
+	["mg42"] = true,
 }
 
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -36,17 +37,13 @@ function RaycastWeaponBase:exit_run_speed_multiplier()
 
 	multiplier = multiplier * (weapon_tweak.exit_run_speed_multiplier or 1)
 
-	for _, category in ipairs(self:weapon_tweak_data().categories) do
+	for _, category in ipairs(self:categories()) do
 		multiplier = multiplier * managers.player:upgrade_value(category, "exit_run_speed_multiplier", 1)
 	end
 
 	multiplier = multiplier * managers.player:upgrade_value(self._name_id, "exit_run_speed_multiplier", 1)
 
 	return multiplier
-end
-
-function RaycastWeaponBase:is_explosive()
-	return self._ammo_data and self._ammo_data.explosive_ammo or self:is_category("grenade_launcher") or false
 end
 
 local mvec_to = Vector3()
@@ -76,10 +73,13 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	mvec3_norm(mvec_up_ay)
 	mvec3_set(mvec_spread_direction, direction)
 
+	local r = math.random()
 	local theta = math.random() * 360
+	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
+	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * math.random() * spread_x * spread_mul))
-	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * math.random() * spread_y * spread_mul))
+	mvec3_mul(mvec_right_ax, math.cos(theta) * math.tan(r * spread_x))
+	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
 	mvec3_set(mvec_to, mvec_spread_direction)
@@ -178,7 +178,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	if alive(self._obj_fire) then
 		-- charged shot effect
 		if managers.player:has_category_upgrade("snp", "charged_shot") and managers.player:is_charged_shot_allowed() then
-			local sniper_trail_effect = Idstring("effects/particles/weapons/sniper_trail")
+			local sniper_trail_effect = Idstring("effects/particles/weapons/sniper_trail_player")
 			local idstr_trail = Idstring("trail")
 			local idstr_simulator_length = Idstring("simulator_length")
 			local idstr_size = Idstring("size")
@@ -231,7 +231,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	return result
 end
 
--- Make explsoive weaposn not benefit from infinite ammo upgrades / add no ammo consumption chance upgrade
+-- add no ammo consumption chance upgrade
 function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
 	if managers.player:has_activate_temporary_upgrade("temporary", "no_ammo_cost_buff") then
 		managers.player:deactivate_temporary_upgrade("temporary", "no_ammo_cost_buff")
@@ -256,11 +256,8 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 
 	local is_player = self._setup.user_unit == managers.player:player_unit()
 	local is_explosive = self:is_explosive()
-	local consume_ammo = is_explosive
-		or not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade(
-			"player",
-			"berserker_no_ammo_cost"
-		))
+	local consume_ammo = not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier")
+		or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost")
 		or not is_player
 	local ammo_usage = self:ammo_usage()
 
@@ -278,8 +275,6 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 
 				if roll < chance then
 					ammo_usage = 0
-
-					print("NO AMMO COST")
 				end
 			end
 		end
@@ -303,17 +298,17 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 		end
 
 		if ammo_in_clip > 0 and remaining_ammo <= (self.AKIMBO and 1 or 0) then
-			local w_td = self:weapon_tweak_data()
+			local weapon_tweak = self:weapon_tweak_data()
 
-			if w_td.animations and w_td.animations.magazine_empty then
+			if weapon_tweak.animations and weapon_tweak.animations.magazine_empty then
 				self:tweak_data_anim_play("magazine_empty")
 			end
 
-			if w_td.sounds and w_td.sounds.magazine_empty then
+			if weapon_tweak.sounds and weapon_tweak.sounds.magazine_empty then
 				self:play_tweak_data_sound("magazine_empty")
 			end
 
-			if w_td.effects and w_td.effects.magazine_empty then
+			if weapon_tweak.effects and weapon_tweak.effects.magazine_empty then
 				self:_spawn_tweak_data_effect("magazine_empty")
 			end
 
@@ -412,9 +407,10 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 		} or nil
 	end
 
-	local can_shoot_through_wall = setup_data.can_shoot_through_wall
-	local can_shoot_through_shield = setup_data.can_shoot_through_shield
-	local can_shoot_through_enemy = setup_data.can_shoot_through_enemy
+	local has_temp_piercing_upgrade = managers.player:has_activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
+	local can_shoot_through_wall = setup_data.can_shoot_through_wall or has_temp_piercing_upgrade
+	local can_shoot_through_shield = setup_data.can_shoot_through_shield or has_temp_piercing_upgrade
+	local can_shoot_through_enemy = setup_data.can_shoot_through_enemy or has_temp_piercing_upgrade
 	local wall_mask = setup_data.wall_mask
 	local shield_mask = setup_data.shield_mask
 	local ai_vision_ids = Idstring("ai_vision")
@@ -457,7 +453,7 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 				break
 			elseif not can_shoot_through_wall and in_slot_func(unit, wall_mask) and (has_ray_type_func(hit.body, ai_vision_ids) or has_ray_type_func(hit.body, bulletproof_ids)) then
 				break
-			elseif hit.unit:in_slot(shield_mask) and no_penetration then -- hi thanks resmod if you're reading this :)
+			elseif hit.unit:in_slot(shield_mask) and no_penetration then
 				break
 			end
 		end
@@ -466,7 +462,7 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	return unique_hits, hit_enemy, hit_enemy and enemies_hit or nil
 end
 
--- dragon's breath doesn't own shields anymore
+-- Dragon's Breath ammo no longer pierces shields
 function FlameBulletBase:bullet_slotmask()
 	return managers.slot:get_mask("bullet_impact_targets")
 end
@@ -554,7 +550,13 @@ function RaycastWeaponBase:ammo_full()
 	return true
 end
 
+-- Weapons can be set to take more ammo for a full refill from ammo bags
+function RaycastWeaponBase:get_ammo_bag_consumption_mul()
+	return self._ammo_bag_consumption_mul
+end
+
 function RaycastWeaponBase:add_ammo_from_bag(available)
+	local ammo_bag_consumption_mul = self.get_ammo_bag_consumption_mul and self:get_ammo_bag_consumption_mul() or 1
 	local function process_ammo(ammo_base, amount_available)
 		if ammo_base:get_ammo_max() <= ammo_base:get_ammo_total() then
 			return 0
@@ -562,11 +564,11 @@ function RaycastWeaponBase:add_ammo_from_bag(available)
 
 		local ammo_max = ammo_base:get_ammo_max()
 		local ammo_total = ammo_base:get_ammo_total()
-		local wanted = 1 - ammo_total / ammo_max
+		local wanted = (1 - ammo_total / ammo_max) * ammo_bag_consumption_mul
 		local can_have = math.min(wanted, amount_available)
 
 		ammo_base:set_ammo_total(math.min(ammo_max, ammo_total + math.ceil(can_have * ammo_max)))
-		print(wanted, can_have, math.ceil(can_have * ammo_max), ammo_base:get_ammo_total())
+		-- print(wanted, can_have, math.ceil(can_have * ammo_max), ammo_base:get_ammo_total())
 
 		return can_have
 	end
@@ -584,7 +586,7 @@ function RaycastWeaponBase:add_ammo_from_bag(available)
 		end
 	end
 
-	return can_have
+	return can_have, ammo_bag_consumption_mul
 end
 
 function RaycastWeaponBase:add_ammo(ratio, add_amount_override)
@@ -727,4 +729,71 @@ function RaycastWeaponBase:add_ammo_to_mag(ammo, index)
 
 	self:ammo_base():set_ammo_remaining_in_clip(new_ammo)
 	managers.hud:set_ammo_amount(index, self:ammo_info())
+end
+
+function RaycastWeaponBase:can_reload()
+	local clip_ratio = self:ammo_base().clip_ratio and self:ammo_base():clip_ratio() or 1
+
+	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and clip_ratio >= 1
+end
+
+-- Firestorm Incendiary Ammo DoT
+function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, shield_knock, knock_down, stagger, variant)
+	local action_data = {
+		variant = variant or self.VARIANT,
+		damage = damage,
+		weapon_unit = weapon_unit,
+		attacker_unit = user_unit,
+		col_ray = col_ray,
+		armor_piercing = armor_piercing,
+		shield_knock = shield_knock,
+		knock_down = knock_down,
+		stagger = stagger,
+	}
+	local defense_data = col_ray.unit:character_damage():damage_fire(action_data)
+
+	if defense_data and defense_data ~= "friendly_fire" then
+		local char_dmg_ext = alive(col_ray.unit) and col_ray.unit:character_damage()
+
+		if char_dmg_ext and char_dmg_ext.damage_dot and (not char_dmg_ext.dead or not char_dmg_ext:dead()) then
+			local fs_incendiary_dot = {
+				PROCESSED = true,
+				name = "firestorm",
+				variant = "fire",
+				damage_class = "FlameBulletBase",
+				dot_damage = math.sqrt(damage) * 4,
+				dot_length = 3,
+				dot_trigger_chance = 1,
+				dot_trigger_max_distance = 1500 * damage,
+				dot_grace_period = 0,
+				dot_tick_period = 0.5,
+			}
+
+			local dot_data = managers.player:has_active_temporary_property("bullet_storm") and fs_incendiary_dot or DOTBulletBase._dot_data_by_weapon(self, weapon_unit)
+
+			if dot_data then
+				self:start_dot_damage(col_ray, weapon_unit, dot_data, nil, user_unit, defense_data)
+			end
+		end
+	end
+
+	return defense_data
+end
+
+-- Ammo Bag autoreload mag multiplier
+function RaycastWeaponBase:on_reload(amount)
+	local ammo_base = self._reload_ammo_base or self:ammo_base()
+	amount = amount or ammo_base:get_ammo_max_per_clip()
+
+	if self._setup.expend_ammo then
+		ammo_base:set_ammo_remaining_in_clip(math.min(ammo_base:get_ammo_total(), amount))
+	else
+		ammo_base:set_ammo_remaining_in_clip(amount)
+		ammo_base:set_ammo_total(amount)
+	end
+
+	managers.job:set_memory("kill_count_no_reload_" .. tostring(self._name_id), nil, true)
+
+	self._reload_ammo_base = nil
+	self._next_fire_allowed = self._unit:timer():time()
 end

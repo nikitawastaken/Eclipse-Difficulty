@@ -17,3 +17,12 @@ function JobManager:current_spawn_limit(special_type)
 
 	return math.floor(tweak_data.group_ai.special_unit_spawn_limits[special_type] * special_limit_balance_mul) or math.huge
 end
+
+-- proper pro job reenable
+function JobManager:is_current_job_professional()
+	if not self._global.current_job then
+		return
+	end
+
+	return Global.game_settings.one_down
+end

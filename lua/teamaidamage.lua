@@ -31,7 +31,7 @@ Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 
 		self._regenerate_t = nil
 	else
-		self._health = math.min(self._health + (self._char_dmg_tweak.HEALTH_REGEN or self._HEALTH_INIT * 0.1), self._HEALTH_INIT)
+		self._health = math.min(self._health + self._HEALTH_INIT * self._char_dmg_tweak.REGENERATE_RATIO, self._HEALTH_INIT)
 		self._health_ratio = self._health / self._HEALTH_INIT
 
 		if self._health_ratio < 1 then

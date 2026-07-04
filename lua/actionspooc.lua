@@ -1,43 +1,42 @@
 -- Allow Cloakers to dodge while charging
 local _upd_sprint_original = ActionSpooc._upd_sprint
 function ActionSpooc:_upd_sprint(t, ...)
-	if self._ext_anim.dodge then
-		return CopActionDodge.update(self, t)
-	elseif not self._next_dodge_check_t then
-		self._ext_movement:play_redirect("stand")
+	local spooc_dodge_check_t = self._unit:base():char_tweak().spooc_attack_dodge_timeout
+	if spooc_dodge_check_t then
+		if self._ext_anim.dodge then
+			return CopActionDodge.update(self, t)
+		elseif not self._next_dodge_check_t then
+			self._ext_movement:play_redirect("stand")
 
-		local spooc_dodge_check_t = self._unit:base():char_tweak().spooc_attack_dodge_timeout or { 0.5, 1 }
-		local dodge_timeout_mul = self._consecutive_dodge and 1 or 0.5
+			self._next_dodge_check_t = t + math.lerp(spooc_dodge_check_t[1], spooc_dodge_check_t[2], math.random())
+		end
 
-		self._next_dodge_check_t = t + (math.rand(spooc_dodge_check_t[1], spooc_dodge_check_t[2]) * dodge_timeout_mul)
-	end
+		if self._next_dodge_check_t < t then
+			self._next_dodge_check_t = nil
 
-	if self._next_dodge_check_t < t then
-		self._next_dodge_check_t = nil
-		self._consecutive_dodge = true
+			local redir_res = self._ext_movement:play_redirect("dodge_roll")
+			if not redir_res then
+				return
+			end
 
-		local redir_res = self._ext_movement:play_redirect("dodge_roll")
-		if not redir_res then
+			self._side = table.random({ "r", "l", "fwd" })
+			self._direction = mvector3.copy(self._ext_movement:m_fwd())
+
+			if self._side ~= "fwd" then
+				mvector3.cross(self._direction, self._direction, math.UP)
+				if self._side == "l" then
+					mvector3.negate(self._direction)
+				end
+				mvector3.lerp(self._direction, self._direction, self._ext_movement:m_fwd(), 0.5)
+			end
+
+			self._ids_base = Idstring("base")
+			CopActionDodge._determine_rotation_transition(self)
+
+			self._machine:set_speed(redir_res, 2)
+			self._machine:set_parameter(redir_res, self._side, 1)
 			return
 		end
-
-		self._side = table.random({ "r", "l", "fwd" })
-		self._direction = mvector3.copy(self._ext_movement:m_fwd())
-
-		if self._side ~= "fwd" then
-			mvector3.cross(self._direction, self._direction, math.UP)
-			if self._side == "l" then
-				mvector3.negate(self._direction)
-			end
-			mvector3.lerp(self._direction, self._direction, self._ext_movement:m_fwd(), 0.5)
-		end
-
-		self._ids_base = Idstring("base")
-		CopActionDodge._determine_rotation_transition(self)
-
-		self._machine:set_speed(redir_res, 2)
-		self._machine:set_parameter(redir_res, self._side, 1)
-		return
 	end
 
 	return _upd_sprint_original(self, t, ...)
@@ -94,4 +93,15 @@ function ActionSpooc:on_exit()
 	if alive(self._target_unit) and self._target_unit:base().is_local_player then
 		self._target_unit:movement():on_targetted_for_attack(false, self._common_data.unit)
 	end
+end
+
+-- Make sure Cloaker charge noise is disabled on Death Wish regardless of the Christmas event being active
+function ActionSpooc:_use_christmas_sounds()
+	if not self._unit:base():char_tweak().use_spooc_attack_sound then
+		return false
+	end
+
+	local tweak = managers.job:current_level_data()
+
+	return tweak and tweak.is_christmas_heist
 end

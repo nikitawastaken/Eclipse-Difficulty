@@ -2,6 +2,7 @@
 local M = {}
 
 local diff_i = Eclipse.utils.difficulty_index()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -23,12 +24,24 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local elite_sniper = scripted_enemy.elite_sniper
 
+local light_harasser = { scripted_enemy.swat_1 }
+local heavy_harasser = diff_i > 5 and { [scripted_enemy.heavy_swat_1] = 3, [scripted_enemy.elite_sniper] = 1 } or { scripted_enemy.heavy_swat_1 }
+
+local harasser = diff_i >= 5 and heavy_harasser or light_harasser
+
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3, [cloaker] = 3, [elite_sniper] = 2, [elite_bulldozer_neil] = 2, [elite_bulldozer_skull] = 2 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 4, [cloaker] = 3, [green_bulldozer] = 1, [black_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 3, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[elite_sniper] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }),
+	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 1 }),
+	[elite_bulldozer_neil] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+	[elite_bulldozer_skull] = get_difficulty_group_specific_value({ 0, 0, 2 }),
+}
+local specials = specials_list
 
 local random_dozers = {
 	green_bulldozer,
@@ -50,6 +63,7 @@ local optsDefend_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -144,6 +158,133 @@ local optsTaserAmbush = {
 	enemy = taser,
 	enabled = true,
 }
+
+local optsSWAT_Harasser_1 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400102, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_2 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400103, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_3 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400104, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_4 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400105, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_5 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400106, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSWAT_Harasser_6 = {
+	enemy_table = harasser,
+	on_executed = {
+		{ id = 400107, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSniper_SO = {
+	SO_access = "128",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	use_instigator = true,
+	path_stance = "cbt",
+	interval = 2,
+	so_action = "AI_sniper",
+}
+
+local optsSpawnHarassers = {
+	on_executed = {
+		{ id = 400090, delay = 0 },
+		{ id = 400091, delay = 0 },
+		{ id = 400092, delay = 0 },
+		{ id = 400093, delay = 0 },
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400109, delay = 0 },
+	},
+	enabled = true,
+	trigger_times = 1,
+}
+
+local optsrespawn_harasser_1 = {
+	on_executed = {
+		{ id = 400090, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400090,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_2 = {
+	on_executed = {
+		{ id = 400091, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400091,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_3 = {
+	on_executed = {
+		{ id = 400092, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400093,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_4 = {
+	on_executed = {
+		{ id = 400093, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400093,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_5 = {
+	on_executed = {
+		{ id = 400094, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400094,
+	},
+	event = "death",
+}
+local optsrespawn_harasser_6 = {
+	on_executed = {
+		{ id = 400095, delay = is_eclipse and 60 or 90, delay_rand = 30 },
+	},
+	elements = {
+		400095,
+	},
+	event = "death",
+}
+local Bain_harrasersinbound = {
+	dialogue = "play_pln_gen_att_02",
+}
+
 local optsOpenSwatVanDoors_1 = {
 	enabled = true,
 	trigger_list = {
@@ -163,10 +304,42 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local chopper_amount = {
-	amount = is_eclipse and 2 or 1,
+local optsChopper_trigger_overkill_below = {
+	on_executed = {
+		{ id = 400078, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsChopper_trigger_death_wish = {
+	on_executed = {
+		{ id = 400079, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local chopper_amount_dw = {
+	amount = 2,
 	on_executed = {
 		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400031, delay = 0, delay_rand = 10 },
+		{ id = 400037, delay = 0, delay_rand = 10 },
+	},
+}
+local chopper_amount_ovk_below = {
+	amount = is_pro_job and 2 or 1,
+	on_executed = {
 		{ id = 400031, delay = 0, delay_rand = 10 },
 		{ id = 400037, delay = 0, delay_rand = 10 },
 	},
@@ -209,10 +382,6 @@ local optsspawnswatchopper_1 = {
 		{ id = 400027, delay = 26 },
 		{ id = 400028, delay = 26 },
 		{ id = 400029, delay = 26 },
-		{ id = 400026, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400027, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400028, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400029, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400030, delay = 0 },
 	},
 	enabled = true,
@@ -223,10 +392,6 @@ local optsspawnswatchopper_2 = {
 		{ id = 400033, delay = 26 },
 		{ id = 400034, delay = 26 },
 		{ id = 400035, delay = 26 },
-		{ id = 400032, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400033, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400034, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400035, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400036, delay = 0 },
 	},
 	enabled = true,
@@ -235,6 +400,7 @@ local optsHuntSO = {
 	SO_access = tostring(128 + 1024 + 2048 + 4096 + 8192),
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -248,7 +414,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
+	enabled = true,
 	elements = {
 		400068,
 	},
@@ -260,7 +426,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = (ambush_event_chance and normal_and_above) and true or false,
+	enabled = true,
 	toggle = "off",
 	elements = {
 		100197,
@@ -363,10 +529,10 @@ local optsSWATChopper_1 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
@@ -377,15 +543,15 @@ local optsSWATChopper_2 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "redi_flyin_left", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
 M.elements = {
-	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
+	-- skulldozer nearby the van on Death Wish (based on DW Trailer)
 	Eclipse.mission_elements.gen_dummy(400001, "van_dozer", Vector3(-8305, -3511, 0), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400002, "dozer_defend_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsDefend_SO),
 	Eclipse.mission_elements.gen_toggleelement(400003, "enable_dozervan", optsEnable_DWDozer),
@@ -474,12 +640,40 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400068, "enable_ambush_on_alarm", optsEnable_ambush_alarm),
 	Eclipse.mission_elements.gen_toggleelement(400069, "disable_locked_vault_door", optsdisable_locked_vault_door),
 	-- smoke bombs
-	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb),
-	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
+	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400075, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400078, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
+	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner_dw", chopper_amount_dw),
+	Eclipse.mission_elements.gen_element_filter(400080, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
+	Eclipse.mission_elements.gen_element_filter(400081, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
+
+	-- Harassers
+	Eclipse.mission_elements.gen_dummy(400090, "harasser_1", Vector3(1935, 4336, 1300), Rotation(-180, 0, 0), optsSWAT_Harasser_1),
+	Eclipse.mission_elements.gen_dummy(400091, "harasser_2", Vector3(-5075, 200, 850), Rotation(0, 0, 0), optsSWAT_Harasser_2),
+	Eclipse.mission_elements.gen_dummy(400092, "harasser_3", Vector3(-5510, -2293, 889.535), Rotation(0, 0, 0), optsSWAT_Harasser_3),
+	Eclipse.mission_elements.gen_dummy(400093, "harasser_4", Vector3(-3343, -2323, 889), Rotation(0, 0, 0), optsSWAT_Harasser_4),
+	Eclipse.mission_elements.gen_dummy(400094, "harasser_5", Vector3(-709, -2075, 400), Rotation(0, 0, 0), optsSWAT_Harasser_5),
+	Eclipse.mission_elements.gen_dummy(400095, "harasser_6", Vector3(-714, -2051, 400), Rotation(0, 0, 0), optsSWAT_Harasser_6),
+
+	Eclipse.mission_elements.gen_dummytrigger(400096, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_1),
+	Eclipse.mission_elements.gen_dummytrigger(400097, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_2),
+	Eclipse.mission_elements.gen_dummytrigger(400098, "respawn_harasser_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_3),
+	Eclipse.mission_elements.gen_dummytrigger(400099, "respawn_harasser_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_4),
+	Eclipse.mission_elements.gen_dummytrigger(400100, "respawn_harasser_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_5),
+	Eclipse.mission_elements.gen_dummytrigger(400101, "respawn_harasser_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_6),
+
+	Eclipse.mission_elements.gen_so(400102, "harasser_spot_so_1", Vector3(1656, 4320, 1300), Rotation(106, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400103, "harasser_spot_so_2", Vector3(-4880, 425, 850), Rotation(-96, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400104, "harasser_spot_so_3", Vector3(-5622, -1614, 889.535), Rotation(-45, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400105, "harasser_spot_so_4", Vector3(-3378, -1658.935, 889), Rotation(-33, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400106, "harasser_spot_so_5", Vector3(-689, -1735, 400), Rotation(0, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400107, "harasser_spot_so_6", Vector3(-101, -1706, 400), Rotation(0, 0, 0), optsSniper_SO),
+
+	Eclipse.mission_elements.gen_missionscript(400108, "spawn_harassers", optsSpawnHarassers),
+	Eclipse.mission_elements.gen_dialogue(400109, "harassers_inbound", Bain_harrasersinbound),
 }
 
 return M

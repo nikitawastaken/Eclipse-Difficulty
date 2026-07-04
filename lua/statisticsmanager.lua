@@ -25,6 +25,7 @@ StatisticsManager.special_unit_ids = {
 	"hector_boss",
 	"hector_boss_no_armor",
 	"fbi_boss",
+	"fbi_female_boss",
 	"tank_medic",
 	"tank_mini",
 	"marshal_marksman",
@@ -42,6 +43,13 @@ local old_stats = StatisticsManager.init
 function StatisticsManager:init()
 	old_stats(self)
 	self._defaults.killed.fbi_boss = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.fbi_female_boss = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,

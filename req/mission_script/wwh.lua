@@ -31,29 +31,8 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local unused_sniper_trigger_times = {
-	values = {
-		trigger_times = 0,
-		enabled = true,
-	},
-}
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-}
-local window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local boat_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
+local unused_sniper_trigger_times = deep_clone(sniper_trigger_times)
+unused_sniper_trigger_times.values.enabled = true
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -71,18 +50,29 @@ local chopper_trigger_times = {
 		trigger_times = 0,
 	},
 }
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+}
+local boat_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 return {
 	[100945] = { -- Open train doors - heist start
 		ponr = {
 			length = 800,
-			player_mul = { 2, 1.25, 1, 0.75 },
+			length_balance_mul = { 2, 1.25, 1, 0.75 },
 		},
 	},
 	[100810] = {
 		reinforce = {
 			{
 				name = "gate",
-				force = 4,
+				force = 3,
 				position = Vector3(1625, 3575, 950),
 			},
 		},
@@ -92,7 +82,7 @@ return {
 	[100525] = sniper_trigger_times,
 	[100529] = sniper_trigger_times,
 	[100534] = sniper_trigger_times,
-	[100540] = unused_sniper_trigger_times,
+	--[100540] = unused_sniper_trigger_times,
 	[100545] = unused_sniper_trigger_times,
 	--[100549] = unused_sniper_trigger_times,
 	[100553] = sniper_trigger_times,
@@ -137,14 +127,11 @@ return {
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
 	]]
-	-- slow down a few spawnpoints
-	[400007] = scripted_swat_van_spawn,
-	[400015] = scripted_swat_van_spawn,
-	[400023] = scripted_swat_van_spawn,
-	[100817] = roof_spawn,
-	[101024] = roof_spawn,
-	[101029] = roof_spawn,
+	-- Spawn group intervals
 	[100605] = window_spawn,
 	[100177] = boat_spawn,
 	[100737] = boat_spawn,
+	[400007] = scripted_swat_van_spawn,
+	[400015] = scripted_swat_van_spawn,
+	[400023] = scripted_swat_van_spawn,
 }

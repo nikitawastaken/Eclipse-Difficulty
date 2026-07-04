@@ -1,11 +1,11 @@
 ---@module Hostile Takeover
 local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
 local scripted_enemy = Eclipse.scripted_enemy
-local swat = scripted_enemy.swat_1
-local swat_sg = scripted_enemy.swat_2
-local heavy_swat = scripted_enemy.heavy_swat_1
-local heavy_swat_sg = scripted_enemy.heavy_swat_2
+local swat = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
+local swat_sg = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local green_bulldozer = scripted_enemy.bulldozer_1
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local cloaker = scripted_enemy.cloaker
@@ -14,16 +14,21 @@ local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
-local swats = { [swat] = 3, [swat_sg] = 3, [heavy_swat] = 2, [heavy_swat_sg] = 2 }
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1 }
-local specials_list_easy_normal = { [taser] = 2, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
+local swats = { [swat] = 2, [swat_sg] = 1 }
+
+local specials_list = {
+	[taser] = get_difficulty_group_specific_value({ 1, 2, 2 }),
+	[medic] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+}
+local specials = specials_list
 
 local patches = {
 	swat_chopper = {
-		regular_spawns = table.set(100010, 100011, 100012),
-		special_spawn = table.set(100013),
+		regular_spawns = table.set(100010, 100011),
+		special_spawn = table.set(100012, 100013),
 		filters_disable = table.set(100041, 100027, 100028),
 		filters_normal_above = table.set(100026),
 	},

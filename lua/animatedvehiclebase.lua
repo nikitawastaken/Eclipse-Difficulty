@@ -1,4 +1,4 @@
-local level_id = Eclipse.utils.level_id()
+local level_id = Eclipse.utils.clean_level_id()
 local is_testmap = Eclipse.utils.is_testmap()
 local swat_turret_whitelist = Eclipse:require("swat_turret_whitelist")
 

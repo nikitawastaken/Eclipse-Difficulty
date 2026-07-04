@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 -- add female bikers to spawn roster
 local biker_enemy = {
@@ -7,9 +7,9 @@ local biker_enemy = {
 	["units/payday2/characters/ene_biker_2/ene_biker_2"] = 5,
 	["units/payday2/characters/ene_biker_3/ene_biker_3"] = 5,
 	["units/payday2/characters/ene_biker_4/ene_biker_4"] = 5,
-	["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
-	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
+	--["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
 local biker = { enemy = biker_enemy }
 local disabled = {
@@ -19,56 +19,35 @@ local disabled = {
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 local bags_required = {
 	values = {
-		amount = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 return {
-	-- Add pump and tanker reinforce
-	[102160] = {
-		reinforce = { -- pump 1
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(2750, -9850, -3200),
-			},
+	[100109] = { -- police
+		paused_difficulty_addends = { -- disable addends
+			on_entered_regroup = 1,
 		},
 	},
-	[102163] = {
-		reinforce = { -- pump 2
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(3725, -12725, -3200),
-			},
+	[102226] = { -- mexico_preferreds
+		paused_difficulty_addends = { -- enable addends
+			on_entered_regroup = false,
 		},
 	},
-	[102616] = {
-		reinforce = { -- tanker 1
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(2425, -7375, -3100),
-			},
-		},
-	},
-	[102618] = {
-		reinforce = { -- tanker 2
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(1325, -12700, -3200),
-			},
+	[100020] = {
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- disable selected spawngroup based on which tunnel has been chossen
@@ -116,6 +95,26 @@ return {
 	[102878] = bags_required,
 	[102881] = bags_required,
 	[102893] = bags_required,
+	-- Spawn group intervals
+	[103235] = window_spawn,
+	[103048] = window_spawn,
+	[103067] = window_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
+	[102553] = cloaker_spawn,
+	[102554] = cloaker_spawn,
+	[102555] = cloaker_spawn,
+	[102556] = cloaker_spawn,
+	[102557] = cloaker_spawn,
+	[102558] = cloaker_spawn,
+	[102559] = cloaker_spawn,
+	[102560] = cloaker_spawn,
 	-- gangsters
 	[100670] = biker,
 	[100671] = biker,
@@ -144,24 +143,4 @@ return {
 	[101683] = biker,
 	[101774] = biker,
 	[101866] = biker, -- camera man
-	-- Spawn group intervals
-	[103235] = window_spawn,
-	[103048] = window_spawn,
-	[103067] = window_spawn,
-	[100844] = cloaker_spawn,
-	[100848] = cloaker_spawn,
-	[100852] = cloaker_spawn,
-	[100856] = cloaker_spawn,
-	[100860] = cloaker_spawn,
-	[100864] = cloaker_spawn,
-	[100868] = cloaker_spawn,
-	[100873] = cloaker_spawn,
-	[102553] = cloaker_spawn,
-	[102554] = cloaker_spawn,
-	[102555] = cloaker_spawn,
-	[102556] = cloaker_spawn,
-	[102557] = cloaker_spawn,
-	[102558] = cloaker_spawn,
-	[102559] = cloaker_spawn,
-	[102560] = cloaker_spawn,
 }

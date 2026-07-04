@@ -8,66 +8,56 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local shield = scripted_enemy.shield
-local sniper = scripted_enemy.sniper
-local cloaker = scripted_enemy.cloaker
-local swat = scripted_enemy.swat_1
-local elite_shield = scripted_enemy.elite_shield
-local taser = scripted_enemy.taser_1
-local bulldozer = scripted_enemy.bulldozer_1
-
-local diff_scaling = diff_i / 8
-
-local enabled_chance_taser_and_shields = math.random() <= diff_scaling
-local enabled_chance_dozer = math.random() <= diff_scaling
-local enabled_chance_dozer_scaffold = math.random() <= diff_scaling
-local enabled_chance_shield_scaffold = math.random() <= diff_scaling
+local enabled_chance_taser_and_shields = math.random() <= 0.4
+local enabled_chance_dozer = math.random() <= 0.3
+local enabled_chance_dozer_scaffold = math.random() <= 0.3
+local enabled_chance_shield_scaffold = math.random() <= 0.6
 
 local optsBulldozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	enabled = overkill_and_above and enabled_chance_dozer,
 }
 local optsBulldozer_scaffold = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	enabled = is_eclipse and enabled_chance_dozer_scaffold,
 }
 local optsShield_1 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400009, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_taser_and_shields,
 }
 local optsShield_2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400010, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_taser_and_shields,
 }
 local optsShield_scaff_1 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400012, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_shield_scaffold,
 }
 local optsShield_scaff_2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = {
 		{ id = 400013, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_shield_scaffold,
 }
 local optsTaser = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400011, delay = 0 },
 	},
 	enabled = overkill_and_above and enabled_chance_taser_and_shields,
 }
 local optsSWAT_1 = {
-	enemy = swat,
+	enemy = scripted_enemy.swat_1,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400023, delay = 0 },
@@ -75,7 +65,7 @@ local optsSWAT_1 = {
 	enabled = true,
 }
 local optsSWAT_2 = {
-	enemy = swat,
+	enemy = scripted_enemy.swat_1,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400024, delay = 0 },
@@ -83,7 +73,7 @@ local optsSWAT_2 = {
 	enabled = true,
 }
 local optsSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400021, delay = 0 },
@@ -91,7 +81,7 @@ local optsSniper_1 = {
 	enabled = true,
 }
 local optsSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	spawn_action = "e_sp_crh_to_std_rifle",
 	on_executed = {
 		{ id = 400022, delay = 0 },
@@ -99,7 +89,7 @@ local optsSniper_2 = {
 	enabled = true,
 }
 local optsCloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	spawn_action = "e_sp_climb_up_11m_down_0_7m",
 	participate_to_group_ai = true,
 	enabled = true,
@@ -110,6 +100,7 @@ local optsDefend_and_Sniper_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }

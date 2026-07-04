@@ -15,8 +15,8 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local dozer_spawn = is_eclipse and eclipse_dozers or diff_i > 3 and regular_dozers or green_bulldozer
-local dozer_chance = math.random() <= (is_eclipse and 0.4 or diff_i > 3 and 0.2 or 0.1) + (is_pro_job and 0.3 or 0)
+local dozer_spawn = is_eclipse and eclipse_dozers or regular_dozers
+local dozer_chance = math.random() <= (is_eclipse and 0.4 or 0.2) + (is_pro_job and 0.2 or 0)
 local double_dozers = {
 	values = {
 		enabled = not is_eclipse and true or false,
@@ -63,14 +63,52 @@ local lumber_upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- add FFO
+	-- Start FFO when grabbing the server
 	[100176] = {
 		ponr = {
-			length = 120,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
+			length = 60,
+			length_balance_mul = { 2, 1.5, 1, 0.75 },
+		},
+		reinforce = {
+			{ name = "lab_room01" },
+			{ name = "lab_room02" },
+			{ name = "lab_room03" },
 		},
 	},
 	[100524] = disabled,
+	-- Add new reinforce
+	[101583] = { -- area_player_downstairs
+		reinforce = {
+			{
+				name = "lab_room01",
+				force = 2,
+				position = Vector3(2675, 3225, -600),
+			},
+			{
+				name = "lab_room02",
+				force = 2,
+				position = Vector3(3300, 2550, -800),
+			},
+		},
+	},
+	[100337] = { -- x-ray_found_trigger003
+		reinforce = {
+			{
+				name = "lab_room03",
+				force = 2,
+				position = Vector3(1700, -60, -800),
+			},
+		},
+	},
+	[100339] = { -- x-ray_found_trigger005
+		reinforce = {
+			{
+				name = "lab_room03",
+				force = 2,
+				position = Vector3(-40, 1665, -700),
+			},
+		},
+	},
 	-- Disable instant difficulty increase
 	[101980] = disabled,
 	-- use unused lab spawn as random dozer unit
@@ -98,7 +136,7 @@ return {
 			{ id = 101053, delay = 0 },
 		},
 	},
-	-- disable single dozer mission scripts on eclipse
+	-- disable single dozer mission scripts on Death Wish
 	[101733] = double_dozers,
 	[101734] = double_dozers,
 	[100854] = double_dozers,
@@ -108,6 +146,13 @@ return {
 			{ id = 101691, delay = 0 },
 			{ id = 101692, delay = 0 },
 		},
+	},
+	-- Enables/disables NPCs flashlights when the power is off/on
+	[100898] = { -- power_interrupted
+		flashlight = true,
+	},
+	[100899] = { -- power_resumed
+		flashlight = false,
 	},
 	-- Spawn group intervals
 	[100052] = wall_far_spawn,

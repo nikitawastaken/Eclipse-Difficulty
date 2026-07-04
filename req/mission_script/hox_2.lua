@@ -4,6 +4,22 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local defend_so = {
+	pre_func = function(element)
+		if Network:is_client() then
+			return
+		end
+		element:add_event_callback("spawn", function(unit)
+			local pos = unit:movement():m_pos()
+			unit:brain():set_objective({
+				type = "sniper",
+				pos = pos,
+				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
+				no_retreat = true,
+			})
+		end)
+	end,
+}
 local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
@@ -16,28 +32,21 @@ local fbi_agents = {
 local fbi_agent = {
 	enemy = fbi_agents,
 }
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
 local regular_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 local exit_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
 local Riker_keycard = math.random() <= 0.5
 local exit_dozer_chance = (is_pro_job and 1.5 or 1) * (diff_i * 10)
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
+local light_harasser = scripted_enemy.swat_1
+local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -64,6 +73,12 @@ local atrium_skylight_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
+local atrium_elevator_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local atrium_upper_spawn = {
 	values = {
 		interval = 25,
@@ -76,17 +91,17 @@ local left_side_upper_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local atrium_elevator_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local offices_upper_spawn = {
 	values = {
 		interval = 35,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 return {
 	-- add ponr state
@@ -128,6 +143,62 @@ return {
 			{ 79, 106 },
 		},
 	},
+	-- potential cloaker ambush at the start of the heist
+	-- begin dozer spam
+	[100107] = {
+		on_executed = {
+			{ id = 400047, delay = 0 },
+			--{ id = 400102, delay = 300, delay_rand = 60 },
+		},
+	},
+	-- add unused snipers to atrium section
+	[102235] = {
+		values = {
+			amount = 1 + (is_pro_job and 1 or 0),
+			amount_random = normal and 0 or hard and 1 or 2,
+		},
+		on_executed = {
+			{ id = 100372, delay = 0 },
+			{ id = 100371, delay = 0 },
+			{ id = 100370, delay = 0 },
+			{ id = 100373, delay = 0 },
+		},
+	},
+	-- spawn ambush units at the end of the heist
+	[102020] = {
+		on_executed = {
+			{ id = 400064, delay = 0 },
+		},
+	},
+	-- Set ambush units to stay in place (except cloaker and dozers)
+	[400050] = defend_so,
+	[400051] = defend_so,
+	[400052] = defend_so,
+	[400053] = defend_so,
+	[400055] = defend_so,
+	[400056] = defend_so,
+	[400065] = defend_so,
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400100, delay = 0 },
+		},
+	},
+	-- Add upstairs hide SOs when upstairs is opened
+	[100083] = {
+		on_executed = {
+			{ id = 400108, delay = 0 },
+		},
+	},
+	[100047] = {
+		values = {
+			elements = {
+				103273,
+				103274,
+				400082,
+			},
+		},
+	},
 	-- Tweak keycard spawns
 	[101218] = { -- Extra keycard, now also spawns on Normal aka Hard
 		values = {
@@ -140,18 +211,18 @@ return {
 		},
 	},
 	-- No extra checkpoint keycard on Pro Job
-	[103764] = {
+	[103764] = is_pro_job and {
 		on_executed = {
-			{ id = 101469, remove = is_pro_job and true or nil },
+			{ id = 101469, remove = true },
 		},
-	},
+	} or nil,
 	-- Lower upstairs keycard chance, you're getting a good camping spot anyway
 	[101628] = {
 		values = {
 			chance = 30,
 		},
 	},
-	-- Worse keycard RNG on Eclipse
+	-- Worse keycard RNG on Death Wish
 	[101746] = {
 		values = {
 			chance = is_eclipse and 25 or 50,
@@ -162,37 +233,21 @@ return {
 		reinforce = {
 			{
 				name = "atrium_lower",
-				force = 4,
+				force = 3,
 				position = Vector3(-200, 4200, -500),
 			},
-		},
-	},
-	--[[
-	[104460] = { -- Corridors around the operations room
-		reinforce = {
 			{
-				name = "corridor1",
+				name = "archives_counter",
 				force = 2,
-				position = Vector3(1800, -150, -100),
-			},
-			{
-				name = "corridor2",
-				force = 2,
-				position = Vector3(600, 2225, -100)
-			},
-			{
-				name = "corridor3",
-				force = 2,
-				position = Vector3(-1000, 2225, -100)
+				position = Vector3(1025, 4250, -500),
 			},
 		},
 	},
-]]
 	[100732] = { -- Activate operations room reinforce when the players are doing objectives
 		reinforce = {
 			{
 				name = "operations_room",
-				force = 3,
+				force = 4,
 				position = Vector3(-200, 300, 0),
 			},
 		},
@@ -209,21 +264,28 @@ return {
 			amount_random = diff_i,
 		},
 	},
-	-- Force Riker spawn
+	-- Force Riker and Griffin spawns
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
 			force_pickup = Riker_keycard and "keycard" or "none",
 		},
 	},
+	[101207] = {
+		values = {
+			participate_to_group_ai = false,
+		},
+	},
 	[101210] = {
 		on_executed = {
 			{ id = 101198, delay = 0 },
+			{ id = 101207, delay = 0 },
 		},
 	},
 	[101212] = {
 		on_executed = {
 			{ id = 101198, remove = true },
+			{ id = 101207, remove = true },
 		},
 	},
 	-- Exit Bulldozer
@@ -253,6 +315,15 @@ return {
 	[100694] = offices_upper_spawn,
 	[100139] = offices_upper_spawn,
 	[101688] = atrium_elevator_spawn,
+	[400091] = cloaker_spawn,
+	[400092] = cloaker_spawn,
+	[400093] = cloaker_spawn,
+	[400094] = cloaker_spawn,
+	[400095] = cloaker_spawn,
+	[400096] = cloaker_spawn,
+	[400097] = cloaker_spawn,
+	[400098] = cloaker_spawn,
+	[400099] = cloaker_spawn,
 	-- Holy FBI agents, Batman...
 	[101490] = fbi_agent,
 	[101492] = fbi_agent,
