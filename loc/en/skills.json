@@ -183,4 +183,6 @@
 	"menu_crew_ai_fix_drill_desc": "Your team AI can now repair jammed drills.\n\nNote: Team AI will not attempt repairs that require a mission pickup.",
 	"menu_crew_ai_dominator": "Dominator",
 	"menu_crew_ai_dominator_desc": "Your team AI can now dominate enemies who are not already surrendering.",
+	"menu_crew_ai_carry_stack": "Stacker",
+	"menu_crew_ai_carry_stack_desc": "Your team AI can now carry 2 bags at the same time.",
 }

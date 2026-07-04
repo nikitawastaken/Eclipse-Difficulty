@@ -8,9 +8,9 @@ local crew_abilities = {
 	"crew_ai_counter_strike",
 	"crew_ai_counter_tase",
 	-- New abilities added by Eclipse
-	"crew_ai_custody_trade",
 	"crew_ai_fix_drill",
 	"crew_ai_dominator",
+--	"crew_ai_carry_stacker",
 }
 
 function CrewManagementGui:previous_ability(henchman_index)

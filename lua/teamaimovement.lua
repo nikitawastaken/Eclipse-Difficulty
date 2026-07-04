@@ -71,11 +71,35 @@ Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", funct
 	end
 end)
 
--- Bag stuff!
-Hooks:PostHook(TeamAIMovement, "init", "eclipse_teamaimovement_init", function(self)
+if not Network:is_server() then
+	return
+end
+
+Hooks:PostHook(TeamAIMovement, "init", "eclipse_init", function(self)
 	self._carry_table = {}
+	self._queued_actions = {}
 end)
 
+Hooks:PostHook(TeamAIMovement, "set_allow_fire", "set_allow_fire_ub", function (self, state)
+	if state then
+		self._switch_upper_body_to_idle_t = nil
+	end
+end)
+
+TeamAIMovement.chk_action_forbidden = CopMovement.chk_action_forbidden
+
+Hooks:PostHook(TeamAIMovement, "set_should_stay", "set_should_stay_ub", function (self, should_stay, pos)
+	if should_stay and pos then
+		self._should_stay_pos = mvector3.copy(pos)
+	end
+	
+	local objective = self._ext_brain:objective()
+	if not objective or not objective.forced then
+		self._ext_brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(self._unit))
+	end
+end)
+
+-- Bag stuff!
 function TeamAIMovement:has_crew_carrystacker()
 	return managers.player:has_category_upgrade("team", "crew_ai_carry_stacker")
 end
@@ -85,10 +109,6 @@ function TeamAIMovement:carrying_bag()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	if unit then
-		table.insert(self._carry_table, unit)
-	end
-
 	self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
 	
 	local bag_unit = unit or self._carry_unit
@@ -103,38 +123,13 @@ function TeamAIMovement:set_carrying_bag(unit)
 			bag_panel:set_visible(unit)
 		end
 	end
-end)
 
-if not Network:is_server() then
-	return
+	if unit then
+		table.insert(self._carry_table, unit)
+	end
+
+	self:set_carry_speed_modifier()
 end
-
--- queued actions are not initialized for some reason
-Hooks:PostHook(TeamAIMovement, "init", "init_ub", function (self)
-	self._queued_actions = {}
-end)
-
-Hooks:PostHook(TeamAIMovement, "set_allow_fire", "set_allow_fire_ub", function (self, state)
-	if state then
-		self._switch_upper_body_to_idle_t = nil
-	end
-end)
-
-if Keepers then
-	return
-end
-
-TeamAIMovement.chk_action_forbidden = CopMovement.chk_action_forbidden
-
-Hooks:PostHook(TeamAIMovement, "set_should_stay", "set_should_stay_ub", function (self, should_stay, pos)
-	if should_stay and pos then
-		self._should_stay_pos = mvector3.copy(pos)
-	end
-	local objective = self._ext_brain:objective()
-	if not objective or not objective.forced then
-		self._ext_brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(self._unit))
-	end
-end)
 
 -- returns top if no args given
 function TeamAIMovement:carry_id(idx)
@@ -169,6 +164,7 @@ function TeamAIMovement:carry_type_tweak(idx)
 
 	return carry_ext and carry_ext:carry_type_tweak()
 end
+
 
 function TeamAIMovement:bank_carry()
 	for i = 1, #self._carry_table do

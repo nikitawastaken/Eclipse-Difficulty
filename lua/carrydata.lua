@@ -25,12 +25,15 @@ end
 
 -- Make enemies run with stolen bags instead of crouchwalking
 Hooks:PostHook(CarryData, "_chk_register_steal_SO", "eclipse__chk_register_steal_SO", function(self)
-	if self._steal_SO_data and not self._steal_SO_data.secure_pos then
-		self:_unregister_steal_SO()
-	end
-	
 	if self._steal_SO_data and self._steal_SO_data.pickup_objective and self._steal_SO_data.pickup_objective.followup_objective then
 		self._steal_SO_data.pickup_objective.followup_objective.pose = "stand"
+	end
+
+	-- Should not be possible, yet somehow it was for some people
+	if Network:is_server() then
+		if self._steal_SO_data and not self._steal_SO_data.secure_pos then
+			self:_unregister_steal_SO()
+		end	
 	end
 end)
 
@@ -48,13 +51,6 @@ end)
 
 Hooks:PostHook(CarryData, "set_zipline_unit", "set_zipline_unit_ub", function (self, zipline_unit)
 	CarryData.ub_loot[self._unit:key()] = not zipline_unit and self._unit or nil
-end)
-
--- Should not be possible, yet somehow it was for some people
-Hooks:PostHook(CarryData, "_chk_register_steal_SO", "_chk_register_steal_SO_ub", function (self)
-	if self._steal_SO_data and not self._steal_SO_data.secure_pos then
-		self:_unregister_steal_SO()
-	end
 end)
 
 -- Bot carrystacker required overrides...
