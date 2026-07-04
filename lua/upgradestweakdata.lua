@@ -3583,7 +3583,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.team.crew_ai_custody_trade = { true }
 	self.values.team.crew_ai_fix_drill = { true }
 	self.values.team.crew_ai_dominator = { true }
-		
+	self.values.team.crew_ai_carry_stacker = { true }
+	
 	-- misc
 	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
@@ -3595,6 +3596,7 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
+	self.values.saw.enemy_slicer[1] = 2
 	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end
 
@@ -3604,12 +3606,16 @@ Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse__crew_definition
 		name_id = "menu_crew_ai_fix_drill",
 		icon = "ability_2"
 	}
-	self.crew_ability_definitions.crew_ai_custody_trade = {
-		name_id = "menu_crew_ai_custody_trade",
-		icon = "ability_3"
-	}	
+--	self.crew_ability_definitions.crew_ai_custody_trade = {
+--		name_id = "menu_crew_ai_custody_trade",
+--		icon = "ability_3"
+--	}	
 	self.crew_ability_definitions.crew_ai_dominator = {
 		name_id = "menu_crew_ai_dominator",
 		icon = "ability_5"
+	}
+	self.crew_ability_definitions.crew_ai_carry_stacker = {
+		name_id = "menu_crew_ai_carry_stack",
+		icon = "ability_3",
 	}
 end)
