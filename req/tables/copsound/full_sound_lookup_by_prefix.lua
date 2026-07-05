@@ -27,19 +27,19 @@ M.cm6_ = {
 }
 -- female
 M.cf1_ = {
-	x02a_any_3p = "fl1n_x02a_any_3p",
+	x02a_any_3p = "fl1n_x01a_any_3p",
 }
 M.cf2_ = {
-	x02a_any_3p = "fl1n_x02a_any_3p",
+	x02a_any_3p = "fl1n_x01a_any_3p",
 }
 M.cf3_ = {
-	x02a_any_3p = "fl1n_x02a_any_3p",
+	x02a_any_3p = "fl1n_x01a_any_3p",
 }
 M.cf4_ = {
-	x02a_any_3p = "fl1n_x02a_any_3p",
+	x02a_any_3p = "fl1n_x01a_any_3p",
 }
 M.cf5_ = {
-	x02a_any_3p = "fl1n_x02a_any_3p",
+	x02a_any_3p = "fl1n_x01a_any_3p",
 }
 
 -- Non-filtered cops
