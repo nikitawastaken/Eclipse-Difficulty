@@ -3580,9 +3580,9 @@ function UpgradesTweakData:init(tweak_data)
 		120,
 		60,
 	}
-	self.values.team.crew_ai_custody_trade = { true }
 	self.values.team.crew_ai_fix_drill = { true }
 	self.values.team.crew_ai_carry_stacker = { true }
+	self.values.team.crew_ai_dominator = { true }
 	
 	-- misc
 	self.swat_turret_criminal_hurt_drama_mul = 0.25
