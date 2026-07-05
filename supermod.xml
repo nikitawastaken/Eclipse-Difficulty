@@ -901,7 +901,8 @@
 
 				<file :name="female_heads_atlas_df.texture" />
 				<file :name="female_heads_atlas_nm.texture" />
-
+				<file :name="female_heads_atlas_op.texture" />
+				
 				<file :name="gang_black_heads_atlas_var1_df.texture" />
 				<file :name="gang_black_heads_atlas_var1_nm.texture" />
 				<file :name="gang_black_heads_atlas_var2_df.texture" />
