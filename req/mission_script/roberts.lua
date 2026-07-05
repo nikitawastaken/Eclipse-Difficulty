@@ -274,4 +274,3 @@ return {
 	[103288] = harasser,
 	[103289] = harasser,
 }
-
