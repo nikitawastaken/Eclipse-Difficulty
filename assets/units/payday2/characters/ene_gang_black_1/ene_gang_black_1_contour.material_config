@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<materials version="3" group="ene_gang_black_1">
+    <material name="mtr_gang_black01" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_1_nm"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_1_df"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black01_lod_1" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_1_nm" mip="1"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_1_df" mip="1"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black01_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_1_nm" mip="2"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_1_df" mip="2"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+	
+    <material name="mtr_gang_black02" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_2_nm"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_2_df"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black02_lod_1" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_2_nm" mip="1"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_2_df" mip="1"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black02_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_2_nm" mip="2"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_2_df" mip="2"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+	
+    <material name="mtr_gang_black03" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_3_nm"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_3_df"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black03_lod_1" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_3_nm" mip="1"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_3_df" mip="1"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black03_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_3_nm" mip="2"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_3_df" mip="2"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+	
+    <material name="mtr_gang_black04" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_4_nm"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_4_df"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black04_lod_1" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_4_nm" mip="1"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_4_df" mip="1"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_gang_black04_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/gangmember_4_nm" mip="2"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/gangmember_4_df" mip="2"/>
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+	
+    <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <opacity_texture 	 	file="units/pd2_dlc_infamy/masks/msk_aviator/msk_aviator_glass_op" />
+        <diffuse_texture 	   	file="units/pd2_dlc_infamy/masks/msk_aviator/msk_aviator_glass_df" />
+		<variable 				value="0 1 0.66999995708466" type="vector3" name="fresnel_settings"/>
+        <reflection_texture 	type="cube" global_texture="current_global_texture" />
+    </material>
+		
+    <material name="shadow_caster" render_template="shadow_caster_only:SKINNED_1WEIGHT" version="2"/>
+</materials>

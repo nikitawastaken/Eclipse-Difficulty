@@ -21,25 +21,21 @@ local shield_so = {
 		end)
 	end,
 }
-local street_spawn = {
+local catwalk_spawn = {
 	values = {
 		interval = 15,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local catwalk_spawn = {
+local street_spawn = {
 	values = {
 		interval = 25,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
+local roof_spawn = deep_clone(catwalk_spawn)
+roof_spawn.groups = preferred.no_shields_bulldozers
+
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }

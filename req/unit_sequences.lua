@@ -242,6 +242,11 @@ local M = {
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
 
+	["units/payday2/characters/ene_gang_black_1/ene_gang_black_1"] = { name = "gang_black_1", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_black_2/ene_gang_black_2"] = { name = "gang_black_2", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_black_3/ene_gang_black_3"] = { name = "gang_black_3", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_black_4/ene_gang_black_4"] = { name = "gang_black_4", head = head_sequences.security },
+
 	["units/payday2/characters/ene_swat_1/ene_swat_1"] = { name = "swat_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = { name = "swat_2", head = head_sequences.swat_a },
 	["units/payday2/characters/ene_swat_3/ene_swat_3"] = { name = "swat_3", head = head_sequences.swat_a },

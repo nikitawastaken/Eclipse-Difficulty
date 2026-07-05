@@ -1,3 +1,4 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local disabled = {
 	values = {
@@ -33,9 +34,6 @@ local exhibit_slow_rappel_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
 local last_rappel_spawn = {
 	groups = preferred.no_cops_agents_bulldozers,
 }
@@ -51,7 +49,7 @@ return {
 	[102425] = {
 		ponr = {
 			length = 240,
-			length_balance_mul = { 1.25, 1.25, 1, 1 },
+			length_balance_mul = { 1.25, 1.125, 1, 1 },
 		},
 	},
 	-- Combine some navigation areas
@@ -132,7 +130,26 @@ return {
 			{ id = 102129, delay = 0, delay_rand = 45 }, -- add 11
 		},
 	},
-	-- replace regular security with green security
+	-- Spawn group intervals
+	[100786] = courtyard_spawn,
+	[100789] = courtyard_spawn,
+	[100790] = courtyard_spawn,
+	[100791] = courtyard_spawn,
+	[100007] = staircase_window_spawn,
+	[102418] = staircase_window_spawn,
+	[102399] = matrix_window_spawn,
+	[102400] = matrix_window_spawn,
+	[101946] = exhibit_rappel_spawn,
+	[101959] = exhibit_rappel_spawn,
+	[100019] = exhibit_slow_rappel_spawn,
+	[100809] = exhibit_slow_rappel_spawn,
+	[100810] = exhibit_slow_rappel_spawn,
+	[100021] = exhibit_slow_rappel_spawn,
+	[101924] = last_rappel_spawn,
+	[101941] = last_rappel_spawn,
+	[101942] = last_rappel_spawn,
+	[101943] = last_rappel_spawn,
+	-- Replace regular security with green security
 	[100670] = green_security,
 	[100671] = green_security,
 	[100672] = green_security,
@@ -156,27 +173,4 @@ return {
 	[101388] = green_security,
 	[101568] = green_security,
 	[101576] = green_security,
-	-- Add scripted difficulty increases
-	--	[101507] = difficulty_add_20, -- barrier_opened001
-	--	[101508] = difficulty_add_20, -- barrier_opened002
-	--	[101913] = difficulty_add_20, -- diamond_picked_up
-	-- Spawn group intervals
-	[100786] = courtyard_spawn,
-	[100789] = courtyard_spawn,
-	[100790] = courtyard_spawn,
-	[100791] = courtyard_spawn,
-	[100007] = staircase_window_spawn,
-	[102418] = staircase_window_spawn,
-	[102399] = matrix_window_spawn,
-	[102400] = matrix_window_spawn,
-	[101946] = exhibit_rappel_spawn,
-	[101959] = exhibit_rappel_spawn,
-	[100019] = exhibit_slow_rappel_spawn,
-	[100809] = exhibit_slow_rappel_spawn,
-	[100810] = exhibit_slow_rappel_spawn,
-	[100021] = exhibit_slow_rappel_spawn,
-	[101924] = last_rappel_spawn,
-	[101941] = last_rappel_spawn,
-	[101942] = last_rappel_spawn,
-	[101943] = last_rappel_spawn,
 }
