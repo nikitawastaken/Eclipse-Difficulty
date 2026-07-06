@@ -3761,16 +3761,32 @@
 			</group>
 		</group>
 
-		<!-- yufu wang hitboxes -->
-		<group name="units/pd2_dlc_pent/" dyn_package="false">
-			<group :name="weapons/wpn_npc_flamethrower_bulldozer/">
+		<group name="units/pd2_dlc_pent/weapons/" dyn_package="false">
+			<group :name="wpn_npc_flamethrower_bulldozer/">
 				<file :name="wpn_npc_flamethrower_bulldozer.cooked_physics"/>
 				<file :name="wpn_npc_flamethrower_bulldozer.model"/>
 				<file :name="wpn_npc_flamethrower_bulldozer.object"/>
 				<file :name="wpn_npc_flamethrower_bulldozer.unit"/>
 			</group>
+		</group>
+		
+		<group name="units/pd2_dlc_pent/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_male_security_penthouse_1/">
+				<xml  :name="ene_male_security_penthouse_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_male_security_penthouse_1.material_config" />
+				<file :name="ene_male_security_penthouse_1_contour.material_config" />
+				<file :name="ene_male_security_penthouse_1.model" />
+				<file :name="ene_male_security_penthouse_1.object" />
+				<file :name="ene_male_security_penthouse_1.unit" />
+				<file :name="ene_male_security_penthouse_1_husk.unit" />
+			</group>
 
-			<group :name="characters/npc_male_yufuwang_armored/">
+			<group :name="ene_male_security_penthouse_2/">
+				<file :name="ene_male_security_penthouse_2.unit" />
+				<file :name="ene_male_security_penthouse_2_husk.unit" />
+			</group>
+			
+			<group :name="npc_male_yufuwang_armored/">
 				<file :name="npc_male_yufuwang_armored.object"/>
 				<file :name="npc_male_yufuwang_armored.unit"/>
 				<file :name="npc_male_yufuwang_armored_husk.unit"/>
