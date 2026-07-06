@@ -765,8 +765,10 @@ function CopDamage:damage_bullet(attack_data)
 				and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier")
 				and not attack_data.weapon_unit:base().thrower_unit
 				and attack_data.weapon_unit:base():is_category("shotgun")
+				and managers.player:has_enabled_cooldown_upgrade("cooldown", "overkill_damage_multiplier")
 			then
 				managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
+				managers.player:disable_cooldown_upgrade("cooldown", "overkill_damage_multiplier")
 			end
 
 			if is_civilian then
@@ -991,8 +993,10 @@ function CopDamage:damage_fire(attack_data)
 			and not attack_data.weapon_unit:base().thrower_unit
 			and attack_data.weapon_unit:base().is_category
 			and attack_data.weapon_unit:base():is_category("shotgun", "saw")
+			and managers.player:has_enabled_cooldown_upgrade("cooldown", "overkill_damage_multiplier")
 		then
 			managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
+			managers.player:disable_cooldown_upgrade("cooldown", "overkill_damage_multiplier")
 		end
 
 		if attacker_unit and alive(attacker_unit) and attacker_unit:base() and attacker_unit:base().thrower_unit then

@@ -1254,16 +1254,27 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.cooldown.shotgun_panic_on_kill = { { 1, 5 } }
 	self.values.shotgun.panic = { { chance = 0.5, area = 800, amount = "panic" } }
+	self.definitions.cooldown_overkill_damage_multiplier = {
+		name_id = "menu_cooldown_overkill_damage_multiplier",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "overkill_damage_multiplier",
+			category = "cooldown",
+		},
+	}
+	self.values.cooldown.overkill_damage_multiplier = { { 1, 20 } }
 	self.values.temporary.overkill_damage_multiplier = {
 		{
 			1.5,
-			5,
+			10,
 		},
 	}
 	self.skill_descs.overkill.multibasic = "50%"
 	self.skill_descs.overkill.multibasic2 = "10"
 	self.skill_descs.overkill.multipro = "50%"
-	self.skill_descs.overkill.multipro2 = "5"
+	self.skill_descs.overkill.multipro2 = "10"
+	self.skill_descs.overkill.multipro3 = "10"
 
 	-- Impact Padding
 	self.values.player.stationary_damage_multiplier = { 0.9 }
