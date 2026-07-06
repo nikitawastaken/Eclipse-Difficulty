@@ -10,7 +10,7 @@ local crew_abilities = {
 	-- New abilities added by Eclipse
 	"crew_ai_fix_drill",
 	"crew_ai_dominator",
---	"crew_ai_carry_stacker",
+	"crew_ai_carry_stacker",
 }
 
 function CrewManagementGui:previous_ability(henchman_index)
