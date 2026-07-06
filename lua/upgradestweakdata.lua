@@ -1496,7 +1496,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.bandoliers.multibasic = "100%"
-	self.skill_descs.bandoliers.multipro = "30"
+	self.skill_descs.bandoliers.multipro = "60"
 
 	-- Technician --
 
