@@ -54,6 +54,9 @@ local M = {
 	"Auto-Fire Sound Fix",
 	"NFS",
 	"Useful Bots",
+	"Carry Stacker",
+	"Carry Stacker2.0",
+	"Carry Stacker Reloaded",
 }
 
 return table.list_to_set(M)

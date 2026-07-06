@@ -1,7 +1,7 @@
 -- Firestorm timer
 AmmoBagBase._BULLET_STORM = {
-	15,
-	15,
+	30,
+	30,
 }
 
 -- Bulletstorm 60s duration fix

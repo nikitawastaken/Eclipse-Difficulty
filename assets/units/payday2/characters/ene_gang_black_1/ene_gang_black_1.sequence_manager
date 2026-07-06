@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+<table>
+	<unit>
+	<!--CUSTOM SEQUENCES START-->
+		<variables>
+			<has_sleeves			value="0" />
+			<has_hat				value="0" />
+			<has_shades				value="0" />
+			<has_beanie				value="0" />
+			<has_bandana_head		value="0" />
+			<has_bandana_face		value="0" />
+			<has_bandana_waist		value="0" />
+			<has_cigarette			value="0" />
+		</variables>
+		
+		<filter name="'check_no_sleeves'">
+			<check value="vars.has_sleeves == 0" />
+		</filter>
+		<filter name="'check_sleeves'">
+			<check value="vars.has_sleeves == 1" />
+		</filter>
+
+		<filter name="'check_no_hat'">
+			<check value="vars.has_hat == 0" />
+		</filter>
+		<filter name="'check_hat'">
+			<check value="vars.has_hat == 1" />
+		</filter>
+
+		<filter name="'check_no_shades'">
+			<check value="vars.has_shades == 0" />
+		</filter>
+		<filter name="'check_shades'">
+			<check value="vars.has_shades == 1" />
+		</filter>
+
+		<filter name="'check_no_cigarette'">
+			<check value="vars.has_cigarette == 0" />
+		</filter>
+		<filter name="'check_cigarette'">
+			<check value="vars.has_cigarette == 1" />
+		</filter>
+		
+		<filter name="'check_no_beanie'">
+			<check value="vars.has_beanie == 0" />
+		</filter>
+		<filter name="'check_beanie'">
+			<check value="vars.has_beanie == 1" />
+		</filter>
+			
+		<filter name="'check_no_bandana_head'">
+			<check value="vars.has_bandana_head == 0" />
+		</filter>
+		<filter name="'check_bandana_head_type1'">
+			<check value="vars.has_bandana_head == 1" />
+		</filter>
+		<filter name="'check_bandana_head_type2'">
+			<check value="vars.has_bandana_head == 2" />
+		</filter>
+		
+		<filter name="'check_no_bandana_face'">
+			<check value="vars.has_bandana_face == 0" />
+		</filter>
+		<filter name="'check_bandana_face'">
+			<check value="vars.has_bandana_face == 1" />
+		</filter>
+
+		<filter name="'check_no_bandana_waist'">
+			<check value="vars.has_bandana_waist == 0" />
+		</filter>
+		<filter name="'check_bandana_waist'">
+			<check value="vars.has_bandana_waist == 1" />
+		</filter>
+		
+		<sequence editable_state="true" name="'gang_black_1'" once="true" triggable="true">
+			<run_sequence 		name="'random_body_upper_a'" />
+			<run_sequence 		name="'random_body_lower_a'" />
+			<run_sequence 		name="'random_shoes_a'" />
+			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_bandana_face'" />
+			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_hat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'gang_black_2'" once="true" triggable="true">
+			<run_sequence 		name="'random_body_upper_b'" />
+			<run_sequence 		name="'random_body_lower_b'" />
+			<run_sequence 		name="'random_shoes_b'" />
+			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_bandana_head'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_hat'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'gang_black_3'" once="true" triggable="true">
+			<run_sequence 		name="'random_body_upper_c'" />
+			<run_sequence 		name="'random_body_lower_c'" />
+			<run_sequence 		name="'random_shoes_b'" />
+			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_bandana_head'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'gang_black_4'" once="true" triggable="true">
+			<run_sequence 		name="'random_body_upper_d'" />
+			<run_sequence 		name="'random_body_lower_a'" />
+			<run_sequence 		name="'random_shoes_c'" />
+			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_beanie_common'" />
+			<run_sequence 		name="'random_bandana_waist'" />
+			<run_sequence 		name="'random_cigarette_common'" />
+		</sequence>
+	<!--BODY SEQUENCES -->
+	<!-- UPPER BODIES -->
+		<sequence editable_state="true" name="'random_body_upper_a'" triggable="true">
+			<run_sequence 		name="'body_upper_'..pick('a','a','a','b','c','d')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_body_upper_b'" triggable="true">
+			<run_sequence 		name="'body_upper_'..pick('b','b','b','a','c','d')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_body_upper_c'" triggable="true">
+			<run_sequence 		name="'body_upper_'..pick('c','c','c','a','b','d')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_body_upper_d'" triggable="true">
+			<run_sequence 		name="'body_upper_'..pick('d','d','d','a','b','c')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'body_upper_a'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />		
+			
+			<object 			enabled="true" name="'g_body_upper_a'" />
+			<object 			enabled="true" name="'g_body_upper_a_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_upper_b'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />		
+			
+			<object 			enabled="true" name="'g_body_upper_b'" />
+			<object 			enabled="true" name="'g_body_upper_b_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_upper_c'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />		
+			
+			<object 			enabled="true" name="'g_body_upper_c'" />
+			<object 			enabled="true" name="'g_body_upper_c_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_upper_d'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />		
+			
+			<object 			enabled="true" name="'g_body_upper_d'" />
+			<object 			enabled="true" name="'g_body_upper_d_lod1'" />
+		</sequence>
+	<!-- LOWER BODIES -->
+		<sequence editable_state="true" name="'random_body_lower_a'" triggable="true">
+			<run_sequence 		name="'body_lower_'..pick('a','a','a','b','c')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_body_lower_b'" triggable="true">
+			<run_sequence 		name="'body_lower_'..pick('b','b','b','a','c')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_body_lower_c'" triggable="true">
+			<run_sequence 		name="'body_lower_'..pick('c','c','c','a','b')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'body_lower_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_body_lower_a'" />
+			<object 			enabled="true" name="'g_body_lower_a_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_lower_b'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_body_lower_b'" />
+			<object 			enabled="true" name="'g_body_lower_b_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_lower_c'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_body_lower_c'" />
+			<object 			enabled="true" name="'g_body_lower_c_lod1'" />
+		</sequence>
+	<!-- SHOES -->
+		<sequence editable_state="true" name="'random_shoes_a'" triggable="true">
+			<run_sequence 		name="'shoes_'..pick('a','a','a','b','c')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shoes_b'" triggable="true">
+			<run_sequence 		name="'shoes_'..pick('b','b','b','a','c')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shoes_c'" triggable="true">
+			<run_sequence 		name="'shoes_'..pick('c','c','c','a','b')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'shoes_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shoes_a'" />
+			<object 			enabled="true" name="'g_shoes_a_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'shoes_b'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_shoes_b'" />
+			<object 			enabled="true" name="'g_shoes_b_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'shoes_c'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shoes_c'" />
+			<object 			enabled="true" name="'g_shoes_b_lod1'" />
+		</sequence>
+	<!--SHADES SEQUENCES-->
+		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shades_rare'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'shades_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
+			<run_sequence 		name="'shades_'..pick('a','b','c')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'shades_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_a'" />
+			<object 			enabled="true" name="'g_shades_a_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_a'" />
+		</sequence>
+		<sequence editable_state="true" name="'shades_b'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_b'" />
+			<object 			enabled="true" name="'g_shades_b_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_b'" />
+		</sequence>
+		<sequence editable_state="true" name="'shades_c'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_c'" />
+			<object 			enabled="true" name="'g_shades_c_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_c'" />
+		</sequence>
+	<!--BEANIE SEQUENCES-->
+		<sequence editable_state="true" name="'random_beanie_common'" triggable="true">
+			<run_sequence 		name="'beanie_'..pick('base','base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_beanie_rare'" triggable="true">
+			<run_sequence 		name="'beanie_'..pick('none','none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'beanie_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'beanie_base'" once="true" triggable="true">
+			<set_variables 		has_beanie="1" />
+			<object 			enabled="true" name="'g_beanie'" />
+			<object 			enabled="true" name="'g_beanie_lod1'" />
+		</sequence>
+	<!-- BANDANA SEQUENCES -->
+		<sequence editable_state="true" name="'random_bandana_face'" triggable="true">
+			<run_sequence 		filter="'check_beanie'" name="'bandana_'..pick('face','face','face','waist','none','none')" />
+			<run_sequence 		filter="'check_no_beanie'" name="'bandana_'..pick('face','face','face','face','head_a','head_b','waist','none','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_bandana_head'" triggable="true">
+			<run_sequence 		filter="'check_beanie'" name="'bandana_'..pick('waist','face','none','none')" />
+			<run_sequence 		filter="'check_no_beanie'" name="'bandana_'..pick('head_a','head_a','head_b','head_b','face','waist','none','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_bandana_waist'" triggable="true">
+			<run_sequence 		filter="'check_beanie'" name="'bandana_'..pick('waist','waist','waist','face','none','none')" />
+			<run_sequence 		filter="'check_no_beanie'" name="'bandana_'..pick('waist','waist','waist','waist','head_a','head_b','waist','none','none')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bandana_none'" once="true" triggable="true">	
+		</sequence>		
+		<sequence editable_state="true" name="'bandana_head_a'" once="true" triggable="true">	
+			<set_variables 		has_bandana_head="1" />
+			<object 			enabled="true" name="'g_bandana_a'" />
+			<object 			enabled="true" name="'g_bandana_a_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'bandana_head_b'" once="true" triggable="true">
+			<set_variables 		has_bandana_head="2" />
+			<object 			enabled="true" name="'g_bandana_b'" />
+			<object 			enabled="true" name="'g_bandana_b_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'bandana_face'" once="true" triggable="true">
+			<set_variables 		has_bandana_face="1" />
+			<object 			enabled="true" name="'g_bandana_c'" />
+			<object 			enabled="true" name="'g_bandana_c_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'bandana_waist'" once="true" triggable="true">
+			<set_variables 		has_bandana_waist="1" />
+			<object 			enabled="true" name="'g_bandana_d'" />
+			<object 			enabled="true" name="'g_bandana_d_lod1'" />
+		</sequence>
+	<!--CIGARETTE SEQUENCES-->
+		<sequence editable_state="true" name="'random_cigarette_common'" triggable="true">
+			<run_sequence 		filter="'check_bandana_face'" name="'cigarette_'..pick('base','base','none','none','none','none')" />
+			<run_sequence 		filter="'check_no_bandana_face'" name="'cigarette_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_cigarette_rare'" triggable="true">
+			<run_sequence 		filter="'check_bandana_face'" name="'cigarette_'..pick('none','none','none','none','none','base')" />
+			<run_sequence 		filter="'check_no_bandana_face'" name="'cigarette_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'cigarette_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'cigarette_base'" once="true" triggable="true">
+			<set_variables 		has_cigarette="1" />
+			<object 			enabled="true" name="'g_cigarette'" />
+			<object 			enabled="true" name="'g_cigarette_lod1'" />
+		</sequence>
+	<!--HAT SEQUENCES-->
+		<sequence editable_state="true" name="'random_hat'" triggable="true">
+			<run_sequence 		filter="'check_bandana_head_type1'" name="'hat_'..pick('c')" />
+			<run_sequence 		filter="'check_bandana_head_type2'" name="'hat_'..pick('d')" />
+			<run_sequence 		filter="'check_no_bandana_head'" name="'hat_'..pick('a','a','b','b','c','d')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hat_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'hat_a'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_b'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_lod3'" />
+			<object 			enabled="true" name="'g_hat_lod4'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_c'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_lod5'" />
+			<object 			enabled="true" name="'g_hat_lod6'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_d'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_lod7'" />
+			<object 			enabled="true" name="'g_hat_lod8'" />
+		</sequence>
+<!--CUSTOM SEQUENCES END-->
+		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">
+			<run_sequence name="'int_seq_tazer_'..pick('hs_1','hs_2')"/>
+		</sequence>
+		<sequence editable_state="false" name="'int_seq_tazer_hs_1'" triggable="false">
+			<graphic_group name="'head'" visibility="false"/>
+			<object enabled="false" name="'g_head_gore2'"/>
+			<object enabled="true" name="'g_head_gore1'"/>
+			<effect name="'effects/payday2/particles/impacts/blood/blood_impact_katana'" parent="object( 'e_gore_1' )" position="v()"/>
+			<effect name="'effects/payday2/particles/impacts/blood/blood_impact_katana'" parent="object( 'e_gore_2' )" position="v()"/>
+			<sound action="'play'" event="'expl_gen_head'" object="'e_gore_2'"/>
+		</sequence>
+		<sequence editable_state="false" name="'int_seq_tazer_hs_2'" triggable="false">
+			<graphic_group name="'head'" visibility="false"/>
+			<object enabled="false" name="'g_head_gore1'"/>
+			<object enabled="true" name="'g_head_gore2'"/>
+			<effect name="'effects/payday2/particles/impacts/blood/blood_impact_katana'" parent="object( 'e_gore_1' )" position="v()"/>
+			<effect name="'effects/payday2/particles/impacts/blood/blood_impact_katana'" parent="object( 'e_gore_2' )" position="v()"/>
+			<sound action="'play'" event="'expl_gen_head'" object="'e_gore_2'"/>
+		</sequence>
+		<sequence editable_state="true" name="'show_tape'" triggable="true">
+			<object enabled="true" name="'g_tape_mouth'"/>
+			<object enabled="true" name="'g_tape_arms'"/>
+			<object enabled="true" name="'g_tape_waist'"/>
+		</sequence>
+		<sequence editable_state="true" name="'hide_tape'" triggable="true">
+			<object enabled="false" name="'g_tape_mouth'"/>
+			<object enabled="false" name="'g_tape_arms'"/>
+			<object enabled="false" name="'g_tape_waist'"/>
+		</sequence>
+		<sequence editable_state="true" name="'show_tape_cop'" triggable="true">
+			<object enabled="true" name="'g_tape'"/>
+		</sequence>
+		<sequence editable_state="true" name="'hide_tape_cop'" triggable="true">
+			<object enabled="false" name="'g_tape'"/>
+		</sequence>
+		<sequence editable_state="true" name="'mr_brown_headshot'" triggable="true">
+			<material_config name="'units/pd2_dlc_rvd/characters/npc_mr_brown/npc_mr_brown_headshot'"/>
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="false" name="'mover_blocker'"/>
+		</sequence>
+		<sequence editable_state="true" name="'spawn_bain_bag'" triggable="true">
+			<function extension="'spawn_manager'" function="'spawn_unit'" param1="'bag'" param2="'Spine2'" param3="'units/pd2_dlc_bph/props/bph_prop_bain_bag/bph_prop_bain_bag'"/>
+		</sequence>
+		<sequence editable_state="true" name="'spawn_earpiece'" triggable="true">
+			<function extension="'spawn_manager'" function="'spawn_unit'" param1="'bag'" param2="'Head'" param3="'units/pd2_dlc_chca/characters/civ_acc_earpiece/civ_acc_earpiece'"/>
+		</sequence>
+		<sequence editable_state="true" name="'hide_hand'" triggable="true">
+			<object enabled="false" name="'g_hand'"/>
+		</sequence>
+		<sequence editable_state="true" name="'disable_hitbox'" triggable="true">
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="false" name="'rag_LeftLeg'"/>
+			<body enabled="false" name="'rag_RightLeg'"/>
+			<body enabled="false" name="'rag_RightUpLeg'"/>
+			<body enabled="false" name="'rag_LeftUpLeg'"/>
+		</sequence>
+		<sequence editable_state="false" name="'kill_spook_lights'" triggable="false">
+			<effect_spawner enabled="false" name="'es_light'"/>
+			<light enabled="false" name="'point_light'"/>
+			<object enabled="false" name="'g_il'"/>
+		</sequence>
+		<sequence editable_state="false" name="'kill_murky_flashlights'" triggable="false">
+			<effect_spawner enabled="false" name="'es_light'"/>
+			<light enabled="false" name="'ls_light'"/>
+		</sequence>
+		<sequence editable_state="false" name="'turn_on_spook_lights'" triggable="false">
+			<effect_spawner enabled="true" name="'es_light'"/>
+			<light enabled="true" name="'point_light'"/>
+			<object enabled="true" name="'g_il'"/>
+		</sequence>
+		<sequence editable_state="true" name="'leg_arm_hitbox'" triggable="true">
+			<body enabled="true" name="'body'"/>
+			<body enabled="true" name="'head'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine1'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine2'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Head'"/>
+			<constraint enabled="false" name="'LeftUpLeg'"/>
+			<constraint enabled="false" name="'RightUpLeg'"/>
+			<constraint enabled="false" name="'LeftLeg'"/>
+			<constraint enabled="false" name="'RightLeg'"/>
+			<constraint enabled="false" name="'Spine'"/>
+			<constraint enabled="false" name="'Spine1'"/>
+			<constraint enabled="false" name="'Spine2'"/>
+			<constraint enabled="false" name="'LeftForeArm'"/>
+			<constraint enabled="false" name="'RightForeArm'"/>
+			<constraint enabled="false" name="'LeftArm'"/>
+			<constraint enabled="false" name="'RightArm'"/>
+			<constraint enabled="false" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'prepare_ragdoll'" triggable="true">
+			<body enabled="false" motion="'dynamic'" name="'rag_Hips'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine2'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'switch_to_ragdoll'" triggable="true">
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine2'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+			<constraint enabled="true" name="'LeftUpLeg'"/>
+			<constraint enabled="true" name="'RightUpLeg'"/>
+			<constraint enabled="true" name="'LeftLeg'"/>
+			<constraint enabled="true" name="'RightLeg'"/>
+			<constraint enabled="true" name="'Spine'"/>
+			<constraint enabled="true" name="'Spine1'"/>
+			<constraint enabled="true" name="'Spine2'"/>
+			<constraint enabled="true" name="'LeftForeArm'"/>
+			<constraint enabled="true" name="'RightForeArm'"/>
+			<constraint enabled="true" name="'LeftArm'"/>
+			<constraint enabled="true" name="'RightArm'"/>
+			<constraint enabled="true" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'freeze_ragdoll'" triggable="true">
+			<body motion="'fixed'" name="'rag_Hips'"/>
+			<body motion="'fixed'" name="'rag_LeftUpLeg'"/>
+			<body motion="'fixed'" name="'rag_RightUpLeg'"/>
+			<body motion="'fixed'" name="'rag_LeftLeg'"/>
+			<body motion="'fixed'" name="'rag_RightLeg'"/>
+			<body motion="'fixed'" name="'rag_Spine'"/>
+			<body motion="'fixed'" name="'rag_Spine1'"/>
+			<body motion="'fixed'" name="'rag_Spine2'"/>
+			<body motion="'fixed'" name="'rag_LeftForeArm'"/>
+			<body motion="'fixed'" name="'rag_RightForeArm'"/>
+			<body motion="'fixed'" name="'rag_LeftArm'"/>
+			<body motion="'fixed'" name="'rag_RightArm'"/>
+			<body motion="'fixed'" name="'rag_Head'"/>
+			<constraint enabled="false" name="'LeftUpLeg'"/>
+			<constraint enabled="false" name="'RightUpLeg'"/>
+			<constraint enabled="false" name="'LeftLeg'"/>
+			<constraint enabled="false" name="'RightLeg'"/>
+			<constraint enabled="false" name="'Spine'"/>
+			<constraint enabled="false" name="'Spine1'"/>
+			<constraint enabled="false" name="'Spine2'"/>
+			<constraint enabled="false" name="'LeftForeArm'"/>
+			<constraint enabled="false" name="'RightForeArm'"/>
+			<constraint enabled="false" name="'LeftArm'"/>
+			<constraint enabled="false" name="'RightArm'"/>
+			<constraint enabled="false" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'unfreeze_ragdoll'" triggable="true">
+			<body motion="'dynamic'" name="'rag_Hips'"/>
+			<body motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body motion="'dynamic'" name="'rag_LeftLeg'"/>
+			<body motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body motion="'dynamic'" name="'rag_Spine'"/>
+			<body motion="'dynamic'" name="'rag_Spine1'"/>
+			<body motion="'dynamic'" name="'rag_Spine2'"/>
+			<body motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body motion="'dynamic'" name="'rag_RightArm'"/>
+			<body motion="'dynamic'" name="'rag_Head'"/>
+			<constraint enabled="true" name="'LeftUpLeg'"/>
+			<constraint enabled="true" name="'RightUpLeg'"/>
+			<constraint enabled="true" name="'LeftLeg'"/>
+			<constraint enabled="true" name="'RightLeg'"/>
+			<constraint enabled="true" name="'Spine'"/>
+			<constraint enabled="true" name="'Spine1'"/>
+			<constraint enabled="true" name="'Spine2'"/>
+			<constraint enabled="true" name="'LeftForeArm'"/>
+			<constraint enabled="true" name="'RightForeArm'"/>
+			<constraint enabled="true" name="'LeftArm'"/>
+			<constraint enabled="true" name="'RightArm'"/>
+			<constraint enabled="true" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'switch_to_non_ragdoll'" triggable="true">
+			<body enabled="true" name="'body'"/>
+			<body enabled="true" name="'head'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Hips'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftUpLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightUpLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine1'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine2'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Head'"/>
+			<constraint enabled="false" name="'LeftUpLeg'"/>
+			<constraint enabled="false" name="'RightUpLeg'"/>
+			<constraint enabled="false" name="'LeftLeg'"/>
+			<constraint enabled="false" name="'RightLeg'"/>
+			<constraint enabled="false" name="'Spine'"/>
+			<constraint enabled="false" name="'Spine1'"/>
+			<constraint enabled="false" name="'Spine2'"/>
+			<constraint enabled="false" name="'LeftForeArm'"/>
+			<constraint enabled="false" name="'RightForeArm'"/>
+			<constraint enabled="false" name="'LeftArm'"/>
+			<constraint enabled="false" name="'RightArm'"/>
+			<constraint enabled="false" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="false" name="'swich_for_test'" triggable="false">
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="false" name="'mover_blocker'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine2'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Head'"/>
+			<constraint enabled="true" name="'LeftUpLeg'"/>
+			<constraint enabled="true" name="'RightUpLeg'"/>
+			<constraint enabled="true" name="'LeftLeg'"/>
+			<constraint enabled="true" name="'RightLeg'"/>
+			<constraint enabled="true" name="'Spine'"/>
+			<constraint enabled="true" name="'Spine1'"/>
+			<constraint enabled="true" name="'Spine2'"/>
+			<constraint enabled="true" name="'LeftForeArm'"/>
+			<constraint enabled="true" name="'RightForeArm'"/>
+			<constraint enabled="true" name="'LeftArm'"/>
+			<constraint enabled="true" name="'RightArm'"/>
+			<constraint enabled="true" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_left_arm'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_right_arm'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_arms'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_head'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_spine'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine2'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_left_leg'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_right_leg'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_legs'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+		</sequence>
+		<sequence editable_state="true" name="'enable_outline_bain'" triggable="true">
+			<graphic_group name="'character'" visibility="false"/>
+			<graphic_group name="'character_outline'" visibility="true"/>
+		</sequence>
+		<sequence editable_state="true" name="'disable_outline_bain'" triggable="true">
+			<graphic_group name="'character'" visibility="true"/>
+			<graphic_group name="'character_outline'" visibility="false"/>
+		</sequence>
+	</unit>
+</table>

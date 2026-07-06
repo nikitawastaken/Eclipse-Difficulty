@@ -473,7 +473,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 	if has_shotgun_panic and variant ~= "melee" then
 		if equipped_unit:is_category("shotgun") then
-			local pos = self:player_unit():position()
+			local pos = killed_unit:position()
 			local skill = tweak_data.upgrades.values.shotgun.panic[1]
 
 			if skill then

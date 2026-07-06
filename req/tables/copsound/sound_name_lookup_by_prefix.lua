@@ -200,6 +200,11 @@ M.l5d_ = {
 	tasered = "burnhurt", -- i'm tased
 }
 
+-- females have some missing sounds in x02a_any_3p
+M.fl1n_ = {
+	x02a_any_3p = "x01a_any_3p",
+}
+
 -- Gangsters
 local gangsters_tbl = {
 	i01 = "aes",

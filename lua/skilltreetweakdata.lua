@@ -159,7 +159,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- OVERKILL
 	self.skills.overkill[1].upgrades = { "cooldown_shotgun_panic_on_kill" }
-	self.skills.overkill[2].upgrades = { "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
+	self.skills.overkill[2].upgrades = { "cooldown_overkill_damage_multiplier", "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
 	self.skills.overkill.name_id = "menu_overkill"
 	self.skills.overkill.desc_id = "menu_overkill_desc"
 	self.skills.overkill.icon_xy = { 3, 2 }
