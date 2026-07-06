@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<materials version="3" group="ene_gang_russian_1">
+	<material name="mtr_gang_russian01" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_1_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_1_df"/>
+	</material>
+	<material name="mtr_gang_russian01_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_1_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_1_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian01_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_1_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_1_df" mip="2"/>
+	</material>
+
+	<material name="mtr_gang_russian02" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_2_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_2_df"/>
+	</material>
+	<material name="mtr_gang_russian02_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_2_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_2_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian02_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_2_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_2_df" mip="2"/>
+	</material>
+	
+	<material name="mtr_gang_russian03" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_df"/>
+	</material>
+	<material name="mtr_gang_russian03_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian03_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_df" mip="2"/>
+	</material>
+	
+	<material name="mtr_gang_russian04" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_4_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_4_df"/>
+	</material>
+	<material name="mtr_gang_russian04_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_4_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_4_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian04_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_4_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_4_df" mip="2"/>
+	</material>
+
+	<material name="mtr_gang_russian_head01" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_thug_head_2_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_thug_head_2_df"/>
+	</material>
+	<material name="mtr_gang_russian_head01_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_thug_head_2_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_thug_head_2_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian_head01_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_thug_head_2_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_thug_head_2_df" mip="2"/>
+	</material>
+	
+	<material name="mtr_gang_russian_head02" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_head_nm"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_head_df"/>
+	</material>
+	<material name="mtr_gang_russian_head02_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_head_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_head_df" mip="1"/>
+	</material>
+	<material name="mtr_gang_russian_head02_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/russian_3_head_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/russian_3_head_df" mip="2"/>
+	</material>
+	
+    <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <opacity_texture 	 	file="units/pd2_dlc_infamy/masks/msk_aviator/msk_aviator_glass_op" />
+        <diffuse_texture 	   	file="units/pd2_dlc_infamy/masks/msk_aviator/msk_aviator_glass_df" />
+		<variable 				value="0 1 0.66999995708466" type="vector3" name="fresnel_settings"/>
+        <reflection_texture 	type="cube" global_texture="current_global_texture" />
+    </material>
+		
+    <material name="shadow_caster" render_template="shadow_caster_only:SKINNED_1WEIGHT" version="2"/>
+</materials>
