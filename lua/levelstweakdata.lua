@@ -1,0 +1,1241 @@
+local vanilla_outfits = Eclipse.settings.player_styles == 1
+local vanilla_outfits = Eclipse.settings.player_styles == 1
+local expanded_outfits = Eclipse.settings.player_styles == 2
+local no_outfits = Eclipse.settings.player_styles == 3
+local disable_christmas = Eclipse.settings.disable_christmas
+
+Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
+	for _, level in pairs(self) do
+		if level.world_name then
+			level.player_style = nil
+			level.group_ai_settings = {}
+			-- List of all the group AI settings for reference
+			--[[ 
+			level.group_ai_settings = {
+				difficulty_curve_points = { 0.5 },
+				cloaker_interval_mul = 1,
+				hostage_hesitation_delay_mul = 1,
+				sustain_duration_mul = 1,
+				assault_delay_mul = 1,
+				assault_force_mul = 1,
+				spawnrate_mul = 1,
+				reenforce_interval_mul = 1,
+				recon_interval_variation_mul = 1,
+				recon_force_mul = 1,
+				push_delay_mul = 1,
+				min_grenade_timeout_mul = 1,
+				cs_grenade_chance_times_mul = 1,
+				difficulty_scaling = {},
+				grenade_timeout_mul = {
+					flash_grenade = 1,
+					smoke_grenade = 1,
+					cs_grenade = 1,
+				},
+				special_limit_add = {
+					shield = 0,
+					medic = 0,
+					taser = 0,
+					tank = 0,
+					spooc = 0,
+					marksman = 0,
+					marshal = 0,
+				},
+				force_tactics = {},
+			}
+]]
+
+			-- Add an option to disable year-round Christmas decorations
+			if disable_christmas and level.is_christmas_heist then
+				level.is_christmas_heist = false
+			end
+		end
+	end
+
+	-- Add flashlights to more heists
+	self.welcome_to_the_jungle_1_night.flashlights_on = true
+	self.framing_frame_1.flashlights_on = true
+	self.election_day_2.flashlights_on = true
+	self.watchdogs_1_night.flashlights_on = true
+	self.watchdogs_2.flashlights_on = true
+	self.firestarter_1.flashlights_on = true
+	self.firestarter_2.flashlights_on = true
+	self.alex_2.flashlights_on = true
+	self.alex_3.flashlights_on = true
+	self.nightclub.flashlights_on = true
+	self.escape_cafe.flashlights_on = true
+	self.escape_park.flashlights_on = true
+	self.escape_overpass.flashlights_on = true -- it's actually night time
+	self.escape_overpass_night.flashlights_on = true
+	self.arm_und.flashlights_on = true
+	self.kosugi.flashlights_on = true
+	self.dark.flashlights_on = true
+	self.gallery.flashlights_on = true
+	self.hox_3.flashlights_on = true
+	self.crojob3_night.flashlights_on = true
+	self.short1_stage1.flashlights_on = true
+	self.spa.flashlights_on = true
+	self.glace.flashlights_on = true -- PDTH vibes
+	self.dah.flashlights_on = true -- PDTH vibes
+	self.sah.flashlights_on = true
+	self.deep.flashlights_on = true
+
+	--  Enable megaphone cop announcemens on specific levels
+	self.branchbank.has_megaphone_cop = true
+	self.four_stores.has_megaphone_cop = true
+	self.mallcrasher.has_megaphone_cop = true
+	self.family.has_megaphone_cop = true
+	self.firestarter_3.has_megaphone_cop = true
+	self.election_day_3.has_megaphone_cop = true
+	self.election_day_3_skip1.has_megaphone_cop = true
+	self.election_day_3_skip2.has_megaphone_cop = true
+	self.roberts.has_megaphone_cop = true
+	self.big.has_megaphone_cop = true
+	self.red2.has_megaphone_cop = true
+	self.man.has_megaphone_cop = true
+	self.moon.has_megaphone_cop = true
+	self.brb.has_megaphone_cop = true
+	self.chas.has_megaphone_cop = true
+
+	-- Set Group AI presets that determine spawngroup composition and distribution
+	self.jewelry_store.group_ai_preset = "small_urban"
+	self.ukrainian_job.group_ai_preset = "small_urban"
+	self.branchbank.group_ai_preset = "small_urban"
+	self.four_stores.group_ai_preset = "small_urban"
+	self.mallcrasher.group_ai_preset = "small_urban"
+	self.nightclub.group_ai_preset = "small_urban"
+	self.family.group_ai_preset = "small_urban"
+	self.gallery.group_ai_preset = "small_urban"
+	self.arm_for.group_ai_preset = "heavy_response"
+	self.watchdogs_2.group_ai_preset = "heavy_response"
+	self.watchdogs_2_day.group_ai_preset = "heavy_response"
+	self.firestarter_2.group_ai_preset = "heavy_response"
+	self.firestarter_3.group_ai_preset = "heavy_response"
+	self.man.group_ai_preset = "heavy_response"
+	self.crojob2.group_ai_preset = "heavy_response"
+	self.crojob3.group_ai_preset = "heavy_response"
+	self.crojob3_night.group_ai_preset = "heavy_response"
+	self.rvd2.group_ai_preset = "heavy_response"
+	self.vit.group_ai_preset = "heavy_response"
+	self.trai.group_ai_preset = "heavy_response"
+	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
+	self.peta2.group_ai_preset = "remote"
+	self.chew.group_ai_preset = "remote"
+	self.wwh.group_ai_preset = "remote"
+	self.mex.group_ai_preset = "remote"
+	self.mex_cooking.group_ai_preset = "remote"
+	self.chca.group_ai_preset = "remote"
+	self.deep.group_ai_preset = "remote"
+
+	-- Set AI group types (factions)
+	self.kosugi.ai_group_type = "murkywater"
+	self.dark.ai_group_type = "murkywater"
+	self.shoutout_raid.ai_group_type = "murkywater"
+	self.wwh.ai_group_type = "murkywater"
+	self.pines.ai_group_type = "russia"
+	self.nail.ai_group_type = "zombie"
+	self.help.ai_group_type = "zombie"
+
+	-- Set difficulty scaling  presets
+	self.escape_park.difficulty_scaling_preset = "timed"
+	self.escape_cafe_day.difficulty_scaling_preset = "timed"
+	self.escape_park_day.difficulty_scaling_preset = "timed"
+	self.escape_cafe.difficulty_scaling_preset = "timed"
+	self.escape_street.difficulty_scaling_preset = "timed"
+	self.escape_overpass.difficulty_scaling_preset = "timed"
+	self.escape_overpass_night.difficulty_scaling_preset = "timed"
+
+	self.escape_garage.difficulty_scaling_preset = "timed_fast"
+	self.framing_frame_2.difficulty_scaling_preset = "timed_fast"
+
+	self.alex_3.difficulty_scaling_preset = "timed_slow"
+
+	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
+	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_1.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
+	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
+	self.rvd1.difficulty_scaling_preset = "regroup_aggressive"
+
+	self.arm_for.difficulty_scaling_preset = "regroup_slow"
+	self.hox_2.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob2.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob3.difficulty_scaling_preset = "regroup_slow"
+	--	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
+	self.arena.difficulty_scaling_preset = "regroup_slow"
+	--	self.red2.difficulty_scaling_preset = "regroup_slow"
+	self.dinner.difficulty_scaling_preset = "regroup_slow"
+	self.kenaz.difficulty_scaling_preset = "regroup_slow"
+	self.pbr.difficulty_scaling_preset = "regroup_slow"
+	self.peta.difficulty_scaling_preset = "regroup_slow"
+	self.peta2.difficulty_scaling_preset = "regroup_slow"
+	self.pal.difficulty_scaling_preset = "regroup_slow"
+	self.mad.difficulty_scaling_preset = "regroup_slow"
+	self.flat.difficulty_scaling_preset = "regroup_slow"
+	self.friend.difficulty_scaling_preset = "regroup_slow"
+	self.des.difficulty_scaling_preset = "regroup_slow"
+	self.ranc.difficulty_scaling_preset = "regroup_slow"
+	self.deep.difficulty_scaling_preset = "regroup_slow"
+
+	self.pex.difficulty_scaling_preset = "sustain"
+
+	self.man.difficulty_scaling_preset = "sustain_slow"
+	self.vit.difficulty_scaling_preset = "sustain_slow"
+	self.trai.difficulty_scaling_preset = "sustain_slow"
+
+	self.watchdogs_2.difficulty_scaling_preset = "sustain_aggressive"
+	self.watchdogs_2_day.difficulty_scaling_preset = "sustain_aggressive"
+
+	-- Add Group AI settings
+	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
+	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
+
+	self.watchdogs_1.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 60, -- Increase the preset's delay
+					time = 120,
+				},
+			},
+		},
+	}
+	self.watchdogs_1_night.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
+
+	self.watchdogs_2.group_ai_settings = {
+		sustain_duration_mul = 1.25,
+		assault_force_mul = 1.2,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.5,
+					delay = 15, -- Reduce the preset's delay
+					time = 120,
+				},
+			},
+		},
+		special_limit_add = {
+			shield = 1,
+		},
+	}
+	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+
+	self.welcome_to_the_jungle_2.group_ai_settings.cloaker_interval_mul = 1.5
+
+	self.framing_frame_3.group_ai_settings = {
+		assault_force_mul = 0.8,
+		special_limit_add = {
+			shield = -1,
+			marksman = -1,
+		},
+	}
+
+	self.mia_1.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 75, -- Increase the preset's delay
+					time = 60,
+				},
+			},
+		},
+	}
+
+	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
+	self.mia_2.group_ai_settings.assault_force_mul = 0.6
+
+	self.hox_1.group_ai_settings.difficulty_scaling = {
+		steps = {
+			{
+				amount = 0.25,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.25,
+				delay = 30,
+				time = { 150, 180 },
+			},
+			{
+				amount = 0.25,
+				delay = 45,
+				time = { 180, 210 },
+			},
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0,
+				delay = 15,
+				time = 0,
+			},
+		},
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_regroup = false,
+			on_entered_sustain = false,
+		},
+	}
+
+	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.crojob2.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 60,
+				time = 60,
+			},
+		},
+	}
+
+	self.crojob3.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.25,
+				delay = 60,
+				time = 60,
+			},
+		},
+	}
+
+	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
+
+	self.shoutout_raid.group_ai_settings.assault_force_mul = 1.2
+
+	self.dinner.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
+		},
+		grenade_timeout_mul = {
+			smoke_grenade = 0.5,
+		},
+	}
+
+	self.pbr2.group_ai_settings = {
+		assault_force_mul = 0.8,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 60,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
+		},
+		special_limit_add = {
+			shield = -1,
+		},
+	}
+
+	self.kenaz.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
+		},
+	}
+
+	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
+	self.nail.group_ai_settings.difficulty_scaling = nil
+
+	self.peta.group_ai_settings.assault_force_mul = 1.2
+
+	self.peta2.group_ai_settings.assault_force_mul = 0.8
+
+	self.man.group_ai_settings = {
+		sustain_duration_mul = 1.25,
+		cs_grenade_chance_times_mul = 0.75,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 0,
+					time = 60,
+				},
+			},
+		},
+		special_limit_add = {
+			cloaker = 1,
+		},
+	}
+
+	self.chew.group_ai_settings = {
+		use_equipment_reenforce = false,
+		assault_force_mul = 0.4,
+		cs_grenade_chance_times_mul = 2,
+		special_limit_add = {
+			shield = -2,
+			cloaker = -1,
+			medic = -1,
+			marksman = -2,
+		},
+		force_tactics = {
+			cop = {
+				ranged_fire = false,
+			},
+			hrt_init = {
+				ranged_fire = false,
+			},
+			swat_init = {
+				ranged_fire = false,
+			},
+			swat_def = {
+				ranged_fire = false,
+			},
+			shield_def = {
+				ranged_fire = false,
+			},
+		},
+		difficulty_scaling = {
+			steps = {
+				{
+					amount = 0.1,
+					delay = 30,
+					time = 15,
+				},
+				{
+					amount = 0.3,
+					delay = 30,
+					time = 30,
+				},
+				{
+					amount = 0.6,
+					delay = 30,
+					time = 45,
+				},
+			},
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0,
+					delay = 30,
+					time = 0,
+				},
+			},
+			allowed_addends = {
+				on_enemy_weapons_hot = false,
+				on_entered_sustain = false,
+				on_entered_regroup = false,
+			},
+		},
+	}
+
+	self.chill_combat.group_ai_settings = {
+		assault_force_mul = 0.6,
+		cs_grenade_chance_times_mul = 0.75,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 1 / 3,
+					delay = 15,
+					time = 60,
+				},
+				on_entered_regroup = {
+					amount = 1 / 3,
+					delay = 0,
+					time = 60,
+				},
+			},
+		},
+		grenade_timeout_mul = {
+			cs_grenade = 0.5,
+		},
+		force_tactics = {
+			hrt_init = {
+				smoke_grenade = true,
+				flash_grenade = true,
+			},
+			hrt = {
+				smoke_grenade = true,
+				flash_grenade = true,
+			},
+			swat_def = {
+				rescue = true,
+			},
+			swat_agg = {
+				rescue = true,
+			},
+			swat_snk = {
+				rescue = true,
+			},
+			swat_snk_agg = {
+				rescue = true,
+			},
+		},
+	}
+
+	self.help.group_ai_settings.assault_force_mul = 0.8
+
+	self.friend.group_ai_settings.assault_force_mul = 1.2
+
+	self.run.group_ai_settings = {
+		use_equipment_reenforce = false,
+		hostage_hesitation_delay_mul = 0.75,
+		sustain_duration_mul = 0.75,
+		assault_delay_mul = 1.25,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 0,
+					time = 30,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
+		},
+		special_limit_add = {
+			taser = 2,
+		},
+	}
+
+	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
+	self.glace.group_ai_settings.difficulty_scaling = {
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0.375,
+				delay = 75,
+				time = 60,
+			},
+		},
+		allowed_addends = {
+			on_entered_regroup = false,
+		},
+	}
+
+	self.wwh.group_ai_settings.assault_force_mul = 0.8
+
+	self.hvh.group_ai_settings = {
+		use_equipment_reenforce = false,
+		assault_force_mul = 0.6,
+		recon_force_mul = 0.75,
+		cs_grenade_chance_times_mul = 2,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.2,
+					delay = 0,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
+		},
+		grenade_timeout_mul = {
+			smoke_grenade = 1.25,
+		},
+		special_limit_add = {
+			shield = -1,
+			medic = -1,
+			marksman = -1,
+		},
+	}
+
+	self.rvd2.group_ai_settings.assault_force_mul = 0.8
+
+	self.des.group_ai_settings = {
+		assault_force_mul = 0.8,
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 15,
+					time = 60,
+				},
+			},
+		},
+	}
+
+	self.sah.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.25,
+					delay = 60,
+					time = 60,
+				},
+			},
+		},
+	}
+
+	self.nmh.group_ai_settings = {
+		assault_force_mul = 0.8,
+		special_limit_add = {
+			shield = -1,
+			marksman = -1,
+		},
+	}
+
+	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
+	self.bph.group_ai_settings.difficulty_scaling = {
+		steps = {
+			{
+				amount = 0.2,
+				delay = 15,
+				time = 5,
+			},
+			{
+				amount = 0.2,
+				delay = 150,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+			{
+				amount = 0.2,
+				delay = 75,
+				time = 75,
+			},
+		},
+		addends = {
+			on_enemy_weapons_hot = {
+				amount = 0,
+				delay = 15,
+				time = 0,
+			},
+		},
+		allowed_addends = {
+			on_enemy_weapons_hot = false,
+			on_entered_sustain = false,
+			on_entered_regroup = false,
+		},
+	}
+
+	self.vit.group_ai_settings = { -- Greatest heist of all
+		sustain_duration_mul = 1.35,
+		assault_force_mul = 0.8,
+		cs_grenade_chance_times_mul = 1.5,
+		special_limit_add = {
+			shield = -1,
+			tank = 1,
+			marksman = -1,
+		},
+	}
+
+	self.bex.group_ai_settings = {
+		assault_force_mul = 1.2,
+		special_limit_add = {
+			shield = 1,
+			taser = 1,
+		},
+	}
+
+	self.pex.group_ai_settings.sustain_duration_mul = 1.25 -- Bird flu
+
+	self.sand.group_ai_settings = {
+		difficulty_scaling = {
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0.375,
+					delay = 60,
+					time = 60,
+				},
+			},
+			allowed_addends = {
+				on_entered_regroup = false,
+			},
+		},
+	}
+
+	self.chca.group_ai_settings.assault_force_mul = 0.8
+
+	self.trai.group_ai_settings = {
+		sustain_duration_mul = 1.25,
+		assault_force_mul = 1.2,
+		special_limit_add = {
+			shield = 1,
+			tank = 1,
+		},
+	}
+
+	self.corp.group_ai_settings = { -- Fuckhuge (tm)
+		assault_force_mul = 1.4,
+		recon_interval_variation_mul = 0.5,
+		special_limit_add = {
+			shield = 2,
+			taser = 1,
+			cloaker = 1,
+			medic = 1,
+		},
+	}
+
+	self.deep.group_ai_settings.assault_force_mul = 0.8
+
+	-- stealth bonus changes
+	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
+	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
+	-- low risk heists
+	self.gallery.ghost_bonus = 0.05 -- to be consistent with Framing Frame Day 1
+	self.mallcrasher.ghost_bonus = 0.05 -- it's possible to stealth mallcrasher, i'm serious
+	self.nightclub.ghost_bonus = 0.05 -- it's a basic heist (from 10%)
+	self.branchbank.ghost_bonus = 0.05 -- same as here (from 10%)
+	-- normal risks heists
+	self.kosugi.ghost_bonus = 0.1 -- increase the bonus to 10% (from 5%)
+	self.dark.ghost_bonus = 0.1 -- decrease the bonus to 10% (from 15%)
+	self.hox_3.ghost_bonus = 0.15 -- increase the bonus to 15% (from 10%)
+	self.bex.ghost_bonus = 0.1 -- Slik Road, City of Gold and Texas Heat heists all have bonus decreased to 10% (except final heists, Border Crossing and Lost In Transit)
+	self.pex.ghost_bonus = 0.1
+	self.chas.ghost_bonus = 0.1
+	self.sand.ghost_bonus = 0.1
+	self.chca.ghost_bonus = 0.1
+	self.ranc.ghost_bonus = 0.1
+	self.corp.ghost_bonus = 0.1
+	-- high risk heists
+	self.mex.ghost_bonus = 0.15 -- tedious heist
+	self.arm_for.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.arena.ghost_bonus = 0.15 -- Alesso Heist is pretty long even on stealth
+	self.kenaz.ghost_bonus = 0.15 -- same as GGC
+	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
+	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
+	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+
+	-- multi day heists
+	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
+	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
+	self.welcome_to_the_jungle_1_night.ghost_bonus = 0.05
+	-- Framing Frame (5% in day 1, 3% in day 2 and 7% on day 3 to reach the max 15% stealth bonus)
+	self.framing_frame_1.ghost_bonus = 0.05
+	self.framing_frame_2.ghost_bonus = 0.03
+	self.framing_frame_3.ghost_bonus = 0.07
+	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
+	self.election_day_1.ghost_bonus = 0.03
+	self.election_day_2.ghost_bonus = 0.07
+	-- Firestarter (5% for all days, resulting in 15% stealth bonus max)
+	self.firestarter_1.ghost_bonus = 0.05
+	self.firestarter_2.ghost_bonus = 0.05
+	self.firestarter_3.ghost_bonus = 0.05
+
+	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	self.nmh.ghost_bonus = nil
+
+	-- Replace DC beat cops with appropriate ones based on the city
+	-- LAPD
+	self.rvd1.ai_unit_group_overrides = {
+		cs_cop_1 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
+			},
+		},
+		cs_cop_2 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
+			},
+		},
+		cs_cop_3 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
+			},
+		},
+		cs_cop_4 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
+			},
+		},
+		cs_cop_1_2 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
+			},
+		},
+		cs_cop_1_4 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
+			},
+		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
+			},
+		},
+		cs_cop_3_4 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
+			},
+		},
+		cs_cop = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
+			},
+		},
+	}
+	self.rvd2.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+	self.kenaz.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+	self.jolly.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+	self.pal.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+	self.friend.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+
+	-- SFPD
+	self.chas.ai_unit_group_overrides = {
+		cs_cop_1 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
+			},
+		},
+		cs_cop_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
+			},
+		},
+		cs_cop_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
+			},
+		},
+		cs_cop_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
+			},
+		},
+		cs_cop_1_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
+			},
+		},
+		cs_cop_1_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
+			},
+		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
+			},
+		},
+		cs_cop_3_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
+			},
+		},
+		cs_cop = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
+			},
+		},
+	}
+	self.sand.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
+	self.pent.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
+
+	-- Coast Guard
+	self.chca.ai_unit_group_overrides = {
+		cs_cop_1 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+			},
+		},
+		cs_cop_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+			},
+		},
+		cs_cop_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+			},
+		},
+		cs_cop_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+		cs_cop_1_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+			},
+		},
+		cs_cop_1_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+			},
+		},
+		cs_cop_3_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+		cs_cop = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+	}
+
+	self.deep.ai_unit_group_overrides = deep_clone(self.chca.ai_unit_group_overrides)
+
+	-- Texas Rangers
+	self.ranc.ai_unit_group_overrides = {
+		cs_cop_1 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
+			},
+		},
+		cs_cop_2 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
+			},
+		},
+		cs_cop_3 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
+			},
+		},
+		cs_cop_4 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"),
+			},
+		},
+		cs_cop_1_2 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
+			},
+		},
+		cs_cop_1_4 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"),
+			},
+		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
+			},
+		},
+		cs_cop_3_4 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"),
+			},
+		},
+		cs_cop = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"),
+			},
+		},
+	}
+	self.dinner.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
+	self.trai.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
+	self.corp.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
+
+	-- load the missing boat driver lines to Watchdogs day 2
+	self.watchdogs_2.package = {
+		"packages/narr_watchdogs2",
+		"levels/narratives/vlad/cane/world_sounds",
+	}
+	self.watchdogs_2_day.package = {
+		"packages/narr_watchdogs2_day",
+		"levels/narratives/vlad/cane/world_sounds",
+	}
+
+	-- load required gangster vo to heists where it actually needs
+	-- for reference: Rats day 1 has regular latin vo,
+	-- Rats day 2 has cobra vo,
+	-- big oil day 1 has biker vo
+	-- and hotline miami day 2 (or 1, doesn't matter) has russian mobster vo
+	self.welcome_to_the_jungle_1.package = {
+		"packages/narr_jungle1",
+		"levels/narratives/h_alex_must_die/stage_2/world_sounds",
+	}
+	self.welcome_to_the_jungle_1_night.package = {
+		"packages/narr_jungle1_night",
+		"levels/narratives/h_alex_must_die/stage_2/world_sounds",
+	}
+	self.alex_3.package = {
+		"packages/narr_alex3",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.nightclub.package = {
+		"packages/vlad_nightclub",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
+		"levels/narratives/classics/dah/world_sounds",
+	}
+	self.jolly.package = {
+		"packages/jolly",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
+	}
+	self.cane.package = {
+		"packages/cane",
+		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
+	}
+	self.chew.package = {
+		"packages/lvl_chew",
+		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
+	}
+	self.short2_stage1.package = {
+		"packages/job_short2_stage1",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
+	}
+	self.flat.package = {
+		"packages/narr_flat",
+		"levels/narratives/h_alex_must_die/stage_2/world_sounds",
+	}
+	self.friend.package = {
+		"packages/lvl_friend",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.spa.package = {
+		"packages/job_spa",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
+	}
+	self.mex.package = {
+		"packages/job_mex",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.mex_cooking.package = {
+		"packages/job_mex2",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.fex.package = {
+		"packages/job_fex",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.chas.package = {
+		"packages/job_chas",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.sand.package = {
+		"packages/job_sand",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.chca.package = {
+		"packages/job_chca",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+	self.pent.package = {
+		"packages/job_pent",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
+	}
+
+	if not no_outfits then
+		if expanded_outfits or vanilla_outfits then -- Vanilla setting, the same as vanilla, also on for the Expanded setting
+			self.glace.player_style = "raincoat"
+			self.dah.player_style = "sneak_suit"
+			self.wwh.player_style = "winter_suit"
+			self.sah.player_style = "tux"
+			self.bph.player_style = "sneak_suit"
+			self.vit.player_style = "murky_suit"
+			self.pal.player_style = "poolrepair"
+			self.dinner.player_style = "slaughterhouse"
+		end
+
+		if expanded_outfits then -- Expanded setting, fitting default outfits for more heists
+			-- Tactical BDU
+			self.firestarter_1.player_style = "sneak_suit"
+			self.firestarter_2.player_style = "sneak_suit"
+			self.framing_frame_1.player_style = "sneak_suit"
+			self.framing_frame_2.player_style = "sneak_suit"
+			self.framing_frame_3.player_style = "sneak_suit"
+			self.election_day_1.player_style = "sneak_suit"
+			self.election_day_2.player_style = "sneak_suit"
+			self.gallery.player_style = "sneak_suit"
+			self.kosugi.player_style = "sneak_suit"
+			self.tag.player_style = "sneak_suit"
+			self.dark.player_style = "sneak_suit"
+			self.mus.player_style = "sneak_suit"
+			self.hox_3.player_style = "sneak_suit"
+			self.bph.player_style = "sneak_suit"
+			self.pex.player_style = "sneak_suit"
+			self.sand.player_style = "sneak_suit"
+			self.skm_mus.player_style = "sneak_suit"
+
+			-- Winter Camo Parka
+			self.mad.player_style = "winter_suit"
+			
+			-- The Boom Rap
+			self.arena.player_style = "hiphop"
+			
+			-- The Casual Formal
+			self.brb.player_style = "peacoat"
+			
+			-- The Classic
+			self.arm_cro.player_style = "jumpsuit"
+			self.arm_fac.player_style = "jumpsuit"
+			self.arm_hcm.player_style = "jumpsuit"
+			self.arm_par.player_style = "jumpsuit"
+			self.arm_und.player_style = "jumpsuit"
+
+			-- Tuxedo
+			self.kenaz.player_style = "tux"
+			self.fish.player_style = "tux"
+			self.sah.player_style = "tux"
+			self.chca.player_style = "tux"
+			self.fex.player_style = "tux"
+			self.skm_cas.player_style = "tux"
+
+			-- Murkywater Uniform
+			self.pbr2.player_style = "murky_suit"
+			self.vit.player_style = "murky_suit"
+
+			-- Legacy Tactical
+			self.arm_for.player_style = "slaughterhouse"
+			self.alex_1.player_style = "slaughterhouse"
+			self.alex_2.player_style = "slaughterhouse"
+			self.alex_3.player_style = "slaughterhouse"
+			self.escape_overpass.player_style = "slaughterhouse"
+			self.escape_overpass_night.player_style = "slaughterhouse"
+			self.escape_garage.player_style = "slaughterhouse"
+			self.rat.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_1.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_1_night.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_2.player_style = "slaughterhouse"
+			self.watchdogs_1.player_style = "slaughterhouse"
+			self.watchdogs_1_night.player_style = "slaughterhouse"
+			self.watchdogs_2.player_style = "slaughterhouse"
+			self.watchdogs_2_day.player_style = "slaughterhouse"
+			self.mia_1.player_style = "slaughterhouse"
+			self.mia_2.player_style = "slaughterhouse"
+			self.crojob2.player_style = "slaughterhouse"
+			self.crojob3.player_style = "slaughterhouse"
+			self.crojob3_night.player_style = "slaughterhouse"
+			self.shoutout_raid.player_style = "slaughterhouse"
+			self.born.player_style = "slaughterhouse"
+			self.chew.player_style = "slaughterhouse"
+			self.man.player_style = "slaughterhouse"
+			self.spa.player_style = "slaughterhouse"
+			self.pbr.player_style = "slaughterhouse"
+			self.des.player_style = "slaughterhouse"
+			self.pines.player_style = "slaughterhouse"
+			self.mex.player_style = "slaughterhouse"
+			self.mex_cooking.player_style = "slaughterhouse"
+			self.peta.player_style = "slaughterhouse"
+			self.peta2.player_style = "slaughterhouse"
+			self.ranc.player_style = "slaughterhouse"
+			self.trai.player_style = "slaughterhouse"
+			self.deep.player_style = "slaughterhouse"
+			self.cane.player_style = "slaughterhouse"
+			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
+		end
+	end
+
+	local ready_team_package = { "packages/ready_teams" }
+	self.watchdogs_1.custom_package = ready_team_package
+	self.watchdogs_1_night.custom_package = ready_team_package
+	self.watchdogs_2.custom_package = ready_team_package
+	self.watchdogs_2_day.custom_package = ready_team_package
+	self.firestarter_1.custom_package = ready_team_package
+	self.firestarter_2.custom_package = ready_team_package
+	self.firestarter_3.custom_package = ready_team_package
+	self.alex_1.custom_package = ready_team_package
+	self.alex_2.custom_package = ready_team_package
+	self.alex_3.custom_package = ready_team_package
+	self.hox_2.custom_package = ready_team_package
+	self.man.custom_package = ready_team_package
+
+	self.welcome_to_the_jungle_1.custom_package = {}
+	self.welcome_to_the_jungle_1_night.custom_package = {}
+	self.cane.custom_package = {}
+	self.mex.custom_package = {}
+	self.dinner.custom_package = {}
+	self.trai.custom_package = {}
+
+	--[[
+	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
+	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
+	table.insert(self.cane.custom_package, "packages/female_bikers")
+	table.insert(self.mex.custom_package, "packages/female_bikers")
+	]]
+	--
+
+	local us_army_package = { "packages/us_army" }
+	self.arm_for.custom_package = us_army_package
+	self.roberts.custom_package = us_army_package
+	self.crojob2.custom_package = us_army_package
+	self.crojob3.custom_package = us_army_package
+	self.jolly.custom_package = us_army_package
+	self.peta2.custom_package = us_army_package
+	self.nmh.custom_package = us_army_package
+	table.insert(self.trai.custom_package, "packages/us_army")
+
+	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
+	self.dah.custom_package = gensec_tactical_security_package
+	self.arena.custom_package = gensec_tactical_security_package
+
+	local russian_mercs_package = { "packages/akan_mercs" }
+	self.pines.custom_package = russian_mercs_package
+
+	local murky_dozers_package = { "packages/murky_bulldozers" }
+	self.pbr2.custom_package = murky_dozers_package
+	table.insert(self.dinner.custom_package, "packages/murky_bulldozers")
+
+	local murky_mercs_package = { "packages/murky_mercs" }
+	self.kosugi.custom_package = murky_mercs_package
+	self.shoutout_raid.custom_package = murky_mercs_package
+	self.dark.custom_package = murky_mercs_package
+	self.wwh.custom_package = murky_mercs_package
+
+	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
+	--	self.brb.custom_package = murky_mercs_scripted_package
+
+	local zombie_faction_package = { "packages/zombie_cops" }
+	self.nail.custom_package = zombie_faction_package
+	self.help.custom_package = zombie_faction_package
+
+	local lapd_package = { "packages/lapd" }
+	self.kenaz.custom_package = lapd_package
+	self.pal.custom_package = lapd_package
+	self.friend.custom_package = lapd_package
+	table.insert(self.jolly.custom_package, "packages/lapd")
+
+	local coast_guard_package = { "packages/coast_guard" }
+	self.chca.custom_package = coast_guard_package
+	self.deep.custom_package = coast_guard_package
+
+	local texas_rangers_package = { "packages/texas_rangers" }
+	table.insert(self.dinner.custom_package, "packages/texas_rangers")
+	table.insert(self.trai.custom_package, "packages/texas_rangers")
+
+	local bellmead_security_package = { "packages/bellmead_security" }
+	self.ranc.custom_package = bellmead_security_package
+	self.corp.custom_package = bellmead_security_package
+end)
