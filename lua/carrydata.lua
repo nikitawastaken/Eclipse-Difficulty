@@ -33,7 +33,7 @@ Hooks:PostHook(CarryData, "_chk_register_steal_SO", "eclipse__chk_register_steal
 	if Network:is_server() then
 		if self._steal_SO_data and not self._steal_SO_data.secure_pos then
 			self:_unregister_steal_SO()
-		end	
+		end
 	end
 end)
 
@@ -43,13 +43,13 @@ end
 
 CarryData.ub_loot = {}
 
-Hooks:PostHook(CarryData, "set_carry_id", "set_carry_id_ub", function (self, carry_id, is_init)
+Hooks:PostHook(CarryData, "set_carry_id", "set_carry_id_ub", function(self, carry_id, is_init)
 	if not is_init then
 		CarryData.ub_loot[self._unit:key()] = self._unit
 	end
 end)
 
-Hooks:PostHook(CarryData, "set_zipline_unit", "set_zipline_unit_ub", function (self, zipline_unit)
+Hooks:PostHook(CarryData, "set_zipline_unit", "set_zipline_unit_ub", function(self, zipline_unit)
 	CarryData.ub_loot[self._unit:key()] = not zipline_unit and self._unit or nil
 end)
 
@@ -143,21 +143,24 @@ function CarryData:unlink()
 
 		managers.enemy:add_delayed_clbk(self._register_steal_SO_clbk_id, callback(self, self, "clbk_register_steal_SO"), 0)
 	end
-	
+
 	CarryData.ub_loot[self._unit:key()] = self._unit
 end
 
 local old_cd_destroy = CarryData.destroy
 function CarryData:destroy()
 	CarryData.ub_loot[self._unit:key()] = nil
-	
+
 	local old_links
-	if alive(self._linked_to) then
-		old_links = CarryData.carry_links[self._linked_to:key()]
+	-- self._linked_to gets niled when calling the old function, so save a reference
+	local linked_to = self._linked_to
+	if alive(linked_to) then
+		old_links = CarryData.carry_links[linked_to:key()]
 	end
 
 	old_cd_destroy(self)
-	if old_links and alive(self._linked_to) then
-		CarryData.carry_links[self._linked_to:key()] = old_links - 1
+	if old_links and alive(linked_to) then
+		CarryData.carry_links[linked_to:key()] = old_links - 1
 	end
 end
+

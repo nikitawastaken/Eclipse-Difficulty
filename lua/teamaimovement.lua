@@ -80,7 +80,7 @@ Hooks:PostHook(TeamAIMovement, "init", "eclipse_init", function(self)
 	self._queued_actions = {}
 end)
 
-Hooks:PostHook(TeamAIMovement, "set_allow_fire", "set_allow_fire_ub", function (self, state)
+Hooks:PostHook(TeamAIMovement, "set_allow_fire", "set_allow_fire_ub", function(self, state)
 	if state then
 		self._switch_upper_body_to_idle_t = nil
 	end
@@ -88,11 +88,11 @@ end)
 
 TeamAIMovement.chk_action_forbidden = CopMovement.chk_action_forbidden
 
-Hooks:PostHook(TeamAIMovement, "set_should_stay", "set_should_stay_ub", function (self, should_stay, pos)
+Hooks:PostHook(TeamAIMovement, "set_should_stay", "set_should_stay_ub", function(self, should_stay, pos)
 	if should_stay and pos then
 		self._should_stay_pos = mvector3.copy(pos)
 	end
-	
+
 	local objective = self._ext_brain:objective()
 	if not objective or not objective.forced then
 		self._ext_brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(self._unit))
@@ -109,23 +109,24 @@ function TeamAIMovement:carrying_bag()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
-	
-	local bag_unit = unit or self._carry_unit
-	if bag_unit then
-		bag_unit:set_visible(not unit)
+	if unit then
+		self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
+		table.insert(self._carry_table, unit)
+	elseif #self._carry_table == 2 then
+		local next_carry = self._carry_table[1]
+		self:set_visual_carry(alive(next_carry) and next_carry:carry_data():carry_id())
+		table.remove(self._carry_table)
+	else
+		self:set_visual_carry(nil)
+		table.remove(self._carry_table)
 	end
-	
+
 	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
 	if name_label then
 		local bag_panel = name_label.panel and name_label.panel:child("bag")
 		if bag_panel then
 			bag_panel:set_visible(unit)
 		end
-	end
-
-	if unit then
-		table.insert(self._carry_table, unit)
 	end
 
 	self:set_carry_speed_modifier()
@@ -144,7 +145,7 @@ end
 function TeamAIMovement:carry_data(idx)
 	idx = idx or #self._carry_table
 
-	return self._carry_table and self._carry_table[idx] and self._carry_table[idx]:carry_data()
+	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx]:carry_data()
 end
 
 -- returns top if no args given
@@ -164,7 +165,6 @@ function TeamAIMovement:carry_type_tweak(idx)
 
 	return carry_ext and carry_ext:carry_type_tweak()
 end
-
 
 function TeamAIMovement:bank_carry()
 	for i = 1, #self._carry_table do
@@ -191,7 +191,7 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 		reason = reason,
 	}
 
-	if carry_unit and carry_unit:carry_data() then
+	if carry_unit and alive(carry_unit) and carry_unit:carry_data() then
 		carry_unit:carry_data():unlink()
 
 		if Network:is_server() then
@@ -200,6 +200,11 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 		end
 	end
 	self._carry_table[idx] = nil
+
+	if idx == 2 then
+		carry_unit = self._carry_table[1]
+		carry_unit:set_visible(true)
+	end
 end
 
 function TeamAIMovement:was_carrying_bag()
