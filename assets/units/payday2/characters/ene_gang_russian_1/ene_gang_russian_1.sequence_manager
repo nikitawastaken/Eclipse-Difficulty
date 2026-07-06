@@ -218,7 +218,6 @@
 			<set_variables 		has_cigarette="1" />
 			<object 			enabled="true" name="'g_cigarette'" />
 			<object 			enabled="true" name="'g_cigarette_lod1'" />
-			<effect_spawner 	enabled="true" name="'cigarette_smoke'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

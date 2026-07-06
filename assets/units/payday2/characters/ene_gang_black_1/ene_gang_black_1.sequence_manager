@@ -301,7 +301,6 @@
 			<set_variables 		has_cigarette="1" />
 			<object 			enabled="true" name="'g_cigarette'" />
 			<object 			enabled="true" name="'g_cigarette_lod1'" />
-			<effect_spawner 	enabled="true" name="'cigarette_smoke'"/>
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
