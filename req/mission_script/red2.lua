@@ -67,7 +67,7 @@ local taser_cloaker = {
 local cloaker_escape = {
 	enemy = scripted_enemy.cloaker,
 	values = {
-		enabled = hard_above and escape_spooc_chance
+		enabled = hard_above and escape_spooc_chance,
 	},
 }
 local taser_spawn_1 = {
