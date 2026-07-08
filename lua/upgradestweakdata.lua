@@ -1500,6 +1500,21 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Technician --
 
+	-- Hands-On Approach
+	self.definitions.player_hack_interaction_speed_multiplier = {
+		name_id = "menu_player_hack_interaction_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hack_interaction_speed_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
+	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.75
+	self.skill_descs.defense_up.multibasic = "25%"
+	self.skill_descs.defense_up.multipro = "25%"
+
 	-- Daredevil
 	self.values.player.interacting_damage_multiplier[1] = 0.9
 	self.values.player.total_interaction_timer_multiplier = { 0.9 }
@@ -1512,23 +1527,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.defense_up.multibasic = "10%"
-	self.skill_descs.defense_up.multipro = "10%"
-
-	-- Hands-On Approach
-	self.definitions.player_hack_interaction_speed_multiplier = {
-		name_id = "menu_player_hack_interaction_speed_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "hack_interaction_speed_multiplier",
-			category = "player",
-		},
-	}
-	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
-	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
 	self.skill_descs.sentry_targeting_package.multibasic = "25%"
-	self.skill_descs.sentry_targeting_package.multipro = "50%"
+	self.skill_descs.sentry_targeting_package.multipro = "25%"
 
 	-- Ghost Wiring
 	self.silent_drill_min_force_delay = { 0, 60 }

@@ -244,17 +244,19 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- TECHNICIAN --
 
-	-- Daredevil
-	self.skills.defense_up[1].upgrades = { "player_interacting_damage_multiplier" }
-	self.skills.defense_up[2].upgrades = { "player_total_interaction_timer_multiplier" }
-	self.skills.defense_up.icon_xy = { 8, 9 }
-
 	-- Hands-On Approach
-	self.skills.sentry_targeting_package[1].upgrades = { "player_hack_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 0, 6 }
-	self.skills.sentry_targeting_package.name_id = "menu_handson_approach"
-	self.skills.sentry_targeting_package.desc_id = "menu_handson_approach_desc"
+	self.skills.defense_up[1].upgrades = { "player_hack_interaction_speed_multiplier" }
+	self.skills.defense_up[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
+	self.skills.defense_up.icon_xy = { 0, 6 }
+	self.skills.defense_up.name_id = "menu_handson_approach"
+	self.skills.defense_up.desc_id = "menu_handson_approach_desc"
+
+	-- Daredevil
+	self.skills.sentry_targeting_package[1].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.sentry_targeting_package[2].upgrades = { "player_total_interaction_timer_multiplier" }
+	self.skills.sentry_targeting_package.icon_xy = { 8, 9 }
+	self.skills.sentry_targeting_package.name_id = "menu_daredevil"
+	self.skills.sentry_targeting_package.desc_id = "menu_daredevil_desc"
 
 	-- Ghost Wiring
 	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_alert", "player_silent_drill" }
