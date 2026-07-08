@@ -1085,3 +1085,32 @@ end
 function MenuCallbackHandler:casino_betting_visible()
 	return true
 end
+
+function MenuCallbackHandler:play_safehouse(params)
+	local function yes_func()
+		if Global.game_settings.single_player then
+			Global.mission_manager.has_played_tutorial = true
+			MenuCallbackHandler:play_single_player()
+			MenuCallbackHandler:start_single_player_job({
+				difficulty = "normal",
+				job_id = "safehouse",
+			})
+		else
+			Global.mission_manager.has_played_tutorial = true
+			MenuCallbackHandler:start_job({
+				difficulty = "normal",
+				job_id = "safehouse",
+			})
+		end
+	end
+
+	if params.skip_question then
+		yes_func()
+
+		return
+	end
+
+	managers.menu:show_play_safehouse_question({
+		yes_func = yes_func,
+	})
+end

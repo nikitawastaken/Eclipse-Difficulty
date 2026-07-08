@@ -67,7 +67,7 @@ end
 
 -- Security Cameras
 tweak_data.security_camera = {
-	can_rotate = overkill_above,
+	rotation_enabled = overkill_above,
 	max_yaw = 60,
 	max_pitch = 30,
 	stall_time = { 1.5, 2.5 },
@@ -477,13 +477,13 @@ tweak_data.casino = {
 		70,
 	},
 	entrance_fee = {
-		75000,
-		90000,
-		105000,
+		15000,
+		30000,
+		45000,
+		60000,
 		120000,
 		135000,
 		150000,
-		165000,
 	},
 	prefer_cost = 80000,
 	prefer_chance = 0.12,
@@ -500,6 +500,9 @@ tweak_data.casino = {
 	infamous_cost = 200000,
 	infamous_chance = 3,
 }
+
+-- Safehouse Unlock Level
+tweak_data.safehouse_unlock_level = 50
 
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	

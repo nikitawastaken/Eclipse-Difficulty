@@ -1,0 +1,3 @@
+function SkirmishManager:is_unlocked()
+	return false
+end

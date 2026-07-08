@@ -37,6 +37,7 @@
 	"bm_menu_armor_regen": "Armor Regen",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
+	"menu_asset_lock_additional_assets": "Requires the Blending In perk deck card to unlock",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
 
 	"bm_equipment_doctor_bag_desc": "To use the Doctor Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT; to regain health. Using the doctor bag will give the player one life back, meaning the player can get downed once more before going into custody. It can only be used twice.$NL;$NL;When the Doctor Bag is consumed, it disappears. You can see how many uses are left by looking at the Doctor Bag. $NL;$NL;The Doctor Bag is a portable bag, usually used by a physician or other medical profession to transport medical supplies and medicine.",
@@ -45,6 +46,8 @@
 	"bm_equipment_grenade_case_desc": "To use the Grenade Case, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Grenade Case is depleted, it disappears. You can see how many uses are left by looking at the Grenade Case. $NL;$NL;The Grenade Case is a portable case carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
 	"bm_equipment_grenade_crate_desc": "To use the Ordnance Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Ordnance Bag is depleted, it disappears. You can see how many uses are left by looking at the Ordnance Bag. $NL;$NL;The Ordnance Bag is a portable bag carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
 	"bm_equipment_ecm_jammer_desc": "To use the ECM Jammer, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved and it will be active for 20 seconds.$NL;$NL;The ECM Jammer can be used to open certain electronic doors.$NL;$NL;The ECM Jammer will delay pagers while active.$NL;$NL;You can toggle the ECM Jammer by pressing $BTN_INTERACT;. The ECM Jammer then has a chance to incapacitate your enemies within a certain radius. When consumed, it stops working.$NL;$NL;An Electronic Countermeasure (ECM) is an electronic device designed to trick radar, sonar and other detection systems, easing your way towards your goal.",
+	"bm_equipment_sentry_gun_desc": "To use the Sentry Gun, you need to place it by holding $BTN_USE_ITEM;. Upon deployment it will use up to 30% of your weapons' total ammo. It can be damaged and destroyed when fired upon. Picking it up repairs it and returns its ammo to the owner. $NL;$NL;The Sentry Gun automatically aims and fires at targets that are detected by its sensors. It's commonly used as a distraction, drawing attention from you and your team. $NL;$NL;When deployed during stealth, it will intimidate nearby civilians and prevent them from running away or calling the police.",
+	"bm_equipment_bodybags_bag_desc": "To use the Body Bag Case, you place it by holding $BTN_USE_ITEM. Once placed, it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT to gain a body bag and fully replenish your supply of cable ties. $NL;$NL;The Body Bag Case has limited uses. You can see how many uses are left by looking at the Body Bag Case. The Body Bag Case carries additional equipment that might be useful during stealth.",
 
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "Originally a device used by law enforcement to defuse hostage situations and other critical situations where the element of surprise is key. It is now used by heisters to create said hostage situations due to its non-lethality and disorienting anyone affected, including heisters themselves.",
@@ -74,6 +77,7 @@
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
 
 	"debug_interact_gage_assignment_take": "PRESS $BTN_INTERACT TO PICK UP THE PACKAGE",
+	"debug_interact_bodybags_bag_take_bodybag": "HOLD $BTN_INTERACT TO GRAB A BODY BAG AND CABLE TIES",
 
 	"menu_pp_asset_delay_police_10": "SILENT ALARM 20S. DELAY",
 	"menu_pp_asset_delay_police_10_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 20 seconds.",
@@ -150,6 +154,8 @@
 	"hud_arm_forest5_hl": "Secure turret ammo bags",
 	"hud_arm_forest6_hl": "Secure turret ammo bags",
 	"hud_arm_forest7_hl": "Secure turret ammo bags",
+	
+	"hud_v_four_stores_mission2_hl": "Steal $2.800",
 
 	"bot_watchdogs_new_stage2_01_any_02": "This is the boat. I see the signal, will be there soon.",
 	"bot_watchdogs_new_stage2_01_any_03": "This is the boat. Signal on sight, I'm on my way.",

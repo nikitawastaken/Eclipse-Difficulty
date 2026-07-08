@@ -229,7 +229,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 	if difficulty_index <= 2 then
 		self.special_unit_spawn_limits = {
 			shield = 2,
-			taser = 0,
+			taser = 1,
 			tank = 0,
 			spooc = 0,
 			medic = 0,
@@ -237,7 +237,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		}
 		self.ponr_state_special_limit_add = {
 			shield = 0,
-			taser = 1,
+			taser = 0,
 			tank = 1,
 			spooc = 1,
 			medic = 1,
@@ -2974,6 +2974,8 @@ GroupAITweakData.fbi_heists = table.list_to_set({
 	"firestarter_1",
 	"firestarter_2",
 	"firestarter_3",
+	"alex_1",
+	"alex_2",
 	"alex_3",
 	"hox_2",
 	"hox_3",
@@ -3858,10 +3860,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			cs_cops = { 20, 10, 0 },
-			cs_swats = { 22, 26, 30 },
+			cs_cops = { 18, 9, 0 },
+			cs_swats = { 24, 26, 30 },
 			cs_heavies = { 6, 12, 18 },
 			cs_shield = shield_wgt,
+			cs_taser = taser_wgt,
 		}
 		self.besiege.recon.groups = {
 			cs_stealth_init = { 12, 6, 0 },

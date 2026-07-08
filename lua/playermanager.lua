@@ -473,7 +473,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 	if has_shotgun_panic and variant ~= "melee" then
 		if equipped_unit:is_category("shotgun") then
-			local pos = self:player_unit():position()
+			local pos = killed_unit:position()
 			local skill = tweak_data.upgrades.values.shotgun.panic[1]
 
 			if skill then
@@ -681,9 +681,19 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 		return
 	end
 
-	if not weapon_unit:base():is_category("snp") or not result.hit_enemy then
+	if not weapon_unit:base():is_category("snp") then
 		self._consecutive_headshots = 0
 		self:remove_property("snp_consecutive_headshots_mul")
+		return
+	end
+
+	if not result.hit_enemy then
+		self._consecutive_headshots = math.min(self._consecutive_headshots - upgrade_value.lose_on_miss, 0)
+
+		if self._consecutive_headshots <= 0 then
+			self:remove_property("snp_consecutive_headshots_mul")
+		end
+
 		return
 	end
 
@@ -709,8 +719,11 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 			self._consecutive_headshots = self._consecutive_headshots + 1
 			break
 		else
-			self._consecutive_headshots = 0
-			self:remove_property("snp_consecutive_headshots_mul")
+			self._consecutive_headshots = math.min(self._consecutive_headshots - upgrade_value.lose_on_miss, 0)
+
+			if self._consecutive_headshots <= 0 then
+				self:remove_property("snp_consecutive_headshots_mul")
+			end
 		end
 	end
 end

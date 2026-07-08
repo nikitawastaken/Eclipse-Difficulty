@@ -777,7 +777,7 @@ function UpgradesTweakData:init(tweak_data)
 	-------------
 
 	-- Akimbo price multiplier
-	self.weapon_cost_multiplier.akimbo = 0.8
+	self.weapon_cost_multiplier.akimbo = 0.2
 
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
@@ -1082,6 +1082,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			damage_mul_addend = 0.2,
 			max_headshots = 5,
+			lose_on_miss = 2,
 		},
 	}
 	self.definitions.snp_consecutive_headshots = {
@@ -1115,6 +1116,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.skill_descs.single_shot_ammo_return.multibasic = "20%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
+	self.skill_descs.single_shot_ammo_return.multibasic3 = "2"
 	self.skill_descs.single_shot_ammo_return.multipro = "2"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "4m"
@@ -1252,16 +1254,27 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.cooldown.shotgun_panic_on_kill = { { 1, 5 } }
 	self.values.shotgun.panic = { { chance = 0.5, area = 800, amount = "panic" } }
+	self.definitions.cooldown_overkill_damage_multiplier = {
+		name_id = "menu_cooldown_overkill_damage_multiplier",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "overkill_damage_multiplier",
+			category = "cooldown",
+		},
+	}
+	self.values.cooldown.overkill_damage_multiplier = { { 1, 20 } }
 	self.values.temporary.overkill_damage_multiplier = {
 		{
 			1.5,
-			5,
+			10,
 		},
 	}
 	self.skill_descs.overkill.multibasic = "50%"
 	self.skill_descs.overkill.multibasic2 = "10"
 	self.skill_descs.overkill.multipro = "50%"
-	self.skill_descs.overkill.multipro2 = "5"
+	self.skill_descs.overkill.multipro2 = "10"
+	self.skill_descs.overkill.multipro3 = "10"
 
 	-- Impact Padding
 	self.values.player.stationary_damage_multiplier = { 0.9 }
@@ -1483,9 +1496,24 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.bandoliers.multibasic = "100%"
-	self.skill_descs.bandoliers.multipro = "30"
+	self.skill_descs.bandoliers.multipro = "60"
 
 	-- Technician --
+
+	-- Hands-On Approach
+	self.definitions.player_hack_interaction_speed_multiplier = {
+		name_id = "menu_player_hack_interaction_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hack_interaction_speed_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
+	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.75
+	self.skill_descs.defense_up.multibasic = "25%"
+	self.skill_descs.defense_up.multipro = "25%"
 
 	-- Daredevil
 	self.values.player.interacting_damage_multiplier[1] = 0.9
@@ -1499,23 +1527,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.defense_up.multibasic = "10%"
-	self.skill_descs.defense_up.multipro = "10%"
-
-	-- Hands-On Approach
-	self.definitions.player_hack_interaction_speed_multiplier = {
-		name_id = "menu_player_hack_interaction_speed_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "hack_interaction_speed_multiplier",
-			category = "player",
-		},
-	}
-	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
-	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
 	self.skill_descs.sentry_targeting_package.multibasic = "25%"
-	self.skill_descs.sentry_targeting_package.multipro = "50%"
+	self.skill_descs.sentry_targeting_package.multipro = "25%"
 
 	-- Ghost Wiring
 	self.silent_drill_min_force_delay = { 0, 60 }

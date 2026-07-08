@@ -293,8 +293,8 @@ function WeaponTweakData:_init_weapons(overrides)
 						},
 					}
 					weap_data.spread_bloom = {
-						max = 4,
-						recovery = 1.2,
+						max = 3,
+						recovery = 1.5,
 						recovery_wait_multiplier = 2,
 					}
 				else
@@ -338,8 +338,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					}
 					weap_data.spread_bloom = {
 						max = 2,
-						recovery = 5,
-						recovery_wait_multiplier = 1.7,
+						recovery = 4,
+						recovery_wait_multiplier = 1.75,
 					}
 				end
 			elseif cat_map.pistol then
@@ -386,8 +386,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 2,
-					recovery = 5,
-					recovery_wait_multiplier = 1.7,
+					recovery = 3,
+					recovery_wait_multiplier = 1.5,
 				}
 					
 				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
@@ -440,8 +440,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 3,
-					recovery = 1.4,
-					recovery_wait_multiplier = 1.8,
+					recovery = 1.25,
+					recovery_wait_multiplier = 1.75,
 				}
 				
 				if weap_data.fire_mode_data and not weap_data.auto then
@@ -498,8 +498,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					max = 2,
-					recovery = 5,
-					recovery_wait_multiplier = 1.7,
+					recovery = 4,
+					recovery_wait_multiplier = 1.75,
 				}
 			elseif cat_map.shotgun then
 				weap_data.double_barrel = is_doublebarrel
@@ -915,15 +915,6 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 
-			if weap_data.fire_mode_data then
-				if weap_data.auto and  weap_data.fire_mode_data.fire_rate then
-					weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
-				end
-
-				weap_data.fire_mode_data.burst_cooldown = weap_data.fire_mode_data.fire_rate and weap_data.fire_mode_data.fire_rate * 2 or weap_data.fire_mode_data.burst_cooldown or nil
-				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5 
-			end
-
 			-- Set spread values
 			local base_spread = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3.5 or 2.5
 			if weap_data.spread then
@@ -959,14 +950,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					-- Actual stats
 					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
 					weap_data.stats = deep_clone(single_weapon_data.stats)
-					weap_data.stats.spread = self:_add_stat(single_weapon_id, "spread", -1)
+					weap_data.stats.spread = self:_add_stat(single_weapon_id, "spread", -2)
 					weap_data.stats.recoil = self:_add_stat(single_weapon_id, "recoil", -3)
-					weap_data.stats.concealment = self:_add_stat(single_weapon_id, "concealment", -3)
+					weap_data.stats.concealment = self:_add_stat(single_weapon_id, "concealment", -4)
 					weap_data.stats.alert_size = self:_add_stat(single_weapon_id, "alert_size", -1)
 					weap_data.stats.suppression = self:_add_stat(single_weapon_id, "suppression", -2)
 					weap_data.stats.mobility = 13
-					weap_data.total_ammo_mul = math.min(single_weapon_data.total_ammo_mul or 1, 1) * 1.25
-			--		weap_data.pickup_mul = math.min(single_weapon_data.total_ammo_mul or 1, 1) * 1.25
+					weap_data.total_ammo_mul = math.min(single_weapon_data.total_ammo_mul or 1, 1)
+					weap_data.pickup_mul = math.min(single_weapon_data.pickup_mul or 1, 1)
 					weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.75
 					weap_data.steelsight_time = steelsight_times.default
 					weap_data.steelsight_move_speed_mul = 0.5
@@ -975,16 +966,25 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.swap_speed_multiplier = nil
 					weap_data.fire_mode_spread_bloom = single_weapon_data.fire_mode_spread_bloom and deep_clone(single_weapon_data.fire_mode_spread_bloom) or nil
 					weap_data.spread_bloom = single_weapon_data.spread_bloom and deep_clone(single_weapon_data.spread_bloom) or nil
-
-					if weap_data.damage_near then
-						weap_data.damage_near = weap_data.damage_near * 0.8
+					
+					if weap_data.auto then
+						weap_data.auto = deep_clone(single_weapon_data.auto)
 					end
 
-					if weap_data.damage_far then
-						weap_data.damage_far = weap_data.damage_far * 0.8
-					end				
-
 					if not weap_data.rays then
+						weap_data.stance_multipliers.spread = {
+							standing = {
+								hipfire = 1.2,
+								crouching = 1,
+								steelsight = 0.7,
+							},
+							moving = {
+								hipfire = 1.4,
+								crouching = 1,
+								steelsight = 1.2,
+							},
+						}
+					else
 						weap_data.stance_multipliers.spread = {
 							standing = {
 								hipfire = 1,
@@ -994,20 +994,7 @@ function WeaponTweakData:_init_weapons(overrides)
 							moving = {
 								hipfire = 1,
 								crouching = 1,
-								steelsight = 0.9,
-							},
-						}
-					else
-						weap_data.stance_multipliers.spread = {
-							standing = {
-								hipfire = 1.1,
-								crouching = 1,
-								steelsight = 0.7,
-							},
-							moving = {
-								hipfire = 1.2,
-								crouching = 1,
-								steelsight = 1.1,
+								steelsight = 1,
 							},
 						}
 					end
@@ -1027,11 +1014,21 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 
 				-- Apply a ROF decrease to Akimbos but only if they cannot use full auto.
-				if weap_data.fire_mode_data and not weap_data.auto then
-					weap_data.fire_mode_data.fire_rate = weap_data.fire_mode_data.fire_rate * (5 / 4)
+				if weap_data.fire_mode_data and single_weapon_data then
+					weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate * (weap_data.CAN_TOGGLE_FIREMODE and 1 or 5 / 4)
 				end
 			end
 
+			-- Standardize fire rates and set burst fire flags
+			if weap_data.fire_mode_data then
+				if weap_data.auto and weap_data.fire_mode_data.fire_rate then
+					weap_data.auto.fire_rate = weap_data.fire_mode_data.fire_rate
+				end
+
+				weap_data.fire_mode_data.burst_cooldown = weap_data.fire_mode_data.fire_rate and weap_data.fire_mode_data.fire_rate * 2 or weap_data.fire_mode_data.burst_cooldown or nil
+				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5 
+			end
+			
 			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
 
 			-- Set total ammo and pickup
@@ -1071,7 +1068,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				local pickup_dmg_max = weap_data.pickup_damage
 				local pickup_dmg_min = pickup_dmg_max / 2
 
-				weap_data.AMMO_PICKUP = { math.round(math.floor(pickup_dmg_min / real_damage * 100) / 100, 0.05), math.round(math.floor(pickup_dmg_max / real_damage * 100) / 100, 0.05) }
+				weap_data.AMMO_PICKUP = { math.round(math.floor(pickup_dmg_min / real_damage * 100) / 100, is_akimbo and 2 or 0.05), math.round(math.floor(pickup_dmg_max / real_damage * 100) / 100, is_akimbo and 2 or 0.05) }
 			end
 		end
 	end
@@ -2583,9 +2580,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.stats_modifiers = nil
 
 	-- Kang Arms
+	self.qbu88.use_data.selection_index = 1
 	self.qbu88.CLIP_AMMO_MAX = 10
 	self.qbu88.stats.damage = 64
-	self.qbu88.stats.spread = 21
+	self.qbu88.stats.spread = 19
 	self.qbu88.stats.recoil = 13
 	self.qbu88.stats.concealment = 19
 	self.qbu88.fire_mode_data.fire_rate = 60 / 250
@@ -2860,7 +2858,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m32.stats.recoil = 22
 	self.m32.stats.concealment = 16
 	self.m32.fire_mode_data.fire_rate = 60 / 100
-	self.m32.fire_rate_multiplier = 150 / 100
+	self.m32.fire_rate_multiplier = 120 / 100
 	self.m32.reload_speed_multiplier = 1.6
 	self.m32.stats_modifiers = { damage = 6 }
 
@@ -2879,7 +2877,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arbiter.stats.recoil = 10
 	self.arbiter.stats.concealment = 20
 	self.arbiter.fire_mode_data.fire_rate = 60 / 80
-	self.arbiter.fire_rate_multiplier = 75 / 80
+	self.arbiter.fire_rate_multiplier = 90 / 80
 	self.arbiter.stats_modifiers = { damage = 6 }
 
 	-- GL40
@@ -2914,7 +2912,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.china.stats.recoil = 20
 	self.china.stats.concealment = 15
 	self.china.fire_mode_data.fire_rate = 60 / 50
-	self.china.fire_rate_multiplier = 45 / 50
+	self.china.fire_rate_multiplier = 60 / 50
 	self.china.stats_modifiers = { damage = 6 }
 
 	-- Compact 40
