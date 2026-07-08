@@ -73,10 +73,10 @@
 	"menu_firestorm": "Firestorm",
 	"menu_firestorm_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant crew members an automatic instant reload upon interacting with them. The automatic reload will funnel an additional ##$multibasic## ammo into the magazine.\n\nNote: The automatic reload affects both weapons.\n\nACE: ##$pro##\nAmmo bags placed by you grant crew members ##Incendiary Ammo## for up to ##$multipro## seconds after interacting with them. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect Special Weapons and Shotguns loaded with HE Rounds or Dragon's Breath Rounds.",
 
-	"menu_defense_up_beta": "Daredevil",
-	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
 	"menu_handson_approach": "Hands-On Approach",
 	"menu_handson_approach_desc": "BASIC: ##$basic##\nYou interact with all computers and hacks ##$multibasic## faster.\n\nACE: ##$pro##\nYou fix drills and saws ##$multipro## faster.",
+	"menu_daredevil": "Daredevil",
+	"menu_daredevil_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
 	"menu_ghost_wiring": "Ghost Wiring",
 	"menu_ghost_wiring_desc": "BASIC: ##$basic##\nYour drills and saws are silent. Civilians and guards must see the drill or saw in order to become alerted.\n\nIn loud, police will take up to ##$multibasic## seconds to notice and start sending reinforcements to the drill or saw.\n\nACE: ##$pro##\nYou gain the ability to disable ##$multipro## camera from detecting you and your crew.\n\nEffect lasts for ##$multipro2## seconds.",
 	"menu_portable_saw": "Portable Saw",

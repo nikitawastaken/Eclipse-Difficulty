@@ -557,6 +557,12 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
 
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_4/ene_male_triad_gang_4"] = { name = "triad_gang_4", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5"] = { name = "triad_gang_5", head = head_sequences.gangster_russian_a },
+
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = { name = "chas_police_1", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = { name = "chas_police_2", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"] = { name = "chas_police_3", head = head_sequences.security },
