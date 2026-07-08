@@ -76,6 +76,8 @@ local M = {
 	"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/vars/ene_swat_dozer_medic_policia_federale",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2",
+	"units/pd2_dlc_chas/characters/ene_acc_gang_triad_head/vars/ene_acc_gang_triad_head_var1",
+	"units/pd2_dlc_chas/characters/ene_acc_gang_triad_head/vars/ene_acc_gang_triad_head_var2",
 	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
 }
