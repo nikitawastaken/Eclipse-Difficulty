@@ -177,6 +177,37 @@ local head_sequences = {
 			"random_balaclava_swat",
 		},
 	},
+	gangster_russian_a = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+			"random_balaclava_any_rare",
+		},
+	},
+	gangster_russian_b = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+			"random_balaclava_twohole_common",
+		},
+	},
+	gangster_russian_c = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+			"random_balaclava_threehole_common",
+		},
+	},
+	gangster_russian_d = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+		},
+	},
 }
 ---@module Unit Sequences
 local M = {
@@ -246,6 +277,15 @@ local M = {
 	["units/payday2/characters/ene_gang_black_2/ene_gang_black_2"] = { name = "gang_black_2", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_3/ene_gang_black_3"] = { name = "gang_black_3", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_4/ene_gang_black_4"] = { name = "gang_black_4", head = head_sequences.security },
+
+	["units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1"] = { name = "gang_russian_1", head = head_sequences.gangster_russian_b },
+	["units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2"] = { name = "gang_russian_2", head = head_sequences.gangster_russian_a },
+	["units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3"] = { name = "gang_russian_3", head = head_sequences.gangster_russian_c },
+	["units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4"] = { name = "gang_russian_4", head = head_sequences.gangster_russian_a },
+	["units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5"] = { name = "gang_russian_5", head = head_sequences.gangster_russian_a },
+
+	["units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1"] = { name = "security_penthouse_1", head = head_sequences.gangster_russian_d },
+	["units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2"] = { name = "security_penthouse_2", head = head_sequences.gangster_russian_d },
 
 	["units/payday2/characters/ene_swat_1/ene_swat_1"] = { name = "swat_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = { name = "swat_2", head = head_sequences.swat_a },
@@ -516,6 +556,12 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"] = { name = "pex_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
+
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_4/ene_male_triad_gang_4"] = { name = "triad_gang_4", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5"] = { name = "triad_gang_5", head = head_sequences.gangster_russian_a },
 
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = { name = "chas_police_1", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = { name = "chas_police_2", head = head_sequences.security },

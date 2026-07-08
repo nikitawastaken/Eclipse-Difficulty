@@ -1254,16 +1254,27 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.cooldown.shotgun_panic_on_kill = { { 1, 5 } }
 	self.values.shotgun.panic = { { chance = 0.5, area = 800, amount = "panic" } }
+	self.definitions.cooldown_overkill_damage_multiplier = {
+		name_id = "menu_cooldown_overkill_damage_multiplier",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "overkill_damage_multiplier",
+			category = "cooldown",
+		},
+	}
+	self.values.cooldown.overkill_damage_multiplier = { { 1, 20 } }
 	self.values.temporary.overkill_damage_multiplier = {
 		{
 			1.5,
-			5,
+			10,
 		},
 	}
 	self.skill_descs.overkill.multibasic = "50%"
 	self.skill_descs.overkill.multibasic2 = "10"
 	self.skill_descs.overkill.multipro = "50%"
-	self.skill_descs.overkill.multipro2 = "5"
+	self.skill_descs.overkill.multipro2 = "10"
+	self.skill_descs.overkill.multipro3 = "10"
 
 	-- Impact Padding
 	self.values.player.stationary_damage_multiplier = { 0.9 }
@@ -1485,9 +1496,24 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.bandoliers.multibasic = "100%"
-	self.skill_descs.bandoliers.multipro = "30"
+	self.skill_descs.bandoliers.multipro = "60"
 
 	-- Technician --
+
+	-- Hands-On Approach
+	self.definitions.player_hack_interaction_speed_multiplier = {
+		name_id = "menu_player_hack_interaction_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hack_interaction_speed_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
+	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.75
+	self.skill_descs.defense_up.multibasic = "25%"
+	self.skill_descs.defense_up.multipro = "25%"
 
 	-- Daredevil
 	self.values.player.interacting_damage_multiplier[1] = 0.9
@@ -1501,23 +1527,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.defense_up.multibasic = "10%"
-	self.skill_descs.defense_up.multipro = "10%"
-
-	-- Hands-On Approach
-	self.definitions.player_hack_interaction_speed_multiplier = {
-		name_id = "menu_player_hack_interaction_speed_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "hack_interaction_speed_multiplier",
-			category = "player",
-		},
-	}
-	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
-	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
 	self.skill_descs.sentry_targeting_package.multibasic = "25%"
-	self.skill_descs.sentry_targeting_package.multipro = "50%"
+	self.skill_descs.sentry_targeting_package.multipro = "25%"
 
 	-- Ghost Wiring
 	self.silent_drill_min_force_delay = { 0, 60 }
@@ -3387,6 +3398,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
+	self.values.player.body_armor.damage_control_passive = {
+		{ 75, 9 },
+		{ 70, 9 },
+		{ 65, 9 },
+		{ 60, 9 },
+		{ 55, 9 },
+		{ 50, 9 },
+		{ 45, 9 },
+	}
 	self.values.player.emergency_throwable_regen_speed = {
 		{ 1.35, 0.25 },
 	}
@@ -3406,13 +3426,41 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[19][7].multiperk2 = "35%"
 
 	-- Tag Team
+	self.values.player.tag_team_kill_extension = {
+		{
+			tagged = 0,
+			owner = 1.5,
+		},
+		{
+			tagged = 2.5,
+			owner = 2.5,
+		},
+	}
+	self.definitions.player_tag_team_kill_extension_1 = {
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "tag_team_kill_extension",
+			category = "player",
+		},
+	}
+	self.definitions.player_tag_team_kill_extension_2 = {
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "tag_team_kill_extension",
+			category = "player",
+		},
+	}
 	self.values.player.tag_team_base.kill_health_gain = 0.5
 	self.values.player.tag_team_base.tagged_health_gain_ratio = 1
 	self.values.player.tag_team_damage_absorption = { { kill_gain = 0.15, max = 0.6 } }
 	self.specialization_descs[20][1].multiperk2 = "5"
 	self.specialization_descs[20][1].multiperk3 = "5"
+	self.specialization_descs[20][1].multiperk4 = "1.5"
 	self.specialization_descs[20][5].multiperk = "1.5"
 	self.specialization_descs[20][5].multiperk2 = "6"
+	self.specialization_descs[20][9].multiperk = "2.5"
 
 	-- Hacker
 	self.values.player.pocket_ecm_heal_on_kill = {

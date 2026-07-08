@@ -159,7 +159,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- OVERKILL
 	self.skills.overkill[1].upgrades = { "cooldown_shotgun_panic_on_kill" }
-	self.skills.overkill[2].upgrades = { "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
+	self.skills.overkill[2].upgrades = { "cooldown_overkill_damage_multiplier", "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
 	self.skills.overkill.name_id = "menu_overkill"
 	self.skills.overkill.desc_id = "menu_overkill_desc"
 	self.skills.overkill.icon_xy = { 3, 2 }
@@ -244,17 +244,19 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- TECHNICIAN --
 
-	-- Daredevil
-	self.skills.defense_up[1].upgrades = { "player_interacting_damage_multiplier" }
-	self.skills.defense_up[2].upgrades = { "player_total_interaction_timer_multiplier" }
-	self.skills.defense_up.icon_xy = { 8, 9 }
-
 	-- Hands-On Approach
-	self.skills.sentry_targeting_package[1].upgrades = { "player_hack_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 0, 6 }
-	self.skills.sentry_targeting_package.name_id = "menu_handson_approach"
-	self.skills.sentry_targeting_package.desc_id = "menu_handson_approach_desc"
+	self.skills.defense_up[1].upgrades = { "player_hack_interaction_speed_multiplier" }
+	self.skills.defense_up[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
+	self.skills.defense_up.icon_xy = { 0, 6 }
+	self.skills.defense_up.name_id = "menu_handson_approach"
+	self.skills.defense_up.desc_id = "menu_handson_approach_desc"
+
+	-- Daredevil
+	self.skills.sentry_targeting_package[1].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.sentry_targeting_package[2].upgrades = { "player_total_interaction_timer_multiplier" }
+	self.skills.sentry_targeting_package.icon_xy = { 8, 9 }
+	self.skills.sentry_targeting_package.name_id = "menu_daredevil"
+	self.skills.sentry_targeting_package.desc_id = "menu_daredevil_desc"
 
 	-- Ghost Wiring
 	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_alert", "player_silent_drill" }
@@ -847,6 +849,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[19][7].upgrades = { "player_emergency_throwable_regen_speed" }
 	self.specializations[19][7].texture_bundle_folder = "eclipse"
 	self.specializations[19][7].icon_xy = { 2, 10 }
+
+	-- Tag Team
+	table.insert(self.specializations[20][1].upgrades, "player_tag_team_kill_extension_1")
+	table.insert(self.specializations[20][9].upgrades, "player_tag_team_kill_extension_2")
 
 	-- Hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")

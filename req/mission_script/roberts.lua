@@ -58,8 +58,8 @@ local sewer_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
-local filter_easy_above = {
-	values = Eclipse.utils.set_diff_groups("easy_above"),
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
 }
 
 return {
@@ -104,12 +104,15 @@ return {
 				position = Vector3(-3250, -1375, -60),
 			},
 		},
-		-- add gensec response on loud
+		-- add gensec and swat response on loud
 		on_executed = {
 			{ id = 103028, delay = 10, delay_rand = 5 },
 			{ id = 105567, delay = 10, delay_rand = 5 },
+			{ id = 104134, delay = 60, delay_rand = 20 },
 		},
 	},
+	-- disable the diff filter for the swat van
+	[106566] = filter_disable,
 	-- Add manhole reinforce
 	[102504] = {
 		reinforce = { -- manhole 1
@@ -190,25 +193,10 @@ return {
 			amount_random = overkill_and_above and 3 or 2,
 		},
 	},
-	-- Harassers spawn now spawn on 1st assault on Overkill and above
+	-- Harassers spawn on 1st assault on Overkill and above
 	[106547] = {
-		values = {
-			trigger_times = 0, -- this here is just for the swat van
-		},
 		on_executed = {
 			{ id = 100880, remove = not overkill_and_above and true or nil, delay = 0 },
-		},
-	},
-	-- tweak swat van arrival
-	-- allow it on all difficulties
-	[106566] = filter_easy_above,
-	-- increase the chance to 60% (from 30%)
-	[106344] = swat_van_chance,
-	-- remove some additional bs chance and trigger the swat van arrival already
-	[106568] = {
-		on_executed = {
-			{ id = 106542, remove = true },
-			{ id = 104134, delay = 0 },
 		},
 	},
 	-- GenSec Operators near the GenSec truck on overkill and above
