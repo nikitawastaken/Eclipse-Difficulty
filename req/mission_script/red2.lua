@@ -9,6 +9,7 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
 
+local escape_spooc_chance = math.random() <= 0.45 + (is_pro_job and 0.15 or 0)
 local close_shutters_chance = (normal and 10 or hard and 30 or 60) + (is_pro_job and 30 or 0)
 local basement_ambush_chance = (normal and 30 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_enemies_amount = 2
@@ -35,8 +36,8 @@ local forced_off = {
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
-local filter_hard_above = {
-	values = Eclipse.utils.set_diff_groups("hard_above"),
+local filter_overkill_above = {
+	values = Eclipse.utils.set_diff_groups("overkill_above"),
 }
 local filter_normal_above = {
 	values = Eclipse.utils.set_diff_groups("normal_above"),
@@ -64,7 +65,10 @@ local taser_cloaker = {
 	enemy = scripted_enemy.cloaker,
 }
 local cloaker_escape = {
-	enemy = normal and scripted_enemy.heavy_swat_2 or scripted_enemy.cloaker,
+	enemy = scripted_enemy.cloaker,
+	values = {
+		enabled = hard_above and escape_spooc_chance
+	},
 }
 local taser_spawn_1 = {
 	enemy = scripted_enemy.taser_1,
@@ -306,7 +310,7 @@ return {
 			amount = is_pro_job and 2 or 1,
 		},
 	},
-	[103998] = filter_hard_above,
+	[103998] = filter_overkill_above,
 	[100114] = disabled,
 	[103377] = disabled,
 	[104041] = disabled,
@@ -399,6 +403,7 @@ return {
 			{ id = 400043, delay = 0 },
 			{ id = 400044, delay = 0 },
 			{ id = 400045, delay = 0 },
+			{ id = 103395, delay = 0 },
 		},
 	},
 	-- replace shield on the left with cloaker (heavy swat on easy and normal)

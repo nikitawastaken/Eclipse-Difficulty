@@ -182,7 +182,7 @@ local optsSWAT_LightSG = {
 	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsEscapeShield1 = {
-	enemy = scripted_enemy.elite_shield,
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 400032, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above,
