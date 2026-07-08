@@ -3434,23 +3434,23 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			tagged = 2.5,
 			owner = 2.5,
-		}
-	}	
+		},
+	}
 	self.definitions.player_tag_team_kill_extension_1 = {
 		category = "feature",
 		upgrade = {
 			value = 1,
 			upgrade = "tag_team_kill_extension",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_tag_team_kill_extension_2 = {
 		category = "feature",
 		upgrade = {
 			value = 2,
 			upgrade = "tag_team_kill_extension",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.tag_team_base.kill_health_gain = 0.5
 	self.values.player.tag_team_base.tagged_health_gain_ratio = 1

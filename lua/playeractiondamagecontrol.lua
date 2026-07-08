@@ -1,25 +1,25 @@
 PlayerAction.DamageControl = {
 	Priority = 1,
-	Function = function ()
+	Function = function()
 		local timer = TimerManager:game()
 		local auto_shrug_time = nil
 		local cooldown_drain = managers.player:upgrade_value("player", "damage_control_cooldown_drain")
 		local auto_shrug_delay = managers.player:has_category_upgrade("player", "damage_control_auto_shrug") and managers.player:upgrade_value("player", "damage_control_auto_shrug")
 		local shrug_healing = managers.player:has_category_upgrade("player", "damage_control_healing") and managers.player:upgrade_value("player", "damage_control_healing") * 0.01
-		local damage_delay_values =  managers.player:body_armor_value("damage_control_passive")
-		
+		local damage_delay_values = managers.player:body_armor_value("damage_control_passive")
+
 		if not damage_delay_values then
 			return
 		end
 
 		damage_delay_values = {
 			delay_ratio = damage_delay_values[1] * 0.01,
-			tick_ratio = damage_delay_values[2] * 0.01
+			tick_ratio = damage_delay_values[2] * 0.01,
 		}
 		cooldown_drain = {
 			health_ratio = cooldown_drain[1] * 0.01,
 			seconds_below = cooldown_drain[2],
-			seconds_above = managers.player:upgrade_value_by_level("player", "damage_control_cooldown_drain", 1)[2]
+			seconds_above = managers.player:upgrade_value_by_level("player", "damage_control_cooldown_drain", 1)[2],
 		}
 
 		local function shrug_off_damage()
@@ -106,5 +106,5 @@ PlayerAction.DamageControl = {
 				shrug_off_damage()
 			end
 		end
-	end
+	end,
 }

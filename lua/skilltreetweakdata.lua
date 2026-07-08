@@ -850,10 +850,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[19][7].texture_bundle_folder = "eclipse"
 	self.specializations[19][7].icon_xy = { 2, 10 }
 
-	-- Tag Team 
+	-- Tag Team
 	table.insert(self.specializations[20][1].upgrades, "player_tag_team_kill_extension_1")
 	table.insert(self.specializations[20][9].upgrades, "player_tag_team_kill_extension_2")
-	
+
 	-- Hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	self.specializations[21][3].texture_bundle_folder = nil

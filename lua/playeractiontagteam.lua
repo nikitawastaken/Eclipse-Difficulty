@@ -1,6 +1,6 @@
 PlayerAction.TagTeam = {
 	Priority = 1,
-	Function = function (tagged, owner)
+	Function = function(tagged, owner)
 		local base_values = managers.player:upgrade_value("player", "tag_team_base")
 		local cooldown_drain = managers.player:upgrade_value("player", "tag_team_cooldown_drain")
 		local kill_extension = managers.player:upgrade_value("player", "tag_team_kill_extension")
@@ -49,10 +49,10 @@ PlayerAction.TagTeam = {
 		end
 
 		CopDamage.register_listener(on_damage_key, {
-			"on_damage"
+			"on_damage",
 		}, on_damage)
 		CopDamage.register_listener(on_damage_cooldown_key, {
-			"on_damage"
+			"on_damage",
 		}, on_damage_cooldown)
 		managers.network:session():send_to_peers("sync_tag_team", tagged, owner)
 		update_ability_radial()
@@ -72,5 +72,5 @@ PlayerAction.TagTeam = {
 
 		CopDamage.unregister_listener(on_damage_cooldown_key)
 		managers.player:set_damage_absorption(absorption_key, nil)
-	end
+	end,
 }
