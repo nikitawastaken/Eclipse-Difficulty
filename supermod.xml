@@ -73,7 +73,7 @@
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
 					<post :hook_id="missionbriefinggui"/>
-					<post :hook_id="menucomponentmanager"/>					
+					<post :hook_id="menucomponentmanager"/>
 				</group>
 
 				<group :hook_id="player/">
@@ -82,9 +82,6 @@
 					<post :hook_id="poisongaseffect"/>
 				</group>
 
-				<post :hook_id="player_actions/skills/playeractiondamagecontrol"/>
-				<post :hook_id="player_actions/skills/playeractiontagteam"/>
-				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
 				<post :hook_id="customsafehousemanager"/>
@@ -122,6 +119,11 @@
 				<post :hook_id="crimespreemanager"/>
 			</group>
 
+			<group :hook_id="player_actions/skills/">
+				<post :hook_id="playeractiondamagecontrol"/>
+				<post :hook_id="playeractiontagteam"/>
+			</group>
+
 			<group :hook_id="network/">
 				<post :hook_id="base/handlers/connectionnetworkhandler"/>
 				<post :hook_id="base/networkmanager"/>
@@ -134,7 +136,7 @@
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
 				<post :hook_id="moneytweakdata"/>
 				<post :hook_id="assetstweakdata"/>
-				<post :hook_id="tipstweakdata"/>				
+				<post :hook_id="tipstweakdata"/>
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
@@ -341,33 +343,33 @@
 	<assets base_path="assets/">
 		<!-- Mod logo for welcome message -->
 		<file name="guis/textures/mod_logo.texture"/>
-		
+
 		<!-- Mutators icons atlas-->
 		<file name="guis/textures/pd2/mutator_icons_atlas.texture"/>
 
 		<!-- Replace vanilla One Down modifier icon -->
 		<file name="guis/textures/pd2/cn_mini_onedown.texture"/>
-		
+
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
-		
+
 		<!-- Safehouse Raid contract broker image (by Jarey) -->
 		<file name="guis/dlcs/bro/textures/pd2/crimenet/chill_combat.texture"/>
 
 		<!-- Weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
-		
+
 		<!-- Electric Matryoshka Grenade -->
 		<file name="units/pd2_dlc_mtl/weapons/wpn_fps_thr_dada/wpn_third_thr_dada.unit"/>
 
 		<!-- Add a non-poison tipped Dart Gun dart -->
 		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow.unit"/>
 		<file name="units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local.unit"/>
-			
+
 		<!-- Risk level assets -->
 		<!-- America -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0.texture"/>
@@ -381,7 +383,7 @@
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_federales.texture"/>
-	
+
 		<!-- Tips assets -->
 		<file name="guis/textures/loading/hints/general_skills.texture"/>
 		<file name="guis/textures/loading/hints/general_perks.texture"/>
@@ -405,7 +407,7 @@
 				<file :name="weapons/sniper_glint.dds"/>
 				<file :name="effects_atlas.texture"/>
 			</group>
-			
+
 			<group :name="particles/">
 				<group :name="weapons/">
 					<file :name="sniper_glint.effect"/>
@@ -426,21 +428,21 @@
 					<file :name="weapon_trail_green_lmg.effect"/>
 					<file :name="weapon_trail_red.effect"/>
 					<file :name="weapon_trail_red_lmg.effect"/>
-					
+
 					<file :name="projectile_trail_green.effect"/>
-					
+
 					<file :name="flashlight/flashlight.effect"/>
 					<file :name="flashlight/flashlight_multicolor.effect"/>
 					<file :name="flashlight/fp_flashlight.effect"/>
 					<file :name="flashlight/fp_flashlight_multicolor.effect"/>
 				</group>
-				
+
 				<group :name="explosions/">
 					<file :name="poison_gas.effect"/>
 					<file :name="smoke_grenade_smoke.effect"/>
 					<file :name="smoke_screen.effect"/>
 				</group>
-				
+
 				<!-- cloaker goggle glow -->
 				<group :name="character/">
 					<file :name="hvh_cloaker_goggle.effect"/>
@@ -451,11 +453,11 @@
 				<file :name="environment/cs_gas_damage_area.effect"/>
 				<file :name="environment/cs_gas_sealing_vent.effect"/>
 				<file :name="environment/gas_damage_area.effect"/>
-				
+
 				<group :name="particles/">
 					<file :name="explosions/cluster_incendiary_explosion.effect"/>
 					<file :name="character/taser_thread.effect"/>
-					
+
 					<group :name="weapons/">
 						<file :name="9mm_pistol_fps.effect"/>
 						<file :name="9mm_smg_fps.effect"/>
@@ -502,7 +504,7 @@
 							<file :name="sniper_fps_extra_long_flash.effect"/>
 							<file :name="third_big_flash_sniper.effect"/>
 						</group>
-						
+
 						<group :name="parts/">
 							<file :name="big_light.effect"/>
 							<file :name="medium_light.effect"/>
@@ -857,7 +859,7 @@
 				<file :name="wpn_fps_lmg_m60_sight_dummy.unit"/>
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_halloween/weapons/">
 			<group :name="wpn_mel_titan_sword/">
 				<file :name="wpn_mel_titan_sword.cooked_physics"/>
@@ -904,7 +906,7 @@
 				<file :name="female_heads_atlas_df.texture" />
 				<file :name="female_heads_atlas_nm.texture" />
 				<file :name="female_heads_atlas_op.texture" />
-				
+
 				<file :name="gang_black_heads_atlas_var1_df.texture" />
 				<file :name="gang_black_heads_atlas_var1_nm.texture" />
 				<file :name="gang_black_heads_atlas_var2_df.texture" />
@@ -1063,7 +1065,7 @@
 					<file :name="ene_acc_gang_russian_head_var2_contour.material_config" />
 				</group>
 			</group>
-			
+
 			<group :name="ene_cop_1/">
 				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_cop_1.material_config" />
@@ -1344,7 +1346,7 @@
 				<file :name="ene_gang_russian_5.unit" />
 				<file :name="ene_gang_russian_5_husk.unit" />
 			</group>
-				
+
 			<group :name="ene_swat_1/">
 				<xml  :name="ene_swat_1.sequence_manager" />
 				<file :name="ene_swat_1.material_config" />
@@ -3656,14 +3658,14 @@
 				<file :name="triad_1_df.texture" />
 				<file :name="triad_1_nm.texture" />
 				<file :name="triad_2_df.texture" />
-				
+
 				<file :name="gang_triad_heads_atlas_var1_df.texture" />
 				<file :name="gang_triad_heads_atlas_var1_nm.texture" />
 
 				<file :name="gang_triad_heads_atlas_var2_df.texture" />
 				<file :name="gang_triad_heads_atlas_var2_nm.texture" />
 			</group>
-	
+
 			<group :name="ene_acc_gang_triad_head/" dyn_package="true">
 				<xml  :name="ene_acc_gang_triad_head.sequence_manager" />
 				<file :name="ene_acc_gang_triad_head.cooked_physics" />
@@ -3679,7 +3681,7 @@
 					<file :name="ene_acc_gang_triad_head_var2_contour.material_config" />
 				</group>
 			</group>
-			
+
 			<group :name="ene_male_triad_gang_1/">
 				<xml  :name="ene_male_triad_gang_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_triad_gang_1.material_config" />
@@ -3699,17 +3701,17 @@
 				<file :name="ene_male_triad_gang_3.unit" />
 				<file :name="ene_male_triad_gang_3_husk.unit" />
 			</group>
-		
+
 			<group :name="ene_male_triad_gang_4/">
 				<file :name="ene_male_triad_gang_4.unit" />
 				<file :name="ene_male_triad_gang_4_husk.unit" />
 			</group>
-		
+
 			<group :name="ene_male_triad_gang_5/">
 				<file :name="ene_male_triad_gang_5.unit" />
 				<file :name="ene_male_triad_gang_5_husk.unit" />
 			</group>
-				
+
 			<group :name="ene_male_chas_police_01/">
 				<xml  :name="ene_male_chas_police_01.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_chas_police_01.material_config" />
@@ -3829,7 +3831,7 @@
 				<file :name="wpn_npc_flamethrower_bulldozer.unit"/>
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc_pent/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_male_security_penthouse_1/">
 				<xml  :name="ene_male_security_penthouse_1.sequence_manager" dyn_package="true" />
@@ -3845,7 +3847,7 @@
 				<file :name="ene_male_security_penthouse_2.unit" />
 				<file :name="ene_male_security_penthouse_2_husk.unit" />
 			</group>
-			
+
 			<group :name="npc_male_yufuwang_armored/">
 				<file :name="npc_male_yufuwang_armored.object"/>
 				<file :name="npc_male_yufuwang_armored.unit"/>

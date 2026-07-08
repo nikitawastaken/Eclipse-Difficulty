@@ -24,9 +24,7 @@ PlayerAction.TagTeam = {
 
 			if was_killed and valid_player then
 				local kill_extend = damage_info.attacker_unit == owner and kill_extension.owner or kill_extension.tagged
-				
-				Eclipse:log_chat("Extension is " .. tostring(kill_extend))
-				
+
 				end_time = math.min(end_time + kill_extend, timer:time() + base_values.duration)
 
 				update_ability_radial()
