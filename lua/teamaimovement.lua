@@ -109,27 +109,32 @@ function TeamAIMovement:carrying_bag()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	if unit then
-		self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
-		table.insert(self._carry_table, unit)
-	elseif #self._carry_table == 2 then
-		local next_carry = self._carry_table[1]
-		self:set_visual_carry(alive(next_carry) and next_carry:carry_data():carry_id())
-		table.remove(self._carry_table)
-	else
-		self:set_visual_carry(nil)
-		table.remove(self._carry_table)
-	end
+    if unit then
+        self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
+        table.insert(self._carry_table, unit)
+        unit:set_visible(false)
+    elseif #self._carry_table == 2 then
+        local next_carry = self._carry_table[1]
+        self:set_visual_carry(alive(next_carry) and next_carry:carry_data():carry_id())
+        local dropped = table.remove(self._carry_table)
+        dropped:set_visible(false)
+    else
+        self:set_visual_carry(nil)
+        local dropped = table.remove(self._carry_table)
+        if dropped then
+            dropped:set_visible(true)
+        end
+    end
 
-	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
-	if name_label then
-		local bag_panel = name_label.panel and name_label.panel:child("bag")
-		if bag_panel then
-			bag_panel:set_visible(unit)
-		end
-	end
+    local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
+    if name_label then
+        local bag_panel = name_label.panel and name_label.panel:child("bag")
+        if bag_panel then
+            bag_panel:set_visible(unit)
+        end
+    end
 
-	self:set_carry_speed_modifier()
+    self:set_carry_speed_modifier()
 end
 
 -- returns top if no args given
