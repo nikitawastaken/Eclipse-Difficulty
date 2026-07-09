@@ -304,7 +304,7 @@ return {
 			{ id = 400059, delay = 0 },
 		},
 	},
-	-- fix the toggle for cloaker vault hallway ambush being set to off for the right side path 
+	-- fix the toggle for cloaker vault hallway ambush being set to off for the right side path
 	[101188] = {
 		values = {
 			toggle = "on",
