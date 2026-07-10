@@ -7,5 +7,5 @@ return {
 	},
 	environment_override = {
 		["environments/pd2_env_ed1/pd2_env_ed1"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/forest_dusk.custom_xml",
-	}
+	},
 }

@@ -9,5 +9,5 @@ return {
 	},
 	environment_override = {
 		["environments/pd2_env_pines/pd2_env_pines"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/whitexmas_bluenight.custom_xml",
-	}
+	},
 }

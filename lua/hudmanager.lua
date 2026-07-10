@@ -42,8 +42,8 @@ end)
 
 -- Various screen effects setup
 Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effect", function(self)
-    local hud = self:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-		
+	local hud = self:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
+
 	self._screen_vignette_panel = hud.panel:bitmap({
 		name = "screen_vignette_panel",
 		visible = true,
@@ -55,21 +55,21 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 		w = hud.panel:w(),
 		h = hud.panel:h(),
 		x = 0,
-		y = 0 
+		y = 0,
 	})
 	self._screen_vignette_reversed_panel = hud.panel:bitmap({
-        name = "screen_vignette_reversed_panel",
-        visible = true,
-        texture = "guis/textures/pd2/screen_vignette_reversed",
-        layer = 1,
-        color = Color(0.5, 0.5, 0.5),
-        alpha = 0,
-        blend_mode = "add",
-        w = hud.panel:w(),
-        h = hud.panel:h(),
-        x = 0,
-        y = 0 
-    })
+		name = "screen_vignette_reversed_panel",
+		visible = true,
+		texture = "guis/textures/pd2/screen_vignette_reversed",
+		layer = 1,
+		color = Color(0.5, 0.5, 0.5),
+		alpha = 0,
+		blend_mode = "add",
+		w = hud.panel:w(),
+		h = hud.panel:h(),
+		x = 0,
+		y = 0,
+	})
 	self._screen_vignette_friendly_fire_panel = hud.panel:bitmap({
 		name = "screen_vignette_friendly_fire",
 		visible = true,
@@ -81,7 +81,7 @@ Hooks:PostHook(HUDManager, "init_finalize", "init_finalize_vignette_screen_effec
 		w = hud.panel:w(),
 		h = hud.panel:h(),
 		x = 0,
-		y = 0 
+		y = 0,
 	})
 end)
 
@@ -91,7 +91,7 @@ function HUDManager:effect_screen(duration, color, effect_name)
 	if effect_name == nil then
 		effect_name = "screen_vignette"
 	end
-		
+
 	if effect_name == "screen_vignette" then
 		self:_do_effect_screen_vignette_panel(duration, color)
 	elseif effect_name == "screen_vignette_reversed" then
@@ -102,7 +102,7 @@ function HUDManager:effect_screen(duration, color, effect_name)
 end
 
 -- Functions that do effect related stuff
-function HUDManager:_do_effect_screen_vignette_panel(duration, color)	
+function HUDManager:_do_effect_screen_vignette_panel(duration, color)
 	if not _G.is_vr then
 		self._screen_vignette_panel:set_alpha(1)
 		self._screen_vignette_panel_duration = duration
@@ -127,8 +127,7 @@ function HUDManager:_fadeout_effect_screen_vignette_panel()
 	self._screen_vignette_panel_active = false
 end
 
-
-function HUDManager:_do_effect_screen_vignette_reversed_panel(duration, color)	
+function HUDManager:_do_effect_screen_vignette_reversed_panel(duration, color)
 	if not _G.is_vr then
 		self._screen_vignette_reversed_panel:set_alpha(1)
 		self._screen_vignette_reversed_panel_duration = duration
@@ -153,7 +152,7 @@ function HUDManager:_fadeout_effect_screen_vignette_reversed_panel_duration()
 	self._screen_vignette_panel_active = false
 end
 
-function HUDManager:_do_effect_screen_vignette_friendly_fire_panel(duration, color)	
+function HUDManager:_do_effect_screen_vignette_friendly_fire_panel(duration, color)
 	if not _G.is_vr then
 		self._screen_vignette_friendly_fire_panel:set_alpha(1)
 		self._screen_vignette_friendly_fire_panel_duration = duration

@@ -46,7 +46,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			if not level.env_params then
 				level.env_params = {}
 			end
-			
+
 			-- Add an option to disable year-round Christmas decorations
 			if disable_christmas and level.is_christmas_heist then
 				level.is_christmas_heist = false
@@ -1222,12 +1222,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
 	self.corp.custom_package = bellmead_security_package
-	
+
 	local additive_weight_value = 1
 	local is_jason = os.date("%A %d") == "Friday 13"
 	local is_halloween = os.date("%B %d") == "October 31"
-	if is_jason or is_halloween then 
-	additive_weight_value = math.huge else additive_weight_value = 0 end
+	if is_jason or is_halloween then
+		additive_weight_value = math.huge
+	else
+		additive_weight_value = 0
+	end
 
 	self.branchbank.random_environments = {
 		["branchbank01"] = 2,
@@ -1241,7 +1244,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["fourstores_01"] = 2,
 		["fourstores_02"] = 2,
 		["fourstores_03"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.jewelry_store.random_environments = {
 		["jewelry_01"] = 2,
@@ -1249,47 +1252,47 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["jewelry_03"] = 2,
 		["jewelry_04"] = 2,
 		["jewelry_05"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.nightclub.random_environments = {
 		["nightclub_01"] = 2,
 		["nightclub_02"] = 3,
 		["nightclub_03"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.mallcrasher.random_environments = {
 		["mallcrasher_01"] = 2,
 		["mallcrasher_02"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.gallery.random_environments = {
 		["framingframe1_01"] = 2,
 		["framingframe1_02"] = 3,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.framing_frame_1.random_environments = {
 		["framingframe1_01"] = 2,
 		["framingframe1_02"] = 3,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.framing_frame_2.random_environments = {
 		["framingframe2_01"] = 3,
 		["framingframe2_02"] = 3,
 		["framingframe2_03"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.framing_frame_3.random_environments = {
 		["framingframe3_01"] = 3,
 		["framingframe3_02"] = 2,
 		["framingframe3_03"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.rat.random_environments = {
 		["rats1_01"] = 3,
 		["rats1_02"] = 3,
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 		["rats1_dwpj"] = additive_weight_value,
 		["rats1_dwpj_2"] = additive_weight_value,
 	}
@@ -1298,7 +1301,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats1_02"] = 3,
 		["rats1_03"] = 3,
 		["rats1_04"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 		["rats1_dwpj"] = additive_weight_value,
 		["rats1_dwpj_2"] = additive_weight_value,
 	}
@@ -1306,7 +1309,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats2_01"] = 2,
 		["rats2_02"] = 2,
 		["rats2_03"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.alex_3.random_environments = {
 		["rats3_01"] = 69,
@@ -1317,7 +1320,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["jewelry_03"] = 2,
 		["jewelry_04"] = 2,
 		["jewelry_05"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.watchdogs_1.random_environments = {
 		["watchdogs1_01_day"] = 3,
@@ -1325,7 +1328,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["watchdogs1_03_day"] = 3,
 		["watchdogs1_04_evening"] = 2,
 		["watchdogs1_05_evening"] = 2,
-		["default"]	= 1,
+		["default"] = 1,
 	}
 	self.watchdogs_1_night.env_params.environment = nil
 	self.watchdogs_1_night.random_environments = {
@@ -1355,7 +1358,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["no_mercy"] = 69,
 	}
 	self.dah.random_environments = {
-		["diamond_heist"] = 69 
+		["diamond_heist"] = 69,
 	}
 	self.red2.random_environments = {
 		["first_world_bank_1"] = 3,

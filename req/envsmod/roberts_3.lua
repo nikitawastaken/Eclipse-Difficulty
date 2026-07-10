@@ -9,5 +9,5 @@ return {
 	},
 	environment_override = { -- File override
 		["environments/env_csgo_de_bank/env_csgo_de_bank"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/roberts_3.custom_xml",
-	}
+	},
 }

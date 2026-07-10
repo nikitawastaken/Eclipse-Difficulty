@@ -9,5 +9,5 @@ return {
 		"color_heat_classic",
 		"color_payday_classic",
 		"color_xxxgen_classic",
-	}
+	},
 }

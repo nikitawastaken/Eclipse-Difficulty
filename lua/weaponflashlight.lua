@@ -7,7 +7,11 @@ function WeaponFlashLight:init(unit)
 	local is_haunted = self:is_haunted()
 	local level_id = Eclipse.utils.clean_level_id()
 	local haunted_texture = nil
-	if level_id == "haunted" then haunted_texture = "units/lights/spot_light_projection_textures/spotprojection_21_flashlight_df" else haunted_texture = "units/lights/spot_light_projection_textures/spotprojection_22_flashlight_df" end
+	if level_id == "haunted" then
+		haunted_texture = "units/lights/spot_light_projection_textures/spotprojection_21_flashlight_df"
+	else
+		haunted_texture = "units/lights/spot_light_projection_textures/spotprojection_22_flashlight_df"
+	end
 	self._g_light = self._unit:get_object(Idstring("g_light"))
 	local texture = is_haunted and haunted_texture or "units/lights/spot_light_projection_textures/spotprojection_11_flashlight_df"
 	self._light = World:create_light("spot|specular|plane_projection", texture)

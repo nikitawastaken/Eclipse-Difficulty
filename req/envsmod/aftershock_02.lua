@@ -7,5 +7,5 @@ return {
 	},
 	environment_override = { -- File override
 		["environments/pd2_lxa_river/pd2_lxa_river"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/aftershock_2.custom_xml",
-	}
+	},
 }

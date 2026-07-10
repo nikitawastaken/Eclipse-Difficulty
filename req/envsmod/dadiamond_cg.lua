@@ -6,5 +6,5 @@ return {
 		"color_payday_classic",
 		"color_nice_classic",
 		"color_heat_classic",
-	}
+	},
 }

@@ -480,15 +480,15 @@ Hooks:PreHook(MissionManager, "_activate_mission", "eclipse__activate_mission", 
 			managers.game_play_central:set_flashlights_on(environment_data.flashlights_on)
 		end
 
-		-- Effect spawners			
-		local effect_spawner = environment_data.effect_spawner	
+		-- Effect spawners
+		local effect_spawner = environment_data.effect_spawner
 		if effect_spawner then
 			for effect_name, effect_data in pairs(effect_spawner) do
 				for k, v in pairs(effect_data) do
 					World:effect_manager():spawn({
 						effect = Idstring(effect_name),
 						position = v.position,
-						rotation = v.rotation
+						rotation = v.rotation,
 					})
 				end
 			end

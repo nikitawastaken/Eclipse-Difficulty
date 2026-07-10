@@ -6,5 +6,5 @@ return {
 		"color_matrix_classic",
 		"color_nice_classic",
 		"color_payday_classic",
-	}
+	},
 }

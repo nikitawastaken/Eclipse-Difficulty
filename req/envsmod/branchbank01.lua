@@ -11,7 +11,7 @@ return {
 	environment_override = { -- File override
 		["environments/pd2_env_mid_day/pd2_env_mid_day"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/branchbank_1.custom_xml",
 	},
---[[	effect_spawner = {
+	--[[	effect_spawner = {
 		["effects/rain_fog"] = {
 			{
 				position = Vector3(-7203, -6372, 87),

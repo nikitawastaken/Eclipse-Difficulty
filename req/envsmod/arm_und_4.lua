@@ -17,5 +17,5 @@ return {
 	},
 	environment_override = { -- morning
 		["environments/pd2_env_foggy_bright/pd2_env_foggy_bright"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_und_morning.custom_xml",
-	} -- daytime fog white bright
+	}, -- daytime fog white bright
 }

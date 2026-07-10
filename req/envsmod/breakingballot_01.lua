@@ -15,20 +15,20 @@ return {
 		["effects/envsmod/godrays/cheap_godray_ballot"] = {
 			{
 				position = Vector3(-878, 1981, 627),
-				rotation = Rotation(-30, 0, 50)
+				rotation = Rotation(-30, 0, 50),
 			},
 			{
 				position = Vector3(-578, 1981, 627),
-				rotation = Rotation(-30, 0, 50)
+				rotation = Rotation(-30, 0, 50),
 			},
 			{
 				position = Vector3(-275, 1981, 627),
-				rotation = Rotation(-30, 0, 50)
+				rotation = Rotation(-30, 0, 50),
 			},
 			{
 				position = Vector3(27, 1981, 627),
-				rotation = Rotation(-30, 0, 50)
-			}
-		}
+				rotation = Rotation(-30, 0, 50),
+			},
+		},
 	},
 }

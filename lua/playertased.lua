@@ -51,7 +51,7 @@ function PlayerTased:enter(state_data, enter_data)
 	CopDamage.register_listener("on_criminal_tased", {
 		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
-	
+
 	self._saved_default_color_grading = managers.environment_controller:default_color_grading()
 	managers.environment_controller:set_default_color_grading("color_tasered", true)
 	managers.environment_controller:refresh_render_settings()
@@ -63,10 +63,10 @@ Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
 		self._unit:camera():camera_unit():base():remove_limits()
 		self._camera_limit = nil
 	end
-	
+
 	managers.hud:effect_screen(1, { 0, 0.1, 0.3 }, "screen_vignette")
 	managers.hud:effect_screen(1, { 0.2, 0.1, 0.1 }, "screen_vignette_reversed")
-	
+
 	managers.environment_controller:set_default_color_grading(self._saved_default_color_grading)
 	managers.environment_controller:set_downed_value(0)
 	managers.environment_controller:refresh_render_settings()
@@ -77,11 +77,11 @@ Hooks:PostHook(PlayerTased, "update", "eclipse_update", function(self, t)
 	if self.tased then
 		local tased_time = tweak_data.player.damage.TASED_TIME
 		tased_time = managers.modifiers:modify_value("PlayerTased:TasedTime", tased_time)
-	
+
 		managers.environment_controller:set_downed_value(math.map_range_clamped(t, self._tase_enter_t, self._tase_enter_t + tased_time, 0, 40))
 	end
 end)
-	
+
 local _check_action_shock_original = PlayerTased._check_action_shock
 function PlayerTased:_check_action_shock(t, input, ...)
 	local do_shock = self._next_shock and self._next_shock < t
@@ -102,7 +102,7 @@ function PlayerTased:_check_action_shock(t, input, ...)
 
 			self._camera_limit = true
 		end
-		
+
 		managers.hud:effect_screen(1, { 0, 0.2, 0.4 }, "screen_vignette")
 		managers.hud:effect_screen(1, { 0.24, 0, 0 }, "screen_vignette_reversed")
 

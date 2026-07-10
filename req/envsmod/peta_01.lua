@@ -13,5 +13,5 @@ return {
 	environment_override = { -- File override
 		["environments/pd2_peta1_outside/env_peta1_outside"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/petah.custom_xml",
 		["environments/pd2_peta1_smoke/pd2_peta1_smoke"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/petah_horse.custom_xml",
-	}
+	},
 }

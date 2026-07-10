@@ -12,5 +12,5 @@ return {
 	},
 	environment_override = {
 		["environments/env_core_inside_01/env_core_inside_01"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/stealingxmas_coldsunrise.custom_xml",
-	}
+	},
 }
