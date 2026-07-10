@@ -25,6 +25,7 @@ function PlayerTased:enter(state_data, enter_data)
 	self._next_shock = 0.5
 	self._taser_value = 1
 	self._num_shocks = 0
+	self._tase_enter_t = managers.player:player_timer():time()
 
 	managers.groupai:state():on_criminal_disabled(self._unit, "electrified")
 	--remove the on_reload call to get rid of autoreloading when you get tased
@@ -50,6 +51,10 @@ function PlayerTased:enter(state_data, enter_data)
 	CopDamage.register_listener("on_criminal_tased", {
 		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
+
+	self._saved_default_color_grading = managers.environment_controller:default_color_grading()
+	managers.environment_controller:set_default_color_grading("color_tasered", true)
+	managers.environment_controller:refresh_render_settings()
 end
 
 Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
@@ -57,6 +62,23 @@ Hooks:PostHook(PlayerTased, "exit", "eclipse_exit", function(self)
 	if self._camera_limit then
 		self._unit:camera():camera_unit():base():remove_limits()
 		self._camera_limit = nil
+	end
+
+	managers.hud:effect_screen(1, { 0, 0.1, 0.3 }, "screen_vignette")
+	managers.hud:effect_screen(1, { 0.2, 0.1, 0.1 }, "screen_vignette_reversed")
+
+	managers.environment_controller:set_default_color_grading(self._saved_default_color_grading)
+	managers.environment_controller:set_downed_value(0)
+	managers.environment_controller:refresh_render_settings()
+end)
+
+-- Gradually increase blur when tased
+Hooks:PostHook(PlayerTased, "update", "eclipse_update", function(self, t)
+	if self.tased then
+		local tased_time = tweak_data.player.damage.TASED_TIME
+		tased_time = managers.modifiers:modify_value("PlayerTased:TasedTime", tased_time)
+
+		managers.environment_controller:set_downed_value(math.map_range_clamped(t, self._tase_enter_t, self._tase_enter_t + tased_time, 0, 40))
 	end
 end)
 
@@ -80,6 +102,9 @@ function PlayerTased:_check_action_shock(t, input, ...)
 
 			self._camera_limit = true
 		end
+
+		managers.hud:effect_screen(1, { 0, 0.2, 0.4 }, "screen_vignette")
+		managers.hud:effect_screen(1, { 0.24, 0, 0 }, "screen_vignette_reversed")
 
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
 		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength_h, shock_strength_h), -shock_strength_v, shock_strength_v)

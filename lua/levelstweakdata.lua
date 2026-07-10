@@ -43,6 +43,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				force_tactics = {},
 			}
 ]]
+			if not level.env_params then
+				level.env_params = {}
+			end
 
 			-- Add an option to disable year-round Christmas decorations
 			if disable_christmas and level.is_christmas_heist then
@@ -59,8 +62,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.flashlights_on = true
 	self.firestarter_1.flashlights_on = true
 	self.firestarter_2.flashlights_on = true
+	self.alex_1.flashlights_on = true
 	self.alex_2.flashlights_on = true
 	self.alex_3.flashlights_on = true
+	self.rat.flashlights_on = true
 	self.nightclub.flashlights_on = true
 	self.escape_cafe.flashlights_on = true
 	self.escape_park.flashlights_on = true
@@ -1217,4 +1222,436 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
 	self.corp.custom_package = bellmead_security_package
+
+	local additive_weight_value = 1
+	local is_jason = os.date("%A %d") == "Friday 13"
+	local is_halloween = os.date("%B %d") == "October 31"
+	if is_jason or is_halloween then
+		additive_weight_value = math.huge
+	else
+		additive_weight_value = 0
+	end
+
+	self.branchbank.random_environments = {
+		["branchbank01"] = 2,
+		["branchbank02"] = 2,
+		["branchbank03"] = 2,
+		["branchbank04"] = 2,
+		["branchbank05"] = 2,
+		["branchbank_old"] = 1,
+	}
+	self.four_stores.random_environments = {
+		["fourstores_01"] = 2,
+		["fourstores_02"] = 2,
+		["fourstores_03"] = 2,
+		["default"] = 1,
+	}
+	self.jewelry_store.random_environments = {
+		["jewelry_01"] = 2,
+		["jewelry_02"] = 2,
+		["jewelry_03"] = 2,
+		["jewelry_04"] = 2,
+		["jewelry_05"] = 2,
+		["default"] = 1,
+	}
+	self.nightclub.random_environments = {
+		["nightclub_01"] = 2,
+		["nightclub_02"] = 3,
+		["nightclub_03"] = 2,
+		["default"] = 1,
+	}
+	self.mallcrasher.random_environments = {
+		["mallcrasher_01"] = 2,
+		["mallcrasher_02"] = 2,
+		["default"] = 1,
+	}
+	self.gallery.random_environments = {
+		["framingframe1_01"] = 2,
+		["framingframe1_02"] = 3,
+		["default"] = 1,
+	}
+	self.framing_frame_1.random_environments = {
+		["framingframe1_01"] = 2,
+		["framingframe1_02"] = 3,
+		["default"] = 1,
+	}
+	self.framing_frame_2.random_environments = {
+		["framingframe2_01"] = 3,
+		["framingframe2_02"] = 3,
+		["framingframe2_03"] = 2,
+		["default"] = 1,
+	}
+	self.framing_frame_3.random_environments = {
+		["framingframe3_01"] = 3,
+		["framingframe3_02"] = 2,
+		["framingframe3_03"] = 2,
+		["default"] = 1,
+	}
+	self.rat.random_environments = {
+		["rats1_01"] = 3,
+		["rats1_02"] = 3,
+		["rats1_03"] = 3,
+		["rats1_04"] = 2,
+		["default"] = 1,
+		["rats1_dwpj"] = additive_weight_value,
+		["rats1_dwpj_2"] = additive_weight_value,
+	}
+	self.alex_1.random_environments = {
+		["rats1_01"] = 3,
+		["rats1_02"] = 3,
+		["rats1_03"] = 3,
+		["rats1_04"] = 2,
+		["default"] = 1,
+		["rats1_dwpj"] = additive_weight_value,
+		["rats1_dwpj_2"] = additive_weight_value,
+	}
+	self.alex_2.random_environments = {
+		["rats2_01"] = 2,
+		["rats2_02"] = 2,
+		["rats2_03"] = 2,
+		["default"] = 1,
+	}
+	self.alex_3.random_environments = {
+		["rats3_01"] = 69,
+	}
+	self.ukrainian_job.random_environments = {
+		["jewelry_01"] = 2,
+		["jewelry_02"] = 2,
+		["jewelry_03"] = 2,
+		["jewelry_04"] = 2,
+		["jewelry_05"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_1.random_environments = {
+		["watchdogs1_01_day"] = 3,
+		["watchdogs1_02_day"] = 3,
+		["watchdogs1_03_day"] = 3,
+		["watchdogs1_04_evening"] = 2,
+		["watchdogs1_05_evening"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_1_night.env_params.environment = nil
+	self.watchdogs_1_night.random_environments = {
+		["watchdogs1_01_night"] = 2,
+		["watchdogs1_02_night"] = 2,
+		["watchdogs1_03_night"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_2.random_environments = {
+		["watchdogs2_01_night"] = 2,
+		["watchdogs2_02_night"] = 2,
+		["watchdogs2_03_evening"] = 2,
+		["default"] = 1,
+	}
+	self.watchdogs_2_day.env_params.environment = nil
+	self.watchdogs_2_day.random_environments = {
+		["watchdogs2_01_day"] = 3,
+		["watchdogs2_02_day"] = 3,
+	}
+	self.run.random_environments = {
+		["heat_street_1"] = 3,
+		["heat_street_3"] = 3,
+		["heat_street_4"] = 3,
+		["heat_street_cheese"] = additive_weight_value,
+	}
+	self.nmh.random_environments = {
+		["no_mercy"] = 69,
+	}
+	self.dah.random_environments = {
+		["diamond_heist"] = 69,
+	}
+	self.red2.random_environments = {
+		["first_world_bank_1"] = 3,
+		["first_world_bank_dwpj_bastard"] = additive_weight_value,
+		["first_world_bank_dwpj_matrix"] = additive_weight_value,
+	}
+	self.man.random_environments = {
+		["undercover"] = 3,
+		["undercover_dwpj_heavenhell"] = additive_weight_value,
+	}
+	self.mia_1.random_environments = {
+		["hotlinemiami_1"] = 3,
+		["hotlinemiami_2"] = 2,
+		["hotlinemiami_3"] = 2,
+		["hotlinemiami_4"] = 2,
+		["hotlinemiami_5_dwpj"] = additive_weight_value,
+		["default"] = 1,
+	}
+	self.mia_2.random_environments = {
+		["commissar"] = 69,
+	}
+	self.born.random_environments = {
+		["bikerheist_1_01"] = 3,
+		["bikerheist_1_02"] = 2,
+		["default"] = 1,
+	}
+	self.chew.random_environments = {
+		["bikerheist_2_01"] = 2,
+		["bikerheist_2_02"] = 3,
+		["default"] = 1,
+	}
+	self.big.random_environments = {
+		["bigbank_01"] = 3,
+		["bigbank_02"] = 3,
+		["default"] = 1,
+	}
+	self.mad.random_environments = {
+		["mad"] = 3,
+		["mad_night"] = 2,
+		["default"] = 1,
+	}
+	self.pex.random_environments = {
+		["tijuana_01"] = 1,
+		["default"] = 3,
+	}
+	self.mex.random_environments = {
+		["crossing_01"] = 1,
+		["default"] = 3,
+	}
+	self.bex.random_environments = {
+		["sanmartin_02"] = 2,
+		["default"] = 3,
+	}
+	self.pal.random_environments = {
+		["counterfeit_1"] = 3,
+		["counterfeit_2"] = 2,
+		["counterfeit_3"] = 1,
+	}
+	self.moon.random_environments = {
+		["stealingxmas_1"] = 3,
+		["stealingxmas_2"] = 2,
+		["default"] = 1,
+	}
+	self.pines.random_environments = {
+		["whitexmas_4"] = 3,
+		["whitexmas_2"] = 2,
+		["whitexmas_3"] = 2,
+		["whitexmas_1"] = 2,
+		["default"] = 1,
+	}
+	self.crojob3.random_environments = {
+		["croatian_forest_1"] = 2,
+		["default"] = 1,
+		["croatian_forest_2"] = 1,
+		["croatian_forest_3"] = 3,
+		["croatian_forest_4"] = 2,
+	}
+	self.crojob2.random_environments = {
+		["croatian_dockyard_1"] = 3,
+		["croatian_dockyard_2"] = 2,
+		["croatian_dockyard_3"] = 2,
+		["default"] = 1,
+	}
+	self.arm_cro.random_environments = {
+		["arm_cro_1"] = 2,
+		["default"] = 1,
+	}
+	self.arm_par.random_environments = {
+		["arm_par_1"] = 3,
+		["arm_par_2"] = 3,
+		["default"] = 1,
+	}
+	self.arm_fac.random_environments = {
+		["arm_fac_3"] = 3,
+		["arm_fac_2"] = 2,
+		["arm_fac_1"] = 2,
+		["default"] = 1,
+	}
+	self.arm_hcm.random_environments = {
+		["arm_hcm_1"] = 2,
+		["arm_hcm_2"] = 2,
+		["arm_hcm_3"] = 2,
+		["default"] = 1,
+	}
+	self.arm_und.random_environments = {
+		["arm_und_1"] = 4,
+		["arm_und_2"] = 3,
+		["arm_und_3"] = 4,
+		["arm_und_4"] = 3,
+		["arm_und_5"] = 2,
+		["default"] = 1,
+	}
+	self.arm_for.random_environments = {
+		["arm_for_1"] = 2,
+		["arm_for_2"] = 2,
+		["arm_for_3"] = 3,
+		["arm_for_4"] = 3,
+		["default"] = 1,
+	}
+	self.firestarter_1.random_environments = {
+		["firestarter1_1"] = 2,
+		["firestarter1_2"] = 3,
+		["firestarter1_3"] = 2,
+		["firestarter1_4"] = 3,
+	}
+	self.firestarter_2.random_environments = {
+		["firestarter2_1"] = 2,
+		["firestarter2_2"] = 2,
+	}
+	self.firestarter_3.random_environments = {
+		["firestarter3_1"] = 3,
+		["firestarter3_2"] = 2,
+		["firestarter3_3"] = 2,
+	}
+	self.brb.random_environments = {
+		["brb_1"] = 3,
+		["brb_2"] = 3,
+	}
+	self.hox_1.random_environments = {
+		["hox_1_1"] = 3,
+		["hox_1_2"] = 2,
+		["default"] = 1,
+	}
+	self.flat.random_environments = {
+		["flat_1"] = 4,
+		["flat_2"] = 3,
+		["default"] = 1,
+	}
+	self.dinner.random_environments = {
+		["slaughterhouse_1"] = 4,
+		["slaughterhouse_2"] = 3,
+		["default"] = 1,
+	}
+	self.friend.random_environments = {
+		["scarface_1"] = 4,
+		["default"] = 2,
+		["scarface_2"] = 2,
+	}
+	self.nail.random_environments = {
+		["lab_rats_01"] = 3,
+		["lab_rats_02"] = 2,
+		["lab_rats_03"] = 1,
+	}
+	self.help.random_environments = {
+		["prison_01"] = 3,
+		["prison_02"] = 2,
+		["prison_03"] = 1,
+	}
+	self.haunted.random_environments = {
+		["horrorhouse_01"] = 4,
+		["horrorhouse_02"] = 1,
+		["horrorhouse_03"] = 3,
+		["horrorhouse_04"] = 2,
+		["horrorhouse_05"] = 2,
+	}
+	self.pbr2.random_environments = {
+		["birth_of_sky"] = 69,
+	}
+	self.roberts.random_environments = {
+		["roberts_1"] = 2,
+		["roberts_2"] = 2,
+		["roberts_3"] = 2,
+	}
+	self.arena.random_environments = {
+		["arena_cg"] = 69,
+	}
+	self.glace.random_environments = {
+		["glace_1"] = 69,
+	}
+	self.mus.random_environments = {
+		["dadiamond_cg"] = 69,
+	}
+	self.chas.random_environments = {
+		["chas_cg"] = 69,
+	}
+	self.spa.random_environments = {
+		["spa_01"] = 69,
+	}
+	self.election_day_3.random_environments = {
+		["breakingballot_01"] = 2,
+		["breakingballot_02"] = 1,
+		["breakingballot_03"] = 1,
+	}
+	self.election_day_3_skip1.random_environments = self.election_day_3.random_environments
+	self.election_day_3_skip2.random_environments = self.election_day_3.random_environments
+	self.jolly.random_environments = {
+		["aftershock_01"] = 2,
+		["aftershock_02"] = 1,
+	}
+	self.peta.random_environments = {
+		["peta_01"] = 2,
+	}
+	self.kosugi.random_environments = {
+		["shadowraid_01"] = 2,
+		["shadowraid_02"] = 1,
+	}
+	self.welcome_to_the_jungle_1.random_environments = {
+		["big_oil_1_2"] = 3,
+		["big_oil_1_3"] = 2,
+		["big_oil_1_4"] = 2,
+		["big_oil_1_5"] = 1,
+	}
+	self.welcome_to_the_jungle_1_night.random_environments = {
+		["big_oil_1_1"] = 3,
+		["big_oil_1_6"] = 2,
+		["big_oil_1_7"] = 1,
+		["big_oil_1_8"] = 2,
+	}
+	self.welcome_to_the_jungle_2.random_environments = {
+		["big_oil_2_cg"] = 1,
+	}
+	self.shoutout_raid.random_environments = {
+		["meltdown_01"] = 3,
+		["meltdown_02"] = 2,
+		["meltdown_03"] = 1,
+	}
+	self.rvd1.random_environments = {
+		["reservoir_1_1"] = 1,
+		["reservoir_1_2"] = 2,
+	}
+	self.rvd2.random_environments = {
+		["reservoir_2_1"] = 1,
+		["reservoir_2_2"] = 2,
+	}
+	self.pbr.random_environments = {
+		["pbr_cg"] = 1,
+	}
+	self.wwh.random_environments = {
+		["wwh_cg"] = 1,
+	}
+	self.escape_park.random_environments = {
+		["escape_park_1"] = 3,
+		["escape_park_2"] = 1,
+		["escape_park_3"] = 1,
+		["escape_park_4"] = 2,
+	}
+	self.escape_park_day.random_environments = {
+		["escape_park_day_1"] = 2,
+		["escape_park_day_2"] = 1,
+		["escape_park_day_3"] = 1,
+		["escape_park_day_4"] = 3,
+	}
+	self.escape_overpass.random_environments = {
+		["escape_overpass_1"] = 4,
+		["escape_overpass_2"] = 3,
+		["escape_overpass_day"] = 2,
+	}
+	self.escape_overpass_night.random_environments = self.escape_overpass.random_environments
+	self.escape_cafe_day.random_environments = {
+		["escape_cafe_day_1"] = 1,
+		["escape_cafe_day_2"] = 1,
+	}
+	self.escape_garage.random_environments = {
+		["escape_garage_01"] = 1,
+		["escape_garage_02"] = 1,
+	}
+	self.escape_street.random_environments = {
+		["escape_street_1"] = 1,
+		["escape_street_2"] = 1,
+	}
+	self.family.random_environments = {
+		["family_1"] = 1,
+		["family_2"] = 1,
+	}
+	self.safehouse.random_environments = {
+		["safehouse_old_01"] = 1,
+		["safehouse_old_02"] = 1,
+		["safehouse_old_03"] = 1,
+	}
+	self.chill.random_environments = {
+		["safehouse_new_01"] = 1,
+		["safehouse_new_02"] = 1,
+		["safehouse_new_03"] = 1,
+	}
+	self.chill_combat.random_environments = self.chill.random_environments
 end)

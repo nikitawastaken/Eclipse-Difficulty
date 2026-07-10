@@ -506,4 +506,76 @@ function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
 	Eclipse.log(infostr .. functionstr)
 end
 
+---Load environment from tweak data and env name
+function M.load_environment(level_tweak, environment_name)
+	local environment_data = Eclipse:require("envsmod/" .. environment_name)
+
+	if not environment_data then
+		return
+	end
+
+	local new_color_grading = type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
+
+	if new_color_grading then
+		Eclipse.color_grading = new_color_grading
+		level_tweak.env_params.color_grading = new_color_grading
+	end
+
+	if environment_data.flashlights_on ~= nil then
+		level_tweak.flashlights_on = environment_data.flashlights_on
+	end
+
+	if environment_data.environment_override then
+		for k, v in pairs(environment_data.environment_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
+		end
+	end
+
+	if environment_data.sounds_override then
+		for k, v in pairs(environment_data.sounds_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
+		end
+	end
+end
+
+---Load environment from tweak data and env name for clients
+function M.client_load_environment(level_tweak, environment_name, color_grading)
+	local environment_data = Eclipse:require("envsmod/" .. environment_name)
+
+	if not environment_data then
+		return
+	end
+
+	local new_color_grading = color_grading or type(environment_data.color_grading) == "table" and table.random(environment_data.color_grading) or environment_data.color_grading
+
+	-- local viewport = managers.viewport:first_active_viewport()
+	if new_color_grading then
+		managers.environment_controller:set_default_color_grading(new_color_grading, true)
+		-- if viewport then
+		-- 	viewport:vp():set_post_processor_effect("World", Idstring("color_grading_post"), Idstring(new_color_grading))
+		-- else
+		-- 	Eclipse.log("no viewport found somehow?")
+		-- end
+	end
+
+	if environment_data.flashlights_on ~= nil then
+		managers.game_play_central:set_flashlights_on(level_tweak.flahslights_on)
+	end
+
+	if environment_data.environment_override then
+		for k, v in pairs(environment_data.environment_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
+			local em = managers.viewport:_get_environment_manager()
+			em._env_data_map[k] = em:_load(k)
+			managers.viewport:set_default_environment(k, nil, nil)
+		end
+	end
+
+	if environment_data.sounds_override then
+		for k, v in pairs(environment_data.sounds_override) do
+			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
+		end
+	end
+end
+
 return M

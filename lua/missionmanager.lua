@@ -4,6 +4,7 @@
 -- end
 
 local mission_add = Eclipse:mission_script_add()
+
 if mission_add then
 	-- Load the elements from the file
 	Hooks:PreHook(MissionScript, "init", "eclipse_missionmanager_init", function(self, data)
@@ -442,7 +443,13 @@ function MissionManager.mission_script_patch_funcs.add_drama(self, element, data
 	end)
 end
 
-Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)
+function MissionManager:set_ponr_state()
+	managers.groupai:set_state("ponr")
+	managers.groupai:state():on_police_called("default")
+	managers.groupai:state():set_difficulty(1)
+end
+
+Hooks:PreHook(MissionManager, "_activate_mission", "eclipse__activate_mission", function(self)
 	local mission_script_elements = Eclipse:mission_script_patches()
 	if not mission_script_elements then
 		return
@@ -462,10 +469,29 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 			end
 		end
 	end
-end)
 
-function MissionManager:set_ponr_state()
-	managers.groupai:set_state("ponr")
-	managers.groupai:state():on_police_called("default")
-	managers.groupai:state():set_difficulty(1)
-end
+	-- Environment settings
+	local environment_name = Eclipse.current_environment
+	local environment_data = environment_name and Eclipse:require("envsmod/" .. environment_name)
+
+	if environment_data then
+		-- Flashlight toggles
+		if environment_data.flashlights_on ~= nil then
+			managers.game_play_central:set_flashlights_on(environment_data.flashlights_on)
+		end
+
+		-- Effect spawners
+		local effect_spawner = environment_data.effect_spawner
+		if effect_spawner then
+			for effect_name, effect_data in pairs(effect_spawner) do
+				for k, v in pairs(effect_data) do
+					World:effect_manager():spawn({
+						effect = Idstring(effect_name),
+						position = v.position,
+						rotation = v.rotation,
+					})
+				end
+			end
+		end
+	end
+end)

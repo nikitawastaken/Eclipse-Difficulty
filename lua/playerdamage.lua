@@ -138,7 +138,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 		self:_call_listeners(damage_info)
 		self:play_whizby(attack_data.col_ray.position)
-		self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attacK_dir)
+		self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attack_dir)
 
 		self._next_allowed_dmg_t = Application:digest_value(pm:player_timer():time() + self._dmg_interval, true)
 		self._last_received_dmg = attack_data.damage
@@ -188,7 +188,7 @@ function PlayerDamage:damage_bullet(attack_data)
 		managers.rumble:play("damage_bullet")
 	end
 
-	self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attacK_dir)
+	self:_hit_direction(attack_data.attacker_unit:position(), attack_data.col_ray and attack_data.col_ray.ray or damage_info.attack_dir)
 	pm:check_damage_carry(attack_data)
 
 	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data)
@@ -511,7 +511,7 @@ function PlayerDamage:revive(silent)
 		self:set_armor(self:_max_armor())
 
 		self._revive_health_i = math.min(#tweak_data.player.damage.REVIVE_HEALTH_STEPS, self._revive_health_i + 1)
-		self._revive_miss = 2
+		self._revive_miss = 0
 	end
 
 	self:_regenerate_armor()
@@ -799,6 +799,11 @@ function PlayerDamage:is_friendly_fire(unit)
 	local friendly_fire_mutator_active = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire_mutator_active) == false
 	if not attacked_by_foe then
 		if is_pro_job or friendly_fire_mutator_active then
+			-- Team AI and sentries/turrets reuse this function
+			-- Don't show the screen effect unless we're actually the local player taking friendly fire
+			if self._unit == managers.player:player_unit() then
+				managers.hud:effect_screen(1, { 0.7, 0, 0 }, "screen_vignette_friendly_fire")
+			end
 			return false
 		end
 		return true

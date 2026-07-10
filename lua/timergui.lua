@@ -60,6 +60,11 @@ function TimerGui:_check_drill_unit_override()
 	end
 end
 
+-- Reduce drill screen brightness for heists with high bloom
+Hooks:PostHook(TimerGui, "setup", "eclipse_timergui_setup", function(self)
+	self._gui_script.panel:set_alpha(0.5)
+end)
+
 -- Set up unit override if it exists
 -- If this drill has a balance multiplier for its initial timer, apply it
 Hooks:PreHook(TimerGui, "start", "eclipse_start", function(self, timer)

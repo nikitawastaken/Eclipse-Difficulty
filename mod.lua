@@ -137,6 +137,8 @@ if not Eclipse then
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.log = Eclipse:require("log")
 
+	Eclipse:require("killbeardlib")
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en",

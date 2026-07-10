@@ -6,6 +6,7 @@
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
+	<tweak definition="tweak/colorgradings.xml"/>
 
 	<hooks script_path="mod.lua">
 
@@ -127,8 +128,11 @@
 
 			<group :hook_id="network/">
 				<post :hook_id="base/handlers/connectionnetworkhandler"/>
+				<post :hook_id="base/clientnetworksession"/>
+				<post :hook_id="base/session_states/hoststateingame"/>
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="base/networkpeer"/>
+				<post :hook_id="base/clientnetworksession"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
 			</group>
 
@@ -367,6 +371,9 @@
 		
 		<!-- Crew AI icons -->
 		<file name="guis/dlcs/mom/textures/pd2/ai_abilities.texture"/>
+		<!-- Vignette texture. Currently used for Taser screen effect -->
+		<file name="guis/textures/pd2/screen_vignette.texture"/>
+		<file name="guis/textures/pd2/screen_vignette_reversed.texture"/>
 
 		<!-- Perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
@@ -422,7 +429,33 @@
 				<file :name="weapons/sniper_glint.dds"/>
 				<file :name="effects_atlas.texture"/>
 			</group>
-
+			<group :name="envsmod/">
+				<file :name="spotlight.effect"/>
+				<file :name="spotlight_long.effect"/>
+				<group :name="godrays/">
+					<file :name="cheap_godray_ballot.effect"/>
+					<file :name="cheap_godray_fwb.effect"/>
+					<file :name="cheap_godray_fwb2.effect"/>
+					<file :name="cheap_godray_lamp.effect"/>
+					<file :name="cheap_godray_swine_a.effect"/>
+					<file :name="cheap_godray_swine_b.effect"/>
+				</group>
+				<group :name="day_time/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+				<group :name="in_between/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+				<group :name="night_time/">
+					<file :name="fog_very_faint_blue.effect"/>
+					<file :name="fog_very_faint_bright_white.effect"/>
+					<file :name="fog_very_faint_white.effect"/>
+				</group>
+			</group>
 			<group :name="particles/">
 				<group :name="weapons/">
 					<file :name="sniper_glint.effect"/>
