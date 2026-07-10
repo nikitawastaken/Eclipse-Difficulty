@@ -2372,8 +2372,8 @@ function CharacterTweakData:_set_presets()
 	}
 	self.tased_camera_limit_shocks = 2
 	self.tased_camera_limit = {
-		get_difficulty_specific_value({ 60, 60, 60, 40, 30 }),
-		get_difficulty_specific_value({ 40, 40, 40, 30, 20 }),
+		get_difficulty_specific_value({ 50, 50, 50, 40, 30 }),
+		get_difficulty_specific_value({ 30, 30, 30, 25, 20 }),
 	}
 
 	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 1, 1, 1, 0.6, 0.4 })
