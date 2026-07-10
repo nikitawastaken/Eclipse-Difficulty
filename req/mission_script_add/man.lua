@@ -54,7 +54,6 @@ local optsTaser = {
 }
 local optsTaser_Ambush = {
 	enemy = taser,
-	on_executed = { { id = 400051, delay = 0 } },
 	enabled = true,
 }
 local optsBulldozer = {
@@ -77,16 +76,6 @@ local optsHuntSO = {
 	scan = true,
 	use_instigator = true,
 	so_action = "AI_hunt",
-}
-local optsTaser_Sniper_SO = {
-	SO_access = "8192",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	use_instigator = true,
-	interval = 2,
-	so_action = "AI_sniper",
 }
 local optsTaserChopper = {
 	enabled = true,
@@ -323,8 +312,6 @@ M.elements = {
 
 	-- add back missing taser spawn from PDTH
 	Eclipse.mission_elements.gen_dummy(400050, "taser_ambush", Vector3(279.099, 1948.238, 1734.858), Rotation(90, 0, 0), optsTaser_Ambush),
-
-	Eclipse.mission_elements.gen_so(400051, "taser_sniper_so", Vector3(153, 2051, 1734.858), Rotation(115, 0, 0), optsTaser_Sniper_SO),
 
 	Eclipse.mission_elements.gen_missionscript(400052, "spawn_roof_taser", optsrooftaser),
 

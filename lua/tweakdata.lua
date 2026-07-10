@@ -503,6 +503,8 @@ tweak_data.casino = {
 
 -- Safehouse Unlock Level
 tweak_data.safehouse_unlock_level = 50
+-- Tweak "Earned from raid" text value since Safehouse Raid don't give coins anymore
+tweak_data.safehouse.rewards.raid = 0
 
 -- Color Gradings
 table.insert( tweak_data.color_grading, { value = "color_bhd_classic", text_id = "menu_color_bhd_classic" })

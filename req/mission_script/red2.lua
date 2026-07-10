@@ -304,6 +304,12 @@ return {
 			{ id = 400059, delay = 0 },
 		},
 	},
+	-- fix the toggle for cloaker vault hallway ambush being set to off for the right side path
+	[101188] = {
+		values = {
+			toggle = "on",
+		},
+	},
 	-- vault ambush
 	[100225] = {
 		values = {
@@ -406,7 +412,7 @@ return {
 			{ id = 103395, delay = 0 },
 		},
 	},
-	-- replace shield on the left with cloaker (heavy swat on easy and normal)
+	-- replace shield on the left with cloaker
 	[103395] = cloaker_escape,
 	-- make the rest of vanilla escape spawns turn into gensec on E/PJ
 	-- 2 shields at the bottom of the staircase, replaced one shield with bulldozer
