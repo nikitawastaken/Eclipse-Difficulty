@@ -506,6 +506,8 @@ tweak_data.casino = {
 
 -- Safehouse Unlock Level
 tweak_data.safehouse_unlock_level = 50
+-- Tweak "Earned from raid" text value since Safehouse Raid don't give coins anymore
+tweak_data.safehouse.rewards.raid = 0
 
 --[[ Add achievement-locked parts to card drops
 local achievement_parts = deep_clone(tweak_data.achievement.weapon_part_tracker)	
