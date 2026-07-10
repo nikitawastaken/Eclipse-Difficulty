@@ -3700,7 +3700,7 @@
 				<file :name="gang_triad_heads_atlas_var2_nm.texture" />
 			</group>
 
-			<group :name="ene_acc_gang_triad_head/" dyn_package="true">
+			<group :name="ene_acc_gang_triad_head/">
 				<xml  :name="ene_acc_gang_triad_head.sequence_manager" />
 				<file :name="ene_acc_gang_triad_head.cooked_physics" />
 				<file :name="ene_acc_gang_triad_head.model" />
