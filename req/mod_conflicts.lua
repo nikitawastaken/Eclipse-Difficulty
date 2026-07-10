@@ -56,6 +56,7 @@ local M = {
 	"Carry Stacker",
 	"Carry Stacker2.0",
 	"Carry Stacker Reloaded",
+	"Custom Color Grading",
 }
 
 return table.list_to_set(M)
