@@ -17,12 +17,7 @@ local specials_list = {
 	[medic] = get_difficulty_group_specific_value({ 0, 1, 2 }),
 	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 3 }),
 }
-
-local dozer_list = {
-	[bulldozer_1] = get_difficulty_group_specific_value({ 0, 1, 1 }),
-	[bulldozer_2] = get_difficulty_group_specific_value({ 0, 1, 1 }),
-	[taser] = get_difficulty_group_specific_value({ 1, 0, 0 }), -- this here is just for easy and normal
-}
+local dozer_list = diff_i >= 5 and { [bulldozer_1] = 1, [bulldozer_2] = 1 } or { taser }
 
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_easy_above = Eclipse.utils.set_diff_groups("easy_above")

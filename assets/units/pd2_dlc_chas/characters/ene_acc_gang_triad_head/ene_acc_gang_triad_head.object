@@ -18,6 +18,7 @@
 					<material materials="mtr_head_lod_2" />
 				</object>
 			</lod_object>
+			
 			<!--HEADS-->	
 			<lod_object name="lod_head_a">
 				<object name="g_head_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">

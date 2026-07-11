@@ -87,12 +87,9 @@
 			<set_variables 		has_sleeves="1" />		
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />	
-<!--
+
 			<object 			enabled="true" name="'g_body_upper_a'" />
-			<object 			enabled="true" name="'g_body_upper_a_lod1'" />			
--->
-			<object 			enabled="true" name="'g_body_upper_e'" />
-			<object 			enabled="true" name="'g_body_upper_e_lod1'" />
+			<object 			enabled="true" name="'g_body_upper_a_lod1'" />
 			<run_sequence 		name="'random_neck'" />
 		</sequence>
 		<sequence editable_state="true" name="'body_upper_b'" once="true" triggable="true">
