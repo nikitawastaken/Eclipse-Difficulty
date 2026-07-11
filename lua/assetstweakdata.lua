@@ -15,6 +15,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		-- Akan mercs
 		"pines",
 		-- Murkywater
+		"pbr",
 		"shoutout_raid",
 		"wwh",
 		"mex",
