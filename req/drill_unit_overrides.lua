@@ -18,14 +18,15 @@ local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 local security_door_solo_friendly = {
 	drill = {
 		{
+			timer = 150,
 			timer_init_balance_mul = {
 				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
-				1 / 2,
-				2 / 3,
+				8 / 10,
+				9 / 10,
 				1,
 				1,
 			},
-			jam_times = 1,
+			jam_times = { 1, 2 },
 		},
 	},
 }
@@ -273,6 +274,12 @@ local M = {
 			},
 			forbid_sabotage = true,
 		},
+	},
+	["nightclub"] = {
+		[104445] = security_door_solo_friendly,
+		[300050] = security_door_solo_friendly,
+		[300957] = security_door_solo_friendly,
+		[301068] = security_door_solo_friendly,
 	},
 	["pal"] = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {
