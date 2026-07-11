@@ -412,7 +412,7 @@ return {
 	-- Delay the escape helicopter
 	[100059] = { -- amountOfBagsToTriggerEsc
 		on_executed = {
-			{ id = 100985, delay = escape_heli_delay, delay_rand =  escape_heli_delay_rand },
+			{ id = 100985, delay = escape_heli_delay, delay_rand = escape_heli_delay_rand },
 		},
 	},
 	-- make early spawns not participate to group AI
@@ -472,7 +472,7 @@ return {
 			width = 6500,
 			depth = 15200,
 		},
-	},	
+	},
 	[101220] = {
 		values = {
 			width = 6500,
