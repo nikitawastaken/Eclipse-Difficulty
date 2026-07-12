@@ -12,7 +12,6 @@ local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_en
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
 	scripted_enemy.bulldozer_2,
@@ -151,7 +150,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor_trigger(400018, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
 
 	Eclipse.mission_elements.gen_so(400019, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
-
 }
 
 return M
