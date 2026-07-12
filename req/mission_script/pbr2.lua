@@ -87,6 +87,17 @@ return {
 		},
 		difficulty_addends = assault_end_diff_add.difficulty_addends[1], -- end_assault
 	},
+	-- don't trigger swat turret scripts
+	[101316] = {
+		on_executed = {
+			{ id = 101324, remove = true },
+		},
+	},
+	[101317] = {
+		on_executed = {
+			{ id = 101242, remove = true },
+		},
+	},
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,
