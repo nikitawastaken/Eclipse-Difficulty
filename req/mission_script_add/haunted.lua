@@ -75,6 +75,7 @@ local optsDisableHelldozers = {
 	enabled = not is_pro_job and true or false,
 	elements = {
 		101669,
+		102717,
 	},
 }
 
