@@ -70,7 +70,7 @@ local optsOpenSwatVanDoors_2 = {
 	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100417, notify_unit_sequence = "anim_door_top_open", time = 0 },
-		{ id = 1, name = "run_sequence", notify_unit_id = 100417, notify_unit_sequence = "anim_doors_rear_open", time = 2 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100417, notify_unit_sequence = "anim_doors_rear_open", time = 2 },
 	},
 	on_executed = {
 		{ id = 400015, delay = 0 },
