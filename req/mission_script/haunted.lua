@@ -8,9 +8,9 @@ local headless_tank = {
 	enemy = is_eclipse and { [scripted_enemy.headless_bulldozer_1] = 2, [scripted_enemy.headless_bulldozer_2] = 1 } or scripted_enemy.headless_bulldozer_1,
 }
 
-local hide_so_group = { 
+local hide_so_group = {
 	on_executed = {
-		{ id = 400060, delay = 0 }, 
+		{ id = 400060, delay = 0 },
 	},
 }
 
@@ -43,7 +43,7 @@ return {
 	-- Disable SWAT groups/Scripted Titandozers based on whether 'Pro Job' is enabled
 	[100079] = { -- startup
 		on_executed = {
-			{ id = 400050, delay = 0 }, 
+			{ id = 400050, delay = 0 },
 			{ id = 400051, delay = 0 },
 		},
 	},
@@ -53,7 +53,7 @@ return {
 			{ id = 400048, delay = 30 }, -- haunted_add_spawns_basement
 		},
 	},
-	[102204] = { -- func_sequence_trigger_035 (money revealed, surface open) 
+	[102204] = { -- func_sequence_trigger_035 (money revealed, surface open)
 		on_executed = {
 			{ id = 400049, delay = 0 }, -- haunted_add_spawns_garage
 		},

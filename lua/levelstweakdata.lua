@@ -316,7 +316,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -1,
 		},
 	}
-	
+
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.crojob2.group_ai_settings.difficulty_scaling = {
 		addends = {

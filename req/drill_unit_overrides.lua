@@ -39,7 +39,7 @@ local evil_nightmare_safe = {
 		},
 	},
 }
-		
+
 local M = {
 	--[[
 	-- For testing, now serves as examples
