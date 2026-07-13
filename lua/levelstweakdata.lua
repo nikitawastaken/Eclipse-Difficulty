@@ -295,7 +295,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				{
 					amount = 0.75,
 					delay = 15,
-					time = { 360, 480 },
+					time = { 480, 600 },
 				},
 			},
 			addends = {
