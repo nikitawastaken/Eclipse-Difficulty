@@ -6,15 +6,6 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local max_nr_team_ai = tweak_data.group_ai.max_nr_team_ai
 local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
 
-local armadillo_drill = { -- Armored Transport Trucks in Transport heists
-	drill = {
-		{
-			timer = 120,
-			jam_times = { 1, 2 },
-			forbid_reenforce = true,
-		},
-	},
-}
 local security_door_solo_friendly = {
 	drill = {
 		{
@@ -30,7 +21,25 @@ local security_door_solo_friendly = {
 		},
 	},
 }
-
+local armadillo_drill = { -- Armored Transport Trucks in Transport heists
+	drill = {
+		{
+			timer = 120,
+			jam_times = { 1, 2 },
+			forbid_reenforce = true,
+		},
+	},
+}
+local evil_nightmare_safe = {
+	drill = {
+		{
+			timer = 666, -- Dallas, my friend, the devil.
+			forbid_reenforce = true,
+			forbid_sabotage = true,
+		},
+	},
+}
+		
 local M = {
 	--[[
 	-- For testing, now serves as examples
@@ -251,6 +260,16 @@ local M = {
 			timer = 60,
 			jam_times = 1,
 		},
+	},
+	["haunted"] = {
+		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			timer = 666, -- Spooky scary devil number
+			forbid_reenforce = true,
+			forbid_sabotage = true,
+		},
+		[100224] = evil_nightmare_safe,
+		[100419] = evil_nightmare_safe,
+		[100420] = evil_nightmare_safe,
 	},
 	["hox_1"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {

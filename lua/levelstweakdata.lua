@@ -137,6 +137,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.shoutout_raid.ai_group_type = "murkywater"
 	self.wwh.ai_group_type = "murkywater"
 	self.pines.ai_group_type = "russia"
+	self.haunted.ai_group_type = "zombie"
 	self.nail.ai_group_type = "zombie"
 	self.help.ai_group_type = "zombie"
 
@@ -280,6 +281,42 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.haunted.group_ai_settings = {
+		use_equipment_reenforce = false,
+		assault_force_mul = 0.6,
+		cs_grenade_chance_times_mul = 2,
+		difficulty_scaling = {
+			steps = {
+				{
+					amount = 0.25,
+					delay = 0,
+					time = 60,
+				},
+				{
+					amount = 0.75,
+					delay = 15,
+					time = { 360, 480 },
+				},
+			},
+			addends = {
+				on_enemy_weapons_hot = {
+					amount = 0,
+					delay = 0, -- Reduce the preset's delay
+					time = 0,
+				},
+			},
+			allowed_addends = {
+				on_enemy_weapons_hot = false,
+				on_entered_regroup = false,
+				on_entered_sustain = false,
+			},
+		},
+		special_limit_add = {
+			shield = -1,
+			marksman = -1,
+		},
+	}
+	
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.crojob2.group_ai_settings.difficulty_scaling = {
 		addends = {
@@ -1200,6 +1237,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	--	self.brb.custom_package = murky_mercs_scripted_package
 
 	local zombie_faction_package = { "packages/zombie_cops" }
+	self.haunted.custom_package = zombie_faction_package
 	self.nail.custom_package = zombie_faction_package
 	self.help.custom_package = zombie_faction_package
 
