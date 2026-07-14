@@ -3855,6 +3855,26 @@
 				<file :name="ene_security_cruise_3.unit" />
 				<file :name="ene_security_cruise_3_husk.unit" />
 			</group>
+
+			<group :name="ene_triad_cruise_1/">
+				<xml  :name="ene_triad_cruise_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_triad_cruise_1.material_config" />
+				<file :name="ene_triad_cruise_1_contour.material_config" />
+				<file :name="ene_triad_cruise_1.model" />
+				<file :name="ene_triad_cruise_1.object" />
+				<file :name="ene_triad_cruise_1.unit" />
+				<file :name="ene_triad_cruise_1_husk.unit" />
+			</group>
+
+			<group :name="ene_triad_cruise_2/">
+				<file :name="ene_triad_cruise_2.unit" />
+				<file :name="ene_triad_cruise_2_husk.unit" />
+			</group>
+
+			<group :name="ene_triad_cruise_3/">
+				<file :name="ene_triad_cruise_3.unit" />
+				<file :name="ene_triad_cruise_3_husk.unit" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_pent/weapons/" dyn_package="false">
@@ -3882,6 +3902,26 @@
 				<file :name="ene_male_security_penthouse_2_husk.unit" />
 			</group>
 
+			<group :name="ene_male_triad_penthouse_1/">
+				<file :name="ene_male_triad_penthouse_1.unit" />
+				<file :name="ene_male_triad_penthouse_1_husk.unit" />
+			</group>
+
+			<group :name="ene_male_triad_penthouse_2/">
+				<file :name="ene_male_triad_penthouse_2.unit" />
+				<file :name="ene_male_triad_penthouse_2_husk.unit" />
+			</group>
+
+			<group :name="ene_male_triad_penthouse_3/">
+				<file :name="ene_male_triad_penthouse_3.unit" />
+				<file :name="ene_male_triad_penthouse_3_husk.unit" />
+			</group>
+
+			<group :name="ene_male_triad_penthouse_4/">
+				<file :name="ene_male_triad_penthouse_4.unit" />
+				<file :name="ene_male_triad_penthouse_4_husk.unit" />
+			</group>
+	
 			<group :name="npc_male_yufuwang_armored/">
 				<file :name="npc_male_yufuwang_armored.object"/>
 				<file :name="npc_male_yufuwang_armored.unit"/>

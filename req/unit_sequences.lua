@@ -287,6 +287,15 @@ local M = {
 	["units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1"] = { name = "security_penthouse_1", head = head_sequences.gangster_russian_d },
 	["units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2"] = { name = "security_penthouse_2", head = head_sequences.gangster_russian_d },
 
+	["units/pd2_dlc_chca/characters/ene_triad_cruise_1/ene_triad_cruise_1"] = { name = "triad_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2"] = { name = "triad_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_chca/characters/ene_triad_cruise_3/ene_triad_cruise_3"] = { name = "triad_cruise_1", head = head_sequences.security },
+
+	["units/pd2_dlc_pent/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"] = { name = "triad_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_pent/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"] = { name = "triad_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_pent/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"] = { name = "triad_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_pent/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"] = { name = "triad_cruise_1", head = head_sequences.security },
+
 	["units/payday2/characters/ene_swat_1/ene_swat_1"] = { name = "swat_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = { name = "swat_2", head = head_sequences.swat_a },
 	["units/payday2/characters/ene_swat_3/ene_swat_3"] = { name = "swat_3", head = head_sequences.swat_a },
