@@ -1625,15 +1625,15 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 		},
 		shield_def = {
-			"shield", 
-			"ranged_fire", 
-			"smoke_grenade", 
+			"shield",
+			"ranged_fire",
+			"smoke_grenade",
 			"deathguard",
 		},
 		shield_agg = {
-			"shield", 
-			"charge", 
-			"flash_grenade", 
+			"shield",
+			"charge",
+			"flash_grenade",
 			"deathguard",
 		},
 		shield_spt = {
@@ -1699,7 +1699,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			swat_agg = 2,
 			swat_snk = 1,
 		},
-		light_smg = { 
+		light_smg = {
 			swat_snk = 3,
 			swat_def = 2,
 		},
@@ -1722,20 +1722,20 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			swat_snk = 2,
 			swat_agg = 1,
 		},
-		shield = { 
+		shield = {
 			"shield_agg",
 			"shield_def",
 		},
-		taser = { 
-			"taser_agg", 
+		taser = {
+			"taser_agg",
 			"taser_snk",
 		},
-		cloaker = { 
-			"cloaker_def", 
+		cloaker = {
+			"cloaker_def",
 			"cloaker_agg",
 		},
-		bulldozer = { 
-			"bulldozer_def", 
+		bulldozer = {
+			"bulldozer_def",
 			"bulldozer_agg",
 		},
 	}
@@ -3138,8 +3138,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			murky_agg = 2,
 			murky_snk = 1,
 		},
-		fbi_readyteam = { 
-			"fbi_def", 
+		fbi_readyteam = {
+			"fbi_def",
 			"fbi_snk",
 		},
 		army_defensive = {
@@ -3151,8 +3151,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			army_agg = 2,
 			army_snk = 1,
 		},
-		headless_dozers = { 
-			"bulldozer_def", 
+		headless_dozers = {
+			"bulldozer_def",
 			"bulldozer_agg",
 		},
 	}
