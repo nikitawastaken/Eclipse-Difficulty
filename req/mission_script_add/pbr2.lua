@@ -29,7 +29,7 @@ local optsSWATEnemy_Van = {
 }
 local optsDozerEnemy_Van = {
 	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
-	spawn_action = "e_sp_armored_truck_3st",
+	spawn_action = "e_sp_armored_truck_3rd",
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
