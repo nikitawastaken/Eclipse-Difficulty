@@ -1,16 +1,29 @@
-<?xml version="1.0" ?>
-<materials version="3" group="ene_male_security_penthouse_1">
+<?xml version="1.0"?>
+<materials version="3" group="ene_gang_mobster_1">
 	<material name="mtr_body" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_nm"/>
-		<diffuse_texture		file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_df"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/mobster_body_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/mobster_body_df"/>
 	</material>
 	<material name="mtr_body_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_nm" mip="1"/>
-		<diffuse_texture 		file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_df" mip="1"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/mobster_body_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/mobster_body_df" mip="1"/>
 	</material>
 	<material name="mtr_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_nm" mip="2"/>
-		<diffuse_texture 		file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_body_df" mip="2"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/mobster_body_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/mobster_body_df" mip="2"/>
+	</material>
+
+	<material name="mtr_skin" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/gang_skin_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/gang_skin_df"/>
+	</material>
+	<material name="mtr_skin_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/gang_skin_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/gang_skin_df" mip="1"/>
+	</material>
+	<material name="mtr_skin_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/gang_skin_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/gang_skin_df" mip="2"/>
 	</material>
 
 	<material name="mtr_headset" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">

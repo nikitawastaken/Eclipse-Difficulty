@@ -1,86 +1,110 @@
 <?xml version="1.0"?>
 <table>
 	<unit>
-<!--CUSTOM SEQUENCES START-->
+	<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_shades value="0" />
+			<has_shades				value="0" />
 		</variables>
-
+		
 		<filter name="'check_no_shades'">
 			<check value="vars.has_shades == 0" />
 		</filter>
-
 		<filter name="'check_shades'">
 			<check value="vars.has_shades == 1" />
 		</filter>
 
+		<sequence editable_state="true" name="'security_penthouse'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_gang_mobster_1/vars/ene_male_security_penthouse_1'" synchronous="true" />
+		</sequence>
+
+		<sequence editable_state="true" name="'neck'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_neck'" />
+			<object 			enabled="true" name="'g_neck_lod1'" />
+		</sequence>
+	
 		<sequence editable_state="true" name="'headset'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_headset'" />
 			<object 			enabled="true" name="'g_headset_lod1'" />
 		</sequence>
-		
+			
+		<sequence editable_state="true" name="'gang_mobster_1'" once="true" triggable="true">
+			<run_sequence 		name="'random_undershirt'" />
+			<run_sequence 		name="'random_arms'" />
+			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+
 		<sequence editable_state="true" name="'security_penthouse_1'" once="true" triggable="true">
-			<run_sequence 		name="'random_body_a'" />
-			<run_sequence 		name="'random_hands_a'" />
-			<run_sequence 		name="'random_shades'" />
+			<run_sequence 		name="'security_penthouse'" />
+			<run_sequence 		name="'random_undershirt_pent'" />
+			<run_sequence 		name="'random_arms'" />
+			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'headset'" />
 		</sequence>
-
-		<sequence editable_state="true" name="'security_penthouse_2'" once="true" triggable="true">
-			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'random_hands_b'" />
-			<run_sequence 		name="'random_shades'" />
+	<!--ARMS-->
+		<sequence editable_state="true" name="'random_arms'" triggable="true">
+			<run_sequence 		name="'arms_'..pick('a','b')" />
 		</sequence>
-	<!--BODY SEQUENCES-->
-		<sequence editable_state="true" name="'random_body_a'" triggable="true">
-			<run_sequence 		name="'body_'..pick('a','a','b')" />
+		<sequence editable_state="true" name="'arms_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_arms_a'" />
+			<object 			enabled="true" name="'g_arms_a_lod1'" />
 		</sequence>
-		<sequence editable_state="true" name="'random_body_b'" triggable="true">
-			<run_sequence 		name="'body_'..pick('b','b','a')" />
+		<sequence editable_state="true" name="'arms_b'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_arms_b'" />
+			<object 			enabled="true" name="'g_arms_b_lod1'" />
+		</sequence>
+	<!-- UNDERSHIRTS -->
+		<sequence editable_state="true" name="'random_undershirt'" triggable="true">
+			<run_sequence 		name="'undershirt_'..pick('a','b','c','d','e')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_undershirt_pent'" triggable="true">
+			<run_sequence 		name="'undershirt_'..pick('b','c','d')" />
+		</sequence>
+		<sequence editable_state="true" name="'undershirt_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_undershirt_a'" />
+			<object 			enabled="true" name="'g_undershirt_a_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'undershirt_b'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_undershirt_b'" />
+			<object 			enabled="true" name="'g_undershirt_b_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'undershirt_c'" once="true" triggable="true">
+			<run_sequence 		name="'neck'" />
+			<object 			enabled="true" name="'g_undershirt_c'" />
+			<object 			enabled="true" name="'g_undershirt_c_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'undershirt_d'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_undershirt_d'" />
+			<object 			enabled="true" name="'g_undershirt_d_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'undershirt_e'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_undershirt_e'" />
+			<object 			enabled="true" name="'g_undershirt_e_lod1'" />
+		</sequence>
+	<!--SHADES SEQUENCES-->
+		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('base','base','base','none','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shades_rare'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('none','none','none','base','base')" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'body_a'" once="true" triggable="true"/>
-		<sequence editable_state="true" name="'body_b'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-			<object 			enabled="true" name="'g_body_b'" />
-			<object 			enabled="true" name="'g_body_b_lod1'" />
-		</sequence>
-	<!--HANDS-->
-		<sequence editable_state="true" name="'random_hands_a'" triggable="true">
-			<run_sequence 		name="'hands_'..pick('a','a','b')" />
-		</sequence>
-		<sequence editable_state="true" name="'random_hands_b'" triggable="true">
-			<run_sequence 		name="'hands_'..pick('b','b','a')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'hands_a'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_hands_a'" />
-			<object 			enabled="true" name="'g_hands_a_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'hands_b'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_hands_b'" />
-			<object 			enabled="true" name="'g_hands_b_lod1'" />
-		</sequence>
-	<!--SHADES-->
-		<sequence editable_state="true" name="'random_shades'" triggable="true">
-			<run_sequence name="'shades_'..pick('none','none','none','a','b','c')" />
-		</sequence>
-
 		<sequence editable_state="true" name="'shades_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
+			<run_sequence 		name="'shades_'..pick('a','b','c')" />
+		</sequence>
+
 		<sequence editable_state="true" name="'shades_a'" once="true" triggable="true">
-			<set_variables 		has_shades="1" />		
 			<object 			enabled="true" name="'g_shades_a'" />
 			<object 			enabled="true" name="'g_shades_a_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass_a'" />
 		</sequence>
 		<sequence editable_state="true" name="'shades_b'" once="true" triggable="true">
-			<set_variables 		has_shades="1" />		
 			<object 			enabled="true" name="'g_shades_b'" />
 			<object 			enabled="true" name="'g_shades_b_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass_b'" />
 		</sequence>
 		<sequence editable_state="true" name="'shades_c'" once="true" triggable="true">
-			<set_variables 		has_shades="1" />		
 			<object 			enabled="true" name="'g_shades_c'" />
 			<object 			enabled="true" name="'g_shades_c_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass_c'" />

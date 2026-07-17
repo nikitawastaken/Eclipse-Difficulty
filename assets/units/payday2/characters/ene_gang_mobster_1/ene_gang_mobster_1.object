@@ -1,9 +1,9 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <dynamic_object>
-	<diesel materials="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1" orientation_object="root_point" />	
-	<sequence_manager file="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1" /> 	
+	<diesel materials="units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1" orientation_object="root_point" />
+	<sequence_manager file="units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1" /> 
 	<animation_def name="anims/units/enemies/cop/cop_def" />
-	
+
 	<bodies>
 		<body name="body" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Spine1"/>
@@ -194,7 +194,7 @@
 	<decal_surfaces default_material="flesh" />
 
 	<graphics>
-		<graphic_group name="character" enabled="true" culling_object="co_box">			
+		<graphic_group name="character" enabled="true" culling_object="co_box">		
 			<lod_object name="lod_body">
 				<object name="g_body" 		enabled="true"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_body" max_distance="1000" />
@@ -207,39 +207,87 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_body_b">
-				<object name="g_body_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_undershirt_a">
+				<object name="g_undershirt_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_body" max_distance="1000" />
 					<material materials="mtr_body_lod_1" max_distance="1500" />
 					<material materials="mtr_body_lod_2" />
 				</object>
-				<object name="g_body_b_lod1" 	enabled="false" lod="1" >
+				<object name="g_undershirt_a_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_body_lod_2" />
 				</object>
 			</lod_object>
 			
-			<lod_object name="lod_hands_a">
-				<object name="g_hands_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_undershirt_b">
+				<object name="g_undershirt_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_body" max_distance="1000" />
 					<material materials="mtr_body_lod_1" max_distance="1500" />
 					<material materials="mtr_body_lod_2" />
 				</object>
-				<object name="g_hands_a_lod1" 	enabled="false" lod="1" >
+				<object name="g_undershirt_b_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_undershirt_c">
+				<object name="g_undershirt_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_body" max_distance="1000" />
+					<material materials="mtr_body_lod_1" max_distance="1500" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+				<object name="g_undershirt_c_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_undershirt_d">
+				<object name="g_undershirt_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_body" max_distance="1000" />
+					<material materials="mtr_body_lod_1" max_distance="1500" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+				<object name="g_undershirt_d_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_undershirt_e">
+				<object name="g_undershirt_e" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_body" max_distance="1000" />
+					<material materials="mtr_body_lod_1" max_distance="1500" />
+					<material materials="mtr_body_lod_2" />
+				</object>
+				<object name="g_undershirt_e_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_body_lod_2" />
 				</object>
 			</lod_object>
 			
-			<lod_object name="lod_hands_b">
-				<object name="g_hands_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_body" max_distance="1000" />
-					<material materials="mtr_body_lod_1" max_distance="1500" />
-					<material materials="mtr_body_lod_2" />
+			<lod_object name="lod_neck">
+				<object name="g_neck" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_skin" max_distance="1000" />
+					<material materials="mtr_skin_lod_1" max_distance="1500" />
+					<material materials="mtr_skin_lod_2" />
 				</object>
-				<object name="g_hands_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_body_lod_2" />
+				<object name="g_neck_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_skin" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_skin_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_headset">
+				<object name="g_headset" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_headset" max_distance="1000" />
+					<material materials="mtr_headset_lod_1" max_distance="1500" />
+					<material materials="mtr_headset_lod_2" />
+				</object>
+				<object name="g_headset_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_headset" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_headset_lod_2" />
 				</object>
 			</lod_object>
 			
@@ -279,23 +327,15 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_headset">
-				<object name="g_headset" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_headset" max_distance="1000" />
-					<material materials="mtr_headset_lod_1" max_distance="1500" />
-					<material materials="mtr_headset_lod_2" />
-				</object>
-				<object name="g_headset_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_headset" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_headset_lod_2" />
-				</object>
-			</lod_object>
-			
-			<object name="g_shades_glass_a" 	enabled="false" />	
-			<object name="g_shades_glass_b" 	enabled="false" />	
-			<object name="g_shades_glass_c" 	enabled="false" />	
-			
-			<object name="s_body" 				enabled="true" shadow_caster="true" />			
-		</graphic_group>		
+			<object name="g_shades_glass_a" 		enabled="false" />	
+			<object name="g_shades_glass_b" 		enabled="false" />	
+			<object name="g_shades_glass_c" 		enabled="false" />	
+				
+			<object name="s_body" 					enabled="true" shadow_caster="true" />	
+		</graphic_group>
 	</graphics>
+
+	<effects>
+		<effect_spawner name="cigarette_smoke" enabled="false" object="g_cigarette" effect="effects/particles/character/cigarette_smoke"/>
+	</effects>
 </dynamic_object>
