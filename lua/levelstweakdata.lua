@@ -137,6 +137,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.shoutout_raid.ai_group_type = "murkywater"
 	self.wwh.ai_group_type = "murkywater"
 	self.pines.ai_group_type = "russia"
+	self.vit.ai_group_type = "america"
 	self.haunted.ai_group_type = "zombie"
 	self.nail.ai_group_type = "zombie"
 	self.help.ai_group_type = "zombie"
@@ -1213,7 +1214,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.custom_package = us_army_package
 	self.jolly.custom_package = us_army_package
 	self.peta2.custom_package = us_army_package
-	self.nmh.custom_package = us_army_package
+	self.vit.custom_package = us_army_package
 	table.insert(self.trai.custom_package, "packages/us_army")
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
