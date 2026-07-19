@@ -46,7 +46,6 @@ local us_soldier = {
 	enemy = us_soldiers,
 }
 
-
 return {
 	-- Combine some navigation areas
 	[100017] = {
@@ -64,7 +63,7 @@ return {
 		},
 		values = {
 			callback = function() -- Somebody call the National Guard!
-					managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
+				managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
 			end,
 		},
 	},
