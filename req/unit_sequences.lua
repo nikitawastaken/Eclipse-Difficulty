@@ -265,6 +265,8 @@ local M = {
 	["units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"] = { name = "secret_service_1_casino", head = head_sequences.security },
 	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_1", head = head_sequences.security },
 
+	["units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"] = { name = "murkywater_secret_service", head = head_sequences.security },
+
 	["units/payday2/characters/ene_murkywater_1/ene_murkywater_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_murkywater_2/ene_murkywater_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
 
