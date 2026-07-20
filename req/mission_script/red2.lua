@@ -255,6 +255,17 @@ return {
 			{ id = 400085, delay = 0 },
 		},
 	},
+	-- less predictable ambush pc hack spawn
+	[103318] = {
+		on_executed = {
+			{ id = 102783, delay = 3, delay_rand = 7 },
+		},
+	},
+	[103324] = {
+		on_executed = {
+			{ id = 103333, delay = 3, delay_rand = 7 },
+		},
+	},
 	-- always force cloaker and taser to spawn like in PDTH
 	[100875] = disabled,
 	[102245] = disabled,
@@ -337,7 +348,7 @@ return {
 	[103756] = {
 		chance = 100,
 		on_executed = {
-			{ id = 400090, delay = 1.8 },
+			{ id = 400090, delay = 3, delay_rand = 7 },
 		},
 	},
 	-- spawn two extra dozers on Death Wish as a 193+ throwback

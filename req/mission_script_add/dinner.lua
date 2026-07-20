@@ -5,6 +5,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local ambush_amount = 1 + (is_pro_job and 1 or 0)
 
 local enabled_chance_snipers = math.random() <= 0.45
@@ -74,7 +75,7 @@ local optsCloaker = {
 	enabled = true,
 }
 local optsTaser = {
-	enemy = scripted_enemy.taser,
+	enemy = scripted_enemy.taser_1,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
@@ -88,7 +89,7 @@ local optsShield = {
 	enabled = true,
 }
 local optsBulldozer_Ambush = {
-	enemy_table = scripted_enemy.random_dozers,
+	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
@@ -125,7 +126,7 @@ local spawn_dozer_2 = {
 	},
 }
 local optsBulldozer = {
-	enemy_table = scripted_enemy.random_dozers,
+	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
 	on_executed = {
 		{ id = 400021, delay = 0 },
 	},
