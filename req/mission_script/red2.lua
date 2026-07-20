@@ -129,7 +129,6 @@ local smoke_or_flash = {
 	},
 }
 
-
 return {
 	-- FFO
 	[101657] = {
