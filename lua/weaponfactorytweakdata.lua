@@ -1033,6 +1033,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_r93_b_short.stats.concealment = 2
 
 	self.parts.wpn_fps_snp_m95_barrel_long.stats.spread = 1
+	self.parts.wpn_fps_snp_m95_barrel_long.stats.recoil = -5
+	self.parts.wpn_fps_snp_m95_barrel_long.stats.damage = 192
+	self.parts.wpn_fps_snp_m95_barrel_long.custom_stats = {
+		ammo_pickup_max_mul = 0,
+		ammo_pickup_min_mul = 0,
+		ammo_bag_consumption_mul = 2,
+		ammo_max_mul = 2 / 3,
+		movement_speed = 0.85,
+	}
 
 	self.parts.wpn_fps_snp_mosin_b_short.stats.spread = -2
 	self.parts.wpn_fps_snp_mosin_b_short.stats.concealment = 2
