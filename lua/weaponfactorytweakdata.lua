@@ -1166,7 +1166,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.recoil = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.concealment = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {
-		total_ammo_mul = 1 / 2,
+		ammo_max_mul = 1 / 2,
 		movement_speed = 1.15,
 	}
 
@@ -1365,7 +1365,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {
 		ammo_offset = 25,
-		total_ammo_mul = 3 / 2,
+		ammo_max_mul = 3 / 2,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
@@ -1378,7 +1378,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {
 		ammo_offset = -25,
-		total_ammo_mul = 2 / 3,
+		ammo_max_mul = 2 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
@@ -1402,7 +1402,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
 		ammo_offset = 25,
-		total_ammo_mul = 5 / 4,
+		ammo_max_mul = 5 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
@@ -1417,7 +1417,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
 		ammo_offset = -25,
-		total_ammo_mul = 3 / 4,
+		ammo_max_mul = 3 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
@@ -2457,7 +2457,7 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 		local stats_tbl = {}
 		local custom_stats_tbl = {}
 		if reference_new_tweak and reference_old_tweak then
-			custom_stats_tbl.ammo_max_mul = reference_new_tweak.total_ammo_mul or 1
+			custom_stats_tbl.ammo_max_mul = reference_new_tweak.ammo_max_mul or 1
 			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul
