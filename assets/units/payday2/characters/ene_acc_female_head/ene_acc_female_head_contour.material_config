@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<materials version="3" group="ene_acc_female_head">
+    <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_head">
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" />
+        <variable				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_head_lod_1">
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" mip="1" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" mip="1" />
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_head_lod_2">
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" mip="2" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" mip="2" />
+        <variable 				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+
+<!--
+    <material name="mtr_hair_1" render_template="effect:DIFFUSE0_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <diffuse_texture		 file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+        <variable 				value="candle" type="scalar" name="intensity"/>
+    </material>
+-->
+
+    <material render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" name="mtr_hair_1">
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" />
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" />
+        <variable				value="1 1 1" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+    </material>
+	
+    <material name="mtr_hair_2" unique="true" version="2" render_template="generic:ALPHA_MASKED:CONTOUR:DIFFUSE_TEXTURE:EXTERNAL_ALPHA_REF:NORMALMAP:OPACITY_TEXTURE:RL_COPS:SIMPLE_TINT:SKINNED_3WEIGHTS">
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+        <opacity_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_op"/>
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm"/>
+        <variable 				value="0.32700002193451" type="scalar" name="alpha_ref"/>
+        <variable 				value="0.56692916154861 0.14673461019993 0.10893934220076" type="vector3" name="contour_color"/>
+        <variable 				value="0" type="scalar" name="contour_opacity"/>
+        <variable 				value="0.10236220806837 0.06181874871254 0.051783237606287" type="vector3" name="tint_color"/>
+    </material>
+</materials>

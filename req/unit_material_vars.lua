@@ -2,7 +2,7 @@
 local M = {
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
-	"units/payday2/characters/ene_acc_head_female/ene_acc_head_female",
+	"units/payday2/characters/ene_acc_female_head/ene_acc_female_head",
 	"units/payday2/characters/ene_acc_gang_black_head/vars/ene_acc_gang_black_head_var1",
 	"units/payday2/characters/ene_acc_gang_black_head/vars/ene_acc_gang_black_head_var2",
 	"units/payday2/characters/ene_acc_gang_russian_head/vars/ene_acc_gang_russian_head_var1",

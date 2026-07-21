@@ -134,6 +134,8 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat", rvd_needed, false)
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat", rvd_needed, false)
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
+	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_female_1/ene_la_cop_female_1", rvd_needed, false)
+	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_female_2/ene_la_cop_female_2", rvd_needed, false)
 
 	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_acc_cop_hat/ene_acc_cop_hat", bph_needed, true)
@@ -215,7 +217,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat", chas_needed, false)
 	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_03_fat/ene_male_chas_police_03_fat", chas_needed, false)
 	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat", chas_needed, false)
-
+	load_unload_unit("units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01", chas_needed, false)
+	load_unload_unit("units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02", chas_needed, false)
+	
 	local ranc_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"))
 	load_unload_unit("units/pd2_dlc_ranc/characters/ene_acc_ranc_ranger_hat/ene_acc_ranc_ranger_hat", ranc_needed, true)
 	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03", ranc_needed, false)
@@ -224,7 +228,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat", ranc_needed, false)
 	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat", ranc_needed, false)
 	load_unload_unit("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat", ranc_needed, false)
-
+	load_unload_unit("units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_01/ene_female_ranc_ranger_01", ranc_needed, false)
+	load_unload_unit("units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_02/ene_female_ranc_ranger_02", ranc_needed, false)
+	
 	local usm2_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1"))
 	load_unload_unit("units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet/ene_acc_marshal_shield_helmet", usm2_needed, true)
 	load_unload_unit("units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2", usm2_needed, true)

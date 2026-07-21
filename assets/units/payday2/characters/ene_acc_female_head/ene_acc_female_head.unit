@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <unit type="being" slot="30">
-	<object file="units/payday2/characters/ene_acc_head_female/ene_acc_head_female" />
+	<object file="units/payday2/characters/ene_acc_female_head/ene_acc_female_head" />
 		
     <extensions>	
         <extension name="unit_data" class="ScriptUnitData" />
