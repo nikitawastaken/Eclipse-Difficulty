@@ -1362,27 +1362,27 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
 		value = 1,
 		damage = -2,
+		extra_ammo = 25,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {
-		ammo_offset = 25,
-		ammo_max_mul = 3 / 2,
+		ammo_max_mul = 4 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
-	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
+	self.parts.wpn_fps_fla_mk2_mag_rare.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
 		value = 1,
 		damage = 2,
+		extra_ammo = -25,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {
-		ammo_offset = -25,
 		ammo_max_mul = 2 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
-	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
+	self.parts.wpn_fps_fla_mk2_mag_welldone.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	self.parts.wpn_fps_fla_system_b_wtf.stats.total_ammo_mod = 0
@@ -1405,23 +1405,21 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		ammo_max_mul = 5 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
-	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
+	self.parts.wpn_fps_fla_system_m_low.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
 	self.parts.wpn_fps_fla_system_m_high.stats = {
 		value = 1,
 		damage = 2,
-		extra_ammo = -25,
-		total_ammo_mod = -5,
 	}
-	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
+	self.parts.wpn_fps_fla_system_m_high.custom_stats = {
 		ammo_offset = -25,
 		ammo_max_mul = 3 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
-	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
+	self.parts.wpn_fps_fla_system_m_high.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_system_m_high.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	-- Barrel Extensions, Silencers --
