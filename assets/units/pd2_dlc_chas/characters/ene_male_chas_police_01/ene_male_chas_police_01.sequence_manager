@@ -256,6 +256,8 @@
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
@@ -273,6 +275,7 @@
 			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
@@ -291,6 +294,7 @@
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'random_body_b'" />	
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
@@ -307,6 +311,7 @@
 			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
@@ -322,6 +327,8 @@
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
@@ -336,6 +343,7 @@
 			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
@@ -354,6 +362,8 @@
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
@@ -371,6 +381,7 @@
 			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'hat_ranc_ranger'" />
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'random_body_b'" />
@@ -390,6 +401,7 @@
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'hat_ranc_ranger'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
@@ -407,6 +419,7 @@
 			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
@@ -422,6 +435,8 @@
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
@@ -436,6 +451,7 @@
 			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
+			
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
