@@ -38,10 +38,12 @@ local M = {
 	-- LAPD Beat Cops
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = 6,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_female_1/ene_la_cop_female_1"] = 2,
 		["units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat"] = 1,
 	},
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"] = 4,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_female_2/ene_la_cop_female_2"] = 2,
 		["units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat"] = 1,
 	},
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"):key()] = {
@@ -55,10 +57,12 @@ local M = {
 	-- SFPD Beat Cops
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = 6,
+		["units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01"] = 2,
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat"] = 1,
 	},
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = 4,
+		["units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02"] = 2,
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat"] = 1,
 	},
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"):key()] = {
@@ -72,10 +76,12 @@ local M = {
 	-- Texas Rangers
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = {
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"] = 6,
+		["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_01/ene_female_ranc_ranger_01"] = 2,
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01_fat/ene_male_ranc_ranger_01_fat"] = 1,
 	},
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = {
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"] = 4,
+		["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_02/ene_female_ranc_ranger_02"] = 2,
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat"] = 1,
 	},
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"):key()] = {
