@@ -193,6 +193,13 @@ local head_sequences = {
 			"random_balaclava_threehole_common",
 		},
 	},
+	gangster_russian_d = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+		},
+	},
 }
 ---@module Unit Sequences
 local M = {
