@@ -102,7 +102,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400005, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400006, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_spawngroup(400007, "swat_group_1", { 400001, 400002, 400003, 400004 }, 0, opts_swat_group),
-	
+
 	-- new snipers on the gas station's roof
 	Eclipse.mission_elements.gen_dummy(400010, "new_sniper_1", Vector3(4122, 833, 293.027), Rotation(90, 0, 0), optsNewSniper_1),
 	Eclipse.mission_elements.gen_dummy(400011, "new_sniper_2", Vector3(4122, 1320, 293.027), Rotation(90, 0, 0), optsNewSniper_2),
@@ -112,7 +112,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400015, "enable_new_sniper_2", optsenable_new_sniper_2),
 	Eclipse.mission_elements.gen_toggleelement(400016, "disable_new_sniper_1", optsdisable_new_sniper_1),
 	Eclipse.mission_elements.gen_toggleelement(400017, "disable_new_sniper_2", optsdisable_new_sniper_2),
-	
+
 	-- ATM tweaks
 	Eclipse.mission_elements.gen_object_editor(400018, "atm_tweaks", Vector3(0, 0, 0), Rotation(0, 0, 0), optsATM_Tweaks),
 }
