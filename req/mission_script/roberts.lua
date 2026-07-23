@@ -63,6 +63,12 @@ local filter_disable = {
 }
 
 return {
+	-- change ATMs brandings to generic
+	[100018] = {
+		on_executed = {
+			{ id = 400018, delay = 0 },
+		},
+	},
 	-- Instantly enter full force onslaught upon plane securing the bags or crashing down
 	[101971] = {
 		set_ponr_state = true,
@@ -197,6 +203,39 @@ return {
 	[106547] = {
 		on_executed = {
 			{ id = 100880, remove = not overkill_and_above and true or nil, delay = 0 },
+		},
+	},
+	-- add 2 new snipers spawns on the gas station roof
+	[100366] = {
+		on_executed = {
+			{ id = 400010, delay = 0 },
+			{ id = 400011, delay = 0 },
+		},
+	},
+	-- on spawn
+	[100378] = {
+		values = {
+			elements = {
+				100368,
+				100369,
+				100370,
+				100371,
+				400010,
+				400011,
+			},
+		},
+	},
+	-- on death
+	[100379] = {
+		values = {
+			elements = {
+				100368,
+				100369,
+				100370,
+				100371,
+				400010,
+				400011,
+			},
 		},
 	},
 	-- GenSec Operators near the GenSec truck on overkill and above
