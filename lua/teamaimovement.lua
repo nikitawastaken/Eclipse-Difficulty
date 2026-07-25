@@ -120,10 +120,7 @@ function TeamAIMovement:set_carrying_bag(unit)
 		dropped:set_visible(true)
 	else
 		self:set_visual_carry(nil)
-		local dropped = table.remove(self._carry_table)
-		if dropped then
-			dropped:set_visible(true)
-		end
+		table.remove(self._carry_table)
 	end
 
 	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
