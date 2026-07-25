@@ -1,8 +1,3 @@
--- link to HuskPlayerMovement for bag carrying
-TeamAIMovement.set_visual_carry = HuskPlayerMovement.set_visual_carry
-TeamAIMovement._destroy_current_carry_unit = HuskPlayerMovement._destroy_current_carry_unit
-TeamAIMovement._create_carry_unit = HuskPlayerMovement._create_carry_unit
-
 -- Fix for some broken reload anim time check code
 setmetatable(HuskPlayerMovement.reload_times, {
 	__index = function(t, k)
@@ -109,17 +104,10 @@ function TeamAIMovement:carrying_bag()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
+	local dropped
 	if unit then
-		self:set_visual_carry(alive(unit) and unit:carry_data():carry_id())
 		table.insert(self._carry_table, unit)
-		unit:set_visible(false)
-	elseif #self._carry_table == 2 then
-		local next_carry = self._carry_table[1]
-		self:set_visual_carry(alive(next_carry) and next_carry:carry_data():carry_id())
-		local dropped = table.remove(self._carry_table)
-		dropped:set_visible(true)
-	else
-		self:set_visual_carry(nil)
+	elseif #self._carry_table > 0 then
 		table.remove(self._carry_table)
 	end
 
@@ -127,11 +115,18 @@ function TeamAIMovement:set_carrying_bag(unit)
 	if name_label then
 		local bag_panel = name_label.panel and name_label.panel:child("bag")
 		if bag_panel then
-			bag_panel:set_visible(unit)
+			bag_panel:set_visible(unit or dropped)
 		end
 	end
 
 	self:set_carry_speed_modifier()
+end
+
+-- returns top if no args given
+function TeamAIMovement:carry_unit(idx)
+	idx = idx or #self._carry_table
+
+	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx]
 end
 
 -- returns top if no args given

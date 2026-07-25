@@ -66,7 +66,7 @@ Hooks:PostHook(TeamAILogicBase, "on_new_objective", "eclipse_on_new_objective", 
 		objective.no_idle_delay = true
 		data.brain:action_request({
 			body_part = 3,
-			type = "idle"
+			type = "idle",
 		})
 	end
 end)
@@ -126,7 +126,6 @@ function TeamAILogicBase._get_logic_state_from_reaction(data, reaction)
 
 	return state
 end
-
 
 -- Bag movement
 function TeamAILogicBase._find_closest_secure_zone(data, carry_unit)
@@ -213,7 +212,7 @@ function TeamAILogicBase._check_deliver_bag(data)
 		return
 	end
 
-	local carry_unit = data.unit:movement()._carry_unit
+	local carry_unit = data.unit:movement():carry_unit()
 	if objective.secure_trigger then
 		if not alive(carry_unit) or not objective.secure_trigger:ub_can_secure_loot(carry_unit) then
 			data.brain:set_objective(nil)
@@ -242,7 +241,7 @@ function TeamAILogicBase._check_deliver_bag(data)
 	if data.internal_data.advancing then
 		data.brain:action_request({
 			body_part = 2,
-			type = "idle"
+			type = "idle",
 		})
 	end
 
@@ -264,10 +263,10 @@ function TeamAILogicBase._check_deliver_bag(data)
 			action_duration = 0.5,
 			action = {
 				type = "stand",
-				body_part = 1
+				body_part = 1,
 			},
 			complete_clbk = function(unit)
-				local carry_unit = unit:movement()._carry_unit
+				local carry_unit = unit:movement():carry_unit()
 				local carry_data = alive(carry_unit) and carry_unit:carry_data()
 				if not carry_data then
 					return
@@ -300,8 +299,8 @@ function TeamAILogicBase._check_deliver_bag(data)
 				else
 					carry_data:set_position_and_throw(secure_info.bag_pos, secure_info.dir, 100)
 				end
-			end
-		}
+			end,
+		},
 	})
 
 	return true
@@ -331,7 +330,7 @@ function TeamAILogicBase._check_pickup_bag(data)
 	if data.internal_data.advancing then
 		data.brain:action_request({
 			body_part = 2,
-			type = "idle"
+			type = "idle",
 		})
 	end
 
@@ -350,18 +349,18 @@ function TeamAILogicBase._check_pickup_bag(data)
 			action = {
 				type = "act",
 				variant = "untie",
-				body_part = 1
+				body_part = 1,
 			},
 			complete_clbk = function(unit)
-				if alive(carry_unit) and not carry_unit:carry_data():is_linked_to_unit() and not unit:movement()._carry_unit then
+				if alive(carry_unit) and not carry_unit:carry_data():is_linked_to_unit() and not unit:movement():carry_unit() then
 					carry_unit:carry_data():link_to(unit)
 				end
 				unit:movement():action_request({
 					type = "idle",
-					body_part = 1
+					body_part = 1,
 				})
-			end
-		}
+			end,
+		},
 	})
 
 	return true

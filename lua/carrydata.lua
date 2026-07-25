@@ -151,7 +151,7 @@ local old_cd_destroy = CarryData.destroy
 function CarryData:destroy()
 	CarryData.ub_loot[self._unit:key()] = nil
 
-	local old_links
+	local old_links = 0
 	-- self._linked_to gets niled when calling the old function, so save a reference
 	local linked_to = self._linked_to
 	if alive(linked_to) then
@@ -159,8 +159,7 @@ function CarryData:destroy()
 	end
 
 	old_cd_destroy(self)
-	if old_links and alive(linked_to) then
+	if old_links ~= 0 and alive(linked_to) then
 		CarryData.carry_links[linked_to:key()] = old_links - 1
 	end
 end
-
