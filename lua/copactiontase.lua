@@ -194,7 +194,7 @@ if not Network:is_server() then
 end
 
 -- Make bots aware of Taser attacks
-Hooks:PostHook(CopActionTase, "init", "eclipse_init", function (self)
+Hooks:PostHook(CopActionTase, "init", "eclipse_init", function(self)
 	self._is_sabotaging_action = true
 	Eclipse.utils.team_ai_force_attention(self._unit)
 end)

@@ -149,7 +149,7 @@ function PlayerTased:_register_revive_SO()
 	managers.groupai:state():add_special_objective(self._SO_id, Eclipse.utils.team_ai_get_assist_SO(self._unit))
 end
 
-Hooks:PostHook(PlayerTased, "exit", "exit_ub", function (self)
+Hooks:PostHook(PlayerTased, "exit", "exit_ub", function(self)
 	Eclipse.utils.team_ai_stop_assist_objective(self._unit)
 	self._SO_id = nil
 end)

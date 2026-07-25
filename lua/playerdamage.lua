@@ -1050,7 +1050,7 @@ Hooks:PostHook(PlayerDamage, "pause_downed_timer", "pause_downed_timer_ub", func
 	reviving_bot:brain():set_objective(nil)
 	reviving_bot:movement():action_request({
 		body_part = 4,
-		type = "stand"
+		type = "stand",
 	})
 
 	reviving_bot:brain():set_objective(Eclipse.utilts.team_ai_get_assist_objective(self._unit, reviving_bot))

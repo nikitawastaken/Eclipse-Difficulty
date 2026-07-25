@@ -496,9 +496,7 @@ function MenuCallbackHandler:_restart_level_visible()
 end
 
 function MenuCallbackHandler:singleplayer_restart()
-	return self:is_singleplayer()
-		and self:has_full_game() --[[and self:is_normal_job()]]
-		and not managers.job:stage_success()
+	return self:is_singleplayer() and self:has_full_game() --[[and self:is_normal_job()]] and not managers.job:stage_success()
 end
 
 -- Remove vanilla DW and DS from Safehouse Raid

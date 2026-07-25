@@ -6,7 +6,6 @@ function VehicleDrivingExt:_find_unit_seat(unit)
 	end
 end
 
-
 local clbk_drive_SO_verification_original = VehicleDrivingExt.clbk_drive_SO_verification
 function VehicleDrivingExt:clbk_drive_SO_verification(seat, candidate_unit, ...)
 	-- If bot was told to hold, don't enter

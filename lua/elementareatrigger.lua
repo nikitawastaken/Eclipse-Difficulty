@@ -159,18 +159,18 @@ if not Network:is_server() then
 end
 
 local needs_secure_match_level = {
-	framing_frame_2 = true
+	framing_frame_2 = true,
 }
 
 local valid_carry_operations = {
 	secure = true,
 	secure_silent = true,
-	remove = true
+	remove = true,
 }
 
 local valid_instigators = {
 	loot = true,
-	unique_loot = true
+	unique_loot = true,
 }
 
 local function get_loot_secure_elements(current, recursion_depth, found_elements)
@@ -189,13 +189,13 @@ local function get_loot_secure_elements(current, recursion_depth, found_elements
 	return found_elements
 end
 
-Hooks:PostHook(ElementAreaTrigger, "on_script_activated", "on_script_activated_ub", function (self)
+Hooks:PostHook(ElementAreaTrigger, "on_script_activated", "on_script_activated_ub", function(self)
 	if valid_instigators[self._values.instigator] then
 		self._loot_secure_elements = get_loot_secure_elements(self)
 	end
 end)
 
-Hooks:PreHook(ElementAreaTrigger, "on_executed", "on_executed_ub", function (self, instigator)
+Hooks:PreHook(ElementAreaTrigger, "on_executed", "on_executed_ub", function(self, instigator)
 	local throw_params = self:ub_can_secure_loot(instigator) and instigator:carry_data()._ub_throw_params
 	if not throw_params or throw_params.expire_t < TimerManager:game():time() then
 		return

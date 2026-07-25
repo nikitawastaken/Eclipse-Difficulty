@@ -45,7 +45,7 @@ function PlayerDriving:enter(...)
 			movement._should_stay = false
 		end
 	end
-		
+
 	enter_original(self, ...)
 
 	-- Restore should stay state

@@ -1,9 +1,9 @@
 -- Don't carry over "firing" variable, it has a chance to stop bots from shooting
-Hooks:PostHook(TeamAILogicAssault, "enter", "eclipse_enter", function (data)
+Hooks:PostHook(TeamAILogicAssault, "enter", "eclipse_enter", function(data)
 	data.internal_data.firing = nil
 end)
 
-TeamAILogicAssault._mark_special_chk_t = math.huge  -- hacky way to stop the vanilla special mark code
+TeamAILogicAssault._mark_special_chk_t = math.huge -- hacky way to stop the vanilla special mark code
 
 function TeamAILogicAssault.mark_enemy(data, criminal, to_mark)
 	if to_mark:base().char_tweak then
@@ -18,7 +18,7 @@ end
 function TeamAILogicAssault._upd_sneak_spotting() end
 
 -- Fix attention unit reset
-Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk_ub", function (data, action)
+Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk_ub", function(data, action)
 	local my_data = data.internal_data
 	if action:type() == "shoot" then
 		if my_data.attention_unit then
@@ -31,7 +31,7 @@ Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk
 			if mag_remaining < mag_total ^ 0.75 then
 				data.brain:action_request({
 					body_part = 3,
-					type = "reload"
+					type = "reload",
 				})
 			end
 		end

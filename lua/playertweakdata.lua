@@ -187,7 +187,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.damage.respawn_time_penalty = 10
 	self.damage.automatic_assault_ai_trade_time = 120
 	self.damage.automatic_assault_ai_trade_time_max = 180
-	
+
 	self.movement_state.standard.movement.jump_velocity.z = self.movement_state.standard.movement.jump_velocity.z * 1.25
 	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
 	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5

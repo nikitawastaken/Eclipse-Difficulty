@@ -313,7 +313,7 @@ if not Network:is_server() then
 end
 
 -- Make bots aware of enemies carrying loot
-Hooks:PostHook(CopMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function (self)
+Hooks:PostHook(CopMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function(self)
 	self._is_sabotaging_action = true
 	Eclipse.utils.team_ai_force_attention(self._unit)
 end)

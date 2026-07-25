@@ -27,13 +27,13 @@ local sabotage_actions = {
 	e_so_ntl_lever_press = true,
 	e_so_release_hostage_back = true,
 	e_so_release_hostage_left = true,
-	e_so_release_hostage_right = true
+	e_so_release_hostage_right = true,
 }
 
 -- Make bots aware of sabotaging enemies
-Hooks:PostHook(CopActionAct, "init", "eclipse_init", function (self)
+Hooks:PostHook(CopActionAct, "init", "eclipse_init", function(self)
 	if sabotage_actions[self._action_desc.variant] then
-		self._is_sabotaging_action = true	
+		self._is_sabotaging_action = true
 		Eclipse.utils.team_ai_force_attention(self._unit)
 	end
 end)

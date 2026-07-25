@@ -5,11 +5,11 @@ local large_font_size = tweak_data.menu.pd2_large_font_size
 local medium_font_size = tweak_data.menu.pd2_medium_font_size
 local small_font_size = tweak_data.menu.pd2_small_font_size
 local crew_abilities = {
---	"crew_interact",
+	--	"crew_interact",
 	"crew_inspire",
---	"crew_scavenge",
+	--	"crew_scavenge",
 	"crew_ai_ap_ammo",
---	"crew_ai_cable_ties",
+	--	"crew_ai_cable_ties",
 	"crew_ai_flashbang",
 	"crew_ai_counter_strike",
 	"crew_ai_counter_tase",
@@ -97,7 +97,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	local title_text = self._panel:text({
 		text = managers.localization:to_upper_text("menu_crew_management"),
 		font = large_font,
-		font_size = large_font_size
+		font_size = large_font_size,
 	})
 
 	make_fine_text(title_text)
@@ -106,7 +106,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		text = managers.localization:text("menu_crew_loadout_order"),
 		font = medium_font,
 		font_size = medium_font_size,
-		y = medium_font_size
+		y = medium_font_size,
 	})
 
 	make_fine_text(loadout_text)
@@ -116,10 +116,10 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	if managers.menu:is_pc_controller() then
 		info_panel = self._panel:panel({
 			w = 30,
-			h = 24
+			h = 24,
 		})
 		local info_icon = info_panel:bitmap({
-			texture = "guis/textures/pd2/blackmarket/inv_newdrop"
+			texture = "guis/textures/pd2/blackmarket/inv_newdrop",
 		})
 
 		info_icon:set_texture_coordinates(Vector3(0, 16, 0), Vector3(16, 16, 0), Vector3(0, 0, 0), Vector3(16, 0, 0))
@@ -138,22 +138,22 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	self._1_panel = self._panel:panel({
 		h = 0,
 		w = self._item_w,
-		y = loadout_text:bottom()
+		y = loadout_text:bottom(),
 	})
 	self._2_panel = self._panel:panel({
 		h = 0,
 		w = self._item_w,
-		y = loadout_text:bottom()
+		y = loadout_text:bottom(),
 	})
 	self._3_panel = self._panel:panel({
 		h = 0,
 		w = self._item_w,
-		y = loadout_text:bottom()
+		y = loadout_text:bottom(),
 	})
 	self._btn_panels = {
 		self._1_panel,
 		self._2_panel,
-		self._3_panel
+		self._3_panel,
 	}
 
 	self._3_panel:set_right(self._panel:right() - 10)
@@ -163,10 +163,10 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	for i, panel in pairs(self._btn_panels) do
 		local slot_text = self._panel:text({
 			text = managers.localization:text("menu_crew_slot_index", {
-				index = i
+				index = i,
 			}),
 			font = small_font,
-			font_size = small_font_size
+			font_size = small_font_size,
 		})
 
 		make_fine_text(slot_text)
@@ -205,7 +205,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	local char_text = self._panel:text({
 		text = managers.localization:text("menu_crew_character_order"),
 		font = medium_font,
-		font_size = medium_font_size
+		font_size = medium_font_size,
 	})
 
 	make_fine_text(char_text)
@@ -217,7 +217,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	char_text:set_left(self._1_panel:left())
 
 	local cc_panel = self._panel:panel({
-		w = self._3_panel:right() - self._1_panel:left()
+		w = self._3_panel:right() - self._1_panel:left(),
 	})
 
 	cc_panel:set_left(self._1_panel:left())
@@ -227,7 +227,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	char_height = 64
 	local char_panel = cc_panel:panel({
 		w = 0,
-		h = char_height
+		h = char_height,
 	})
 	local char_images = {}
 
@@ -235,7 +235,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		local character = managers.blackmarket:preferred_henchmen(i)
 		local texture = character and managers.blackmarket:get_character_icon(character) or "guis/textures/pd2/dice_icon"
 		local _, img = self:_add_bitmap_panel_row(char_panel, {
-			texture = texture
+			texture = texture,
 		}, char_height, 64)
 
 		table.insert(char_images, img)
@@ -252,11 +252,11 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 			2,
 			2,
 			2,
-			2
-		}
+			2,
+		},
 	})
 	local char_panel_size = {
-		char_images[1]:size()
+		char_images[1]:size(),
 	}
 
 	function char_btn:_selected_changed(state, instant)
@@ -276,8 +276,8 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 	v:bitmap({
 		texture = "guis/textures/test_blur_df",
@@ -287,12 +287,12 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		render_template = "VertexColorTexturedBlur3D",
 		valign = "scale",
 		w = v:w(),
-		h = v:h()
+		h = v:h(),
 	})
 	v:rect({
 		alpha = 0.4,
 		layer = -1,
-		color = Color.black
+		color = Color.black,
 	})
 
 	for _, v in pairs(self._btn_panels) do
@@ -301,8 +301,8 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 				1,
 				1,
 				2,
-				1
-			}
+				1,
+			},
 		})
 		v:bitmap({
 			texture = "guis/textures/test_blur_df",
@@ -312,12 +312,12 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 			render_template = "VertexColorTexturedBlur3D",
 			valign = "scale",
 			w = v:w(),
-			h = v:h()
+			h = v:h(),
 		})
 		v:rect({
 			alpha = 0.4,
 			layer = -1,
-			color = Color.black
+			color = Color.black,
 		})
 	end
 
@@ -327,7 +327,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		self._legends_panel = self._panel:panel({
 			name = "legends_panel",
 			w = self._panel:w() * 0.75,
-			h = tweak_data.menu.pd2_medium_font_size
+			h = tweak_data.menu.pd2_medium_font_size,
 		})
 
 		self._legends_panel:set_right(self._panel:w())
@@ -337,14 +337,14 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		local function new_legend(name, text_string, hud_icon)
 			local panel = self._legends_panel:panel({
 				visible = false,
-				name = name
+				name = name,
 			})
 			local text = panel:text({
 				blend_mode = "add",
 				text = text_string,
 				font = small_font,
 				font_size = small_font_size,
-				color = tweak_data.screen_colors.text
+				color = tweak_data.screen_colors.text,
 			})
 
 			make_fine_text(text)
@@ -360,7 +360,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 					blend_mode = "add",
 					w = 17,
 					texture = texture,
-					texture_rect = texture_rect
+					texture_rect = texture_rect,
 				})
 				text_x = icon:right() + 2
 				center_y = math.max(center_y, icon:center_y())
@@ -393,7 +393,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 		text = managers.localization:text("menu_back"),
 		font_size = tweak_data.menu.pd2_large_font_size,
 		font = tweak_data.menu.pd2_large_font,
-		color = tweak_data.screen_colors.button_stage_3
+		color = tweak_data.screen_colors.button_stage_3,
 	})
 
 	make_fine_text(back_button)
@@ -401,7 +401,7 @@ function CrewManagementGui:init(ws, fullscreen_ws, node)
 	back_button:set_bottom(self._panel:h())
 	back_button:set_visible(managers.menu:is_pc_controller())
 
-	local back = CrewManagementGuiButton:new(self, function ()
+	local back = CrewManagementGuiButton:new(self, function()
 		managers.menu:back(true)
 	end, true)
 	back._panel = back_button

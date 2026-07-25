@@ -111,7 +111,7 @@ if not Network:is_server() then
 end
 
 -- <ake bots aware of Cloaker attacks
-Hooks:PostHook(ActionSpooc, "init", "eclipse_init", function (self)
-	self._is_sabotaging_action = true	
+Hooks:PostHook(ActionSpooc, "init", "eclipse_init", function(self)
+	self._is_sabotaging_action = true
 	Eclipse.utils.team_ai_force_attention(self._unit)
 end)

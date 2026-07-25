@@ -191,10 +191,10 @@ function Drill:set_jammed(jammed)
 
 	self:_change_num_jammed_drills(self._jammed and 1 or -1)
 
-	if Network:is_server() then		
+	if Network:is_server() then
 		if jammed then
 			self:_unregister_sabotage_SO()
-			
+
 			if not self._jammed_bot_so_id then
 				self:_register_fix_SO()
 			end
@@ -252,7 +252,7 @@ function Drill:_verify_fix_SO(unit)
 	if not managers.player:has_category_upgrade("team", "crew_ai_fix_drill") then
 		return
 	end
-	
+
 	local brain = alive(unit) and unit:brain()
 	if not brain or not brain:is_available_for_assignment() or brain._logic_data.internal_data and brain._logic_data.internal_data.called then
 		return
@@ -305,7 +305,7 @@ function Drill:_register_fix_SO()
 	if int._tweak_data.special_equipment then
 		return
 	end
-	
+
 	local objective_pos = self._nav_tracker:field_position()
 	local objective_rot = Rotation((self._unit:position() - objective_pos):with_z(0):normalized(), math.UP)
 	local objective_nav = self._nav_tracker:nav_segment()
@@ -321,7 +321,7 @@ function Drill:_register_fix_SO()
 		turn = -1,
 		act = -1,
 		idle = -1,
-		shoot = -1
+		shoot = -1,
 	}
 
 	local objective = {
@@ -335,7 +335,7 @@ function Drill:_register_fix_SO()
 			align_sync = true,
 			type = height > 80 and "stand" or "crouch",
 			body_part = 4,
-			blocks = clone(blocks)
+			blocks = clone(blocks),
 		},
 		followup_objective = {
 			type = "act",
@@ -347,7 +347,7 @@ function Drill:_register_fix_SO()
 				type = "act",
 				body_part = 3,
 				variant = "interact_enter",
-				blocks = clone(blocks)
+				blocks = clone(blocks),
 			},
 			followup_objective = {
 				type = "act",
@@ -356,10 +356,10 @@ function Drill:_register_fix_SO()
 					body_part = 3,
 					type = "act",
 					variant = "interact_exit",
-					blocks = clone(blocks)
-				}
-			}
-		}
+					blocks = clone(blocks),
+				},
+			},
+		},
 	}
 
 	local so_descriptor = {
@@ -372,7 +372,7 @@ function Drill:_register_fix_SO()
 		search_dis_sq = 1000 ^ 2,
 		admin_clbk = callback(self, self, "_fix_SO_administered"),
 		verification_clbk = callback(self, self, "_verify_fix_SO"),
-		objective = objective
+		objective = objective,
 	}
 
 	self._jammed_bot_so_id = "botfixdrill" .. tostring(self._unit:key())

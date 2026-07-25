@@ -20,7 +20,7 @@ Hooks:PostHook(TeamAIDamage, "damage_fire", "eclipse_teamai_damage_fire", functi
 end)
 
 -- Announce low health
-Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function (self)
+Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function(self)
 	local t = TimerManager:game():time()
 	if (not self._said_hurt_t or self._said_hurt_t + 10 < t) and self._health_ratio < 0.33 and not self:need_revive() and not self._unit:sound():speaking() then
 		self._said_hurt_t = t
@@ -77,11 +77,10 @@ function TeamAIDamage:damage_tase(attack_data, ...)
 	return result
 end
 
-Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function (self)
+Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function(self)
 	if self._assist_SO_id then
 		managers.groupai:state():remove_special_objective(self._assist_SO_id)
 		Eclipse.utils.team_ai_stop_assist_objective(self._unit)
 		self._assist_SO_id = nil
 	end
 end)
-

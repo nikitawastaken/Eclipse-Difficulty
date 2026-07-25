@@ -85,7 +85,7 @@ function CopLogicTravel.upd_advance(data, ...)
 	end
 
 	CopLogicTravel._chk_relocate(data, my_data)
-	
+
 	if not data.is_team_ai or not data.objective then
 		return upd_advance_original(data, ...)
 	end
@@ -117,7 +117,7 @@ function CopLogicTravel.upd_advance(data, ...)
 			if my_data.advancing then
 				data.unit:brain():action_request({
 					body_part = 2,
-					type = "idle"
+					type = "idle",
 				})
 			end
 

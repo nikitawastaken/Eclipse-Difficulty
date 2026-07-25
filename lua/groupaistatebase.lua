@@ -710,14 +710,14 @@ function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
 			type = "defend_area",
 			scan = true,
 			pos = movement._should_stay_pos,
-			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos)
+			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos),
 		}
 	elseif alive(brain._logic_data._latest_follow_unit) then
 		return {
 			type = "follow",
 			scan = true,
 			is_default = true,
-			follow_unit = brain._logic_data._latest_follow_unit
+			follow_unit = brain._logic_data._latest_follow_unit,
 		}
 	end
 
@@ -1426,7 +1426,10 @@ function GroupAIStateBase:_execute_so(so_data, so_rooms, so_administered, ...)
 	local inspire_u_data
 
 	local function check_allowed(u_key, u_unit_dat)
-		return (not so_administered or not so_administered[u_key]) and (so_objective.forced or u_unit_dat.unit:brain():is_available_for_assignment(so_objective)) and (not so_data.verification_clbk or so_data.verification_clbk(u_unit_dat.unit)) and access_f(nav_manager, so_access, u_unit_dat.so_access, 0)
+		return (not so_administered or not so_administered[u_key])
+			and (so_objective.forced or u_unit_dat.unit:brain():is_available_for_assignment(so_objective))
+			and (not so_data.verification_clbk or so_data.verification_clbk(u_unit_dat.unit))
+			and access_f(nav_manager, so_access, u_unit_dat.so_access, 0)
 	end
 
 	local function get_distance(u_key, u_unit_data)
@@ -1434,7 +1437,7 @@ function GroupAIStateBase:_execute_so(so_data, so_rooms, so_administered, ...)
 			access_pos = u_unit_data.so_access,
 			from_seg = u_unit_data.seg,
 			to_seg = nav_seg,
-			id = u_key
+			id = u_key,
 		})
 
 		if not path or #path < 2 then
@@ -1527,14 +1530,14 @@ function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
 			type = "defend_area",
 			scan = true,
 			pos = movement._should_stay_pos,
-			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos)
+			nav_seg = managers.navigation:get_nav_seg_from_pos(movement._should_stay_pos),
 		}
 	elseif alive(brain._logic_data._latest_follow_unit) then
 		return {
 			type = "follow",
 			scan = true,
 			is_default = true,
-			follow_unit = brain._logic_data._latest_follow_unit
+			follow_unit = brain._logic_data._latest_follow_unit,
 		}
 	end
 

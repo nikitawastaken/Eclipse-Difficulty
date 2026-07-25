@@ -598,7 +598,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		48,
 		72,
 		96,
-	}) 
+	})
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
 	presets.gang_member_damage.REGENERATE_RATIO = 1 / 40
 	presets.gang_member_damage.REGENERATE_TIME = 1

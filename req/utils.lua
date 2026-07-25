@@ -80,7 +80,7 @@ function M.team_ai_get_reviving_unit(unit)
 		end
 	end
 end
-	
+
 function M.team_ai_force_attention(attention_unit)
 	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
 		local logic_data = c_data.unit:brain()._logic_data

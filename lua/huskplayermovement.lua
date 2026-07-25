@@ -76,7 +76,7 @@ if not Network:is_server() then
 end
 
 -- Fix assistance SO so bots return to their hold position when done
-Hooks:OverrideFunction(HuskPlayerMovement, "set_need_assistance", function (self, need_assistance)
+Hooks:OverrideFunction(HuskPlayerMovement, "set_need_assistance", function(self, need_assistance)
 	if self._need_assistance == need_assistance then
 		return
 	end

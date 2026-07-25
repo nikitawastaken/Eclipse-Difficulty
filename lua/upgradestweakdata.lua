@@ -43,7 +43,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- Bullet damage Shield stagger effect (only used for the Team AI ability)
 	self.values.player.shield_knock_bullet.max_damage = 80
 	self.values.player.shield_knock_bullet.chance = 0.8
-	
+
 	-- Maniac stuff deck14
 	self.max_cocaine_stacks_per_tick = 120
 	self.max_total_cocaine_stacks = 300
@@ -3631,7 +3631,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.team.crew_ai_fix_drill = { true }
 	self.values.team.crew_ai_carry_stacker = { true }
 	self.values.team.crew_ai_dominator = { true }
-	
+
 	-- misc
 	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
@@ -3651,7 +3651,7 @@ end
 Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse__crew_definitions", function(self)
 	self.crew_ability_definitions.crew_ai_fix_drill = {
 		name_id = "menu_crew_ai_fix_drill",
-		icon = "ability_2"
+		icon = "ability_2",
 	}
 	self.crew_ability_definitions.crew_ai_carry_stacker = {
 		name_id = "menu_crew_ai_carry_stack",
@@ -3659,6 +3659,6 @@ Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse__crew_definition
 	}
 	self.crew_ability_definitions.crew_ai_dominator = {
 		name_id = "menu_crew_ai_dominator",
-		icon = "ability_5"
+		icon = "ability_5",
 	}
 end)

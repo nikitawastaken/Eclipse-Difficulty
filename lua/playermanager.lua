@@ -1205,13 +1205,13 @@ function PlayerManager:sync_carry_data(
 	if not alive(peer_unit) then
 		return
 	end
-	
+
 	unit:carry_data()._ub_throw_params = {
 		expire_t = TimerManager:game():time() + (zipline_unit and 30 or 3),
 		bag_pos = unit:position(),
 		pos = mvector3.copy(peer_unit:movement():m_newest_pos()),
 		dir = dir * 600 * throw_distance_multiplier,
-		zipline_unit = zipline_unit
+		zipline_unit = zipline_unit,
 	}
 end
 
