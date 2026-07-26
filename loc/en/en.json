@@ -249,7 +249,7 @@
 	"menu_color_plus" 						: "E3 PAYDAY+",
 	"menu_color_e3nice" 					: "E3 Nice",
 	"menu_color_force" 						: "E3 BHD",
-	"menu_color_cgreyscale"					: "Greyscale"
+	"menu_color_cgreyscale"					: "Greyscale",
 	
-	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon",
+	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
 }
