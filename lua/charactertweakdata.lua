@@ -1113,7 +1113,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		self.security.radio_prefix = "fri_"
 		self.security.use_radio = "fri_dispatch_generic_message"
 	end
-	
+
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 6
 	self.security_fat.dodge = nil
@@ -1273,7 +1273,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.murky = deep_clone(self.security_mcmansion)
 	self.murky.radio_prefix = "fri_" -- unprofessional radio from Scarface Mansion
-	self.murky.use_radio = "fri_dispatch_generic_message" -- force Scarface Mansion's radio guy for Murkywater Security 
+	self.murky.use_radio = "fri_dispatch_generic_message" -- force Scarface Mansion's radio guy for Murkywater Security
 	--self.murky.no_arrest = true -- harder stealth
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
