@@ -31,8 +31,8 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
 
-	-- fak heals 90hp on use
-	self.values.first_aid_kit.heal_amount = 9
+	-- fak heals 40% hp on use
+	self.values.first_aid_kit.heal_amount = 0.4
 
 	-- Saw Massacre (baseline)
 	self.saw_through_shield_dmg_mul = 0.5
