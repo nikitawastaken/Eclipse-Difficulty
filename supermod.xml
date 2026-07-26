@@ -965,6 +965,9 @@
 
 				<file :name="ene_acc_shield_city_df.texture" />
 
+				<file :name="bulldozer_glass_df.texture" />
+				<file :name="bulldozer_glass_op.texture" />
+				
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
