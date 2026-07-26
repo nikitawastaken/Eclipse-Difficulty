@@ -185,7 +185,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ranc.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
 
-	self.pex.difficulty_scaling_preset = "sustain"
+	self.pex.difficulty_scaling_preset = "sustain_aggressive"
 
 	self.man.difficulty_scaling_preset = "sustain_slow"
 	self.vit.difficulty_scaling_preset = "sustain_slow"
