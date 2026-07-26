@@ -766,7 +766,7 @@ function PlayerDamage:band_aid_health(hot_regen)
 		return
 	end
 
-	self:restore_health(tweak_data.upgrades.values.first_aid_kit.heal_amount)
+	self:restore_health_percentage(tweak_data.upgrades.values.first_aid_kit.heal_amount)
 	if hot_regen then
 		managers.player:activate_temporary_upgrade("temporary", "first_aid_health_regen")
 	end
