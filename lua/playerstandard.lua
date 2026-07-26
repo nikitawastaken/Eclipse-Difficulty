@@ -396,7 +396,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
-						if self._unit:character_damage().swansong == true then 
+						if self._unit:character_damage().swansong == true then
 							dmg_mul = dmg_mul * managers.player:upgrade_value("player", "bleedout_damage_multiplier", 1)
 						end
 
