@@ -598,6 +598,7 @@
 			<file :name="dentist/cas/world/world.continent"/>
 			<file :name="dentist/hox/stage_1/world/world.continent"/>
 			<file :name="bain/big/nav_manager_data.nav_data"/>
+			<file :name="bain/roberts/nav_manager_data.nav_data"/>
 			<file :name="butcher/thebomb/stage_2/nav_manager_data.nav_data"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>
 			<file :name="classics/run/nav_manager_data.nav_data"/>
