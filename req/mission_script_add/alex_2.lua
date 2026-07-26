@@ -3,7 +3,6 @@ local M = {}
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
-
 local fbi_team = {
 	scripted_enemy.ready_team_1,
 	scripted_enemy.ready_team_2,
@@ -307,54 +306,54 @@ M.elements = {
 	-- 1st rooftop spawn
 	Eclipse.mission_elements.gen_dummy(400001, "fbi_ambush_rooftop_enemy_1", Vector3(3069.967, 1828.752, 400), Rotation(90, 0, 0), optsFBIRooftop_1),
 	Eclipse.mission_elements.gen_dummy(400002, "fbi_ambush_rooftop_enemy_2", Vector3(3054, 1553, 400), Rotation(90, 0, 0), optsFBIRooftop_2),
-	
+
 	Eclipse.mission_elements.gen_so(400003, "fbi_ambush_rooftop_so_spot_1", Vector3(2389, 1951, 400), Rotation(90, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400004, "fbi_ambush_rooftop_so_spot_2", Vector3(2380, 1477, 400), Rotation(90, 0, 0), optsFBIRooftop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400005, "ambush_rooftop_1", optsAmbushRooftop_1),
 	-- 2nd rooftop spawn
 	Eclipse.mission_elements.gen_dummy(400006, "fbi_ambush_rooftop_enemy_3", Vector3(1950, 3914, 624), Rotation(0, 0, 0), optsFBIRooftop_3),
 	Eclipse.mission_elements.gen_dummy(400007, "fbi_ambush_rooftop_enemy_4", Vector3(1884, 3914, 624), Rotation(0, 0, 0), optsFBIRooftop_4),
 	Eclipse.mission_elements.gen_dummy(400068, "fbi_ambush_rooftop_enemy_5", Vector3(1822, 3914, 624), Rotation(0, 0, 0), optsFBIRooftop_5),
-	
+
 	Eclipse.mission_elements.gen_so(400008, "fbi_ambush_rooftop_so_spot_3", Vector3(1613, 3388, 624), Rotation(-180, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400009, "fbi_ambush_rooftop_so_spot_4", Vector3(1936, 3388, 624), Rotation(-180, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400010, "fbi_ambush_rooftop_so_spot_5", Vector3(2123, 3388, 624), Rotation(-180, 0, 0), optsFBIRooftop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400011, "ambush_rooftop_2", optsAmbushRooftop_2),
 	-- 3rd rooftop spawn
 	Eclipse.mission_elements.gen_dummy(400012, "fbi_ambush_rooftop_enemy_6", Vector3(1330, 4501, 201.491), Rotation(90, 0, 0), optsFBIRooftop_6),
 	Eclipse.mission_elements.gen_dummy(400013, "fbi_ambush_rooftop_enemy_7", Vector3(1409, 4512, 201.491), Rotation(90, 0, 0), optsFBIRooftop_7),
 	Eclipse.mission_elements.gen_dummy(400014, "fbi_ambush_rooftop_enemy_8", Vector3(1409, 4445, 201.491), Rotation(90, 0, 0), optsFBIRooftop_8),
-	
+
 	Eclipse.mission_elements.gen_so(400015, "fbi_ambush_rooftop_so_spot_6", Vector3(830, 3595, 200), Rotation(-154, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400016, "fbi_ambush_rooftop_so_spot_7", Vector3(988, 3595, 200), Rotation(-180, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400017, "fbi_ambush_rooftop_so_spot_8", Vector3(1179, 3595, 200), Rotation(-180, 0, 0), optsFBIRooftop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400018, "ambush_rooftop_3", optsAmbushRooftop_3),
 	-- 4th rooftop spawn
 	Eclipse.mission_elements.gen_dummy(400019, "fbi_ambush_rooftop_enemy_9", Vector3(2031, -2574, 400), Rotation(90, 0, 0), optsFBIRooftop_9),
 	Eclipse.mission_elements.gen_dummy(400020, "fbi_ambush_rooftop_enemy_10", Vector3(2031, -2690, 400), Rotation(90, 0, 0), optsFBIRooftop_10),
 	Eclipse.mission_elements.gen_dummy(400021, "fbi_ambush_rooftop_enemy_11", Vector3(2031, -2759, 400), Rotation(90, 0, 0), optsFBIRooftop_11),
-	
+
 	Eclipse.mission_elements.gen_so(400022, "fbi_ambush_rooftop_so_spot_9", Vector3(854, -2308, 400), Rotation(0, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400023, "fbi_ambush_rooftop_so_spot_10", Vector3(739, -2308, 400), Rotation(0, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400024, "fbi_ambush_rooftop_so_spot_11", Vector3(595, -2308, 400), Rotation(0, 0, 0), optsFBIRooftop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400025, "ambush_rooftop_4", optsAmbushRooftop_4),
 	-- 5th rooftop spawn
 	Eclipse.mission_elements.gen_dummy(400026, "fbi_ambush_rooftop_enemy_12", Vector3(-1067, -2019, 400), Rotation(0, 0, 0), optsFBIRooftop_12),
 	Eclipse.mission_elements.gen_dummy(400027, "fbi_ambush_rooftop_enemy_13", Vector3(-1067, -2079, 400), Rotation(0, 0, 0), optsFBIRooftop_13),
 	Eclipse.mission_elements.gen_dummy(400028, "fbi_ambush_rooftop_enemy_14", Vector3(-1067, -2137, 400), Rotation(0, 0, 0), optsFBIRooftop_14),
-	
+
 	Eclipse.mission_elements.gen_so(400029, "fbi_ambush_rooftop_so_spot_12", Vector3(-508.315, -2137.143, 400), Rotation(-43, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400030, "fbi_ambush_rooftop_so_spot_13", Vector3(-497.533, -1939.364, 400), Rotation(-43, 0, 0), optsFBIRooftop_SO),
 	Eclipse.mission_elements.gen_so(400031, "fbi_ambush_rooftop_so_spot_14", Vector3(-528.856, -1751.545, 402), Rotation(-43, 0, 0), optsFBIRooftop_SO),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400032, "ambush_rooftop_5", optsAmbushRooftop_5),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400033, "spawn_rooftop_enemies", optsAmbushRooftop_Global),
-	
+
 	-- FBI Ready Teams securing the area
 	Eclipse.mission_elements.gen_dummy(400040, "fbi_ready_team_spawn_1", Vector3(-581, 4688, -600), Rotation(155, 0, 0), optsFBI_Team_1),
 	Eclipse.mission_elements.gen_dummy(400041, "fbi_ready_team_spawn_2", Vector3(-651, 4808, -600), Rotation(155, 0, 0), optsFBI_Team_2),
@@ -383,10 +382,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400063, "fbi_defend_so_12", Vector3(658, -36, -800), Rotation(0, 0, 0), optsDefendFBI_SO),
 
 	Eclipse.mission_elements.gen_missionscript(400064, "spawn_fbi_ready_teams", optsSpawnFBITeams),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400065, "fbi_ready_team_squad_1", optsSpawnFBITeamSquad_1),
 	Eclipse.mission_elements.gen_missionscript(400066, "fbi_ready_team_squad_2", optsSpawnFBITeamSquad_2),
-	
+
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400067, "disable_rooftop_gangsters", optsDisable_gangster_rooftop),
 }
