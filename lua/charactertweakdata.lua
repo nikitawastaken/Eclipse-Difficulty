@@ -1106,11 +1106,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
 	-- Different radio chatter for Security in murky/akan heists
-	if is_murkywater_heist or is_akan_heist then
+	if is_akan_heist then
 		self.security.radio_prefix = "fri_"
-		self.security.use_radio = "dsp_radio_russian"
 	end
-
+	if is_murkywater_heist then
+		self.security.radio_prefix = "fri_"
+		self.security.use_radio = "fri_dispatch_generic_message"
+	end
+	
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 6
 	self.security_fat.dodge = nil
@@ -1136,6 +1139,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.security_army = deep_clone(self.security)
 	self.security_army.melee_weapon = "weapon"
+	self.soldier.use_radio = "dsp_radio_russian"
 	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
 
@@ -1264,12 +1268,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Different radio chatter for Bellmead units
 	if has_bellmead_response then
 		self.marshal_security.radio_prefix = "fri_"
-		self.marshal_security.use_radio = "dsp_radio_russian"
+		self.marshal_security.use_radio = "fri_dispatch_generic_message"
 	end
 
 	self.murky = deep_clone(self.security_mcmansion)
-	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
-	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
+	self.murky.radio_prefix = "fri_" -- unprofessional radio from Scarface Mansion
+	self.murky.use_radio = "fri_dispatch_generic_message" -- force Scarface Mansion's radio guy for Murkywater Security 
 	--self.murky.no_arrest = true -- harder stealth
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
