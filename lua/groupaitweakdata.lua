@@ -3954,8 +3954,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.assault.groups = {
-			fbi_swats = { 20, 10, 0 },
-			elite_swats = { 16, 20, 24 },
+			fbi_swats = { 18, 9, 0 },
+			elite_swats = { 18, 21, 24 },
 			fbi_heavies = { 12, 18, 24 },
 			fbi_shield = shield_wgt,
 			elite_sniper = elite_sniper_wgt,
