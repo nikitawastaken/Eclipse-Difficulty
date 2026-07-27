@@ -1139,7 +1139,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.security_army = deep_clone(self.security)
 	self.security_army.melee_weapon = "weapon"
-	self.soldier.use_radio = "dsp_radio_russian"
+	self.security_army.use_radio = "dsp_radio_russian"
 	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
 
