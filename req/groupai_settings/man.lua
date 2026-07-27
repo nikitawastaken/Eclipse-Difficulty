@@ -2,10 +2,10 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 return {
 	task_data_mod = {
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_min" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 60, 120, 160 },
 					{ 75, 140, 180 },
@@ -16,10 +16,10 @@ return {
 			},
 		},
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_max" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 60, 120, 160 },
 					{ 75, 140, 180 },
@@ -30,10 +30,10 @@ return {
 			},
 		},
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "cs_grenade_chance_times" },
-			tweak = { 
-				mode = "multiply", 
+			tweak = {
+				mode = "multiply",
 				modifier = { 0.66, 1 },
 			},
 		},

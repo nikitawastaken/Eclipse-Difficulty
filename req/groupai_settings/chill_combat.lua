@@ -1,10 +1,10 @@
 return {
 	task_data_mod = {
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "cs_grenade_timeout" },
-			tweak = { 
-				mode = "subtract", 
+			tweak = {
+				mode = "subtract",
 				modifier = { 15, 30 },
 			},
 		},
@@ -26,25 +26,25 @@ return {
 	tactics_mod = {
 		{
 			value = { "_tactics", "swat_def" },
-			tweak = { 
+			tweak = {
 				rescue = true,
 			},
 		},
 		{
 			value = { "_tactics", "swat_agg" },
-			tweak = { 
+			tweak = {
 				rescue = true,
 			},
 		},
 		{
 			value = { "_tactics", "swat_snk" },
-			tweak = { 
+			tweak = {
 				rescue = true,
 			},
 		},
 		{
 			value = { "_tactics", "swat_snk_agg" },
-			tweak = { 
+			tweak = {
 				rescue = true,
 			},
 		},

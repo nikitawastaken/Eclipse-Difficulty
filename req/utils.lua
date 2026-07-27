@@ -114,7 +114,6 @@ function M.is_eclipse_pro()
 	return M.is_eclipse() and M.is_pro_job()
 end
 
-
 -- Returns whether the game is in offline mode
 function M.is_solo()
 	return M.access_table(Global, "game_settings", "single_player")

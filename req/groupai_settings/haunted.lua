@@ -2,26 +2,26 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 return {
 	task_data_mod = {
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "use_equipment_reenforce" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = false,
 			},
 		},
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "spawn_kill_max_dis" },
-			tweak = { 
-				mode = "subtract", 
+			tweak = {
+				mode = "subtract",
 				modifier = 500,
 			},
 		},
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "smoke_grenade_lifetime" },
-			tweak = { 
-				mode = "subtract", 
+			tweak = {
+				mode = "subtract",
 				modifier = get_difficulty_specific_value({
 					1.5,
 					1.5,
@@ -35,14 +35,14 @@ return {
 	special_limit_mod = {
 		{
 			value = { "special_unit_spawn_limits", "shield" },
-			tweak = { 
+			tweak = {
 				mode = "subtract",
 				modifier = 1,
 			},
 		},
 		{
 			value = { "special_unit_spawn_limits", "marksman" },
-			tweak = { 
+			tweak = {
 				mode = "subtract",
 				modifier = 1,
 			},

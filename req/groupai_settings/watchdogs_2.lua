@@ -2,7 +2,7 @@ return {
 	special_limit_mod = {
 		{
 			value = { "special_unit_spawn_limits", "shield" },
-			tweak = { 
+			tweak = {
 				mode = "add",
 				modifier = 1,
 			},

@@ -2,18 +2,18 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 return {
 	task_data_mod = {
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "use_equipment_reenforce" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = false,
 			},
 		},
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_min" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 30, 60, 120 },
 					{ 30, 60, 120 },
@@ -24,10 +24,10 @@ return {
 			},
 		},
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_max" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 30, 60, 120 },
 					{ 30, 60, 120 },
@@ -38,10 +38,10 @@ return {
 			},
 		},
 		{
-			groupai_state = "besiege", 
+			groupai_state = "besiege",
 			value = { "assault", "delay" },
-			tweak = { 
-				mode = "add", 
+			tweak = {
+				mode = "add",
 				modifier = { 0, 5, 5 },
 			},
 		},
@@ -49,7 +49,7 @@ return {
 	special_limit_mod = {
 		{
 			value = { "special_unit_spawn_limits", "taser" },
-			tweak = { 
+			tweak = {
 				mode = "add",
 				modifier = 2,
 			},

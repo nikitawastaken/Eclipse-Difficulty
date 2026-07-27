@@ -2,26 +2,26 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 return {
 	task_data_mod = {
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "use_equipment_reenforce" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = false,
 			},
 		},
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "cs_grenade_chance_times" },
-			tweak = { 
-				mode = "multiply", 
+			tweak = {
+				mode = "multiply",
 				modifier = 2,
 			},
 		},
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "smoke_grenade_lifetime" },
-			tweak = { 
-				mode = "subtract", 
+			tweak = {
+				mode = "subtract",
 				modifier = get_difficulty_specific_value({
 					1.5,
 					1.5,
@@ -35,14 +35,14 @@ return {
 	special_limit_mod = {
 		{
 			value = { "special_unit_spawn_limits", "shield" },
-			tweak = { 
+			tweak = {
 				mode = "subtract",
 				modifier = 2,
 			},
 		},
 		{
 			value = { "special_unit_spawn_limits", "marksman" },
-			tweak = { 
+			tweak = {
 				mode = "subtract",
 				modifier = 2,
 			},
@@ -51,49 +51,49 @@ return {
 	tactics_mod = {
 		{
 			value = { "_tactics", "beat_cop" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "swat_def" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "swat_spt" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "shield_def" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "shield_spt" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "taser_spt" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "bulldozer_spt" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
 		{
 			value = { "_tactics", "marksman" },
-			tweak = { 
+			tweak = {
 				ranged_fire = false,
 			},
 		},
