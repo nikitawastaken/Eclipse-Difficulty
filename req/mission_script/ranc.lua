@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local is_pro_job = Eclipse.utils.is_pro_job()
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
@@ -20,6 +21,11 @@ local agile_spawn = {
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
+local bags_required = {
+	values = {
+		amount = 4 + (is_pro_job and 2 or 0),
+	},
 }
 return {
 	[100109] = { -- Police
@@ -86,6 +92,15 @@ return {
 			{ id = 400019, delay = 0, delay_rand = 5 },
 		},
 	},
+	-- change the amount of required loot
+	[101731] = bags_required,
+	[102161] = bags_required,
+	[103698] = bags_required,
+	[100957] = bags_required,
+	[101042] = bags_required,
+	[103635] = bags_required,
+	[103683] = bags_required,
+	[103696] = bags_required,
 	-- fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,
