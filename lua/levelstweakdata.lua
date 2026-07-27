@@ -8,41 +8,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	for _, level in pairs(self) do
 		if level.world_name then
 			level.player_style = nil
-			level.group_ai_settings = {}
-			-- List of all the group AI settings for reference
-			--[[ 
-			level.group_ai_settings = {
-				difficulty_curve_points = { 0.5 },
-				cloaker_interval_mul = 1,
-				hostage_hesitation_delay_mul = 1,
-				sustain_duration_mul = 1,
-				assault_delay_mul = 1,
-				assault_force_mul = 1,
-				spawnrate_mul = 1,
-				reenforce_interval_mul = 1,
-				recon_interval_variation_mul = 1,
-				recon_force_mul = 1,
-				push_delay_mul = 1,
-				min_grenade_timeout_mul = 1,
-				cs_grenade_chance_times_mul = 1,
-				difficulty_scaling = {},
-				grenade_timeout_mul = {
-					flash_grenade = 1,
-					smoke_grenade = 1,
-					cs_grenade = 1,
-				},
-				special_limit_add = {
-					shield = 0,
-					medic = 0,
-					taser = 0,
-					tank = 0,
-					spooc = 0,
-					marksman = 0,
-					marshal = 0,
-				},
-				force_tactics = {},
-			}
-]]
+			
 			if not level.env_params then
 				level.env_params = {}
 			end
@@ -101,6 +67,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
 
+	-- Set AI group types (factions)
+	self.kosugi.ai_group_type = "murkywater"
+	self.dark.ai_group_type = "murkywater"
+	self.shoutout_raid.ai_group_type = "murkywater"
+	self.wwh.ai_group_type = "murkywater"
+	self.pines.ai_group_type = "russia"
+	self.vit.ai_group_type = "america"
+	self.haunted.ai_group_type = "zombie"
+	self.nail.ai_group_type = "zombie"
+	self.help.ai_group_type = "zombie"
+	
 	-- Set Group AI presets that determine spawngroup composition and distribution
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -131,18 +108,32 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.group_ai_preset = "remote"
 	self.deep.group_ai_preset = "remote"
 
-	-- Set AI group types (factions)
-	self.kosugi.ai_group_type = "murkywater"
-	self.dark.ai_group_type = "murkywater"
-	self.shoutout_raid.ai_group_type = "murkywater"
-	self.wwh.ai_group_type = "murkywater"
-	self.pines.ai_group_type = "russia"
-	self.vit.ai_group_type = "america"
-	self.haunted.ai_group_type = "zombie"
-	self.nail.ai_group_type = "zombie"
-	self.help.ai_group_type = "zombie"
-
-	-- Set difficulty scaling  presets
+	-- Set force presets
+	self.mia_2.force_size_preset = "reduced_t3"
+	self.haunted.force_size_preset = "reduced_t3"
+	self.chew.force_size_preset = "reduced_t3"
+	self.hvh.force_size_preset = "reduced_t3"
+	self.framing_frame_3.force_size_preset = "reduced_t2"
+	self.chill_combat.force_size_preset = "reduced_t2"
+	self.nmh.force_size_preset = "reduced_t2"
+	self.bph.force_size_preset = "reduced_t2"
+	self.vit.force_size_preset = "reduced_t2"
+	self.pbr2.force_size_preset = "reduced_t1"
+	self.nail.force_size_preset = "reduced_t1"
+	self.moon.force_size_preset = "reduced_t1"
+	self.wwh.force_size_preset = "reduced_t1"
+	self.des.force_size_preset = "reduced_t1"
+	self.fex.force_size_preset = "reduced_t1"
+	self.chca.force_size_preset = "reduced_t1"
+	self.watchdogs_2.force_size_preset = "increased_t1"
+	self.watchdogs_2_day.force_size_preset = "increased_t1"
+	self.shoutout_raid.force_size_preset = "increased_t1"
+	self.friend.force_size_preset = "increased_t1"
+	self.bex.force_size_preset = "increased_t1"
+	self.trai.force_size_preset = "increased_t1"
+	self.corp.force_size_preset = "increased_t2"
+	
+	-- Set difficulty scaling presets
 	self.escape_park.difficulty_scaling_preset = "timed"
 	self.escape_cafe_day.difficulty_scaling_preset = "timed"
 	self.escape_park_day.difficulty_scaling_preset = "timed"
@@ -167,9 +158,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
-	--	self.crojob2.difficulty_scaling_preset = "regroup_slow"
-	--	self.crojob3.difficulty_scaling_preset = "regroup_slow"
-	--	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
 	self.arena.difficulty_scaling_preset = "regroup_slow"
 	--	self.red2.difficulty_scaling_preset = "regroup_slow"
 	self.dinner.difficulty_scaling_preset = "regroup_slow"
@@ -185,544 +173,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ranc.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
 
-	self.pex.difficulty_scaling_preset = "sustain"
+	self.pex.difficulty_scaling_preset = "sustain_aggressive"
 
 	self.man.difficulty_scaling_preset = "sustain_slow"
 	self.vit.difficulty_scaling_preset = "sustain_slow"
 	self.trai.difficulty_scaling_preset = "sustain_slow"
-
-	-- Add Group AI settings
-	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
-	self.arm_hcm.group_ai_settings.assault_force_mul = 0.8
-
-	self.watchdogs_1.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.5,
-					delay = 60, -- Increase the preset's delay
-					time = 120,
-				},
-			},
-		},
-	}
-	self.watchdogs_1_night.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
-
-	self.watchdogs_2.group_ai_settings = {
-		assault_force_mul = 1.2,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.5,
-					delay = 15, -- Reduce the preset's delay
-					time = 120,
-				},
-			},
-		},
-		special_limit_add = {
-			shield = 1,
-		},
-	}
-	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-
-	self.welcome_to_the_jungle_2.group_ai_settings.cloaker_interval_mul = 1.5
-
-	self.framing_frame_3.group_ai_settings = {
-		assault_force_mul = 0.8,
-		special_limit_add = {
-			shield = -1,
-			marksman = -1,
-		},
-	}
-
-	self.mia_1.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 75, -- Increase the preset's delay
-					time = 60,
-				},
-			},
-		},
-	}
-
-	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.mia_2.group_ai_settings.assault_force_mul = 0.6
-
-	self.hox_1.group_ai_settings.difficulty_scaling = {
-		steps = {
-			{
-				amount = 0.25,
-				delay = 15,
-				time = 5,
-			},
-			{
-				amount = 0.25,
-				delay = 30,
-				time = { 150, 180 },
-			},
-			{
-				amount = 0.25,
-				delay = 45,
-				time = { 180, 210 },
-			},
-		},
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 0,
-				delay = 15,
-				time = 0,
-			},
-		},
-		allowed_addends = {
-			on_enemy_weapons_hot = false,
-			on_entered_regroup = false,
-			on_entered_sustain = false,
-		},
-	}
-
-	self.haunted.group_ai_settings = {
-		use_equipment_reenforce = false,
-		assault_force_mul = 0.6,
-		cs_grenade_chance_times_mul = 2,
-		difficulty_scaling = {
-			steps = {
-				{
-					amount = 0.25,
-					delay = 0,
-					time = 60,
-				},
-				{
-					amount = 0.75,
-					delay = 15,
-					time = { 480, 600 },
-				},
-			},
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0,
-					delay = 0, -- Reduce the preset's delay
-					time = 0,
-				},
-			},
-			allowed_addends = {
-				on_enemy_weapons_hot = false,
-				on_entered_regroup = false,
-				on_entered_sustain = false,
-			},
-		},
-		special_limit_add = {
-			shield = -1,
-			marksman = -1,
-		},
-	}
-
-	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	self.crojob2.group_ai_settings.difficulty_scaling = {
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 0.25,
-				delay = 60,
-				time = 60,
-			},
-		},
-	}
-
-	self.crojob3.group_ai_settings.difficulty_scaling = {
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 0.25,
-				delay = 60,
-				time = 60,
-			},
-		},
-	}
-
-	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
-
-	self.shoutout_raid.group_ai_settings.assault_force_mul = 1.2
-
-	self.dinner.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 60,
-					time = 60,
-				},
-			},
-		},
-		grenade_timeout_mul = {
-			smoke_grenade = 0.5,
-		},
-	}
-
-	self.pbr2.group_ai_settings = {
-		assault_force_mul = 0.8,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.375,
-					delay = 60,
-					time = 60,
-				},
-			},
-			allowed_addends = {
-				on_entered_regroup = false,
-			},
-		},
-		special_limit_add = {
-			shield = -1,
-		},
-	}
-
-	self.kenaz.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 60,
-					time = 60,
-				},
-			},
-		},
-	}
-
-	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
-	self.nail.group_ai_settings.difficulty_scaling = nil
-
-	self.peta.group_ai_settings.assault_force_mul = 1.2
-
-	self.peta2.group_ai_settings.assault_force_mul = 0.8
-
-	self.man.group_ai_settings = {
-		sustain_duration_mul = 1.25,
-		cs_grenade_chance_times_mul = 0.75,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 0,
-					time = 60,
-				},
-			},
-		},
-		special_limit_add = {
-			cloaker = 1,
-		},
-	}
-
-	self.chew.group_ai_settings = {
-		use_equipment_reenforce = false,
-		assault_force_mul = 0.4,
-		cs_grenade_chance_times_mul = 2,
-		special_limit_add = {
-			shield = -2,
-			cloaker = -1,
-			medic = -1,
-			marksman = -2,
-		},
-		force_tactics = {
-			cop = {
-				ranged_fire = false,
-			},
-			hrt_init = {
-				ranged_fire = false,
-			},
-			swat_init = {
-				ranged_fire = false,
-			},
-			swat_def = {
-				ranged_fire = false,
-			},
-			shield_def = {
-				ranged_fire = false,
-			},
-		},
-		difficulty_scaling = {
-			steps = {
-				{
-					amount = 0.1,
-					delay = 30,
-					time = 15,
-				},
-				{
-					amount = 0.3,
-					delay = 30,
-					time = 30,
-				},
-				{
-					amount = 0.6,
-					delay = 30,
-					time = 45,
-				},
-			},
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0,
-					delay = 30,
-					time = 0,
-				},
-			},
-			allowed_addends = {
-				on_enemy_weapons_hot = false,
-				on_entered_sustain = false,
-				on_entered_regroup = false,
-			},
-		},
-	}
-
-	self.chill_combat.group_ai_settings = {
-		assault_force_mul = 0.6,
-		cs_grenade_chance_times_mul = 0.75,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 1 / 3,
-					delay = 15,
-					time = 60,
-				},
-				on_entered_regroup = {
-					amount = 1 / 3,
-					delay = 0,
-					time = 60,
-				},
-			},
-		},
-		grenade_timeout_mul = {
-			cs_grenade = 0.5,
-		},
-		force_tactics = {
-			hrt_init = {
-				smoke_grenade = true,
-				flash_grenade = true,
-			},
-			hrt = {
-				smoke_grenade = true,
-				flash_grenade = true,
-			},
-			swat_def = {
-				rescue = true,
-			},
-			swat_agg = {
-				rescue = true,
-			},
-			swat_snk = {
-				rescue = true,
-			},
-			swat_snk_agg = {
-				rescue = true,
-			},
-		},
-	}
-
-	self.help.group_ai_settings.assault_force_mul = 0.8
-
-	self.friend.group_ai_settings.assault_force_mul = 1.2
-
-	self.run.group_ai_settings = {
-		use_equipment_reenforce = false,
-		hostage_hesitation_delay_mul = 0.75,
-		sustain_duration_mul = 0.75,
-		assault_delay_mul = 1.25,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.375,
-					delay = 0,
-					time = 30,
-				},
-			},
-			allowed_addends = {
-				on_entered_regroup = false,
-			},
-		},
-		special_limit_add = {
-			taser = 2,
-		},
-	}
-
-	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.glace.group_ai_settings.difficulty_scaling = {
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 0.375,
-				delay = 75,
-				time = 60,
-			},
-		},
-		allowed_addends = {
-			on_entered_regroup = false,
-		},
-	}
-
-	self.wwh.group_ai_settings.assault_force_mul = 0.8
-
-	self.hvh.group_ai_settings = {
-		use_equipment_reenforce = false,
-		assault_force_mul = 0.6,
-		recon_force_mul = 0.75,
-		cs_grenade_chance_times_mul = 2,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.2,
-					delay = 0,
-					time = 60,
-				},
-			},
-			allowed_addends = {
-				on_entered_regroup = false,
-			},
-		},
-		grenade_timeout_mul = {
-			smoke_grenade = 1.25,
-		},
-		special_limit_add = {
-			shield = -1,
-			medic = -1,
-			marksman = -1,
-		},
-	}
-
-	self.rvd2.group_ai_settings.assault_force_mul = 0.8
-
-	self.des.group_ai_settings = {
-		assault_force_mul = 0.8,
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 15,
-					time = 60,
-				},
-			},
-		},
-	}
-
-	self.sah.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.25,
-					delay = 60,
-					time = 60,
-				},
-			},
-		},
-	}
-
-	self.nmh.group_ai_settings = {
-		assault_force_mul = 0.8,
-		special_limit_add = {
-			shield = -1,
-			marksman = -1,
-		},
-	}
-
-	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	self.bph.group_ai_settings.difficulty_scaling = {
-		steps = {
-			{
-				amount = 0.2,
-				delay = 15,
-				time = 5,
-			},
-			{
-				amount = 0.2,
-				delay = 150,
-				time = 75,
-			},
-			{
-				amount = 0.2,
-				delay = 75,
-				time = 75,
-			},
-			{
-				amount = 0.2,
-				delay = 75,
-				time = 75,
-			},
-			{
-				amount = 0.2,
-				delay = 75,
-				time = 75,
-			},
-		},
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 0,
-				delay = 15,
-				time = 0,
-			},
-		},
-		allowed_addends = {
-			on_enemy_weapons_hot = false,
-			on_entered_sustain = false,
-			on_entered_regroup = false,
-		},
-	}
-
-	self.vit.group_ai_settings = { -- Greatest heist of all
-		sustain_duration_mul = 1.35,
-		assault_force_mul = 0.8,
-		cs_grenade_chance_times_mul = 1.5,
-		special_limit_add = {
-			shield = -1,
-			tank = 1,
-			marksman = -1,
-		},
-	}
-
-	self.bex.group_ai_settings = {
-		assault_force_mul = 1.2,
-		special_limit_add = {
-			shield = 1,
-			taser = 1,
-		},
-	}
-
-	self.pex.group_ai_settings.sustain_duration_mul = 1.25 -- Bird flu
-
-	self.sand.group_ai_settings = {
-		difficulty_scaling = {
-			addends = {
-				on_enemy_weapons_hot = {
-					amount = 0.375,
-					delay = 60,
-					time = 60,
-				},
-			},
-			allowed_addends = {
-				on_entered_regroup = false,
-			},
-		},
-	}
-
-	self.chca.group_ai_settings.assault_force_mul = 0.8
-
-	self.trai.group_ai_settings = {
-		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.2,
-		special_limit_add = {
-			shield = 1,
-			tank = 1,
-		},
-	}
-
-	self.corp.group_ai_settings = { -- Fuckhuge (tm)
-		assault_force_mul = 1.4,
-		recon_interval_variation_mul = 0.5,
-		special_limit_add = {
-			shield = 2,
-			taser = 1,
-			cloaker = 1,
-			medic = 1,
-		},
-	}
-
-	self.deep.group_ai_settings.assault_force_mul = 0.8
 
 	-- stealth bonus changes
 	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
