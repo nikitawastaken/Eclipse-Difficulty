@@ -15,25 +15,18 @@ local elite_snipers_respawn = (is_eclipse and 180 or 240) - (is_pro_job and 30 o
 local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local sniper = scripted_enemy.sniper
-local cloaker = scripted_enemy.cloaker
-
 local random_dozers = {
-	green_bulldozer,
-	black_bulldozer,
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
 }
 local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local optsEliteSniper_1 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400009, delay = 0 },
 		{ id = 400009, delay = 10 },
@@ -41,7 +34,7 @@ local optsEliteSniper_1 = {
 	enabled = true,
 }
 local optsEliteSniper_2 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400006, delay = 0 },
 		{ id = 400006, delay = 10 },
@@ -49,7 +42,7 @@ local optsEliteSniper_2 = {
 	enabled = true,
 }
 local optsEliteSniper_3 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400007, delay = 0 },
 		{ id = 400007, delay = 10 },
@@ -57,7 +50,7 @@ local optsEliteSniper_3 = {
 	enabled = true,
 }
 local optsEliteSniper_4 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400008, delay = 0 },
 		{ id = 400008, delay = 10 },
@@ -65,7 +58,7 @@ local optsEliteSniper_4 = {
 	enabled = true,
 }
 local optsEliteSniper_5 = {
-	enemy = sniper,
+	enemy = scripted_enemy.sniper,
 	on_executed = {
 		{ id = 400005, delay = 0 },
 		{ id = 400005, delay = 10 },
@@ -78,18 +71,6 @@ local optsBulldozer = {
 		{ id = 400046, delay = 2 },
 	},
 	enabled = true,
-}
-local optsCloaker_Hide_SO = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	use_instigator = true,
-	interrupt_dis = 5,
-	interrupt_dmg = 0.3,
-	interval = 2,
-	so_action = "e_so_idle_by_container",
 }
 local optsSniper_SO = {
 	scan = true,
@@ -560,8 +541,84 @@ local optsdisable_elevator_corner_collisions = {
 	},
 }
 
+local optsBesiegeDummyCloaker_1 = {
+	trigger_times = 0,
+	enemy = scripted_enemy.cloaker,
+	participate_to_group_ai = true,
+	enabled = true,
+}
+local optsBesiegeDummyCloaker_2 = {
+	trigger_times = 0,
+	enemy = scripted_enemy.cloaker,
+	participate_to_group_ai = true,
+	spawn_action = "e_sp_clk_exit_vent_1_5m",
+	on_executed = {
+		{ id = 400103, delay = 0 },
+	},
+	enabled = true,
+}
+
+local optsPreferedCloakerAdd1 = {
+	spawn_groups = { 400092, 400093, 400094, 400095 },
+	on_executed = {
+		{ id = 400100, delay = 0 },
+	},
+	enabled = true,
+}
+local optsPreferedCloakerAdd2 = {
+	spawn_groups = { 400096, 400097 },
+	enabled = true,
+}
+local optsAddCloakerHideGroup = {
+	enabled = true,
+	on_executed = {
+		{ id = 400098, delay = 0 },
+	},
+}
+local optsCloakerHideGroup = {
+	followup_elements = {
+		400080,
+		400081,
+		400082,
+		400083,
+		400084,
+		400085,
+	},
+}
+
+local optsBlowUpTheWallHole = {
+	enabled = true,
+	trigger_times = 1,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101554, notify_unit_sequence = "anim_wall_break", time = 0 },
+	},
+	on_executed = {
+		{ id = 104308, delay = 0 },
+		{ id = 400102, delay = 0 },
+	},
+}
+local optsWallExplosionSound = {
+	enabled = true,
+	sound_event = "swat_explosion",
+}
+local optsAssaultStarted = {
+	enabled = true,
+	global_event = "start_assault",
+	trigger_times = 1,
+	on_executed = {
+		{ id = 400101, delay = 0 },
+	},
+}
+-- Hiding Cloaker SOs are funny
+local hide_so_search_pos = Vector3(0, 0, 1.382)
+local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
+
+
+
 M.elements = {
-	-- elite snipers in no mercy (Notoriety reference)
+	-- snipers in no mercy (Notoriety reference)
 	Eclipse.mission_elements.gen_dummy(400000, "notoriety_sniper_1", Vector3(2295, 16, -318.756), Rotation(-90, 0, 0), optsEliteSniper_1),
 	Eclipse.mission_elements.gen_dummy(400001, "notoriety_sniper_2", Vector3(-487, -1010, 0.382), Rotation(0, 0, 0), optsEliteSniper_2),
 	Eclipse.mission_elements.gen_dummy(400002, "notoriety_sniper_3", Vector3(-2903, 1210, 0.382), Rotation(180, 0, 0), optsEliteSniper_3),
@@ -573,7 +630,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400008, "sniper_spot_so_4", Vector3(732.785, 1330.852, -0.118), Rotation(-178, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400009, "sniper_spot_so_5", Vector3(3618, -89, 0.382), Rotation(90, 0, 0), optsSniper_SO),
 
-	-- elite sniper spawn stuff
+	-- sniper spawn stuff
 	Eclipse.mission_elements.gen_element_random(400010, "notoriety_sniper_event", spawn_random_snipers),
 	Eclipse.mission_elements.gen_toggleelement(400011, "enable_sniper_1", optsenable_sniper_1),
 	Eclipse.mission_elements.gen_toggleelement(400012, "enable_sniper_2", optsenable_sniper_2),
@@ -643,5 +700,36 @@ M.elements = {
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
 	Eclipse.mission_elements.gen_disable_unit(400077, "disable_elevator_right_corner_collisions", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_elevator_corner_collisions),
+	
+	-- New Cloakers and their hiding spots
+	-- hiding spots
+	Eclipse.mission_elements.gen_so(400080, "cloaker_hide_so_1", Vector3(-1159.660, 2870.170, 0.382), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400081, "cloaker_hide_so_2", Vector3(-1771.746, 3327.728, 0.382), Rotation(-22, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400082, "cloaker_hide_so_3", Vector3(619.549, 75, 0.382), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400083, "cloaker_hide_so_4", Vector3(-2314.036, 1540.604, 0.382), Rotation(-146, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400084, "cloaker_hide_so_5", Vector3(-326, 672, 0.382), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400085, "cloaker_hide_so_6", Vector3(3518.011, 192.387, 0.382), Rotation(180, 0, 0), optsCloaker_Hide_SpotSO_2),
+	-- cloakers
+	Eclipse.mission_elements.gen_dummy(400086, "cloaker_spawn_1", Vector3(-2216, -887, 0.382), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400087, "cloaker_spawn_2", Vector3(2732, -40, -318.756), Rotation(90, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400088, "cloaker_spawn_3", Vector3(951, -20, 350.084), Rotation(0, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400089, "cloaker_spawn_4", Vector3(-439, 323, 350.084), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400090, "cloaker_spawn_5", Vector3(-213, 2904, 350.084), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400091, "cloaker_spawn_6", Vector3(-2050, 3525, 0), Rotation(-180, 0, 0), optsBesiegeDummyCloaker_2),
+	-- spawngroups
+	Eclipse.mission_elements.gen_spawngroup(400092, "nmh_cloaker_spawngroup_01", { 400086 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400093, "nmh_cloaker_spawngroup_02", { 400087 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400094, "nmh_cloaker_spawngroup_03", { 400088 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400095, "nmh_cloaker_spawngroup_04", { 400089 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400096, "nmh_cloaker_spawngroup_05", { 400090 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400097, "nmh_cloaker_spawngroup_06", { 400091 }, 0),
+	-- the whole system that does the thing
+	Eclipse.mission_elements.gen_preferedadd(400098, "nmh_cloaker_spawns_1", optsPreferedCloakerAdd1),
+	Eclipse.mission_elements.gen_preferedadd(400099, "nmh_cloaker_spawns_2", optsPreferedCloakerAdd2),
+	Eclipse.mission_elements.gen_sogroup(400100, "nmh_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
+	Eclipse.mission_elements.gen_missionscript(400101, "nmh_cloaker_spawn_global", optsAddCloakerHideGroup),
+	Eclipse.mission_elements.gen_play_sound(400102, "boom_sfx", Vector3(-2053, 3612, 152.650), Rotation(0, 0, 0), optsWallExplosionSound),
+	Eclipse.mission_elements.gen_object_editor(400103, "wall_explosion_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsBlowUpTheWallHole),
+	Eclipse.mission_elements.gen_global_event(400104, "nmh_assault_start", optsAssaultStarted),
 }
 return M
