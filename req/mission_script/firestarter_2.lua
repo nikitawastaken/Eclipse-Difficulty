@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local is_pro_job = Eclipse.utils.is_pro_job()
 local reinforce_amount = {
 	values = {
 		amount = 3,
@@ -25,6 +26,23 @@ local fbi_with_keycard = {
 		force_pickup = "keycard",
 	},
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+local loot_weapons_chance = {
+	chance = 20 + (is_pro_job and 5 or 0),
+}
+local loot_coke_chance = {
+	chance = 30 + (is_pro_job and 5 or 0),
+}
+local loot_gold_chance = {
+	chance = 10 + (is_pro_job and 10 or 0),
+}
+local loot_money_train_chance = {
+	chance = 40 + (is_pro_job and 10 or 0),
+}
 return {
 	[107143] = {
 		ponr = {
@@ -39,6 +57,13 @@ return {
 			{ name = "street", position = Vector3(4600, 4600, 1) },
 		},
 	},
+	-- disable the goat
+	[100797] = disabled,
+	-- tweak the confiscated loot chance
+	[102728] = loot_coke_chance,
+	[102731] = loot_money_train_chance,
+	[102743] = loot_weapons_chance,
+	[102747] = loot_gold_chance,
 	-- Increase reinforce
 	[101871] = reinforce_amount,
 	[105167] = reinforce_amount,

@@ -2,10 +2,10 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 return { -- Poison Brew
 	task_data_mod = {
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_min" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 75, 120, 150 },
 					{ 90, 135, 165 },
@@ -16,10 +16,10 @@ return { -- Poison Brew
 			},
 		},
 		{
-			groupai_state = "all", 
+			groupai_state = "all",
 			value = { "assault", "sustain_duration_max" },
-			tweak = { 
-				mode = "replace", 
+			tweak = {
+				mode = "replace",
 				modifier = get_difficulty_specific_value({
 					{ 75, 120, 150 },
 					{ 90, 135, 165 },

@@ -8,7 +8,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	for _, level in pairs(self) do
 		if level.world_name then
 			level.player_style = nil
-			
+
 			if not level.env_params then
 				level.env_params = {}
 			end
@@ -77,7 +77,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.haunted.ai_group_type = "zombie"
 	self.nail.ai_group_type = "zombie"
 	self.help.ai_group_type = "zombie"
-	
+
 	-- Set Group AI presets that determine spawngroup composition and distribution
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -132,7 +132,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.bex.force_size_preset = "increased_t1"
 	self.trai.force_size_preset = "increased_t1"
 	self.corp.force_size_preset = "increased_t2"
-	
+
 	-- Set difficulty scaling presets
 	self.escape_park.difficulty_scaling_preset = "timed"
 	self.escape_cafe_day.difficulty_scaling_preset = "timed"

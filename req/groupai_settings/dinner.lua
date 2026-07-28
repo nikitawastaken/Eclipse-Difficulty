@@ -1,10 +1,10 @@
 return {
 	task_data_mod = {
 		{
-			groupai_state = "none", 
+			groupai_state = "none",
 			value = { "smoke_grenade_timeout" },
-			tweak = { 
-				mode = "subtract", 
+			tweak = {
+				mode = "subtract",
 				modifier = { 5, 10 },
 			},
 		},

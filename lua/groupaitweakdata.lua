@@ -33,7 +33,7 @@ GroupAITweakData.group_ai_presets = {
 		cs_defend_heavy = 1.25,
 		fbi_defend_heavy = 1.25,
 		elite_defend_heavy = 1.25,
-		
+
 		cs_stealth_init = 1.5,
 		fbi_stealth_init = 1.5,
 	},
@@ -1691,8 +1691,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
---	local small_urban = self._mission_preset and self._mission_preset == "small_urban"
---	local heavy_response = self._mission_preset and self._mission_preset == "heavy_response"
+	--	local small_urban = self._mission_preset and self._mission_preset == "small_urban"
+	--	local heavy_response = self._mission_preset and self._mission_preset == "heavy_response"
 
 	local small_urban = false
 	local heavy_response = false
@@ -3584,7 +3584,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 6, 8, 10 },
 	})
 	self.besiege.recon.interval_variation = 30
-	
+
 	-- Push delay
 	self.besiege.assault.push_delay = get_difficulty_specific_value({
 		{ 18, 14, 12 },
@@ -4069,7 +4069,7 @@ function GroupAITweakData:_apply_group_ai_preset(preset)
 	if not preset then
 		return
 	end
-	
+
 	local preset_settings = self.group_ai_presets[preset]
 
 	if not preset_settings then
@@ -4101,7 +4101,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 	if not lvl_tweak then
 		return
 	end
-	
+
 	local function apply_difficulty_scaling(tbl)
 		if not tbl then
 			return
@@ -4118,7 +4118,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 	end
 
 	apply_difficulty_scaling(self.difficulty_scaling_presets[lvl_tweak.difficulty_scaling_preset])
-			
+
 	local function apply_force(tbl)
 		if not tbl then
 			return
@@ -4131,7 +4131,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 				end
 			end
 		end
-		
+
 		if lvl_tweak.force_size_preset then
 			Eclipse:log_console("Set " .. lvl_tweak.force_size_preset .. " force size preset for " .. level_id)
 		end
@@ -4144,7 +4144,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 	end
 
 	apply_difficulty_scaling(level_settings.difficulty_scaling_mod)
-	
+
 	self:_apply_tactics_mod(level_settings.tactics_mod)
 	self:_apply_special_limit_mod(level_settings.special_limit_mod)
 	self:_apply_task_data_mod(level_settings.task_data_mod)
@@ -4205,7 +4205,7 @@ function GroupAITweakData:_apply_tactics_mod(special_limit_settings)
 		local group_ai_value = access_table(self, unpack(keys))
 		if group_ai_value and group_ai_value[final_key] and type(group_ai_value[final_key]) == "table" then
 			local tactics_table = deep_clone(group_ai_value[final_key])
-			
+
 			for tactic, add in pairs(entry.tweak) do
 				if add and not table.contains(tactics_table, tactic) then
 					table.insert(tactics_table, tactic)
@@ -4217,7 +4217,7 @@ function GroupAITweakData:_apply_tactics_mod(special_limit_settings)
 					Eclipse:log_console("Removed " .. tactic .. " from: " .. final_key)
 				end
 			end
-			
+
 			group_ai_value[final_key] = tactics_table
 		end
 		::__continue_tactics_mod::
