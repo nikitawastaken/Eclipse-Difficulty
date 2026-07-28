@@ -35,7 +35,7 @@ local M = {
 		["units/payday2/characters/ene_security_fat_7/ene_security_fat_7"] = 1,
 	},
 	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = {
-		["units/payday2/characters/ene_security_8/ene_security_8"] = 3,
+		["units/payday2/characters/ene_security_8/ene_security_8"] = 1,
 		["units/payday2/characters/ene_security_fat_8/ene_security_fat_8"] = 2,
 	},
 	-- Beat Cops
