@@ -20,6 +20,16 @@ local disabled = {
 	},
 }
 
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
+	},
+}
+
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 -- the evil one
@@ -282,6 +292,23 @@ return {
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
 	[400019] = elevator_close_spawn,
+	-- add ene_security_8 to guard spawns
+	[100670] = green_security,
+	[100671] = green_security,
+	[100672] = green_security,
+	[100673] = green_security,
+	[100674] = green_security,
+	[100675] = green_security,
+	[101401] = green_security,
+	[101402] = green_security,
+	[101403] = green_security,
+	[101404] = green_security,
+	[101405] = green_security,
+	[101406] = green_security,
+	[106566] = green_security,
+	[106567] = green_security,
+	[103143] = green_security,
+	[105303] = green_security,
 	-- Harassers
 	[102883] = c4_harasser_escape,
 	[102893] = c4_harasser_escape,

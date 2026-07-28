@@ -43,6 +43,7 @@ local green_security = {
 		[scripted_enemy.green_security_2] = 2,
 		[scripted_enemy.green_security_3] = 2,
 		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
 	},
 }
 return {

@@ -36,12 +36,12 @@ local M = {
 	[("units/payday2/characters/ene_security_5/ene_security_5"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_6/ene_security_6"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_7/ene_security_7"):key()] = "r870", --stronger camera man
-	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
+	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { c45 = 1, m4 = 1, raging_bull = 5 }, -- the only guard that can spawn with m4 xddddddd
 	[("units/payday2/characters/ene_security_fat_4/ene_security_fat_4"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_fat_5/ene_security_fat_5"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_fat_6/ene_security_fat_6"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_fat_7/ene_security_fat_7"):key()] = "r870", --stronger camera man
-	[("units/payday2/characters/ene_security_fat_8/ene_security_fat_8"):key()] = { c45 = 3, mp5 = 3, raging_bull = 1 },
+	[("units/payday2/characters/ene_security_fat_8/ene_security_fat_8"):key()] = { c45 = 1, m4 = 1, raging_bull = 5 }, -- ditto but fat
 	[("units/payday2/characters/ene_security_female_3/ene_security_female_3"):key()] = { c45 = 3, mp5 = 1, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_female_4/ene_security_female_4"):key()] = { c45 = 3, mp5 = 1, raging_bull = 1 },
 	--Secret Service
