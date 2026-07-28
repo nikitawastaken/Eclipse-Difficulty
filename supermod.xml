@@ -1063,11 +1063,11 @@
 				</group>
 			</group>
 
-			<group :name="ene_acc_head_fat/">
-				<file :name="ene_acc_head_fat.cooked_physics" />
-				<file :name="ene_acc_head_fat.model" />
-				<file :name="ene_acc_head_fat.object" />
-				<file :name="ene_acc_head_fat.unit" />
+			<group :name="ene_acc_fat_head/">
+				<file :name="ene_acc_fat_head.cooked_physics" />
+				<file :name="ene_acc_fat_head.model" />
+				<file :name="ene_acc_fat_head.object" />
+				<file :name="ene_acc_fat_head.unit" />
 			</group>
 
 			<group :name="ene_acc_female_head/">
@@ -1187,27 +1187,12 @@
 				<file :name="ene_security_3.unit" />
 				<file :name="ene_security_3_husk.unit" />
 			</group>
-
-			<group :name="ene_security_1_fat/">
-				<file :name="ene_security_1_fat.unit" />
-				<file :name="ene_security_1_fat_husk.unit" />
-			</group>
-
-			<group :name="ene_security_2_fat/">
-				<file :name="ene_security_2_fat.unit" />
-				<file :name="ene_security_2_fat_husk.unit" />
-			</group>
-
-			<group :name="ene_security_3_fat/">
-				<file :name="ene_security_3_fat.unit" />
-				<file :name="ene_security_3_fat_husk.unit" />
-			</group>
-
+			
 			<group :name="ene_security_4/">
 				<file :name="ene_security_4.unit" />
 				<file :name="ene_security_4_husk.unit" />
 			</group>
-
+			
 			<group :name="ene_security_5/">
 				<file :name="ene_security_5.unit" />
 				<file :name="ene_security_5_husk.unit" />
@@ -1228,6 +1213,46 @@
 				<file :name="ene_security_8_husk.unit" />
 			</group>
 
+			<group :name="ene_security_fat_1/">
+				<file :name="ene_security_fat_1.unit" />
+				<file :name="ene_security_fat_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_2/">
+				<file :name="ene_security_fat_2.unit" />
+				<file :name="ene_security_fat_2_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_3/">
+				<file :name="ene_security_fat_3.unit" />
+				<file :name="ene_security_fat_3_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_4/">
+				<file :name="ene_security_fat_4.unit" />
+				<file :name="ene_security_fat_4_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_5/">
+				<file :name="ene_security_fat_5.unit" />
+				<file :name="ene_security_fat_5_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_6/">
+				<file :name="ene_security_fat_6.unit" />
+				<file :name="ene_security_fat_6_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_7/">
+				<file :name="ene_security_fat_7.unit" />
+				<file :name="ene_security_fat_7_husk.unit" />
+			</group>
+
+			<group :name="ene_security_fat_8/">
+				<file :name="ene_security_fat_8.unit" />
+				<file :name="ene_security_fat_8_husk.unit" />
+			</group>
+			
 			<group :name="ene_cop_2/">
 				<file :name="ene_cop_2.unit" />
 				<file :name="ene_cop_2_husk.unit" />
@@ -1243,24 +1268,24 @@
 				<file :name="ene_cop_4_husk.unit" />
 			</group>
 
-			<group :name="ene_cop_1_fat/">
-				<file :name="ene_cop_1_fat.unit" />
-				<file :name="ene_cop_1_fat_husk.unit" />
+			<group :name="ene_cop_fat_1/">
+				<file :name="ene_cop_fat_1.unit" />
+				<file :name="ene_cop_fat_1_husk.unit" />
 			</group>
 
-			<group :name="ene_cop_2_fat/">
-				<file :name="ene_cop_2_fat.unit" />
-				<file :name="ene_cop_2_fat_husk.unit" />
+			<group :name="ene_cop_fat_2/">
+				<file :name="ene_cop_fat_2.unit" />
+				<file :name="ene_cop_fat_2_husk.unit" />
 			</group>
 
-			<group :name="ene_cop_3_fat/">
-				<file :name="ene_cop_3_fat.unit" />
-				<file :name="ene_cop_3_fat_husk.unit" />
+			<group :name="ene_cop_fat_3/">
+				<file :name="ene_cop_fat_3.unit" />
+				<file :name="ene_cop_fat_3_husk.unit" />
 			</group>
 
-			<group :name="ene_cop_4_fat/">
-				<file :name="ene_cop_4_fat.unit" />
-				<file :name="ene_cop_4_fat_husk.unit" />
+			<group :name="ene_cop_fat_4/">
+				<file :name="ene_cop_fat_4.unit" />
+				<file :name="ene_cop_fat_4_husk.unit" />
 			</group>
 
 			<group :name="ene_fbi_1/">
@@ -1306,6 +1331,16 @@
 				<file :name="ene_security_female_2_husk.unit" />
 			</group>
 
+			<group :name="ene_security_female_3/">
+				<file :name="ene_security_female_3.unit" />
+				<file :name="ene_security_female_3_husk.unit" />
+			</group>
+			
+			<group :name="ene_security_female_4/">
+				<file :name="ene_security_female_4.unit" />
+				<file :name="ene_security_female_4_husk.unit" />
+			</group>
+			
 			<group :name="ene_prisonguard_female_1/">
 				<file :name="ene_prisonguard_female_1.unit" />
 				<file :name="ene_prisonguard_female_1_husk.unit" />
@@ -2737,24 +2772,24 @@
 				<file :name="ene_la_cop_4_husk.unit" />
 			</group>
 
-			<group :name="ene_la_cop_1_fat/">
-				<file :name="ene_la_cop_1_fat.unit" />
-				<file :name="ene_la_cop_1_fat_husk.unit" />
+			<group :name="ene_la_cop_fat_1/">
+				<file :name="ene_la_cop_fat_1.unit" />
+				<file :name="ene_la_cop_fat_1_husk.unit" />
 			</group>
 
-			<group :name="ene_la_cop_2_fat/">
-				<file :name="ene_la_cop_2_fat.unit" />
-				<file :name="ene_la_cop_2_fat_husk.unit" />
+			<group :name="ene_la_cop_fat_2/">
+				<file :name="ene_la_cop_fat_2.unit" />
+				<file :name="ene_la_cop_fat_2_husk.unit" />
 			</group>
 
-			<group :name="ene_la_cop_3_fat/">
-				<file :name="ene_la_cop_3_fat.unit" />
-				<file :name="ene_la_cop_3_fat_husk.unit" />
+			<group :name="ene_la_cop_fat_3/">
+				<file :name="ene_la_cop_fat_3.unit" />
+				<file :name="ene_la_cop_fat_3_husk.unit" />
 			</group>
 
-			<group :name="ene_la_cop_4_fat/">
-				<file :name="ene_la_cop_4_fat.unit" />
-				<file :name="ene_la_cop_4_fat_husk.unit" />
+			<group :name="ene_la_cop_fat_4/">
+				<file :name="ene_la_cop_fat_4.unit" />
+				<file :name="ene_la_cop_fat_4_husk.unit" />
 			</group>
 
 			<group :name="ene_la_cop_female_1/">
@@ -3881,24 +3916,24 @@
 				<file :name="ene_male_chas_police_04_husk.unit" />
 			</group>
 
-			<group :name="ene_male_chas_police_01_fat/">
-				<file :name="ene_male_chas_police_01_fat.unit" />
-				<file :name="ene_male_chas_police_01_fat_husk.unit" />
+			<group :name="ene_male_chas_police_fat_01/">
+				<file :name="ene_male_chas_police_fat_01.unit" />
+				<file :name="ene_male_chas_police_fat_01_husk.unit" />
 			</group>
 
-			<group :name="ene_male_chas_police_02_fat/">
-				<file :name="ene_male_chas_police_02_fat.unit" />
-				<file :name="ene_male_chas_police_02_fat_husk.unit" />
+			<group :name="ene_male_chas_police_fat_02/">
+				<file :name="ene_male_chas_police_fat_02.unit" />
+				<file :name="ene_male_chas_police_fat_02_husk.unit" />
 			</group>
 
-			<group :name="ene_male_chas_police_03_fat/">
-				<file :name="ene_male_chas_police_03_fat.unit" />
-				<file :name="ene_male_chas_police_03_fat_husk.unit" />
+			<group :name="ene_male_chas_police_fat_03/">
+				<file :name="ene_male_chas_police_fat_03.unit" />
+				<file :name="ene_male_chas_police_fat_03_husk.unit" />
 			</group>
 
-			<group :name="ene_male_chas_police_04_fat/">
-				<file :name="ene_male_chas_police_04_fat.unit" />
-				<file :name="ene_male_chas_police_04_fat_husk.unit" />
+			<group :name="ene_male_chas_police_fat_04/">
+				<file :name="ene_male_chas_police_fat_04.unit" />
+				<file :name="ene_male_chas_police_fat_04_husk.unit" />
 			</group>
 
 			<group :name="ene_female_chas_police_01/">
@@ -4075,24 +4110,24 @@
 				<file :name="ene_male_ranc_ranger_04_husk.unit" />
 			</group>
 
-			<group :name="ene_male_ranc_ranger_01_fat/">
-				<file :name="ene_male_ranc_ranger_01_fat.unit" />
-				<file :name="ene_male_ranc_ranger_01_fat_husk.unit" />
+			<group :name="ene_male_ranc_ranger_fat_01/">
+				<file :name="ene_male_ranc_ranger_fat_01.unit" />
+				<file :name="ene_male_ranc_ranger_fat_01_husk.unit" />
 			</group>
 
-			<group :name="ene_male_ranc_ranger_02_fat/">
-				<file :name="ene_male_ranc_ranger_02_fat.unit" />
-				<file :name="ene_male_ranc_ranger_02_fat_husk.unit" />
+			<group :name="ene_male_ranc_ranger_fat_02/">
+				<file :name="ene_male_ranc_ranger_fat_02.unit" />
+				<file :name="ene_male_ranc_ranger_fat_02_husk.unit" />
 			</group>
 
-			<group :name="ene_male_ranc_ranger_03_fat/">
-				<file :name="ene_male_ranc_ranger_03_fat.unit" />
-				<file :name="ene_male_ranc_ranger_03_fat_husk.unit" />
+			<group :name="ene_male_ranc_ranger_fat_03/">
+				<file :name="ene_male_ranc_ranger_fat_03.unit" />
+				<file :name="ene_male_ranc_ranger_fat_03_husk.unit" />
 			</group>
 
-			<group :name="ene_male_ranc_ranger_04_fat/">
-				<file :name="ene_male_ranc_ranger_04_fat.unit" />
-				<file :name="ene_male_ranc_ranger_04_fat_husk.unit" />
+			<group :name="ene_male_ranc_ranger_fat_04/">
+				<file :name="ene_male_ranc_ranger_fat_04.unit" />
+				<file :name="ene_male_ranc_ranger_fat_04_husk.unit" />
 			</group>
 
 			<group :name="ene_female_ranc_ranger_01/">

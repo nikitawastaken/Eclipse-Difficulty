@@ -37,10 +37,10 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	end
 
 	local cop_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"))
-	load_unload_unit("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat", cop_needed, false)
+	load_unload_unit("units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1", cop_needed, false)
+	load_unload_unit("units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2", cop_needed, false)
+	load_unload_unit("units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3", cop_needed, false)
+	load_unload_unit("units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_1/ene_cop_female_1", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_2/ene_cop_female_2", cop_needed, false)
 
@@ -50,6 +50,16 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_security_3_fat/ene_security_3_fat", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_female_1/ene_security_female_1", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_female_2/ene_security_female_2", security_needed, false)
+
+	local security_2_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_security_4/ene_security_4"))
+	load_unload_unit("units/payday2/characters/ene_security_8/ene_security_8", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_fat_4/ene_security_fat_4", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_fat_5/ene_security_fat_5", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_fat_6/ene_security_fat_6", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_fat_7/ene_security_fat_7", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_fat_8/ene_security_fat_8", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_female_3/ene_security_female_3", security_2_needed, false)
+	load_unload_unit("units/payday2/characters/ene_security_female_4/ene_security_female_4", security_2_needed, false)
 
 	local swat_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"))
 	load_unload_unit("units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap", swat_needed, true)
