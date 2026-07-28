@@ -1,16 +1,9 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
-local cops_so = {
-	so_access_filter = so_access.law,
-}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local scripted_enemy = Eclipse.scripted_enemy
-local security_guard = scripted_enemy.security_1
-local green_dozer = scripted_enemy.bulldozer_1
-local ben_dozer = scripted_enemy.elite_bulldozer_1
-local security_spawn = { enemy = security_guard }
 local cloaker_respawn_amount = normal and 1 or hard and 2 or 3
 local terminator_dozers_entrance_chance = (is_eclipse and 50 or 30) + (is_pro_job and 10 or 0)
 local disabled = {
@@ -29,8 +22,9 @@ local cloaker_respawn_trigger = {
 		trigger_times = cloaker_respawn_amount,
 	},
 }
+local security_spawn = { enemy = scripted_enemy.security_1 }
 local terminator_dozer_1 = {
-	enemy = is_eclipse and ben_dozer or green_dozer,
+	enemy = is_eclipse and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
 		position = Vector3(-2378.635, 2784.454, 0),
@@ -39,12 +33,29 @@ local terminator_dozer_1 = {
 }
 
 local terminator_dozer_2 = {
-	enemy = is_eclipse and ben_dozer or green_dozer,
+	enemy = is_eclipse and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
 		position = Vector3(-2376, 2887, 0),
 		rotation = Rotation(90, 0, 0),
 	},
+}
+local sniper_so = {
+	so_access_filter = so_access.law,
+	values = {
+		interval = 1,
+	},
+}
+local vent_navlink_interval = {
+	values = {
+		interval = 1,
+	},
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 return {
 	-- begin FFO countdown when doing blood samples objective
@@ -58,29 +69,109 @@ return {
 			{ id = 400063, delay = 0 },
 		},
 	},
+	-- decrease the interval of vent navlinks
+	[103194] = vent_navlink_interval,
+	[103195] = vent_navlink_interval,
+	[103198] = vent_navlink_interval,
+	[103199] = vent_navlink_interval,
+	[103202] = vent_navlink_interval,
+	[103203] = vent_navlink_interval,
+	[103206] = vent_navlink_interval,
+	[103207] = vent_navlink_interval,
+	[103210] = vent_navlink_interval,
+	[103211] = vent_navlink_interval,
+	[103238] = vent_navlink_interval,
+	[103239] = vent_navlink_interval,
+	[103233] = vent_navlink_interval,
+	[103235] = vent_navlink_interval,
+	[103267] = vent_navlink_interval,
+	[103268] = vent_navlink_interval,
+	[103217] = vent_navlink_interval,
+	[103218] = vent_navlink_interval,
+	[103231] = vent_navlink_interval,
+	[103077] = vent_navlink_interval,
+	[103161] = vent_navlink_interval,
+	[103162] = vent_navlink_interval,
+	[103165] = vent_navlink_interval,
+	[103166] = vent_navlink_interval,
+	[103168] = vent_navlink_interval,
+	[103170] = vent_navlink_interval,
+	[103172] = vent_navlink_interval,
+	[103175] = vent_navlink_interval,
+	[103178] = vent_navlink_interval,
+	[103179] = vent_navlink_interval,
+	[103153] = vent_navlink_interval,
+	[103154] = vent_navlink_interval,
+	[103150] = vent_navlink_interval,
+	[103151] = vent_navlink_interval,
+	[103145] = vent_navlink_interval,
+	[103146] = vent_navlink_interval,
 	-- add sniper access to SO navlinks
-	[103238] = cops_so,
-	[103237] = cops_so,
-	[103272] = cops_so,
-	[103239] = cops_so,
-	[103240] = cops_so,
-	[103050] = cops_so,
-	[103051] = cops_so,
-	[103090] = cops_so,
-	[103091] = cops_so,
-	[103285] = cops_so,
-	[103286] = cops_so,
-	[103065] = cops_so,
-	[103064] = cops_so,
-	[103188] = cops_so,
-	[103189] = cops_so,
-	[103190] = cops_so,
-	[103187] = cops_so,
-	[103192] = cops_so,
-	[103191] = cops_so,
-	[103185] = cops_so,
-	[103186] = cops_so,
-	[103193] = cops_so,
+	[103238] = sniper_so,
+	[103239] = sniper_so,
+	[103240] = sniper_so,
+	[103050] = sniper_so,
+	[103051] = sniper_so,
+	[103090] = sniper_so,
+	[103091] = sniper_so,
+	[103285] = sniper_so,
+	[103286] = sniper_so,
+	[103065] = sniper_so,
+	[103064] = sniper_so,
+	[103189] = sniper_so,
+	[103187] = sniper_so,
+	[103185] = sniper_so,
+	[103186] = sniper_so,
+	-- disable most of the navlinks
+	[103064] = disabled,
+	[103065] = disabled,
+	[103290] = disabled,
+	[103291] = disabled,
+	[103196] = disabled,
+	[102436] = disabled,
+	[103216] = disabled,
+	[103215] = disabled,
+	[103200] = disabled,
+	[103197] = disabled,
+	[103201] = disabled,
+	[103204] = disabled,
+	[103214] = disabled,
+	[103205] = disabled,
+	[103208] = disabled,
+	[103213] = disabled,
+	[103209] = disabled,
+	[103212] = disabled,
+	[103240] = disabled,
+	[103237] = disabled,
+	[103272] = disabled,
+	[103236] = disabled,
+	[103234] = disabled,
+	[103266] = disabled,
+	[103270] = disabled,
+	[103271] = disabled,
+	[103230] = disabled,
+	[103193] = disabled,
+	[103191] = disabled,
+	[103190] = disabled,
+	[103192] = disabled,
+	[103188] = disabled,
+	[103160] = disabled,
+	[103163] = disabled,
+	[103167] = disabled,
+	[103164] = disabled,
+	[103171] = disabled,
+	[103169] = disabled,
+	[103174] = disabled,
+	[103173] = disabled,
+	[103176] = disabled,
+	[103177] = disabled,
+	[103158] = disabled,
+	[103152] = disabled,
+	[103159] = disabled,
+	[103149] = disabled,
+	[103146] = disabled,
+	[103157] = disabled,
+	[103143] = disabled,
 	-- spawn snipers on DW when the assault ends for the first time
 	[103278] = {
 		on_executed = {
