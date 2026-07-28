@@ -668,7 +668,8 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_e_lod1'" />
 
 			<run_sequence 		name="'green_security'" />
-			
+	
+			<run_sequence 		name="'badges_green_security'" />	
 			<run_sequence 		name="'belt_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
