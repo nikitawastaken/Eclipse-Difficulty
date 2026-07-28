@@ -615,8 +615,6 @@ local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_ca
 local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
 
-
-
 M.elements = {
 	-- snipers in no mercy (Notoriety reference)
 	Eclipse.mission_elements.gen_dummy(400000, "notoriety_sniper_1", Vector3(2295, 16, -318.756), Rotation(-90, 0, 0), optsEliteSniper_1),
@@ -700,7 +698,7 @@ M.elements = {
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
 	Eclipse.mission_elements.gen_disable_unit(400077, "disable_elevator_right_corner_collisions", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_elevator_corner_collisions),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400080, "cloaker_hide_so_1", Vector3(-1159.660, 2870.170, 0.382), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
