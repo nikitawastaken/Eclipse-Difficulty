@@ -15,6 +15,8 @@ local basement_ambush_chance = (normal and 30 or hard and 40 or 60) + (is_pro_jo
 local basement_enemies_amount = 2
 local shield_army_chance = (is_eclipse and 30 or 20) + (is_pro_job and 10 or 0)
 
+local smoke_or_flash_chance = math.random() <= 0.5
+
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
 	scripted_enemy.bulldozer_2,
@@ -121,6 +123,12 @@ local vent_spawn = {
 local so_hunt_fix = {
 	so_access_filter = { "swat", "taser" },
 }
+local smoke_or_flash = {
+	values = {
+		effect_type = smoke_or_flash_chance and "flash" or "smoke",
+	},
+}
+
 return {
 	-- FFO
 	[101657] = {
@@ -255,6 +263,21 @@ return {
 			{ id = 400085, delay = 0 },
 		},
 	},
+	-- less predictable ambush pc hack spawn
+	[103318] = {
+		on_executed = {
+			{ id = 102783, delay = 3, delay_rand = 7 },
+		},
+	},
+	[103324] = {
+		on_executed = {
+			{ id = 103333, delay = 3, delay_rand = 7 },
+		},
+	},
+	-- use either flashes or smoke bombs for opening
+	[100627] = smoke_or_flash,
+	[100874] = smoke_or_flash,
+	[400089] = smoke_or_flash,
 	-- always force cloaker and taser to spawn like in PDTH
 	[100875] = disabled,
 	[102245] = disabled,
@@ -337,7 +360,7 @@ return {
 	[103756] = {
 		chance = 100,
 		on_executed = {
-			{ id = 400090, delay = 1.8 },
+			{ id = 400090, delay = 3, delay_rand = 7 },
 		},
 	},
 	-- spawn two extra dozers on Death Wish as a 193+ throwback

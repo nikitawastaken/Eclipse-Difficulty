@@ -17,6 +17,11 @@ local enabled = {
 		enabled = true,
 	},
 }
+local no_participate_to_group_ai = {
+	values = {
+		participate_to_group_ai = false,
+	},
+}
 
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
@@ -46,28 +51,28 @@ local heli_enemy2 = {
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local ship_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
-local no_participate_to_group_ai = {
-	values = {
-		participate_to_group_ai = false,
-	},
-}
 
 local heli_chance = (normal and 30 or hard and 40 or 60) * (is_pro_job and 1.5 or 0)
+
+local ground_sniper_delay = 120
+local ground_sniper_delay_rand = overkill_and_above and 90 or 120
+
 local ship_sniper_delay = 30
 local ship_sniper_delay_rand = overkill_and_above and 60 or 90
+
+local escape_heli_delay = 90
+local escape_heli_delay_rand = (normal and 0 or hard and 45 or 90) + (is_pro_job and 45 or 0)
 
 local function cloaker_add(id)
 	return id and {
@@ -277,6 +282,13 @@ return {
 			dialogue = john_dialogue_12,
 		},
 	},
+	-- Add a new loot drop point
+	[100415] = disabled,
+	[102864] = {
+		loot_drop = {
+			{ name = "right_gate", position = Vector3(-2100, 4750, 0) },
+		},
+	},
 	-- Add new reinforce
 	[100511] = {
 		reinforce = {
@@ -288,12 +300,12 @@ return {
 			{
 				name = "besiege_init01",
 				force = 2,
-				position = Vector3(-800, -1500, 0),
+				position = Vector3(-600, -1600, 0),
 			},
 			{
 				name = "besiege_init02",
 				force = 2,
-				position = Vector3(-50, 2800, 0),
+				position = Vector3(-100, 2750, 0),
 			},
 		},
 	},
@@ -304,22 +316,22 @@ return {
 			{
 				name = "besiege01",
 				force = 2,
-				position = Vector3(400, 1200, 0),
+				position = Vector3(1800, -1500, 0),
 			},
 			{
 				name = "besiege02",
 				force = 2,
-				position = Vector3(900, -800, 0),
+				position = Vector3(1500, 2700, 0),
 			},
 			{
 				name = "besiege03",
 				force = 2,
-				position = Vector3(2000, 1200, 0),
+				position = Vector3(4700, 1800, 0),
 			},
 			{
 				name = "besiege04",
 				force = 2,
-				position = Vector3(2400, -1600, 0),
+				position = Vector3(4100, -1600, 0),
 			},
 		},
 	},
@@ -339,13 +351,6 @@ return {
 	[104028] = disabled,
 	[102117] = disabled,
 	[102369] = disabled,
-	-- Add a new loot drop point
-	[100415] = disabled,
-	[102864] = {
-		loot_drop = {
-			{ name = "right_gate", position = Vector3(-2100, 4750, 0) },
-		},
-	},
 	-- helicopter spawns
 	[100443] = {
 		on_executed = {
@@ -384,7 +389,7 @@ return {
 	[104004] = {
 		spawn = invisible_walls_small, -- Add invisible walls to the warehouse
 	},
-	-- the warehouse can either be closed or open on all difficulties
+	-- The warehouse can either be closed or open on all difficulties
 	[104003] = {
 		values = {
 			difficulty_overkill = true,
@@ -402,6 +407,12 @@ return {
 		on_executed = {
 			{ id = 400052, delay = 1 },
 			{ id = 104000, remove = true },
+		},
+	},
+	-- Delay the escape helicopter
+	[100059] = { -- amountOfBagsToTriggerEsc
+		on_executed = {
+			{ id = 100985, delay = escape_heli_delay, delay_rand = escape_heli_delay_rand },
 		},
 	},
 	-- make early spawns not participate to group AI
@@ -426,10 +437,10 @@ return {
 	[103976] = cloaker_add(103975),
 	[103978] = cloaker_add(103977),
 	[103980] = cloaker_add(103979),
-	-- spawn Ground Snipers after 3-4 minutes
+	-- spawn ground Snipers
 	[100486] = {
 		on_executed = {
-			{ id = 400035, delay = normal and 240 or 180 },
+			{ id = 400035, delay = ground_sniper_delay, delay_rand = ground_sniper_delay_rand },
 		},
 	},
 	-- spawn Snipers on the ships
@@ -448,17 +459,51 @@ return {
 			{ id = 400015, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
-	-- Disable some sketchy cheat sapwns
-	[101007] = disabled,
-	[100844] = disabled,
+	-- Enlarge area triggers responsible for toggling cheat spawngroups hidden behind containers.
+	-- This should prevent them from spawning in plain sight.
+	[101010] = {
+		values = {
+			width = 6500,
+			depth = 15200,
+		},
+	},
+	[101013] = {
+		values = {
+			width = 6500,
+			depth = 15200,
+		},
+	},
+	[101220] = {
+		values = {
+			width = 6500,
+			depth = 19000,
+		},
+	},
+	[101235] = {
+		values = {
+			width = 6500,
+			depth = 19000,
+		},
+	},
+	-- Do not remove groups closest to the gate alongside cheat spawngroups. They are well hidden.
+	[100899] = { -- ai_enemy_prefered_remove_001
+		on_executed = {
+			{ id = 101482, remove = true }, -- ai_enemy_prefered_add_003
+		},
+	},
+	[101009] = { -- ai_enemy_prefered_remove_002
+		on_executed = {
+			{ id = 100168, remove = true }, -- ai_enemy_prefered_add_001
+		},
+	},
 	-- Spawn group intervals
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
-	[400042] = scripted_swat_van_spawn,
-	[400050] = scripted_swat_van_spawn,
 	[100146] = standard_spawn,
 	[100154] = standard_spawn,
 	[100167] = standard_spawn,
 	[102387] = ship_spawn,
 	[102331] = ship_spawn,
 	[102173] = ship_spawn,
+	[400042] = scripted_swat_van_spawn,
+	[400050] = scripted_swat_van_spawn,
 }

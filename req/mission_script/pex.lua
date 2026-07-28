@@ -49,15 +49,15 @@ local sniper_amount = {
 }
 local police_roof_spawn = {
 	values = {
-		interval = 10,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval = 15,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local garage_roof_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval = 20,
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

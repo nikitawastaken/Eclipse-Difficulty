@@ -67,11 +67,11 @@ WeaponTweakData.CATEGORY_TRAIL_EFFECTS = {
 	revolver = "effects/payday2/particles/weapons/streaks/traveling_streak",
 	shotgun = "effects/particles/weapons/shotgun_streak",
 	lmg = "effects/particles/weapons/weapon_trail_green_lmg",
-	snp = "effects/payday2/particles/weapons/streaks/big_light_streak",	
+	snp = "effects/payday2/particles/weapons/streaks/big_light_streak",
 }
 
 -- Remake stat tables to have linear scaling
-Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)	
+Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
 	self.stats.damage = {}
 	for i = 0, 1200, 1 do
 		table.insert(self.stats.damage, (math.lerp(0.1, 120.1, i / 1200)))
@@ -103,16 +103,16 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 	end
 end)
 
-function WeaponTweakData:_get_primary_category(weap_id)	
+function WeaponTweakData:_get_primary_category(weap_id)
 	local categories_clean = self[weap_id] and self[weap_id].categories and clone(self[weap_id].categories)
 	if categories_clean then
 		table.delete(categories_clean, "akimbo")
-		
+
 		return categories_clean[1]
 	end
 end
 
-function WeaponTweakData:_add_stat(weap_id, stat, addend)	
+function WeaponTweakData:_add_stat(weap_id, stat, addend)
 	return math.clamp(self[weap_id].stats[stat] + addend, 0, #self.stats[stat])
 end
 
@@ -144,9 +144,9 @@ end
 
 -- Set muzzleflashes based on weapon ID or category
 function WeaponTweakData:_set_muzzleflashes()
-	for weap_id, weap_data in pairs(self) do						
+	for weap_id, weap_data in pairs(self) do
 		local new_muzzleflash = self.WEAPON_MUZZLEFLASHES[weap_id] or self.CATEGORY_MUZZLEFLASHES[self:_get_primary_category(weap_id)] or nil
-		if new_muzzleflash then	 
+		if new_muzzleflash then
 			weap_data.muzzleflash = new_muzzleflash
 			weap_data.muzzleflash_silenced = self.SILENCED_MUZZLEFLASH_MAP[weap_data.muzzleflash] or weap_data.muzzleflash_silenced or nil
 			weap_data.muzzleflash_incendiary = "effects/payday2/particles/weapons/incendiary_muzzleflash"
@@ -156,9 +156,9 @@ end
 
 -- Set trail effects based on weapon ID or category
 function WeaponTweakData:_set_trail_effects()
-	for weap_id, weap_data in pairs(self) do						
+	for weap_id, weap_data in pairs(self) do
 		local new_trail_effect = self.WEAPON_TRAIL_EFFECTS[weap_id] or self.CATEGORY_TRAIL_EFFECTS[self:_get_primary_category(weap_id)] or nil
-		if new_trail_effect then	 
+		if new_trail_effect then
 			weap_data.trail_effect = new_trail_effect
 			weap_data.trail_effect_incendiary = "effects/payday2/particles/weapons/streaks/traveling_streak_incendiary"
 		end
@@ -206,7 +206,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 
-			-- Make sure Akimbo Weapons inherit their single counterparts' categories 
+			-- Make sure Akimbo Weapons inherit their single counterparts' categories
 			local single_weapon_id = akimbo_single_map[weap_id] or weap_id:sub(3)
 			local single_weapon_data = self[single_weapon_id]
 			local is_akimbo = table.contains(weap_data.categories, "akimbo")
@@ -216,14 +216,14 @@ function WeaponTweakData:_init_weapons(overrides)
 			elseif is_akimbo then
 				local akimbo_cat_tbl = { "akimbo" }
 				local single_cat_tbl = clone(single_weapon_data.categories)
-				
+
 				for _, category in pairs(single_cat_tbl) do
 					table.insert(akimbo_cat_tbl, category)
 				end
-				
+
 				weap_data.categories = clone(akimbo_cat_tbl)
 			end
-							
+
 			-- Map the weapon's categories
 			local cat_map = table.list_to_set(weap_data.categories)
 
@@ -389,7 +389,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					recovery = 3,
 					recovery_wait_multiplier = 1.5,
 				}
-					
+
 				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 600
 				end
@@ -443,7 +443,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					recovery = 1.25,
 					recovery_wait_multiplier = 1.75,
 				}
-				
+
 				if weap_data.fire_mode_data and not weap_data.auto then
 					weap_data.fire_mode_data.fire_rate = 60 / 300
 				end
@@ -542,7 +542,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					enter_rate = 1,
 					exit_rate = 2,
 				}
-				
+
 				-- Increase unsupported custom shotgun accuracy
 				if is_unsupported_custom then
 					weap_data.stats.spread = self:_add_stat(weap_id, "spread", 2)
@@ -563,7 +563,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.total_ammo_mul = lmg_concealment_scale(15, 20, 9 / 5, 7 / 5, 0.05)
 				weap_data.sprint_exit_time = lmg_concealment_scale(15, 20, 0.5, 0.4, 0.05)
 				weap_data.ammo_bag_consumption_mul = lmg_concealment_scale(15, 20, 1.5, 1, 0.05)
-				
+
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15
 				weap_data.bipod_deploy_multiplier = 1
@@ -794,7 +794,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			weap_data.moving_transition = weap_data.moving_transition or {
 				enter_rate = 2,
 				exit_rate = 3,
-			}			
+			}
 			weap_data.penetration = {
 				enemy = {
 					damage_mul = 0.75,
@@ -806,48 +806,48 @@ function WeaponTweakData:_init_weapons(overrides)
 					damage_mul = 0.5,
 				},
 			}
-				
+
 			-- Recoil values defined per category
 			if weap_data.kick then
 				if is_turret then
 					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
-					
+
 				elseif cat_map.lmg then
 					weap_data.kick.standing = { 0.3, 0.6, -0.8, 1 }
 --[[				weap_data.kick_pattern = {
 						["auto"] = {
-							standing = {	
-								{ 
+							standing = {
+								{
 									{ -0.1, 0.4, 0, 0.6 },
 									10,
 								},
-								{ 
+								{
 									{ 0.1, 0.5, -0.6, 0 },
 									 16,
 								},
-								{ 
-									{ 0.3, 0.6, -0.4, 0.6 }, 
+								{
+									{ 0.3, 0.6, -0.4, 0.6 },
 									 24,
 								},
-								{ 
+								{
 									{ 0.4, 0.8, -0.8, 1 },
 									persist = true,
 								},
 							},
-							steelsight = {	
-								{ 
+							steelsight = {
+								{
 									{ -0.1, 0.4, 0, 0.6 },
 									10,
 								},
-								{ 
+								{
 									{ 0.1, 0.5, -0.6, 0 },
 									 16,
 								},
-								{ 
-									{ 0.3, 0.6, -0.4, 0.6 }, 
+								{
+									{ 0.3, 0.6, -0.4, 0.6 },
 									 24,
 								},
-								{ 
+								{
 									{ 0.4, 0.8, -0.8, 1 },
 									persist = true,
 								},
@@ -864,13 +864,13 @@ function WeaponTweakData:_init_weapons(overrides)
 
 				elseif cat_map.assault_rifle then
 					weap_data.kick.standing = { 0.8, 1, -0.6, 0.6 }
-					
+
 				elseif cat_map.revolver then
 					weap_data.kick.standing = { 2, 2.4, -0.3, 0.3 }
 
 				elseif cat_map.shotgun then
 					if is_doublebarrel then
-						weap_data.kick.standing = { 2.9, 3, -0.5, 0.5 } 
+						weap_data.kick.standing = { 2.9, 3, -0.5, 0.5 }
 					else
 						weap_data.kick.standing = { 2, 2.4, -0.5, 0.8 }
 					end
@@ -893,7 +893,7 @@ function WeaponTweakData:_init_weapons(overrides)
 
 				elseif cat_map.pistol then
 					if weap_data.auto then
-						weap_data.kick.standing = { 0.4, 0.8, -1, 1 } 
+						weap_data.kick.standing = { 0.4, 0.8, -1, 1 }
 					else
 						weap_data.kick.standing = { 1.2, 1.8, -0.5, 0.5 }
 					end
@@ -926,7 +926,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread.moving_steelsight = base_spread
 				weap_data.spread.bipod = base_spread
 			end
-			
+
 			-- Run overrides for specific weapons before calculating ammo.
 			-- These are useful if you need to set a flag that is normally tied to a category.
 			local function override_caller(callback)
@@ -966,7 +966,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.swap_speed_multiplier = nil
 					weap_data.fire_mode_spread_bloom = single_weapon_data.fire_mode_spread_bloom and deep_clone(single_weapon_data.fire_mode_spread_bloom) or nil
 					weap_data.spread_bloom = single_weapon_data.spread_bloom and deep_clone(single_weapon_data.spread_bloom) or nil
-					
+
 					if weap_data.auto then
 						weap_data.auto = deep_clone(single_weapon_data.auto)
 					end
@@ -1026,9 +1026,9 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 
 				weap_data.fire_mode_data.burst_cooldown = weap_data.fire_mode_data.fire_rate and weap_data.fire_mode_data.fire_rate * 2 or weap_data.fire_mode_data.burst_cooldown or nil
-				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5 
+				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5
 			end
-			
+
 			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
 
 			-- Set total ammo and pickup
@@ -1047,7 +1047,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			-- AP weapons that aren't Sniper Rifles get reduced total ammo and pickup
 			if weap_data.can_shoot_through_wall and not cat_map.snp then
 				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.25
-				
+
 				weap_data.total_damage = weap_data.total_damage * self.AP_TOTAL_DMG_MUL
 				weap_data.pickup_damage = weap_data.pickup_damage * self.AP_PICKUP_DMG_MUL
 			end
@@ -1441,7 +1441,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_m14.stats.recoil = 5
 	self.new_m14.stats.concealment = 18
 	self.new_m14.fire_mode_data.fire_rate = 60 / 700
-	
+
 	-- Little Friend
 	self.contraband.categories = dmr_category
 	self.contraband.CLIP_AMMO_MAX = 20
@@ -1469,7 +1469,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shak12.stats.concealment = 23
 	self.shak12.fire_mode_data.fire_rate = 60 / 600
 	self.shak12.reload_speed_multiplier = 0.7
-	
+
 	-- Akron
 	self.hcar.categories = dmr_category
 	self.hcar.CLIP_AMMO_MAX = 20
@@ -1644,7 +1644,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.usp.stats.recoil = 8
 	self.usp.stats.concealment = 29
 	self.usp.fire_mode_data.fire_rate = 60 / 600
-	
+
 	-- Gruber
 	self.ppk.CLIP_AMMO_MAX = 7
 	self.ppk.stats.damage = 36
@@ -2727,13 +2727,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Thanatos
 	self.m95.CLIP_AMMO_MAX = 5
-	self.m95.stats.damage = 48
+	self.m95.stats.damage = 96
 	self.m95.stats.spread = 24
 	self.m95.stats.recoil = 2
 	self.m95.stats.concealment = 8
 	self.m95.fire_mode_data.fire_rate = 60 / 40
 	self.m95.fire_rate_multiplier = 45 / 40
 	self.m95.stats_modifiers = { damage = 10 }
+
+	self.init_stat_overrides.m95 = function(weap_data)
+		self.m95.pickup_mul = self.m95.pickup_mul * 5 / 3
+	end
 
 	-- Musket
 	self.bessy.CLIP_AMMO_MAX = 1
@@ -2980,7 +2984,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.flun.pickup_mul = (1 / self.flun.rays) * (40 / 30)
 		self.flun.max_clips_round = 2
 	end
-	
+
 	-- Flamethrowers
 
 	-- MK2
@@ -3047,7 +3051,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.weapon_settings = {}
 	self.weapon_settings.no_autoreload = true
-	
+
 	-- Set up all the wepaon overrides before executing the _init_stats function
 
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!
@@ -3242,12 +3246,12 @@ function WeaponTweakData:_set_presets()
 			v.stamina_strip_mul = (v.armor_piercing and 2 or v.is_shotgun and 1.5 or 1) * (v.has_suppressor and 0.5 or 1)
 			v.spread = v.rays and v.rays > 1 and 6 or 0
 			v.alert_size = (alert_sizes[v.usage] or 5000) * (v.has_suppressor and 0.2 or 1)
-			
+
 			if v.muzzleflash then
 				v.muzzleflash = self.WEAPON_MUZZLEFLASHES[k] or self.CATEGORY_MUZZLEFLASHES[self:_get_primary_category(k)] or v.muzzleflash
 				v.muzzleflash_silenced = v.muzzleflash and self.SILENCED_MUZZLEFLASH_MAP[v.muzzleflash]
 			end
-			
+
 			if v.usage == "is_smg" and not v.reload == "uzi" then
 				v.auto = { fire_rate = 60 / 500 }
 

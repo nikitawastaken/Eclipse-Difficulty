@@ -14,6 +14,16 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
+local bags_required = {
+	values = {
+		counter_target = 4 + (is_pro_job and 2 or 0),
+	},
+}
+local bags_required_objective = {
+	values = {
+		amount = 4 + (is_pro_job and 2 or 0),
+	},
+}
 return {
 	-- Reinforce spots on traincars, it just works.
 	[102477] = {
@@ -43,6 +53,11 @@ return {
 			{ name = "traincar03" },
 		},
 	},
+	-- change the amount of required loot
+	[101223] = bags_required,
+	[102042] = bags_required,
+	[101222] = bags_required_objective,
+	[101195] = bags_required_objective,
 	-- Fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,

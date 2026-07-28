@@ -35,7 +35,7 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 	mvec3_add(from_pos, direction * -30)
 	mvector3.set(mvec_spread_direction, direction)
 	mvector3.set(mvec_to, mvec_spread_direction)
-	mvector3.multiply(mvec_to, 140)
+	mvector3.multiply(mvec_to, 200)
 	mvector3.add(mvec_to, from_pos)
 
 	local damage = self:_get_current_damage(dmg_mul)

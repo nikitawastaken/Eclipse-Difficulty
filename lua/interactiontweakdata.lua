@@ -1,3 +1,5 @@
+local level_id = Eclipse.utils.clean_level_id()
+
 Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.revive.timer = 4.5
 	self.drill_upgrade.timer = 0
@@ -12,6 +14,10 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 
 	-- Reduce armored transport truck deposit box lockpick time
 	self.pick_lock_deposit_transport.timer = 10
+
+	if level_id == "haunted" then
+		self.pick_lock_hard.timer = 666 -- Dallas, my friend, the devil.
+	end
 
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
 	self.hostage_trade.contour_flash_interval = 0.5

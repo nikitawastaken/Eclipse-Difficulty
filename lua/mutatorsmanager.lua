@@ -23,6 +23,7 @@ Hooks:OverrideFunction(MutatorsManager, "init", function(self)
 		MutatorBoFlashbang:new(self),
 		MutatorTearGas:new(self),
 		MutatorTaser:new(self),
+		MutatorJerome:new(self),
 		--MutatorManualReload:new(self),
 	}
 	self._active_mutators = {}

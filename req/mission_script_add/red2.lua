@@ -610,8 +610,6 @@ local optsrandom_ambush_event_hard_overkill = {
 	on_executed = {
 		{ id = 400116, delay = 0 },
 		{ id = 400117, delay = 0 },
-		--{ id = 400118, delay = 0 },
-		--{ id = 400119, delay = 0 },
 		{ id = 400120, delay = 0 },
 	},
 }
@@ -620,8 +618,6 @@ local optsrandom_ambush_event_eclipse = {
 	on_executed = {
 		{ id = 400116, delay = 0 },
 		{ id = 400117, delay = 0 },
-		--{ id = 400118, delay = 0 },
-		--{ id = 400119, delay = 0 },
 		{ id = 400120, delay = 0 },
 		{ id = 400121, delay = 0 },
 	},

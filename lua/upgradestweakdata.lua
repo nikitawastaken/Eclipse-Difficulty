@@ -28,8 +28,8 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
 	}
 
-	-- fak heals 90hp on use
-	self.values.first_aid_kit.heal_amount = 9
+	-- fak heals 40% hp on use
+	self.values.first_aid_kit.heal_amount = 0.4
 
 	-- Saw Massacre (baseline)
 	self.saw_through_shield_dmg_mul = 0.5

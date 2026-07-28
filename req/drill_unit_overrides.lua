@@ -6,6 +6,21 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local max_nr_team_ai = tweak_data.group_ai.max_nr_team_ai
 local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
 
+local security_door_solo_friendly = {
+	drill = {
+		{
+			timer = 150,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				8 / 10,
+				9 / 10,
+				1,
+				1,
+			},
+			jam_times = { 1, 2 },
+		},
+	},
+}
 local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 	drill = {
 		{
@@ -15,17 +30,12 @@ local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 		},
 	},
 }
-local security_door_solo_friendly = {
+local evil_nightmare_safe = {
 	drill = {
 		{
-			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
-				1 / 2,
-				2 / 3,
-				1,
-				1,
-			},
-			jam_times = 1,
+			timer = 666, -- Dallas, my friend, the devil.
+			forbid_reenforce = true,
+			forbid_sabotage = true,
 		},
 	},
 }
@@ -251,6 +261,16 @@ local M = {
 			jam_times = 1,
 		},
 	},
+	["haunted"] = {
+		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			timer = 666, -- Spooky scary devil number
+			forbid_reenforce = true,
+			forbid_sabotage = true,
+		},
+		[100224] = evil_nightmare_safe,
+		[100419] = evil_nightmare_safe,
+		[100420] = evil_nightmare_safe,
+	},
 	["hox_1"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
 			timer = (normal and 30 or hard and 60 or 90) + (is_pro_job and 30 or 0),
@@ -273,6 +293,12 @@ local M = {
 			},
 			forbid_sabotage = true,
 		},
+	},
+	["nightclub"] = {
+		[104445] = security_door_solo_friendly,
+		[300050] = security_door_solo_friendly,
+		[300957] = security_door_solo_friendly,
+		[301068] = security_door_solo_friendly,
 	},
 	["pal"] = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {

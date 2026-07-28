@@ -12,13 +12,13 @@ local exclude_cop_agents_shields_dozers = {
 local entrance_spawn = {
 	values = {
 		interval = 15,
-		--		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local roof_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -39,11 +39,6 @@ return {
 	[100768] = { -- Santa has been untied
 		reinforce = {
 			{
-				name = "santa",
-				force = 3,
-				position = Vector3(-365, -275, -100),
-			},
-			{
 				name = "escalator01",
 				force = 2,
 				position = Vector3(225, -2850, 0),
@@ -57,7 +52,7 @@ return {
 	},
 	[100699] = { -- flare placed
 		on_executed = {
-			{ id = 400002, delay = 0, delay_rand = 20 }, -- custom roof preferreds
+			{ id = 400002, delay = 0, delay_rand = 30 }, -- custom roof preferreds
 		},
 	},
 	-- Rework preferreds, separate street spawns from roof spawns

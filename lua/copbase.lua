@@ -148,7 +148,7 @@ function CopBase:_run_unit_sequences()
 					end
 				end
 
-				if Day == "01" and Month == "04" then -- Don't look :jerome:
+				if Day == "01" and Month == "04" or managers.mutators:modify_value("CopBase:Jerome", false) then -- Don't look :jerome:
 					if self._head_unit:damage():has_sequence("set_jerome_mode") then
 						self._head_unit:damage():run_sequence_simple("set_jerome_mode")
 					end

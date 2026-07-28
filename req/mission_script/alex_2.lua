@@ -1,6 +1,8 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local cobra_enemy = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
@@ -11,7 +13,32 @@ local cobra = { enemy = cobra_enemy }
 local agile_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
+local fbi_ambush_chance = (normal and 0 or hard and 33 or 66) * (is_pro_job and 1.5 or 0)
 return {
+	-- FFO when the FBI ambush happens
+	[104549] = {
+		ponr = {
+			length = 360,
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	-- tweak the FBI ambush chance depending on difficulty_index
+	[104515] = {
+		chance = fbi_ambush_chance,
+	},
+	-- start spawning enemies during FBI ambush
+	[104526] = {
+		on_executed = {
+			{ id = 400033, delay = 0 },
+			{ id = 400064, delay = 0 },
+		},
+	},
+	-- disable sniping gangsters when the FBI ambush happens
+	[104528] = {
+		on_executed = {
+			{ id = 400067, delay = 0 },
+		},
+	},
 	-- Sniper gangstas
 	[101928] = {
 		values = {

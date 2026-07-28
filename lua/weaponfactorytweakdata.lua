@@ -1033,6 +1033,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_r93_b_short.stats.concealment = 2
 
 	self.parts.wpn_fps_snp_m95_barrel_long.stats.spread = 1
+	self.parts.wpn_fps_snp_m95_barrel_long.stats.recoil = -5
+	self.parts.wpn_fps_snp_m95_barrel_long.stats.damage = 192
+	self.parts.wpn_fps_snp_m95_barrel_long.custom_stats = {
+		ammo_pickup_max_mul = 0,
+		ammo_pickup_min_mul = 0,
+		ammo_bag_consumption_mul = 2,
+		ammo_max_mul = 2 / 3,
+		movement_speed = 0.85,
+	}
 
 	self.parts.wpn_fps_snp_mosin_b_short.stats.spread = -2
 	self.parts.wpn_fps_snp_mosin_b_short.stats.concealment = 2
@@ -1166,7 +1175,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.recoil = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.stats.concealment = 0
 	self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {
-		total_ammo_mul = 1 / 2,
+		ammo_max_mul = 1 / 2,
 		movement_speed = 1.15,
 	}
 
@@ -1362,27 +1371,27 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
 		value = 1,
 		damage = -2,
+		extra_ammo = 25,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {
-		ammo_offset = 25,
-		total_ammo_mul = 3 / 2,
+		ammo_max_mul = 4 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
-	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
+	self.parts.wpn_fps_fla_mk2_mag_rare.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
 		value = 1,
 		damage = 2,
+		extra_ammo = -25,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {
-		ammo_offset = -25,
-		total_ammo_mul = 2 / 3,
+		ammo_max_mul = 2 / 3,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
-	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
+	self.parts.wpn_fps_fla_mk2_mag_welldone.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	self.parts.wpn_fps_fla_system_b_wtf.stats.total_ammo_mod = 0
@@ -1402,26 +1411,24 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
 		ammo_offset = 25,
-		total_ammo_mul = 5 / 4,
+		ammo_max_mul = 5 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
-	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
+	self.parts.wpn_fps_fla_system_m_low.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
 	self.parts.wpn_fps_fla_system_m_high.stats = {
 		value = 1,
 		damage = 2,
-		extra_ammo = -25,
-		total_ammo_mod = -5,
 	}
-	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
+	self.parts.wpn_fps_fla_system_m_high.custom_stats = {
 		ammo_offset = -25,
-		total_ammo_mul = 3 / 4,
+		ammo_max_mul = 3 / 4,
 	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
-	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
+	self.parts.wpn_fps_fla_system_m_high.no_magazine_balancing = true
 	self.parts.wpn_fps_fla_system_m_high.desc_id = "bm_wp_fla_mk2_mag_welldone_desc"
 
 	-- Barrel Extensions, Silencers --
@@ -2457,7 +2464,7 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 		local stats_tbl = {}
 		local custom_stats_tbl = {}
 		if reference_new_tweak and reference_old_tweak then
-			custom_stats_tbl.ammo_max_mul = reference_new_tweak.total_ammo_mul or 1
+			custom_stats_tbl.ammo_max_mul = reference_new_tweak.ammo_max_mul or 1
 			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul

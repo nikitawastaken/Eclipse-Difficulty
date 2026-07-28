@@ -342,20 +342,6 @@ function M.get_difficulty_group_specific_value(t)
 	return t[#t]
 end
 
--- Easily multiply the values in a list-style table such as { X, Y, Z }
--- Can supply a mul A (for all values) or { A, B, C } (for corresponding values)
-function M.table_multiplier(target_table, mul)
-	local mul_type = type(mul)
-	for i, v in pairs(target_table) do
-		if mul_type == "table" then
-			target_table[i] = v * mul[math.clamp(i, 1, #mul)]
-		elseif mul_type == "number" then
-			target_table[i] = v * mul
-		end
-	end
-	return target_table
-end
-
 -- Quickly create and populate a weighted selector from a table
 function M.weighted_selector(t)
 	if type(t) ~= "table" then
@@ -371,6 +357,11 @@ function M.weighted_selector(t)
 		end
 	end
 	return selector
+end
+
+-- Returns all Group AI state names
+function M.get_group_ai_state_names()
+	return { "besiege", "street", "safehouse", "ponr", "skirmish" }
 end
 
 function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_dis, so_access)
@@ -576,6 +567,63 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
 		end
 	end
+end
+
+-- FOR TESTING
+-- Easily replaces the values in a list-style table such as { X, Y, Z }
+-- Can supply a replacement A (for all values) or { A, B, C } (for corresponding values)
+function M.table_replace(target_table, replace)
+	local replace_type = type(replace)
+	for i, v in pairs(target_table) do
+		if replace_type == "table" then
+			target_table[i] = replace[math.clamp(i, 1, #replace)]
+		elseif replace_type == "number" then
+			target_table[i] = replace
+		end
+	end
+	return target_table
+end
+
+-- Easily multiply the values in a list-style table such as { X, Y, Z }
+-- Can supply a multiplier A (for all values) or { A, B, C } (for corresponding values)
+function M.table_multiply(target_table, mul)
+	local mul_type = type(mul)
+	for i, v in pairs(target_table) do
+		if mul_type == "table" then
+			target_table[i] = v * mul[math.clamp(i, 1, #mul)]
+		elseif mul_type == "number" then
+			target_table[i] = v * mul
+		end
+	end
+	return target_table
+end
+
+-- Easily adds to the values in a list-style table such as { X, Y, Z }
+-- Can supply an addend A (for all values) or { A, B, C } (for corresponding values)
+function M.table_add(target_table, add)
+	local add_type = type(add)
+	for i, v in pairs(target_table) do
+		if add_type == "table" then
+			target_table[i] = v + add[math.clamp(i, 1, #add)]
+		elseif add_type == "number" then
+			target_table[i] = v + add
+		end
+	end
+	return target_table
+end
+
+-- Easily subtracts from the values in a list-style table such as { X, Y, Z }
+-- Can supply an subtrahend A (for all values) or { A, B, C } (for corresponding values)
+function M.table_subtract(target_table, sub)
+	local sub_type = type(sub)
+	for i, v in pairs(target_table) do
+		if sub_type == "table" then
+			target_table[i] = v - sub[math.clamp(i, 1, #sub)]
+		elseif sub_type == "number" then
+			target_table[i] = v - sub
+		end
+	end
+	return target_table
 end
 
 return M

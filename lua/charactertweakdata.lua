@@ -1112,9 +1112,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
 	-- Different radio chatter for Security in murky/akan heists
-	if is_murkywater_heist or is_akan_heist then
+	if is_akan_heist then
 		self.security.radio_prefix = "fri_"
-		self.security.use_radio = "dsp_radio_russian"
+	end
+	if is_murkywater_heist then
+		self.security.radio_prefix = "fri_"
+		self.security.use_radio = "fri_dispatch_generic_message"
 	end
 
 	self.security_fat = deep_clone(self.security)
@@ -1142,6 +1145,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.security_army = deep_clone(self.security)
 	self.security_army.melee_weapon = "weapon"
+	self.security_army.use_radio = "dsp_radio_russian"
 	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
 
@@ -1270,12 +1274,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Different radio chatter for Bellmead units
 	if has_bellmead_response then
 		self.marshal_security.radio_prefix = "fri_"
-		self.marshal_security.use_radio = "dsp_radio_russian"
+		self.marshal_security.use_radio = "fri_dispatch_generic_message"
 	end
 
 	self.murky = deep_clone(self.security_mcmansion)
-	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
-	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
+	self.murky.radio_prefix = "fri_" -- unprofessional radio from Scarface Mansion
+	self.murky.use_radio = "fri_dispatch_generic_message" -- force Scarface Mansion's radio guy for Murkywater Security
 	--self.murky.no_arrest = true -- harder stealth
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
@@ -2188,7 +2192,6 @@ CharacterTweakData.access_surrender = {
 }
 
 function CharacterTweakData:_set_presets()
-	local overkill_above = diff_i >= 5
 	local health_mul = get_difficulty_specific_value({
 		1,
 		1.25,
@@ -2278,7 +2281,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.ignore_melee_headshot = true
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
-			char_preset.tank_run_speed_mul = overkill_above and { fwd = is_city_tank and 1.25 or 1.5, strafe = 1, bwd = 1 } or nil
+			char_preset.tank_run_speed_mul = { fwd = is_city_tank and 1.75 or 2.5, strafe = 1, bwd = 1 }
 
 			local speed_preset = deep_clone(char_preset.move_speed)
 			for _, pose in pairs(speed_preset) do
@@ -2293,13 +2296,13 @@ function CharacterTweakData:_set_presets()
 
 			char_preset.move_speed = speed_preset
 			char_preset.damage.armor_health = get_difficulty_specific_value({
+				16,
+				16,
 				20,
-				20,
-				30,
-				30,
-				40,
+				24,
+				28,
 			})
-			char_preset.damage.armor_health = char_preset.damage.armor_health * (is_city_tank and 5 / 4 or 1)
+			char_preset.damage.armor_health = char_preset.damage.armor_health * (is_city_tank and 3 / 2 or 1)
 			char_preset.medic_healing = tag_map.medic and { cooldown = 3, radius = 600 } or nil
 			char_preset.target_priority = tag_map.medic and 10 or nil
 			char_preset.can_be_healed = not tag_map.medic and true or false
@@ -2307,7 +2310,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
 			char_preset.spooc_attack_move_speed_mul = 1.5
-			char_preset.spooc_attack_dodge_timeout = overkill_above and { 0.25, 0.75 } or nil
+			char_preset.spooc_attack_dodge_timeout = { 0.25, 1 }
 			char_preset.max_spooc_dis = 2000
 			char_preset.use_animation_on_fire_damage = true
 			char_preset.can_be_healed = true
@@ -2382,10 +2385,10 @@ function CharacterTweakData:_set_presets()
 		get_difficulty_specific_value({ 30, 30, 30, 25, 20 }),
 	}
 
-	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 1, 1, 1, 0.6, 0.4 })
+	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 0.8, 0.8, 0.8, 0.6, 0.4 })
 
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
-	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
+	self.tank_armor_health_balance_mul = { 0.55, 0.7, 0.85, 1 }
 
 	-- Civilians are not in the enemy list
 	for _, char_preset in pairs(self) do

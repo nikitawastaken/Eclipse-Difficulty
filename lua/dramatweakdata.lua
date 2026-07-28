@@ -62,10 +62,10 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 			[1.0] = 0.7,
 		},
 		tank = {
-			[0.1] = 1.3,
+			[0.1] = 1.4,
 			[0.4] = 1,
-			[0.7] = 0.85,
-			[1.0] = 0.7,
+			[0.7] = 0.8,
+			[1.0] = 0.6,
 		},
 		spooc = {
 			[0.1] = 1.3,

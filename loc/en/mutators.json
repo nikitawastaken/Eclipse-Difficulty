@@ -1,5 +1,5 @@
 {
-	"menu_mutators_lobby_wait_title":  "",
+	"menu_mutators_lobby_wait_title": "",
 
 	"mutator_gracetroll": "Grace Troll",
 	"mutator_gracetroll_desc": "Customize the Grace Period behavior.",
@@ -51,4 +51,8 @@
 
 	"mutator_manualreload": "Rated R for Reload",
 	"mutator_manualreload_desc": "Trying to shoot while empty no longer starts a reload.",
+
+	"mutator_jerome": "Jerome Rush",
+	"mutator_jerome_desc": "Jerome is everywhere.",
+	"mutator_jerome_longdesc": "Jerome is everywhere."
 }

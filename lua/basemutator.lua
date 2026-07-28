@@ -1137,3 +1137,21 @@ MutatorManualReload.icon_coords = {
 function MutatorManualReload:setup(data)
 	--	tweak_data.weapon.weapon_settings.no_autoreload = true
 end
+
+-- Jerome Mode
+MutatorJerome = MutatorJerome or class(BaseMutator)
+MutatorJerome._type = "MutatorJerome"
+MutatorJerome.name_id = "mutator_jerome"
+MutatorJerome.desc_id = "mutator_jerome_desc"
+MutatorJerome.categories = { "enemies" }
+MutatorJerome.icon_coords = {
+	5,
+	2,
+}
+
+function MutatorJerome:modify_value(id, value)
+	if id == "CopBase:Jerome" then
+		return true
+	end
+	return value
+end
