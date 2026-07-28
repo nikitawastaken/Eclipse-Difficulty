@@ -15,7 +15,7 @@ M["levels/instances/unique/trai/trai_main_wagon/world/world"] = function(result)
 
 	for _, element in pairs(result.default.elements) do
 		local id = element.id
-		
+
 		-- Force spawning 3 priting plates regardless of difficulty
 		if train_wagon.filters_easy_above[id] then
 			table.map_append(element.values, filter_easy_above)
