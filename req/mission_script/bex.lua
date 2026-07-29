@@ -216,6 +216,8 @@ return {
 			},
 		},
 	},
+	-- disable heat speech
+	[102803] = disabled,
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason
