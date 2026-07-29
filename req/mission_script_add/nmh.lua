@@ -15,6 +15,8 @@ local elite_snipers_respawn = (is_eclipse and 180 or 240) - (is_pro_job and 30 o
 local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
+
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
 	scripted_enemy.bulldozer_2,
