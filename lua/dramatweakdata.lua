@@ -16,7 +16,7 @@ Hooks:PostHook(DramaTweakData, "init", "eclipse_init", function(self)
 		medic = 0.05,
 		marksman = 0.05,
 	}
-	self.drama_gain_balance_mul = { 1.25, 1, 0.75, 0.5 } -- 'criminal_hurt' drama gain balance multiplier
+	self.drama_gain_balance_mul = { 1.3, 1, 0.7, 0.4 } -- 'criminal_hurt' drama gain balance multiplier
 	self.drama_decay_rate_balance_mul = { 0.7, 0.8, 0.9, 1 }
 	self.special_spawn_drama_add_balance_mul = {
 		shield = { 1.15, 1.1, 1.05, 1 },

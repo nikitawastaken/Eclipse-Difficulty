@@ -197,6 +197,12 @@ return {
 			{ id = 102876, delay = 2 },
 		},
 	},
+	-- enable 2 more cloaker spawns when the ICU doors is open
+	[102325] = {
+		on_executed = {
+			{ id = 400099, delay = 0 },
+		},
+	},
 	-- replace investigate beat cops with security guards to match with PDTH
 	[102633] = security_spawn,
 	[102632] = security_spawn,
@@ -248,6 +254,12 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Spawn group intervals
+	[400092] = cloaker_spawn,
+	[400093] = cloaker_spawn,
+	[400094] = cloaker_spawn,
+	[400095] = cloaker_spawn,
+	[400096] = cloaker_spawn,
+	[400097] = cloaker_spawn,
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,
 	[103111] = vent_spawn,

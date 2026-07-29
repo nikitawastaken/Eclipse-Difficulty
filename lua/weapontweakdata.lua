@@ -600,7 +600,6 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.steelsight_time = steelsight_times.slow
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (90 / 40)
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
-				weap_data.ammo_bag_consumption_mul = 2
 				weap_data.steelsight_move_speed_mul = 0.4
 				weap_data.shake.fire_multiplier = 1.4
 				weap_data.mobility_scale = { 6, 12, 8, 12 }
@@ -739,13 +738,13 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 6
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 0.5
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
-				weap_data.ammo_bag_consumption_mul = 2
 				weap_data.shake.fire_multiplier = 0.2
 				weap_data.mobility_scale = { 16, 20, 10, 14 }
 			elseif cat_map.saw then
 				weap_data.stats.suppression = 7
 				weap_data.stats.alert_size = 9
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
+				weap_data.pickup_mul = weap_data.pickup_mul or 0
 				weap_data.armor_piercing_chance = 1
 				weap_data.shake.fire_multiplier = 0.1
 				weap_data.shake.on_hit_multiplier = 1
@@ -1043,7 +1042,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.total_damage = weap_data.total_damage * self.UNDERBARREL_TOTAL_DMG_MUL
 				weap_data.pickup_damage = weap_data.pickup_damage * self.UNDERBARREL_PICKUP_DMG_MUL
 			end
-
+			
 			-- AP weapons that aren't Sniper Rifles get reduced total ammo and pickup
 			if weap_data.can_shoot_through_wall and not cat_map.snp then
 				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.25
@@ -1052,6 +1051,15 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.pickup_damage = weap_data.pickup_damage * self.AP_PICKUP_DMG_MUL
 			end
 
+			-- Disable the 'start_out_ammo_multiplier' upgrade and increase ammo bag consumption for weapons with no pickup
+			if weap_data.pickup_mul == 0 then
+				weap_data.forbid_start_out_ammo = true
+					
+				if weap_data.ammo_bag_consumption_mul then
+					weap_data.ammo_bag_consumption_mul = math.max(weap_data.ammo_bag_consumption_mul, 2)
+				end
+			end
+			
 			damage_stat = math.min(weap_data.stats.damage, #self.stats.damage)
 			real_damage = self.stats.damage[damage_stat] * damage_modifier
 
@@ -2736,7 +2744,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.stats_modifiers = { damage = 10 }
 
 	self.init_stat_overrides.m95 = function(weap_data)
-		self.m95.pickup_mul = self.m95.pickup_mul * 5 / 3
+		self.m95.pickup_mul = self.m95.pickup_mul * (5 / 3)
+		self.m95.total_ammo_mul = self.m95.total_ammo_mul * (5 / 3)
 	end
 
 	-- Musket
@@ -2952,7 +2961,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.init_stat_overrides.ray = function(weap_data)
 		self.ray.pickup_mul = 0
 		self.ray.min_max_clips = 2
-		self.ray.ammo_bag_consumption_mul = 2
 	end
 
 	-- RPG
@@ -2968,7 +2976,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.init_stat_overrides.rpg7 = function(weap_data)
 		self.rpg7.pickup_mul = 0
 		self.rpg7.min_max_clips = 2
-		self.rpg7.ammo_bag_consumption_mul = 2
 	end
 
 	self.flun.CLIP_AMMO_MAX = 1

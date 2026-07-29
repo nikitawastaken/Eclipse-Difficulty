@@ -301,7 +301,6 @@ tweak_data.projectiles.launcher_rocket.projectile_trail = true
 -- Commando 101
 tweak_data.projectiles.rocket_ray_frag.damage = 72
 tweak_data.projectiles.rocket_ray_frag.curve_pow = 1
-tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 8
 tweak_data.projectiles.rocket_ray_frag.range = 600
 
 -- the c101 exclusive anim breaks for some reason when it's changed to primary with no fix
