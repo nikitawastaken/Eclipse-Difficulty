@@ -1417,14 +1417,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.scavenging.multipro3 = "10"
 
 	-- Fully Loaded
-	self.start_out_ammo_category_blacklist = {
-		"saw",
-		"grenade_launcher",
-		"minigun",
-		"flamethrower",
-		"bow",
-		"crossbow",
-	}
 	self.definitions.player_start_out_ammo_multiplier = {
 		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",

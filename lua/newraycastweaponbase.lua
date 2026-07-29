@@ -33,7 +33,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	local categories = weapon_tweak.categories
 
 	-- Extra start out ammo upgrade
-	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) and not table.contains_any(tweak_data.upgrades.start_out_ammo_category_blacklist, categories) then
+	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) and not self:forbid_start_out_ammo() then
 		local is_starting_out_with_extra_ammo = managers.player:has_category_upgrade("player", "start_out_ammo_multiplier")
 		self:replenish(is_starting_out_with_extra_ammo)
 	end
@@ -90,6 +90,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._explosive_ammo = weapon_tweak.explosive_ammo
 	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
+	self._forbid_start_out_ammo = weapon_tweak.forbid_start_out_ammo
 	self._max_nr_enemy_penetrations = weapon_tweak.max_nr_enemy_penetrations
 	self._ammo_bag_consumption_mul = weapon_tweak.ammo_bag_consumption_mul
 
@@ -146,6 +147,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	end
 
 	for _, custom_stat in pairs(custom_stats) do
+		if custom_stat.forbid_start_out_ammo ~= nil then
+			self._forbid_start_out_ammo = custom_stat.forbid_start_out_ammo
+		end
+		
 		if custom_stat.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = custom_stat.steelsight_move_speed_mul
 		end
@@ -233,6 +238,10 @@ end
 
 function NewRaycastWeaponBase:ignore_crit_damage()
 	return self._ignore_crit_damage or false
+end
+
+function NewRaycastWeaponBase:forbid_start_out_ammo()
+	return self._forbid_start_out_ammo or false
 end
 
 function NewRaycastWeaponBase:movement_penalty()
