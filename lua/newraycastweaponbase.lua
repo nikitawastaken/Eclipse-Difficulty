@@ -150,7 +150,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if custom_stat.forbid_start_out_ammo ~= nil then
 			self._forbid_start_out_ammo = custom_stat.forbid_start_out_ammo
 		end
-		
+
 		if custom_stat.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = custom_stat.steelsight_move_speed_mul
 		end
