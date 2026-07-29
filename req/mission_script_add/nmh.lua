@@ -730,6 +730,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400101, "nmh_cloaker_spawn_global", optsAddCloakerHideGroup),
 	Eclipse.mission_elements.gen_play_sound(400102, "boom_sfx", Vector3(-2053, 3612, 152.650), Rotation(0, 0, 0), optsWallExplosionSound),
 	Eclipse.mission_elements.gen_object_editor(400103, "wall_explosion_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsBlowUpTheWallHole),
-	Eclipse.mission_elements.gen_global_event(400104, "nmh_assault_start", optsAssaultStarted),
+	Eclipse.mission_elements.gen_global_event(400104, "nmh_assault_start", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultStarted),
 }
 return M
