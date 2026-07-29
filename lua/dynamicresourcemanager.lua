@@ -75,6 +75,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1", dlc1_needed, false)
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2", dlc1_needed, false)
 
+	local murkywater_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"))
+	load_unload_unit("units/payday2/characters/ene_acc_murkywater_helmet/ene_acc_murkywater_helmet", murkywater_needed, true)
+	
 	local headless_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"))
 	load_unload_unit("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5", headless_needed, false)
 

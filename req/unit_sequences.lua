@@ -267,12 +267,11 @@ local M = {
 	["units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"] = { name = "murkywater_secret_service", head = head_sequences.security },
 
 	["units/payday2/characters/ene_murkywater_1/ene_murkywater_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
-	["units/payday2/characters/ene_murkywater_2/ene_murkywater_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
-
-	["units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"] = { name = "murkywater_1", head = head_sequences.swat_b },
-	["units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security"] = { name = "murkywater_1", head = head_sequences.swat_b },
+	["units/payday2/characters/ene_murkywater_2/ene_murkywater_2"] = { name = "murkywater_2", head = head_sequences.swat_b },
+	["units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"] = { name = "murkywater_2", head = head_sequences.swat_b },
+	["units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security"] = { name = "murkywater_2", head = head_sequences.swat_b },
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
-	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_2", head = head_sequences.swat_b },
 
 	["units/payday2/characters/ene_gang_black_1/ene_gang_black_1"] = { name = "gang_black_1", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_2/ene_gang_black_2"] = { name = "gang_black_2", head = head_sequences.security },
@@ -351,7 +350,7 @@ local M = {
 	["units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic"] = { name = "bulldozer_medic", head = head_sequences.bulldozer },
 
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.swat_c },
-	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_1", head = head_sequences.swat_c },
+	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_2", head = head_sequences.swat_c },
 
 	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.soldier_a },
 	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.soldier_b },

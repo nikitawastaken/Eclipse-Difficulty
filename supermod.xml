@@ -1037,6 +1037,14 @@
 				<file :name="ene_acc_city_swat_helmet.object" />
 			</group>
 
+			<group :name="ene_acc_murkywater_helmet/">
+				<file :name="ene_acc_murkywater_helmet.cooked_physics" />
+				<file :name="ene_acc_murkywater_helmet.material_config" />
+				<file :name="ene_acc_murkywater_helmet.model" />
+				<file :name="ene_acc_murkywater_helmet.object" />
+				<file :name="ene_acc_murkywater_helmet.unit" />
+			</group>
+
 			<group :name="ene_acc_shield_city/">
 				<xml 	:name="ene_acc_shield_city.sequence_manager" />
 				<file 	:name="ene_acc_shield_city.cooked_physics" />

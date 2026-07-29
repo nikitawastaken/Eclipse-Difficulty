@@ -4,8 +4,9 @@
 <!--CUSTOM SEQUENCES START-->
 		<variables>
 			<has_watch		value="0" />
+			<has_sleeves			value="0" />
 			<has_gloves		value="0" />
-			<has_shades	value="0" />
+			<has_shades		value="0" />
 		</variables>
 
 		<filter name="'check_no_watch'">
@@ -14,6 +15,14 @@
 
 		<filter name="'check_watch'">
 			<check value="vars.has_watch == 1" />
+		</filter>
+
+		<filter name="'check_no_sleeves'">
+			<check value="vars.has_sleeves == 0" />
+		</filter>
+
+		<filter name="'check_sleeves'">
+			<check value="vars.has_sleeves == 1" />
 		</filter>
 
 		<filter name="'check_no_gloves'">
@@ -39,7 +48,7 @@
 			<run_sequence 		name="'random_body'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gensec_2'" once="true" triggable="true">
@@ -52,24 +61,26 @@
 			<run_sequence 		name="'random_body'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">
-			<run_sequence name="'body_'..pick('base','base','blouse')" />
+			<run_sequence name="'body_'..pick('short','short','long')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'body_base'" once="true" triggable="true"/>
+		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>
 		
-		<sequence editable_state="true" name="'body_blouse'" once="true" triggable="true">
+		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
 		</sequence>
-	<!--shades SEQUENCES-->
+	<!--SHADES SEQUENCES-->
 		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
 			<run_sequence name="'shades_'..pick('base','base','none')" />
 		</sequence>
@@ -122,15 +133,29 @@
 		<sequence editable_state="true" name="'watch_left'" once="true" triggable="true">
 			<set_variables 		has_watch="1" />
 			
-			<object 			enabled="true" name="'g_watch_left'" />
-			<object 			enabled="true" name="'g_watch_left_lod1'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'watch_right'" once="true" triggable="true">
 			<set_variables 		has_watch="1" />
 			
-			<object 			enabled="true" name="'g_watch_right'" />
-			<object 			enabled="true" name="'g_watch_right_lod1'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'watch_fat_left'" once="true" triggable="true">
+			<set_variables 		has_watch="1" />
+			
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_left'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_left_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'watch_fat_right'" once="true" triggable="true">
+			<set_variables 		has_watch="1" />
+			
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_right'" />
+			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_right_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

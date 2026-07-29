@@ -15,7 +15,6 @@
 		<filter name="'check_no_goggles'">
 			<check value="vars.has_goggles == 0" />
 		</filter>
-
 		<filter name="'check_goggles'">
 			<check value="vars.has_goggles == 1" />
 		</filter>
@@ -23,7 +22,6 @@
 		<filter name="'check_no_hat'">
 			<check value="vars.has_hat == 0" />
 		</filter>
-
 		<filter name="'check_hat'">
 			<check value="vars.has_hat == 1" />
 		</filter>
@@ -31,7 +29,6 @@
 		<filter name="'check_no_headset'">
 			<check value="vars.has_headset == 0" />
 		</filter>
-
 		<filter name="'check_headset'">
 			<check value="vars.has_headset == 1" />
 		</filter>
@@ -39,7 +36,6 @@
 		<filter name="'check_no_torch'">
 			<check value="vars.has_torch == 0" />
 		</filter>
-
 		<filter name="'check_torch'">
 			<check value="vars.has_torch == 1" />
 		</filter>
@@ -47,7 +43,6 @@
 		<filter name="'check_not_murkywater'">
 			<check value="vars.is_murkywater == 0" />
 		</filter>
-
 		<filter name="'check_murkywater'">
 			<check value="vars.is_murkywater == 1" />
 		</filter>
@@ -55,7 +50,6 @@
 		<filter name="'check_not_mcmansion_security'">
 			<check value="vars.is_mcmansion_security == 0" />
 		</filter>
-
 		<filter name="'check_mcmansion_security'">
 			<check value="vars.is_mcmansion_security == 1" />
 		</filter>
@@ -74,35 +68,48 @@
 		</sequence>
 		
 		<sequence editable_state="false" name="'enable_light'" triggable="false" >
-			<set_variables 		has_torch="1" />	
-			
+			<set_variables 		has_torch="1" />				
 			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch'" />
-			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch_lod1'" />
-			
+			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch_lod1'" />		
 			<effect_spawner 	filter="'check_uses_torch'" enabled="true" name="'es_light'"/>
 			<light				filter="'check_uses_torch'" enabled="true" name="'ls_light'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'helmet_swat'" once="true" triggable="true"> 
-			<decal_mesh 		enabled="true" name="'dm_helmet'" />
-			
-			<object 			enabled="true" name="'g_helmet_lod1'" />
-			<object 			enabled="true" name="'g_helmet_lod2'" />
+		<sequence editable_state="true" name="'murky_helmet'" once="true" triggable="true"> 
+			<decal_mesh 		enabled="true" name="'dm_murky_helmet'" />		
+			<object 			enabled="true" name="'g_murky_helmet_lod1'" />
+			<object 			enabled="true" name="'g_murky_helmet_lod2'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'fbi_helmet'" once="true" triggable="true"> 
+			<decal_mesh 		enabled="true" name="'dm_fbi_helmet'" />		
+			<object 			enabled="true" name="'g_fbi_helmet_lod1'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod2'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true" >
 			<set_variables 		uses_torch="1" />	
 			
-			<object 			enabled="true" name="'g_gear_murkywater'" />
-			<object 			enabled="true" name="'g_gear_murkywater_lod1'" />
+			<object 			enabled="true" name="'g_gear_murky'" />
+			<object 			enabled="true" name="'g_gear_murky_lod1'" />
 		
 			<run_sequence 		name="'murkywater'" />		
-			<run_sequence 		name="'random_body'" />
-			<run_sequence 		name="'random_hat'" />
-			<run_sequence 		name="'random_goggles_a'" />
-			<run_sequence 		name="'random_headset'" />
+			<run_sequence 		name="'murky_helmet'" />
+			<run_sequence 		name="'random_goggles_head'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'murkywater_2'" once="true" triggable="true" >
+			<set_variables 		uses_torch="1" />	
+			
+			<object 			enabled="true" name="'g_gear_murky'" />
+			<object 			enabled="true" name="'g_gear_murky_lod1'" />
+		
+			<run_sequence 		name="'murkywater'" />		
+			<run_sequence 		name="'random_hat'" />
+			<run_sequence 		name="'random_goggles_head'" />
+			<run_sequence 		name="'random_headset'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'mcmansion_security_1'" once="true" triggable="true" >	
 			<set_variables 		uses_torch="1" />	
 			
@@ -110,82 +117,86 @@
 			<object 			enabled="true" name="'g_gear_fbi_lod1'" />
 		
 			<run_sequence 		name="'mcmansion_security'" />
-			<run_sequence 		name="'random_body'" />
-			<run_sequence 		name="'random_goggles_b'" />
+			<run_sequence 		name="'fbi_helmet'" />
+			<run_sequence 		name="'random_goggles_head'" />
 			<run_sequence 		name="'random_headset'" />
-			<run_sequence 		name="'helmet_swat'" />
-		</sequence>
-	<!--BODY SEQUENCES-->
-		<sequence editable_state="true" name="'random_body'" triggable="true">
-			<run_sequence 		name="'body_'..pick('a','a','b')"/>
+			<run_sequence 		name="'random_helmet_accessory'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'body_a'" once="true" triggable="true"/>
-		
-		<sequence editable_state="true" name="'body_b'" once="true" triggable="true">
-		<!--
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_b'" />
-			<object 			enabled="true" name="'g_body_b_lod1'" />
-		-->
-		</sequence>
-	<!--GLASSES SEQUENCES-->
-		<sequence editable_state="true" name="'random_goggles_a'" triggable="true" >
-			<run_sequence		name="'goggles_'..pick('none','none','base')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_goggles_b'" triggable="true" >
-			<run_sequence 		name="'goggles_'..pick('base','base','none')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'goggles_none'" once="true" triggable="true" />
-		
-		<sequence editable_state="true" name="'goggles_base'" once="true" triggable="true" >
-			<set_variables 		has_goggles="1" />	
+		<sequence editable_state="true" name="'mcmansion_security_2'" once="true" triggable="true" >	
+			<set_variables 		uses_torch="1" />	
 			
-			<run_sequence 		filter="'check_no_hat'" name="'goggles_'..pick('head','helmet')" />
-			<run_sequence 		filter="'check_hat'" name="'goggles_head_'..pick('a','a','b')" />
+			<object 			enabled="true" name="'g_gear_fbi'" />
+			<object 			enabled="true" name="'g_gear_fbi_lod1'" />
+		
+			<run_sequence 		name="'mcmansion_security'" />
+			<run_sequence 		name="'random_hat'" />
+			<run_sequence 		name="'random_goggles_head'" />
+			<run_sequence 		name="'random_headset'" />
 		</sequence>
-
-		<sequence editable_state="true" name="'goggles_head'" once="true" triggable="true" >
-			<run_sequence 		name="'goggles_head_'..pick('a','a','b')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'goggles_helmet'" once="true" triggable="true" >
-			<run_sequence 		name="'goggles_helmet_'..pick('a','a','b','c')" />
+	<!--GOGGLES SEQUENCES-->
+		<sequence editable_state="true" name="'random_goggles_head'" triggable="true" >
+			<run_sequence		name="'goggles_head_'..pick('none','none','base')" />
 		</sequence>
 		
+		<sequence editable_state="true" name="'goggles_head_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'goggles_head_base'" once="true" triggable="true" >
+			<set_variables 		has_goggles="1" />			
+			<run_sequence 		name="'goggles_head_'..pick('a','b')" />
+		</sequence>	
 		<sequence editable_state="true" name="'goggles_head_a'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_goggles_glass_a'" />
 
 			<object 			enabled="true" name="'g_goggles_a'" />
 			<object 			enabled="true" name="'g_goggles_a_lod1'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_head_b'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_goggles_glass_b'" />
 
 			<object 			enabled="true" name="'g_goggles_b'" />
 			<object 			enabled="true" name="'g_goggles_b_lod1'" />
 		</sequence>
+	<!--HELMET SEQUENCES-->
+		<sequence editable_state="true" name="'random_helmet_accessory'" triggable="true" >
+			<run_sequence		filter="'check_goggles'" name="'helmet_accessory_'..pick('none','none','none','nvg','torch')" />
+			<run_sequence		filter="'check_no_goggles'" name="'helmet_accessory_'..pick('goggles','nvg','torch','none','none','none')" />
+		</sequence>
 
+		<sequence editable_state="true" name="'helmet_accessory_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'helmet_accessory_torch'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_fbi_helmet_lod19'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod20'" />
+		</sequence>
+		<sequence editable_state="true" name="'helmet_accessory_nvg'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_fbi_helmet_lod17'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod18'" />
+		</sequence>	
+		<sequence editable_state="true" name="'helmet_accessory_goggles'" once="true" triggable="true" >
+			<run_sequence		name="'goggles_helmet_'..pick('c','c','c','a','b','d','e')" />
+		</sequence>
 		<sequence editable_state="true" name="'goggles_helmet_a'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_helmet_lod3'" />
-			<object 			enabled="true" name="'g_helmet_lod4'" />
-			<object 			enabled="true" name="'g_helmet_lod5'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod3'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod4'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod5'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_helmet_b'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_helmet_lod6'" />
-			<object 			enabled="true" name="'g_helmet_lod7'" />
-			<object 			enabled="true" name="'g_helmet_lod8'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod6'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod7'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod8'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_helmet_c'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_helmet_lod9'" />
-			<object 			enabled="true" name="'g_helmet_lod10'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod9'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod10'" />
+		</sequence>
+		<sequence editable_state="true" name="'goggles_helmet_d'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_fbi_helmet_lod11'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod12'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod13'" />
+		</sequence>
+		<sequence editable_state="true" name="'goggles_helmet_e'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_fbi_helmet_lod14'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod15'" />
+			<object 			enabled="true" name="'g_fbi_helmet_lod16'" />
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
@@ -193,14 +204,16 @@
 			<run_sequence 		name="'hat_'..pick('base','base','backwards')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true">	
+		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
+			<object 			filter="'check_mcmansion_security'" enabled="true" name="'g_hat_lod5'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'hat_backwards'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_hat_lod3'" />
 			<object 			enabled="true" name="'g_hat_lod4'" />
+			<object 			filter="'check_mcmansion_security'" enabled="true" name="'g_hat_lod6'" />
 		</sequence>
 	<!--HEADSET SEQUENCES-->
 		<sequence editable_state="true" name="'random_headset'" triggable="true">
@@ -208,10 +221,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'headset_none'" once="true" triggable="true" />
-
 		<sequence editable_state="true" name="'headset_base'" once="true" triggable="true" >
-			<set_variables 		has_headset="1" />
-			
+			<set_variables 		has_headset="1" />	
 			<object 			enabled="true" name="'g_headset'" />
 			<object 			enabled="true" name="'g_headset_lod1'" />
 		</sequence>
