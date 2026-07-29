@@ -3,7 +3,7 @@ Hooks:PostHook(MedicDamage, "_init_medic", "eclipse_init_medic", function(self)
 	self._heal_radius = self._char_tweak.medic_healing and self._char_tweak.medic_healing.radius or 600
 end)
 
-local heal_unit_orig = MedicDamage.heal_unit
+local heal_unit_original = MedicDamage.heal_unit
 function MedicDamage:heal_unit(...)
 	if self._unit:movement():chk_action_forbidden("action") then
 		return false
@@ -14,7 +14,7 @@ function MedicDamage:heal_unit(...)
 		type = "idle",
 	})
 
-	return heal_unit_orig(self, ...)
+	return heal_unit_original(self, ...)
 end
 
 local verify_heal_requesting_unit_original = MedicDamage.verify_heal_requesting_unit

@@ -19,6 +19,15 @@ Hooks:PostHook(TeamAIDamage, "damage_fire", "eclipse_teamai_damage_fire", functi
 	end
 end)
 
+-- Announce low health
+Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function(self)
+	local t = TimerManager:game():time()
+	if (not self._said_hurt_t or self._said_hurt_t + 10 < t) and self._health_ratio < 0.33 and not self:need_revive() and not self._unit:sound():speaking() then
+		self._said_hurt_t = t
+		self._unit:sound():say("g80x_plu", true, true)
+	end
+end)
+
 Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	if self._bleed_out or self._fatal then
 		self._health = self._HEALTH_INIT
@@ -44,4 +53,34 @@ Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	self._to_dead_remaining_t = nil
 
 	self:_clear_damage_transition_callbacks()
+end)
+
+-- Mark the Taser when tased
+local damage_tase_original = TeamAIDamage.damage_tase
+function TeamAIDamage:damage_tase(attack_data, ...)
+	local result = damage_tase_original(self, attack_data, ...)
+
+	if result and attack_data then
+		local attacker = attack_data.attacker_unit
+		if alive(attacker) and attacker:base() and attacker:base().has_tag and attacker:base():has_tag("taser") then
+			attacker:contour():add("mark_enemy", true)
+			local priority_shout = attacker:base():char_tweak().priority_shout
+			if priority_shout then
+				self._unit:sound():say(priority_shout .. "x_any", true)
+			end
+
+			self._assist_SO_id = "TeamAIDamage_assistance" .. tostring(self._unit:key())
+			managers.groupai:state():add_special_objective(self._assist_SO_id, Eclipse.utils.team_ai_get_assist_SO(self._unit))
+		end
+	end
+
+	return result
+end
+
+Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function(self)
+	if self._assist_SO_id then
+		managers.groupai:state():remove_special_objective(self._assist_SO_id)
+		Eclipse.utils.team_ai_stop_assist_objective(self._unit)
+		self._assist_SO_id = nil
+	end
 end)

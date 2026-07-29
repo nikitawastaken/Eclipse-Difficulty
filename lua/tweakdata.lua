@@ -65,6 +65,9 @@ local function create_poison_grenade(base_grenade)
 	return poison_grenade
 end
 
+-- Increase the distance at which Team AI stop holding their position
+tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2
+
 -- Security Cameras
 tweak_data.security_camera = {
 	rotation_enabled = overkill_above,

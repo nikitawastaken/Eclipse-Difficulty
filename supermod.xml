@@ -73,7 +73,8 @@
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
-					<post :hook_id="missionbriefinggui"/>
+					<post :hook_id="missionbriefinggui"/>		
+					<post :hook_id="crewmanagementgui"/>
 					<post :hook_id="menucomponentmanager"/>
 				</group>
 
@@ -223,6 +224,7 @@
 					<post :hook_id="boss/logics/bosslogicattack"/>
 
 					<group :hook_id="cop/">
+						<post :hook_id="actions/full_body/copactionact"/>
 						<post :hook_id="actions/full_body/copactionhurt"/>
 
 						<group :hook_id="actions/lower_body/">
@@ -270,10 +272,12 @@
 						<post :hook_id="tankmediccopdamage"/>
 					</group>
 
-					<post :hook_id="medic/medicdamage"/>
-
+					<group :hook_id="medic/">
+						<post :hook_id="actions/upper_body/medicactionheal"/>
+						<post :hook_id="medicdamage"/>
+					</group>
+	
 					<post :hook_id="shield/logics/shieldlogicattack"/>
-
 					<post :hook_id="taser/logics/taserlogicattack"/>
 				</group>
 
@@ -288,16 +292,24 @@
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
-				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
 				<post :hook_id="interactions/interactionext"/>
 
+				<group :hook_id="vehicles/">
+					<post :hook_id="animatedvehiclebase"/>
+					<post :hook_id="vehicledrivingext"/>
+				</group>
+				
 				<group :hook_id="player_team/">
 					<post :hook_id="logics/teamailogicassault"/>
 					<post :hook_id="logics/teamailogicidle"/>
+					<post :hook_id="logics/teamailogicbase"/>
+					<post :hook_id="logics/teamailogictravel"/>
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
+					<post :hook_id="teamaibrain"/>
+					<post :hook_id="teamaibase"/>
 					<post :hook_id="huskteamaidamage"/>
 					<post :hook_id="huskteamaimovement"/>
 				</group>
@@ -357,6 +369,8 @@
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
 		
+		<!-- Crew AI icons -->
+		<file name="guis/dlcs/mom/textures/pd2/ai_abilities.texture"/>
 		<!-- Vignette texture. Currently used for Taser screen effect -->
 		<file name="guis/textures/pd2/screen_vignette.texture"/>
 		<file name="guis/textures/pd2/screen_vignette_reversed.texture"/>

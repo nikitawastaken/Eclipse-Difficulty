@@ -28,9 +28,6 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		criminal_hurt_drama_mul_capped = { 1, 0.925, 0.85, 0.775, 0.65, 0.525, 0.4 },
 	}
 
-	-- make sna less cancer
-	self.values.player.shield_knock_bullet.chance = 0.7
-
 	-- fak heals 40% hp on use
 	self.values.first_aid_kit.heal_amount = 0.4
 
@@ -42,6 +39,10 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		range = 1500,
 		interval = 1,
 	}
+
+	-- Bullet damage Shield stagger effect (only used for the Team AI ability)
+	self.values.player.shield_knock_bullet.max_damage = 80
+	self.values.player.shield_knock_bullet.chance = 0.8
 
 	-- Maniac stuff deck14
 	self.max_cocaine_stacks_per_tick = 120
@@ -3598,6 +3599,31 @@ function UpgradesTweakData:init(tweak_data)
 		name_id = "menu_equipment_grenade_case",
 	}
 
+	-- Team AI Abilities
+	self.values.team.crew_inspire[1] = {
+		360,
+		240,
+		120,
+	}
+	self.values.team.crew_ai_flashbang[1] = {
+		360,
+		240,
+		120,
+	}
+	self.values.team.crew_ai_counter_strike[1] = {
+		360,
+		240,
+		120,
+	}
+	self.values.team.crew_ai_counter_tase[1] = {
+		180,
+		120,
+		60,
+	}
+	self.values.team.crew_ai_fix_drill = { true }
+	self.values.team.crew_ai_carry_stacker = { true }
+	self.values.team.crew_ai_dominator = { true }
+
 	-- misc
 	self.swat_turret_criminal_hurt_drama_mul = 0.25
 	self.ecm_feedback_retrigger_interval = 120
@@ -3609,5 +3635,22 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
+	self.values.saw.enemy_slicer[1] = 2
 	self.values.player.pocket_ecm_jammer_base.affects_comms = false
 end
+
+-- Add Team AI ability definitions
+Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse__crew_definitions", function(self)
+	self.crew_ability_definitions.crew_ai_fix_drill = {
+		name_id = "menu_crew_ai_fix_drill",
+		icon = "ability_2",
+	}
+	self.crew_ability_definitions.crew_ai_carry_stacker = {
+		name_id = "menu_crew_ai_carry_stack",
+		icon = "ability_3",
+	}
+	self.crew_ability_definitions.crew_ai_dominator = {
+		name_id = "menu_crew_ai_dominator",
+		icon = "ability_5",
+	}
+end)

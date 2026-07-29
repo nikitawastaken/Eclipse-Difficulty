@@ -174,4 +174,15 @@
 	"menu_berserker": "Berserker",
 	"menu_berserker_desc": "BASIC: ##$basic##\nEvery hit that you receive grants you a ##$multibasic## damage increase with melee weapons.\n\nStacks up to ##$multibasic2## times. Receiving health hits grants ##double## the stacks. The stacks decay at the rate of ##$multibasic3## stack per second.\n\nACE: ##$pro##\nEvery hit that you receive grants you a ##$multipro## damage increase with ranged weapons.\n\nStacks up to ##$multipro2## times. Receiving health hits grants ##double## the stacks. The stacks decay at the rate of ##$multipro3## stack per second.",
 	"menu_frenzy_desc": "BASIC: ##$basic##\nKilling an enemy with a melee attack grants you a ##$multibasic## damage reduction and armor suppression immunity for ##$multibasic2## seconds.\n\nThis cannot occur more than once every ##$multibasic3## seconds.\n\nACE: ##$pro##\nKilling an enemy with a melee attack also resets all currently running ability cooldowns.\n\nThis cannot occur more than once every ##$multibasic3## seconds.\n\nNote: Does not reset Perk Deck throwable and Basic ##\"Frenzy\"## cooldowns."
+
+	"menu_crew_ai_ap_ammo": "Shock and Awe",
+	"menu_crew_ai_ap_ammo_desc": "Your team AI now have a chance to stagger Shield enemies when attacking them.",
+	"menu_crew_ai_custody_trade": "Negotiator",
+	"menu_crew_ai_custody_trade_desc": "Your team AI can now trade you out of custody.",
+	"menu_crew_ai_fix_drill": "Hardware Expert",
+	"menu_crew_ai_fix_drill_desc": "Your team AI can now repair jammed drills.\n\nNote: Team AI will not attempt repairs that require a mission pickup.",
+	"menu_crew_ai_dominator": "Dominator",
+	"menu_crew_ai_dominator_desc": "Your team AI can now dominate enemies who are not already surrendering.",
+	"menu_crew_ai_carry_stack": "Stacker",
+	"menu_crew_ai_carry_stack_desc": "Your team AI can now carry 2 bags at the same time.",
 }

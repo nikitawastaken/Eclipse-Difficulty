@@ -194,7 +194,12 @@ function Drill:set_jammed(jammed)
 	if Network:is_server() then
 		if jammed then
 			self:_unregister_sabotage_SO()
+
+			if not self._jammed_bot_so_id then
+				self:_register_fix_SO()
+			end
 		else
+			self:_unregister_fix_SO()
 			self:_register_sabotage_SO()
 		end
 	end
@@ -236,4 +241,154 @@ function Drill:on_melee_hit(peer_id)
 		self._melee_hit_count = 0
 		self:on_melee_hit_success()
 	end
+end
+
+-- Team AI drill repair ability
+if not Network:is_server() then
+	return
+end
+
+function Drill:_verify_fix_SO(unit)
+	if not managers.player:has_category_upgrade("team", "crew_ai_fix_drill") then
+		return
+	end
+
+	local brain = alive(unit) and unit:brain()
+	if not brain or not brain:is_available_for_assignment() or brain._logic_data.internal_data and brain._logic_data.internal_data.called then
+		return
+	end
+
+	local objective = brain:objective()
+	if objective and (objective.type == "act" or objective.called) then
+		return
+	end
+
+	local logic_data = brain._logic_data
+	local focus_enemy = logic_data.attention_obj
+	if not focus_enemy or focus_enemy.reaction < AIAttentionObject.REACT_SHOOT or not focus_enemy.verified or focus_enemy.dis > 3000 then
+		return true
+	end
+end
+
+function Drill:_fix_SO_administered(unit)
+	self._jammed_bot_so_id = nil
+	self._fixer_unit = unit
+end
+
+function Drill:_fix_SO_started(unit)
+	local int = alive(self._unit) and self._unit:interaction()
+	if not int or not int:active() then
+		unit:brain():set_objective(nil)
+	end
+end
+
+function Drill:_fix_SO_completed(unit)
+	self._fixer_unit = nil
+	local int = alive(self._unit) and self._unit:interaction()
+	if int and int:active() then
+		int:interact(unit)
+	end
+end
+
+function Drill:_fix_SO_failed(unit)
+	self._fixer_unit = nil
+	unit:movement():play_redirect("up_idle")
+	self:_register_fix_SO()
+end
+
+function Drill:_register_fix_SO()
+	local int = alive(self._unit) and self._unit:interaction()
+	if not int or not int:active() then
+		return
+	end
+
+	if int._tweak_data.special_equipment then
+		return
+	end
+
+	local objective_pos = self._nav_tracker:field_position()
+	local objective_rot = Rotation((self._unit:position() - objective_pos):with_z(0):normalized(), math.UP)
+	local objective_nav = self._nav_tracker:nav_segment()
+	local height = self._unit:position().z - self._nav_tracker:field_z()
+
+	local blocks = {
+		light_hurt = -1,
+		hurt = -1,
+		action = -1,
+		heavy_hurt = -1,
+		aim = -1,
+		walk = -1,
+		turn = -1,
+		act = -1,
+		idle = -1,
+		shoot = -1,
+	}
+
+	local objective = {
+		type = "act",
+		nav_seg = objective_nav,
+		pos = objective_pos,
+		rot = objective_rot,
+		fail_clbk = callback(self, self, "_register_fix_SO"),
+		action_duration = 0.1,
+		action = {
+			align_sync = true,
+			type = height > 80 and "stand" or "crouch",
+			body_part = 4,
+			blocks = clone(blocks),
+		},
+		followup_objective = {
+			type = "act",
+			fail_clbk = callback(self, self, "_fix_SO_failed"),
+			action_start_clbk = callback(self, self, "_fix_SO_started"),
+			complete_clbk = callback(self, self, "_fix_SO_completed"),
+			action_duration = self._unit:interaction()._tweak_data.timer or 3,
+			action = {
+				type = "act",
+				body_part = 3,
+				variant = "interact_enter",
+				blocks = clone(blocks),
+			},
+			followup_objective = {
+				type = "act",
+				action_duration = 0.5,
+				action = {
+					body_part = 3,
+					type = "act",
+					variant = "interact_exit",
+					blocks = clone(blocks),
+				},
+			},
+		},
+	}
+
+	local so_descriptor = {
+		interval = 3,
+		AI_group = "friendlies",
+		base_chance = 1,
+		chance_inc = 0,
+		usage_amount = 1,
+		search_pos = objective_pos,
+		search_dis_sq = 1000 ^ 2,
+		admin_clbk = callback(self, self, "_fix_SO_administered"),
+		verification_clbk = callback(self, self, "_verify_fix_SO"),
+		objective = objective,
+	}
+
+	self._jammed_bot_so_id = "botfixdrill" .. tostring(self._unit:key())
+
+	managers.groupai:state():add_special_objective(self._jammed_bot_so_id, so_descriptor)
+end
+
+function Drill:_unregister_fix_SO()
+	if alive(self._fixer_unit) then
+		self._fixer_unit:brain():set_objective(nil)
+	end
+
+	if not self._jammed_bot_so_id then
+		return
+	end
+
+	managers.groupai:state():remove_special_objective(self._jammed_bot_so_id)
+	self._jammed_bot_so_id = nil
 end

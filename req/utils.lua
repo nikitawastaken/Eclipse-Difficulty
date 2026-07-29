@@ -29,6 +29,75 @@ function M.get_unit_from_id(unit_id)
 	return false
 end
 
+-- Team AI helper functions ported from Useful Bots by Hoppip
+function M.team_ai_get_assist_SO(unit)
+	return {
+		chance_inc = 0,
+		base_chance = 1,
+		usage_amount = 1,
+		AI_group = "friendlies",
+		search_pos = unit:position(),
+		objective = M.team_ai_get_assist_objective(unit),
+	}
+end
+
+function M.team_ai_get_assist_objective(unit, receiver)
+	local pos = mvector3.copy(math.UP)
+	mvector3.random_orthogonal(pos)
+	mvector3.multiply(pos, 50)
+	mvector3.add(pos, unit:position())
+	local nav_tracker = managers.navigation:create_nav_tracker(pos)
+	local nav_seg = nav_tracker:nav_segment()
+	pos = nav_tracker:field_position()
+	managers.navigation:destroy_nav_tracker(nav_tracker)
+	return {
+		type = "defend_area",
+		scan = true,
+		assist_unit = unit,
+		haste = "run",
+		pose = "stand",
+		nav_seg = nav_seg,
+		pos = pos,
+	}
+end
+
+function M.team_ai_stop_assist_objective(unit)
+	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
+		local brain = c_data.unit:brain()
+		local objective = brain:objective()
+		if objective and objective.assist_unit == unit then
+			brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(c_data.unit))
+		end
+	end
+end
+
+function M.team_ai_get_reviving_unit(unit)
+	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
+		local brain = c_data.unit:brain()
+		local objective = brain:objective()
+		if objective and objective.type == "revive" and objective.follow_unit == unit then
+			return c_data.unit
+		end
+	end
+end
+
+function M.team_ai_force_attention(attention_unit)
+	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
+		local logic_data = c_data.unit:brain()._logic_data
+		TeamAILogicBase.force_attention(logic_data, logic_data.internal_data, attention_unit)
+	end
+end
+
+function M.team_ai_unregister_unit(unit)
+	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
+		local logic_data = c_data.unit:brain()._logic_data
+		if logic_data._latest_follow_unit == unit then
+			logic_data._latest_follow_unit = nil
+		end
+	end
+end
+-- Team AI helper functions end
+
 -- Returns the difficulty index associated with the current difficulty
 function M.difficulty_index()
 	local difficulty_to_index = {

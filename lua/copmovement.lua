@@ -307,3 +307,13 @@ function CopMovement:damage_clbk(my_unit, damage_info)
 
 	return damage_clbk_original(self, my_unit, damage_info)
 end
+
+if not Network:is_server() then
+	return
+end
+
+-- Make bots aware of enemies carrying loot
+Hooks:PostHook(CopMovement, "set_carrying_bag", "eclipse_set_carrying_bag", function(self)
+	self._is_sabotaging_action = true
+	Eclipse.utils.team_ai_force_attention(self._unit)
+end)

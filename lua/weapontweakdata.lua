@@ -3310,6 +3310,8 @@ function WeaponTweakData:_set_presets()
 						v.usage = "is_lmg"
 					elseif cat_map.minigun then
 						v.usage = "mini"
+					elseif cat_map.dmr then
+						v.usage = "is_dmr"
 					else
 						v.usage = "is_rifle"
 					end
