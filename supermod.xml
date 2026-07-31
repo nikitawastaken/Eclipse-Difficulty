@@ -422,6 +422,8 @@
 		<file name="guis/textures/loading/hints/weapon_special.texture"/>
 		<file name="guis/textures/loading/hints/equipment_fak.texture"/>
 		<file name="guis/textures/loading/hints/badass.texture"/>
+		<!-- <file name="guis/textures/loading/hints/keith.texture"/>  -->
+		<!-- <file name="guis/textures/loading/hints/humvee.texture"/>  -->
 
 		<!-- Custom effects -->
 		<group name="effects/">
