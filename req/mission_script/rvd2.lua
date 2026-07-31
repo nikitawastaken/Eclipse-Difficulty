@@ -99,7 +99,7 @@ return {
 	-- tweak vault ambush Death Wish filter
 	[101393] = {
 		on_executed = {
-			{ id = 101421, remove = true }, -- remove the 2nd bulldozer spawn 
+			{ id = 101421, remove = true }, -- remove the 2nd bulldozer spawn
 		},
 	},
 	[101398] = bulldozer_spawn,

@@ -53,7 +53,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400008, "taser_ambush_2", Vector3(2453, 4574, 50.937), Rotation(-180, 0, 0), optsAmbushTaser),
 	Eclipse.mission_elements.gen_so(400009, "ambush_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 	Eclipse.mission_elements.gen_missionscript(400010, "evil_ambush", optsspawnEvilAmbush),
-
 }
 
 return M
