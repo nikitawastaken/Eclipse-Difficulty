@@ -1118,85 +1118,84 @@ end
 -- Tips viewer (port of Tips and Trivia viewer mod)
 _G.EclipseTipsViewer = _G.EclipseTipsViewer or {}
 
-Hooks:Add( "MenuManagerSetupCustomMenus" , "EclipseTipsViewerMenuManagerPostSetupCustomMenus" , function( self , nodes )
-	MenuHelper:NewMenu( "EclipseEclipseTipsViewerMenu" )
-end )
+Hooks:Add("MenuManagerSetupCustomMenus", "EclipseTipsViewerMenuManagerPostSetupCustomMenus", function(self, nodes)
+	MenuHelper:NewMenu("EclipseEclipseTipsViewerMenu")
+end)
 
-Hooks:Add( "MenuManagerInitialize" , "EclipseTipsViewerMenuManagerPostInit" , function( self )
-	MenuCallbackHandler.EclipseTipsViewerFocus = function( self , focus )
+Hooks:Add("MenuManagerInitialize", "EclipseTipsViewerMenuManagerPostInit", function(self)
+	MenuCallbackHandler.EclipseTipsViewerFocus = function(self, focus)
 		if focus then
 			EclipseTipsViewer:ShowTips()
 		else
 			EclipseTipsViewer:DestroyTips()
 		end
 	end
-end )
+end)
 
-Hooks:Add( "MenuManagerBuildCustomMenus" , "EclipseTipsViewerMenuManagerPostBuildCustomMenus" , function( self , nodes )	
-	nodes[ "EclipseEclipseTipsViewerMenu" ] = MenuHelper:BuildMenu( "EclipseEclipseTipsViewerMenu" , { focus_changed_callback = "EclipseTipsViewerFocus" } )
-	MenuHelper:AddMenuItem( nodes["main"] , "EclipseEclipseTipsViewerMenu" , "menu_eclipse_tips_title" , "menu_eclipse_tips_desc", "inventory", "after" )
-end )
+Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildCustomMenus", function(self, nodes)
+	nodes["EclipseEclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseEclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
+	MenuHelper:AddMenuItem(nodes["main"], "EclipseEclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
+end)
 
-Hooks:Add( "MenuManagerPopulateCustomMenus" , "EclipseTipsViewerMenuManagerPostPopulateCustomMenus" , function( self , nodes )
-
+Hooks:Add("MenuManagerPopulateCustomMenus", "EclipseTipsViewerMenuManagerPostPopulateCustomMenus", function(self, nodes)
 	if tweak_data and tweak_data.tips then
 		local data = {}
 		EclipseTipsViewer.Categories = {}
 		EclipseTipsViewer.TipData = {}
 
-		for k , v in pairs( tweak_data.tips.tips ) do
-			if not data[ "loading_" .. v.category .. "_title" ] then
-				data[ "loading_" .. v.category .. "_title" ] = true
-				table.insert( EclipseTipsViewer.Categories , v.category )
+		for k, v in pairs(tweak_data.tips.tips) do
+			if not data["loading_" .. v.category .. "_title"] then
+				data["loading_" .. v.category .. "_title"] = true
+				table.insert(EclipseTipsViewer.Categories, v.category)
 			end
 
-			EclipseTipsViewer.TipData[ v.category ] = EclipseTipsViewer.TipData[ v.category ] or {}
-			EclipseTipsViewer.TipData[ v.category ][ v.cat_index ] = v.image
+			EclipseTipsViewer.TipData[v.category] = EclipseTipsViewer.TipData[v.category] or {}
+			EclipseTipsViewer.TipData[v.category][v.cat_index] = v.image
 		end
 	end
 
-	MenuCallbackHandler[ "EclipseTipsViewerButtonCallback" ] = function( self ) end
+	MenuCallbackHandler["EclipseTipsViewerButtonCallback"] = function(self) end
 
 	MenuHelper:AddButton({
-		id 			= "EclipseTipsViewerButton",
-		title 		= "",
-		desc 		= "",
-		callback 	= "EclipseTipsViewerButtonCallback",
-		menu_id 	= "EclipseEclipseTipsViewerMenu",
-		localized 	= false
+		id = "EclipseTipsViewerButton",
+		title = "",
+		desc = "",
+		callback = "EclipseTipsViewerButtonCallback",
+		menu_id = "EclipseEclipseTipsViewerMenu",
+		localized = false,
 	})
+end)
 
-end )
+local function aligntext(object, above)
+	local _, _, _, h = object:text_rect()
 
-local function aligntext( object , above )
-	local _ , _ , _ , h = object:text_rect()
+	object:set_h(h)
+	object:set_right(EclipseTipsViewer._panel:right() - 8)
 
-	object:set_h( h )
-	object:set_right( EclipseTipsViewer._panel:right() - 8 )
-
-	if above then object:set_top( above ) end
+	if above then
+		object:set_top(above)
+	end
 end
 
 local function alignpage()
-	local _ , _ , w , h = EclipseTipsViewer._page:text_rect()
+	local _, _, w, h = EclipseTipsViewer._page:text_rect()
 
-	EclipseTipsViewer._page:set_size( w , h )
-	EclipseTipsViewer._page:set_center_x( EclipseTipsViewer._category:center_x() )
-	EclipseTipsViewer._page:set_top( EclipseTipsViewer._text:bottom() + 4 )
+	EclipseTipsViewer._page:set_size(w, h)
+	EclipseTipsViewer._page:set_center_x(EclipseTipsViewer._category:center_x())
+	EclipseTipsViewer._page:set_top(EclipseTipsViewer._text:bottom() + 4)
 
-	EclipseTipsViewer._prev:set_righttop( EclipseTipsViewer._page:left() , EclipseTipsViewer._page:top() )
-	EclipseTipsViewer._next:set_lefttop( EclipseTipsViewer._page:right() , EclipseTipsViewer._page:top() )
+	EclipseTipsViewer._prev:set_righttop(EclipseTipsViewer._page:left(), EclipseTipsViewer._page:top())
+	EclipseTipsViewer._next:set_lefttop(EclipseTipsViewer._page:right(), EclipseTipsViewer._page:top())
 end
 
 local function alignbg()
-	EclipseTipsViewer._bg:set_righttop( EclipseTipsViewer._panel:right() , EclipseTipsViewer._category:top() - 1 )
-	EclipseTipsViewer._bg_blur:set_righttop( EclipseTipsViewer._panel:right() , EclipseTipsViewer._category:top() - 1 )
-	EclipseTipsViewer._bg:set_h( EclipseTipsViewer._page:bottom() - EclipseTipsViewer._category:top() )
-	EclipseTipsViewer._bg_blur:set_h( EclipseTipsViewer._page:bottom() - EclipseTipsViewer._category:top() )
+	EclipseTipsViewer._bg:set_righttop(EclipseTipsViewer._panel:right(), EclipseTipsViewer._category:top() - 1)
+	EclipseTipsViewer._bg_blur:set_righttop(EclipseTipsViewer._panel:right(), EclipseTipsViewer._category:top() - 1)
+	EclipseTipsViewer._bg:set_h(EclipseTipsViewer._page:bottom() - EclipseTipsViewer._category:top())
+	EclipseTipsViewer._bg_blur:set_h(EclipseTipsViewer._page:bottom() - EclipseTipsViewer._category:top())
 end
 
 function EclipseTipsViewer:ShowTips()
-
 	EclipseTipsViewer.CategoryIndex = EclipseTipsViewer.CategoryIndex or 1
 	EclipseTipsViewer.PageIndex = EclipseTipsViewer.PageIndex or 1
 
@@ -1207,173 +1206,170 @@ function EclipseTipsViewer:ShowTips()
 	self._panel = managers.menu_component._ws:panel():panel()
 
 	self._bg = self._panel:rect({
-		w 		= self._panel:w() * 0.35,
-		h 		= 0,
-		color 	= tweak_data.screen_colors.button_stage_3,
-		alpha 	= 0.25,
-		layer 	= 500
+		w = self._panel:w() * 0.35,
+		h = 0,
+		color = tweak_data.screen_colors.button_stage_3,
+		alpha = 0.25,
+		layer = 500,
 	})
 
 	self._bg_blur = self._panel:bitmap({
-		texture 		= "guis/textures/test_blur_df",
-		w 				= self._panel:w() * 0.35,
-		h 				= 0,
-		layer 			= 500,
-		render_template = "VertexColorTexturedBlur3D"
+		texture = "guis/textures/test_blur_df",
+		w = self._panel:w() * 0.35,
+		h = 0,
+		layer = 500,
+		render_template = "VertexColorTexturedBlur3D",
 	})
 
 	self._category = self._panel:text({
-		name 		= "category",
-		text 		= managers.localization:to_upper_text( "loading_" .. EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] .. "_title" ),
-		blend_mode 	= "normal",
-		w 			= ( self._panel:w() * 0.35 ) - 16,
-		h 			= self._panel:h(),
-		font 		= tweak_data.menu.pd2_large_font,
-		font_size 	= 28,
-		color 		= tweak_data.screen_colors.button_stage_2,
-		vertical 	= "center",
-		align 		= "center",
-		wrap 		= true,
-		word_wrap 	= true,
-		layer 		= 501
+		name = "category",
+		text = managers.localization:to_upper_text("loading_" .. EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex] .. "_title"),
+		blend_mode = "normal",
+		w = (self._panel:w() * 0.35) - 16,
+		h = self._panel:h(),
+		font = tweak_data.menu.pd2_large_font,
+		font_size = 28,
+		color = tweak_data.screen_colors.button_stage_2,
+		vertical = "center",
+		align = "center",
+		wrap = true,
+		word_wrap = true,
+		layer = 501,
 	})
 
 	self._text = self._panel:text({
-		name 		= "text",
-		text 		= managers.localization:text( "loading_" .. EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] .. "_" .. EclipseTipsViewer.PageIndex ),
-		blend_mode 	= "normal",
-		w 			= ( self._panel:w() * 0.35 ) - 16,
-		h 			= self._panel:h(),
-		font 		= tweak_data.menu.pd2_large_font,
-		font_size 	= 24,
-		color 		= tweak_data.screen_colors.button_stage_2,
-		vertical 	= "center",
-		align 		= "center",
-		wrap 		= true,
-		word_wrap 	= true,
-		layer 		= 501
+		name = "text",
+		text = managers.localization:text("loading_" .. EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex] .. "_" .. EclipseTipsViewer.PageIndex),
+		blend_mode = "normal",
+		w = (self._panel:w() * 0.35) - 16,
+		h = self._panel:h(),
+		font = tweak_data.menu.pd2_large_font,
+		font_size = 24,
+		color = tweak_data.screen_colors.button_stage_2,
+		vertical = "center",
+		align = "center",
+		wrap = true,
+		word_wrap = true,
+		layer = 501,
 	})
 
 	self._page = self._panel:text({
-		name 		= "page",
-		text 		= string.format( "%d / %d" , EclipseTipsViewer.PageIndex , tweak_data.tips.category_totals[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ] ),
-		blend_mode 	= "normal",
-		w 			= self._panel:w() * 0.35,
-		h 			= self._panel:h(),
-		font 		= tweak_data.menu.pd2_large_font,
-		font_size 	= 24,
-		color 		= tweak_data.screen_colors.button_stage_3,
-		vertical 	= "center",
-		align 		= "center",
-		layer 		= 501
+		name = "page",
+		text = string.format("%d / %d", EclipseTipsViewer.PageIndex, tweak_data.tips.category_totals[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]]),
+		blend_mode = "normal",
+		w = self._panel:w() * 0.35,
+		h = self._panel:h(),
+		font = tweak_data.menu.pd2_large_font,
+		font_size = 24,
+		color = tweak_data.screen_colors.button_stage_3,
+		vertical = "center",
+		align = "center",
+		layer = 501,
 	})
 
 	self._cprev = self._panel:bitmap({
-		texture 		= "guis/textures/menu_arrows",
-		texture_rect 	= {
-							0,
-							0,
-							24,
-							24
-						},
-		color 			= tweak_data.screen_colors.button_stage_3,
-		w 				= 24,
-		h 				= 24,
-		x 				= 0,
-		y 				= 0,
-		layer 			= 501,
-		blend_mode 		= "normal"
+		texture = "guis/textures/menu_arrows",
+		texture_rect = {
+			0,
+			0,
+			24,
+			24,
+		},
+		color = tweak_data.screen_colors.button_stage_3,
+		w = 24,
+		h = 24,
+		x = 0,
+		y = 0,
+		layer = 501,
+		blend_mode = "normal",
 	})
 
 	self._cnext = self._panel:bitmap({
-		texture 		= "guis/textures/menu_arrows",
-		texture_rect 	= {
-							24,
-							0,
-							-24,
-							24
-						},
-		color 			= tweak_data.screen_colors.button_stage_3,
-		w 				= 24,
-		h 				= 24,
-		x 				= 0,
-		y 				= 0,
-		layer 			= 501,
-		blend_mode 		= "normal"
+		texture = "guis/textures/menu_arrows",
+		texture_rect = {
+			24,
+			0,
+			-24,
+			24,
+		},
+		color = tweak_data.screen_colors.button_stage_3,
+		w = 24,
+		h = 24,
+		x = 0,
+		y = 0,
+		layer = 501,
+		blend_mode = "normal",
 	})
 
 	self._prev = self._panel:bitmap({
-		texture 		= "guis/textures/menu_arrows",
-		texture_rect 	= {
-							0,
-							0,
-							24,
-							24
-						},
-		color 			= tweak_data.screen_colors.button_stage_3,
-		w 				= 24,
-		h 				= 24,
-		x 				= 0,
-		y 				= 0,
-		layer 			= 501,
-		blend_mode 		= "normal"
+		texture = "guis/textures/menu_arrows",
+		texture_rect = {
+			0,
+			0,
+			24,
+			24,
+		},
+		color = tweak_data.screen_colors.button_stage_3,
+		w = 24,
+		h = 24,
+		x = 0,
+		y = 0,
+		layer = 501,
+		blend_mode = "normal",
 	})
 
 	self._next = self._panel:bitmap({
-		texture 		= "guis/textures/menu_arrows",
-		texture_rect 	= {
-							24,
-							0,
-							-24,
-							24
-						},
-		color 			= tweak_data.screen_colors.button_stage_3,
-		w 				= 24,
-		h 				= 24,
-		x 				= 0,
-		y 				= 0,
-		layer 			= 501,
-		blend_mode 		= "normal"
+		texture = "guis/textures/menu_arrows",
+		texture_rect = {
+			24,
+			0,
+			-24,
+			24,
+		},
+		color = tweak_data.screen_colors.button_stage_3,
+		w = 24,
+		h = 24,
+		x = 0,
+		y = 0,
+		layer = 501,
+		blend_mode = "normal",
 	})
 
 	self._image = self._panel:bitmap({
-		texture = "guis/textures/loading/hints/" .. EclipseTipsViewer.TipData[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ][ EclipseTipsViewer.PageIndex ],
-		w 		= 192,
-		h 		= 192,
-		layer 	= 501
+		texture = "guis/textures/loading/hints/" .. EclipseTipsViewer.TipData[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]][EclipseTipsViewer.PageIndex],
+		w = 192,
+		h = 192,
+		layer = 501,
 	})
 
-	aligntext( self._category , self._panel:h() * .10 )
+	aligntext(self._category, self._panel:h() * 0.10)
 
-	self._image:set_top( self._category:bottom() )
-	self._image:set_center_x( self._category:center_x() )
+	self._image:set_top(self._category:bottom())
+	self._image:set_center_x(self._category:center_x())
 
-	aligntext( self._text , self._image:bottom() )
+	aligntext(self._text, self._image:bottom())
 
-	self._cprev:set_lefttop( self._category:left() , self._category:top() )
-	self._cnext:set_righttop( self._category:right() , self._category:top() )
+	self._cprev:set_lefttop(self._category:left(), self._category:top())
+	self._cnext:set_righttop(self._category:right(), self._category:top())
 
 	alignpage()
 
 	alignbg()
-
 end
 
 function EclipseTipsViewer:DestroyTips()
-
-	if alive( self._panel ) then
-
-		self._panel:remove( self._category )
-		self._panel:remove( self._text )
-		self._panel:remove( self._page )
-		self._panel:remove( self._bg )
-		self._panel:remove( self._bg_blur )
-		self._panel:remove( self._prev )
-		self._panel:remove( self._next )
-		self._panel:remove( self._cprev )
-		self._panel:remove( self._cnext )
-		self._panel:remove( self._image )
-		self._panel:remove( self._panel )
+	if alive(self._panel) then
+		self._panel:remove(self._category)
+		self._panel:remove(self._text)
+		self._panel:remove(self._page)
+		self._panel:remove(self._bg)
+		self._panel:remove(self._bg_blur)
+		self._panel:remove(self._prev)
+		self._panel:remove(self._next)
+		self._panel:remove(self._cprev)
+		self._panel:remove(self._cnext)
+		self._panel:remove(self._image)
+		self._panel:remove(self._panel)
 
 		self._category = nil
 		self._text = nil
@@ -1386,13 +1382,10 @@ function EclipseTipsViewer:DestroyTips()
 		self._cnext = nil
 		self._image = nil
 		self._panel = nil
-
 	end
-
 end
 
-function EclipseTipsViewer:SetCategoryIndex( index )
-
+function EclipseTipsViewer:SetCategoryIndex(index)
 	if self.CategoryIndex + index < 1 then
 		self.CategoryIndex = #EclipseTipsViewer.Categories
 	elseif self.CategoryIndex + index > #EclipseTipsViewer.Categories then
@@ -1401,36 +1394,31 @@ function EclipseTipsViewer:SetCategoryIndex( index )
 		self.CategoryIndex = self.CategoryIndex + index
 	end
 
-	self:SetPageIndex( 0 )
-
+	self:SetPageIndex(0)
 end
 
-function EclipseTipsViewer:SetPageIndex( index )
-
+function EclipseTipsViewer:SetPageIndex(index)
 	if self.PageIndex + index < 1 then
-		self.PageIndex = tweak_data.tips.category_totals[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ]
-	elseif self.PageIndex + index > tweak_data.tips.category_totals[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ] then
+		self.PageIndex = tweak_data.tips.category_totals[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]]
+	elseif self.PageIndex + index > tweak_data.tips.category_totals[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]] then
 		self.PageIndex = 1
 	else
 		self.PageIndex = self.PageIndex + index
 	end
 
 	self:UpdateTips()
-
 end
 
 function EclipseTipsViewer:UpdateTips()
+	if self._panel and alive(self._panel) then
+		self._category:set_text(managers.localization:to_upper_text("loading_" .. EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex] .. "_title"))
+		self._text:set_text(managers.localization:text("loading_" .. EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex] .. "_" .. EclipseTipsViewer.PageIndex))
+		self._page:set_text(string.format("%d / %d", EclipseTipsViewer.PageIndex, tweak_data.tips.category_totals[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]]))
 
-	if self._panel and alive( self._panel ) then
-		self._category:set_text( managers.localization:to_upper_text( "loading_" .. EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] .. "_title" ) )
-		self._text:set_text( managers.localization:text( "loading_" .. EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] .. "_" .. EclipseTipsViewer.PageIndex ) )
-		self._page:set_text( string.format( "%d / %d" , EclipseTipsViewer.PageIndex , tweak_data.tips.category_totals[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ] ) )
+		self._image:set_image("guis/textures/loading/hints/" .. EclipseTipsViewer.TipData[EclipseTipsViewer.Categories[EclipseTipsViewer.CategoryIndex]][EclipseTipsViewer.PageIndex])
 
-		self._image:set_image( "guis/textures/loading/hints/" .. EclipseTipsViewer.TipData[ EclipseTipsViewer.Categories[ EclipseTipsViewer.CategoryIndex ] ][ EclipseTipsViewer.PageIndex ] )
-
-		aligntext( self._text , self._image:bottom() )
+		aligntext(self._text, self._image:bottom())
 		alignpage()
 		alignbg()
 	end
-
 end
