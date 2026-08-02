@@ -1,1 +1,1 @@
-CriminalsManager.MAX_NR_TEAM_AI = tweak_data.group_ai.max_nr_team_ai
+CriminalsManager.MAX_NR_TEAM_AI = Eclipse.utils.is_pro_job() and 2 or 3

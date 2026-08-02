@@ -27,6 +27,25 @@ local bags_required = {
 		amount = 4 + (is_pro_job and 2 or 0),
 	},
 }
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.375,
+			time = 60,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+
 return {
 	[100109] = { -- Police
 		reinforce = {
@@ -113,6 +132,9 @@ return {
 	[100789] = spawn_anim_fix,
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
+	-- Scripted difficulty scaling
+	[100929] = objective_diff_add, -- output_gate_opened_c4
+	[100123] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,

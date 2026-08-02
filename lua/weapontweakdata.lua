@@ -2667,7 +2667,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scout.stats_modifiers = { damage = 5 }
 
 	-- R93
-	self.r93.CLIP_AMMO_MAX = 5
+	self.r93.CLIP_AMMO_MAX = 6
 	self.r93.stats.damage = 24
 	self.r93.stats.spread = 24
 	self.r93.stats.recoil = 4
@@ -2740,7 +2740,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.stats.recoil = 2
 	self.m95.stats.concealment = 8
 	self.m95.fire_mode_data.fire_rate = 60 / 40
-	self.m95.fire_rate_multiplier = 45 / 40
 	self.m95.stats_modifiers = { damage = 10 }
 
 	self.init_stat_overrides.m95 = function(weap_data)
@@ -2920,12 +2919,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 ]]
 	self.china.use_data.selection_index = 2
 	self.china.CLIP_AMMO_MAX = 3
-	self.china.stats.damage = 60
+	self.china.stats.damage = 50
 	self.china.stats.spread = 22
 	self.china.stats.recoil = 20
 	self.china.stats.concealment = 15
 	self.china.fire_mode_data.fire_rate = 60 / 50
-	self.china.fire_rate_multiplier = 60 / 50
 	self.china.stats_modifiers = { damage = 6 }
 
 	-- Compact 40
@@ -2947,24 +2945,29 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.slap.timers.reload_not_empty = 3.1
 	self.slap.timers.reload_empty = self.slap.timers.reload_not_empty
 
+	local rocket_launcher_category = {
+		"heavy",
+		"grenade_launcher",
+	}
+	
 	-- Commando 101
 	self.ray.use_data.selection_index = 2
-	table.insert(self.ray.categories, "heavy")
+	self.ray.categories = rocket_launcher_category
 	self.ray.CLIP_AMMO_MAX = 4
-	self.ray.stats.damage = 72
+	self.ray.stats.damage = 48
 	self.ray.stats.spread = 24
 	self.ray.stats.recoil = 24
 	self.ray.stats.concealment = 4
 	self.ray.fire_mode_data.fire_rate = 60 / 60
-	self.ray.stats_modifiers = { damage = 10 }
+	self.ray.stats_modifiers = { damage = 50 }
 
 	self.init_stat_overrides.ray = function(weap_data)
 		self.ray.pickup_mul = 0
-		self.ray.min_max_clips = 2
+		self.ray.min_max_clips = 1
 	end
 
 	-- RPG
-	table.insert(self.rpg7.categories, "heavy")
+	self.rpg7.categories = rocket_launcher_category
 	self.rpg7.CLIP_AMMO_MAX = 1
 	self.rpg7.stats.damage = 96
 	self.rpg7.stats.spread = 24
@@ -3310,6 +3313,8 @@ function WeaponTweakData:_set_presets()
 						v.usage = "is_lmg"
 					elseif cat_map.minigun then
 						v.usage = "mini"
+					elseif cat_map.dmr then
+						v.usage = "is_dmr"
 					else
 						v.usage = "is_rifle"
 					end

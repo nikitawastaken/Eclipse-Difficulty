@@ -279,6 +279,7 @@
 		{"cat_index": 71, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 72, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 73, 	"image": "enemy_guards",            	"consoles": true,	"category": "jerome_says"},
-		{"cat_index": 74, 	"image": "badass",            			"consoles": true,	"category": "jerome_says"}
+		{"cat_index": 74, 	"image": "badass",            			"consoles": true,	"category": "jerome_says"},
+		{"cat_index": 1,    "image": "keith",           			"consoles": true,   "category": "one_time_my_buddy_keith_said"}
 	]
 }

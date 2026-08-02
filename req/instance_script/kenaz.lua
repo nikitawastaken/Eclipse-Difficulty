@@ -1,5 +1,6 @@
 ---@module Golden Grin Casino
 local M = {}
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local so_access = Eclipse.access_filter
 local acrobatic = so_access.acrobatic
 local preferred = Eclipse.preferred
@@ -25,7 +26,7 @@ return {
 				element.values.SO_access = acrobatic -- only let SWATs, tasers and cloakers disable the drill
 			elseif patches.the_drill_timer[element.id] then -- BFD drills faster with fewer players
 				element.values.dt_balance_mul = { 1.4, 1.3, 1.2, 1.1 }
-				element.values.team_ai_balance_mul_weight = 0.5
+				element.values.team_ai_balance_mul_weight = calc_team_ai_wgt(2)
 			end
 		end
 	end,

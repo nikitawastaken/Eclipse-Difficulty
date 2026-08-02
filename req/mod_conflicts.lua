@@ -53,6 +53,7 @@ local M = {
 	"Bot Weapons and Equipment",
 	"Auto-Fire Sound Fix",
 	"NFS",
+	"Useful Bots",
 	"Carry Stacker",
 	"Carry Stacker2.0",
 	"Carry Stacker Reloaded",

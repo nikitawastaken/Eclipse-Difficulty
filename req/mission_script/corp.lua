@@ -67,7 +67,7 @@ local objective_diff_add = {
 local assault_end_diff_add = {
 	difficulty_addends = {
 		{
-			amount = 0.1875,
+			amount = 0.125,
 			time = 30,
 			delay = 0,
 		},
@@ -187,8 +187,8 @@ return {
 	[103644] = enemy_filter_dozers,
 ]]
 	-- Difficulty scaling
-	[101124] = objective_diff_add, -- display_case_open (prototype found)
-	[102341] = objective_diff_add, -- output_hack_done (documents accessible)
+	[101754] = objective_diff_add, -- logic_link_038 (prototype found)
+	[101129] = objective_diff_add, -- link_completed_obj_015 (documents accessible)
 	[100123] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
 	[102044] = office_window_spawn,

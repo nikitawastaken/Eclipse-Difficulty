@@ -15,6 +15,8 @@ local elite_snipers_respawn = (is_eclipse and 180 or 240) - (is_pro_job and 30 o
 local dozers_respawn = (is_eclipse and 300 or 360) - (is_pro_job and 60 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
+
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
 	scripted_enemy.bulldozer_2,
@@ -529,6 +531,12 @@ local optsdisable_custom_spawns = {
 		400045,
 		400067,
 		400068,
+		400086,
+		400087,
+		400088,
+		400089,
+		400090,
+		400091,
 	},
 }
 
@@ -552,9 +560,6 @@ local optsBesiegeDummyCloaker_2 = {
 	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_clk_exit_vent_1_5m",
-	on_executed = {
-		{ id = 400103, delay = 0 },
-	},
 	enabled = true,
 }
 
@@ -568,6 +573,9 @@ local optsPreferedCloakerAdd1 = {
 local optsPreferedCloakerAdd2 = {
 	spawn_groups = { 400096, 400097 },
 	enabled = true,
+	on_executed = {
+		{ id = 400103, delay = 10 },
+	},
 }
 local optsAddCloakerHideGroup = {
 	enabled = true,
@@ -728,6 +736,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400101, "nmh_cloaker_spawn_global", optsAddCloakerHideGroup),
 	Eclipse.mission_elements.gen_play_sound(400102, "boom_sfx", Vector3(-2053, 3612, 152.650), Rotation(0, 0, 0), optsWallExplosionSound),
 	Eclipse.mission_elements.gen_object_editor(400103, "wall_explosion_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsBlowUpTheWallHole),
-	Eclipse.mission_elements.gen_global_event(400104, "nmh_assault_start", optsAssaultStarted),
+	Eclipse.mission_elements.gen_global_event(400104, "nmh_assault_start", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultStarted),
 }
 return M

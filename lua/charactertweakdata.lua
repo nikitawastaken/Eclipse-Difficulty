@@ -233,6 +233,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.eclipse_normal.is_dmr = deep_clone(presets.weapon.eclipse_normal.is_rifle)
+	presets.weapon.eclipse_normal.is_dmr.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_normal.is_dmr.autofire_rounds = nil
+	presets.weapon.eclipse_normal.is_dmr.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 1 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 4000, acc = { 0.4, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	}
+
 	presets.weapon.eclipse_normal.is_smg = deep_clone(presets.weapon.eclipse_normal.is_rifle)
 	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil
 	presets.weapon.eclipse_normal.is_smg.autofire_rounds = { 3, 8 }
@@ -584,17 +592,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	local team_ai_hp = get_difficulty_specific_value({
-		60,
-		90,
-		120,
-		180,
-		240,
+	presets.gang_member_damage.HEALTH_INIT = get_difficulty_specific_value({
+		32,
+		40,
+		48,
+		72,
+		96,
 	})
-
-	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.6 or 1) * (Keepers and 0.8 or 1)
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
-	presets.gang_member_damage.REGENERATE_RATIO = 1 / 50
+	presets.gang_member_damage.REGENERATE_RATIO = 1 / 40
 	presets.gang_member_damage.REGENERATE_TIME = 1
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"

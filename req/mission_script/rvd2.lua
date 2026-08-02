@@ -1,8 +1,23 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local ambush_taser = {
 	enemy = scripted_enemy.taser_1,
+}
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
+local random_elite_dozers = {
+	scripted_enemy.elite_bulldozer_1,
+	scripted_enemy.elite_bulldozer_2,
+}
+local bulldozer_spawn = {
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
+}
+local shield_spawn = {
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 }
 local disabled = {
 	values = {
@@ -25,12 +40,6 @@ local rappel_close_spawn = {
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local filter_easy_above = {
-	values = Eclipse.utils.set_diff_groups("easy_above"),
-}
-local filter_disable = {
-	values = Eclipse.utils.set_diff_groups("disable"),
 }
 
 return {
@@ -87,11 +96,15 @@ return {
 	-- always let 2 swat vans drive in regardless of difficulty
 	[101236] = filter_easy_above,
 	[101235] = filter_disable,
-	-- change the vault ambush
-	[101382] = filter_easy_above,
-	[101388] = filter_disable,
-	[101393] = filter_disable,
-	[101399] = filter_disable,
+	-- tweak vault ambush Death Wish filter
+	[101393] = {
+		on_executed = {
+			{ id = 101421, remove = true }, -- remove the 2nd bulldozer spawn
+		},
+	},
+	[101398] = bulldozer_spawn,
+	[101418] = shield_spawn,
+	[101419] = shield_spawn,
 	-- Disable hunt
 	[102176] = disabled,
 	-- e_nl_over_1_15m
@@ -120,6 +133,7 @@ return {
 	[101054] = exclude_shields_dozers,
 	[101055] = exclude_shields_dozers,
 	[101887] = exclude_shields_dozers,
+	-- Ambush tweaks
 	-- Replace dozer spam with less stupid enemies
 	[101557] = disabled,
 	[100567] = disabled,
@@ -127,6 +141,14 @@ return {
 	[101565] = ambush_taser,
 	[101176] = ambush_taser,
 	[101207] = ambush_taser,
+	-- add the evil ambush group for DWPJ
+	[100213] = {
+		on_executed = {
+			{ id = 400010, delay = 0 },
+		},
+	},
+	-- disable the regular DW filter on DWPJ
+	[100222] = is_eclipse_pro and disabled or nil,
 	-- Spawn group intervals
 	[100019] = rappel_far_spawn,
 	[100128] = rappel_far_spawn,

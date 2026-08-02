@@ -94,7 +94,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_preferedadd(400034, "pines_cloaker_spawns", optsPreferedCloakerAdd1),
 	Eclipse.mission_elements.gen_sogroup(400035, "pines_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
 	Eclipse.mission_elements.gen_missionscript(400036, "pines_cloaker_spawn_global", optsAddCloakerHideGroup),
-	Eclipse.mission_elements.gen_global_event(400037, "pines_assault_start", optsAssaultStarted),
+	Eclipse.mission_elements.gen_global_event(400037, "pines_assault_start", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultStarted),
 }
 
 return M

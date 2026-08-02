@@ -69,6 +69,10 @@ function CopBrain:get_focus_enemy_unit()
 	return self._logic_data.focus_enemy_unit or nil
 end
 
+Hooks:PostHook(CopBrain, "on_intimidated", "on_intimidated_ub", function(self)
+	self._logic_data._next_intimidate_t = self._logic_data.t + tweak_data.player.movement_state.interaction_delay
+end)
+
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)
 local _chk_use_cover_grenade_original = CopBrain._chk_use_cover_grenade
 function CopBrain:_chk_use_cover_grenade(...)

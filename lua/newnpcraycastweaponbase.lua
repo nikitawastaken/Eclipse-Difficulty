@@ -2,6 +2,11 @@ if not Network:is_server() then
 	return
 end
 
+-- Make the Team AI AP ability push Shields instead
+function NewNPCRaycastWeaponBase:set_team_ai_ap_rounds(state)
+	self._shield_knock = state
+end
+
 -- Make team AI weapons alert enemies (oversight from when bots got the ability to use player weapons)
 Hooks:PostHook(NewNPCRaycastWeaponBase, "set_user_is_team_ai", "sh_set_user_is_team_ai", function(self)
 	if not self._setup or not alive(self._setup.user_unit) then

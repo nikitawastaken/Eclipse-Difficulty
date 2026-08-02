@@ -1,3 +1,4 @@
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -103,7 +104,7 @@ return {
 		add_drama = {
 			amount = 0.25,
 			balance_mul = { 1.2, 1, 0.8, 0.6 },
-			team_ai_balance_mul_weight = 1 / 3,
+			team_ai_balance_mul_weight = calc_team_ai_wgt(1),
 		},
 	},
 	-- Disable boat escape

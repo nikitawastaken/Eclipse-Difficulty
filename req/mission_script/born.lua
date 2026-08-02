@@ -1,3 +1,4 @@
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
@@ -47,9 +48,9 @@ return {
 	-- Increase drama when Snipers spawn
 	[100366] = { -- spawn_snipers
 		add_drama = {
-			amount = 0.25,
-			balance_mul = { 1.2, 1, 0.8, 0.6 },
-			team_ai_balance_mul_weight = 1 / 3,
+			amount = 0.2,
+			balance_mul = { 1.25, 1, 0.75, 0.5 },
+			team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 		},
 	},
 	-- Disable reinforce inside the garage

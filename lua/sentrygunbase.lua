@@ -15,6 +15,13 @@ function SentryGunBase:has_marking()
 	return self._sentry_marking or false
 end
 
+-- Adapted from LIES
+Hooks:PostHook(SentryGunBase, "activate_as_module", "activate_as_module_ub", function(self)
+	if self._unit:brain()._attention_handler then
+		self._unit:brain()._attention_handler:set_team(self._unit:movement():team())
+	end
+end)
+
 -- Workaround to the normal sentry unregistration
 Hooks:PostHook(SentryGunBase, "on_death", "eclipse_sentry_on_death", function(self)
 	managers.groupai:state():unregister_marking_sentry(self._unit)

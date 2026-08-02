@@ -60,7 +60,7 @@ return {
 			on_enemy_weapons_hot = {
 				amount = 0.375,
 				delay = 0, -- Reduce the preset's delay
-				time = 30,
+				time = 90,
 			},
 		},
 		allowed_addends = {

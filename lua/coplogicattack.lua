@@ -346,6 +346,10 @@ end
 
 -- Improve check for cover requirement and make cover verification more lenient
 function CopLogicAttack._chk_wants_to_take_cover(data, my_data)
+	if data.unit:movement()._should_stay then
+		return
+	end
+
 	if not data.attention_obj or data.attention_obj.reaction < AIAttentionObject.REACT_SHOOT then
 		return
 	end

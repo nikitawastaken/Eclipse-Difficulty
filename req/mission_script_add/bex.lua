@@ -42,6 +42,10 @@ local optVaultDozer = {
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
+}
+local optsBesiegeDummyVan = {
+	participate_to_group_ai = true,
+	enabled = true,
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsBesiegeDummyCloaker_1 = {
@@ -63,6 +67,18 @@ local optsBesiegeDummyCloaker_3 = {
 	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = true,
+}
+local optsPreferedStreetGroupsAdd = {
+	spawn_groups = { 100130, 100131, 100694, 104780, 400076 },
+	enabled = true,
+}
+local optsPreferedSideGroupsAdd = {
+	spawn_groups = { 100019, 100128, 100132 },
+	enabled = true,
+}
+local optsPreferedOvkRoofGroupAdd = {
+	spawn_groups = { 400069 },
+	enabled = overkill_and_above,
 }
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400042, 400043, 400044, 400045, 400046, 400047, 400048, 400049, 400050, 400051 },
@@ -259,20 +275,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400010, "tank_vault_2", Vector3(-53, -5729, -400), Rotation(0, 0, 0), optVaultDozer),
 
 	-- swat van 1 (that crashes at the wall)
-	Eclipse.mission_elements.gen_dummy(400011, "swat_van_spawn_1", Vector3(-2325, -6200, -15), Rotation(115, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_2", Vector3(-2300, -6250, -15), Rotation(115, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400013, "swat_van_spawn_3", Vector3(-2350, -6275, -15), Rotation(115, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400014, "swat_van_spawn_4", Vector3(-2375, -6225, -15), Rotation(115, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400011, "swat_van_spawn_1", Vector3(-2325, -6200, -15), Rotation(115, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_2", Vector3(-2300, -6250, -15), Rotation(115, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400013, "swat_van_spawn_3", Vector3(-2350, -6275, -15), Rotation(115, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400014, "swat_van_spawn_4", Vector3(-2375, -6225, -15), Rotation(115, 0, 0), optsBesiegeDummyVan),
 	Eclipse.mission_elements.gen_missionscript(400015, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400016, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_object_editor_trigger(400064, "swat_van_doors_trigger_1", optsOpenSwatVanDoors_Trigger_1),
 	Eclipse.mission_elements.gen_spawngroup(400017, "swat_group_1", { 400011, 400012, 400013, 400014 }, 0, opts_swat_group),
 
 	-- swat van 2 (middle)
-	Eclipse.mission_elements.gen_dummy(400018, "swat_van_spawn_5", Vector3(-2600, 50, -15), Rotation(100, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400019, "swat_van_spawn_6", Vector3(-2600, -25, -15), Rotation(100, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400020, "swat_van_spawn_7", Vector3(-2650, 50, -15), Rotation(100, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400021, "swat_van_spawn_8", Vector3(-2650, -25, -15), Rotation(100, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400018, "swat_van_spawn_5", Vector3(-2600, 50, -15), Rotation(100, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400019, "swat_van_spawn_6", Vector3(-2600, -25, -15), Rotation(100, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400020, "swat_van_spawn_7", Vector3(-2650, 50, -15), Rotation(100, 0, 0), optsBesiegeDummyVan),
+	Eclipse.mission_elements.gen_dummy(400021, "swat_van_spawn_8", Vector3(-2650, -25, -15), Rotation(100, 0, 0), optsBesiegeDummyVan),
 	Eclipse.mission_elements.gen_missionscript(400022, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400023, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
 	Eclipse.mission_elements.gen_object_editor_trigger(400065, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
@@ -323,5 +339,22 @@ M.elements = {
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400062, "bex_cloaker_spawns", optsPreferedCloakerAdd1),
 	Eclipse.mission_elements.gen_sogroup(400063, "bex_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
+	-- new Overkill+ spawngroup
+	Eclipse.mission_elements.gen_dummy(400064, "bex_spawn_enemy001", Vector3(1050, -5475, 400), Rotation(90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400065, "bex_spawn_enemy002", Vector3(1050, -5525, 400), Rotation(90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400066, "bex_spawn_enemy003", Vector3(1050, -5575, 400), Rotation(90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400067, "bex_spawn_enemy004", Vector3(1050, -5625, 400), Rotation(90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400068, "bex_spawn_enemy005", Vector3(1050, -5675, 400), Rotation(90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(400069, "bex_enemy_group001", { 400064, 400065, 400066, 400067, 400068 }, 0),
+	Eclipse.mission_elements.gen_preferedadd(400070, "bex_ovk_roof_group", optsPreferedOvkRoofGroupAdd),
+	-- add a new street spawngroup and move vanilla groups to custom preferreds
+	Eclipse.mission_elements.gen_dummy(400071, "bex_spawn_enemy006", Vector3(4650, 1750, 0), Rotation(180, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400072, "bex_spawn_enemy007", Vector3(4650, 1825, 0), Rotation(180, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400073, "bex_spawn_enemy008", Vector3(4650, 1900, 0), Rotation(180, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400074, "bex_spawn_enemy009", Vector3(4650, 1975, 0), Rotation(180, 0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400075, "bex_spawn_enemy010", Vector3(4650, 2050, 0), Rotation(180, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(400076, "bex_enemy_group002", { 400071, 400072, 400073, 400074, 400075 }, 0),
+	Eclipse.mission_elements.gen_preferedadd(400077, "bex_street_groups", optsPreferedStreetGroupsAdd),
+	Eclipse.mission_elements.gen_preferedadd(400078, "bex_side_groups", optsPreferedSideGroupsAdd),
 }
 return M

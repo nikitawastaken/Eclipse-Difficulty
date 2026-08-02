@@ -100,10 +100,18 @@ end
 -- Make hostage count affect hesitation delay
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
 	if self._hostage_headcount > 0 then
-		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
-		local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
 		self._task_data.assault.is_hesitating = true
-		if self._task_data.assault.next_dispatch_t then
+	end
+
+	if self._task_data.assault.next_dispatch_t then
+		local delay_mul = self:_get_balancing_multiplier(self._tweak_data.assault.delay_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.assault_delay)
+
+		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t * delay_mul
+
+		if self._hostage_headcount > 0 then
+			local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
+			local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
+
 			self._task_data.assault.voice_delay = self._task_data.assault.next_dispatch_t - self._t
 			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
 
@@ -1560,6 +1568,14 @@ function GroupAIStateBesiege:_get_drama_weight_mul(category)
 	return math.map_range_clamped(current_drama, min_drama, max_drama, min_mul, max_mul)
 end
 
+-- Improve bot reaction time after exiting travel logic
+local on_defend_travel_end_original = GroupAIStateBesiege.on_defend_travel_end
+function GroupAIStateBesiege:on_defend_travel_end(unit, ...)
+	if not self:is_unit_team_AI(unit) then
+		return on_defend_travel_end_original(self, unit, ...)
+	end
+end
+
 -- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
@@ -2056,8 +2072,6 @@ function GroupAIStatePonr:_upd_assault_task(...)
 
 	if task_data.phase == "anticipation" then
 		if task_spawn_allowance <= 0 then
-			print("spawn_pool empty: -----------FADE-------------")
-
 			task_data.phase = "fade"
 			task_data.phase_end_t = t + self._tweak_data.assault.fade_duration
 		elseif task_data.phase_end_t < t or self._drama_data.zone == "high" then

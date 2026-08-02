@@ -81,7 +81,7 @@ local escape_guaranteed_spawn = {
 local objective_diff_add = {
 	difficulty_addends = {
 		{
-			amount = 0.25,
+			amount = 0.375,
 			time = 60,
 			delay = 0,
 		},
@@ -90,8 +90,8 @@ local objective_diff_add = {
 local assault_end_diff_add = {
 	difficulty_addends = {
 		{
-			amount = 0.1875,
-			time = 20,
+			amount = 0.125,
+			time = 30,
 			delay = 0,
 		},
 	},

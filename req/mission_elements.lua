@@ -954,4 +954,29 @@ function M.gen_area_min_police_force(id, name, pos, rot, opts)
 	return area_min_police_force
 end
 
+function M.gen_play_sound(id, name, pos, rot, opts)
+	opts = opts or {}
+	local play_sound = {
+		id = id,
+		editor_name = name,
+		class = "ElementPlaySound",
+		module = "CoreElementPlaySound",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			append_prefix = false,
+			interrupt = true,
+			sound_event = opts.sound_event or "",
+			use_instigator = false,
+		},
+	}
+
+	return play_sound
+end
+
 return M

@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -29,6 +30,17 @@ local enabled = {
 	values = {
 		enabled = true,
 	},
+}
+local side_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local ovk_roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
@@ -92,23 +104,23 @@ return {
 		reinforce = {
 			{
 				name = "edge",
-				force = 3,
-				position = Vector3(0, -600, 0),
+				force = 2,
+				position = Vector3(0, 400, 0),
 			},
 			{
 				name = "grit",
 				force = 2,
-				position = Vector3(1600, 400, 0),
+				position = Vector3(1600, 300, 0),
 			},
 			{
 				name = "rush",
 				force = 2,
-				position = Vector3(-1600, 400, 0),
+				position = Vector3(-1600, 300, 0),
 			},
 			{
 				name = "mioyes",
-				force = 3,
-				position = Vector3(-2250, -2350, 0),
+				force = 2,
+				position = Vector3(-1800, -2600, 0),
 			},
 		},
 		on_executed = { -- preferred
@@ -120,7 +132,7 @@ return {
 			{
 				name = "backdoor", -- lockpick door by the mechanic shop
 				force = 2,
-				position = Vector3(1750, -2100, 0),
+				position = Vector3(1800, -2000, 0),
 			},
 		},
 	},
@@ -129,7 +141,7 @@ return {
 			{
 				name = "back_turret",
 				force = 2,
-				position = Vector3(-1700, -5650, 0),
+				position = Vector3(-1700, -5700, 0),
 			},
 		},
 	},
@@ -216,25 +228,11 @@ return {
 			},
 		},
 	},
+	-- disable heat speech
+	[102803] = disabled,
 	-- Disable vanilla reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason
-	-- Disable broken navlinks
-	[102541] = {
-		on_executed = {
-			{ id = 102544, remove = true },
-		},
-	},
-	[104726] = {
-		on_executed = {
-			{ id = 101490, remove = true },
-		},
-	},
-	[102541] = {
-		on_executed = {
-			{ id = 101618, remove = true }, -- why does this spawn a guard ?
-		},
-	},
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {
 		values = {
@@ -242,6 +240,33 @@ return {
 		},
 		on_executed = {
 			{ id = 400062, delay = 0 },
+		},
+	},
+	-- Move vanilla groups to custom preferreds
+	-- Introduce them gradually throughout the heist
+	[100129] = { -- preferred
+		on_executed = {
+			{ id = 400077, delay = 0 },
+		},
+	},
+	-- Activate 'side spawns' after the first assault
+	[100121] = { -- 1
+		on_executed = {
+			{ id = 400078, delay = 0 },
+			{ id = 400070, delay = 0 }, -- Activate an Overkill+ 'roof group' after the second assault
+			{ id = 102541, delay = 0 }, -- link_activate_navlinks_roof
+		},
+	},
+	-- Disable broken navlinks
+	[102541] = {
+		on_executed = {
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
+			{ id = 102544, remove = true },
+		},
+	},
+	[104726] = {
+		on_executed = {
+			{ id = 101490, remove = true },
 		},
 	},
 	-- Don't remove enemies for no reason
@@ -310,7 +335,24 @@ return {
 	[102369] = disabled,
 	[102382] = disabled,
 	[102781] = disabled,
+	-- Disable a few roof navlinks
+	[102557] = disabled,
+	[102565] = disabled,
+	[102558] = disabled,
+	[102559] = disabled,
+	[102561] = disabled,
+	[102562] = disabled,
+	[102563] = disabled,
+	[102564] = disabled,
+	[102535] = disabled,
+	[102536] = disabled,
+	[102537] = disabled,
+	[102538] = disabled,
 	-- Spawn group intervals
+	[100019] = side_spawn,
+	[100128] = side_spawn,
+	[100132] = side_spawn,
+	[400069] = ovk_roof_spawn,
 	[400042] = cloaker_spawn,
 	[400043] = cloaker_spawn,
 	[400044] = cloaker_spawn,

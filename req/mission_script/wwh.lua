@@ -21,18 +21,16 @@ local eclipse_dozers = {
 local train_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
-local sniper_trigger_times = {
-	values = {
-		trigger_times = 0,
-	},
-}
-local unused_sniper_trigger_times = deep_clone(sniper_trigger_times)
-unused_sniper_trigger_times.values.enabled = true
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -78,15 +76,11 @@ return {
 		},
 	},
 	-- make Snipers respawn and re-enable unused ones
-	[100520] = unused_sniper_trigger_times,
-	[100525] = sniper_trigger_times,
-	[100529] = sniper_trigger_times,
-	[100534] = sniper_trigger_times,
-	--[100540] = unused_sniper_trigger_times,
-	[100545] = unused_sniper_trigger_times,
-	--[100549] = unused_sniper_trigger_times,
-	[100553] = sniper_trigger_times,
-	[100557] = unused_sniper_trigger_times,
+	[100520] = enabled,
+	--[100540] = enabled,
+	[100545] = enabled,
+	--[100549] = enabled,
+	[100557] = enabled,
 	-- tweak the ambush enemy script
 	-- difficulty tweaks
 	[100353] = filter_easy_normal,

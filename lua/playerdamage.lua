@@ -1024,3 +1024,34 @@ function PlayerDamage:on_copr_killshot(new)
 		self._last_received_dmg = self:_max_health()
 	end
 end
+
+if not Network:is_server() then
+	return
+end
+
+-- Stop bots revive objective if someone else starts reviving
+Hooks:PostHook(PlayerDamage, "pause_downed_timer", "pause_downed_timer_ub", function(self, timer, peer_id)
+	if not peer_id then
+		return
+	end
+
+	local reviving_bot = Eclipse.utils.team_ai_get_reviving_unit(self._unit)
+	if not reviving_bot then
+		return
+	end
+
+	local internal_data = reviving_bot:brain()._logic_data.internal_data
+	local revive_complete_clbk_id = internal_data and internal_data.revive_complete_clbk_id
+	local revive_complete_t = revive_complete_clbk_id and managers.enemy:get_delayed_clbk_exec_t(revive_complete_clbk_id)
+	if revive_complete_t and revive_complete_t - TimerManager:game():time() < 2 then
+		return
+	end
+
+	reviving_bot:brain():set_objective(nil)
+	reviving_bot:movement():action_request({
+		body_part = 4,
+		type = "stand",
+	})
+
+	reviving_bot:brain():set_objective(Eclipse.utilts.team_ai_get_assist_objective(self._unit, reviving_bot))
+end)

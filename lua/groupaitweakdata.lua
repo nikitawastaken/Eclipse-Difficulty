@@ -7,7 +7,7 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local group_ai_state_names = Eclipse.utils.get_group_ai_state_names()
 local table_multiply = Eclipse.utils.table_multiply
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local access_table = Eclipse.utils.access_table
 
 GroupAITweakData.group_ai_presets = {
@@ -3485,6 +3485,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 35, 25, 20 },
 		{ 30, 20, 15 },
 	})
+	self.besiege.assault.delay_balance_mul = { 1, 1, 1, 1 }
 	self.besiege.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
 	-- SPAWNS --
@@ -3512,18 +3513,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
-	self.max_nr_team_ai = is_pro_job and 2 or 3
-
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = calculate_team_ai_weight(self.max_nr_team_ai, 2),
-		spawn_rate = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
-		force = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
-		freq = calculate_team_ai_weight(self.max_nr_team_ai, 2),
-		spawn_group_interval = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
-		difficulty_addend_time = calculate_team_ai_weight(self.max_nr_team_ai, 2),
-		difficulty_addend_delay = calculate_team_ai_weight(self.max_nr_team_ai, 2.5),
-		ponr_length = calculate_team_ai_weight(self.max_nr_team_ai, 2),
+		drama = calc_team_ai_wgt(2),
+		spawn_rate = calc_team_ai_wgt(2.5),
+		force = calc_team_ai_wgt(2.5),
+		assault_delay = calc_team_ai_wgt(2.5),
+		sustain_duration = calc_team_ai_wgt(2.5),
+		freq = calc_team_ai_wgt(2),
+		spawn_group_interval = calc_team_ai_wgt(2.5),
+		difficulty_addend_time = calc_team_ai_wgt(2),
+		difficulty_addend_delay = calc_team_ai_wgt(2.5),
+		ponr_length = calc_team_ai_wgt(2),
 	}
 
 	-- Spawn rate
@@ -3652,7 +3653,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local tank_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.4 } or { 0, 0.3, 0.4 })
 	local elite_sniper_wgt = table_multiply(clone(special_wgt_tbl), { 0.2, 0.6, 1 })
 	local elite_shield_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0.4, 0.8 })
-	local elite_tank_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0, 0.3 })
+	local elite_tank_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0, 0.2 })
 
 	-- Spawngroups
 	if difficulty_index <= 2 then
@@ -4123,17 +4124,12 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 		if not tbl then
 			return
 		end
-
 		for _, group_ai_state in pairs(group_ai_state_names) do
-			for task, mul in pairs(tbl) do
-				if self[group_ai_state] and self[group_ai_state][task] and self[group_ai_state][task].force and mul ~= 1 then
-					table_multiply(self[group_ai_state][task].force, mul)
+			for key, value in pairs(tbl) do
+				if self[group_ai_state] and self[group_ai_state][key] and self[group_ai_state][key].force and value ~= 1 then
+					table_multiply(self[group_ai_state][key].force, value)
 				end
 			end
-		end
-
-		if lvl_tweak.force_size_preset then
-			Eclipse:log_console("Set " .. lvl_tweak.force_size_preset .. " force size preset for " .. level_id)
 		end
 	end
 
