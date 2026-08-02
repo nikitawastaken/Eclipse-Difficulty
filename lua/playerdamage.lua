@@ -1053,5 +1053,5 @@ Hooks:PostHook(PlayerDamage, "pause_downed_timer", "pause_downed_timer_ub", func
 		type = "stand",
 	})
 
-	reviving_bot:brain():set_objective(Eclipse.utilts.team_ai_get_assist_objective(self._unit, reviving_bot))
+	reviving_bot:brain():set_objective(Eclipse.utils.team_ai_get_assist_objective(self._unit, reviving_bot))
 end)
