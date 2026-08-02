@@ -531,6 +531,12 @@ local optsdisable_custom_spawns = {
 		400045,
 		400067,
 		400068,
+		400086,
+		400087,
+		400088,
+		400089,
+		400090,
+		400091,
 	},
 }
 
@@ -554,9 +560,6 @@ local optsBesiegeDummyCloaker_2 = {
 	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_clk_exit_vent_1_5m",
-	on_executed = {
-		{ id = 400103, delay = 0 },
-	},
 	enabled = true,
 }
 
@@ -570,6 +573,9 @@ local optsPreferedCloakerAdd1 = {
 local optsPreferedCloakerAdd2 = {
 	spawn_groups = { 400096, 400097 },
 	enabled = true,
+	on_executed = {
+		{ id = 400103, delay = 10 },
+	},
 }
 local optsAddCloakerHideGroup = {
 	enabled = true,
