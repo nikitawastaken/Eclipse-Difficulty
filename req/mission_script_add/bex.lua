@@ -351,7 +351,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400071, "bex_spawn_enemy006", Vector3(4650, 1750, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400072, "bex_spawn_enemy007", Vector3(4650, 1825, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400073, "bex_spawn_enemy008", Vector3(4650, 1900, 0), Rotation(180, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400074, "bex_spawn_enemy009", Vector3(4650, 1975, 0), Rotation(180, 0,-0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400074, "bex_spawn_enemy009", Vector3(4650, 1975, 0), Rotation(180, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400075, "bex_spawn_enemy010", Vector3(4650, 2050, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400076, "bex_enemy_group002", { 400071, 400072, 400073, 400074, 400075 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400077, "bex_street_groups", optsPreferedStreetGroupsAdd),

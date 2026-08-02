@@ -50,7 +50,7 @@ return {
 		add_drama = {
 			amount = 0.2,
 			balance_mul = { 1.25, 1, 0.75, 0.5 },
-			team_ai_balance_mul_weight = calc_team_ai_wgt(2)
+			team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 		},
 	},
 	-- Disable reinforce inside the garage

@@ -133,7 +133,7 @@ return {
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
 	-- Scripted difficulty scaling
-	[100929] = objective_diff_add, -- output_gate_opened_c4 
+	[100929] = objective_diff_add, -- output_gate_opened_c4
 	[100123] = assault_end_diff_add, -- end_assault
 	-- Spawn group intervals
 	[100131] = dock_spawn,

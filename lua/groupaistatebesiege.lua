@@ -102,10 +102,10 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 	if self._hostage_headcount > 0 then
 		self._task_data.assault.is_hesitating = true
 	end
-	
-	if self._task_data.assault.next_dispatch_t then	
+
+	if self._task_data.assault.next_dispatch_t then
 		local delay_mul = self:_get_balancing_multiplier(self._tweak_data.assault.delay_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.assault_delay)
-		
+
 		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t * delay_mul
 
 		if self._hostage_headcount > 0 then

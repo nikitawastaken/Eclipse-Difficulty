@@ -21,7 +21,7 @@ return {
 		addends = {
 			on_enemy_weapons_hot = {
 				amount = 0.375,
-				delay = 45, 
+				delay = 45,
 				time = 90,
 			},
 		},

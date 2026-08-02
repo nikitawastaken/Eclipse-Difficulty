@@ -221,7 +221,7 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function(self, tweak_da
 
 	self.timer_data = {}
 
-	self.ai_tick_rate = 1 / 60	
+	self.ai_tick_rate = 1 / 60
 
 	if level_id then
 		self._groupai_settings = Eclipse:require("groupai_settings/" .. level_id)
@@ -3512,14 +3512,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
-	
+
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
 		drama = calc_team_ai_wgt(2),
 		spawn_rate = calc_team_ai_wgt(2.5),
 		force = calc_team_ai_wgt(2.5),
 		assault_delay = calc_team_ai_wgt(2.5),
-		sustain_duration = calc_team_ai_wgt(2.5), 
+		sustain_duration = calc_team_ai_wgt(2.5),
 		freq = calc_team_ai_wgt(2),
 		spawn_group_interval = calc_team_ai_wgt(2.5),
 		difficulty_addend_time = calc_team_ai_wgt(2),
@@ -3560,7 +3560,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 		table.insert(self.besiege.assault.spawn_rate_balance_mul, spawn_rate_entry)
 	end
-	
+
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
@@ -4098,7 +4098,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 	self:_apply_group_ai_preset(self._mission_preset)
 
 	local lvl_tweak = self.tweak_data.levels[level_id]
-	
+
 	if not lvl_tweak then
 		return
 	end
@@ -4143,7 +4143,7 @@ function GroupAITweakData:_apply_group_ai_settings_new(level_settings)
 
 	self:_apply_tactics_mod(level_settings.tactics_mod)
 	self:_apply_special_limit_mod(level_settings.special_limit_mod)
-	self:_apply_task_data_mod(level_settings.task_data_mod)	
+	self:_apply_task_data_mod(level_settings.task_data_mod)
 end
 
 local function modify_groupai_value(value, modifier, mode)

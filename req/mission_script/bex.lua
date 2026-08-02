@@ -254,14 +254,14 @@ return {
 		on_executed = {
 			{ id = 400078, delay = 0 },
 			{ id = 400070, delay = 0 }, -- Activate an Overkill+ 'roof group' after the second assault
-			{ id = 102541, delay = 0 }, -- link_activate_navlinks_roof 
+			{ id = 102541, delay = 0 }, -- link_activate_navlinks_roof
 		},
 	},
 	-- Disable broken navlinks
 	[102541] = {
 		on_executed = {
 			{ id = 101618, remove = true }, -- why does this spawn a guard ?
-			{ id = 102544, remove = true }, 
+			{ id = 102544, remove = true },
 		},
 	},
 	[104726] = {

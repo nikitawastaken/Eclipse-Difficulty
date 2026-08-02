@@ -50,19 +50,19 @@ return {
 			{
 				name = "traincar01",
 				force = 2,
-				position = Vector3(-6220, 5800, 450)
+				position = Vector3(-6220, 5800, 450),
 			},
 			{
 				name = "traincar02",
 				force = 2,
-				position = Vector3(-3220, 4790, 450)
+				position = Vector3(-3220, 4790, 450),
 			},
 			{
 				name = "traincar03",
 				force = 2,
-				position = Vector3(2090, 5770, 450)
-			}
-		}
+				position = Vector3(2090, 5770, 450),
+			},
+		},
 	},
 	-- change the amount of required loot
 	[101223] = bags_required,
@@ -76,7 +76,7 @@ return {
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
 	-- Scripted difficulty scaling
-	[103049] = objective_diff_add, -- link_enable_wagons 
+	[103049] = objective_diff_add, -- link_enable_wagons
 	[103583] = objective_diff_add, -- input_enable_interact_controls
 	[100123] = assault_end_diff_add, -- end_assault
 	-- Replace generic security with soldiers (SO MANY GUARDS)
