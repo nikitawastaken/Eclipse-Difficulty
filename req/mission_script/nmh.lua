@@ -69,6 +69,14 @@ return {
 			{ id = 400063, delay = 0 },
 		},
 	},
+	-- reduce the beat cop wave delay
+	[103074] = {
+		on_executed = {
+			{ id = 103034, delay = 30 }, -- (Vanilla: 45)
+		},
+	},
+	-- don't disable reception prefereds
+	[103326] = disabled, -- killReceptionPrefereds
 	-- decrease the interval of vent navlinks
 	[103194] = vent_navlink_interval,
 	[103195] = vent_navlink_interval,

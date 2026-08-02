@@ -52,7 +52,7 @@ local assault_end_diff_add = {
 	difficulty_addends = {
 		{
 			amount = 0.125,
-			time = 20,
+			time = 30,
 			delay = 0,
 		},
 	},

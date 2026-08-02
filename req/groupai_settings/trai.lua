@@ -10,10 +10,10 @@ return {
 		},
 		{
 			groupai_state = "all",
-			value = { "reenforce", "interval" },
+			value = { "assault", "delay_balance_mul" },
 			tweak = {
-				mode = "subtract",
-				modifier = { 0, 5, 10 },
+				mode = "replace",
+				modifier = { 1, 1, 1, 1 },
 			},
 		},
 	},

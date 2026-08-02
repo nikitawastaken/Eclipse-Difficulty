@@ -106,7 +106,7 @@ return {
 			},
 			{
 				name = "bank_back",
-				force = 3,
+				force = 2,
 				position = Vector3(-3250, -1375, -60),
 			},
 		},

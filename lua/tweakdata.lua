@@ -1,5 +1,4 @@
-local diff_i = Eclipse.utils.difficulty_index()
-local overkill_above = diff_i >= 5
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 local function create_explosive_arrow(base_arrow)
@@ -70,7 +69,7 @@ tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distanc
 
 -- Security Cameras
 tweak_data.security_camera = {
-	rotation_enabled = overkill_above,
+	rotation_enabled = overkill_and_above,
 	max_yaw = 60,
 	max_pitch = 30,
 	stall_time = { 1.5, 2.5 },

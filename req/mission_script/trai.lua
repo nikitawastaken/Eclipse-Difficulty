@@ -24,34 +24,45 @@ local bags_required_objective = {
 		amount = 4 + (is_pro_job and 2 or 0),
 	},
 }
+local objective_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.1875,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+local assault_end_diff_add = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			time = 30,
+			delay = 0,
+		},
+	},
+}
+
 return {
-	-- Reinforce spots on traincars, it just works.
+	-- Add new reinforce
 	[102477] = {
 		reinforce = {
 			{
 				name = "traincar01",
 				force = 2,
-				position = Vector3(-6220, 5800, 450),
+				position = Vector3(-6220, 5800, 450)
 			},
 			{
 				name = "traincar02",
 				force = 2,
-				position = Vector3(-3220, 4790, 450),
+				position = Vector3(-3220, 4790, 450)
 			},
 			{
 				name = "traincar03",
 				force = 2,
-				position = Vector3(2090, 5770, 450),
-			},
-		},
-	},
-	-- Disable traincar reinforce when hooking up the locomotive
-	[101049] = {
-		reinforce = {
-			{ name = "traincar01" },
-			{ name = "traincar02" },
-			{ name = "traincar03" },
-		},
+				position = Vector3(2090, 5770, 450)
+			}
+		}
 	},
 	-- change the amount of required loot
 	[101223] = bags_required,
@@ -64,6 +75,10 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
+	-- Scripted difficulty scaling
+	[103049] = objective_diff_add, -- link_enable_wagons 
+	[103583] = objective_diff_add, -- input_enable_interact_controls
+	[100123] = assault_end_diff_add, -- end_assault
 	-- Replace generic security with soldiers (SO MANY GUARDS)
 	[100670] = security_army,
 	[100671] = security_army,

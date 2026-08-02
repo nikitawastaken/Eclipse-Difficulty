@@ -1,3 +1,4 @@
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
@@ -36,13 +37,13 @@ local filter_disable = {
 local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local timbermill_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 10,
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local hillside_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -82,9 +83,9 @@ return {
 	-- Increase drama when Snipers spawn
 	[100513] = { -- spawn_snipers
 		add_drama = {
-			amount = 0.25,
-			balance_mul = { 1.2, 1, 0.8, 0.6 },
-			team_ai_balance_mul_weight = 1 / 3,
+			amount = 0.2,
+			balance_mul = { 1.25, 1, 0.75, 0.5 },
+			team_ai_balance_mul_weight = calc_team_ai_wgt(2)
 		},
 	},
 	-- Disable boat escape reinforce

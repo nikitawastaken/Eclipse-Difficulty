@@ -92,12 +92,12 @@ return {
 			{
 				name = "parking_lot01",
 				force = 3,
-				position = Vector3(1750, -450, -15),
+				position = Vector3(1400, -1000, 0),
 			},
 			{
 				name = "parking_lot02",
 				force = 3,
-				position = Vector3(-1250, -1000, -15),
+				position = Vector3(-1200, -1000, 0),
 			},
 			{
 				name = "entrance",
@@ -139,29 +139,15 @@ return {
 			position = Vector3(-1725, 3498, 125),
 		},
 	},
-	-- Only activate roof preferreds after the first assault is over
+	-- Remove roof spawns from the initial preferred
 	[100129] = { -- preferred
 		on_executed = {
 			{ id = 101574, remove = true }, -- ai_preferred_police_roof
 		},
 	},
-	[100123] = { -- end_assault
-		on_executed = {
-			{ id = 101574, delay = 0, delay_rand = 30 }, -- ai_preferred_police_roof
-		},
-	},
-	-- Don't disable cell preferreds
-	[101397] = {
-		on_executed = {
-			{ id = 102194, remove = true }, -- ai_enemy_prefered_remove_cells_back_spawn
-		},
-	},
-	-- Don't assign roof preferreds to an area trigger
-	[101225] = { -- link_completed_cut lose the prisoner
-		on_executed = {
-			{ id = 104087, remove = true }, -- enable_trigger_to_spawn_ai
-		},
-	},
+	-- Don't disable preferreds
+	[101572] = disabled, -- ai_enemy_prefered_remove_roof
+	[102194] = disabled, -- ai_enemy_prefered_remove_cells_back_spawn
 	-- tweak the swat van arrivals to not trigger them all at once
 	-- 2 swat vans arrive on alarm
 	[100948] = {
@@ -177,6 +163,7 @@ return {
 	[100123] = {
 		on_executed = {
 			{ id = 101662, delay = 0 },
+			{ id = 101574, delay = 0, delay_rand = 0 }, -- ai_preferred_police_roof
 			{ id = 101663, delay = 60, delay_rand = 20 },
 			{ id = 101594, delay = 100, delay_rand = 20 },
 		},

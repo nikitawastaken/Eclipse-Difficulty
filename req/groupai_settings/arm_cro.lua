@@ -4,8 +4,8 @@ return {
 			groupai_state = "all",
 			value = { "assault", "spawn_rate" },
 			tweak = {
-				mode = "add",
-				modifier = 0.25,
+				mode = "multiply",
+				modifier = 1.2,
 			},
 		},
 	},

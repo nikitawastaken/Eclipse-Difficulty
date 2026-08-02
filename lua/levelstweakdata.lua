@@ -113,24 +113,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.haunted.force_size_preset = "reduced_t3"
 	self.chew.force_size_preset = "reduced_t3"
 	self.hvh.force_size_preset = "reduced_t3"
+	
 	self.framing_frame_3.force_size_preset = "reduced_t2"
 	self.chill_combat.force_size_preset = "reduced_t2"
 	self.nmh.force_size_preset = "reduced_t2"
 	self.bph.force_size_preset = "reduced_t2"
 	self.vit.force_size_preset = "reduced_t2"
+	
+	self.roberts.force_size_preset = "reduced_t1"
 	self.pbr2.force_size_preset = "reduced_t1"
+	self.flat.force_size_preset = "reduced_t1"
 	self.nail.force_size_preset = "reduced_t1"
 	self.moon.force_size_preset = "reduced_t1"
-	self.wwh.force_size_preset = "reduced_t1"
 	self.des.force_size_preset = "reduced_t1"
-	self.fex.force_size_preset = "reduced_t1"
 	self.chca.force_size_preset = "reduced_t1"
+	
 	self.watchdogs_2.force_size_preset = "increased_t1"
 	self.watchdogs_2_day.force_size_preset = "increased_t1"
 	self.shoutout_raid.force_size_preset = "increased_t1"
 	self.friend.force_size_preset = "increased_t1"
 	self.bex.force_size_preset = "increased_t1"
 	self.trai.force_size_preset = "increased_t1"
+	
 	self.corp.force_size_preset = "increased_t2"
 
 	-- Set difficulty scaling presets
@@ -170,14 +174,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.flat.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
 	self.des.difficulty_scaling_preset = "regroup_slow"
-	self.ranc.difficulty_scaling_preset = "regroup_slow"
+	self.bex.difficulty_scaling_preset = "regroup_slow"
 	self.deep.difficulty_scaling_preset = "regroup_slow"
 
 	self.pex.difficulty_scaling_preset = "sustain_aggressive"
 
 	self.man.difficulty_scaling_preset = "sustain_slow"
 	self.vit.difficulty_scaling_preset = "sustain_slow"
-	self.trai.difficulty_scaling_preset = "sustain_slow"
 
 	-- stealth bonus changes
 	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)

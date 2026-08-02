@@ -1,26 +1,9 @@
 ---@module Drill Unit Overrides
+local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 
-local max_nr_team_ai = tweak_data.group_ai.max_nr_team_ai
-local calculate_team_ai_weight = Eclipse.utils.calculate_team_ai_weight
-
-local security_door_solo_friendly = {
-	drill = {
-		{
-			timer = 150,
-			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
-				8 / 10,
-				9 / 10,
-				1,
-				1,
-			},
-			jam_times = { 1, 2 },
-		},
-	},
-}
 local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 	drill = {
 		{
@@ -36,6 +19,68 @@ local evil_nightmare_safe = {
 			timer = 666, -- Dallas, my friend, the devil.
 			forbid_reenforce = true,
 			forbid_sabotage = true,
+		},
+	},
+}
+local security_door_short = {
+	drill = {
+		{
+			timer = 90,
+			jam_times = { 0, 1 },
+		},
+	},
+}
+local security_door_solo_friendly = {
+	drill = {
+		{
+			timer = 150,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
+				8 / 10,
+				1,
+				1,
+				1,
+			},
+			jam_times = { 1, 2 },
+		},
+	},
+}
+local big_vault_door = {
+	drill = {
+		{
+			timer = 75,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
+				8 / 10,
+				1,
+				1,
+				1,
+			},
+			jam_times = { 0, 1 },
+			forbid_reenforce = true,
+		},
+	},
+}
+local ranc_door = {
+	drill = {
+		{
+			timer = 75,
+			timer_init_balance_mul = {
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
+				4 / 5,
+				1,
+				1,
+				1,
+			},
+			jam_times = { 0, 1 },
+			forbid_reenforce = true,
+		},
+	},
+}
+local teddy_moo_saw = {
+	drill = {
+		{
+			timer = 180,
 		},
 	},
 }
@@ -173,7 +218,7 @@ local M = {
 	["bex"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
 			timer_dt_balance_mul = {
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 				8 / 10,
 				9 / 10,
 				1,
@@ -181,7 +226,7 @@ local M = {
 			},
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
@@ -196,7 +241,7 @@ local M = {
 	["big"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
 			timer_dt_balance_mul = {
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 2),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 				8 / 10,
 				9 / 10,
 				1,
@@ -204,7 +249,7 @@ local M = {
 			},
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
 				{ 1, 2 },
 				{ 2, 3 },
 				{ 3, 4 },
@@ -222,14 +267,14 @@ local M = {
 		[103322] = security_door_solo_friendly,
 		[105317] = security_door_solo_friendly,
 		[106336] = security_door_solo_friendly,
-		[103891] = security_door_solo_friendly, -- Gates inside the vault
-		[102905] = security_door_solo_friendly,
-		[103298] = security_door_solo_friendly,
-		[103351] = security_door_solo_friendly,
-		[103340] = security_door_solo_friendly,
-		[103637] = security_door_solo_friendly,
-		[104082] = security_door_solo_friendly,
-		[101729] = security_door_solo_friendly,
+		[103891] = big_vault_door, -- Gates inside the vault
+		[102905] = big_vault_door,
+		[103298] = big_vault_door,
+		[103351] = big_vault_door,
+		[103340] = big_vault_door,
+		[103637] = big_vault_door,
+		[104082] = big_vault_door,
+		[101729] = big_vault_door,
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
@@ -285,7 +330,7 @@ local M = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
@@ -299,6 +344,11 @@ local M = {
 		[300050] = security_door_solo_friendly,
 		[300957] = security_door_solo_friendly,
 		[301068] = security_door_solo_friendly,
+	},
+	["nmh"] = {
+		[("units/pd2_dlc_nmh/props/nmh_interactable_teddy_saw/nmh_interactable_teddy_saw"):key()] = {
+			timer = 180,
+		},
 	},
 	["pal"] = {
 		[("units/world/props/suburbia_hackbox/suburbia_hackbox"):key()] = {
@@ -316,7 +366,7 @@ local M = {
 		[("units/pd2_dlc_peta/equipment/pta_interactable_door_drill/pta_interactable_door_drill"):key()] = {
 			timer = 90,
 			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 				4 / 6,
 				5 / 6,
 				1,
@@ -329,7 +379,7 @@ local M = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calculate_team_ai_weight(max_nr_team_ai, 1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
@@ -337,6 +387,10 @@ local M = {
 			},
 			forbid_sabotage = true,
 		},
+	},
+	["trai"] = {
+		[101874] = security_door_short,
+		[101013] = security_door_short,
 	},
 }
 
