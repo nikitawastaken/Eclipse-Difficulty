@@ -316,7 +316,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 							target_priority = target_priority * 1.5
 						end
 
-						local att_player_damage = logic_data.attention_obj.unit:character_damage()
+						local att_player_damage = logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:character_damage()
 
 						local player_suppressed = att_player_damage and att_player_damage:is_suppressed()
 						if player_suppressed then
