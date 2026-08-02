@@ -1040,7 +1040,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		ammo_pickup_min_mul = 0,
 		ammo_bag_consumption_mul = 2,
 		ammo_max_mul = 2 / 3,
-		movement_speed = 0.85,
+		movement_speed = 0.8,
 		forbid_start_out_ammo = true,
 	}
 	self.parts.wpn_fps_snp_m95_barrel_long.has_description = true

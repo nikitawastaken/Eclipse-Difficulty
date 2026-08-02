@@ -39,7 +39,7 @@ local function create_electric_grenade(base_grenade)
 	local electric_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
 	electric_grenade.damage = damage / 2
-	electric_grenade.curve_pow = 1 -- 3
+	electric_grenade.curve_pow = 1.5 -- 3
 	electric_grenade.range = base_grenade.range + 100
 	electric_grenade.sound_event = "gl_electric_explode"
 	electric_grenade.projectile_trail = true
@@ -172,7 +172,7 @@ tweak_data.projectiles.laser_watch.damage = tweak_data.projectiles.laser_watch.d
 
 -- Frag Grenade
 tweak_data.projectiles.frag.damage = 48
-tweak_data.projectiles.frag.curve_pow = 1
+tweak_data.projectiles.frag.curve_pow = 1.5
 tweak_data.projectiles.frag.range = 500
 
 -- HEF Grenade
@@ -181,11 +181,11 @@ tweak_data.projectiles.frag_com.name_id = "bm_grenade_frag_com"
 
 -- Molotov Cocktail
 tweak_data.projectiles.molotov.damage = 4
-tweak_data.projectiles.molotov.curve_pow = 1
+tweak_data.projectiles.molotov.curve_pow = 1.5
 
 -- Incendiary Grenade
 tweak_data.projectiles.fir_com.damage = 0.4
-tweak_data.projectiles.fir_com.curve_pow = 1
+tweak_data.projectiles.fir_com.curve_pow = 1.5
 
 -- Dynamite
 tweak_data.projectiles.dynamite = deep_clone(tweak_data.projectiles.frag)
@@ -194,27 +194,27 @@ tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosi
 
 -- Flashbang (formerly Concussion Grenade)
 tweak_data.projectiles.concussion.damage = 1
-tweak_data.projectiles.concussion.curve_pow = 1
+tweak_data.projectiles.concussion.curve_pow = 1.5
 tweak_data.projectiles.concussion.range = 800
 
 -- X1-ZAPper
 tweak_data.projectiles.wpn_gre_electric.damage = 24
-tweak_data.projectiles.wpn_gre_electric.curve_pow = 1 -- 3
+tweak_data.projectiles.wpn_gre_electric.curve_pow = 1.5 -- 3
 tweak_data.projectiles.wpn_gre_electric.range = 600
 
 -- Matryoshka Grenade (now an alternative to the X1-ZAPper)
 tweak_data.projectiles.dada_com.damage = 24
 tweak_data.projectiles.dada_com.player_damage = 225
-tweak_data.projectiles.dada_com.curve_pow = 1 -- 3
+tweak_data.projectiles.dada_com.curve_pow = 1.5 -- 3
 tweak_data.projectiles.dada_com.range = 600
 
 -- The Snowball
 tweak_data.projectiles.xmas_snowball.damage = 4
-tweak_data.projectiles.xmas_snowball.curve_pow = 1
+tweak_data.projectiles.xmas_snowball.curve_pow = 1.5
 
 -- Viper Grenade
-tweak_data.projectiles.poison_gas_grenade.damage = 12
-tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
+tweak_data.projectiles.poison_gas_grenade.damage = 1
+tweak_data.projectiles.poison_gas_grenade.curve_pow = 1.5
 tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 20
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
@@ -227,14 +227,14 @@ tweak_data.projectiles.poison_gas_grenade.radius_blurzone_multiplier = tweak_dat
 
 -- Impact Grenade (formerly the Adhesive Grenade)
 tweak_data.projectiles.sticky_grenade.damage = 36
-tweak_data.projectiles.sticky_grenade.curve_pow = 1
+tweak_data.projectiles.sticky_grenade.curve_pow = 1.5
 tweak_data.projectiles.sticky_grenade.range = 200
 tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
 
 -- Launcher Grenades
 tweak_data.projectiles.launcher_frag.damage = 36
-tweak_data.projectiles.launcher_frag.curve_pow = 1
-tweak_data.projectiles.launcher_frag.range = 400
+tweak_data.projectiles.launcher_frag.curve_pow = 1.5
+tweak_data.projectiles.launcher_frag.range = 350
 
 tweak_data.projectiles.launcher_incendiary = create_incendiary_grenade(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_electric = create_electric_grenade(tweak_data.projectiles.launcher_frag)
@@ -250,6 +250,14 @@ tweak_data.projectiles.launcher_frag_slap = deep_clone(tweak_data.projectiles.la
 tweak_data.projectiles.launcher_incendiary_slap = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_slap)
 tweak_data.projectiles.launcher_electric_slap = create_electric_grenade(tweak_data.projectiles.launcher_frag_slap)
 tweak_data.projectiles.launcher_poison_slap = create_poison_grenade(tweak_data.projectiles.launcher_frag_slap)
+
+-- China Puff
+--tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
+tweak_data.projectiles.launcher_frag_china.damage = 30
+
+tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china)
+tweak_data.projectiles.launcher_electric_china = create_electric_grenade(tweak_data.projectiles.launcher_frag_china)
+tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china)
 
 -- Little Friend Underbarrel
 --tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
@@ -267,19 +275,11 @@ tweak_data.projectiles.launcher_incendiary_m32 = create_incendiary_grenade(tweak
 tweak_data.projectiles.launcher_electric_m32 = create_electric_grenade(tweak_data.projectiles.launcher_frag_m32)
 tweak_data.projectiles.launcher_poison_m32 = create_poison_grenade(tweak_data.projectiles.launcher_frag_m32)
 
--- China Puff
---tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_frag_china.damage = 36
-
-tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china)
-tweak_data.projectiles.launcher_electric_china = create_electric_grenade(tweak_data.projectiles.launcher_frag_china)
-tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china)
-
 -- Arbiter
 --tweak_data.projectiles.launcher_frag_arbiter = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_arbiter.damage = 24
 tweak_data.projectiles.launcher_frag_arbiter.launch_speed = 7000
-tweak_data.projectiles.launcher_frag_arbiter.range = 250
+tweak_data.projectiles.launcher_frag_arbiter.range = 200
 
 --tweak_data.projectiles.launcher_incendiary_arbiter = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter)
 tweak_data.projectiles.launcher_electric_arbiter = create_electric_grenade(tweak_data.projectiles.launcher_frag_arbiter)
@@ -295,15 +295,16 @@ tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.
 
 -- RPG
 tweak_data.projectiles.launcher_rocket.damage = 480
-tweak_data.projectiles.launcher_rocket.curve_pow = 1
+tweak_data.projectiles.launcher_rocket.curve_pow = 1.5
 tweak_data.projectiles.launcher_rocket.player_dmg_mul = 1 / 8
-tweak_data.projectiles.launcher_rocket.range = 600
+tweak_data.projectiles.launcher_rocket.range = 500
 tweak_data.projectiles.launcher_rocket.projectile_trail = true
 
 -- Commando 101
-tweak_data.projectiles.rocket_ray_frag.damage = 72
-tweak_data.projectiles.rocket_ray_frag.curve_pow = 1
-tweak_data.projectiles.rocket_ray_frag.range = 600
+tweak_data.projectiles.rocket_ray_frag.damage = 240
+tweak_data.projectiles.rocket_ray_frag.curve_pow = 1.5
+tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 4
+tweak_data.projectiles.rocket_ray_frag.range = 500
 
 -- the c101 exclusive anim breaks for some reason when it's changed to primary with no fix
 tweak_data.scene_poses.weapon.ray = { "husk_generic1", "husk_generic2", "husk_generic3", "husk_generic4", required_pose = false }
