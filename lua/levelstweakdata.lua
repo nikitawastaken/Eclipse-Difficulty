@@ -849,9 +849,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["heat_street_4"] = 3,
 		["heat_street_cheese"] = additive_weight_value,
 	}
-	--	self.nmh.random_environments = {
-	--		["no_mercy"] = 69,
-	--	}
+	self.nmh.random_environments = {
+		["no_mercy"] = 69,
+	}
 	self.dah.random_environments = {
 		["diamond_heist"] = 69,
 	}
