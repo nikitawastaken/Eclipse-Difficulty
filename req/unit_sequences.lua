@@ -256,7 +256,7 @@ local M = {
 	["units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"] = { name = "gensec_2", head = head_sequences.security },
 
 	["units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"] = { name = "gensec_operator_1", head = head_sequences.swat_b },
-	["units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"] = { name = "gensec_operator_1", head = head_sequences.swat_b },
+	["units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"] = { name = "gensec_operator_2", head = head_sequences.swat_b },
 
 	["units/payday2/characters/ene_secret_service_1/ene_secret_service_1"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/payday2/characters/ene_secret_service_2/ene_secret_service_2"] = { name = "secret_service_1", head = head_sequences.security },

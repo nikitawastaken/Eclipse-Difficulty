@@ -88,7 +88,6 @@
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="CopBase" >
-			<var name="can_be_marked" value="true"/>
 			<var name="_tweak_table" value="marshal_security"/>
 			<var name="_default_weapon_id" value="mp5"/>
 		</extension>
