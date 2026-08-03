@@ -266,7 +266,7 @@ function TeamAILogicBase._check_deliver_bag(data)
 				body_part = 1,
 			},
 			complete_clbk = function(unit)
-				local carry_unit = unit:movement():carry_unit()
+				local carry_unit, carry_idx = unit:movement():get_secure_carry()
 				local carry_data = alive(carry_unit) and carry_unit:carry_data()
 				if not carry_data then
 					return
@@ -299,6 +299,7 @@ function TeamAILogicBase._check_deliver_bag(data)
 				else
 					carry_data:set_position_and_throw(secure_info.bag_pos, secure_info.dir, 100)
 				end
+				unit:movement():clear_in_use_carry(carry_idx)
 			end,
 		},
 	})

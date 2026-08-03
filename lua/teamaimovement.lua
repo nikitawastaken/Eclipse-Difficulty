@@ -129,6 +129,27 @@ function TeamAIMovement:carry_unit(idx)
 	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx]
 end
 
+-- attempt to fix a possible race condition
+local in_use_carries = {}
+function TeamAIMovement:get_secure_carry()
+	local idx = #self._carry_table
+	if in_use_carries[idx] then
+		idx = idx - 1
+	end
+
+	if idx == 0 then
+		return false
+	end
+
+	in_use_carries[idx] = true
+
+	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx], idx
+end
+
+function TeamAIMovement:clear_in_use_carry(idx)
+	in_use_carries[idx] = false
+end
+
 -- returns top if no args given
 function TeamAIMovement:carry_id(idx)
 	idx = idx or #self._carry_table
