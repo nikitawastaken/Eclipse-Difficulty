@@ -385,7 +385,7 @@
 			<object 			enabled="true" name="'g_hat_bex_cop_lod4'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'hat_pex_cop_badge'" once="true" triggable="true"> 		
+		<sequence editable_state="true" name="'hat_bex_cop_badge_b'" once="true" triggable="true"> 		
 			<object 			enabled="true" name="'g_hat_bex_cop_lod5'" />
 			<object 			enabled="true" name="'g_hat_bex_cop_lod6'" />
 		</sequence>
@@ -1249,8 +1249,7 @@
 			<run_sequence 		name="'hat_bex_cop'" />
 			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'handcuffs'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			
+	
 			<run_sequence 		name="'random_body_c'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
@@ -1298,7 +1297,7 @@
 			<run_sequence 		name="'badges_pex_cop'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_bex_cop'" />
-			<run_sequence 		name="'hat_pex_cop_badge'" />
+			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_bex_a'" />
@@ -1317,7 +1316,7 @@
 			<run_sequence 		name="'badges_pex_cop'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_bex_cop'" />
-			<run_sequence 		name="'hat_pex_cop_badge'" />
+			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_bex_b'" />

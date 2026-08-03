@@ -89,7 +89,7 @@
 			<run_sequence 		name="'random_shades_rare'" />
 			<run_sequence 		name="'random_bandana_head'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
-			<run_sequence 		name="'random_hat'" />
+			<run_sequence 		name="'random_hat_black'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'gang_black_3'" once="true" triggable="true">
@@ -301,6 +301,10 @@
 			<set_variables 		has_cigarette="1" />
 			<object 			enabled="true" name="'g_cigarette'" />
 			<object 			enabled="true" name="'g_cigarette_lod1'" />
+			<effect_spawner 	enabled="true" name="'cigarette_smoke'"/>
+		</sequence>
+		<sequence editable_state="false" name="'kill_cigarette_smoke'" triggable="false">
+			<effect_spawner 	enabled="false" name="'cigarette_smoke'"/>
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
@@ -329,6 +333,34 @@
 			<set_variables 		has_hat="1" />
 			<object 			enabled="true" name="'g_hat_lod7'" />
 			<object 			enabled="true" name="'g_hat_lod8'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_hat_black'" triggable="true">
+			<run_sequence 		filter="'check_bandana_head_type1'" name="'hat_black_'..pick('c')" />
+			<run_sequence 		filter="'check_bandana_head_type2'" name="'hat_black_'..pick('d')" />
+			<run_sequence 		filter="'check_no_bandana_head'" name="'hat_black_'..pick('a','a','b','b','c','d')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hat_black_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'hat_black_a'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_black_lod1'" />
+			<object 			enabled="true" name="'g_hat_black_lod2'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_black_b'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_black_lod3'" />
+			<object 			enabled="true" name="'g_hat_black_lod4'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_black_c'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_black_lod5'" />
+			<object 			enabled="true" name="'g_hat_black_lod6'" />
+		</sequence>
+		<sequence editable_state="true" name="'hat_black_d'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			<object 			enabled="true" name="'g_hat_black_lod7'" />
+			<object 			enabled="true" name="'g_hat_black_lod8'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

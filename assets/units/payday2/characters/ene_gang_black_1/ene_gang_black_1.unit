@@ -99,6 +99,7 @@
 			<var name="_head_gear_object" value="g_hat_lod" />
 			<var name="_nr_head_gear_objects" value="8" />
 			<var name="_head_gear" value="units/payday2/characters/ene_acc_gang_cap_1/ene_acc_gang_cap_1" />
+			<var name="_death_sequence" value="kill_cigarette_smoke" />	
 		</extension>
 		<extension name="movement" class="CopMovement" >
 			<var name="_footwear" value="hardsole" />

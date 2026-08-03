@@ -44,6 +44,7 @@
 			<run_sequence 		name="'random_body_lower_b'" />
 			<run_sequence 		name="'random_shoes_a'" />
 			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_cigarette_common'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'triad_gang_2'" once="true" triggable="true">
@@ -51,6 +52,7 @@
 			<run_sequence 		name="'random_body_lower_a'" />
 			<run_sequence 		name="'random_shoes_b'" />
 			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'triad_gang_3'" once="true" triggable="true">
@@ -58,6 +60,7 @@
 			<run_sequence 		name="'random_body_lower_b'" />
 			<run_sequence 		name="'random_shoes_c'" />
 			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_cigarette_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'triad_gang_4'" once="true" triggable="true">
@@ -65,6 +68,7 @@
 			<run_sequence 		name="'random_body_lower_a'" />
 			<run_sequence 		name="'random_shoes_d'" />
 			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'triad_gang_5'" once="true" triggable="true">
@@ -72,6 +76,7 @@
 			<run_sequence 		name="'random_body_lower_b'" />
 			<run_sequence 		name="'random_shoes_a'" />
 			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 	<!--BODY SEQUENCES -->
 	<!-- UPPER BODIES -->
@@ -256,6 +261,24 @@
 			<object 			enabled="true" name="'g_shades_c'" />
 			<object 			enabled="true" name="'g_shades_c_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass_c'" />
+		</sequence>
+	<!--CIGARETTE SEQUENCES-->
+		<sequence editable_state="true" name="'random_cigarette_common'" triggable="true">
+			<run_sequence 		name="'cigarette_'..pick('base','base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_cigarette_rare'" triggable="true">
+			<run_sequence 		name="'cigarette_'..pick('none','none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'cigarette_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'cigarette_base'" once="true" triggable="true">
+			<set_variables 		has_cigarette="1" />
+			<object 			enabled="true" name="'g_cigarette'" />
+			<object 			enabled="true" name="'g_cigarette_lod1'" />
+			<effect_spawner 	enabled="true" name="'cigarette_smoke'"/>
+		</sequence>
+		<sequence editable_state="false" name="'kill_cigarette_smoke'" triggable="false">
+			<effect_spawner 	enabled="false" name="'cigarette_smoke'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">
