@@ -1,9 +1,10 @@
+local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() <= (is_eclipse and 0.65 or 0.45) + (is_pro_job and 0.1 or 0)
 local enabled = {
@@ -47,6 +48,7 @@ local retrigger = {
 local roof_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.6, 1.4, 1.2, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -73,9 +75,15 @@ local dealer_walk_so = {
 		patrol_path = "inpath2",
 	},
 }
-local roof_navlink_interval = {
+local e_nl_up_11_5m_down_1m_interval = {
 	values = {
-		interval = 7, -- (Vanilla: 5s)
+		interval = 6, -- (Vanilla: 2s)
+	},
+}
+local e_nl_up_1m_down_4_3m_swing_interval = {
+	so_access_filter = so_access.acrobatic,
+	values = {
+		interval = 10, -- (Vanilla: 2s)
 	},
 }
 
@@ -276,17 +284,17 @@ return {
 		},
 		reinforce = { -- Add new reinforce
 			{
-				name = "floor2",
+				name = "floor_2",
 				force = 3,
 				position = Vector3(-825, 620, 375),
 			},
 			{
-				name = "floor41",
+				name = "floor_4_01",
 				force = 2,
 				position = Vector3(-485, 585, 1025),
 			},
 			{
-				name = "floor42",
+				name = "floor_4_02",
 				force = 2,
 				position = Vector3(-75, 490, 1025),
 			},
@@ -324,10 +332,6 @@ return {
 	},
 	-- trigger dozer spawn during the escape
 	[104706] = {
-		reinforce = { -- remove reinforce
-			{ name = "third_floor" },
-			{ name = "fourth_floor" },
-		},
 		on_executed = {
 			{ id = 400040, delay = 0 },
 		},
@@ -462,26 +466,28 @@ return {
 	[101891] = dealer_walk_so,
 	[101899] = dealer_walk_so,
 	-- Increase navlink intervals
-	--[[ e_nl_up_1_fwd_1_5m
-	[100832] = roof_navlink_interval,
-	[103338] = roof_navlink_interval,
-	[101718] = roof_navlink_interval,
-	[103336] = roof_navlink_interval,
-	[100435] = roof_navlink_interval,
-	[102534] = roof_navlink_interval,
-	[102530] = roof_navlink_interval,
-	[101931] = roof_navlink_interval,
-	[101930] = roof_navlink_interval,
-	[101929] = roof_navlink_interval,
-	[102529] = roof_navlink_interval,
-	[102745] = roof_navlink_interval,
-	[103250] = roof_navlink_interval,
-	[100607] = roof_navlink_interval,
-	[100609] = roof_navlink_interval,
-	[100604] = roof_navlink_interval,
-	[100606] = roof_navlink_interval,
-	[100605] = roof_navlink_interval,
-	]]
+	[100885] = e_nl_up_11_5m_down_1m_interval,
+	[101325] = e_nl_up_11_5m_down_1m_interval,
+	[102431] = e_nl_up_11_5m_down_1m_interval,
+	[101655] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101656] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101660] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101778] = e_nl_up_1m_down_4_3m_swing_interval,
+	[102623] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103253] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101063] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101257] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101275] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103254] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103255] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103256] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103258] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103261] = e_nl_up_1m_down_4_3m_swing_interval,
+	[103262] = e_nl_up_1m_down_4_3m_swing_interval,
+	[100202] = e_nl_up_1m_down_4_3m_swing_interval,
+	[100316] = e_nl_up_1m_down_4_3m_swing_interval,
+	[100051] = e_nl_up_1m_down_4_3m_swing_interval,
+	[101691] = e_nl_up_1m_down_4_3m_swing_interval,
 	-- Spawn group intervals
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,
