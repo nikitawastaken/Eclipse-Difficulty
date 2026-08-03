@@ -81,10 +81,10 @@ local e_nl_up_11_5m_down_1m_interval = {
 	},
 }
 local e_nl_up_1m_down_4_3m_swing_interval = {
-	values = {
-		interval = 10, -- (Vanilla: 3s)
-	},
 	so_access_filter = so_access.acrobatic,
+	values = {
+		interval = 10, -- (Vanilla: 2s)
+	},
 }
 
 return {
