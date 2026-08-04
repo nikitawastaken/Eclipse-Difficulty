@@ -792,23 +792,34 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_extra_ticks" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_extra_ticks" }
+
+	-- Yakuza
+	self.specializations[12][1].upgrades = { }
+	self.specializations[12][1].name_id = "menu_work_in_progress_beta"
+	self.specializations[12][1].desc_id = "menu_work_in_progress_beta"
+	self.specializations[12][1].short_id = "menu_work_in_progress_beta"
+	self.specializations[12][3].upgrades = { }
+	self.specializations[12][3].name_id = "menu_work_in_progress_beta"
+	self.specializations[12][3].desc_id = "menu_work_in_progress_beta"
+	self.specializations[12][3].short_id = "menu_work_in_progress_beta"
+	self.specializations[12][5].upgrades = { }
+	self.specializations[12][5].name_id = "menu_work_in_progress_beta"
+	self.specializations[12][5].desc_id = "menu_work_in_progress_beta"
+	self.specializations[12][5].short_id = "menu_work_in_progress_beta"
+	self.specializations[12][7].upgrades = { }
+	self.specializations[12][7].name_id = "menu_work_in_progress_beta"
+	self.specializations[12][7].desc_id = "menu_work_in_progress_beta"
+	self.specializations[12][7].short_id = "menu_work_in_progress_beta"
+	self.specializations[12][9].upgrades = { }
+	self.specializations[12][9].name_id = "menu_work_in_progress_beta"
+	self.specializations[12][9].desc_id = "menu_work_in_progress_beta"
+	self.specializations[12][9].short_id = "menu_work_in_progress_beta"
 
 	-- Ex-President
 	self.specializations[13][5].upgrades = { "player_armor_max_health_store_multiplier", "player_armor_health_store_no_waste" }
 	self.specializations[13][7].upgrades = { "player_armor_health_store_amount_3", "player_passive_health_multiplier_2" }
-
-	-- yakuza
-	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
-	self.specializations[12][3].upgrades = { "weapon_passive_swap_speed_multiplier_1" }
-	self.specializations[12][3].icon_xy = { 0, 7 }
-	self.specializations[12][5].upgrades = { "player_camouflage_multiplier" }
-	self.specializations[12][5].name_id = "menu_deck4_3"
-	self.specializations[12][5].icon_xy = { 4, 2 }
-	self.specializations[12][7].upgrades = { "player_dodge_health_ratio_multiplier" }
-	self.specializations[12][7].icon_xy = { 1, 8 }
-	self.specializations[12][9].upgrades = { "player_damage_health_ratio_multiplier", "player_damage_damage_health_ratio_threshold_multiplier", "player_passive_loot_drop_multiplier" }
 
 	-- Maniac
 	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")
@@ -828,6 +839,28 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[15][5].texture_bundle_folder = nil
 	self.specializations[15][7].upgrades = { "player_health_decrease_2" }
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
+
+	-- Biker
+	self.specializations[16][1].upgrades = { }
+	self.specializations[16][1].name_id = "menu_work_in_progress_beta"
+	self.specializations[16][1].desc_id = "menu_work_in_progress_beta"
+	self.specializations[16][1].short_id = "menu_work_in_progress_beta"
+	self.specializations[16][3].upgrades = { }
+	self.specializations[16][3].name_id = "menu_work_in_progress_beta"
+	self.specializations[16][3].desc_id = "menu_work_in_progress_beta"
+	self.specializations[16][3].short_id = "menu_work_in_progress_beta"
+	self.specializations[16][5].upgrades = { }
+	self.specializations[16][5].name_id = "menu_work_in_progress_beta"
+	self.specializations[16][5].desc_id = "menu_work_in_progress_beta"
+	self.specializations[16][5].short_id = "menu_work_in_progress_beta"
+	self.specializations[16][7].upgrades = { }
+	self.specializations[16][7].name_id = "menu_work_in_progress_beta"
+	self.specializations[16][7].desc_id = "menu_work_in_progress_beta"
+	self.specializations[16][7].short_id = "menu_work_in_progress_beta"
+	self.specializations[16][9].upgrades = { }
+	self.specializations[16][9].name_id = "menu_work_in_progress_beta"
+	self.specializations[16][9].desc_id = "menu_work_in_progress_beta"
+	self.specializations[16][9].short_id = "menu_work_in_progress_beta"
 
 	-- Kingpin
 	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
