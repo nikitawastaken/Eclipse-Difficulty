@@ -1119,7 +1119,7 @@ end
 _G.EclipseTipsViewer = _G.EclipseTipsViewer or {}
 
 Hooks:Add("MenuManagerSetupCustomMenus", "EclipseTipsViewerMenuManagerPostSetupCustomMenus", function(self, nodes)
-	MenuHelper:NewMenu("EclipseEclipseTipsViewerMenu")
+	MenuHelper:NewMenu("EclipseTipsViewerMenu")
 end)
 
 Hooks:Add("MenuManagerInitialize", "EclipseTipsViewerMenuManagerPostInit", function(self)
@@ -1133,8 +1133,8 @@ Hooks:Add("MenuManagerInitialize", "EclipseTipsViewerMenuManagerPostInit", funct
 end)
 
 Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildCustomMenus", function(self, nodes)
-	nodes["EclipseEclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseEclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
-	MenuHelper:AddMenuItem(nodes["main"], "EclipseEclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
+	nodes["EclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
+	MenuHelper:AddMenuItem(nodes["main"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
 end)
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "EclipseTipsViewerMenuManagerPostPopulateCustomMenus", function(self, nodes)
@@ -1161,7 +1161,7 @@ Hooks:Add("MenuManagerPopulateCustomMenus", "EclipseTipsViewerMenuManagerPostPop
 		title = "",
 		desc = "",
 		callback = "EclipseTipsViewerButtonCallback",
-		menu_id = "EclipseEclipseTipsViewerMenu",
+		menu_id = "EclipseTipsViewerMenu",
 		localized = false,
 	})
 end)
