@@ -3517,7 +3517,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = self.besiege.assault.force_balance_mulnd
+	self.besiege.assault.force_pool_balance_mul = self.besiege.assault.force_balance_mul
 
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
