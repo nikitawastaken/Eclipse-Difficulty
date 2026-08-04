@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <dynamic_object>
     <diesel materials="units/payday2/characters/ene_acc_shield_city/ene_acc_shield_city"  orientation_object="rp_ene_acc_shield_phalanx" />
     <sequence_manager file="units/payday2/characters/ene_acc_shield_city/ene_acc_shield_city" />

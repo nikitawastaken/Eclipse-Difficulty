@@ -385,7 +385,7 @@
 			<object 			enabled="true" name="'g_hat_bex_cop_lod4'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'hat_pex_cop_badge'" once="true" triggable="true"> 		
+		<sequence editable_state="true" name="'hat_bex_cop_badge_b'" once="true" triggable="true"> 		
 			<object 			enabled="true" name="'g_hat_bex_cop_lod5'" />
 			<object 			enabled="true" name="'g_hat_bex_cop_lod6'" />
 		</sequence>
@@ -609,7 +609,6 @@
 			
 			<run_sequence 		name="'badges_green_security'" />
 			<run_sequence 		name="'belt_b'" />
-			<run_sequence 		name="'earpiece'" />
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
@@ -669,9 +668,9 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_e_lod1'" />
 
 			<run_sequence 		name="'green_security'" />
-			
+	
+			<run_sequence 		name="'badges_green_security'" />	
 			<run_sequence 		name="'belt_b'" />
-			<run_sequence 		name="'earpiece'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_a'" />		
@@ -688,7 +687,9 @@
 			
 			<run_sequence 		name="'badges_security'" />
 			<run_sequence 		name="'shoulder_loops'" />
-			
+
+			<run_sequence 		name="'random_body_a'" />		
+			<run_sequence 		name="'random_watch_common'" />				
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
@@ -706,8 +707,46 @@
 			<run_sequence 		name="'hat_security'" />
 			<run_sequence 		name="'shoulder_loops'" />
 
+			<run_sequence 		name="'random_body_b'" />		
+			<run_sequence 		name="'random_watch_rare'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_shades_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_female_3'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_green_security_a'" />
+			<object 			enabled="true" name="'g_gear_green_security_a_lod1'" />
+					
+			<run_sequence 		name="'green_security'" />
+			
+			<run_sequence 		name="'badges_green_security'" />
+			<run_sequence 		name="'baton'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			<run_sequence 		name="'radio_front'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_shades_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_female_4'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_green_security_b'" />
+			<object 			enabled="true" name="'g_gear_green_security_b_lod1'" />
+			
+			<run_sequence 		name="'green_security'" />
+			
+			<run_sequence 		name="'badges_green_security'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
@@ -806,7 +845,9 @@
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'handcuffs'" />
 			<run_sequence 		name="'shoulder_loops'" />
-			
+
+			<run_sequence 		name="'random_body_a'" />		
+			<run_sequence 		name="'random_watch_common'" />			
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
@@ -824,7 +865,9 @@
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'radio_extra'" />
 			<run_sequence 		name="'shoulder_loops'" />
-			
+
+			<run_sequence 		name="'random_body_b'" />		
+			<run_sequence 		name="'random_watch_rare'" />			
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
@@ -908,6 +951,42 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'la_cop_female_1'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
+			
+			<run_sequence 		name="'la_cop'" />
+			
+			<run_sequence 		name="'badges_cop'" />
+			<run_sequence 		name="'baton'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_shades_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'la_cop_female_2'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
+			
+			<run_sequence 		name="'la_cop'" />
+			
+			<run_sequence 		name="'badges_cop'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'radio_extra'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'fbi_1'" once="true" triggable="true">		
 			<object 			enabled="true" name="'g_gear_fbi_a'" />
 			<object 			enabled="true" name="'g_gear_fbi_a_lod1'" />
@@ -988,7 +1067,9 @@
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'radio_extra'" />
 			<run_sequence 		name="'shoulder_loops'" />
-			
+
+			<run_sequence 		name="'random_body_b'" />		
+			<run_sequence 		name="'random_watch_rare'" />				
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
@@ -1168,8 +1249,7 @@
 			<run_sequence 		name="'hat_bex_cop'" />
 			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'handcuffs'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			
+	
 			<run_sequence 		name="'random_body_c'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
@@ -1217,7 +1297,7 @@
 			<run_sequence 		name="'badges_pex_cop'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_bex_cop'" />
-			<run_sequence 		name="'hat_pex_cop_badge'" />
+			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_bex_a'" />
@@ -1236,7 +1316,7 @@
 			<run_sequence 		name="'badges_pex_cop'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_bex_cop'" />
-			<run_sequence 		name="'hat_pex_cop_badge'" />
+			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_bex_b'" />

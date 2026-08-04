@@ -5,7 +5,7 @@
 
 	<dependencies>			
 		<depends_on bnk="soundbanks/regular_vox" />
-		<depends_on unit="units/payday2/characters/ene_acc_head_female/ene_acc_head_female" />		
+		<depends_on unit="units/payday2/characters/ene_acc_female_head/ene_acc_female_head" />		
 	</dependencies>
 
 	<extensions>	
@@ -94,7 +94,7 @@
 		<extension name="anim_data" class="PlayerAnimationData" />
 		<extension name="character_damage" class="CopDamage">	
 			<var name="_head_body_name" value="head" />
-			<var name="_head" value="units/payday2/characters/ene_acc_head_female/ene_acc_head_female" />		
+			<var name="_head" value="units/payday2/characters/ene_acc_female_head/ene_acc_female_head" />		
 		</extension>
 		<extension name="movement" class="CopMovement" >		
 			<var name="_footwear" value="hardsole" />

@@ -29,28 +29,16 @@
 			
 		<sequence editable_state="true" name="'gang_mobster_1'" once="true" triggable="true">
 			<run_sequence 		name="'random_undershirt'" />
-			<run_sequence 		name="'random_arms'" />
+			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'security_penthouse_1'" once="true" triggable="true">
 			<run_sequence 		name="'security_penthouse'" />
 			<run_sequence 		name="'random_undershirt_pent'" />
-			<run_sequence 		name="'random_arms'" />
+			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_common'" />
 			<run_sequence 		name="'headset'" />
-		</sequence>
-	<!--ARMS-->
-		<sequence editable_state="true" name="'random_arms'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('a','b')" />
-		</sequence>
-		<sequence editable_state="true" name="'arms_a'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_arms_a'" />
-			<object 			enabled="true" name="'g_arms_a_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'arms_b'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_arms_b'" />
-			<object 			enabled="true" name="'g_arms_b_lod1'" />
 		</sequence>
 	<!-- UNDERSHIRTS -->
 		<sequence editable_state="true" name="'random_undershirt'" triggable="true">
@@ -108,6 +96,20 @@
 			<object 			enabled="true" name="'g_shades_c'" />
 			<object 			enabled="true" name="'g_shades_c_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass_c'" />
+		</sequence>
+	<!-- GLOVES -->
+		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">
+			<run_sequence 		name="'gloves_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_gloves_rare'" triggable="true">
+			<run_sequence 		name="'gloves_'..pick('base','none','none')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'gloves_base'" once="true" triggable="true">
+			<set_variables 		has_gloves="1" />
+			<object 			enabled="true" name="'g_gloves'" />
+			<object 			enabled="true" name="'g_gloves_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

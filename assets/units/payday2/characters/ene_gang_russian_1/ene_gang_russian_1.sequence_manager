@@ -32,40 +32,40 @@
 		<sequence editable_state="true" name="'gang_russian_1'" once="true" triggable="true">
 			<run_sequence 		name="'random_body_upper_a'" />
 			<run_sequence 		name="'random_body_lower_a'" />
-			<run_sequence 		name="'random_arms_a'" />
 			<run_sequence 		name="'random_shoes_a'" />
+			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_2'" once="true" triggable="true">
 			<run_sequence 		name="'random_body_upper_b'" />
 			<run_sequence 		name="'random_body_lower_a'" />
-			<run_sequence 		name="'random_arms_b'" />
 			<run_sequence 		name="'random_shoes_b'" />
+			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'gang_russian_3'" once="true" triggable="true">
 			<run_sequence 		name="'random_body_upper_c'" />
 			<run_sequence 		name="'random_body_lower_b'" />
-			<run_sequence 		name="'random_arms_c'" />
 			<run_sequence 		name="'random_shoes_c'" />
+			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_cigarette_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_4'" once="true" triggable="true">
 			<run_sequence 		name="'random_body_upper_a'" />
 			<run_sequence 		name="'random_body_lower_a'" />
-			<run_sequence 		name="'random_arms_a'" />
 			<run_sequence 		name="'random_shoes_a'" />
+			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_5'" once="true" triggable="true">
 			<run_sequence 		name="'random_body_upper_c'" />
 			<run_sequence 		name="'random_body_lower_b'" />
-			<run_sequence 		name="'random_arms_c'" />
 			<run_sequence 		name="'random_shoes_c'" />
+			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_cigarette_common'" />
 		</sequence>
 	<!--BODY SEQUENCES -->
@@ -133,7 +133,7 @@
 		</sequence>
 	<!-- NECKS -->
 		<sequence editable_state="true" name="'random_neck'" triggable="true">
-			<run_sequence 		name="'neck_'..pick('a','b')" />
+			<run_sequence 		name="'neck_'..pick('a','a','a','a','b','c')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'neck_a'" once="true" triggable="true">
@@ -144,28 +144,23 @@
 			<object 			enabled="true" name="'g_neck_b'" />
 			<object 			enabled="true" name="'g_neck_b_lod1'" />
 		</sequence>
-	<!-- ARMS -->
-		<sequence editable_state="true" name="'random_arms_a'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('a','a','a','a','b','c')" />
+		<sequence editable_state="true" name="'neck_c'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_neck_c'" />
+			<object 			enabled="true" name="'g_neck_c_lod1'" />
 		</sequence>
-		<sequence editable_state="true" name="'random_arms_b'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('b','b','b','b','a','c')" />
+	<!-- GLOVES -->
+		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">
+			<run_sequence 		name="'gloves_'..pick('base','base','none')" />
 		</sequence>
-		<sequence editable_state="true" name="'random_arms_c'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('c','c','c','c','a','b')" />
+		<sequence editable_state="true" name="'random_gloves_rare'" triggable="true">
+			<run_sequence 		name="'gloves_'..pick('base','none','none')" />
 		</sequence>
-
-		<sequence editable_state="true" name="'arms_a'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_arms_a'" />
-			<object 			enabled="true" name="'g_arms_a_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'arms_b'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_arms_b'" />
-			<object 			enabled="true" name="'g_arms_b_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'arms_c'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_arms_c'" />
-			<object 			enabled="true" name="'g_arms_c_lod1'" />
+		
+		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'gloves_base'" once="true" triggable="true">
+			<set_variables 		has_gloves="1" />
+			<object 			enabled="true" name="'g_gloves'" />
+			<object 			enabled="true" name="'g_gloves_lod1'" />
 		</sequence>
 	<!-- SHOES -->
 		<sequence editable_state="true" name="'random_shoes_a'" triggable="true">
@@ -200,8 +195,7 @@
 			<set_variables 		has_watch="1" />
 			<object 			enabled="true" name="'g_watch'" />
 			<object 			enabled="true" name="'g_watch_lod1'" />
-		</sequence>
-		
+		</sequence>	
 	<!--CIGARETTE SEQUENCES-->
 		<sequence editable_state="true" name="'random_cigarette_common'" triggable="true">
 			<run_sequence 		name="'cigarette_'..pick('base','base','base','none')" />
@@ -215,6 +209,10 @@
 			<set_variables 		has_cigarette="1" />
 			<object 			enabled="true" name="'g_cigarette'" />
 			<object 			enabled="true" name="'g_cigarette_lod1'" />
+			<effect_spawner 	enabled="true" name="'cigarette_smoke'"/>
+		</sequence>
+		<sequence editable_state="false" name="'kill_cigarette_smoke'" triggable="false">
+			<effect_spawner 	enabled="false" name="'cigarette_smoke'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

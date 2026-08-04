@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<materials version="3" group="ene_acc_female_head">
+	<material name="mtr_head" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+	</material>
+	<material name="mtr_head_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" mip="1"/>
+	</material>
+	<material name="mtr_head_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df" mip="2"/>
+	</material>
+
+<!--
+    <material name="mtr_hair_1" render_template="effect:DIFFUSE0_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+        <variable 				value="candle" type="scalar" name="intensity"/>
+    </material>
+-->
+
+	<material name="mtr_hair_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+	</material>
+	
+    <material name="mtr_hair_2" render_template="generic:ALPHA_MASKED:DIFFUSE_TEXTURE:EXTERNAL_ALPHA_REF:NORMALMAP:OPACITY_TEXTURE:SIMPLE_TINT:SKINNED_3WEIGHTS" unique="true" version="2">
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_df"/>
+        <opacity_texture 		file="units/payday2/characters/shared_textures/female_heads_atlas_op"/>
+        <bump_normal_texture 	file="units/payday2/characters/shared_textures/female_heads_atlas_nm"/>
+        <variable 				value="0.32700002193451" type="scalar" name="alpha_ref"/>
+        <variable 				value="0.10236220806837 0.06181874871254 0.051783237606287" type="vector3" name="tint_color"/>
+    </material>
+</materials>

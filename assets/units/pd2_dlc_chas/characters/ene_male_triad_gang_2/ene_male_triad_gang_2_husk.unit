@@ -92,6 +92,7 @@
 		<extension class="HuskCopDamage" name="character_damage">
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/pd2_dlc_chas/characters/ene_acc_gang_triad_head/ene_acc_gang_triad_head" />	
+			<var name="_death_sequence" value="kill_cigarette_smoke" />	
 		</extension>
 		<extension class="HuskCopMovement" name="movement">
 			<var name="_footwear" value="hardsole"/>

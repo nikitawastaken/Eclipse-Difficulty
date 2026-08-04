@@ -482,7 +482,19 @@
 					<material materials="mtr_gang_triad01_lod_2" />
 				</object>
 			</lod_object>
-					
+
+			<lod_object name="lod_cigarette">
+				<object name="g_cigarette" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_gang_russian03" max_distance="1000" />
+					<material materials="mtr_gang_russian03_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_russian03_lod_2" />
+				</object>
+				<object name="g_cigarette_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_gang_russian03" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_russian03_lod_2" />
+				</object>
+			</lod_object>
+			
 			<object name="g_shades_glass_a" 		enabled="false"  />			
 			<object name="g_shades_glass_b" 		enabled="false"  />		
 			<object name="g_shades_glass_c" 		enabled="false"  />	
@@ -492,6 +504,6 @@
 	</graphics>
 
 	<effects>
-		<effect_spawner name="cigarette_smoke" enabled="false" object="g_cigarette" effect="effects/particles/character/cigarette_smoke"/>
+		<effect_spawner name="cigarette_smoke" enabled="false" object="e_cigarette_smoke" effect="effects/particles/character/cigarette_smoke"/>
 	</effects>
 </dynamic_object>

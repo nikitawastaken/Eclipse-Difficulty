@@ -34,7 +34,7 @@ local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
 local chavez_dealer = Idstring("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican")
-local harasser = diff_i < 5 and scripted_enemy.swat_1 or is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.heavy_swat_1
+local harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scripted_enemy.elite_sniper] = 1 } or overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local sniper_kills = {
 	values = {
 		counter_target = normal and 6 or hard and 8 or 10,

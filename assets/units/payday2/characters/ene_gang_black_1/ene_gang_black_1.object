@@ -422,7 +422,55 @@
 					<material materials="mtr_gang_black01_lod_2" />
 				</object>
 			</lod_object>
+			
+			<lod_object name="lod_hat_black_a">
+				<object name="g_hat_black_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_gang_black02" max_distance="1000" />
+					<material materials="mtr_gang_black02_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+				<object name="g_hat_black_lod2" 	enabled="false" lod="1" >
+					<material materials="mtr_gang_black02" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+			</lod_object>
 
+			<lod_object name="lod_hat_black_b">
+				<object name="g_hat_black_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_gang_black02" max_distance="1000" />
+					<material materials="mtr_gang_black02_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+				<object name="g_hat_black_lod4" 	enabled="false" lod="1" >
+					<material materials="mtr_gang_black02" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_hat_black_c">
+				<object name="g_hat_black_lod5" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_gang_black02" max_distance="1000" />
+					<material materials="mtr_gang_black02_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+				<object name="g_hat_black_lod6" 	enabled="false" lod="1" >
+					<material materials="mtr_gang_black02" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_hat_black_d">
+				<object name="g_hat_black_lod7" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_gang_black02" max_distance="1000" />
+					<material materials="mtr_gang_black02_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+				<object name="g_hat_black_lod8" 	enabled="false" lod="1" >
+					<material materials="mtr_gang_black02" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black02_lod_2" />
+				</object>
+			</lod_object>
+			
 			<lod_object name="lod_beanie">
 				<object name="g_beanie" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_gang_black04" max_distance="1000" />
@@ -492,6 +540,6 @@
 	</graphics>
 
 	<effects>
-		<effect_spawner name="cigarette_smoke" enabled="false" object="g_cigarette" effect="effects/particles/character/cigarette_smoke"/>
+		<effect_spawner name="cigarette_smoke" enabled="false" object="e_cigarette_smoke" effect="effects/particles/character/cigarette_smoke"/>
 	</effects>
 </dynamic_object>

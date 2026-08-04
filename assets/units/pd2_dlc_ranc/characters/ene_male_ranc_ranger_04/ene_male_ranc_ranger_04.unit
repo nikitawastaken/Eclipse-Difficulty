@@ -5,8 +5,7 @@
 
 	<dependencies>			
 		<depends_on bnk="soundbanks/regular_vox" />
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />
-		<depends_on unit="units/pd2_dlc_ranc/characters/ene_acc_ranc_ranger_hat/ene_acc_ranc_ranger_hat" />		
+		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
 	</dependencies>
 
 	<extensions>	
@@ -96,9 +95,6 @@
 		<extension name="character_damage" class="CopDamage">	
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
-			<var name="_head_gear_object" value="g_hat_ranc_ranger_lod" />
-			<var name="_nr_head_gear_objects" value="2" />
-			<var name="_head_gear" value="units/pd2_dlc_ranc/characters/ene_acc_ranc_ranger_hat/ene_acc_ranc_ranger_hat" />		
 		</extension>
 		<extension name="movement" class="CopMovement" >		
 			<var name="_footwear" value="hardsole" />
