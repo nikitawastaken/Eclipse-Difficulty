@@ -796,23 +796,23 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_extra_ticks" }
 
 	-- Yakuza
-	self.specializations[12][1].upgrades = { }
+	self.specializations[12][1].upgrades = {}
 	self.specializations[12][1].name_id = "menu_work_in_progress_beta"
 	self.specializations[12][1].desc_id = "menu_work_in_progress_beta"
 	self.specializations[12][1].short_id = "menu_work_in_progress_beta"
-	self.specializations[12][3].upgrades = { }
+	self.specializations[12][3].upgrades = {}
 	self.specializations[12][3].name_id = "menu_work_in_progress_beta"
 	self.specializations[12][3].desc_id = "menu_work_in_progress_beta"
 	self.specializations[12][3].short_id = "menu_work_in_progress_beta"
-	self.specializations[12][5].upgrades = { }
+	self.specializations[12][5].upgrades = {}
 	self.specializations[12][5].name_id = "menu_work_in_progress_beta"
 	self.specializations[12][5].desc_id = "menu_work_in_progress_beta"
 	self.specializations[12][5].short_id = "menu_work_in_progress_beta"
-	self.specializations[12][7].upgrades = { }
+	self.specializations[12][7].upgrades = {}
 	self.specializations[12][7].name_id = "menu_work_in_progress_beta"
 	self.specializations[12][7].desc_id = "menu_work_in_progress_beta"
 	self.specializations[12][7].short_id = "menu_work_in_progress_beta"
-	self.specializations[12][9].upgrades = { }
+	self.specializations[12][9].upgrades = {}
 	self.specializations[12][9].name_id = "menu_work_in_progress_beta"
 	self.specializations[12][9].desc_id = "menu_work_in_progress_beta"
 	self.specializations[12][9].short_id = "menu_work_in_progress_beta"
@@ -841,23 +841,23 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
 	-- Biker
-	self.specializations[16][1].upgrades = { }
+	self.specializations[16][1].upgrades = {}
 	self.specializations[16][1].name_id = "menu_work_in_progress_beta"
 	self.specializations[16][1].desc_id = "menu_work_in_progress_beta"
 	self.specializations[16][1].short_id = "menu_work_in_progress_beta"
-	self.specializations[16][3].upgrades = { }
+	self.specializations[16][3].upgrades = {}
 	self.specializations[16][3].name_id = "menu_work_in_progress_beta"
 	self.specializations[16][3].desc_id = "menu_work_in_progress_beta"
 	self.specializations[16][3].short_id = "menu_work_in_progress_beta"
-	self.specializations[16][5].upgrades = { }
+	self.specializations[16][5].upgrades = {}
 	self.specializations[16][5].name_id = "menu_work_in_progress_beta"
 	self.specializations[16][5].desc_id = "menu_work_in_progress_beta"
 	self.specializations[16][5].short_id = "menu_work_in_progress_beta"
-	self.specializations[16][7].upgrades = { }
+	self.specializations[16][7].upgrades = {}
 	self.specializations[16][7].name_id = "menu_work_in_progress_beta"
 	self.specializations[16][7].desc_id = "menu_work_in_progress_beta"
 	self.specializations[16][7].short_id = "menu_work_in_progress_beta"
-	self.specializations[16][9].upgrades = { }
+	self.specializations[16][9].upgrades = {}
 	self.specializations[16][9].name_id = "menu_work_in_progress_beta"
 	self.specializations[16][9].desc_id = "menu_work_in_progress_beta"
 	self.specializations[16][9].short_id = "menu_work_in_progress_beta"

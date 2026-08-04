@@ -597,7 +597,7 @@ local M = {
 
 	["units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01"] = { name = "female_chas_police_1", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02"] = { name = "female_chas_police_2", head = head_sequences.security },
-	
+
 	["units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"] = { name = "coast_guard_1", head = head_sequences.security },
 	["units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"] = { name = "coast_guard_2", head = head_sequences.security },
 	["units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"] = { name = "coast_guard_3", head = head_sequences.security },
@@ -619,7 +619,7 @@ local M = {
 
 	["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_01/ene_female_ranc_ranger_01"] = { name = "female_ranc_ranger_1", head = head_sequences.security },
 	["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_02/ene_female_ranc_ranger_02"] = { name = "female_ranc_ranger_2", head = head_sequences.security },
-	
+
 	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
 	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_c },
 	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },

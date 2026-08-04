@@ -1949,7 +1949,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.rvd, "ene_la_cop_fat_4")
 	safe_add(char_map.rvd, "ene_la_cop_female_1")
 	safe_add(char_map.rvd, "ene_la_cop_female_2")
-	
+
 	safe_add(char_map.bph, "ene_murkywater_cop_1")
 	safe_add(char_map.bph, "ene_murkywater_cop_2")
 	safe_add(char_map.bph, "ene_murkywater_cop_3")
@@ -1998,7 +1998,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.chas, "ene_male_chas_police_fat_04")
 	safe_add(char_map.chas, "ene_female_chas_police_01")
 	safe_add(char_map.chas, "ene_female_chas_police_02")
-	
+
 	safe_add(char_map.chca, "ene_coast_guard_1")
 	safe_add(char_map.chca, "ene_coast_guard_2")
 	safe_add(char_map.chca, "ene_coast_guard_3")
@@ -2012,7 +2012,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_fat_04")
 	safe_add(char_map.ranc, "ene_female_ranc_ranger_01")
 	safe_add(char_map.ranc, "ene_female_ranc_ranger_02")
-	
+
 	return char_map
 end
 
