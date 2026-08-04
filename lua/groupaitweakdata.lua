@@ -440,7 +440,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		{ 1.5, 16 },
 		{ 1.75, 22 },
 	}, 0.025)
-	
+
 	self.unit_categories.cs_cop_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
@@ -3502,14 +3502,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 10, 14, 18 },
 		{ 12, 16, 20 },
 	})
-	self.besiege.assault.force_balance_mul = generate_big_lobby_balance_muls({ 
-		{ 0.55, 1 }, 
-		{ 0.7, 2 }, 
-		{ 0.85, 3 }, 
-		{ 1, 4 }, 
-		{ 1.5, 10 }, 
-		{ 2, 16 }, 
-		{ 3, 22 }, 
+	self.besiege.assault.force_balance_mul = generate_big_lobby_balance_muls({
+		{ 0.55, 1 },
+		{ 0.7, 2 },
+		{ 0.85, 3 },
+		{ 1, 4 },
+		{ 1.5, 10 },
+		{ 2, 16 },
+		{ 3, 22 },
 	}, 0.025)
 
 	self.besiege.assault.force_pool = {
@@ -3558,14 +3558,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 2.75, 2.25, 1.75 },
 		{ 2.5, 2, 1.5 },
 	})
-	self.besiege.assault.spawn_rate_balance_mul = generate_big_lobby_balance_muls({ 
-		{ 1.75, 1 }, 
-		{ 1.5, 2 }, 
-		{ 1.25, 3 }, 
-		{ 1, 4 }, 
-		{ 0.75, 10 }, 
-		{ 0.5, 16 }, 
-		{ 0.25, 22 }, 
+	self.besiege.assault.spawn_rate_balance_mul = generate_big_lobby_balance_muls({
+		{ 1.75, 1 },
+		{ 1.5, 2 },
+		{ 1.25, 3 },
+		{ 1, 4 },
+		{ 0.75, 10 },
+		{ 0.5, 16 },
+		{ 0.25, 22 },
 	}, 0.025)
 
 	-- RECON / REENFORCE --

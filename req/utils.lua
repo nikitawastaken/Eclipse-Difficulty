@@ -347,33 +347,33 @@ end
 -- Steps can be defined for any number of indices
 -- Values for indices between those that are defined are interpolated
 function M.generate_big_lobby_balance_muls(steps, round)
-    if not steps then
-        return {}
-    end
+	if not steps then
+		return {}
+	end
 
-    local balance_muls = {}
-    local current_step = 1
-    for i = 1, 22 do
-        local current_step_tbl = steps[current_step]
-        local prev_step_tbl = steps[math.max(current_step - 1, 1)]
-        if not current_step_tbl or not prev_step_tbl then
-            Eclipse:warn_console("Call to `generate_big_lobby_balance_muls` has incomplete steps, returning!")
-            return balance_muls
-        elseif current_step_tbl == prev_step_tbl then
-            balance_muls[i] = current_step_tbl[1]
-        else
+	local balance_muls = {}
+	local current_step = 1
+	for i = 1, 22 do
+		local current_step_tbl = steps[current_step]
+		local prev_step_tbl = steps[math.max(current_step - 1, 1)]
+		if not current_step_tbl or not prev_step_tbl then
+			Eclipse:warn_console("Call to `generate_big_lobby_balance_muls` has incomplete steps, returning!")
+			return balance_muls
+		elseif current_step_tbl == prev_step_tbl then
+			balance_muls[i] = current_step_tbl[1]
+		else
 			if round ~= nil and type(round) == "number" then
 				balance_muls[i] = math.round(math.map_range_clamped(i, prev_step_tbl[2], current_step_tbl[2], prev_step_tbl[1], current_step_tbl[1]), round)
 			else
 				balance_muls[i] = math.map_range_clamped(i, prev_step_tbl[2], current_step_tbl[2], prev_step_tbl[1], current_step_tbl[1])
 			end
-        end
-        if i >= current_step_tbl[2] then
-            current_step = current_step + 1
-        end
-    end
+		end
+		if i >= current_step_tbl[2] then
+			current_step = current_step + 1
+		end
+	end
 
-    return balance_muls
+	return balance_muls
 end
 
 -- Quickly create and populate a weighted selector from a table
