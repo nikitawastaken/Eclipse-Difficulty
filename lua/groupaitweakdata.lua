@@ -9,6 +9,7 @@ local table_multiply = Eclipse.utils.table_multiply
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
 local access_table = Eclipse.utils.access_table
+local generate_big_lobby_balance_muls = Eclipse.utils.generate_big_lobby_balance_muls
 
 GroupAITweakData.group_ai_presets = {
 	["small_urban"] = {
@@ -432,11 +433,14 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 	end
 
 	-- Add special unit limit scaling for BigLobby
-	self.special_unit_spawn_limits_balance_mul = {}
-	for i = 0, 21, 1 do
-		table.insert(self.special_unit_spawn_limits_balance_mul, 1 + math.floor(i * 0.05 / 0.2) * 0.2)
-	end
-
+	self.special_unit_spawn_limits_balance_mul = generate_big_lobby_balance_muls({
+		{ 1, 1 },
+		{ 1, 4 },
+		{ 1.25, 10 },
+		{ 1.5, 16 },
+		{ 1.75, 22 },
+	}, 0.025)
+	
 	self.unit_categories.cs_cop_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
@@ -3498,20 +3502,22 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 10, 14, 18 },
 		{ 12, 16, 20 },
 	})
-	self.besiege.assault.force_balance_mul = {} -- { 0.55, 0.7, 0.85, 1 }
-	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_balance_mul, 0.55 + (i * 0.15))
-	end
+	self.besiege.assault.force_balance_mul = generate_big_lobby_balance_muls({ 
+		{ 0.55, 1 }, 
+		{ 0.7, 2 }, 
+		{ 0.85, 3 }, 
+		{ 1, 4 }, 
+		{ 1.5, 10 }, 
+		{ 2, 16 }, 
+		{ 3, 22 }, 
+	}, 0.025)
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = {} -- { 0.55, 0.7, 0.85, 1 }
-	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
-	end
+	self.besiege.assault.force_pool_balance_mul = self.besiege.assault.force_balance_mulnd
 
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
@@ -3552,14 +3558,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 2.75, 2.25, 1.75 },
 		{ 2.5, 2, 1.5 },
 	})
-	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
-	local spawn_rate_entry
-	for i = 0, 21, 1 do
-		spawn_rate_entry = 1.75 * math.exp(-i * 0.185)
-		spawn_rate_entry = math.round(spawn_rate_entry / 0.025) * 0.025
-
-		table.insert(self.besiege.assault.spawn_rate_balance_mul, spawn_rate_entry)
-	end
+	self.besiege.assault.spawn_rate_balance_mul = generate_big_lobby_balance_muls({ 
+		{ 1.75, 1 }, 
+		{ 1.5, 2 }, 
+		{ 1.25, 3 }, 
+		{ 1, 4 }, 
+		{ 0.75, 10 }, 
+		{ 0.5, 16 }, 
+		{ 0.25, 22 }, 
+	}, 0.025)
 
 	-- RECON / REENFORCE --
 
