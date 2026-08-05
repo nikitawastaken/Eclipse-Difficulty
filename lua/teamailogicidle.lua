@@ -250,7 +250,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 				local invulnerable = att_damage._invulnerable
 					or att_damage._immortal and att_damage._health <= 1
 					or (att_damage._health_ratio or 0) <= (att_damage._lower_health_percentage_limit or -1)
-					
+
 				-- use the dmg multiplier of the given distance as priority
 				local valid_target = false
 				local target_priority
