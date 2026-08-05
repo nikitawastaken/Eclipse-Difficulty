@@ -250,8 +250,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 				local invulnerable = att_damage._invulnerable
 					or att_damage._immortal and att_damage._health <= 1
 					or (att_damage._health_ratio or 0) <= (att_damage._lower_health_percentage_limit or -1)
-				local healed = att_movement._active_actions[1] and att_movement._active_actions[1]:type() == "healed"
-
+					
 				-- use the dmg multiplier of the given distance as priority
 				local valid_target = false
 				local target_priority
@@ -341,11 +340,6 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						-- slightly boost priority of enemies that damaged us
 						if has_damaged then
 							target_priority = target_priority * 1.1
-						end
-
-						-- reduce priority if we would hit a healed unit
-						if healed then
-							target_priority = target_priority * 0.5
 						end
 
 						-- reduce priority if we would hit a shield
