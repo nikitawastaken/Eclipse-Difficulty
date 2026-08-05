@@ -933,16 +933,17 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 	end
 	local last_element_pos = last_element and last_element:value("position")
 
-	local SO_weighting = hiding_cloaker_tweak.SO_weighting or {
-		near_distance = 1000,
-		far_distance = 3000,
-		far_chance_mul = 0.1,
-		too_far_distance = 5000,
-		too_close_distance = 1000,
-		z_near_distance = 300,
-		z_far_distance = 1200,
-		z_far_chance_mul = 0.25,
-	}
+	local SO_weighting = hiding_cloaker_tweak.SO_weighting
+		or {
+			near_distance = 1000,
+			far_distance = 3000,
+			far_chance_mul = 0.1,
+			too_far_distance = 5000,
+			too_close_distance = 1000,
+			z_near_distance = 300,
+			z_far_distance = 1200,
+			z_far_chance_mul = 0.25,
+		}
 	local element_weights = {}
 	local total_w = 0
 	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
