@@ -1,4 +1,5 @@
 local level_id = Eclipse.utils.clean_level_id()
+local mvec3_distances_by_axis = Eclipse.utils.mvec3_distances_by_axis
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",
@@ -882,7 +883,6 @@ end
 -- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting
 -- Spawn noise being used is now a tweakdata flag
 -- Idle noise and goggles being on while hiding are now tweakdata flags
-local hiding_cloaker_vec1, hiding_cloaker_vec2 = Vector3(), Vector3()
 local junk_reason_group_nil = "group_nil"
 local junk_reason_group_mismatch = "groups_mismatched"
 local junk_reason_group_empty = "group_empty"
@@ -939,6 +939,9 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 		far_chance_mul = 0.1,
 		too_far_distance = 5000,
 		too_close_distance = 1000,
+		z_near_distance = 300,
+		z_far_distance = 1200,
+		z_far_chance_mul = 0.25,
 	}
 	local element_weights = {}
 	local total_w = 0
@@ -969,8 +972,8 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 
 	local function collect_element_weights(skip_ignore_distances)
 		for _, followup_data in ipairs(data.followups) do
-			local element, element_w, so_grp = followup_data[1], followup_data[2], followup_data[3]
-			local element_pos = element:value("position")
+			local element, element_w, so_grp = unpack(followup_data)
+			local element_pos = element and element:value("position")
 			if should_continue(element, element_pos, so_grp) then
 				goto __continue
 			end
@@ -979,9 +982,12 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 				table.insert(element_weights, { element, element_w })
 				total_w = total_w + element_w
 			else
+				local weighting = self:_get_hiding_cloaker_SO_weighting(element, SO_weighting)
 				local element_dis = mvector3.distance(criminal_pos, element_pos)
-				if skip_ignore_distances or SO_weighting.too_far_distance > element_dis and SO_weighting.too_close_distance < element_dis then
-					element_w = math.map_range_clamped(element_dis, SO_weighting.near_distance, SO_weighting.far_distance, element_w, element_w * SO_weighting.far_chance_mul)
+				if skip_ignore_distances or weighting.too_far_distance > element_dis and weighting.too_close_distance < element_dis then
+					local x_dis, y_dis, z_dis = mvec3_distances_by_axis(element_pos, criminal_pos)
+					element_w = math.map_range_clamped(x_dis + y_dis, weighting.near_distance, weighting.far_distance, element_w, element_w * weighting.far_chance_mul)
+					element_w = math.map_range_clamped(z_dis, weighting.z_near_distance, weighting.z_far_distance, element_w, element_w * weighting.z_far_chance_mul)
 					table.insert(element_weights, { element, element_w })
 					total_w = total_w + element_w
 				end
@@ -1004,6 +1010,17 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 			return weight_data[1]
 		end
 	end
+end
+
+-- Gets weighting values specific to the hide SO
+-- Values missing from the element SO weighting are filled in from default SO weighting
+function GroupAIStateBase:_get_hiding_cloaker_SO_weighting(element, default_SO_weighting)
+	local element_SO_weighting = element:value("hiding_cloaker_SO_weighting")
+	if not element_SO_weighting then
+		return default_SO_weighting
+	end
+	local weighting = table.map_append({}, default_SO_weighting, element_SO_weighting)
+	return weighting
 end
 
 function GroupAIStateBase:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)

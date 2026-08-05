@@ -280,6 +280,15 @@ return {
 			difficulty_easy_wish = true,
 		},
 	},
+	-- Add custom SO weighting to some Cloaker hide spots
+	[103757] = { -- Stairwell vent
+		values = {
+			hiding_cloaker_SO_weighting = {
+				too_close_distance = 800,
+				z_far_chance_mul = 0.75,
+			},
+		},
+	},
 	-- Police car amount
 	[103879] = cop_car_amount,
 	-- Sniper amount

@@ -660,4 +660,17 @@ function M.table_subtract(target_table, sub)
 	return target_table
 end
 
+-- Get the distance between vec1 and vec2 on one axis ("x", "y", or "z")
+function M.mvec3_distance_on_axis(axis, vec1, vec2)
+	return math.abs(mvector3[axis](vec1) - mvector3[axis](vec2))
+end
+
+-- Get the distance between vec1 and vec2 on each axis
+function M.mvec3_distances_by_axis(vec1, vec2)
+	local x_dis = math.abs(mvector3.x(vec1) - mvector3.x(vec2))
+	local y_dis = math.abs(mvector3.y(vec1) - mvector3.y(vec2))
+	local z_dis = math.abs(mvector3.z(vec1) - mvector3.z(vec2))
+	return x_dis, y_dis, z_dis
+end
+
 return M

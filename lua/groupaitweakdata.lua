@@ -3812,6 +3812,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		far_chance_mul = 0.1,
 		too_far_distance = 5000,
 		too_close_distance = 1000,
+		-- Values not finalized
+		z_near_distance = 300,
+		z_far_distance = 1200,
+		z_far_chance_mul = 0.25,
 	}
 	self.besiege.cloaker.repeat_hiding_spots = {
 		avoid = true,
