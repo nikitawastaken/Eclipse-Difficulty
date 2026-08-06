@@ -13,7 +13,7 @@ return {
 			value = { "assault", "delay_balance_mul" },
 			tweak = {
 				mode = "replace",
-				modifier = { 1, 1, 1, 1 },
+				modifier = { 1.45, 1.3, 1.15, 1 },
 			},
 		},
 	},

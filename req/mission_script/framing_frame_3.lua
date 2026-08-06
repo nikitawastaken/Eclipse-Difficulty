@@ -58,29 +58,19 @@ return {
 	[100879] = { -- preferreds
 		reinforce = {
 			{
+				name = "lounge",
+				force = 3,
+				position = Vector3(-4000, 1825, 3000),
+			},
+			{
 				name = "stairs01",
 				force = 2,
-				position = Vector3(-2760, 2805, 3000),
+				position = Vector3(-4200, 2500, 3810),
 			},
 			{
 				name = "stairs02",
 				force = 2,
-				position = Vector3(-4050, 4825, 3400),
-			},
-			{
-				name = "stairs03",
-				force = 2,
-				position = Vector3(-4500, 4375, 3800),
-			},
-			{
-				name = "stairs04",
-				force = 2,
-				position = Vector3(-5225, 2800, 3000),
-			},
-			{
-				name = "stairs05",
-				force = 2,
-				position = Vector3(-4650, 2150, 3400),
+				position = Vector3(-4500, 4375, 3810),
 			},
 		},
 	},

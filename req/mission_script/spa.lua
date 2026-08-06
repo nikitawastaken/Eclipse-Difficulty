@@ -30,9 +30,6 @@ local agile_final_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local difficulty_add_25 = {
-	difficulty_add = 0.25,
-}
 return {
 	-- add point of no return and disable endless assault
 	[100875] = {
@@ -60,9 +57,6 @@ return {
 			{ 63, 162 },
 		},
 	},
-	-- add scripted diff increases
-	--	[102255] = difficulty_add_25, -- obj_complete_004
-	--	[102137] = difficulty_add_25, -- swap_spawns_to_the_ground
 	-- tweak van arrival timer
 	[100483] = {
 		on_executed = {

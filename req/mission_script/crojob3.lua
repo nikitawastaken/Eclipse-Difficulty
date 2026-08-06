@@ -38,13 +38,13 @@ local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local timbermill_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.6, 1.4, 1.2, 1 },
 	},
 }
 local hillside_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.6, 1.4, 1.2, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

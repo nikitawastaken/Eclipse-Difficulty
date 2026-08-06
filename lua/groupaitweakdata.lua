@@ -3529,7 +3529,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		freq = calc_team_ai_wgt(2),
 		spawn_group_interval = calc_team_ai_wgt(2.5),
 		difficulty_addend_time = calc_team_ai_wgt(2),
-		difficulty_addend_delay = calc_team_ai_wgt(2.5),
+		difficulty_addend_delay = calc_team_ai_wgt(2),
 		ponr_length = calc_team_ai_wgt(2),
 	}
 

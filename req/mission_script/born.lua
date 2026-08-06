@@ -20,11 +20,13 @@ local exclude_cop_agents_shields_dozers = {
 local standard_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 local roof_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

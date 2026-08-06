@@ -16,7 +16,6 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.elevator[element.id] then
 				element.values.interval = 20
-				element.values.interval_balance_mul = { 1.1, 1, 0.9, 0.8 }
 			end
 		end
 	end,

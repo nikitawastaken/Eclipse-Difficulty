@@ -14,7 +14,7 @@ local swats = {
 }
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
-local dead_swats_amount = (normal and 4 or hard and 6 or 8) + (is_pro_job and 2 or 0)
+local dead_swats_amount = (normal and 3 or hard and 4 or 5) + (is_pro_job and 2 or 0)
 local patches = {
 	train_car_tanker = table.set(100598),
 	train_car_boxcar = table.set(100599),

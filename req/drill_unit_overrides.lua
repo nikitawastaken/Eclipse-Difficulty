@@ -8,7 +8,7 @@ local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 	drill = {
 		{
 			timer = 120,
-			jam_times = { 1, 2 },
+			jam_times = 2,
 			forbid_reenforce = true,
 		},
 	},
@@ -19,25 +19,18 @@ local evil_nightmare_safe = {
 			timer = 666, -- Dallas, my friend, the devil.
 			forbid_reenforce = true,
 			forbid_sabotage = true,
-		},
-	},
-}
-local security_door_short = {
-	drill = {
-		{
-			timer = 90,
-			jam_times = { 0, 1 },
+			disable_upgrades = true,
 		},
 	},
 }
 local security_door_solo_friendly = {
 	drill = {
 		{
-			timer = 150,
+			timer = 120,
 			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
-				8 / 10,
-				1,
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+				3 / 4,
+				3 / 4,
 				1,
 				1,
 			},
@@ -48,32 +41,33 @@ local security_door_solo_friendly = {
 local big_vault_door = {
 	drill = {
 		{
-			timer = 75,
+			timer = 90,
 			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
-				8 / 10,
-				1,
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+				2 / 3,
+				2 / 3,
 				1,
 				1,
 			},
-			jam_times = { 0, 1 },
+			jam_times = 1,
 			forbid_reenforce = true,
 		},
 	},
 }
-local ranc_door = {
-	drill = {
-		{
-			timer = 75,
-			timer_init_balance_mul = {
-				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
-				4 / 5,
-				1,
-				1,
-				1,
+local ranc_cage_door = {
+	[100024] = {
+		drill = {
+			{
+				timer_init_balance_mul = {
+					team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+					2 / 3,
+					2 / 3,
+					1,
+					1,
+				},
+				can_jam = false,
+				forbid_reenforce = true,
 			},
-			jam_times = { 0, 1 },
-			forbid_reenforce = true,
 		},
 	},
 }
@@ -82,6 +76,23 @@ local teddy_moo_saw = {
 		{
 			timer = 180,
 		},
+	},
+}
+local chca_vault_saw = {
+	timer_dt_balance_mul = {
+		team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+		6 / 8,
+		7 / 8,
+		1,
+		1,
+	},
+	jam_times = {
+		is_balance_mul = true,
+		team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+		1,
+		1,
+		2,
+		2,
 	},
 }
 
@@ -231,10 +242,10 @@ local M = {
 			jam_times = {
 				is_balance_mul = true,
 				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
-				{ 1, 2 },
-				{ 2, 2 },
-				{ 2, 3 },
-				{ 3, 3 },
+				1,
+				2,
+				3,
+				4,
 			},
 			forbid_sabotage = true,
 		},
@@ -285,11 +296,38 @@ local M = {
 			timer = 150 + (is_pro_job and 30 or 0),
 		},
 	},
+	["chca"] = {
+		["chca_vault_001"] = {
+			[100011] = chca_vault_saw,
+			[100079] = chca_vault_saw,
+			[100080] = chca_vault_saw,
+			[100122] = chca_vault_saw,
+		},
+	},	
 	["dah"] = {
 		[("units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit"):key()] = {
 			timer = 240,
 			jam_times = 2,
 			can_jam = true,
+		},
+	},
+	["deep"] = {
+		["deep_server_door_001"] = {
+			[100049] = {
+				drill = {
+					{
+						timer = 120,
+						timer_init_balance_mul = {
+							team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+							3 / 4,
+							3 / 4,
+							1,
+							1,
+						},
+						jam_times = { 1, 2 },
+					},
+				},
+			},
 		},
 	},
 	["glace"] = {
@@ -333,6 +371,7 @@ local M = {
 			timer = 666, -- Spooky scary devil number
 			forbid_reenforce = true,
 			forbid_sabotage = true,
+			disable_upgrades = true,
 		},
 		[100224] = evil_nightmare_safe,
 		[100419] = evil_nightmare_safe,
@@ -352,7 +391,7 @@ local M = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
@@ -389,19 +428,36 @@ local M = {
 			timer = 90,
 			timer_init_balance_mul = {
 				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
-				4 / 6,
-				5 / 6,
+				2 / 3,
+				2 / 3,
 				1,
 				1,
 			},
 			jam_times = 1,
 		},
 	},
+	["ranc"] = {
+		["ranc_cage_door_001"] = ranc_cage_door,
+		["ranc_cage_door_002"] = ranc_cage_door,
+		["ranc_cage_door_003"] = ranc_cage_door,
+		["ranc_cage_door_004"] = ranc_cage_door,
+		["ranc_cage_door_005"] = ranc_cage_door,
+		["ranc_cage_door_006"] = ranc_cage_door,
+		["ranc_cage_door_007"] = ranc_cage_door,
+		["ranc_cage_door_008"] = ranc_cage_door,
+		["ranc_cage_door_009"] = ranc_cage_door,
+		["ranc_cage_door_010"] = ranc_cage_door,
+		["ranc_cage_door_011"] = ranc_cage_door,
+		["ranc_cage_door_012"] = ranc_cage_door,
+		["ranc_cage_door_013"] = ranc_cage_door,
+		["ranc_cage_door_014"] = ranc_cage_door,
+		["ranc_cage_door_015"] = ranc_cage_door,
+	},
 	["red2"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			jam_times = {
 				is_balance_mul = true,
-				team_ai_balance_mul_weight = calc_team_ai_wgt(1),
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
 				{ 1, 2 },
 				{ 2, 2 },
 				{ 2, 3 },
@@ -411,8 +467,8 @@ local M = {
 		},
 	},
 	["trai"] = {
-		[101874] = security_door_short,
-		[101013] = security_door_short,
+		[101874] = security_door_solo_friendly,
+		[101013] = security_door_solo_friendly,
 	},
 }
 

@@ -21,7 +21,7 @@ return {
 		reinforce = {
 			{
 				name = "lumber",
-				force = 2,
+				force = 3,
 				position = Vector3(-8100, 14500, 4255),
 			},
 			{

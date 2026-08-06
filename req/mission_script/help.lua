@@ -40,10 +40,10 @@ local flank_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 local e_nl_up_1m_down_5m_swing_interval = {
-	so_access_filter = so_access.acrobatic,
 	values = {
 		interval = 10, -- (Vanilla: 5s)
 	},
+	so_access_filter = so_access.acrobatic,
 }
 
 return {
