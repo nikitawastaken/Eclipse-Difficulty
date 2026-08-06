@@ -309,6 +309,24 @@ local M = {
 			timer = 60,
 			jam_times = 1,
 		},
+		-- For testing tweaking inside instances
+		--[[
+		["glace_prison_bus_001"] = {
+			[100038] = {
+				timer = 20,
+			},
+		},
+		["glace_prison_bus_002"] = {
+			[100038] = {
+				timer = 30,
+			},
+		},
+		["glace_prison_bus_003"] = {
+			[100038] = {
+				timer = 40,
+			},
+		},
+		]]
 	},
 	["haunted"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {

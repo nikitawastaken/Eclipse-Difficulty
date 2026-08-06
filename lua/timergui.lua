@@ -13,7 +13,17 @@ function TimerGui:get_drill_unit_override()
 	end
 
 	local function get_override(unit)
-		return drill_unit_overrides[unit:unit_data().unit_id] or drill_unit_overrides[unit:name():key()]
+		local unit_data_ext = unit:unit_data()
+		local instance_override = drill_unit_overrides[unit_data_ext.instance]
+		if instance_override then
+			for id, override in pairs(instance_override) do
+				local converted_id = managers.world_instance:convert_id(unit_data_ext.instance, id)
+				if converted_id == unit_data_ext.unit_id then
+					return override
+				end
+			end
+		end
+		return drill_unit_overrides[unit_data_ext.unit_id] or drill_unit_overrides[unit:name():key()]
 	end
 
 	local mission_door_device_ext = self._unit:mission_door_device()
