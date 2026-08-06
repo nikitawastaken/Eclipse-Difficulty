@@ -77,6 +77,19 @@ return {
 	[102849] = shield_so,
 	[102850] = shield_so,
 	[102851] = shield_so,
+	-- Restore a unused navlinks
+	[102362] = {
+		values = {
+			so_action = "e_nl_up_2m_var4",
+			enabled = true,
+		},
+	},
+	[102357] = {
+		values = {
+			so_action = "e_nl_up_2m",
+			enabled = true,
+		},
+	},
 	-- Spawn Group delays
 	[400007] = scripted_swat_van_spawn,
 	[400014] = scripted_swat_van_spawn,
