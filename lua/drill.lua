@@ -205,6 +205,13 @@ function Drill:set_jammed(jammed)
 	end
 end
 
+Hooks:PreHook(Drill, "set_skill_upgrades", "eclipse_set_skill_upgrades", function(self)
+	local unit_override = self._unit:timer_gui().get_drill_unit_override and self._unit:timer_gui():get_drill_unit_override()
+	if unit_override and unit_override.disable_upgrades ~= nil then
+		self._disable_upgrades = unit_override.disable_upgrades
+	end
+end)
+
 -- Melee autorestarter gets triggered after a certain amount of hits instead of a random chance
 function Drill:on_melee_hit(peer_id)
 	if self._disable_upgrades or not self._jammed then

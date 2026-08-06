@@ -93,6 +93,7 @@ local M = {
 		[104625] = {
 			drill = {
 				{
+					disable_upgrades = true,
 					timer = 69,
 					jam_times = {
 						is_balance_mul = true,
@@ -109,6 +110,7 @@ local M = {
 		[100207] = {
 			drill = {
 				{
+					disable_upgrades = true,
 					timer = 96,
 					jam_times = {
 						is_balance_mul = true,
@@ -122,6 +124,7 @@ local M = {
 		},
 		-- Rear lance
 		[104466] = {
+			disable_upgrades = true,
 			timer = 240,
 			timer_init_balance_mul = {
 				team_ai_balance_mul_weight = 0.5,
@@ -134,6 +137,7 @@ local M = {
 		},
 		-- Front lance
 		[104674] = {
+			disable_upgrades = true,
 			timer = 420,
 			timer_dt_balance_mul = {
 				team_ai_balance_mul_weight = 0.5,

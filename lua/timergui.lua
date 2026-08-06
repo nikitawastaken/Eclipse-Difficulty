@@ -1,7 +1,12 @@
 local level_id = Eclipse.utils.clean_level_id()
 TimerGui.drill_unit_overrides = Eclipse:require("drill_unit_overrides")
 
-function TimerGui:_get_drill_unit_override()
+function TimerGui:get_drill_unit_override()
+	if self._checked_unit_override then
+		return self._unit_override
+	end
+
+	self._checked_unit_override = true
 	local drill_unit_overrides = self.drill_unit_overrides[level_id]
 	if not drill_unit_overrides then
 		return
@@ -13,7 +18,8 @@ function TimerGui:_get_drill_unit_override()
 
 	local mission_door_device_ext = self._unit:mission_door_device()
 	if not mission_door_device_ext then
-		return get_override(self._unit)
+		self._unit_override = get_override(self._unit)
+		return self._unit_override
 	end
 
 	local parent_door = mission_door_device_ext._parent_door
@@ -26,38 +32,40 @@ function TimerGui:_get_drill_unit_override()
 		if override[typ] then
 			for i, data in ipairs(device.units) do
 				if data.unit == self._unit then
-					return override[typ][i]
+					self._unit_override = override[typ][i]
+					return self._unit_override
 				end
 			end
 		end
 	end
 end
 
-function TimerGui:_check_drill_unit_override()
-	if self._checked_drill_unit_override then
+-- `disable_upgrades` drill unit override done in `Drill.set_skill_upgrades`
+function TimerGui:_apply_drill_unit_override()
+	if self._applied_unit_override then
 		return
 	end
 
-	self._checked_drill_unit_override = true
-
-	local unit_override = self:_get_drill_unit_override()
-	self._unit_override = unit_override
-	if unit_override then
-		if unit_override.can_jam ~= nil then
-			self:set_can_jam(unit_override.can_jam)
-		end
-
-		if unit_override.jam_times ~= nil then
-			self:set_jam_times(unit_override.jam_times)
-		end
-
-		if unit_override.timer then
-			self:set_override_timer(unit_override.timer)
-		end
-
-		self._timer_init_balance_mul = unit_override.timer_init_balance_mul
-		self._timer_dt_balance_mul = unit_override.timer_dt_balance_mul
+	self._applied_unit_override = true
+	local unit_override = self:get_drill_unit_override()
+	if not unit_override then
+		return
 	end
+
+	if unit_override.can_jam ~= nil then
+		self:set_can_jam(unit_override.can_jam)
+	end
+
+	if unit_override.jam_times ~= nil then
+		self:set_jam_times(unit_override.jam_times)
+	end
+
+	if unit_override.timer then
+		self:set_override_timer(unit_override.timer)
+	end
+
+	self._timer_init_balance_mul = unit_override.timer_init_balance_mul
+	self._timer_dt_balance_mul = unit_override.timer_dt_balance_mul
 end
 
 -- Reduce drill screen brightness for heists with high bloom
@@ -68,7 +76,7 @@ end)
 -- Set up unit override if it exists
 -- If this drill has a balance multiplier for its initial timer, apply it
 Hooks:PreHook(TimerGui, "start", "eclipse_start", function(self, timer)
-	self:_check_drill_unit_override()
+	self:_apply_drill_unit_override()
 
 	if self._timer_init_balance_mul then
 		local balance_mul = managers.groupai:state():_get_balancing_multiplier(self._timer_init_balance_mul, self._timer_init_balance_mul.team_ai_balance_mul_weight)
