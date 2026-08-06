@@ -34,16 +34,15 @@ local bags_required = {
 	},
 }
 return {
-	--[[ Instant FFO after cooking 15 bags
+	-- Instant FFO after cooking 15 bags
 	[103584] = { -- output_event_meth_spawned
 		on_executed = {
 			{ id = 400005, delay = 0 },
 		},
 	},
 	[400006] = { -- cooked bags
-		set_ponr_state = true,	
+		set_ponr_state = true,
 	},
-	]]
 	-- disable selected spawngroup based on which tunnel has been chossen
 	[101076] = {
 		on_executed = {

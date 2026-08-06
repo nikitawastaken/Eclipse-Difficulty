@@ -34,6 +34,7 @@ local optsCookedBagsCounterOperator = {
 	enabled = true,
 }
 local optsCookedBagsCounterTrigger = {
+	trigger_type = "value",
 	amount = 15,
 	elements = {
 		400004,
@@ -46,9 +47,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400001, "disable_spawngroup_1", optsDisable_Spawngroup_1),
 	Eclipse.mission_elements.gen_toggleelement(400002, "disable_spawngroup_2", optsDisable_Spawngroup_2),
 	Eclipse.mission_elements.gen_toggleelement(400003, "disable_spawngroup_3", optsDisable_Spawngroup_3),
-	--	Eclipse.mission_elements.gen_counter(400004, "cooked_bags_counter", optsCookedBagsCounter),
-	--	Eclipse.mission_elements.gen_counter_operator(400005, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
-	--	Eclipse.mission_elements.gen_counter_trigger(400006, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),
+	Eclipse.mission_elements.gen_counter(400004, "cooked_bags_counter", optsCookedBagsCounter),
+	Eclipse.mission_elements.gen_counter_operator(400005, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
+	Eclipse.mission_elements.gen_counter_trigger(400006, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),
 }
 
 return M

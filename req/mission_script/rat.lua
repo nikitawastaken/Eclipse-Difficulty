@@ -67,16 +67,15 @@ local filter_disable = {
 local meth_lab_in_basement_chance = math.random() < 0.25
 
 return {
-	--[[ Instant FFO after cooking 15 bags
+	-- Instant FFO after cooking 15 bags
 	[102452] = { -- methbag_produced
 		on_executed = {
 			{ id = 400011, delay = 0 },
 		},
 	},
 	[400012] = { -- cooked bags
-		set_ponr_state = true,	
+		set_ponr_state = true,
 	},
-	]]
 	-- Add new navlinks
 	[102141] = { -- activate_navlinks_and_SOs
 		on_executed = {

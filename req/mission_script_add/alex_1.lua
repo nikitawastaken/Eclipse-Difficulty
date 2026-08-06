@@ -74,6 +74,7 @@ local optsCookedBagsCounterOperator = {
 	enabled = true,
 }
 local optsCookedBagsCounterTrigger = {
+	trigger_type = "value",
 	amount = 15,
 	elements = {
 		400010,
@@ -98,9 +99,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
 	-- Loop script for the choppers
 	Eclipse.mission_elements.gen_missionscript(400009, "chopper_loop", optschopper_loop),
-	--	Eclipse.mission_elements.gen_counter(400010, "cooked_bags_counter", optsCookedBagsCounter),
-	--	Eclipse.mission_elements.gen_counter_operator(400011, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
-	--	Eclipse.mission_elements.gen_counter_trigger(400012, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),
+	Eclipse.mission_elements.gen_counter(400010, "cooked_bags_counter", optsCookedBagsCounter),
+	Eclipse.mission_elements.gen_counter_operator(400011, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
+	Eclipse.mission_elements.gen_counter_trigger(400012, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),
 	-- Add new navlinks to give enemies alternate routes into the basement
 	Eclipse.mission_elements.gen_so(400013, "basement_navlink01", Vector3(1450, 1325, 1115), Rotation(-90, 0, 0), optsBasementNavlink01),
 	Eclipse.mission_elements.gen_so(400014, "basement_navlink02", Vector3(2350, 825, 1115), Rotation(90, 0, 0), optsBasementNavlink02),
