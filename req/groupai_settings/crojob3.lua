@@ -5,7 +5,7 @@ return {
 			value = { "difficulty_scaling", "addend_delay_balance_muls", "on_enemy_weapons_hot" },
 			tweak = {
 				mode = "replace",
-				modifier = { 1.3, 1.2, 1.1, 1 },			
+				modifier = { 1.3, 1.2, 1.1, 1 },
 			},
 		},
 		{

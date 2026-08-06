@@ -303,7 +303,7 @@ local M = {
 			[100080] = chca_vault_saw,
 			[100122] = chca_vault_saw,
 		},
-	},	
+	},
 	["dah"] = {
 		[("units/pd2_dlc_dah/props/dah_prop_hack_box/dah_prop_hack_ipad_unit"):key()] = {
 			timer = 240,

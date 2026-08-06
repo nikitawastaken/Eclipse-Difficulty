@@ -6,7 +6,7 @@ return {
 			value = { "assault", "delay" }, -- Julespig
 			tweak = {
 				mode = "replace",
-				modifier = get_difficulty_specific_value({ 
+				modifier = get_difficulty_specific_value({
 					{ 40, 35, 30 },
 					{ 35, 30, 25 },
 					{ 30, 25, 20 },
