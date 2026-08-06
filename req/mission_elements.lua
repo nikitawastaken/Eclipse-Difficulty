@@ -579,6 +579,7 @@ function M.gen_counter_trigger(id, name, opts)
 			elements = opts.elements or {},
 			base_delay = opts.base_delay or 0,
 			callback = opts.callback or false,
+			trigger_type = opts.trigger_type or "value",
 		},
 	}
 
