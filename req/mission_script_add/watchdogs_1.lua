@@ -1,5 +1,6 @@
 ---@module Watchdogs Day 1
 local M = {}
+local get_navlink_so_opts = Eclipse.utils.get_navlink_so_opts
 
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
@@ -37,6 +38,9 @@ local opts_swat_group = {
 	amount = 4,
 }
 
+local optsCrateNavlink01 = get_navlink_so_opts("e_nl_down_2m", Vector3(1425, 2325, 210), 2, nil)
+local optsCrateNavlink02 = get_navlink_so_opts("e_nl_down_2m", Vector3(1625, 2325, 0), 2, nil)
+
 M.elements = {
 	-- swat van 1
 	Eclipse.mission_elements.gen_dummy(400001, "swat_van_spawn_1", Vector3(-2099, 2783, -19.999), Rotation(-12, 0, 0), optsBesiegeDummy),
@@ -55,6 +59,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400012, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400013, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 	Eclipse.mission_elements.gen_spawngroup(400014, "swat_group_2", { 400008, 400009, 400010, 400011 }, 0, opts_swat_group),
+
+	Eclipse.mission_elements.gen_so(400015, "crate_navlink01", Vector3(1300, 2325, 400), Rotation(-90, 0, 0), optsCrateNavlink01),
+	Eclipse.mission_elements.gen_so(400016, "crate_navlink02", Vector3(1475, 2325, 210), Rotation(-90, 0, 0), optsCrateNavlink02),
 }
 
 return M

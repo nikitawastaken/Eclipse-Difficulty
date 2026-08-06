@@ -43,6 +43,7 @@ return {
 	-- Combine some navigation areas
 	[100125] = {
 		ai_area = {
+			{ 55, 144 },
 			{ 42, 75 },
 			{ 51, 76 },
 			{ 52, 134 },
@@ -77,7 +78,7 @@ return {
 	[102849] = shield_so,
 	[102850] = shield_so,
 	[102851] = shield_so,
-	-- Restore a unused navlinks
+	-- Restore unused navlinks and add new ones
 	[102362] = {
 		values = {
 			so_action = "e_nl_up_2m_var4",
@@ -88,6 +89,12 @@ return {
 		values = {
 			so_action = "e_nl_up_2m",
 			enabled = true,
+		},
+	},
+	[100812] = {
+		on_executed = {
+			{ id = 400015, delay = 0 },
+			{ id = 400016, delay = 0 },
 		},
 	},
 	-- Spawn Group delays
