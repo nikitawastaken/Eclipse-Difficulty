@@ -85,9 +85,9 @@ function AmmoBagBase:setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
 	end
 
 	-- Register the deployable for voice lines and reinforce
-	local nav_seg_id =  managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id) 
-	
+	local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
+
 	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 end
 

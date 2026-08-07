@@ -166,36 +166,36 @@ end
 
 -- Add dynamic reinforce spots to enemy loot drop points
 Hooks:PreHook(CarryData, "on_secure_SO_completed", "sh_on_secure_SO_completed", function(self, thief)
-    if not alive(thief) or thief ~= self._steal_SO_data.thief then
-        return
-    end
+	if not alive(thief) or thief ~= self._steal_SO_data.thief then
+		return
+	end
 
-    local nav_seg = thief:movement():nav_tracker():nav_segment()
-    local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg)
-    area.dropped_loot = area.dropped_loot or {}
-    area.dropped_loot[self._unit:key()] = self._unit
-    self._loot_dropoff_area = area
+	local nav_seg = thief:movement():nav_tracker():nav_segment()
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg)
+	area.dropped_loot = area.dropped_loot or {}
+	area.dropped_loot[self._unit:key()] = self._unit
+	self._loot_dropoff_area = area
 
-    if not area.factors or not area.factors.force then
-        managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), 3, area.pos)
-    end
+	if not area.factors or not area.factors.force then
+		managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), 3, area.pos)
+	end
 end)
 
 function CarryData:_remove_from_dropoff_area()
-    if not self._loot_dropoff_area then
-        return
-    end
+	if not self._loot_dropoff_area then
+		return
+	end
 
-    local area = self._loot_dropoff_area
-    self._loot_dropoff_area = nil
-    if not area.dropped_loot then
-        return
-    end
+	local area = self._loot_dropoff_area
+	self._loot_dropoff_area = nil
+	if not area.dropped_loot then
+		return
+	end
 
-    area.dropped_loot[self._unit:key()] = nil
-    if not next(area.dropped_loot) then
-        managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), nil)
-    end
+	area.dropped_loot[self._unit:key()] = nil
+	if not next(area.dropped_loot) then
+		managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), nil)
+	end
 end
 
 Hooks:PostHook(CarryData, "link_to", "sh_link_to", CarryData._remove_from_dropoff_area)

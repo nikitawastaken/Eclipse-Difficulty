@@ -1579,11 +1579,11 @@ function GroupAIStateBase:register_deployable(deployable_unit, deployable_area, 
 	end
 
 	deployable_area.deployable[deployable_u_key] = deployable_name
-	
+
 	if not tweak_data.group_ai.use_deployable_reenforce then
 		return
 	end
-	
+
 	if tweak_data.group_ai.deployable_reenforce and tweak_data.group_ai.deployable_reenforce[deployable_name] then
 		managers.groupai:state():set_area_min_police_force("deployable" .. tostring(deployable_area), 1, deployable_area.pos)
 	end
@@ -1595,7 +1595,7 @@ function GroupAIStateBase:unregister_deployable(deployable_u_key)
 			area.deployable[deployable_u_key] = nil
 
 			if not next(area.deployable) then
-				area.deployable = nil			
+				area.deployable = nil
 				managers.groupai:state():set_area_min_police_force("deployable" .. tostring(area), nil)
 			end
 

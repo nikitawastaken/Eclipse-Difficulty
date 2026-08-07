@@ -430,7 +430,7 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
 
-	local my_area = managers.groupai:state():get_area_from_nav_seg_id(data.unit:movement():nav_tracker():nav_segment()) 
+	local my_area = managers.groupai:state():get_area_from_nav_seg_id(data.unit:movement():nav_tracker():nav_segment())
 	if my_area and my_area.deployable then
 		local deployable_types = {}
 		for k, v in pairs(my_area.deployable) do
