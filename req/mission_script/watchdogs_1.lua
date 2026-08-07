@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
@@ -82,12 +87,14 @@ return {
 	[102362] = {
 		values = {
 			so_action = "e_nl_up_2m_var4",
+			align_position = false,
 			enabled = true,
 		},
 	},
 	[102357] = {
 		values = {
 			so_action = "e_nl_up_2m",
+			align_position = false,
 			enabled = true,
 		},
 	},
@@ -97,6 +104,10 @@ return {
 			{ id = 400016, delay = 0 },
 		},
 	},
+	-- Restored unused cloaker hiding spots
+	[103477] = enabled,
+	[103478] = enabled,
+	[103580] = enabled,
 	-- Spawn Group delays
 	[400007] = scripted_swat_van_spawn,
 	[400014] = scripted_swat_van_spawn,

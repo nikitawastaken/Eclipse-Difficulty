@@ -27,7 +27,6 @@ local gangster_stationary_amount = {
 		amount_random = 0,
 	},
 }
-
 local heli_enemy1 = {
 	enemy = heavy,
 	on_executed = {
@@ -51,10 +50,30 @@ local heli_enemy4 = {
 		participate_to_group_ai = false,
 	},
 }
+local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
+local no_align_pos1 = {
+	values = {
+		align_position = false,
+	}
+}
+local no_align_pos2 = deep_clone(no_align_pos1)
+no_align_pos2.values.so_action = "e_nl_down_4m_var3"
+
 return {
+	-- Add missing hangar reinforce spots
+	[103162] = {
+		on_executed = {
+			{ id = 101359, delay = 0 }
+		}
+	},
+	[103211] = {
+		on_executed = {
+			{ id = 101360, delay = 0 }
+		}
+	},
 	-- increase reinforce outside hangars
 	[101355] = hangar_reinforce_amount,
 	[101352] = hangar_reinforce_amount,
@@ -119,6 +138,24 @@ return {
 			{ id = 100163, delay = 0 },
 		},
 	},
+	-- disable 'align_position' for select navlinks
+	[103692] = no_align_pos1,
+	[104450] = no_align_pos1,
+	[104451] = no_align_pos1,
+	[103935] = no_align_pos1,
+	[103936] = no_align_pos1,
+	[103938] = no_align_pos1,
+	[103937] = no_align_pos1,
+	[103918] = no_align_pos1,
+	[103917] = no_align_pos1,
+	[103916] = no_align_pos1,
+	[103921] = no_align_pos1,
+	[103920] = no_align_pos1,
+	[103919] = no_align_pos1,
+	[100767] = no_align_pos2,
+	[100785] = no_align_pos2,
+	[100842] = no_align_pos2,
+	[100912] = no_align_pos2,
 	-- tweak gangsters amount
 	[101298] = gangster_outside_amount,
 	[101040] = gangster_outside_amount,

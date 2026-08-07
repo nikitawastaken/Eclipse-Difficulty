@@ -492,6 +492,19 @@ function CopActionWalk:_upd_stop_anim(t)
 	self:_set_new_pos(dt)
 end
 
+-- Allow enemies to use navlinks without stopping
+Hooks:PostHook(CopActionWalk, "_init", "eclipse__init", function(self)
+	if self._chk_stop_dis and self._next_is_nav_link and not self._next_is_nav_link.element:nav_link_wants_align_pos() then
+		self._chk_stop_dis = nil
+	end
+end)
+
+Hooks:PostHook(CopActionWalk, "_nav_chk_walk", "eclipse__nav_chk_walk", function(self)
+	if self._chk_stop_dis and self._next_is_nav_link and not self._next_is_nav_link.element:nav_link_wants_align_pos() then
+		self._chk_stop_dis = nil
+	end
+end)
+
 if Network:is_client() then
 	return
 end

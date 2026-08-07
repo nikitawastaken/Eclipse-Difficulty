@@ -2,6 +2,11 @@ local preferred = Eclipse.preferred
 local swat_spawn_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
+local sniper_so = {
+	on_executed = {
+		{ id = 100677, delay = 0 }
+	}
+}
 return {
 	-- Infinite assault at the very start
 	[101580] = { -- func_difficulty_001
@@ -40,17 +45,9 @@ return {
 			},
 		},
 	},
-	-- fix some sniping swats not spawning
-	[102486] = {
-		on_executed = {
-			{ id = 100677, delay = 0 },
-		},
-	},
-	[102457] = {
-		on_executed = {
-			{ id = 100677, delay = 0 },
-		},
-	},
+	-- Enable missing escape SO SWATs
+	[102457] = sniper_so,
+	[102486] = sniper_so
 	-- fix spawn anims for rappeling SWATs
 	[100747] = swat_spawn_fix,
 	[100748] = swat_spawn_fix,
