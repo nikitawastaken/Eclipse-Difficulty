@@ -95,7 +95,6 @@
 		
 			<run_sequence 		name="'murkywater'" />		
 			<run_sequence 		name="'murky_helmet'" />
-			<run_sequence 		name="'random_goggles_head'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'murkywater_2'" once="true" triggable="true" >

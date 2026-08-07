@@ -164,6 +164,11 @@
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod2'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'hat_city_swat'" once="true" triggable="true"> 			
+			<object 			enabled="true" name="'g_hat_city_swat_lod1'" />
+			<object 			enabled="true" name="'g_hat_city_swat_lod2'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'helmet_city_swat'" once="true" triggable="true"> 
 			<decal_mesh 		enabled="true" name="'dm_helmet3'" />
 			
@@ -411,7 +416,7 @@
 			
 			<run_sequence 		name="'city_swat'" />
 			<run_sequence 		name="'random_body_a'" />
-			<run_sequence 		name="'city_hat_base'" />
+			<run_sequence 		name="'hat_city_swat'" />
 			<run_sequence 		name="'shades_base'" />
 		</sequence>
 
