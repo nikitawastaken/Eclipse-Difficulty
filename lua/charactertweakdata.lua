@@ -934,6 +934,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.idle = true
 	presets.enemy_chatter.cop.report = true
 	presets.enemy_chatter.cop.trip_mine = true
+	presets.enemy_chatter.cop.doctor_bag = true
+	presets.enemy_chatter.cop.ammo_bag = true
 	presets.enemy_chatter.cop.saw = true
 	presets.enemy_chatter.cop.recon_move_out_a = true
 	presets.enemy_chatter.cop.recon_move_out_b = true
@@ -953,6 +955,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.swat.get_loot = true
 	presets.enemy_chatter.swat.group_death = true
 	presets.enemy_chatter.swat.trip_mine = true
+	presets.enemy_chatter.swat.doctor_bag = true
+	presets.enemy_chatter.swat.ammo_bag = true
 	presets.enemy_chatter.swat.saw = true
 	presets.enemy_chatter.swat.assault_move_out_a = true
 	presets.enemy_chatter.swat.assault_move_out_b = true

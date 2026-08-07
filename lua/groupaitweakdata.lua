@@ -287,6 +287,10 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.trip_mine.radius = radius_large
 	self.enemy_chatter.sentry_gun = clone(self.enemy_chatter.trip_mine)
 	self.enemy_chatter.sentry_gun.queue = "ch2"
+	self.enemy_chatter.doctor_bag = clone(self.enemy_chatter.trip_mine)
+	self.enemy_chatter.doctor_bag.queue = "med"
+	self.enemy_chatter.ammo_bag = clone(self.enemy_chatter.trip_mine)
+	self.enemy_chatter.ammo_bag.queue = "amm"
 	self.enemy_chatter.reloading = clone(self.enemy_chatter.contact)
 	self.enemy_chatter.reloading.queue = "rrl"
 	self.enemy_chatter.jammer = clone(self.enemy_chatter.aggressive)
@@ -3575,8 +3579,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.undershot_reenforce_interval_factor = 1
 	self.init_reenforce_delay = 15
 	self.use_loot_drop_reenforce = true
-	self.use_equipment_reenforce = true
-	self.equipment_reenforce = table.list_to_set({
+	self.use_deployable_reenforce = true
+	self.deployable_reenforce = table.list_to_set({
 		"doctor_bag",
 		"ammo_bag",
 		"grenade_case",

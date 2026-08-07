@@ -83,6 +83,12 @@ function GrenadeCrateBase:setup(grenade_upgrade_lvl)
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
 	end
+
+	-- Register the deployable for voice lines and reinforce
+	local nav_seg_id =  managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id) 
+	
+	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 end
 
 function GrenadeCrateBase:sync_setup(grenade_upgrade_lvl, peer_id)
@@ -177,20 +183,10 @@ function GrenadeCrateBase:_set_empty()
 
 		unit:set_enabled(false)
 	end
+	
+	-- Unregister the deployable for voice lines and reinforce
+	managers.groupai:state():unregister_deployable(self._unit:key())
 end
-
--- Mark grenade cases for reinforce groups
-Hooks:PostHook(GrenadeCrateBase, "setup", "eclipse_setup", function(self)
-	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-end)
-
-Hooks:PostHook(GrenadeCrateBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
-		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
-	elseif self._empty then
-		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
-	end
-end)
 
 -- Ordnance bag behaves as a reskin to the grenade case
 function GrenadeCrateDeployableBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id)
@@ -256,6 +252,12 @@ function GrenadeCrateDeployableBase:setup(grenade_upgrade_lvl)
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
 	end
+
+	-- Register the deployable for voice lines and reinforce
+	local nav_seg_id =  managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id) 
+	
+	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 end
 
 function GrenadeCrateDeployableBase:sync_setup(grenade_upgrade_lvl, peer_id)
@@ -349,17 +351,7 @@ function GrenadeCrateDeployableBase:_set_empty()
 
 		unit:set_enabled(false)
 	end
+
+	-- Unregister the deployable for voice lines and reinforce
+	managers.groupai:state():unregister_deployable(self._unit:key())
 end
-
--- Mark grenade cases for reinforce groups
-Hooks:PostHook(GrenadeCrateDeployableBase, "setup", "eclipse_setup", function(self)
-	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-end)
-
-Hooks:PostHook(GrenadeCrateDeployableBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
-		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
-	elseif self._empty then
-		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
-	end
-end)

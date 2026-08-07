@@ -117,7 +117,6 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
-	self._deployable_nav_segs = {}
 
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
@@ -424,11 +423,6 @@ Hooks:PostHook(GroupAIStateBase, "register_special_unit", "eclipse_register_spec
 		self:_add_drama(tweak_data.drama.special_spawn_drama_add[category_name] * balance_mul)
 	end
 end)
-
--- Add a function to check if a deployble is within a nav_seg
-function GroupAIStateBase:chk_deployable_nav_seg(nav_seg_id)
-	return self._deployable_nav_segs[nav_seg_id]
-end
 
 -- Add megaphone cop lines to specific heists (from Restoration Mod)
 function GroupAIStateBase:_post_megaphone_event(event)
@@ -1569,3 +1563,43 @@ Hooks:PostHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub"
 		end
 	end
 end)
+
+-- Add dyanmic reinforce spots to player deployables
+function GroupAIStateBase:register_deployable(deployable_unit, deployable_area, deployable_name)
+	local deployable_u_key = deployable_unit:key()
+
+	for area_id, area in pairs(self._area_data) do
+		if area.deployable and area.deployable[deployable_u_key] then
+			debug_pause_unit(deployable_unit, "[GroupAIStateBase:register_deployable] deployable registered twice")
+		end
+	end
+
+	if not deployable_area.deployable then
+		deployable_area.deployable = {}
+	end
+
+	deployable_area.deployable[deployable_u_key] = deployable_name
+	
+	if not tweak_data.group_ai.use_deployable_reenforce then
+		return
+	end
+	
+	if tweak_data.group_ai.deployable_reenforce and tweak_data.group_ai.deployable_reenforce[deployable_name] then
+		managers.groupai:state():set_area_min_police_force("deployable" .. tostring(deployable_area), 1, deployable_area.pos)
+	end
+end
+
+function GroupAIStateBase:unregister_deployable(deployable_u_key)
+	for area_id, area in pairs(self._area_data) do
+		if area.deployable and area.deployable[deployable_u_key] then
+			area.deployable[deployable_u_key] = nil
+
+			if not next(area.deployable) then
+				area.deployable = nil			
+				managers.groupai:state():set_area_min_police_force("deployable" .. tostring(area), nil)
+			end
+
+			break
+		end
+	end
+end

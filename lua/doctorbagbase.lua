@@ -11,15 +11,15 @@ function DoctorBagBase:_set_visual_stage()
 	end
 end
 
--- Mark doctor bags for reinforce groups
 Hooks:PostHook(DoctorBagBase, "setup", "eclipse_setup", function(self)
-	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	-- Register the deployable for voice lines and reinforce
+	local nav_seg_id =  managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id) 
+	
+	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 end)
 
-Hooks:PostHook(DoctorBagBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
-		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
-	elseif self._empty then
-		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
-	end
+Hooks:PostHook(DoctorBagBase, "_set_empty", "eclipse__set_empty", function(self)
+	-- Unregister the deployable for voice lines and reinforce
+	managers.groupai:state():unregister_deployable(self._unit:key())
 end)

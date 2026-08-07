@@ -46,30 +46,6 @@ function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipl
 	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
 end
 
--- Functions for adding/removing deployable reinforce
-function GroupAIStateBase:add_deployable_reenforce(name_id, unit, pos, nav_seg_id)
-	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[name_id] and tweak_data.group_ai.use_equipment_reenforce then
-		self:set_area_min_police_force(unit:key(), 1, pos)
-		self._deployable_nav_segs[nav_seg_id] = true
-	end
-end
-
-function GroupAIStateBase:remove_deployable_reenforce(unit, nav_seg_id)
-	self:set_area_min_police_force(unit:key())
-	self._deployable_nav_segs[nav_seg_id] = nil
-end
-
--- Mark loot drop points for reinforce
-Hooks:PostHook(GroupAIStateBesiege, "add_enemy_loot_drop_point", "eclipse_add_enemy_loot_drop_point", function(self, id, pos)
-	if tweak_data.group_ai.use_loot_drop_reenforce then
-		self:set_area_min_police_force(id, 3, pos)
-	end
-end)
-
-Hooks:PostHook(GroupAIStateBesiege, "remove_enemy_loot_drop_point", "eclipse_remove_enemy_loot_drop_point", function(self, id)
-	self:set_area_min_police_force(id)
-end)
-
 -- Move the hostage hesitation delay to control instead of anticipation
 local _begin_assault_task_original = GroupAIStateBesiege._begin_assault_task
 function GroupAIStateBesiege:_begin_assault_task(...)

@@ -429,6 +429,22 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
+
+	local my_area = managers.groupai:state():get_area_from_nav_seg_id(data.unit:movement():nav_tracker():nav_segment()) 
+	if my_area and my_area.deployable then
+		local deployable_types = {}
+		for k, v in pairs(my_area.deployable) do
+			table.insert(deployable_types, v)
+		end
+
+		local focus_enemy = data.attention_obj
+		local verified = focus_enemy and focus_enemy.verified
+		local deployable_type = table.random(deployable_types)
+
+		if not verified and deployable_type and data.char_tweak.chatter and data.char_tweak.chatter[deployable_type] then
+			managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, deployable_type)
+		end
+	end
 end)
 
 -- Make better use of pathing priority

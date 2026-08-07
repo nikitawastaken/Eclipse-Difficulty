@@ -31,15 +31,12 @@ Hooks:PreHook(AmmoBagBase, "_set_empty", "eclipse__set_empty", function(self)
 	managers.network:session():send_to_peers_synched("sync_ammo_bag_ammo_taken", self._unit, self._max_ammo_amount + 1)
 end)
 
--- Thanks Hoppip for this one too
-
-Hooks:PostHook(AmmoBagBase, "update", "eclipse_update", function(self)
-	if not managers.groupai:state():chk_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
-		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
-	elseif self._empty then
-		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
-	end
+Hooks:PostHook(AmmoBagBase, "_set_empty", "eclipse__set_empty", function(self)
+	-- Unregister the deployable for voice lines and reinforce
+	managers.groupai:state():unregister_deployable(self._unit:key())
 end)
+
+-- Thanks Hoppip for this one too
 
 function AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
 	local unit_name = "units/payday2/equipment/gen_equipment_ammobag/gen_equipment_ammobag"
@@ -87,8 +84,11 @@ function AmmoBagBase:setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
 		end
 	end
 
-	-- Mark ammo bags for reinforce groups
-	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	-- Register the deployable for voice lines and reinforce
+	local nav_seg_id =  managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id) 
+	
+	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 end
 
 function AmmoBagBase:take_ammo(unit)

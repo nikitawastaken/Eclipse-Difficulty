@@ -3,7 +3,7 @@ return {
 	task_data_mod = {
 		{
 			groupai_state = "none",
-			value = { "use_equipment_reenforce" },
+			value = { "use_deployable_reenforce" },
 			tweak = {
 				mode = "replace",
 				modifier = false,
