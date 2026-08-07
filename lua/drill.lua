@@ -1,14 +1,7 @@
-local level_id = Eclipse.utils.level_id()
-local drill_unit_overrides = Eclipse:require("drill_unit_overrides")
-
-Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)
-	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()]
-
-	if unit_override then
-		self._forbid_reenforce = unit_override.forbid_reenforce or nil
-		self._forbid_sabotage = unit_override.forbid_sabotage or nil
-	end
-end)
+function Drill:get_drill_unit_override()
+	local timer_gui_ext = self._unit:timer_gui()
+	return timer_gui_ext and timer_gui_ext.get_drill_unit_override and timer_gui_ext:get_drill_unit_override()
+end
 
 function Drill:_set_area_min_police_force(state)
 	if self._min_force_clbk_id then
@@ -26,6 +19,11 @@ end
 -- Mark drills for reinforce groups
 -- Silent drills don't get noticed immediately
 Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
+	if self._forbid_reenforce == nil then
+		local unit_override = self:get_drill_unit_override()
+		self._forbid_reenforce = unit_override and unit_override.forbid_reenforce or false
+	end
+
 	if not self._set_area_min_police_force or self._forbid_reenforce then
 		-- Nothing
 	elseif self._skill_upgrades.silent_drill or self._skill_upgrades.reduced_alert then
@@ -45,6 +43,11 @@ Hooks:PostHook(Drill, "done", "eclipse_done", unregister_area_min_police_force)
 
 local _register_sabotage_SO_original = Drill._register_sabotage_SO
 function Drill:_register_sabotage_SO(...)
+	if self._forbid_sabotage == nil then
+		local unit_override = self:get_drill_unit_override()
+		self._forbid_sabotage = unit_override and unit_override.forbid_sabotage or false
+	end
+
 	if not self._forbid_sabotage then
 		return _register_sabotage_SO_original(self, ...)
 	end
@@ -206,7 +209,7 @@ function Drill:set_jammed(jammed)
 end
 
 Hooks:PreHook(Drill, "set_skill_upgrades", "eclipse_set_skill_upgrades", function(self)
-	local unit_override = self._unit:timer_gui().get_drill_unit_override and self._unit:timer_gui():get_drill_unit_override()
+	local unit_override = self:get_drill_unit_override()
 	if unit_override and unit_override.disable_upgrades ~= nil then
 		self._disable_upgrades = unit_override.disable_upgrades
 	end
