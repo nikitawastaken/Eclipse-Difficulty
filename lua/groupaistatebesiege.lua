@@ -75,10 +75,6 @@ end
 
 -- Make hostage count affect hesitation delay
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
-	if self._hostage_headcount > 0 then
-		self._task_data.assault.is_hesitating = true
-	end
-
 	if self._task_data.assault.next_dispatch_t then
 		local delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
 		local delay_mul = self:_get_balancing_multiplier(self._tweak_data.assault.delay_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.assault_delay)
@@ -89,6 +85,7 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 			local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
 			local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
 
+			self._task_data.assault.is_hesitating = true
 			self._task_data.assault.voice_delay = self._task_data.assault.next_dispatch_t - self._t
 			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
 
