@@ -47,7 +47,7 @@ return {
 	},
 	-- Enable missing escape SO SWATs
 	[102457] = sniper_so,
-	[102486] = sniper_so
+	[102486] = sniper_so,
 	-- fix spawn anims for rappeling SWATs
 	[100747] = swat_spawn_fix,
 	[100748] = swat_spawn_fix,
