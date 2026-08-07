@@ -4,8 +4,8 @@ local swat_spawn_fix = {
 }
 local sniper_so = {
 	on_executed = {
-		{ id = 100677, delay = 0 }
-	}
+		{ id = 100677, delay = 0 },
+	},
 }
 return {
 	-- Infinite assault at the very start

@@ -57,7 +57,7 @@ local swat_shield_dozer_filter = {
 local no_align_pos1 = {
 	values = {
 		align_position = false,
-	}
+	},
 }
 local no_align_pos2 = deep_clone(no_align_pos1)
 no_align_pos2.values.so_action = "e_nl_down_4m_var3"
@@ -66,13 +66,13 @@ return {
 	-- Add missing hangar reinforce spots
 	[103162] = {
 		on_executed = {
-			{ id = 101359, delay = 0 }
-		}
+			{ id = 101359, delay = 0 },
+		},
 	},
 	[103211] = {
 		on_executed = {
-			{ id = 101360, delay = 0 }
-		}
+			{ id = 101360, delay = 0 },
+		},
 	},
 	-- increase reinforce outside hangars
 	[101355] = hangar_reinforce_amount,
