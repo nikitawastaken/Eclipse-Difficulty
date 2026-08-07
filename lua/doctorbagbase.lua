@@ -12,14 +12,18 @@ function DoctorBagBase:_set_visual_stage()
 end
 
 Hooks:PostHook(DoctorBagBase, "setup", "eclipse_setup", function(self)
-	-- Register the deployable for voice lines and reinforce
-	local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
+	if Network:is_server() then
+		-- Register the deployable for voice lines and reinforce
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
+		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
 
-	managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
+		managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
+	end
 end)
 
 Hooks:PostHook(DoctorBagBase, "_set_empty", "eclipse__set_empty", function(self)
-	-- Unregister the deployable for voice lines and reinforce
-	managers.groupai:state():unregister_deployable(self._unit:key())
+	if Network:is_server() then
+		-- Unregister the deployable for voice lines and reinforce
+		managers.groupai:state():unregister_deployable(self._unit:key())
+	end
 end)
