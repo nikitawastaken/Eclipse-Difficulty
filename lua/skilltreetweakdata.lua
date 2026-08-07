@@ -1,7 +1,4 @@
-local data = SkillTreeTweakData.init
-function SkillTreeTweakData:init(tweak_data)
-	data(self, tweak_data)
-
+Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_data)
 	local function digest(value)
 		return Application:digest_value(value, true)
 	end
@@ -1121,4 +1118,4 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "x_m45")
 	table.delete(self.default_upgrades, "x_mp7")
 	table.delete(self.default_upgrades, "x_ppk")
-end
+end)

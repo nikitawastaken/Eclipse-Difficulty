@@ -1,6 +1,9 @@
+-- Why is this here?
+--[[
 if weapon_id then
 	managers.statistics:shot_fired({})
 end
+]]
 
 local mvec1 = Vector3()
 function GrenadeBase:throw(params)

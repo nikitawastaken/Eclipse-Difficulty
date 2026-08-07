@@ -39,9 +39,7 @@ StatisticsManager.special_unit_ids = {
 }
 
 --use vanilla's stat tweak_tables while adding new ones
-local old_stats = StatisticsManager.init
-function StatisticsManager:init()
-	old_stats(self)
+Hooks:PostHook(StatisticsManager, "init", "eclipse_init", function(self)
 	self._defaults.killed.fbi_boss = {
 		count = 0,
 		head_shots = 0,
@@ -217,4 +215,4 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
-end
+end)

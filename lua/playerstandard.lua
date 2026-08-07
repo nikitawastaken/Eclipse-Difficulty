@@ -2,10 +2,7 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local mvec3_dis_sq = mvector3.distance_sq
 
 -- Friendly Fire
-local original_init = PlayerStandard.init
-function PlayerStandard:init(unit)
-	original_init(self, unit)
-
+Hooks:PostHook(PlayerStandard, "init", "eclipse_init", function(self, unit)
 	if is_pro_job then
 		self._slotmask_bullet_impact_targets = self._slotmask_bullet_impact_targets + 3
 	else
@@ -34,7 +31,7 @@ function PlayerStandard:init(unit)
 	end
 
 	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1) * pickup_range_multiplier
-end
+end)
 
 Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	if self:full_steelsight() and not self._state_data.in_full_steelsight then

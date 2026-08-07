@@ -984,9 +984,9 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 				total_w = total_w + element_w
 			else
 				local weighting = self:_get_hiding_cloaker_SO_weighting(element, SO_weighting)
-				local element_dis = mvector3.distance(criminal_pos, element_pos)
+				local x_dis, y_dis, z_dis = mvec3_distances_by_axis(element_pos, criminal_pos)
+				local element_dis = x_dis + y_dis + z_dis
 				if skip_ignore_distances or weighting.too_far_distance > element_dis and weighting.too_close_distance < element_dis then
-					local x_dis, y_dis, z_dis = mvec3_distances_by_axis(element_pos, criminal_pos)
 					element_w = math.map_range_clamped(x_dis + y_dis, weighting.near_distance, weighting.far_distance, element_w, element_w * weighting.far_chance_mul)
 					element_w = math.map_range_clamped(z_dis, weighting.z_near_distance, weighting.z_far_distance, element_w, element_w * weighting.z_far_chance_mul)
 					table.insert(element_weights, { element, element_w })

@@ -65,7 +65,7 @@ if not Eclipse then
 	end
 
 	function Eclipse:mission_script_add()
-		Eclipse.loaded_elements = false
+		-- Eclipse.loaded_elements = false -- Why is this here?
 		if self._mission_script_add == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
