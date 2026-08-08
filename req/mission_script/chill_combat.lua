@@ -4,11 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local sniper_amount = {
-	values = {
-		amount = easy and 1 or normal and 2 or 3,
-	},
-}
 local money_pile_reinforce01 = {
 	reinforce = {
 		{
@@ -19,12 +14,12 @@ local money_pile_reinforce01 = {
 		{
 			name = "armory",
 			force = 2,
-			position = Vector3(900, -1050, 0),
+			position = Vector3(900, -1100, 0),
 		},
 		{
 			name = "staircase",
 			force = 2,
-			position = Vector3(400, -100, 0),
+			position = Vector3(2050, -600, 200),
 		},
 	},
 }
@@ -55,39 +50,31 @@ local street_spawn = {
 }
 local bush_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local roof_vertical_spawn = {
 	values = {
-		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
-	},
-	groups = preferred.no_cops_agents,
-}
-local roof_horizontal_spawn = {
-	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local roof_horizontal_spawn = {
+	values = {
+		interval = 30,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local no_align_pos = {
+	values = {
+		align_position = false,
+	},
+}
+
 return {
-	[102510] = { -- 1st wave complete
-		on_executed = {
-			{ id = 400003, delay = 0, delay_rand = 30 }, -- custom roof preferreds
-			{ id = 400004, delay = 0, delay_rand = 30 }, -- custom window preferreds
-		},
-	},
-	-- Change how preferreds are distributed
-	[100982] = { -- preferred
-		on_executed = {
-			{ id = 100987, remove = true }, -- preferred add 1
-			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
-			{ id = 400002, delay = 0, delay_rand = 30 }, -- custom bush preferreds
-		},
-	},
 	-- Add new reinforce
 	[100979] = {
 		reinforce = {
@@ -113,6 +100,32 @@ return {
 	-- Disable vanilla reinforce
 	[101646] = disabled,
 	[102590] = disabled,
+	-- Add spawn groups gradually instead of all in one preferred
+	[100982] = { -- preferred
+		on_executed = {
+			{ id = 400000, delay = 0, delay_rand = 0 },
+			{ id = 100987, remove = true }, -- ai_enemy_prefered_add_001
+		},
+	},
+	[400005] = { -- chill_assault_start
+		on_executed = {
+			{ id = 400004, delay = 0, delay_rand = 30 }, -- chill_random_group_add
+		},
+	},
+	-- disable 'align_position' for select navlinks
+	[101006] = no_align_pos,
+	[101007] = no_align_pos,
+	[101008] = no_align_pos,
+	[101009] = no_align_pos,
+	[101010] = no_align_pos,
+	[101011] = no_align_pos,
+	[101012] = no_align_pos,
+	[101013] = no_align_pos,
+	[101189] = no_align_pos,
+	[101193] = no_align_pos,
+	[101192] = no_align_pos,
+	[101198] = no_align_pos,
+	[101200] = no_align_pos,
 	-- disable vanilla's bags to defend objective (it's handled by a new one in mission_script_add)
 	[101600] = disabled,
 	-- Spawn group intervals
