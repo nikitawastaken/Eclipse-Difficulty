@@ -107,11 +107,6 @@ return {
 			{ id = 100987, remove = true }, -- ai_enemy_prefered_add_001
 		},
 	},
-	[400005] = { -- chill_assault_start
-		on_executed = {
-			{ id = 400004, delay = 0, delay_rand = 30 }, -- chill_random_group_add
-		},
-	},
 	-- disable 'align_position' for select navlinks
 	[101006] = no_align_pos,
 	[101007] = no_align_pos,
