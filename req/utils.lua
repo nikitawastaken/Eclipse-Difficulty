@@ -603,7 +603,6 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 	end
 end
 
--- FOR TESTING
 -- Easily replaces the values in a list-style table such as { X, Y, Z }
 -- Can supply a replacement A (for all values) or { A, B, C } (for corresponding values)
 function M.table_replace(target_table, replace)
@@ -671,6 +670,21 @@ function M.mvec3_distances_by_axis(vec1, vec2)
 	local y_dis = math.abs(mvector3.y(vec1) - mvector3.y(vec2))
 	local z_dis = math.abs(mvector3.z(vec1) - mvector3.z(vec2))
 	return x_dis, y_dis, z_dis
+end
+
+-- Returns value rounded down if it is a number, or an integer between value[1] rounded down and value[2] rounded down if it is a table
+-- Adapted from `CoreMissionScriptElement.MissionScriptElement.get_random_table_value`
+function M.get_random_table_value(value)
+	if tonumber(value) then
+		return math.floor(value)
+	end
+	return math.floor(value[1]) + math.random(math.floor(value[2] + 1)) - 1
+end
+
+-- Returns value if it is a number, or a float between value[1] and value[2] if it is a table
+-- Adapted from `CoreMissionScriptElement.MissionScriptElement.get_random_table_value_float`
+function M.get_random_table_value_float(value)
+	return tonumber(value) or value[1] + math.rand(value[2])
 end
 
 return M
