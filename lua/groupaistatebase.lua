@@ -1,5 +1,6 @@
 local level_id = Eclipse.utils.clean_level_id()
 local mvec3_distances_by_axis = Eclipse.utils.mvec3_distances_by_axis
+local get_random_table_value_float = Eclipse.utils.get_random_table_value_float
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",
@@ -144,17 +145,17 @@ function GroupAIStateBase:_finalize_difficulty_addend_data(data)
 		end
 	end
 
-	local amount = data.amount and (tonumber(data.amount) or math.round(math.rand(unpack(data.amount)), 0.01)) or 0
+	local amount = math.round(get_random_table_value_float(data.amount or 0), 0.005)
 	if amount == 0 then
 		return
 	end
 
 	local team_ai_weights = tweak_data.group_ai.team_ai_balance_mul_weights
-	local delay = data.delay and (tonumber(data.delay) or math.rand(unpack(data.delay))) or 0
+	local delay = get_random_table_value_float(data.delay or 0)
 	local delay_mul = data.delay_mul or self._difficulty_scaling.addend_delay_multipliers[category]
 	local delay_balance_mul = data.delay_balance_mul or self._difficulty_scaling.addend_delay_balance_muls[category]
 	local final_delay = delay * (delay_mul or 1) * (delay_balance_mul and self:_get_balancing_multiplier(delay_balance_mul, team_ai_weights.difficulty_addend_delay) or 1)
-	local time = data.time and (tonumber(data.time) or math.rand(unpack(data.time))) or 0
+	local time = get_random_table_value_float(data.time or 0)
 	local time_mul = data.time_mul or self._difficulty_scaling.addend_time_multipliers[category]
 	local time_balance_mul = data.time_balance_mul or self._difficulty_scaling.addend_time_balance_muls[category]
 	local final_time = time * (time_mul or 1) * (time_balance_mul and self:_get_balancing_multiplier(time_balance_mul, team_ai_weights.difficulty_addend_time) or 1)

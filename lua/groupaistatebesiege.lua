@@ -10,6 +10,7 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
 local weighted_selector = Eclipse.utils.weighted_selector
+local get_random_table_value_float = Eclipse.utils.get_random_table_value_float
 
 -- Make balance multiplier changes in this file to avoid Useful Bots overwriting it
 -- Criminal status no longer influences balance multipliers
@@ -136,7 +137,7 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 
 	if not self._enemy_weapons_hot then
 		local assault_delay = self._difficulty_scaling.addends.on_enemy_weapons_hot.delay
-		assault_delay = assault_delay and assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
+		assault_delay = assault_delay and (get_random_table_value_float(assault_delay) + 15) or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
 		self._task_data.assault.disabled = nil
 		self._task_data.assault.next_dispatch_t = self._t + assault_delay
 		self._task_data.assault.first_response_trades_delay = self._t + assault_delay * 0.5
