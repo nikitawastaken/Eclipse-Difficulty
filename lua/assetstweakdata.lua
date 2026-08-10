@@ -79,4 +79,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		stages = federales_heists,
 		risk_lock = 4,
 	}
+	
+	-- Remove the 'Expert Pilot' asset on Rats Day 3
+	self.rat_3_pilot.stages = {}
 end)

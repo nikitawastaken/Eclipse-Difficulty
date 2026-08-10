@@ -119,9 +119,6 @@ local no_align_pos = {
 	},
 }
 local objective_diff_add = {
-	values = {
-		trigger_times = 1,
-	},
 	difficulty_addends = {
 		{
 			amount = 0.1875,
@@ -489,6 +486,7 @@ return {
 		on_executed = { -- enable end_assault global event trigger
 			{ id = 410074, delay = 60 },
 		},
+		difficulty_addends = objective_diff_add[1],
 		force_end_assault = true, -- force a regroup
 	},
 	[103883] = { -- Matt is out, go to parking
@@ -545,8 +543,7 @@ return {
 	-- Disable one of the Inkwell van spawngroups (Eclipse has its own)
 	[103704] = disabled,
 	-- Difficulty scaling
-	[101399] = objective_diff_add, -- diff_0_75
-	[103751] = objective_diff_add, -- diff_1
+	[100622] = objective_diff_add, -- reached the fence
 	[410073] = assault_end_diff_add, -- end_assault
 	-- disable 'align_position' for select navlinks
 	[103802] = no_align_pos,
