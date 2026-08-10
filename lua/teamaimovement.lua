@@ -129,27 +129,6 @@ function TeamAIMovement:carry_unit(idx)
 	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx]
 end
 
--- attempt to fix a possible race condition
-local in_use_carries = {}
-function TeamAIMovement:get_secure_carry()
-	local idx = #self._carry_table
-	if in_use_carries[idx] then
-		idx = idx - 1
-	end
-
-	if idx == 0 then
-		return false
-	end
-
-	in_use_carries[idx] = true
-
-	return self._carry_table and self._carry_table[idx] and alive(self._carry_table[idx]) and self._carry_table[idx], idx
-end
-
-function TeamAIMovement:clear_in_use_carry(idx)
-	in_use_carries[idx] = false
-end
-
 -- returns top if no args given
 function TeamAIMovement:carry_id(idx)
 	idx = idx or #self._carry_table
@@ -217,7 +196,6 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 			managers.network:session():send_to_peers("sync_ai_throw_bag", self._unit, carry_unit, target_unit)
 		end
 	end
-	self._carry_table[idx] = nil
 
 	if idx == 2 then
 		carry_unit = self._carry_table[1]
@@ -233,6 +211,15 @@ function TeamAIMovement:sync_throw_bag(carry_unit, target_unit)
 	if alive(target_unit) then
 		local dir = target_unit:position() - self._unit:position()
 
+		mvector3.set_z(dir, math.abs(dir.x + dir.y) * 0.5)
+
+		local carry_type_tweak = carry_unit:carry_data():carry_type_tweak()
+		local throw_distance_multiplier = carry_type_tweak and carry_type_tweak.throw_distance_multiplier or 1
+
+		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier)
+	else
+		-- random direction
+		local dir = self._unit:position() + Vector3(math.rand(-1, 1), math.rand(-1, 1), 0)
 		mvector3.set_z(dir, math.abs(dir.x + dir.y) * 0.5)
 
 		local carry_type_tweak = carry_unit:carry_data():carry_type_tweak()

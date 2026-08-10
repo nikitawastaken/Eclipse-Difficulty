@@ -84,3 +84,12 @@ Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function(
 		self._assist_SO_id = nil
 	end
 end)
+
+-- Throw all your bags during bleedout
+Hooks:PostHook(TeamAIDamage, "_check_bleed_out", "eclipse_ai_check_bleedout", function(self)
+	if self._health <= 0 and Network:is_server() then
+		while self._unit:movement():carrying_bag() do
+			self._unit:movement():throw_bag()
+		end
+	end
+end)
