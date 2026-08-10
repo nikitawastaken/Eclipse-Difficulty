@@ -113,7 +113,15 @@ local garage_event_triggered = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
+local no_align_pos = {
+	values = {
+		align_position = false,
+	},
+}
 local objective_diff_add = {
+	values = {
+		trigger_times = 1,
+	},
 	difficulty_addends = {
 		{
 			amount = 0.1875,
@@ -310,19 +318,30 @@ return {
 	},
 	[102866] = disabled,
 	[102880] = disabled, -- disabled vanilla ponr
-	-- delay the beginning of besiege
-	--[[	
+--[[ delay the beginning of besiege	
 	[100631] = { -- area_player_spawn
 		on_executed = {
 			{ id = 400089, delay = 0 },
 		},
 	},
-]]
 	[100641] = {
 		on_executed = {
 			{ id = 101329, remove = true },
 		},
 	},
+	[100830] = { -- trigger area Bruce
+		on_executed = {
+			{ id = 101757, delay = 0 }, -- fake assault end
+			{ id = 101329, delay = 1 }, -- besiege start
+		},
+	},
+	-- note: second preferred add is executed on player_spawned
+	[102426] = { -- player_spawned
+		on_executed = {
+			{ id = 100742, remove = true }, -- startup music
+		},
+	},
+]]
 	[102435] = disabled,
 	[100298] = disabled,
 	-- add a missing cop to start beat cop sequence var1
@@ -384,7 +403,7 @@ return {
 	[103355] = disabled, -- 2nd preferred add
 	[102106] = disabled, -- 3rd preferred add
 	-- Add new spawngroups to existing preferreds
-	[101239] = { -- ai_enemy_prefered_add_009 (Inkwell)
+	[101086] = { -- ai_enemy_prefered_add_009 (Inkwell)
 		values = {
 			spawn_groups = {
 				103703,
@@ -428,18 +447,6 @@ return {
 			{ id = 410042, delay = 0 }, -- Overpass SWAT vans 2
 		},
 	},
-	-- note: second preferred add is executed on player_spawned
-	[102426] = { -- player_spawned
-		on_executed = {
-			{ id = 100742, remove = true }, -- startup music
-		},
-	},
-	[100830] = { -- trigger area Bruce
-		on_executed = {
-			--		{ id = 101757, delay = 0 }, -- fake assault end
-			{ id = 101329, delay = 1 }, -- besiege start
-		},
-	},
 	[100430] = { -- reached Eddie crash site
 		reinforce = { -- add crane "blockade" reinforce
 			{
@@ -480,8 +487,9 @@ return {
 			},
 		},
 		on_executed = { -- enable end_assault global event trigger
-			{ id = 410074, delay = 0 },
+			{ id = 410074, delay = 60 },
 		},
+		force_end_assault = true, -- force a regroup
 	},
 	[103883] = { -- Matt is out, go to parking
 		reinforce = { -- remove Inkwell reinforce
@@ -537,9 +545,37 @@ return {
 	-- Disable one of the Inkwell van spawngroups (Eclipse has its own)
 	[103704] = disabled,
 	-- Difficulty scaling
-	[103750] = objective_diff_add, -- diff_0_75
+	[101399] = objective_diff_add, -- diff_0_75
 	[103751] = objective_diff_add, -- diff_1
 	[410073] = assault_end_diff_add, -- end_assault
+	-- disable 'align_position' for select navlinks
+	[103802] = no_align_pos,
+	[103801] = no_align_pos,
+	[103800] = no_align_pos,
+	[103799] = no_align_pos,
+	[103798] = no_align_pos,
+	[103797] = no_align_pos,
+	[103796] = no_align_pos,
+	[103934] = no_align_pos,
+	[103933] = no_align_pos,
+	[103932] = no_align_pos,
+	[103936] = no_align_pos,
+	[103935] = no_align_pos,
+	[103804] = no_align_pos,
+	[103805] = no_align_pos,
+	[103806] = no_align_pos,
+	[103810] = no_align_pos,
+	[103809] = no_align_pos,
+	[103808] = no_align_pos,
+	[101368] = no_align_pos,
+	[103813] = no_align_pos,
+	[103814] = no_align_pos,
+	[103815] = no_align_pos,
+	[103816] = no_align_pos,
+	[103817] = no_align_pos,
+	[103818] = no_align_pos,
+	[103826] = no_align_pos,
+	[103823] = no_align_pos,
 	-- Spawn group intervals
 	[100071] = helicopter_guaranteed_spawn,
 	[100476] = helicopter_guaranteed_spawn,
