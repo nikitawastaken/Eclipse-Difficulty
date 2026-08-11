@@ -71,8 +71,8 @@ local ground_sniper_delay_rand = overkill_and_above and 90 or 120
 local ship_sniper_delay = 30
 local ship_sniper_delay_rand = overkill_and_above and 60 or 90
 
-local escape_heli_delay = 90
-local escape_heli_delay_rand = (normal and 0 or hard and 45 or 90) + (is_pro_job and 45 or 0)
+local escape_heli_delay = 60
+local escape_heli_delay_rand = (normal and 15 or hard and 45 or 75) + (is_pro_job and 45 or 0)
 
 local function cloaker_add(id)
 	return id and {
@@ -185,10 +185,10 @@ local invisible_walls_small = {
 }
 
 return {
-	[100324] = { -- escapeHere
+	[100985] = { -- esc, chopper on the way
 		ponr = {
-			length = 240,
-			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+			length = 120,
+			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
 	},
 	-- 10% of pre beta boat driver taking it's place
@@ -282,6 +282,14 @@ return {
 			dialogue = john_dialogue_12,
 		},
 	},
+	-- Only call the escape once all bags have been secured
+	[100059] = disabled, -- amountOfBagsToTriggerEsc, 4
+	[100382] = { -- NoBagsLeft
+		on_executed = {
+			{ id = 100985, delay = escape_heli_delay, delay_rand = escape_heli_delay_rand },
+			{ id = 100323, delay = 10 },
+		},
+	},
 	-- Add a new loot drop point
 	[100415] = disabled,
 	[102864] = {
@@ -289,53 +297,15 @@ return {
 			{ name = "right_gate", position = Vector3(-2100, 4750, 0) },
 		},
 	},
-	-- Add new reinforce
-	[100511] = {
-		reinforce = {
-			{
-				name = "gate",
-				force = 4,
-				position = Vector3(-2500, 1500, 0),
-			},
-			{
-				name = "besiege_init01",
-				force = 2,
-				position = Vector3(-600, -1600, 0),
-			},
-			{
-				name = "besiege_init02",
-				force = 2,
-				position = Vector3(-100, 2750, 0),
-			},
-		},
-	},
-	[103636] = { -- end_assault
-		reinforce = {
-			{ name = "besiege_init01" },
-			{ name = "besiege_init02" },
-			{
-				name = "besiege01",
-				force = 2,
-				position = Vector3(1800, -1500, 0),
-			},
-			{
-				name = "besiege02",
-				force = 2,
-				position = Vector3(1500, 2700, 0),
-			},
-			{
-				name = "besiege03",
-				force = 2,
-				position = Vector3(4700, 1800, 0),
-			},
-			{
-				name = "besiege04",
-				force = 2,
-				position = Vector3(4100, -1600, 0),
-			},
-		},
-	},
-	-- initial bag blockade is now EVIL (on DWPJ)
+	-- Enable unused reenforce
+	[101954] = enabled,
+	[101955] = enabled,
+	[101984] = enabled,
+	[101987] = enabled,
+	[102123] = enabled,
+	[102125] = enabled,
+	[102126] = enabled,
+	-- Initial bag blockade is now EVIL (on DWPJ)
 	[102040] = {
 		values = {
 			difficulty_overkill = true,
@@ -407,12 +377,6 @@ return {
 		on_executed = {
 			{ id = 400052, delay = 1 },
 			{ id = 104000, remove = true },
-		},
-	},
-	-- Delay the escape helicopter
-	[100059] = { -- amountOfBagsToTriggerEsc
-		on_executed = {
-			{ id = 100985, delay = escape_heli_delay, delay_rand = escape_heli_delay_rand },
 		},
 	},
 	-- make early spawns not participate to group AI
