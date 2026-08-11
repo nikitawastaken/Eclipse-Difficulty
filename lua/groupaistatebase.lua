@@ -286,7 +286,7 @@ function GroupAIStateBase:_update_difficulty_value(t, dt)
 		end
 	end
 
-	local new_diff_value, steps_complete = self:_get_new_difficulty_value(t, cached_dt)
+	local new_diff_value, steps_complete, target_diff = self:_get_new_difficulty_value(t, cached_dt)
 
 	-- If all existing timed steps are complete, add the next one if it exists
 	if steps_complete and self._difficulty_scaling.steps[1] then
@@ -295,6 +295,7 @@ function GroupAIStateBase:_update_difficulty_value(t, dt)
 	end
 
 	self._difficulty_value = new_diff_value
+	self._target_difficulty = target_diff -- For diff debug mod to display the target, nothing else
 	self:_calculate_difficulty_ratio()
 end
 
@@ -302,6 +303,7 @@ Hooks:PostHook(GroupAIStateBase, "update", "eclipse_diff_rework_update", GroupAI
 
 function GroupAIStateBase:_get_new_difficulty_value(t, dt)
 	local new_diff_value = 0
+	local target_diff = 0
 	local steps_complete = true
 	for _, data in ipairs(self._difficulty_addends) do
 		if data.complete then
@@ -309,6 +311,7 @@ function GroupAIStateBase:_get_new_difficulty_value(t, dt)
 				steps_complete = true
 			end
 			new_diff_value = new_diff_value + data.amount
+			target_diff = target_diff + data.amount
 		elseif data.delay then
 			if data.category == "step" then
 				steps_complete = false
@@ -329,10 +332,12 @@ function GroupAIStateBase:_get_new_difficulty_value(t, dt)
 			else
 				new_diff_value = new_diff_value + math.map_range_clamped(t, data.start_t, data.end_t, math.min_max(0, data.amount))
 			end
+			target_diff = target_diff + data.amount
 		end
 	end
 	new_diff_value = math.clamp(new_diff_value, 0, 1)
-	return self:_apply_forced_difficulty(new_diff_value, t, dt), steps_complete
+	target_diff = math.clamp(target_diff, 0, 1)
+	return self:_apply_forced_difficulty(new_diff_value, t, dt), steps_complete, target_diff
 end
 
 function GroupAIStateBase:_apply_forced_difficulty(new_diff_value, t, dt)
