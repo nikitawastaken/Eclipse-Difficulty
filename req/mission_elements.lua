@@ -718,8 +718,12 @@ function M.gen_difficulty(id, name, pos, rot, opts)
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
-			enabled = true,
+			enabled = opts.enabled or false,
 			callback = opts.callback or false,
+			difficulty_addends = opts.difficulty_addends or nil,
+			paused_difficulty_addends = opts.paused_difficulty_addends or nil,
+			allowed_difficulty_addends = opts.allowed_difficulty_addends or nil,
+			forced_difficulty = opts.forced_difficulty or nil,
 		},
 	}
 
