@@ -593,9 +593,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	end
 
 	presets.gang_member_damage.HEALTH_INIT = get_difficulty_specific_value({
-		32,
-		40,
+		36,
 		48,
+		60,
 		72,
 		96,
 	})
