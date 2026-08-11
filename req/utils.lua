@@ -587,18 +587,6 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 		managers.game_play_central:set_flashlights_on(environment_data.flashlights_on)
 	end
 
-	if environment_data.effect_spawner ~= nil then
-		for effect_name, effect_data in pairs(environment_data.effect_spawner) do
-			for _, v in pairs(effect_data) do
-				World:effect_manager():spawn({
-					effect = Idstring(effect_name),
-					position = v.position,
-					rotation = v.rotation,
-				})
-			end
-		end
-	end
-
 	if environment_data.environment_override then
 		for k, v in pairs(environment_data.environment_override) do
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "environment")
