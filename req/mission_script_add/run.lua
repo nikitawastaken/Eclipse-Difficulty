@@ -129,12 +129,12 @@ local optsBesiegeDummy = {
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsShieldWallFirstStreet1 = {
-	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410062, delay = 0 } },
 	enabled = true,
 }
 local optsShieldWallFirstStreet2 = {
-	enemy = scripted_enemy.elite_shield or scripted_enemy.shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	on_executed = { { id = 410063, delay = 0 } },
 	enabled = true,
 }
