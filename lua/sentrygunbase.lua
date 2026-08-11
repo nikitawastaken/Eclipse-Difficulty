@@ -96,11 +96,8 @@ function SentryGunBase:update(unit, t, dt)
 				-- Nothing
 			end
 
-			local is_tied = civilian_unit:brain():is_tied()
-
-			if alive(civilian_unit) and not is_tied then
+			if alive(civilian_unit) and civilian_unit.brain and civilian_unit:brain().is_tied and civilian_unit:brain():is_tied() then
 				civilian_unit:brain():on_intimidated(1, self._unit)
-
 				--	Eclipse:log_chat("Intimidated")
 			end
 		end
