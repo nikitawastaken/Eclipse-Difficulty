@@ -886,28 +886,33 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 	end
 end
 
-function PlayerDamage:_upd_suppression(t, dt)
-	-- crook's ballistic vests block suppression
+function PlayerDamage:armor_suppression_blocked()
+	-- Crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
-		return
+		return true
 	end
 
-	-- active frenzy blocks armor suppression
+	-- Active frenzy blocks armor suppression
 	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
-		return
+		return true
 	end
 
-	-- sicario's smoke screen blocks suppression
+	-- Sicario's smoke screen blocks suppression
 	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
 		if smoke_screen:is_in_smoke(managers.player:player_unit()) and smoke_screen:armor_bonus() then
-			return
+			return true
 		end
 	end
+end
 
+function PlayerDamage:_upd_suppression(t, dt)
 	local data = self._supperssion_data
-
 	if data.value then
-		if data.decay_start_t < t then
+		if self:armor_suppression_blocked() then
+			data.value = nil
+			data.decay_start_t = nil
+			managers.environment_controller:set_suppression_value(0, 0)
+		elseif data.decay_start_t < t then
 			data.value = data.value - dt
 
 			if data.value <= 0 then
@@ -928,7 +933,7 @@ end
 
 -- Suppression multiplier also affects decay timer
 function PlayerDamage:build_suppression(amount)
-	if self:_chk_suppression_too_soon(amount) then
+	if self:_chk_suppression_too_soon(amount) or self:armor_suppression_blocked() then
 		return
 	end
 
