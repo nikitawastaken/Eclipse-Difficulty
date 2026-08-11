@@ -108,7 +108,7 @@ function TeamAIMovement:set_carrying_bag(unit)
 	if unit then
 		table.insert(self._carry_table, unit)
 	elseif #self._carry_table > 0 then
-		table.remove(self._carry_table)
+		dropped = table.remove(self._carry_table)
 	end
 
 	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
@@ -198,9 +198,10 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 	end
 
 	if idx == 2 then
-		carry_unit = self._carry_table[1]
-		carry_unit:set_visible(true)
+		self._carry_table[1]:set_visible(true)
 	end
+
+	table.remove(self._carry_table, idx)
 end
 
 function TeamAIMovement:was_carrying_bag()
