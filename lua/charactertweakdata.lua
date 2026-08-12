@@ -141,7 +141,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1,
 	})
 	local special_dmg_mul = get_difficulty_specific_value({
-		1
+		1,
 		1,
 		1,
 		1,
