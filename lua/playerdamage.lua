@@ -199,9 +199,11 @@ function PlayerDamage:damage_bullet(attack_data)
 		return
 	end
 
+	--[[
 	if not attack_data.ignore_suppression and not self:is_suppressed() then
 		return
 	end
+	]]
 
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
