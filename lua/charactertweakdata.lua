@@ -543,30 +543,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member.is_lmg.no_autofire_stop = true
 	presets.weapon.gang_member.mini.no_autofire_stop = true
 
-	presets.move_speed.normal = {
-		stand = {
-			walk = {
-				ntl = { fwd = 160, strafe = 120, bwd = 100 },
-				cbt = { fwd = 220, strafe = 180, bwd = 160 },
-				hos = { fwd = 220, strafe = 180, bwd = 160 },
-			},
-			run = {
-				cbt = { fwd = 400, strafe = 240, bwd = 240 },
-				hos = { fwd = 450, strafe = 300, bwd = 240 },
-			},
-		},
-		crouch = {
-			walk = {
-				cbt = { fwd = 200, strafe = 140, bwd = 120 },
-				hos = { fwd = 200, strafe = 140, bwd = 120 },
-			},
-			run = {
-				cbt = { fwd = 300, strafe = 240, bwd = 200 },
-				hos = { fwd = 360, strafe = 240, bwd = 200 },
-			},
-		},
-	}
-
 	presets.move_speed.extremely_slow = deep_clone(presets.move_speed.normal)
 	presets.move_speed.very_slow = deep_clone(presets.move_speed.normal)
 	presets.move_speed.slow = deep_clone(presets.move_speed.normal)
