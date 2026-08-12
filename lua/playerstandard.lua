@@ -97,12 +97,13 @@ function PlayerStandard:_stance_entered(unequipped)
 	local stances = nil
 	stances = (self:_is_meleeing() or self:_is_throwing_projectile()) and tweak_data.player.stances.default or tweak_data.player.stances[stance_id] or tweak_data.player.stances.default
 	local misc_attribs = stances.standard
-	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod) and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
+	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod)
+		and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
 	local head_duration = tweak_data.player.TRANSITION_DURATION
 	local head_duration_multiplier = 1
 	local duration_multiplier = not self._state_data.in_full_steelsight and self._state_data.in_steelsight and 1 / self._equipped_unit:base():enter_steelsight_speed_multiplier() or 1 -- Make sure the ADS transition is over
 	local duration = head_duration + (self._equipped_unit:base():transition_duration() or 0)
-	
+
 	if self._instant_stance_transition then
 		self._instant_stance_transition = nil
 		duration_multiplier = 0
@@ -136,7 +137,7 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	if weapon_tweak_data.swap_speed_multiplier then
 		multiplier = multiplier * weapon_tweak_data.swap_speed_multiplier
 	end
-	
+
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "passive_swap_speed_multiplier", 1)
 
@@ -497,18 +498,18 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						end
 
 						-- Modify starting here
-						local kick_data =  weap_base:get_kick()
+						local kick_data = weap_base:get_kick()
 						local kick = kick_data[fire_mode] or kick_data
-						
+
 						local kick_id
 						if self._state_data.in_steelsight then
-							kick_id = self._moving and "moving_steelsight" or "steelsight" 
+							kick_id = self._moving and "moving_steelsight" or "steelsight"
 						elseif self._state_data.ducking then
 							kick_id = self._moving and "moving_crouching" or "crouching"
 						else
-							kick_id = self._moving and "moving_standing" or "standing" 
+							kick_id = self._moving and "moving_standing" or "standing"
 						end
-						
+
 						if kick.on_hit and fired and fired.rays then
 							for _, ray in ipairs(fired.rays) do
 								if ray and not table.empty(ray) then

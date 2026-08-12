@@ -23,7 +23,7 @@ end
 
 Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	local weapon_tweak = tweak_data.weapon[self._name_id]
-	
+
 	-- Remove aim assist
 	if self._autohit_data then
 		self._autohit_current = 0
@@ -35,7 +35,7 @@ Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._explosive_ammo = weapon_tweak.explosive_ammo
 	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
 	self._forbid_start_out_ammo = weapon_tweak.forbid_start_out_ammo
-	
+
 	if self._ammo_data then
 		if self._ammo_data.explosive_ammo ~= nil then
 			self._explosive_ammo = self._ammo_data.explosive_ammo

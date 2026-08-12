@@ -2468,7 +2468,10 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul
 			custom_stats_tbl.max_nr_enemy_penetrations = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
 			custom_stats_tbl.can_shoot_through_enemy = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
-			custom_stats_tbl.steelsight_enter_time_mul = reference_new_tweak.steelsight_enter_time and reference_old_tweak.steelsight_enter_time and reference_new_tweak.steelsight_enter_time / reference_old_tweak.steelsight_enter_time or 1
+			custom_stats_tbl.steelsight_enter_time_mul = reference_new_tweak.steelsight_enter_time
+					and reference_old_tweak.steelsight_enter_time
+					and reference_new_tweak.steelsight_enter_time / reference_old_tweak.steelsight_enter_time
+				or 1
 			if reference_new_tweak.stats then
 				stats_tbl.alert_size = reference_new_tweak.stats.alert_size - reference_old_tweak.stats.alert_size
 				stats_tbl.suppression = reference_new_tweak.stats.suppression - reference_old_tweak.stats.suppression
@@ -2684,9 +2687,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 			max = 3,
 			recovery = 2,
 			recovery_wait_multiplier = 1.25,
-		}
+		},
 	}
-	
+
 	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
 	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
