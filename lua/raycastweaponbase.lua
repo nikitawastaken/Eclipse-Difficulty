@@ -21,29 +21,65 @@ function RaycastWeaponBase:init(...)
 	end
 end
 
--- No aim assist (shc)
 Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
+	local weapon_tweak = tweak_data.weapon[self._name_id]
+	
+	-- Remove aim assist
 	if self._autohit_data then
 		self._autohit_current = 0
 		self._autohit_data.INIT_RATIO = 0
 		self._autohit_data.MIN_RATIO = 0
 		self._autohit_data.MAX_RATIO = 0
 	end
+
+	self._explosive_ammo = weapon_tweak.explosive_ammo
+	self._ignore_crit_damage = weapon_tweak.ignore_crit_damage
+	self._forbid_start_out_ammo = weapon_tweak.forbid_start_out_ammo
+	
+	if self._ammo_data then
+		if self._ammo_data.explosive_ammo ~= nil then
+			self._explosive_ammo = self._ammo_data.explosive_ammo
+		end
+
+		if self._ammo_data.ignore_crit_damage ~= nil then
+			self._ignore_crit_damage = self._ammo_data.ignore_crit_damage
+		end
+
+		if self._ammo_data.forbid_start_out_ammo ~= nil then
+			self._forbid_start_out_ammo = self._ammo_data.forbid_start_out_ammo
+		end
+	end
 end)
 
-function RaycastWeaponBase:exit_run_speed_multiplier()
-	local weapon_tweak = tweak_data.weapon[self._name_id]
-	local multiplier = 0.4 / (weapon_tweak.sprint_exit_time or 0.4)
+function RaycastWeaponBase:is_explosive()
+	return self._explosive_ammo
+end
 
-	multiplier = multiplier * (weapon_tweak.exit_run_speed_multiplier or 1)
+function RaycastWeaponBase:ignore_crit_damage()
+	return self._ignore_crit_damage
+end
 
-	for _, category in ipairs(self:categories()) do
-		multiplier = multiplier * managers.player:upgrade_value(category, "exit_run_speed_multiplier", 1)
+function RaycastWeaponBase:forbid_start_out_ammo()
+	return self._forbid_start_out_ammo
+end
+
+-- Change the conditions for the "ammo low" voice line
+local said_ammo_t = 0
+function RaycastWeaponBase:_check_ammo_total(unit)
+	if not unit:base().is_local_player or self:get_ammo_remaining_in_clip() > 0 then
+		return
 	end
 
-	multiplier = multiplier * managers.player:upgrade_value(self._name_id, "exit_run_speed_multiplier", 1)
+	local ratio = 0
+	for _, weapon in pairs(unit:inventory():available_selections()) do
+		ratio = ratio + weapon.unit:base():get_ammo_ratio() * 0.5
+	end
 
-	return multiplier
+	local t = self._unit:timer():time()
+	if ratio < 0.25 and t > said_ammo_t + 10 then
+		PlayerStandard.say_line(unit:sound(), "g81x_plu")
+		said_ammo_t = t
+	end
 end
 
 local mvec_to = Vector3()
@@ -64,6 +100,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	local result = {}
 	local ray_distance = self:weapon_range()
 	local spread_x, spread_y = self:_get_spread(user_unit)
+
 	spread_y = spread_y or spread_x
 	spread_mul = spread_mul or 1
 
@@ -73,13 +110,10 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	mvec3_norm(mvec_up_ay)
 	mvec3_set(mvec_spread_direction, direction)
 
-	local r = math.random()
 	local theta = math.random() * 360
-	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
-	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax, math.cos(theta) * math.tan(r * spread_x))
-	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
+	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * (math.random() * spread_x) * spread_mul))
+	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * (math.random() * spread_y) * spread_mul))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
 	mvec3_set(mvec_to, mvec_spread_direction)
@@ -465,25 +499,6 @@ end
 -- Dragon's Breath ammo no longer pierces shields
 function FlameBulletBase:bullet_slotmask()
 	return managers.slot:get_mask("bullet_impact_targets")
-end
-
--- Change the conditions for the "ammo low" voice line
-local said_ammo_t = 0
-function RaycastWeaponBase:_check_ammo_total(unit)
-	if not unit:base().is_local_player or self:get_ammo_remaining_in_clip() > 0 then
-		return
-	end
-
-	local ratio = 0
-	for _, weapon in pairs(unit:inventory():available_selections()) do
-		ratio = ratio + weapon.unit:base():get_ammo_ratio() * 0.5
-	end
-
-	local t = self._unit:timer():time()
-	if ratio < 0.25 and t > said_ammo_t + 10 then
-		PlayerStandard.say_line(unit:sound(), "g81x_plu")
-		said_ammo_t = t
-	end
 end
 
 function RaycastWeaponBase:_soundfix_should_play_normal()

@@ -4,7 +4,7 @@ local eclipse_custom_stats = {
 		name = "pickup",
 	},
 	{
-		name = "steelsight_time",
+		name = "steelsight_enter_time",
 	},
 }
 for _, stat in ipairs(eclipse_custom_stats) do
@@ -76,32 +76,32 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 	end
 end
 
-function WeaponDescription._get_base_steelsight_time(_, name)
-	local mul = tweak_data.weapon[name].steelsight_time_mul or 1
-	return tweak_data.weapon[name].steelsight_time * mul
+function WeaponDescription._get_base_steelsight_enter_time(_, name)
+	local mul = tweak_data.weapon[name].steelsight_enter_time_mul or 1
+	return tweak_data.weapon[name].steelsight_enter_time * mul
 end
 
 -- it's janky but what can you do
-function WeaponDescription._get_mods_steelsight_time(_, name, base, mods)
+function WeaponDescription._get_mods_steelsight_enter_time(_, name, base, mods)
 	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
 	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
 
 	local multiplier = 1
 	for _, mod in ipairs(mods) do
 		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
-		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_time_mul then
-			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_time_mul
+		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_enter_time_mul then
+			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_enter_time_mul
 		end
 	end
 
 	multiplier = convert_add_to_mul(multiplier)
 
-	local difference = base.steelsight_time.value - (base.steelsight_time.value * multiplier)
+	local difference = base.steelsight_enter_time.value - (base.steelsight_enter_time.value * multiplier)
 
 	return difference
 end
 
-function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
+function WeaponDescription._get_skill_steelsight_enter_time(weapon, name, base_stats, mods_stats)
 	local multiplier = 1
 	local categories = tweak_data.weapon[name].categories
 
@@ -123,15 +123,15 @@ function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, 
 
 	multiplier = convert_add_to_mul(multiplier)
 
-	local result = base_stats.steelsight_time.value / multiplier - mods_stats.steelsight_time.value
+	local result = base_stats.steelsight_enter_time.value / multiplier - mods_stats.steelsight_enter_time.value
 	-- Some jank to make sure we don't end up with +0 or -0 on the stats
 	-- that also happens to double as a way to test if there exists a skill multiplier
-	local new = math.round(base_stats.steelsight_time.value, 0.01)
+	local new = math.round(base_stats.steelsight_enter_time.value, 0.01)
 	local cur = math.round(result, 0.01)
 	if new == cur then
 		return false, 0
 	else
-		return true, result - base_stats.steelsight_time.value - mods_stats.steelsight_time.value
+		return true, result - base_stats.steelsight_enter_time.value - mods_stats.steelsight_enter_time.value
 	end
 end
 
@@ -179,9 +179,9 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	mods_stats.pickup.value = WeaponDescription._get_mods_pickup(weapon, name, base_stats)
 	skill_stats.pickup.skill_in_effect, skill_stats.pickup.value = WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stats)
 
-	base_stats.steelsight_time.value = WeaponDescription._get_base_steelsight_time(weapon, name)
-	mods_stats.steelsight_time.value = WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats, equipped_mods)
-	skill_stats.steelsight_time.skill_in_effect, skill_stats.steelsight_time.value = WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
+	base_stats.steelsight_enter_time.value = WeaponDescription._get_base_steelsight_enter_time(weapon, name)
+	mods_stats.steelsight_enter_time.value = WeaponDescription._get_mods_steelsight_enter_time(weapon, name, base_stats, equipped_mods)
+	skill_stats.steelsight_enter_time.skill_in_effect, skill_stats.steelsight_enter_time.value = WeaponDescription._get_skill_steelsight_enter_time(weapon, name, base_stats, mods_stats)
 
 	local my_clip = base_stats.magazine.value + mods_stats.magazine.value + skill_stats.magazine.value
 

@@ -12,8 +12,9 @@
 	"bm_w_hajk": "CR 805B Rifle",
 	"bm_w_akmsu": "Krinkov Rifle",
 	"bm_w_olympic": "Para Rifle",
-	"bm_w_contraband": "Little Friend 7.62 Rifle",
 	"bm_w_tecci": "Bootleg Light Machine Gun",
+	"bm_w_contraband": "Little Friend 7.62 Rifle",
+	"bm_w_hcar": "Akron HC Rifle",
 
 	"bm_wp_m4_m_drum": "Drum Magazine",
 	"bm_wp_ak_m_drum": "Drum Magazine",
@@ -31,7 +32,7 @@
 	"bm_menu_reswing_time": "Reswing Time",
 	"bm_menu_type": "Melee Type",
 	"bm_menu_pickup": "Ammo Pickup",
-	"bm_menu_steelsight_time": "Aim Time",
+	"bm_menu_steelsight_enter_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
 	"bm_menu_armor_regen": "Armor Regen",
 

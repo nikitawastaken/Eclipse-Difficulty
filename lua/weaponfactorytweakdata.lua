@@ -1852,12 +1852,7 @@ WeaponFactoryTweakData.shotgun_ammo_override_map = {
 
 -- Automatically balance Shotgun ammo types
 function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
-	local slug_spread_mul = {
-		2.5 / 3.5,
-		2.5 / 3.5,
-	}
-	local slug_stance_muls = deep_clone(self._stance_multiplier_presets.shotgun_slug)
-	local slug_fire_mode_bloom = deep_clone(self._fire_mode_bloom_presets.shotgun_slug)
+	local slug_spread = deep_clone(self._spread_presets.shotgun_slug)
 	local slug_spread_bloom = deep_clone(self._spread_bloom_presets.shotgun_slug)
 
 	self.parts.wpn_fps_upg_a_custom.stats = {
@@ -1885,19 +1880,17 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	self.parts.wpn_fps_upg_a_explosive.stats = {
 		damage = 144,
 		total_ammo_mod = -8,
-		recoil = -1,
-		spread = 2,
-		spread_multi = slug_spread_mul,
+		recoil = -2,
+		spread = 1,
 	}
 	self.parts.wpn_fps_upg_a_explosive.custom_stats = {
 		rays = 1,
-		ammo_pickup_max_mul = 0.4,
-		ammo_pickup_min_mul = 0.4,
+		ammo_pickup_max_mul = 0.55,
+		ammo_pickup_min_mul = 0.55,
 		damage_near_mul = 10,
 		ammo_bag_consumption_mul = 1.5,
-		stance_mul = slug_stance_muls,
-		fire_mode_spread_bloom = slug_fire_mode_bloom,
-		spread_bloom = slug_spread_bloom,
+		spread_override = slug_spread,
+		spread_bloom_override = slug_spread_bloom,
 		ignore_statistic = true,
 		explosive_ammo = true,
 		ignore_crit_damage = true,
@@ -1908,19 +1901,19 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 
 	self.parts.wpn_fps_upg_a_slug.stats = {
 		damage = 64,
-		total_ammo_mod = -6,
-		recoil = -2,
-		spread = 3,
-		spread_multi = slug_spread_mul,
+		total_ammo_mod = -4,
+		recoil = -3,
+		spread = 2,
 	}
 	self.parts.wpn_fps_upg_a_slug.custom_stats = {
 		rays = 1,
+		ammo_pickup_max_mul = 0.85,
+		ammo_pickup_min_mul = 0.85,
 		armor_piercing_add = 1,
 		max_nr_enemy_penetrations = 1,
 		damage_near_mul = 10,
-		stance_mul = slug_stance_muls,
-		fire_mode_spread_bloom = slug_fire_mode_bloom,
-		spread_bloom = slug_spread_bloom,
+		spread_override = slug_spread,
+		spread_bloom_override = slug_spread_bloom,
 		check_additional_achievements = true,
 		can_shoot_through_shield = true,
 		can_shoot_through_wall = true,
@@ -1950,8 +1943,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats = {
 		rays = 12,
 		armor_piercing_add = 1,
-		ammo_pickup_min_mul = 0.7,
-		ammo_pickup_max_mul = 0.7,
+		ammo_pickup_min_mul = 0.65,
+		ammo_pickup_max_mul = 0.65,
 		dot_data_name = "ammo_dragons_breath",
 		bullet_class = "FlameBulletBase",
 		muzzleflash = "effects/particles/weapons/sho_dragons_breath",
@@ -1959,18 +1952,17 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 	}
 	self.parts.wpn_fps_upg_a_rip.stats = {
 		damage = 48,
-		total_ammo_mod = -8,
+		total_ammo_mod = -6,
+		recoil = -2,
 		spread = 1,
-		spread_multi = slug_spread_mul,
 	}
 	self.parts.wpn_fps_upg_a_rip.custom_stats = {
 		rays = 1,
-		ammo_pickup_min_mul = 0.6,
-		ammo_pickup_max_mul = 0.6,
+		ammo_pickup_min_mul = 0.65,
+		ammo_pickup_max_mul = 0.65,
 		damage_near_mul = 10,
-		stance_mul = slug_stance_muls,
-		fire_mode_spread_bloom = slug_fire_mode_bloom,
-		spread_bloom = slug_spread_bloom,
+		spread_override = slug_spread,
+		spread_bloom_override = slug_spread_bloom,
 		dot_data_name = "ammo_rip",
 		bullet_class = "PoisonBulletBase",
 		muzzleflash = "effects/particles/weapons/sho_tomb",
@@ -2467,21 +2459,16 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 		local stats_tbl = {}
 		local custom_stats_tbl = {}
 		if reference_new_tweak and reference_old_tweak then
-			custom_stats_tbl.ammo_max_mul = reference_new_tweak.ammo_max_mul or 1
-			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak.pickup_mul or 1
-			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak.pickup_mul or 1
+			custom_stats_tbl.spread_override = reference_new_tweak.spread
+			custom_stats_tbl.kick_override = reference_new_tweak.kick
+			custom_stats_tbl.spread_bloom_override = reference_new_tweak.spread_bloom or nil
+			custom_stats_tbl.ammo_max_mul = reference_new_tweak._total_ammo_mul or 1
+			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak._pickup_mul or 1
+			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak._pickup_mul or 1
 			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul
 			custom_stats_tbl.max_nr_enemy_penetrations = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
 			custom_stats_tbl.can_shoot_through_enemy = reference_new_tweak.max_nr_enemy_penetrations or reference_old_tweak.max_nr_enemy_penetrations
-			custom_stats_tbl.steelsight_time_mul = reference_new_tweak.steelsight_time
-					and reference_old_tweak.steelsight_time
-					and (reference_new_tweak.steelsight_time / reference_old_tweak.steelsight_time)
-				or 1
-			custom_stats_tbl.stance_mul = deep_clone(reference_new_tweak.stance_multipliers or reference_old_tweak.stance_multipliers)
-			custom_stats_tbl.fire_mode_mul = deep_clone(reference_new_tweak.fire_mode_multipliers or reference_old_tweak.fire_mode_multipliers)
-			custom_stats_tbl.fire_mode_spread_bloom = deep_clone(reference_new_tweak.fire_mode_spread_bloom or reference_old_tweak.fire_mode_spread_bloom)
-			custom_stats_tbl.spread_bloom = deep_clone(reference_new_tweak.spread_bloom or reference_old_tweak.spread_bloom)
-
+			custom_stats_tbl.steelsight_enter_time_mul = reference_new_tweak.steelsight_enter_time and reference_old_tweak.steelsight_enter_time and reference_new_tweak.steelsight_enter_time / reference_old_tweak.steelsight_enter_time or 1
 			if reference_new_tweak.stats then
 				stats_tbl.alert_size = reference_new_tweak.stats.alert_size - reference_old_tweak.stats.alert_size
 				stats_tbl.suppression = reference_new_tweak.stats.suppression - reference_old_tweak.stats.suppression
@@ -2529,7 +2516,7 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 				end
 			end
 
-			local snp_total_ammo_mul, snp_pickup_mul = tweak_data.weapon:_calculate_snp_ammo_mul(damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
+			local snp_total_ammo_mul, snp_pickup_mul = tweak_data.weapon:_calculate_snp_ammo_mul(damage, weap_data._total_ammo_scale, weap_data._pickup_scale)
 
 			self[factory_id].override[part_id].stats.damage = (self[factory_id].override[part_id].stats.damage or 0) + (part_damage or 0)
 			self[factory_id].override[part_id].custom_stats.ammo_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_max_mul or 1) * (damage_ratio or 1) * (snp_total_ammo_mul or 1)
@@ -2580,11 +2567,20 @@ function WeaponFactoryTweakData:_wipe_burst_fire_mode(tweak_data)
 	end
 end
 
--- Automatically balance underbarrel weapon stats based on concealment
-function WeaponFactoryTweakData:_convert_concealment_to_mobility(tweak_data)
+-- Convert concealment stats into the new 'swap_speed' stat
+function WeaponFactoryTweakData:_convert_concealment_to_swap_speed()
 	for part_id, part_data in pairs(self.parts) do
-		if part_data.stats and part_data.stats.concealment then
-			part_data.stats.mobility = part_data.stats.concealment
+		if part_data.stats and part_data.stats.concealment and not part_data.stats.swap_speed then
+			part_data.stats.swap_speed = part_data.stats.concealment
+		end
+	end
+end
+
+-- Convert concealment stats into the new 'exit_run_speed' stat
+function WeaponFactoryTweakData:_convert_concealment_to_exit_run_speed_speed()
+	for part_id, part_data in pairs(self.parts) do
+		if part_data.stats and part_data.stats.concealment and not part_data.stats.exit_run_speed then
+			part_data.stats.exit_run_speed = part_data.stats.concealment
 		end
 	end
 end
@@ -2596,12 +2592,12 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.rays = 8
 	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.ammo_pickup_min_mul = nil
 	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.ammo_pickup_max_mul = nil
-	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.stance_mul = deep_clone(self._stance_multiplier_presets.shotgun)
+	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.stance_mul = deep_clone(self._spread_presets.shotgun)
 	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.muzzleflash = "effects/particles/weapons/sho_default"
 	self.parts.wpn_fps_upg_a_flun_shell.custom_stats.trail_effect = "effects/particles/weapons/shotgun_streak"
 
-	local base_pickup_mul = tweak_data.weapon and tweak_data.weapon.flun and tweak_data.weapon.flun.pickup_mul or 1
-	local sec_gl_pickup_mul = tweak_data.weapon and tweak_data.weapon.gre_m79 and tweak_data.weapon.gre_m79.pickup_mul or 1
+	local base_pickup_mul = tweak_data.weapon and tweak_data.weapon.flun and tweak_data.weapon.flun._pickup_mul or 1
+	local sec_gl_pickup_mul = tweak_data.weapon and tweak_data.weapon.gre_m79 and tweak_data.weapon.gre_m79._pickup_mul or 1
 
 	self.parts.wpn_fps_upg_a_flun_flare.stats.spread = 6
 	self.parts.wpn_fps_upg_a_flun_flare.stats.total_ammo_mod = -10
@@ -2647,7 +2643,7 @@ function WeaponFactoryTweakData:_balance_flun_ammo(tweak_data)
 		}
 		ammo_override.stats = deep_clone(self.parts[ammo_id].stats)
 		ammo_override.custom_stats = deep_clone(self.parts[ammo_id].custom_stats)
-		ammo_override.custom_stats.stance_mul = deep_clone(self._stance_multiplier_presets.shotgun)
+		ammo_override.custom_stats.stance_mul = deep_clone(self._spread_presets.shotgun)
 		ammo_override.custom_stats.weapon_unit = "units/pd2_dlc_unk/weapons/wpn_fps_spe_flun/wpn_fps_sho_flun"
 
 		self.wpn_fps_spe_flun.override[ammo_id] = ammo_override
@@ -2665,44 +2661,32 @@ end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
-	self._stance_multiplier_presets = {
-		dmr = self:_get_table_from_category_template(tweak_data, "dmr", "stance_multipliers"),
-		shotgun = self:_get_table_from_category_template(tweak_data, "shotgun", "stance_multipliers"),
+	self._spread_presets = {
+		dmr = self:_get_table_from_category_template(tweak_data, "dmr", "spread"),
+		shotgun = self:_get_table_from_category_template(tweak_data, "shotgun", "spread"),
 		shotgun_slug = {
-			spread = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.5,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1,
-				},
-			},
+			standing = 4.5,
+			crouching = 3,
+			steelsight = 1.5,
+			moving_standing = 6,
+			moving_crouching = 4,
+			moving_steelsight = 1.5,
 		},
 	}
-	self._fire_mode_bloom_presets = {
-		shotgun_slug = {
-			["single"] = {
-				per_shot = 1.5,
-				per_shot_steelsight = 1,
-			},
-			["auto"] = {
-				per_shot = 1.5,
-				per_shot_steelsight = 1,
-			},
-		},
+	self._kick_presets = {
+		dmr = self:_get_table_from_category_template(tweak_data, "dmr", "kick"),
+		shotgun = self:_get_table_from_category_template(tweak_data, "shotgun", "kick"),
 	}
 	self._spread_bloom_presets = {
 		shotgun_slug = {
-			max = 2.5,
-			recovery = 1.2,
-			recovery_wait_multiplier = 1.4,
-		},
+			add = 1.5,
+			add_steelsight = 1,
+			max = 3,
+			recovery = 2,
+			recovery_wait_multiplier = 1.25,
+		}
 	}
-
+	
 	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
 	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
@@ -2722,7 +2706,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 4
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {}
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.fire_rate_multiplier = 750 / 450
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.muzzleflash = "effects/payday2/particles/weapons/556_auto_fps"
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.trail_effect = "effects/particles/weapons/weapon_trail"
 	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 36, "assault_rifle", true)
@@ -2837,7 +2820,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_akimbo(tweak_data)
 	self:_balance_flun_ammo(tweak_data)
 	self:_wipe_burst_fire_mode(tweak_data)
-	self:_convert_concealment_to_mobility()
+	self:_convert_concealment_to_swap_speed()
+	self:_convert_concealment_to_exit_run_speed_speed()
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
@@ -2910,44 +2894,17 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			},
 		},
 	}
-
-	local shotgun_stance_muls = {
-		spread = {
-			standing = {
-				hipfire = 0.9,
-				crouching = 1,
-				steelsight = 0.7,
-			},
-			moving = {
-				hipfire = 0.9,
-				crouching = 1,
-				steelsight = 0.9,
-			},
-		},
-		recoil = {
-			standing = {
-				hipfire = 1.1,
-				crouching = 1,
-				steelsight = 0.9,
-			},
-			moving = {
-				hipfire = 1.3,
-				crouching = 1,
-				steelsight = 1.2,
-			},
-		},
-	}
 	local sting_stats = {
 		light = {
-			damage = -37,
+			damage = -22,
 			spread = -6,
 		},
 		medium = {
-			damage = -37,
+			damage = -27,
 			spread = -6,
 		},
 		heavy = {
-			damage = -56,
+			damage = -33,
 			spread = -6,
 		},
 	}
@@ -2955,15 +2912,20 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 		muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 		armor_piercing_add = 1,
 		max_nr_enemy_penetrations = 1,
-		ammo_bag_consumption_mul = 1,
+		ammo_bag_consumption_mul = 1.25,
+		spread_overide = {
+			standing = 3.5,
+			crouching = 3.5,
+			steelsight = 1.5,
+			moving_standing = 3.5,
+			moving_crouching = 3.5,
+			moving_steelsight = 1.5,
+		},
 		is_explosive = false,
 		can_shoot_through_shield = true,
 		can_shoot_through_enemy = true,
 		ignore_damage_upgrades = false,
-		stance_mul = shotgun_stance_muls,
-		sounds = {
-			fire_single = "hornet_fire",
-		},
+		sounds = { fire_single = "hornet_fire" },
 	}
 	local grenade_launchers = {
 		wpn_fps_gre_arbiter = {
@@ -2975,7 +2937,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_m32 = {
-			stats = sting_stats.medium,
+			stats = sting_stats.light,
 			custom_stats = deep_clone(sting_custom_stats),
 		},
 		wpn_fps_gre_china = {
@@ -3002,7 +2964,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 		},
 	}
 	local launcher_value = self.parts.wpn_fps_upg_a_grenade_launcher_hornet.stats.value
-	local launcher_pickup_min = 1.5
+	local launcher_pickup_min = 1.725
 	local launcher_pickup_max = launcher_pickup_min
 	local fps_data, npc_data, hornet_override = nil
 

@@ -43,11 +43,6 @@ Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	end
 end)
 
--- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
-function PlayerStandard:full_steelsight()
-	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
-end
-
 -- Increase player gravity to make movement less floaty
 function PlayerStandard:_activate_mover(mover, velocity)
 	self._unit:activate_mover(mover, velocity)
@@ -78,6 +73,11 @@ function PlayerStandard:_end_action_ladder(t, input)
 	self._unit:movement():on_exit_ladder()
 end
 
+-- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
+function PlayerStandard:full_steelsight()
+	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
+end
+
 function PlayerStandard:_stance_entered(unequipped)
 	local stance_standard = tweak_data.player.stances.default[managers.player:current_state()] or tweak_data.player.stances.default.standard
 	local head_stance = self._state_data.ducking and tweak_data.player.stances.default.crouched.head or stance_standard.head
@@ -97,13 +97,12 @@ function PlayerStandard:_stance_entered(unequipped)
 	local stances = nil
 	stances = (self:_is_meleeing() or self:_is_throwing_projectile()) and tweak_data.player.stances.default or tweak_data.player.stances[stance_id] or tweak_data.player.stances.default
 	local misc_attribs = stances.standard
-	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod)
-		and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
+	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod) and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
 	local head_duration = tweak_data.player.TRANSITION_DURATION
 	local head_duration_multiplier = 1
 	local duration_multiplier = not self._state_data.in_full_steelsight and self._state_data.in_steelsight and 1 / self._equipped_unit:base():enter_steelsight_speed_multiplier() or 1 -- Make sure the ADS transition is over
 	local duration = head_duration + (self._equipped_unit:base():transition_duration() or 0)
-
+	
 	if self._instant_stance_transition then
 		self._instant_stance_transition = nil
 		duration_multiplier = 0
@@ -126,28 +125,18 @@ function PlayerStandard:_stance_entered(unequipped)
 	managers.menu:set_mouse_sensitivity(self:in_steelsight())
 end
 
-function PlayerStandard:get_movement_state()
-	if self._state_data.in_steelsight and self._state_data.in_full_steelsight then
-		return self._moving and "moving_steelsight" or "steelsight"
-	end
-
-	if self._state_data.ducking then
-		return self._moving and "moving_crouching" or "crouching"
-	else
-		return self._moving and "moving_standing" or "standing"
-	end
-end
-
 function PlayerStandard:_get_swap_speed_multiplier()
-	local multiplier = 1
-
 	local weap_base = self._equipped_unit:base()
 	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
-	multiplier = multiplier * weap_base:mobility_to_handling_mul()
+	local multiplier = 1
 
-	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
+	multiplier = multiplier * weap_base:swap_speed_stat()
 
+	if weapon_tweak_data.swap_speed_multiplier then
+		multiplier = multiplier * weapon_tweak_data.swap_speed_multiplier
+	end
+	
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "passive_swap_speed_multiplier", 1)
 
@@ -508,10 +497,19 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						end
 
 						-- Modify starting here
-						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
-						local kick_id = self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"
-
-						if kick_tweak_data.on_hit and fired and fired.rays then
+						local kick_data =  weap_base:get_kick()
+						local kick = kick_data[fire_mode] or kick_data
+						
+						local kick_id
+						if self._state_data.in_steelsight then
+							kick_id = self._moving and "moving_steelsight" or "steelsight" 
+						elseif self._state_data.ducking then
+							kick_id = self._moving and "moving_crouching" or "crouching"
+						else
+							kick_id = self._moving and "moving_standing" or "standing" 
+						end
+						
+						if kick.on_hit and fired and fired.rays then
 							for _, ray in ipairs(fired.rays) do
 								if ray and not table.empty(ray) then
 									kick_id = "on_hit"
@@ -529,7 +527,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
-						local up, down, left, right = unpack(kick_pattern_tweak_data or kick_tweak_data[kick_id])
+						local up, down, left, right = unpack(kick_pattern_tweak_data or kick[kick_id])
 
 						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 
@@ -872,13 +870,14 @@ end
 function PlayerStandard:_end_action_running(t)
 	if not self._end_running_expire_t then
 		local weap_base = self._equipped_unit:base()
-		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
+		local exit_run_time = weap_base:weapon_tweak_data().exit_run_time or 0.4
 
 		local speed_multiplier = 1
+		speed_multiplier = speed_multiplier * weap_base:exit_run_speed_stat()
 		speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier()
 		speed_multiplier = speed_multiplier * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
 
-		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier
+		self._end_running_expire_t = t + exit_run_time / speed_multiplier
 
 		if
 			not weap_base:run_and_shoot_allowed()

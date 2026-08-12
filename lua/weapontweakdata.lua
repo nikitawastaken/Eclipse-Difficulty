@@ -70,8 +70,8 @@ WeaponTweakData.CATEGORY_TRAIL_EFFECTS = {
 	snp = "effects/payday2/particles/weapons/streaks/big_light_streak",
 }
 
--- Remake stat tables to have linear scaling
-Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
+-- Remake stat tables so that they use linear scaling.
+Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse__init_stats", function(self)
 	self.stats.damage = {}
 	for i = 0, 1200, 1 do
 		table.insert(self.stats.damage, (math.lerp(0.1, 120.1, i / 1200)))
@@ -79,22 +79,27 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.recoil = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.recoil, (math.lerp(3, 0.5, i / 25)))
+		table.insert(self.stats.recoil, math.lerp(3, 0.5, i / 25))
 	end
 
 	self.stats.spread = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread, (math.lerp(2, 0.2, i / 25)))
+		table.insert(self.stats.spread, math.lerp(2, 0.2, i / 25))
 	end
 
 	self.stats.spread_moving = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread_moving, (math.lerp(2, 0.2, i / 25)))
+		table.insert(self.stats.spread_moving, math.lerp(2, 0.2, i / 25))
 	end
 
-	self.stats.mobility = {}
-	for i = 0, 25, 1 do
-		table.insert(self.stats.mobility, (math.lerp(0.5, 1.5, i / 25)))
+	self.stats.swap_speed = {}
+	for i = 0, 20, 1 do
+		table.insert(self.stats.swap_speed, math.lerp(0.5, 1.75, i / 20))
+	end
+
+	self.stats.exit_run_speed = {}
+	for i = 0, 20, 1 do
+		table.insert(self.stats.exit_run_speed, math.lerp(0.75, 1.25, i / 20))
 	end
 
 	self.stats.suppression = {}
@@ -113,18 +118,17 @@ function WeaponTweakData:_get_primary_category(weap_id)
 end
 
 function WeaponTweakData:_add_stat(weap_id, stat, addend)
-	return math.clamp(self[weap_id].stats[stat] + addend, 0, #self.stats[stat])
+	return math.clamp(self[weap_id].stats[stat] + addend, 1, #self.stats[stat])
 end
 
--- Add additional total ammo and pickup multipliers to Sniper rifles to offset their very high damage stats
+-- Additional total ammo/ammo pickup multipliers given to Sniper Rifles (but not only) to offset their very high damage stats.
 function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, pickup_scale)
 	local total_ammo_mul = 1
-	local pickup_mul = 1
-
 	if total_ammo_scale then
 		total_ammo_mul = total_ammo_mul * math.min(1 + math.round(math.max(damage - total_ammo_scale[1], 0) / total_ammo_scale[2]) * total_ammo_scale[3], total_ammo_scale[4])
 	end
 
+	local pickup_mul = 1
 	if pickup_scale then
 		pickup_mul = pickup_mul * math.min(1 + math.round(math.max(damage - pickup_scale[1], 0) / pickup_scale[2]) * pickup_scale[3], pickup_scale[4])
 	end
@@ -132,17 +136,7 @@ function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, picku
 	return total_ammo_mul, pickup_mul
 end
 
--- Calculate Sniper Rifles' enemy penetration limits based on their damage
-function WeaponTweakData:_calculate_snp_penetrations(damage, penetration_scale)
-	return 1 + (math.ceil(damage / penetration_scale) ^ 2)
-end
-
--- Calculate mobility based on concealment using a scale defined for each weapon (category)
-function WeaponTweakData:_calculate_mobility_stat(concealment_stat, mobility_scale)
-	return math.round(math.map_range(concealment_stat, mobility_scale[1], mobility_scale[2], mobility_scale[3], mobility_scale[4]))
-end
-
--- Set muzzleflashes based on weapon ID or category
+-- Set muzzleflashes based on weapon ID or category.
 function WeaponTweakData:_set_muzzleflashes()
 	for weap_id, weap_data in pairs(self) do
 		local new_muzzleflash = self.WEAPON_MUZZLEFLASHES[weap_id] or self.CATEGORY_MUZZLEFLASHES[self:_get_primary_category(weap_id)] or nil
@@ -154,7 +148,7 @@ function WeaponTweakData:_set_muzzleflashes()
 	end
 end
 
--- Set trail effects based on weapon ID or category
+-- Set trail effects based on weapon ID or category.
 function WeaponTweakData:_set_trail_effects()
 	for weap_id, weap_data in pairs(self) do
 		local new_trail_effect = self.WEAPON_TRAIL_EFFECTS[weap_id] or self.CATEGORY_TRAIL_EFFECTS[self:_get_primary_category(weap_id)] or nil
@@ -165,14 +159,6 @@ function WeaponTweakData:_set_trail_effects()
 	end
 end
 
--- Steelsight times
-local steelsight_times = {
-	fast = 0.25,
-	default = 0.3,
-	slow = 0.4,
-}
-
---The big function responsible for balancing all weapons based on category
 function WeaponTweakData:_init_weapons(overrides)
 	local akimbo_single_map = {}
 
@@ -206,7 +192,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				end
 			end
 
-			-- Make sure Akimbo Weapons inherit their single counterparts' categories
+			-- Make sure akimbo weapons inherit their single counterparts' categories.
 			local single_weapon_id = akimbo_single_map[weap_id] or weap_id:sub(3)
 			local single_weapon_data = self[single_weapon_id]
 			local is_akimbo = table.contains(weap_data.categories, "akimbo")
@@ -223,548 +209,524 @@ function WeaponTweakData:_init_weapons(overrides)
 
 				weap_data.categories = clone(akimbo_cat_tbl)
 			end
-
-			-- Map the weapon's categories
-			local cat_map = table.list_to_set(weap_data.categories)
-
+				
+			-- Set weapon slot flags.
 			local is_primary = weap_data.use_data and weap_data.use_data.selection_index == 2
 			local is_secondary = weap_data.use_data and weap_data.use_data.selection_index == 1
 			local is_underbarrel = not is_primary and not is_secondary
 
+			-- Set damage flags for calculations that come later.
+			local damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
 			local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
-			local damage_stat = math.min(weap_data.stats.damage, #self.stats.damage)
-			local real_damage = self.stats.damage[damage_stat] * damage_modifier
+			local real_damage = self.stats.damage[damage_index] * damage_modifier
 
-			-- Some weapon-specific checks
-			local is_turret = based_on_id == "ranc_heavy_machine_gun" or weap_id == "ranc_heavy_machine_gun"
-			local is_dmr = cat_map.dmr
-			local is_doublebarrel = cat_map.shotgun and weap_data.CLIP_AMMO_MAX == 2
-
-			-- Category checks begin
-			if cat_map.assault_rifle and not is_turret then
-				weap_data.stats.suppression = is_dmr and 7 or 11
-				weap_data.stats.alert_size = is_dmr and 6 or 7
-				weap_data.pickup_mul = weap_data.pickup_mul or is_dmr and (30 / 50) or 1
-				weap_data.shake.fire_multiplier = is_dmr and 1.3 or 1
-				weap_data.can_shoot_through_enemy = is_dmr and true or nil
-				weap_data.mobility_scale = is_dmr and { 14, 24, 10, 14 } or { 20, 26, 12, 18 }
-
-				if is_dmr then
-					weap_data.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
-					weap_data.FIRE_MODE = "single"
-					weap_data.stance_multipliers = {
-						spread = {
-							standing = {
-								hipfire = 1.4,
-								crouching = 0.8,
-								steelsight = 0.4,
-							},
-							moving = {
-								hipfire = 1.6,
-								crouching = 1,
-								steelsight = 1.5,
-							},
-						},
-						recoil = {
-							standing = {
-								hipfire = 1.4,
-								crouching = 1,
-								steelsight = 1,
-							},
-							moving = {
-								hipfire = 1.6,
-								crouching = 1,
-								steelsight = 1.4,
-							},
-						},
-					}
-					weap_data.moving_transition = {
-						enter_rate = 2.5,
-						exit_rate = 1.5,
-					}
-					weap_data.fire_mode_spread_bloom = {
-						["single"] = {
-							per_shot = 1.5,
-							per_shot_steelsight = 1.2,
-						},
-						["auto"] = {
-							per_shot = 2,
-							per_shot_steelsight = 1.6,
-						},
-					}
-					weap_data.spread_bloom = {
-						max = 3,
-						recovery = 1.5,
-						recovery_wait_multiplier = 2,
-					}
-				else
-					weap_data.stance_multipliers = {
-						spread = {
-							standing = {
-								hipfire = 1.2,
-								crouching = 0.8,
-								steelsight = 0.5,
-							},
-							moving = {
-								hipfire = 1.4,
-								crouching = 1,
-								steelsight = 1,
-							},
-						},
-						recoil = {
-							standing = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 0.8,
-							},
-							moving = {
-								hipfire = 1.2,
-								crouching = 1,
-								steelsight = 1,
-							},
-						},
-					}
-					weap_data.fire_mode_multipliers = {
-						["single"] = {
-							recoil = 1.2,
-							spread = 0.7,
-						},
-					}
-					weap_data.fire_mode_spread_bloom = {
-						["single"] = {
-							per_shot = 0.7,
-							per_shot_steelsight = 0.5,
-						},
-					}
-					weap_data.spread_bloom = {
-						max = 2,
-						recovery = 4,
-						recovery_wait_multiplier = 1.75,
-					}
-				end
-			elseif cat_map.pistol then
-				weap_data.stats.suppression = 16
-				weap_data.stats.alert_size = 9
-				weap_data.steelsight_time = steelsight_times.fast
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not weap_data.auto and 1.5 or 1
-				weap_data.pickup_mul = weap_data.pickup_mul or (40 / 30)
---				weap_data.swap_speed_multiplier = 1.5
-				weap_data.steelsight_move_speed_mul = 0.7
-				weap_data.shake.fire_multiplier = 0.7
-				weap_data.mobility_scale = { 28, 30, 18, 22 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 0.5,
-						},
-						moving = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1,
-							crouching = 1,
-							steelsight = 0.7,
-						},
-						moving = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-					},
-				}
-				weap_data.fire_mode_spread_bloom = {
-					["single"] = {
-						per_shot = 0.5,
-						per_shot_steelsight = 0.3,
-					},
+			-- Map the weapon's categories.
+			local cat_map = table.list_to_set(weap_data.categories)
+		
+			-- Category balancing start.
+			if based_on_id == "ranc_heavy_machine_gun" or weap_id == "ranc_heavy_machine_gun" then -- .50 Cal Machine Gun found on Midland Ranch and Lost in Transit
+				weap_data.stats.alert_size = 4
+				weap_data.stats.suppression = 2
+				
+				weap_data.spread = {
+					standing = 2.5,
+					crouching = 2.5,
+					steelsight = 1,
+					moving_standing = 2.5,
+					moving_crouching = 2.5,
+					moving_steelsight = 1,
+				}	
+				
+				weap_data.kick = {
+					standing = { -0.1, 0.1, -0.05, 0.05 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { -0.1, 0.1, -0.05, 0.05 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+				}				
+			elseif cat_map.dmr then
+				weap_data.steelsight_enter_time = 0.35
+				
+				weap_data.stats.alert_size = 6
+				weap_data.stats.suppression = 4
+				
+				weap_data.spread = {
+					standing = 5,
+					crouching = 4,
+					steelsight = 1.7,
+					moving_standing = 7.5,
+					moving_crouching = 6,
+					moving_steelsight = 1.7,
 				}
 				weap_data.spread_bloom = {
-					max = 2,
-					recovery = 3,
-					recovery_wait_multiplier = 1.5,
-				}
-
-				if not weap_data.no_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
-					weap_data.fire_mode_data.fire_rate = 60 / 600
-				end
-			elseif cat_map.revolver then
-				weap_data.stats.suppression = 9
-				weap_data.stats.alert_size = 7
-				weap_data.steelsight_time = steelsight_times.fast
-				weap_data.pickup_mul = weap_data.pickup_mul or (71 / 100)
---				weap_data.swap_speed_multiplier = 1.5
-				weap_data.steelsight_move_speed_mul = 0.6
-				weap_data.shake.fire_multiplier = 1.2
-				weap_data.mobility_scale = { 24, 28, 16, 22 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1.4,
-							crouching = 1,
-							steelsight = 0.4,
-						},
-						moving = {
-							hipfire = 1.6,
-							crouching = 1,
-							steelsight = 1.4,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.4,
-							crouching = 1,
-							steelsight = 1.2,
-						},
-					},
-				}
-				weap_data.moving_transition = {
-					enter_rate = 2.5,
-					exit_rate = 1.5,
-				}
-				weap_data.fire_mode_spread_bloom = {
-					["single"] = {
-						per_shot = 2,
-						per_shot_steelsight = 1.5,
-					},
-				}
-				weap_data.spread_bloom = {
+					add = 1.5,
+					add_steelsight = 1.25,
 					max = 3,
-					recovery = 1.25,
-					recovery_wait_multiplier = 1.75,
+					recovery = 1.5,
+					recovery_wait_multiplier = 2,
 				}
-
-				if weap_data.fire_mode_data and not weap_data.auto then
-					weap_data.fire_mode_data.fire_rate = 60 / 300
-				end
-			elseif cat_map.smg then
-				weap_data.stats.suppression = 16
-				weap_data.stats.alert_size = 8
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (90 / 80)
-				weap_data.steelsight_move_speed_mul = 0.6
-				weap_data.shake.fire_multiplier = 0.8
-				weap_data.mobility_scale = { 24, 28, 14, 20 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1,
-							crouching = 1,
-							steelsight = 0.6,
-						},
-						moving = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.8,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1,
-							crouching = 1,
-							steelsight = 0.8,
-						},
-						moving = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-					},
+				weap_data.spread_bloom.auto = {
+					add = 2,
+					add_steelsight = 1.75,
 				}
-				weap_data.moving_transition = {
-					enter_rate = 1,
-					exit_rate = 2,
+				
+				weap_data.kick = {
+					standing = { 1.2, 1.4, -0.3, 0.9 },
+					crouching = { 1, 1.2, -0.3, 0.9 },
+					steelsight = { 0.8, 1, -0.3, 0.5 },
+					moving_standing = { 1.6, 1.8, -0.3, 0.9 },
+					moving_crouching = { 1.4, 1.6, -0.3, 0.9 },
+					moving_steelsight = { 1.2, 1.4, -0.3, 0.9 },
 				}
-				weap_data.fire_mode_multipliers = {
-					["single"] = {
-						recoil = 1.1,
-						spread = 0.8,
-					},
-				}
-				weap_data.fire_mode_spread_bloom = {
-					["single"] = {
-						per_shot = 0.7,
-						per_shot_steelsight = 0.5,
-					},
-				}
+				
+				weap_data._pickup_mul = 0.6
+				
+				-- Set the default fire mode to 'single'.
+				weap_data.FIRE_MODE = "single"
+				
+				-- Enable enemy piercing with a pierce cap.
+				weap_data.can_shoot_through_enemy = true
+				weap_data.max_nr_enemy_penetrations = 1
+			elseif cat_map.assault_rifle then
+				weap_data.stats.alert_size = 7
+				weap_data.stats.suppression = 9 
+				
+				weap_data.spread = {
+					standing = 3,
+					crouching = 2.5,
+					steelsight = 1.5,
+					moving_standing = 4,
+					moving_crouching = 3,
+					moving_steelsight = 1.5,
+				}	
 				weap_data.spread_bloom = {
+					add = 0,
+					add_steelsight = 0,
 					max = 2,
 					recovery = 4,
 					recovery_wait_multiplier = 1.75,
 				}
+				weap_data.spread_bloom.single = {
+					add = 0.75,
+					add_steelsight = 0.5,
+				}
+				
+				weap_data.kick = {
+					standing = { 0.8, 1, -0.6, 0.6 },
+					crouching = { 0.7, 0.9, -0.6, 0.6 },
+					steelsight = { 0.6, 0.8, -0.45, 0.45 },
+					moving_standing = { 1, 1.2, -0.75, 0.75 },
+					moving_crouching = { 1, 1.2, -0.75, 0.75 },
+					moving_steelsight = { 0.8, 1, -0.6, 0.6 },
+				}
+				weap_data.kick.single = deep_clone(weap_data.kick)
+				weap_data.kick.single.standing = { 1, 1.2, -0.4, 0.4 }
+				weap_data.kick.single.crouching = weap_data.kick.single.standing
+				weap_data.kick.single.steelsight = { 0.7, 0.9, -0.3, 0.3 }		
+				weap_data.fire_mode_data.single = { spread_mul = 0.75 }
+			elseif cat_map.pistol then
+				weap_data.steelsight_enter_time = 0.2
+	
+				weap_data.stats.alert_size = 9
+				weap_data.stats.suppression = 16
+				
+				weap_data.spread = {
+					standing = 2.5,
+					crouching = 2,
+					steelsight = 1.3,
+					moving_standing = 3.5,
+					moving_crouching = 3.5,
+					moving_steelsight = 1.3,
+				}	
+				weap_data.spread_bloom = {
+					add = 0,
+					add_steelsight = 0,
+					max = 2,
+					recovery = 3,
+					recovery_wait_multiplier = 1.5,
+				}
+				weap_data.spread_bloom.single = {
+					add = 0.5,
+					add_steelsight = 0.25,
+				}
+				
+				weap_data.kick = {
+					standing = { 1.4, 1.6, -0.5, 0.5 },
+					crouching = { 1.4, 1.6, -0.5, 0.5 },
+					steelsight = { 1, 1.2, -0.3, 0.3 },
+					moving_standing = { 1.6, 1.8, -0.5, 0.5 },
+					moving_crouching = { 1.6, 1.8, -0.5, 0.5 },
+					moving_steelsight = { 1.4, 1.6, -0.3, 0.3 },
+				}
+				
+				weap_data._pickup_mul = 1.33
+				weap_data._total_ammo_mul = weap_data.auto and 1 or 1.5
+				
+				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
+					weap_data.fire_mode_data.fire_rate = 60 / 600
+				end
+			elseif cat_map.revolver then
+				weap_data.steelsight_enter_time = 0.25
+	
+				weap_data.stats.alert_size = 7
+				weap_data.stats.suppression = 7
+				
+				weap_data.spread = {
+					standing = 4.5,
+					crouching = 3,
+					steelsight = 1.5,
+					moving_standing = 6,
+					moving_crouching = 6,
+					moving_steelsight = 1.5,
+				}	
+				weap_data.spread_bloom = {
+					add = 2,
+					add_steelsight = 1.5,
+					max = 3,
+					recovery = 1.25,
+					recovery_wait_multiplier = 1.75,
+				}
+				
+				weap_data.kick = {
+					standing = { 1.8, 2.4, 0.6, -0.2 },
+					crouching = { 1.8, 2.4, 0.6, -0.2 },
+					steelsight = { 1.5, 1.8, 0.4, -0.2 },
+					moving_standing = { 2.4, 3, 0.6, -0.2 },
+					moving_crouching = { 2.4, 3, 0.6, -0.2 },
+					moving_steelsight = { 1.8, 2.4, 0.6, -0.2 },
+				}
+				
+				weap_data._pickup_mul = 0.66
+			
+				if weap_data.fire_mode_data and not weap_data.auto then
+					weap_data.fire_mode_data.fire_rate = 60 / 300
+				end
+			elseif cat_map.smg then
+				weap_data.steelsight_enter_time = 0.25
+	
+				weap_data.stats.alert_size = 8
+				weap_data.stats.suppression = 14
+				
+				weap_data.spread = {
+					standing = 2,
+					crouching = 1.75,
+					steelsight = 1.3,
+					moving_standing = 2.5,
+					moving_crouching = 2.5,
+					moving_steelsight = 1.3,
+				}	
+				weap_data.spread_bloom = {
+					add = 0,
+					add_steelsight = 0,
+					max = 2,
+					recovery = 4,
+					recovery_wait_multiplier = 1.75,
+				}
+				weap_data.spread_bloom.single = {
+					add = 0.75,
+					add_steelsight = 0.5,
+				}
+				
+				weap_data.kick = {
+					standing = { 0.5, 0.7, -1, 1 },
+					crouching = { 0.5, 0.7, -0.8, 0.8 },
+					steelsight = { 0.4, 0.6, -0.6, 0.6 },
+					moving_standing = { 0.6, 0.8, -1, 1 },
+					moving_crouching = { 0.6, 0.8, -1, 1 },
+					moving_steelsight = { 0.5, 0.7, -0.8, 0.8 },
+				}
+				weap_data.kick.single = deep_clone(weap_data.kick)
+				weap_data.kick.single.standing = { 0.7, 0.8, -0.6, 0.6 }
+				weap_data.kick.single.crouching = weap_data.kick.single.standing
+				weap_data.kick.single.steelsight = { 0.5, 0.6, -0.4, 0.4 }
+				weap_data.fire_mode_data.single = { spread_mul = 0.75 }
+				
+				weap_data._total_ammo_mul = 1.2
 			elseif cat_map.shotgun then
-				weap_data.double_barrel = is_doublebarrel
-				weap_data.rays = weap_data.rays and 8 or nil
+				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 5
-				weap_data.stats.alert_size = 6
-				weap_data.damage_near = 1500
-				weap_data.damage_far = 2500
-				weap_data.shake.fire_multiplier = is_doublebarrel and 2 or 1.5
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / weap_data.rays) * (50 / 40)
-				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays) * (40 / 30)
-				weap_data.mobility_scale = { 20, 26, 12, 18 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 0.9,
-							crouching = 1,
-							steelsight = 0.6,
-						},
-						moving = {
-							hipfire = 0.9,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.4,
-							crouching = 1,
-							steelsight = 1.2,
-						},
-					},
-				}
-				weap_data.moving_transition = {
-					enter_rate = 1,
-					exit_rate = 2,
+				
+				weap_data.spread = {
+					standing = 3.5,
+					crouching = 3.5,
+					steelsight = 1.5,
+					moving_standing = 3.5,
+					moving_crouching = 3.5,
+					moving_steelsight = 1.5,
+				}	
+				
+				weap_data.kick = {
+					standing = { 2, 2.4, -0.5, 0.5 },
+					crouching = { 1.8, 2, -0.4, 0.4 },
+					steelsight = { 1.6, 1.8, -0.3, 0.3 },
+					moving_standing = { 2.4, 3, -0.5, 0.5 },
+					moving_crouching = { 2.4, 3, -0.5, 0.5 },
+					moving_steelsight = { 2, 2.4, -0.5, 0.5 },
 				}
 
-				-- Increase unsupported custom shotgun accuracy
-				if is_unsupported_custom then
-					weap_data.stats.spread = self:_add_stat(weap_id, "spread", 2)
+				weap_data.double_barrel = weap_data.CLIP_AMMO_MAX == 2
+				
+				weap_data.damage_near = 2000
+				weap_data.damage_far = 3000
+
+				if weap_data.rays then
+					weap_data.rays = 8	
 				end
+				
+				weap_data._total_ammo_mul = (1 / weap_data.rays) * 1.25
+				weap_data._pickup_mul = (1 / weap_data.rays) * 1.33
 			elseif cat_map.lmg then
-				local function lmg_concealment_scale(a, b, c, d, r)
-					return math.round(math.map_range_clamped(weap_data.stats.concealment, a, b, c, d), r)
-				end
-
-				weap_data.stats.suppression = 3
+				weap_data.steelsight_enter_time = 0.45
+	
 				weap_data.stats.alert_size = 6
-				weap_data.pickup_mul = weap_data.pickup_mul or (30 / 20)
-				weap_data.mobility_scale = { 10, 20, 10, 14 }
-
-				-- Scale stats based on concealment
-				weap_data.steelsight_time = lmg_concealment_scale(15, 20, steelsight_times.slow, steelsight_times.default, 0.05)
-				weap_data.steelsight_move_speed_mul = lmg_concealment_scale(15, 20, 0.3, 0.4, 0.05)
-				weap_data.total_ammo_mul = lmg_concealment_scale(15, 20, 9 / 5, 7 / 5, 0.05)
-				weap_data.sprint_exit_time = lmg_concealment_scale(15, 20, 0.5, 0.4, 0.05)
-				weap_data.ammo_bag_consumption_mul = lmg_concealment_scale(15, 20, 1.5, 1, 0.05)
-
+				weap_data.stats.suppression = 4
+				
+				weap_data.spread = {
+					standing = 3.5,
+					crouching = 2.5,
+					steelsight = 1.5,
+					moving_standing = 4.5,
+					moving_crouching = 3.5,
+					moving_steelsight = 1.5,
+					bipod = 2,
+				}	
+				
+				weap_data.kick = {
+					standing = { 0.3, 0.6, -0.8, 1 },
+					crouching = { 0.25, 0.5, -0.6, 0.8 },
+					steelsight = { 0.2, 0.4, -0.6, 0.6 },
+					moving_standing = { 0.6, 0.9, -0.8, 1 },
+					moving_crouching = { 0.6, 0.9, -0.8, 1 },
+					moving_steelsight = { 0.3, 0.6, -0.8, 1 },
+				}
+				
+				weap_data._total_ammo_mul = 1.5
+				weap_data._pickup_mul = 1.2
+				
+				weap_data.ammo_bag_consumption_mul = 1.5	
+				
+				-- Standardise bipod handling
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15
-				weap_data.bipod_deploy_multiplier = 1
-
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1.3,
-							crouching = 0.8,
-							steelsight = 0.5,
-						},
-						moving = {
-							hipfire = 1.5,
-							crouching = 1,
-							steelsight = 1.3,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 0.8,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 1.1,
-						},
-					},
-				}
+				weap_data.bipod_deploy_multiplier = 1				
 			elseif cat_map.minigun then
-				weap_data.stats.suppression = 4
+				weap_data.steelsight_enter_time = 0.45
+	
 				weap_data.stats.alert_size = 6
-				weap_data.steelsight_time = steelsight_times.slow
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (90 / 40)
-				weap_data.pickup_mul = weap_data.pickup_mul or 0
-				weap_data.steelsight_move_speed_mul = 0.4
-				weap_data.shake.fire_multiplier = 1.4
-				weap_data.mobility_scale = { 6, 12, 8, 12 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.7,
-						},
-						moving = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 1.2,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 1,
-						},
-						moving = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 1.1,
-						},
-					},
-				}
-			elseif cat_map.snp then
 				weap_data.stats.suppression = 4
+				
+				weap_data.spread = {
+					standing = 4,
+					crouching = 4,
+					steelsight = 1.5,
+					moving_standing = 6,
+					moving_crouching = 6,
+					moving_steelsight = 1.5,
+				}	
+				
+				weap_data.kick = {
+					standing = { 0.1, 0.2, -0.3, 0.4 },
+					crouching = { 0.1, 0.2, -0.3, 0.4 },
+					steelsight = { 0.1, 0.15, -0.2, 0.3 },
+					moving_standing = { 0.15, 0.25, -0.3, 0.5 },
+					moving_crouching = { 0.15, 0.25, -0.3, 0.5 },
+					moving_steelsight = { 0.1, 0.2, -0.3, 0.4 },
+				}
+				
+				weap_data._total_ammo_mul = 2
+				weap_data._pickup_mul = 0
+			elseif cat_map.snp then
+				weap_data.steelsight_enter_time = 0.4
+	
 				weap_data.stats.alert_size = 4
-				weap_data.steelsight_time = steelsight_times.slow
-				weap_data.steelsight_move_speed_mul = 0.4
-				weap_data.shake.fire_multiplier = 1.6
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (10 / 20)
-				weap_data.pickup_mul = weap_data.pickup_mul or (30 / 50)
-				weap_data.total_ammo_scale = { 2, 4, (1 / 2), 4 }
-				weap_data.pickup_scale = { 8, 6, (1 / 2), 4 }
-				weap_data.penetration_scale = 80
-				weap_data.mobility_scale = { 14, 20, 10, 14 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 2,
-							crouching = 0.8,
-							steelsight = 0.05,
-						},
-						moving = {
-							hipfire = 4,
-							crouching = 1,
-							steelsight = 2,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 1.1,
-						},
-					},
+				weap_data.stats.suppression = 3
+				
+				weap_data.spread = {
+					standing = 10,
+					crouching = 5,
+					steelsight = 1.9,
+					moving_standing = 15,
+					moving_crouching = 10,
+					moving_steelsight = 1.9,
+				}	
+				
+				weap_data.kick = {
+					standing = { 2.5, 3, -0.4, 0.4 },
+					crouching = { 2.5, 3, -0.4, 0.4 },
+					steelsight = { 1.75, 2, -0.4, 0.4 },
+					moving_standing = { 3, 4, -0.4, 0.4 },
+					moving_crouching = { 3, 4, -0.4, 0.4 },
+					moving_steelsight = { 2.75, 3, -0.4, 0.4 },
 				}
-				weap_data.moving_transition = {
-					enter_rate = 3,
-					exit_rate = 1,
-				}
+				
+				weap_data._total_ammo_mul = 0.5
+				weap_data._pickup_mul = 0.6
+				weap_data._total_ammo_scale = { 2, 4, 0.5, 4 }
+				weap_data._pickup_scale = { 8, 6, 0.5, 4 }
 			elseif cat_map.bow then
-				weap_data.stats.zoom = 5
-				weap_data.stats.suppression = 2
 				weap_data.stats.alert_size = 7
+				weap_data.stats.suppression = 3
+				weap_data.spread = {
+					standing = 2.5,
+					crouching = 2.5,
+					steelsight = 1.5,
+					moving_standing = 2.5,
+					moving_crouching = 2.5,
+					moving_steelsight = 1.5,
+				}	
+				
+				weap_data.kick = {
+					standing = { 2.9, 3, -0.5, 0.5 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { 2.9, 3, -0.5, 0.5 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+				}
+				
+				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
+				
 				weap_data.armor_piercing_chance = 1
-				weap_data.reload_speed_multiplier = 2
-				weap_data.shake.fire_multiplier = 0.3
-				weap_data.total_ammo_scale = { 12, 6, 0.25, 2 }
-				weap_data.max_clips_round = 4
+			
+				weap_data._clips_max_round = 4
+				
+				-- Remove this reload speed flag and replace it with a proper multiplier.
 				weap_data.bow_reload_speed_multiplier = nil
-				weap_data.mobility_scale =  { 24, 28, 12, 16 }
-
+				weap_data.reload_speed_multiplier = 2
+				
+				-- Increase bow charging speed.
 				if weap_data.charge_data and weap_data.charge_data.max_t then
 					weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
 				end
-			elseif cat_map.crossbow then
-				weap_data.stats.suppression = 14
-				weap_data.stats.alert_size = 1
-				weap_data.armor_piercing_chance = 1
-				weap_data.shake.fire_multiplier = 0.2
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (30 / 40)
-				weap_data.total_ammo_scale = { 12, 6, 0.25, 2 }
-				weap_data.max_clips_round = 2
-				weap_data.mobility_scale = { 24, 28, 12, 16 }
-			elseif cat_map.grenade_launcher then
-				weap_data.stats.suppression = 2
-				weap_data.stats.alert_size = 6
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (20 / 30)
-				weap_data.pickup_mul = weap_data.pickup_mul or (10 / 40)
-				weap_data.ammo_bag_consumption_mul = 1.5
-				weap_data.damage_near = 2000
-				weap_data.damage_far = 2000
-				weap_data.rays = weap_data.rays and 12 or nil
-				weap_data.shake.fire_multiplier = 0.5
-				weap_data.mobility_scale = { 20, 26, 13, 15 }
-				weap_data.stance_multipliers = {
-					spread = {
-						standing = {
-							hipfire = 1.5,
-							crouching = 1,
-							steelsight = 0.5,
-						},
-						moving = {
-							hipfire = 3,
-							crouching = 1,
-							steelsight = 1,
-						},
-					},
-					recoil = {
-						standing = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.4,
-							crouching = 1,
-							steelsight = 1.2,
-						},
-					},
-				}
-				weap_data.explosive_ammo = true
-			elseif cat_map.flamethrower then
-				weap_data.stats.suppression = 2
-				weap_data.stats.alert_size = 6
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 0.5
-				weap_data.pickup_mul = weap_data.pickup_mul or 0
-				weap_data.shake.fire_multiplier = 0.2
-				weap_data.mobility_scale = { 16, 20, 10, 14 }
-			elseif cat_map.saw then
-				weap_data.stats.suppression = 7
-				weap_data.stats.alert_size = 9
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_primary and 1.5 or 3
-				weap_data.pickup_mul = weap_data.pickup_mul or 0
-				weap_data.armor_piercing_chance = 1
-				weap_data.shake.fire_multiplier = 0.1
-				weap_data.shake.on_hit_multiplier = 1
-				weap_data.tank_damage_multiplier = 1.5
-				weap_data.lock_damage_multiplier = 3
-				weap_data.hit_alert_size_increase = 2
-			elseif is_turret then -- Yes, I had to bullshit it like this
+			elseif cat_map.crossbow or cat_map.dartgun then
+				weap_data.stats.alert_size = 7
 				weap_data.stats.suppression = 3
-				weap_data.stats.alert_size = 4
-				weap_data.shake.fire_multiplier = 1
+				weap_data.spread = {
+					standing = 2.5,
+					crouching = 2.5,
+					steelsight = 1.5,
+					moving_standing = 2.5,
+					moving_crouching = 2.5,
+					moving_steelsight = 1.5,
+				}	
+				
+				weap_data.kick = {
+					standing = { -0.2, 0.4, -1, 1 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { -0.2, 0.4, -1, 1 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+				}	
+				
+				weap_data._total_ammo_mul = 0.75
+				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
+
+				weap_data.armor_piercing_chance = 1
+			
+				weap_data._clips_max_round = 2
+			elseif cat_map.grenade_launcher then
+				weap_data.stats.alert_size = 6
+				weap_data.stats.suppression = 5
+				
+				weap_data.spread = {
+					standing = 2.5,
+					crouching = 2.5,
+					steelsight = 1.5,
+					moving_standing = 2.5,
+					moving_crouching = 2.5,
+					moving_steelsight = 1.5,
+				}	
+				
+				weap_data.kick = {
+					standing = { 2.9, 3, -0.5, 0.5 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { 2.9, 3, -0.5, 0.5 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+				}
+				
+				weap_data._total_ammo_mul = weap_data._total_ammo_mul or (20 / 30)
+				weap_data._pickup_mul = weap_data._pickup_mul or (10 / 40)
+
+				weap_data.ammo_bag_consumption_mul = 1.5
+
+				weap_data.explosive_ammo = true
+
+				weap_data.damage_near = 2000
+				weap_data.damage_far = 3000
+
+				if weap_data.rays then
+					weap_data.rays = 8	
+				end
+			elseif cat_map.flamethrower then
+				weap_data.stats.alert_size = 6
+				weap_data.stats.suppression = 13
+				
+				weap_data.spread = {
+					standing = 0,
+					crouching = 0,
+					steelsight = 1,
+					moving_standing = 0,
+					moving_crouching = 0,
+					moving_steelsight = 1,
+				}	
+				
+				weap_data.kick = {
+					standing = { 0, 0, 0, 0 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { 0, 0, 0, 0 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+				}
+				
+				weap_data._total_ammo_mul = weap_data._total_ammo_mul or 0.5
+				weap_data._pickup_mul = weap_data._pickup_mul or 0
+			elseif cat_map.saw then
+				weap_data.stats.alert_size = 7
+				weap_data.stats.suppression = 7
+				
+				weap_data.spread = {
+					standing = 0,
+					crouching = 0,
+					steelsight = 1,
+					moving_standing = 0,
+					moving_crouching = 0,
+					moving_steelsight = 1,
+				}
+				
+				weap_data.kick = {
+					standing = { 0.2, -0.2, -0.1, 0.1 },
+					crouching = weap_data.kick.standing,
+					steelsight = weap_data.kick.standing,
+					moving_standing = { 0.2, -0.2, -0.1, 0.1 },
+					moving_crouching = weap_data.kick.moving_standing,
+					moving_steelsight = weap_data.kick.moving_standing,
+					on_hit = { 1.4, -0.5, -0.4, 0.4 }
+				}
+				
+				weap_data._total_ammo_mul = weap_data._total_ammo_mul or is_primary and 1.5 or 3
+				weap_data._pickup_mul = weap_data._pickup_mul or 0
+
+				weap_data.hit_alert_size_increase = 2
+				
+				weap_data.armor_piercing_chance = 1
+
+				weap_data.tank_damage_multiplier = 1.5
+				weap_data.lock_damage_multiplier = 3				
 			end
+			-- Category balancing end.
 
-			-- Automatically adjust custom weapon damage
-			if not is_akimbo then
+			-- Automatically scale custom weapon damage to make sure they are not horribly unbalanced.		
+			if not is_akimbo then -- This prevents damage being scaled twice for weapons with akimbo variants. 
 				if weap_data.custom and not weap_data.no_damage_scaling then
-					local custom_damage = damage_stat * damage_modifier
+					local custom_damage = damage_index * damage_modifier
 
-					local is_shotgun = cat_map.shotgun
-
-					if is_shotgun then
+					-- Additional scaling for Shotguns to account for damage being divided by the number of pellets.
+					if cat_map.shotgun then
 						custom_damage = math.sqrt(custom_damage) * 4
 						custom_damage = math.round(custom_damage, 5)
 					end
@@ -773,47 +735,62 @@ function WeaponTweakData:_init_weapons(overrides)
 					custom_damage = math.round(custom_damage / damage_modifier)
 
 					weap_data.stats.damage = custom_damage
+
+					damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
+					real_damage = self.stats.damage[damage_index] * damage_modifier
 				end
 			end
 
-			-- Non category-specific stats
-			weap_data.stats.mobility = weap_data.mobility_scale and self:_calculate_mobility_stat(weap_data.stats.concealment, weap_data.mobility_scale) or 13
-			weap_data.stats.reload = 11
-			weap_data.panic_suppression_chance = 0.2
-			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
-			weap_data.steelsight_move_speed_mul = weap_data.steelsight_move_speed_mul or 0.5
-			weap_data.steelsight_time = weap_data.steelsight_time or steelsight_times.default
-			weap_data.damage_melee = 1
-			weap_data.damage_melee_effect_mul = 1
-			weap_data.damage_falloff = nil
-			weap_data.stance_multipliers = weap_data.stance_multipliers or nil
-			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil
-			weap_data.spread_bloom = weap_data.spread_bloom or nil
-			weap_data.fire_mode_spread_bloom = weap_data.fire_mode_spread_bloom or nil
-			weap_data.moving_transition = weap_data.moving_transition or {
-				enter_rate = 2,
-				exit_rate = 3,
-			}
+			-- Set weapon handling timers.
+			weap_data.steelsight_enter_time = weap_data.steelsight_enter_time or 0.3 -- The time it takes to aim a weapon.
+			weap_data.steelsight_move_speed_mul = weap_data.steelsight_move_speed_mul or 0.5 -- The speed penalty when aiming a weapon.
+			weap_data.exit_run_time = weap_data.exit_run_time or 0.4 -- The time it takes for your character to raise their weapon after running.
+
+			-- Set penetration properties. 
 			weap_data.penetration = {
-				enemy = {
-					damage_mul = 0.75,
-				},
-				wall = {
-					damage_mul = 0.5,
-				},
-				shield = {
-					damage_mul = 0.5,
-				},
+				enemy = { damage_mul = 0.75 },
+				wall = { damage_mul = 0.5 },
+				shield = { damage_mul = 0.5 },
 			}
 
-			-- Recoil values defined per category
-			if weap_data.kick then
-				if is_turret then
-					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
+			-- Standardise panic suppression chance used by some perk deck upgrades.
+			weap_data.panic_suppression_chance = 0.2
+			
+			-- Standarise the 'reload' stat used in vanilla to adjust individual weapon reload times.
+			weap_data.stats.reload = 11
 
-				elseif cat_map.lmg then
-					weap_data.kick.standing = { 0.3, 0.6, -0.8, 1 }
---[[				weap_data.kick_pattern = {
+			-- Set new index stats for weapons that may not have them
+			if not weap_data.stats.swap_speed then
+				weap_data.stats.swap_speed = 9 -- equal to x1.0 swap speed
+			end
+
+			if not weap_data.stats.exit_run_speed then
+				weap_data.stats.exit_run_speed = 11 -- equal to x1.0 sprint exit speed
+			end
+			
+			-- Remove damage falloff. We do not like it in this house.
+			weap_data.damage_falloff = nil
+			
+			-- Set cosmetic firing camera shake multipliers.
+			if cat_map.snp or cat_map.shotgun then
+				weap_data.shake.fire_multiplier = 1.5
+			elseif cat_map.dmr or cat_map.revolver then
+				weap_data.shake.fire_multiplier = 1.3
+			elseif cat_map.smg then
+				weap_data.shake.fire_multiplier = 0.8
+			elseif cat_map.pistol then
+				weap_data.shake.fire_multiplier = 0.7
+			elseif cat_map.flamethrower or cat_map.crossbow or cat_map.bow then
+				weap_data.shake.fire_multiplier = 0.2
+			elseif cat_map.saw then
+				weap_data.shake.fire_multiplier = 0.1
+				weap_data.shake.on_hit_multiplier = 1
+			else
+				weap_data.shake.fire_multiplier = 1
+			end
+			
+--[[
+					weap_data.kick_pattern = {
 						["auto"] = {
 							standing = {
 								{
@@ -855,76 +832,6 @@ function WeaponTweakData:_init_weapons(overrides)
 					}
 					weap_data.kick_pattern_reset_t = 2
 ]]
-				elseif cat_map.minigun then
-					weap_data.kick.standing = { 0.1, 0.2, -0.3, 0.4 }
-
-				elseif cat_map.smg then
-					weap_data.kick.standing = { 0.5, 0.7, -1, 1 }
-
-				elseif cat_map.assault_rifle then
-					weap_data.kick.standing = { 0.8, 1, -0.6, 0.6 }
-
-				elseif cat_map.revolver then
-					weap_data.kick.standing = { 2, 2.4, -0.3, 0.3 }
-
-				elseif cat_map.shotgun then
-					if is_doublebarrel then
-						weap_data.kick.standing = { 2.9, 3, -0.5, 0.5 }
-					else
-						weap_data.kick.standing = { 2, 2.4, -0.5, 0.8 }
-					end
-
-				elseif cat_map.grenade_launcher then
-					weap_data.kick.standing = { 2.9, 3, -0.5, 0.5 }
-
-				elseif cat_map.snp then
-					weap_data.kick.standing = { 3, 4, -0.3, 0.3 }
-
-				elseif cat_map.saw then
-					weap_data.kick.standing = { 0.2, -0.2, -0.1, 0.1 }
-					weap_data.kick.on_hit = { 1.4, -0.5, -0.4, 0.4 }
-
-				elseif cat_map.bow or cat_map.crossbow then
-					weap_data.kick.standing = { -0.2, 0.4, -1, 1 }
-
-				elseif cat_map.flamethrower then
-					weap_data.kick.standing = { 0, 0, 0, 0 }
-
-				elseif cat_map.pistol then
-					if weap_data.auto then
-						weap_data.kick.standing = { 0.4, 0.8, -1, 1 }
-					else
-						weap_data.kick.standing = { 1.2, 1.8, -0.5, 0.5 }
-					end
-
-				end
-
-				-- "crouching" and "steelsight" simply clone "standing"; differences in handling of the stances are tied to stance_multipliers now.
-				weap_data.kick.crouching = clone(weap_data.kick.standing)
-				weap_data.kick.steelsight = clone(weap_data.kick.standing)
-			end
-
-			-- Set enemy penetration count caps.
-			-- Calculate them based on damage for Sniper Rifles; set them to 1 for everything else capable of shooting through enemies.
-			if weap_data.can_shoot_through_enemy then
-				if cat_map.snp then
-					weap_data.max_nr_enemy_penetrations	= self:_calculate_snp_penetrations(real_damage, weap_data.penetration_scale)
-				else
-					weap_data.max_nr_enemy_penetrations = 1
-				end
-			end
-
-			-- Set spread values
-			local base_spread = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3.5 or 2.5
-			if weap_data.spread then
-				weap_data.spread.standing = base_spread
-				weap_data.spread.crouching = base_spread
-				weap_data.spread.steelsight = base_spread
-				weap_data.spread.moving_standing = base_spread
-				weap_data.spread.moving_crouching = base_spread
-				weap_data.spread.moving_steelsight = base_spread
-				weap_data.spread.bipod = base_spread
-			end
 
 			-- Run overrides for specific weapons before calculating ammo.
 			-- These are useful if you need to set a flag that is normally tied to a category.
@@ -936,152 +843,144 @@ function WeaponTweakData:_init_weapons(overrides)
 				override_caller(overrides[weap_id])
 			end
 
-			-- Balance akimbo weapons
-			if is_akimbo then
-				if single_weapon_data then
-					-- Cosmetic flags
-					weap_data.shell_ejection = single_weapon_data.shell_ejection
-					weap_data.trail_effect = single_weapon_data.trail_effect
-
-					local akimbo_reload = weap_data.timers.reload_empty
-					local single_reload = single_weapon_data.timers.reload_empty
-
-					-- Actual stats
-					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
-					weap_data.stats = deep_clone(single_weapon_data.stats)
-					weap_data.stats.spread = self:_add_stat(single_weapon_id, "spread", -2)
-					weap_data.stats.recoil = self:_add_stat(single_weapon_id, "recoil", -3)
-					weap_data.stats.concealment = self:_add_stat(single_weapon_id, "concealment", -4)
-					weap_data.stats.alert_size = self:_add_stat(single_weapon_id, "alert_size", -1)
-					weap_data.stats.suppression = self:_add_stat(single_weapon_id, "suppression", -2)
-					weap_data.stats.mobility = 13
-					weap_data.total_ammo_mul = math.min(single_weapon_data.total_ammo_mul or 1, 1)
-					weap_data.pickup_mul = math.min(single_weapon_data.pickup_mul or 1, 1)
-					weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.75
-					weap_data.steelsight_time = steelsight_times.default
-					weap_data.steelsight_move_speed_mul = 0.5
-					weap_data.shake.fire_multiplier = (single_weapon_data.shake.fire_multiplier or 1) + 0.4
-					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (30 / 40)
-					weap_data.swap_speed_multiplier = nil
-					weap_data.fire_mode_spread_bloom = single_weapon_data.fire_mode_spread_bloom and deep_clone(single_weapon_data.fire_mode_spread_bloom) or nil
-					weap_data.spread_bloom = single_weapon_data.spread_bloom and deep_clone(single_weapon_data.spread_bloom) or nil
-
-					if weap_data.auto then
-						weap_data.auto = deep_clone(single_weapon_data.auto)
-					end
-
-					if not weap_data.rays then
-						weap_data.stance_multipliers.spread = {
-							standing = {
-								hipfire = 1.2,
-								crouching = 1,
-								steelsight = 0.7,
-							},
-							moving = {
-								hipfire = 1.4,
-								crouching = 1,
-								steelsight = 1.2,
-							},
-						}
-					else
-						weap_data.stance_multipliers.spread = {
-							standing = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 0.8,
-							},
-							moving = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 1,
-							},
-						}
-					end
-
-					weap_data.stance_multipliers.recoil = {
-						standing = {
-							hipfire = 1.1,
-							crouching = 1,
-							steelsight = 0.9,
-						},
-						moving = {
-							hipfire = 1.2,
-							crouching = 1,
-							steelsight = 1.1,
-						},
-					}
-				end
-
-				-- Apply a ROF decrease to Akimbos but only if they cannot use full auto.
-				if weap_data.fire_mode_data and single_weapon_data then
-					weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate * (weap_data.CAN_TOGGLE_FIREMODE and 1 or 5 / 4)
-				end
-			end
-
-			-- Standardize fire rates and set burst fire flags
+			-- Set 'fire_mode_data'.
 			if weap_data.fire_mode_data then
+				-- Make the 'auto' fire rate match the primary one.
 				if weap_data.auto and weap_data.fire_mode_data.fire_rate then
 					weap_data.auto.fire_rate = weap_data.fire_mode_data.fire_rate
 				end
 
+				-- Set burst fire delays and add an additional recoil increase at the end of a burst.
 				weap_data.fire_mode_data.burst_cooldown = weap_data.fire_mode_data.fire_rate and weap_data.fire_mode_data.fire_rate * 2 or weap_data.fire_mode_data.burst_cooldown or nil
 				weap_data.fire_mode_data.burst_recoil_final_mul = 1.5
 			end
 
-			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data.total_ammo_scale, weap_data.pickup_scale)
-
-			-- Set total ammo and pickup
-			weap_data.total_damage = self.WEAPON_TOTAL_DMG * (weap_data.total_ammo_mul or 1) * snp_total_ammo_mul
-			weap_data.pickup_damage = self.WEAPON_PICKUP_DMG * (weap_data.pickup_mul or 1) * snp_pickup_mul
-
-			-- Modify total ammo based on weapon slot
-			if is_secondary then -- Secondaries
-				weap_data.total_damage = weap_data.total_damage * self.SECONDARY_TOTAL_DMG_MUL
-				weap_data.pickup_damage = weap_data.pickup_damage * self.SECONDARY_PICKUP_DMG_MUL
-			elseif not is_primary then -- Others (underbarrels, usually)
-				weap_data.total_damage = weap_data.total_damage * self.UNDERBARREL_TOTAL_DMG_MUL
-				weap_data.pickup_damage = weap_data.pickup_damage * self.UNDERBARREL_PICKUP_DMG_MUL
-			end
-			
-			-- AP weapons that aren't Sniper Rifles get reduced total ammo and pickup
-			if weap_data.can_shoot_through_wall and not cat_map.snp then
-				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.25
-
-				weap_data.total_damage = weap_data.total_damage * self.AP_TOTAL_DMG_MUL
-				weap_data.pickup_damage = weap_data.pickup_damage * self.AP_PICKUP_DMG_MUL
-			end
-
-			-- Disable the 'start_out_ammo_multiplier' upgrade and increase ammo bag consumption for weapons with no pickup
-			if weap_data.pickup_mul == 0 then
-				weap_data.forbid_start_out_ammo = true
+			-- Balance akimbo weapons.
+			if is_akimbo then
+				if single_weapon_data then
+					-- Double the single counterpart's magazine capacity
+					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
 					
-				if weap_data.ammo_bag_consumption_mul then
-					weap_data.ammo_bag_consumption_mul = math.max(weap_data.ammo_bag_consumption_mul, 2)
+					weap_data.stats = deep_clone(single_weapon_data.stats) -- Clone the single counterpart's stats.
+					
+					-- Reduce/increase index stats
+					weap_data.stats.spread = self:_add_stat(single_weapon_id, "spread", -1)
+					weap_data.stats.recoil = self:_add_stat(single_weapon_id, "recoil", -3)
+					weap_data.stats.concealment = self:_add_stat(single_weapon_id, "concealment", -4)
+					weap_data.stats.suppression = self:_add_stat(single_weapon_id, "suppression", -2)
+
+					-- Significantly increase ammo bag consumption
+					weap_data.ammo_bag_consumption_mul = 1.75
+					
+					-- Make sure the akimbo weapon's reload time is not shorter than the single counterpart's 
+					weap_data.reload_speed_multiplier = (weap_data.timers.reload_empty / single_weapon_data.timers.reload_empty) * 0.75
+
+					-- Make sure the akimbo weapon's rate of fire matches the single counterpart
+					if weap_data.fire_mode_data and single_weapon_data.fire_mode_data then
+						weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate
+
+						-- Apply a fire rate reduction to single fire akimbo weapons
+						if not weap_data.CAN_TOGGLE_FIREMODE then
+							weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate * 1.25
+						end
+					end
+					
+					-- Cap akimbo weapons' total ammo/ammo pickup multipliers at 1.
+					if weap_data._total_ammo_mul and weap_data._total_ammo_mul > 1 then
+						weap_data._total_ammo_mul = math.min(weap_data._total_ammo_mul, 1)
+					end
+					
+					if weap_data._pickup_mul and weap_data._pickup_mul > 1 then
+						weap_data._pickup_mul = math.min(weap_data._pickup_mul, 1)
+					end
+										
+					-- Increase spread and set a standard 'steelsight' spread multiplier
+					for k, v in pairs(weap_data.spread) do
+						weap_data.spread[k] = v + 1
+					end
+					
+					weap_data.spread.steelsight = 1.5
+					weap_data.spread.moving_steelsight = weap_data.spread.steelsight
+	
+					-- Cosmetic flags
+					weap_data.shell_ejection = single_weapon_data.shell_ejection
+					weap_data.trail_effect = single_weapon_data.trail_effect
+					
+					weap_data.shake.fire_multiplier = math.clamp(single_weapon_data.shake.fire_multiplier + 0.4, 1, 2)
 				end
 			end
 			
-			damage_stat = math.min(weap_data.stats.damage, #self.stats.damage)
-			real_damage = self.stats.damage[damage_stat] * damage_modifier
+			-- Additional total ammo/ammo pickup multipliers given to Sniper Rifles (but not only) to offset their very high damage stats.
+			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data._total_ammo_scale, weap_data._pickup_scale)
 
+			-- Set total ammo and pickup
+			weap_data.TOTAL_DAMAGE = self.WEAPON_TOTAL_DMG * (weap_data._total_ammo_mul or 1) * snp_total_ammo_mul
+			weap_data.PICKUP_DAMAGE = self.WEAPON_PICKUP_DMG * (weap_data._pickup_mul or 1) * snp_pickup_mul
+
+			-- Reduce total ammo/ammo pickup based on the weapon's slot.
+			if is_secondary then -- Secondaries
+				weap_data.TOTAL_DAMAGE = weap_data.TOTAL_DAMAGE * self.SECONDARY_TOTAL_DMG_MUL
+				weap_data.PICKUP_DAMAGE = weap_data.PICKUP_DAMAGE * self.SECONDARY_PICKUP_DMG_MUL
+			elseif is_underbarrel then -- Underbarrels
+				weap_data.TOTAL_DAMAGE = weap_data.TOTAL_DAMAGE * self.UNDERBARREL_TOTAL_DMG_MUL
+				weap_data.PICKUP_DAMAGE = weap_data.PICKUP_DAMAGE * self.UNDERBARREL_PICKUP_DMG_MUL
+			end
+			
+			-- Penalties applied to non-Sniper Rifle category weapons with innate armour piercing.
+			if weap_data.can_shoot_through_wall and not cat_map.snp then
+				-- Reduce total ammo and ammo pickup.
+				weap_data.TOTAL_DAMAGE = weap_data.TOTAL_DAMAGE * self.AP_TOTAL_DMG_MUL
+				weap_data.PICKUP_DAMAGE = weap_data.PICKUP_DAMAGE * self.AP_PICKUP_DMG_MUL
+				-- Increase Ammo Bag ammo consumption
+				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.25
+			end
+			
+			-- Penalties applied to weapons with no ammo pickup.
+			if weap_data._pickup_mul == 0 then
+				-- Disable the 'start_out_ammo_multiplier' upgrade.
+				weap_data.forbid_start_out_ammo = true
+				-- Increase Ammo Bag ammo consumption
+				weap_data.ammo_bag_consumption_mul = math.max(weap_data.ammo_bag_consumption_mul or 1, 2)
+			end
+
+			damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
+			real_damage = self.stats.damage[damage_index] * damage_modifier
+			
 			-- Set total ammo based on damage and magazine capacity.
-			local clip_dmg = weap_data.CLIP_AMMO_MAX * real_damage
+			local damage_per_clip = weap_data.CLIP_AMMO_MAX * real_damage
 			if weap_data.AMMO_MAX then
-				weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
-				weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, weap_data.max_clips_round or 1) -- max_clips_round is the number by which total ammo will be divisible; it's only use is to ensure total ammo values for very low mag size weapons don't have odd total ammo stats like 17 or 23.
-				weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, weap_data.min_max_clips or 0)
+				-- Round total ammo to a weapon's magazine capacity.
+				weap_data.NR_CLIPS_MAX = math.round(weap_data.TOTAL_DAMAGE / damage_per_clip)
+				weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, 1)
+				
+				-- '_min_clips_max' sets the minimum number of magazines a weapon has by default regardless of damage.
+				if weap_data._min_clips_max then
+					weap_data.NR_CLIPS_MAX = math.max(weap_data.NR_CLIPS_MAX, weap_data._min_clips_max)
+				end
+				
+				-- '_clips_max_round' rounds the total number of magazines to a given value.
+				if weap_data._clips_max_round then
+					weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, weap_data._clips_max_round)
+				end
+				
 				weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
 			end
 
 			if weap_data.AMMO_PICKUP and weap_data.AMMO_PICKUP[2] > 0 then
-				local pickup_dmg_max = weap_data.pickup_damage
-				local pickup_dmg_min = pickup_dmg_max / 2
-
-				weap_data.AMMO_PICKUP = { math.round(math.floor(pickup_dmg_min / real_damage * 100) / 100, is_akimbo and 2 or 0.05), math.round(math.floor(pickup_dmg_max / real_damage * 100) / 100, is_akimbo and 2 or 0.05) }
+				local ammo_pickup_ratio = weap_data.ammo_pickup_ratio or { 0.5, 1 }
+				local pickup_dmg_min = weap_data.PICKUP_DAMAGE * ammo_pickup_ratio[1]
+				local pickup_dmg_max = weap_data.PICKUP_DAMAGE * ammo_pickup_ratio[2]
+				
+				weap_data.AMMO_PICKUP = { 
+					math.round(math.floor(pickup_dmg_min / real_damage * 100) / 100, 0.05),
+					math.round(math.floor(pickup_dmg_max / real_damage * 100) / 100, 0.05),
+				}
 			end
 		end
 	end
 end
 
+-- Disable most akimbo weapons including custom ones.
 WeaponTweakData.akimbo_whitelist = table.list_to_set({
 	"jowi",
 	"x_1911",
@@ -1122,25 +1021,29 @@ end
 
 Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_data)
 	self.tweak_data = tweak_data
-	self.init_stat_overrides = {}
-
-	self.sentry_gun.DAMAGE = 1
-
-	self.trip_mines.delay = 0.1
+	
+	self._init_stat_overrides = {}
 
 	-- Starbreeze didn't update the akimbo mappings for some of the Mcshay weapons, because of course they didn't.
 	-- Update this table with any other weapons that might have the same issue
-	local missing_akimbos = {
+	local missing_akimbo_map = {
 		sko12 = "x_sko12",
 		korth = "x_korth",
 	}
 
 	self.akimbo_mappings = self:get_akimbo_mappings()
 
-	for k, v in pairs(missing_akimbos) do
+	for k, v in pairs(missing_akimbo_map) do
 		self.akimbo_mappings[k] = v
 	end
 
+	-- Reduce Sentry Gun damage to scale better with Eclipse's enemy health pools.
+	self.sentry_gun.DAMAGE = 1
+	
+	self.trip_mines.delay = 0.1
+-- Increase Trip Mine self damage.
+--	self.trip_mines.player_damage = self.trip_mines.damage / 5
+	
 	-- Assault Rifles
 
 	-- AMCAR
@@ -1196,7 +1099,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.famas.stats.concealment = 25
 	self.famas.fire_mode_data.fire_rate = 60 / 1000
 
-	-- Union
+	-- Union 5.56
 	self.corgi.CLIP_AMMO_MAX = 30
 	self.corgi.stats.damage = 20
 	self.corgi.stats.spread = 14
@@ -1245,7 +1148,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.vhs.stats.concealment = 25
 	self.vhs.fire_mode_data.fire_rate = 60 / 850
 
-	-- CR805
+	-- CR805B
 	self.hajk.use_data.selection_index = 2
 	self.hajk.categories = { "assault_rifle" }
 	self.hajk.CLIP_AMMO_MAX = 30
@@ -1255,7 +1158,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hajk.stats.concealment = 19
 	self.hajk.fire_mode_data.fire_rate = 60 / 750
 
-	-- Tempest
+	-- Tempest-21
 	self.komodo.use_data.selection_index = 1
 	self.komodo.CLIP_AMMO_MAX = 30
 	self.komodo.stats.damage = 24
@@ -1264,7 +1167,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.komodo.stats.concealment = 26
 	self.komodo.fire_mode_data.fire_rate = 60 / 800
 
-	-- Rodion
+	-- Rodion 3b
 	self.tkb.CLIP_AMMO_MAX = 45
 	self.tkb.stats.damage = 24
 	self.tkb.stats.spread = 11
@@ -1274,7 +1177,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tkb.fire_mode_data.toggable = nil
 	self.tkb.reload_speed_multiplier = 0.7
 
-	-- AMR
+	-- AMR-16
 	self.m16.CLIP_AMMO_MAX = 30
 	self.m16.stats.damage = 30
 	self.m16.stats.spread = 17
@@ -1292,7 +1195,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.l85a2.timers.reload_not_empty = 3
 	self.l85a2.timers.reload_empty = 4
 
-	-- Ketchnov
+	-- Ketchnov Byk-1
 	self.groza.CLIP_AMMO_MAX = 20
 	self.groza.stats.damage = 30
 	self.groza.stats.spread = 15
@@ -1300,7 +1203,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.groza.stats.concealment = 16
 	self.groza.fire_mode_data.fire_rate = 60 / 700
 
-	-- Ketchnov GL
+	-- Ketchnov Byk-1 Underbarrel Grendae Launcher
 	self.groza_underbarrel.CLIP_AMMO_MAX = 1
 	self.groza_underbarrel.stats.damage = 72
 	self.groza_underbarrel.stats.spread = 24
@@ -1354,7 +1257,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle",
 	}
 
-	-- Cavity
+	-- Cavity 9mm
 	self.sub2000.categories = dmr_category
 	self.sub2000.CLIP_AMMO_MAX = 33
 	self.sub2000.stats.damage = 40
@@ -1363,37 +1266,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sub2000.stats.concealment = 28
 	self.sub2000.fire_mode_data.fire_rate = 60 / 500
 
-	self.init_stat_overrides.sub2000 = function(weap_data)
-		self.sub2000.stats.suppression = 16
+	self._init_stat_overrides.sub2000 = function()
+		self.sub2000.stats.suppression = 14
 		self.sub2000.stats.alert_size = 8
-		self.sub2000.steelsight_move_speed_mul = 0.6
 		self.sub2000.shake.fire_multiplier = 0.8
-		self.sub2000.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.6,
-				},
-				moving = {
-					hipfire = 1.6,
-					crouching = 1,
-					steelsight = 1.4,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.9,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.2,
-				},
-			},
-		}
 	end
 
 	-- Eagle Heavy
@@ -1405,7 +1281,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.stats.concealment = 19
 	self.scar.fire_mode_data.fire_rate = 60 / 550
 
-	-- Gewehr
+	-- Gewehr 3
 	self.g3.categories = dmr_category
 	self.g3.CLIP_AMMO_MAX = 20
 	self.g3.stats.damage = 48
@@ -1414,7 +1290,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g3.stats.concealment = 18
 	self.g3.fire_mode_data.fire_rate = 60 / 600
 
-	-- Gecko
+	-- Gecko 7.62
 	self.galil.categories = dmr_category
 	self.galil.CLIP_AMMO_MAX = 25
 	self.galil.stats.damage = 48
@@ -1450,7 +1326,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_m14.stats.concealment = 18
 	self.new_m14.fire_mode_data.fire_rate = 60 / 700
 
-	-- Little Friend
+	-- Little Friend 7.62
 	self.contraband.categories = dmr_category
 	self.contraband.CLIP_AMMO_MAX = 20
 	self.contraband.stats.damage = 64
@@ -1459,7 +1335,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contraband.stats.concealment = 12
 	self.contraband.fire_mode_data.fire_rate = 60 / 600
 
-	-- Little Friend GL
+	-- Little Friend 7.62 Underbarrel Grenade Launcher
 	self.contraband_m203.CLIP_AMMO_MAX = 1
 	self.contraband_m203.stats.damage = 72
 	self.contraband_m203.stats.spread = 24
@@ -1468,7 +1344,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contraband_m203.fire_mode_data.fire_rate = 60 / 60
 	self.contraband_m203.stats_modifiers = { damage = 5 }
 
-	-- KS12
+	-- KS12 Urban
 	self.shak12.categories = dmr_category
 	self.shak12.CLIP_AMMO_MAX = 20
 	self.shak12.stats.damage = 64
@@ -1478,7 +1354,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shak12.fire_mode_data.fire_rate = 60 / 600
 	self.shak12.reload_speed_multiplier = 0.7
 
-	-- Akron
+	-- Akron HC
 	self.hcar.categories = dmr_category
 	self.hcar.CLIP_AMMO_MAX = 20
 	self.hcar.stats.damage = 64
@@ -1498,7 +1374,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Pistols
 
-	-- Stryk
+	-- STRYK 18c
 	self.glock_18c.CLIP_AMMO_MAX = 19
 	self.glock_18c.stats.damage = 16
 	self.glock_18c.stats.spread = 13
@@ -1506,7 +1382,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.glock_18c.stats.concealment = 29
 	self.glock_18c.fire_mode_data.fire_rate = 60 / 1200
 
-	-- Czech
+	-- Czech 92
 	self.czech.CLIP_AMMO_MAX = 18
 	self.czech.stats.damage = 16
 	self.czech.stats.spread = 15
@@ -1522,7 +1398,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.beer.stats.concealment = 28
 	self.beer.fire_mode_data.fire_rate = 60 / 1100
 
-	-- Igor
+	-- Igor Automatik
 	self.stech.CLIP_AMMO_MAX = 20
 	self.stech.stats.damage = 18
 	self.stech.stats.spread = 14
@@ -1562,7 +1438,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pl14.stats.recoil = 14
 	self.pl14.stats.concealment = 29
 	self.pl14.fire_mode_data.fire_rate = 60 / 600
-	self.pl14.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Contractor
 	self.packrat.CLIP_AMMO_MAX = 15
@@ -1571,14 +1446,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.packrat.stats.recoil = 15
 	self.packrat.stats.concealment = 29
 	self.packrat.fire_mode_data.fire_rate = 60 / 600
-	self.packrat.muzzleflash = "effects/payday2/particles/weapons/45cal_pistol_fps"
 
 	-- Holt
 	self.holt.CLIP_AMMO_MAX = 15
 	self.holt.stats.damage = 20
 	self.holt.stats.spread = 13
 	self.holt.stats.recoil = 17
-	self.holt.stats.concealment = 29
+	self.holt.stats.concealment = 30
 	self.holt.fire_mode_data.fire_rate = 60 / 600
 
 	-- Broomstick
@@ -1613,7 +1487,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.maxim9.fire_mode_data.fire_rate = 60 / 600
 	self.maxim9.can_do_shotgun_push = false
 
-	-- Signature
+	-- Signature .40
 	self.p226.CLIP_AMMO_MAX = 12
 	self.p226.stats.damage = 30
 	self.p226.stats.spread = 18
@@ -1653,7 +1527,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.usp.stats.concealment = 29
 	self.usp.fire_mode_data.fire_rate = 60 / 600
 
-	-- Gruber
+	-- Gruber Kurz
 	self.ppk.CLIP_AMMO_MAX = 7
 	self.ppk.stats.damage = 36
 	self.ppk.stats.spread = 16
@@ -1671,7 +1545,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pmm.weapon_hold = "glock"
 	self.pmm.animations.reload_name_id = "ppk"
 
-	-- 5/7
+	-- 5/7 AP
 	self.lemming.CLIP_AMMO_MAX = 15
 	self.lemming.stats.damage = 36
 	self.lemming.stats.spread = 13
@@ -1703,7 +1577,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1911.stats.concealment = 29
 	self.m1911.fire_mode_data.fire_rate = 60 / 600
 
-	-- Kang Arms
+	-- Kang Arms Model 54
 	self.type54.CLIP_AMMO_MAX = 8
 	self.type54.stats.damage = 40
 	self.type54.stats.spread = 16
@@ -1711,7 +1585,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.type54.stats.concealment = 29
 	self.type54.fire_mode_data.fire_rate = 60 / 600
 
-	-- Kang Arms Shotgun
+	-- Kang Arms Model 54 Underbarrel Shotgun
 	self.type54_underbarrel.CLIP_AMMO_MAX = 1
 	self.type54_underbarrel.stats.damage = 30
 	self.type54_underbarrel.stats.spread = 10
@@ -1736,55 +1610,37 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.recoil = 4
 	self.deagle.stats.concealment = 28
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
+	self.deagle.non_standard_fire_rate = true
 
-
-	self.init_stat_overrides.deagle = function()
-		self.deagle.stats.suppression = 9
+	self._init_stat_overrides.deagle = function()
 		self.deagle.stats.alert_size = 7
-		self.deagle.total_ammo_mul = nil
-		self.deagle.pickup_mul  = (71 / 100)
---		self.deagle.swap_speed_multiplier = 1.5
-		self.deagle.steelsight_move_speed_mul = 0.6
-		self.deagle.shake.fire_multiplier = 1.2
-		self.deagle.fire_mode_data.fire_rate = 60 / 400
-		self.deagle.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 0.5,
-				},
-				moving = {
-					hipfire = 1.8,
-					crouching = 1,
-					steelsight = 1.4,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.9,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.2,
-				},
-			},
-		}
-		self.deagle.fire_mode_spread_bloom = {
-			["single"] = {
-				per_shot = 2,
-				per_shot_steelsight = 1.5,
-			},
-		}
+		self.deagle.stats.suppression = 7
+		self.deagle.spread = {
+			standing = 4.5,
+			crouching = 3,
+			steelsight = 1.5,
+			moving_standing = 6,
+			moving_crouching = 6,
+			moving_steelsight = 1.5,
+		}	
 		self.deagle.spread_bloom = {
+			add = 2,
+			add_steelsight = 1.5,
 			max = 3,
-			recovery = 1.4,
-			recovery_wait_multiplier = 1.8,
+			recovery = 1.25,
+			recovery_wait_multiplier = 1.75,
 		}
-		self.deagle.kick.standing =  { 2, 2.4, -0.3, 0.3 }
+		self.deagle.kick = {
+			standing = { 1.8, 2.4, 0.6, -0.2 },
+			crouching = { 1.8, 2.1, 0.4, -0.2 },
+			steelsight = { 1.5, 1.8, 0.3, -0.2 },
+			moving_standing = { 2.4, 3, 0.6, -0.2 },
+			moving_crouching = { 2.4, 3, 0.4, -0.2 },
+			moving_steelsight = { 1.8, 2.4, 0.3, -0.2 },
+		}
+		self.deagle._total_ammo_mul = 1
+		self.deagle._pickup_mul = 0.66
+		self.deagle.shake.fire_multiplier = 1.3
 	end
 
 	-- Pipette Mk.2
@@ -1799,17 +1655,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.welrod.timers.reload_not_empty = 3
 	self.welrod.timers.reload_empty = self.welrod.timers.reload_not_empty
 	self.welrod.stats_modifiers = nil
-	self.welrod.no_standard_fire_rate = true -- No automatic pistol fire rate override
+	self.welrod.non_standard_fire_rate = true -- No automatic pistol fire rate override
 	self.welrod.can_shoot_through_enemy = true
 	self.welrod.can_shoot_through_shield = true -- Was it really that hard, STG?
 	self.welrod.can_shoot_through_wall = true
 	self.welrod.has_description = true
 	self.welrod.desc_id = "bm_w_lemming_desc"
 
-	-- Matever
-	self.mateba.categories = {
+	local revolver_category = {
 		"revolver"
 	}
+
+	-- Matever .357
+	self.mateba.categories = revolver_category
 	self.mateba.CLIP_AMMO_MAX = 6
 	self.mateba.stats.damage = 64
 	self.mateba.stats.spread = 22
@@ -1818,10 +1676,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mateba.fire_mode_data.fire_rate = 60 / 300
 	self.mateba.reload_speed_multiplier = 1.3
 
-	-- Kahn
-	self.korth.categories = {
-		"revolver"
-	}
+	-- Kahn .357
+	self.korth.categories = revolver_category
 	self.korth.CLIP_AMMO_MAX = 8
 	self.korth.stats.damage = 64
 	self.korth.stats.spread = 20
@@ -1829,10 +1685,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.korth.stats.concealment = 28
 	self.korth.fire_mode_data.fire_rate = 60 / 300
 
-	-- Bronco
-	self.new_raging_bull.categories = {
-		"revolver"
-	}
+	-- Bronco .44
+	self.new_raging_bull.categories = revolver_category
 	self.new_raging_bull.CLIP_AMMO_MAX = 6
 	self.new_raging_bull.stats.damage = 80
 	self.new_raging_bull.stats.spread = 22
@@ -1840,10 +1694,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_raging_bull.stats.concealment = 28
 	self.new_raging_bull.fire_mode_data.fire_rate = 60 / 300
 
-	--Peacemaker
-	self.peacemaker.categories = {
-		"revolver"
-	}
+	--Peacemaker .45
+	self.peacemaker.categories = revolver_category
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 80
 	self.peacemaker.stats.spread = 22
@@ -1859,10 +1711,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.peacemaker.has_description = true
 	self.peacemaker.desc_id = "bm_w_lemming_desc"
 
-	-- Castigo
-	self.chinchilla.categories = {
-		"revolver"
-	}
+	-- Castigo .44
+	self.chinchilla.categories = revolver_category
 	self.chinchilla.CLIP_AMMO_MAX = 6
 	self.chinchilla.stats.damage = 80
 	self.chinchilla.stats.spread = 22
@@ -1871,10 +1721,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.chinchilla.fire_mode_data.fire_rate = 60 / 300
 	self.chinchilla.reload_speed_multiplier = 1.15
 
-	-- Frenchman
-	self.model3.categories = {
-		"revolver"
-	}
+	-- Frenchman Model 87
+	self.model3.categories = revolver_category
 	self.model3.CLIP_AMMO_MAX = 6
 	self.model3.stats.damage = 80
 	self.model3.stats.spread = 20
@@ -1882,14 +1730,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model3.stats.concealment = 28
 	self.model3.fire_mode_data.fire_rate = 60 / 300
 
-	-- Akimbo Frenchman
+	-- Akimbo Frenchman Model 87
 	self.x_model3.timers.reload_not_empty = 2.50
 	self.x_model3.timers.reload_empty = self.x_model3.timers.reload_not_empty
 
-	-- Angry Tiger
-	self.rsh12.categories = {
-		"revolver"
-	}
+	-- RUS-12 Angry Tiger
+	self.rsh12.categories = revolver_category
 	self.rsh12.CLIP_AMMO_MAX = 5
 	self.rsh12.stats.damage = 96
 	self.rsh12.stats.spread = 22
@@ -1918,7 +1764,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scorpion.fire_mode_data.fire_rate = 60 / 1000
 	self.scorpion.reload_speed_multiplier = 1.15
 
-	-- Blaster
+	-- Blaster 9mm
 	self.tec9.CLIP_AMMO_MAX = 32
 	self.tec9.stats.damage = 16
 	self.tec9.stats.spread = 10
@@ -1944,7 +1790,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		wp_akmsu_x_lever_release = "wp_baka_lever_release"
 	}
 
-	-- Miyaka
+	-- Miyaka 10
 	self.pm9.use_data.selection_index = 2
 	self.pm9.CLIP_AMMO_MAX = 25
 	self.pm9.stats.damage = 16
@@ -1992,7 +1838,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shepheard.stats.concealment = 25
 	self.shepheard.fire_mode_data.fire_rate = 60 / 800
 
-	-- Spec Ops
+	-- SpecOps
 	self.mp7.CLIP_AMMO_MAX = 20
 	self.mp7.stats.damage = 20
 	self.mp7.stats.spread = 14
@@ -2009,7 +1855,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		wp_akmsu_x_lever_release = "wp_mac10_lever_release"
 	}
 
-	-- Kobus
+	-- Kobus 90
 	self.p90.use_data.selection_index = 2
 	self.p90.CLIP_AMMO_MAX = 50
 	self.p90.stats.damage = 20
@@ -2018,7 +1864,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.p90.stats.concealment = 26
 	self.p90.fire_mode_data.fire_rate = 60 / 900
 
-	-- Thompson
+	-- Chicago Typewriter
 	self.m1928.CLIP_AMMO_MAX = 50
 	self.m1928.stats.damage = 20
 	self.m1928.stats.spread = 14
@@ -2063,7 +1909,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.uzi.fire_mode_data.fire_rate = 60 / 600
 	self.uzi.timers.reload_not_empty = 2
 
-	-- Vertex
+	-- Kross Vertex
 	self.polymer.use_data.selection_index = 2
 	self.polymer.CLIP_AMMO_MAX = 25
 	self.polymer.stats.damage = 24
@@ -2072,7 +1918,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.polymer.stats.concealment = 24
 	self.polymer.fire_mode_data.fire_rate = 60 / 1200
 
-	-- AK GEN
+	-- AK Gen 21 Tactical
 	self.vityaz.use_data.selection_index = 2
 	self.vityaz.CLIP_AMMO_MAX = 30
 	self.vityaz.stats.damage = 24
@@ -2099,7 +1945,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.erma.fire_mode_data.fire_rate = 60 / 550
 	self.erma.reload_speed_multiplier = 1.15
 
-	-- Pattchet
+	-- Pattchet L2A1
 	self.sterling.use_data.selection_index = 2
 	self.sterling.CLIP_AMMO_MAX = 20
 	self.sterling.stats.damage = 30
@@ -2125,36 +1971,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.speen.stats.concealment = 25
 	self.speen.fire_mode_data.fire_rate = 60 / 500
 
-	self.init_stat_overrides.speen = function(weap_data)
-		self.speen.fire_mode_multipliers = nil
-		self.speen.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.1,
-					crouching = 1,
-					steelsight = 0.6,
-				},
-				moving = {
-					hipfire = 1.3,
-					crouching = 1,
-					steelsight = 1,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 0.7,
-				},
-				moving = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 1,
-				},
-			},
-		}
-	end
-
 	-- Shotguns
 
 	-- Izhma
@@ -2162,7 +1978,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.saiga.stats.damage = 10
 	self.saiga.stats.spread = 12
 	self.saiga.stats.recoil = 12
-	self.saiga.stats.concealment = 17
+	self.saiga.stats.concealment = 18
 	self.saiga.fire_mode_data.fire_rate = 60 / 350
 
 	-- Street Sweeper
@@ -2179,7 +1995,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.aa12.stats.damage = 10
 	self.aa12.stats.spread = 11
 	self.aa12.stats.recoil = 13
-	self.aa12.stats.concealment = 15
+	self.aa12.stats.concealment = 16
 	self.aa12.fire_mode_data.fire_rate = 60 / 300
 
 	-- Grimm
@@ -2196,11 +2012,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sko12.stats.spread = 12
 	self.sko12.stats.recoil = 12
 	self.sko12.stats.concealment = 12
-	self.sko12.fire_mode_data.fire_rate = 60 / 400
+	self.sko12.fire_mode_data.fire_rate = 60 / 300
+	self.sko12.shell_ejection = self.r870.shell_ejection
 	self.sko12.reload_speed_multiplier = 0.7
 	self.sko12.FIRE_MODE = "single"
 	self.sko12.CAN_TOGGLE_FIREMODE = false
-
+	
 	-- M1014
 	self.benelli.CLIP_AMMO_MAX = 6
 	self.benelli.stats.damage = 12
@@ -2218,10 +2035,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.spas12.fire_mode_data.fire_rate = 60 / 300
 
 	-- Goliath
-	self.rota.upgrade_blocks = { -- No mag size increases
-		weapon = {
-			"clip_ammo_increase",
-		},
+	self.rota.upgrade_blocks = { -- Disable magazine size increase upgrades.
+		weapon = { "clip_ammo_increase" },
 	}
 	self.rota.CLIP_AMMO_MAX = 6
 	self.rota.stats.damage = 12
@@ -2230,7 +2045,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rota.stats.concealment = 22
 	self.rota.fire_mode_data.fire_rate = 60 / 300
 
-	-- Argos
+	-- Argos III
 	self.ultima.use_data.selection_index = 2
 	self.ultima.CLIP_AMMO_MAX = 7
 	self.ultima.stats.damage = 12
@@ -2245,15 +2060,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r870.stats.damage = 16
 	self.r870.stats.spread = 14
 	self.r870.stats.recoil = 8
-	self.r870.stats.concealment = 17
+	self.r870.stats.concealment = 18
 	self.r870.fire_mode_data.fire_rate = 60 / 120
 
-	-- Loco
+	-- Locomotive
 	self.serbu.CLIP_AMMO_MAX = 4
 	self.serbu.stats.damage = 16
 	self.serbu.stats.spread = 12
 	self.serbu.stats.recoil = 9
-	self.serbu.stats.concealment = 23
+	self.serbu.stats.concealment = 24
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
 	self.serbu.fire_rate_multiplier = 150 / 120
 
@@ -2274,15 +2089,18 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.judge.stats.concealment = 28
 	self.judge.fire_mode_data.fire_rate = 60 / 300
 
-	self.init_stat_overrides.judge = function()
-		self.judge.steelsight_time = steelsight_times.fast
-		self.judge.steelsight_move_speed_mul = 0.6
-		self.judge.pickup_mul = (1 / self.judge.rays)
+	self._init_stat_overrides.judge = function()
+		self.judge.kick = {
+			standing = { 2.9, 3, -0.5, 0.5 },
+			crouching = self.judge.kick.standing,
+			steelsight = self.judge.kick.standing,
+			moving_standing = { 2.9, 3, -0.5, 0.5 },
+			moving_crouching = self.judge.kick.moving_standing,
+			moving_steelsight = self.judge.kick.moving_standing,
+		}
+		self.judge._pickup_mul = (1 / self.judge.rays) * 0.85
 		self.judge.damage_near = 1000
 		self.judge.damage_far = 2000
-		self.judge.shake.fire_multiplier = 2
---		self.judge.swap_speed_multiplier = 1.5
-		self.judge.kick.standing = { 2.9, 3, -0.5, 0.5 }
 	end
 
     self.x_judge.weapon_hold = "x_chinchilla"
@@ -2296,12 +2114,18 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		wp_chinchilla_cylinder_in = "wp_rbull_drum_close"
 	}
 
-	self.init_stat_overrides.x_judge = function()
+	self._init_stat_overrides.x_judge = function()
+		self.x_judge.kick = {
+			standing = { 2.9, 3, -0.5, 0.5 },
+			crouching = self.x_judge.kick.standing,
+			steelsight = self.x_judge.kick.standing,
+			moving_standing = { 2.9, 3, -0.5, 0.5 },
+			moving_crouching = self.x_judge.kick.moving_standing,
+			moving_steelsight = self.x_judge.kick.moving_standing,
+		}
+		self.x_judge._pickup_mul = (1 / self.x_judge.rays) * 0.85
 		self.x_judge.damage_near = 1000
 		self.x_judge.damage_far = 2000
-		self.x_judge.shake.fire_multiplier = 2
---		self.x_judge.swap_speed_multiplier = 1.5
-		self.x_judge.kick.standing = { 2.9, 3, -0.5, 0.5 }
 	end
 
 	-- Mosconi Tactical
@@ -2309,7 +2133,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m590.stats.damage = 16
 	self.m590.stats.spread = 14
 	self.m590.stats.recoil = 8
-	self.m590.stats.concealment = 18
+	self.m590.stats.concealment = 19
 	self.m590.fire_mode_data.fire_rate = 60 / 120
 
 	-- GSPS
@@ -2326,7 +2150,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.boot.stats.damage = 24
 	self.boot.stats.spread = 15
 	self.boot.stats.recoil = 7
-	self.boot.stats.concealment = 21
+	self.boot.stats.concealment = 22
 	self.boot.fire_mode_data.fire_rate = 60 / 80
 	self.boot.fire_rate_multiplier = 75 / 80
 
@@ -2339,7 +2163,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1897.fire_mode_data.fire_rate = 60 / 100
 	self.m1897.fire_rate_multiplier = 90 / 100
 
-	-- Nova
+	-- Deimos
 	self.supernova.CLIP_AMMO_MAX = 5
 	self.supernova.stats.damage = 20
 	self.supernova.stats.spread = 15
@@ -2353,15 +2177,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.huntsman.stats.damage = 24
 	self.huntsman.stats.spread = 16
 	self.huntsman.stats.recoil = 5
-	self.huntsman.stats.concealment = 15
+	self.huntsman.stats.concealment = 17
 	self.huntsman.fire_mode_data.fire_rate = 60 / 500
 
-	-- Joceline
+	-- Joceline O/U
 	self.b682.CLIP_AMMO_MAX = 2
 	self.b682.stats.damage = 24
 	self.b682.stats.spread = 16
 	self.b682.stats.recoil = 5
-	self.b682.stats.concealment = 15
+	self.b682.stats.concealment = 17
 	self.b682.fire_mode_data.fire_rate = 60 / 500
 
 	-- Claire
@@ -2369,13 +2193,14 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.coach.stats.damage = 24
 	self.coach.stats.spread = 15
 	self.coach.stats.recoil = 7
-	self.coach.stats.concealment = 16
+	self.coach.stats.concealment = 19
 	self.coach.fire_mode_data.fire_rate = 60 / 500
-	self.coach.reload_speed_multiplier = 0.85
 	self.coach.timers.reload_not_empty = 1.60
 	self.coach.timers.reload_empty = self.coach.timers.reload_not_empty
-
-	-- LMGs and Miniguns
+	self.coach.reload_speed_multiplier = 0.85
+	
+	-- LMGs 
+	
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
 	self.m249.stats.damage = 18
@@ -2385,7 +2210,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m249.fire_mode_data.fire_rate = 60 / 900
 	self.m249.reload_speed_multiplier = 0.85
 
-	-- Buzzsaw
+	-- Buzzsaw 42
 	self.mg42.CLIP_AMMO_MAX = 150
 	self.mg42.stats.damage = 18
 	self.mg42.stats.spread = 13
@@ -2403,7 +2228,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.fire_mode_data.fire_rate = 60 / 800
 	self.tecci.CAN_TOGGLE_FIREMODE = false
 
-	-- Campbell
+	-- Campbell 74
 	self.kacchainsaw.CLIP_AMMO_MAX = 200
 	self.kacchainsaw.stats.damage = 18
 	self.kacchainsaw.stats.spread = 13
@@ -2411,36 +2236,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.stats.concealment = 14
 	self.kacchainsaw.fire_mode_data.fire_rate = 60 / 800
 	self.kacchainsaw.timers.deploy_bipod = nil
-
-	self.init_stat_overrides.kacchainsaw = function(weap_data)
-		self.kacchainsaw.steelsight_move_speed_mul = 0.5
-		self.kacchainsaw.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.8,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.3,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.1,
-					crouching = 1,
-					steelsight = 1,
-				},
-				moving = {
-					hipfire = 1.3,
-					crouching = 1,
-					steelsight = 1.2,
-				},
-			},
-		}
-	end
 
 	-- MA-17
 	self.kacchainsaw_flamethrower.CLIP_AMMO_MAX = 50
@@ -2460,7 +2255,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpk.stats.concealment = 14
 	self.rpk.fire_mode_data.fire_rate = 60 / 650
 
-	-- Versteckt
+	-- Versteckt 51b
 	self.hk51b.CLIP_AMMO_MAX = 60
 	self.hk51b.stats.damage = 24
 	self.hk51b.stats.spread = 11
@@ -2470,7 +2265,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk51b.reload_speed_multiplier = 0.85
 	self.hk51b.timers.deploy_bipod = nil
 
-	-- Brenner
+	-- Brenner-21
 	self.hk21.CLIP_AMMO_MAX = 100
 	self.hk21.stats.damage = 30
 	self.hk21.stats.spread = 14
@@ -2494,85 +2289,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m60.stats.concealment = 10
 	self.m60.fire_mode_data.fire_rate = 60 / 550
 
-	-- Hailstorm
-	self.hailstorm.CLIP_AMMO_MAX = 120
-	self.hailstorm.stats.damage = 16
-	self.hailstorm.stats.spread = 14
-	self.hailstorm.stats.recoil = 14
-	self.hailstorm.stats.concealment = 12
-	self.hailstorm.fire_mode_data.fire_rate = 60 / 2000
-	self.hailstorm.fire_mode_data.volley.damage_mul = 1
-	self.hailstorm.fire_mode_data.volley.ammo_usage = 30
-	self.hailstorm.fire_mode_data.volley.rays = 15
-	self.hailstorm.fire_mode_data.volley.spread_mul = nil
-	self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
-	self.hailstorm.kick.volley.standing = { 3.8, 4, -0.3, 0.3 }
-	self.hailstorm.has_description = true
-	self.hailstorm.desc_id = "bm_w_ray_desc"
-
-	self.init_stat_overrides.hailstorm = function(weap_data)
-		self.hailstorm.stats.suppression = 12
-		self.hailstorm.stats.alert_size = 7
-		self.hailstorm.total_ammo_mul = 3
-		self.hailstorm.shake.fire_multiplier = 0.75
-		self.hailstorm.stance_multipliers = {
-			spread = {
-				standing = {
-					hipfire = 1.3,
-					crouching = 1,
-					steelsight = 0.6,
-				},
-				moving = {
-					hipfire = 1.5,
-					crouching = 1,
-					steelsight = 1.2,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.1,
-					crouching = 1,
-					steelsight = 0.8,
-				},
-				moving = {
-					hipfire = 1.3,
-					crouching = 1,
-					steelsight = 1.1,
-				},
-			},
-		}
-		self.hailstorm.kick.standing = { 0.4, 0.5, -0.7, 0.7 }
-	end
-
-	-- Microgun
-	self.shuno.CLIP_AMMO_MAX = 750
-	self.shuno.stats.damage = 12
-	self.shuno.stats.spread = 7
-	self.shuno.stats.recoil = 9
-	self.shuno.stats.concealment = 6
-	self.shuno.fire_mode_data.fire_rate = 60 / 3000
-	self.shuno.has_description = true
-	self.shuno.desc_id = "bm_w_ray_desc"
-
-	-- Minigun
-	self.m134.CLIP_AMMO_MAX = 500
-	self.m134.stats.damage = 18
-	self.m134.stats.spread = 9
-	self.m134.stats.recoil = 7
-	self.m134.stats.concealment = 6
-	self.m134.fire_mode_data.fire_rate = 60 / 2000
-	self.m134.sprint_exit_time = 0.8
-	self.m134.exit_run_speed_multiplier = 2
-	self.m134.has_description = true
-	self.m134.desc_id = "bm_w_ray_desc"
-
-	-- Snipers
+	-- Sniper Rifles
 
 	-- Contractor
 	self.tti.CLIP_AMMO_MAX = 20
 	self.tti.stats.damage = 64
 	self.tti.stats.spread = 20
-	self.tti.stats.recoil = 11
+	self.tti.stats.recoil = 8
 	self.tti.stats.concealment = 16
 	self.tti.fire_mode_data.fire_rate = 60 / 180
 	self.tti.reload_speed_multiplier = 0.85
@@ -2582,7 +2305,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.CLIP_AMMO_MAX = 10
 	self.siltstone.stats.damage = 64
 	self.siltstone.stats.spread = 22
-	self.siltstone.stats.recoil = 10
+	self.siltstone.stats.recoil = 8
 	self.siltstone.stats.concealment = 16
 	self.siltstone.fire_mode_data.fire_rate = 60 / 180
 	self.siltstone.stats_modifiers = nil
@@ -2592,7 +2315,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.qbu88.CLIP_AMMO_MAX = 10
 	self.qbu88.stats.damage = 64
 	self.qbu88.stats.spread = 19
-	self.qbu88.stats.recoil = 13
+	self.qbu88.stats.recoil = 11
 	self.qbu88.stats.concealment = 19
 	self.qbu88.fire_mode_data.fire_rate = 60 / 250
 	self.qbu88.fire_rate_multiplier = 180 / 250
@@ -2602,7 +2325,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.victor.CLIP_AMMO_MAX = 10
 	self.victor.stats.damage = 64
 	self.victor.stats.spread = 20
-	self.victor.stats.recoil = 11
+	self.victor.stats.recoil = 8
 	self.victor.stats.concealment = 16
 	self.victor.fire_mode_data.fire_rate = 60 / 180
 	self.victor.stats_modifiers = nil
@@ -2610,14 +2333,14 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Lebensauger
 	self.wa2000.CLIP_AMMO_MAX = 5
 	self.wa2000.stats.damage = 80
-	self.wa2000.stats.spread = 21
+	self.wa2000.stats.spread = 22
 	self.wa2000.stats.recoil = 6
 	self.wa2000.stats.concealment = 18
 	self.wa2000.fire_mode_data.fire_rate = 60 / 120
 	self.wa2000.stats_modifiers = nil
 
 	-- Rangehitter
-	self.sbl.use_data.selection_index = 1
+--	self.sbl.use_data.selection_index = 1
 	self.sbl.CLIP_AMMO_MAX = 6
 	self.sbl.stats.damage = 80
 	self.sbl.stats.spread = 22
@@ -2630,7 +2353,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Rattlesnake
 	self.msr.CLIP_AMMO_MAX = 10
 	self.msr.stats.damage = 24
-	self.msr.stats.spread = 24
+	self.msr.stats.spread = 23
 	self.msr.stats.recoil = 8
 	self.msr.stats.concealment = 14
 	self.msr.fire_mode_data.fire_rate = 60 / 55
@@ -2719,8 +2442,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contender.ignore_damage_upgrades = nil
 	self.contender.rays = nil
 
-	self.init_stat_overrides.contender = function(weap_data)
-		self.contender.max_clips_round = 4
+	self._init_stat_overrides.contender = function()
+		self.contender._clips_max_round = 4
 	end
 
 	-- Amaroq
@@ -2742,9 +2465,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.fire_mode_data.fire_rate = 60 / 40
 	self.m95.stats_modifiers = { damage = 10 }
 
-	self.init_stat_overrides.m95 = function(weap_data)
-		self.m95.pickup_mul = self.m95.pickup_mul * (5 / 3)
-		self.m95.total_ammo_mul = self.m95.total_ammo_mul * (5 / 3)
+	self._init_stat_overrides.m95 = function()
+		self.m95._pickup_mul = self.m95._pickup_mul * 1.66
+		self.m95._total_ammo_mul = self.m95._total_ammo_mul * 1.66
 	end
 
 	-- Musket
@@ -2756,8 +2479,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.bessy.fire_mode_data.fire_rate = 60 / 30
 	self.bessy.stats_modifiers = { damage = 20 }
 
-	-- Specials
+	-- Special Weapons
 
+	-- Crossbows
+	
 	-- Airbow
 	self.ecp.CLIP_AMMO_MAX = 6
 	self.ecp.stats.damage = 80
@@ -2783,15 +2508,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.dart.stats.recoil = 18
 	self.dart.stats.concealment = 27
 	self.dart.fire_mode_data.fire_rate = 3.6
-	self.dart.charge_data = {
-		max_t = 1,
-	}
+	self.dart.charge_data = { max_t = 1 }
 	self.dart.stats_modifiers = { damage = 2 }
 	self.dart.projectile_type = "dart_arrow" -- default dart type
-
-	self.init_stat_overrides.dart = function(weap_data)
-		self.dart.kick.standing = { 1.2, 1.8, -0.5, 0.5 }
-	end
 
 	-- Light Crossbow
 	self.frankish.CLIP_AMMO_MAX = 1
@@ -2812,6 +2531,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arblast.stats_modifiers = { damage = 4 }
 	self.arblast.reload_speed_multiplier = 1.3
 
+	-- Bows
+	
 	-- Plainsrider
 	self.plainsrider.CLIP_AMMO_MAX = 1
 	self.plainsrider.stats.damage = 60
@@ -2821,6 +2542,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.plainsrider.fire_mode_data.fire_rate = 60 / 300
 	self.plainsrider.stats_modifiers = { damage = 2 }
 
+	-- English Longbow
 	self.long.CLIP_AMMO_MAX = 1
 	self.long.stats.damage = 60
 	self.long.stats.spread = 25
@@ -2829,6 +2551,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.long.fire_mode_data.fire_rate = 60 / 300
 	self.long.stats_modifiers = { damage = 4 }
 
+	-- DECA Technologies Compound Bow
 	self.elastic.CLIP_AMMO_MAX = 1
 	self.elastic.stats.damage = 60
 	self.elastic.stats.spread = 24
@@ -2837,114 +2560,75 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.elastic.fire_mode_data.fire_rate = 60 / 300
 	self.elastic.stats_modifiers = { damage = 4 }
 
+	-- Grenade Launchers
+	
 	-- Basilisk
---[[
-	self.ms3gl.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_ms3gl",
-		launcher_electric = "launcher_electric_ms3gl",
-		launcher_poison = "launcher_poison_ms3gl",
-	}
-]]
 	self.ms3gl.CLIP_AMMO_MAX = 3
-	self.ms3gl.stats.damage = 40
+	self.ms3gl.stats.damage = 24
 	self.ms3gl.stats.spread = 16
 	self.ms3gl.stats.recoil = 20
 	self.ms3gl.stats.concealment = 24
 	self.ms3gl.fire_mode_data.fire_rate = 60 / 90
 	self.ms3gl.timers.equip = 0.75
-	self.ms3gl.stats_modifiers = { damage = 6 }
+	self.ms3gl.stats_modifiers = { damage = 10 }
 	self.ms3gl.FIRE_MODE = "single"
 	self.ms3gl.CAN_TOGGLE_FIREMODE = false
 
 	-- Piglet
---[[
-	self.m32.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_m32",
-		launcher_electric = "launcher_electric_m32",
-		launcher_poison = "launcher_poison_m32",
-	}
-]]
 	self.m32.CLIP_AMMO_MAX = 6
-	self.m32.stats.damage = 40
+	self.m32.stats.damage = 24
 	self.m32.stats.spread = 20
 	self.m32.stats.recoil = 22
 	self.m32.stats.concealment = 16
 	self.m32.fire_mode_data.fire_rate = 60 / 100
 	self.m32.fire_rate_multiplier = 120 / 100
 	self.m32.reload_speed_multiplier = 1.6
-	self.m32.stats_modifiers = { damage = 6 }
+	self.m32.stats_modifiers = { damage = 10 }
 
 	-- Arbiter
---[[
-	self.arbiter.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_arbiter",
-		launcher_electric = "launcher_electric_arbiter",
-		launcher_poison = "launcher_poison_arbiter",
-	}
-]]
 	self.arbiter.use_data.selection_index = 2
 	self.arbiter.CLIP_AMMO_MAX = 5
-	self.arbiter.stats.damage = 40
+	self.arbiter.stats.damage = 24
 	self.arbiter.stats.spread = 24
 	self.arbiter.stats.recoil = 10
 	self.arbiter.stats.concealment = 20
 	self.arbiter.fire_mode_data.fire_rate = 60 / 80
 	self.arbiter.fire_rate_multiplier = 90 / 80
-	self.arbiter.stats_modifiers = { damage = 6 }
-
-	-- GL40
---[[
-	self.gre_m79.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_m79",
-		launcher_electric = "launcher_electric_m79",
-		launcher_poison = "launcher_poison_m79",
-	}
-]]
-	self.gre_m79.use_data.selection_index = 1
-	self.gre_m79.CLIP_AMMO_MAX = 1
-	self.gre_m79.stats.damage = 60
-	self.gre_m79.stats.spread = 24
-	self.gre_m79.stats.recoil = 20
-	self.gre_m79.stats.concealment = 22
-	self.gre_m79.fire_mode_data.fire_rate = 60 / 60
-	self.gre_m79.stats_modifiers = { damage = 6 }
+	self.arbiter.stats_modifiers = { damage = 10 }
 
 	-- China Puff
---[[
-	self.china.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_china",
-		launcher_electric = "launcher_electric_china",
-		launcher_poison = "launcher_poison_china",
-	}
-]]
 	self.china.use_data.selection_index = 2
 	self.china.CLIP_AMMO_MAX = 3
-	self.china.stats.damage = 50
+	self.china.stats.damage = 30
 	self.china.stats.spread = 22
 	self.china.stats.recoil = 20
 	self.china.stats.concealment = 15
 	self.china.fire_mode_data.fire_rate = 60 / 50
-	self.china.stats_modifiers = { damage = 6 }
+	self.china.stats_modifiers = { damage = 10 }
 
+	-- GL40
+	self.gre_m79.use_data.selection_index = 1
+	self.gre_m79.CLIP_AMMO_MAX = 1
+	self.gre_m79.stats.damage = 36
+	self.gre_m79.stats.spread = 24
+	self.gre_m79.stats.recoil = 20
+	self.gre_m79.stats.concealment = 22
+	self.gre_m79.fire_mode_data.fire_rate = 60 / 60
+	self.gre_m79.stats_modifiers = { damage = 10 }
+	
 	-- Compact 40
---[[
-	self.slap.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_slap",
-		launcher_electric = "launcher_electric_slap",
-		launcher_poison = "launcher_poison_slap",
-	}
-]]
 	self.slap.CLIP_AMMO_MAX = 1
-	self.slap.stats.damage = 60
+	self.slap.stats.damage = 36
 	self.slap.stats.spread = 22
 	self.slap.stats.recoil = 22
 	self.slap.stats.concealment = 24
 	self.slap.fire_mode_data.fire_rate = 60 / 60
-	self.slap.stats_modifiers = { damage = 6 }
-	self.slap.reload_speed_multiplier = 1.15
+	self.slap.stats_modifiers = { damage = 10 }
 	self.slap.timers.reload_not_empty = 3.1
 	self.slap.timers.reload_empty = self.slap.timers.reload_not_empty
-
+	self.slap.reload_speed_multiplier = 1.15
+	
+	-- Rocket Launchers
 	local rocket_launcher_category = {
 		"heavy",
 		"grenade_launcher",
@@ -2961,9 +2645,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.fire_mode_data.fire_rate = 60 / 60
 	self.ray.stats_modifiers = { damage = 50 }
 
-	self.init_stat_overrides.ray = function(weap_data)
-		self.ray.pickup_mul = 0
-		self.ray.min_max_clips = 1
+	self._init_stat_overrides.ray = function()
+		self.ray._pickup_mul = 0
+		self.ray._min_clips_max = 1
 	end
 
 	-- RPG
@@ -2976,9 +2660,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
 	self.rpg7.stats_modifiers = { damage = 50 }
 
-	self.init_stat_overrides.rpg7 = function(weap_data)
-		self.rpg7.pickup_mul = 0
-		self.rpg7.min_max_clips = 2
+	self._init_stat_overrides.rpg7 = function()
+		self.rpg7._pickup_mul = 0
+		self.rpg7._min_clips_max = 2
 	end
 
 	self.flun.CLIP_AMMO_MAX = 1
@@ -2988,11 +2672,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.flun.stats.concealment = 27
 	self.flun.fire_mode_data.fire_rate = 60 / 22
 
-	self.init_stat_overrides.flun = function(weap_data)
-		self.flun.rays = 8
-		self.flun.total_ammo_mul = (1 / self.flun.rays) * (50 / 40)
-		self.flun.pickup_mul = (1 / self.flun.rays) * (40 / 30)
-		self.flun.max_clips_round = 2
+	self._init_stat_overrides.flun = function()
+		self.flun._total_ammo_mul = (1 / self.flun.rays) * 1.25
+		self.flun._pickup_mul = (1 / self.flun.rays) * 1.33
+		self.flun._clips_max_round = 2
 	end
 
 	-- Flamethrowers
@@ -3050,6 +2733,70 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.saw_secondary.texture_name = "saw"
 	self.saw_secondary.weapon_hold = "saw"
 
+	-- Miniguns
+	
+	-- Hailstorm
+	self.hailstorm.CLIP_AMMO_MAX = 120
+	self.hailstorm.stats.damage = 16
+	self.hailstorm.stats.spread = 14
+	self.hailstorm.stats.recoil = 11
+	self.hailstorm.stats.concealment = 12
+	self.hailstorm.fire_mode_data.fire_rate = 60 / 2000
+	self.hailstorm.fire_mode_data.volley.damage_mul = 1
+	self.hailstorm.fire_mode_data.volley.ammo_usage = 30
+	self.hailstorm.fire_mode_data.volley.rays = 15
+	self.hailstorm.fire_mode_data.volley.spread_mul = nil
+	self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
+	self.hailstorm.kick.volley.standing = { 3.9, 4, -0.5, 0.5 }
+	self.hailstorm.has_description = true
+	self.hailstorm.desc_id = "bm_w_ray_desc"
+
+	self._init_stat_overrides.hailstorm = function()
+		self.hailstorm.steelsight_enter_time = 0.3
+		self.hailstorm.stats.alert_size = 6
+		self.hailstorm.stats.suppression = 12
+		self.hailstorm.spread = {
+			standing = 4,
+			crouching = 3,
+			steelsight = 1.5,
+			moving_standing = 5,
+			moving_crouching = 4,
+			moving_steelsight = 1.5,
+		}
+		self.hailstorm.kick = {
+			standing = { 0.4, 0.5, -0.7, 0.7 },
+			crouching = { 0.3, 0.4, -0.6, 0.6 },
+			steelsight = { 0.2, 0.3, -0.5, 0.5 },
+			moving_standing = { 0.5, 0.7, -0.8, 0.8 },
+			moving_crouching = { 0.5, 0.7, -0.8, 0.8 },
+			moving_steelsight = { 0.4, 0.5, -0.6, 0.6 },
+		}
+		self.hailstorm._total_ammo_mul = 1
+		self.hailstorm.shake.fire_multiplier = 0.8
+	end
+
+	-- Microgun
+	self.shuno.CLIP_AMMO_MAX = 750
+	self.shuno.stats.damage = 12
+	self.shuno.stats.spread = 7
+	self.shuno.stats.recoil = 9
+	self.shuno.stats.concealment = 6
+	self.shuno.fire_mode_data.fire_rate = 60 / 3000
+	self.shuno.has_description = true
+	self.shuno.desc_id = "bm_w_ray_desc"
+
+	-- Minigun
+	self.m134.CLIP_AMMO_MAX = 500
+	self.m134.stats.damage = 18
+	self.m134.stats.spread = 9
+	self.m134.stats.recoil = 7
+	self.m134.stats.concealment = 6
+	self.m134.fire_mode_data.fire_rate = 60 / 2000
+	self.m134.exit_run_time = 0.8
+	self.m134.exit_run_speed_multiplier = 2
+	self.m134.has_description = true
+	self.m134.desc_id = "bm_w_ray_desc"
+	
 	-- Midland Ranch Turret
 	self.ranc_heavy_machine_gun.CLIP_AMMO_MAX = 200
 	self.ranc_heavy_machine_gun.stats.damage = 96
@@ -3065,7 +2812,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Set up all the wepaon overrides before executing the _init_stats function
 
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!
-	self:_init_weapons(self.init_stat_overrides)
+	self:_init_weapons(self._init_stat_overrides)
 	self:_wipe_akimbo()
 	self:_set_muzzleflashes()
 	self:_set_trail_effects()
@@ -3264,22 +3011,16 @@ function WeaponTweakData:_set_presets()
 
 			if v.usage == "is_smg" and not v.reload == "uzi" then
 				v.auto = { fire_rate = 60 / 500 }
-
 			elseif v.usage == "is_smg" and v.reload == "uzi" then
 				v.auto = { fire_rate = 60 / 600 }
-
 			elseif v.usage == "is_lmg" then
 				v.auto = { fire_rate = 60 / 750 }
-
 			elseif v.usage == "is_flamethrower" then
 				v.auto = { fire_rate = 60 / 1200 }
-
 			elseif v.usage == "mini" then
 				v.auto = { fire_rate = 60 / 2000 }
-
 			else
 				v.auto = { fire_rate = 60 / 400 }
-
 			end
 		elseif k:match("_crew$") then
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")

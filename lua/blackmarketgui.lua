@@ -1708,7 +1708,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					name = "reload",
 				},
 				{
-					name = "steelsight_time",
+					name = "steelsight_enter_time",
 					inverted = true,
 					round_value = 2,
 				},
