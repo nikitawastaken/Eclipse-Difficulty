@@ -502,7 +502,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local kick = kick_data[fire_mode] or kick_data
 
 						local kick_id
-						if self._state_data.in_steelsight then
+						if self._state_data.in_full_steelsight then
 							kick_id = self._moving and "moving_steelsight" or "steelsight"
 						elseif self._state_data.ducking then
 							kick_id = self._moving and "moving_crouching" or "crouching"
