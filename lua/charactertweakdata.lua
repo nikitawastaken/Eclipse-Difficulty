@@ -141,8 +141,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1,
 	})
 	local special_dmg_mul = get_difficulty_specific_value({
-		0.5,
-		0.75,
+		1
+		1,
 		1,
 		1,
 		1,
@@ -576,9 +576,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		96,
 	})
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
-	presets.gang_member_damage.REGENERATE_RATIO = 1 / 40
-	presets.gang_member_damage.REGENERATE_TIME = 1
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2
+	presets.gang_member_damage.REGENERATE_RATIO = 0.1
+	presets.gang_member_damage.REGENERATE_TIME = 2
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
