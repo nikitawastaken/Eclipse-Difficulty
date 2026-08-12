@@ -2422,6 +2422,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
+				amount_max = 3,
 				rank = 2,
 				unit = "fbi_swat_1",
 				tactics = self._tactics.swat_def,
@@ -2463,6 +2464,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
+				amount_max = 3,
 				rank = 2,
 				unit = "fbi_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -2793,6 +2795,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
+				amount_max = 3,
 				rank = 1,
 				unit = "elite_swat_1",
 				tactics = self._tactics.swat_def,
@@ -2834,6 +2837,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
+				amount_max = 3,
 				rank = 2,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_def,
