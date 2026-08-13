@@ -184,7 +184,7 @@ local tag_priority_muls = {
 	cloaker = 1.8,
 	taser = 1.7,
 	sniper = 1.6,
-	tank = 1.6,
+	tank = 2,
 	medic = 1.5,
 	marksman = 1.5,
 }
