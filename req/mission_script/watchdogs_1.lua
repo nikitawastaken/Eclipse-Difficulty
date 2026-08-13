@@ -107,17 +107,17 @@ return {
 			{ id = 102695, delay = 20 },
 		},
 	},
-	-- Add weights to loot vehicle RNG. 
+	-- Add weights to loot vehicle RNG.
 	[100770] = { -- chooseLootVehicle
 		pre_func = function(self)
 			local selector = EclipseWeightedSelector:new()
 			selector:add(100772, 2) -- Street
 			selector:add(100773, 3) -- Crane
 			selector:add(100771, 4) -- Walkway
-			self._values._original_on_executed  = {
+			self._values._original_on_executed = {
 				{ id = selector:select(), delay = 0 },
 			}
-		end
+		end,
 	},
 	-- Disable the catwalk gap
 	[101407] = filter_disable,
@@ -149,9 +149,9 @@ return {
 		},
 	},
 	-- Add the custom large window jump navlink
-	[101735] = { 
-		on_executed = { 
-			{ id = 400019, delay = 0 }, 
+	[101735] = {
+		on_executed = {
+			{ id = 400019, delay = 0 },
 		},
 	},
 	-- Restrict large window jump navlink access
