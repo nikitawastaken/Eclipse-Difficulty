@@ -114,6 +114,10 @@ return {
 				position = Vector3(725, 1385, 0),
 			},
 		},
+		on_executed = { -- Delay initial spawn groups
+			{ id = 102474, delay = 20, delay_rand = 20 }, -- add_prefered_front
+			{ id = 102087, delay = 20, delay_rand = 20 }, -- add_prefered_back
+		},
 	},
 	-- Restore roof access blockade
 	[100095] = {
@@ -195,12 +199,9 @@ return {
 	},
 	[102087] = { -- add back spawns
 		on_executed = {
-			{ id = 400057, delay = 0, delay_rand = 20 },
+			{ id = 400057, delay = 0 },
 		},
 	},
-	-- don't remove ground level spawns at any point
-	[102092] = disabled,
-	[102097] = disabled,
 	-- disable cloaker spawns on startup
 	[102263] = {
 		on_executed = {
@@ -208,6 +209,9 @@ return {
 			{ id = 400091, delay = 0 }, -- disable some window blinders
 		},
 	},
+	-- don't remove ground level spawns at any point
+	[102092] = disabled,
+	[102097] = disabled,
 	-- add missing navlinks
 	[103247] = {
 		on_executed = {
@@ -361,8 +365,13 @@ return {
 	-- late cops
 	[100527] = {
 		on_executed = {
-			{ id = 400001, delay = 45 },
-			{ id = 400087, delay = 55 }, -- cops about to drive in dialogue
+			{ id = 400001, delay = 30 },
+			{ id = 400087, delay = 45 }, -- cops about to drive in dialogue
+			{ id = 103960, delay = 20, delay_rand = 20 }, -- Reduce the beat cop arrival delay (Vanilla: 60s)
+			{ id = 100556, delay = 30 },
+			{ id = 100535, delay = 30 },
+			{ id = 100539, delay = 30 },
+			{ id = 101720, delay = 10 },
 		},
 	},
 	-- more oppressive open door amounts

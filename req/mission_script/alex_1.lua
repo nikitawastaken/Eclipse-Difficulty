@@ -84,7 +84,7 @@ return {
 		},
 	},
 	-- Add new navlinks
-	[100853] = { -- startEnemyNavLinks
+	[101497] = { -- 1stFloorNavlinks
 		on_executed = {
 			{ id = 400013, delay = 0 },
 			{ id = 400014, delay = 0 },

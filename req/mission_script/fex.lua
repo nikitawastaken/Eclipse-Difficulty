@@ -119,8 +119,8 @@ return {
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
-			{ id = 103216, delay = 0, delay_rand = 30 },
-			{ id = 103493, delay = 0, delay_rand = 30 },
+			{ id = 103216, delay = 10, delay_rand = 20 },
+			{ id = 103493, delay = 10, delay_rand = 20 },
 		},
 	},
 	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)

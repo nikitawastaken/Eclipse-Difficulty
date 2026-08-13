@@ -40,6 +40,9 @@ local activate_navlinks = {
 		{ id = 102125, delay = 0 },
 		{ id = 101872, delay = 0 },
 		{ id = 101873, delay = 0 },
+		{ id = 400013, delay = 0 },
+		{ id = 400014, delay = 0 },
+		{ id = 400015, delay = 0 },
 	},
 }
 local optschopper_loop = {
@@ -81,9 +84,9 @@ local optsCookedBagsCounterTrigger = {
 	},
 	enabled = true,
 }
-local optsBasementNavlink01 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(1650, 1325, 925), 10, nil, tostring(128 + 512 + 1024 + 8192))
-local optsBasementNavlink02 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(2150, 825, 925), 10, nil, tostring(128 + 512 + 1024 + 8192))
-local optsBasementNavlink03 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(2150, 525, 925), 10, nil, tostring(128 + 512 + 1024 + 8192))
+local optsBasementNavlink01 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(1650, 1325, 925), 6, false, true, true, nil, tostring(128 + 512 + 1024 + 8192))
+local optsBasementNavlink02 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(2150, 825, 925), 6, false, true, true, nil, tostring(128 + 512 + 1024 + 8192))
+local optsBasementNavlink03 = get_navlink_so_opts("e_nl_slide_down_2m", Vector3(2150, 525, 925), 6, false, true, true, nil, tostring(128 + 512 + 1024 + 8192))
 
 M.elements = {
 	-- Activate Eclipse exclusive event
@@ -103,13 +106,13 @@ M.elements = {
 	Eclipse.mission_elements.gen_counter_operator(400011, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
 	Eclipse.mission_elements.gen_counter_trigger(400012, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),
 	-- Add new navlinks to give enemies alternate routes into the basement
-	Eclipse.mission_elements.gen_so(400013, "basement_navlink01", Vector3(1450, 1325, 1115), Rotation(-90, 0, 0), optsBasementNavlink01),
-	Eclipse.mission_elements.gen_so(400014, "basement_navlink02", Vector3(2350, 825, 1115), Rotation(90, 0, 0), optsBasementNavlink02),
-	Eclipse.mission_elements.gen_so(400015, "basement_navlink03", Vector3(2350, 525, 1115), Rotation(90, 0, 0), optsBasementNavlink03),
+	Eclipse.mission_elements.gen_so(400013, "basement_navlink01", Vector3(1450, 1325, 1130), Rotation(-90, 0, 0), optsBasementNavlink01),
+	Eclipse.mission_elements.gen_so(400014, "basement_navlink02", Vector3(2400, 825, 1130), Rotation(90, 0, 0), optsBasementNavlink02),
+	Eclipse.mission_elements.gen_so(400015, "basement_navlink03", Vector3(2400, 525, 1130), Rotation(90, 0, 0), optsBasementNavlink03),
 	-- Add recurring Cloaker groups to use the restored hide SOs
 	Eclipse.mission_elements.gen_dummy(400016, "cloaker_spawn01", Vector3(1225, 4875, 1425), Rotation(180, 0, 0), optsBesiegeDummyCloaker01),
 	Eclipse.mission_elements.gen_dummy(400017, "cloaker_spawn02", Vector3(4600, 975, 1200), Rotation(90, 0, 0), optsBesiegeDummyCloaker01),
-	Eclipse.mission_elements.gen_dummy(400018, "cloaker_spawn03", Vector3(2100, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummyCloaker02),
+	Eclipse.mission_elements.gen_dummy(400018, "cloaker_spawn03", Vector3(2100, -1950, 875), Rotation(0, 0, 0), optsBesiegeDummyCloaker02),
 	Eclipse.mission_elements.gen_dummy(400019, "cloaker_spawn04", Vector3(-4200, -1950, 1250), Rotation(-90, 0, 0), optsBesiegeDummyCloaker01),
 	Eclipse.mission_elements.gen_spawngroup(400020, "alex_cloaker_spawngroup_01", { 400016 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400021, "alex_cloaker_spawngroup_02", { 400017 }, 0),

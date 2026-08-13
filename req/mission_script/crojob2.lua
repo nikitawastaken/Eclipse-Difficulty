@@ -37,7 +37,7 @@ local crowbar_amount = {
 }
 local roof_navlink_interval = {
 	values = {
-		interval = 6, -- (Vanilla: 2s)
+		interval = 4, -- (Vanilla: 2s)
 	},
 }
 local ship_navlink_interval = {

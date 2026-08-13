@@ -8,26 +8,19 @@ local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_s
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
-local swat_1 = scripted_enemy.swat_1
-local heavy_1 = scripted_enemy.heavy_swat_1
-local heavy_sg = scripted_enemy.heavy_swat_2
-local elite_sniper = scripted_enemy.elite_sniper
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local taser = scripted_enemy.taser_1
-local taser_shotgun = scripted_enemy.taser_2
-local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
-
 local enabled_chance_shields = math.random() <= 0.5
 
+local random_dozers = {
+	scripted_enemy.bulldozer_1,
+	scripted_enemy.bulldozer_2,
+}
 local heavy_swats = {
-	[heavy_1] = get_difficulty_group_specific_value({ 1, 2, 3 }),
-	[heavy_sg] = 6,
+	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 1, 2, 3 }),
+	[scripted_enemy.heavy_swat_2] = 6,
 }
 
 local optsSWAT_Heavy145 = {
-	enemy = heavy_sg,
+	enemy = scripted_enemy.heavy_swat_2,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400014, delay = 0 },
@@ -80,7 +73,7 @@ local optsSWAT_Harasser_8 = {
 	enabled = true,
 }
 local optsBulldozer = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	trigger_times = 3,
 	on_executed = {
 		{ id = 400014, delay = 0 },
@@ -88,19 +81,19 @@ local optsBulldozer = {
 	enabled = normal_and_above,
 }
 local optsBulldozerscripted = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	on_executed = {
 		{ id = 400041, delay = 0 },
 	},
 	enabled = normal_and_above,
 }
 local optsCloaker = {
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = normal_and_above,
 }
 local optsShield_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400050, delay = 0 },
@@ -108,7 +101,7 @@ local optsShield_1 = {
 	enabled = true,
 }
 local optsShield_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400051, delay = 0 },
@@ -116,7 +109,7 @@ local optsShield_2 = {
 	enabled = true,
 }
 local optsShield_3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield,
 	participate_to_group_ai = true,
 	on_executed = {
 		{ id = 400052, delay = 0 },
@@ -124,31 +117,31 @@ local optsShield_3 = {
 	enabled = true,
 }
 local optsTaser = {
-	enemy = taser_shotgun,
+	enemy = scripted_enemy.taser_2,
 	spawn_action = "e_sp_run_jump_far",
 	participate_to_group_ai = true,
 	enabled = true,
 }
 local optsBulldozerchopper = {
-	enemy = bulldozer,
+	enemy_table = random_dozers,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_jump_down_heli_cbt_left",
 	enabled = true,
 }
 local optsTaserChopper = {
-	enemy = taser,
+	enemy = scripted_enemy.taser_1,
 	spawn_action = "e_sp_jump_down_heli_cbt_right",
 	participate_to_group_ai = true,
 	enabled = true,
 }
 local optsSWAT_HeavyChopper_1 = {
-	enemy = swat_shotgunner,
+	enemy = scripted_enemy.heavy_swat_2,
 	spawn_action = "e_sp_jump_down_heli_cbt_left",
 	participate_to_group_ai = true,
 	enabled = true,
 }
 local optsSWAT_HeavyChopper_2 = {
-	enemy = swat_shotgunner,
+	enemy = scripted_enemy.heavy_swat_2,
 	spawn_action = "e_sp_jump_down_heli_cbt_right",
 	participate_to_group_ai = true,
 	enabled = true,
@@ -271,9 +264,11 @@ local optsrespawn_swat_2 = {
 	},
 	event = "death",
 }
+local harasser_respawn_delay = 45
+local harasser_respawn_delay_rand = is_eclipse and 30 or 45
 local optsrespawn_harasser_4 = {
 	on_executed = {
-		{ id = 400069, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
+		{ id = 400069, delay = harasser_respawn_delay, delay_rand = harasser_respawn_delay_rand },
 	},
 	elements = {
 		400069,
@@ -282,7 +277,7 @@ local optsrespawn_harasser_4 = {
 }
 local optsrespawn_harasser_5 = {
 	on_executed = {
-		{ id = 400070, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
+		{ id = 400070, delay = harasser_respawn_delay, delay_rand = harasser_respawn_delay_rand },
 	},
 	elements = {
 		400070,
@@ -291,7 +286,7 @@ local optsrespawn_harasser_5 = {
 }
 local optsrespawn_harasser_6 = {
 	on_executed = {
-		{ id = 400071, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
+		{ id = 400071, delay = harasser_respawn_delay, delay_rand = harasser_respawn_delay_rand },
 	},
 	elements = {
 		400071,
@@ -300,7 +295,7 @@ local optsrespawn_harasser_6 = {
 }
 local optsrespawn_harasser_7 = {
 	on_executed = {
-		{ id = 400072, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
+		{ id = 400072, delay = harasser_respawn_delay, delay_rand = harasser_respawn_delay_rand },
 	},
 	elements = {
 		400072,
@@ -309,7 +304,7 @@ local optsrespawn_harasser_7 = {
 }
 local optsrespawn_harasser_8 = {
 	on_executed = {
-		{ id = 400073, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
+		{ id = 400073, delay = harasser_respawn_delay, delay_rand = harasser_respawn_delay_rand },
 	},
 	elements = {
 		400073,

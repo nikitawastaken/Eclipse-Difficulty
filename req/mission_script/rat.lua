@@ -77,7 +77,7 @@ return {
 		set_ponr_state = true,
 	},
 	-- Add new navlinks
-	[102141] = { -- activate_navlinks_and_SOs
+	[101497] = { -- 1stFloorNavlinks
 		on_executed = {
 			{ id = 400013, delay = 0 },
 			{ id = 400014, delay = 0 },

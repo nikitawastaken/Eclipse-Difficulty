@@ -37,9 +37,26 @@ local opts_swat_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
-
-local optsCrateNavlink01 = get_navlink_so_opts("e_nl_down_2m", Vector3(1425, 2325, 210), 2, nil)
-local optsCrateNavlink02 = get_navlink_so_opts("e_nl_down_2m", Vector3(1625, 2325, 0), 2, nil)
+local optsWindowBreakAreaTrigger = {
+	enabled = true,
+	instigator = "enemies",
+	width = 115,
+	depth = 353,
+	height = 285,
+	trigger_times = 1,
+	on_executed = {
+		{ id = 400018, delay = 0 },
+	},
+}
+local optsWindowBreak = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 103787, notify_unit_sequence = "destroy_glass", time = 0 },
+	},
+}
+local optsCrateNavlink01 = get_navlink_so_opts("e_nl_down_2m", Vector3(1425, 2325, 210), 2, false, true, true)
+local optsCrateNavlink02 = get_navlink_so_opts("e_nl_down_2m", Vector3(1625, 2325, 0), 2, false, true, true)
+local optsWindowNavlink = get_navlink_so_opts("e_nl_up_5_down_1m", Vector3(1900, 1075, 400), 4, true, true, true)
 
 M.elements = {
 	-- swat van 1
@@ -60,8 +77,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400013, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 	Eclipse.mission_elements.gen_spawngroup(400014, "swat_group_2", { 400008, 400009, 400010, 400011 }, 0, opts_swat_group),
 
+	-- Add new navlinks
 	Eclipse.mission_elements.gen_so(400015, "crate_navlink01", Vector3(1300, 2325, 400), Rotation(-90, 0, 0), optsCrateNavlink01),
 	Eclipse.mission_elements.gen_so(400016, "crate_navlink02", Vector3(1475, 2325, 210), Rotation(-90, 0, 0), optsCrateNavlink02),
+	Eclipse.mission_elements.gen_areatrigger(400017, "window_break_area_trigger", Vector3(1750, 1110, 550), Rotation(0, 0, 0), optsWindowBreakAreaTrigger),
+	Eclipse.mission_elements.gen_object_editor(400018, "window_break_sequence", Vector3(1675, 1110, 550), Rotation(0, 0, 0), optsWindowBreak),
+	Eclipse.mission_elements.gen_so(400019, "window_navlink", Vector3(1575, 1075, 0), Rotation(-90, 0, 0), optsWindowNavlink),
 }
 
 return M

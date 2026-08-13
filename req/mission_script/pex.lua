@@ -163,7 +163,7 @@ return {
 	[100123] = {
 		on_executed = {
 			{ id = 101662, delay = 0 },
-			{ id = 101574, delay = 0, delay_rand = 0 }, -- ai_preferred_police_roof
+			{ id = 101574, delay = 10, delay_rand = 20 }, -- ai_preferred_police_roof
 			{ id = 101663, delay = 60, delay_rand = 20 },
 			{ id = 101594, delay = 100, delay_rand = 20 },
 		},

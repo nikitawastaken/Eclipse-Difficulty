@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local enabled = {
 	values = {
 		enabled = true,
@@ -9,6 +10,9 @@ local filter_disable = {
 }
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local exclude_cop_agents_shields_dozers = {
+	so_access_filter = so_access.acrobatic,
 }
 local shield_so = {
 	pre_func = function(element)
@@ -44,6 +48,7 @@ roof_spawn.groups = preferred.no_shields_bulldozers
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+
 return {
 	-- Combine some navigation areas
 	[100125] = {
@@ -75,6 +80,45 @@ return {
 			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
+	-- Change loot vehicle arrival timing
+	-- Reduce the delay for choosing the loot vehicle location
+	[100771] = { -- driver_3
+		on_executed = { -- From 38s + 7s to 18s + 7s
+			{ id = 100658, delay = 18 }, -- LootVehicleArrived
+		},
+	},
+	-- Increase the delays of elements responsible for moving the vehicle into place by 20s.
+	-- Bain's voiceline delays remain unchaged, so you get notified of the loot vehicle's location 20s in advance.
+	[100771] = { -- lootDropOff1 (Walkway)
+		on_executed = {
+			{ id = 100773, delay = 20 },
+			{ id = 102693, delay = 20 },
+		},
+	},
+	[100306] = { -- lootDropOff2 (Street)
+		on_executed = {
+			{ id = 100929, delay = 20 },
+			{ id = 102692, delay = 20 },
+		},
+	},
+	[101459] = { -- lootDropOff3 (Crane)
+		on_executed = {
+			{ id = 100842, delay = 20 },
+			{ id = 102695, delay = 20 },
+		},
+	},
+	-- Add weights to loot vehicle RNG. 
+	[100770] = { -- chooseLootVehicle
+		pre_func = function(self)
+			local selector = EclipseWeightedSelector:new()
+			selector:add(100772, 2) -- Street
+			selector:add(100773, 3) -- Crane
+			selector:add(100771, 4) -- Walkway
+			self._values._original_on_executed  = {
+				{ id = selector:select(), delay = 0 },
+			}
+		end
+	},
 	-- Disable the catwalk gap
 	[101407] = filter_disable,
 	[103762] = filter_easy_above,
@@ -104,13 +148,20 @@ return {
 			{ id = 400016, delay = 0 },
 		},
 	},
-	-- Restored unused cloaker hiding spots
+	-- Add the custom large window jump navlink
+	[101735] = { 
+		on_executed = { 
+			{ id = 400019, delay = 0 }, 
+		},
+	},
+	-- Restrict large window jump navlink access
+	[100176] = exclude_cop_agents_shields_dozers,
+	[400019] = exclude_cop_agents_shields_dozers,
+	-- Restore unused cloaker hiding spots
 	[103477] = enabled,
 	[103478] = enabled,
 	[103580] = enabled,
 	-- Spawn Group delays
-	[400007] = scripted_swat_van_spawn,
-	[400014] = scripted_swat_van_spawn,
 	[100699] = street_spawn,
 	[100711] = street_spawn,
 	[100719] = street_spawn,
@@ -118,4 +169,6 @@ return {
 	[100767] = street_spawn,
 	[102827] = catwalk_spawn,
 	[101687] = roof_spawn,
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
 }

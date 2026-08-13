@@ -18,7 +18,7 @@ local entrance_spawn = {
 local roof_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -40,19 +40,14 @@ return {
 		reinforce = {
 			{
 				name = "escalator01",
-				force = 2,
+				force = 3,
 				position = Vector3(225, -2850, 0),
 			},
 			{
 				name = "escalator02",
-				force = 2,
+				force = 3,
 				position = Vector3(-2750, 175, 0),
 			},
-		},
-	},
-	[100699] = { -- flare placed
-		on_executed = {
-			{ id = 400002, delay = 0, delay_rand = 30 }, -- custom roof preferreds
 		},
 	},
 	-- Rework preferreds, separate street spawns from roof spawns
@@ -61,6 +56,11 @@ return {
 			{ id = 100127, remove = true }, -- default preferreds
 			{ id = 103742, remove = true }, -- remove vanilla cloaker hiding spots
 			{ id = 400001, delay = 0 }, -- custom street preferreds
+		},
+	},
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400002, delay = 10, delay_rand = 20 }, -- custom roof preferreds
 		},
 	},
 	-- begin the cloaker hunt at the start of the first assault

@@ -398,14 +398,14 @@ function M.get_group_ai_state_names()
 	return { "besiege", "street", "safehouse", "ponr", "skirmish" }
 end
 
-function M.get_navlink_so_opts(so_action, search_position, interval, interrupt_dis, so_access)
+function M.get_navlink_so_opts(so_action, search_position, interval, align_position, needs_pos_rsrv, align_rotation, interrupt_dis, so_access)
 	return {
 		SO_access = so_access or "261600",
 		scan = true,
 		is_navigation_link = true,
-		align_position = true,
-		needs_pos_rsrv = true,
-		align_rotation = true,
+		align_position = align_position,
+		needs_pos_rsrv = needs_pos_rsrv,
+		align_rotation = align_rotation,
 		interrupt_dmg = 0,
 		so_action = so_action,
 		search_position = search_position,
