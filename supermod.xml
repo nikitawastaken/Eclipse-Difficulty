@@ -577,9 +577,6 @@
 		</group>
 
 		<group name="soundbanks/">
-			<!-- Old cook off bain lines -->
-			<file :name="job_h_rat_stage1.bnk"/>
-
 			<!-- Increase volume of the Zeal Sniper Rifle sound -->
 			<file :name="weapon_zsniper.bnk"/>
 
