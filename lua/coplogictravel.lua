@@ -47,8 +47,8 @@ function CopLogicTravel._begin_coarse_pathing(data, my_data, ...)
 		nav_seg = follow_tracker:nav_segment()
 		pos = follow_tracker:field_position()
 	else
-		nav_seg = data.objective.nav_seg or data.objective.area and data.objective.area.pos_nav_seg
-		pos = managers.navigation._nav_segments[nav_seg].pos
+		local nav_seg_data = nav_seg and (managers.navigation._nav_segments[nav_seg] or managers.navigation._nav_segments[tostring(nav_seg)])
+		pos = nav_seg_data and nav_seg_data.pos
 	end
 
 	my_data.coarse_path_index = 1

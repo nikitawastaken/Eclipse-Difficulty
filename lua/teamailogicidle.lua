@@ -108,13 +108,21 @@ function TeamAILogicIdle.is_valid_intimidation_target(other_data, data, distance
 	if data.cool then
 		return false
 	end
-	if not alive(other_data.unit) or other_data.unit:unit_data().disable_shout then
+	local blocked_logics = {
+		inactive = true,
+		trade = true
+	}
+	if not alive(other_data.unit) or blocked_logics[other_data.name] or other_data.unit:unit_data().disable_shout then
 		return false
 	end
 	local surrender = other_data.char_tweak.surrender
-	local anim_data = other_data.unit:anim_data()
-	if not surrender or surrender == tweak_data.character.presets.surrender.never or anim_data.hands_tied then
+	if not surrender or surrender.impossible or surrender.base_chance < 1 and (not surrender.reasons or not surrender.factors) then
 		-- unit can't surrender
+		return false
+	end
+	local anim_data = other_data.unit:anim_data()
+	if anim_data.hands_tied or other_data.internal_data and other_data.internal_data.tied then
+		-- unit already surrendered
 		return false
 	end
 	local intimidate_range_enemies = tweak_data.player.long_dis_interaction.intimidate_range_enemies
@@ -122,7 +130,7 @@ function TeamAILogicIdle.is_valid_intimidation_target(other_data, data, distance
 		-- unit is too far away
 		return false
 	end
-	if anim_data.hands_back or anim_data.surrender then
+	if anim_data.hands_back or anim_data.surrender or other_data.name == "intimidated" then
 		-- unit is already surrendering
 		return true
 	end

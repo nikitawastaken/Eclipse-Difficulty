@@ -120,6 +120,7 @@
 				<post :hook_id="gageassignmentmanager"/>
 				<post :hook_id="skirmishmanager"/>
 				<post :hook_id="crimespreemanager"/>
+				<post :hook_id="navigationmanager"/>
 			</group>
 
 			<group :hook_id="player_actions/skills/">

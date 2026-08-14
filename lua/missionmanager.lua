@@ -288,7 +288,7 @@ function MissionManager.mission_script_patch_funcs.ai_area(self, element, data)
 				mvector3.add_scaled(area_pos, nav_seg.pos, 1 / #nav_segs)
 			end
 			self._ai_area_id = (self._ai_area_id or 10000) + 1
-			managers.groupai:state():add_area(self._ai_area_id, nav_segs, area_pos)
+			managers.groupai:state():add_area(self._ai_area_id, table.collect(nav_segs, function(v) return tostring(v) end), area_pos)
 		end
 	end)
 	Eclipse:log_console("%s hooked as AI area trigger", element:editor_name())
