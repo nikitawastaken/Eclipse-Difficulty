@@ -110,7 +110,7 @@ function TeamAILogicIdle.is_valid_intimidation_target(other_data, data, distance
 	end
 	local blocked_logics = {
 		inactive = true,
-		trade = true
+		trade = true,
 	}
 	if not alive(other_data.unit) or blocked_logics[other_data.name] or other_data.unit:unit_data().disable_shout then
 		return false
