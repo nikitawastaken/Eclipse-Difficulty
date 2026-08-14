@@ -23,6 +23,7 @@
 			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
 			<post :hook_id="utils/lightloadingscreenguiscript"/>
+			<post :hook_id="utils/version"/>
 			<post :hook_id="mutators/basemutator"/>
 
 			<group :hook_id="states/">
@@ -130,7 +131,6 @@
 				<post :hook_id="base/handlers/connectionnetworkhandler"/>
 				<post :hook_id="base/clientnetworksession"/>
 				<post :hook_id="base/session_states/hoststateingame"/>
-				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="base/networkpeer"/>
 				<post :hook_id="base/clientnetworksession"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>

@@ -219,7 +219,7 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 		return seg_id == next_nav_seg_id
 	end)
 	local door = table.random(doors)
-	local to_pos = door and door.center or coarse_path[nav_index][2] or nav_seg_pos
+	local to_pos = door and (door.center or door.x and door) or coarse_path[nav_index][2] or nav_seg_pos
 
 	local cover = nav_manager:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then

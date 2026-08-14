@@ -147,8 +147,8 @@ function CarryData:unlink()
 	CarryData.ub_loot[self._unit:key()] = self._unit
 end
 
-local old_cd_destroy = CarryData.destroy
-function CarryData:destroy()
+local old_cd_pre_destroy = CarryData.pre_destroy
+function CarryData:pre_destroy()
 	CarryData.ub_loot[self._unit:key()] = nil
 
 	local old_links = 0
@@ -158,7 +158,7 @@ function CarryData:destroy()
 		old_links = CarryData.carry_links[linked_to:key()]
 	end
 
-	old_cd_destroy(self)
+	old_cd_pre_destroy(self)
 	if old_links ~= 0 and alive(linked_to) then
 		CarryData.carry_links[linked_to:key()] = old_links - 1
 	end
@@ -172,21 +172,27 @@ Hooks:PreHook(CarryData, "on_secure_SO_completed", "sh_on_secure_SO_completed", 
 
 	local nav_seg = thief:movement():nav_tracker():nav_segment()
 	local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg)
-	area.dropped_loot = area.dropped_loot or {}
-	area.dropped_loot[self._unit:key()] = self._unit
+	if not area then
+		return
+	end
+
 	self._loot_dropoff_area = area
 
-	if not area.factors or not area.factors.force then
+	area.dropped_loot = area.dropped_loot or {}
+	area.dropped_loot[self._unit:key()] = self._unit
+
+	if not area.factors.force then
+		Eclipse:log_console("Loot dropped off, enabled reinforce point in area")
 		managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), 3, area.pos)
 	end
 end)
 
 function CarryData:_remove_from_dropoff_area()
-	if not self._loot_dropoff_area then
+	local area = self._loot_dropoff_area
+	if not area then
 		return
 	end
 
-	local area = self._loot_dropoff_area
 	self._loot_dropoff_area = nil
 	if not area.dropped_loot then
 		return
@@ -194,11 +200,10 @@ function CarryData:_remove_from_dropoff_area()
 
 	area.dropped_loot[self._unit:key()] = nil
 	if not next(area.dropped_loot) then
+		Eclipse:log_console("Last dropped off loot retrieved, disabled reinforce point in area")
 		managers.groupai:state():set_area_min_police_force("loot_dropoff" .. tostring(area), nil)
 	end
 end
 
-Hooks:PostHook(CarryData, "link_to", "sh_link_to", CarryData._remove_from_dropoff_area)
-Hooks:PreHook(CarryData, "destroy", "sh_pre_destroy", CarryData._remove_from_dropoff_area)
--- x64 compatible code
--- Hooks:PostHook(CarryData, "pre_destroy", "sh_pre_destroy", CarryData._remove_from_dropoff_area)
+Hooks:PreHook(CarryData, "link_to", "sh_link_to", CarryData._remove_from_dropoff_area)
+Hooks:PreHook(CarryData, CarryData.destroy and "destroy" or "pre_destroy", "sh_pre_destroy", CarryData._remove_from_dropoff_area)
