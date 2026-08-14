@@ -114,7 +114,7 @@ return {
 			selector:add(100772, 2) -- Street
 			selector:add(100773, 3) -- Crane
 			selector:add(100771, 4) -- Walkway
-			self._values._original_on_executed = {
+			self._original_on_executed = {
 				{ id = selector:select(), delay = 0 },
 			}
 		end,
