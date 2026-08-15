@@ -80,7 +80,7 @@ return {
 			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
---[[
+	--[[
 	-- Change loot vehicle arrival timing
 	-- Reduce the delay for choosing the loot vehicle location
 	[100771] = { -- driver_3
