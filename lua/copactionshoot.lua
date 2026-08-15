@@ -27,7 +27,7 @@ end
 -- Set some values needed for fixed focus and aim delay
 Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function(self)
 	-- Stop autofiring on target change
-	if not self._w_usage_tweak.no_autofire_stop then
+	if self._w_usage_tweak and not self._w_usage_tweak.no_autofire_stop then
 		self:_stop_firing()
 	end
 
