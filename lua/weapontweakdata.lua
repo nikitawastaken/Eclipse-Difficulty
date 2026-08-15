@@ -578,11 +578,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { 2.9, 3, -0.5, 0.5 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { 2.9, 3, -0.5, 0.5 },
+					steelsight = { 2.9, 3, -0.5, 0.5 },
 					moving_standing = { 2.9, 3, -0.5, 0.5 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { 2.9, 3, -0.5, 0.5 },
+					moving_steelsight = { 2.9, 3, -0.5, 0.5 },
 				}
 				
 				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
@@ -613,11 +613,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { -0.2, 0.4, -1, 1 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { -0.2, 0.4, -1, 1 },
+					steelsight = { -0.2, 0.4, -1, 1 },
 					moving_standing = { -0.2, 0.4, -1, 1 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { -0.2, 0.4, -1, 1 },
+					moving_steelsight = { -0.2, 0.4, -1, 1 },
 				}	
 				
 				weap_data._total_ammo_mul = 0.75
@@ -641,11 +641,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { 2.9, 3, -0.5, 0.5 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { -0.2, 0.4, -1, 1 },
+					steelsight = { -0.2, 0.4, -1, 1 },
 					moving_standing = { 2.9, 3, -0.5, 0.5 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { 2.9, 3, -0.5, 0.5 },
+					moving_steelsight = { 2.9, 3, -0.5, 0.5 },
 				}
 				
 				weap_data._total_ammo_mul = weap_data._total_ammo_mul or (20 / 30)
@@ -676,11 +676,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { 0, 0, 0, 0 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { 0, 0, 0, 0 },
+					steelsight = { 0, 0, 0, 0 },
 					moving_standing = { 0, 0, 0, 0 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { 0, 0, 0, 0 },
+					moving_steelsight = { 0, 0, 0, 0 },
 				}
 				
 				weap_data._total_ammo_mul = weap_data._total_ammo_mul or 0.5
@@ -700,11 +700,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { 0.2, -0.2, -0.1, 0.1 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { 0.2, -0.2, -0.1, 0.1 },
+					steelsight = { 0.2, -0.2, -0.1, 0.1 },
 					moving_standing = { 0.2, -0.2, -0.1, 0.1 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { 0.2, -0.2, -0.1, 0.1 },
+					moving_steelsight = { 0.2, -0.2, -0.1, 0.1 },
 					on_hit = { 1.4, -0.5, -0.4, 0.4 }
 				}
 				
