@@ -871,7 +871,53 @@ Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function(self, sta
 	self._rescue_allowed = state
 end)
 
--- disable ai trades when all players are in custody, if you fucked up - you fucked up
+-- Temporary fix for ElementAIArea not adding areas corretly
+local add_area_original = GroupAIStateBase.add_area
+function GroupAIStateBase:add_area(area_id, nav_segs, ...)
+	return add_area_original(self, tostring(area_id), table.collect(nav_segs, function(v) return tostring(v) end), ...)
+end
+
+-- Add dyanmic reinforce spots to player deployables
+function GroupAIStateBase:register_deployable(deployable_unit, deployable_area, deployable_name)
+	local deployable_u_key = deployable_unit:key()
+
+	for area_id, area in pairs(self._area_data) do
+		if area.deployable and area.deployable[deployable_u_key] then
+			debug_pause_unit(deployable_unit, "[GroupAIStateBase:register_deployable] deployable registered twice")
+		end
+	end
+
+	if not deployable_area.deployable then
+		deployable_area.deployable = {}
+	end
+
+	deployable_area.deployable[deployable_u_key] = deployable_name
+
+	if not tweak_data.group_ai.use_deployable_reenforce then
+		return
+	end
+
+	if tweak_data.group_ai.deployable_reenforce and tweak_data.group_ai.deployable_reenforce[deployable_name] then
+		managers.groupai:state():set_area_min_police_force("deployable" .. tostring(deployable_area), 1, deployable_area.pos)
+	end
+end
+
+function GroupAIStateBase:unregister_deployable(deployable_u_key)
+	for area_id, area in pairs(self._area_data) do
+		if area.deployable and area.deployable[deployable_u_key] then
+			area.deployable[deployable_u_key] = nil
+
+			if not next(area.deployable) then
+				area.deployable = nil
+				managers.groupai:state():set_area_min_police_force("deployable" .. tostring(area), nil)
+			end
+
+			break
+		end
+	end
+end
+
+-- Disable AI trades when all players are in custody, if you fucked up - you fucked up.
 function GroupAIStateBase:is_ai_trade_possible()
 	return false
 end
@@ -1534,10 +1580,6 @@ Hooks:PreHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub",
 	Eclipse.utils.team_ai_unregister_unit(unit)
 end)
 
-if Keepers then
-	return
-end
-
 -- Make bots return to their previous objective
 local _determine_objective_for_criminal_AI_original = GroupAIStateBase._determine_objective_for_criminal_AI
 function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
@@ -1569,43 +1611,3 @@ Hooks:PostHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub"
 		end
 	end
 end)
-
--- Add dyanmic reinforce spots to player deployables
-function GroupAIStateBase:register_deployable(deployable_unit, deployable_area, deployable_name)
-	local deployable_u_key = deployable_unit:key()
-
-	for area_id, area in pairs(self._area_data) do
-		if area.deployable and area.deployable[deployable_u_key] then
-			debug_pause_unit(deployable_unit, "[GroupAIStateBase:register_deployable] deployable registered twice")
-		end
-	end
-
-	if not deployable_area.deployable then
-		deployable_area.deployable = {}
-	end
-
-	deployable_area.deployable[deployable_u_key] = deployable_name
-
-	if not tweak_data.group_ai.use_deployable_reenforce then
-		return
-	end
-
-	if tweak_data.group_ai.deployable_reenforce and tweak_data.group_ai.deployable_reenforce[deployable_name] then
-		managers.groupai:state():set_area_min_police_force("deployable" .. tostring(deployable_area), 1, deployable_area.pos)
-	end
-end
-
-function GroupAIStateBase:unregister_deployable(deployable_u_key)
-	for area_id, area in pairs(self._area_data) do
-		if area.deployable and area.deployable[deployable_u_key] then
-			area.deployable[deployable_u_key] = nil
-
-			if not next(area.deployable) then
-				area.deployable = nil
-				managers.groupai:state():set_area_min_police_force("deployable" .. tostring(area), nil)
-			end
-
-			break
-		end
-	end
-end
