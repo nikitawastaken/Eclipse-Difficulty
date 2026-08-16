@@ -130,7 +130,7 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			icon = "wp_trade",
 			text = text,
 			position = unit:movement():m_pos(),
-			distance = SystemInfo:platform() == Idstring("WIN32"),
+			distance = IS_PC,
 		})
 
 		if managers.network:session() and not managers.trade:is_peer_in_custody(managers.network:session():local_peer():id()) and not skip_hint then

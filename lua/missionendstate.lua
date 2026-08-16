@@ -125,8 +125,8 @@ function MissionEndState:at_enter(old_state, params)
 
 	managers.mission:call_global_event(Message.OnMissionEnd, self._success, self._type, managers.job:current_level_id(), Global.game_settings.difficulty)
 
-	if SystemInfo:platform() == Idstring("WIN32") and managers.network.account:has_alienware() then
-		LightFX:set_lamps(0, 255, 0, 255)
+	if IS_PC and managers.network.account:has_alienware() then
+		-- Nothing
 	end
 
 	self._completion_bonus_done = self._completion_bonus_done or false
@@ -230,7 +230,7 @@ function MissionEndState:at_enter(old_state, params)
 		total_exp_gained = total_xp_bonus
 	end
 
-	local is_xb1 = SystemInfo:platform() == Idstring("XB1")
+	local is_xb1 = IS_XB1 
 
 	if self._success then
 		local gage_assignment_state = managers.gage_assignment:on_mission_completed()

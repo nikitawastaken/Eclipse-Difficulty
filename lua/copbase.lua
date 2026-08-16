@@ -14,7 +14,6 @@ for path in pairs(mat_var_paths) do
 	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id
 end
 
-local unit_ids = Idstring("unit")
 Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	-- Dynamically load throwable if we have one
 	local throwable = self._char_tweak.throwable
@@ -26,14 +25,14 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	local unit_name = Idstring(Network:is_client() and tweak_entry.local_unit or tweak_entry.unit)
 	local sprint_unit_name = tweak_entry.sprint_unit and Idstring(tweak_entry.sprint_unit)
 
-	if not PackageManager:has(unit_ids, unit_name) then
+	if not PackageManager:has(IDS_UNIT, unit_name) then
 		Eclipse:log_console("Loading projectile unit", throwable)
-		managers.dyn_resource:load(unit_ids, unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+		managers.dyn_resource:load(IDS_UNIT, unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 
-	if sprint_unit_name and not PackageManager:has(unit_ids, sprint_unit_name) then
+	if sprint_unit_name and not PackageManager:has(IDS_UNIT, sprint_unit_name) then
 		Eclipse:log_console("Loading projectile sprint unit", throwable)
-		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+		managers.dyn_resource:load(IDS_UNIT, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 end)
 
@@ -124,7 +123,7 @@ function CopBase:_run_unit_sequences()
 		-- If the unit had a head defined in its .unit file, spawn and parent it
 		if spawn_manager_ext then
 			if head then
-				managers.dyn_resource:load(Idstring("unit"), Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+				managers.dyn_resource:load(IDS_UNIT, Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
 
 				spawn_manager_ext:spawn_and_link_unit("_char_joint_names", "cop_head", head)
 
@@ -220,8 +219,8 @@ function CopBase:melee_weapon()
 	if not self._melee_weapon then
 		self._melee_weapon = self._char_tweak.melee_weapon or "weapon"
 		self._melee_weapon_data = tweak_data.weapon.npc_melee[self._melee_weapon]
-		if self._melee_weapon_data and self._melee_weapon_data.unit_name and DB:has(Idstring("unit"), self._melee_weapon_data.unit_name) then
-			managers.dyn_resource:load(Idstring("unit"), self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+		if self._melee_weapon_data and self._melee_weapon_data.unit_name and DB:has(IDS_UNIT, self._melee_weapon_data.unit_name) then
+			managers.dyn_resource:load(IDS_UNIT, self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 		else
 			self._melee_weapon_data = nil
 		end
@@ -231,7 +230,7 @@ end
 
 Hooks:PostHook(CopBase, "pre_destroy", "melee_unload", function(self)
 	if self._melee_weapon_data then
-		managers.dyn_resource:unload(Idstring("unit"), self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+		managers.dyn_resource:unload(IDS_UNIT, self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 end)
 

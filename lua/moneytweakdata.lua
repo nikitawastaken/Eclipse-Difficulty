@@ -847,7 +847,7 @@ function MoneyTweakData:init(tweak_data)
 		cash_preorder = self.biggest_cashout / 10,
 	}
 
-	if SystemInfo:platform() == Idstring("XB1") then
+	if IS_XB1 then
 		self.loot_drop_cash.xone_bonus = 5000000
 	end
 

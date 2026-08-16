@@ -64,7 +64,7 @@ end)
 -- Disable cheater tag entirely
 function NetworkPeer:mark_cheater(reason, auto_kick)
 	return
-	-- if Application:editor() or SystemInfo:platform() ~= Idstring("WIN32") then
+	-- if IS_CONSOLE then
 	-- 	return
 	-- end
 
