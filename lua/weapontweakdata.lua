@@ -239,11 +239,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data.kick = {
 					standing = { -0.1, 0.1, -0.05, 0.05 },
-					crouching = weap_data.kick.standing,
-					steelsight = weap_data.kick.standing,
+					crouching = { -0.1, 0.1, -0.05, 0.05 },
+					steelsight = { -0.1, 0.1, -0.05, 0.05 },
 					moving_standing = { -0.1, 0.1, -0.05, 0.05 },
-					moving_crouching = weap_data.kick.moving_standing,
-					moving_steelsight = weap_data.kick.moving_standing,
+					moving_crouching = { -0.1, 0.1, -0.05, 0.05 },
+					moving_steelsight = { -0.1, 0.1, -0.05, 0.05 },
 				}				
 			elseif cat_map.dmr then
 				weap_data.steelsight_enter_time = 0.35
@@ -361,7 +361,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				
 				weap_data._pickup_mul = 1.33
-				weap_data._total_ammo_mul = weap_data.auto and 1 or 1.5
+				weap_data._total_ammo_mul = weap_data.auto and 1 or 1.25
 				
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 600
@@ -391,7 +391,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.kick = {
 					standing = { 1.8, 2.4, 0.6, -0.2 },
 					crouching = { 1.8, 2.4, 0.6, -0.2 },
-					steelsight = { 1.5, 1.8, 0.4, -0.2 },
+					steelsight = { 1.6, 2, 0.4, -0.2 },
 					moving_standing = { 2.4, 3, 0.6, -0.2 },
 					moving_crouching = { 2.4, 3, 0.6, -0.2 },
 					moving_steelsight = { 1.8, 2.4, 0.6, -0.2 },
@@ -554,10 +554,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.kick = {
 					standing = { 2.5, 3, -0.4, 0.4 },
 					crouching = { 2.5, 3, -0.4, 0.4 },
-					steelsight = { 1.75, 2, -0.4, 0.4 },
+					steelsight = { 2, 2.5, -0.4, 0.4 },
 					moving_standing = { 3, 4, -0.4, 0.4 },
 					moving_crouching = { 3, 4, -0.4, 0.4 },
-					moving_steelsight = { 2.75, 3, -0.4, 0.4 },
+					moving_steelsight = { 2.5, 3, -0.4, 0.4 },
 				}
 				
 				weap_data._total_ammo_mul = 0.5
@@ -1632,11 +1632,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		}
 		self.deagle.kick = {
 			standing = { 1.8, 2.4, 0.6, -0.2 },
-			crouching = { 1.8, 2.1, 0.4, -0.2 },
-			steelsight = { 1.5, 1.8, 0.3, -0.2 },
+			crouching = { 1.8, 2.4, 0.6, -0.2 },
+			steelsight = { 1.6, 2, 0.4, -0.2 },
 			moving_standing = { 2.4, 3, 0.6, -0.2 },
-			moving_crouching = { 2.4, 3, 0.4, -0.2 },
-			moving_steelsight = { 1.8, 2.4, 0.3, -0.2 },
+			moving_crouching = { 2.4, 3, 0.6, -0.2 },
+			moving_steelsight = { 1.8, 2.4, 0.6, -0.2 },
 		}
 		self.deagle._total_ammo_mul = 1
 		self.deagle._pickup_mul = 0.66
@@ -2472,9 +2472,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Musket
 	self.bessy.CLIP_AMMO_MAX = 1
-	self.bessy.stats.damage = 60
+	self.bessy.stats.damage = 120
 	self.bessy.stats.spread = 24
-	self.bessy.stats.recoil = 2
+	self.bessy.stats.recoil = 1
 	self.bessy.stats.concealment = 6
 	self.bessy.fire_mode_data.fire_rate = 60 / 30
 	self.bessy.stats_modifiers = { damage = 20 }

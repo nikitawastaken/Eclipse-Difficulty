@@ -233,7 +233,7 @@ function NewRaycastWeaponBase:_get_spread(user_unit)
 	end
 
 	local current_spread_value = spread_values[current_state:get_movement_state()]
-	current_spread_value = current_spread_value + (self._spread_firing or 0)
+	current_spread_value = current_spread_value + self._spread_firing
 
 	local spread_x, spread_y
 	if type(current_spread_value) == "number" then
