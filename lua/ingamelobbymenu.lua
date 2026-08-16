@@ -47,10 +47,3 @@ function IngameLobbyMenuState:at_enter()
 		end
 	end
 end
-
--- These two functions disable (or at least should disable) query for a callback from Steam regarding a skin drop
-function IngameLobbyMenuState:_set_lootdrop()
-	self:set_lootdrop()
-end
-
-function IngameLobbyMenuState:_clbk_inventory_reward() end
