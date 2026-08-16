@@ -230,7 +230,7 @@ function MissionEndState:at_enter(old_state, params)
 		total_exp_gained = total_xp_bonus
 	end
 
-	local is_xb1 = IS_XB1 
+	local is_xb1 = IS_XB1
 
 	if self._success then
 		local gage_assignment_state = managers.gage_assignment:on_mission_completed()
