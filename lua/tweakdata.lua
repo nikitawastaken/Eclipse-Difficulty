@@ -504,7 +504,7 @@ tweak_data.casino = {
 }
 
 -- Safehouse Unlock Level
-tweak_data.safehouse_unlock_level = 50
+tweak_data.safehouse_unlock_level = 35
 -- Tweak "Earned from raid" text value since Safehouse Raid don't give coins anymore
 tweak_data.safehouse.rewards.raid = 0
 
