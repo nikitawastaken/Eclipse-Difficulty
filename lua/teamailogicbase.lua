@@ -352,7 +352,8 @@ function TeamAILogicBase._check_pickup_bag(data)
 				body_part = 1,
 			},
 			complete_clbk = function(unit)
-				if alive(carry_unit) and not carry_unit:carry_data():is_linked_to_unit() and not unit:movement():carry_unit() then
+				local valid_carry = alive(carry_unit) and carry_unit:interaction() and carry_unit:interaction():active()
+				if valid_carry and not carry_unit:carry_data():is_linked_to_unit() and not unit:movement()._carry_unit then
 					carry_unit:carry_data():link_to(unit)
 				end
 				unit:movement():action_request({
