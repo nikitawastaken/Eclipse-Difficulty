@@ -72,8 +72,8 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		local range = math.map_range(data.stats.range, min_range, max_range, 1, 0)
 		local conceal = math.map_range(data.stats.concealment or 30, min_conceal, max_conceal, 1, 0)
 		local charge_t = data.stats.charge_time or 0
-		local damage_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0.4 or 1) * (is_sharp and 1.5 or is_blunt and 0.75 or 1)
-		local effect_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0 or 1) * (is_sharp and 0.75 or 1)
+		local damage_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0.4 or 1) * (is_blunt and 3 / 4 or 1)
+		local effect_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0 or 1) * (is_sharp and 2 / 3 or 1)
 
 		local min, max = get_damage(expire, range, conceal, charge_t)
 		data.stats.min_damage = math.round(min * damage_mul, 0.5)
@@ -81,7 +81,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		data.stats.min_damage_effect = math.round((math.map_range(expire, min_expire, max_expire, 30, 350) + (data.melee_damage_delay or 0) * 350) * effect_mul, 10)
 		data.stats.max_damage_effect = data.stats.min_damage_effect
 		data.stats.charge_time = data.stats.charge_time and data.stats.charge_time * 0.5
-		data.stats.headshot_damage_mul = data.tase_data and 0 or is_blunt and 1.5 or is_sharp and 0.6 or 1
+		data.stats.headshot_damage_mul = data.tase_data and 0 or is_blunt and 4 / 3 or 1
 		data.stats.remove_weapon_movement_penalty = nil
 	end
 end)
