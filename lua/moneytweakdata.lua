@@ -798,6 +798,15 @@ function MoneyTweakData:init(tweak_data)
 	if job_id == "safehouse" then
 		self.small_loot.money_bundle = 10000
 	end
+	if job_id == "kosugi" then
+		self.bag_values.money = 14250
+		self.bag_values.gold = 38000
+		self.bag_values.coke = 18535
+		self.bag_values.painting = 92000
+		self.bag_values.masterpiece_painting = 92000
+		self.bag_values.weapon = 18750
+		self.bag_values.weapons = 28500
+	end
 	if level_id == "chill_combat" or level_id == "chill" then
 		self.bag_values.money = 0
 	end
