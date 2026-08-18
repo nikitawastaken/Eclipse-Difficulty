@@ -1524,7 +1524,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.sentry_targeting_package.multipro = "25%"
 
 	-- Ghost Wiring
-	self.silent_drill_min_force_delay = { 0, 60 }
+	self.silent_drill_min_force_delay = { 45, 45 }
 	self.skill_descs.jack_of_all_trades.multibasic = tostring(self.silent_drill_min_force_delay[2])
 	self.skill_descs.jack_of_all_trades.multipro = "1"
 	self.skill_descs.jack_of_all_trades.multipro2 = "25"

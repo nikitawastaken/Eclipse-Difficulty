@@ -78,7 +78,7 @@
 	"menu_daredevil": "Daredevil",
 	"menu_daredevil_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou interact with objects ##$multipro## faster.",
 	"menu_ghost_wiring": "Ghost Wiring",
-	"menu_ghost_wiring_desc": "BASIC: ##$basic##\nYour drills and saws are silent. Civilians and guards must see the drill or saw in order to become alerted.\n\nIn loud, police will take up to ##$multibasic## seconds to notice and start sending reinforcements to the drill or saw.\n\nACE: ##$pro##\nYou gain the ability to disable ##$multipro## camera from detecting you and your crew.\n\nEffect lasts for ##$multipro2## seconds.",
+	"menu_ghost_wiring_desc": "BASIC: ##$basic##\nYour drills and saws are silent. Civilians and guards must see the drill or saw in order to become alerted.\n\nIn loud, police will take ##$multibasic## seconds to notice and start sending reinforcements to the drill or saw.\n\nACE: ##$pro##\nYou gain the ability to disable ##$multipro## camera from detecting you and your crew.\n\nEffect lasts for ##$multipro2## seconds.",
 	"menu_portable_saw": "Portable Saw",
 	"menu_portable_saw_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## extra saw blade for the OVE9000 portable saw. You replace your saw blades with carbon blades, increasing your saw efficiency by ##$multibasic2##.\n\nACE: ##$pro##\nYou can now bring the OVE9000 portable saw as a secondary weapon.",
 	"menu_tower_defense_beta": "Sentry Nest",
