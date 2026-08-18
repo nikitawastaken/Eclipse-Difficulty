@@ -736,6 +736,7 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
+		self.bag_values.coke = 22535
 	end
 	if job_id == "arena" then
 		self.bag_values.money = 25000
@@ -780,7 +781,7 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "nightclub" then
 		self.bag_values.money = 14350
-		self.bag_values.coke = 20000
+		self.bag_values.coke = 24000
 	end
 	if job_id == "friend" then
 		self.bag_values.money = 14350
