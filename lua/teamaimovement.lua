@@ -226,7 +226,7 @@ function TeamAIMovement:sync_throw_bag(carry_unit, target_unit)
 		local carry_type_tweak = carry_unit:carry_data():carry_type_tweak()
 		local throw_distance_multiplier = carry_type_tweak and carry_type_tweak.throw_distance_multiplier or 1
 
-		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier)
+		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier * 0.1)
 	end
 end
 
