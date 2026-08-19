@@ -259,4 +259,17 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Sync grenade crate pickups -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="sync_grenade_crate_grenade_taken" delivery="ordered" receiver="unit">
+				<param type="unit" />		<!-- grenade crate unit -->
+				<param type="int" />		<!-- taken? -->
+			</message>
+		</target>
+	</tweak>
 </tweaks>
