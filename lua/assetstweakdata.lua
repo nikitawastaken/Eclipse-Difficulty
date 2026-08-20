@@ -37,7 +37,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"fex",
 		"pex",
 	}
-	
+
 	local murkywater_heists = {
 		"pbr",
 		"shoutout_raid",
@@ -91,7 +91,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		stages = murkywater_heists,
 		risk_lock = 4,
 	}
-	
+
 	-- Federales risk assets setup
 	self.risk_federales_pd = {
 		name_id = "menu_asset_risklevel_0",
