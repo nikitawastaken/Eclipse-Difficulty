@@ -26,8 +26,8 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.diamonds_dah = 47500
 	self.bag_values.coke = 12535
 	self.bag_values.coke_pure = 18350
-	self.bag_values.meth = 18500
-	self.bag_values.meth_half = 9900
+	self.bag_values.meth = 30500
+	self.bag_values.meth_half = 15250
 	self.bag_values.weapon = 12750
 	self.bag_values.weapons = 24500
 	self.bag_values.ranc_weapon = 40200
@@ -719,7 +719,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.mad_master_server_value_4 = 1000000
 	end
 	if job_id == "mallcrasher" then
-		self.bag_values.default = 15205
+		self.bag_values.default = 18205
 	end
 	if job_id == "wwh" then
 		self.bag_values.money = 24500
@@ -776,8 +776,8 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.gold = 37500
 	end
 	if job_id == "framing_frame" then
-		self.bag_values.money = 42000
-		self.bag_values.gold = 75000
+		self.bag_values.money = 62300
+		self.bag_values.gold = 95000
 	end
 	if job_id == "nightclub" then
 		self.bag_values.money = 14350
