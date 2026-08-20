@@ -400,7 +400,13 @@
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
-		<!-- Federales-->
+		<!-- Murkywater -->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_murkywater.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_murkywater.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_murkywater.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_murkywater.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_murkywater.texture"/>
+		<!-- Federales -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales.texture"/>
