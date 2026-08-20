@@ -215,6 +215,8 @@
 	"menu_mutators_achievement_disabled": "",
 
 	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
+	
+	"menu_offshore_remains" : "REMAINING OFFSHORE",
 
 	"menu_cs_generating_rewards": "Generating Loot...",
 	"menu_cs_loot_drops_remaining": "Remaining Loot Drops: $loot;",
@@ -234,6 +236,7 @@
 	"menu_generating_sells": "Selling Loot...",
 	"menu_loot_drops_selling": "Remaining Loot to be sold: $loot;",
 	"menu_loot_sells_not_shown": "Plus $remaining; more loot has been sold.",
+	"menu_cn_casino": "OFFSHORE CASINO",
 	"menu_cn_casino_pay_cash": "A fee will be deducted from your spending cash when you enter the casino.\n\nCost: $contract_fee;\nSpending cash: $offshore;",
 	"menu_cn_casino_pay_coins": "A fee will be deducted from your continental coins when you enter the casino.\n\nCost: $contract_fee;\nContinental coins: $offshore;",
 	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;",

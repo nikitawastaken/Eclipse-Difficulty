@@ -7,11 +7,38 @@ function CrimeNetGui:four_stars(job, inside)
 	end
 end
 
+function CrimeNetManager:stars_color(i, job_stars, diff)
+	local hate = diff - 3 > 0 and diff - 3 or 0
+	return i > (job_stars + diff > 10 and job_stars + diff or 10) and Color.green:with_alpha(0) or i > job_stars + diff and Color.black or i > job_stars + diff - hate and tweak_data.screen_colors.pro_color or i > job_stars and tweak_data.screen_colors.risk or Color.white
+end
+
 local gui = CrimeNetGui._create_job_gui
 function CrimeNetGui:_create_job_gui(data, type, fixed_x, fixed_y, fixed_location)
 	local gui_data = gui(self, data, type, fixed_x, fixed_y, fixed_location)
 
 	self:four_stars(gui_data, data)
+	
+	local one_down_active = Global.game_settings.one_down or 1
+	local stars_panel = gui_data.side_panel:child("stars_panel")
+	if alive(stars_panel) and gui_data.job_id then
+		stars_panel:clear()
+
+		local x = 0
+		local y = 0
+		for i = 1, 15 do
+			stars_panel:bitmap({
+				texture = "guis/textures/pd2/crimenet_paygrade_marker",
+				x = x,
+				y = y,
+				blend_mode = "normal",
+				layer = 0,
+				rotation = 360,
+				color = managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative.jobs[gui_data.job_id].jc / 10), gui_data.difficulty_id - 2)
+			})
+			
+			x = x + 8
+		end
+	end
 
 	return gui_data
 end
@@ -153,4 +180,315 @@ function CrimeNetManager:_get_jobs_by_jc()
 	end
 
 	return t
+end
+
+local data = CrimeNetGui.init
+function CrimeNetGui:init(ws, fullscreeen_ws, node)
+	data(self, ws, fullscreeen_ws, node)
+	local legend_panel = self._panel:child("legend_panel")
+	legend_panel:clear()
+
+	local w, h = nil
+	local mw = 0
+	local mh = nil
+	local host_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_host",
+		x = 10,
+		y = 10
+	})
+	local host_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_icon:right() + 2,
+		y = host_icon:top(),
+		text = managers.localization:to_upper_text("menu_cn_legend_host")
+	})
+	mw = math.max(mw, self:make_fine_text(host_text))
+	local next_y = host_text:bottom()
+	local join_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_join",
+		x = 10,
+		y = next_y
+	})
+	local join_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_join")
+	})
+	mw = math.max(mw, self:make_fine_text(join_text))
+
+	self:make_color_text(join_text, tweak_data.screen_colors.regular_color)
+
+	next_y = join_text:bottom()
+	local friends_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_join",
+		x = 10,
+		y = next_y,
+		color = tweak_data.screen_colors.friend_color
+	})
+	local friends_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_friends")
+	})
+	mw = math.max(mw, self:make_fine_text(friends_text))
+
+	self:make_color_text(friends_text, tweak_data.screen_colors.friend_color)
+
+	next_y = friends_text:bottom()
+
+	if managers.crimenet:no_servers() or is_xb1 then
+		next_y = host_text:bottom()
+
+		join_icon:hide()
+		join_text:hide()
+		friends_icon:hide()
+		friends_text:hide()
+		friends_text:set_bottom(next_y)
+	end
+
+	local mutated_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_join",
+		x = 10,
+		y = next_y,
+		color = tweak_data.screen_colors.mutators_color_text
+	})
+	local mutated_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_mutated"),
+		color = tweak_data.screen_colors.mutators_color_text
+	})
+	mw = math.max(mw, self:make_fine_text(mutated_text))
+	next_y = mutated_text:bottom()
+	
+	local spree_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_join",
+		x = 10,
+		y = next_y,
+		color = tweak_data.screen_colors.crime_spree_risk
+	})
+	local spree_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("cn_crime_spree"),
+		color = tweak_data.screen_colors.crime_spree_risk
+	})
+	mw = math.max(mw, self:make_fine_text(spree_text))
+	next_y = spree_text:bottom()
+	
+	local skirmish_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_join",
+		x = 10,
+		y = next_y,
+		color = tweak_data.screen_colors.skirmish_color
+	})
+	local skirmish_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_skirmish"),
+		color = tweak_data.screen_colors.skirmish_color
+	})
+	mw = math.max(mw, self:make_fine_text(skirmish_text))
+	next_y = skirmish_text:bottom()
+	
+	local paygrade_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_payclass",
+		x = 10,
+		y = next_y
+	})
+	local paygrade_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_pay_grade"),
+		color = tweak_data.screen_colors.text
+	})
+	mw = math.max(mw, self:make_fine_text(paygrade_text))
+	next_y = paygrade_text:bottom()
+	
+	local risk_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_payclass",
+		x = 10,
+		y = next_y,
+		color = tweak_data.screen_colors.risk
+	})
+	local risk_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_risk"),
+		color = tweak_data.screen_colors.risk
+	})
+	mw = math.max(mw, self:make_fine_text(risk_text))
+	next_y = risk_text:bottom()
+	
+
+	local hate_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/crimenet_legend_payclass",
+		x = 10,
+		y = next_y,
+		color = Color.red
+	})
+	local hate_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_hate"),
+		color = tweak_data.screen_colors.pro_color
+	})
+	mw = math.max(mw, self:make_fine_text(hate_text))
+	next_y = hate_text:bottom()
+		
+	local ghost_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/cn_minighost",
+		x = 7,
+		y = next_y + 4,
+		color = tweak_data.screen_colors.ghost_color
+	})
+	local ghost_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_legend_ghostable"),
+		color = tweak_data.screen_colors.ghost_color
+	})
+	mw = math.max(mw, self:make_fine_text(ghost_text))
+	next_y = ghost_text:bottom()
+	local kick_none_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/cn_kick_marker",
+		x = 10,
+		y = next_y + 2
+	})
+	local kick_none_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = next_y,
+		text = managers.localization:to_upper_text("menu_cn_kick_disabled")
+	})
+	mw = math.max(mw, self:make_fine_text(kick_none_text))
+	local kick_vote_icon = legend_panel:bitmap({
+		texture = "guis/textures/pd2/cn_votekick_marker",
+		x = 10,
+		y = kick_none_text:bottom() + 2
+	})
+	local kick_vote_text = legend_panel:text({
+		blend_mode = "add",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		x = host_text:left(),
+		y = kick_none_text:bottom(),
+		text = managers.localization:to_upper_text("menu_kick_vote")
+	})
+	mw = math.max(mw, self:make_fine_text(kick_vote_text))
+	local last_text = kick_vote_text
+	local job_plan_loud_icon, job_plan_loud_text, job_plan_stealth_icon, job_plan_stealth_text = nil
+
+	if MenuCallbackHandler:bang_active() then
+		job_plan_loud_icon = legend_panel:bitmap({
+			texture = "guis/textures/pd2/cn_playstyle_loud",
+			x = 10,
+			y = kick_vote_text:bottom() + 2
+		})
+		job_plan_loud_text = legend_panel:text({
+			blend_mode = "add",
+			font = tweak_data.menu.pd2_small_font,
+			font_size = tweak_data.menu.pd2_small_font_size,
+			x = host_text:left(),
+			y = kick_vote_text:bottom(),
+			text = managers.localization:to_upper_text("menu_plan_loud")
+		})
+		mw = math.max(mw, self:make_fine_text(job_plan_loud_text))
+		job_plan_stealth_icon = legend_panel:bitmap({
+			texture = "guis/textures/pd2/cn_playstyle_stealth",
+			x = 10,
+			y = job_plan_loud_text:bottom() + 2
+		})
+		job_plan_stealth_text = legend_panel:text({
+			blend_mode = "add",
+			font = tweak_data.menu.pd2_small_font,
+			font_size = tweak_data.menu.pd2_small_font_size,
+			x = host_text:left(),
+			y = job_plan_loud_text:bottom(),
+			text = managers.localization:to_upper_text("menu_plan_stealth")
+		})
+		mw = math.max(mw, self:make_fine_text(job_plan_stealth_text))
+		last_text = job_plan_stealth_text
+	end
+
+	if managers.crimenet:no_servers() or is_xb1 then
+		kick_none_icon:hide()
+		kick_none_text:hide()
+		kick_vote_icon:hide()
+		kick_vote_text:hide()
+		kick_vote_text:set_bottom(ghost_text:bottom())
+
+		if MenuCallbackHandler:bang_active() then
+			job_plan_loud_icon:hide()
+			job_plan_loud_text:hide()
+			job_plan_stealth_icon:hide()
+			job_plan_stealth_text:hide()
+		end
+	end
+
+	legend_panel:set_size(host_text:left() + mw + 10, last_text:bottom() + 10)
+	legend_panel:rect({
+		alpha = 0.4,
+		layer = -1,
+		color = Color.black
+	})
+	BoxGuiObject:new(legend_panel, {
+		sides = {1, 1, 1, 1}
+	})
+	legend_panel:bitmap({
+		texture = "guis/textures/test_blur_df",
+		render_template = "VertexColorTexturedBlur3D",
+		layer = -1,
+		w = legend_panel:w(),
+		h = legend_panel:h()
+	})
+	legend_panel:set_right(self._panel:w() - 10)
+end
+
+-- Display special contracts like Contract Broker, Casino etc. in CRIME.NET
+function CrimeNetGui:add_special_contracts(no_casino, no_quickplay)
+	for index, special_contract in ipairs(tweak_data.gui.crime_net.special_contracts) do
+		local skip = false
+
+		if managers.custom_safehouse:unlocked() and special_contract.id == "challenge" or not managers.custom_safehouse:unlocked() and special_contract.id == "safehouse" then
+			skip = true
+		end
+		skip = skip or special_contract.sp_only and not Global.game_settings.single_player
+		skip = skip or special_contract.mp_only and Global.game_settings.single_player
+		skip = skip or special_contract.no_session_only and managers.network:session()
+		if not skip then
+			self:add_special_contract(special_contract, no_casino, no_quickplay)
+		end
+	end
 end

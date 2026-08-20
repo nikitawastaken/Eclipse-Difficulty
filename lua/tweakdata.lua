@@ -521,6 +521,26 @@ table.insert(tweak_data.color_grading, { value = "color_e3nice", text_id = "menu
 table.insert(tweak_data.color_grading, { value = "color_subzero", text_id = "menu_color_subzero" })
 table.insert(tweak_data.color_grading, { value = "color_cgreyscale", text_id = "menu_color_cgreyscale" })
 
+-- Remove some of the special contracts from crime.net
+local function btn(tbl, name, class, index)
+	for id, btn in pairs(tbl) do
+		if btn[class or "name_id"] == name and id > (index or 0) then
+			return id
+		end
+	end
+end
+
+local special = tweak_data.gui.crime_net.special_contracts
+table.remove(special, btn(special, "menu_cn_short"))
+table.remove(special, btn(special, "menu_mutators"))
+table.remove(special, btn(special, "cn_crime_spree"))
+table.remove(special, btn(special, "cn_crime_spree"))
+table.remove(special, btn(special, "menu_cn_challenge"))
+
+special[btn(special, "menu_cn_casino")].x = 347
+special[btn(special, "menu_cn_casino")].y = 716
+special[btn(special, "menu_cn_premium_buy")].menu_node = "contract_broker"
+
 -- Main Menu Color Grading
 tweak_data.scene_environments.standard.color_grading = "color_bhd_classic"
 

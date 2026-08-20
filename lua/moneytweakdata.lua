@@ -805,6 +805,9 @@ function MoneyTweakData:init(tweak_data)
 	if job_id == "safehouse" then
 		self.small_loot.money_bundle = 25000
 	end
+	if job_id == "mus" then
+		self.bag_values.mus_artifact_bag = 32000
+	end
 	if job_id == "kosugi" then
 		self.bag_values.money = 24250
 		self.bag_values.gold = 58000
