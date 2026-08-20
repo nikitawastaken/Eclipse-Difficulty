@@ -783,7 +783,10 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.money = 14350
 		self.bag_values.coke = 24000
 	end
-	if job_id == "alex_3" then
+	if level_id == "alex_2" then
+		self.bag_values.money = 42350
+	end
+	if level_id == "alex_3" then
 		self.bag_values.money = 22350
 	end
 	if job_id == "friend" then
