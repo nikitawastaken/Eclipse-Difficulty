@@ -428,31 +428,31 @@ function IngameContractGui:init(ws, node)
 	end
 
 	self:_rec_round_object(self._panel)
-	
+
 	local paygrade_title = text_panel:text({
 		x = 10,
 		font = tweak_data.menu.pd2_small_font,
 		font_size = tweak_data.menu.pd2_small_font_size,
 		text = managers.localization:to_upper_text("cn_menu_contract_paygrade_header"),
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	managers.hud:make_fine_text(paygrade_title)
 	paygrade_title:set_top(math.round(self._experience_title:bottom()))
-	
+
 	local stars_sx = self._rewards_panel:child(0):left()
 	local stars_cy = paygrade_title:center_y()
 
 	for i = 1, 15 do
 		local x = stars_sx + (i - 1) * 18
-		local star_data = { 
+		local star_data = {
 			name = "star" .. tostring(i),
-			texture = "guis/textures/pd2/mission_briefing/difficulty_icons", 
-			texture_rect = {0, 32, 32, 32},
-			w = 18, 
+			texture = "guis/textures/pd2/mission_briefing/difficulty_icons",
+			texture_rect = { 0, 32, 32, 32 },
+			w = 18,
 			h = 18,
 			alpha = 1,
-			color = Color.black
+			color = Color.black,
 		}
 
 		local star = text_panel:bitmap(star_data)

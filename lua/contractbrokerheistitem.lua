@@ -20,7 +20,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		h = 90,
 		x = 0,
 		valign = "top",
-		y = 90 * (idx - 1)
+		y = 90 * (idx - 1),
 	})
 	self._background = self._panel:rect({
 		blend_mode = "add",
@@ -30,7 +30,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		valign = "grow",
 		y = padding,
 		h = self._panel:h() - padding,
-		color = job_data.enabled and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.important_1
+		color = job_data.enabled and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.important_1,
 	})
 
 	self._background:set_visible(false)
@@ -43,7 +43,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		valign = "top",
 		y = padding,
 		w = img_size * 1.7777777777777777,
-		h = img_size
+		h = img_size,
 	})
 	local has_image = false
 
@@ -68,13 +68,13 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 				texture_rect = rect,
 				w = self._image_panel:w(),
 				h = self._image_panel:h(),
-				color = narrative.professional and Color(255, 255, 100, 70) / 255 or Color.white
+				color = narrative.professional and Color(255, 255, 100, 70) / 255 or Color.white,
 			})
 
 			self._image = self._image_panel:rect({
 				alpha = 1,
 				layer = 1,
-				color = Color.black
+				color = Color.black,
 			})
 			has_image = true
 		end
@@ -87,7 +87,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		self._image_panel:rect({
 			alpha = 0.4,
 			layer = 1,
-			color = color
+			color = color,
 		})
 		self._image_panel:text({
 			vertical = "center",
@@ -97,18 +97,21 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 			layer = 2,
 			text = error_message,
 			font = tweak_data.menu.pd2_small_font,
-			font_size = tweak_data.menu.pd2_small_font_size
+			font_size = tweak_data.menu.pd2_small_font_size,
 		})
-		BoxGuiObject:new(self._image_panel:panel({
-			layer = 100
-		}), {
-			sides = {
-				1,
-				1,
-				1,
-				1
+		BoxGuiObject:new(
+			self._image_panel:panel({
+				layer = 100,
+			}),
+			{
+				sides = {
+					1,
+					1,
+					1,
+					1,
+				},
 			}
-		})
+		)
 	end
 
 	local job_name = self._panel:text({
@@ -120,31 +123,31 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = managers.localization:to_upper_text(job_tweak.name_id),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size,
-		color = job_data.enabled and tweak_data.screen_colors.text or tweak_data.screen_colors.important_1
+		color = job_data.enabled and tweak_data.screen_colors.text or tweak_data.screen_colors.important_1,
 	})
 
 	make_fine_text(job_name)
 	job_name:set_left(self._image_panel:right() + padding * 2)
 	job_name:set_top(self._panel:h() * 0.4 + padding * 0.5)
-	
+
 	local cy = job_name:bottom() + 8
 	local sx = self._image_panel:right() + padding * 2
 	for i = 1, 10 do
 		local x = sx + (i - 1) * 18
-		local star_data = { 
-			texture = "guis/textures/pd2/mission_briefing/difficulty_icons", 
-			texture_rect = {0, 33, 32, 32}, 
-			w = 16, 
-			h = 16, 
-			color = tweak_data.screen_colors.text, 
-			alpha = 1 
+		local star_data = {
+			texture = "guis/textures/pd2/mission_briefing/difficulty_icons",
+			texture_rect = { 0, 33, 32, 32 },
+			w = 16,
+			h = 16,
+			color = tweak_data.screen_colors.text,
+			alpha = 1,
 		}
-		local star = self._panel:bitmap( star_data )
+		local star = self._panel:bitmap(star_data)
 		star:set_x(x)
 		star:set_center_y(math.round(cy))
-		star:set_color(managers.crimenet:stars_color(i, math.ceil(narrative.jc/10), narrative.professional and 1 or 0))
+		star:set_color(managers.crimenet:stars_color(i, math.ceil(narrative.jc / 10), narrative.professional and 1 or 0))
 	end
-	
+
 	local contact_name = self._panel:text({
 		alpha = 0.8,
 		vertical = "top",
@@ -155,7 +158,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = managers.localization:to_upper_text(contact_tweak.name_id),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(contact_name)
@@ -173,13 +176,13 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = dlc_name,
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
-		color = dlc_color
+		color = dlc_color,
 	})
 
 	make_fine_text(dlc_name)
 	dlc_name:set_left(contact_name:right() + 5)
 	dlc_name:set_bottom(job_name:top())
-	
+
 	local pro_name = self._panel:text({
 		alpha = 1,
 		vertical = "top",
@@ -191,7 +194,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = managers.localization:to_upper_text("cn_menu_pro_job"),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
-		color = tweak_data.screen_colors.pro_color
+		color = tweak_data.screen_colors.pro_color,
 	})
 
 	make_fine_text(pro_name)
@@ -202,7 +205,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 	end
 	pro_name:set_bottom(job_name:top())
 	pro_name:set_visible(narrative.professional)
-	
+
 	if job_data.is_new then
 		local new_name = self._panel:text({
 			alpha = 1,
@@ -214,7 +217,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 			text = managers.localization:to_upper_text("menu_new"),
 			font = tweak_data.menu.pd2_medium_font,
 			font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
-			color = Color(255, 105, 254, 59) / 255
+			color = Color(255, 105, 254, 59) / 255,
 		})
 
 		make_fine_text(new_name)
@@ -232,7 +235,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = self:get_last_played_text(),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.8,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(last_played)
@@ -243,7 +246,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		valign = "top",
 		halign = "right",
 		h = job_name:h(),
-		w = self._panel:w() * 0.3
+		w = self._panel:w() * 0.3,
 	})
 
 	icons_panel:set_right(self._panel:right() - padding)
@@ -258,7 +261,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		valign = "top",
 		color = Color.white,
 		w = icon_size,
-		h = icon_size
+		h = icon_size,
 	})
 
 	self._favourite:set_right(icons_panel:w())
@@ -273,7 +276,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = self:get_heist_day_text(),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(day_text)
@@ -290,7 +293,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 		text = self:get_heist_day_icon(),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size * 0.8,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	make_fine_text(length_icon)
@@ -309,7 +312,7 @@ function ContractBrokerHeistItem:init(parent_panel, job_data, idx)
 			text = managers.localization:get_default_macro("BTN_GHOST"),
 			font = tweak_data.menu.pd2_medium_font,
 			font_size = tweak_data.menu.pd2_medium_font_size,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 
 		make_fine_text(stealth)

@@ -9,7 +9,11 @@ end
 
 function CrimeNetManager:stars_color(i, job_stars, diff)
 	local hate = diff - 3 > 0 and diff - 3 or 0
-	return i > (job_stars + diff > 10 and job_stars + diff or 10) and Color.green:with_alpha(0) or i > job_stars + diff and Color.black or i > job_stars + diff - hate and tweak_data.screen_colors.pro_color or i > job_stars and tweak_data.screen_colors.risk or Color.white
+	return i > (job_stars + diff > 10 and job_stars + diff or 10) and Color.green:with_alpha(0)
+		or i > job_stars + diff and Color.black
+		or i > job_stars + diff - hate and tweak_data.screen_colors.pro_color
+		or i > job_stars and tweak_data.screen_colors.risk
+		or Color.white
 end
 
 local gui = CrimeNetGui._create_job_gui
@@ -17,7 +21,7 @@ function CrimeNetGui:_create_job_gui(data, type, fixed_x, fixed_y, fixed_locatio
 	local gui_data = gui(self, data, type, fixed_x, fixed_y, fixed_location)
 
 	self:four_stars(gui_data, data)
-	
+
 	local one_down_active = Global.game_settings.one_down or 1
 	local stars_panel = gui_data.side_panel:child("stars_panel")
 	if alive(stars_panel) and gui_data.job_id then
@@ -33,9 +37,9 @@ function CrimeNetGui:_create_job_gui(data, type, fixed_x, fixed_y, fixed_locatio
 				blend_mode = "normal",
 				layer = 0,
 				rotation = 360,
-				color = managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative.jobs[gui_data.job_id].jc / 10), gui_data.difficulty_id - 2)
+				color = managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative.jobs[gui_data.job_id].jc / 10), gui_data.difficulty_id - 2),
 			})
-			
+
 			x = x + 8
 		end
 	end
@@ -194,7 +198,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 	local host_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_host",
 		x = 10,
-		y = 10
+		y = 10,
 	})
 	local host_text = legend_panel:text({
 		blend_mode = "add",
@@ -202,14 +206,14 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		font_size = tweak_data.menu.pd2_small_font_size,
 		x = host_icon:right() + 2,
 		y = host_icon:top(),
-		text = managers.localization:to_upper_text("menu_cn_legend_host")
+		text = managers.localization:to_upper_text("menu_cn_legend_host"),
 	})
 	mw = math.max(mw, self:make_fine_text(host_text))
 	local next_y = host_text:bottom()
 	local join_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_join",
 		x = 10,
-		y = next_y
+		y = next_y,
 	})
 	local join_text = legend_panel:text({
 		blend_mode = "add",
@@ -217,7 +221,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		font_size = tweak_data.menu.pd2_small_font_size,
 		x = host_text:left(),
 		y = next_y,
-		text = managers.localization:to_upper_text("menu_cn_legend_join")
+		text = managers.localization:to_upper_text("menu_cn_legend_join"),
 	})
 	mw = math.max(mw, self:make_fine_text(join_text))
 
@@ -228,7 +232,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		texture = "guis/textures/pd2/crimenet_legend_join",
 		x = 10,
 		y = next_y,
-		color = tweak_data.screen_colors.friend_color
+		color = tweak_data.screen_colors.friend_color,
 	})
 	local friends_text = legend_panel:text({
 		blend_mode = "add",
@@ -236,7 +240,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		font_size = tweak_data.menu.pd2_small_font_size,
 		x = host_text:left(),
 		y = next_y,
-		text = managers.localization:to_upper_text("menu_cn_legend_friends")
+		text = managers.localization:to_upper_text("menu_cn_legend_friends"),
 	})
 	mw = math.max(mw, self:make_fine_text(friends_text))
 
@@ -258,7 +262,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		texture = "guis/textures/pd2/crimenet_legend_join",
 		x = 10,
 		y = next_y,
-		color = tweak_data.screen_colors.mutators_color_text
+		color = tweak_data.screen_colors.mutators_color_text,
 	})
 	local mutated_text = legend_panel:text({
 		blend_mode = "add",
@@ -267,16 +271,16 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_cn_legend_mutated"),
-		color = tweak_data.screen_colors.mutators_color_text
+		color = tweak_data.screen_colors.mutators_color_text,
 	})
 	mw = math.max(mw, self:make_fine_text(mutated_text))
 	next_y = mutated_text:bottom()
-	
+
 	local spree_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_join",
 		x = 10,
 		y = next_y,
-		color = tweak_data.screen_colors.crime_spree_risk
+		color = tweak_data.screen_colors.crime_spree_risk,
 	})
 	local spree_text = legend_panel:text({
 		blend_mode = "add",
@@ -285,16 +289,16 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("cn_crime_spree"),
-		color = tweak_data.screen_colors.crime_spree_risk
+		color = tweak_data.screen_colors.crime_spree_risk,
 	})
 	mw = math.max(mw, self:make_fine_text(spree_text))
 	next_y = spree_text:bottom()
-	
+
 	local skirmish_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_join",
 		x = 10,
 		y = next_y,
-		color = tweak_data.screen_colors.skirmish_color
+		color = tweak_data.screen_colors.skirmish_color,
 	})
 	local skirmish_text = legend_panel:text({
 		blend_mode = "add",
@@ -303,15 +307,15 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_cn_skirmish"),
-		color = tweak_data.screen_colors.skirmish_color
+		color = tweak_data.screen_colors.skirmish_color,
 	})
 	mw = math.max(mw, self:make_fine_text(skirmish_text))
 	next_y = skirmish_text:bottom()
-	
+
 	local paygrade_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_payclass",
 		x = 10,
-		y = next_y
+		y = next_y,
 	})
 	local paygrade_text = legend_panel:text({
 		blend_mode = "add",
@@ -320,16 +324,16 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_pay_grade"),
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	mw = math.max(mw, self:make_fine_text(paygrade_text))
 	next_y = paygrade_text:bottom()
-	
+
 	local risk_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_payclass",
 		x = 10,
 		y = next_y,
-		color = tweak_data.screen_colors.risk
+		color = tweak_data.screen_colors.risk,
 	})
 	local risk_text = legend_panel:text({
 		blend_mode = "add",
@@ -338,17 +342,16 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_cn_legend_risk"),
-		color = tweak_data.screen_colors.risk
+		color = tweak_data.screen_colors.risk,
 	})
 	mw = math.max(mw, self:make_fine_text(risk_text))
 	next_y = risk_text:bottom()
-	
 
 	local hate_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/crimenet_legend_payclass",
 		x = 10,
 		y = next_y,
-		color = Color.red
+		color = Color.red,
 	})
 	local hate_text = legend_panel:text({
 		blend_mode = "add",
@@ -357,16 +360,16 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_cn_legend_hate"),
-		color = tweak_data.screen_colors.pro_color
+		color = tweak_data.screen_colors.pro_color,
 	})
 	mw = math.max(mw, self:make_fine_text(hate_text))
 	next_y = hate_text:bottom()
-		
+
 	local ghost_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/cn_minighost",
 		x = 7,
 		y = next_y + 4,
-		color = tweak_data.screen_colors.ghost_color
+		color = tweak_data.screen_colors.ghost_color,
 	})
 	local ghost_text = legend_panel:text({
 		blend_mode = "add",
@@ -375,14 +378,14 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		x = host_text:left(),
 		y = next_y,
 		text = managers.localization:to_upper_text("menu_cn_legend_ghostable"),
-		color = tweak_data.screen_colors.ghost_color
+		color = tweak_data.screen_colors.ghost_color,
 	})
 	mw = math.max(mw, self:make_fine_text(ghost_text))
 	next_y = ghost_text:bottom()
 	local kick_none_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/cn_kick_marker",
 		x = 10,
-		y = next_y + 2
+		y = next_y + 2,
 	})
 	local kick_none_text = legend_panel:text({
 		blend_mode = "add",
@@ -390,13 +393,13 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		font_size = tweak_data.menu.pd2_small_font_size,
 		x = host_text:left(),
 		y = next_y,
-		text = managers.localization:to_upper_text("menu_cn_kick_disabled")
+		text = managers.localization:to_upper_text("menu_cn_kick_disabled"),
 	})
 	mw = math.max(mw, self:make_fine_text(kick_none_text))
 	local kick_vote_icon = legend_panel:bitmap({
 		texture = "guis/textures/pd2/cn_votekick_marker",
 		x = 10,
-		y = kick_none_text:bottom() + 2
+		y = kick_none_text:bottom() + 2,
 	})
 	local kick_vote_text = legend_panel:text({
 		blend_mode = "add",
@@ -404,7 +407,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		font_size = tweak_data.menu.pd2_small_font_size,
 		x = host_text:left(),
 		y = kick_none_text:bottom(),
-		text = managers.localization:to_upper_text("menu_kick_vote")
+		text = managers.localization:to_upper_text("menu_kick_vote"),
 	})
 	mw = math.max(mw, self:make_fine_text(kick_vote_text))
 	local last_text = kick_vote_text
@@ -414,7 +417,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 		job_plan_loud_icon = legend_panel:bitmap({
 			texture = "guis/textures/pd2/cn_playstyle_loud",
 			x = 10,
-			y = kick_vote_text:bottom() + 2
+			y = kick_vote_text:bottom() + 2,
 		})
 		job_plan_loud_text = legend_panel:text({
 			blend_mode = "add",
@@ -422,13 +425,13 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 			font_size = tweak_data.menu.pd2_small_font_size,
 			x = host_text:left(),
 			y = kick_vote_text:bottom(),
-			text = managers.localization:to_upper_text("menu_plan_loud")
+			text = managers.localization:to_upper_text("menu_plan_loud"),
 		})
 		mw = math.max(mw, self:make_fine_text(job_plan_loud_text))
 		job_plan_stealth_icon = legend_panel:bitmap({
 			texture = "guis/textures/pd2/cn_playstyle_stealth",
 			x = 10,
-			y = job_plan_loud_text:bottom() + 2
+			y = job_plan_loud_text:bottom() + 2,
 		})
 		job_plan_stealth_text = legend_panel:text({
 			blend_mode = "add",
@@ -436,7 +439,7 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 			font_size = tweak_data.menu.pd2_small_font_size,
 			x = host_text:left(),
 			y = job_plan_loud_text:bottom(),
-			text = managers.localization:to_upper_text("menu_plan_stealth")
+			text = managers.localization:to_upper_text("menu_plan_stealth"),
 		})
 		mw = math.max(mw, self:make_fine_text(job_plan_stealth_text))
 		last_text = job_plan_stealth_text
@@ -461,17 +464,17 @@ function CrimeNetGui:init(ws, fullscreeen_ws, node)
 	legend_panel:rect({
 		alpha = 0.4,
 		layer = -1,
-		color = Color.black
+		color = Color.black,
 	})
 	BoxGuiObject:new(legend_panel, {
-		sides = {1, 1, 1, 1}
+		sides = { 1, 1, 1, 1 },
 	})
 	legend_panel:bitmap({
 		texture = "guis/textures/test_blur_df",
 		render_template = "VertexColorTexturedBlur3D",
 		layer = -1,
 		w = legend_panel:w(),
-		h = legend_panel:h()
+		h = legend_panel:h(),
 	})
 	legend_panel:set_right(self._panel:w() - 10)
 end

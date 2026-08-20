@@ -1092,31 +1092,31 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 			clbk = callback(self, self, "sound_event_callback"),
 		},
 	}
-	
+
 	-- Paygrade stars
 	local paygrade_title = self._contract_panel:text({
 		x = 20,
 		font = tweak_data.menu.pd2_small_font,
 		font_size = tweak_data.menu.pd2_small_font_size,
 		text = managers.localization:to_upper_text("cn_menu_contract_paygrade_header"),
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self:make_fine_text(paygrade_title)
 	paygrade_title:set_top(math.round(job_xp:bottom()))
-	
+
 	local stars_sx = job_xp:left()
 	local stars_cy = paygrade_title:center_y()
 	for i = 1, 15 do
 		local x = stars_sx + (i - 1) * 18
-		local star_data = { 
+		local star_data = {
 			name = "star" .. tostring(i),
-			texture = "guis/textures/pd2/mission_briefing/difficulty_icons", 
-			texture_rect = {0, 32, 32, 32}, 
-			w = 18, 
+			texture = "guis/textures/pd2/mission_briefing/difficulty_icons",
+			texture_rect = { 0, 32, 32, 32 },
+			w = 18,
 			h = 18,
 			alpha = 1,
-			color = Color.black
+			color = Color.black,
 		}
 
 		local star = self._contract_panel:bitmap(star_data)
@@ -1124,7 +1124,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 		star:set_x(x)
 		star:set_center_y(math.round(stars_cy))
 	end
-	
+
 	self:set_offshore_text()
 
 	if not managers.menu:is_pc_controller() then
@@ -1288,11 +1288,11 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 			end_ci[i] = end_ci[i] - (i * 4 - 1)
 		end
 	end
-	
+
 	for i = 1, 15 do
-		self._contract_panel:child("star"..i):set_color(managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative:job_data(job_data.job_id).jc / 10), job_data.difficulty_id - 2))
+		self._contract_panel:child("star" .. i):set_color(managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative:job_data(job_data.job_id).jc / 10), job_data.difficulty_id - 2))
 	end
-	
+
 	self:set_offshore_account()
 
 	text_string = string.gsub(text_string, "##", "")
@@ -1440,9 +1440,9 @@ function CrimeNetContractGui:set_all(t, dt)
 			end_ci[i] = end_ci[i] - (i * 4 - 1)
 		end
 	end
-	
+
 	for i = 1, 15 do
-		self._contract_panel:child("star"..i):set_color(managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative:job_data(job_data.job_id).jc / 10), job_data.difficulty_id - 2))
+		self._contract_panel:child("star" .. i):set_color(managers.crimenet:stars_color(i, math.ceil(tweak_data.narrative:job_data(job_data.job_id).jc / 10), job_data.difficulty_id - 2))
 	end
 
 	self:set_offshore_account()
@@ -1599,13 +1599,13 @@ end
 local data = CrimeNetContractGui.count_difficulty_stars
 function CrimeNetContractGui:count_difficulty_stars(t, dt)
 	data(self, t, dt)
-	
+
 	local risk_text = self._contract_panel:child("risk_text")
 	local risk_murder_squad = self._contract_panel:child("risk_murder_squad")
 	local risk_sm_wish = self._contract_panel:child("risk_sm_wish")
 	local risk_easy_wish = self._contract_panel:child("risk_easy_wish")
 	local risk_stats_panel = self._contract_panel:child("risk_stats_panel")
-	
+
 	risk_murder_squad:show()
 	risk_sm_wish:show()
 	risk_stats_panel:child("risk_murder_squad"):show()
@@ -1614,7 +1614,7 @@ function CrimeNetContractGui:count_difficulty_stars(t, dt)
 	risk_easy_wish:set_texture_rect(90, 0, 30, 30)
 
 	for i = 1, 15 do
-		self._contract_panel:child("star"..i):set_color(managers.crimenet:stars_color(i, self._data.stars.job_stars, self._current_difficulty_star))
+		self._contract_panel:child("star" .. i):set_color(managers.crimenet:stars_color(i, self._data.stars.job_stars, self._current_difficulty_star))
 	end
 end
 
@@ -1629,9 +1629,10 @@ function CrimeNetContractGui:set_offshore_text()
 			word_wrap = true,
 			font_size = tweak_data.menu.pd2_small_font_size,
 			font = tweak_data.menu.pd2_small_font,
-			color = tweak_data.screen_colors.button_stage_3
+			color = tweak_data.screen_colors.button_stage_3,
 		})
-		offshore_text:set_left(premium_text:left())offshore_text:set_bottom(premium_text:bottom() + 20)
+		offshore_text:set_left(premium_text:left())
+		offshore_text:set_bottom(premium_text:bottom() + 20)
 	end
 end
 
@@ -1643,11 +1644,7 @@ function CrimeNetContractGui:set_offshore_account()
 	local offshore = managers.money:offshore()
 	local contract_cost = managers.money:get_cost_of_premium_contract(job_data.job_id, job_data.difficulty_id)
 	local remains = not can_afford and "$0" or managers.experience:cash_string(offshore - contract_cost)
-	local offshore_string = managers.localization:to_upper_text("menu_offshore_remains") .. ": " .. "##" .. remains .. "##"	
+	local offshore_string = managers.localization:to_upper_text("menu_offshore_remains") .. ": " .. "##" .. remains .. "##"
 
-	managers.menu:color_range(
-		offshore_text,
-		not can_afford and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.friend_color,
-		offshore_string
-	)
+	managers.menu:color_range(offshore_text, not can_afford and tweak_data.screen_colors.pro_color or tweak_data.screen_colors.friend_color, offshore_string)
 end
