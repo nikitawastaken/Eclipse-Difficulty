@@ -641,7 +641,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	self:make_fine_text(payday_text)
 	payday_text:set_bottom(self._contract_panel:h() - padding)
-	payday_text:set_visible(false)
+	payday_text:set_visible(true)
 
 	self._briefing_event = narrative.briefing_event
 
