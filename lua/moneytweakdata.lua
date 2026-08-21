@@ -694,7 +694,7 @@ function MoneyTweakData:init(tweak_data)
 
 	-- Heist specific loot values
 	if job_id == "big" then
-		self.bag_values.money = 12450
+		self.bag_values.money = 22450
 		self.bag_values.gold = 56450
 		self.small_loot.money_bundle = (money_mul * 85)
 		self.small_loot.money_bundle_value = (money_mul * 85)
@@ -734,9 +734,9 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_jewels = (money_mul * 4400)
 		self.small_loot.gen_atm = (money_mul * 12000)
 	end
-	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
+	if job_id == "watchdogs" then
 		self.small_loot.money_bundle = 50000
-		self.bag_values.coke = 42535
+		self.bag_values.coke = 52535
 	end
 	if job_id == "arena" then
 		self.bag_values.money = 25000
@@ -783,7 +783,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.money = 24350
 		self.bag_values.coke = 46000
 	end
-	if level_id == "alex_2" then
+	if level_id == "alex_2" or job_id == "chas" then
 		self.bag_values.money = 42350
 	end
 	if level_id == "alex_3" then
@@ -795,7 +795,10 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.coke_pure = 22050
 	end
 	if job_id == "fish" then
-		self.bag_values.money = 50000
+		self.bag_values.money = 62000
+	end
+	if job_id == "flat" or job_id == "pex" then
+		self.bag_values.coke = 32050
 	end
 	if job_id == "mia" then
 		self.small_loot.money_bundle = (money_mul * 2500)
