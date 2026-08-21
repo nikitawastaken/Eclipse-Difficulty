@@ -734,7 +734,7 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_jewels = (money_mul * 4400)
 		self.small_loot.gen_atm = (money_mul * 12000)
 	end
-	if job_id == "watchdogs" then
+	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
 		self.small_loot.money_bundle = 50000
 		self.bag_values.coke = 52535
 	end
