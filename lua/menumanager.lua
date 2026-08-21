@@ -1095,6 +1095,15 @@ function MenuCallbackHandler:play_safehouse(params)
 	})
 end
 
+-- Add casino to lobby
+Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerPostBuildCustomMenus", function(self, nodes)
+	if nodes.crimenet_contract_casino then
+		nodes.crimenet_contract_casino:parameters().sync_state = "payday"
+	end
+	
+	MenuHelper:AddMenuItem(nodes["lobby"], "crimenet_contract_casino", "menu_cn_casino", "menu_cn_casino_help", "inventory", "after" )
+end)
+
 -- Tips viewer (port of Tips and Trivia viewer mod)
 _G.EclipseTipsViewer = _G.EclipseTipsViewer or {}
 
@@ -1115,6 +1124,7 @@ end)
 Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildCustomMenus", function(self, nodes)
 	nodes["EclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
 	MenuHelper:AddMenuItem(nodes["main"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
+	MenuHelper:AddMenuItem(nodes["lobby"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
 end)
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "EclipseTipsViewerMenuManagerPostPopulateCustomMenus", function(self, nodes)

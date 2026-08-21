@@ -18,7 +18,7 @@ function MoneyTweakData:init(tweak_data)
 	self.cut_job_complete = self.cashout_without_player_alive * 0.15
 	self.cut_job_complete = self.cut_job_complete / self.cut_difficulty
 	self.bag_values = {}
-	self.bag_values.default = 12205
+	self.bag_values.default = 10205
 	self.bag_values.money = 16250
 	self.bag_values.gold = 34000
 	self.bag_values.goat = 9500
@@ -341,16 +341,16 @@ function MoneyTweakData:init(tweak_data)
 	}
 	local smallest_cashout = (2500 + 2500) * 0.2 -- (self.stage_completion[1] + self.job_completion[1]) * self.offshore_rate
 	local smallest_cashout_mod = (2500 + 2500) * 0.28
-	local biggest_mask_cost = 50000 -- math.round(250000 * 2)
+	local biggest_mask_cost = 8000 -- math.round(250000 * 2)
 	local biggest_mask_cost_deinfamous = math.round(biggest_mask_cost / self.global_value_multipliers.infamous)
-	local biggest_mask_part_cost = math.round(smallest_cashout * 20)
-	local smallest_mask_part_cost = math.round(smallest_cashout * 68)
+	local biggest_mask_part_cost = math.round(smallest_cashout * 9)
+	local smallest_mask_part_cost = math.round(smallest_cashout * 3)
 	local biggest_weapon_cost = 500000 -- math.round(250000 * 4)
 	local smallest_weapon_cost = 24250 -- math.round(smallest_cashout * 95) lowest price 25,000 at level 0, change curve value to change the price difference between levels (lower value = higher difference)
-	local biggest_weapon_mod_cost = 16000 -- math.round(250000 * 0.3) peak cost reached at level 10 (?)
-	local smallest_weapon_mod_cost = 4200 --13
+	local biggest_weapon_mod_cost = 12000 -- math.round(250000 * 0.3) peak cost reached at level 10 (?)
+	local smallest_weapon_mod_cost = 3200 --13
 	self.weapon_cost = self._create_value_table(smallest_weapon_cost, biggest_weapon_cost, 100, true, 0.75) -- 1.2 (min, max, table_size, round, curve)
-	self.modify_weapon_cost = self._create_value_table(smallest_weapon_mod_cost, biggest_weapon_mod_cost, 100, true, 0.3)
+	self.modify_weapon_cost = self._create_value_table(smallest_weapon_mod_cost, biggest_weapon_mod_cost, 10, true, 0.3)
 	self.remove_weapon_mod_cost_multiplier = self._create_value_table(1, 1, 10, true, 1)
 	self.masks = {
 		mask_value = self._create_value_table(smallest_mask_part_cost, smallest_mask_part_cost * 2, 10, true, 2),
@@ -669,8 +669,8 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.money_bundle_value = (money_mul * 125)
 	self.small_loot.ring_band = 1954
 	self.small_loot.diamondheist_vault_bust = (money_mul * 3365)
-	self.small_loot.diamondheist_vault_diamond = (money_mul * 5175)
-	self.small_loot.diamondheist_big_diamond = (money_mul * 6350)
+	self.small_loot.diamondheist_vault_diamond = (money_mul * 4175)
+	self.small_loot.diamondheist_big_diamond = (money_mul * 5350)
 	self.small_loot.mus_small_artifact = (money_mul * 700)
 	self.small_loot.value_gold = (money_mul * 10000)
 	self.small_loot.gen_atm = (money_mul * 18000)
