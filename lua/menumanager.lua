@@ -1100,8 +1100,8 @@ Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerPostBuildCustomMenus", func
 	if nodes.crimenet_contract_casino then
 		nodes.crimenet_contract_casino:parameters().sync_state = "payday"
 	end
-	
-	MenuHelper:AddMenuItem(nodes["lobby"], "crimenet_contract_casino", "menu_cn_casino", "menu_cn_casino_help", "inventory", "after" )
+
+	MenuHelper:AddMenuItem(nodes["lobby"], "crimenet_contract_casino", "menu_cn_casino", "menu_cn_casino_help", "inventory", "after")
 end)
 
 -- Tips viewer (port of Tips and Trivia viewer mod)
