@@ -117,17 +117,17 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._nr_pager_answers = 0
 	-- Used to register strikes in stealth.
 	self._stealth_civilian_kills = 0
-	
+
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
-	
+
 	self._marking_sentries = {}
 
 	-- Trigger conditions and cooldowns for megaphone cop voice lines.
 	self._mga_civilian_kills = 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
 	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
-	
+
 	self._silent_alarm_delay = self._silent_alarm_delay or 0
 
 	self._difficulty_value = 0
@@ -513,11 +513,11 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 
 		if self._stealth_civilian_kills == tweak_data.player.stealth_strikes.strike_civilian_kills then
 			self._stealth_civilian_kills = 0 -- reset the counter
-			
+
 			self:register_strike(tweak_data.player.stealth_strikes.reason_addends.civilian_kill, "civ_too_many_killed")
 		end
 	end
-	
+
 	-- Count civilian kills to trigger megaphone cop lines on specific heists.
 	if not self._hunt_mode and self._assault_number and self._assault_number >= 1 then
 		self._mga_civilian_kills = self._mga_civilian_kills + 1 -- have to track separately to self._hostages_killed because some may be killed before going loud
@@ -531,7 +531,7 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 			self._mga_said_hostage_kill_t = self._t + 5
 		end
 	end
-	
+
 	local time_modifier = 1
 	self._killed_hostage_times = self._killed_hostage_times or {}
 	for i, time in table.reverse_ipairs(self._killed_hostage_times) do

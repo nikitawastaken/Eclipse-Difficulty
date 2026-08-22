@@ -149,7 +149,7 @@ function PlayerTweakData:_set_presets()
 		},
 		strike_civilian_kills = 2, -- Number of civilians that need to be killed for the 'civilian_kill' strike(s) to be added. The counter resets the moment a 'civilian_kill' strike is registered.
 	}
-	
+
 	-- Reduce strikes when in 'Pro Job'
 	if is_pro_job then
 		self.stealth_strikes.total_amount = self.stealth_strikes.total_amount - 1
