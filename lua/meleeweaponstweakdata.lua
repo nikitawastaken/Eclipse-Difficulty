@@ -25,14 +25,14 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.oldbaton.stats.weapon_type = "blunt"
 	self.melee_weapons.branding_iron.stats.weapon_type = "blunt"
 	self.melee_weapons.morning.stats.weapon_type = "blunt"
-	
+
 	-- Change some melee weapons' animations for better ones
 	self.melee_weapons.fireaxe.anim_global_param = "melee_pickaxe"
 	self.melee_weapons.fireaxe.align_objects = { "a_weapon_left" }
 	self.melee_weapons.fireaxe.melee_damage_delay = 0.08
 	self.melee_weapons.fireaxe.expire_t = 1.1
 	self.melee_weapons.fireaxe.repeat_expire_t = 0.8
-	
+
 	self.melee_weapons.beardy.anim_global_param = "melee_pickaxe"
 	self.melee_weapons.beardy.align_objects = { "a_weapon_left" }
 	self.melee_weapons.beardy.melee_damage_delay = 0.08
@@ -43,7 +43,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		hit_air = "fire_axe_hit_air",
 		hit_gen = "beardy_hit_gen",
 		hit_body = "beardy_hit_body",
-		charge = "knife_charge"
+		charge = "knife_charge",
 	}
 
 	self.melee_weapons.dingdong.anim_global_param = "melee_pickaxe"
@@ -57,19 +57,19 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.alien_maul.melee_damage_delay = 0.1
 	self.melee_weapons.alien_maul.expire_t = 1.1
 	self.melee_weapons.alien_maul.repeat_expire_t = 0.8
-	
+
 	self.melee_weapons.baseballbat.anim_global_param = "melee_sandsteel"
 	self.melee_weapons.baseballbat.align_objects = { "a_weapon_right" }
 	self.melee_weapons.baseballbat.repeat_expire_t = 1
 	self.melee_weapons.baseballbat.expire_t = 1.25
 	self.melee_weapons.baseballbat.melee_damage_delay = 0.1
-	
+
 	self.melee_weapons.great.anim_global_param = "melee_sandsteel"
 	self.melee_weapons.great.align_objects = { "a_weapon_right" }
 	self.melee_weapons.great.repeat_expire_t = 1.025
 	self.melee_weapons.great.expire_t = 1.35
 	self.melee_weapons.great.melee_damage_delay = 0.1
-	
+
 	self.melee_weapons.barbedwire.anim_global_param = "melee_sandsteel"
 	self.melee_weapons.barbedwire.align_objects = { "a_weapon_right" }
 	self.melee_weapons.barbedwire.repeat_expire_t = 1
