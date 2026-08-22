@@ -79,9 +79,6 @@ function PlayerTweakData:_set_presets()
 		1.5,
 	})
 
-	-- Additioanl detection range and buildup multipliers that scale linearly based on the number of used Strikes
-	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or 1
-
 	-- Time it takes for a player to exit the tased state
 	self.damage.TASED_RECOVER_TIME = get_difficulty_specific_value({
 		1,
@@ -141,19 +138,25 @@ function PlayerTweakData:_set_presets()
 		self.damage.automatic_respawn_time = nil
 	end
 
-	-- Stealth strike system
+	-- Stealth strike system; a replacement to the Vanilla pager system but not quite
 	self.stealth_strikes = {
 		total_amount = get_difficulty_specific_value({ 5, 5, 5, 4, 3 }),
 		reason_addends = {
-			civilian_kill = 0.5,
-			alarm_pager_answered = 1,
-			alarm_pager_not_answered = 2,
-			alarm_pager_hang_up = 3,
+			civilian_kill = 1, -- Civilians (tied or not) killed in stealth.
+			alarm_pager_answered = 1, -- Answering a Security Guard's pager.
+			alarm_pager_not_answered = 2, -- Pager call not answered.
+			alarm_pager_hang_up = 3, -- Player hangs up while answering a pager.
 		},
+		strike_civilian_kills = 2, -- Number of civilians that need to be killed for the 'civilian_kill' strike(s) to be added. The counter resets the moment a 'civilian_kill' strike is registered.
 	}
+	
+	-- Reduce strikes when in 'Pro Job'
 	if is_pro_job then
 		self.stealth_strikes.total_amount = self.stealth_strikes.total_amount - 1
 	end
+
+	-- An additional detection range and buildup rate multiplier that scales linearly based on the number of used strikes.
+	self.suspicion.strikes_used_mul = is_pro_job and 1.5 or 1
 
 	-- Alarm pager "bluff" tables are now only used in the UI.
 	local function fill_pager_bluff_table(amount)
