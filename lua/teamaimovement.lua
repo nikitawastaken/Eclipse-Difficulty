@@ -229,13 +229,3 @@ function TeamAIMovement:sync_throw_bag(carry_unit, target_unit)
 		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier * 0.1)
 	end
 end
-
--- Apply default carry speed upgrade to bots
-function TeamAIMovement:set_carry_speed_modifier(...)
-	TeamAIMovement.super.set_carry_speed_modifier(self, ...)
-
-	if self._carry_speed_modifier then
-		local carry_upgrade = managers.player:upgrade_value("carry", "movement_speed_multiplier", 1)
-		self._carry_speed_modifier = math.clamp(self._carry_speed_modifier * carry_upgrade, 0, 1)
-	end
-end

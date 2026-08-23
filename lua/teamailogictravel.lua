@@ -14,6 +14,7 @@ local function path_length(path)
 	end
 	return dis
 end
+
 function TeamAILogicTravel.check_inspire(data, attention, ...)
 	if data.objective and data.objective.action and data.objective.action.variant == "untie" then
 		return
@@ -74,7 +75,7 @@ function TeamAILogicTravel.update(data, ...)
 	return CopLogicTravel.upd_advance(data)
 end
 
-if Iter and Iter.settings and Iter.settings.streamline_path or restoration then
+if Iter and Iter.settings and Iter.settings.streamline_path then
 	return
 end
 

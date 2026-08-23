@@ -412,6 +412,40 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	return result
 end)
 
+-- Make hurt type more dynamic by interpolating between hurt severity entries
+Hooks:OverrideFunction(CopDamage, "get_damage_type", function(self, damage_percent, category)
+	local hurt_table = self._char_tweak.damage.hurt_severity[category or "bullet"]
+	local dmg = damage_percent / self._HEALTH_GRANULARITY
+
+	if hurt_table.health_reference == "current" then
+		dmg = math.min(1, self._HEALTH_INIT * dmg / self._health)
+	elseif hurt_table.health_reference ~= "full" then
+		dmg = math.min(1, self._HEALTH_INIT * dmg / hurt_table.health_reference)
+	end
+
+	local prev_zone, zone
+	for i, test_zone in ipairs(hurt_table.zones) do
+		if i == #hurt_table.zones or dmg < test_zone.health_limit then
+			zone = test_zone
+			break
+		end
+		prev_zone = test_zone
+	end
+
+	local rand = math.random()
+	local total_chance = 0
+	local t = prev_zone and math.map_range_clamped(dmg, prev_zone.health_limit or 0, zone.health_limit or 1, 0, 1)
+	for sev_name, hurt_type in pairs(self._hurt_severities) do
+		local chance = prev_zone and math.lerp(prev_zone[sev_name] or 0, zone[sev_name] or 0, t) or zone[sev_name] or 0
+		total_chance = total_chance + chance
+		if rand < total_chance then
+			return hurt_type or "dmg_rcv"
+		end
+	end
+
+	return "dmg_rcv"
+end)
+
 -- Disable impact sounds and blood effects for stuns
 local damage_explosion = CopDamage.damage_explosion
 function CopDamage:damage_explosion(attack_data, ...)

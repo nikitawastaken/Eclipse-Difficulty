@@ -28,6 +28,7 @@ Hooks:PostHook(TeamAIDamage, "_apply_damage", "eclipse_apply_damage", function(s
 	end
 end)
 
+-- Gradual health regeneration 
 Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	if self._bleed_out or self._fatal then
 		self._health = self._HEALTH_INIT

@@ -1,14 +1,11 @@
-Hooks:PostHook(MedicDamage, "_init_medic", "eclipse_init_medic", function(self)
+Hooks:PostHook(MedicDamage, "_init_medic", "eclipse__init_medic", function(self)
 	self._heal_cooldown = self._char_tweak.medic_healing and self._char_tweak.medic_healing.cooldown or 3
 	self._heal_radius = self._char_tweak.medic_healing and self._char_tweak.medic_healing.radius or 600
 end)
 
+-- Force Medics to stand still to heal
 local heal_unit_original = MedicDamage.heal_unit
 function MedicDamage:heal_unit(...)
-	if self._unit:movement():chk_action_forbidden("action") then
-		return false
-	end
-
 	self._unit:movement():action_request({
 		body_part = 2,
 		type = "idle",
@@ -23,7 +20,7 @@ function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 		return false
 	end
 
-	-- Medics cannot heal charging Cloakers
+	-- Medics can heal Cloakers that are not charging
 	if requesting_unit:movement()._active_actions[1] and requesting_unit:movement()._active_actions[1]:type() == "spooc" then
 		return false
 	end
