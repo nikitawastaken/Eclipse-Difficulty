@@ -1130,6 +1130,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	table.insert(self._enemy_list, "security_army")
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
+	self.cop.use_radio = is_murkywater_heist and "fri_dispatch_generic_message" or "dispatch_generic_message"
 
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
