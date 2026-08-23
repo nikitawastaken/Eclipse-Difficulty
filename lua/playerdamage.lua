@@ -479,9 +479,18 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	return health_subtracted
 end
 
-function PlayerDamage:revive(silent)
-	local was_bleedout = self._bleed_out
+-- Save pre-incapacitation health ratio, down time index, and revive health index
+Hooks:PreHook(PlayerDamage, "on_incapacitated", "eclipse_on_incapacitated", function(self)
+	if self._bleed_out then
+		return
+	end
 
+	self._pre_incap_health_ratio = self:health_ratio()
+	self._pre_incap_down_time_i = self._down_time_i
+	self._pre_incap_revive_health_i = self._revive_health_i
+end)
+
+function PlayerDamage:revive(silent)
 	if Application:digest_value(self._revives, false) == 0 then
 		self._revive_health_multiplier = nil
 
@@ -512,6 +521,7 @@ function PlayerDamage:revive(silent)
 		)
 		self:set_armor(self:_max_armor())
 
+		self._down_time_i = self._down_time_i + 1
 		self._revive_health_i = math.min(#tweak_data.player.damage.REVIVE_HEALTH_STEPS, self._revive_health_i + 1)
 		self._revive_miss = 0
 	end
@@ -546,11 +556,17 @@ function PlayerDamage:revive(silent)
 		managers.player:activate_temporary_upgrade("temporary", "reload_weapon_faster")
 	end
 
-	-- Fix fake downs progressing revive health and down timer steps
-	if was_bleedout then
-		self._down_time_i = self._down_time_i + 1
-	else
-		self._revive_health_i = math.max(self._revive_health_i - 1, 1)
+	-- Return players to their pre-incapacitation health upon being revived.
+	-- Set down time and revive health indices to what they were pre-incapacitation.
+	if self._pre_incap_health_ratio then
+		self:set_health(self:_max_health() * self._pre_incap_health_ratio)
+
+		self._down_time_i = self._pre_incap_down_time_i or self._down_time_i
+		self._revive_health_i = self._pre_incap_revive_health_i or self._revive_health_i
+
+		self._pre_incap_health_ratio = nil
+		self._pre_incap_down_time_i = nil
+		self._pre_incap_revive_health_i = nil
 	end
 
 	local player_damage_tweak = tweak_data.player.damage
