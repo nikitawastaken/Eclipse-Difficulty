@@ -138,10 +138,12 @@ function TeamAILogicIdle.is_valid_intimidation_target(other_data, data, distance
 		-- no room for police hostage
 		return false
 	end
+	local t = TimerManager:game():time()
 	local surrender_window = other_data.surrender_window
-	if surrender_window and TimerManager:game():time() > surrender_window.window_expire_t - surrender_window.window_duration + 0.75 then
+	local surrender_start = surrender_window and surrender_window.window_expire_t - surrender_window.window_duration
+	if surrender_start and t > surrender_start + 0.75 then
 		-- intimidation attempt was started
-		return true
+		return t < surrender_window.window_expire_t
 	end
 	if not managers.player:has_category_upgrade("team", "crew_ai_dominator") then
 		-- unit is not surrendering and we only allow domination assists
