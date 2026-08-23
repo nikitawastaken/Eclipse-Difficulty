@@ -51,12 +51,12 @@ Hooks:PostHook(TeamAILogicAssault, "action_complete_clbk", "action_complete_clbk
 			end
 		end
 	end
-	
+
 	TeamAILogicIdle._check_objective_pos(data)
 end)
 
 -- Sanity check
-Hooks:PreHook(TeamAILogicAssault, "_upd_aim", "_upd_aim_ub", function (data, my_data)
+Hooks:PreHook(TeamAILogicAssault, "_upd_aim", "_upd_aim_ub", function(data, my_data)
 	my_data.weapon_range = my_data.weapon_range or data.char_tweak.weapon[data.unit:inventory():equipped_unit():base():weapon_tweak_data().usage].range
 end)
 
