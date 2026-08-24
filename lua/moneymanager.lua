@@ -305,7 +305,7 @@ function MoneyManager:get_cost_of_premium_contract(job_id, difficulty_id)
 		"sm_wish",
 	}
 	local value = job_data.contract_cost and job_data.contract_cost[difficulty_id - 1] / self:get_tweak_value("money_manager", "offshore_rate") or 0
-	local total_value = value
+	local total_value = (value / 2)
 	total_value = (self:get_tweak_value("money_manager", "buy_premium_multiplier", diffs[difficulty_id]) * total_value)
 		+ self:get_tweak_value("money_manager", "buy_premium_static_fee", diffs[difficulty_id])
 

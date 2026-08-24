@@ -722,9 +722,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.corp.custom_package = bellmead_security_package
 
 	local additive_weight_value = 1
+	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 	local is_jason = os.date("%A %d") == "Friday 13"
 	local is_halloween = os.date("%B %d") == "October 31"
-	if is_jason or is_halloween then
+	if is_jason or is_halloween or is_eclipse_pro then
 		additive_weight_value = math.huge
 	else
 		additive_weight_value = 0
@@ -847,7 +848,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["heat_street_1"] = 3,
 		["heat_street_3"] = 3,
 		["heat_street_4"] = 3,
-		["heat_street_cheese"] = additive_weight_value,
 	}
 	--	self.nmh.random_environments = {
 	--		["no_mercy"] = 69,
@@ -1047,7 +1047,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["dadiamond_cg"] = 69,
 	}
 	self.chas.random_environments = {
-		["chas_cg"] = 69,
+		["chas_blue"] = 1,
+		["chas_cg"] = 2,
 	}
 	self.spa.random_environments = {
 		["spa_01"] = 69,
@@ -1067,8 +1068,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["peta_01"] = 2,
 	}
 	self.kosugi.random_environments = {
-		["shadowraid_01"] = 2,
-		["shadowraid_02"] = 1,
+		["shadowraid_01"] = 3,
+		["shadowraid_02"] = 2,
+		["shadowraid_03"] = 1,
 	}
 	self.welcome_to_the_jungle_1.random_environments = {
 		["big_oil_1_2"] = 3,
@@ -1149,4 +1151,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["safehouse_new_03"] = 1,
 	}
 	self.chill_combat.random_environments = self.chill.random_environments
+	self.dark.random_environments = {
+		["dark_02"] = 1,
+		["dark_01"] = 2,
+	}
+	self.sah.random_environments = {
+		["sah_cg"] = 69,
+	}
+	self.bph.random_environments = {
+		["bph_01"] = 3,
+		["bph_dwpj"] = additive_weight_value,
+	}
 end)

@@ -133,14 +133,14 @@ function MoneyTweakData:init(tweak_data)
 	self.sell_mask_multiplier = 0.25
 	self.killing_civilian_deduction = self._create_value_table(3000, 24000, 10, true, 2) --self.killing_civilian_deduction = self._create_value_table(2000, 50000, 10, true, 2)
 	self.buy_premium_multiplier = {
+		easy = 0,
+		normal = 1,
 		hard = 1,
 		overkill = 1,
 		overkill_145 = 0.9,
-		normal = 1,
 		easy_wish = 0.8,
 		overkill_290 = 0.8,
 		sm_wish = 0.8,
-		easy = 0,
 	}
 	self.buy_premium_static_fee = {
 		hard = 0,
