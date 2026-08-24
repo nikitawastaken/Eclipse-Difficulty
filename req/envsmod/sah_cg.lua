@@ -3,5 +3,5 @@ return {
 		"color_bhd",
 		"color_bhd_classic",
 		"color_payday_classic",
-	}
+	},
 }

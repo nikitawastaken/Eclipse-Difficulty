@@ -6,5 +6,5 @@ return {
 		"color_xxxgen",
 		"color_bhd_classic",
 		"color_heat_classic",
-	}
+	},
 }
