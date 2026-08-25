@@ -279,6 +279,8 @@
 
 			<object 			enabled="true" name="'g_helmet_swat_lod8'" />
 			<object 			enabled="true" name="'g_helmet_swat_lod9'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod10'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod11'" />
 			
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />

@@ -323,8 +323,6 @@
 			<object 			enabled="true" name="'g_helmet_swat_heavy_lod6'" />
 			<object 			enabled="true" name="'g_helmet_swat_heavy_lod7'" />
 			<object 			enabled="true" name="'g_helmet_swat_heavy_lod8'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod9'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod10'" />
 			
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />
