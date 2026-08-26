@@ -304,10 +304,26 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", fu
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
 end)
--- No Outlines mutator
+
+-- Prevent players from changing color gradings on spooky heists
+function CoreEnvironmentControllerManager:should_i_yomc()
+	local job_id = managers.job and managers.job:current_job_id()
+	local tweak = job_id and tweak_data.narrative.jobs[job_id]
+
+	if tweak and tweak.is_halloween_level then
+		self._ignore_user_color_grading = true
+	else return end
+end
+
+-- No Outlines mutator and halloween cg change preventer pt.2
 Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "refresh_render_settings_no_outlines_mutator", function(self, vp)
 	if not alive(self._vp) then
 		return
+	end
+	
+	local bo_andersson = self:should_i_yomc()
+	if bo_andersson then
+		color_grading = self._default_color_grading
 	end
 
 	if managers.mutators:modify_value("CoreEnvironmentControllerManager:NoOutlines", false) then
