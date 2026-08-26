@@ -312,7 +312,9 @@ function CoreEnvironmentControllerManager:should_i_yomc()
 
 	if tweak and tweak.is_halloween_level then
 		self._ignore_user_color_grading = true
-	else return end
+	else
+		return
+	end
 end
 
 -- No Outlines mutator and halloween cg change preventer pt.2
@@ -320,7 +322,7 @@ Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ref
 	if not alive(self._vp) then
 		return
 	end
-	
+
 	local bo_andersson = self:should_i_yomc()
 	if bo_andersson then
 		color_grading = self._default_color_grading
