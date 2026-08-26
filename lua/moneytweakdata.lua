@@ -874,8 +874,8 @@ function MoneyTweakData:init(tweak_data)
 		self.loot_drop_cash.xone_bonus = 5000000
 	end
 
-	self.unlock_new_mask_slot_value = 150000
-	self.unlock_new_weapon_slot_value = 225000
+	self.unlock_new_mask_slot_value = 75000
+	self.unlock_new_weapon_slot_value = 125000
 	self.moneythrower = {
 		max_kills_per_session = 100,
 		kill_to_offshore_multiplier = 1000,
