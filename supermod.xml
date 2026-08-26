@@ -481,6 +481,7 @@
 					<file :name="shotgun_streak_flech.effect"/>
 					<file :name="sniper_trail_player.effect"/>
 					<file :name="weapon_trail.effect"/>
+					<file :name="weapon_trail_dmr.effect"/>
 					<file :name="weapon_trail_green.effect"/>
 					<file :name="weapon_trail_green_lmg.effect"/>
 					<file :name="weapon_trail_red.effect"/>

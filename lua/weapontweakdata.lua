@@ -63,8 +63,8 @@ WeaponTweakData.WEAPON_TRAIL_EFFECTS = {
 	-- NPC weapons
 }
 WeaponTweakData.CATEGORY_TRAIL_EFFECTS = {
-	dmr = "effects/payday2/particles/weapons/streaks/traveling_streak",
-	revolver = "effects/payday2/particles/weapons/streaks/traveling_streak",
+	dmr = "effects/particles/weapons/weapon_trail_dmr",
+	revolver = "effects/particles/weapons/weapon_trail_dmr",
 	shotgun = "effects/particles/weapons/shotgun_streak",
 	lmg = "effects/particles/weapons/weapon_trail_green_lmg",
 	snp = "effects/payday2/particles/weapons/streaks/big_light_streak",
