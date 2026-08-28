@@ -65,7 +65,17 @@ local function create_poison_grenade(base_grenade)
 end
 
 -- Increase the distance at which Team AI stop holding their position
+-- Add targeting priority multipliers based on enemy tags
 tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2
+tweak_data.team_ai.special_enemy_priority_mul = {
+	spooc = 2,
+	medic = 2,
+	taser = 1.75,
+	sniper = 1.5,
+	tank = 1.5,
+	marksman = 1.25,	
+	shield = 1,
+}
 
 -- Security Cameras
 tweak_data.security_camera = {

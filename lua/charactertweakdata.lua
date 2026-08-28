@@ -501,10 +501,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_boss = based_on(presets.weapon.eclipse_good)
 
-	presets.weapon.gang_member = based_on(presets.weapon.eclipse_normal, {
-		aim_delay = { 0, 0.25 },
-		focus_delay = 0,
-	})
+	presets.weapon.gang_member = based_on(presets.weapon.eclipse_normal)
 
 	local team_ai_dmg = get_difficulty_specific_value({
 		4,
@@ -515,7 +512,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.RELOAD_SPEED = 1
-		v.melee_dmg = team_ai_dmg + 2
+		v.melee_dmg = team_ai_dmg + 1
 		v.FALLOFF = {
 			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 			{ dmg_mul = team_ai_dmg, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
@@ -525,10 +522,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Add damage falloff to select presets
 	local team_ai_preset_falloff = {
-		is_shotgun_pump = { 1, 0.7, 0.2 },
-		is_shotgun_mag = { 1, 0.7, 0.2 },
-		is_double_barrel = { 1, 0.8, 0.4 },
-		is_flamethrower = { 1, 0.75, 0 },
+		is_shotgun_pump = { 1, 0.6, 0.2 },
+		is_shotgun_mag = { 1, 0.6, 0.2 },
+		is_double_barrel = { 1, 0.7, 0.4 },
+		is_flamethrower = { 1, 0.8, 0 },
 	}
 
 	for usage, tbl in pairs(presets.weapon.gang_member) do
@@ -569,11 +566,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	end
 
 	presets.gang_member_damage.HEALTH_INIT = get_difficulty_specific_value({
-		36,
-		48,
 		60,
-		72,
-		96,
+		80,
+		100,
+		120,
+		160,
 	})
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
 	presets.gang_member_damage.REGENERATE_RATIO = 0.1
@@ -582,11 +579,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
-			health_limit = 0.1,
+			health_limit = 0.05,
 			none = 0.6,
 			light = 0.4,
 		},
 		{
+			health_limit = 0.1,
 			light = 1,
 		},
 	}

@@ -190,15 +190,6 @@ function TeamAILogicIdle.intimidate_cop(data, target)
 	target:brain():on_intimidated(tweak_data.player.long_dis_interaction.intimidate_strength, data.unit)
 end
 
-local tag_priority_muls = {
-	cloaker = 1.8,
-	taser = 1.7,
-	sniper = 1.6,
-	tank = 2,
-	medic = 1.5,
-	marksman = 1.5,
-}
-
 local tmp_vec = Vector3()
 local _get_priority_attention_original = TeamAILogicIdle._get_priority_attention
 function TeamAILogicIdle._get_priority_attention(data, attention_objects, reaction_func, ...)
@@ -304,15 +295,18 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					end
 
 					-- increase priority of special enemies
-					if att_unit:base().get_tags then
-						for _, tag in pairs(att_unit:base():get_tags() or {}) do
-							target_priority = target_priority * (tag_priority_muls[tag] or 1)
+					if att_base.get_tags then
+						local tags = att_base:get_tags()
+						if tags then
+							for _, tag in pairs(tags) do
+								target_priority = target_priority * (tweak_data.team_ai.special_enemy_priority_mul[tag] or 1)
+							end
 						end
 					end
 
 					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
 					if attacking_player then
-						target_priority = target_priority * 1.2
+						target_priority = target_priority * 1.25
 
 						local player_interacting = logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting()
 							or logic_data.attention_obj.unit:movement()._interaction_tweak
@@ -320,21 +314,8 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 							target_priority = target_priority * 1.5
 						end
 
-						local is_sniper = att_unit:base():has_tag("sniper") or att_unit:base():has_tag("marksman")
-						if is_sniper then
+						if att_base.has_tag and att_base:has_tag("sniper") then
 							target_priority = target_priority * 1.5
-						end
-
-						local att_player_damage = logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:character_damage()
-
-						local player_suppressed = att_player_damage and att_player_damage:is_suppressed()
-						if player_suppressed then
-							target_priority = target_priority * 1.1
-						end
-
-						local player_low_health = att_player_damage and att_player_damage:health_ratio() < 0.33
-						if player_low_health then
-							target_priority = target_priority * 1.3
 						end
 					end
 
@@ -344,7 +325,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					if valid_target then
 						-- give a slight boost to priority if this is our current target (to avoid switching targets too much if the other one is still alive and visible)
 						if data.attention_obj == attention_data then
-							target_priority = target_priority * 1.2
+							target_priority = target_priority * 1.25
 						end
 
 						-- slightly boost priority of enemies that damaged us
@@ -370,11 +351,6 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 								target_priority = target_priority * math.lerp(1.5, 1, math.max(0, follow_look_vec:dot(tmp_vec)))
 								target_priority = target_priority * math.map_range(follow_look_vec:dot(tmp_vec), -1, 1, 1.5, 1)
 							end
-						end
-
-						if att_base._shiny_effect and reaction >= REACT_SHOOT then
-							target_priority = target_priority * 0.01
-							reaction = AIAttentionObject.REACT_AIM
 						end
 					end
 				elseif (has_alerted or has_damaged) and not_assisting and distance < 1500 and not invulnerable or high_priority then
