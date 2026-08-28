@@ -73,7 +73,7 @@ tweak_data.team_ai.special_enemy_priority_mul = {
 	taser = 1.75,
 	sniper = 1.5,
 	tank = 1.5,
-	marksman = 1.25,	
+	marksman = 1.25,
 	shield = 1,
 }
 
