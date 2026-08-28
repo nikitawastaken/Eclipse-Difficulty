@@ -198,7 +198,11 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 	end
 
 	if idx == 2 then
-		self._carry_table[1]:set_visible(true)
+		if alive(self._carry_table[1]) then
+			self._carry_table[1]:set_visible(true)
+		else
+			Eclipse:log_chat("Tried to throw a bag unit that doesn't exist.")
+		end
 	end
 
 	table.remove(self._carry_table, idx)
