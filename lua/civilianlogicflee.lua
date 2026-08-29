@@ -81,7 +81,7 @@ Hooks:OverrideFunction(CivilianLogicFlee, "enter", function(data, new_logic_name
 
 	local old_internal_data = data.internal_data
 	local my_data = {
-		unit = data.unit
+		unit = data.unit,
 	}
 
 	data.internal_data = my_data
@@ -108,10 +108,15 @@ Hooks:OverrideFunction(CivilianLogicFlee, "enter", function(data, new_logic_name
 			if data.unit:anim_data().react_enter and not data.unit:anim_data().idle then
 				my_data.delayed_post_react_alert_id = "postreact_alert" .. key_str
 
-				CopLogicBase.add_delayed_clbk(my_data, my_data.delayed_post_react_alert_id, callback(CivilianLogicFlee, CivilianLogicFlee, "post_react_alert_clbk", {
-					data = data,
-					alert_data = clone(data.objective.alert_data)
-				}), TimerManager:game():time() + math.lerp(4, 8, math.random()))
+				CopLogicBase.add_delayed_clbk(
+					my_data,
+					my_data.delayed_post_react_alert_id,
+					callback(CivilianLogicFlee, CivilianLogicFlee, "post_react_alert_clbk", {
+						data = data,
+						alert_data = clone(data.objective.alert_data),
+					}),
+					TimerManager:game():time() + math.lerp(4, 8, math.random())
+				)
 			end
 		elseif data.objective.dmg_info then
 			CivilianLogicFlee.damage_clbk(data, data.objective.dmg_info)
@@ -152,7 +157,7 @@ Hooks:OverrideFunction(CivilianLogicFlee, "enter", function(data, new_logic_name
 	attention_settings = {
 		"civ_enemy_cbt",
 		"civ_civ_cbt",
-		"civ_murderer_cbt"
+		"civ_murderer_cbt",
 	}
 
 	CivilianLogicFlee.schedule_run_away_clbk(data)
@@ -160,9 +165,14 @@ Hooks:OverrideFunction(CivilianLogicFlee, "enter", function(data, new_logic_name
 	if not my_data.delayed_post_react_alert_id and data.unit:movement():stance_name() == "ntl" then
 		my_data.delayed_post_react_alert_id = "postreact_alert" .. key_str
 
-		CopLogicBase.add_delayed_clbk(my_data, my_data.delayed_post_react_alert_id, callback(CivilianLogicFlee, CivilianLogicFlee, "post_react_alert_clbk", {
-			data = data
-		}), TimerManager:game():time() + math.lerp(4, 8, math.random()))
+		CopLogicBase.add_delayed_clbk(
+			my_data,
+			my_data.delayed_post_react_alert_id,
+			callback(CivilianLogicFlee, CivilianLogicFlee, "post_react_alert_clbk", {
+				data = data,
+			}),
+			TimerManager:game():time() + math.lerp(4, 8, math.random())
+		)
 	end
 
 	data.unit:brain():set_attention_settings(attention_settings)
