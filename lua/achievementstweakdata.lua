@@ -82,13 +82,13 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		story = "story_shadow_raid",
 		difficulty = normal_and_above,
 	}
-	
+
 	self.complete_heist_achievements.story_gobank = {
 		story = "story_gobank",
 		job = "roberts",
 		difficulty = normal_and_above,
 	}
-	
+
 	self.complete_heist_achievements.story_car_shop = {
 		job = "cage",
 		story = "story_car_shop",

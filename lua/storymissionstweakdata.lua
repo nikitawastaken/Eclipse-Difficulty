@@ -165,8 +165,8 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "cash",
 					item_entry = "cash80",
-				}
-			}
+				},
+			},
 		}),
 
 		-- Filler 2 with Car Shop
@@ -185,7 +185,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "xp",
 					item_entry = "xp15",
 				},
-			}
+			},
 		}),
 
 		-- Favors for Vlad and Hector introduction
