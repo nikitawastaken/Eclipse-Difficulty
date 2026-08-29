@@ -142,6 +142,7 @@
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
+				<post :hook_id="storymissionstweakdata"/>
 				<post :hook_id="moneytweakdata"/>
 				<post :hook_id="assetstweakdata"/>
 				<post :hook_id="tipstweakdata"/>
