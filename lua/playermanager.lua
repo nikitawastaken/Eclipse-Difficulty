@@ -1196,10 +1196,6 @@ function PlayerManager:sync_carry_data(
 		return
 	end
 
-	if Monkeepers then
-		return
-	end
-
 	local peer = managers.network:session():peer(peer_id)
 	local peer_unit = peer and peer:unit()
 	if not alive(peer_unit) then
@@ -2587,6 +2583,25 @@ function PlayerManager:start_timer(key, duration, callback)
 		t = duration,
 		func = callback,
 	}
+end
+
+function PlayerManager:get_timer(key)
+	if not key then
+		return
+	end
+
+	local timer = self._timers[key]
+
+	--	return timer and timer.t > TimerManager:game():time() and timer.t or nil
+	return timer and timer.t > 0 and timer.t or nil
+end
+
+function PlayerManager:get_timer_remaining(key)
+	local time = self:get_timer(key)
+	local now = TimerManager:game():time()
+
+	--	return time and time - now
+	return time
 end
 
 -- Rotating Cameras implementation
