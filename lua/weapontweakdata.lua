@@ -261,10 +261,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				weap_data.spread_bloom = {
 					add = 1.5,
-					add_steelsight = 1.25,
+					add_steelsight = 1,
 					max = 3,
 					recovery = 1.5,
-					recovery_wait_multiplier = 2,
+					recovery_wait_multiplier = 2.25,
 				}
 				weap_data.spread_bloom.auto = {
 					add = 2,
@@ -301,15 +301,15 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = 1.5,
 				}	
 				weap_data.spread_bloom = {
-					add = 0,
-					add_steelsight = 0,
-					max = 2,
-					recovery = 4,
-					recovery_wait_multiplier = 1.75,
-				}
-				weap_data.spread_bloom.single = {
 					add = 0.75,
 					add_steelsight = 0.5,
+					max = 2,
+					recovery = 4,
+					recovery_wait_multiplier = 2,
+				}
+				weap_data.spread_bloom.auto = {
+					add = 0,
+					add_steelsight = 0,
 				}
 				
 				weap_data.kick = {
@@ -335,29 +335,29 @@ function WeaponTweakData:_init_weapons(overrides)
 					standing = 2.5,
 					crouching = 2,
 					steelsight = 1.3,
-					moving_standing = 3.5,
-					moving_crouching = 3.5,
+					moving_standing = 3,
+					moving_crouching = 3,
 					moving_steelsight = 1.3,
 				}	
 				weap_data.spread_bloom = {
-					add = 0,
-					add_steelsight = 0,
-					max = 2,
-					recovery = 3,
-					recovery_wait_multiplier = 1.5,
-				}
-				weap_data.spread_bloom.single = {
 					add = 0.5,
 					add_steelsight = 0.25,
+					max = 1.5,
+					recovery = 4,
+					recovery_wait_multiplier = 1.5,
+				}
+				weap_data.spread_bloom.auto = {
+					add = 0,
+					add_steelsight = 0,
 				}
 				
 				weap_data.kick = {
-					standing = { 1.4, 1.6, -0.5, 0.5 },
-					crouching = { 1.4, 1.6, -0.5, 0.5 },
-					steelsight = { 1, 1.2, -0.3, 0.3 },
-					moving_standing = { 1.6, 1.8, -0.5, 0.5 },
-					moving_crouching = { 1.6, 1.8, -0.5, 0.5 },
-					moving_steelsight = { 1.4, 1.6, -0.3, 0.3 },
+					standing = { 1.2, 1.4, -0.5, 0.5 },
+					crouching = { 1.2, 1.4, -0.5, 0.5 },
+					steelsight = { 0.8, 1, -0.3, 0.3 },
+					moving_standing = { 1.2, 1.4, -0.5, 0.5 },
+					moving_crouching = { 1.2, 1.4, -0.5, 0.5 },
+					moving_steelsight = { 1, 1.2, -0.5, 0.5 },
 				}
 				
 				weap_data._pickup_mul = 1.33
@@ -417,15 +417,15 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = 1.3,
 				}	
 				weap_data.spread_bloom = {
-					add = 0,
-					add_steelsight = 0,
-					max = 2,
-					recovery = 4,
-					recovery_wait_multiplier = 1.75,
-				}
-				weap_data.spread_bloom.single = {
 					add = 0.75,
 					add_steelsight = 0.5,
+					max = 2,
+					recovery = 4,
+					recovery_wait_multiplier = 2,
+				}
+				weap_data.spread_bloom.auto = {
+					add = 0,
+					add_steelsight = 0,
 				}
 				
 				weap_data.kick = {
@@ -631,11 +631,11 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.suppression = 5
 				
 				weap_data.spread = {
-					standing = 2.5,
-					crouching = 2.5,
+					standing = 3.5,
+					crouching = 3.5,
 					steelsight = 1.5,
-					moving_standing = 2.5,
-					moving_crouching = 2.5,
+					moving_standing = 3.5,
+					moving_crouching = 3.5,
 					moving_steelsight = 1.5,
 				}	
 				

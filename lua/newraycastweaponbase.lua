@@ -188,11 +188,11 @@ function NewRaycastWeaponBase:update(unit, t, dt)
 	local user_unit = self._setup and self._setup.user_unit
 
 	if self._spread_bloom then
-		self._spread_last_shot_t = math.max((self._spread_last_shot_t or 0) - dt, 0)
+		self._spread_last_shot_t = math.max(self._spread_last_shot_t - dt, 0)
 
 		local spread_bloom_recovery = self._spread_bloom.recovery * managers.player:upgrade_value("weapon", "faster_spread_bloom_recovery", 1)
 		if self._spread_last_shot_t <= 0.0001 then
-			self._spread_firing = math.max((self._spread_firing or 0) - dt * spread_bloom_recovery, 0)
+			self._spread_firing = math.max(self._spread_firing - dt * spread_bloom_recovery, 0)
 		end
 	end
 
@@ -281,12 +281,12 @@ function NewRaycastWeaponBase:fire(...)
 	end
 
 	local in_steelsight = user_unit and alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
-
+	
 	if self._spread_bloom then
-		local spread_bloom_data = self._spread_bloom[self._fire_mode:key()] or self._spread_bloom
+		local spread_bloom_data = self._spread_bloom[self:fire_mode()] or self._spread_bloom
 		local spread_bloom_add = spread_bloom_data and (in_steelsight and spread_bloom_data.add_steelsight or spread_bloom_data.add)
-
-		self._spread_firing = math.min((self._spread_firing or 0) + spread_bloom_add, self._spread_bloom.max)
+		
+		self._spread_firing = math.min(self._spread_firing + spread_bloom_add, self._spread_bloom.max)
 		self._spread_last_shot_t = (self:weapon_tweak_data().fire_mode_data and self:weapon_tweak_data().fire_mode_data.fire_rate or 0)
 			/ self:fire_rate_multiplier()
 			* self._spread_bloom.recovery_wait_multiplier
