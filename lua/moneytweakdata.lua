@@ -739,7 +739,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.coke = 52535
 	end
 	if job_id == "arena" then
-		self.bag_values.money = 25000
+		self.bag_values.money = 75000
 	end
 	if job_id == "dah" then
 		self.small_loot.diamondheist_vault_bust = 50000
@@ -764,6 +764,11 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_jewels = (money_mul * 4400)
 		self.bag_values.money = 32250
 		self.bag_values.default = 20200
+		self.bag_values.gold = 56375
+	end
+	if job_id == "firestarter" then
+		self.bag_values.money = 32250
+		self.bag_values.coke = 20200
 		self.bag_values.gold = 56375
 	end
 	if job_id == "hvh" or job_id == "nail" or job_id == "help" or job_id == "haunted" then
@@ -823,6 +828,7 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if level_id == "chill_combat" or level_id == "chill" then
 		self.bag_values.money = 0
+		self.small_loot.money_bundle = 25000
 	end
 
 	self.max_small_loot_value = 20000000

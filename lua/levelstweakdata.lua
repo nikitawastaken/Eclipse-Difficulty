@@ -787,10 +787,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.rat.random_environments = {
-		["rats1_01"] = 3,
-		["rats1_02"] = 3,
-		["rats1_03"] = 3,
-		["rats1_04"] = 2,
+		["rats1_01"] = 1,
+		["rats1_02"] = 1,
+		["rats1_03"] = 1,
+		["rats1_04"] = 1,
 		["default"] = 1,
 		["rats1_dwpj"] = additive_weight_value,
 		["rats1_dwpj_2"] = additive_weight_value,
