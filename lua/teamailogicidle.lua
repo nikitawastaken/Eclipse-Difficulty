@@ -307,11 +307,14 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 
 					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
 					local defend_targeting_priority_mul = tweak_data.team_ai.defend_targeting_priority_mul
-					
+
 					if attacking_player then
 						target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.base_priority or 1)
 
-						if logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting() or logic_data.attention_obj.unit:movement()._interaction_tweak then
+						if
+							logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting()
+							or logic_data.attention_obj.unit:movement()._interaction_tweak
+						then
 							target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.player_interacting or 1)
 						end
 					end
