@@ -2405,6 +2405,10 @@ function CharacterTweakData:_set_presets()
 				5,
 				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
 			}
+			char_preset.call_police_delay = {
+				5,
+				get_difficulty_specific_value({ 20, 15, 15, 10, 10 }),
+			}
 		end
 	end
 end
