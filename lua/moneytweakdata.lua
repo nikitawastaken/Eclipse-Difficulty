@@ -42,7 +42,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.cro_loot = 125000
 	self.bag_values.hope_diamond = 1000000
 	self.bag_values.evidence_bag = 50000
-	self.bag_values.vehicle_falcogini = 87500
+	self.bag_values.vehicle_falcogini = 187500
 	self.bag_values.warhead = 185000
 	self.bag_values.unknown = 50000
 	self.bag_values.safe = 150000
