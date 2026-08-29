@@ -82,6 +82,18 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		story = "story_shadow_raid",
 		difficulty = normal_and_above,
 	}
+	
+	self.complete_heist_achievements.story_gobank = {
+		story = "story_gobank",
+		job = "roberts",
+		difficulty = normal_and_above,
+	}
+	
+	self.complete_heist_achievements.story_car_shop = {
+		job = "cage",
+		story = "story_car_shop",
+		difficulty = hard_and_above,
+	}
 
 	self.complete_heist_achievements.story_white_xmas = {
 		job = "pines",
@@ -93,22 +105,6 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		job = "moon",
 		story = "story_stealing_xmas",
 		difficulty = normal_and_above,
-	}
-
-	self.complete_heist_achievements.story_generic_mult_1 = {
-		story = "story_generic_mult_1",
-		jobs = {
-			"roberts",
-			"gallery",
-			"branchbank_gold",
-			"jewelry_store",
-		},
-	}
-
-	self.complete_heist_achievements.story_car_shop = {
-		job = "cage",
-		story = "story_car_shop",
-		difficulty = hard_and_above,
 	}
 
 	self.complete_heist_achievements.story_watchdogs = {

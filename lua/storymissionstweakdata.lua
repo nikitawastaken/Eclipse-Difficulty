@@ -1,6 +1,6 @@
 function StoryMissionsTweakData:_init_missions(tweak_data)
 	local default_reward = { { "safehouse_coins", 3 } }
-	local default_pre_coins = { { type_items = "cash", item_entry = "cash80" }, { type_items = "xp", item_entry = "xp15" } }
+	local default_pre_coins = { { type_items = "cash", item_entry = "cash80" }, { type_items = "xp", item_entry = "xp10" } }
 	local default_pre_coins_halved = { { type_items = "cash", item_entry = "cash40" }, { type_items = "xp", item_entry = "xp10" } }
 
 	self.sm_2_skillpoints = 999
@@ -152,14 +152,8 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			voice_line = "Play_pln_stq_05",
 			objectives = {
 				{
-					self:_level_progress("story_generic_mult_1", 2, {
-						name_id = "menu_sm_generic_mult_1",
-						levels = {
-							"roberts",
-							"gallery",
-							"branchbank_gold",
-							"jewelry_store",
-						},
+					self:_level_progress("story_gobank", 1, {
+						name_id = "menu_sm_gobank",
 					}),
 				},
 			},
@@ -171,14 +165,8 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "cash",
 					item_entry = "cash80",
-				},
-			},
-			rewards_halved = {
-				{
-					type_items = "cash",
-					item_entry = "cash20",
-				},
-			},
+				}
+			}
 		}),
 
 		-- Filler 2 with Car Shop
@@ -197,7 +185,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "xp",
 					item_entry = "xp15",
 				},
-			},
+			}
 		}),
 
 		-- Favors for Vlad and Hector introduction
