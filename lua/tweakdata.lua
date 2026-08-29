@@ -64,17 +64,30 @@ local function create_poison_grenade(base_grenade)
 	return poison_grenade
 end
 
--- Increase the distance at which Team AI stop holding their position
--- Add targeting priority multipliers based on enemy tags
-tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2
-tweak_data.team_ai.special_enemy_priority_mul = {
-	spooc = 2,
-	medic = 2,
-	taser = 1.75,
-	sniper = 1.5,
-	tank = 1.5,
-	marksman = 1.25,
-	shield = 1,
+-- Team AI settings
+tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2 -- Increase the distance at which Team AI stop holding their position
+tweak_data.team_ai.rescue_throw_bag_threshold = 0.75 -- Bags with movement penalties above this threshold will not be thrown by bots coming to revive a player
+tweak_data.team_ai.targeting_priority_mul = {
+	base_priority = 1,
+	player_aim = 1.5,
+	critical = 2,
+	marked = 1.5,
+	defend = 1.5,
+	domination = 2,
+	turret = 0.5,
+	enemies = { -- Additional targeting priority multipliers based on enemy tags
+		spooc = 2,
+		medic = 2,
+		taser = 1.75,
+		sniper = 1.5,
+		tank = 1.5,
+		marksman = 1.25,
+		shield = 1,
+	},
+}
+tweak_data.team_ai.defend_targeting_priority_mul = {
+	base_priority = 1.25,
+	player_interacting = 1.5,
 }
 
 -- Security Cameras

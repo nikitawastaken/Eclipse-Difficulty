@@ -265,6 +265,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					local is_being_intimdated = logic_data.surrender_window and logic_data.surrender_window.window_expire_t > data.t - 1
 					local marked_contour = att_unit:contour() and att_unit:contour():find_id_match("^mark_enemy")
 					local marked_by_player = marked_contour and (marked_contour ~= "mark_enemy" or not been_marked)
+					local targeting_priority_mul = tweak_data.team_ai.targeting_priority_mul
 
 					-- check for reaction changes
 					if should_intimidate then
@@ -277,21 +278,21 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 
 					-- get target priority multipliers
 					if should_intimidate then
-						target_priority = target_priority * 2
+						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.domination or 1)
 					end
 
 					if high_priority then
-						target_priority = target_priority * 2
+						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.critical or 1)
 					end
 
 					-- increase priority of enemies marked by the player
 					if marked_by_player then
-						target_priority = target_priority * 1.5
+						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.marked or 1)
 					end
 
 					-- decrease priority of turrets
 					if att_base.sentry_gun then
-						target_priority = target_priority * 0.5
+						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.turret or 1)
 					end
 
 					-- increase priority of special enemies
@@ -299,23 +300,19 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						local tags = att_base:get_tags()
 						if tags then
 							for _, tag in pairs(tags) do
-								target_priority = target_priority * (tweak_data.team_ai.special_enemy_priority_mul[tag] or 1)
+								target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.enemies[tag] or 1)
 							end
 						end
 					end
 
 					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
+					local defend_targeting_priority_mul = tweak_data.team_ai.defend_targeting_priority_mul
+					
 					if attacking_player then
-						target_priority = target_priority * 1.25
+						target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.base_priority or 1)
 
-						local player_interacting = logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting()
-							or logic_data.attention_obj.unit:movement()._interaction_tweak
-						if player_interacting then
-							target_priority = target_priority * 1.5
-						end
-
-						if att_base.has_tag and att_base:has_tag("sniper") then
-							target_priority = target_priority * 1.5
+						if logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting() or logic_data.attention_obj.unit:movement()._interaction_tweak then
+							target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.player_interacting or 1)
 						end
 					end
 
@@ -344,12 +341,13 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						end
 
 						-- prefer shooting enemies the player is not aiming at
+						local player_aim_target_priority = targeting_priority_mul and targeting_priority_mul.player_aim or 1
 						if follow_head_pos then
 							local att_head_pos = att_movement:m_head_pos()
 							if not World:raycast("ray", follow_head_pos, att_head_pos, "slot_mask", data.visibility_slotmask, "ray_type", "ai_vision", "report") then
 								mvector3.direction(tmp_vec, follow_head_pos, att_head_pos)
-								target_priority = target_priority * math.lerp(1.5, 1, math.max(0, follow_look_vec:dot(tmp_vec)))
-								target_priority = target_priority * math.map_range(follow_look_vec:dot(tmp_vec), -1, 1, 1.5, 1)
+								target_priority = target_priority * math.lerp(player_aim_target_priority, 1, math.max(0, follow_look_vec:dot(tmp_vec)))
+								target_priority = target_priority * math.map_range(follow_look_vec:dot(tmp_vec), -1, 1, player_aim_target_priority, 1)
 							end
 						end
 					end
@@ -392,7 +390,7 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 		end
 	end
 
-	if not Keepers and secondary then
+	if secondary then
 		movement:set_should_stay(true, data.m_pos)
 
 		return
@@ -400,7 +398,7 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 	on_long_dis_interacted_original(data, other_unit, secondary, ...)
 
 	local objective_type = data.objective and data.objective.type
-	if objective_type == "revive" and had_bag and move_speed_modifier > 0.75 and not movement:carrying_bag() then
+	if objective_type == "revive" and had_bag and move_speed_modifier > tweak_data.team_ai.rescue_throw_bag_threshold and not movement:carrying_bag() then
 		had_bag:carry_data():link_to(data.unit, false)
 		movement:set_carrying_bag(had_bag)
 	end
@@ -429,9 +427,7 @@ function TeamAILogicIdle._check_objective_pos(data)
 	TeamAILogicBase._exit(data.unit, "travel")
 end
 
-if not Keepers then
-	Hooks:PostHook(TeamAILogicIdle, "action_complete_clbk", "action_complete_clbk_ub", TeamAILogicIdle._check_objective_pos)
-end
+Hooks:PostHook(TeamAILogicIdle, "action_complete_clbk", "action_complete_clbk_ub", TeamAILogicIdle._check_objective_pos)
 
 -- Enter assault logic on new objective if appropriate
 Hooks:OverrideFunction(TeamAILogicIdle, "on_new_objective", function(data, old_objective)

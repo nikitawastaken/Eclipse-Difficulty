@@ -203,7 +203,7 @@ function TeamAILogicBase._find_closest_bag(data)
 end
 
 function TeamAILogicBase._check_deliver_bag(data)
-	if data.cool or Monkeepers then
+	if data.cool then
 		return
 	end
 

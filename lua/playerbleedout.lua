@@ -25,15 +25,13 @@ end
 
 -- Stop bots from dropping light bags when going to revive a player
 function PlayerBleedOut:on_rescue_SO_administered(revive_SO_data, receiver_unit)
-	receiver_SO_data.rescuer = receiver_unit
-	receiver_SO_data.SO_id = nil
+	revive_SO_data.rescuer = receiver_unit
+	revive_SO_data.SO_id = nil
 
 	local movement = receiver_unit:movement()
-	local had_bag = movement._carry_unit
 	local move_speed_modifier = movement._carry_speed_modifier or 1
 
-	if had_bag and move_speed_modifier > 0.75 and not movement:carrying_bag() then
-		had_bag:carry_data():link_to(receiver_unit, false)
-		movement:set_carrying_bag(had_bag)
+	if movement:carrying_bag() and move_speed_modifier < tweak_data.team_ai.rescue_throw_bag_threshold then
+		movement:throw_bag()
 	end
 end
