@@ -390,12 +390,9 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 
 	-- EXTRA
 
-	self.complete_heist_achievements.story_mex_or_chas = {
-		story = "story_mex_or_chas",
-		jobs = {
-			"mex",
-			"chas",
-		},
+	self.complete_heist_achievements.story_mex = {
+		story = "story_mex",
+		job = "mex",
 		difficulty = normal_and_above,
 	}
 
@@ -404,6 +401,24 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		job = "bex",
 		difficulty = hard_and_above,
 	}
+	
+	self.complete_heist_achievements.story_pex = {
+		story = "story_pex",
+		job = "pex",
+		difficulty = normal_and_above,
+	}
+	
+	self.complete_heist_achievements.story_fex = {
+		story = "story_fex",
+		job = "fex",
+		difficulty = normal_and_above,
+	}
+	
+	self.complete_heist_achievements.story_chas = {
+		story = "story_chas",
+		job = "chas",
+		difficulty = normal_and_above,
+	}
 
 	self.complete_heist_achievements.story_sand = {
 		story = "story_sand",
@@ -411,21 +426,15 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		difficulty = normal_and_above,
 	}
 
-	self.complete_heist_achievements.story_pex_or_chca = {
-		story = "story_pex_or_chca",
-		jobs = {
-			"pex",
-			"chca",
-		},
+	self.complete_heist_achievements.story_chca = {
+		story = "story_chca",
+		job = "chca",
 		difficulty = normal_and_above,
 	}
 
-	self.complete_heist_achievements.story_fex_or_pent = {
-		story = "story_fex_or_pent",
-		jobs = {
-			"fex",
-			"pent",
-		},
+	self.complete_heist_achievements.story_pent = {
+		story = "story_pent",
+		job = "pent",
 		difficulty = normal_and_above,
 	}
 end)

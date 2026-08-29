@@ -235,5 +235,14 @@
 	"eclipse_sm_53_name": "Jaws of Revenge",
 	"eclipse_sm_53_desc": "Vlad has contracted a hit on Buluc, the leader of the Coyopa cartel, as revenge for getting Hajrudin put in prison.",
 	"eclipse_sm_53_obj": "Complete Buluc's Mansion on OVERKILL difficulty or above.\nThis assignment requires you to play from the lobby to the end of the heist.",
+	"eclipse_sm_54_name": "placeholder: ukrainian prisoner name",
+	"eclipse_sm_54_desc": "placeholder: ukrainian prisoner desc",
+	"eclipse_sm_54_obj": "placeholder: ukrainian prisoner objective",
+	"eclipse_sm_55_name": "placeholder: black cat name",
+	"eclipse_sm_55_desc": "placeholder: black cat desc",
+	"eclipse_sm_55_obj": "placeholder: black cat objective",
+	"eclipse_sm_56_name": "placeholder: mountain master name",
+	"eclipse_sm_56_desc": "placeholder: mountain master desc",
+	"eclipse_sm_56_obj": "placeholder: mountain master objective",
 
 }
