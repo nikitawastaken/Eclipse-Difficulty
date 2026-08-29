@@ -401,19 +401,19 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		job = "bex",
 		difficulty = hard_and_above,
 	}
-	
+
 	self.complete_heist_achievements.story_pex = {
 		story = "story_pex",
 		job = "pex",
 		difficulty = normal_and_above,
 	}
-	
+
 	self.complete_heist_achievements.story_fex = {
 		story = "story_fex",
 		job = "fex",
 		difficulty = normal_and_above,
 	}
-	
+
 	self.complete_heist_achievements.story_chas = {
 		story = "story_chas",
 		job = "chas",
