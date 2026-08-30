@@ -536,7 +536,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 		}),
 
-		self:_mission("sm_17", {
+		self:_mission("eclipse_sm_17", {
 			reward_id = "menu_sm_default_reward",
 			voice_line = "Play_pln_stq_22",
 			objectives = {
