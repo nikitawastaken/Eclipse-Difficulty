@@ -1040,9 +1040,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Reduce Sentry Gun damage to scale better with Eclipse's enemy health pools.
 	self.sentry_gun.DAMAGE = 1
 	
-	self.trip_mines.delay = 0.1
--- Increase Trip Mine self damage.
---	self.trip_mines.player_damage = self.trip_mines.damage / 5
+	-- Increase Trip Mine self damage.
+	self.trip_mines.player_damage = self.trip_mines.damage / 4
 	
 	-- Assault Rifles
 
