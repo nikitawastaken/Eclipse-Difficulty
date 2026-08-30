@@ -334,7 +334,7 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 
 	self.complete_heist_achievements.story_alaskan_deal = {
 		job = "wwh",
-		story = "storye_alaskan_deal",
+		story = "story_alaskan_deal",
 		difficulty = overkill_and_above,
 	}
 

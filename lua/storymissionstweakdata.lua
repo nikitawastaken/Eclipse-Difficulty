@@ -1423,7 +1423,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			voice_line = "Play_loc_stq_04",
 			objectives = {
 				{
-					self:_level_progress("story_sah", 1, {
+					self:_level_progress("story_shacklethorne", 1, {
 						name_id = "menu_sm_sah",
 					}),
 				},
@@ -1440,7 +1440,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			voice_line = "Play_loc_stq_05",
 			objectives = {
 				{
-					self:_level_progress("story_bph", 1, {
+					self:_level_progress("story_hells_island", 1, {
 						name_id = "menu_sm_bph",
 					}),
 				},
@@ -1457,7 +1457,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			voice_line = "Play_loc_stq_07",
 			objectives = {
 				{
-					self:_level_progress("story_vit", 1, {
+					self:_level_progress("story_white_house", 1, {
 						name_id = "menu_sm_vit",
 					}),
 				},
