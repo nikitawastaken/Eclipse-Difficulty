@@ -60,13 +60,13 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			rewards = {
 				{
 					type_items = "cash",
-					item_entry = "cash80"
+					item_entry = "cash80",
 				},
 				{
-					type_items = "masks", 
-					item_entry = "tiara"
-				}
-			}
+					type_items = "masks",
+					item_entry = "tiara",
+				},
+			},
 		}),
 
 		-- Bank Heist & Diamond Store
@@ -85,13 +85,13 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			rewards = {
 				{
 					type_items = "cash",
-					item_entry = "cash80"
+					item_entry = "cash80",
 				},
 				{
-					type_items = "masks", 
-					item_entry = "outlandish_c"
-				}
-			}
+					type_items = "masks",
+					item_entry = "outlandish_c",
+				},
+			},
 		}),
 
 		-- 3 Armored Transport heists
@@ -116,9 +116,9 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_s552_body_standard_black",
 				},
-				{ 
+				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_ass_s552_fg_railed"
+					item_entry = "wpn_fps_ass_s552_fg_railed",
 				},
 				{
 					type_items = "weapon_mods",
@@ -302,7 +302,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 				{
 					type_items = "masks",
-					item_entry = "bullet"
+					item_entry = "bullet",
 				},
 			},
 		}),
@@ -838,11 +838,11 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 				{
 					type_items = "masks",
-					item_entry = "butcher"
+					item_entry = "butcher",
 				},
 				{
 					type_items = "masks",
-					item_entry = "lady_butcher"
+					item_entry = "lady_butcher",
 				},
 			},
 		}),
