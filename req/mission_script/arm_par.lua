@@ -96,23 +96,6 @@ return {
 			},
 		},
 	},
-	-- re-enable unused snipers
-	[100015] = enabled,
-	-- delay their spawn system
-	[100122] = {
-		on_executed = {
-			{ id = 100015, delay = 120 },
-		},
-	},
-	-- add missing Bain's warning about snipers
-	[100363] = {
-		on_executed = {
-			{ id = 400003, delay = 0 },
-			{ id = 400004, delay = 0 },
-			{ id = 400002, delay = 5 },
-			{ id = 400001, delay = 4 },
-		},
-	},
 	-- tweak the amount of required bags
 	[100315] = bags_required,
 	[100260] = bags_required,
