@@ -198,6 +198,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "masks",
 					item_entry = "santa_drunk",
 				},
+				{
+					type_items = "masks",
+					item_entry = "santa_happy",
+				},
 			},
 		}),
 
