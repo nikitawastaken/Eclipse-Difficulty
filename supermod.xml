@@ -1121,7 +1121,7 @@
 			</group>
 
 			<group :name="ene_acc_female_head/">
-				<xml  :name="ene_acc_female_head.sequence_manager" />
+				<xml  :name="ene_acc_female_head.sequence_manager" dyn_package="true" />
 				<file :name="ene_acc_female_head.cooked_physics" />
 				<file :name="ene_acc_female_head.material_config" />
 				<file :name="ene_acc_female_head_contour.material_config" />
