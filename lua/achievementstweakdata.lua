@@ -155,7 +155,7 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 
 	self.complete_heist_achievements.story_big_bank = {
 		job = "big",
-		story = "story_very_hard_big_bank",
+		story = "story_big_bank",
 		difficulty = normal_and_above,
 	}
 
@@ -201,8 +201,8 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		difficulty = hard_and_above,
 	}
 
-	self.complete_heist_achievements.story_generic_mult_1 = {
-		story = "story_generic_mult_1",
+	self.complete_heist_achievements.story_bombheists_mult_2 = {
+		story = "story_bombheists_mult_2",
 		difficulty = hard_and_above,
 		jobs = {
 			"crojob1",
@@ -288,7 +288,7 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 		difficulty = hard_and_above,
 	}
 
-	self.complete_heist_achievements.story_deathsentence_green_bridge = {
+	self.complete_heist_achievements.story_green_bridge = {
 		job = "glace",
 		story = "story_green_bridge",
 		difficulty = hard_and_above,

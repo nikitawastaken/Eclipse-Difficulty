@@ -694,7 +694,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			voice_line = "Play_pln_stq_26",
 			objectives = {
 				{
-					self:_level_progress("bombheists_mult_2", 1, {
+					self:_level_progress("story_bombheists_mult_2", 1, {
 						name_id = "menu_sm_bombheists_mult_2",
 						levels = {
 							"crojob1",
