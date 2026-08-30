@@ -57,7 +57,16 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					}),
 				},
 			},
-			rewards = default_pre_coins,
+			rewards = {
+				{
+					type_items = "cash",
+					item_entry = "cash80"
+				},
+				{
+					type_items = "masks", 
+					item_entry = "tiara"
+				}
+			}
 		}),
 
 		-- Bank Heist & Diamond Store
@@ -73,7 +82,16 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					}),
 				},
 			},
-			rewards = default_pre_coins,
+			rewards = {
+				{
+					type_items = "cash",
+					item_entry = "cash80"
+				},
+				{
+					type_items = "masks", 
+					item_entry = "outlandish_c"
+				}
+			}
 		}),
 
 		-- 3 Armored Transport heists
@@ -98,7 +116,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_s552_body_standard_black",
 				},
-				{ type_items = "weapon_mods", item_entry = "wpn_fps_ass_s552_fg_railed" },
+				{ 
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_ass_s552_fg_railed"
+				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_ppk_b_long",
@@ -108,11 +129,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					item_entry = "wpn_fps_upg_o_cmore",
 				},
 				{
-					type_items = "xp",
-					item_entry = "xp10",
+					type_items = "masks",
+					item_entry = "hockey",
 				},
 			},
-			rewards_halved = self:_default_pre_coins_halved(),
 		}),
 
 		-- Introduce Gage and Shadow Raid
@@ -140,8 +160,12 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					item_entry = "wpn_fps_smg_p90_b_ninja",
 				},
 				{
-					type_items = "xp",
-					item_entry = "xp15",
+					type_items = "masks",
+					item_entry = "gage_blade",
+				},
+				{
+					type_items = "masks",
+					item_entry = "oni",
 				},
 			},
 		}),
@@ -163,8 +187,16 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					item_entry = "wpn_fps_upg_fl_pis_tlr1",
 				},
 				{
-					type_items = "cash",
-					item_entry = "cash80",
+					type_items = "masks",
+					item_entry = "santa_mad",
+				},
+				{
+					type_items = "masks",
+					item_entry = "santa_surprise",
+				},
+				{
+					type_items = "masks",
+					item_entry = "santa_drunk",
 				},
 			},
 		}),
@@ -211,6 +243,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_s_folding",
 				},
+				{
+					type_items = "masks",
+					item_entry = "rudeolph",
+				},
 			},
 		}),
 
@@ -235,8 +271,8 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					item_entry = "wpn_upg_ak_m_drum",
 				},
 				{
-					type_items = "xp",
-					item_entry = "xp30",
+					type_items = "masks",
+					item_entry = "dawg",
 				},
 			},
 		}),
@@ -253,8 +289,20 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "xp",
-					item_entry = "xp15",
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_lmg_hk21_fg_short",
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_lmg_m249_fg_mk46",
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_lmg_rpk_fg_standard",
+				},
+				{
+					type_items = "masks",
+					item_entry = "bullet"
 				},
 			},
 		}),
@@ -271,8 +319,20 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "xp",
-					item_entry = "xp15",
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_shot_huntsman_b_short",
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_ass_m14_body_ebr",
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_upg_ak_fg_combo2",
+				},
+				{
+					type_items = "masks",
+					item_entry = "monkeybiss",
 				},
 			},
 		}),
@@ -298,6 +358,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_ass_smg_medium",
 				},
+				{
+					type_items = "masks",
+					item_entry = "irondoom",
+				},
 			},
 		}),
 
@@ -321,6 +385,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_m4_g_sniper",
 				},
+				{
+					type_items = "masks",
+					item_entry = "mr_sinister",
+				},
 			},
 		}),
 
@@ -343,6 +411,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_s_adjust",
 				},
+				{
+					type_items = "masks",
+					item_entry = "troll",
+				},
 			},
 		}),
 
@@ -360,6 +432,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "cash",
 					item_entry = "cash100",
+				},
+				{
+					type_items = "masks",
+					item_entry = "pirate_skull",
 				},
 			},
 		}),
@@ -395,6 +471,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_specter",
 				},
+				{
+					type_items = "masks",
+					item_entry = "lincoln",
+				},
+				{
+					type_items = "masks",
+					item_entry = "grant",
+				},
+				{
+					type_items = "masks",
+					item_entry = "washington",
+				},
+				{
+					type_items = "masks",
+					item_entry = "franklin",
+				},
 			},
 		}),
 
@@ -424,6 +516,18 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_cobray_ns_barrelextension",
+				},
+				{
+					type_items = "masks",
+					item_entry = "hog",
+				},
+				{
+					type_items = "masks",
+					item_entry = "unicorn",
+				},
+				{
+					type_items = "masks",
+					item_entry = "bear",
 				},
 			},
 		}),
@@ -482,6 +586,14 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_l85a2_m_emag",
 				},
+				{
+					type_items = "masks",
+					item_entry = "medusa",
+				},
+				{
+					type_items = "masks",
+					item_entry = "cursed_crown",
+				},
 			},
 		}),
 
@@ -511,6 +623,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_beretta_body_modern",
 				},
+				{
+					type_items = "masks",
+					item_entry = "doctor",
+				},
 			},
 		}),
 
@@ -531,6 +647,14 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_2006m_g_bling",
+				},
+				{
+					type_items = "masks",
+					item_entry = "concert_female",
+				},
+				{
+					type_items = "masks",
+					item_entry = "concert_male",
 				},
 			},
 		}),
@@ -592,6 +716,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_smg_olympic_fg_lr300",
 				},
+				{
+					type_items = "masks",
+					item_entry = "tech_lion",
+				},
 			},
 		}),
 
@@ -620,7 +748,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 				{
 					type_items = "masks",
-					item_entry = "tiara",
+					item_entry = "glasses_tinted_love",
 				},
 				{
 					type_items = "masks",
@@ -708,6 +836,14 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_ass_smg_sho_surefire",
 				},
+				{
+					type_items = "masks",
+					item_entry = "butcher"
+				},
+				{
+					type_items = "masks",
+					item_entry = "lady_butcher"
+				},
 			},
 		}),
 
@@ -771,6 +907,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_sho_ben_b_long",
+				},
+				{
+					type_items = "masks",
+					item_entry = "pim_russian_ballistic",
 				},
 			},
 		}),
@@ -986,6 +1126,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_shot_shark",
 				},
+				{
+					type_items = "masks",
+					item_entry = "nixon",
+				},
 			},
 		}),
 
@@ -1015,6 +1159,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_gre_m79_stock_short",
+				},
+				{
+					type_items = "masks",
+					item_entry = "clinton",
 				},
 			},
 		}),
@@ -1046,6 +1194,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_cmore",
 				},
+				{
+					type_items = "masks",
+					item_entry = "obama",
+				},
 			},
 		}),
 
@@ -1074,6 +1226,10 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_m_straight",
+				},
+				{
+					type_items = "masks",
+					item_entry = "bush",
 				},
 			},
 		}),
