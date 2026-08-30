@@ -130,7 +130,7 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.complete_heist_achievements.story_big_oil = {
-		story = "story_big_oi",
+		story = "story_big_oil",
 		jobs = {
 			"welcome_to_the_jungle_wrapper_prof",
 			"welcome_to_the_jungle_night_prof",
