@@ -340,7 +340,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 		-- Intermission until level 25
 		self:_mission("eclipse_sm_moving_up", {
 			reward_id = "menu_sm_moving_up_reward",
-			custom_check = "_sm_1_check",
+			custom_check = "_sm_moving_up_check",
 			voice_line = "Play_pln_stq_30",
 			objectives = {
 				{
