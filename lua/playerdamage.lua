@@ -778,7 +778,7 @@ function PlayerDamage:restore_health_percentage(health_restored, _, chk_health_r
 	return self:change_health(max_health * health_restored * self._healing_reduction)
 end
 
--- FAKs only heal a small portion but then heal you over time
+-- Add First Aid Kit health regeneration
 function PlayerDamage:band_aid_health(hot_regen)
 	if managers.platform:presence() == "Playing" and (self:arrested() or self:need_revive()) then
 		return

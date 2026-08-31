@@ -103,6 +103,10 @@ function TeamAIMovement:carrying_bag()
 	return self._carry_table and #self._carry_table > 0 or false
 end
 
+function TeamAIMovement:carrying_additional_bags()
+	return self._carry_table and #self._carry_table > 1 or false
+end
+
 function TeamAIMovement:set_carrying_bag(unit)
 	local dropped
 	if unit then
