@@ -36,8 +36,8 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- Sentry Gun civilian Intimidation
 	self.sentry_gun_intimidation = {
-		range = 1500,
-		interval = 1,
+		range = 2000,
+		interval = 0.5,
 	}
 
 	-- Bullet damage Shield stagger effect (only used for the Team AI ability)
