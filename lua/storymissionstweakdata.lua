@@ -25,10 +25,12 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_m4_uupg_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_m4_uupg_fg_lr300",
+					amount = 1,
 				},
 				{
 					type_items = "xp",
@@ -65,6 +67,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "tiara",
+					amount = 1,
 				},
 			},
 		}),
@@ -90,6 +93,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "outlandish_c",
+					amount = 1,
 				},
 			},
 		}),
@@ -115,22 +119,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_s552_body_standard_black",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_s552_fg_railed",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_ppk_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_cmore",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "hockey",
+					amount = 1,
 				},
 			},
 		}),
@@ -150,22 +159,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_wa2000_b_suppressed",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_pis_jungle",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_p90_b_ninja",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "gage_blade",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "oni",
+					amount = 1,
 				},
 			},
 		}),
@@ -185,22 +199,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_pis_tlr1",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "santa_mad",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "santa_surprise",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "santa_drunk",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "santa_happy",
+					amount = 1,
 				},
 			},
 		}),
@@ -242,14 +261,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_fg_combo3",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_s_folding",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "rudeolph",
+					amount = 1,
 				},
 			},
 		}),
@@ -269,14 +291,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_m4_m_drum",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_m_drum",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "dawg",
+					amount = 1,
 				},
 			},
 		}),
@@ -295,18 +320,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_lmg_hk21_fg_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_lmg_m249_fg_mk46",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_lmg_rpk_fg_standard",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "bullet",
+					amount = 1,
 				},
 			},
 		}),
@@ -325,18 +354,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_shot_huntsman_b_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_m14_body_ebr",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_fg_combo2",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "monkeybiss",
+					amount = 1,
 				},
 			},
 		}),
@@ -357,14 +390,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_pis_tlr1",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_ass_smg_medium",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "irondoom",
+					amount = 1,
 				},
 			},
 		}),
@@ -384,14 +420,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_ass_smg_sho_peqbox",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_m4_g_sniper",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "mr_sinister",
+					amount = 1,
 				},
 			},
 		}),
@@ -410,14 +449,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_fg_m5k",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_s_adjust",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "troll",
+					amount = 1,
 				},
 			},
 		}),
@@ -440,6 +482,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "pirate_skull",
+					amount = 1,
 				},
 			},
 		}),
@@ -466,30 +509,37 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_fal_fg_04",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_fal_m_01",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_specter",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "lincoln",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "grant",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "washington",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "franklin",
+					amount = 1,
 				},
 			},
 		}),
@@ -508,30 +558,37 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_scorpion_s_unfolded",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_tec9_ns_ext",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_uzi_fg_rail",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_cobray_ns_barrelextension",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "hog",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "unicorn",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "bear",
+					amount = 1,
 				},
 			},
 		}),
@@ -581,22 +638,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_l85a2_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_l85a2_fg_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_l85a2_m_emag",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "medusa",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "cursed_crown",
+					amount = 1,
 				},
 			},
 		}),
@@ -614,22 +676,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_cobray_ns_silencer",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mac10_m_extended",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_pis_medium_slim",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_beretta_body_modern",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "doctor",
+					amount = 1,
 				},
 			},
 		}),
@@ -647,18 +714,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_2006m_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_2006m_g_bling",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "concert_female",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "concert_male",
+					amount = 1,
 				},
 			},
 		}),
@@ -677,14 +748,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_sub2000_fg_gen2",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_ass_smg_large",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_asval_s_solid",
+					amount = 1,
 				},
 			},
 		}),
@@ -707,22 +781,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ak_s_solidstock",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_ass_pbs1",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_m4_m_l5",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_smg_olympic_fg_lr300",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "tech_lion",
+					amount = 1,
 				},
 			},
 		}),
@@ -749,14 +828,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "rus_hat",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "glasses_tinted_love",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "sputnik",
+					amount = 1,
 				},
 			},
 		}),
@@ -775,14 +857,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_shot_shark",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_shot_m37_b_short",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "goat_goat",
+					amount = 1,
 				},
 			},
 		}),
@@ -801,18 +886,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_leupold",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_msr_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_r93_b_suppressed",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "grendel",
+					amount = 1,
 				},
 			},
 		}),
@@ -831,22 +920,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_eotech_xps",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_docter",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_ass_smg_sho_surefire",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "butcher",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "lady_butcher",
+					amount = 1,
 				},
 			},
 		}),
@@ -865,22 +959,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_m4_uupg_b_sd",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_shot_thick",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_schakal_ns_silencer",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_fg_mp5sd",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "mad_goggles",
+					amount = 1,
 				},
 			},
 		}),
@@ -899,22 +998,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_saiga_m_20rnd",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_pl14_m_extended",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_upg_ak_m_drum",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_sho_ben_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "pim_russian_ballistic",
+					amount = 1,
 				},
 			},
 		}),
@@ -941,18 +1045,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_p90_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_g36_s_sl8",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_aug_b_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_galil_fg_sniper",
+					amount = 1,
 				},
 			},
 		}),
@@ -971,18 +1079,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fl_pis_laser",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_pis_meatgrinder",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_msr_body_msr",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_m95_barrel_short",
+					amount = 1,
 				},
 			},
 		}),
@@ -1019,18 +1131,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_hajk_b_medium",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_ass_smg_firepig",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_sho_boot_s_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_sho_boot_b_long",
+					amount = 1,
 				},
 			},
 		}),
@@ -1049,18 +1165,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_sho_s_spas12_folded",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_lmg_m60_fg_tropical",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_lmg_m60_b_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_upg_o_eotech",
+					item_entry = "wpn_fps_upg_o_t1micro",
+					amount = 1,
 				},
 			},
 		}),
@@ -1078,19 +1198,23 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			rewards = {
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_sho_s_spas12_folded",
+					item_entry = "wpn_fps_pis_beretta_sl_brigadie",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_lmg_m60_fg_tropical",
+					item_entry = "wpn_fps_upg_ns_pis_large_kac",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_lmg_m60_b_short",
+					item_entry = "wpn_fps_upg_ass_ns_surefire",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_eotech",
+					amount = 1,
 				},
 			},
 		}),
@@ -1117,22 +1241,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_1911_co_1",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_1911_g_bling",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_shot_r870_s_folding",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_ns_shot_shark",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "nixon",
+					amount = 1,
 				},
 			},
 		}),
@@ -1151,18 +1280,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_m14_body_jae",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_cs",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_gre_m79_barrel_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_gre_m79_stock_short",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
@@ -1185,22 +1318,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_g18c_m_mag_33rnd",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_g26_g_gripforce",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_fg_midwest",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_cmore",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "obama",
+					amount = 1,
 				},
 			},
 		}),
@@ -1218,22 +1356,27 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_rage_body_smooth",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_rage_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_fg_mp5a5",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_smg_mp5_m_straight",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "bush",
+					amount = 1,
 				},
 			},
 		}),
@@ -1252,18 +1395,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_desertfox_b_long",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_snp_tti_ns_hex",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_pis_packrat_ns_wick",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "pim_dog",
+					amount = 1,
 				},
 				{
 					"safehouse_coins",
@@ -1346,16 +1493,19 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "weapon_mods",
-					item_entry = "wpn_fps_corgi_b_short",
+					type_items = "masks",
+					item_entry = "rvd_03",
+					amount = 1,
 				},
 				{
-					type_items = "weapon_mods",
-					item_entry = "wpn_fps_corgi_body_lower_strap",
+					type_items = "masks",
+					item_entry = "rvd_02",
+					amount = 1,
 				},
 				{
-					type_items = "weapon_mods",
-					item_entry = "wpn_fps_upg_i_burstfire",
+					type_items = "masks",
+					item_entry = "rvd_01",
+					amount = 1,
 				},
 			},
 		}),
@@ -1407,14 +1557,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_scar_b_short",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_ass_scar_fg_railext",
+					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
 					item_entry = "wpn_fps_upg_o_acog",
+					amount = 1,
 				},
 			},
 		}),
@@ -1466,13 +1619,15 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "win_donald_mega",
+					amount = 1,
 				},
 				{
 					type_items = "gloves",
 					item_entry = "postmoto",
+					amount = 1,
 				},
 				{
-					type_items = "weapon_mods",
+					type_items = "weapon_skins",
 					item_entry = "color_in32_03",
 				},
 				{
@@ -1501,24 +1656,26 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "cvc_tan",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_desert_twilight",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_khaki_eclipse",
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_07",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_05",
+					amount = 1,
 				},
 			},
 		}),
@@ -1534,24 +1691,26 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_desert_tech",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_khaki_regular",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "cvc_black",
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_06",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_05",
+					amount = 1,
 				},
 			},
 		}),
@@ -1567,24 +1726,26 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "cvc_navy_blue",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_navy_breeze",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_misted_grey",
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_09",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_12",
+					amount = 1,
 				},
 			},
 		}),
@@ -1600,24 +1761,26 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "cvc_grey",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_tree_stump",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_gray_raider",
 				},
 				{
 					type_items = "masks",
 					item_entry = "smo_10",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_08",
+					amount = 1,
 				},
 			},
 		}),
@@ -1633,20 +1796,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_somber_woodland",
 				},
 				{
-					type_items = "armor_skins",
+					type_items = "armor",
 					item_entry = "drm_woodland_tech",
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_02",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_06",
+					amount = 1,
 				},
 			},
 		}),
@@ -1664,14 +1829,17 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "skm_02",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_05",
+					amount = 1,
 				},
 				{
 					type_items = "masks",
 					item_entry = "skm_08",
+					amount = 1,
 				},
 			},
 		}),
@@ -1689,6 +1857,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				{
 					type_items = "masks",
 					item_entry = "smo_07",
+					amount = 1,
 				},
 			},
 		}),
