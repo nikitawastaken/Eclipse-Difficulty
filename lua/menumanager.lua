@@ -327,6 +327,7 @@ function MenuCallbackHandler:max_progress()
 	for i = managers.experience:current_level(), 99 do
 		managers.experience:_level_up()
 	end
+	Global.mission_manager.has_played_tutorial = true
 	managers.experience:set_current_rank(Eclipse.settings.max_progression_infamy)
 	managers.infamy:_set_points(managers.experience:current_rank())
 	managers.money:_set_offshore(99999999999999 ^ 20)
