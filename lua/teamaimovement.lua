@@ -66,6 +66,15 @@ Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", funct
 	end
 end)
 
+-- Carry helper functions
+function TeamAIMovement:carrying_bag()
+	return self._carry_table and #self._carry_table > 0 or false
+end
+
+function TeamAIMovement:carrying_additional_bags()
+	return self._carry_table and #self._carry_table > 1 or false
+end
+
 if not Network:is_server() then
 	return
 end
@@ -97,14 +106,6 @@ end)
 -- Bag stuff!
 function TeamAIMovement:has_crew_carrystacker()
 	return managers.player:has_category_upgrade("team", "crew_ai_carry_stacker")
-end
-
-function TeamAIMovement:carrying_bag()
-	return self._carry_table and #self._carry_table > 0 or false
-end
-
-function TeamAIMovement:carrying_additional_bags()
-	return self._carry_table and #self._carry_table > 1 or false
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
