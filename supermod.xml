@@ -2045,14 +2045,24 @@
 				<file :name="wpn_npc_akmsu.unit"/>
 			</group>
 
-			<group :name="wpn_npc_pl14_tactical/">
-				<file :name="pl14_df.texture" />
-				<file :name="pl14_nm.texture" />
-				<file :name="wpn_npc_pl14_tactical.cooked_physics" />
-				<file :name="wpn_npc_pl14_tactical.material_config" />
-				<file :name="wpn_npc_pl14_tactical.model" />
-				<file :name="wpn_npc_pl14_tactical.object" />
-				<file :name="wpn_npc_pl14_tactical.unit"/>
+			<group :name="wpn_npc_pmm/">
+				<file :name="pmm_df.texture" />
+				<file :name="pmm_nm.texture" />
+				<file :name="wpn_npc_pmm.cooked_physics" />
+				<file :name="wpn_npc_pmm.material_config" />
+				<file :name="wpn_npc_pmm.model" />
+				<file :name="wpn_npc_pmm.object" />
+				<file :name="wpn_npc_pmm.unit"/>
+			</group>
+
+			<group :name="wpn_npc_pmm_tactical/">
+				<file :name="pb_df.texture" />
+				<file :name="pb_nm.texture" />
+				<file :name="wpn_npc_pmm_tactical.cooked_physics" />
+				<file :name="wpn_npc_pmm_tactical.material_config" />
+				<file :name="wpn_npc_pmm_tactical.model" />
+				<file :name="wpn_npc_pmm_tactical.object" />
+				<file :name="wpn_npc_pmm_tactical.unit"/>
 			</group>
 
 			<group :name="wpn_npc_svd_dmr/">

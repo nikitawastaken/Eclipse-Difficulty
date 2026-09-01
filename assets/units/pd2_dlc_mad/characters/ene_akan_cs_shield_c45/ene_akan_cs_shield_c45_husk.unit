@@ -89,7 +89,7 @@
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="shield" />
-			<var name="_default_weapon_id" value="c45" />
+			<var name="_default_weapon_id" value="pmm" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" >
 			<var name="_shield_unit_name" value="units/pd2_dlc_mad/characters/ene_acc_shield_akan_small/ene_acc_shield_akan_small" />

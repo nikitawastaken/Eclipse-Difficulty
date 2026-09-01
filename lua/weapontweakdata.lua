@@ -2846,8 +2846,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.uspsil_npc = copy_data(self.uspsil_npc, self.c45_npc, self.usp_crew)
 	self.uspsil_npc.has_suppressor = "suppressed_b"
 
-	self.pl14sil_npc = copy_data(self.pl14sil_npc, self.c45_npc, self.pl14_crew)
-	self.pl14sil_npc.has_suppressor = "suppressed_b"
+	self.pmm_npc = copy_data(self.pmm_npc, self.c45_npc, self.pmm_crew)
+
+	self.pmmsil_npc = copy_data(self.pmmsil_npc, self.c45_npc, self.pmm_crew)
+	self.pmmsil_npc.has_suppressor = "suppressed_b"
 
 	self.deagle_npc.CLIP_AMMO_MAX = 7
 	self.deagle_npc.usage = "is_revolver"
