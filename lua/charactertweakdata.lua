@@ -2045,6 +2045,12 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "pmm_tactical")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_pmm_tactical/wpn_npc_pmm_tactical"))
 
+	table.insert(self.weap_ids, "fort500")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_fort500/wpn_npc_fort500"))
+
+	table.insert(self.weap_ids, "fort500_tank")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_fort500_bulldozer/wpn_npc_fort500_bulldozer"))
+
 	table.insert(self.weap_ids, "ak47_elite")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_ak47_elite/wpn_npc_ak47_elite"))
 

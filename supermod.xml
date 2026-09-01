@@ -2065,6 +2065,23 @@
 				<file :name="wpn_npc_pmm_tactical.unit"/>
 			</group>
 
+			<group :name="wpn_npc_fort500/">
+				<file :name="fort500_df.texture" />
+				<file :name="fort500_nm.texture" />
+				<file :name="wpn_npc_fort500.cooked_physics" />
+				<file :name="wpn_npc_fort500.material_config" />
+				<file :name="wpn_npc_fort500.model" />
+				<file :name="wpn_npc_fort500.object" />
+				<file :name="wpn_npc_fort500.unit"/>
+			</group>
+
+			<group :name="wpn_npc_fort500_bulldozer/">
+				<file :name="wpn_npc_fort500_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_fort500_bulldozer.object" />
+				<file :name="wpn_npc_fort500_bulldozer.model" />
+				<file :name="wpn_npc_fort500_bulldozer.unit"/>
+			</group>
+			
 			<group :name="wpn_npc_svd_dmr/">
 				<file :name="wpn_npc_svd_dmr.cooked_physics" />
 				<file :name="wpn_npc_svd_dmr.model" />

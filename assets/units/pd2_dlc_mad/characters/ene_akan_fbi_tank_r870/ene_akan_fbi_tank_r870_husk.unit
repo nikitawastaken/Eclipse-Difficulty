@@ -6,7 +6,7 @@
 	<dependencies>		
 		<depends_on bnk="soundbanks/regular_sfx" />
 		<depends_on effect="effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable" />
-		<depends_on unit="units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer" />			
+		<depends_on unit="units/pd2_dlc_mad/weapons/wpn_npc_fort500_bulldozer/wpn_npc_fort500_bulldozer" />		
 	</dependencies>
 	
 	<extensions>	
@@ -14,7 +14,7 @@
 		<extension name="base" class="HuskCopBase" >		
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="tank" />
-			<var name="_default_weapon_id" value="r870_tank" />
+			<var name="_default_weapon_id" value="fort500_tank" />
 			<var name="_stats_name" value="tank_green" />			
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />

@@ -88,7 +88,7 @@
 		<extension name="base" class="HuskCopBase" >		
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="taser" />
-			<var name="_default_weapon_id" value="r870" />
+			<var name="_default_weapon_id" value="fort500" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />

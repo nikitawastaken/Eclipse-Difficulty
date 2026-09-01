@@ -2872,6 +2872,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
 
+	self.fort500_npc = copy_data(self.fort500_npc, self.r870_npc, self.r870_crew)
+
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.mossberg_npc.reload = "looped"
 	self.mossberg_npc.looped_reload_single = true
