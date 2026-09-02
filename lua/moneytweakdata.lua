@@ -21,7 +21,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.default = 10205
 	self.bag_values.money = 16250
 	self.bag_values.gold = 34000
-	self.bag_values.goat = 9500
+	self.bag_values.goat = 47500
 	self.bag_values.diamonds = 20500
 	self.bag_values.diamonds_dah = 47500
 	self.bag_values.coke = 12535
@@ -32,29 +32,29 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.weapons = 24500
 	self.bag_values.ranc_weapon = 40200
 	self.bag_values.painting = 32000
-	self.bag_values.samurai_suit = 115000
+	self.bag_values.samurai_suit = 165000
 	self.bag_values.artifact_statue = 42000
 	self.bag_values.mus_artifact_bag = 12000
 	self.bag_values.circuit = 90000 -- this is server
-	self.bag_values.shells = 16000
+	self.bag_values.shells = 24000
 	self.bag_values.turret = 100000
-	self.bag_values.sandwich = 75000
-	self.bag_values.cro_loot = 125000
+	self.bag_values.sandwich = 250000
+	self.bag_values.cro_loot = 175000
 	self.bag_values.hope_diamond = 1000000
-	self.bag_values.evidence_bag = 50000
-	self.bag_values.vehicle_falcogini = 187500
+	self.bag_values.evidence_bag = 80000
+	self.bag_values.vehicle_falcogini = 207500
 	self.bag_values.warhead = 185000
 	self.bag_values.unknown = 50000
 	self.bag_values.safe = 150000
 	self.bag_values.prototype = 500000
 	self.bag_values.faberge_egg = 75000
-	self.bag_values.treasure = 24500
+	self.bag_values.treasure = 34500
 	self.bag_values.counterfeit_money = 32000
 	self.bag_values.box_unknown = 10000
 	self.bag_values.black_tablet = 750000
 	self.bag_values.masterpiece_painting = 92000
-	self.bag_values.master_server = 175000
-	self.bag_values.lost_artifact = 120000
+	self.bag_values.master_server = 275000
+	self.bag_values.lost_artifact = 320000
 	self.bag_values.present = 34000
 	self.bag_values.mad_master_server_value_1 = 50
 	self.bag_values.mad_master_server_value_2 = 50
@@ -722,7 +722,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.default = 18205
 	end
 	if job_id == "wwh" then
-		self.bag_values.money = 34500
+		self.bag_values.money = 74500
 		self.bag_values.weapons = 62300
 	end
 	if job_id == "roberts" then
@@ -734,9 +734,10 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_jewels = (money_mul * 4400)
 		self.small_loot.gen_atm = (money_mul * 12000)
 	end
-	if level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
+	if job_id == "watchdogs" or job_id == "watchdogs_wrapper" or job_id == "watchdogs_night" then
 		self.small_loot.money_bundle = 50000
 		self.bag_values.coke = 52535
+		self.bag_values.coke_pure = 52535
 	end
 	if job_id == "arena" then
 		self.bag_values.money = 75000
@@ -823,8 +824,9 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.painting = 92000
 		self.bag_values.circuit = 120000
 		self.bag_values.masterpiece_painting = 92000
-		self.bag_values.weapon = 18750
+		self.bag_values.weapon = 28500
 		self.bag_values.weapons = 28500
+		self.bag_values.artifact_statue = 180000
 	end
 	if level_id == "chill_combat" or level_id == "chill" then
 		self.bag_values.money = 0
