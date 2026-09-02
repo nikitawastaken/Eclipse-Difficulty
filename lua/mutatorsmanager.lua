@@ -75,3 +75,7 @@ end)
 function MutatorsManager:should_disable_statistics()
 	return false
 end
+
+function MutatorsManager:are_achievements_disabled()
+	return false
+end
