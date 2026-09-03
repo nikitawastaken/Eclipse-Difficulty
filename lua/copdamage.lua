@@ -174,7 +174,6 @@ Hooks:OverrideFunction(CopDamage, "_spawn_head_gadget", function(self, params)
 	end
 
 	local visor_sequence = "break_visor"
-
 	if self._unit:damage() and self._unit:damage():has_sequence(visor_sequence) then
 		self._unit:damage():run_sequence_simple(visor_sequence)
 	end
@@ -201,9 +200,23 @@ Hooks:OverrideFunction(CopDamage, "_spawn_head_gadget", function(self, params)
 	self._head_gear_spawned = true
 end)
 
--- Counter strike aced stuns dozers
+-- Add headshot and body impact effects effects
+function CopDamage:_play_impact_effect(attack_data, effect, sound)
+	if effect then
+		World:effect_manager():spawn({
+			effect = effect,
+			position = attack_data.col_ray.body:position(),	
+		})
+	end
+	
+	if sound then
+		self._unit:sound():play(sound, nil, nil)		
+	end
+end
+
 local mvec_1 = Vector3()
 local mvec_2 = Vector3()
+
 Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	if self._dead or self._invulnerable then
 		return
@@ -247,11 +260,13 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 			managers.achievment:award(tweak_data.achievement.cavity.award)
 		end
 	end
-
+	
+	local melee_entry = managers.blackmarket:equipped_melee_weapon()
+	local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
+	local melee_type = tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type
+		
 	if not (self._char_tweak.ignore_melee_headshot or self._char_tweak.ignore_headshot) and not self._damage_reduction_multiplier and head then
 		if self._char_tweak.headshot_dmg_mul then
-			local melee_entry = managers.blackmarket:equipped_melee_weapon()
-			local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
 			local headshot_mul = 1 + (math.max(0, self._char_tweak.headshot_dmg_mul - 1) * melee_headshot_mul)
 
 			damage = damage * headshot_mul
@@ -265,9 +280,13 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	if self._unit:movement():cool() and managers.player:has_category_upgrade("player", "unaware_of_aggressor_damage_multiplier") then
 		damage = self._HEALTH_INIT
 	end
-
+	
+	-- Add extra blood and sound effects to melee hits
+	local body_effect_id = Idstring("effects/payday2/particles/impacts/blood/blood_impact_a")		
+	local head_effect_id = Idstring("effects/payday2/particles/impacts/blood/blood_impact_katana")
+	local head_sound_id = melee_type and melee_type == "blunt" and "split_gen_head" or "split_gen_head"
+			
 	attack_data.headshot = head
-	local damage_effect = attack_data.damage_effect
 
 	if self._health <= damage then
 		if head then
@@ -276,20 +295,25 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 				rotation = attack_data.col_ray.body:rotation(),
 				dir = attack_data.col_ray.ray,
 			})
+			self:_play_impact_effect(attack_data, head_effect_id, head_sound_id)
 		end
 	end
 
+	local damage_effect = attack_data.damage_effect
 	local damage_effect_percent = 1
 	damage = self:_apply_damage_reduction(damage)
 	damage = math.clamp(damage, self._HEALTH_INIT_PRECENT, self._HEALTH_INIT)
 	local damage_percent = math.ceil(damage / self._HEALTH_INIT_PRECENT)
 	damage = damage_percent * self._HEALTH_INIT_PRECENT
 	damage, damage_percent = self:_apply_min_health_limit(damage, damage_percent)
-
+	
+	self:_play_impact_effect(attack_data, body_effect_id, nil)
+	
 	if self._immortal then
 		damage = math.min(damage, self._health - 1)
 	end
-
+	
+	-- Counter strike aced stuns dozers
 	if self._health <= damage then
 		if self:check_medic_heal() then
 			result = {
