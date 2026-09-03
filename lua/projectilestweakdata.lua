@@ -42,29 +42,29 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	local trail_electric = "effects/particles/weapons/grenade_trail_electric"
 	local trail_dynamite = "effects/particles/weapons/grenade_trail_dynamite"
 	local trail_incendiary = "effects/particles/weapons/grenade_trail_incendiary"
-	
+
 	self.projectiles.poison_gas_grenade.add_trail_effect = trail_gas
 	self.projectiles.wpn_gre_electric.add_trail_effect = trail_electric
 	self.projectiles.dynamite.add_trail_effect = trail_dynamite
 	self.projectiles.molotov.add_trail_effect = trail_dynamite
 	self.projectiles.smoke_screen_grenade.add_trail_effect = "effects/particles/weapons/grenade_trail_sicario_smoke"
-	
+
 	self.projectiles.launcher_incendiary.add_trail_effect = trail_incendiary
 	self.projectiles.launcher_incendiary_m32.add_trail_effect = trail_incendiary
 	self.projectiles.launcher_incendiary_china.add_trail_effect = trail_incendiary
 	self.projectiles.launcher_incendiary_arbiter.add_trail_effect = trail_incendiary
 	self.projectiles.launcher_incendiary_slap.add_trail_effect = trail_incendiary
 	self.projectiles.launcher_incendiary_ms3gl.add_trail_effect = trail_incendiary
-	
+
 	self.projectiles.launcher_electric.add_trail_effect = trail_electric
-	self.projectiles.launcher_electric_m32 .add_trail_effect= trail_electric
+	self.projectiles.launcher_electric_m32.add_trail_effect = trail_electric
 	self.projectiles.launcher_electric_china.add_trail_effect = trail_electric
 	self.projectiles.launcher_electric_slap.add_trail_effect = trail_electric
 	self.projectiles.launcher_electric_arbiter.add_trail_effect = trail_electric
 	self.projectiles.underbarrel_electric.add_trail_effect = trail_electric
 	self.projectiles.underbarrel_electric_groza.add_trail_effect = trail_electric
 	self.projectiles.launcher_electric_ms3gl.add_trail_effect = trail_electric
-	
+
 	self.projectiles.launcher_poison.add_trail_effect = trail_gas
 	self.projectiles.launcher_poison_ms3gl_conversion.add_trail_effect = trail_gas
 	self.projectiles.launcher_poison_gre_m79.add_trail_effect = trail_gas
