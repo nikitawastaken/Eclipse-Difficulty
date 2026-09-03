@@ -732,18 +732,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	end
 
 	self.branchbank.random_environments = {
-		["branchbank01"] = 2,
-		["branchbank02"] = 2,
-		["branchbank03"] = 2,
-		["branchbank04"] = 2,
-		["branchbank05"] = 2,
-		["branchbank_old"] = 1,
+		["branchbank01"] = 3,
+		["branchbank02"] = 3,
+		["branchbank03"] = 3,
+		["branchbank04"] = 3,
+		["branchbank05"] = 3,
+		["branchbank_old"] = 2,
+		["branchbank01_night"] = 1,
 	}
 	self.four_stores.random_environments = {
-		["fourstores_01"] = 2,
-		["fourstores_02"] = 2,
-		["fourstores_03"] = 2,
-		["default"] = 1,
+		["fourstores_01"] = 3,
+		["fourstores_02"] = 3,
+		["fourstores_03"] = 3,
+		["default"] = 2,
+		["fourstores_01_night"] = 1,
+		["fourstores_02_night"] = 1,
 	}
 	self.jewelry_store.random_environments = {
 		["jewelry_01"] = 2,
@@ -857,6 +860,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.red2.random_environments = {
 		["first_world_bank_1"] = 3,
+		["first_world_bank_1_night"] = 1,
 		["first_world_bank_dwpj_bastard"] = additive_weight_value,
 		["first_world_bank_dwpj_matrix"] = additive_weight_value,
 	}
@@ -938,8 +942,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.arm_cro.random_environments = {
-		["arm_cro_1"] = 2,
-		["default"] = 1,
+		["arm_cro_1"] = 3,
+		["arm_cro_2"] = 3,
+		["default"] = 2,
+		["arm_cro_1_night"] = 1,
+		["arm_cro_2_night"] = 1,
 	}
 	self.arm_par.random_environments = {
 		["arm_par_1"] = 3,

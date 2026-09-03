@@ -9,7 +9,7 @@
 			<param key="sky_texture" value="units/world/architecture/suburbia/textures/sky_df"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_1224_clear_sky/sky_1224_clear_sky"/>
-			<param key="sun_ray_color_scale" value="3.5"/>
+			<param key="sun_ray_color_scale" value="4"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="1 0.91764712333679 0.78039222955704"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_zero_df"/>
@@ -28,7 +28,7 @@
 						<param key="ambient_color_scale" value="1.5"/>
 						<param key="ambient_color" value="0.031372550874949 0.031372550874949 0.031372550874949"/>
 						<param key="fog_max_range" value="500000"/>
-						<param key="bloom_threshold" value="0.19746121764183"/>
+						<param key="bloom_threshold" value="0.25250118970871"/>
 						<param key="sky_top_color_scale" value="0.60000002384186"/>
 						<param key="sky_top_color" value="0.67058825492859 0.80784320831299 1"/>
 						<param key="fog_min_range" value="645"/>
@@ -48,6 +48,10 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
+			<fog_processor>
+			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
