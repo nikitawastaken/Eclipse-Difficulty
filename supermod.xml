@@ -488,7 +488,11 @@
 					<file :name="weapon_trail_red.effect"/>
 					<file :name="weapon_trail_red_lmg.effect"/>
 
-					<file :name="projectile_trail_green.effect"/>
+					<file :name="grenade_trail_gas.effect"/>
+					<file :name="grenade_trail_electric.effect"/>
+					<file :name="grenade_trail_sicario_smoke.effect"/>
+					<file :name="grenade_trail_dynamite.effect"/>
+					<file :name="grenade_trail_incendiary.effect"/>
 
 					<file :name="flashlight/flashlight.effect"/>
 					<file :name="flashlight/flashlight_multicolor.effect"/>
