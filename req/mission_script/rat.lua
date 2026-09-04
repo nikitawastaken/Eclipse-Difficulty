@@ -76,6 +76,13 @@ return {
 	[400012] = { -- cooked bags
 		set_ponr_state = true,
 	},
+	-- Combine some navigation areas
+	[101786] = {
+		ai_area = {
+			{ 14, 23 },
+			{ 2, 3 },
+		},
+	},
 	-- Add new navlinks
 	[101497] = { -- 1stFloorNavlinks
 		on_executed = {
@@ -304,13 +311,8 @@ return {
 		reinforce = {
 			{
 				name = "such_a_nice_car",
-				force = 3,
+				force = 2,
 				position = Vector3(250, -1500, 900),
-			},
-			{
-				name = "such_an_ugly_car",
-				force = 3,
-				position = Vector3(-400, 1350, 1200),
 			},
 			{
 				name = "basement",
