@@ -77,7 +77,7 @@ return {
 		set_ponr_state = true,
 	},
 	-- Combine some navigation areas
-	[101786] = {
+	[100667] = {
 		ai_area = {
 			{ 14, 23 },
 			{ 2, 3 },
