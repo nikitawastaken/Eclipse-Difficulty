@@ -35,7 +35,7 @@ function EnvEffectTweakData:incendiary_fire()
 		player_damage = 2,
 		sound_event_impact_duration = 0,
 		burn_tick_period = 0.5,
-		burn_duration = 6,
+		burn_duration = 10,
 		dot_data_name = "proj_launcher_incendiary_arbiter_groundfire",
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 	}
@@ -56,7 +56,7 @@ function EnvEffectTweakData:incendiary_fire_arbiter()
 		player_damage = 2,
 		sound_event_impact_duration = 0,
 		burn_tick_period = 0.5,
-		burn_duration = 4,
+		burn_duration = 10,
 		dot_data_name = "proj_launcher_incendiary_arbiter_groundfire",
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 	}

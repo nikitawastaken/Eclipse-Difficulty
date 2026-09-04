@@ -926,6 +926,36 @@ function PlayerStandard:_start_action_throw_grenade(t, _)
 	self:_stance_entered()
 end
 
+-- Add projectile throw speed multipliers
+function PlayerStandard:_do_action_throw_projectile(t, input, drop_projectile)
+	local current_state_name = self._camera_unit:anim_state_machine():segment_state(self:get_animation("base"))
+
+	self._state_data.throwing_projectile = nil
+
+	local projectile_entry = managers.blackmarket:equipped_projectile()
+	local projectile_data = tweak_data.blackmarket.projectiles[projectile_entry]
+
+	local throw_speed_mul = projectile_data.throw_speed_mul or 1
+	
+	self._state_data.projectile_start_t = nil
+	self._state_data.projectile_expire_t = t + projectile_data.expire_t / throw_speed_mul
+	self._state_data.projectile_repeat_expire_t = t + math.min(projectile_data.repeat_expire_t, projectile_data.expire_t) / throw_speed_mul
+	self._state_data.projectile_global_value = projectile_data.anim_global_param or "projectile_frag"
+
+	self._camera_unit:anim_state_machine():set_global(self._state_data.projectile_global_value, 1)
+
+	self._state_data.projectile_reuse_t = nil
+
+	if projectile_data.use_interact_anim then
+		self._unit:network():send("sync_interaction_anim", false, projectile_entry)
+	else
+		managers.network:session():send_to_peers_synched("play_distance_interact_redirect", self._unit, "throw_grenade")
+	end
+
+	self._ext_camera:play_redirect(self:get_animation("projectile_throw"), throw_speed_mul)
+	self:_stance_entered()
+end
+
 function PlayerStandard:_update_equip_weapon_timers(t, input)
 	if self._unequip_weapon_expire_t and self._unequip_weapon_expire_t <= t then
 		if self._change_weapon_data.unequip_callback and not self._change_weapon_data.unequip_callback() then
@@ -981,7 +1011,6 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 	end
 end
 
--- melee overhaul code
 Hooks:PreHook(PlayerStandard, "_start_action_melee", "eclipse_pre_start_action_melee", function(self)
 	self._state_data.melee_running_wanted = true and self._running and not self._end_running_expire_t
 end)

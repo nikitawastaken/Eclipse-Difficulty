@@ -254,10 +254,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread = {
 					standing = 5,
 					crouching = 4,
-					steelsight = 1.7,
+					steelsight = 1.8,
 					moving_standing = 7.5,
 					moving_crouching = 6,
-					moving_steelsight = 1.7,
+					moving_steelsight = 1.8,
 				}
 				weap_data.spread_bloom = {
 					add = 1.5,
@@ -280,7 +280,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 1.2, 1.4, -0.3, 0.9 },
 				}
 				
-				weap_data._pickup_mul = 0.6
+				weap_data._pickup_mul = 2 / 3
 				
 				-- Set the default fire mode to 'single'.
 				weap_data.FIRE_MODE = "single"
@@ -295,15 +295,15 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread = {
 					standing = 3,
 					crouching = 2.5,
-					steelsight = 1.5,
+					steelsight = 1.6,
 					moving_standing = 4,
 					moving_crouching = 3,
-					moving_steelsight = 1.5,
+					moving_steelsight = 1.6,
 				}	
 				weap_data.spread_bloom = {
-					add = 0.75,
-					add_steelsight = 0.5,
-					max = 2,
+					add = 0.5,
+					add_steelsight = 0.25,
+					max = 1.5,
 					recovery = 4,
 					recovery_wait_multiplier = 2,
 				}
@@ -321,10 +321,10 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 0.8, 1, -0.6, 0.6 },
 				}
 				weap_data.kick.single = deep_clone(weap_data.kick)
-				weap_data.kick.single.standing = { 1, 1.2, -0.4, 0.4 }
+				weap_data.kick.single.standing = { 1, 1.2, -0.5, 0.5 }
 				weap_data.kick.single.crouching = weap_data.kick.single.standing
-				weap_data.kick.single.steelsight = { 0.7, 0.9, -0.3, 0.3 }		
-				weap_data.fire_mode_data.single = { spread_mul = 0.75 }
+				weap_data.kick.single.steelsight = { 0.8, 1, -0.3, 0.3 }		
+				weap_data.fire_mode_data.single = { spread_mul = 0.8 }
 			elseif cat_map.pistol then
 				weap_data.steelsight_enter_time = 0.2
 	
@@ -334,10 +334,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread = {
 					standing = 2.5,
 					crouching = 2,
-					steelsight = 1.3,
+					steelsight = 1.5,
 					moving_standing = 3,
 					moving_crouching = 3,
-					moving_steelsight = 1.3,
+					moving_steelsight = 1.5,
 				}	
 				weap_data.spread_bloom = {
 					add = 0.5,
@@ -355,13 +355,12 @@ function WeaponTweakData:_init_weapons(overrides)
 					standing = { 1.2, 1.4, -0.5, 0.5 },
 					crouching = { 1.2, 1.4, -0.5, 0.5 },
 					steelsight = { 0.8, 1, -0.3, 0.3 },
-					moving_standing = { 1.2, 1.4, -0.5, 0.5 },
-					moving_crouching = { 1.2, 1.4, -0.5, 0.5 },
+					moving_standing = { 1.4, 1.6, -0.5, 0.5 },
+					moving_crouching = { 1.4, 1.6, -0.5, 0.5 },
 					moving_steelsight = { 1, 1.2, -0.5, 0.5 },
 				}
 				
-				weap_data._pickup_mul = 1.33
-				weap_data._total_ammo_mul = weap_data.auto and 1 or 1.25
+				weap_data._pickup_mul = 4 / 3
 				
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 600
@@ -375,10 +374,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread = {
 					standing = 4.5,
 					crouching = 3,
-					steelsight = 1.5,
+					steelsight = 1.6,
 					moving_standing = 6,
 					moving_crouching = 6,
-					moving_steelsight = 1.5,
+					moving_steelsight = 1.6,
 				}	
 				weap_data.spread_bloom = {
 					add = 2,
@@ -389,16 +388,16 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				
 				weap_data.kick = {
-					standing = { 1.8, 2.4, 0.6, -0.2 },
-					crouching = { 1.8, 2.4, 0.6, -0.2 },
-					steelsight = { 1.6, 2, 0.4, -0.2 },
+					standing = { 2, 2.4, 0.6, -0.2 },
+					crouching = { 2, 2.4, 0.6, -0.2 },
+					steelsight = { 1.8, 2, 0.4, -0.2 },
 					moving_standing = { 2.4, 3, 0.6, -0.2 },
 					moving_crouching = { 2.4, 3, 0.6, -0.2 },
-					moving_steelsight = { 1.8, 2.4, 0.6, -0.2 },
+					moving_steelsight = { 2, 2.4, 0.6, -0.2 },
 				}
 				
-				weap_data._pickup_mul = 0.66
-			
+				weap_data._pickup_mul = 1 / 2
+	
 				if weap_data.fire_mode_data and not weap_data.auto then
 					weap_data.fire_mode_data.fire_rate = 60 / 300
 				end
@@ -409,17 +408,17 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.suppression = 14
 				
 				weap_data.spread = {
-					standing = 2,
-					crouching = 1.75,
-					steelsight = 1.3,
+					standing = 2.25,
+					crouching = 2,
+					steelsight = 1.4,
 					moving_standing = 2.5,
 					moving_crouching = 2.5,
-					moving_steelsight = 1.3,
+					moving_steelsight = 1.4,
 				}	
 				weap_data.spread_bloom = {
-					add = 0.75,
-					add_steelsight = 0.5,
-					max = 2,
+					add = 0.5,
+					add_steelsight = 0.25,
+					max = 1.5,
 					recovery = 4,
 					recovery_wait_multiplier = 2,
 				}
@@ -437,12 +436,12 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 0.5, 0.7, -0.8, 0.8 },
 				}
 				weap_data.kick.single = deep_clone(weap_data.kick)
-				weap_data.kick.single.standing = { 0.7, 0.8, -0.6, 0.6 }
+				weap_data.kick.single.standing = { 0.6, 0.8, -0.6, 0.6 }
 				weap_data.kick.single.crouching = weap_data.kick.single.standing
-				weap_data.kick.single.steelsight = { 0.5, 0.6, -0.4, 0.4 }
-				weap_data.fire_mode_data.single = { spread_mul = 0.75 }
+				weap_data.kick.single.steelsight = { 0.5, 0.7, -0.4, 0.4 }
+				weap_data.fire_mode_data.single = { spread_mul = 0.8 }
 				
-				weap_data._total_ammo_mul = 1.2
+				weap_data._total_ammo_mul = 1.15
 			elseif cat_map.shotgun then
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 5
@@ -474,8 +473,9 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.rays = 8	
 				end
 				
-				weap_data._total_ammo_mul = (1 / weap_data.rays) * 1.25
-				weap_data._pickup_mul = (1 / weap_data.rays) * 1.33
+				weap_data._total_ammo_mul = (1 / weap_data.rays) * (5 / 4)
+				weap_data._pickup_mul = (1 / weap_data.rays) * (4 / 3)
+				
 			elseif cat_map.lmg then
 				weap_data.steelsight_enter_time = 0.45
 	
@@ -483,13 +483,13 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.suppression = 4
 				
 				weap_data.spread = {
-					standing = 3.5,
-					crouching = 2.5,
+					standing = 4,
+					crouching = 3,
 					steelsight = 1.5,
-					moving_standing = 4.5,
-					moving_crouching = 3.5,
+					moving_standing = 6,
+					moving_crouching = 6,
 					moving_steelsight = 1.5,
-					bipod = 2,
+					bipod = 1.5,
 				}	
 				
 				weap_data.kick = {
@@ -501,15 +501,16 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 0.3, 0.6, -0.8, 1 },
 				}
 				
-				weap_data._total_ammo_mul = 1.5
-				weap_data._pickup_mul = 1.2
+				weap_data._total_ammo_mul = 3 / 2
+				weap_data._pickup_mul = 5 / 4
 				
 				weap_data.ammo_bag_consumption_mul = 1.5	
 				
 				-- Standardise bipod handling
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15
-				weap_data.bipod_deploy_multiplier = 1				
+				weap_data.bipod_deploy_multiplier = 1		
+				
 			elseif cat_map.minigun then
 				weap_data.steelsight_enter_time = 0.45
 	
@@ -517,8 +518,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.suppression = 4
 				
 				weap_data.spread = {
-					standing = 4,
-					crouching = 4,
+					standing = 4.5,
+					crouching = 4.5,
 					steelsight = 1.5,
 					moving_standing = 6,
 					moving_crouching = 6,
@@ -536,6 +537,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				
 				weap_data._total_ammo_mul = 2
 				weap_data._pickup_mul = 0
+				
 			elseif cat_map.snp then
 				weap_data.steelsight_enter_time = 0.4
 	
@@ -560,10 +562,11 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 2.5, 3, -0.4, 0.4 },
 				}
 				
-				weap_data._total_ammo_mul = 0.5
-				weap_data._pickup_mul = 0.6
+				weap_data._total_ammo_mul = 1 / 2
+				weap_data._pickup_mul = 3 / 5
 				weap_data._total_ammo_scale = { 2, 4, 0.5, 4 }
 				weap_data._pickup_scale = { 8, 6, 0.5, 4 }
+				
 			elseif cat_map.bow then
 				weap_data.stats.alert_size = 7
 				weap_data.stats.suppression = 3
@@ -584,7 +587,9 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_crouching = { 2.9, 3, -0.5, 0.5 },
 					moving_steelsight = { 2.9, 3, -0.5, 0.5 },
 				}
-				
+
+				weap_data._total_ammo_mul = 3 / 4				
+				weap_data._pickup_mul = 0
 				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
 				
 				weap_data.armor_piercing_chance = 1
@@ -599,6 +604,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				if weap_data.charge_data and weap_data.charge_data.max_t then
 					weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
 				end
+				
 			elseif cat_map.crossbow or cat_map.dartgun then
 				weap_data.stats.alert_size = 7
 				weap_data.stats.suppression = 3
@@ -620,12 +626,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { -0.2, 0.4, -1, 1 },
 				}	
 				
-				weap_data._total_ammo_mul = 0.75
+				weap_data._total_ammo_mul = 1 / 2
+				weap_data._pickup_mul = 0
 				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
 
 				weap_data.armor_piercing_chance = 1
 			
 				weap_data._clips_max_round = 2
+				
 			elseif cat_map.grenade_launcher then
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 5
@@ -648,8 +656,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 2.9, 3, -0.5, 0.5 },
 				}
 				
-				weap_data._total_ammo_mul = weap_data._total_ammo_mul or (20 / 30)
-				weap_data._pickup_mul = weap_data._pickup_mul or (10 / 40)
+				weap_data._total_ammo_mul = 2 / 3
+				weap_data._pickup_mul = 1 / 4
 
 				weap_data.ammo_bag_consumption_mul = 1.5
 
@@ -661,6 +669,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				if weap_data.rays then
 					weap_data.rays = 8	
 				end
+				
 			elseif cat_map.flamethrower then
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 13
@@ -682,9 +691,10 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_crouching = { 0, 0, 0, 0 },
 					moving_steelsight = { 0, 0, 0, 0 },
 				}
+		
+				weap_data._total_ammo_mul = 1 / 2
+				weap_data._pickup_mul = 0
 				
-				weap_data._total_ammo_mul = weap_data._total_ammo_mul or 0.5
-				weap_data._pickup_mul = weap_data._pickup_mul or 0
 			elseif cat_map.saw then
 				weap_data.stats.alert_size = 7
 				weap_data.stats.suppression = 7
@@ -708,8 +718,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					on_hit = { 1.4, -0.5, -0.4, 0.4 }
 				}
 				
-				weap_data._total_ammo_mul = weap_data._total_ammo_mul or is_primary and 1.5 or 3
-				weap_data._pickup_mul = weap_data._pickup_mul or 0
+				weap_data._total_ammo_mul = weap_data._total_ammo_mul or is_primary and (3 / 2) or 3
+				weap_data._pickup_mul = 0
 
 				weap_data.hit_alert_size_increase = 2
 				
@@ -896,7 +906,7 @@ function WeaponTweakData:_init_weapons(overrides)
 										
 					-- Increase spread and set a standard 'steelsight' spread multiplier
 					for k, v in pairs(weap_data.spread) do
-						weap_data.spread[k] = v + 1
+						weap_data.spread[k] = v + 0.75
 					end
 					
 					weap_data.spread.steelsight = 1.5
@@ -932,7 +942,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.TOTAL_DAMAGE = weap_data.TOTAL_DAMAGE * self.AP_TOTAL_DMG_MUL
 				weap_data.PICKUP_DAMAGE = weap_data.PICKUP_DAMAGE * self.AP_PICKUP_DMG_MUL
 				-- Increase Ammo Bag ammo consumption
-				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) * 1.25
+				weap_data.ammo_bag_consumption_mul = (weap_data.ammo_bag_consumption_mul or 1) + 0.25
 			end
 			
 			-- Penalties applied to weapons with no ammo pickup.
@@ -967,7 +977,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			end
 
 			if weap_data.AMMO_PICKUP and weap_data.AMMO_PICKUP[2] > 0 then
-				local ammo_pickup_ratio = weap_data.ammo_pickup_ratio or { 0.5, 1 }
+				local ammo_pickup_ratio = weap_data._ammo_pickup_ratio or { 0.5, 1 }
 				local pickup_dmg_min = weap_data.PICKUP_DAMAGE * ammo_pickup_ratio[1]
 				local pickup_dmg_max = weap_data.PICKUP_DAMAGE * ammo_pickup_ratio[2]
 				
@@ -1612,15 +1622,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.non_standard_fire_rate = true
 
 	self._init_stat_overrides.deagle = function()
+		self.deagle.steelsight_enter_time = 0.25
 		self.deagle.stats.alert_size = 7
 		self.deagle.stats.suppression = 7
 		self.deagle.spread = {
 			standing = 4.5,
 			crouching = 3,
-			steelsight = 1.5,
+			steelsight = 1.6,
 			moving_standing = 6,
 			moving_crouching = 6,
-			moving_steelsight = 1.5,
+			moving_steelsight = 1.6,
 		}	
 		self.deagle.spread_bloom = {
 			add = 2,
@@ -1628,17 +1639,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 			max = 3,
 			recovery = 1.25,
 			recovery_wait_multiplier = 1.75,
-		}
+		}		
 		self.deagle.kick = {
-			standing = { 1.8, 2.4, 0.6, -0.2 },
-			crouching = { 1.8, 2.4, 0.6, -0.2 },
-			steelsight = { 1.6, 2, 0.4, -0.2 },
+			standing = { 2, 2.4, 0.6, -0.2 },
+			crouching = { 2, 2.4, 0.6, -0.2 },
+			steelsight = { 1.8, 2, 0.4, -0.2 },
 			moving_standing = { 2.4, 3, 0.6, -0.2 },
 			moving_crouching = { 2.4, 3, 0.6, -0.2 },
-			moving_steelsight = { 1.8, 2.4, 0.6, -0.2 },
-		}
+			moving_steelsight = { 2, 2.4, 0.6, -0.2 },
+		}	
+		self.deagle._pickup_mul = 1 / 2
 		self.deagle._total_ammo_mul = 1
-		self.deagle._pickup_mul = 0.66
 		self.deagle.shake.fire_multiplier = 1.3
 	end
 
@@ -2048,8 +2059,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ultima.use_data.selection_index = 2
 	self.ultima.CLIP_AMMO_MAX = 7
 	self.ultima.stats.damage = 12
-	self.ultima.stats.spread = 13
-	self.ultima.stats.recoil = 10
+	self.ultima.stats.spread = 14
+	self.ultima.stats.recoil = 8
 	self.ultima.stats.concealment = 21
 	self.ultima.fire_mode_data.fire_rate = 60 / 300
 	self.ultima.reload_speed_multiplier = 0.7
@@ -2065,7 +2076,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Locomotive
 	self.serbu.CLIP_AMMO_MAX = 4
 	self.serbu.stats.damage = 16
-	self.serbu.stats.spread = 12
+	self.serbu.stats.spread = 11
 	self.serbu.stats.recoil = 9
 	self.serbu.stats.concealment = 24
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
@@ -2074,7 +2085,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 14
 	self.ksg.stats.damage = 16
-	self.ksg.stats.spread = 14
+	self.ksg.stats.spread = 13
 	self.ksg.stats.recoil = 8
 	self.ksg.stats.concealment = 22
 	self.ksg.fire_mode_data.fire_rate = 60 / 120
@@ -2089,15 +2100,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.judge.fire_mode_data.fire_rate = 60 / 300
 
 	self._init_stat_overrides.judge = function()
-		self.judge.kick = {
-			standing = { 2.9, 3, -0.5, 0.5 },
-			crouching = self.judge.kick.standing,
-			steelsight = self.judge.kick.standing,
-			moving_standing = { 2.9, 3, -0.5, 0.5 },
-			moving_crouching = self.judge.kick.moving_standing,
-			moving_steelsight = self.judge.kick.moving_standing,
-		}
-		self.judge._pickup_mul = (1 / self.judge.rays) * 0.85
+		self.judge._pickup_mul = (1 / self.judge.rays) * (4 / 5)
 		self.judge.damage_near = 1000
 		self.judge.damage_far = 2000
 	end
@@ -2114,17 +2117,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 
 	self._init_stat_overrides.x_judge = function()
-		self.x_judge.kick = {
-			standing = { 2.9, 3, -0.5, 0.5 },
-			crouching = self.x_judge.kick.standing,
-			steelsight = self.x_judge.kick.standing,
-			moving_standing = { 2.9, 3, -0.5, 0.5 },
-			moving_crouching = self.x_judge.kick.moving_standing,
-			moving_steelsight = self.x_judge.kick.moving_standing,
-		}
-		self.x_judge._pickup_mul = (1 / self.x_judge.rays) * 0.85
-		self.x_judge.damage_near = 1000
-		self.x_judge.damage_far = 2000
+		self.judge._pickup_mul = (1 / self.judge.rays) * (4 / 5)
+		self.judge.damage_near = 1000
+		self.judge.damage_far = 2000
 	end
 
 	-- Mosconi Tactical

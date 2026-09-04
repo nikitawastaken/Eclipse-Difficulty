@@ -1,15 +1,14 @@
 Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_projectiles", function(self, tweak_data)
-	-- 45s injector cooldown
-	self.projectiles.chico_injector.base_cooldown = 45
-	-- 16s flask cooldown
-	self.projectiles.damage_control.base_cooldown = 16
+	-- Tweak cooldowns
+	self.projectiles.chico_injector.base_cooldown = 45 -- Kingpin Injector
+	self.projectiles.damage_control.base_cooldown = 16 -- Stoic Hip Flask
 
 	-- Remove the projectile anti-cheat
 	for k, v in pairs(self.projectiles) do
 		v.time_cheat = nil
 	end
 
-	-- Set grenade amounts
+	-- Set projectile amounts
 	self.projectiles.frag.max_amount = 3
 	self.projectiles.frag_com.max_amount = 3
 	self.projectiles.dada_com.max_amount = 3
@@ -20,6 +19,11 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.poison_gas_grenade.max_amount = 3
 	self.projectiles.wpn_gre_electric.max_amount = 3
 
+	-- Set projectile throwing speeds
+	self.projectiles.wpn_prj_four.throw_speed_mul = 4 / 3
+	self.projectiles.wpn_prj_hur.throw_speed_mul = 4 / 3
+	self.projectiles.wpn_prj_target.throw_speed_mul = 4 / 3
+			
 	-- Give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
 	self.projectiles.fir_com.animation = self.projectiles.frag_com.animation
@@ -31,7 +35,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	-- Increase the Laser Chronometer's fire rate but decrease the damage (higher ammo consumption)
 	self.projectiles.laser_watch.reuse_expire_t = self.projectiles.laser_watch.reuse_expire_t / 2
 
-	-- Increase Flashbang expire_t and repeat_expire_t to match other grenades
+	-- Increase the Flashbang's expire_t to match other grenades
 	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
 
 	-- Give Sicario's Smoke Grenade a sound when smoke is ready to use (like any cd-based throwables have)
@@ -81,6 +85,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.dart_arrow.local_unit = "units/pd2_dlc_esp/weapons/wpn_prj_dart_arrow/wpn_prj_dart_arrow_local"
 	table.insert(self._projectiles_index, "dart_arrow")
 
+	-- Cluster Grenades for the Carpet Bombing skill
 	self.projectiles.cluster = {
 		name_id = "bm_grenade_cluster",
 		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",

@@ -23,12 +23,12 @@ end
 local function create_incendiary_grenade(base_grenade)
 	local incendiary_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
-	local tier_index = math.floor(damage / 12)
-	local tier = tier_index <= 2 and "light" or "heavy"
+	local tier_index = math.floor(damage / 15)
+	local tier = tier_index > 2 and "heavy" or "light"
 
-	incendiary_grenade.damage = damage / 12
+	incendiary_grenade.damage = damage / 10
 	incendiary_grenade.burn_tick_period = 0.5
-	incendiary_grenade.burn_duration = math.map_range(damage, 24, 48, 5, 10)
+	incendiary_grenade.burn_duration = math.map_range(damage, 18, 36, 5, 10)
 	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. tier
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 
@@ -50,13 +50,13 @@ end
 local function create_poison_grenade(base_grenade)
 	local poison_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
-	local tier_index = math.floor(damage / 12)
-	local tier = tier_index <= 2 and "light" or "heavy"
+	local tier_index = math.floor(damage / 15)
+	local tier = tier_index > 2 and "heavy" or "light"
 
-	poison_grenade.damage = damage / 12
+	poison_grenade.damage = damage / 10
 	poison_grenade.poison_gas_range = 300
 	poison_grenade.poison_gas_tick_time = 0.25
-	poison_grenade.poison_gas_duration = math.map_range(damage, 24, 48, 10, 15)
+	poison_grenade.poison_gas_duration = math.map_range(damage, 18, 36, 10, 15)
 	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration / 10
 	poison_grenade.poison_gas_dot_data_name = "proj_launcher_poison_" .. tier
 	poison_grenade.projectile_trail = true
@@ -174,19 +174,23 @@ tweak_data.projectiles.dart_daze.damage = 0
 -- Throwing Knives/Axes/Stars etc.
 
 -- Shuriken
-tweak_data.projectiles.wpn_prj_four.damage = 4
+tweak_data.projectiles.wpn_prj_four.damage = 2
 
 -- Ace of Spades
 tweak_data.projectiles.wpn_prj_ace.damage = 1
 
 -- Javelin
-tweak_data.projectiles.wpn_prj_jav.damage = 24
+tweak_data.projectiles.wpn_prj_jav.damage = 16
 
 --Throwing Knife
-tweak_data.projectiles.wpn_prj_hur.damage = 12
+tweak_data.projectiles.wpn_prj_hur.damage = 8
 
 -- Throwing Axe
-tweak_data.projectiles.wpn_prj_target.damage = 12
+tweak_data.projectiles.wpn_prj_target.damage = 8
+
+-- The Snowball
+tweak_data.projectiles.xmas_snowball.damage = 4
+tweak_data.projectiles.xmas_snowball.curve_pow = 0.5
 
 -- Increase the Laser Chronometer's fire rate but decrease the damage (higher ammo consumption)
 tweak_data.projectiles.laser_watch.damage = tweak_data.projectiles.laser_watch.damage / 2
@@ -231,17 +235,13 @@ tweak_data.projectiles.dada_com.player_damage = 225
 tweak_data.projectiles.dada_com.curve_pow = 1 -- 3
 tweak_data.projectiles.dada_com.range = 600
 
--- The Snowball
-tweak_data.projectiles.xmas_snowball.damage = 4
-tweak_data.projectiles.xmas_snowball.curve_pow = 1
-
 -- Viper Grenade
 tweak_data.projectiles.poison_gas_grenade.damage = 1
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
 tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
+tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.25
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 20
-tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 5
-tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.5
+tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = tweak_data.projectiles.poison_gas_grenade.poison_gas_duration / 10
 
 -- FF related flags
 tweak_data.projectiles.poison_gas_grenade.gas_player_damage = tweak_data.projectiles.cs_grenade_quick.damage_per_tick * 0.5 -- Tear gas dmg when player inside viper grenade
@@ -249,8 +249,8 @@ tweak_data.projectiles.poison_gas_grenade.damage_tick_period = tweak_data.projec
 tweak_data.projectiles.poison_gas_grenade.radius_blurzone_multiplier = tweak_data.projectiles.cs_grenade_quick.radius_blurzone_multiplier -- Blurzone modifier
 
 -- Impact Grenade (formerly the Adhesive Grenade)
-tweak_data.projectiles.sticky_grenade.damage = 36
-tweak_data.projectiles.sticky_grenade.curve_pow = 1
+tweak_data.projectiles.sticky_grenade.damage = 24
+tweak_data.projectiles.sticky_grenade.curve_pow = 0.5
 tweak_data.projectiles.sticky_grenade.range = 200
 tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
 

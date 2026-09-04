@@ -235,6 +235,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	table.delete(self.wpn_fps_smg_x_mac10.uses_parts, "wpn_fps_smg_mac10_s_fold")
 	table.delete(self.wpn_fps_smg_x_mac10.uses_parts, "wpn_fps_smg_mac10_s_skel")
 
+	table.delete(self.wpn_fps_smg_x_baka.default_blueprint, "wpn_fps_smg_baka_s_folded_vanilla")
+
 	table.delete(self.wpn_fps_smg_x_sr2.uses_parts, "wpn_fps_smg_sr2_s_unfolded")
 
 	table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
@@ -727,8 +729,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_usp_b_expert.stats.spread = 1
 	self.parts.wpn_fps_pis_usp_b_expert.stats.concealment = -1
 
-	self.parts.wpn_fps_pis_usp_b_match.stats.recoil = 3
-	self.parts.wpn_fps_pis_usp_b_match.stats.concealment = -3
+	self.parts.wpn_fps_pis_usp_b_match.stats.recoil = 2
+	self.parts.wpn_fps_pis_usp_b_match.stats.concealment = -2
 
 	self.parts.wpn_fps_pis_usp_m_extended.stats.extra_ammo = 3
 
@@ -746,6 +748,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_g22c_b_long.stats.spread = 1
 	self.parts.wpn_fps_pis_g22c_b_long.stats.recoil = -1
 
+	self.parts.wpn_fps_pis_hs2000_sl_custom.stats.spread = -1
+	self.parts.wpn_fps_pis_hs2000_sl_custom.stats.concealment = 1
+
 	self.parts.wpn_fps_pis_c96_m_extended.stats.extra_ammo = 5
 
 	self.parts.wpn_fps_pis_g26_m_mag_33rnd = deep_clone(self.parts.wpn_fps_pis_g18c_m_mag_33rnd)
@@ -753,9 +758,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_g26_m_mag_33rnd.custom_stats = { ammo_offset = 23 }
 
 	self.parts.wpn_fps_pis_g26_m_contour.stats.recoil = 0
-
-	self.parts.wpn_fps_pis_hs2000_sl_custom.stats.spread = -1
-	self.parts.wpn_fps_pis_hs2000_sl_custom.stats.concealment = 1
 
 	self.parts.wpn_fps_pis_hs2000_m_extended.stats.extra_ammo = 4
 
