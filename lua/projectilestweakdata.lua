@@ -23,7 +23,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.wpn_prj_four.throw_speed_mul = 4 / 3
 	self.projectiles.wpn_prj_hur.throw_speed_mul = 4 / 3
 	self.projectiles.wpn_prj_target.throw_speed_mul = 4 / 3
-			
+
 	-- Give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
 	self.projectiles.fir_com.animation = self.projectiles.frag_com.animation

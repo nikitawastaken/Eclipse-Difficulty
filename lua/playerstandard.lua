@@ -936,7 +936,7 @@ function PlayerStandard:_do_action_throw_projectile(t, input, drop_projectile)
 	local projectile_data = tweak_data.blackmarket.projectiles[projectile_entry]
 
 	local throw_speed_mul = projectile_data.throw_speed_mul or 1
-	
+
 	self._state_data.projectile_start_t = nil
 	self._state_data.projectile_expire_t = t + projectile_data.expire_t / throw_speed_mul
 	self._state_data.projectile_repeat_expire_t = t + math.min(projectile_data.repeat_expire_t, projectile_data.expire_t) / throw_speed_mul
