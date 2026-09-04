@@ -1509,8 +1509,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.defense_up.multipro = "25%"
 
 	-- Daredevil
-	self.values.player.interacting_damage_multiplier[1] = 0.9
-	self.values.player.total_interaction_timer_multiplier = { 0.9 }
+	self.values.player.interacting_damage_multiplier[1] = 0.75
+	self.values.player.total_interaction_timer_multiplier = { 0.75 }
 	self.definitions.player_total_interaction_timer_multiplier = {
 		name_id = "menu_player_total_interaction_timer_multiplier",
 		category = "feature",
