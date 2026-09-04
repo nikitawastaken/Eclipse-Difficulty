@@ -1998,7 +1998,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.striker.stats.recoil = 12
 	self.striker.stats.concealment = 23
 	self.striker.fire_mode_data.fire_rate = 60 / 450
-	self.striker.reload_speed_multiplier = 1.3
+	self.striker.reload_speed_multiplier = 1.25
 
 	-- Steakout
 	self.aa12.CLIP_AMMO_MAX = 8
@@ -2007,7 +2007,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.aa12.stats.recoil = 13
 	self.aa12.stats.concealment = 16
 	self.aa12.fire_mode_data.fire_rate = 60 / 300
-
+	self.aa12.reload_not_empty_speed_multiplier = 1.1
+	self.aa12.reload_empty_speed_multiplier = 1.25	
+	
 	-- Grimm
 	self.basset.CLIP_AMMO_MAX = 7
 	self.basset.stats.damage = 10
