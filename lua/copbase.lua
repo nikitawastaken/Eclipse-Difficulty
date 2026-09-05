@@ -177,7 +177,7 @@ function CopBase:_set_cloaker_light_color()
 		for k, v in pairs(lights) do
 			v:set_color(Color(hsv_to_rgb(unpack(new_RGB))))
 		end
-	end	
+	end
 end
 
 -- Check for weapon changes and run unit sequences
@@ -186,7 +186,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 
 	-- Always glow cloakers (like in PDTH)
 	self:set_cloaker_goggles_on(true)
-	
+
 	self:_set_cloaker_light_color()
 
 	if Network:is_client() then
