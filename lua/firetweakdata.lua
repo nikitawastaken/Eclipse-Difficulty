@@ -54,7 +54,7 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_damage = 2
 	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_trigger_chance = 1
-	
+
 	self.dot_entries.fire.proj_launcher_incendiary_light = clone(self.dot_entries.fire.proj_launcher_incendiary)
 	self.dot_entries.fire.proj_launcher_incendiary_light.dot_damage = 2
 

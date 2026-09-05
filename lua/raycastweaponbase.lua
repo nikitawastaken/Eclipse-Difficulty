@@ -770,7 +770,7 @@ function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damag
 	if defense_data and defense_data ~= "friendly_fire" then
 		local char_dmg_ext = alive(col_ray.unit) and col_ray.unit:character_damage()
 
-		if char_dmg_ext and char_dmg_ext.damage_dot and (not char_dmg_ext.dead or not char_dmg_ext:dead()) then		
+		if char_dmg_ext and char_dmg_ext.damage_dot and (not char_dmg_ext.dead or not char_dmg_ext:dead()) then
 			local fs_incendiary_dot = {
 				PROCESSED = true,
 				name = "firestorm",
