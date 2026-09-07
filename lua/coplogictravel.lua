@@ -425,7 +425,7 @@ function CopLogicTravel._on_destination_reached(data, ...)
 end
 
 -- Play generic radio report chatter during travel while unalerted
-Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(data)
+Hooks:PostHook(CopLogicTravel, "queued_update", "eclipse_queued_update", function(data)
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
@@ -439,10 +439,13 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 
 		local focus_enemy = data.attention_obj
 		local verified = focus_enemy and focus_enemy.verified
-		local deployable_type = table.random(deployable_types)
+		
+		if not verified and not data.is_converted and not data.cool then
+			local deployable_type = table.random(deployable_types)
 
-		if not verified and deployable_type and data.char_tweak.chatter and data.char_tweak.chatter[deployable_type] then
-			managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, deployable_type)
+			if deployable_type and data.char_tweak.chatter and data.char_tweak.chatter[deployable_type] then
+				managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, deployable_type)
+			end
 		end
 	end
 end)

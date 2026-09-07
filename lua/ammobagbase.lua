@@ -27,15 +27,8 @@ function AmmoBagBase:_take_ammo(unit)
 	return taken
 end
 
-Hooks:PreHook(AmmoBagBase, "_set_empty", "eclipse__set_empty", function(self)
+Hooks:PreHook(AmmoBagBase, "_set_empty", "eclipse_pre_set_empty", function(self)
 	managers.network:session():send_to_peers_synched("sync_ammo_bag_ammo_taken", self._unit, self._max_ammo_amount + 1)
-end)
-
-Hooks:PostHook(AmmoBagBase, "_set_empty", "eclipse__set_empty", function(self)
-	if Network:is_server() then
-		-- Unregister the deployable for voice lines and reinforce
-		managers.groupai:state():unregister_deployable(self._unit:key())
-	end
 end)
 
 -- Thanks Hoppip for this one too
@@ -46,7 +39,7 @@ function AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, peer_id, bullet_storm_lev
 
 	managers.network:session():send_to_peers_synched("sync_ammo_bag_setup", unit, ammo_upgrade_lvl, auto_reload or false, peer_id or 0, bullet_storm_level or 0)
 	unit:base():setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
-
+	
 	return unit
 end
 
@@ -85,14 +78,6 @@ function AmmoBagBase:setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
 	end
-
-	if Network:is_server() then
-		-- Register the deployable for voice lines and reinforce
-		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
-
-		managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
-	end
 end
 
 function AmmoBagBase:take_ammo(unit)
@@ -117,9 +102,25 @@ function AmmoBagBase:take_ammo(unit)
 
 	if self._bullet_storm_level and self._bullet_storm_level > 0 then
 		bullet_storm = self._BULLET_STORM[self._bullet_storm_level] * taken
-
-		print("[BULLETSTORM] bullet_storm", bullet_storm, " - take ", taken)
 	end
 
 	return taken > 0, bullet_storm, self._auto_reload
 end
+
+-- Register the deployable for voice lines and reinforce
+Hooks:PostHook(AmmoBagBase, "spawn", "eclipse_spawn", function(pos, rot, ammo_upgrade_lvl, peer_id)
+	local unit = Hooks:GetReturn()
+
+	if peer_id then
+		-- Register the deployable for voice lines and reinforce
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(unit:position(), true)
+		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
+
+		managers.groupai:state():register_deployable(unit, area, "ammo_bag")
+	end
+end)
+
+-- Unregister the deployable for voice lines and reinforce
+Hooks:PostHook(AmmoBagBase, "_set_empty", "eclipse_post_set_empty", function(self)
+	managers.groupai:state():unregister_deployable(self._unit:key())
+end)

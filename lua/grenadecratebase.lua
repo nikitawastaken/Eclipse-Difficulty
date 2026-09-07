@@ -83,14 +83,6 @@ function GrenadeCrateBase:setup(grenade_upgrade_lvl)
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
 	end
-
-	if Network:is_server() then
-		-- Register the deployable for voice lines and reinforce
-		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
-
-		managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
-	end
 end
 
 function GrenadeCrateBase:sync_setup(grenade_upgrade_lvl, peer_id)
@@ -185,12 +177,25 @@ function GrenadeCrateBase:_set_empty()
 
 		unit:set_enabled(false)
 	end
-
-	if Network:is_server() then
-		-- Unregister the deployable for voice lines and reinforce
-		managers.groupai:state():unregister_deployable(self._unit:key())
-	end
 end
+
+-- Register the deployable for voice lines and reinforce
+Hooks:PostHook(GrenadeCrateBase, "spawn", "eclipse_spawn", function(pos, rot, grenade_upgrade_lvl, peer_id)
+	local unit = Hooks:GetReturn()
+
+	if peer_id then
+		-- Register the deployable for voice lines and reinforce
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(unit:position(), true)
+		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
+
+		managers.groupai:state():register_deployable(unit, area, "grenade_case")
+	end
+end)
+
+-- Unregister the deployable for voice lines and reinforce
+Hooks:PostHook(GrenadeCrateBase, "_set_empty", "eclipse_post_set_empty", function(self)
+	managers.groupai:state():unregister_deployable(self._unit:key())
+end)
 
 -- Ordnance bag behaves as a reskin to the grenade case
 function GrenadeCrateDeployableBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id)
@@ -255,14 +260,6 @@ function GrenadeCrateDeployableBase:setup(grenade_upgrade_lvl)
 
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
-	end
-
-	if Network:is_server() then
-		-- Register the deployable for voice lines and reinforce
-		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
-		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
-
-		managers.groupai:state():register_deployable(self._unit, area, self:get_name_id())
 	end
 end
 
@@ -357,9 +354,22 @@ function GrenadeCrateDeployableBase:_set_empty()
 
 		unit:set_enabled(false)
 	end
-
-	if Network:is_server() then
-		-- Unregister the deployable for voice lines and reinforce
-		managers.groupai:state():unregister_deployable(self._unit:key())
-	end
 end
+
+-- Register the deployable for voice lines and reinforce
+Hooks:PostHook(GrenadeCrateDeployableBase, "spawn", "eclipse_spawn", function(pos, rot, grenade_upgrade_lvl, peer_id)
+	local unit = Hooks:GetReturn()
+
+	if peer_id then
+		-- Register the deployable for voice lines and reinforce
+		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(unit:position(), true)
+		local area = managers.groupai:state():get_area_from_nav_seg_id(nav_seg_id)
+
+		managers.groupai:state():register_deployable(unit, area, "grenade_crate")
+	end
+end)
+
+-- Unregister the deployable for voice lines and reinforce
+Hooks:PostHook(GrenadeCrateDeployableBase, "_set_empty", "eclipse_post_set_empty", function(self)
+	managers.groupai:state():unregister_deployable(self._unit:key())
+end)
