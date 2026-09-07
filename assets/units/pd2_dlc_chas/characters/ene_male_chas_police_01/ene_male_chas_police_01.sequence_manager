@@ -318,39 +318,6 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'female_chas_police_1'" once="true" triggable="true">		
-			<object 			enabled="true" name="'g_gear_chas_police_a'" />
-			<object 			enabled="true" name="'g_gear_chas_police_a_lod1'" />
-			
-			<run_sequence 		name="'chas_police'" />
-			<run_sequence 		name="'badges_chas_police'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			<run_sequence 		name="'baton'" />
-			<run_sequence 		name="'belt'" />
-			<run_sequence 		name="'handcuffs'" />
-			
-			<run_sequence 		name="'random_body_a'" />
-			<run_sequence 		name="'random_tie_rare'" />
-			<run_sequence 		name="'random_watch_common'" />
-			<run_sequence 		name="'random_shades_common'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'female_chas_police_2'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_gear_chas_police_b'" />
-			<object 			enabled="true" name="'g_gear_chas_police_b_lod1'" />
-			
-			<run_sequence 		name="'chas_police'" />
-			<run_sequence 		name="'badges_chas_police'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			<run_sequence 		name="'belt'" />
-			
-			<run_sequence 		name="'radio_side'" />
-			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'random_tie_common'" />
-			<run_sequence 		name="'random_watch_rare'" />
-			<run_sequence 		name="'random_shades_rare'" />
-		</sequence>
-
 		<sequence editable_state="true" name="'male_ranc_ranger_1'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_chas_police_fat_a'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_chas_police_fat_a_lod1'" />			
@@ -423,39 +390,6 @@
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_shades_aviator_rare'" />
-		</sequence>
-	
-		<sequence editable_state="true" name="'female_ranc_ranger_1'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_gear_chas_police_a'" />
-			<object 			enabled="true" name="'g_gear_chas_police_a_lod1'" />
-			
-			<run_sequence 		name="'ranc_ranger'" />
-			<run_sequence 		name="'badges_ranc_ranger'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			<run_sequence 		name="'baton'" />
-			<run_sequence 		name="'belt'" />
-			<run_sequence 		name="'handcuffs'" />
-			
-			<run_sequence 		name="'random_body_a'" />
-			<run_sequence 		name="'random_tie_rare'" />
-			<run_sequence 		name="'random_watch_common'" />
-			<run_sequence 		name="'random_shades_aviator_common'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'female_ranc_ranger_2'" once="true" triggable="true">
-			<object 			name="'g_gear_chas_police_b'" />
-			<object 			name="'g_gear_chas_police_b_lod1'" />
-			
-			<run_sequence 		name="'ranc_ranger'" />
-			<run_sequence 		name="'badges_ranc_ranger'" />
-			<run_sequence 		name="'shoulder_loops'" />
-			<run_sequence 		name="'belt'" />
-			
-			<run_sequence 		name="'radio_side'" />
-			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'random_tie_common'" />
-			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_shades_aviator_rare'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
