@@ -40,7 +40,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 
 	-- Give Sicario's Smoke Grenade a sound when smoke is ready to use (like any cd-based throwables have)
 	self.projectiles.smoke_screen_grenade.sounds = { cooldown = "perkdeck_cooldown_over" }
-	
+
 	-- Disable vanilla grenade throw callout. Now it's playing at animation throw start (see PlayerStandard:_start_action_throw_grenade)
 	self.projectiles.frag.no_shouting = true
 	self.projectiles.concussion.no_shouting = true
