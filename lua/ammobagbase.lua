@@ -39,7 +39,7 @@ function AmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, peer_id, bullet_storm_lev
 
 	managers.network:session():send_to_peers_synched("sync_ammo_bag_setup", unit, ammo_upgrade_lvl, auto_reload or false, peer_id or 0, bullet_storm_level or 0)
 	unit:base():setup(ammo_upgrade_lvl, bullet_storm_level, auto_reload)
-	
+
 	return unit
 end
 

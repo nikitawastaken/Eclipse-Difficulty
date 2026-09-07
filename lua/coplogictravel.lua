@@ -439,7 +439,7 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "eclipse_queued_update", functio
 
 		local focus_enemy = data.attention_obj
 		local verified = focus_enemy and focus_enemy.verified
-		
+
 		if not verified and not data.is_converted and not data.cool then
 			local deployable_type = table.random(deployable_types)
 
