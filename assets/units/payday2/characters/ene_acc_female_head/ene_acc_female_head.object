@@ -107,6 +107,8 @@
 			
 			<object name="g_hair_cloth1" 				enabled="false" />	
 			<object name="g_hair_cloth2" 				enabled="false" />	
+			<object name="g_hair_cloth3" 				enabled="false" />	
+			<object name="g_hair_cloth4" 				enabled="false" />	
 		</graphic_group>		
     </graphics>	
 </dynamic_object>
