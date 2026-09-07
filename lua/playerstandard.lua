@@ -902,6 +902,11 @@ function PlayerStandard:_start_action_throw_grenade(t, _)
 
 	local equipped_grenade = managers.blackmarket:equipped_grenade()
 	local projectile_tweak = tweak_data.blackmarket.projectiles[equipped_grenade]
+	
+	-- Grenade throw callout on animation start
+	if projectile_tweak.no_shouting and equipped_grenade ~= "smoke_screen_grenade" then
+		self._unit:sound():play("g43", nil, true)
+	end
 
 	if self._projectile_global_value then
 		self._camera_unit:anim_state_machine():set_global(self._projectile_global_value, 0)
