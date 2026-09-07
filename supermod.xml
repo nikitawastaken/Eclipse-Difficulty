@@ -1363,6 +1363,7 @@
 			</group>
 
 			<group :name="ene_cop_female_1/">
+				<xml  :name="ene_cop_female_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_cop_female_1.cooked_physics" />
 				<file :name="ene_cop_female_1.model" />
 				<file :name="ene_cop_female_1.object" />
@@ -4021,6 +4022,7 @@
 			</group>
 
 			<group :name="ene_female_chas_police_01/">
+				<xml  :name="ene_female_chas_police_01.sequence_manager" dyn_package="true" />
 				<file :name="ene_female_chas_police_01.cooked_physics" />
 				<file :name="ene_female_chas_police_01.model" />
 				<file :name="ene_female_chas_police_01.object" />
