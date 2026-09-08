@@ -65,6 +65,7 @@ local function create_poison_grenade(base_grenade)
 end
 
 -- Team AI settings
+tweak_data.team_ai.can_secure_loot = true -- When enabled, Team AI will assist players in securing loot when near the loot when near a loot secure point
 tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2 -- Increase the distance at which Team AI stop holding their position
 tweak_data.team_ai.rescue_throw_bag_threshold = 0.75 -- Bags with movement penalties above this threshold will not be thrown by bots coming to revive a player
 tweak_data.team_ai.targeting_priority_mul = {

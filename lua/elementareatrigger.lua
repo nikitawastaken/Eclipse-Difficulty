@@ -225,7 +225,7 @@ Hooks:PreHook(ElementAreaTrigger, "on_executed", "on_executed_ub", function(self
 end)
 
 function ElementAreaTrigger:ub_can_secure_loot(unit)
-	if not self._values.enabled or not self._loot_secure_elements or not self:is_instigator_valid(unit) then
+	if not tweak_data.team_ai.can_secure_loot or not self._values.enabled or not self._loot_secure_elements or not self:is_instigator_valid(unit) then
 		return
 	end
 
