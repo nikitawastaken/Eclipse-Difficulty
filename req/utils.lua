@@ -142,7 +142,7 @@ end
 
 -- Calculates Team AI balance multipliers weights
 function M.calculate_team_ai_weight(total_wgt)
-	local max_nr_team_ai = M.access_table(CriminalsManager, "MAX_NR_TEAM_AI") or 3
+	local max_nr_team_ai = M.is_pro_job() and 2 or 3
 	return (total_wgt - 1) / max_nr_team_ai
 end
 
