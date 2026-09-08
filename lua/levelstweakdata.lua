@@ -760,6 +760,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["nightclub_01"] = 2,
 		["nightclub_02"] = 3,
 		["nightclub_03"] = 2,
+		["nightclub_04"] = 2,
+		["nightclub_05"] = 3,
 		["default"] = 1,
 	}
 	self.mallcrasher.random_environments = {
@@ -892,7 +894,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
 		["bigbank_02"] = 3,
-		["default"] = 1,
+		["bigbank_03"] = 2,
+		["bigbank_04"] = 1,
+		["bigbank_05"] = 2,
+		["default"] = 2,
 	}
 	self.mad.random_environments = {
 		["mad"] = 3,
