@@ -401,28 +401,26 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddDivider({
 			id = "divider_1",
 			size = 20,
 			menu_id = menu_id,
 			priority = 1,
 		})
-		
 
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
-		
+
 		-- Team AI settings
 		function MenuCallbackHandler:eclipse_team_ai_can_secure_loot_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.early_control_music = enabled
 		end
-		
+
 		local menu_id_team_ai = "eclipse_menu_team_ai"
 		MenuHelper:NewMenu(menu_id_team_ai)
-		
-		
+
 		MenuHelper:AddToggle({
 			id = "team_ai_can_secure_loot",
 			title = "eclipse_team_ai_can_secure_loot",
@@ -432,75 +430,74 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddDivider({
 			id = "divider_2",
 			size = 20,
 			menu_id = menu_id_team_ai,
 			priority = 1,
 		})
-			
+
 		nodes[menu_id_team_ai] = MenuHelper:BuildMenu(menu_id_team_ai, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id], menu_id_team_ai, "eclipse_menu_team_ai", "eclipse_menu_team_ai_desc")
-		
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_base_priority_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.base_priority = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_player_aim_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.player_aim = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_critical_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.critical = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_marked_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.marked = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_defend_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.defend = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_domination_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.domination = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_turret_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.turret = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_defend_targeting_priority_mul_base_priority_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.defend_targeting_priority_mul.base_priority = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_defend_targeting_priority_mul_player_interacting_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.defend_targeting_priority_mul.player_interacting = value
 		end
-		
+
 		local menu_id_team_ai_targeting = "eclipse_menu_team_ai_targeting"
 		MenuHelper:NewMenu(menu_id_team_ai_targeting)
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_base_priority",
 			title = "eclipse_menu_team_ai_targeting_base_priority",
@@ -516,7 +513,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_player_aim",
 			title = "eclipse_menu_team_ai_targeting_player_aim",
@@ -531,8 +528,8 @@ if not Eclipse then
 			step = 0.25,
 			display_precision = 2,
 			priority = 100,
-		})		
-		
+		})
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_critical",
 			title = "eclipse_menu_team_ai_targeting_critical",
@@ -548,7 +545,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_marked",
 			title = "eclipse_menu_team_ai_targeting_marked",
@@ -564,7 +561,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_defend",
 			title = "eclipse_menu_team_ai_targeting_defend",
@@ -580,7 +577,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_domination",
 			title = "eclipse_menu_team_ai_targeting_domination",
@@ -596,7 +593,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_turret",
 			title = "eclipse_menu_team_ai_targeting_turret",
@@ -612,7 +609,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "defend_targeting_priority_mul_base_priority",
 			title = "eclipse_menu_defend_targeting_priority_mul_base_priority",
@@ -628,7 +625,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "defend_targeting_priority_mul_player_interacting",
 			title = "eclipse_menu_defend_targeting_priority_mul_player_interacting",
@@ -644,14 +641,14 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddDivider({
 			id = "divider_3",
 			size = 20,
 			menu_id = menu_id_team_ai_targeting,
 			priority = 1,
 		})
-		
+
 		nodes[menu_id_team_ai_targeting] = MenuHelper:BuildMenu(menu_id_team_ai_targeting, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai], menu_id_team_ai_targeting, "eclipse_menu_team_ai_targeting", "eclipse_menu_team_ai_targeting_desc")
 
@@ -660,46 +657,46 @@ if not Eclipse then
 
 			Eclipse.settings.targeting_priority_mul.enemies.spooc = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_medic_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.medic = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_taser_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.taser = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_sniper_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.sniper = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_tank_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.tank = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_marksman_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.marksman = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_shield_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.shield = value
 		end
-		
+
 		local menu_id_team_ai_targeting_enemies = "eclipse_menu_team_ai_targeting_enemies"
 		MenuHelper:NewMenu(menu_id_team_ai_targeting_enemies)
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_spooc",
 			title = "eclipse_menu_team_ai_targeting_enemies_spooc",
@@ -715,7 +712,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_medic",
 			title = "eclipse_menu_team_ai_targeting_enemies_medic",
@@ -731,7 +728,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_taser",
 			title = "eclipse_menu_team_ai_targeting_enemies_taser",
@@ -747,7 +744,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_sniper",
 			title = "eclipse_menu_team_ai_targeting_enemies_sniper",
@@ -763,7 +760,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_tank",
 			title = "eclipse_menu_team_ai_targeting_enemies_tank",
@@ -779,7 +776,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_marksman",
 			title = "eclipse_menu_team_ai_targeting_enemies_marksman",
@@ -795,7 +792,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_shield",
 			title = "eclipse_menu_team_ai_targeting_enemies_shield",
@@ -811,10 +808,9 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		nodes[menu_id_team_ai_targeting_enemies] = MenuHelper:BuildMenu(menu_id_team_ai_targeting_enemies, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai_targeting], menu_id_team_ai_targeting_enemies, "eclipse_menu_team_ai_targeting_enemies", "eclipse_menu_team_ai_targeting_enemies_desc")
-		
 	end)
 
 	-- Load settings
