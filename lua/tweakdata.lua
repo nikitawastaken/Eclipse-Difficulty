@@ -532,6 +532,12 @@ tweak_data.safehouse_unlock_level = 35
 -- Tweak "Earned from raid" text value since Safehouse Raid don't give coins anymore
 tweak_data.safehouse.rewards.raid = 0
 
+-- Tweak colours of various things
+tweak_data.screen_colors.infamous_color = Color("4ca6ff")
+tweak_data.screen_colors.infamy_color = Color("4ca6ff")
+tweak_data.screen_colors.mutators_color = Color("4ca6ff")
+tweak_data.screen_colors.mutators_color_text = Color("4ca6ff")
+
 -- Color Gradings
 table.insert(tweak_data.color_grading, { value = "color_bhd_classic", text_id = "menu_color_bhd_classic" })
 table.insert(tweak_data.color_grading, { value = "color_heat_classic", text_id = "menu_color_heat_classic" })
