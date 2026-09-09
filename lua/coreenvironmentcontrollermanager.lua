@@ -244,7 +244,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	local bo_andersson = self:should_i_yomc()
 
 	if self._last_life then
-		last_life = 1
+		last_life = math.clamp((hurt_mod - 0.5) * 2, 0, 1)
 		if not bo_andersson then
 			self._ignore_user_color_grading = true
 		end
