@@ -18,7 +18,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	if level_id == "haunted" then
 		self.pick_lock_hard.timer = 666 -- Dallas, my friend, the devil.
 	end
-	
+
 	-- Bagging sfx tweaks
 	self.money_wrap.sound_done = "bar_bag_pour_money_finished"
 	self.money_wrap_axis.sound_done = "bar_bag_pour_money_finished"
