@@ -8,7 +8,7 @@
 	"bm_wp_fla_mk2_mag_rare_desc": "Increases fire damage over time.",
 	"bm_wp_fla_mk2_mag_welldone_desc": "Decreases fire damage over time.",
 	"bm_wp_snp_m95_barrel_long_desc": "Is not affected by the Basic Fully Loaded Skill.\nWhile equipped, this weapon will reduce your move speed by 20%.",
-	
+
 	"bm_w_hajk": "CR 805B Rifle",
 	"bm_w_akmsu": "Krinkov Rifle",
 	"bm_w_olympic": "Para Rifle",
@@ -55,7 +55,7 @@
 	"bm_grenade_sticky_grenade_desc": "This baseball-shaped grenade is based on an old CIA design. Due to its shape and small size it is capable of being thrown at a higher velocity than a regular grenade, at the cost of the strength of its explosive payload.",
 	"bm_grenade_poison_gas_grenade_desc": "This highly-illegal grenade will emit a sweeping cloud of toxic chemical-based gas that can dissolve people's lungs within seconds. It will also destroy your and teammates' respiratory systems if you decide to stay too long inside of the cloud without proper protection.",
 	"bm_grenade_dada_com_desc": "The Matryoshka Grenade is a throwable stun device. Outer layers of the doll hide its sinister inner workings. Stuns (or even kills) everything around itself as it detonates with a shocking tribute to the motherland.",
-	
+
 	"hud_stats_pagers_used": "STRIKES USED",
 	"hint_stealth_strike_alarm_pager_answered": "Pager call answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
@@ -83,7 +83,7 @@
 	"menu_pp_asset_delay_police_20_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 30 seconds.",
 	"menu_pp_asset_delay_police_30": "SILENT ALARM 40S. DELAY",
 	"menu_pp_asset_delay_police_30_desc": "Disrupt the outgoing silent alarm. Delays the armed response first arrival by 40 seconds.",
-	
+
 	"hud_assault_america_assault": "Police Assault In Progress",
 	"hud_assault_russia_assault": "Mercenary Assault In Progress",
 	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",
@@ -120,6 +120,46 @@
 	"eclipse_menu_disable_christmas_desc": "Disables year-round Christmas effects such as enemy Santa hats or jingle bells on heists that have them.",
 	"eclipse_menu_early_control_music": "Early Control Music",
 	"eclipse_menu_early_control_music_desc": "Play control phase music when police start their retreat, before the assault banner disappears.",
+	"eclipse_menu_team_ai": "Team AI settings",
+	"eclipse_menu_team_ai_desc": "Tweak Team AI behavior",
+	"eclipse_team_ai_can_secure_loot": "Secure loot bags",
+	"eclipse_team_ai_can_secure_loot_desc": "Bots will secure loot bags when players do",
+	"eclipse_menu_team_ai_targeting": "Targeting priority",
+	"eclipse_menu_team_ai_targeting_desc": "Tweak how bots will prioritize targets",
+	"eclipse_menu_team_ai_targeting_base_priority": "Base targeting",
+	"eclipse_menu_team_ai_targeting_base_priority_desc": "How bots will prioritize targets",
+	"eclipse_menu_team_ai_targeting_player_aim": "Player view multiplier",
+	"eclipse_menu_team_ai_targeting_player_aim_desc": "How bots will prioritize targets",
+	"eclipse_menu_team_ai_targeting_critical": "Critical multiplier",
+	"eclipse_menu_team_ai_targeting_critical_desc": "Priority multiplier for critical targets\nIncludes charging cloakers, tasing Tasers and sabotaging enemies",
+	"eclipse_menu_team_ai_targeting_marked": "Marked multiplier",
+	"eclipse_menu_team_ai_targeting_marked_desc": "Priority multiplier for marked enemies",
+	"eclipse_menu_team_ai_targeting_defend": "Defend player multiplier",
+	"eclipse_menu_team_ai_targeting_defend_desc": "Priority multiplier for enemies that are attacking players who are interacting",
+	"eclipse_menu_team_ai_targeting_domination": "Domination multiplier",
+	"eclipse_menu_team_ai_targeting_domination_desc": "Priority multiplier for enemies that can be dominated",
+	"eclipse_menu_team_ai_targeting_turret": "SWAT Turret multiplier",
+	"eclipse_menu_team_ai_targeting_turret_desc": "Priority multiplier for SWAT Turrets",
+	"eclipse_menu_defend_targeting_priority_mul_base_priority": "Defend player multiplier",
+	"eclipse_menu_defend_targeting_priority_mul_base_priority_desc": "Priority multiplier for enemies that are attacking players",
+	"eclipse_menu_defend_targeting_priority_mul_player_interacting": "Defend interacting player multiplier",
+	"eclipse_menu_defend_targeting_priority_mul_player_interacting_desc": "Priority multiplier for enemies that are attacking players who are interacting",
+	"eclipse_menu_team_ai_targeting_enemies": "Enemy specific multipliers",
+	"eclipse_menu_team_ai_targeting_enemies_desc": "Tweak priority multipliers for specific enemies",
+	"eclipse_menu_team_ai_targeting_enemies_spooc": "Cloaker",
+	"eclipse_menu_team_ai_targeting_enemies_spooc_desc": "Priority multiplier for Cloakers",
+	"eclipse_menu_team_ai_targeting_enemies_medic": "Medic",
+	"eclipse_menu_team_ai_targeting_enemies_medic_desc": "Priority multiplier for Medics",
+	"eclipse_menu_team_ai_targeting_enemies_taser": "Taser",
+	"eclipse_menu_team_ai_targeting_enemies_taser_desc": "Priority multiplier for Tasers",
+	"eclipse_menu_team_ai_targeting_enemies_sniper": "Sniper",
+	"eclipse_menu_team_ai_targeting_enemies_sniper_desc": "Priority multiplier for Snipers",
+	"eclipse_menu_team_ai_targeting_enemies_tank": "Bulldozer",
+	"eclipse_menu_team_ai_targeting_enemies_tank_desc": "Priority multiplier for Bulldozers",
+	"eclipse_menu_team_ai_targeting_enemies_marksman": "Marksman",
+	"eclipse_menu_team_ai_targeting_enemies_marksman_desc": "Priority multiplier for Marksmans",
+	"eclipse_menu_team_ai_targeting_enemies_shield": "Shield",
+	"eclipse_menu_team_ai_targeting_enemies_shield_desc": "Priority multiplier for Shields",
 
 	"menu_pro_warning": "This is a pro job! Experience gain and contract pay are increased by 20%.\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Death Wish",
@@ -152,7 +192,7 @@
 	"hud_arm_forest5_hl": "Secure turret ammo bags",
 	"hud_arm_forest6_hl": "Secure turret ammo bags",
 	"hud_arm_forest7_hl": "Secure turret ammo bags",
-	
+
 	"hud_v_four_stores_mission2_hl": "Steal $2.800",
 
 	"bot_watchdogs_new_stage2_01_any_02": "This is the boat. I see the signal, will be there soon.",
@@ -215,8 +255,8 @@
 	"menu_mutators_achievement_disabled": "",
 
 	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
-	
-	"menu_offshore_remains" : "REMAINING OFFSHORE",
+
+	"menu_offshore_remains": "REMAINING OFFSHORE",
 
 	"menu_cs_generating_rewards": "Generating Loot...",
 	"menu_cs_loot_drops_remaining": "Remaining Loot Drops: $loot;",
@@ -241,17 +281,17 @@
 	"menu_cn_casino_pay_cash": "A fee will be deducted from your spending cash when you enter the casino.\n\nCost: $contract_fee;\nSpending cash: $offshore;",
 	"menu_cn_casino_pay_coins": "A fee will be deducted from your continental coins when you enter the casino.\n\nCost: $contract_fee;\nContinental coins: $offshore;",
 	"menu_cn_casino_sell_items": "After confirmation, some items will be sold from your stock and you will receive cash in return. The type of items will be selected randomly, except if you have selected the category. If the expected amount of money exceeds the total value of all the items, then all the items that you have will be sold.\n\nAmount of items to be sold: $contract_fee;",
-	
-	"menu_color_bhd_classic"         		: "BHD Classic",
-	"menu_color_heat_classic"         		: "Dinero Classic",
-	"menu_color_nice_classic"         		: "In Traffic Classic",
-	"menu_color_payday_classic"         	: "Payday Classic",
-	"menu_color_xgen_classic"         		: "XGen Brown Classic",
-	"menu_color_xxxgen_classic"         	: "Future of Gaming Classic",
-	"menu_color_plus" 						: "E3 PAYDAY+",
-	"menu_color_e3nice" 					: "E3 Nice",
-	"menu_color_force" 						: "E3 BHD",
-	"menu_color_cgreyscale"					: "Greyscale",
-	
+
+	"menu_color_bhd_classic": "BHD Classic",
+	"menu_color_heat_classic": "Dinero Classic",
+	"menu_color_nice_classic": "In Traffic Classic",
+	"menu_color_payday_classic": "Payday Classic",
+	"menu_color_xgen_classic": "XGen Brown Classic",
+	"menu_color_xxxgen_classic": "Future of Gaming Classic",
+	"menu_color_plus": "E3 PAYDAY+",
+	"menu_color_e3nice": "E3 Nice",
+	"menu_color_force": "E3 BHD",
+	"menu_color_cgreyscale": "Greyscale",
+
 	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
 }
