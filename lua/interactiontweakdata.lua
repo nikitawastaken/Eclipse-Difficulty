@@ -18,6 +18,22 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	if level_id == "haunted" then
 		self.pick_lock_hard.timer = 666 -- Dallas, my friend, the devil.
 	end
+	
+	-- Bagging sfx tweaks
+	self.money_wrap.sound_done = "bar_bag_pour_money_finished"
+	self.money_wrap_axis.sound_done = "bar_bag_pour_money_finished"
+	self.hold_take_painting.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_fusion_reactor.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_cocaine.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_artifact_statue.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_artifact.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_artifact_painting.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_jewelry.sound_done = "bar_bag_pour_money_finished"
+	self.taking_meth.sound_done = "bar_bag_pour_money_finished"
+	self.gen_pku_evidence_bag.sound_done = "bar_bag_pour_money_finished"
+	self.take_weapons.sound_start = "bar_bag_generic"
+	self.take_weapons.sound_interupt = "bar_bag_generic_cancel"
+	self.take_weapons.sound_done = "bar_bag_pour_money_finished"
 
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
 	self.hostage_trade.contour_flash_interval = 0.5
