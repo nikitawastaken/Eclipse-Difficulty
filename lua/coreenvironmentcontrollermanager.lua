@@ -311,9 +311,9 @@ function CoreEnvironmentControllerManager:should_i_yomc()
 	local tweak = job_id and tweak_data.narrative.jobs[job_id]
 
 	if tweak and tweak.is_halloween_level then
-		self._ignore_user_color_grading = true
+		return true
 	else
-		return
+		return false
 	end
 end
 
@@ -326,6 +326,9 @@ Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ref
 	local bo_andersson = self:should_i_yomc()
 	if bo_andersson then
 		color_grading = self._default_color_grading
+		self._ignore_user_color_grading = true
+	else
+		self._ignore_user_color_grading = false
 	end
 
 	if managers.mutators:modify_value("CoreEnvironmentControllerManager:NoOutlines", false) then
