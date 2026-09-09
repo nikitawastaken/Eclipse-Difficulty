@@ -241,9 +241,18 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	self._lut_modifier_material:set_variable(ids_LUT_settings_a, temp_vec_1)
 
 	local last_life = 0
+	local bo_andersson = self:should_i_yomc()
 
 	if self._last_life then
-		last_life = math.clamp((hurt_mod - 0.5) * 2, 0, 1)
+		last_life = 1
+		if not bo_andersson then
+			self._ignore_user_color_grading = true
+		end
+	elseif not self._last_life then
+		last_life = 0.2
+		if not bo_andersson then
+			self._ignore_user_color_grading = false
+		end
 	end
 
 	if not self._screenflash_colors_setup then
