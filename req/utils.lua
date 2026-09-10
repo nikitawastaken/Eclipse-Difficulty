@@ -583,6 +583,10 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 		-- end
 	end
 
+	if environment_data.saturation_value ~= nil then
+		managers.environment_controller:set_default_saturation(environment_data.saturation_value, true)
+	end
+
 	if environment_data.flashlights_on ~= nil then
 		managers.game_play_central:set_flashlights_on(environment_data.flashlights_on)
 	end
