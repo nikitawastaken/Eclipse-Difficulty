@@ -545,7 +545,7 @@ function M.load_environment(level_tweak, environment_name, saturation)
 		Eclipse.color_grading = new_color_grading
 		level_tweak.env_params.color_grading = new_color_grading
 	end
-	
+
 	local saturation = environment_data.saturation_value
 	if environment_data.saturation_value then
 		Eclipse.saturation_value = saturation
@@ -587,7 +587,7 @@ function M.client_load_environment(level_tweak, environment_name, color_grading,
 		-- 	Eclipse.log("no viewport found somehow?")
 		-- end
 	end
-	
+
 	local saturation = environment_data.saturation_value
 	if environment_data.saturation_value then
 		Eclipse.saturation_value = saturation
