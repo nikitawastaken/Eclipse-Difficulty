@@ -106,26 +106,24 @@ return {
 		reinforce = {
 			{
 				name = "atrium01",
-				force = 3,
+				force = 2,
 				position = Vector3(-450, 100, 0),
 			},
 			{
 				name = "atrium02",
-				force = 3,
+				force = 2,
 				position = Vector3(-1100, -1600, 0),
 			},
 			{
 				name = "atrium03",
-				force = 3,
+				force = 2,
 				position = Vector3(-450, -3500, 0),
 			},
 		},
 	},
 	-- Disable drill reinforce
-	[100584] = disabled,
 	[100676] = disabled,
 	[101138] = disabled,
-	[103527] = disabled,
 	-- Increase the hack duration
 	[103568] = { -- backup_started_link
 		on_executed = {

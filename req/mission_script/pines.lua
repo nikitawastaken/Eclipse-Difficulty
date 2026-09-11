@@ -25,11 +25,6 @@ return {
 				position = Vector3(-8100, 14500, 4255),
 			},
 			{
-				name = "zipline",
-				force = 2,
-				position = Vector3(-10200, 9800, 3700),
-			},
-			{
 				name = "wreckage",
 				force = 2,
 				position = Vector3(-3100, 10150, 2975),
@@ -37,7 +32,7 @@ return {
 			{
 				name = "logging_machine",
 				force = 2,
-				position = Vector3(-8895, 8000, 3115),
+				position = Vector3(-8900, 8000, 3110),
 			},
 			{
 				name = "cliff",

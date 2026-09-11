@@ -40,12 +40,12 @@ return {
 		reinforce = {
 			{
 				name = "escalator01",
-				force = 3,
+				force = 2,
 				position = Vector3(225, -2850, 0),
 			},
 			{
 				name = "escalator02",
-				force = 3,
+				force = 2,
 				position = Vector3(-2750, 175, 0),
 			},
 		},

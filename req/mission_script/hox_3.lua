@@ -151,37 +151,6 @@ return {
 			},
 		},
 	},
-	-- Enable reinforce based on the panic room's location
-	[101696] = { -- position_001
-		on_executed = {
-			{ id = 400091, delay = 0 },
-		},
-	},
-	[101697] = { -- position_002
-		on_executed = {
-			{ id = 400092, delay = 0 },
-		},
-	},
-	[101698] = { -- position_003
-		on_executed = {
-			{ id = 400093, delay = 0 },
-		},
-	},
-	[101699] = { -- position_004
-		on_executed = {
-			{ id = 400094, delay = 0 },
-		},
-	},
-	[101700] = { -- position_005
-		on_executed = {
-			{ id = 400095, delay = 0 },
-		},
-	},
-	[101701] = { -- position_006
-		on_executed = {
-			{ id = 400096, delay = 0 },
-		},
-	},
 	-- Ready Team enemy amount scales with difficulty (kind of, it's a bit random)
 	[102361] = ready_team_amount,
 	[102362] = ready_team_amount,

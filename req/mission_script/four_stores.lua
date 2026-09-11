@@ -55,59 +55,25 @@ return {
 			{ 52, 53 },
 		},
 	},
-	-- Add new reinforce
-	[101169] = { -- First cop car arrived
-		reinforce = {
-			{
-				name = "pear_shop",
-				force = 2,
-				position = Vector3(1450, -2700, 25),
-			},
-			{
-				name = "convenience_store",
-				force = 2,
-				position = Vector3(0, -2675, 25),
-			},
-			{
-				name = "cafe",
-				force = 2,
-				position = Vector3(-150, -4150, 25),
-			},
-			{
-				name = "china",
-				force = 2,
-				position = Vector3(1425, -4125, 25),
-			},
-			{
-				name = "parking_lot",
-				force = 3,
-				position = Vector3(2625, -1725, 25),
-			},
-		},
-	},
+	-- Disable reinforce points based on the location of the large safe
 	[101470] = { -- Safe 5, Pear shop safe
-		reinforce = {
-			{ name = "pear_shop" },
+		on_executed = {
+			{ id = 400014, delay = 0 },
 		},
 	},
 	[101449] = { -- Safe 4, Cafe safe
-		reinforce = {
-			{ name = "cafe" },
+		on_executed = {
+			{ id = 400015, delay = 0 },
 		},
 	},
-	[101450] = { -- Safe 3, China store safe 2
-		reinforce = {
-			{ name = "china" },
-		},
-	},
-	[101469] = { -- Safe 2, China store safe 1
-		reinforce = {
-			{ name = "china" },
+	[101450] = { -- Safe 3, China store safe
+		on_executed = {
+			{ id = 400016, delay = 0 },
 		},
 	},
 	[101477] = { -- Safe 1, Convenience store safe
-		reinforce = {
-			{ name = "convenience_store" },
+		on_executed = {
+			{ id = 400017, delay = 0 },
 		},
 	},
 	-- disable Titan cams
@@ -151,7 +117,7 @@ return {
 	},
 	[101832] = { -- diff 65, enable rappel group
 		on_executed = {
-			{ id = 400001, delay = 0, delay_rand = 20 },
+			{ id = 400001, delay = 0, delay_rand = 60 },
 		},
 	},
 	-- replace the turret with a spawngroup

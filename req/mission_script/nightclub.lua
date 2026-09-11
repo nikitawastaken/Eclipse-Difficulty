@@ -91,11 +91,6 @@ return {
 				force = 3,
 				position = Vector3(375, -3575, 0),
 			},
-			{
-				name = "alley",
-				force = 3,
-				position = Vector3(1750, -9150, 25),
-			},
 		},
 	},
 	[101798] = { -- a_obj_3 (found a safe)

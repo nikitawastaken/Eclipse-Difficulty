@@ -10,45 +10,6 @@ local ledge_spawn = {
 	},
 }
 return {
-	-- Add new reinforce
-	[101610] = { -- start up spawns
-		reinforce = {
-			{
-				name = "pillow01",
-				force = 2,
-				position = Vector3(-6650, 1000, 200),
-			},
-			{
-				name = "pillow02",
-				force = 2,
-				position = Vector3(-4550, -975, 200),
-			},
-			{
-				name = "pillow03",
-				force = 2,
-				position = Vector3(-2050, 1000, 200),
-			},
-		},
-	},
-	[101809] = { -- plane dropped ingredient bags
-		reinforce = {
-			{
-				name = "zipline",
-				force = 2,
-				position = Vector3(-8400, -600, 350),
-			},
-			{
-				name = "bucket",
-				force = 2,
-				position = Vector3(-5225, 300, 1200),
-			},
-			{
-				name = "lid",
-				force = 2,
-				position = Vector3(-3550, -75, 2050),
-			},
-		},
-	},
 	-- Disable scripted headless dozers
 	[100351] = disabled,
 	-- Spawn group intervals

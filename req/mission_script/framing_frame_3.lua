@@ -54,26 +54,6 @@ return {
 			base_delay_rand = 15,
 		},
 	},
-	-- Add new reinforce
-	[100879] = { -- preferreds
-		reinforce = {
-			{
-				name = "lounge",
-				force = 3,
-				position = Vector3(-4000, 1825, 3000),
-			},
-			{
-				name = "stairs01",
-				force = 2,
-				position = Vector3(-4200, 2500, 3810),
-			},
-			{
-				name = "stairs02",
-				force = 2,
-				position = Vector3(-4500, 4375, 3810),
-			},
-		},
-	},
 	-- tweak power boxes amount based on difficulty
 	[105350] = filter_easy_above,
 	[105351] = filter_disable,

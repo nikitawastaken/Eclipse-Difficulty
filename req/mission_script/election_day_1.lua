@@ -23,7 +23,7 @@ local standard_spawn = {
 }
 local jumpdown_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -60,31 +60,6 @@ return {
 			{ 143, 144 },
 			{ 145, 146 },
 			{ 202, 223 },
-		},
-	},
-	-- Add new reinforce
-	[100150] = { -- poFuckinLice
-		reinforce = {
-			{
-				name = "warehouse01",
-				force = 2,
-				position = Vector3(1800, 3135, 5),
-			},
-			{
-				name = "warehouse02",
-				force = 2,
-				position = Vector3(1900, 1850, 5),
-			},
-			{
-				name = "warehouse03",
-				force = 2,
-				position = Vector3(525, -500, 5),
-			},
-			{
-				name = "warehouse04",
-				force = 2,
-				position = Vector3(5575, 2825, 105),
-			},
 		},
 	},
 	-- Disable choppers before the first assault
@@ -153,8 +128,6 @@ return {
 	[104005] = exclude_shields_dozers,
 	[104007] = exclude_shields_dozers,
 	-- Spawn group intervals
-	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
-	-- Slightly revising the original version with more pronounced intervals.
 	[104064] = standard_spawn,
 	[104065] = standard_spawn,
 	[101055] = standard_spawn,

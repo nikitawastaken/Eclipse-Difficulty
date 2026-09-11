@@ -76,27 +76,13 @@ return {
 			},
 			{
 				name = "parking_lot",
-				force = 4,
+				force = 3,
 				position = Vector3(-2500, -2750, 0),
 			},
 			{
 				name = "construction",
-				force = 4,
+				force = 3,
 				position = Vector3(3000, -4500, 10),
-			},
-		},
-	},
-	[100400] = { -- pre_vault_area
-		reinforce = {
-			{
-				name = "interior01",
-				force = 2,
-				position = Vector3(1175, -650, 350),
-			},
-			{
-				name = "interior02",
-				force = 2,
-				position = Vector3(825, -1400, 350),
 			},
 		},
 	},

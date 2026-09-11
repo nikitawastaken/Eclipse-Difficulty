@@ -66,15 +66,6 @@ return {
 			length_balance_mul = { 2, 1.25, 1, 0.75 },
 		},
 	},
-	[100810] = {
-		reinforce = {
-			{
-				name = "gate",
-				force = 3,
-				position = Vector3(1625, 3575, 950),
-			},
-		},
-	},
 	-- make Snipers respawn and re-enable unused ones
 	[100520] = enabled,
 	--[100540] = enabled,

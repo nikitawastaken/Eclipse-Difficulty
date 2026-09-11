@@ -80,15 +80,6 @@ return {
 			},
 		},
 	},
-	[101198] = { -- wearhouse_door_open
-		reinforce = {
-			{
-				name = "tea_shop",
-				force = 2,
-				position = Vector3(-2900, -1400, 0),
-			},
-		},
-	},
 	[101647] = { -- artifact_found
 		ponr = {
 			length = 300,

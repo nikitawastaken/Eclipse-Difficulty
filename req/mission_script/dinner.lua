@@ -131,15 +131,6 @@ return {
 			},
 		},
 	},
-	[100818] = { -- complete_prepare_gas
-		reinforce = {
-			{
-				name = "courtyard",
-				force = 3,
-				position = Vector3(-15100, 6500, -75),
-			},
-		},
-	},
 	-- hide the odd swat van
 	[100028] = {
 		on_executed = {

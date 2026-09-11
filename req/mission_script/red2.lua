@@ -142,17 +142,17 @@ return {
 		reinforce = {
 			{
 				name = "lobby",
-				force = 4,
+				force = 3,
 				position = Vector3(-1500, 25, 0),
 			},
 			{
 				name = "cafeteria",
-				force = 3,
+				force = 2,
 				position = Vector3(-1950, -2050, -20),
 			},
 			{
 				name = "offices",
-				force = 3,
+				force = 2,
 				position = Vector3(-2675, 2050, -20),
 			},
 		},
