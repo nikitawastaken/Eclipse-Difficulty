@@ -1,9 +1,9 @@
 return {
 	flashlights_on = true, -- Flashlights
+	saturation_value = 0.4,
 	color_grading = { -- Randomized color gradings
 		"color_payday",
 		"color_nice",
-		"color_xgen",
 		"color_xxxgen",
 		"color_matrix_classic",
 		"color_bhd_classic",

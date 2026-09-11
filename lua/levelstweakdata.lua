@@ -887,9 +887,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.chew.random_environments = {
-		["bikerheist_2_01"] = 2,
 		["bikerheist_2_02"] = 3,
-		["default"] = 1,
 	}
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
@@ -1075,6 +1073,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.jolly.random_environments = {
 		["aftershock_01"] = 2,
 		["aftershock_02"] = 1,
+		["aftershock_03"] = 2,
 	}
 	self.peta.random_environments = {
 		["peta_01"] = 2,

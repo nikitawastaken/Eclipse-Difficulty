@@ -9,9 +9,9 @@
 			<param key="sky_texture" value="core/environments/skies/sky_1830_low_sun_clouds/sky_1830_low_sun_clouds"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_0902_overcast_dark/sky_0902_overcast_dark"/>
-			<param key="sun_ray_color_scale" value="0.65820407867432"/>
+			<param key="sun_ray_color_scale" value="0.54620009660721"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="0.96078437566757 0.89411771297455 0.72549021244049"/>
+			<param key="sun_ray_color" value="0.96078437566757 0.70980393886566 0.46666669845581"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_holly_2"/>
 		</others>
 		<post_effect>

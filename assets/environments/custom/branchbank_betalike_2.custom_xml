@@ -57,7 +57,7 @@
 					<bloom_lense>
 						<param key="lense_intensity" value="0.10000000149012"/>
 						<param key="bloom_blur_size" value="2.289736032486"/>
-						<param key="bloom_intensity" value="0.62000000476837"/>
+						<param key="bloom_intensity" value="0.40000000596046"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
@@ -66,7 +66,7 @@
 			<sky>
 				<param key="color0" value="0 0.050980396568775 0.098039224743843"/>
 				<param key="color2" value="0.8666667342186 0.77254909276962 0.56470590829849"/>
-				<param key="color2_scale" value="1.5044664144516"/>
+				<param key="color2_scale" value="1.25"/>
 				<param key="color0_scale" value="1.5984956026077"/>
 			</sky>
 		</underlay_effect>

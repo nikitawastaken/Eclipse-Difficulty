@@ -9,9 +9,9 @@
 			<param key="sky_texture" value="core/environments/skies/sky_2003_dusk_blue/sky_2003_dusk_blue"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_1945_sunset/sky_1945_sunset"/>
-			<param key="sun_ray_color_scale" value="1.222000002861"/>
+			<param key="sun_ray_color_scale" value="3.3438313007355"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="0.85098046064377 0.21176472306252 0"/>
+			<param key="sun_ray_color" value="0.85098046064377 0.2039215862751 0.15294118225574"/>
 			<param key="global_texture" value="environments/cubemaps/cubemap_evening_hcm"/>
 		</others>
 		<post_effect>
@@ -23,15 +23,15 @@
 						<param key="fog_start_color" value="0.11764706671238 0.15686275064945 0.20000001788139"/>
 						<param key="effect_light_scale" value="0.5"/>
 						<param key="fog_far_low_color" value="0.12156863510609 0.15686275064945 0.20000001788139"/>
-						<param key="ambient_falloff_scale" value="0.5"/>
+						<param key="ambient_falloff_scale" value="0.25"/>
 						<param key="sky_bottom_color_scale" value="0"/>
-						<param key="ambient_color_scale" value="1.3500000238419"/>
-						<param key="ambient_color" value="0.12156863510609 0.21568629145622 0.32941177487373"/>
+						<param key="ambient_color_scale" value="1"/>
+						<param key="ambient_color" value="0.2039215862751 0.258823543787 0.32941177487373"/>
 						<param key="fog_max_range" value="32910.203125"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
 						<param key="sky_top_color_scale" value="0"/>
 						<param key="sky_top_color" value="0.19607844948769 0.34509804844856 0.65098041296005"/>
-						<param key="fog_min_range" value="0"/>
+						<param key="fog_min_range" value="3171.1616210938"/>
 						<param key="fog_max_density" value="0.28208744525909"/>
 					</apply_ambient>
 				</deferred_lighting>
@@ -49,9 +49,9 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,10 +61,6 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>

@@ -1,5 +1,6 @@
 return {
 	flashlights_on = true, -- Flashlights
+	saturation_value = -0.2,
 	color_grading = { -- Randomized color gradings
 		"color_heat",
 		"color_bhd",
@@ -10,11 +11,6 @@ return {
 		"color_bhd_classic",
 		"color_heat_classic",
 		"color_payday_classic",
-		"color_xgen_classic",
-		"color_xxxgen_classic",
-		"color_plus",
-		"color_force",
-		"color_e3nice",
 	},
 	environment_override = { -- clouds
 		["environments/pd2_env_foggy_bright/pd2_env_foggy_bright"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_und_clouds.custom_xml",
