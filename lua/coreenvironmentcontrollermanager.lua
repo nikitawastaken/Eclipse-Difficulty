@@ -244,7 +244,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	local bo_andersson = self:should_i_yomc()
 
 	if self._last_life then
-		last_life = math.clamp((hurt_mod - 0.5) * 2, 0, 1)
+		last_life = self._default_saturation + math.clamp((hurt_mod - 0.5) * 2, 0, 1)
 		if not bo_andersson then
 			self._ignore_user_color_grading = true
 		end
@@ -268,7 +268,7 @@ end)
 
 Hooks:PostHook(CoreEnvironmentControllerManager, "init", "eclipse_init", function(self)
 	self._GAME_DEFAULT_SATURATION = 0.2
-	self._default_saturation = self._GAME_DEFAULT_SATURATION
+	self._default_saturation = Eclipse.saturation_value or self._GAME_DEFAULT_SATURATION
 	if use_old_hitflash then
 		self._hit_amount = 0.3
 	end
@@ -315,19 +315,6 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", fu
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
 end)
-
-function CoreEnvironmentControllerManager:set_default_saturation(saturation, ignore_user_setting)
-	self._default_saturation = saturation or self._GAME_DEFAULT_SATURATION
-	self._ignore_user_contour = ignore_user_setting or false
-end
-
-function CoreEnvironmentControllerManager:game_default_saturation()
-	return self._GAME_DEFAULT_SATURATION
-end
-
-function CoreEnvironmentControllerManager:default_saturation()
-	return self._default_saturation
-end
 
 -- Prevent players from changing color gradings on spooky heists
 function CoreEnvironmentControllerManager:should_i_yomc()

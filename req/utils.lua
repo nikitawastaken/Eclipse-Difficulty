@@ -532,7 +532,7 @@ function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
 end
 
 ---Load environment from tweak data and env name
-function M.load_environment(level_tweak, environment_name)
+function M.load_environment(level_tweak, environment_name, saturation)
 	local environment_data = Eclipse:require("envsmod/" .. environment_name)
 
 	if not environment_data then
@@ -544,6 +544,11 @@ function M.load_environment(level_tweak, environment_name)
 	if new_color_grading then
 		Eclipse.color_grading = new_color_grading
 		level_tweak.env_params.color_grading = new_color_grading
+	end
+	
+	local saturation = environment_data.saturation_value
+	if environment_data.saturation_value then
+		Eclipse.saturation_value = saturation
 	end
 
 	if environment_data.flashlights_on ~= nil then
@@ -564,7 +569,7 @@ function M.load_environment(level_tweak, environment_name)
 end
 
 ---Load environment from tweak data and env name for clients
-function M.client_load_environment(level_tweak, environment_name, color_grading)
+function M.client_load_environment(level_tweak, environment_name, color_grading, saturation)
 	local environment_data = Eclipse:require("envsmod/" .. environment_name)
 
 	if not environment_data then
@@ -582,9 +587,10 @@ function M.client_load_environment(level_tweak, environment_name, color_grading)
 		-- 	Eclipse.log("no viewport found somehow?")
 		-- end
 	end
-
-	if environment_data.saturation_value ~= nil then
-		managers.environment_controller:set_default_saturation(environment_data.saturation_value, true)
+	
+	local saturation = environment_data.saturation_value
+	if environment_data.saturation_value then
+		Eclipse.saturation_value = saturation
 	end
 
 	if environment_data.flashlights_on ~= nil then
