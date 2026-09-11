@@ -1049,13 +1049,13 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	for _, perkdeck in pairs(self.specializations) do
 		-- card cost
 		perkdeck[1].cost = 400
-		perkdeck[2].cost = 300
+		perkdeck[2].cost = 100
 		perkdeck[3].cost = 600
-		perkdeck[4].cost = 400
+		perkdeck[4].cost = 200
 		perkdeck[5].cost = 900
-		perkdeck[6].cost = 550
+		perkdeck[6].cost = 300
 		perkdeck[7].cost = 1200
-		perkdeck[8].cost = 700
+		perkdeck[8].cost = 400
 		perkdeck[9].cost = 1500
 
 		-- wildcard upgrades
