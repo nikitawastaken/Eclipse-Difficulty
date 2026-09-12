@@ -185,9 +185,11 @@ tweak_data.projectiles.wpn_prj_jav.damage = 16
 
 --Throwing Knife
 tweak_data.projectiles.wpn_prj_hur.damage = 8
+tweak_data.projectiles.wpn_prj_hur.adjust_z = nil
 
 -- Throwing Axe
 tweak_data.projectiles.wpn_prj_target.damage = 8
+tweak_data.projectiles.wpn_prj_target.adjust_z = nil
 
 -- The Snowball
 tweak_data.projectiles.xmas_snowball.damage = 4
