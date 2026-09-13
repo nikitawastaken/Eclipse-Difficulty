@@ -125,12 +125,13 @@
 		<sequence editable_state="true" name="'coast_guard_4'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_gear_cop_d'" />
 			<object 			enabled="true" name="'g_gear_cop_d_lod1'" />
-
-			<run_sequence 		name="'random_body_c'" />		
+	
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_cop'" />
 
+			<run_sequence 		name="'random_body_b'" />	
+			<run_sequence 		name="'random_watch_rare'" />	
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
