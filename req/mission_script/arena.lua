@@ -8,7 +8,7 @@ local disabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
