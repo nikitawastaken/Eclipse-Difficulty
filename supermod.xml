@@ -2590,6 +2590,20 @@
 			<file :name="str_vehicle_car_police_new_york.material_config" />
 		</group>
 
+		<group name="units/pd2_dlc_spa/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_sniper_3/">
+				<file :name="ene_sniper_3_df.texture" />
+				<file :name="ene_sniper_3_nm.texture" />
+				<xml  :name="ene_sniper_3.sequence_manager" dyn_package="true" />
+				<file :name="ene_sniper_3.material_config" />
+				<file :name="ene_sniper_3_contour.material_config" />
+				<file :name="ene_sniper_3.model" />
+				<file :name="ene_sniper_3.object" />
+				<file :name="ene_sniper_3.unit" />
+				<file :name="ene_sniper_3_husk.unit" />
+			</group>
+		</group>
+		
 		<group name="units/pd2_dlc_drm/characters/" dyn_package="false">
 			<group :name="ene_bulldozer_medic_classic/">
 				<file :name="ene_bulldozer_medic_classic.unit" />

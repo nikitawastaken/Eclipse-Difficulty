@@ -626,6 +626,8 @@ local M = {
 
 	["units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy"] = { name = "bulldozer_piggy", head = head_sequences.bulldozer },
 	["units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss"] = { name = "bulldozer_snowman", head = head_sequences.bulldozer },
+
+	["units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"] = { name = "sniper_3", head = head_sequences.security },
 }
 
 return M
