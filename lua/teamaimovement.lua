@@ -179,6 +179,14 @@ function TeamAIMovement:bank_carry()
 			self._carry_table[i] = nil
 		end
 	end
+
+	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
+	if name_label then
+		local bag_panel = name_label.panel and name_label.panel:child("bag")
+		if bag_panel then
+			bag_panel:set_visible(false)
+		end
+	end
 end
 
 function TeamAIMovement:throw_bag(target_unit, reason)
