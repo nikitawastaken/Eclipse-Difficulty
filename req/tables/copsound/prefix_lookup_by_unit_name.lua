@@ -430,6 +430,7 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2",
 		"units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3",
 		"units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4",
+		"units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3",
 		"units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1",
 		"units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2",
 	},
