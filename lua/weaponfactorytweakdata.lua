@@ -30,10 +30,8 @@ WeaponFactoryTweakData.parts_to_all = {
 	"wpn_fps_upg_bonus_team_money",
 }
 WeaponFactoryTweakData.parts_from_template = {
-	--	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
-	--	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
-	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
 	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
+	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
 	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
 }
 
@@ -1263,7 +1261,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp5_m_drum.third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum"
 	self.parts.wpn_fps_smg_mp5_m_drum.bullet_objects.amount = 1
 	self.parts.wpn_fps_smg_mp5_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
-	self.parts.wpn_fps_smg_mp5_m_drum.stats.extra_ammo = 20
+	self.parts.wpn_fps_smg_mp5_m_drum.stats.extra_ammo = 15
 	self.parts.wpn_fps_smg_mp5_m_drum.animations = drum_anims
 	self.parts.wpn_fps_smg_mp5_m_drum.fps_animation_weight = "drum_mag"
 
@@ -1273,7 +1271,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_upg_saiga_m_20rnd.name_id = "bm_wp_saiga_m_20rnd"
 	self.parts.wpn_upg_saiga_m_20rnd.unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd"
 	self.parts.wpn_upg_saiga_m_20rnd.third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd"
-	self.parts.wpn_upg_saiga_m_20rnd.stats.extra_ammo = 0
+	self.parts.wpn_upg_saiga_m_20rnd.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_upg_saiga_m_20rnd.stats.extra_ammo = nil
 	self.parts.wpn_upg_saiga_m_20rnd.custom_stats = { ammo_offset = 13 }
 	self.parts.wpn_upg_saiga_m_20rnd.animations = drum_anims
 	self.parts.wpn_upg_saiga_m_20rnd.fps_animation_weight = "drum_mag"
@@ -2355,10 +2354,10 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 
-							local reload_stat = -math.clamp(math.floor(capacity_increase / 20), -5, 5)
-							local concealment_stat = -math.clamp(math.round(capacity_increase / 30), -10, 10)
-							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 5) or 0)
-							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 5) or 0)
+							local reload_stat = -math.clamp(math.floor(capacity_increase / 30), -4, 4)
+							local concealment_stat = -math.clamp(math.round(capacity_increase / 30), -6, 6)
+							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 80), 0, 3) or 0)
+							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 3) or 0)
 
 							part_data.stats.recoil = (no_stat_wipe and (part_data.stats.recoil or 0) or 0) + recoil_stat
 							part_data.stats.spread = (no_stat_wipe and (part_data.stats.spread or 0) or 0) + spread_stat
@@ -2802,6 +2801,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 	self:_add_forbids_from_list("wpn_fps_upg_ass_ak_b_zastava", fire_mode_locks)
 
+	self:_add_parts_to_all(tweak_data)
+	self:_add_parts_from_template(tweak_data)
+	self:_balance_shotgun_ammo(tweak_data)
+	self:_balance_launcher_ammo(tweak_data)
+	self:_balance_akimbo(tweak_data)
+	self:_balance_flun_ammo(tweak_data)
+	self:_wipe_burst_fire_mode(tweak_data)
+	self:_convert_concealment_to_swap_speed()
+	self:_convert_concealment_to_exit_run_speed_speed()
+
 	for part_id, part_data in pairs(self.parts) do
 		local is_barrel_ext = part_data.type and part_data.type == "barrel_ext"
 		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
@@ -2819,16 +2828,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 			self:_balance_magazine(tweak_data, part_id, false)
 		end
 	end
-
-	self:_add_parts_to_all(tweak_data)
-	self:_add_parts_from_template(tweak_data)
-	self:_balance_shotgun_ammo(tweak_data)
-	self:_balance_launcher_ammo(tweak_data)
-	self:_balance_akimbo(tweak_data)
-	self:_balance_flun_ammo(tweak_data)
-	self:_wipe_burst_fire_mode(tweak_data)
-	self:_convert_concealment_to_swap_speed()
-	self:_convert_concealment_to_exit_run_speed_speed()
 end)
 
 -- Amazing implementation of the Sting Grenade ammunition type by Starbreeze
