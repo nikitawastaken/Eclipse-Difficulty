@@ -32,6 +32,7 @@ WeaponFactoryTweakData.parts_to_all = {
 WeaponFactoryTweakData.parts_from_template = {
 	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
 	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
+	["wpn_fps_upg_ak_m_banana"] = "wpn_fps_upg_ak_m_uspalm",
 	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
 }
 
@@ -1277,6 +1278,25 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_upg_saiga_m_20rnd.animations = drum_anims
 	self.parts.wpn_upg_saiga_m_20rnd.fps_animation_weight = "drum_mag"
 
+	-- Izhma drum magazine
+	self.parts.wpn_fps_upg_ak_m_banana = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm)
+	self.parts.wpn_fps_upg_ak_m_banana.is_a_unlockable = nil
+	self.parts.wpn_fps_upg_ak_m_banana.texture_bundle_folder = nil
+	self.parts.wpn_fps_upg_ak_m_banana.dlc = nil
+	self.parts.wpn_fps_upg_ak_m_banana.name_id = "bm_wp_ak_m_banana"
+	self.parts.wpn_fps_upg_ak_m_banana.unit = "units/pd2_dlc_gage_lmg/weapons/wpn_fps_lmg_rpk_pts/wpn_fps_lmg_rpk_m_standard"
+	self.parts.wpn_fps_upg_ak_m_banana.third_unit = "units/pd2_dlc_gage_lmg/weapons/wpn_third_lmg_rpk_pts/wpn_third_lmg_rpk_m_standard"
+	self.parts.wpn_fps_upg_ak_m_banana.pcs = { 10, 20, 30, 40 }
+	self.parts.wpn_fps_upg_ak_m_banana.stats = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm.stats)
+	self.parts.wpn_fps_upg_ak_m_banana.stats.extra_ammo = nil
+	self.parts.wpn_fps_upg_ak_m_banana.custom_stats = { ammo_offset = 15 }
+
+	self.parts.wpn_lmg_rpk_m_standard = deep_clone(self.parts.wpn_fps_upg_ak_m_banana)
+	self.parts.wpn_lmg_rpk_m_standard.custom_stats = { ammo_offset = -30 }
+	self.parts.wpn_lmg_rpk_m_standard.fps_animation_weight = "ban_mag"
+	
+	self:_add_parts_from_list({ "wpn_fps_lmg_rpk" }, { "wpn_lmg_rpk_m_standard" })
+	
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.spread = -2

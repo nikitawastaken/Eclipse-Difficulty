@@ -17,8 +17,6 @@ end
 
 -- Add animation weights to enable switching of animations for specific weapon parts.
 local weapon_anim_weights = {}
-
--- probably not needed but better safe than sorry
 local equip_selection_original = PlayerInventory.equip_selection
 function PlayerInventory:equip_selection(...)
 	local result = equip_selection_original(self, ...)
