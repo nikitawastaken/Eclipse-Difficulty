@@ -30,8 +30,8 @@ WeaponFactoryTweakData.parts_to_all = {
 	"wpn_fps_upg_bonus_team_money",
 }
 WeaponFactoryTweakData.parts_from_template = {
---	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
---	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
+	--	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
+	--	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
 	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
 	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
 	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
@@ -1229,7 +1229,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		reload = "reload",
 	}
 
---[[ CAR drum magazine
+	--[[ CAR drum magazine
 	self.parts.wpn_fps_upg_m4_m_drum = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
 	self.parts.wpn_fps_upg_m4_m_drum.name_id = "bm_wp_m4_m_drum"
 	self.parts.wpn_fps_upg_m4_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum"
@@ -1253,7 +1253,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_upg_ak_m_drum.custom_stats = { ammo_offset = 45 }
 	self.parts.wpn_upg_ak_m_drum.animations = drum_anims
 ]]
-	
+
 	-- Compact-5 drum magazine
 	self.parts.wpn_fps_smg_mp5_m_drum = deep_clone(self.parts.wpn_fps_smg_mp5_m_straight)
 	self.parts.wpn_fps_smg_mp5_m_drum.texture_bundle_folder = nil
