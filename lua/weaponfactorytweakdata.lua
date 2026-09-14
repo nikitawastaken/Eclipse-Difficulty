@@ -1294,9 +1294,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_lmg_rpk_m_standard = deep_clone(self.parts.wpn_fps_upg_ak_m_banana)
 	self.parts.wpn_lmg_rpk_m_standard.custom_stats = { ammo_offset = -30 }
 	self.parts.wpn_lmg_rpk_m_standard.fps_animation_weight = "ban_mag"
-	
+
 	self:_add_parts_from_list({ "wpn_fps_lmg_rpk" }, { "wpn_lmg_rpk_m_standard" })
-	
+
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.spread = -2
