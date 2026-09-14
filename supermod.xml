@@ -7,7 +7,10 @@
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
 	<tweak definition="tweak/colorgradings.xml"/>
-
+	<tweak definition="tweak/fps_animation_states.xml" />
+	<tweak definition="tweak/fps_animation_subset.xml" />
+	<tweak definition="tweak/fps_animation_state_machine.xml" />
+	
 	<hooks script_path="mod.lua">
 
 		<group hook_id="core/lib/">
@@ -123,6 +126,7 @@
 				<post :hook_id="skirmishmanager"/>
 				<post :hook_id="crimespreemanager"/>
 				<post :hook_id="navigationmanager"/>
+				<post :hook_id="weaponfactorymanager"/>
 			</group>
 
 			<group :hook_id="player_actions/skills/">
@@ -4349,10 +4353,11 @@
 
 		<!-- objects -->
 		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
-				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
+			<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
 		</group>
 
 		<!-- animations -->
+		<!-- Shield bash melee animation -->
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
 	</assets>
 </mod>

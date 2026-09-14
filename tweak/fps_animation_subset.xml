@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<tweaks>
+	<tweak version="2" name="anims/fps/fps_spawn" extension="animation_subset">
+		<search>
+			<xml/>
+		</search>
+		<target mode="attach">	
+			<anim name="mp5_rifle_reload_drum"					file="anims/fps/mp5/mp5_reload_drum" blend_set="all"/>
+			<anim name="mp5_rifle_reload_drum_not_empty"		file="anims/fps/mp5/mp5_reload_drum_not_empty" blend_set="all"/>
+			
+			<anim name="saiga_reload_drum" 						file="anims/fps/saiga/saiga_reload_drum" blend_set="all"/>
+			<anim name="saiga_reload_drum_not_empty" 			file="anims/fps/saiga/saiga_reload_drum_not_empty" blend_set="all"/>
+	
+			<anim name="basset_reload_drum" 					file="anims/fps/basset/basset_reload_drum" blend_set="all"/>
+			<anim name="basset_reload_drum_not_empty" 			file="anims/fps/basset/basset_reload_drum_not_empty" blend_set="all"/>
+
+			<anim name="rpk_reload_normal" 						file="anims/fps/rpk/rpk_reload_normal" blend_set="all"/>
+			<anim name="rpk_reload_normal_not_empty" 			file="anims/fps/rpk/rpk_reload_normal_not_empty" blend_set="all"/>		
+		</target>
+	</tweak>
+</tweaks>
