@@ -604,6 +604,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"supernova",
 				"m1897",
+				"bleckert",
 			},
 		},
 		{
