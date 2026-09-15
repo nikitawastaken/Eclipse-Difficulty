@@ -487,7 +487,6 @@ return {
 			{ id = 410074, delay = 60 },
 		},
 		difficulty_addends = objective_diff_add.difficulty_addends,
-		force_end_assault = true, -- force a regroup
 	},
 	[103883] = { -- Matt is out, go to parking
 		reinforce = { -- remove Inkwell reinforce
