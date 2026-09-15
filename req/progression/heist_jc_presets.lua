@@ -80,6 +80,7 @@ local M = {
 	wwh = "rare",
 	chill_combat = "rare",
 
+	auc = "slightly_very_rare",
 	arena = "slightly_very_rare",
 	big = "slightly_very_rare",
 	crojob1 = "slightly_very_rare",
