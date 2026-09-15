@@ -103,6 +103,13 @@ local M = {
 	[("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"):key()] = { ump = 3, s552 = 2, benelli = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"):key()] = { ump = 3, s552 = 2, benelli = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"):key()] = { ump = 3, s552 = 2, benelli = 1 },
+    --Palissandro Dimora guards
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_4/ene_male_auc_security_4"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_5/ene_male_auc_security_5"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
+	[("units/pd2_dlc_auc/characters/ene_male_auc_security_6/ene_male_auc_security_6"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
 	--FBI ready teams
 	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"):key()] = { mp5 = 3, m4 = 2, r870 = 1 },
 	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"):key()] = { mp5 = 3, m4 = 2, r870 = 1 },
