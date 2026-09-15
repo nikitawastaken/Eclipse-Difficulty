@@ -2168,6 +2168,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.supernova.fire_mode_data.fire_rate = 60 / 90
 	self.supernova.alt_fire_data = nil
 
+	-- Karussell
+	self.bleckert.CLIP_AMMO_MAX = 5
+	self.bleckert.stats.damage = 20
+	self.bleckert.stats.spread = 16
+	self.bleckert.stats.recoil = 5
+	self.bleckert.stats.concealment = 18
+	self.bleckert.fire_mode_data.fire_rate = 60 / 140
+	self.bleckert.fire_rate_multiplier = 120 / 140
+	
 	-- Mosconi
 	self.huntsman.CLIP_AMMO_MAX = 2
 	self.huntsman.stats.damage = 24

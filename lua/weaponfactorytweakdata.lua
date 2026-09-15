@@ -1868,6 +1868,7 @@ WeaponFactoryTweakData.shotgun_ammo_override_map = {
 	["wpn_fps_sho_boot"] = "heavy",
 	["wpn_fps_shot_m1897"] = "heavy",
 	["wpn_fps_sho_supernova"] = "heavy",
+	["wpn_fps_sho_bleckert"] = "heavy",
 	["wpn_fps_shot_huntsman"] = "very_heavy",
 	["wpn_fps_shot_b682"] = "very_heavy",
 	["wpn_fps_sho_coach"] = "very_heavy",
