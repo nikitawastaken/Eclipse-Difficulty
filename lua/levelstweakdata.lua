@@ -843,6 +843,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.watchdogs_2.random_environments = {
 		["watchdogs2_02_night"] = 2,
+		["watchdogs2_02_night_bhdscanner"] = 2,
+		["watchdogs2_02_night_matrix"] = 2,
+		["watchdogs2_02_night_sunset"] = 2,
 	}
 	-- self.watchdogs_2_day.env_params.environment = nil
 	self.watchdogs_2_day.random_environments = {
@@ -887,7 +890,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.chew.random_environments = {
-		["bikerheist_2_02"] = 3,
+		["bikerheist_2_01"] = 3,
 	}
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
@@ -942,6 +945,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["croatian_dockyard_1"] = 3,
 		["croatian_dockyard_2"] = 2,
 		["croatian_dockyard_3"] = 2,
+		["croatian_dockyard_4"] = 2,
 		["default"] = 1,
 	}
 	self.arm_cro.random_environments = {
@@ -988,10 +992,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["firestarter1_2"] = 3,
 		["firestarter1_3"] = 2,
 		["firestarter1_4"] = 3,
+		["firestarter1_5"] = 2,
 	}
 	self.firestarter_2.random_environments = {
 		["firestarter2_1"] = 2,
-		["firestarter2_2"] = 2,
+		["firestarter2_2"] = 1,
+		["firestarter2_3"] = 2,
 	}
 	self.firestarter_3.random_environments = {
 		["firestarter3_1"] = 3,
@@ -1001,6 +1007,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.brb.random_environments = {
 		["brb_1"] = 3,
 		["brb_2"] = 3,
+		["brb_3"] = 3,
 	}
 	self.hox_1.random_environments = {
 		["hox_1_1"] = 3,
@@ -1010,6 +1017,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.flat.random_environments = {
 		["flat_1"] = 4,
 		["flat_2"] = 3,
+		["flat_3"] = 3,
 		["default"] = 1,
 	}
 	self.dinner.random_environments = {
@@ -1061,7 +1069,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["chas_cg"] = 2,
 	}
 	self.spa.random_environments = {
-		["spa_01"] = 69,
+		["spa_01"] = 2,
+		["spa_01_alt"] = 1,
+		["spa_02"] = 2,
+		["spa_02_alt"] = 1,
+		["spa_dwpj"] = additive_weight_value,
 	}
 	self.election_day_3.random_environments = {
 		["breakingballot_01"] = 2,
@@ -1163,6 +1175,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.chill_combat.random_environments = self.chill.random_environments
 	self.dark.random_environments = {
+		["dark_03"] = 2,
 		["dark_02"] = 1,
 		["dark_01"] = 2,
 	}

@@ -1,10 +1,9 @@
 return {
 	flashlights_on = false, -- Flashlights
+	saturation_value = 0.2,
 	color_grading = { -- Randomized color gradings
-		"color_matrix_classic",
+		"color_xgen",
 		"color_payday",
-		"color_xxxgen",
-		"color_bhd_classic",
 		"color_payday_classic",
 	},
 	environment_override = {

@@ -28,11 +28,11 @@
 						<param key="ambient_color_scale" value="0.95999997854233"/>
 						<param key="ambient_color" value="0.6235294342041 0.70196080207825 0.63137257099152"/>
 						<param key="fog_max_range" value="50000"/>
-						<param key="bloom_threshold" value="0.55000001192093"/>
+						<param key="bloom_threshold" value="0.85296875238419"/>
 						<param key="sky_top_color_scale" value="0.40700000524521"/>
 						<param key="sky_top_color" value="0.074509806931019 0.54117649793625 1"/>
 						<param key="fog_min_range" value="431.59387207031"/>
-						<param key="fog_max_density" value="1"/>
+						<param key="fog_max_density" value="0.53908807039261"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -40,18 +40,18 @@
 				<shadow_rendering>
 					<shadow_modifier>
 						<param key="slice3" value="9999 50000 0"/>
-						<param key="shadow_slice_depths" value="634 2367 10000"/>
-						<param key="slice0" value="0 634 0"/>
-						<param key="slice1" value="533 2367 0"/>
-						<param key="slice2" value="1566 10000 0"/>
+						<param key="shadow_slice_depths" value="1034 6367 10000"/>
+						<param key="slice0" value="0 1034 0"/>
+						<param key="slice1" value="933 6367 0"/>
+						<param key="slice2" value="5566 10000 0"/>
 						<param key="shadow_slice_overlap" value="101 801 1"/>
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,17 +61,13 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>
 				<param key="color0" value="0 0.23921570181847 0.56470590829849"/>
 				<param key="color2" value="0.43137258291245 0.52156865596771 0.65098041296005"/>
-				<param key="color2_scale" value="2.8208744525909"/>
-				<param key="color0_scale" value="0.65799999237061"/>
+				<param key="color2_scale" value="2.4000000953674"/>
+				<param key="color0_scale" value="0.40000000596046"/>
 			</sky>
 		</underlay_effect>
 		<environment_effects>

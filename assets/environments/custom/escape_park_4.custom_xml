@@ -9,7 +9,7 @@
 			<param key="sky_texture" value="core/environments/skies/sky_279_dusk/sky_279_dusk"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_0200_night_moon_stars/sky_0200_night_moon_stars"/>
-			<param key="sun_ray_color_scale" value="1"/>
+			<param key="sun_ray_color_scale" value="2"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.070588238537312 0.25098040699959 0.3137255012989"/>
 			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_night_df"/>
@@ -21,11 +21,11 @@
 						<param key="ambient_scale" value="0"/>
 						<param key="sky_bottom_color" value="0.10980392992496 0.086274512112141 0.074509806931019"/>
 						<param key="fog_start_color" value="0.25098040699959 0.24705883860588 0.24313727021217"/>
-						<param key="effect_light_scale" value="1"/>
+						<param key="effect_light_scale" value="0.69999998807907"/>
 						<param key="fog_far_low_color" value="0.070588238537312 0.25098040699959 0.3137255012989"/>
 						<param key="ambient_falloff_scale" value="0.179000005126"/>
 						<param key="sky_bottom_color_scale" value="0"/>
-						<param key="ambient_color_scale" value="0.17800000309944"/>
+						<param key="ambient_color_scale" value="0.30000001192093"/>
 						<param key="ambient_color" value="0.26666668057442 0.3137255012989 0.24313727021217"/>
 						<param key="fog_max_range" value="159849.5625"/>
 						<param key="bloom_threshold" value="0"/>
@@ -48,16 +48,12 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
 						<param key="lense_intensity" value="0.10343206673861"/>
 						<param key="bloom_blur_size" value="4"/>
-						<param key="bloom_intensity" value="0.34999999403954"/>
+						<param key="bloom_intensity" value="1"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
