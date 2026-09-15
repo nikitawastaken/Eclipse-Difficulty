@@ -277,7 +277,7 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.early_control_music = enabled
 		end
-		
+
 		function MenuCallbackHandler:eclipse_force_color_grading_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.force_cg = enabled
@@ -407,7 +407,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddToggle({
 			id = "force_cg",
 			title = "eclipse_menu_force_cg",
