@@ -103,7 +103,7 @@ local M = {
 	[("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"):key()] = { ump = 3, s552 = 2, benelli = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"):key()] = { ump = 3, s552 = 2, benelli = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"):key()] = { ump = 3, s552 = 2, benelli = 1 },
-    --Palissandro Dimora guards
+	--Palissandro Dimora guards
 	[("units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
 	[("units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },
 	[("units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"):key()] = { beretta92 = 6, raging_bull = 1, mp5 = 3 },

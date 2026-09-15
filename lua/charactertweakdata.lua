@@ -1434,13 +1434,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 	self.chavez_boss.die_sound_event = "lt1_x02a_any_3p"
 
-    self.fbi_female_boss = deep_clone(self.chavez_boss)
+	self.fbi_female_boss = deep_clone(self.chavez_boss)
 	self.fbi_female_boss.HEALTH_INIT = 80
 	self.fbi_female_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.fbi_female_boss.melee_weapon = "taser"
 	self.fbi_female_boss.access = "fbi"
 	self.fbi_female_boss.die_sound_event = "fl1n_x01a_any_3p"
-    table.insert(self._enemy_list, "fbi_female_boss")
+	table.insert(self._enemy_list, "fbi_female_boss")
 
 	self.auctioneer_boss = deep_clone(self.mobster_boss)
 	self.auctioneer_boss.access = "security"
