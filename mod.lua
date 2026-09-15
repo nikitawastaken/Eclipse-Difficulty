@@ -411,7 +411,7 @@ if not Eclipse then
 		MenuHelper:AddToggle({
 			id = "force_cg",
 			title = "eclipse_menu_force_cg",
-			desc = "eclipse_menuforce_cg_desc",
+			desc = "eclipse_menu_force_cg_desc",
 			callback = "eclipse_force_color_grading_toggle",
 			value = Eclipse.settings.force_cg,
 			menu_id = menu_id,
