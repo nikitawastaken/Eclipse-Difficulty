@@ -17,6 +17,7 @@ if not Eclipse then
 			welcome_message = true,
 			disable_christmas = false,
 			early_control_music = true,
+			force_cg = true,
 			can_secure_loot = true,
 			targeting_priority_mul = {
 				base_priority = 1,
@@ -276,6 +277,11 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.early_control_music = enabled
 		end
+		
+		function MenuCallbackHandler:eclipse_force_color_grading_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.force_cg = enabled
+		end
 
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
@@ -398,6 +404,16 @@ if not Eclipse then
 			desc = "eclipse_menu_early_control_music_desc",
 			callback = "eclipse_early_control_music_toggle",
 			value = Eclipse.settings.early_control_music,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
+		MenuHelper:AddToggle({
+			id = "force_cg",
+			title = "eclipse_menu_force_cg",
+			desc = "eclipse_menuforce_cg_desc",
+			callback = "eclipse_force_color_grading_toggle",
+			value = Eclipse.settings.force_cg,
 			menu_id = menu_id,
 			priority = 100,
 		})

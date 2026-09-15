@@ -335,7 +335,7 @@ Hooks:PostHook(CoreEnvironmentControllerManager, "refresh_render_settings", "ref
 	end
 
 	local bo_andersson = self:should_i_yomc()
-	if bo_andersson then
+	if bo_andersson or Eclipse.settings.force_cg then
 		color_grading = self._default_color_grading
 		self._ignore_user_color_grading = true
 	else

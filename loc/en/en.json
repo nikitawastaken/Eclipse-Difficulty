@@ -121,6 +121,8 @@
 	"eclipse_menu_disable_christmas_desc": "Disables year-round Christmas effects such as enemy Santa hats or jingle bells on heists that have them.",
 	"eclipse_menu_early_control_music": "Early Control Music",
 	"eclipse_menu_early_control_music_desc": "Play control phase music when police start their retreat, before the assault banner disappears.",
+	"eclipse_menu_force_cg": "Force Color Gradings",
+	"eclipse_menu_force_cg_desc": "Disabling this option allows you to use a Color Grading based on your choice in Video Settings instead of a pre-set one.",
 	"eclipse_menu_team_ai": "Team AI settings",
 	"eclipse_menu_team_ai_desc": "Tweak Team AI behavior",
 	"eclipse_team_ai_can_secure_loot": "Secure loot bags",
