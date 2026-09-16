@@ -1,0 +1,48 @@
+<table ambience_enabled="true" default_ambience="ambience_ext_cold_winds_ocean_close" default_environment="pd2_acoustics_outdoor_large_echo" default_occasional="occasionals_a_silent">
+	<sound_area_emitters/>
+	<sound_emitters>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_129" position="-3009 -21920 6092" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_131" position="-3025 -21920 6388" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_132" position="-3563 -21920 6388" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_133" position="-3859 -21920 6092" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_134" position="-2719 -21926 6685" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_135" position="-3858 -21920 6685" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_136" position="-4334 -22423 6685" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_137" position="-3326 -21920 6973" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_138" position="-4334 -22700 6382" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_139" position="-4334 -23186 6382" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_140" position="-4334 -23186 6682" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_141" position="-4334 -23186 6079" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_142" position="-2928 -23404 6079" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_143" position="-3328 -23404 6368" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_144" position="-3839 -23404 6365" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_145" position="-2589 -23367 6658" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_146" position="-2999 -23404 7002" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_147" position="-3535 -23404 6954" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_149" position="-2534 -22404 6354" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_tarp_wind" name="sound_emitter_150" position="-2534 -22592 6958" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_stress_metal_large" name="sound_emitter_153" position="-2614 -3632 6000" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_stress_metal_large" name="sound_emitter_154" position="-143 -3632 6000" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_rubble_light" name="sound_emitter_155" position="-1329 -2898 5519" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_rubble_light" name="sound_emitter_156" position="-1902 -2856 5554" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_rubble_light" name="sound_emitter_157" position="-672 -3107 5518" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_rubble_light" name="sound_emitter_158" position="-692 -1774 5258" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_rubble_light" name="sound_emitter_159" position="-1510 -2224 5418" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_generator" name="sound_emitter_182" position="-1623 -23226 5889" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_truck_idle_02" name="sound_emitter_198" position="-2379 -14100 5975" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_truck_idle_02" name="sound_emitter_199" position="-2388 -30939 5800" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_broken_01" name="sound_emitter_200" position="-700 -4193 5733" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_03_gen_20" name="sound_emitter_201" position="-1531 -13622 5872" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_07" name="sound_emitter_202" position="-1921 -11808 5876" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_10" name="sound_emitter_203" position="-1589 -8864 5848" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_07" name="sound_emitter_204" position="-1228 -7576 5828" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_car_idle_10" name="sound_emitter_205" position="-693 -19550 5864" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_truck_idle_02" name="sound_emitter_206" position="-1322 -11162 5966" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_truck_idle_02" name="sound_emitter_207" position="-795 -18049 5944" rotation="0 0 0 -1"/>
+	</sound_emitters>
+	<sound_environments>
+		<table ambience_event="ambience_ext_skyscraper_roof_night" depth="1550" environment="pd2_acoustics_outdoor_medium_echo" height="1490" name="sound_environment_001" occasional_event="occasionals_a_silent" position="-4531 -23426 5500" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="2000"/>
+		<table ambience_event="ambience_ext_skyscraper_roof_night_edge" depth="1550" environment="pd2_acoustics_outdoor_large_echo" height="1000" name="sound_environment_002" occasional_event="occasionals_a_silent" position="-4350 -23442 6986" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="2000"/>
+		<table ambience_event="ambience_ext_skyscraper_roof_night_edge" depth="750" environment="pd2_acoustics_outdoor_large_echo" height="5290" name="sound_environment_003" occasional_event="occasionals_a_silent" position="-3468 -48142 0" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="1000"/>
+	</sound_environments>
+</table>

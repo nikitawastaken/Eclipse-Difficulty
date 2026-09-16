@@ -871,7 +871,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["first_world_bank_dwpj_matrix"] = additive_weight_value,
 	}
 	self.man.random_environments = {
-		["undercover"] = 3,
+		["undercover"] = 1,
+		["undercover_2"] = 3,
 		["undercover_dwpj_heavenhell"] = additive_weight_value,
 	}
 	self.mia_1.random_environments = {
@@ -904,7 +905,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mad.random_environments = {
 		["mad"] = 3,
 		["mad_night"] = 2,
-		["default"] = 1,
+		["mad_2"] = 1,
 	}
 	self.pex.random_environments = {
 		["tijuana_01"] = 1,
@@ -1060,7 +1061,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["arena_cg"] = 69,
 	}
 	self.glace.random_environments = {
-		["glace_1"] = 69,
+		["glace_1"] = 4,
+		["glace_rainless"] = 2,
 	}
 	self.mus.random_environments = {
 		["dadiamond_cg"] = 69,
