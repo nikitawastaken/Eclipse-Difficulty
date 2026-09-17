@@ -182,7 +182,8 @@ function PlayerDamage:damage_bullet(attack_data)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
 	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_active_injector and 0 or 1)
-	self._unit:movement():subtract_stamina(stamina_mul)
+	self._unit:movement():subtract_stamina(0.75 * stamina_mul)
+	self._unit:movement():_restart_stamina_regen_timer()
 
 	if not _G.IS_VR then
 		managers.rumble:play("damage_bullet")
