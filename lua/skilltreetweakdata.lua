@@ -57,14 +57,14 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Control Freak
 	self.skills.cable_guy[1].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts" }
 	self.skills.cable_guy[2].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
-	self.skills.cable_guy.icon_xy = { 6, 7 }
+	self.skills.cable_guy.icon_xy = { 0, 0 }
 
 	-- Stockholm Syndrome
 	self.skills.joker[1].upgrades = { "player_civilian_subdued_indicator" }
 	self.skills.joker[2].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
 	self.skills.joker.name_id = "menu_stockholm_syndrome"
 	self.skills.joker.desc_id = "menu_stockholm_syndrome_desc"
-	self.skills.joker.icon_xy = { 3, 8 }
+	self.skills.joker.icon_xy = { 6, 7 }
 
 	-- Human Shield
 	self.skills.stockholm_syndrome[1].upgrades = { "player_hostage_stamina_addend" }
