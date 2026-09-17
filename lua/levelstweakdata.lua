@@ -120,7 +120,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.bph.force_size_preset = "reduced_t2"
 	self.vit.force_size_preset = "reduced_t2"
 	self.fex.force_size_preset = "reduced_t2"
-	
+
 	self.roberts.force_size_preset = "reduced_t1"
 	self.pbr2.force_size_preset = "reduced_t1"
 	self.flat.force_size_preset = "reduced_t1"

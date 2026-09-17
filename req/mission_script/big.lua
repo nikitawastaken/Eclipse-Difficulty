@@ -76,7 +76,7 @@ local bags_required = {
 local wall_explode_chance = {
 	values = {
 		chance = normal and 50 or 75,
-	}
+	},
 }
 local roof_spawn = {
 	values = {
