@@ -875,7 +875,7 @@ if not Eclipse then
 	TheFixesPreventer.fix_ai_set_attention = true
 	TheFixesPreventer.tank_walk_near_players = true
 	TheFixesPreventer.fix_hostages_not_moving = true
-	
+
 	-- Disable HopHUD's civilian alert icons
 	HopHUD = HopHUD or {}
 	HopHUD.settings = HopHUD.settings or {}

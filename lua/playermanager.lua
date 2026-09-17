@@ -924,7 +924,6 @@ function PlayerManager:stamina_multiplier()
 	multiplier = multiplier + self:team_upgrade_value("stamina", "passive_multiplier", 1) - 1
 	multiplier = multiplier + self:get_hostage_bonus_multiplier("stamina") - 1
 
-
 	-- stockholm syndrome per-hostage stamina
 	if self:has_category_upgrade("player", "hostage_stamina_addend") then
 		multiplier = multiplier * (1 + self:get_hostage_bonus_addend("stamina"))
