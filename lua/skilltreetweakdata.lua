@@ -64,19 +64,21 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.joker[2].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
 	self.skills.joker.name_id = "menu_stockholm_syndrome"
 	self.skills.joker.desc_id = "menu_stockholm_syndrome_desc"
+	self.skills.joker.icon_xy = { 3, 8 }
 
 	-- Human Shield
 	self.skills.stockholm_syndrome[1].upgrades = { "player_hostage_stamina_addend" }
 	self.skills.stockholm_syndrome[2].upgrades = { "player_hostage_damage_reduction_addend" }
-	self.skills.stockholm_syndrome.icon_xy = { 3, 8 }
 	self.skills.stockholm_syndrome.name_id = "menu_human_shield"
 	self.skills.stockholm_syndrome.desc_id = "menu_human_shield_desc"
-
+	self.skills.stockholm_syndrome.icon_xy = { 0, 0 }
+	
 	-- Partners in Crime
 	self.skills.control_freak[1].upgrades = { "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
 	self.skills.control_freak[2].upgrades = { "player_convert_counts_as_hostage", "player_convert_enemies_interaction_speed_multiplier", "player_convert_camouflage_mul" }
 	self.skills.control_freak.name_id = "menu_partners_in_crime"
 	self.skills.control_freak.desc_id = "menu_partners_in_crime_desc"
+	self.skills.control_freak.icon_xy = { 6, 8 }
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = { "player_close_to_hostage_boost" }
