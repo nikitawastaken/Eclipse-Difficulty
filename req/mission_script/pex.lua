@@ -80,7 +80,7 @@ return {
 	[102964] = {
 		ponr = {
 			length = 270,
-			length_balance_mul = { 1.5, 1.25, 1, 0.875 },
+			length_balance_mul = { 1.375, 1.25, 1.125, 1 },
 		},
 		on_executed = {
 			{ id = 400049, delay = 0 }, -- enable parking hiding spots when Almor has been found

@@ -65,31 +65,36 @@ end
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
+local swat_sniper_c4_escape_so = {
+	so_access_filter = { "swat", "sniper" },
+}
 local bags_required = {
 	values = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-local swat_sniper_c4_escape_so = {
-	so_access_filter = { "swat", "sniper" },
+local wall_explode_chance = {
+	values = {
+		chance = normal and 50 or 75,
+	}
 }
 local roof_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 local elevator_close_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -146,51 +151,9 @@ return {
 			},
 		},
 	},
-	[104680] = { -- open gate (downstairs)
-		reinforce = {
-			{
-				name = "gate",
-				force = 2,
-				position = Vector3(-175, -25, -1000),
-			},
-		},
-	},
-	[104681] = { -- open gate (upstairs)
-		reinforce = {
-			{
-				name = "gate",
-				force = 2,
-				position = Vector3(-175, -25, -600),
-			},
-		},
-	},
-	[104369] = { -- explode wall (downstairs)
-		reinforce = {
-			{
-				name = "breach",
-				force = 2,
-				position = Vector3(-175, -25, -1000),
-			},
-		},
-	},
-	[104367] = { -- explode wall (upstairs)
-		reinforce = {
-			{
-				name = "breach",
-				force = 2,
-				position = Vector3(-175, -25, -600),
-			},
-		},
-	},
-	[105792] = { -- Player entered vault
-		reinforce = {
-			{
-				name = "vault",
-				force = 3,
-				position = Vector3(-3300, 350, -1000),
-			},
-		},
-	},
+	-- Tweak the chance for cops to blow up a wall
+	[102451] = wall_explode_chance,
+	[102469] = wall_explode_chance,
 	--- Enable roof spawngroups
 	[100006] = {
 		values = {

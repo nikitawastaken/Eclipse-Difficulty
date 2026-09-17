@@ -42,9 +42,9 @@ local security = { enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/en
 local window_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
