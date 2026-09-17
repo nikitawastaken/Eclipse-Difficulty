@@ -1078,6 +1078,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["spa_02_alt"] = 1,
 		["spa_dwpj"] = additive_weight_value,
 	}
+	self.election_day_1.random_environments = {
+		["election_day_1_blue"] = 1,
+		["election_day_1_blue_cloudy"] = 2,
+		["election_day_1_sunset"] = 2,
+		["election_day_1_sunset_alt"] = 1,
+		["election_day_1_sunset_alt_2"] = 1,
+	}
 	self.election_day_3.random_environments = {
 		["breakingballot_01"] = 2,
 		["breakingballot_02"] = 1,
