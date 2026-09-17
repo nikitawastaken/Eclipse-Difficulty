@@ -28,10 +28,10 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.coke_pure = 18350
 	self.bag_values.meth = 30500
 	self.bag_values.meth_half = 15250
-	self.bag_values.weapon = 18750
-	self.bag_values.weapons = 24500
+	self.bag_values.weapon = 24750
+	self.bag_values.weapons = 32500
 	self.bag_values.ranc_weapon = 40200
-	self.bag_values.painting = 32000
+	self.bag_values.painting = 72000
 	self.bag_values.samurai_suit = 165000
 	self.bag_values.artifact_statue = 42000
 	self.bag_values.mus_artifact_bag = 12000
@@ -49,7 +49,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.prototype = 500000
 	self.bag_values.faberge_egg = 75000
 	self.bag_values.treasure = 34500
-	self.bag_values.counterfeit_money = 32000
+	self.bag_values.counterfeit_money = 62000
 	self.bag_values.box_unknown = 10000
 	self.bag_values.black_tablet = 750000
 	self.bag_values.masterpiece_painting = 92000
@@ -68,20 +68,20 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.cloaker_gold = 12500
 	self.bag_values.cloaker_money = 12500
 	self.bag_values.cloaker_cocaine = 12500
-	self.bag_values.diamond_necklace = 12500
-	self.bag_values.vr_headset = 18240
-	self.bag_values.women_shoes = 17240
-	self.bag_values.expensive_vine = 19275
-	self.bag_values.ordinary_wine = 17760
-	self.bag_values.robot_toy = 16520
+	self.bag_values.diamond_necklace = 42500
+	self.bag_values.vr_headset = 38240
+	self.bag_values.women_shoes = 27240
+	self.bag_values.expensive_vine = 29275
+	self.bag_values.ordinary_wine = 27760
+	self.bag_values.robot_toy = 26520
 	self.bag_values.rubies = 36240
 	self.bag_values.red_diamond = 1200000
 	self.bag_values.old_wine = 12000
-	self.bag_values.chas_artifact = 10000
-	self.bag_values.chas_teaset = 32000
+	self.bag_values.chas_artifact = 100000
+	self.bag_values.chas_teaset = 92000
 	self.bag_values.garden_gnome = 69
-	self.bag_values.turret_part = 25000
-	self.bag_values.corp_papers = 30000
+	self.bag_values.turret_part = 75000
+	self.bag_values.corp_papers = 60000
 	self.bag_values.corp_prototype = 500000
 	self.bag_values.trai_printing_plates = 75000
 
@@ -767,9 +767,9 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.default = 20200
 		self.bag_values.gold = 56375
 	end
-	if job_id == "firestarter" then
+	if job_id == "firestarter" or job_id == "mex" then
 		self.bag_values.money = 32250
-		self.bag_values.coke = 20200
+		self.bag_values.coke = 24200
 		self.bag_values.gold = 56375
 	end
 	if job_id == "hvh" or job_id == "nail" or job_id == "help" or job_id == "haunted" then
@@ -793,12 +793,12 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.money = 42350
 	end
 	if level_id == "alex_3" then
-		self.bag_values.money = 22350
+		self.bag_values.money = 26350
 	end
 	if job_id == "friend" then
-		self.bag_values.money = 14350
-		self.bag_values.coke = 22050
-		self.bag_values.coke_pure = 22050
+		self.bag_values.money = 24350
+		self.bag_values.coke = 32050
+		self.bag_values.coke_pure = 32050
 	end
 	if job_id == "fish" then
 		self.bag_values.money = 62000
@@ -808,14 +808,15 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "mia" then
 		self.small_loot.money_bundle = (money_mul * 2500)
-		self.bag_values.coke = 24535
-		self.bag_values.money = 15600
+		self.bag_values.coke = 34535
+		self.bag_values.money = 25600
+		self.bag_values.meth = 65600
 	end
 	if job_id == "safehouse" then
 		self.small_loot.money_bundle = 25000
 	end
 	if job_id == "mus" then
-		self.bag_values.mus_artifact_bag = 32000
+		self.bag_values.mus_artifact_bag = 52000
 	end
 	if job_id == "kosugi" then
 		self.bag_values.money = 24250
@@ -863,7 +864,7 @@ function MoneyTweakData:init(tweak_data)
 	self.skilltree.respec.respec_refund_multiplier = 0.6
 	self.skilltree.respec.point_cost = 0
 	self.skilltree.respec.point_multiplier_cost = 1
-	local loot_drop_value = 7250
+	local loot_drop_value = 12250
 	self.loot_drop_cash = {
 		cash10 = loot_drop_value,
 		cash20 = 2 * loot_drop_value,
@@ -882,8 +883,8 @@ function MoneyTweakData:init(tweak_data)
 		self.loot_drop_cash.xone_bonus = 5000000
 	end
 
-	self.unlock_new_mask_slot_value = 75000
-	self.unlock_new_weapon_slot_value = 125000
+	self.unlock_new_mask_slot_value = 35000
+	self.unlock_new_weapon_slot_value = 65000
 	self.moneythrower = {
 		max_kills_per_session = 100,
 		kill_to_offshore_multiplier = 1000,

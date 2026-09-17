@@ -494,7 +494,7 @@ if tweak_data.blackmarket.xp.xp_pda9_1 then
 end
 
 tweak_data.casino = {
-	unlock_level = 10,
+	unlock_level = 20,
 	entrance_level = {
 		10,
 		20,
@@ -505,20 +505,20 @@ tweak_data.casino = {
 		70,
 	},
 	entrance_fee = {
-		45000,
-		55000,
-		60000,
-		75000,
-		120000,
-		135000,
-		150000,
+		90000,
+		90000,
+		90000,
+		90000,
+		90000,
+		90000,
+		90000,
 	},
 	prefer_cost = 80000,
 	prefer_chance = 0.12,
 	secure_card_cost = {
 		35000,
-		60000,
-		95000,
+		50000,
+		75000,
 	},
 	secure_card_level = {
 		1,
