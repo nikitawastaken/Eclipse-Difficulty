@@ -284,7 +284,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	-- Add extra blood and sound effects to melee hits
 	local body_effect_id = Idstring("effects/payday2/particles/impacts/blood/blood_impact_a")
 	local head_effect_id = Idstring("effects/payday2/particles/impacts/blood/blood_impact_katana")
-	local head_sound_id = melee_type and melee_type == "blunt" and "split_gen_head" or "split_gen_head"
+	local head_sound_id = melee_type and melee_type == "blunt" and "expl_gen_head" or "expl_gen_head"
 
 	attack_data.headshot = head
 
