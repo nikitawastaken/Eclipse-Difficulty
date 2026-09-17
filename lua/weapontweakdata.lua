@@ -1332,10 +1332,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.categories = dmr_category
 	self.scar.CLIP_AMMO_MAX = 20
 	self.scar.stats.damage = 48
-	self.scar.stats.spread = 19
-	self.scar.stats.recoil = 8
+	self.scar.stats.spread = 20
+	self.scar.stats.recoil = 7
 	self.scar.stats.concealment = 19
-	self.scar.fire_mode_data.fire_rate = 60 / 550
+	self.scar.fire_mode_data.fire_rate = 60 / 600
 
 	-- Gewehr 3
 	self.g3.categories = dmr_category
@@ -1343,9 +1343,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g3.stats.damage = 48
 	self.g3.stats.spread = 20
 	self.g3.stats.recoil = 7
-	self.g3.stats.concealment = 18
+	self.g3.stats.concealment = 19
 	self.g3.fire_mode_data.fire_rate = 60 / 600
-
+	self.g3.timers.reload_not_empty = 2.6
+	self.g3.timers.reload_empty = 3.8
+	self.g3.reload_not_empty_speed_multiplier = self.g3.timers.reload_not_empty / self.scar.timers.reload_not_empty
+	self.g3.reload_empty_speed_multiplier = self.g3.timers.reload_empty / self.scar.timers.reload_empty
+	
 	-- Gecko 7.62
 	self.galil.categories = dmr_category
 	self.galil.CLIP_AMMO_MAX = 25

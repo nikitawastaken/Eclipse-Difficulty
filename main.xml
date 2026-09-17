@@ -61,5 +61,9 @@
 		<!-- RPK Banana Magazine animation by Zdann -->
 		<animation path="anims/fps/rpk/rpk_reload_normal" load="true"/>
 		<animation path="anims/fps/rpk/rpk_reload_normal_not_empty" load="true"/>
+
+		<!-- Old Gewehr-3 animations -->
+		<animation path="anims/fps/g3/g3_reload" load="true"/>
+		<animation path="anims/fps/g3/g3_reload_not_empty" load="true"/>
 	</AddFiles>
 </table>

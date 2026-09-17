@@ -942,6 +942,19 @@
 			</group>
 		</group>
 
+		<!-- Old Gewehr-3 animations -->
+		<group name="units/pd2_dlc_gage_assault/weapons/">
+			<group :name="wpn_fps_ass_g3_pts/">
+				<file :name="wpn_fps_ass_g3_fg_bipod.model"/>
+				<file :name="wpn_fps_ass_g3_fg_psg.model"/>
+				<file :name="wpn_fps_ass_g3_fg_railed.model"/>
+				<file :name="wpn_fps_ass_g3_fg_retro.model"/>
+				<file :name="wpn_fps_ass_g3_fg_retro_plastic.model"/>
+				<file :name="wpn_fps_ass_g3_m_mag.model"/>
+				<file :name="wpn_fps_ass_g3_m_mag_psg.model"/>
+			</group>
+		</group>
+		
 		<group name="units/pd2_halloween/weapons/">
 			<group :name="wpn_mel_titan_sword/">
 				<file :name="wpn_mel_titan_sword.cooked_physics"/>
