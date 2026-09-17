@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
-	<object file="units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1" />
+	<object file="units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1" />
 
 	<dependencies>		
-		<depends_on unit="units/pd2_dlc_chca/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap" />
+		<depends_on unit="units/pd2_dlc_coast_guard/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap" />
 		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />		
 	</dependencies>
 
@@ -87,7 +87,7 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >		
 			<var name="_tweak_table" value="cop" />
-			<var name="_default_weapon_id" value="r870" />			
+			<var name="_default_weapon_id" value="raging_bull" />			
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />
@@ -97,7 +97,7 @@
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
 			<var name="_head_gear_object" value="g_hat_cop_lod" />
 			<var name="_nr_head_gear_objects" value="2" />
-			<var name="_head_gear" value="units/pd2_dlc_chca/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap" />					
+			<var name="_head_gear" value="units/pd2_dlc_coast_guard/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap" />					
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />

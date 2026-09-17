@@ -260,7 +260,7 @@
 			<function extension="'spawn_manager'" function="'spawn_unit'" param1="'bag'" param2="'Spine2'" param3="'units/pd2_dlc_bph/props/bph_prop_bain_bag/bph_prop_bain_bag'"/>
 		</sequence>
 		<sequence editable_state="true" name="'spawn_earpiece'" triggable="true">
-			<function extension="'spawn_manager'" function="'spawn_unit'" param1="'bag'" param2="'Head'" param3="'units/pd2_dlc_chca/characters/civ_acc_earpiece/civ_acc_earpiece'"/>
+			<function extension="'spawn_manager'" function="'spawn_unit'" param1="'bag'" param2="'Head'" param3="'units/pd2_dlc_coast_guard/characters/civ_acc_earpiece/civ_acc_earpiece'"/>
 		</sequence>
 		<sequence editable_state="true" name="'hide_hand'" triggable="true">
 			<object enabled="false" name="'g_hand'"/>

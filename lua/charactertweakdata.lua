@@ -1982,11 +1982,16 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.chas, "ene_female_chas_police_01")
 	safe_add(char_map.chas, "ene_female_chas_police_02")
 
-	safe_add(char_map.chca, "ene_coast_guard_1")
-	safe_add(char_map.chca, "ene_coast_guard_2")
-	safe_add(char_map.chca, "ene_coast_guard_3")
-	safe_add(char_map.chca, "ene_coast_guard_4")
-
+	char_map.coast_guard = {
+		path = "units/pd2_dlc_coast_guard/characters/",
+		list = {
+			"ene_coast_guard_1",
+			"ene_coast_guard_2",
+			"ene_coast_guard_3",
+			"ene_coast_guard_4",
+		},
+	}
+	
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_03")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_04")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_fat_01")

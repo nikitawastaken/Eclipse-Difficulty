@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <dynamic_object>
-	<diesel materials="units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1" orientation_object="root_point" />	
-	<sequence_manager file="units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1" /> 	
+	<diesel materials="units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1" orientation_object="root_point" />	
+	<sequence_manager file="units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1" /> 	
 	<animation_def name="anims/units/enemies/cop/cop_def" />
 
 	<bodies>

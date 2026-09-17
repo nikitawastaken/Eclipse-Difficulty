@@ -598,10 +598,10 @@ local M = {
 	["units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01"] = { name = "female_chas_police_1", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02"] = { name = "female_chas_police_2", head = head_sequences.security },
 
-	["units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"] = { name = "coast_guard_1", head = head_sequences.security },
-	["units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"] = { name = "coast_guard_2", head = head_sequences.security },
-	["units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"] = { name = "coast_guard_3", head = head_sequences.security },
-	["units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"] = { name = "coast_guard_4", head = head_sequences.security },
+	["units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1"] = { name = "coast_guard_1", head = head_sequences.security },
+	["units/pd2_dlc_coast_guard/characters/ene_coast_guard_2/ene_coast_guard_2"] = { name = "coast_guard_2", head = head_sequences.security },
+	["units/pd2_dlc_coast_guard/characters/ene_coast_guard_3/ene_coast_guard_3"] = { name = "coast_guard_3", head = head_sequences.security },
+	["units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"] = { name = "coast_guard_4", head = head_sequences.security },
 
 	["units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"] = { name = "security_cruise_1", head = head_sequences.security },
 	["units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"] = { name = "security_cruise_2", head = head_sequences.security },
