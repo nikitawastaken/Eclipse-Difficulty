@@ -2554,11 +2554,12 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 			self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul or 1)
 				* (damage_ratio or 1)
 				* (snp_pickup_mul or 1)
-				
+
 			if weap_data._fire_rate_scale and weap_data.fire_mode_data and weap_data.fire_mode_data.fire_rate then
-				self[factory_id].override[part_id].custom_stats.fire_rate_multiplier = tweak_data.weapon:_calculate_damage_scale(damage, weap_data._fire_rate_scale) / (60 / weap_data.fire_mode_data.fire_rate)
+				self[factory_id].override[part_id].custom_stats.fire_rate_multiplier = tweak_data.weapon:_calculate_damage_scale(damage, weap_data._fire_rate_scale)
+					/ (60 / weap_data.fire_mode_data.fire_rate)
 			end
-			
+
 			if round_total_ammo then
 				local weap_total_ammo = weap_data.AMMO_MAX
 				local part_total_ammo = weap_total_ammo * self[factory_id].override[part_id].custom_stats.ammo_max_mul
@@ -2828,7 +2829,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_add_forbids_from_list("wpn_fps_upg_ass_ak_b_zastava", fire_mode_locks)
 
 	self:_balance_conversion_kit(tweak_data, "awp", "wpn_fps_snp_awp_conversion_wildlands", 120, nil, true)
-	
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
