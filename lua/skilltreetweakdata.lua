@@ -55,27 +55,34 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.triathlete[2].upgrades = { "player_extra_hostages", "cable_tie_pickup_chance" }
 
 	-- Control Freak
-	self.skills.cable_guy[1].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
-	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts" }
+	self.skills.cable_guy[1].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts" }
+	self.skills.cable_guy[2].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
 	self.skills.cable_guy.icon_xy = { 6, 7 }
 
-	-- Joker
-	self.skills.joker[1].upgrades =
-		{ "player_convert_enemies_damage_multiplier_1", "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
-	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
-
 	-- Stockholm Syndrome
-	self.skills.stockholm_syndrome[1].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
+	self.skills.joker[1].upgrades = { "player_civilian_subdued_indicator" }
+	self.skills.joker[2].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
+	self.skills.joker.name_id = "menu_stockholm_syndrome"
+	self.skills.joker.desc_id = "menu_stockholm_syndrome_desc"
+
+	-- Human Shield
+	self.skills.stockholm_syndrome[1].upgrades = { "player_hostage_stamina_addend" }
 	self.skills.stockholm_syndrome[2].upgrades = { "player_hostage_damage_reduction_addend" }
 	self.skills.stockholm_syndrome.icon_xy = { 3, 8 }
+	self.skills.stockholm_syndrome.name_id = "menu_human_shield"
+	self.skills.stockholm_syndrome.desc_id = "menu_human_shield_desc"
 
 	-- Partners in Crime
-	self.skills.control_freak[1].upgrades = { "player_convert_camouflage_mul" }
-	self.skills.control_freak[2].upgrades = { "player_convert_counts_as_hostage" }
+	self.skills.control_freak[1].upgrades = { "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
+	self.skills.control_freak[2].upgrades = { "player_convert_counts_as_hostage", "player_convert_enemies_interaction_speed_multiplier", "player_convert_camouflage_mul" }
+	self.skills.control_freak.name_id = "menu_partners_in_crime"
+	self.skills.control_freak.desc_id = "menu_partners_in_crime_desc"
 
 	-- Hostage Taker
-	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1" }
-	self.skills.black_marketeer[2].upgrades = { "player_close_to_hostage_boost" }
+	self.skills.black_marketeer[1].upgrades = { "player_close_to_hostage_boost" }
+	self.skills.black_marketeer[2].upgrades = { "player_hostage_health_regen_addend_1" }
+	self.skills.black_marketeer.name_id = "menu_hostage_taker"
+	self.skills.black_marketeer.desc_id = "menu_hostage_taker_desc"
 
 	-- Stable Shot
 	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
@@ -696,9 +703,9 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
-	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
+	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_civilian_hostage_speed_bonus", "player_passive_intimidate_range_mul" }
 	self.specializations[1][5].upgrades = { "team_resource_trading_ammo" }
-	self.specializations[1][7].upgrades = { "team_hostage_health_multiplier", "team_hostage_stamina_multiplier", "cable_tie_quantity_2" }
+	self.specializations[1][7].upgrades = { "team_hostage_health_multiplier" }
 	self.specializations[1][7].icon_xy = { 0, 1 }
 	self.specializations[1][9].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault", "player_passive_loot_drop_multiplier" }
 	self.specializations[1][9].icon_xy = { 7, 8 }

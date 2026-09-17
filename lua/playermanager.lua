@@ -201,7 +201,7 @@ function PlayerManager:get_hostage_bonus_addend(category)
 	local minions = self:num_local_minions() or 0
 	local addend = 0
 	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
-	local current_team_size = managers.groupai:state():_get_balancing_multiplier({ 1, 2, 3, 4 })
+	local current_team_size = managers.groupai and managers.groupai:state():_get_balancing_multiplier({ 1, 2, 3, 4 })
 
 	-- "Converts count for hostage boosts" upgrade
 	if self:has_category_upgrade("player", "convert_counts_as_hostage") then
@@ -222,7 +222,7 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size
 
 		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
-			addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
+			addend = addend + tweak_data.upgrades.hostage_near_player_addend
 		end
 	end
 
@@ -912,6 +912,26 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	if self:has_activate_temporary_upgrade("temporary", "frenzy_damage_reduction") then
 		multiplier = multiplier * self:temporary_upgrade_value("temporary", "frenzy_damage_reduction", 1)
 	end
+
+	return multiplier
+end
+
+-- Stamina skills
+function PlayerManager:stamina_multiplier()
+	local multiplier = 1
+	multiplier = multiplier + self:upgrade_value("player", "stamina_multiplier", 1) - 1
+	multiplier = multiplier + self:team_upgrade_value("stamina", "multiplier", 1) - 1
+	multiplier = multiplier + self:team_upgrade_value("stamina", "passive_multiplier", 1) - 1
+	multiplier = multiplier + self:get_hostage_bonus_multiplier("stamina") - 1
+
+
+	-- stockholm syndrome per-hostage stamina
+	if self:has_category_upgrade("player", "hostage_stamina_addend") then
+		multiplier = multiplier * (1 + self:get_hostage_bonus_addend("stamina"))
+		--Eclipse:log_chat(1 + self:get_hostage_bonus_addend("stamina"))
+	end
+
+	multiplier = managers.modifiers:modify_value("PlayerManager:GetStaminaMultiplier", multiplier)
 
 	return multiplier
 end

@@ -875,6 +875,11 @@ if not Eclipse then
 	TheFixesPreventer.fix_ai_set_attention = true
 	TheFixesPreventer.tank_walk_near_players = true
 	TheFixesPreventer.fix_hostages_not_moving = true
+	
+	-- Disable HopHUD's civilian alert icons
+	HopHUD = HopHUD or {}
+	HopHUD.settings = HopHUD.settings or {}
+	HopHUD.settings.civilian_icons = false
 
 	-- Remove this function cause it (somehow) causes crashes in a very convoluted way that's difficult to fix in a "sane" way
 	function CoreDebug.class_name(...) end

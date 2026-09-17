@@ -835,11 +835,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.revive_damage_reduction[1] = 0.6
 	self.values.temporary.revive_damage_reduction[1][1] = 0.6
 	self.values.player.revive_interaction_speed_multiplier = { 2 / 3 }
+	self.values.temporary.combat_medic_damage_multiplier[1][2] = 20
 	self.skill_descs.tea_cookies.multibasic = "40%"
 	self.skill_descs.tea_cookies.multibasic2 = "5"
 	self.skill_descs.tea_cookies.multipro = "33%"
 	self.skill_descs.tea_cookies.multipro2 = "25%"
-	self.skill_descs.tea_cookies.multipro3 = "10"
+	self.skill_descs.tea_cookies.multipro3 = "20"
 
 	-- Keepers
 	self.values.doctor_bag.amount_increase[1] = 1
@@ -862,6 +863,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.inspire.multipro3 = "360"
 
 	-- Forced Friendship
+	self.values.cable_tie.quantity_1[1] = 2
 	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
 	self.definitions.player_extra_hostages = {
 		category = "feature",
@@ -883,24 +885,28 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.cable_tie.pickup_chance = { 0.1 }
-	self.skill_descs.triathlete.multibasic = "4"
+	self.skill_descs.triathlete.multibasic = "2"
 	self.skill_descs.triathlete.multibasic2 = "25%"
 	self.skill_descs.triathlete.multipro = "10%"
 
 	-- Control Freak
-	self.values.player.intimidation_multiplier[1] = 1.2
-	self.values.player.intimidate_range_mul[1] = 1.2
-	self.skill_descs.cable_guy.multibasic = "20%"
+	self.values.player.civ_intimidation_mul[1] = 1.25
+	self.values.player.intimidation_multiplier[1] = 1.5
+	self.values.player.intimidate_range_mul[1] = 1.5
+	self.skill_descs.cable_guy.multibasic = "25%"
 	self.skill_descs.cable_guy.multipro = "50%"
 
-	-- Joker
-	self.values.player.passive_convert_enemies_health_multiplier = { 0.5, 0.2 }
-	self.skill_descs.joker.multibasic = "35%"
-	self.skill_descs.joker.multibasic2 = "50%"
-	self.skill_descs.joker.multipro = "30%"
-	self.skill_descs.joker.multipro2 = "65%"
-
 	-- Stockholm Syndrome
+	self.values.player.civilian_subdued_indicator = { true }
+	self.definitions.player_civilian_subdued_indicator = {
+		category = "feature",
+		name_id = "menu_player_civilian_subdued_indicator",
+		upgrade = {
+			category = "player",
+			upgrade = "civilian_subdued_indicator",
+			value = 1,
+		},
+	}
 	self.values.player.civilians_dont_flee = { true }
 	self.definitions.player_civilians_dont_flee = {
 		category = "feature",
@@ -911,8 +917,24 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
+	self.skill_descs.joker.multibasic = "35%"
+	self.skill_descs.joker.multibasic2 = "50%"
+	self.skill_descs.joker.multipro = "30%"
+	self.skill_descs.joker.multipro2 = "65%"
+
+	-- Human Shield
 	self.hostage_max_num.damage_reduction = 4
 	self.hostage_max_num.health_regen = 4
+	self.values.player.hostage_stamina_addend = { 0.05 }
+	self.definitions.player_hostage_stamina_addend = {
+		category = "feature",
+		name_id = "menu_player_hostage_stamina_addend",
+		upgrade = {
+			category = "player",
+			upgrade = "hostage_stamina_addend",
+			value = 1,
+		},
+	}
 	self.values.player.hostage_damage_reduction_addend = { 0.05 }
 	self.definitions.player_hostage_damage_reduction_addend = {
 		category = "feature",
@@ -933,10 +955,13 @@ function UpgradesTweakData:init(tweak_data)
 	-- 		value = 1,
 	-- 	},
 	-- }
+	self.skill_descs.stockholm_syndrome.multibasic = "5%"
+	self.skill_descs.stockholm_syndrome.multibasic2 = "4"
 	self.skill_descs.stockholm_syndrome.multipro = "5%"
 	self.skill_descs.stockholm_syndrome.multipro2 = "4"
 
-	-- Parterns in Crime
+	-- Partnerns in Crime
+	self.values.player.passive_convert_enemies_health_multiplier[1] = 0.25
 	self.definitions.player_convert_camouflage_mul = {
 		name_id = "menu_player_convert_camouflage_mul",
 		category = "feature",
@@ -957,17 +982,20 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.player.convert_camouflage_mul = { 1.20 }
 	self.values.player.convert_counts_as_hostage = { true }
-	self.skill_descs.control_freak.multibasic = "20%"
+	self.skill_descs.control_freak.multibasic = "75%"
+	self.skill_descs.control_freak.multipro = "20%"
+	self.skill_descs.control_freak.multipro2 = "65%"
 
 	-- Hostage Taker
-	self.values.player.hostage_health_regen_addend[1] = 0.8
-	self.hostage_near_player_multiplier = 1.5
+	self.hostage_near_player_addend = 0.5
 	self.hostage_near_player_radius = 700
-	self.skill_descs.black_marketeer.multibasic = "8"
+	self.values.player.hostage_health_regen_addend[1] = 1
+	self.skill_descs.black_marketeer.multibasic = "5"
 	self.skill_descs.black_marketeer.multibasic2 = "5"
-	self.skill_descs.black_marketeer.multibasic3 = "1"
-	self.skill_descs.black_marketeer.multipro = "50%"
-	self.skill_descs.black_marketeer.multipro2 = "7m"
+	self.skill_descs.black_marketeer.multibasic3 = "7m"
+	self.skill_descs.black_marketeer.multipro = "10"
+	self.skill_descs.black_marketeer.multipro2 = "5"
+	self.skill_descs.black_marketeer.multipro3 = "1"
 
 	-- Stable Shot
 	self.values.player.weapon_accuracy_increase[1] = 1
@@ -2603,6 +2631,16 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.team.player.resource_trading_health = { 0.2 }
+	self.definitions.player_civilian_hostage_speed_bonus = {
+		category = "feature",
+		name_id = "menu_player_civilian_hostage_speed_bonus",
+		upgrade = {
+			category = "player",
+			upgrade = "civilian_hostage_speed_bonus",
+			value = 1,
+		},
+	}
+	self.values.player.civilian_hostage_speed_bonus = { 1.5 }
 	self.definitions.player_extra_hostages_chief = {
 		category = "feature",
 		name_id = "menu_player_extra_hostages_chief",
@@ -2625,7 +2663,6 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.team.player.resource_trading_ammo = { 4 }
 	self.values.team.health.hostage_multiplier[1] = 1.05
-	self.values.team.stamina.hostage_multiplier[1] = 1.05
 	self.definitions.team_resource_trading_assault_delay = {
 		category = "team",
 		name_id = "resource_trading_assault_delay",
@@ -2660,11 +2697,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[1][1].multiperk = "20%"
 	self.specialization_descs[1][3].multiperk = "2"
 	self.specialization_descs[1][3].multiperk2 = "50%"
+	self.specialization_descs[1][3].multiperk3 = "50%"
 	self.specialization_descs[1][5].multiperk = "4"
 	self.specialization_descs[1][7].multiperk = "5%"
 	self.specialization_descs[1][7].multiperk2 = "5%"
 	self.specialization_descs[1][7].multiperk3 = "4"
-	self.specialization_descs[1][7].multiperk4 = "4"
 	self.specialization_descs[1][9].multiperk = "10"
 	self.specialization_descs[1][9].multiperk2 = "doubled"
 
