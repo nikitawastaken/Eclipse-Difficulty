@@ -5,7 +5,34 @@ WeaponTweakData.SECONDARY_PICKUP_DMG_MUL = 3 / 4
 WeaponTweakData.UNDERBARREL_TOTAL_DMG_MUL = 1 / 3
 WeaponTweakData.UNDERBARREL_PICKUP_DMG_MUL = 1 / 2
 WeaponTweakData.AP_TOTAL_DMG_MUL = 1 / 2
-WeaponTweakData.AP_PICKUP_DMG_MUL = 1 / 4
+WeaponTweakData.AP_PICKUP_DMG_MUL = 1 / 2
+WeaponTweakData.DAMAGE_VALUES = {
+	8,
+	10,
+	12,
+	14,
+	16,
+	18,
+	20,
+	24,
+	30,
+	36,
+	40,
+	48,
+	64,
+	80,
+	96,
+	120,
+	180,
+	240,
+	300,
+	360,
+	480,
+	600,
+	720,
+	960,
+	1200,
+}
 WeaponTweakData.SILENCED_MUZZLEFLASH_MAP = {
 	["effects/payday2/particles/weapons/hailstorm_effect"] = "effects/payday2/particles/weapons/hailstorm_suppressed",
 	["effects/payday2/particles/weapons/45cal_pistol_fps"] = "effects/payday2/particles/weapons/45cal_silenced",
@@ -117,23 +144,30 @@ function WeaponTweakData:_get_primary_category(weap_id)
 	end
 end
 
+-- Add any of the index stats. Clamped to the number of indices in the stat's table.
 function WeaponTweakData:_add_stat(weap_id, stat, addend)
 	return math.clamp(self[weap_id].stats[stat] + addend, 1, #self.stats[stat])
 end
 
--- Additional total ammo/ammo pickup multipliers given to Sniper Rifles (but not only) to offset their very high damage stats.
-function WeaponTweakData:_calculate_snp_ammo_mul(damage, total_ammo_scale, pickup_scale)
-	local total_ammo_mul = 1
-	if total_ammo_scale then
-		total_ammo_mul = total_ammo_mul * math.min(1 + math.round(math.max(damage - total_ammo_scale[1], 0) / total_ammo_scale[2]) * total_ammo_scale[3], total_ammo_scale[4])
+-- Rounds a weapon's damage to the nearest value from a table.
+function WeaponTweakData:_round_damage_value(damage, damage_tbl)
+	if not damage_tbl then
+		return damage
 	end
+	
+    local smallest_value, smallest_index
+    for i, v in ipairs(damage_tbl) do
+        if not smallest_value or (math.abs(damage - v) < smallest_value) then
+            smallest_value = math.abs(damage - v)
+            smallest_index = i
+        end
+    end
+	
+    return damage_tbl[smallest_index]
+end
 
-	local pickup_mul = 1
-	if pickup_scale then
-		pickup_mul = pickup_mul * math.min(1 + math.round(math.max(damage - pickup_scale[1], 0) / pickup_scale[2]) * pickup_scale[3], pickup_scale[4])
-	end
-
-	return total_ammo_mul, pickup_mul
+function WeaponTweakData:_calculate_damage_scale(damage, scale)
+	return math.map_range_clamped(damage, scale[1][1], scale[1][2], scale[2][1], scale[2][2])
 end
 
 -- Set muzzleflashes based on weapon ID or category.
@@ -216,7 +250,7 @@ function WeaponTweakData:_init_weapons(overrides)
 			local is_underbarrel = not is_primary and not is_secondary
 
 			-- Set damage flags for calculations that come later.
-			local damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
+			local damage_index = math.clamp(weap_data.stats.damage, 1, #self.stats.damage)
 			local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
 			local real_damage = self.stats.damage[damage_index] * damage_modifier
 
@@ -361,9 +395,13 @@ function WeaponTweakData:_init_weapons(overrides)
 				}
 				
 				weap_data._pickup_mul = 4 / 3
+				weap_data._fire_rate_scale = {
+					{ 2, 4 },
+					{ 700, 400 },
+				}
 				
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
-					weap_data.fire_mode_data.fire_rate = 60 / 600
+					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 50)
 				end
 			elseif cat_map.revolver then
 				weap_data.steelsight_enter_time = 0.25
@@ -396,10 +434,14 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 2, 2.4, 0.6, -0.2 },
 				}
 				
-				weap_data._pickup_mul = 1 / 2
-	
-				if weap_data.fire_mode_data and not weap_data.auto then
-					weap_data.fire_mode_data.fire_rate = 60 / 300
+				weap_data._pickup_mul = 2 / 3
+				weap_data._fire_rate_scale = {
+					{ 6.4, 9.6 },
+					{ 360, 240 },
+				}
+				
+				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
+					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 60)
 				end
 			elseif cat_map.smg then
 				weap_data.steelsight_enter_time = 0.25
@@ -411,8 +453,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					standing = 2.25,
 					crouching = 2,
 					steelsight = 1.4,
-					moving_standing = 2.5,
-					moving_crouching = 2.5,
+					moving_standing = 2.75,
+					moving_crouching = 2.75,
 					moving_steelsight = 1.4,
 				}	
 				weap_data.spread_bloom = {
@@ -450,8 +492,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					standing = 3.5,
 					crouching = 3.5,
 					steelsight = 1.5,
-					moving_standing = 3.5,
-					moving_crouching = 3.5,
+					moving_standing = 4,
+					moving_crouching = 4,
 					moving_steelsight = 1.5,
 				}	
 				
@@ -562,11 +604,17 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 2.5, 3, -0.4, 0.4 },
 				}
 				
-				weap_data._total_ammo_mul = 1 / 2
+				weap_data._total_ammo_mul = 3 / 4
 				weap_data._pickup_mul = 3 / 5
-				weap_data._total_ammo_scale = { 2, 4, 0.5, 4 }
-				weap_data._pickup_scale = { 8, 6, 0.5, 4 }
-				
+				weap_data._total_ammo_scale = {
+					{ 6.4, 48 },
+					{ 1, 2.5 },
+				}
+				weap_data._pickup_scale = {
+					{ 6.4, 48 },
+					{ 1, 4 },
+				}
+		
 			elseif cat_map.bow then
 				weap_data.stats.alert_size = 7
 				weap_data.stats.suppression = 3
@@ -588,17 +636,18 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 2.9, 3, -0.5, 0.5 },
 				}
 
-				weap_data._total_ammo_mul = 3 / 4				
+				weap_data._clips_max_round = 4			
 				weap_data._pickup_mul = 0
-				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
+				weap_data._total_ammo_scale = {
+					{ 12, 24 },
+					{ 1, 3 },
+				}
 				
 				weap_data.armor_piercing_chance = 1
-			
-				weap_data._clips_max_round = 4
-				
+					
 				-- Remove this reload speed flag and replace it with a proper multiplier.
 				weap_data.bow_reload_speed_multiplier = nil
-				weap_data.reload_speed_multiplier = 2
+				weap_data.reload_speed_multiplier = (weap_data.reload_speed_multiplier or 1) * 2
 				
 				-- Increase bow charging speed.
 				if weap_data.charge_data and weap_data.charge_data.max_t then
@@ -625,15 +674,17 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_crouching = { -0.2, 0.4, -1, 1 },
 					moving_steelsight = { -0.2, 0.4, -1, 1 },
 				}	
-				
-				weap_data._total_ammo_mul = 1 / 2
+
+				weap_data._clips_max_round = 4
+				weap_data._total_ammo_mul = 3 / 4
 				weap_data._pickup_mul = 0
-				weap_data._total_ammo_scale = { 12, 6, 0.25, 2 }
+				weap_data._total_ammo_scale = {
+					{ 12, 24 },
+					{ 1, 3 },
+				}
 
 				weap_data.armor_piercing_chance = 1
-			
-				weap_data._clips_max_round = 2
-				
+					
 			elseif cat_map.grenade_launcher then
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 5
@@ -744,9 +795,9 @@ function WeaponTweakData:_init_weapons(overrides)
 					custom_damage = math.round(custom_damage / 2.5, 2)
 					custom_damage = math.round(custom_damage / damage_modifier)
 
-					weap_data.stats.damage = custom_damage
+					weap_data.stats.damage = self:_round_damage_value(custom_damage, self.DAMAGE_VALUES)
 
-					damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
+					damage_index = math.clamp(weap_data.stats.damage, 1, #self.stats.damage)
 					real_damage = self.stats.damage[damage_index] * damage_modifier
 				end
 			end
@@ -888,11 +939,6 @@ function WeaponTweakData:_init_weapons(overrides)
 					-- Make sure the akimbo weapon's rate of fire matches the single counterpart
 					if weap_data.fire_mode_data and single_weapon_data.fire_mode_data then
 						weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate
-
-						-- Apply a fire rate reduction to single fire akimbo weapons
-						if not weap_data.CAN_TOGGLE_FIREMODE then
-							weap_data.fire_mode_data.fire_rate = single_weapon_data.fire_mode_data.fire_rate * 1.25
-						end
 					end
 					
 					-- Cap akimbo weapons' total ammo/ammo pickup multipliers at 1.
@@ -921,11 +967,12 @@ function WeaponTweakData:_init_weapons(overrides)
 			end
 			
 			-- Additional total ammo/ammo pickup multipliers given to Sniper Rifles (but not only) to offset their very high damage stats.
-			local snp_total_ammo_mul, snp_pickup_mul = self:_calculate_snp_ammo_mul(real_damage, weap_data._total_ammo_scale, weap_data._pickup_scale)
+			local snp_total_ammo_mul = weap_data._pickup_scale and self:_calculate_damage_scale(real_damage, weap_data._total_ammo_scale)
+			local snp_pickup_mul = weap_data._pickup_scale and self:_calculate_damage_scale(real_damage, weap_data._pickup_scale)
 
 			-- Set total ammo and pickup
-			weap_data.TOTAL_DAMAGE = self.WEAPON_TOTAL_DMG * (weap_data._total_ammo_mul or 1) * snp_total_ammo_mul
-			weap_data.PICKUP_DAMAGE = self.WEAPON_PICKUP_DMG * (weap_data._pickup_mul or 1) * snp_pickup_mul
+			weap_data.TOTAL_DAMAGE = self.WEAPON_TOTAL_DMG * (weap_data._total_ammo_mul or 1) * (snp_total_ammo_mul or 1)
+			weap_data.PICKUP_DAMAGE = self.WEAPON_PICKUP_DMG * (weap_data._pickup_mul or 1) * (snp_pickup_mul or 1)
 
 			-- Reduce total ammo/ammo pickup based on the weapon's slot.
 			if is_secondary then -- Secondaries
@@ -953,7 +1000,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.ammo_bag_consumption_mul = math.max(weap_data.ammo_bag_consumption_mul or 1, 2)
 			end
 
-			damage_index = math.min(weap_data.stats.damage, #self.stats.damage)
+			damage_index = math.clamp(weap_data.stats.damage, 1, #self.stats.damage)
 			real_damage = self.stats.damage[damage_index] * damage_modifier
 			
 			-- Set total ammo based on damage and magazine capacity.
@@ -1440,33 +1487,25 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g26.fire_mode_data.fire_rate = 60 / 600
 	self.g26.reload_speed_multiplier = 1.15
 
-	-- White Streak
-	self.pl14.CLIP_AMMO_MAX = 16
-	self.pl14.stats.damage = 20
-	self.pl14.stats.spread = 16
-	self.pl14.stats.recoil = 14
-	self.pl14.stats.concealment = 29
-	self.pl14.fire_mode_data.fire_rate = 60 / 600
-
-	-- Contractor
-	self.packrat.CLIP_AMMO_MAX = 15
-	self.packrat.stats.damage = 20
-	self.packrat.stats.spread = 16
-	self.packrat.stats.recoil = 15
-	self.packrat.stats.concealment = 29
-	self.packrat.fire_mode_data.fire_rate = 60 / 600
+	-- M13
+	self.legacy.CLIP_AMMO_MAX = 13
+	self.legacy.stats.damage = 20
+	self.legacy.stats.spread = 16
+	self.legacy.stats.recoil = 15
+	self.legacy.stats.concealment = 30
+	self.legacy.fire_mode_data.fire_rate = 60 / 600
 
 	-- Holt
 	self.holt.CLIP_AMMO_MAX = 15
 	self.holt.stats.damage = 20
-	self.holt.stats.spread = 13
-	self.holt.stats.recoil = 17
+	self.holt.stats.spread = 14
+	self.holt.stats.recoil = 16
 	self.holt.stats.concealment = 30
 	self.holt.fire_mode_data.fire_rate = 60 / 600
 
 	-- Broomstick
 	self.c96.CLIP_AMMO_MAX = 10
-	self.c96.stats.damage = 20
+	self.c96.stats.damage = 24
 	self.c96.stats.spread = 14
 	self.c96.stats.recoil = 8
 	self.c96.stats.concealment = 28
@@ -1479,14 +1518,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.c96.CAN_TOGGLE_FIREMODE = true
 
-	-- M13
-	self.legacy.CLIP_AMMO_MAX = 13
-	self.legacy.stats.damage = 24
-	self.legacy.stats.spread = 15
-	self.legacy.stats.recoil = 15
-	self.legacy.stats.concealment = 30
-	self.legacy.fire_mode_data.fire_rate = 60 / 600
-
+	-- White Streak
+	self.pl14.CLIP_AMMO_MAX = 16
+	self.pl14.stats.damage = 24
+	self.pl14.stats.spread = 14
+	self.pl14.stats.recoil = 16
+	self.pl14.stats.concealment = 29
+	self.pl14.fire_mode_data.fire_rate = 60 / 600
+	
+	-- Contractor
+	self.packrat.CLIP_AMMO_MAX = 15
+	self.packrat.stats.damage = 24
+	self.packrat.stats.spread = 16
+	self.packrat.stats.recoil = 14
+	self.packrat.stats.concealment = 29
+	self.packrat.fire_mode_data.fire_rate = 60 / 600
+	
 	-- Gecko M2
 	self.maxim9.CLIP_AMMO_MAX = 17
 	self.maxim9.stats.damage = 24
@@ -1589,8 +1636,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Kang Arms Model 54
 	self.type54.CLIP_AMMO_MAX = 8
 	self.type54.stats.damage = 40
-	self.type54.stats.spread = 16
-	self.type54.stats.recoil = 10
+	self.type54.stats.spread = 18
+	self.type54.stats.recoil = 8
 	self.type54.stats.concealment = 29
 	self.type54.fire_mode_data.fire_rate = 60 / 600
 
@@ -1601,14 +1648,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.type54_underbarrel.stats.recoil = 4
 	self.type54_underbarrel.stats.concealment = 29
 	self.type54_underbarrel.fire_mode_data.fire_rate = 60 / 60
-	self.type54_underbarrel.reload_speed_multiplier = 1.3
 	self.type54_underbarrel.stats_modifiers = nil
 
 	-- Parabellum
 	self.breech.CLIP_AMMO_MAX = 8
-	self.breech.stats.damage = 48
-	self.breech.stats.spread = 20
-	self.breech.stats.recoil = 7
+	self.breech.stats.damage = 40
+	self.breech.stats.spread = 16
+	self.breech.stats.recoil = 10
 	self.breech.stats.concealment = 30
 	self.breech.fire_mode_data.fire_rate = 60 / 600
 
@@ -1619,7 +1665,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.recoil = 4
 	self.deagle.stats.concealment = 28
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
-	self.deagle.non_standard_fire_rate = true
 
 	self._init_stat_overrides.deagle = function()
 		self.deagle.steelsight_enter_time = 0.25
@@ -1707,7 +1752,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	--Peacemaker .45
 	self.peacemaker.categories = revolver_category
 	self.peacemaker.CLIP_AMMO_MAX = 6
-	self.peacemaker.stats.damage = 80
+	self.peacemaker.stats.damage = 96
 	self.peacemaker.stats.spread = 22
 	self.peacemaker.stats.recoil = 4
 	self.peacemaker.stats.concealment = 28
@@ -2099,10 +2144,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.judge.stats.spread = 14
 	self.judge.stats.recoil = 8
 	self.judge.stats.concealment = 28
-	self.judge.fire_mode_data.fire_rate = 60 / 300
-
-	self._init_stat_overrides.judge = function()
-		self.judge._pickup_mul = (1 / self.judge.rays) * (4 / 5)
+	self.judge.fire_mode_data.fire_rate = 60 / 240
+	self.judge.reload_speed_multiplier = 0.8
+	
+	self._init_stat_overrides.judge = function()		
+		self.judge._pickup_mul = (1 / self.judge.rays)
+		self.judge._total_ammo_mul = (1 / self.judge.rays)
 		self.judge.damage_near = 1000
 		self.judge.damage_far = 2000
 	end
@@ -2119,9 +2166,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 
 	self._init_stat_overrides.x_judge = function()
-		self.judge._pickup_mul = (1 / self.judge.rays) * (4 / 5)
-		self.judge.damage_near = 1000
-		self.judge.damage_far = 2000
+		self.x_judge._pickup_mul = (1 / self.x_judge.rays)
+		self.x_judge._total_ammo_mul = (1 / self.x_judge.rays)
+		self.x_judge.damage_near = 1000
+		self.x_judge.damage_far = 2000
 	end
 
 	-- Mosconi Tactical
@@ -2360,7 +2408,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.msr.stats.damage = 24
 	self.msr.stats.spread = 23
 	self.msr.stats.recoil = 8
-	self.msr.stats.concealment = 14
+	self.msr.stats.concealment = 16
 	self.msr.fire_mode_data.fire_rate = 60 / 55
 	self.msr.fire_rate_multiplier = 60 / 55
 	self.msr.stats_modifiers = { damage = 5 }
@@ -2378,24 +2426,25 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- R700
 	self.r700.CLIP_AMMO_MAX = 10
 	self.r700.stats.damage = 24
-	self.r700.stats.spread = 24
+	self.r700.stats.spread = 23
 	self.r700.stats.recoil = 8
 	self.r700.stats.concealment = 16
 	self.r700.fire_mode_data.fire_rate = 60 / 60
-	self.r700.reload_speed_multiplier = 1.3
+	self.r700.reload_not_empty_speed_multiplier = self.r700.timers.reload_not_empty / self.msr.timers.reload_not_empty
+	self.r700.reload_empty_speed_multiplier = self.r700.timers.reload_empty / self.msr.timers.reload_empty
 	self.r700.stats_modifiers = { damage = 5 }
 
 	-- Pronghorn
 	self.scout.CLIP_AMMO_MAX = 5
 	self.scout.stats.damage = 24
 	self.scout.stats.spread = 22
-	self.scout.stats.recoil = 4
+	self.scout.stats.recoil = 10
 	self.scout.stats.concealment = 18
 	self.scout.fire_mode_data.fire_rate = 60 / 60
 	self.scout.stats_modifiers = { damage = 5 }
 
 	-- R93
-	self.r93.CLIP_AMMO_MAX = 6
+	self.r93.CLIP_AMMO_MAX = 5
 	self.r93.stats.damage = 24
 	self.r93.stats.spread = 24
 	self.r93.stats.recoil = 4
@@ -2408,9 +2457,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mosin.stats.damage = 24
 	self.mosin.stats.spread = 24
 	self.mosin.stats.recoil = 4
-	self.mosin.stats.concealment = 14
+	self.mosin.stats.concealment = 16
 	self.mosin.fire_mode_data.fire_rate = 60 / 50
-	self.mosin.fire_rate_multiplier = 60 / 50
+	self.mosin.reload_speed_multiplier = 1.1
 	self.mosin.stats_modifiers = { damage =  10 }
 
 	-- Platypus
@@ -2420,7 +2469,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model70.stats.recoil = 4
 	self.model70.stats.concealment = 14
 	self.model70.fire_mode_data.fire_rate = 60 / 60
-	self.model70.reload_speed_multiplier = 1.3
 	self.model70.stats_modifiers = { damage = 10 }
 
 	-- Desert Fox
@@ -2430,6 +2478,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.desertfox.stats.recoil = 4
 	self.desertfox.stats.concealment = 21
 	self.desertfox.fire_mode_data.fire_rate = 60 / 45
+	self.desertfox.fire_rate_multiplier = 50 / 45
 	self.desertfox.stats_modifiers = { damage = 10 }
 
 	-- Aran
@@ -2458,7 +2507,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.awp.stats.recoil = 4
 	self.awp.stats.concealment = 14
 	self.awp.fire_mode_data.fire_rate = 60 / 45
-	self.awp.fire_rate_multiplier = 60 / 45
+	self.awp.fire_rate_multiplier = 50 / 45
 	self.awp.stats_modifiers = { damage = 10 }
 
 	-- Thanatos
@@ -2471,8 +2520,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.stats_modifiers = { damage = 10 }
 
 	self._init_stat_overrides.m95 = function()
-		self.m95._pickup_mul = self.m95._pickup_mul * 1.66
-		self.m95._total_ammo_mul = self.m95._total_ammo_mul * 1.66
+		self.m95._pickup_mul = self.m95._pickup_mul * 1.5
+		self.m95._total_ammo_mul = self.m95._total_ammo_mul * 2
 	end
 
 	-- Musket
@@ -2631,7 +2680,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.slap.stats_modifiers = { damage = 10 }
 	self.slap.timers.reload_not_empty = 3.1
 	self.slap.timers.reload_empty = self.slap.timers.reload_not_empty
-	self.slap.reload_speed_multiplier = 1.15
+	self.slap.reload_speed_multiplier = 1.1
 	
 	-- Rocket Launchers
 	local rocket_launcher_category = {
