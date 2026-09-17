@@ -1991,7 +1991,7 @@ function CharacterTweakData:character_map(...)
 			"ene_coast_guard_4",
 		},
 	}
-	
+
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_03")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_04")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_fat_01")
