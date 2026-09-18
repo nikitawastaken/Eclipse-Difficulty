@@ -931,9 +931,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.pines.random_environments = {
 		["whitexmas_4"] = 3,
-		["whitexmas_2"] = 2,
-		["whitexmas_3"] = 2,
+		["whitexmas_2"] = 1,
+		["whitexmas_3"] = 1,
 		["whitexmas_1"] = 2,
+		["whitexmas_5"] = 3,
 		["default"] = 1,
 	}
 	self.crojob3.random_environments = {
@@ -966,6 +967,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["arm_fac_3"] = 3,
 		["arm_fac_2"] = 2,
 		["arm_fac_1"] = 2,
+		["arm_fac_4"] = 3,
 		["default"] = 1,
 	}
 	self.arm_hcm.random_environments = {
@@ -1077,6 +1079,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["spa_02"] = 2,
 		["spa_02_alt"] = 1,
 		["spa_dwpj"] = additive_weight_value,
+	}
+	self.fish.random_environments = {
+		["fish_4"] = 3,
+		["fish_2"] = 3,
+		["fish_3"] = 2,
+		["fish_1"] = 2,
+		["default"] = 1,
 	}
 	self.election_day_1.random_environments = {
 		["election_day_1_blue"] = 1,
