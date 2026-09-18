@@ -375,6 +375,9 @@
 		<!-- Replace vanilla "Pagers left" icon -->
 		<file name="guis/textures/pd2/pagers_used.texture"/>
 		
+		<!-- Civilian subdued icon from HopHUD -->
+		<file name="guis/textures/pd2/wp_checkmark.texture"/>
+		
 		<!-- Crew AI icons -->
 		<file name="guis/dlcs/mom/textures/pd2/ai_abilities.texture"/>
 		<!-- Vignette texture. Currently used for Taser screen effect -->
