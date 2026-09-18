@@ -24,7 +24,7 @@ return {
 			if patches.so_access_tweak_drill[element.id] then
 				element.values.SO_access = acrobatic -- only let SWATs, tasers and cloakers disable the drill
 			elseif patches.the_drill_timer[element.id] then -- BFD drills faster with fewer players
-				element.values.dt_balance_mul = { 1.4, 1.3, 1.2, 1.1 }
+				element.values.dt_balance_mul = { 2, 1.8, 1.6, 1.4 }
 				element.values.team_ai_balance_mul_weight = calc_team_ai_wgt(2)
 			end
 		end
