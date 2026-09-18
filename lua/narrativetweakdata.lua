@@ -256,8 +256,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.hvh.payout = { 2017 }
 	self.jobs.wwh.payout = { 90000 }
 	self.jobs.tag.payout = { 125000 }
-	self.jobs.des.payout = { 250000 }
-	self.jobs.vit.payout = { 500000 }
+	self.jobs.des.payout = { 550000 }
+	self.jobs.vit.payout = { 900000 }
 	self.jobs.bph.payout = { 750000 }
 	self.jobs.mex.payout = { 75000 }
 	self.jobs.mex_cooking.payout = { 35000 }
