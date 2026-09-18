@@ -1,10 +1,10 @@
 return {
 	-- Combine some navigation areas
 	[101204] = { -- link_startup
-		ai_area = { 
+		ai_area = {
 			{ 97, 130, 131 },
 			{ 95, 35 },
-			{ 150, 162 },			
+			{ 150, 162 },
 		},
 	},
 	-- New reinforce
