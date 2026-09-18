@@ -1623,7 +1623,7 @@ Hooks:PostHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub"
 	end
 end)
 
--- Disable HopHUD's civilian alert icons	
+-- Disable HopHUD's civilian alert icons
 if HopHUD and HopHUD.settings and HopHUD.settings.civilian_icons then
 	HopHUD.settings.civilian_icons = false
 end
