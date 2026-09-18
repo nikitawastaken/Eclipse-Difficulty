@@ -1,0 +1,46 @@
+<dynamic_object>
+    <diesel orientation_object="rp_sentry" materials="units/payday2/equipment/gen_equipment_sentry/gen_equipment_sentry" />
+	<sequence_manager file="units/payday2/equipment/gen_equipment_sentry/gen_equipment_sentry" />
+	
+    <animations>
+        <animation_group name="sentry" enabled="false">
+            <object name="a_turret" />
+            <object name="a_shield" />
+            <object name="a_gun" />
+        </animation_group>
+    </animations>
+	
+	<bodies>
+        <body name="hitbox" enabled="true" collision_class="bag" template="animated" collides_with_mover="false" >
+            <object name="a_shield" />
+			<object name="c_box_body_01" 	collision_type="box" padding="-2.5"/>
+			<object name="c_box_body_02" 	collision_type="box" padding="-2.5"/>
+        </body>
+        <body name="bag" enabled="true" 	collision_class="bag" template="animated" collides_with_mover="false" >
+            <object name="a_shield" />
+            <object name="c_convex_lid" 	collision_type="convex" />
+			<object name="c_box_base" 		collision_type="box" padding="-2.5"/>
+        </body>
+        <body name="shield" enabled="false" collision_class="bag" template="animated" collides_with_mover="false" >
+            <object name="c_convex_shield" 	collision_type="convex" />
+        </body>
+    </bodies>
+	
+	<decal_surfaces default_material="metal">
+		<decal_mesh name="dm_metal_shield" enabled="false" material="metal"/>
+	</decal_surfaces>
+	
+    <graphics>
+		<graphic_group name="g_sentry_gun" enabled="true" culling_object="co_sentry">
+        <object name="g_laser" 				enabled="true" />
+        <object name="g_display" 			enabled="true" />
+        <object name="g_display_depleted" 	enabled="false" />
+        <object name="g_shield" 			enabled="false" />
+        <object name="g_sentry" 			enabled="true" />
+        <object name="s_sentry" 			enabled="true" shadow_caster="true" />
+        <object name="s_shield" 			enabled="false" shadow_caster="true" />
+        <object name="s_gun" 				enabled="true" shadow_caster="true" />
+		</graphic_group>
+    </graphics>
+	
+</dynamic_object>

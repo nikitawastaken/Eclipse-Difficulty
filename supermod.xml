@@ -665,8 +665,8 @@
 			<file :name="hlm_random_right002/world/world.mission"/>
 		</group>
 
-		<!-- Grenade Case  -->
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
+			<!-- Grenade Case  -->
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
 				<xml  :name="gen_equipment_grenade_case.sequence_manager"/>
@@ -675,6 +675,12 @@
 				<file :name="gen_equipment_grenade_case.object"/>
 				<file :name="gen_equipment_grenade_case.unit"/>
 				<file :name="gen_equipment_grenade_case_dummy_unit.unit"/>
+			</group>
+			<!-- Old Sentry Gun Model  -->
+			<group :name="gen_equipment_sentry/">
+				<file :name="gen_equipment_sentry.material_config"/>
+				<file :name="gen_equipment_sentry.model"/>
+				<file :name="gen_equipment_sentry.object"/>
 			</group>
 		</group>
 

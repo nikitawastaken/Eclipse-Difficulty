@@ -1,0 +1,37 @@
+<materials version="3">
+    <material version="2" render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE:INTERSECTION_FADEOUT:VIEW_ANGLE_FALLOFF_OP" name="mtr_laser">
+        <variable 						value="neonsign" type="scalar" name="intensity"/>
+        <diffuse_texture 				file="units/equipment/sentry_gun/sentry_laser_df"/>
+        <variable 						value="46" type="scalar" name="fadeout_distance"/>
+        <variable 						value="9.9999997473788e-005" type="scalar" name="falloff_exp"/>
+    </material>
+    <material name="illumination" version="2" render_template="generic:DIFFUSE_TEXTURE:SELF_ILLUMINATION">
+        <diffuse_texture 				file="units/equipment/sentry_gun/display_il"/>
+        <self_illumination_texture 		file="units/equipment/sentry_gun/display_il"/>
+        <variable						value="match" type="scalar" name="il_multiplier"/>
+    </material>
+    <material name="illumination_depleted" version="2" render_template="generic:DIFFUSE_TEXTURE:SELF_ILLUMINATION">
+        <diffuse_texture 				file="units/equipment/sentry_gun/display_empty_il"/>
+        <self_illumination_texture 		file="units/equipment/sentry_gun/display_empty_il"/>
+        <variable 						value="match" type="scalar" name="il_multiplier"/>
+    </material>
+    <material name="mtr_sentry" version="2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS:VERTEX_COLOR">
+        <diffuse_texture 				file="units/payday2/equipment/gen_equipment_sentry/gen_equipment_sentry_df"/>
+        <bump_normal_texture 			file="units/payday2/equipment/gen_equipment_sentry/gen_equipment_sentry_nm"/>
+		<variable 						value="1 1 1" type="vector3" name="contour_color"/>
+		<variable 						value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_supp" version="2" unique="true" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP">
+        <diffuse_texture 				file="units/payday2/equipment/gen_equipment_sentry/supp_df"/>
+        <bump_normal_texture 			file="units/payday2/equipment/gen_equipment_sentry/supp_nm"/>
+		<variable 						value="1 1 1" type="vector3" name="contour_color"/>
+		<variable 						value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="mtr_ap_comp" version="2" unique="true" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP">
+        <diffuse_texture 				file="units/payday2/equipment/gen_equipment_sentry/ap_comp_df"/>
+        <bump_normal_texture 			file="units/payday2/equipment/gen_equipment_sentry/ap_comp_nm"/>
+		<variable 						value="1 1 1" type="vector3" name="contour_color"/>
+		<variable 						value="0" type="scalar" name="contour_opacity"/>
+    </material>
+    <material name="shadow_caster" render_template="shadow_caster_only" version="2"/>
+</materials>

@@ -10,6 +10,10 @@
 		<texture path="guis/textures/pd2/blackmarket/icons/deployables/grenade_case"/>
 		<texture path="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case"/>
 
+		<!-- Old Sentry Gun icons -->
+		<texture path="guis/textures/pd2/blackmarket/icons/deployables/sentry_gun"/>
+		<texture path="guis/textures/pd2/blackmarket/icons/deployables/sentry_gun_silent"/>
+		
 		<!-- Weapon mod icons -->
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_m4_uupg_m_std"/>
 		<texture path="guis/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_m4_m_drum"/>
