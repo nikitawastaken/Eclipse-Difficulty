@@ -1623,6 +1623,11 @@ Hooks:PostHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub"
 	end
 end)
 
+-- Disable HopHUD's civilian alert icons	
+if HopHUD and HopHUD.settings and HopHUD.settings.civilian_icons then
+	HopHUD.settings.civilian_icons = false
+end
+
 -- HopHUD subdued civilians icon port (into a skill)
 -- Thanks Hoppip :)
 Hooks:PreHook(GroupAIStateBase, "_upd_criminal_suspicion_progress", "eclipse__upd_criminal_suspicion_progress", function(self)
