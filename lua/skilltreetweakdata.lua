@@ -1097,8 +1097,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	--	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
 	table.insert(self.default_upgrades, "player_corpse_dispose_amount_2")
 	table.insert(self.default_upgrades, "player_extra_corpse_dispose_amount")
-	table.insert(self.default_upgrades, "ecm_jammer_can_retrigger")
-	table.insert(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.insert(self.default_upgrades, "ecm_jammer_affects_pagers")
 	table.insert(self.default_upgrades, "ecm_jammer_can_open_sec_doors")
 	table.insert(self.default_upgrades, "temporary_damage_reduction_from_crewmate") -- armorer iron curtain card
@@ -1106,8 +1104,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
-	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
-	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "striker_reload_speed_default") -- why did they do it like this?
