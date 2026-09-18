@@ -119,7 +119,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hold_moon_attach_winch.sound_start = "bar_attach_money_stack"
 	self.hold_moon_attach_winch.sound_interupt = "bar_attach_money_stack_cancel"
 	self.hold_moon_attach_winch.sound_done = "bar_attach_money_stack_finished"
-	
+
 	self.hostage_trade.sound_start = "bar_untie_hostage"
 	self.hostage_trade.sound_interupt = "bar_untie_hostage_cancel"
 	self.hostage_trade.sound_done = "bar_untie_hostage_finished"
