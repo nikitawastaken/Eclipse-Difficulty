@@ -108,7 +108,9 @@ return {
 		},
 	},
 	-- Disable boat escape
-	[104979] = disabled,
+	[104979] = {
+		chance = 100,
+	},
 	-- Disable a pointless reinforce spot
 	[100907] = disabled,
 	-- loop the choppers
