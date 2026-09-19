@@ -1303,6 +1303,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_sniper.no_arrest = true
 	self.city_sniper.steal_loot = nil
 	self.city_sniper.rescue_hostages = false
+	self.city_sniper.team_ai_targeting_category = "city_sniper"
 	table.insert(self._enemy_list, "city_sniper")
 
 	self.shield.HEALTH_INIT = 16
@@ -1327,6 +1328,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_shield.immune_to_knock_down = true
 	self.city_shield.immune_to_concussion = true
 	self.city_shield.no_shield_penetration = true
+	self.city_shield.team_ai_targeting_category = "city_shield"
 	table.insert(self._enemy_list, "city_shield")
 
 	self.city_shield_break = deep_clone(self.city_shield)
@@ -1382,6 +1384,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_medic.die_sound_event = self.tank.die_sound_event
 	self.tank_medic.chatter = self.tank.chatter
 	self.tank_medic.spawn_sound_event = self.tank.spawn_sound_event
+	self.tank_medic.team_ai_targeting_category = "tank_medic"
 
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
@@ -1396,6 +1399,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_tank.HEALTH_INIT = 800
 	self.city_tank.headshot_dmg_mul = 25 -- 320 head health
 	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
+	self.city_tank.team_ai_targeting_category = "city_tank"
 	table.insert(self._enemy_list, "city_tank")
 
 	self.spooc.HEALTH_INIT = 24
@@ -2242,6 +2246,7 @@ function CharacterTweakData:_set_presets()
 		local is_shadow_spooc = name == "shadow_spooc"
 		local is_city_shield = name == "city_shield"
 		local is_city_tank = name == "city_tank"
+		local is_city_sniper = name == "city_sniper"
 
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
@@ -2295,6 +2300,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
 			char_preset.damage.explosion_damage_mul = is_city_shield and 0.5 or 1
 			char_preset.shield_explosion_dmg_mul = char_preset.wall_fwd_offset and (is_city_shield and 0.25 or 0.5) or nil
+			
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
@@ -2325,6 +2331,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.medic_healing = tag_map.medic and { cooldown = 3, radius = 600 } or nil
 			char_preset.target_priority = tag_map.medic and 10 or nil
 			char_preset.can_be_healed = not tag_map.medic and true or false
+			
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2349,16 +2356,33 @@ function CharacterTweakData:_set_presets()
 					detect = char_preset.use_spooc_attack_sound and "cloaker_detect_mono" or "clk_c01x_plu",
 				}
 			end
+			
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
+			
 		elseif tag_map.medic then
 			char_preset.can_be_healed = false
 			char_preset.use_animation_on_fire_damage = true
 			char_preset.target_priority = 10
-			char_preset.medic_healing = {
-				cooldown = 3,
-				radius = 600,
-			}
+			char_preset.medic_healing = { cooldown = 3, radius = 600 }
+			
+		end
+	
+		-- Set targeting priority categories for Team AI
+		if not char_preset.team_ai_targeting_category then
+			if tag_map.shield then
+				char_preset.team_ai_targeting_category = "shield"
+			elseif tag_map.tank then
+				char_preset.team_ai_targeting_category = "tank"
+			elseif tag_map.spooc then
+				char_preset.team_ai_targeting_category = "spooc"
+			elseif tag_map.taser then
+				char_preset.team_ai_targeting_category = "taser"
+			elseif tag_map.medic then
+				char_preset.team_ai_targeting_category = "medic"			
+			elseif tag_map.sniper then
+				char_preset.team_ai_targeting_category = "sniper"
+			end
 		end
 
 		-- Boss related stuff

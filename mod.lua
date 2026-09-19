@@ -24,7 +24,6 @@ if not Eclipse then
 				player_aim = 1.5,
 				critical = 2,
 				marked = 1.5,
-				defend = 1.5,
 				domination = 2,
 				turret = 0.5,
 				enemies = { -- Additional targeting priority multipliers based on enemy tags
@@ -33,8 +32,11 @@ if not Eclipse then
 					taser = 1.75,
 					sniper = 1.5,
 					tank = 1.5,
-					marksman = 1.25,
 					shield = 1,
+					city_shield = 1.25,
+					city_sniper = 1.5,
+					city_tank = 1.75,
+					tank_medic = 2,
 				},
 			},
 			defend_targeting_priority_mul = {
@@ -579,22 +581,6 @@ if not Eclipse then
 		})
 
 		MenuHelper:AddSlider({
-			id = "team_ai_targeting_defend",
-			title = "eclipse_menu_team_ai_targeting_defend",
-			desc = "eclipse_menu_team_ai_targeting_defend_desc",
-			callback = "eclipse_team_ai_targeting_defend_edit",
-			value = Eclipse.settings.targeting_priority_mul.defend,
-			menu_id = menu_id_team_ai_targeting,
-			is_percentage = false,
-			show_value = true,
-			min = 0,
-			max = 5,
-			step = 0.25,
-			display_precision = 2,
-			priority = 100,
-		})
-
-		MenuHelper:AddSlider({
 			id = "team_ai_targeting_domination",
 			title = "eclipse_menu_team_ai_targeting_domination",
 			desc = "eclipse_menu_team_ai_targeting_domination_desc",
@@ -698,18 +684,36 @@ if not Eclipse then
 			Eclipse.settings.targeting_priority_mul.enemies.tank = value
 		end
 
-		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_marksman_edit(item)
-			local value = item:value()
-
-			Eclipse.settings.targeting_priority_mul.enemies.marksman = value
-		end
-
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_shield_edit(item)
 			local value = item:value()
 
 			Eclipse.settings.targeting_priority_mul.enemies.shield = value
 		end
 
+		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_shield_edit(item)
+			local value = item:value()
+
+			Eclipse.settings.targeting_priority_mul.enemies.city_shield = value
+		end
+		
+		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_sniper_edit(item)
+			local value = item:value()
+
+			Eclipse.settings.targeting_priority_mul.enemies.city_sniper = value
+		end
+
+		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_tank_edit(item)
+			local value = item:value()
+
+			Eclipse.settings.targeting_priority_mul.enemies.city_tank = value
+		end
+
+		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_tank_medic_edit(item)
+			local value = item:value()
+
+			Eclipse.settings.targeting_priority_mul.enemies.tank_medic = value
+		end
+		
 		local menu_id_team_ai_targeting_enemies = "eclipse_menu_team_ai_targeting_enemies"
 		MenuHelper:NewMenu(menu_id_team_ai_targeting_enemies)
 
@@ -794,22 +798,6 @@ if not Eclipse then
 		})
 
 		MenuHelper:AddSlider({
-			id = "team_ai_targeting_enemies_marksman",
-			title = "eclipse_menu_team_ai_targeting_enemies_marksman",
-			desc = "eclipse_menu_team_ai_targeting_enemies_marksman_desc",
-			callback = "eclipse_team_ai_targeting_enemies_marksman_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.marksman,
-			menu_id = menu_id_team_ai_targeting_enemies,
-			is_percentage = false,
-			show_value = true,
-			min = 0,
-			max = 5,
-			step = 0.25,
-			display_precision = 2,
-			priority = 100,
-		})
-
-		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_shield",
 			title = "eclipse_menu_team_ai_targeting_enemies_shield",
 			desc = "eclipse_menu_team_ai_targeting_enemies_shield_desc",
@@ -825,6 +813,70 @@ if not Eclipse then
 			priority = 100,
 		})
 
+		MenuHelper:AddSlider({
+			id = "team_ai_targeting_enemies_city_shield",
+			title = "eclipse_menu_team_ai_targeting_enemies_city_shield",
+			desc = "eclipse_menu_team_ai_targeting_enemies_city_shield_desc",
+			callback = "eclipse_team_ai_targeting_enemies_city_shield_edit",
+			value = Eclipse.settings.targeting_priority_mul.enemies.city_shield,
+			menu_id = menu_id_team_ai_targeting_enemies,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 5,
+			step = 0.25,
+			display_precision = 2,
+			priority = 100,
+		})
+		
+		MenuHelper:AddSlider({
+			id = "team_ai_targeting_enemies_city_sniper",
+			title = "eclipse_menu_team_ai_targeting_enemies_city_sniper",
+			desc = "eclipse_menu_team_ai_targeting_enemies_city_sniper_desc",
+			callback = "eclipse_team_ai_targeting_enemies_city_sniper_edit",
+			value = Eclipse.settings.targeting_priority_mul.enemies.city_sniper,
+			menu_id = menu_id_team_ai_targeting_enemies,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 5,
+			step = 0.25,
+			display_precision = 2,
+			priority = 100,
+		})
+
+		MenuHelper:AddSlider({
+			id = "team_ai_targeting_enemies_city_tank",
+			title = "eclipse_menu_team_ai_targeting_enemies_city_tank",
+			desc = "eclipse_menu_team_ai_targeting_enemies_city_tank_desc",
+			callback = "eclipse_team_ai_targeting_enemies_city_tank_edit",
+			value = Eclipse.settings.targeting_priority_mul.enemies.city_tank,
+			menu_id = menu_id_team_ai_targeting_enemies,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 5,
+			step = 0.25,
+			display_precision = 2,
+			priority = 100,
+		})
+
+		MenuHelper:AddSlider({
+			id = "team_ai_targeting_enemies_tank_medic",
+			title = "eclipse_menu_team_ai_targeting_enemies_tank_medic",
+			desc = "eclipse_menu_team_ai_targeting_enemies_tank_medic_desc",
+			callback = "eclipse_team_ai_targeting_enemies_tank_medic_edit",
+			value = Eclipse.settings.targeting_priority_mul.enemies.tank_medic,
+			menu_id = menu_id_team_ai_targeting_enemies,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 5,
+			step = 0.25,
+			display_precision = 2,
+			priority = 100,
+		})
+				
 		nodes[menu_id_team_ai_targeting_enemies] = MenuHelper:BuildMenu(menu_id_team_ai_targeting_enemies, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai_targeting], menu_id_team_ai_targeting_enemies, "eclipse_menu_team_ai_targeting_enemies", "eclipse_menu_team_ai_targeting_enemies_desc")
 	end)

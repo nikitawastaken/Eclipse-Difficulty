@@ -73,7 +73,6 @@ tweak_data.team_ai.targeting_priority_mul = {
 	player_aim = Eclipse.settings.targeting_priority_mul.player_aim,
 	critical = Eclipse.settings.targeting_priority_mul.critical,
 	marked = Eclipse.settings.targeting_priority_mul.marked,
-	defend = Eclipse.settings.targeting_priority_mul.defend,
 	domination = Eclipse.settings.targeting_priority_mul.domination,
 	turret = Eclipse.settings.targeting_priority_mul.turret,
 	enemies = { -- Additional targeting priority multipliers based on enemy tags
@@ -82,8 +81,11 @@ tweak_data.team_ai.targeting_priority_mul = {
 		taser = Eclipse.settings.targeting_priority_mul.enemies.taser,
 		sniper = Eclipse.settings.targeting_priority_mul.enemies.sniper,
 		tank = Eclipse.settings.targeting_priority_mul.enemies.tank,
-		marksman = Eclipse.settings.targeting_priority_mul.enemies.marksman,
 		shield = Eclipse.settings.targeting_priority_mul.enemies.shield,
+		city_shield = Eclipse.settings.targeting_priority_mul.enemies.city_shield,
+		city_sniper = Eclipse.settings.targeting_priority_mul.enemies.city_sniper,
+		city_tank = Eclipse.settings.targeting_priority_mul.enemies.city_tank,
+		tank_medic = Eclipse.settings.targeting_priority_mul.enemies.tank_medic,
 	},
 }
 tweak_data.team_ai.defend_targeting_priority_mul = {
