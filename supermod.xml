@@ -4125,6 +4125,11 @@
 				<file :name="ene_security_cruise_1.object" />
 				<file :name="ene_security_cruise_1.unit" />
 				<file :name="ene_security_cruise_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_male_auc_security_1.material_config" />
+					<file :name="ene_male_auc_security_1_contour.material_config" />
+				</group>
 			</group>
 
 			<group :name="ene_security_cruise_2/">
@@ -4354,6 +4359,38 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_auc/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_male_auc_security_1/">
+				<file :name="ene_male_auc_security_1.unit" />
+				<file :name="ene_male_auc_security_1_husk.unit" />
+			</group>
+			
+			<group :name="ene_male_auc_security_2/">
+				<file :name="ene_male_auc_security_2.unit" />
+				<file :name="ene_male_auc_security_2_husk.unit" />
+			</group>
+
+			<group :name="ene_male_auc_security_3/">
+				<file :name="ene_male_auc_security_3.unit" />
+				<file :name="ene_male_auc_security_3_husk.unit" />
+			</group>
+
+			<group :name="ene_male_auc_security_4/">
+				<file :name="ene_male_auc_security_4.unit" />
+				<file :name="ene_male_auc_security_4_husk.unit" />
+			</group>
+	
+			<group :name="ene_male_auc_security_5/">
+				<file :name="ene_male_auc_security_5.unit" />
+				<file :name="ene_male_auc_security_5_husk.unit" />
+			</group>
+
+			<group :name="ene_male_auc_security_6/">
+				<file :name="ene_male_auc_security_6.unit" />
+				<file :name="ene_male_auc_security_6_husk.unit" />
+			</group>
+		</group>
+		
 		<group name="units/pd2_dlc_pda10/characters/" dyn_package="false">
 			<group :name="ene_dozer_piggy/">
 				<file :name="ene_dozer_piggy.unit" />

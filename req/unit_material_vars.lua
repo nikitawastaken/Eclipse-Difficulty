@@ -82,6 +82,7 @@ local M = {
 	"units/pd2_dlc_chas/characters/ene_acc_gang_triad_head/vars/ene_acc_gang_triad_head_var2",
 	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
+	"units/pd2_dlc_chca/characters/ene_security_cruise_1/vars/ene_male_auc_security_1",
 }
 
 return M

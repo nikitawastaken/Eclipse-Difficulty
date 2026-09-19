@@ -604,8 +604,8 @@ local M = {
 	["units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"] = { name = "coast_guard_4", head = head_sequences.security },
 
 	["units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"] = { name = "security_cruise_1", head = head_sequences.security },
-	["units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"] = { name = "security_cruise_2", head = head_sequences.security },
-	["units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"] = { name = "security_cruise_3", head = head_sequences.security },
+	["units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"] = { name = "security_cruise_1", head = head_sequences.security },
+	["units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"] = { name = "security_cruise_1", head = head_sequences.security },
 
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"] = { name = "male_ranc_ranger_1", head = head_sequences.security },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"] = { name = "male_ranc_ranger_2", head = head_sequences.security },
@@ -623,6 +623,13 @@ local M = {
 	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
 	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_c },
 	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
+
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_4/ene_male_auc_security_4"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_5/ene_male_auc_security_5"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_6/ene_male_auc_security_6"] = { name = "security_auc_1", head = head_sequences.security },
 
 	["units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy"] = { name = "bulldozer_piggy", head = head_sequences.bulldozer },
 	["units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss"] = { name = "bulldozer_snowman", head = head_sequences.bulldozer },

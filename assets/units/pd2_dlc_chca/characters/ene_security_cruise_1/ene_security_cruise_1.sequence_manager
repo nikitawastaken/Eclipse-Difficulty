@@ -3,55 +3,109 @@
 	<unit>
 	<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_glasses	value="0" />
+			<is_auc_security		value="0" />
 		</variables>
 
-		<filter name="'check_no_glasses'">
-			<check value="vars.has_glasses == 0" />
+		<filter name="'check_not_auc_security'">
+			<check value="vars.is_auc_security == 0" />
 		</filter>
 
-		<filter name="'check_glasses'">
-			<check value="vars.has_glasses == 1" />
+		<filter name="'check_auc_security'">
+			<check value="vars.is_auc_security == 1" />
 		</filter>
+		
+		<sequence editable_state="true" name="'auc_security'" once="true" triggable="true">		
+			<set_variables 		is_auc_security="1" />
+			<material_config 	name="'units/pd2_dlc_chca/characters/ene_security_cruise_1/vars/ene_male_auc_security_1'" synchronous="true" />
+		</sequence>	
 		
 		<sequence editable_state="true" name="'security_cruise_1'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_security_cruise_a'" />
-			<object 			enabled="true" name="'g_gear_security_cruise_a_lod1'" />
-			
-			<run_sequence 		name="'random_glasses_rare'" />
+			<object 			enabled="true" name="'g_gear_security_cruise'" />
+			<object 			enabled="true" name="'g_gear_security_cruise_lod1'" />
+
+			<run_sequence 		name="'random_body'" />		
+			<run_sequence 		name="'random_shades'" />
+			<run_sequence 		name="'random_bowtie'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_cruise_2'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_security_cruise_b'" />
-			<object 			enabled="true" name="'g_gear_security_cruise_b_lod1'" />
-			
-			<run_sequence 		name="'random_glasses_rare'" />
-		</sequence>
+		<sequence editable_state="true" name="'security_auc_1'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_security_auc'" />
+			<object 			enabled="true" name="'g_gear_security_auc_lod1'" />
 
-		<sequence editable_state="true" name="'security_cruise_3'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_security_cruise_c'" />
-			<object 			enabled="true" name="'g_gear_security_cruise_c_lod1'" />
-			
-			<run_sequence 		name="'random_glasses_common'" />
-		</sequence>
-	<!--GLASSES SEQUENCES-->
-		<sequence editable_state="true" name="'random_glasses_common'" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('base','base','none')" />
-		</sequence>
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
 
-		<sequence editable_state="true" name="'random_glasses_rare'" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('none','none','base')" />
+			<run_sequence 		name="'auc_security'" />		
+			<run_sequence 		name="'random_body'" />		
+			<run_sequence 		name="'random_shades'" />
+			<run_sequence 		name="'random_tie'" />
+			<run_sequence 		name="'random_moustache'" />
+		</sequence>	
+	<!--BODY SEQUENCES-->
+		<sequence editable_state="true" name="'random_body'" triggable="true">
+			<run_sequence 		name="'body_'..pick('long','long','long','long','short')" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'glasses_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'body_long'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'body_short'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />
 
-		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
-			<set_variables 		has_glasses="1" />
+			<object 			enabled="true" name="'g_body_b'" />
+			<object 			enabled="true" name="'g_body_b_lod1'" />
+		</sequence>
+	<!--SHADES SEQUENCES-->
+		<sequence editable_state="true" name="'random_shades'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('base','none')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'shades_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
 			
-			<object 			enabled="true" name="'g_glass_glasses'" />
-			
-			<object 			enabled="true" name="'g_glasses'" />
-			<object 			enabled="true" name="'g_glasses_lod1'" />
+			<object 			enabled="true" name="'g_shades'" />
+			<object 			enabled="true" name="'g_shades_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass'" />
+		</sequence>
+	<!--GLOVES SEQUENCES-->
+		<sequence editable_state="true" name="'random_gloves'" triggable="true">
+			<run_sequence 		name="'gloves_'..pick('base','none')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'gloves_base'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gloves'" />
+			<object 			enabled="true" name="'g_gloves_lod1'" />
+		</sequence>
+	<!--BOWTIE SEQUENCES-->		
+		<sequence editable_state="true" name="'random_bowtie'" triggable="true">
+			<run_sequence 		name="'bowtie_'..pick('base','base','base','base','none')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bowtie_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'bowtie_base'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_bowtie'" />
+			<object 			enabled="true" name="'g_bowtie_lod1'" />
+		</sequence>
+	<!--TIE SEQUENCES-->		
+		<sequence editable_state="true" name="'random_tie'" triggable="true">
+			<run_sequence 		name="'tie_'..pick('base','base','base','base','none')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'tie_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'tie_base'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_tie'" />
+			<object 			enabled="true" name="'g_tie_lod1'" />
+		</sequence>
+	<!--MOUSTACHE SEQUENCES-->		
+		<sequence editable_state="true" name="'random_moustache'" triggable="true">
+			<run_sequence 		name="'moustache_'..pick('none','none','none','none','none','none','none','none','none','base')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'moustache_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'moustache_base'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_moustache'" />
+			<object 			enabled="true" name="'g_moustache_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">
