@@ -730,7 +730,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 10,
 		})
 
 		MenuHelper:AddSlider({
@@ -746,7 +746,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 9,
 		})
 
 		MenuHelper:AddSlider({
@@ -762,7 +762,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 8,
 		})
 
 		MenuHelper:AddSlider({
@@ -778,7 +778,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 7,
 		})
 
 		MenuHelper:AddSlider({
@@ -794,7 +794,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 6,
 		})
 
 		MenuHelper:AddSlider({
@@ -810,7 +810,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 5,
 		})
 
 		MenuHelper:AddSlider({
@@ -826,7 +826,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 4,
 		})
 
 		MenuHelper:AddSlider({
@@ -842,7 +842,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 3,
 		})
 
 		MenuHelper:AddSlider({
@@ -858,7 +858,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 2,
 		})
 
 		MenuHelper:AddSlider({
@@ -874,7 +874,7 @@ if not Eclipse then
 			max = 5,
 			step = 0.25,
 			display_precision = 2,
-			priority = 100,
+			priority = 1,
 		})
 
 		nodes[menu_id_team_ai_targeting_enemies] = MenuHelper:BuildMenu(menu_id_team_ai_targeting_enemies, { back_callback = "eclipse_save" })
