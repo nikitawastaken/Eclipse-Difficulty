@@ -2300,7 +2300,6 @@ function CharacterTweakData:_set_presets()
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
 			char_preset.damage.explosion_damage_mul = is_city_shield and 0.5 or 1
 			char_preset.shield_explosion_dmg_mul = char_preset.wall_fwd_offset and (is_city_shield and 0.25 or 0.5) or nil
-			
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
@@ -2331,7 +2330,6 @@ function CharacterTweakData:_set_presets()
 			char_preset.medic_healing = tag_map.medic and { cooldown = 3, radius = 600 } or nil
 			char_preset.target_priority = tag_map.medic and 10 or nil
 			char_preset.can_be_healed = not tag_map.medic and true or false
-			
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2356,18 +2354,15 @@ function CharacterTweakData:_set_presets()
 					detect = char_preset.use_spooc_attack_sound and "cloaker_detect_mono" or "clk_c01x_plu",
 				}
 			end
-			
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
-			
 		elseif tag_map.medic then
 			char_preset.can_be_healed = false
 			char_preset.use_animation_on_fire_damage = true
 			char_preset.target_priority = 10
 			char_preset.medic_healing = { cooldown = 3, radius = 600 }
-			
 		end
-	
+
 		-- Set targeting priority categories for Team AI
 		if not char_preset.team_ai_targeting_category then
 			if tag_map.shield then
@@ -2379,7 +2374,7 @@ function CharacterTweakData:_set_presets()
 			elseif tag_map.taser then
 				char_preset.team_ai_targeting_category = "taser"
 			elseif tag_map.medic then
-				char_preset.team_ai_targeting_category = "medic"			
+				char_preset.team_ai_targeting_category = "medic"
 			elseif tag_map.sniper then
 				char_preset.team_ai_targeting_category = "sniper"
 			end

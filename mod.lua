@@ -695,7 +695,7 @@ if not Eclipse then
 
 			Eclipse.settings.targeting_priority_mul.enemies.city_shield = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_sniper_edit(item)
 			local value = item:value()
 
@@ -713,7 +713,7 @@ if not Eclipse then
 
 			Eclipse.settings.targeting_priority_mul.enemies.tank_medic = value
 		end
-		
+
 		local menu_id_team_ai_targeting_enemies = "eclipse_menu_team_ai_targeting_enemies"
 		MenuHelper:NewMenu(menu_id_team_ai_targeting_enemies)
 
@@ -828,7 +828,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_enemies_city_sniper",
 			title = "eclipse_menu_team_ai_targeting_enemies_city_sniper",
@@ -876,7 +876,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-				
+
 		nodes[menu_id_team_ai_targeting_enemies] = MenuHelper:BuildMenu(menu_id_team_ai_targeting_enemies, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai_targeting], menu_id_team_ai_targeting_enemies, "eclipse_menu_team_ai_targeting_enemies", "eclipse_menu_team_ai_targeting_enemies_desc")
 	end)
