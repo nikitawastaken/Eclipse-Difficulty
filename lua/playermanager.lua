@@ -200,6 +200,7 @@ function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
 	local minions = self:num_local_minions() or 0
 	local addend = 0
+	local near_hostage_addend = 0
 	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
 	local current_team_size = managers.groupai and managers.groupai:state():_get_balancing_multiplier({ 1, 2, 3, 4 })
 
@@ -222,11 +223,11 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size
 
 		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
-			addend = addend + tweak_data.upgrades.hostage_near_player_addend
+			near_hostage_addend = tweak_data.upgrades.hostage_near_player_addend
 		end
 	end
 
-	return addend * hostages
+	return addend * hostages + near_hostage_addend
 end
 
 function PlayerManager:get_hostage_bonus_multiplier(category)
