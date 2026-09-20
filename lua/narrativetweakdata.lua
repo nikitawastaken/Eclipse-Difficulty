@@ -209,9 +209,9 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.watchdogs.payout = { 18000 }
 	self.jobs.watchdogs_wrapper.payout = { 18000 }
 	self.jobs.family.payout = { 4000 }
-	self.jobs.welcome_to_the_jungle_wrapper_prof.payout = { 75000 }
-	self.jobs.welcome_to_the_jungle_wrapper.payout = { 75000 }
-	self.jobs.welcome_to_the_jungle.payout = { 75000 }
+	self.jobs.welcome_to_the_jungle_wrapper_prof.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle_wrapper.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle.payout = { 450000 }
 	self.jobs.framing_frame.payout = { 35000 }
 	self.jobs.big.payout = { 24000 }
 	self.jobs.roberts.payout = { 12500 }
@@ -247,7 +247,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.fish.payout = { 40000 }
 	self.jobs.flat.payout = { 90000 }
 	self.jobs.help.payout = { 2016 }
-	self.jobs.run.payout = { 300000 }
+	self.jobs.run.payout = { 400000 }
 	self.jobs.glace.payout = { 750000 }
 	self.jobs.haunted.payout = { 2013 }
 	self.jobs.dah.payout = { 60000 }
