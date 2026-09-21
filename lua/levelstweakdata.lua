@@ -1206,4 +1206,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["bph_01"] = 3,
 		["bph_dwpj"] = additive_weight_value,
 	}
+	self.auc.random_environments = {
+		["auc_01"] = 2,
+		["auc_02"] = 3,
+		["auc_03"] = 2,
+		["auc_04"] = 2,
+		["auc_05"] = 1,
+	}
 end)
