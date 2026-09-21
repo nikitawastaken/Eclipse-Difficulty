@@ -172,6 +172,11 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					amount = 1,
 				},
 				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_upg_fl_ass_smg_sho_surefire",
+					amount = 1,
+				},
+				{
 					type_items = "masks",
 					item_entry = "gage_blade",
 					amount = 1,
@@ -1638,11 +1643,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 					amount = 1,
 				},
 				{
-					type_items = "weapon_skins",
-					item_entry = "color_in32_03",
-					amount = 1,
-				},
-				{
 					type_items = "xp",
 					item_entry = "xp_pda9_1",
 				},
@@ -1668,21 +1668,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor",
-					item_entry = "cvc_tan",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_desert_twilight",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_khaki_eclipse",
-					amount = 1,
-				},
-				{
 					type_items = "masks",
 					item_entry = "skm_07",
 					amount = 1,
@@ -1705,21 +1690,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 			},
 			rewards = {
-				{
-					type_items = "armor",
-					item_entry = "drm_desert_tech",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_khaki_regular",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "cvc_black",
-					amount = 1,
-				},
 				{
 					type_items = "masks",
 					item_entry = "smo_06",
@@ -1744,21 +1714,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor",
-					item_entry = "cvc_navy_blue",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_navy_breeze",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_misted_grey",
-					amount = 1,
-				},
-				{
 					type_items = "masks",
 					item_entry = "smo_09",
 					amount = 1,
@@ -1782,21 +1737,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			},
 			rewards = {
 				{
-					type_items = "armor",
-					item_entry = "cvc_grey",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_tree_stump",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_gray_raider",
-					amount = 1,
-				},
-				{
 					type_items = "masks",
 					item_entry = "smo_10",
 					amount = 1,
@@ -1819,16 +1759,6 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 			},
 			rewards = {
-				{
-					type_items = "armor",
-					item_entry = "drm_somber_woodland",
-					amount = 1,
-				},
-				{
-					type_items = "armor",
-					item_entry = "drm_woodland_tech",
-					amount = 1,
-				},
 				{
 					type_items = "masks",
 					item_entry = "skm_02",
