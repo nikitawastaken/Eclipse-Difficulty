@@ -1,3 +1,4 @@
+-- Set up flashlight data for NPC weapons and fix cases of them using the wrong tweak data
 NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"):key()] = true,
@@ -24,7 +25,20 @@ NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"):key()] = true,
 }
 
-Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
+local init_original = NPCRaycastWeaponBase.init
+function NPCRaycastWeaponBase:init(...)
+	if self.name_id and self.name_id:match("_crew$") then
+		local new_name_id = self.name_id:gsub("_crew$", "_npc")
+		if tweak_data.weapon[new_name_id] then
+			Eclipse:log_console("NPC weapon using crew tweak data '%s', changed to '%s'", self.name_id, new_name_id)
+			self.name_id = new_name_id
+		else
+			Eclipse:warn_console("NPC weapon using crew tweak data '%s'", self.name_id)
+		end
+	end
+
+	init_original(self, ...)
+	
 	if self.flashlight_blacklist[self._unit:name():key()] then
 		if self._flashlight_data and alive(self._flashlight_data.light) then
 			World:delete_light(self._flashlight_data.light)
@@ -64,7 +78,7 @@ Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
 	light:set_enable(false)
 
 	self._unit:set_moving()
-end)
+end
 
 Hooks:PreHook(NPCRaycastWeaponBase, "_fire_raycast", "_eclipse_fire_raycast", function(self, shoot_player, ...)
 	local __hostages = managers.groupai:state():all_hostages()

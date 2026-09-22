@@ -1,53 +1,59 @@
+local preferred = Eclipse.preferred
+local agile_horizntal_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local agile_vertical_spawn = deep_clone(agile_horizntal_spawn)
+agile_vertical_spawn.groups = preferred.no_cops_agents
+
 return {
 	-- Combine some navigation areas
 	[101204] = { -- link_startup
 		ai_area = {
-			{ 97, 130, 131 },
+			{ 97, 129, 130, 131, 132, 133 },
+			{ 94, 134, 135 },
 			{ 95, 35 },
 			{ 150, 162 },
 		},
 	},
 	-- New reinforce
-	[103416] = { -- difficulty_0.5
+	[103141] = { 
 		reinforce = {
+			{
+				name = "fountain",
+				force = 3,
+				position = Vector3(2600, 2850, -80)
+			},
 			{
 				name = "what_a_nice_truck",
 				force = 2,
-				position = Vector3(1400, 5375, -100),
+				position = Vector3(-1415, 5375, -100)
 			},
 			{
-				name = "street01",
+				name = "what_a_nice_plane",
 				force = 2,
-				position = Vector3(1200, 1000, -100),
+				position = Vector3(-3225, 4200, 0)
 			},
 			{
-				name = "street02",
+				name = "entrance",
 				force = 2,
-				position = Vector3(1225, 3425, -100),
+				position = Vector3(-500, 2350, 0)
 			},
 		},
 	},
-	[103629] = { -- difficulty_1
-		reinforce = {
-			{
-				name = "such_nice_cars",
-				force = 2,
-				position = Vector3(-3225, 4200, 0),
-			},
-			{
-				name = "reception",
-				force = 2,
-				position = Vector3(-900, 2300, 0),
-			},
+	-- Disable auctioneer sniper objective on damage
+	[105761] = {
+		values = {
+			interruptible = true,
+			interrupt_dmg = 0.1,
+			interrupt_dis = 3,
 		},
 	},
-	[106784] = { -- enemy_trigger_auctioneer_dead
-		reinforce = {
-			{
-				name = "auction",
-				force = 2,
-				position = Vector3(-3600, 1400, 400),
-			},
-		},
-	},
+	-- Spawn group intervals
+	[100716] = agile_horizntal_spawn, -- Funny elevator group with 2 dummies.
+	[101931] = agile_vertical_spawn,
+	[101656] = agile_vertical_spawn,
+	[101918] = agile_vertical_spawn,
 }

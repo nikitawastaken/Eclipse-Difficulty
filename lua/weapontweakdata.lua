@@ -2895,18 +2895,13 @@ end
 
 Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self)
 	self.g36_npc = copy_data(self.g36_npc, self.m4_npc, self.g36_crew)
-
 	self.scar_npc = copy_data(self.scar_npc, self.m4_npc, self.scar_crew)
-
 	self.ak47_ass_npc = copy_data(self.ak47_ass_npc, self.m4_npc, self.ak47_crew)
 
 	self.beretta92_npc.has_suppressor = "suppressed_b"
-
 	self.uspsil_npc = copy_data(self.uspsil_npc, self.c45_npc, self.usp_crew)
 	self.uspsil_npc.has_suppressor = "suppressed_b"
-
 	self.pmm_npc = copy_data(self.pmm_npc, self.c45_npc, self.pmm_crew)
-
 	self.pmmsil_npc = copy_data(self.pmmsil_npc, self.c45_npc, self.pmm_crew)
 	self.pmmsil_npc.has_suppressor = "suppressed_b"
 
@@ -2924,24 +2919,21 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.asval_smg_npc.has_suppressor = "suppressed_a"
 
 	self.mac11_npc.sounds.prefix = self.mac10_crew.sounds.prefix
-
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
 	self.r870_yellow_npc = deep_clone(self.r870_npc)
-
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
-
 	self.fort500_npc = copy_data(self.fort500_npc, self.r870_npc, self.r870_crew)
+	self.bleckert_npc = copy_data(deep_clone(self.bleckert_crew), self.r870_npc, self.bleckert_crew)
+
+	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
+	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
+	self.sko12_conc_npc.bullet_class = nil
+	self.sko12_conc_npc.concussion_data = nil
 
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.mossberg_npc.reload = "looped"
 	self.mossberg_npc.looped_reload_single = true
-
-	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
-
-	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
-	self.sko12_conc_npc.bullet_class = nil
-	self.sko12_conc_npc.concussion_data = nil
 
 	self.rpk_lmg_npc = copy_data(self.rpk_lmg_npc, self.m249_npc, self.rpk_crew)
 
