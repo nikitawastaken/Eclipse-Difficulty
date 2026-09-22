@@ -243,7 +243,7 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	local last_life = 0
 
 	if self._last_life then
-		last_life = self._default_saturation + math.clamp((hurt_mod - 0.25) * 2, 0, 1)
+		last_life = math.clamp(hurt_mod, 0, (1 - self._default_saturation))
 	elseif not self._last_life then
 		last_life = self._default_saturation
 	end

@@ -834,20 +834,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["watchdogs1_03_day"] = 3,
 		["watchdogs1_04_evening"] = 2,
 		["watchdogs1_05_evening"] = 2,
-		["default"] = 1,
 	}
 	self.watchdogs_1_night.env_params.environment = nil
 	self.watchdogs_1_night.random_environments = {
 		["watchdogs1_01_night"] = 2,
 		["watchdogs1_02_night"] = 2,
 		["watchdogs1_03_night"] = 2,
-		["default"] = 1,
 	}
 	self.watchdogs_2.random_environments = {
-		["watchdogs2_02_night"] = 2,
+		["watchdogs2_02_night_prebeta"] = 4,
 		["watchdogs2_02_night_bhdscanner"] = 2,
 		["watchdogs2_02_night_matrix"] = 2,
-		["watchdogs2_02_night_sunset"] = 2,
+		["watchdogs2_02_night_sunset"] = 1,
 	}
 	-- self.watchdogs_2_day.env_params.environment = nil
 	self.watchdogs_2_day.random_environments = {
@@ -1205,5 +1203,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.bph.random_environments = {
 		["bph_01"] = 3,
 		["bph_dwpj"] = additive_weight_value,
+	}
+	self.auc.random_environments = {
+		["auc_01"] = 2,
+		["auc_02"] = 3,
+		["auc_03"] = 2,
+		["auc_04"] = 2,
+		["auc_05"] = 1,
 	}
 end)
