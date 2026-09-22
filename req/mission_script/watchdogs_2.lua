@@ -290,6 +290,11 @@ return {
 			{ id = 100323, delay = 10 },
 		},
 	},
+	[100328] = { -- Actually update "bags secured/lost" counter when a bag is lost
+		on_executed = {
+			{ id = 100356, delay = 0 },
+		},
+	},
 	-- Add a new loot drop point
 	[100415] = disabled,
 	[102864] = {
