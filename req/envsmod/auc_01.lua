@@ -10,5 +10,6 @@ return {
 	},
 	environment_override = { -- day
 		["environments/pd2_env_auc/pd2_env_auc_ext"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/auc_01.custom_xml",
+		["environments/pd2_env_auc/pd2_env_auc_int"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/auc_01.custom_xml",
 	},
 }
