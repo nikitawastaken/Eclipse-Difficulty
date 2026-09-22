@@ -38,7 +38,7 @@ function NPCRaycastWeaponBase:init(...)
 	end
 
 	init_original(self, ...)
-	
+
 	if self.flashlight_blacklist[self._unit:name():key()] then
 		if self._flashlight_data and alive(self._flashlight_data.light) then
 			World:delete_light(self._flashlight_data.light)

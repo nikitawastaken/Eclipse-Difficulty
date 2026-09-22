@@ -5,9 +5,9 @@ local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_s
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
-local swats = { 
-	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 2, 
-	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_2] = 1, 
+local swats = {
+	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 2,
+	[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_2] = 1,
 }
 
 local specials_list = {

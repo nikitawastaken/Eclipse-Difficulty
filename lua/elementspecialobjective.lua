@@ -22,7 +22,7 @@ function ElementSpecialObjective:get_objective(...)
 			objective.area = managers.groupai:state():get_area_from_nav_seg_id(objective.nav_seg)
 		end
 	end
-	
+
 	objective.interruptible = self._values.interruptible
 
 	return objective

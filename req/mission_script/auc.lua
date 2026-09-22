@@ -19,27 +19,27 @@ return {
 		},
 	},
 	-- New reinforce
-	[103141] = { 
+	[103141] = {
 		reinforce = {
 			{
 				name = "fountain",
 				force = 3,
-				position = Vector3(2600, 2850, -80)
+				position = Vector3(2600, 2850, -80),
 			},
 			{
 				name = "what_a_nice_truck",
 				force = 2,
-				position = Vector3(-1415, 5375, -100)
+				position = Vector3(-1415, 5375, -100),
 			},
 			{
 				name = "what_a_nice_plane",
 				force = 2,
-				position = Vector3(-3225, 4200, 0)
+				position = Vector3(-3225, 4200, 0),
 			},
 			{
 				name = "entrance",
 				force = 2,
-				position = Vector3(-500, 2350, 0)
+				position = Vector3(-500, 2350, 0),
 			},
 		},
 	},
