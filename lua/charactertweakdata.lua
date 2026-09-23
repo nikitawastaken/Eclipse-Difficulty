@@ -700,10 +700,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_light_hurt.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.only_light_hurt.explosion.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
-	presets.hurt_severities.no_bullet_melee = deep_clone(presets.hurt_severities.base)
-	presets.hurt_severities.no_bullet_melee.bullet.zones = deep_clone(presets.hurt_severities.no_hurts.bullet.zones)
-	presets.hurt_severities.no_bullet_melee.melee.zones = deep_clone(presets.hurt_severities.no_hurts.melee.zones)
-
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
 		{
@@ -774,6 +770,70 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt_elite.bullet.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.no_heavy_hurt_elite.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
+	presets.hurt_severities.spooc_attack = deep_clone(presets.hurt_severities.base)
+	presets.hurt_severities.spooc_attack.bullet.zones = {
+		{
+			health_limit = 0.2,
+			none = 0.8,
+			moderate = 0.2,
+		},
+		{
+			health_limit = 0.4,
+			none = 0.6,
+			moderate = 0.4,
+		},
+		{
+			health_limit = 0.6,
+			none = 0.4,
+			moderate = 0.6,
+		},
+		{
+			health_limit = 0.8,
+			moderate = 1,
+		},
+	}
+	presets.hurt_severities.spooc_attack.melee.zones = {
+		{
+			health_limit = 0.2,
+			none = 1,
+		},
+		{
+			health_limit = 0.4,
+			none = 0.5,
+			moderate = 0.5,
+		},
+		{
+			health_limit = 0.6,
+			moderate = 1,
+		},
+		{
+			health_limit = 0.8,
+			moderate = 0.5,
+			heavy = 0.5,
+		},
+	}
+	presets.hurt_severities.spooc_attack.explosion.zones = {
+		{
+			health_limit = 0.2,
+			none = 1,
+		},
+		{
+			health_limit = 0.4,
+			none = 0.5,
+			moderate = 0.5,
+		},
+		{
+			health_limit = 0.6,
+			moderate = 0.5,
+			heavy = 0.5,
+		},
+		{
+			health_limit = 0.8,
+			heavy = 0.5,
+			explode = 0.5,
+		},
+	}
+	
 	-- Setup surrender presets
 	presets.surrender.easy = {
 		base_chance = 0,
@@ -994,8 +1054,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.enemy_chatter.cloaker = {
-		aggressive = true,
-		contact = true,
 		smoke = true,
 		flash_grenade = true,
 	}
@@ -1404,13 +1462,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.spooc.HEALTH_INIT = 24
 	self.spooc.headshot_dmg_mul = 3.75 -- 64 head health
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.spooc.damage.spooc_attack_hurt_severity = self.presets.hurt_severities.spooc_attack
 	self.spooc.melee_weapon = "baton"
 	self.spooc.chatter = self.presets.enemy_chatter.cloaker
 
 	self.shadow_spooc.HEALTH_INIT = 24
 	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 64 head health
-	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
+	self.shadow_spooc.damage.hurt_severity = self.spooc.damage.hurt_severity
+	self.shadow_spooc.damage.spooc_attack_hurt_severity = self.spooc.damage.spooc_attack_hurt_severity
 
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
@@ -2228,8 +2288,6 @@ function CharacterTweakData:_set_presets()
 		self:_multiply_all_speeds(1.05, 1.05)
 	elseif is_eclipse then
 		self:_multiply_all_speeds(1.05, 1.1)
-
-		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 	end
 
 	local not_bosses = table.list_to_set({
@@ -2356,6 +2414,10 @@ function CharacterTweakData:_set_presets()
 			end
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
+			
+			if is_eclispe then
+				char_preset.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
+			end
 		elseif tag_map.medic then
 			char_preset.can_be_healed = false
 			char_preset.use_animation_on_fire_damage = true

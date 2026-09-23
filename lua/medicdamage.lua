@@ -21,7 +21,8 @@ function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 	end
 
 	-- Medics can heal Cloakers that are not charging
-	if requesting_unit:movement()._active_actions[1] and requesting_unit:movement()._active_actions[1]:type() == "spooc" then
+	local is_spooc_action = requesting_unit:movement()._active_actions[1] and requesting_unit:movement()._active_actions[1]:type() == "spooc"
+	if is_spooc_action then
 		return false
 	end
 
