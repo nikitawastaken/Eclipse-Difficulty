@@ -449,6 +449,7 @@
 			<group :name="envsmod/">
 				<file :name="spotlight.effect"/>
 				<file :name="spotlight_long.effect"/>
+				<file :name="birds.effect"/>
 				<group :name="godrays/">
 					<file :name="cheap_godray_ballot.effect"/>
 					<file :name="cheap_godray_fwb.effect"/>

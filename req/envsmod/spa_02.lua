@@ -15,4 +15,16 @@ return {
 		["environments/pd2_env_spa/pd2_env_spa_a"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/brooklyn10-10_evening.custom_xml",
 		["environments/pd2_env_spa/pd2_env_spa_basement"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/brooklyn10-10_evening.custom_xml",
 	},
+	effect_spawner = { -- Fog effects and such
+		["effects/envsmod/birds"] = {
+			{
+				position = Vector3(11773, -3438, 2248),
+				rotation = Rotation(53, 23, -23),
+			},
+			{
+				position = Vector3(1996, 8146, 3207),
+				rotation = Rotation(0, 0, 0),
+			},
+		},
+	},
 }
