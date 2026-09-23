@@ -836,7 +836,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["watchdogs1_04_evening"] = 2,
 		["watchdogs1_05_evening"] = 2,
 	}
-	self.watchdogs_1_night.env_params.environment = nil
 	self.watchdogs_1_night.random_environments = {
 		["watchdogs1_01_night"] = 2,
 		["watchdogs1_02_night"] = 2,
@@ -849,7 +848,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["watchdogs2_02_night_matrix"] = 1,
 		["watchdogs2_02_night_sunset"] = 1,
 	}
-	-- self.watchdogs_2_day.env_params.environment = nil
 	self.watchdogs_2_day.random_environments = {
 		["watchdogs2_01_day"] = 3,
 		["watchdogs2_02_day"] = 3,
