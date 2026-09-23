@@ -142,7 +142,7 @@
 	"menu_deck1_1_short": "Trading a hostage for resources will now restore ##$multiperk## health for you and your crew. You and your crew can now trade for resources regardless of whether you are missing any downs.",
 	"menu_deck1_3_short": "You can now have ##$multiperk## additional hostages following you at the same time. Your shout distance is increased by ##$multiperk2##.",
 	"menu_deck1_5_short": "Trading a hostage for resources will now restore the equivalent of ##$multiperk## ammo box pickups into the reserves of every player in your crew.",
-	"menu_deck1_7_short": "You and your crew will gain ##$multiperk## max health and ##$multiperk2## stamina for each hostage up to ##$multiperk3## times. Your cable tie supply is increased by ##$multiperk4##.",
+	"menu_deck1_7_short": "You and your crew will gain ##$multiperk## max health and ##$multiperk2## stamina for each hostage up to ##$multiperk3## times.",
 	"menu_deck1_9_short": "Trading a hostage for resources ##before anticipation phase begins## will now delay the incoming assault by ##$multiperk## seconds. This effect is ##$multiperk2## for solo players. You and your crew can now trade hostages for resources before the first assault.",
 	"menu_deck2_1_short": "All firearms have a chance to spread panic among your enemies.\n\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_deck2_3_short": "You gain ##$multiperk## more health.",
