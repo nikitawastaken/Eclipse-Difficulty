@@ -308,7 +308,7 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 				local skill = managers.player:upgrade_value("weapon", "consume_no_ammo_chance", 0)
 				local chance = skill.normal
 
-				if base:get_ammo_remaining_in_clip() <= 3 then
+				if base:get_ammo_remaining_in_clip() <= skill.low_ammo_threshold then
 					chance = skill.low_ammo
 				end
 

@@ -1470,7 +1470,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.weapon.consume_no_ammo_chance = { { normal = 0.05, low_ammo = 0.2 } }
+	self.values.weapon.consume_no_ammo_chance = { { normal = 0.05, low_ammo = 0.2, low_ammo_threshold = 3 } }
 	self.values.weapon.clip_ammo_increase[1] = 1.2
 	self.skill_descs.portable_saw.multibasic = "5%"
 	self.skill_descs.portable_saw.multibasic2 = "20%"
