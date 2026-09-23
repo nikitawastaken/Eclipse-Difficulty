@@ -62,6 +62,8 @@
 	"hint_stealth_strike_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
 	"hint_stealth_strike_civ_too_many_killed": "Civilian killed. Suspicion increased.",
+	
+	"hint_ability_no_grenade_pickup": "You can't refill a perk deck throwable.",
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
