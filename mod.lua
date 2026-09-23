@@ -433,7 +433,7 @@ if not Eclipse then
 		-- Team AI settings
 		function MenuCallbackHandler:eclipse_team_ai_can_secure_loot_toggle(item)
 			local enabled = (item:value() == "on")
-			Eclipse.settings.early_control_music = enabled
+			Eclipse.settings.can_secure_loot = enabled
 		end
 
 		local menu_id_team_ai = "eclipse_menu_team_ai"
