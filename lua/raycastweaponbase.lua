@@ -303,9 +303,14 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 		end
 
 		if is_player and not is_explosive then
-			if managers.player:has_category_upgrade("weapon", "consume_no_ammo_chance") then
+			if managers.player:has_category_upgrade("weapon", "consume_no_ammo_chance") and not self:upgrade_blocked("weapon", "clip_ammo_increase") then
 				local roll = math.rand(1)
-				local chance = managers.player:upgrade_value("weapon", "consume_no_ammo_chance", 0)
+				local skill = managers.player:upgrade_value("weapon", "consume_no_ammo_chance", 0)
+				local chance = skill.normal
+
+				if base:get_ammo_remaining_in_clip() <= 3 then
+					chance = skill.low_ammo
+				end
 
 				if roll < chance then
 					ammo_usage = 0

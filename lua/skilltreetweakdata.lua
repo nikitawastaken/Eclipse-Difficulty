@@ -137,14 +137,14 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
-	self.skills.shotgun_cqb[2].upgrades = { "player_close_damage_multiplier" }
+	self.skills.shotgun_cqb[2].upgrades = { "player_run_and_shoot_1" }
 	self.skills.shotgun_cqb.icon_xy = { 8, 6 }
 	self.skills.shotgun_cqb.name_id = "menu_point_blank"
 	self.skills.shotgun_cqb.desc_id = "menu_point_blank_desc"
 
 	-- Heavy Impact
 	self.skills.shotgun_impact[1].upgrades = { "weapon_knock_down_1" }
-	self.skills.shotgun_impact[2].upgrades = { "player_enemy_hurt_damage_multiplier", "shotgun_enemy_push" }
+	self.skills.shotgun_impact[2].upgrades = { "player_close_damage_multiplier", "shotgun_enemy_push" }
 	self.skills.shotgun_impact.icon_xy = { 5, 0 }
 	self.skills.shotgun_impact.name_id = "menu_heavy_impact"
 	self.skills.shotgun_impact.desc_id = "menu_heavy_impact_desc"
@@ -226,8 +226,8 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Mag Plus
 	self.skills.portable_saw[1].upgrades = { "weapon_consume_no_ammo_chance" }
 	self.skills.portable_saw[2].upgrades = { "weapon_clip_ammo_increase_1" }
-	self.skills.portable_saw.name_id = "menu_mag_plus_beta"
-	self.skills.portable_saw.desc_id = "menu_mag_plus_beta_desc"
+	self.skills.portable_saw.name_id = "menu_mag_plus"
+	self.skills.portable_saw.desc_id = "menu_mag_plus_desc"
 	self.skills.portable_saw.icon_xy = { 2, 0 }
 
 	-- Extra Lead

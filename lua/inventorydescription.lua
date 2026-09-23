@@ -428,7 +428,7 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 						local current_weapon_is_double_barrel = name == "huntsman" or name == "b682" or name == "coach"
 						skill_in_effect = true
 
-						if weapon_tweak.use_shotgun_reload or current_weapon_is_double_barrel then
+						if weapon_tweak.use_shotgun_reload then
 							mult = mult + 1 - managers.player:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 						else
 							mult = mult + 1 - managers.player:upgrade_value("shotgun", "mag_reload_speed_mul", 1)

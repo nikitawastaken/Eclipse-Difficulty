@@ -1185,10 +1185,26 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.skill_descs.shotgun_cqb.multibasic = "5%"
+	self.skill_descs.shotgun_cqb.multibasic2 = "5"
+	self.skill_descs.shotgun_cqb.multibasic3 = "3"
+
+	-- Heavy Impact
+	self.values.weapon.knock_down[1] = 0.25
+	-- self.values.player.enemy_hurt_damage_multiplier = { 1.15 }
+	-- self.definitions.player_enemy_hurt_damage_multiplier = {
+	-- 	name_id = "menu_player_enemy_hurt_damage_multiplier",
+	-- 	category = "feature",
+	-- 	upgrade = {
+	-- 		value = 1,
+	-- 		upgrade = "enemy_hurt_damage_multiplier",
+	-- 		category = "player",
+	-- 	},
+	-- }
 	self.values.player.close_damage_multiplier = {
 		{
 			multiplier = 1.15,
-			range = 500,
+			range = 700,
 		},
 	}
 	self.definitions.player_close_damage_multiplier = {
@@ -1197,24 +1213,6 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "close_damage_multiplier",
-			category = "player",
-		},
-	}
-	self.skill_descs.shotgun_cqb.multibasic = "5%"
-	self.skill_descs.shotgun_cqb.multibasic2 = "5"
-	self.skill_descs.shotgun_cqb.multibasic3 = "3"
-	self.skill_descs.shotgun_cqb.multipro = "15%"
-	self.skill_descs.shotgun_cqb.multipro2 = "5m"
-
-	-- Heavy Impact
-	self.values.weapon.knock_down[1] = 0.25
-	self.values.player.enemy_hurt_damage_multiplier = { 1.15 }
-	self.definitions.player_enemy_hurt_damage_multiplier = {
-		name_id = "menu_player_enemy_hurt_damage_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "enemy_hurt_damage_multiplier",
 			category = "player",
 		},
 	}
@@ -1230,6 +1228,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.shotgun_impact.multibasic = "25%"
 	self.skill_descs.shotgun_impact.multipro = "15%"
+	self.skill_descs.shotgun_impact.multipro2 = "7m"
 
 	-- Fast Hands
 	self.values.shotgun.pump_reload_speed_mul = { 1.4 }
@@ -1268,9 +1267,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.steelsight_accuracy_inc[1] = 0.6
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.7
 	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "40%"
+	self.skill_descs.close_by.multipro = "30%"
 
 	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {
@@ -1471,7 +1470,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.weapon.consume_no_ammo_chance = { 0.05 }
+	self.values.weapon.consume_no_ammo_chance = { { normal = 0.05, low_ammo = 0.2 } }
 	self.values.weapon.clip_ammo_increase[1] = 1.2
 	self.skill_descs.portable_saw.multibasic = "5%"
 	self.skill_descs.portable_saw.multipro = "20%"

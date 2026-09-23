@@ -526,7 +526,7 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 		multiplier = multiplier + 1 - pm:upgrade_value(category, "reload_speed_multiplier", 1)
 
 		if category == "shotgun" then -- shotgun reload speed stuff
-			if self._use_shotgun_reload or self:weapon_tweak_data().double_barrel then
+			if self._use_shotgun_reload then
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 			else
 				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "mag_reload_speed_mul", 1)
