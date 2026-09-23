@@ -9,9 +9,9 @@
 			<param key="sky_texture" value="core/environments/skies/default/default"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_0902_overcast_dark/sky_0902_overcast_dark"/>
-			<param key="sun_ray_color_scale" value="6.864128112793"/>
+			<param key="sun_ray_color_scale" value="8"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="1 0.8666667342186 0.53725492954254"/>
+			<param key="sun_ray_color" value="1 0.8666667342186 0.42352944612503"/>
 			<param key="global_texture" value="environments/cubemaps/cubemap_midday_hcm"/>
 		</others>
 		<post_effect>
@@ -28,7 +28,7 @@
 						<param key="ambient_color_scale" value="0.20000000298023"/>
 						<param key="ambient_color" value="0.1803921610117 0.32156863808632 0.4078431725502"/>
 						<param key="fog_max_range" value="150446.640625"/>
-						<param key="bloom_threshold" value="0.19746121764183"/>
+						<param key="bloom_threshold" value="0.38214766979218"/>
 						<param key="sky_top_color_scale" value="3"/>
 						<param key="sky_top_color" value="0.20000001788139 0.38823533058167 0.59607845544815"/>
 						<param key="fog_min_range" value="1108.6037597656"/>
@@ -40,24 +40,20 @@
 				<shadow_rendering>
 					<shadow_modifier>
 						<param key="slice3" value="9999 50000 0"/>
-						<param key="shadow_slice_depths" value="1301 3034 10000"/>
-						<param key="slice0" value="0 1301 0"/>
-						<param key="slice1" value="1300 3034 0"/>
+						<param key="shadow_slice_depths" value="1800 3034 10000"/>
+						<param key="slice0" value="0 1800 0"/>
+						<param key="slice1" value="1799 3034 0"/>
 						<param key="slice2" value="3033 10000 0"/>
 						<param key="shadow_slice_overlap" value="1 1 1"/>
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
 						<param key="lense_intensity" value="0.15044663846493"/>
-						<param key="bloom_blur_size" value="2.1283497810364"/>
-						<param key="bloom_intensity" value="0.7522332072258"/>
+						<param key="bloom_blur_size" value="3.3132603168488"/>
+						<param key="bloom_intensity" value="0.40000000596046"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>

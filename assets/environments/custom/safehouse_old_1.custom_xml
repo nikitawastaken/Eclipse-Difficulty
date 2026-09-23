@@ -39,19 +39,15 @@
 			<shadow_processor>
 				<shadow_rendering>
 					<shadow_modifier>
-						<param key="slice3" value="9999 50000 0"/>
-						<param key="shadow_slice_depths" value="634 2367 10000"/>
-						<param key="slice0" value="0 634 0"/>
-						<param key="slice1" value="533 2367 0"/>
-						<param key="slice2" value="1566 10000 0"/>
-						<param key="shadow_slice_overlap" value="101 801 1"/>
+						<param key="slice3" value="59999 120000 0"/>
+						<param key="shadow_slice_depths" value="2400 8367 60000"/>
+						<param key="slice0" value="0 2400 0"/>
+						<param key="slice1" value="1200 8367 0"/>
+						<param key="slice2" value="7566 60000 0"/>
+						<param key="shadow_slice_overlap" value="1200 801 1"/>
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
