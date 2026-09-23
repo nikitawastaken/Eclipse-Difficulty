@@ -11,4 +11,12 @@ return {
 	environment_override = { -- File override
 		["environments/pd2_hlm1/pd2_hlm1"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/hotlinemiami_1_dusk.custom_xml",
 	},
+	effect_spawner = { -- Fog effects and such
+		["effects/envsmod/birds"] = {
+			{
+				position = Vector3(4655, -7360, 1860),
+				rotation = Rotation(26, 3, -7),
+			},
+		},
+	},
 }

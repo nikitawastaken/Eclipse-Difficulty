@@ -16,12 +16,12 @@ return {
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/birds"] = {
 			{
-				position = Vector3(-3984, -4945, 2437),
-				rotation = Rotation(-33, 27, -29),
+				position = Vector3(-4435, -5457, 3223),
+				rotation = Rotation(-4, 6, -7),
 			},
 			{
-				position = Vector3(6828, -1574, 2225),
-				rotation = Rotation(192, 29, -26),
+				position = Vector3(6828, -637, 3085),
+				rotation = Rotation(121, 5, -5),
 			},
 		},
 	},
