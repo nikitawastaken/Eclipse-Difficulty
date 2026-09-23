@@ -346,7 +346,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.shock_and_awe.desc_id = "menu_sleight_of_hand_desc"
 
 	-- Lock N' Load
-	self.skills.fast_fire[1].upgrades = { "player_run_and_shoot_1" }
+	self.skills.fast_fire[1].upgrades = { "" }
 	self.skills.fast_fire[2].upgrades = { "player_no_movement_penalty" }
 	self.skills.fast_fire.icon_xy = { 7, 10 }
 
