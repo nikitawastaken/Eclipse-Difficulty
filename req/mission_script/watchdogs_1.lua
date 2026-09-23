@@ -80,16 +80,15 @@ return {
 			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
-	--[[
 	-- Change loot vehicle arrival timing
 	-- Reduce the delay for choosing the loot vehicle location
-	[100771] = { -- driver_3
+	[101073] = { -- driver_3
 		on_executed = { -- From 38s + 7s to 18s + 7s
 			{ id = 100658, delay = 18 }, -- LootVehicleArrived
 		},
 	},
 	-- Increase the delays of elements responsible for moving the vehicle into place by 20s.
-	-- Bain's voiceline delays remain unchaged, so you get notified of the loot vehicle's location 20s in advance.
+	-- Bain's voiceline delays remain unchanged, so you get notified of the loot vehicle's location 20s in advance.
 	[100771] = { -- lootDropOff1 (Walkway)
 		on_executed = {
 			{ id = 100773, delay = 20 },
@@ -112,15 +111,14 @@ return {
 	[100770] = { -- chooseLootVehicle
 		pre_func = function(self)
 			local selector = EclipseWeightedSelector:new()
-			selector:add(100772, 2) -- Street
-			selector:add(100773, 3) -- Crane
+			selector:add(100306, 2) -- Street
+			selector:add(101459, 3) -- Crane
 			selector:add(100771, 4) -- Walkway
 			self._original_on_executed = {
 				{ id = selector:select(), delay = 0 },
 			}
 		end,
 	},
-]]
 	-- Disable the catwalk gap
 	[101407] = filter_disable,
 	[103762] = filter_easy_above,
