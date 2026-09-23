@@ -9,10 +9,10 @@
 			<param key="sky_texture" value="core/environments/skies/sky_1945_sunset/sky_1945_sunset"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_1945_sunset/sky_1945_sunset"/>
-			<param key="sun_ray_color_scale" value="0"/>
+			<param key="sun_ray_color_scale" value="6.9581570625305"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="1 0.20784315466881 0.12156863510609"/>
-			<param key="global_texture" value="environments/cubemaps/cubemap_secret_stash"/>
+			<param key="sun_ray_color" value="1 0.42745101451874 0.34117648005486"/>
+			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_df"/>
 		</others>
 		<post_effect>
 			<deferred>
@@ -24,12 +24,12 @@
 						<param key="effect_light_scale" value="0.5"/>
 						<param key="fog_far_low_color" value="0.52549022436142 0.28627452254295 0.14901961386204"/>
 						<param key="ambient_falloff_scale" value="0.36000001430511"/>
-						<param key="sky_bottom_color_scale" value="0.059999998658895"/>
-						<param key="ambient_color_scale" value="0.03999999910593"/>
+						<param key="sky_bottom_color_scale" value="0.10800000280142"/>
+						<param key="ambient_color_scale" value="0.075000002980232"/>
 						<param key="ambient_color" value="0.37254902720451 0.53725492954254 0.69411766529083"/>
 						<param key="fog_max_range" value="122222"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
-						<param key="sky_top_color_scale" value="0.059999998658895"/>
+						<param key="sky_top_color_scale" value="0.10000000149012"/>
 						<param key="sky_top_color" value="0.21568629145622 0.26274511218071 0.32156863808632"/>
 						<param key="fog_min_range" value="0"/>
 						<param key="fog_max_density" value="0.27268454432487"/>

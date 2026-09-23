@@ -818,7 +818,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.alex_3.random_environments = {
-		["rats3_01"] = 69,
+		["rats3_01"] = 2,
+		["rats3_02"] = 2,
 	}
 	self.ukrainian_job.random_environments = {
 		["jewelry_01"] = 2,
@@ -843,8 +844,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.watchdogs_2.random_environments = {
 		["watchdogs2_02_night_prebeta"] = 4,
+		["watchdogs2_02_night_thunder"] = 2,
 		["watchdogs2_02_night_bhdscanner"] = 2,
-		["watchdogs2_02_night_matrix"] = 2,
+		["watchdogs2_02_night_matrix"] = 1,
 		["watchdogs2_02_night_sunset"] = 1,
 	}
 	-- self.watchdogs_2_day.env_params.environment = nil
@@ -871,7 +873,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.man.random_environments = {
 		["undercover"] = 1,
-		["undercover_2"] = 3,
+		["undercover_2"] = 4,
+		["undercover_3_thunder"] = 2,
 		["undercover_dwpj_heavenhell"] = additive_weight_value,
 	}
 	self.mia_1.random_environments = {
@@ -929,11 +932,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.pines.random_environments = {
-		["whitexmas_4"] = 3,
-		["whitexmas_2"] = 1,
-		["whitexmas_3"] = 1,
-		["whitexmas_1"] = 2,
+		["whitexmas_6"] = 3,
 		["whitexmas_5"] = 3,
+		["whitexmas_4"] = 3,
+		["whitexmas_3"] = 1,
+		["whitexmas_2"] = 1,
+		["whitexmas_1"] = 2,
 		["default"] = 1,
 	}
 	self.crojob3.random_environments = {
