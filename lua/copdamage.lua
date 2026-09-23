@@ -441,7 +441,7 @@ Hooks:OverrideFunction(CopDamage, "get_damage_type", function(self, damage_perce
 	local hurt_table = self._char_tweak.damage.hurt_severity[category or "bullet"]
 
 	-- Use a separate hurt severity table for charging Cloakers
-	local is_spooc_action = self._unit:movement()._active_actions[1] and self._unit:movement()._active_actions[1]:type() == "spooc"		
+	local is_spooc_action = self._unit:movement()._active_actions[1] and self._unit:movement()._active_actions[1]:type() == "spooc"
 	if is_spooc_action then
 		if self._char_tweak.damage.spooc_attack_hurt_severity then
 			hurt_table = self._char_tweak.damage.spooc_attack_hurt_severity[category or "bullet"]

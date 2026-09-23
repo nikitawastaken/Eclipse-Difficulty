@@ -833,7 +833,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			explode = 0.5,
 		},
 	}
-	
+
 	-- Setup surrender presets
 	presets.surrender.easy = {
 		base_chance = 0,
@@ -2414,7 +2414,7 @@ function CharacterTweakData:_set_presets()
 			end
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
-			
+
 			if is_eclispe then
 				char_preset.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 			end
