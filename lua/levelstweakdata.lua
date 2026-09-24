@@ -137,7 +137,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.friend.force_size_preset = "increased_t1"
 	self.bex.force_size_preset = "increased_t1"
 	self.trai.force_size_preset = "increased_t1"
-	self.auc.force_size_preset = "increased_t1"
 
 	self.corp.force_size_preset = "increased_t2"
 
