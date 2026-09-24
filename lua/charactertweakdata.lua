@@ -2415,7 +2415,7 @@ function CharacterTweakData:_set_presets()
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
 
-			if is_eclispe then
+			if is_eclipse then
 				char_preset.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 			end
 		elseif tag_map.medic then
