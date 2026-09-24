@@ -3667,7 +3667,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local cloaker_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
 	local bulldozer_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.4 } or { 0, 0.3, 0.4 })
 	local elite_sniper_wgt = table_multiply(clone(special_wgt_tbl), { 0.2, 0.6, 1 })
-	local elite_shield_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0.4, 0.8 })
+	local elite_shield_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0.3, 0.6 })
 	local elite_bulldozer_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0, 0.2 })
 
 	-- Spawngroups
