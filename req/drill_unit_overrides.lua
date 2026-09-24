@@ -330,6 +330,14 @@ local M = {
 			},
 		},
 	},
+	["fex"] = {
+		["fex_saw_reinforced_door_001"] = {
+			[100024] = {
+				jam_times = { 1, 2 },
+				can_jam = true,
+			},
+		},
+	},
 	["glace"] = {
 		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = {
 			timer = 240,

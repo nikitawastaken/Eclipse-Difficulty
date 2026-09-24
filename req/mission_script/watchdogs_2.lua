@@ -428,6 +428,9 @@ return {
 			{ id = 400015, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
+	-- Disable cheat spawns
+	[101005] = disabled,
+	[100912] = disabled,
 	-- Enlarge area triggers responsible for toggling cheat spawngroups hidden behind containers.
 	-- This should prevent them from spawning in plain sight.
 	[101010] = {

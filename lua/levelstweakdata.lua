@@ -163,6 +163,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_2.difficulty_scaling_preset = "regroup_aggressive"
 	self.firestarter_3.difficulty_scaling_preset = "regroup_aggressive"
 	self.rvd1.difficulty_scaling_preset = "regroup_aggressive"
+	self.rvd2.difficulty_scaling_preset = "regroup_aggressive"
 
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
