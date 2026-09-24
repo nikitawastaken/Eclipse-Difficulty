@@ -21,10 +21,10 @@ function ElementSpecialObjective:get_objective(...)
 			objective.nav_seg = managers.navigation:get_nav_seg_from_pos(self._AI_SO_pos)
 			objective.area = managers.groupai:state():get_area_from_nav_seg_id(objective.nav_seg)
 		end
+
+		objective.interruptible = self._values.interruptible
 	end
-
-	objective.interruptible = self._values.interruptible
-
+	
 	return objective
 end
 
