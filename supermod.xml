@@ -3432,6 +3432,18 @@
 			<file :name="bex_vehicles_car_police_mexico/bex_vehicle_car_police_mexico.material_config" />
 		</group>
 
+		<group name="units/pd2_dlc_bex/weapons/" dyn_package="false">
+			<group :name="wpn_npc_amcar/">
+				<file :name="amcar_df.texture" />
+				<file :name="amcar_nm.texture" />
+				<file :name="wpn_npc_amcar.cooked_physics" />
+				<file :name="wpn_npc_amcar.material_config" />
+				<file :name="wpn_npc_amcar.model" />
+				<file :name="wpn_npc_amcar.object" />
+				<file :name="wpn_npc_amcar.unit"/>
+			</group>
+		</group>
+		
 		<group name="units/pd2_dlc_bex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
 				<file :name="mexican_heads_atlas_var1_df.texture" />

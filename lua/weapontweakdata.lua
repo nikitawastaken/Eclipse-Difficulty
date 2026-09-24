@@ -2897,6 +2897,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.g36_npc = copy_data(self.g36_npc, self.m4_npc, self.g36_crew)
 	self.scar_npc = copy_data(self.scar_npc, self.m4_npc, self.scar_crew)
 	self.ak47_ass_npc = copy_data(self.ak47_ass_npc, self.m4_npc, self.ak47_crew)
+	self.amcar_npc = copy_data(self.amcar_npc, self.m4_npc, self.amcar_crew)
 
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.uspsil_npc = copy_data(self.uspsil_npc, self.c45_npc, self.usp_crew)

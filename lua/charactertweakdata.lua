@@ -2130,6 +2130,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "svd_dmr")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"))
+
+	table.insert(self.weap_ids, "amcar")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_bex/weapons/wpn_npc_amcar/wpn_npc_amcar"))
 end)
 
 local ecm_vuln_hard = 0.6

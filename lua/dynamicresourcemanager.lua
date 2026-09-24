@@ -196,6 +196,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870", bph_needed, false)
 
 	local bex_needed = PackageManager:has(IDS_UNIT, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
+	load_unload_unit("units/pd2_dlc_bex/weapons/wpn_npc_amcar/wpn_npc_amcar", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_small", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_city/ene_acc_shield_city", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_shield_city/ene_acc_shield_city_dummy", bex_needed, true)
