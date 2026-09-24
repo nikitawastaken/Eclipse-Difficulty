@@ -3,11 +3,11 @@
 	<diesel materials="units/pd2_dlc_bex/weapons/wpn_npc_amcar/wpn_npc_amcar" orientation_object="rp_amcar" />
 	<sequence_manager file="units/payday2/weapons/wpn_npc_m4/wpn_npc_m4" />
 	<bodies>
-		<body name="body" enabled="false" template="debris" pushed_by_mover="false">
+		<body name="body" enabled="false" template="debris" pushed_by_mover="false">	
 			<object name="rp_amcar" />
-			<object name="c_convex" collision_type="convex" padding="-2.5" mass="2.5"/>
-		</body>
-	</bodies>
+			<object name="c_convex" collision_type="convex" padding="-2.5" mass="2.5" />		
+		</body>	
+	</bodies> 
 	<effects>
 		<effect_spawner name="flashlight" object="a_effect_flashlight" effect="effects/particles/weapons/flashlight/flashlight" enabled="false" assign_parent="true"/>
 	</effects>
