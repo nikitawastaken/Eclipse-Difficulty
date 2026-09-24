@@ -24,7 +24,7 @@ function ElementSpecialObjective:get_objective(...)
 
 		objective.interruptible = self._values.interruptible
 	end
-	
+
 	return objective
 end
 
