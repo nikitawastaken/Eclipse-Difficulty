@@ -110,7 +110,7 @@ function ManageSpawnedUnits:save(data)
 			if unit_entry.unit:id() ~= -1 then
 				networked_units[unit_id] = {
 					unit = unit_entry.unit,
-					align_obj_name = unit_entry.align_obj_name
+					align_obj_name = unit_entry.align_obj_name,
 				}
 
 				if joint_table then
@@ -118,7 +118,7 @@ function ManageSpawnedUnits:save(data)
 				end
 			elseif false and unit_entry.unit_name then
 				local_units[unit_id] = {
-					unit_name = unit_entry.unit_name
+					unit_name = unit_entry.unit_name,
 				}
 
 				if joint_table then
@@ -138,10 +138,14 @@ function ManageSpawnedUnits:save(data)
 	if next(networked_units) then
 		local peer = managers.network:get_dropin_peer_safe()
 
-		managers.enemy:add_delayed_clbk("ManageSpawnedUnitsDropIn" .. tostring(self._unit:key()), callback(self, self, "_clbk_drop_in_sync", {
-			peer_id = peer:id(),
-			networked_units = networked_units
-		}), TimerManager:game():time() + 0.1)
+		managers.enemy:add_delayed_clbk(
+			"ManageSpawnedUnitsDropIn" .. tostring(self._unit:key()),
+			callback(self, self, "_clbk_drop_in_sync", {
+				peer_id = peer:id(),
+				networked_units = networked_units,
+			}),
+			TimerManager:game():time() + 0.1
+		)
 	end
 end
 
@@ -184,7 +188,7 @@ function ManageSpawnedUnits:link_spawned_unit(unit_id, joint_table)
 	if not joint_table then
 		Application:error("[ManageSpawnedUnits] link_spawned_unit() - param1 (joint_table) is nil", self._unit)
 	elseif not self[joint_table] then
-		Application:error("[ManageSpawnedUnits] link_spawned_unit() - missing joint table \"" .. tostring(joint_table) .. "\" from unit file", self._unit)
+		Application:error('[ManageSpawnedUnits] link_spawned_unit() - missing joint table "' .. tostring(joint_table) .. '" from unit file', self._unit)
 	end
 
 	if not unit_id then
@@ -260,7 +264,7 @@ function ManageSpawnedUnits:_spawn_run_sequence(unit_id, sequence_name)
 	if dmg_ext:has_sequence(sequence_name) then
 		dmg_ext:run_sequence_simple(sequence_name)
 	else
-		Application:error("[ManageSpawnedUnits] _spawn_run_sequence() - sequence with name \"" .. tostring(sequence_name) .. "\" does not exist in unit", unit)
+		Application:error('[ManageSpawnedUnits] _spawn_run_sequence() - sequence with name "' .. tostring(sequence_name) .. '" does not exist in unit', unit)
 	end
 end
 
@@ -309,7 +313,7 @@ function ManageSpawnedUnits:spawn_unit(unit_id, align_obj_name, unit)
 	local unit_entry = {
 		unit = spawn_unit,
 		unit_name = unit_name,
-		align_obj_name = align_obj_name
+		align_obj_name = align_obj_name,
 	}
 
 	self._spawned_units[unit_id] = unit_entry
@@ -327,7 +331,7 @@ function ManageSpawnedUnits:spawn_and_link_unit(joint_table, unit_id, unit)
 	if not joint_table then
 		Application:error("[ManageSpawnedUnits] spawn_and_link_unit() - param1 (joint_table) is nil", self._unit)
 	elseif not self[joint_table] then
-		Application:error("[ManageSpawnedUnits] spawn_and_link_unit() - missing joint table \"" .. tostring(joint_table) .. "\" from unit file", self._unit)
+		Application:error('[ManageSpawnedUnits] spawn_and_link_unit() - missing joint table "' .. tostring(joint_table) .. '" from unit file', self._unit)
 	end
 
 	if not unit_id then
@@ -348,7 +352,7 @@ function ManageSpawnedUnits:spawn_and_link_unit(joint_table, unit_id, unit)
 		table.insert(self._link_after_load, {
 			joint_table,
 			unit_id,
-			unit
+			unit,
 		})
 
 		return
@@ -358,7 +362,7 @@ function ManageSpawnedUnits:spawn_and_link_unit(joint_table, unit_id, unit)
 
 	self._sync_spawn_and_link[unit_id] = {
 		unit = unit,
-		joint_table = joint_table
+		joint_table = joint_table,
 	}
 
 	if self._is_server or self.allow_client_spawn then
@@ -405,11 +409,11 @@ function ManageSpawnedUnits:local_push_child_unit(unit_id, mass, pow, vec3_obj_a
 	local obj_b = self._unit:get_object(Idstring(vec3_obj_b))
 
 	if not obj_a then
-		Application:error("[ManageSpawnedUnits] local_push_child_unit() - no \"" .. tostring(vec3_obj_a) .. "\" object found on unit", self._unit)
+		Application:error('[ManageSpawnedUnits] local_push_child_unit() - no "' .. tostring(vec3_obj_a) .. '" object found on unit', self._unit)
 	end
 
 	if not obj_b then
-		Application:error("[ManageSpawnedUnits] local_push_child_unit() - no \"" .. tostring(vec3_obj_b) .. "\" object found on unit", self._unit)
+		Application:error('[ManageSpawnedUnits] local_push_child_unit() - no "' .. tostring(vec3_obj_b) .. '" object found on unit', self._unit)
 	end
 
 	if not obj_a or not obj_b then
