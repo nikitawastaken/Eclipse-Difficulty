@@ -1117,7 +1117,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g36.stats.recoil = 17
 	self.g36.stats.concealment = 24
 	self.g36.fire_mode_data.fire_rate = 60 / 750
-	self.g36.reload_speed_multiplier = 1.15
+	self.g36.reload_not_empty_speed_multiplier = 1.15
+	self.g36.reload_empty_speed_multiplier = 1.25
 
 	-- Para
 	self.olympic.categories = { "assault_rifle" }

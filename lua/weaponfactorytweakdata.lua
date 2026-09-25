@@ -593,10 +593,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_g36_fg_c.stats.spread = -1
 	self.parts.wpn_fps_ass_g36_fg_c.stats.concealment = 1
 
-	self.parts.wpn_fps_upg_g36_fg_long.stats.spread = 2
-	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = 0
-	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -2
-
 	self.parts.wpn_fps_ass_s552_b_long.stats.concealment = -1
 
 	self.parts.wpn_fps_ass_famas_b_short.stats.damage = 0
@@ -2830,6 +2826,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 
 	self:_balance_conversion_kit(tweak_data, "awp", "wpn_fps_snp_awp_conversion_wildlands", 120, nil, true)
 
+	self.parts.wpn_fps_upg_g36_fg_long.stats.spread = 2
+	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = -3
+	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -4
+	self:_balance_conversion_kit(tweak_data, "g36", "wpn_fps_upg_g36_fg_long", 30, nil, true)
+	
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
