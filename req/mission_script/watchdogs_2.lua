@@ -22,7 +22,12 @@ local no_participate_to_group_ai = {
 		participate_to_group_ai = false,
 	},
 }
-
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 local random_dozers = {
 	scripted_enemy.bulldozer_1,
 	scripted_enemy.bulldozer_2,
@@ -135,54 +140,6 @@ else
 	john_dialogue_14 = "Play_bot_a05"
 	john_dialogue_15 = "Play_bot_a06"
 end
-
-local invisible_walls_large_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
-local invisible_walls_large_rot = Rotation(90, 0, 0)
-local invisible_walls_small_ids = Idstring("units/dev_tools/level_tools/dev_collision_1m_2_bag")
-local invisible_walls_small_rot = Rotation(-90, 0, 0)
-
-local invisible_walls_large = {}
-for i = 0, 3 do
-	table.insert(invisible_walls_large, {
-		name = invisible_walls_large_ids,
-		pos = Vector3(-4370, -480 + (i * 480), 0),
-		rot = invisible_walls_large_rot,
-		visible = false,
-	})
-end
-
-local invisible_walls_small = {
-	{
-		name = invisible_walls_large_ids,
-		pos = Vector3(2460, 0, 0),
-		rot = invisible_walls_large_rot,
-		visible = false,
-	},
-	{
-		name = invisible_walls_small_ids,
-		pos = Vector3(3800, 980, 370),
-		rot = invisible_walls_small_rot,
-		visible = false,
-	},
-	{
-		name = invisible_walls_small_ids,
-		pos = Vector3(2900, 980, -20),
-		rot = invisible_walls_small_rot,
-		visible = false,
-	},
-	{
-		name = invisible_walls_small_ids,
-		pos = Vector3(2900, -1000, -20),
-		rot = invisible_walls_small_rot,
-		visible = false,
-	},
-	{
-		name = invisible_walls_small_ids,
-		pos = Vector3(2700, -570, 370),
-		rot = invisible_walls_small_rot,
-		visible = false,
-	},
-}
 
 return {
 	[100985] = { -- esc, chopper on the way
@@ -360,31 +317,10 @@ return {
 			chance = 25,
 		},
 	},
-	-- Add invisible walls to the warehouse if needed
-	[104004] = {
-		spawn = invisible_walls_small, -- Add invisible walls to the warehouse
-	},
-	-- The warehouse can either be closed or open on all difficulties
-	[104003] = {
-		values = {
-			difficulty_overkill = true,
-			difficulty_hard = true,
-			difficulty_normal = true,
-			difficulty_overkill_145 = true,
-		},
-	},
-	[104001] = {
-		values = {
-			difficulty_easy_wish = true,
-		},
-	},
-	[100169] = {
-		on_executed = {
-			{ id = 400052, delay = 1 },
-			{ id = 104000, remove = true },
-		},
-	},
-	-- make early spawns not participate to group AI
+	-- Disable the closed warehouse on DW
+	[104001] = filter_disable,
+	[104003] = filter_easy_above,
+	-- Make early spawns not participate to group AI
 	[100761] = no_participate_to_group_ai,
 	[100765] = no_participate_to_group_ai,
 	[101212] = no_participate_to_group_ai,
@@ -395,7 +331,7 @@ return {
 	[101413] = no_participate_to_group_ai,
 	[101222] = no_participate_to_group_ai,
 	[100344] = no_participate_to_group_ai,
-	-- add cloakers
+	-- Add cloakers
 	[103962] = cloaker_add(103961),
 	[103964] = cloaker_add(103963),
 	[103966] = cloaker_add(103965),
@@ -428,35 +364,6 @@ return {
 			{ id = 400015, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
-	-- Disable cheat spawns
-	[101005] = disabled,
-	[100912] = disabled,
-	-- Enlarge area triggers responsible for toggling cheat spawngroups hidden behind containers.
-	-- This should prevent them from spawning in plain sight.
-	[101010] = {
-		values = {
-			width = 6500,
-			depth = 15200,
-		},
-	},
-	[101013] = {
-		values = {
-			width = 6500,
-			depth = 15200,
-		},
-	},
-	[101220] = {
-		values = {
-			width = 6500,
-			depth = 19000,
-		},
-	},
-	[101235] = {
-		values = {
-			width = 6500,
-			depth = 19000,
-		},
-	},
 	-- Do not remove groups closest to the gate alongside cheat spawngroups. They are well hidden.
 	[100899] = { -- ai_enemy_prefered_remove_001
 		on_executed = {
@@ -468,6 +375,9 @@ return {
 			{ id = 100168, remove = true }, -- ai_enemy_prefered_add_001
 		},
 	},
+	-- Disable cheat spawns
+	[101005] = disabled,
+	[100912] = disabled,
 	-- Spawn group intervals
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
 	[100146] = standard_spawn,
