@@ -2830,7 +2830,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = -3
 	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -4
 	self:_balance_conversion_kit(tweak_data, "g36", "wpn_fps_upg_g36_fg_long", 30, nil, true)
-	
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
