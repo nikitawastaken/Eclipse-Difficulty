@@ -75,6 +75,12 @@ return {
 			interrupt_dis = 3,
 		},
 	},
+	-- Delay the lead curator being outlined
+	[102932] = {
+		on_executed = {
+			{ id = 100285, delay = 30 }, -- Vanilla: 5
+		},
+	},
 	-- Restrict and slow down select navlinks
 	[106133] = fastup_navlink,
 	[106134] = fastup_navlink,
