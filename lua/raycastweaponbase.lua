@@ -5,6 +5,8 @@ RaycastWeaponBase.autofire_fix_blacklist = {
 	["money"] = true,
 	["system"] = true,
 	["mg42"] = true,
+	["m134"] = true,
+	["shuno"] = true,
 }
 
 local is_pro_job = Eclipse.utils.is_pro_job()
