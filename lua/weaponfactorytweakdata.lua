@@ -66,7 +66,7 @@ function WeaponFactoryTweakData:_add_default_blueprint_part(factory_id, part_id)
 	if not table.contains(self[factory_id].default_blueprint, part_id) then
 		table.insert(self[factory_id].default_blueprint, part_id)
 		table.insert(self[factory_id .. "_npc"].default_blueprint, part_id)
-		
+
 		if not table.contains(self[factory_id].uses_parts, part_id) then
 			table.insert(self[factory_id].uses_parts, part_id)
 			table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
@@ -78,7 +78,7 @@ function WeaponFactoryTweakData:_remove_default_blueprint_part(factory_id, part_
 	if table.contains(self[factory_id].default_blueprint, part_id) then
 		table.delete(self[factory_id].default_blueprint, part_id)
 		table.delete(self[factory_id .. "_npc"].default_blueprint, part_id)
-		
+
 		if table.contains(self[factory_id].uses_parts, part_id) then
 			table.delete(self[factory_id].uses_parts, part_id)
 			table.delete(self[factory_id .. "_npc"].uses_parts, part_id)
@@ -255,34 +255,34 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	local snp_sights = {}
 	self:_create_part_type_list(snp_sights, "wpn_fps_snp_msr", "sight")
-	
+
 	-- Add/remove parts
 	self:_remove_uses_parts_from_list({ "wpn_fps_ass_contraband" }, { "wpn_fps_sho_sko12_body_grip" })
-	self:_remove_uses_parts_from_list({ "wpn_fps_ass_m16" }, { "wpn_fps_uupg_fg_radian" })	
+	self:_remove_uses_parts_from_list({ "wpn_fps_ass_m16" }, { "wpn_fps_uupg_fg_radian" })
 	self:_remove_uses_parts_from_list({ "wpn_fps_sho_sko12" }, { "wpn_fps_upg_i_singlefire", "wpn_fps_upg_i_autofire" })
 	self:_remove_uses_parts_from_list({ "wpn_fps_ass_tecci" }, { "wpn_fps_upg_i_singlefire", "wpn_fps_upg_i_autofire" })
 	self:_remove_uses_parts_from_list({ "wpn_fps_ass_ak5", "wpn_fps_shot_saiga" }, { "wpn_fps_upg_ak_ns_zenitco" })
-	
+
 	self:_add_uses_parts_from_list({ "wpn_fps_ass_shak12" }, { "wpn_fps_upg_i_singlefire", "wpn_fps_upg_i_autofire" })
-	
+
 	self:_remove_uses_parts_from_list({ "wpn_fps_ass_ak5", "wpn_fps_shot_saiga" }, { "wpn_fps_upg_ak_ns_zenitco" })
 
 	-- Make the Akimbo Mark-10 use the folded stock by default
 	self.parts.wpn_fps_smg_mac10_s_fold2_vanilla = deep_clone(self.parts.wpn_fps_smg_mac10_s_fold2)
 	self.parts.wpn_fps_smg_mac10_s_fold2_vanilla.pcs = nil
-				
-	self:_add_default_blueprint_part("wpn_fps_smg_x_mac10", "wpn_fps_smg_mac10_s_fold2_vanilla")	
-	self:_remove_default_blueprint_part("wpn_fps_smg_x_mac10", "wpn_fps_smg_mac10_s_fold")	
-	
+
+	self:_add_default_blueprint_part("wpn_fps_smg_x_mac10", "wpn_fps_smg_mac10_s_fold2_vanilla")
+	self:_remove_default_blueprint_part("wpn_fps_smg_x_mac10", "wpn_fps_smg_mac10_s_fold")
+
 	-- Remove stock options from the Akimbo Mark-10
 	self:_remove_uses_parts_from_list({ "wpn_fps_smg_x_mac10" }, { "wpn_fps_smg_mac10_s_fold2", "wpn_fps_smg_mac10_s_skel" })
-		
+
 	-- Remove stock options from the Akimbo Heather
 	self:_remove_uses_parts_from_list({ "wpn_fps_smg_x_sr2" }, { "wpn_fps_smg_sr2_s_unfolded" })
-		
+
 	-- Add the AK family scope mount to the RPK
 	self:_add_uses_parts_from_list({ "wpn_fps_lmg_rpk" }, { "wpn_fps_upg_o_ak_scopemount" })
-	
+
 	-- LMG STEELSIGHTS START
 
 	-- Separate the rear sight from the M60's body part
@@ -2399,7 +2399,7 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 			if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
 				local extra_ammo_stat = part_data.stats and part_data.stats.extra_ammo
 				local ammo_offset_stat = part_data.custom_stats and part_data.custom_stats.ammo_offset
-				
+
 				if extra_ammo_stat or ammo_offset_stat then
 					-- Wipe overrides of weapon parts just in case.
 					-- Use the "no_override_wipe" flag for any edge cases
@@ -2411,7 +2411,7 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 					if not part_data.stats then
 						part_data.stats = {}
 					end
-					
+
 					if not part_data.is_supported then
 						if mag_capacity and not shotgun_reload then
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
@@ -2842,7 +2842,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse__a
 	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 	self:_add_forbids_from_list("wpn_fps_upg_ass_ak_b_zastava", fire_mode_locks)
-	
+
 	self.parts.wpn_fps_upg_g36_fg_long.stats.spread = 2
 	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = -3
 	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -4
