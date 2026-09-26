@@ -125,7 +125,7 @@ function CopBase:_run_unit_sequences()
 			if head then
 				managers.dyn_resource:load(IDS_UNIT, Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
 
-				spawn_manager_ext:spawn_and_link_unit("_char_joint_names", "cop_head", head)
+				spawn_manager_ext:spawn_and_link_unit("_char_joint_names", "cop_head", head, true)
 
 				self._head_unit = spawn_manager_ext:get_unit("cop_head")
 			end

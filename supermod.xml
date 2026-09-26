@@ -212,7 +212,6 @@
 				<post :hook_id="characters/characterattentionobject"/>
 				<post :hook_id="pickups/ammoclip"/>
 				<post :hook_id="contourext"/>
-				<post :hook_id="props/managespawnedunits"/>
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
