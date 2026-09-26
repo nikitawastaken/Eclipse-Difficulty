@@ -107,7 +107,7 @@ local john_dialogue_13 = nil
 local john_dialogue_14 = nil
 local john_dialogue_15 = nil
 
-if john_boat_driver_chance <= 0.1 then
+if john_boat_driver_chance <= 0.3 then
 	john_dialogue_1 = "bot_watchdogs_new_stage2_01"
 	john_dialogue_2 = "bot_watchdogs_new_stage2_05"
 	john_dialogue_3 = "bot_watchdogs_new_stage2_06"
@@ -148,7 +148,7 @@ return {
 			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
 	},
-	-- 10% of pre beta boat driver taking it's place
+	-- 30% of pre beta boat driver taking it's place
 	-- lights are on
 	[101233] = {
 		values = {
