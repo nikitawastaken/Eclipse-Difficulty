@@ -119,6 +119,12 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hold_moon_attach_winch.sound_start = "bar_attach_money_stack"
 	self.hold_moon_attach_winch.sound_interupt = "bar_attach_money_stack_cancel"
 	self.hold_moon_attach_winch.sound_done = "bar_attach_money_stack_finished"
+	self.corp_hold_pku_paperpile_bag.sound_start = "bar_bag_generic"
+	self.corp_hold_pku_paperpile_bag.sound_interupt = "bar_bag_generic_cancel"
+	self.corp_hold_pku_paperpile_bag.sound_done = "bar_bag_pour_money_finished"
+	self.corp_pickup_prototype.sound_start = "bar_bag_generic"
+	self.corp_pickup_prototype.sound_interupt = "bar_bag_generic_cancel"
+	self.corp_pickup_prototype.sound_done = "bar_bag_pour_money_finished"
 
 	self.hostage_trade.sound_start = "bar_untie_hostage"
 	self.hostage_trade.sound_interupt = "bar_untie_hostage_cancel"
