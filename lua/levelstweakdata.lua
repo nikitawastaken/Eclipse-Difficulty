@@ -359,54 +359,54 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.ai_unit_group_overrides = {
 		cs_cop_1 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1"),
 			},
 		},
 		cs_cop_2 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_2/ene_coast_guard_2"),
 			},
 		},
 		cs_cop_3 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_3/ene_coast_guard_3"),
 			},
 		},
 		cs_cop_4 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"),
 			},
 		},
 		cs_cop_1_2 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_2/ene_coast_guard_2"),
 			},
 		},
 		cs_cop_1_4 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"),
 			},
 		},
 		cs_cop_2_3 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_3/ene_coast_guard_3"),
 			},
 		},
 		cs_cop_3_4 = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"),
 			},
 		},
 		cs_cop = {
 			america = {
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
-				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"),
 			},
 		},
 	}
