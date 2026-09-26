@@ -692,10 +692,10 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread = {
 					standing = 3.5,
 					crouching = 3.5,
-					steelsight = 1.5,
+					steelsight = 1.4,
 					moving_standing = 4,
 					moving_crouching = 4,
-					moving_steelsight = 1.5,
+					moving_steelsight = 1.4,
 				}	
 				
 				weap_data.kick = {
@@ -715,7 +715,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.explosive_ammo = true
 
 				weap_data.damage_near = 2000
-				weap_data.damage_far = 3000
+				weap_data.damage_far = 2000
 
 				if weap_data.rays then
 					weap_data.rays = 8	
