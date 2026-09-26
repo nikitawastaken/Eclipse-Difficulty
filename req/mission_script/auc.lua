@@ -31,6 +31,7 @@ local fastup_navlink = {
 	},
 	so_access_filter = so_access.acrobatic,
 }
+local ext_to_balcony_navlink = deep_clone(fastup_navlink)
 
 return {
 	-- Combine some navigation areas
@@ -95,6 +96,8 @@ return {
 	[106164] = fastup_navlink,
 	[106167] = fastup_navlink,
 	[107420] = fastup_navlink,
+	[103663] = ext_to_balcony_navlink,
+	[103664] = ext_to_balcony_navlink,
 	-- Spawn group intervals
 	[102292] = indoor_spawn,
 	[102317] = indoor_spawn,
