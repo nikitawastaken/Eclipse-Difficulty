@@ -344,7 +344,7 @@ function MoneyManager:can_afford_heist_restart()
 	if not Global.game_settings.one_down then
 		return true
 	end
-	
+
 	local job_id = managers.job:current_job_id()
 	local difficulty_id = managers.job:current_difficulty_stars() + 2
 
