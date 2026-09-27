@@ -343,18 +343,18 @@ end
 function MoneyManager:can_afford_heist_restart()
 	local job_id = managers.job:current_job_id()
 	local difficulty_id = managers.job:current_difficulty_stars() + 2
-	
+
 	return managers.money:can_afford_buy_premium_contract(job_id, difficulty_id)
 end
 
 function MoneyManager:get_cost_of_heist_restart()
 	local job_id = managers.job:current_job_id()
 	local difficulty_id = managers.job:current_difficulty_stars() + 2
-	
+
 	return managers.money:get_cost_of_premium_contract(job_id, difficulty_id) / 2
 end
 
-function MoneyManager:deduct_from_offshore_for_restart()	
+function MoneyManager:deduct_from_offshore_for_restart()
 	local offshore_for_restart = self:get_cost_of_heist_restart()
 	self:deduct_from_offshore(offshore_for_restart)
 end

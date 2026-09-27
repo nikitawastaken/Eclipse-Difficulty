@@ -1100,13 +1100,13 @@ end
 function MenuManager:show_restart_game_dialog(params)
 	local dialog_data = {}
 	dialog_data.title = managers.localization:text("dialog_warning_title")
-	
+
 	if managers.money:can_afford_heist_restart() then
 		dialog_data.text = managers.localization:text("dialog_show_restart_game_message", {
 			OFFSHORE = managers.money:get_cost_of_heist_restart(),
 		})
-	
-		local yes_button = {}	
+
+		local yes_button = {}
 
 		yes_button.text = managers.localization:text("dialog_yes")
 		yes_button.callback_func = params.yes_func
@@ -1117,16 +1117,16 @@ function MenuManager:show_restart_game_dialog(params)
 		no_button.cancel_button = true
 		dialog_data.button_list = {
 			yes_button,
-			no_button
+			no_button,
 		}
 	else
 		dialog_data.text = managers.localization:text("dialog_show_restart_game_message_not_enough_offshore")
-		
+
 		local ok_button = {}
 		ok_button.text = managers.localization:text("dialog_ok")
 		ok_button.cancel_button = true
 		dialog_data.button_list = {
-			ok_button
+			ok_button,
 		}
 	end
 
@@ -1144,12 +1144,12 @@ function MenuCallbackHandler:restart_level(item)
 	if managers.money:can_afford_heist_restart() then
 		if managers.vote:option_vote_restart() then
 			dialog_data.text = managers.localization:text("dialog_mp_restart_level_message", {
-			OFFSHORE = managers.money:get_cost_of_heist_restart(),
-		})
+				OFFSHORE = managers.money:get_cost_of_heist_restart(),
+			})
 		else
 			dialog_data.text = managers.localization:text("dialog_mp_restart_level_host_message", {
-			OFFSHORE = managers.money:get_cost_of_heist_restart(),
-		})
+				OFFSHORE = managers.money:get_cost_of_heist_restart(),
+			})
 		end
 		local yes_button = {}
 
@@ -1169,16 +1169,16 @@ function MenuCallbackHandler:restart_level(item)
 		no_button.cancel_button = true
 		dialog_data.button_list = {
 			yes_button,
-			no_button
+			no_button,
 		}
 	else
 		dialog_data.text = managers.localization:text("dialog_show_restart_game_message_not_enough_offshore")
-		
+
 		local ok_button = {}
 		ok_button.text = managers.localization:text("dialog_ok")
 		ok_button.cancel_button = true
 		dialog_data.button_list = {
-			ok_button
+			ok_button,
 		}
 	end
 

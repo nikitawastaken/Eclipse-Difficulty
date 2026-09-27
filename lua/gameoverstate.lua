@@ -33,7 +33,7 @@ function GameOverState:_set_continue_button_text()
 	if not can_afford_restart then
 		text_id = "failed_disconnected_continue"
 	end
-	
+
 	local text = utf8.to_upper(managers.localization:text(text_id, {
 		CONTINUE = continue_button,
 		OFFSHORE = managers.money:get_cost_of_heist_restart(),
