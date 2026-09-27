@@ -7,9 +7,8 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local offset_vec = Vector3(0, 0, 30)
 
-
 -- Remove splinter calculation (not really needed for fire) and optimize function
-Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, params)
+Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function(self, params)
 	local hit_pos = params.hit_pos
 	local slotmask = params.collision_slotmask
 	local user_unit = params.user
@@ -33,7 +32,7 @@ Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, param
 	local characters_hit = {}
 	local hit_units = {}
 	local splinters = {
-		hit_pos
+		hit_pos,
 	}
 
 	local player = managers.player:player_unit()
@@ -42,7 +41,7 @@ Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, param
 			variant = "fire",
 			position = hit_pos,
 			range = damage_range,
-			damage = player_dmg
+			damage = player_dmg,
 		})
 	end
 
@@ -56,7 +55,7 @@ Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, param
 		hit_pos,
 		alert_radius,
 		alert_filter,
-		alert_unit
+		alert_unit,
 	})
 
 	mvec_set(tmp_vec1, hit_pos)
@@ -107,7 +106,7 @@ Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, param
 					local col_ray = {
 						unit = hit_unit,
 						position = hit_body:position(),
-						ray = dir
+						ray = dir,
 					}
 					local defense_data = hit_unit:character_damage():damage_fire({
 						variant = "fire",
@@ -115,7 +114,7 @@ Hooks:OverrideFunction(FireManager, "detect_and_give_dmg", function (self, param
 						attacker_unit = user_unit,
 						weapon_unit = owner,
 						col_ray = col_ray,
-						is_molotov = is_molotov
+						is_molotov = is_molotov,
 					})
 					local dead_now = hit_unit:character_damage():dead()
 
