@@ -35,12 +35,18 @@ function IngameLobbyMenuState:at_enter()
 			managers.network.matchmake:set_server_joinable(true)
 		end
 
+		-- Restart require offshore. If host has not enough - go to lobby/menu
 		if not managers.job:stage_success() then
-			-- if managers.job:is_current_job_professional() then
-			-- 	MenuCallbackHandler:load_start_menu_lobby()
-			-- else
-			managers.game_play_central:restart_the_game()
-			-- end
+			local can_afford_restart = managers.money:can_afford_heist_restart()
+			if can_afford_restart then
+				managers.game_play_central:restart_the_game()
+			else
+				if Global.game_settings.single_player then
+					MenuCallbackHandler:_dialog_end_game_yes()
+				else
+					MenuCallbackHandler:load_start_menu_lobby()
+				end
+			end
 		else
 			MenuCallbackHandler:on_stage_success()
 			MenuCallbackHandler:start_the_game()

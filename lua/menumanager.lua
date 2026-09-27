@@ -1096,6 +1096,95 @@ function MenuCallbackHandler:play_safehouse(params)
 	})
 end
 
+-- Restart button tweaks (Offshore on restart warning text + not allow restart if not enough offshore)
+function MenuManager:show_restart_game_dialog(params)
+	local dialog_data = {}
+	dialog_data.title = managers.localization:text("dialog_warning_title")
+	
+	if managers.money:can_afford_heist_restart() then
+		dialog_data.text = managers.localization:text("dialog_show_restart_game_message", {
+			OFFSHORE = managers.money:get_cost_of_heist_restart(),
+		})
+	
+		local yes_button = {}	
+
+		yes_button.text = managers.localization:text("dialog_yes")
+		yes_button.callback_func = params.yes_func
+
+		local no_button = {}
+
+		no_button.text = managers.localization:text("dialog_no")
+		no_button.cancel_button = true
+		dialog_data.button_list = {
+			yes_button,
+			no_button
+		}
+	else
+		dialog_data.text = managers.localization:text("dialog_show_restart_game_message_not_enough_offshore")
+		
+		local ok_button = {}
+		ok_button.text = managers.localization:text("dialog_ok")
+		ok_button.cancel_button = true
+		dialog_data.button_list = {
+			ok_button
+		}
+	end
+
+	managers.system_menu:show(dialog_data)
+end
+
+function MenuCallbackHandler:restart_level(item)
+	if not managers.vote:available() or managers.vote:is_restarting() then
+		return
+	end
+
+	local dialog_data = {}
+
+	dialog_data.title = managers.localization:text("dialog_mp_restart_level_title")
+	if managers.money:can_afford_heist_restart() then
+		if managers.vote:option_vote_restart() then
+			dialog_data.text = managers.localization:text("dialog_mp_restart_level_message", {
+			OFFSHORE = managers.money:get_cost_of_heist_restart(),
+		})
+		else
+			dialog_data.text = managers.localization:text("dialog_mp_restart_level_host_message", {
+			OFFSHORE = managers.money:get_cost_of_heist_restart(),
+		})
+		end
+		local yes_button = {}
+
+		yes_button.text = managers.localization:text("dialog_yes")
+
+		function yes_button.callback_func()
+			if managers.vote:option_vote_restart() then
+				managers.vote:restart()
+			else
+				managers.vote:restart_auto()
+			end
+		end
+
+		local no_button = {}
+
+		no_button.text = managers.localization:text("dialog_no")
+		no_button.cancel_button = true
+		dialog_data.button_list = {
+			yes_button,
+			no_button
+		}
+	else
+		dialog_data.text = managers.localization:text("dialog_show_restart_game_message_not_enough_offshore")
+		
+		local ok_button = {}
+		ok_button.text = managers.localization:text("dialog_ok")
+		ok_button.cancel_button = true
+		dialog_data.button_list = {
+			ok_button
+		}
+	end
+
+	managers.system_menu:show(dialog_data)
+end
+
 -- Add casino to lobby
 Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerPostBuildCustomMenus", function(self, nodes)
 	if nodes.crimenet_contract_casino then

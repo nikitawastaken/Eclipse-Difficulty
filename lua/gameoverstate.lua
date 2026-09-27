@@ -28,8 +28,15 @@ function GameOverState:_set_continue_button_text()
 		or "victory_client_waiting_for_server"
 
 	local continue_button = managers.menu:is_pc_controller() and "[ENTER]" or nil
+	-- Required offshore for restart text
+	local can_afford_restart = managers.money:can_afford_heist_restart()
+	if not can_afford_restart then
+		text_id = "failed_disconnected_continue"
+	end
+	
 	local text = utf8.to_upper(managers.localization:text(text_id, {
 		CONTINUE = continue_button,
+		OFFSHORE = managers.money:get_cost_of_heist_restart(),
 	}))
 
 	managers.menu_component:set_endscreen_continue_button_text(text, text_id ~= "failed_disconnected_continue" and text_id ~= "debug_mission_end_continue" and text_id ~= "menu_victory_retry_stage")

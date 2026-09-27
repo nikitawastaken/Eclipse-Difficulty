@@ -90,3 +90,10 @@ function GamePlayCentralManager:spawn_pickup(params)
 		managers.network:session():send_to_peers_synched("eclipse_sync_pickup_upgrade", unit, params.has_extra_dmg_double_drop)
 	end
 end
+
+-- Deduct offshore on restart from host
+Hooks:PreHook(GamePlayCentralManager, "restart_the_game", "eclipse_restart_the_game", function(self)
+    if Global.game_settings.single_player or managers.network:session() and Network:is_server() then
+		managers.money:deduct_from_offshore_for_restart()
+	end
+end)
