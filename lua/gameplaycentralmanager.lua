@@ -93,7 +93,9 @@ end
 
 -- Deduct offshore on restart from host
 Hooks:PreHook(GamePlayCentralManager, "restart_the_game", "eclipse_restart_the_game", function(self)
-	if Global.game_settings.single_player or managers.network:session() and Network:is_server() then
-		managers.money:deduct_from_offshore_for_restart()
+	if Global.game_settings.one_down then
+		if Global.game_settings.single_player or managers.network:session() and Network:is_server() then
+			managers.money:deduct_from_offshore_for_restart()
+		end
 	end
 end)
