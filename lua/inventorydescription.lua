@@ -6,6 +6,9 @@ local eclipse_custom_stats = {
 	{
 		name = "steelsight_enter_time",
 	},
+	{
+		name = "pullout_time",
+	},
 }
 for _, stat in ipairs(eclipse_custom_stats) do
 	table.insert(WeaponDescription._stats_shown, stat)
@@ -135,6 +138,52 @@ function WeaponDescription._get_skill_steelsight_enter_time(weapon, name, base_s
 	end
 end
 
+function WeaponDescription._get_base_pullout_time(name)
+	local index = tweak_data.weapon[name].stats.swap_speed or 9
+	return tweak_data.weapon.stats.swap_speed[index]
+end
+
+function WeaponDescription._get_mods_pullout_time(name, base, mods)
+	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
+	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
+
+	local index = tweak_data.weapon[name].stats.swap_speed or 9
+	for _, mod in ipairs(mods) do
+		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
+		if part_data and part_data.stats and part_data.stats.swap_speed_multiplier then
+			index = index + part_data.stats.swap_speed_multiplier
+		end
+	end
+
+	local new_time = tweak_data.weapon.stats.swap_speed[index]
+
+	local difference = base.pullout_time.value - new_time
+
+	return difference
+end
+
+function WeaponDescription._get_skill_pullout_time(weapon, name, base_stats, mods_stats)
+	local multiplier = 1
+
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "passive_swap_speed_multiplier", 1)
+
+	for _, category in ipairs(tweak_data.weapon[name].categories) do
+		multiplier = multiplier * managers.player:upgrade_value(category, "swap_speed_multiplier", 1)
+	end
+
+	multiplier = multiplier * managers.player:upgrade_value("team", "crew_faster_swap", 1)
+
+	multiplier = managers.modifiers:modify_value("PlayerStandard:GetSwapSpeedMultiplier", multiplier)
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "mrwi_swap_speed_multiplier", 1)
+
+	if multiplier == 1 then
+		return false, 0
+	else
+		return true, (base_stats.pullout_time.value - mods_stats.pullout_time.value) * (1 - multiplier)
+	end
+end
+
 function WeaponDescription._get_stats(name, category, slot, blueprint)
 	local equipped_mods = nil
 	local silencer = false
@@ -182,6 +231,10 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	base_stats.steelsight_enter_time.value = WeaponDescription._get_base_steelsight_enter_time(weapon, name)
 	mods_stats.steelsight_enter_time.value = WeaponDescription._get_mods_steelsight_enter_time(weapon, name, base_stats, equipped_mods)
 	skill_stats.steelsight_enter_time.skill_in_effect, skill_stats.steelsight_enter_time.value = WeaponDescription._get_skill_steelsight_enter_time(weapon, name, base_stats, mods_stats)
+
+	base_stats.pullout_time.value = WeaponDescription._get_base_pullout_time(name)
+	mods_stats.pullout_time.value = WeaponDescription._get_mods_pullout_time(name, base_stats, equipped_mods)
+	skill_stats.pullout_time.skill_in_effect, skill_stats.pullout_time.value = WeaponDescription._get_skill_pullout_time(weapon, name, base_stats, mods_stats)
 
 	local my_clip = base_stats.magazine.value + mods_stats.magazine.value + skill_stats.magazine.value
 
