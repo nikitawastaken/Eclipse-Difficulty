@@ -358,7 +358,7 @@ function MoneyManager:get_cost_of_heist_restart(is_string)
 	if is_string then
 		restart_cost = managers.experience:cash_string(restart_cost)
 	end
-	
+
 	return restart_cost
 end
 
