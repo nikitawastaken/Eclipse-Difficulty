@@ -341,21 +341,25 @@ end
 
 -- Offshore restart helper functions
 function MoneyManager:can_afford_heist_restart()
-	if not Global.game_settings.one_down then
+	if not Eclipse.utils.is_pro_job() then
 		return true
 	end
 
-	local job_id = managers.job:current_job_id()
-	local difficulty_id = managers.job:current_difficulty_stars() + 2
+	local job_id = Eclipse.utils.job_id()
+	local difficulty_id = Eclipse.utils.difficulty_index()
 
 	return managers.money:can_afford_buy_premium_contract(job_id, difficulty_id)
 end
 
-function MoneyManager:get_cost_of_heist_restart()
-	local job_id = managers.job:current_job_id()
-	local difficulty_id = managers.job:current_difficulty_stars() + 2
-
-	return managers.money:get_cost_of_premium_contract(job_id, difficulty_id) / 2
+function MoneyManager:get_cost_of_heist_restart(is_string)
+	local job_id = Eclipse.utils.job_id()
+	local difficulty_id = Eclipse.utils.difficulty_index()
+	local restart_cost = managers.money:get_cost_of_premium_contract(job_id, difficulty_id) / 2
+	if is_string then
+		restart_cost = managers.experience:cash_string(restart_cost)
+	end
+	
+	return restart_cost
 end
 
 function MoneyManager:deduct_from_offshore_for_restart()
