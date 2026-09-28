@@ -1154,6 +1154,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	if is_murkywater_heist then
 		self.security.radio_prefix = "fri_"
 		self.security.use_radio = "fri_dispatch_generic_message"
+        self.cop.use_radio = "fri_dispatch_generic_message"
 	end
 
 	self.security_fat = deep_clone(self.security)
@@ -1186,7 +1187,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	table.insert(self._enemy_list, "security_army")
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
-	self.cop.use_radio = is_murkywater_heist and "fri_dispatch_generic_message" or "dispatch_generic_message"
 
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
@@ -1561,10 +1561,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.snowman_boss.HEALTH_INIT = 180
 	self.snowman_boss.headshot_dmg_mul = 2
 	self.snowman_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+    self.snowman_boss.spawn_sound_event = self.tank.spawn_sound_event
+    self.snowman_boss.chatter = self.tank.chatter
 
 	self.piggydozer.HEALTH_INIT = 180
 	self.piggydozer.headshot_dmg_mul = 2
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+    self.piggydozer.spawn_sound_event = self.tank.spawn_sound_event
+    self.piggydozer.chatter = self.tank.chatter
 end)
 
 CharacterTweakData.team_ai_weapons_mapped = {
