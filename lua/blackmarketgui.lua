@@ -1713,7 +1713,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					round_value = 2,
 				},
 				{
-					name = "pullout_time",
+					name = "swap_time",
 					inverted = true,
 					round_value = 2,
 				},

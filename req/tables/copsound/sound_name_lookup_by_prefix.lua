@@ -1,6 +1,8 @@
 ---@module Sound Name Lookup By Prefix
 local M = {}
 
+local is_eclipse = Eclipse.utils.is_eclipse()
+
 -- Yes, the prefixes need the _ on the end
 -- This table is indexed by prefix as-is
 
@@ -283,6 +285,7 @@ local tsr_tbl = {
 	ch3 = "burndeath", -- Ears ouchies
 	d01 = "g90",
 	d02 = "g90",
+	entrance = is_eclipse and "elite" or "entrance", -- for some reason sbz set the id naming in a bit odd way
 }
 M.tsr_ = tsr_tbl
 M.rtsr_ = tsr_tbl

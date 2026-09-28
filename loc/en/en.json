@@ -36,7 +36,7 @@
 	"bm_menu_steelsight_enter_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
 	"bm_menu_armor_regen": "Armor Regen",
-	"bm_menu_pullout_time": "Pullout Time",
+	"bm_menu_swap_time": "Swap Time",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
 	"menu_asset_lock_additional_assets": "Requires the Blending In perk deck card to unlock",
@@ -202,6 +202,8 @@
 	"hud_arm_forest5_hl": "Secure turret ammo bags",
 	"hud_arm_forest6_hl": "Secure turret ammo bags",
 	"hud_arm_forest7_hl": "Secure turret ammo bags",
+
+	"heist_arm": "ARMORED TRANSPORT",
 
 	"hud_v_four_stores_mission2_hl": "Steal $2.800",
 

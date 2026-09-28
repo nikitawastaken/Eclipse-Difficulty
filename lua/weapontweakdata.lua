@@ -399,6 +399,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					{ 2, 4 },
 					{ 600, 400 },
 				}
+				weap_data.swap_speed_multiplier = 1.25
 				
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 50)
@@ -439,7 +440,8 @@ function WeaponTweakData:_init_weapons(overrides)
 					{ 6.4, 9.6 },
 					{ 360, 240 },
 				}
-				
+				weap_data.swap_speed_multiplier = 1.25
+					
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 60)
 				end

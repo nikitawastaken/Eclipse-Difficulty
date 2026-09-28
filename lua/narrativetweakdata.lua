@@ -185,41 +185,74 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	-- If you want money, you stay and get additional loot- otherwise all you get is mainly XP
 	-- These are base values only, the rest is handled by difficulty_multiplier_payout for now (moneytweakdata)
 	self.jobs.jewelry_store.payout = { 2000 }
+	self.jobs.jewelry_store.contract_cost = { 20000, 40000, 60000, 80000, 100000, 120000, 140000 }
 	self.jobs.gallery.payout = { 4000 }
+	self.jobs.gallery.contract_cost = { 40000, 60000, 80000, 100000, 120000, 140000, 160000 }
 	self.jobs.four_stores.payout = { 4000 }
+	self.jobs.four_stores.contract_cost = { 20000, 40000, 60000, 80000, 100000, 120000, 140000 }
 	self.jobs.mallcrasher.payout = { 10000 }
+	self.jobs.mallcrasher.contract_cost = { 20000, 40000, 60000, 80000, 100000, 120000, 140000 }
 	self.jobs.ukrainian_job.payout = { 9000 }
+	self.jobs.ukrainian_job.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.nightclub.payout = { 9000 }
+	self.jobs.nightclub.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.branchbank.payout = { 7500 }
+	self.jobs.branchbank.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.branchbank_prof.payout = { 7500 }
 	self.jobs.branchbank_deposit.payout = { 7500 }
 	self.jobs.branchbank_cash.payout = { 7500 }
 	self.jobs.branchbank_gold.payout = { 7500 }
 	self.jobs.branchbank_gold_prof.payout = { 7500 }
+	self.jobs.arm_wrapper.payout = { 12500 }
+	self.jobs.arm_wrapper.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.arm_cro.payout = { 12500 }
+	self.jobs.arm_cro.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_und.payout = { 12500 }
+	self.jobs.arm_und.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_hcm.payout = { 12500 }
+	self.jobs.arm_hcm.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_par.payout = { 12500 }
+	self.jobs.arm_par.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_fac.payout = { 12500 }
+	self.jobs.arm_fac.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_for.payout = { 12500 }
+	self.jobs.arm_for.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.election_day.payout = { 20000 }
+	self.jobs.election_day.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.rat.payout = { 20500 }
+	self.jobs.rat.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.alex.payout = { 20500 }
+	self.jobs.alex.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.firestarter.payout = { 24000 }
+	self.jobs.firestarter.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.watchdogs.payout = { 18000 }
+	self.jobs.watchdogs.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.watchdogs_wrapper.payout = { 18000 }
+	self.jobs.watchdogs_wrapper.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.family.payout = { 4000 }
+	self.jobs.family.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.welcome_to_the_jungle_wrapper_prof.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle_wrapper_prof.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.welcome_to_the_jungle_wrapper.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle_wrapper.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.welcome_to_the_jungle.payout = { 450000 }
+	self.jobs.welcome_to_the_jungle.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.framing_frame.payout = { 35000 }
+	self.jobs.welcome_to_the_jungle.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.big.payout = { 24000 }
+	self.jobs.big.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.roberts.payout = { 12500 }
+	self.jobs.roberts.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.hox.payout = { 550000 }
+	self.jobs.hox.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.hox_3.payout = { 175000 }
+	self.jobs.hox_3.contract_cost = { 50000, 75000, 90000, 125000, 140000, 160000, 180000 }
 	self.jobs.crojob1.payout = { 60000 }
+	self.jobs.crojob1.contract_cost = { 125000, 150000, 175000, 200000, 225000, 250000, 275000 }
 	self.jobs.crojob_wrapper.payout = { 60000 }
+	self.jobs.crojob_wrapper.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.crojob2.payout = { 60000 }
+	self.jobs.crojob2.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.cage.payout = { 18500 }
 	self.jobs.shoutout_raid.payout = { 80000 }
 	self.jobs.arena.payout = { 45000 }
@@ -227,6 +260,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.pines.payout = { 15000 }
 	self.jobs.jolly.payout = { 2015 }
 	self.jobs.red2.payout = { 35000 }
+	self.jobs.red2.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.dinner.payout = { 25000 }
 	self.jobs.pbr.payout = { 150000 }
 	self.jobs.pbr2.payout = { 1250000 }
@@ -235,6 +269,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.nail.payout = { 2015 }
 	self.jobs.peta.payout = { 2016 }
 	self.jobs.man.payout = { 1250000 }
+	self.jobs.man.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.dark.payout = { 65000 }
 	self.jobs.mad.payout = { 50000 }
 	self.jobs.mus.payout = { 25000 }
@@ -249,6 +284,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.help.payout = { 2016 }
 	self.jobs.run.payout = { 400000 }
 	self.jobs.glace.payout = { 750000 }
+	self.jobs.glace.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.haunted.payout = { 2013 }
 	self.jobs.dah.payout = { 60000 }
 	self.jobs.rvd.payout = { 80000 }
@@ -274,21 +310,58 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.deep.payout = { 270465 }
 	self.jobs.boss.payout = { 50000 }
 	self.jobs.nmh.payout = { 1155350 }
+	self.jobs.nmh.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.sah.payout = { 100000 }
 	self.jobs.chill.payout = { 0 }
 	self.jobs.chill_combat.payout = { 0 }
 
-	-- Hide contracts from broker (can still appear on CRIME.NET)
+	-- Hide contracts from broker and prevent them from spawning on CRIME.NET
 	self.contacts.bain_no_variation.hidden = true
 	self.jobs.branchbank_deposit.contact = "bain_no_variation"
+	self.jobs.branchbank_deposit.spawn_chance_multiplier = 0
 	self.jobs.branchbank_cash.contact = "bain_no_variation"
+	self.jobs.branchbank_cash.spawn_chance_multiplier = 0
 	self.jobs.branchbank_prof.contact = "bain_no_variation"
+	self.jobs.branchbank_prof.spawn_chance_multiplier = 0
 	self.jobs.branchbank_gold_prof.contact = "bain_no_variation"
+	self.jobs.branchbank_gold_prof.spawn_chance_multiplier = 0
+	self.jobs.arm_cro.spawn_chance_multiplier = 0
+	self.jobs.arm_und.spawn_chance_multiplier = 0
+	self.jobs.arm_hcm.spawn_chance_multiplier = 0
+	self.jobs.arm_par.spawn_chance_multiplier = 0
+	self.jobs.arm_fac.spawn_chance_multiplier = 0
 
-	-- Disable ability to choose type of Bank Heist in broker
+	-- Create wrappers for randomized heists to reduce crime.net clutter
 	table.insert(self._jobs_index, "branchbank")
 	self.jobs.branchbank.name_id = "heist_branchbank_hl"
 	self.jobs.branchbank.contract_visuals.preview_image = { id = "branchbank" }
+
+	self.jobs.arm_fac_single = deep_clone(self.jobs.arm_fac)
+	self.jobs.arm_par_single = deep_clone(self.jobs.arm_par)
+	self.jobs.arm_hcm_single = deep_clone(self.jobs.arm_hcm)
+	self.jobs.arm_und_single = deep_clone(self.jobs.arm_und)
+	self.jobs.arm_cro_single = deep_clone(self.jobs.arm_cro)
+
+	table.insert(self._jobs_index, "arm_wrapper")
+	self.jobs.arm_wrapper = deep_clone(self.jobs.arm_und)
+	self.jobs.arm_wrapper.name_id = "heist_arm"
+	self.jobs.arm_wrapper.briefing_id = "heist_arm_und_crimenet"
+	self.jobs.arm_wrapper.contact = "bain"
+	self.jobs.arm_wrapper.chain = {}
+	self.jobs.arm_wrapper.job_wrapper = {
+		"arm_cro_single",
+		"arm_und_single",
+		"arm_hcm_single",
+		"arm_par_single",
+		"arm_fac_single",
+	}
+	self.jobs.arm_wrapper.briefing_event = "pln_at1_cbf_01"
+	self.jobs.arm_wrapper.debrief_event = nil
+	self.jobs.arm_wrapper.crimenet_callouts = { "pln_at1_cnc_05_01" }
+	self.jobs.arm_wrapper.crimenet_videos = { "cn_branchbank1", "cn_branchbank3" }
+	self.jobs.arm_wrapper.load_screen = "guis/dlcs/pic/textures/loading/job_crossroads"
+	self.jobs.arm_wrapper.spawn_chance_multiplier = 1
+	self.jobs.arm_wrapper.contract_visuals.preview_image = { id = "armor_downtown" }
 
 	--Halloween heists gets Stonecold's (PDTH Alpha) menu movie (mysterious)
 	self.jobs.haunted.crimenet_videos = { "menu" }
