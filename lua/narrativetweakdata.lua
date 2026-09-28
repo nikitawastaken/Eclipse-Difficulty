@@ -334,7 +334,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._jobs_index, "branchbank")
 	self.jobs.branchbank.name_id = "heist_branchbank_hl"
 	self.jobs.branchbank.contract_visuals.preview_image = { id = "branchbank" }
-	
+
 	table.insert(self._jobs_index, "arm_wrapper")
 	self.jobs.arm_wrapper = deep_clone(self.jobs.arm_und)
 	self.jobs.arm_wrapper.name_id = "heist_arm"
@@ -346,7 +346,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		"arm_und",
 		"arm_hcm",
 		"arm_par",
-		"arm_fac"
+		"arm_fac",
 	}
 	self.jobs.arm_wrapper.briefing_event = "pln_at1_cbf_01"
 	self.jobs.arm_wrapper.debrief_event = nil
