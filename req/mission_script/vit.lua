@@ -93,7 +93,7 @@ return {
 	[103360] = disabled,
 	[101416] = disabled,
 	-- replace all murkywater security with US Soldiers
-    --[[
+	--[[
 	[101170] = us_soldier,
 	[101171] = us_soldier,
 	[101172] = us_soldier,
@@ -132,7 +132,8 @@ return {
 	[102172] = us_soldier,
 	[102173] = us_soldier,
 	[102174] = us_soldier,
-    ]]--
+    ]]
+	--
 	-- Spawn group intervals
 	[100128] = main_window_spawn,
 	[100006] = oval_window_spawn,
