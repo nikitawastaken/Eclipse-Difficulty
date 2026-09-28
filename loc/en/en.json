@@ -36,6 +36,7 @@
 	"bm_menu_steelsight_enter_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
 	"bm_menu_armor_regen": "Armor Regen",
+	"bm_menu_pullout_time": "Pullout Time",
 
 	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
 	"menu_asset_lock_additional_assets": "Requires the Blending In perk deck card to unlock",
@@ -302,11 +303,11 @@
 	"menu_color_force": "E3 BHD",
 	"menu_color_cgreyscale": "Greyscale",
 
-	"dialog_show_restart_game_message": "Are you sure you want to restart current game? It will cost $$OFFSHORE; offshore if Pro Job is enabled.",
-	"dialog_mp_restart_level_message": "Are you sure you want to create a vote for restarting? Restart will cost $$OFFSHORE; offshore if Pro Job is enabled.",
-	"dialog_mp_restart_level_host_message": "Are you sure you want to restart? It will cost $$OFFSHORE; offshore if Pro Job is enabled.",
+	"dialog_show_restart_game_message": "Are you sure you want to restart current game? It will cost $OFFSHORE; offshore if Pro Job is enabled.",
+	"dialog_mp_restart_level_message": "Are you sure you want to create a vote for restarting? Restart will cost $OFFSHORE; offshore if Pro Job is enabled.",
+	"dialog_mp_restart_level_host_message": "Are you sure you want to restart? It will cost $OFFSHORE; offshore if Pro Job is enabled.",
 	"dialog_show_restart_game_message_not_enough_offshore": "You don't have enough offshore to restart the game.",
-	"menu_victory_retry_stage": "$CONTINUE; Retry Stage($$OFFSHORE; offshore for PJ)",
+	"menu_victory_retry_stage": "$CONTINUE; Retry Stage($OFFSHORE; offshore for PJ)",
 	"failed_disconnected_continue": "$CONTINUE; Return to menu(Not enough offshore)",
 	
 	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
