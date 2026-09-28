@@ -206,11 +206,17 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.arm_wrapper.payout = { 12500 }
 	self.jobs.arm_wrapper.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.arm_cro.payout = { 12500 }
+	self.jobs.arm_cro.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_und.payout = { 12500 }
+	self.jobs.arm_und.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_hcm.payout = { 12500 }
+	self.jobs.arm_hcm.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_par.payout = { 12500 }
+	self.jobs.arm_par.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_fac.payout = { 12500 }
+	self.jobs.arm_fac.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_for.payout = { 12500 }
+	self.jobs.arm_for.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.election_day.payout = { 20000 }
 	self.jobs.election_day.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.rat.payout = { 20500 }
@@ -320,20 +326,21 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.branchbank_gold_prof.contact = "bain_no_variation"
 	self.jobs.branchbank_gold_prof.spawn_chance_multiplier = 0
 	self.jobs.arm_cro.spawn_chance_multiplier = 0
-	self.jobs.arm_cro.contact = "bain_no_variation"
 	self.jobs.arm_und.spawn_chance_multiplier = 0
-	self.jobs.arm_und.contact = "bain_no_variation"
 	self.jobs.arm_hcm.spawn_chance_multiplier = 0
-	self.jobs.arm_hcm.contact = "bain_no_variation"
 	self.jobs.arm_par.spawn_chance_multiplier = 0
-	self.jobs.arm_par.contact = "bain_no_variation"
 	self.jobs.arm_fac.spawn_chance_multiplier = 0
-	self.jobs.arm_fac.contact = "bain_no_variation"
 
 	-- Create wrappers for randomized heists to reduce crime.net clutter
 	table.insert(self._jobs_index, "branchbank")
 	self.jobs.branchbank.name_id = "heist_branchbank_hl"
 	self.jobs.branchbank.contract_visuals.preview_image = { id = "branchbank" }
+
+	self.jobs.arm_fac_single = deep_clone(self.jobs.arm_fac)
+	self.jobs.arm_par_single = deep_clone(self.jobs.arm_par)
+	self.jobs.arm_hcm_single = deep_clone(self.jobs.arm_hcm)
+	self.jobs.arm_und_single = deep_clone(self.jobs.arm_und)
+	self.jobs.arm_cro_single = deep_clone(self.jobs.arm_cro)
 
 	table.insert(self._jobs_index, "arm_wrapper")
 	self.jobs.arm_wrapper = deep_clone(self.jobs.arm_und)
@@ -342,11 +349,11 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.arm_wrapper.contact = "bain"
 	self.jobs.arm_wrapper.chain = {}
 	self.jobs.arm_wrapper.job_wrapper = {
-		"arm_cro",
-		"arm_und",
-		"arm_hcm",
-		"arm_par",
-		"arm_fac",
+		"arm_cro_single",
+		"arm_und_single",
+		"arm_hcm_single",
+		"arm_par_single",
+		"arm_fac_single",
 	}
 	self.jobs.arm_wrapper.briefing_event = "pln_at1_cbf_01"
 	self.jobs.arm_wrapper.debrief_event = nil
