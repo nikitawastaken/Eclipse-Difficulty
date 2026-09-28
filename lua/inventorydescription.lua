@@ -141,7 +141,7 @@ end
 function WeaponDescription._get_base_swap_time(name)
 	local index = tweak_data.weapon[name].stats.swap_speed or 9
 	local multiplier = tweak_data.weapon[name].swap_speed_multiplier or 1
-	
+
 	return (tweak_data.weapon[name].timers.unequip * tweak_data.weapon.stats.swap_speed[index]) / multiplier
 end
 
