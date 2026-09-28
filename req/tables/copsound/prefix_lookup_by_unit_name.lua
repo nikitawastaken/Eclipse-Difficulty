@@ -560,18 +560,18 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_minigun/ene_swat_dozer_policia_federale_minigun",
 		"units/pd2_dlc_bex/characters/ene_swat_dozer_medic_policia_federale/ene_swat_dozer_medic_policia_federale",
 	},
-    events_dozer_list = {
+	events_dozer_list = {
 		func = function(self, nr_variations)
-        local faction = Eclipse.utils.faction(tweak_data.levels)
-        if faction == "russia" then
+			local faction = Eclipse.utils.faction(tweak_data.levels)
+			if faction == "russia" then
 				return "rbdz_"
-        elseif faction == "federales" then
+			elseif faction == "federales" then
 				return "mbdz_"
 			else
 				return "bdz_"
 			end
 		end,
-        "units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss",
+		"units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss",
 		"units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy",
 	},
 }
