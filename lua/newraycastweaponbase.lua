@@ -484,9 +484,9 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local categories = self:categories()
 
 	local steelsight_enter_time = tweak_data.player.TRANSITION_DURATION / self._steelsight_enter_time -- It just works. Okay?
-	
+
 	multiplier = multiplier / self:steelsight_speed_stat()
-	
+
 	if self._steelsight_enter_time_mul then
 		multiplier = multiplier * self._steelsight_enter_time_mul
 	end
