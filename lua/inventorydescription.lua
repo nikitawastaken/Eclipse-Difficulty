@@ -80,8 +80,10 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 end
 
 function WeaponDescription._get_base_steelsight_enter_time(_, name)
-	local mul = tweak_data.weapon[name].steelsight_enter_time_mul or 1
-	return tweak_data.weapon[name].steelsight_enter_time * mul
+	local index = tweak_data.weapon[name].stats.steelsight_speed or 9
+	local multiplier = tweak_data.weapon[name].steelsight_enter_time_mul or 1
+
+	return (tweak_data.weapon[name].steelsight_enter_time / tweak_data.weapon.stats.steelsight_speed[index]) * multiplier
 end
 
 -- it's janky but what can you do
@@ -89,17 +91,24 @@ function WeaponDescription._get_mods_steelsight_enter_time(_, name, base, mods)
 	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
 	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
 
-	local multiplier = 1
+	local index = tweak_data.weapon[name].stats.steelsight_speed or 9
+	local multiplier = tweak_data.weapon[name].steelsight_enter_time_mul or 1
 	for _, mod in ipairs(mods) do
 		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
-		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_enter_time_mul then
-			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_enter_time_mul
+		if part_data then
+			if part_data.stats and part_data.stats.steelsight_speed then
+				index = index + part_data.stats.steelsight_speed
+			end
+
+			if part_data.custom_stats and part_data.custom_stats.steelsight_enter_time_mul then
+				multiplier = multiplier * part_data.custom_stats.steelsight_enter_time_mul
+			end
 		end
 	end
 
-	multiplier = convert_add_to_mul(multiplier)
+	local new_time = (tweak_data.weapon[name].steelsight_enter_time / tweak_data.weapon.stats.steelsight_speed[index]) * multiplier
 
-	local difference = base.steelsight_enter_time.value - (base.steelsight_enter_time.value * multiplier)
+	local difference = base.steelsight_enter_time.value - new_time
 
 	return difference
 end
@@ -142,7 +151,7 @@ function WeaponDescription._get_base_swap_time(name)
 	local index = tweak_data.weapon[name].stats.swap_speed or 9
 	local multiplier = tweak_data.weapon[name].swap_speed_multiplier or 1
 
-	return (tweak_data.weapon[name].timers.unequip * tweak_data.weapon.stats.swap_speed[index]) / multiplier
+	return (tweak_data.weapon[name].timers.unequip / tweak_data.weapon.stats.swap_speed[index]) / multiplier
 end
 
 function WeaponDescription._get_mods_swap_time(name, base, mods)
@@ -164,9 +173,9 @@ function WeaponDescription._get_mods_swap_time(name, base, mods)
 		end
 	end
 
-	local new_time = (tweak_data.weapon[name].timers.unequip * tweak_data.weapon.stats.swap_speed[index]) / multiplier
+	local new_time = (tweak_data.weapon[name].timers.unequip / tweak_data.weapon.stats.swap_speed[index]) / multiplier
 
-	local difference = base.swap_time.value - new_time
+	local difference = new_time - base.swap_time.value
 
 	return difference
 end
