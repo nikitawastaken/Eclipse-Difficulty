@@ -28,7 +28,7 @@ Hooks:OverrideFunction(ElementDifficulty, "on_executed", function(self, ...)
 		end
 	end
 
-	if self._values.forced_difficulty then
+	if self._values.forced_difficulty ~= nil then
 		managers.groupai:state():set_forced_difficulty(self._values.forced_difficulty)
 	end
 

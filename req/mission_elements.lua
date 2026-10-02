@@ -723,7 +723,7 @@ function M.gen_difficulty(id, name, pos, rot, opts)
 			difficulty_addends = opts.difficulty_addends or nil,
 			paused_difficulty_addends = opts.paused_difficulty_addends or nil,
 			allowed_difficulty_addends = opts.allowed_difficulty_addends or nil,
-			forced_difficulty = opts.forced_difficulty or nil,
+			forced_difficulty = opts.forced_difficulty, -- false and nil are functionally different for this value
 		},
 	}
 
