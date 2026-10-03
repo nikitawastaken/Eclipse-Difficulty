@@ -504,11 +504,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member = based_on(presets.weapon.eclipse_normal)
 
 	local team_ai_dmg = get_difficulty_specific_value({
+		3,
+		3,
 		4,
 		4,
 		5,
-		5,
-		6,
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.RELOAD_SPEED = 1
