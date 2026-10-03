@@ -793,7 +793,7 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "election_day" then
 		self.bag_values.money = 44750
-		self.bag_values.gold = 95000
+		self.bag_values.gold = 125000
 	end
 	if job_id == "nightclub" then
 		self.bag_values.money = 24350

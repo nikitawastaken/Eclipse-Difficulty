@@ -362,9 +362,8 @@ function CopLogicAttack._chk_wants_to_take_cover(data, my_data)
 		return true
 	end
 
-	if data.unit:inventory():equipped_unit():base():get_ammo_ratio() < 0.3 then
-		return true
-	end
+	local weapon_unit = data.unit:inventory():equipped_unit()
+	return alive(weapon_unit) and weapon_unit:base():get_ammo_ratio() < 0.3
 end
 
 function CopLogicAttack._verify_cover(cover, threat_pos, min_dis, max_dis)

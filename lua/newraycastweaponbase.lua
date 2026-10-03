@@ -42,8 +42,9 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			and tweak_data.economy.bonuses[self._cosmetics_data.bonus].stats
 		or {}
 
-	new_stats.swap_speed = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.swap_speed or 11
-	new_stats.exit_run_speed = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.exit_run_speed or 11
+	new_stats.swap_speed = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.swap_speed or 9
+	new_stats.steelsight_speed = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.steelsight_speed or 9
+	new_stats.exit_run_speed = weapon_tweak and weapon_tweak.stats and weapon_tweak.stats.exit_run_speed or 9
 
 	for new_stat, _ in pairs(new_stats) do
 		if parts_stats[new_stat] then
@@ -70,6 +71,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	end
 
 	self._swap_speed = self._current_stats.swap_speed or self._swap_speed
+	self._steelsight_speed = self._current_stats.steelsight_speed or self._steelsight_speed
 	self._exit_run_speed = self._current_stats.exit_run_speed or self._exit_run_speed
 
 	self._volley_spread_mul = 1 -- Slightly hacky fix to 'volley' fire mode's spread_mul now being applied twice
@@ -156,6 +158,10 @@ end)
 -- Helper functions for new index stats
 function NewRaycastWeaponBase:swap_speed_stat()
 	return self._swap_speed
+end
+
+function NewRaycastWeaponBase:steelsight_speed_stat()
+	return self._steelsight_speed
 end
 
 function NewRaycastWeaponBase:exit_run_speed_stat()
@@ -478,6 +484,8 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local categories = self:categories()
 
 	local steelsight_enter_time = tweak_data.player.TRANSITION_DURATION / self._steelsight_enter_time -- It just works. Okay?
+
+	multiplier = multiplier / self:steelsight_speed_stat()
 
 	if self._steelsight_enter_time_mul then
 		multiplier = multiplier * self._steelsight_enter_time_mul
