@@ -52,6 +52,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.wpn_gre_electric.no_shouting = true
 	self.projectiles.poison_gas_grenade.no_shouting = true
 	self.projectiles.sticky_grenade.no_shouting = true
+	self.projectiles.sticky_grenade.client_authoritative = false
 
 	-- Different trails for projectiles/throwables
 	local trail_gas = "effects/particles/weapons/grenade_trail_gas"
