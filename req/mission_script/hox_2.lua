@@ -55,7 +55,7 @@ local harasser_so_interrupt = {
 		interruptible = true,
 		interrupt_dis = 7,
 	},
-}	
+}
 local left_side_lower_spawn = {
 	values = {
 		interval = 10,
