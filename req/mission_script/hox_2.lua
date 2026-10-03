@@ -50,6 +50,12 @@ local heavy_harasser = is_eclipse and { [scripted_enemy.heavy_swat_1] = 5, [scri
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
+local harasser_so_interrupt = {
+	values = {
+		interruptible = true,
+		interrupt_dis = 7,
+	},
+}	
 local left_side_lower_spawn = {
 	values = {
 		interval = 10,
@@ -295,6 +301,27 @@ return {
 		},
 	},
 	[102214] = exit_dozer,
+	-- Make the harasser SOs interruptible
+	[100887] = harasser_so_interrupt,
+	[100348] = harasser_so_interrupt,
+	[100909] = harasser_so_interrupt,
+	[100925] = harasser_so_interrupt,
+	[100941] = harasser_so_interrupt,
+	[100957] = harasser_so_interrupt,
+	[100972] = harasser_so_interrupt,
+	[100988] = harasser_so_interrupt,
+	[101004] = harasser_so_interrupt,
+	[101020] = harasser_so_interrupt,
+	[101036] = harasser_so_interrupt,
+	[101052] = harasser_so_interrupt,
+	[101068] = harasser_so_interrupt,
+	[101084] = harasser_so_interrupt,
+	[101100] = harasser_so_interrupt,
+	[101116] = harasser_so_interrupt,
+	[101132] = harasser_so_interrupt,
+	[101148] = harasser_so_interrupt,
+	[101164] = harasser_so_interrupt,
+	[101180] = harasser_so_interrupt,
 	-- Spawn group intervals
 	-- Hox d2 originally had pretty well thought out spawn group intervals, but as we know those got "simplified". My goal was to bring some of that back in a more streamlined way.
 	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic).
