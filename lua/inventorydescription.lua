@@ -106,6 +106,8 @@ function WeaponDescription._get_mods_steelsight_enter_time(_, name, base, mods)
 		end
 	end
 
+	index = math.clamp(index, 1, #tweak_data.weapon.stats.steelsight_speed)
+	
 	local new_time = (tweak_data.weapon[name].steelsight_enter_time / tweak_data.weapon.stats.steelsight_speed[index]) * multiplier
 
 	local difference = base.steelsight_enter_time.value - new_time
@@ -173,8 +175,10 @@ function WeaponDescription._get_mods_swap_time(name, base, mods)
 		end
 	end
 
+	index = math.clamp(index, 1, #tweak_data.weapon.stats.swap_speed)
+	
 	local new_time = (tweak_data.weapon[name].timers.unequip / tweak_data.weapon.stats.swap_speed[index]) / multiplier
-
+	
 	local difference = new_time - base.swap_time.value
 
 	return difference
