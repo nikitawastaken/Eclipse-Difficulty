@@ -1093,6 +1093,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_mosin_b_standard.stats.recoil = 0
 	self.parts.wpn_fps_snp_mosin_b_standard.stats.concealment = -1
 
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.spread = -1
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.concealment = -2
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage = 2
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.max_damage = self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage_effect = 1.5
