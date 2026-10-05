@@ -1903,7 +1903,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.spray_n_pray_values = {
 		max_recoil_reduction = 0.5,
 		max_dmg_increase = 1.5,
-		grace_period = 1
+		grace_period = 1,
 	}
 	self.skill_descs.fast_fire.multibasic = "50%"
 	self.skill_descs.fast_fire.multibasic2 = "1"
