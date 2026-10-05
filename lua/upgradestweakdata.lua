@@ -1762,7 +1762,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steady_grip.multipro = "20%"
 
 	-- Oppressor
-	self.values.player.suppression_multiplier = { 1.2 }
+	self.values.player.enemy_on_hit_extra_panic = { true }
+	self.definitions.player_enemy_on_hit_extra_panic = {
+		name_id = "menu_player_enemy_on_hit_extra_panic",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "enemy_on_hit_extra_panic",
+			category = "player",
+		},
+	}
 	self.values.player.enemy_panic_damage_multiplier = { 1.15 }
 	self.definitions.player_enemy_panic_damage_multiplier = {
 		name_id = "menu_player_enemy_panic_damage_multiplier",
@@ -1773,10 +1782,52 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.heavy_impact.multibasic = "20%"
 	self.skill_descs.heavy_impact.multipro = "15%"
 
 	-- Fire Control
+	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
+	self.definitions.weapon_hipfire_spread_penalty_reduction = {
+		name_id = "menu_weapon_hipfire_spread_penalty_reduction",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hipfire_spread_penalty_reduction",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.moving_spread_multiplier = { 0.75 }
+	self.definitions.weapon_moving_spread_multiplier = {
+		name_id = "menu_weapon_moving_spread_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "moving_spread_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.fire_control.multibasic = "20%"
+	self.skill_descs.fire_control.multipro = "25%"
+
+	-- Sleight of Hand
+	self.values.lmg.reload_speed_multiplier = { 1.25 }
+	self.values.smg.reload_speed_multiplier = { 1.25 }
+	self.values.minigun.reload_speed_multiplier = { 1.25 }
+	self.definitions.minigun_reload_speed_multiplier = {
+		name_id = "menu_minigun_reload_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "reload_speed_multiplier",
+			category = "minigun",
+		},
+	}
+	self.values.player.automatic_faster_reload.target_enemies = 3
+	self.values.player.automatic_faster_reload.max_reload_increase = 1.4
+	self.skill_descs.shock_and_awe.multibasic = "25%"
+	self.skill_descs.shock_and_awe.multipro = "3"
+	self.skill_descs.shock_and_awe.multipro2 = "40%"
+
+	-- Spray N' Pray
 	self.definitions.minigun_spray_recoil_multiplier = {
 		name_id = "menu_minigun_spray_recoil_multiplier",
 		category = "feature",
@@ -1787,7 +1838,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.minigun.spray_recoil_multiplier = {
-		0.005,
+		0.01,
 	}
 	self.definitions.lmg_spray_recoil_multiplier = {
 		name_id = "menu_lmg_spray_recoil_multiplier",
@@ -1799,7 +1850,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.lmg.spray_recoil_multiplier = {
-		0.01,
+		0.02,
 	}
 	self.definitions.smg_spray_recoil_multiplier = {
 		name_id = "menu_smg_spray_recoil_multiplier",
@@ -1811,29 +1862,53 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.smg.spray_recoil_multiplier = {
-		0.015,
+		0.03,
 	}
-
-	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
-	self.definitions.weapon_hipfire_spread_penalty_reduction = {
-		name_id = "menu_weapon_hipfire_spread_penalty_reduction",
+	self.definitions.minigun_spray_damage_multiplier = {
+		name_id = "menu_minigun_spray_damage_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "hipfire_spread_penalty_reduction",
-			category = "weapon",
+			upgrade = "spray_damage_multiplier",
+			category = "minigun",
 		},
 	}
-
-	self.values.player.weapon_movement_stability[1] = 0.9
-	self.max_spray_recoil_reduction = 0.5
-	self.skill_descs.fire_control.multibasic = "20%"
-	self.skill_descs.fire_control.multipro = "50%"
-
-	-- Sleight of Hand
-	self.values.lmg.reload_speed_multiplier = { 1.2 }
-	self.values.smg.reload_speed_multiplier = { 1.2 }
-	self.skill_descs.shock_and_awe.multibasic = "20%"
+	self.values.minigun.spray_damage_multiplier = {
+		0.01,
+	}
+	self.definitions.lmg_spray_damage_multiplier = {
+		name_id = "menu_lmg_spray_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_damage_multiplier",
+			category = "lmg",
+		},
+	}
+	self.values.lmg.spray_damage_multiplier = {
+		0.02,
+	}
+	self.definitions.smg_spray_damage_multiplier = {
+		name_id = "menu_smg_spray_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_damage_multiplier",
+			category = "smg",
+		},
+	}
+	self.values.smg.spray_damage_multiplier = {
+		0.03,
+	}
+	self.spray_n_pray_values = {
+		max_recoil_reduction = 0.5,
+		max_dmg_increase = 1.5,
+		grace_period = 1
+	}
+	self.skill_descs.fast_fire.multibasic = "50%"
+	self.skill_descs.fast_fire.multibasic2 = "1"
+	self.skill_descs.fast_fire.multipro = "50%"
+	self.skill_descs.fast_fire.multipro2 = "1"
 
 	-- Body Expertise
 	self.values.player.no_movement_penalty = { true }

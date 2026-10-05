@@ -545,6 +545,13 @@ function CopDamage:sync_damage_melee(attacker_unit, damage_percent, damage_effec
 	self:_on_damage_received(attack_data)
 end
 
+-- Additional suppression on hit (skill)
+Hooks:PreHook(CopDamage, "_on_damage_received", "eclipse__on_damage_received", function(self, damage_info)
+	if managers.player:has_category_upgrade("player", "enemy_on_hit_extra_panic") then
+		self:build_suppression(1.5 * damage_info.damage / self._HEALTH_INIT, nil)
+	end
+end)
+
 function CopDamage:damage_bullet(attack_data)
 	if self._dead or self._invulnerable then
 		return
