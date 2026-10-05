@@ -133,7 +133,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.force_size_preset = "increased_t1"
 	self.watchdogs_2_day.force_size_preset = "increased_t1"
 	self.shoutout_raid.force_size_preset = "increased_t1"
-	self.kenaz.force_size_preset = "increased_t1"
 	self.friend.force_size_preset = "increased_t1"
 	self.bex.force_size_preset = "increased_t1"
 	self.trai.force_size_preset = "increased_t1"
