@@ -442,7 +442,7 @@ local optsDifficultyAddend = {
 			delay = 0,
 			time = 90,
 			time_balance_mul = { 2, 1.5, 1, 1 },
-		},		
+		},
 	},
 	enabled = true,
 }
@@ -503,7 +503,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_so(400050, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 	Eclipse.mission_elements.gen_dialogue(400051, "chopper_inbound", Bain_chopperinbound),
-	
+
 	Eclipse.mission_elements.gen_difficulty(400052, "kenaz_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
 	Eclipse.mission_elements.gen_difficulty(400053, "kenaz_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
 	Eclipse.mission_elements.gen_difficulty(400054, "kenaz_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
