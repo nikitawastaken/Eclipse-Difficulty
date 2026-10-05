@@ -181,6 +181,22 @@ return {
 	[103206] = disabled,
 	[103207] = disabled,
 	[103209] = disabled,
+	-- Scripted difficulty scaling
+	[100153] = { -- output_weak_floor_weak_spot_found (Floor weak spot blown)
+		on_executed = { 
+			{ id = 400052, delay = 0 }, 
+		},
+	},
+	[100394] = { -- output_drill_started (Started BFD)
+		on_executed = { 
+			{ id = 400053, delay = 0 }, 
+		},
+	},
+	[103161] = { -- func_instance_output_event_BFD_drill_done (BFD finished)
+		on_executed = { 
+			{ id = 400054, delay = 0 }, 
+		},
+	},
 	-- Spawn group intervals
 	[100192] = standard_spawn,
 	[100231] = standard_spawn,

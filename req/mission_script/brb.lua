@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local standard_spawn = {
 	values = {
 		interval = 10,
@@ -32,6 +33,10 @@ local cloaker_spawn = {
 	},
 	groups = preferred.only_cloakers_single,
 }
+local e_nl_dwn_3_5m_access = {
+	so_access_filter = so_access.acrobatic,
+}
+
 return {
 	[101115] = {
 		ponr = {
@@ -92,6 +97,9 @@ return {
 			enabled = false,
 		},
 	},
+	-- Restrict select navlinks
+	[100138] = e_nl_dwn_3_5m_access,
+	[100223] = e_nl_dwn_3_5m_access,
 	-- Spawn group intervals
 	[100007] = standard_spawn,
 	[100286] = standard_spawn,

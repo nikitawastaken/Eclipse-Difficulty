@@ -493,6 +493,13 @@ return {
 			},
 		},
 	},
+	-- Add the left staircase spawn group to remaining interrogation room locations
+	-- 'High' spawn
+	[103870] = { -- activate_prefereds_spawn002
+		on_executed = {
+			{ id = 102072, delay = 0 },
+		},
+	},
 	-- Unused snipers
 	[102160] = enabled,
 	[101815] = disabled,
