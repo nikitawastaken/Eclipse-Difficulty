@@ -25,6 +25,9 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 local fastup_navlink = {
 	values = {
 		interval = 8, -- (Vanilla: 4s)
@@ -99,6 +102,15 @@ return {
 	[103663] = ext_to_balcony_navlink,
 	[103664] = ext_to_balcony_navlink,
 	-- Spawn group intervals
+	[400007] = scripted_swat_van_spawn,
+	[400015] = scripted_swat_van_spawn,
+	[400023] = scripted_swat_van_spawn,
+	[400031] = scripted_swat_van_spawn,
+	[400039] = scripted_swat_van_spawn,
+	[400047] = scripted_swat_van_spawn,
+	[400055] = scripted_swat_van_spawn,
+	[400063] = scripted_swat_van_spawn,
+	[400071] = scripted_swat_van_spawn,
 	[102292] = indoor_spawn,
 	[102317] = indoor_spawn,
 	[100716] = agile_horizntal_spawn, -- Funny elevator group with 2 dummies.
