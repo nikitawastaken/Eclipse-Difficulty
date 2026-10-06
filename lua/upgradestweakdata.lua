@@ -2877,7 +2877,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[4][9].multiperk = "4"
 	self.specialization_descs[4][9].multiperk2 = "20%"
 	self.specialization_descs[4][9].multiperk3 = "6"
-	self.specialization_descs[4][9].multiperk4 = "200%"
+	self.specialization_descs[4][9].multiperk4 = "150%"
 
 	-- Hitman
 	self.definitions.player_chain_hitman_kills = {
