@@ -313,6 +313,9 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 	-- For Grace Troll Mutator setting
 	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
+	
+	-- Armor break highlights the culprit upgrade
+	local has_armor_depleted_mark_culprit = managers.player:has_enabled_cooldown_upgrade("cooldown", "armor_depleted_mark_culprit")
 
 	-- Add slightly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) / Add a skill that gives you dodge while your armor is broken
 	if had_armor and self:get_real_armor() <= 0 then
@@ -321,6 +324,11 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 				self._can_take_dmg_timer = self._dmg_interval
 			else
 				self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
+			end
+
+			if has_armor_depleted_mark_culprit and attack_data and attack_data.attacker_unit then
+				managers.game_play_central:auto_highlight_enemy(attack_data.attacker_unit, true)
+				managers.player:disable_cooldown_upgrade("cooldown", "armor_depleted_mark_culprit")
 			end
 		end
 	end

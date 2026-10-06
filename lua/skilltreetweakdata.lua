@@ -430,17 +430,19 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Sneaky Bastard
 	self.skills.jail_diet[2].upgrades = { "cooldown_dodge_replenish_armor" }
 
-	-- Resilient Assault
-	self.skills.scavenger[1].upgrades = { "player_critical_hit_chance_1" }
-	self.skills.scavenger[2].upgrades = { "player_armor_depleted_stagger_shot_1", "player_armor_depleted_stagger_shot_2" }
-	self.skills.scavenger.icon_xy = { 10, 8 }
-
 	-- Eagle Eye
-	self.skills.thick_skin[1].upgrades = { "weapon_special_damage_taken_multiplier" }
-	self.skills.thick_skin[2].upgrades = { "weapon_steelsight_highlight_specials", "player_marked_distance_mul" }
-	self.skills.thick_skin.icon_xy = { 3, 7 }
-	self.skills.thick_skin.name_id = "menu_cleaner_beta"
-	self.skills.thick_skin.desc_id = "menu_cleaner_beta_desc"
+	self.skills.scavenger[1].upgrades = { "player_marked_distance_mul" }
+	self.skills.scavenger[2].upgrades = { "weapon_steelsight_highlight_specials" }
+	self.skills.scavenger.icon_xy = { 3, 7 }
+	self.skills.scavenger.name_id = "menu_eagle_eye"
+	self.skills.scavenger.desc_id = "menu_eagle_eye_desc"
+
+	-- Resilient Assault
+	self.skills.thick_skin[1].upgrades = { "cooldown_armor_depleted_mark_culprit" }
+	self.skills.thick_skin[2].upgrades = { "player_armor_depleted_stagger_shot_1" }
+	self.skills.thick_skin.icon_xy = { 10, 8 }
+	self.skills.thick_skin.name_id = "menu_resilient_assault"
+	self.skills.thick_skin.desc_id = "menu_resilient_assault_desc"
 
 	-- The Professional
 	self.skills.silence_expert[1].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier" }
@@ -454,15 +456,15 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.backstab[1].upgrades = { "weapon_silencer_recoil_index_addend", "weapon_silencer_spread_index_addend", "weapon_armor_piercing_chance_silencer" }
 	self.skills.backstab[2].upgrades = { "weapon_silencer_damage_multiplier" }
 	self.skills.backstab.icon_xy = { 5, 9 }
-	self.skills.backstab.name_id = "menu_silenced_damage"
-	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
+	self.skills.backstab.name_id = "menu_silent_killer"
+	self.skills.backstab.desc_id = "menu_silent_killer_desc"
 
 	-- Low Blow
 	self.skills.unseen_strike[1].upgrades = { "player_detection_risk_add_crit_chance_1" }
-	self.skills.unseen_strike[2].upgrades = { "player_critical_hit_chance_2", "weapon_extra_crit_damage_mul" }
+	self.skills.unseen_strike[2].upgrades = { "player_critical_hit_chance_1", "weapon_extra_crit_damage_mul" }
 	self.skills.unseen_strike.icon_xy = { 0, 12 }
-	self.skills.unseen_strike.name_id = "menu_backstab_beta"
-	self.skills.unseen_strike.desc_id = "menu_backstab_beta_desc"
+	self.skills.unseen_strike.name_id = "menu_low_blow"
+	self.skills.unseen_strike.desc_id = "menu_low_blow_desc"
 
 	-- FUGITIVE --
 

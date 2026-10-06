@@ -114,7 +114,7 @@ function CopDamage:roll_critical_hit(attack_data)
 		return false, attack_data.damage
 	end
 
-	return true, attack_data.damage * (2 + managers.player:upgrade_value("weapon", "extra_crit_damage_mul", 0))
+	return true, attack_data.damage * (tweak_data.upgrades.values.player.base_critical_hit_damage_multiplier + managers.player:upgrade_value("weapon", "extra_crit_damage_mul", 0))
 end
 
 -- Make these functions check that the attacker unit is a player (to make sure NPC vs NPC melee doesn't crash)
