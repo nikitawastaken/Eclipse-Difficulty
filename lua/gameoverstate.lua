@@ -41,7 +41,14 @@ function GameOverState:_set_continue_button_text()
 		OFFSHORE = managers.money:get_cost_of_heist_restart(true),
 	}))
 
-	managers.menu_component:set_endscreen_continue_button_text(text, text_id ~= "failed_disconnected_continue" and text_id ~= "debug_mission_end_continue" and text_id ~= "menu_victory_retry_stage" and text_id ~= "failed_disconnected_continue_offshore_restart" and text_id ~= "menu_victory_retry_stage_offshore_restart")
+	managers.menu_component:set_endscreen_continue_button_text(
+		text,
+		text_id ~= "failed_disconnected_continue"
+			and text_id ~= "debug_mission_end_continue"
+			and text_id ~= "menu_victory_retry_stage"
+			and text_id ~= "failed_disconnected_continue_offshore_restart"
+			and text_id ~= "menu_victory_retry_stage_offshore_restart"
+	)
 end
 
 function GameOverState:continue()

@@ -1100,12 +1100,12 @@ end
 function MenuManager:show_restart_game_dialog(params)
 	local dialog_data = {}
 	dialog_data.title = managers.localization:text("dialog_warning_title")
-	
+
 	local restart_text_id = "dialog_show_restart_game_message"
 	if Eclipse.utils.is_pro_job() then
 		restart_text_id = "dialog_show_restart_game_message_offshore_restart"
 	end
-	
+
 	if managers.money:can_afford_heist_restart() then
 		dialog_data.text = managers.localization:text(restart_text_id, {
 			OFFSHORE = managers.money:get_cost_of_heist_restart(true),
@@ -1145,15 +1145,15 @@ function MenuCallbackHandler:restart_level(item)
 
 	local dialog_data = {}
 	dialog_data.title = managers.localization:text("dialog_mp_restart_level_title")
-	
+
 	local restart_text_id = "dialog_mp_restart_level_host_message"
 	local restart_vote_text_id = "dialog_mp_restart_level_message"
-	
+
 	if Eclipse.utils.is_pro_job() then
 		restart_text_id = "dialog_mp_restart_level_host_message_offshore_restart"
 		restart_vote_text_id_text_id = "dialog_mp_restart_level_host_message_offshore_restart"
 	end
-	
+
 	if managers.money:can_afford_heist_restart() then
 		if managers.vote:option_vote_restart() then
 			dialog_data.text = managers.localization:text(restart_vote_text_id_text_id, {
