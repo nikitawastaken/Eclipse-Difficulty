@@ -11,6 +11,10 @@
     </animations>
 	
 	<bodies>
+        <body name="dynamic_base" enabled="false" collision_class="bag" template="dynamic_no_ray" collides_with_mover="false">
+            <object name="rp_sentry" />
+            <object name="g_sentry" 		collision_type="box" />
+        </body>
         <body name="hitbox" enabled="true" collision_class="bag" template="animated" collides_with_mover="false" >
             <object name="a_shield" />
 			<object name="c_box_body_01" 	collision_type="box" padding="-2.5"/>
