@@ -338,7 +338,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Fire Control
 	self.skills.fire_control[1].upgrades = { "weapon_hipfire_spread_penalty_reduction" }
 	self.skills.fire_control[2].upgrades = { "weapon_moving_spread_multiplier" }
-	self.skills.fire_control.icon_xy = { 7, 10 }
 
 	-- Sleight of Hand
 	self.skills.shock_and_awe[1].upgrades = { "smg_reload_speed_multiplier", "lmg_reload_speed_multiplier", "minigun_reload_speed_multiplier" }
@@ -349,7 +348,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Spray N' Pray
 	self.skills.fast_fire[1].upgrades = { "smg_spray_recoil_multiplier", "lmg_spray_recoil_multiplier", "minigun_spray_recoil_multiplier" }
 	self.skills.fast_fire[2].upgrades = { "smg_spray_damage_multiplier", "lmg_spray_damage_multiplier", "minigun_spray_damage_multiplier" }
-	self.skills.fast_fire.icon_xy = { 9, 10 }
+	self.skills.fast_fire.icon_xy = { 7, 10 }
 	self.skills.fast_fire.name_id = "menu_spray_n_pray"
 	self.skills.fast_fire.desc_id = "menu_spray_n_pray_desc"
 
