@@ -91,7 +91,7 @@ function GamePlayCentralManager:spawn_pickup(params)
 	end
 end
 
--- Deduct offshore on restart from host
+-- Deduct offshore on restart from host when Pro Job is enabled
 Hooks:PreHook(GamePlayCentralManager, "restart_the_game", "eclipse_restart_the_game", function(self)
 	if Eclipse.utils.is_pro_job() then
 		if Eclipse.utils.is_solo() or managers.network:session() and Network:is_server() then

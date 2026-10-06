@@ -307,12 +307,12 @@
 	"menu_color_force": "E3 BHD",
 	"menu_color_cgreyscale": "Greyscale",
 
-	"dialog_show_restart_game_message": "Are you sure you want to restart current game? It will cost $OFFSHORE; offshore if Pro Job is enabled.",
-	"dialog_mp_restart_level_message": "Are you sure you want to create a vote for restarting? Restart will cost $OFFSHORE; offshore if Pro Job is enabled.",
-	"dialog_mp_restart_level_host_message": "Are you sure you want to restart? It will cost $OFFSHORE; offshore if Pro Job is enabled.",
+	"dialog_show_restart_game_message_offshore_restart": "Are you sure you want to restart current game? It will cost $OFFSHORE; offshore.",
+	"dialog_mp_restart_level_message_offshore_restart": "Are you sure you want to create a vote for restarting? Restart will cost $OFFSHORE; offshore.",
+	"dialog_mp_restart_level_host_message_offshore_restart": "Are you sure you want to restart? It will cost $OFFSHORE; offshore.",
 	"dialog_show_restart_game_message_not_enough_offshore": "You don't have enough offshore to restart the game.",
-	"menu_victory_retry_stage": "$CONTINUE; Retry Stage($OFFSHORE; offshore for PJ)",
-	"failed_disconnected_continue": "$CONTINUE; Return to menu(Not enough offshore)",
+	"menu_victory_retry_stage_offshore_restart": "$CONTINUE; Retry Stage($OFFSHORE; offshore)",
+	"failed_disconnected_continue_offshore_restart": "$CONTINUE; Return to menu(Not enough offshore)",
 	
 	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
 }
