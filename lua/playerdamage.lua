@@ -313,7 +313,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 	-- For Grace Troll Mutator setting
 	local disable_armor_break_grace = managers.mutators:modify_value("PlayerDamage:DisableArmorGrace", false)
-	
+
 	-- Armor break highlights the culprit upgrade
 	local has_armor_depleted_mark_culprit = managers.player:has_enabled_cooldown_upgrade("cooldown", "armor_depleted_mark_culprit")
 
