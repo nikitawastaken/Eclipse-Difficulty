@@ -312,7 +312,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_sogroup(400106, "cloakerHideGroupUpstairs", Vector3(-144, 2208, 300.935), Rotation(0, 0, 0), optsCloakerHideGroupUpstairs),
 	Eclipse.mission_elements.gen_missionscript(400107, "addCloakerHideGroupsDefault", optsAddCloakerHideGroupsDefault),
 	Eclipse.mission_elements.gen_missionscript(400108, "addCloakerHideGroupsUpstairs", optsAddCloakerHideGroupsUpstairs),
-	
+
 	-- SO sniper stuff for boss
 	Eclipse.mission_elements.gen_so(400109, "riker_spot_so", Vector3(-50, 600, 0), Rotation(0, 0, 0), optsBossSniper_SO),
 	Eclipse.mission_elements.gen_so(400110, "griffin_spot_so", Vector3(-138, 1131, -97.500), Rotation(0, 0, 0), optsBossSniper_SO),
