@@ -213,6 +213,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
 	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
 	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.auc.ghost_bonus = 0.15 -- increase to 15% (from 10%)
 
 	-- multi day heists
 	-- Big Oil (5% for Big Oil day 1 from fucking 15%)

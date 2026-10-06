@@ -56,6 +56,13 @@ local harasser_so_interrupt = {
 		interrupt_dis = 7,
 	},
 }
+local boss_so_interrupt = {
+	values = {
+		interruptible = true,
+		interrupt_dmg = 0.1,
+		interrupt_dis = 3,
+	},
+}
 local left_side_lower_spawn = {
 	values = {
 		interval = 10,
@@ -276,10 +283,16 @@ return {
 			participate_to_group_ai = false,
 			force_pickup = Riker_keycard and "keycard" or "none",
 		},
+		on_executed = {
+			{ id = 400109, delay = 0 },
+		},
 	},
 	[101207] = {
 		values = {
 			participate_to_group_ai = false,
+		},
+		on_executed = {
+			{ id = 400110, delay = 0 },
 		},
 	},
 	[101210] = {
@@ -294,6 +307,9 @@ return {
 			{ id = 101207, remove = true },
 		},
 	},
+	-- Disable their sniper objective on damage/low distance
+	[400109] = boss_so_interrupt,
+	[400110] = boss_so_interrupt,
 	-- Exit Bulldozer
 	[102218] = {
 		values = {

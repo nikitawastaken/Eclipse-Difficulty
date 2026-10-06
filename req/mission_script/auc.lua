@@ -71,6 +71,18 @@ return {
 			},
 		},
 	},
+	-- Tweak Swat Vans arrival
+	[107138] = {
+		on_executed = {
+			{ id = 100285, remove = true },
+			{ id = 400073, delay = 14 },
+		},
+	},
+	[103630] = {
+		on_executed = {
+			{ id = 400074, delay = 10 },
+		},
+	},
 	-- Disable auctioneer sniper objective on damage
 	[105761] = {
 		values = {
