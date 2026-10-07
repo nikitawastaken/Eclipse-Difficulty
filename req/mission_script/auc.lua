@@ -37,6 +37,13 @@ local fastup_navlink = {
 local ext_to_balcony_navlink = deep_clone(fastup_navlink)
 
 return {
+	-- FFO
+	[105017] = {
+		ponr = {
+			length = 240,
+			length_balance_mul = { 1.25, 1.125, 1, 1 },
+		},
+	},
 	-- Combine some navigation areas
 	[101204] = { -- link_startup
 		ai_area = {

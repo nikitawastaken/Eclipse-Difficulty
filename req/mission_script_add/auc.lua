@@ -34,8 +34,8 @@ local optsspawnvanSWATs_3 = {
 }
 local optsspawnvanSWATs_4 = {
 	on_executed = {
-		{ id = 400027, delay = 0 },
-		{ id = 400028, delay = 0 },
+		{ id = 400029, delay = 0 },
+		{ id = 400030, delay = 0 },
 	},
 	enabled = true,
 }
