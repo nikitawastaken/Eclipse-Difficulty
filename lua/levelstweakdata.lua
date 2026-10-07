@@ -663,13 +663,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dinner.custom_package = {}
 	self.trai.custom_package = {}
 
-	--[[
 	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
 	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
 	table.insert(self.cane.custom_package, "packages/female_bikers")
 	table.insert(self.mex.custom_package, "packages/female_bikers")
-	]]
-	--
 
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
@@ -699,7 +696,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.custom_package = murky_mercs_package
 
 	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
-	--	self.brb.custom_package = murky_mercs_scripted_package
+	self.brb.custom_package = murky_mercs_scripted_package
 
 	local zombie_faction_package = { "packages/zombie_cops" }
 	self.haunted.custom_package = zombie_faction_package
