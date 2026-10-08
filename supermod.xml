@@ -444,7 +444,7 @@
 		<!-- No Mercy env override -->
 		<file name="environments/pd2_man/pd2_man_corridor_nofog.environment"/>
 		<file name="units/pd2_dlc_des/environments/des_indoor/des_indoor.environment"/>
-		<file name="units/pd2_dlc_nmh/environments/nmh_environment_01.environment"/>
+		<file name="units/pd2_dlc_nmh/environments/nmh_default.environment"/>
 
 		<!-- Custom effects -->
 		<group name="effects/">
