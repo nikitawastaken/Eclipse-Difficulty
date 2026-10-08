@@ -12,6 +12,7 @@ return {
 		"color_payday_classic",
 	},
 	environment_override = { -- File override
-		["environments/pd2_lxa_river/pd2_lxa_river"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/aftershock_1.custom_xml",
+		["environments/pd2_env_sand/int/pd2_env_sand_int"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/sand_rain_int.custom_xml",
+		["environments/pd2_env_sand/ext/pd2_env_sand_ext"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/sand_rain_ext.custom_xml",
 	},
 }

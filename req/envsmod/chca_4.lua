@@ -8,7 +8,7 @@ return {
 		"color_xxxgen",
 		"color_xgen",
 		"color_bhd",
-	}
+	},
 	environment_override = { -- File override
 		["environments/pd2_chca_night/int/pd2_chca_int_default"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/chca_4.custom_xml",
 		["environments/pd2_chca_night/ext/pd2_chca_ext"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/chca_4_ext.custom_xml",
