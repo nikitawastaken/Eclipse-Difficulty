@@ -1084,6 +1084,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["chas_blue"] = 1,
 		["chas_cg"] = 2,
 	}
+	self.sand.random_environments = {
+		["sand_rain"] = 1,
+	}
+	self.chca.random_environments = {
+		["chca_1"] = 1,
+		["chca_2"] = 1,
+		["chca_3"] = 1,
+		["chca_4"] = 1,
+	}
 	self.spa.random_environments = {
 		["spa_01"] = 2,
 		["spa_01_alt"] = 1,
