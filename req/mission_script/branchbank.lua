@@ -91,6 +91,17 @@ local reduce_objective_requirement = {
 	},
 }
 return {
+	-- for the true 2013 experience
+	[101539] = {
+		on_executed = {
+			{ id = 105438, delay = 20 },
+		},
+	},
+	[105438] = {
+		on_executed = {
+			{ id = 105381, delay = 20 },
+		},
+	},
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
 	[100004] = {

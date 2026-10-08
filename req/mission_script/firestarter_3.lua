@@ -90,6 +90,17 @@ return {
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 	},
+	-- for the true 2013 experience
+	[101539] = {
+		on_executed = {
+			{ id = 105438, delay = 20 },
+		},
+	},
+	[105438] = {
+		on_executed = {
+			{ id = 105381, delay = 20 },
+		},
+	},
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
 	[100004] = {

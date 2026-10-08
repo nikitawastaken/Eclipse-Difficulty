@@ -231,8 +231,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_2.ghost_bonus = 0.05
 	self.firestarter_3.ghost_bonus = 0.05
 
-	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	-- heists that shouldn't have/don't give stealth bonus (they're not possible to beat)
 	self.nmh.ghost_bonus = nil
+	self.cage.ghost_bonus = nil -- it doesn't even give 10% stealth bonus upon completeing it
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
@@ -480,6 +481,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.package = {
 		"packages/narr_watchdogs2_day",
 		"levels/narratives/vlad/cane/world_sounds",
+	}
+	
+	-- load the missing Twitch lines to Diamond Store
+	self.family.package = {
+		"packages/narr_family",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
 	}
 
 	-- load required gangster vo to heists where it actually needs
