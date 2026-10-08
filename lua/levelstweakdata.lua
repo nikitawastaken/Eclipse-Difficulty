@@ -859,12 +859,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.run.random_environments = {
 		["heat_street_1"] = 3,
-		["heat_street_3"] = 3,
-		["heat_street_4"] = 3,
+		["heat_street_1_night"] = 1,
+		["heat_street_2"] = 1,
+		["heat_street_3"] = 1,
+		["heat_street_4"] = 2,
 	}
-	--	self.nmh.random_environments = {
-	--		["no_mercy"] = 69,
-	--	}
+	self.des.random_environments = {
+		["des_cg"] = 69,
+	}
+	self.nmh.random_environments = {
+		["no_mercy"] = 69,
+	}
 	self.dah.random_environments = {
 		["diamond_heist"] = 69,
 	}
