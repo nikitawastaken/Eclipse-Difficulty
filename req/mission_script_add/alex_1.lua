@@ -45,10 +45,6 @@ local activate_navlinks = {
 		{ id = 400015, delay = 0 },
 	},
 }
-local optschopper_loop = {
-	on_executed = { { id = 100965, delay = 300, delay_rand = 60 } },
-	enabled = true,
-}
 local optsBesiegeDummy = {
 	trigger_times = 0,
 	participate_to_group_ai = true,
@@ -100,8 +96,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400007, "alex_fence_enemy_group01", { 400002, 400003, 400004, 400005, 400006 }, 0),
 	-- Fix for police chopper
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
-	-- Loop script for the choppers
-	Eclipse.mission_elements.gen_missionscript(400009, "chopper_loop", optschopper_loop),
+	-- FFO stuff
 	Eclipse.mission_elements.gen_counter(400010, "cooked_bags_counter", optsCookedBagsCounter),
 	Eclipse.mission_elements.gen_counter_operator(400011, "cooked_bags_counter_addend", optsCookedBagsCounterOperator),
 	Eclipse.mission_elements.gen_counter_trigger(400012, "cooked_bags_counter_trigger", optsCookedBagsCounterTrigger),

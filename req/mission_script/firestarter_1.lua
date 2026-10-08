@@ -62,6 +62,12 @@ local no_align_pos1 = {
 local no_align_pos2 = deep_clone(no_align_pos1)
 no_align_pos2.values.so_action = "e_nl_down_4m_var3"
 
+local no_spawn_instigator_ids = {
+	values = {
+		spawn_instigator_ids = false,
+	},
+}
+
 return {
 	-- Add missing hangar reinforce spots
 	[103162] = {
@@ -129,13 +135,22 @@ return {
 			{ id = 101907, delay = 120 },
 		},
 	},
-	-- fix tower sniper not using SOs
+	-- Fix sniper SO spots
+	[100163] = no_spawn_instigator_ids,
+	[100168] = no_spawn_instigator_ids,
+	[101906] = no_spawn_instigator_ids,
+	[101908] = no_spawn_instigator_ids,
+	-- improve sniper spot select
 	[101905] = {
 		on_executed = {
-			{ id = 101906, delay = 0 },
-			{ id = 101908, delay = 0 },
-			{ id = 100168, delay = 0 },
-			{ id = 100163, delay = 0 },
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[100099] = {
+		on_executed = {
+			{ id = 400002, delay = 0 },
+			{ id = 100160, remove = true },
+			{ id = 100161, remove = true },
 		},
 	},
 	-- disable 'align_position' for select navlinks
