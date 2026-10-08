@@ -482,7 +482,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"packages/narr_watchdogs2_day",
 		"levels/narratives/vlad/cane/world_sounds",
 	}
-	
+
 	-- load the missing Twitch lines to Diamond Store
 	self.family.package = {
 		"packages/narr_family",
