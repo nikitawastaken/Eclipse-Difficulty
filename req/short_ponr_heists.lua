@@ -7,6 +7,7 @@ local M = {
 	pex = true,
 	glace = true,
 	hox_2 = true,
+	firestarter_1 = true,
 	firestarter_2 = true,
 	firestarter_3 = true,
 	framing_frame_2 = true,

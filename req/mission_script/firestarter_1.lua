@@ -94,6 +94,13 @@ local cloaker_spawn = {
 }
 
 return {
+	-- FFO
+	[100272] = {
+		ponr = {
+			length = 480,
+			length_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
 	-- Add missing hangar reinforce spots
 	[103162] = {
 		on_executed = {
