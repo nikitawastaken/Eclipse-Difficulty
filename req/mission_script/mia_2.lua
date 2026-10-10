@@ -124,7 +124,7 @@ return {
 			time = 300,
 		},
 	},
-	-- 60 seconds for the first coke degradation, after that the coke gets flushed every 30 seconds 
+	-- 60 seconds for the first coke degradation, after that the coke gets flushed every 30 seconds
 	-- vanilla : 480
 	[101243] = {
 		values = {
