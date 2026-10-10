@@ -682,7 +682,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		local ammo_max = self:get_ammo_max_per_clip()
 		local clip_ratio = 1 - ammo / ammo_max
 
-        multiplier = multiplier * (1 + clip_ratio)
+		multiplier = multiplier * (1 + clip_ratio)
 	end
 
 	return Hooks:GetReturn() * multiplier

@@ -2396,7 +2396,7 @@ function UpgradesTweakData:init(tweak_data)
 			radius = 500,
 			times = 1,
 			damage_factor = 1,
-			shots_to_activate = 4
+			shots_to_activate = 4,
 		},
 	}
 	self.definitions.player_sidearm_ricochet_damage = {

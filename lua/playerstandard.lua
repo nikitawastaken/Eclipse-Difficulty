@@ -217,7 +217,7 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 	if managers.player:has_category_upgrade("player", "empty_reload_move_speed_multiplier") and weap_base and weap_base:clip_empty() and self:_is_reloading() then
 		multiplier = multiplier * managers.player:upgrade_value("player", "empty_reload_move_speed_multiplier", 1)
 	end
-	
+
 	if self._slowdown_mul then
 		multiplier = multiplier * self._slowdown_mul
 	end

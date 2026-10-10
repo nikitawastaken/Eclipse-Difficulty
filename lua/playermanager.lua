@@ -59,8 +59,7 @@ function PlayerManager:is_standstill_resistance_active()
 end
 
 function PlayerManager:is_lament_ricochet_allowed()
-	return self:has_category_upgrade("player", "sidearm_ricochet_damage")
-		and self:equipped_weapon_unit():base():is_category("revolver", "pistol")
+	return self:has_category_upgrade("player", "sidearm_ricochet_damage") and self:equipped_weapon_unit():base():is_category("revolver", "pistol")
 end
 
 function PlayerManager:is_wearing_a_ballistic_vest()
