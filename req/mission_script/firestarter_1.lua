@@ -1,9 +1,18 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-local heavy = scripted_enemy.heavy_swat_2
-local bulldozer = scripted_enemy.bulldozer_1
-local shield = scripted_enemy.shield
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 local hangar_reinforce_amount = {
 	values = {
 		amount = 3,
@@ -28,19 +37,19 @@ local gangster_stationary_amount = {
 	},
 }
 local heli_enemy1 = {
-	enemy = heavy,
+	enemy = scripted_enemy.heavy_swat_2,
 	on_executed = {
 		{ id = 103457, delay = 0 },
 	},
 }
 local heli_enemy2 = {
-	enemy = shield,
+	enemy = scripted_enemy.shield,
 	on_executed = {
 		{ id = 103456, delay = 0 },
 	},
 }
 local heli_enemy3 = {
-	enemy = bulldozer,
+	enemy = scripted_enemy.bulldozer_1,
 	on_executed = {
 		{ id = 103455, delay = 0 },
 	},
@@ -50,7 +59,6 @@ local heli_enemy4 = {
 		participate_to_group_ai = false,
 	},
 }
-local invisible_wall_ids = Idstring("units/dev_tools/level_tools/dev_collision_4m_bag")
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
@@ -67,6 +75,23 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
+local enable_forest_group = {
+	on_executed = {
+		{ id = 400004, delay = 30 },
+	},
+}
+local forest_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 
 return {
 	-- Add missing hangar reinforce spots
@@ -80,6 +105,46 @@ return {
 			{ id = 101360, delay = 0 },
 		},
 	},
+	-- Two guaranteed open hangars on Overkill+ and a chance for an additional one in a Pro Job regardless of difficulty.
+	[102208] = { -- RandomizeHangar
+		values = {
+			amount = (overkill_and_above and 2 or 1) + (is_pro_job and 1 or 0),
+		},
+	},
+	[103397] = filter_easy_above,
+	[103398] = filter_disable,
+	-- Add the new forest group to existing preferreds
+	[102652] = { -- ai_enemy_prefered_add_001
+		values = {
+			spawn_groups = { 
+				101336, 
+				102499, 
+				102497,
+				100223,
+				103553,
+				400003,
+			},
+		},
+		on_executed = { -- Reduce the other preferred's delay and add a random delay
+			{ id = 102380, delay = 60, delay_rand = 120 }, -- Vanilla: 240 + 0s
+		},
+	},
+	-- Enable the new forest group when the fences are cut (extra precaution if you go loud before even cutting one of the fences)
+	[102466] = enable_forest_group,
+	[102467] = enable_forest_group,
+	[102468] = enable_forest_group,
+	-- Add Cloaker spawns
+	[100428] = { -- trigger_global_event_001
+		on_executed = { 
+			{ id = 400018, delay = 0 },
+		},
+	},
+	-- Restore unused cloaker hiding spots
+	[100944] = enabled,
+	[101004] = enabled,
+	[101166] = enabled,
+	[101168] = enabled,
+	[101976] = enabled,
 	-- increase reinforce outside hangars
 	[101355] = hangar_reinforce_amount,
 	[101352] = hangar_reinforce_amount,
@@ -182,4 +247,12 @@ return {
 	[103168] = gangster_inside_amount,
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
+	-- Spawn group intervals
+	[400003] = forest_spawn,
+	[400011] = cloaker_spawn,
+	[400012] = cloaker_spawn,
+	[400013] = cloaker_spawn,
+	[400014] = cloaker_spawn,
+	[400015] = cloaker_spawn,
+	[400016] = cloaker_spawn,
 }
