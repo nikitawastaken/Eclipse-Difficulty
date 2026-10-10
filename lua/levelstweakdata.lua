@@ -127,7 +127,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.force_size_preset = "reduced_t1"
 	self.moon.force_size_preset = "reduced_t1"
 	self.wwh.force_size_preset = "reduced_t1"
-	self.des.force_size_preset = "reduced_t1"
 	self.chca.force_size_preset = "reduced_t1"
 
 	self.watchdogs_2.force_size_preset = "increased_t1"
