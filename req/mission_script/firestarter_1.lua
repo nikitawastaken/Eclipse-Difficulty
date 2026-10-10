@@ -116,9 +116,9 @@ return {
 	-- Add the new forest group to existing preferreds
 	[102652] = { -- ai_enemy_prefered_add_001
 		values = {
-			spawn_groups = { 
-				101336, 
-				102499, 
+			spawn_groups = {
+				101336,
+				102499,
 				102497,
 				100223,
 				103553,
@@ -135,7 +135,7 @@ return {
 	[102468] = enable_forest_group,
 	-- Add Cloaker spawns
 	[100428] = { -- trigger_global_event_001
-		on_executed = { 
+		on_executed = {
 			{ id = 400018, delay = 0 },
 		},
 	},
