@@ -2380,7 +2380,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro2 = "10"
 	self.skill_descs.expert_handling.multipro3 = "20%"
 
-	-- Peacemaker's Lament
+	-- Mag-Dumping Interest
 	self.values.player.sidearm_magdump_damage_rampup = { true }
 	self.definitions.player_sidearm_magdump_damage_rampup = {
 		name_id = "menu_player_sidearm_magdump_damage_rampup",

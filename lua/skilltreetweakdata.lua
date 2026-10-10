@@ -501,12 +501,12 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.expert_handling.name_id = "menu_deadeye"
 	self.skills.expert_handling.desc_id = "menu_deadeye_desc"
 
-	-- Peacemaker's Lament
+	-- Mag-Dumping Interest
 	self.skills.trigger_happy[1].upgrades = { "player_sidearm_magdump_damage_rampup" }
 	self.skills.trigger_happy[2].upgrades = { "player_sidearm_ricochet_damage" }
 	self.skills.trigger_happy.icon_xy = { 11, 11 }
-	self.skills.trigger_happy.name_id = "menu_peacemakers_lament"
-	self.skills.trigger_happy.desc_id = "menu_peacemakers_lament_desc"
+	self.skills.trigger_happy.name_id = "menu_mag_dumping_interest"
+	self.skills.trigger_happy.desc_id = "menu_mag_dumping_interest_desc"
 
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = { "player_swap_weapon_when_downed" }
