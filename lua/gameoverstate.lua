@@ -31,7 +31,9 @@ function GameOverState:_set_continue_button_text()
 	-- Required offshore for restart text
 	local can_afford_restart = managers.money:can_afford_heist_restart()
 	if not can_afford_restart then
-		text_id = "failed_disconnected_continue"
+		text_id = "failed_disconnected_continue_offshore_restart"
+	elseif text_id == "menu_victory_retry_stage" and Eclipse.utils.is_pro_job() then
+		text_id = "menu_victory_retry_stage_offshore_restart"
 	end
 
 	local text = utf8.to_upper(managers.localization:text(text_id, {
@@ -39,7 +41,14 @@ function GameOverState:_set_continue_button_text()
 		OFFSHORE = managers.money:get_cost_of_heist_restart(true),
 	}))
 
-	managers.menu_component:set_endscreen_continue_button_text(text, text_id ~= "failed_disconnected_continue" and text_id ~= "debug_mission_end_continue" and text_id ~= "menu_victory_retry_stage")
+	managers.menu_component:set_endscreen_continue_button_text(
+		text,
+		text_id ~= "failed_disconnected_continue"
+			and text_id ~= "debug_mission_end_continue"
+			and text_id ~= "menu_victory_retry_stage"
+			and text_id ~= "failed_disconnected_continue_offshore_restart"
+			and text_id ~= "menu_victory_retry_stage_offshore_restart"
+	)
 end
 
 function GameOverState:continue()

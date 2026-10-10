@@ -129,7 +129,7 @@ return {
 			{
 				amount = 0.25,
 				delay = 15,
-				time = 30,
+				time = 15,
 			},
 			{
 				amount = 0.25,

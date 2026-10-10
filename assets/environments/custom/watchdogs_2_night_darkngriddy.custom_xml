@@ -9,9 +9,9 @@
 			<param key="sky_texture" value="core/environments/skies/sky_2100_moon/sky_2100_moon"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_2100_moon/sky_2100_moon"/>
-			<param key="sun_ray_color_scale" value="0"/>
+			<param key="sun_ray_color_scale" value="0.15000000596046"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="0.80392163991928 0.45490199327469 0.23529413342476"/>
+			<param key="sun_ray_color" value="0.21568629145622 0.45490199327469 0.78823536634445"/>
 			<param key="global_texture" value="units/pd2_dlc_dah/environments/cubemaps/cubemap_night_sky"/>
 		</others>
 		<post_effect>
@@ -23,15 +23,15 @@
 						<param key="fog_start_color" value="0 0 0"/>
 						<param key="effect_light_scale" value="0.64999997615814"/>
 						<param key="fog_far_low_color" value="0.054901964962482 0.12156863510609 0.1803921610117"/>
-						<param key="ambient_falloff_scale" value="1"/>
+						<param key="ambient_falloff_scale" value="0.10000000149012"/>
 						<param key="sky_bottom_color_scale" value="0.10800000280142"/>
 						<param key="ambient_color_scale" value="0.30000001192093"/>
 						<param key="ambient_color" value="0.082352943718433 0.10588236153126 0.17254902422428"/>
-						<param key="fog_max_range" value="30721.673828125"/>
+						<param key="fog_max_range" value="27310.00390625"/>
 						<param key="bloom_threshold" value="0.31391280889511"/>
 						<param key="sky_top_color_scale" value="0.10800000280142"/>
 						<param key="sky_top_color" value="0.10588236153126 0.12549020349979 0.16470588743687"/>
-						<param key="fog_min_range" value="2188.5783691406"/>
+						<param key="fog_min_range" value="-104.11573028564"/>
 						<param key="fog_max_density" value="0.45720613002777"/>
 					</apply_ambient>
 				</deferred_lighting>
@@ -39,11 +39,11 @@
 			<shadow_processor>
 				<shadow_rendering>
 					<shadow_modifier>
-						<param key="slice3" value="9999 50000 0"/>
-						<param key="shadow_slice_depths" value="1301 3034 10000"/>
+						<param key="slice3" value="59999 50000 0"/>
+						<param key="shadow_slice_depths" value="1301 3034 60000"/>
 						<param key="slice0" value="0 1301 0"/>
 						<param key="slice1" value="1300 3034 0"/>
-						<param key="slice2" value="3033 10000 0"/>
+						<param key="slice2" value="3033 60000 0"/>
 						<param key="shadow_slice_overlap" value="1 1 1"/>
 					</shadow_modifier>
 				</shadow_rendering>

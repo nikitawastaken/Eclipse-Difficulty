@@ -96,6 +96,12 @@ WeaponTweakData.CATEGORY_TRAIL_EFFECTS = {
 	lmg = "effects/particles/weapons/weapon_trail_green_lmg",
 	snp = "effects/payday2/particles/weapons/streaks/big_light_streak",
 }
+WeaponTweakData.CUSTOM_WEAPON_CATEGORY_MIGRATION_BLACKLIST = table.list_to_set({
+	"car9", -- Assault Rifle based_on, should be an SMG
+	"ak5s", -- Assault Rifle based_on, should be an SMG
+	"scar16", -- Marksman Rifle based_on, should be an Assault Rifle
+	"or12", -- LMG based_on, should be a Shotgun	
+})
 
 -- Remake stat tables so that they use linear scaling.
 Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse__init_stats", function(self)
@@ -211,21 +217,13 @@ function WeaponTweakData:_init_weapons(overrides)
 		local based_on_data = based_on_id and self[based_on_id]
 
 		if type(weap_data) == "table" and weap_data.stats then
-			-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies
-
-			-- These are needed just in case
-			local category_blacklist = table.list_to_set({
-				"car9", -- Assault Rifle based_on, should be an SMG
-				"ak5s", -- Assault Rifle based_on, should be an SMG
-				"scar16", -- Marksman Rifle based_on, should be an Assault Rifle
-				"or12", -- LMG based_on, should be a Shotgun
-			})
-
+			-- Automatically migrate new weapon (sub)categories to custom weapons to avoid stat discrepancies.
 			if based_on_id and is_unsupported_custom then
-				if not category_blacklist[weap_id] then
+				if not self.CUSTOM_WEAPON_CATEGORY_MIGRATION_BLACKLIST[weap_id] then -- Do not migrate the categories of select custom weapons.
 					weap_data.categories = clone(based_on_data.categories)
 				end
 
+				-- Make sure custom shell reload weapons are properly marked as such.
 				if based_on_data.use_shotgun_reload then
 					weap_data.use_shotgun_reload = true
 				end
@@ -285,7 +283,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { -0.1, 0.1, -0.05, 0.05 },
 				}				
 			elseif cat_map.dmr then
-				weap_data.steelsight_enter_time = 0.35
+				weap_data.steelsight_enter_time = 0.4
 				
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 4
@@ -404,7 +402,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					{ 2, 4 },
 					{ 600, 400 },
 				}
-				weap_data.swap_speed_multiplier = 1.25
+				weap_data.swap_speed_multiplier = (weap_data.swap_speed_multiplier or 1) * 1.25
 				
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 50)
@@ -445,7 +443,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					{ 6.4, 9.6 },
 					{ 360, 240 },
 				}
-				weap_data.swap_speed_multiplier = 1.25
+				weap_data.swap_speed_multiplier = (weap_data.swap_speed_multiplier or 1) * 1.25
 					
 				if not weap_data.non_standard_fire_rate and weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / math.round(self:_calculate_damage_scale(real_damage, weap_data._fire_rate_scale), 60)
@@ -526,7 +524,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data._pickup_mul = (1 / weap_data.rays) * (4 / 3)
 				
 			elseif cat_map.lmg then
-				weap_data.steelsight_enter_time = 0.45
+				weap_data.steelsight_enter_time = 0.5
 	
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 4
@@ -561,7 +559,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.bipod_deploy_multiplier = 1		
 				
 			elseif cat_map.minigun then
-				weap_data.steelsight_enter_time = 0.45
+				weap_data.steelsight_enter_time = 0.5
 	
 				weap_data.stats.alert_size = 6
 				weap_data.stats.suppression = 4
@@ -588,7 +586,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data._pickup_mul = 0
 				
 			elseif cat_map.snp then
-				weap_data.steelsight_enter_time = 0.4
+				weap_data.steelsight_enter_time = 0.45
 	
 				weap_data.stats.alert_size = 4
 				weap_data.stats.suppression = 3
@@ -2853,6 +2851,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r700.fire_mode_data.fire_rate = 60 / 60
 	self.r700.reload_not_empty_speed_multiplier = self.r700.timers.reload_not_empty / self.msr.timers.reload_not_empty
 	self.r700.reload_empty_speed_multiplier = self.r700.timers.reload_empty / self.msr.timers.reload_empty
+	self.r700.swap_speed_multiplier = self.r700.timers.unequip / self.msr.timers.unequip
 	self.r700.stats_modifiers = { damage = 5 }
 
 	-- Pronghorn
@@ -2884,12 +2883,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mosin.stats.damage = 24
 	self.mosin.stats.spread = 24
 	self.mosin.stats.recoil = 4
-	self.mosin.stats.concealment = 16
+	self.mosin.stats.concealment = 14
 	self.mosin.stats.swap_speed = 9
 	self.mosin.stats.steelsight_speed = 9
 	self.mosin.stats.exit_run_speed = 9
 	self.mosin.fire_mode_data.fire_rate = 60 / 50
-	self.mosin.reload_speed_multiplier = 1.1
 	self.mosin.stats_modifiers = { damage =  10 }
 
 	-- Platypus
@@ -2962,6 +2960,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.stats.steelsight_speed = 9
 	self.m95.stats.exit_run_speed = 9
 	self.m95.fire_mode_data.fire_rate = 60 / 40
+	self.m95.swap_speed_multiplier = 2 / 3
 	self.m95.stats_modifiers = { damage = 10 }
 
 	self._init_stat_overrides.m95 = function()
@@ -3484,6 +3483,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
 
+	self.flamethrower_npc.flame_max_range = self.flamethrower_mk2.flame_max_range
+	self.snowthrower_npc.flame_max_range = self.flamethrower_mk2.flame_max_range
+	
 	self.famas_crew.hold = "rifle"
 	self.famas_crew.reload = "bullpup"
 	self.vhs_crew.hold = "rifle"

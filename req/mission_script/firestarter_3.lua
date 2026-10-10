@@ -67,13 +67,11 @@ local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local parking_lot_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -88,6 +86,17 @@ return {
 		ponr = {
 			length = 800,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+	},
+	-- for the true 2013 experience
+	[101539] = {
+		on_executed = {
+			{ id = 105438, delay = 20 },
+		},
+	},
+	[105438] = {
+		on_executed = {
+			{ id = 105381, delay = 20 },
 		},
 	},
 	-- DW Trailer Skulldozer spawn event

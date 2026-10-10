@@ -63,6 +63,13 @@ local skylight_navlink_interval = {
 local skylight_navlink_interval_enable = deep_clone(skylight_navlink_interval)
 skylight_navlink_interval_enable.values.enabled = true
 
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+
 return {
 	[100043] = { -- player_spawned
 		paused_difficulty_addends = { -- disable addends
@@ -99,9 +106,79 @@ return {
 		},
 		forced_difficulty = false, -- Disable forced diff
 	},
+	-- faster coke degradation (you have 5 mins to get the coke or get nothing)
+	-- keep only one timer
+	[101234] = filter_easy_above,
+	[101232] = filter_disable,
+	[101233] = filter_disable,
+	-- decrease the start timer from 9 mins to 5 mins
+	[101043] = {
+		values = {
+			timer = 300,
+		},
+	},
+	-- Bain yaps about The Commissar's men flushing down the coke
+	-- vanilla : 540
+	[101287] = {
+		values = {
+			time = 300,
+		},
+	},
+	-- 60 seconds for the first coke degradation, after that the coke gets flushed every 30 seconds
+	-- vanilla : 480
+	[101243] = {
+		values = {
+			time = 240,
+		},
+	},
+	-- vanilla : 420
+	[101246] = {
+		values = {
+			time = 210,
+		},
+	},
+	-- vanilla : 360
+	[101247] = {
+		values = {
+			time = 180,
+		},
+	},
+	-- vanilla : 300
+	[101251] = {
+		values = {
+			time = 150,
+		},
+	},
+	-- Bain starts to get angry
+	-- vanilla : 240
+	[101252] = {
+		values = {
+			time = 120,
+		},
+	},
+	-- vanilla : 180
+	[101255] = {
+		values = {
+			time = 90,
+		},
+	},
+	-- Bain starts to get more angry and whiny
+	-- vanilla : 120
+	[101256] = {
+		values = {
+			time = 60,
+		},
+	},
+	-- Last Coke Standing
+	-- vanilla : 60
+	[101259] = {
+		values = {
+			time = 30,
+		},
+	},
+	-- change up Commissar's room enemies
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
-	-- change up Commissar's room enemies
 	[101164] = shield_enemy,
 	[101151] = shield_enemy,
 	[101156] = swat_enemy,

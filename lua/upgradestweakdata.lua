@@ -1762,7 +1762,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steady_grip.multipro = "20%"
 
 	-- Oppressor
-	self.values.player.suppression_multiplier = { 1.2 }
+	self.values.player.enemy_on_hit_extra_panic = { true }
+	self.definitions.player_enemy_on_hit_extra_panic = {
+		name_id = "menu_player_enemy_on_hit_extra_panic",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "enemy_on_hit_extra_panic",
+			category = "player",
+		},
+	}
 	self.values.player.enemy_panic_damage_multiplier = { 1.15 }
 	self.definitions.player_enemy_panic_damage_multiplier = {
 		name_id = "menu_player_enemy_panic_damage_multiplier",
@@ -1773,10 +1782,52 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.heavy_impact.multibasic = "20%"
 	self.skill_descs.heavy_impact.multipro = "15%"
 
 	-- Fire Control
+	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
+	self.definitions.weapon_hipfire_spread_penalty_reduction = {
+		name_id = "menu_weapon_hipfire_spread_penalty_reduction",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hipfire_spread_penalty_reduction",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.moving_spread_multiplier = { 0.75 }
+	self.definitions.weapon_moving_spread_multiplier = {
+		name_id = "menu_weapon_moving_spread_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "moving_spread_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.fire_control.multibasic = "20%"
+	self.skill_descs.fire_control.multipro = "25%"
+
+	-- Sleight of Hand
+	self.values.lmg.reload_speed_multiplier = { 1.25 }
+	self.values.smg.reload_speed_multiplier = { 1.25 }
+	self.values.minigun.reload_speed_multiplier = { 1.25 }
+	self.definitions.minigun_reload_speed_multiplier = {
+		name_id = "menu_minigun_reload_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "reload_speed_multiplier",
+			category = "minigun",
+		},
+	}
+	self.values.player.automatic_faster_reload.target_enemies = 3
+	self.values.player.automatic_faster_reload.max_reload_increase = 1.4
+	self.skill_descs.shock_and_awe.multibasic = "25%"
+	self.skill_descs.shock_and_awe.multipro = "3"
+	self.skill_descs.shock_and_awe.multipro2 = "40%"
+
+	-- Spray N' Pray
 	self.definitions.minigun_spray_recoil_multiplier = {
 		name_id = "menu_minigun_spray_recoil_multiplier",
 		category = "feature",
@@ -1787,7 +1838,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.minigun.spray_recoil_multiplier = {
-		0.005,
+		0.01,
 	}
 	self.definitions.lmg_spray_recoil_multiplier = {
 		name_id = "menu_lmg_spray_recoil_multiplier",
@@ -1799,7 +1850,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.lmg.spray_recoil_multiplier = {
-		0.01,
+		0.02,
 	}
 	self.definitions.smg_spray_recoil_multiplier = {
 		name_id = "menu_smg_spray_recoil_multiplier",
@@ -1811,29 +1862,53 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.smg.spray_recoil_multiplier = {
-		0.015,
+		0.03,
 	}
-
-	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
-	self.definitions.weapon_hipfire_spread_penalty_reduction = {
-		name_id = "menu_weapon_hipfire_spread_penalty_reduction",
+	self.definitions.minigun_spray_damage_multiplier = {
+		name_id = "menu_minigun_spray_damage_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "hipfire_spread_penalty_reduction",
-			category = "weapon",
+			upgrade = "spray_damage_multiplier",
+			category = "minigun",
 		},
 	}
-
-	self.values.player.weapon_movement_stability[1] = 0.9
-	self.max_spray_recoil_reduction = 0.5
-	self.skill_descs.fire_control.multibasic = "20%"
-	self.skill_descs.fire_control.multipro = "50%"
-
-	-- Sleight of Hand
-	self.values.lmg.reload_speed_multiplier = { 1.2 }
-	self.values.smg.reload_speed_multiplier = { 1.2 }
-	self.skill_descs.shock_and_awe.multibasic = "20%"
+	self.values.minigun.spray_damage_multiplier = {
+		0.01,
+	}
+	self.definitions.lmg_spray_damage_multiplier = {
+		name_id = "menu_lmg_spray_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_damage_multiplier",
+			category = "lmg",
+		},
+	}
+	self.values.lmg.spray_damage_multiplier = {
+		0.02,
+	}
+	self.definitions.smg_spray_damage_multiplier = {
+		name_id = "menu_smg_spray_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_damage_multiplier",
+			category = "smg",
+		},
+	}
+	self.values.smg.spray_damage_multiplier = {
+		0.03,
+	}
+	self.spray_n_pray_values = {
+		max_recoil_reduction = 0.5,
+		max_dmg_increase = 1.5,
+		grace_period = 1,
+	}
+	self.skill_descs.fast_fire.multibasic = "50%"
+	self.skill_descs.fast_fire.multibasic2 = "1"
+	self.skill_descs.fast_fire.multipro = "50%"
+	self.skill_descs.fast_fire.multipro2 = "1"
 
 	-- Body Expertise
 	self.values.player.no_movement_penalty = { true }
@@ -1967,7 +2042,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.detection_risk_transparency = {
 		{
 			1,
-			2,
+			1,
 			"below",
 			35,
 			10,
@@ -1994,7 +2069,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.chameleon.multibasic = "1"
-	self.skill_descs.chameleon.multibasic2 = "2"
+	self.skill_descs.chameleon.multibasic2 = "1"
 	self.skill_descs.chameleon.multibasic3 = "35"
 	self.skill_descs.chameleon.multibasic4 = "10"
 	self.skill_descs.chameleon.multibasic5 = "5%"
@@ -2068,10 +2143,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.insulation.multibasic = "33%"
 
 	-- Sneaky Bastard
-	self.values.player.detection_risk_add_dodge_chance = {
-		{ 0.01, 2, "below", 35, 0.1 },
-		{ 0.015, 1, "below", 35, 0.15 },
-	}
+	self.values.player.detection_risk_add_dodge_chance[1] = { 0.01, 1, "below", 35, 0.1 }
 	self.values.cooldown.dodge_replenish_armor = { { 1, 10 } }
 	self.definitions.cooldown_dodge_replenish_armor = {
 		name_id = "menu_cooldown_dodge_replenish_armor",
@@ -2082,23 +2154,26 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.skill_descs.jail_diet.multibasic2 = "2"
+	self.skill_descs.jail_diet.multibasic2 = "1"
 	self.skill_descs.jail_diet.multipro = "10"
 
-	-- Resilient Assault
-	self.values.player.critical_hit_chance[1] = 0.05
-	self.values.player.armor_depleted_stagger_shot = {
-		0,
-		3,
-	}
-	self.skill_descs.scavenger.multibasic = "5%"
-	self.skill_descs.scavenger.multibasic2 = "200%"
-	self.skill_descs.scavenger.multipro = "3"
-
 	-- Eagle Eye
-	self.values.weapon.special_damage_taken_multiplier[1] = 1.15
-	self.values.player.marked_distance_mul[1] = 4
-	self.skill_descs.thick_skin.multibasic = "15%"
+	self.values.player.marked_distance_mul[1] = 2
+	self.skill_descs.scavenger.multibasic = "2"
+
+	-- Resilient Assault
+	self.values.cooldown.armor_depleted_mark_culprit = { { 1, 10 } }
+	self.definitions.cooldown_armor_depleted_mark_culprit = {
+		name_id = "menu_cooldown_armor_depleted_mark_culprit",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_depleted_mark_culprit",
+			category = "cooldown",
+		},
+	}
+	self.values.player.armor_depleted_stagger_shot[1] = 4
+	self.skill_descs.thick_skin.multibasic = "10"
 	self.skill_descs.thick_skin.multipro = "4"
 
 	-- The Professional
@@ -2143,6 +2218,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.backstab.multipro = "20%"
 
 	-- Low Blow
+	self.values.player.detection_risk_add_crit_chance[1] = { 0.02, 1, "below", 35, 0.2 }
 	self.definitions.weapon_extra_crit_damage_mul = {
 		category = "feature",
 		name_id = "extra_crit_damage_mul",
@@ -2152,28 +2228,16 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.definitions.player_critical_hit_chance_2 = {
-		incremental = true,
-		name_id = "menu_player_critical_hit_chance",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "critical_hit_chance",
-			category = "player",
-		},
-	}
-	self.values.player.detection_risk_add_crit_chance = {
-		{ 0.01, 2, "below", 35, 0.1 },
-		{ 0.03, 1, "below", 35, 0.3 },
-	}
-	self.values.weapon.extra_crit_damage_mul = { 1 }
-	self.values.player.critical_hit_chance[2] = 0.25
-	self.skill_descs.unseen_strike.multibasic = "1%"
-	self.skill_descs.unseen_strike.multibasic2 = "2"
+	self.values.player.base_critical_hit_damage_multiplier = 1.5
+	self.values.player.critical_hit_chance[1] = 0.3
+	self.values.weapon.extra_crit_damage_mul = { 0.5 }
+	self.skill_descs.unseen_strike.multibasic = "2%"
+	self.skill_descs.unseen_strike.multibasic2 = "1"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
-	self.skill_descs.unseen_strike.multibasic4 = "10%"
-	self.skill_descs.unseen_strike.multipro = "20%"
-	self.skill_descs.unseen_strike.multipro2 = "100%"
+	self.skill_descs.unseen_strike.multibasic4 = "20%"
+	self.skill_descs.unseen_strike.multibasic5 = "150%"
+	self.skill_descs.unseen_strike.multipro = "30%"
+	self.skill_descs.unseen_strike.multipro2 = "50%"
 
 	-- Fugitive --
 
@@ -2813,7 +2877,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[4][9].multiperk = "4"
 	self.specialization_descs[4][9].multiperk2 = "20%"
 	self.specialization_descs[4][9].multiperk3 = "6"
-	self.specialization_descs[4][9].multiperk4 = "200%"
+	self.specialization_descs[4][9].multiperk4 = "150%"
 
 	-- Hitman
 	self.definitions.player_chain_hitman_kills = {

@@ -417,7 +417,7 @@ end
 -- sleight of hand check for weapon category
 function PlayerManager:_on_enter_shock_and_awe_event()
 	local equipped_unit = self:get_current_state()._equipped_unit
-	if not equipped_unit:base():is_category("smg", "lmg", "minigun", "flamethrower", "bow") then
+	if not equipped_unit:base():is_category("smg", "lmg", "minigun") then
 		return
 	end
 
@@ -425,7 +425,7 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 		local data = self:upgrade_value("player", "automatic_faster_reload", nil)
 		local is_grenade_launcher = equipped_unit:base():is_category("grenade_launcher")
 
-		if data and equipped_unit and not is_grenade_launcher and (equipped_unit:base():fire_mode() == "auto" or equipped_unit:base():is_category("bow", "flamethrower")) then
+		if data and equipped_unit and not is_grenade_launcher and (equipped_unit:base():fire_mode() == "auto") then
 			self._coroutine_mgr:add_and_run_coroutine(
 				"automatic_faster_reload",
 				PlayerAction.ShockAndAwe,

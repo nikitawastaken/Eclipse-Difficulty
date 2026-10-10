@@ -9,10 +9,10 @@
 			<param key="sky_texture" value="units/pd2_dlc_pent/architecture/cubemaps/sky_pent_dusk_0065/sky_pent_dusk_0065"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="units/pd2_dlc_pent/architecture/cubemaps/sky_pent_dusk_0065/sky_pent_dusk_0065"/>
-			<param key="sun_ray_color_scale" value="1.0238440036774"/>
+			<param key="sun_ray_color_scale" value="2.1156027317047"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.80392163991928 0.66274511814117 0.43921571969986"/>
-			<param key="global_texture" value="units/pd2_dlc_corp/cubemaps/corp_cubemap_ext_01"/>
+			<param key="global_texture" value="environments/cubemaps/cube_skm_watchdogs_2_exterior"/>
 		</others>
 		<post_effect>
 			<deferred>
@@ -23,7 +23,7 @@
 						<param key="fog_start_color" value="0.12156863510609 0.15686275064945 0.21176472306252"/>
 						<param key="effect_light_scale" value="0.64999997615814"/>
 						<param key="fog_far_low_color" value="0.40392160415649 0.44313728809357 0.48627454042435"/>
-						<param key="ambient_falloff_scale" value="1"/>
+						<param key="ambient_falloff_scale" value="0.10000000149012"/>
 						<param key="sky_bottom_color_scale" value="0.10800000280142"/>
 						<param key="ambient_color_scale" value="1"/>
 						<param key="ambient_color" value="0.082352943718433 0.10588236153126 0.17254902422428"/>
@@ -31,8 +31,8 @@
 						<param key="bloom_threshold" value="0.15014892816544"/>
 						<param key="sky_top_color_scale" value="0.10800000280142"/>
 						<param key="sky_top_color" value="0.10588236153126 0.12549020349979 0.16470588743687"/>
-						<param key="fog_min_range" value="2188.5783691406"/>
-						<param key="fog_max_density" value="0.15697225928307"/>
+						<param key="fog_min_range" value="-4689.5053710938"/>
+						<param key="fog_max_density" value="0.13650195300579"/>
 					</apply_ambient>
 				</deferred_lighting>
 			</deferred>
@@ -48,10 +48,6 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>

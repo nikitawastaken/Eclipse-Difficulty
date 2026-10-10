@@ -1,6 +1,5 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
-local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
@@ -205,21 +204,8 @@ return {
 			{ id = 101070, delay = sniper_respawn_1 },
 		},
 	},
-	-- loop helis
-	-- remove the line+trigger the loop here
-	[100941] = {
-		on_executed = {
-			{ id = 100945, remove = true },
-			{ id = 100965, delay = 180, delay_rand = 120 },
-		},
-	},
-	-- loop the choppa+2 chopper spawns on Death Wish
-	[100965] = {
-		on_executed = {
-			{ id = 400009, delay = 0 },
-			{ id = 100968, remove = true },
-		},
-	},
+	-- Tweak choppers
+	-- 2 choppers spawns on DW
 	[100966] = {
 		values = {
 			amount = chopper_amount,
@@ -228,7 +214,7 @@ return {
 			{ id = 100993, remove = true },
 		},
 	},
-	-- trigger_times to 0; making the loop possible
+	-- change trigger times to 0 to allow looping
 	[100953] = {
 		values = {
 			trigger_times = 0,
@@ -237,12 +223,6 @@ return {
 	[100887] = {
 		values = {
 			trigger_times = 0,
-		},
-	},
-	-- disable this just in case
-	[101652] = {
-		values = {
-			enabled = false,
 		},
 	},
 	-- faster chopper

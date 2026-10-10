@@ -4,11 +4,9 @@ local scripted_enemy = Eclipse.scripted_enemy
 
 local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
 
-local cloaker = scripted_enemy.cloaker
-
 local optsBesiegeDummyCloaker = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	enabled = true,
 }

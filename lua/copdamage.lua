@@ -114,7 +114,7 @@ function CopDamage:roll_critical_hit(attack_data)
 		return false, attack_data.damage
 	end
 
-	return true, attack_data.damage * (2 + managers.player:upgrade_value("weapon", "extra_crit_damage_mul", 0))
+	return true, attack_data.damage * (tweak_data.upgrades.values.player.base_critical_hit_damage_multiplier + managers.player:upgrade_value("weapon", "extra_crit_damage_mul", 0))
 end
 
 -- Make these functions check that the attacker unit is a player (to make sure NPC vs NPC melee doesn't crash)
@@ -544,6 +544,13 @@ function CopDamage:sync_damage_melee(attacker_unit, damage_percent, damage_effec
 	self:_send_sync_melee_attack_result(attack_data, hit_offset_height)
 	self:_on_damage_received(attack_data)
 end
+
+-- Additional suppression on hit (skill)
+Hooks:PreHook(CopDamage, "_on_damage_received", "eclipse__on_damage_received", function(self, damage_info)
+	if managers.player:has_category_upgrade("player", "enemy_on_hit_extra_panic") then
+		self:build_suppression(1.5 * damage_info.damage / self._HEALTH_INIT, nil)
+	end
+end)
 
 function CopDamage:damage_bullet(attack_data)
 	if self._dead or self._invulnerable then

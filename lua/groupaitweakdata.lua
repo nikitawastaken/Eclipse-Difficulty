@@ -3703,9 +3703,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_recon_heavy = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_reenforce_init = { 16, 8, 0 },
-			cs_reenforce_light = { 8, 12, 16 },
-			cs_reenforce_heavy = { 0, 4, 8 },
+			cs_reenforce_init = { 4, 2, 0 },
+			cs_reenforce_light = { 2, 3, 4 },
+			cs_reenforce_heavy = { 0, 1, 2 },
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
@@ -3723,12 +3723,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_recon_heavy = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_reenforce_init = { 15, 0, 0 },
-			cs_reenforce_light = { 10, 20, 0 },
-			cs_reenforce_heavy = { 5, 10, 0 },
-			fbi_reenforce_init = { 20, 10, 0 },
-			fbi_reenforce_light = { 0, 10, 30 },
-			fbi_reenforce_heavy = { 0, 5, 15 },
+			cs_reenforce_init = { 3, 0, 0 },
+			cs_reenforce_light = { 3, 6, 0 },
+			cs_reenforce_heavy = { 1, 2, 0 },
+			fbi_reenforce_init = { 4, 2, 0 },
+			fbi_reenforce_light = { 0, 4, 8 },
+			fbi_reenforce_heavy = { 0, 1, 4 },
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
@@ -3746,12 +3746,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_recon_heavy = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_reenforce_init = { 12, 0, 0 },
-			cs_reenforce_light = { 8, 16, 0 },
-			cs_reenforce_heavy = { 8, 12, 0 },
-			fbi_reenforce_init = { 16, 12, 0 },
-			fbi_reenforce_light = { 0, 12, 24 },
-			fbi_reenforce_heavy = { 0, 8, 24 },
+			cs_reenforce_init = { 3, 0, 0 },
+			cs_reenforce_light = { 6, 3, 0 },
+			cs_reenforce_heavy = { 2, 4, 0 },
+			fbi_reenforce_init = { 4, 2, 0 },
+			fbi_reenforce_light = { 0, 4, 8 },
+			fbi_reenforce_heavy = { 0, 2, 8 },
 		}
 	else
 		self.besiege.assault.groups = {
@@ -3772,13 +3772,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_recon_heavy = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_reenforce_init = { 8, 0, 0 },
-			cs_reenforce_light = { 16, 8, 0 },
-			cs_reenforce_heavy = { 12, 6, 0 },
-			fbi_reenforce_init = { 12, 6, 0 },
-			fbi_reenforce_light = { 8, 16, 0 },
-			fbi_reenforce_heavy = { 0, 8, 24 },
-			elite_reenforce_light = { 0, 8, 24 },
+			cs_reenforce_init = { 3, 0, 0 },
+			cs_reenforce_light = { 6, 3, 0 },
+			cs_reenforce_heavy = { 3, 6, 0 },
+			fbi_reenforce_init = { 4, 2, 0 },
+			fbi_reenforce_light = { 4, 8, 0 },
+			fbi_reenforce_heavy = { 0, 4, 12 },
+			elite_reenforce_light = { 0, 6, 12 },
 		}
 	end
 

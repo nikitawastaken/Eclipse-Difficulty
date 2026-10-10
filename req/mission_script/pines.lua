@@ -16,6 +16,14 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 58, 62 },
+			{ 46, 61, 59 },
+			{ 63, 60, 119 },
+		},
+	},
 	-- Add new reinforce
 	[100109] = { -- Police
 		reinforce = {

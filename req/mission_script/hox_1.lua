@@ -23,6 +23,12 @@ local fbi_list = {
 local swat_harasser = {
 	enemy = diff_i < 4 and cops or swats,
 }
+local swat_blockade_so_interrupt = {
+	values = {
+		interruptible = true,
+		interrupt_dis = 7,
+	},
+}
 local fbi_agent = {
 	enemy = fbi_list,
 	pre_func = function(element)
@@ -166,6 +172,20 @@ return {
 			{ id = 400207, delay = 1 },
 		},
 	},
+	-- Make the swat blockade SOs interruptible
+	[400194] = swat_blockade_so_interrupt,
+	[400195] = swat_blockade_so_interrupt,
+	[400196] = swat_blockade_so_interrupt,
+	[400197] = swat_blockade_so_interrupt,
+	[400198] = swat_blockade_so_interrupt,
+	[400199] = swat_blockade_so_interrupt,
+	[400200] = swat_blockade_so_interrupt,
+	[400201] = swat_blockade_so_interrupt,
+	[400202] = swat_blockade_so_interrupt,
+	[400203] = swat_blockade_so_interrupt,
+	[400204] = swat_blockade_so_interrupt,
+	[400205] = swat_blockade_so_interrupt,
+	[400206] = swat_blockade_so_interrupt,
 	-- Chance for hiding cloakers in the garage
 	[102077] = {
 		on_executed = {

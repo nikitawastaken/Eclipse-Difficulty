@@ -127,7 +127,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.force_size_preset = "reduced_t1"
 	self.moon.force_size_preset = "reduced_t1"
 	self.wwh.force_size_preset = "reduced_t1"
-	self.des.force_size_preset = "reduced_t1"
 	self.chca.force_size_preset = "reduced_t1"
 
 	self.watchdogs_2.force_size_preset = "increased_t1"
@@ -169,7 +168,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arena.difficulty_scaling_preset = "regroup_slow"
 	--	self.red2.difficulty_scaling_preset = "regroup_slow"
 	self.dinner.difficulty_scaling_preset = "regroup_slow"
-	self.kenaz.difficulty_scaling_preset = "regroup_slow"
 	self.pbr.difficulty_scaling_preset = "regroup_slow"
 	self.peta.difficulty_scaling_preset = "regroup_slow"
 	self.peta2.difficulty_scaling_preset = "regroup_slow"
@@ -214,6 +212,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
 	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
 	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.auc.ghost_bonus = 0.15 -- increase to 15% (from 10%)
 
 	-- multi day heists
 	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
@@ -231,8 +230,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_2.ghost_bonus = 0.05
 	self.firestarter_3.ghost_bonus = 0.05
 
-	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	-- heists that shouldn't have/don't give stealth bonus (they're not possible to beat)
 	self.nmh.ghost_bonus = nil
+	self.cage.ghost_bonus = nil -- it doesn't even give 10% stealth bonus upon completeing it
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
@@ -482,6 +482,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"levels/narratives/vlad/cane/world_sounds",
 	}
 
+	-- load the missing Twitch lines to Diamond Store
+	self.family.package = {
+		"packages/narr_family",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
+
 	-- load required gangster vo to heists where it actually needs
 	-- for reference: Rats day 1 has regular latin vo,
 	-- Rats day 2 has cobra vo,
@@ -663,13 +669,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dinner.custom_package = {}
 	self.trai.custom_package = {}
 
-	--[[
 	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
 	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
 	table.insert(self.cane.custom_package, "packages/female_bikers")
 	table.insert(self.mex.custom_package, "packages/female_bikers")
-	]]
-	--
 
 	local us_army_package = { "packages/us_army" }
 	self.arm_for.custom_package = us_army_package
@@ -699,7 +702,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.custom_package = murky_mercs_package
 
 	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
-	--	self.brb.custom_package = murky_mercs_scripted_package
+	self.brb.custom_package = murky_mercs_scripted_package
 
 	local zombie_faction_package = { "packages/zombie_cops" }
 	self.haunted.custom_package = zombie_faction_package
@@ -855,12 +858,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.run.random_environments = {
 		["heat_street_1"] = 3,
-		["heat_street_3"] = 3,
-		["heat_street_4"] = 3,
+		["heat_street_1_night"] = 1,
+		["heat_street_2"] = 1,
+		["heat_street_3"] = 1,
+		["heat_street_4"] = 2,
 	}
-	--	self.nmh.random_environments = {
-	--		["no_mercy"] = 69,
-	--	}
+	self.des.random_environments = {
+		["des_cg"] = 69,
+	}
+	self.nmh.random_environments = {
+		["no_mercy"] = 69,
+	}
 	self.dah.random_environments = {
 		["diamond_heist"] = 69,
 	}
@@ -1074,6 +1082,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chas.random_environments = {
 		["chas_blue"] = 1,
 		["chas_cg"] = 2,
+	}
+	self.sand.random_environments = {
+		["sand_rain"] = 1,
+	}
+	self.chca.random_environments = {
+		["chca_1"] = 1,
+		["chca_2"] = 1,
+		["chca_3"] = 1,
+		["chca_4"] = 1,
 	}
 	self.spa.random_environments = {
 		["spa_01"] = 2,

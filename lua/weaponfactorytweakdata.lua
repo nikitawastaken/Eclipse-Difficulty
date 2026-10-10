@@ -1074,7 +1074,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_snp_m95_barrel_long.stats.spread = 1
 	self.parts.wpn_fps_snp_m95_barrel_long.stats.recoil = -5
-	self.parts.wpn_fps_snp_m95_barrel_long.stats.damage = 192
+	self.parts.wpn_fps_snp_m95_barrel_long.stats.damage = 224
 	self.parts.wpn_fps_snp_m95_barrel_long.custom_stats = {
 		ammo_pickup_max_mul = 0,
 		ammo_pickup_min_mul = 0,
@@ -1093,6 +1093,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_mosin_b_standard.stats.recoil = 0
 	self.parts.wpn_fps_snp_mosin_b_standard.stats.concealment = -1
 
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.spread = -1
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.concealment = -2
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage = 2
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.max_damage = self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats.min_damage_effect = 1.5

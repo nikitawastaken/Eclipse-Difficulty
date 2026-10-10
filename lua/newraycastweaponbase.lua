@@ -13,6 +13,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._spread_firing = 0
 	self._spread_last_shot_t = 0
 	self._shots_fired_consecutively = 0
+	self._spray_grace_period = 0
 	self._kick_pattern_shots_fired = 0
 	self._kick_pattern_index = 1
 	self._use_persist_pattern = false
@@ -193,6 +194,12 @@ end
 function NewRaycastWeaponBase:update(unit, t, dt)
 	local user_unit = self._setup and self._setup.user_unit
 
+	if self._spray_grace_period and self._spray_grace_period > 0 then
+		self._spray_grace_period = math.max(self._spray_grace_period - dt, 0)
+	else
+		self._shots_fired_consecutively = 0
+	end
+
 	if self._spread_bloom then
 		self._spread_last_shot_t = math.max(self._spread_last_shot_t - dt, 0)
 
@@ -283,6 +290,7 @@ function NewRaycastWeaponBase:fire(...)
 	local is_player = self._setup.user_unit == managers.player:player_unit()
 	if is_player then
 		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
+		self._spray_grace_period = tweak_data.upgrades.spray_n_pray_values.grace_period
 		self._kick_pattern_shots_fired = self._kick_pattern_shots_fired + 1
 	end
 
@@ -325,22 +333,6 @@ function NewRaycastWeaponBase:fire(...)
 	end
 
 	return ray_res
-end
-
-function NewRaycastWeaponBase:stop_shooting()
-	NewRaycastWeaponBase.super.stop_shooting(self)
-
-	if self._fire_mode == ids_burst then
-		local weapon_tweak_data = self:weapon_tweak_data()
-		local fire_mode_data = weapon_tweak_data.fire_mode_data or {}
-		local next_fire = (fire_mode_data.burst_cooldown or self:weapon_fire_rate()) / self:fire_rate_multiplier()
-		self._next_fire_allowed = math.max(self._next_fire_allowed, self._unit:timer():time() + next_fire)
-		self._shooting_count = 0
-	elseif self._fire_mode == ids_volley then
-		self:stop_volley_charge()
-	end
-
-	self._shots_fired_consecutively = 0 -- reset the shots counter when you stop spraying
 end
 
 function NewRaycastWeaponBase:recoil_multiplier()
@@ -394,7 +386,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	-- upgrade that reduces recoil as you fire
 	for _, category in ipairs(categories) do
 		multiplier = multiplier
-			* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
+			* math.max(tweak_data.upgrades.spray_n_pray_values.max_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
 	end
 
 	local fire_mode_data = self:weapon_tweak_data().fire_mode_data
@@ -449,6 +441,8 @@ function NewRaycastWeaponBase:spread_multiplier()
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "moving_spread_multiplier", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_spread_multiplier", 1)
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "standing_spread_multiplier", 1)
@@ -633,7 +627,7 @@ end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function(self, _, hit)
 	local multiplier = 1
-
+	local categories = self:categories()
 	local weapon_tweak = self:weapon_tweak_data()
 
 	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
@@ -673,6 +667,12 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		if self._penetration_data.shield then
 			multiplier = multiplier * (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
 		end
+	end
+
+	-- upgrade that increases damage as you fire
+	for _, category in ipairs(categories) do
+		multiplier = multiplier
+			* math.min(tweak_data.upgrades.spray_n_pray_values.max_dmg_increase, (1 + (managers.player:upgrade_value(category, "spray_damage_multiplier", 0) * self._shots_fired_consecutively)))
 	end
 
 	return Hooks:GetReturn() * multiplier
