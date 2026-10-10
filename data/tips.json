@@ -69,7 +69,7 @@
 		{"cat_index": 67,  "image": "tactics_cover",            "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 68,  "image": "general_perks",            "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 69,  "image": "enemy_cloaker",            "consoles": true, "category": "eclipse_gameplay"},
-		{"cat_index": 70,  "image": "equipment_fak",        	"consoles": true, "category": "eclipse_gameplay"},
+		{"cat_index": 70,  "image": "general_medicbag",        	"consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 71,  "image": "weapon_marksman",          "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 72,  "image": "tactics_objectives",       "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 72,  "image": "tactics_objectives",       "consoles": true, "category": "eclipse_gameplay"},
@@ -173,7 +173,7 @@
 		{"cat_index": 67,  "image": "tactics_cover",            "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 68,  "image": "general_perks",            "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 69,  "image": "enemy_cloaker",            "consoles": true, "category": "eclipse_gameplay"},
-		{"cat_index": 70,  "image": "equipment_fak",        	"consoles": true, "category": "eclipse_gameplay"},
+		{"cat_index": 70,  "image": "general_medicbag",        	"consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 71,  "image": "weapon_marksman",          "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 72,  "image": "tactics_objectives",       "consoles": true, "category": "eclipse_gameplay"},
 		{"cat_index": 72,  "image": "tactics_objectives",       "consoles": true, "category": "eclipse_gameplay"},
@@ -282,6 +282,7 @@
 		{"cat_index": 74, 	"image": "badass",            			"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 75, 	"image": "humvee",            			"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 76, 	"image": "humvee",            			"consoles": true,	"category": "jerome_says"},
+		{"cat_index": 77, 	"image": "general_bodybag",            	"consoles": true,	"category": "jerome_says"},
 		{"cat_index": 1,    "image": "keith",           			"consoles": true,   "category": "one_time_my_buddy_keith_said"}
 	]
 }
