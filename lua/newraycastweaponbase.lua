@@ -522,6 +522,8 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_not_empty_speed_multiplier or 1)
 	elseif self:clip_empty() then
 		multiplier = multiplier + 1 - (self:weapon_tweak_data().reload_empty_speed_multiplier or 1)
+
+		multiplier = multiplier + 1 - pm:upgrade_value("weapon", "empty_reload_speed_multiplier", 1)
 	end
 
 	for _, category in ipairs(self:categories()) do
@@ -673,6 +675,14 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	for _, category in ipairs(categories) do
 		multiplier = multiplier
 			* math.min(tweak_data.upgrades.spray_n_pray_values.max_dmg_increase, (1 + (managers.player:upgrade_value(category, "spray_damage_multiplier", 0) * self._shots_fired_consecutively)))
+	end
+
+	if managers.player:has_category_upgrade("player", "sidearm_magdump_damage_rampup") and self:is_category("pistol", "revolver") then
+		local ammo = self:get_ammo_remaining_in_clip()
+		local ammo_max = self:get_ammo_max_per_clip()
+		local clip_ratio = 1 - ammo / ammo_max
+
+        multiplier = multiplier * (1 + clip_ratio)
 	end
 
 	return Hooks:GetReturn() * multiplier

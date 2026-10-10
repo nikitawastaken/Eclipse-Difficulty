@@ -291,7 +291,9 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 			local pm = managers.player
 
-			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
+			if pm:has_activate_temporary_upgrade("temporary", "frenzy_guaranteed_armor_regen") then
+				self:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
+			end
 
 			-- Failsafe Protocol (remake it to use the cooldown system instead of temporary)
 			if pm:has_enabled_cooldown_upgrade("cooldown", "armor_break_invulnerable") then
@@ -916,11 +918,6 @@ end
 function PlayerDamage:armor_suppression_blocked()
 	-- Crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
-		return true
-	end
-
-	-- Active frenzy blocks armor suppression
-	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
 		return true
 	end
 

@@ -477,31 +477,43 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.dance_instructor[1].upgrades = { "player_can_autoreload" }
 	self.skills.dance_instructor[2].upgrades = { "weapon_swap_speed_multiplier" }
 	self.skills.dance_instructor.icon_xy = { 4, 10 }
+	self.skills.dance_instructor.name_id = "menu_field_operator"
+	self.skills.dance_instructor.desc_id = "menu_field_operator_desc"
 
-	-- Sidearm Savvy
-	self.skills.akimbo[1].upgrades = { "player_sidearm_move_speed_multiplier" }
-	self.skills.akimbo[2].upgrades = { "player_sidearms_reload_primary" }
+	-- In a Rush
+	self.skills.akimbo[1].upgrades = { "player_empty_reload_move_speed_multiplier" }
+	self.skills.akimbo[2].upgrades = { "weapon_empty_reload_speed_multiplier" }
 	self.skills.akimbo.icon_xy = { 5, 10 }
+	self.skills.akimbo.name_id = "menu_in_a_rush"
+	self.skills.akimbo.desc_id = "menu_in_a_rush_desc"
 
-	-- Triggery Overdrive
+	-- Trigger Overdrive
 	self.skills.gun_fighter[1].upgrades = { "pistol_stacked_reload_bonus" }
 	self.skills.gun_fighter[2].upgrades = { "pistol_stacked_accuracy_bonus_1" }
 	self.skills.gun_fighter.icon_xy = { 0, 8 }
+	self.skills.gun_fighter.name_id = "menu_trigger_overdrive"
+	self.skills.gun_fighter.desc_id = "menu_trigger_overdrive_desc"
 
 	-- Deadeye
 	self.skills.expert_handling[1].upgrades = { "revolver_headshot_chain_instant_reload" }
 	self.skills.expert_handling[2].upgrades = { "revolver_headshot_chain_ammo_restore" }
 	self.skills.expert_handling.icon_xy = { 8, 12 }
+	self.skills.expert_handling.name_id = "menu_deadeye"
+	self.skills.expert_handling.desc_id = "menu_deadeye_desc"
 
 	-- Peacemaker's Lament
-	self.skills.trigger_happy[1].upgrades = { "temporary_sidearm_pullout_damage_multiplier" }
-	self.skills.trigger_happy[2].upgrades = { "temporary_sidearm_reload_damage_multiplier", "cooldown_sidearm_reload_damage_multiplier", "player_sidearm_ricochet_damage" }
+	self.skills.trigger_happy[1].upgrades = { "player_sidearm_magdump_damage_rampup" }
+	self.skills.trigger_happy[2].upgrades = { "player_sidearm_ricochet_damage" }
 	self.skills.trigger_happy.icon_xy = { 11, 11 }
+	self.skills.trigger_happy.name_id = "menu_peacemakers_lament"
+	self.skills.trigger_happy.desc_id = "menu_peacemakers_lament_desc"
 
 	-- Tough Guy
-	self.skills.nine_lives[1].upgrades = { "player_steelsight_when_downed" }
-	self.skills.nine_lives[2].upgrades = { "player_swap_weapon_when_downed" }
+	self.skills.nine_lives[1].upgrades = { "player_swap_weapon_when_downed" }
+	self.skills.nine_lives[2].upgrades = { "player_steelsight_when_downed" }
 	self.skills.nine_lives.icon_xy = { 1, 2 }
+	self.skills.nine_lives.name_id = "menu_tough_guy"
+	self.skills.nine_lives.desc_id = "menu_tough_guy_desc"
 
 	-- Quick Fix
 	self.skills.running_from_death[1].upgrades = { "first_aid_kit_movement_speed_upgrade" }
@@ -570,7 +582,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.wolverine.desc_id = "menu_berserker_desc"
 
 	-- Frenzy
-	self.skills.frenzy[1].upgrades = { "cooldown_melee_attack_frenzy", "temporary_frenzy_damage_reduction", "temporary_frenzy_no_armor_suppression" }
+	self.skills.frenzy[1].upgrades = { "cooldown_melee_attack_frenzy", "temporary_frenzy_damage_reduction", "temporary_frenzy_guaranteed_armor_regen" }
 	self.skills.frenzy[2].upgrades = { "player_cooldown_reset_frenzy" }
 
 	-- MISC STUFF --
@@ -796,7 +808,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 	-- Grinder
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier", "player_decreased_drama_hurt" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_decreased_drama_hurt" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
@@ -888,7 +900,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- Stoic
-	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier", "player_decreased_drama_hurt" }
+	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_decreased_drama_hurt" }
 	self.specializations[19][7].upgrades = { "player_emergency_throwable_regen_speed" }
 	self.specializations[19][7].texture_bundle_folder = "eclipse"
 	self.specializations[19][7].icon_xy = { 2, 10 }

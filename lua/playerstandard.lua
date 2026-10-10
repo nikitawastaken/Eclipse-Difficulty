@@ -189,6 +189,8 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 	local multiplier = managers.player:movement_speed_multiplier(speed_state, speed_state and morale_boost_bonus and morale_boost_bonus.move_speed_bonus, nil, self._ext_damage:health_ratio())
 	multiplier = multiplier * (self._tweak_data.movement.multiplier[speed_state] or 1)
 	local apply_weapon_penalty = true
+	local weap_unit = self._equipped_unit
+	local weap_base = weap_unit:base()
 
 	if self:_is_meleeing() then
 		local melee_entry = managers.blackmarket:equipped_melee_weapon()
@@ -212,10 +214,10 @@ function PlayerStandard:_get_max_walk_speed(t, force_run)
 		end
 	end
 
-	if managers.player:has_category_upgrade("player", "sidearm_move_speed_multiplier") and weap_base:is_category("revolver", "pistol") then
-		multiplier = multiplier * managers.player:upgrade_value("player", "sidearm_move_speed_multiplier", 1)
+	if managers.player:has_category_upgrade("player", "empty_reload_move_speed_multiplier") and weap_base and weap_base:clip_empty() and self:_is_reloading() then
+		multiplier = multiplier * managers.player:upgrade_value("player", "empty_reload_move_speed_multiplier", 1)
 	end
-
+	
 	if self._slowdown_mul then
 		multiplier = multiplier * self._slowdown_mul
 	end

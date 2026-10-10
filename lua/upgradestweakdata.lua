@@ -2268,21 +2268,32 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.can_autoreload = { true }
-	self.values.weapon.swap_speed_multiplier[1] = 1.25
+	self.values.weapon.swap_speed_multiplier[1] = 1.33
 	self.skill_descs.dance_instructor.multibasic = "25%"
-	self.skill_descs.dance_instructor.multipro = "25%"
+	self.skill_descs.dance_instructor.multipro = "33%"
 
-	-- Sidearm Savvy
-	self.values.player.sidearm_move_speed_multiplier = { 1.15 }
-	self.definitions.player_sidearm_move_speed_multiplier = {
-		name_id = "menu_player_sidearm_move_speed_multiplier",
+	-- In a Rush
+	self.values.player.empty_reload_move_speed_multiplier = { 1.2 }
+	self.definitions.player_empty_reload_move_speed_multiplier = {
+		name_id = "menu_player_empty_reload_move_speed_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "sidearm_move_speed_multiplier",
+			upgrade = "empty_reload_move_speed_multiplier",
 			category = "player",
 		},
 	}
+	self.values.weapon.empty_reload_speed_multiplier = { 1.2 }
+	self.definitions.weapon_empty_reload_speed_multiplier = {
+		name_id = "menu_weapon_empty_reload_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "empty_reload_speed_multiplier",
+			category = "weapon",
+		},
+	}
+	--[[
 	self.values.player.sidearms_reload_primary = {
 		{
 			kills = 3,
@@ -2298,9 +2309,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.akimbo.multibasic = "15%"
-	self.skill_descs.akimbo.multipro = "3"
-	self.skill_descs.akimbo.multipro2 = "3"
+	]]
+	self.skill_descs.akimbo.multibasic = "20%"
+	self.skill_descs.akimbo.multipro = "20%"
 
 	-- Trigger Overdrive
 	self.values.pistol.stacked_reload_bonus = {
@@ -2370,6 +2381,34 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro3 = "20%"
 
 	-- Peacemaker's Lament
+	self.values.player.sidearm_magdump_damage_rampup = { true }
+	self.definitions.player_sidearm_magdump_damage_rampup = {
+		name_id = "menu_player_sidearm_magdump_damage_rampup",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_magdump_damage_rampup",
+			category = "player",
+		},
+	}
+	self.values.player.sidearm_ricochet_damage = {
+		{
+			radius = 500,
+			times = 1,
+			damage_factor = 1,
+			shots_to_activate = 4
+		},
+	}
+	self.definitions.player_sidearm_ricochet_damage = {
+		name_id = "menu_player_sidearm_ricochet_damage",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_ricochet_damage",
+			category = "player",
+		},
+	}
+	--[[
 	self.values.temporary.sidearm_pullout_damage_multiplier = { { 1.5, 5 } }
 	self.definitions.temporary_sidearm_pullout_damage_multiplier = {
 		name_id = "menu_temporary_sidearm_pullout_damage_multiplier",
@@ -2400,28 +2439,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.values.player.sidearm_ricochet_damage = {
-		{
-			radius = 500,
-			times = 1,
-			damage_factor = 1,
-		},
-	}
-	self.definitions.player_sidearm_ricochet_damage = {
-		name_id = "menu_player_sidearm_ricochet_damage",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "sidearm_ricochet_damage",
-			category = "player",
-		},
-	}
-	self.skill_descs.trigger_happy.multibasic = "5"
+	]]
+	self.skill_descs.trigger_happy.multibasic = "100%"
 	self.skill_descs.trigger_happy.multibasic2 = "50%"
-	self.skill_descs.trigger_happy.multipro = "5"
-	self.skill_descs.trigger_happy.multipro2 = "100%"
-	self.skill_descs.trigger_happy.multipro3 = "5m"
-	self.skill_descs.trigger_happy.multipro4 = "10"
+	self.skill_descs.trigger_happy.multipro = "4th"
+	self.skill_descs.trigger_happy.multipro2 = "5m"
+	self.skill_descs.trigger_happy.multipro3 = "100%"
 
 	-- Tough Guy
 	self.definitions.player_swap_weapon_when_downed = {
@@ -2557,7 +2580,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.bloodthirst.multipro2 = "800%"
 
 	-- Pumping Iron
-	self.values.melee.faster_reswing = { 0.5 }
+	self.values.melee.faster_reswing = { 0.667 } -- omg six seven
 	self.definitions.melee_faster_reswing = {
 		name_id = "menu_melee_faster_reswing",
 		category = "feature",
@@ -2577,7 +2600,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.steroids.multibasic = "100%"
+	self.skill_descs.steroids.multibasic = "50%"
 
 	-- Counterstrike
 	self.values.cooldown.melee_dozer_knock = { { 1, 30 } }
@@ -2648,23 +2671,24 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.values.temporary.frenzy_damage_reduction = { { 0.8, 5 } }
+	self.values.frenzy_guaranteed_armor_regen_timer = 2
+	self.values.temporary.frenzy_guaranteed_armor_regen = { { true, 6 } }
+	self.definitions.temporary_frenzy_guaranteed_armor_regen = {
+		name_id = "menu_temporary_frenzy_guaranteed_armor_regen",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "frenzy_guaranteed_armor_regen",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.frenzy_damage_reduction = { { 0.75, 6 } }
 	self.definitions.temporary_frenzy_damage_reduction = {
 		name_id = "menu_temporary_frenzy_damage_reduction",
 		category = "temporary",
 		upgrade = {
 			value = 1,
 			upgrade = "frenzy_damage_reduction",
-			category = "temporary",
-		},
-	}
-	self.values.temporary.frenzy_no_armor_suppression = { { true, 5 } }
-	self.definitions.temporary_frenzy_no_armor_suppression = {
-		name_id = "menu_temporary_frenzy_no_armor_suppression",
-		category = "temporary",
-		upgrade = {
-			value = 1,
-			upgrade = "frenzy_no_armor_suppression",
 			category = "temporary",
 		},
 	}
@@ -2678,9 +2702,10 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.frenzy.multibasic = "20%"
-	self.skill_descs.frenzy.multibasic2 = "5"
-	self.skill_descs.frenzy.multibasic3 = "20"
+	self.skill_descs.frenzy.multibasic = "2"
+	self.skill_descs.frenzy.multibasic2 = "25%"
+	self.skill_descs.frenzy.multibasic3 = "6"
+	self.skill_descs.frenzy.multibasic4 = "20"
 
 	-- Perk Decks
 	-------------

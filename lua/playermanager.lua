@@ -60,7 +60,6 @@ end
 
 function PlayerManager:is_lament_ricochet_allowed()
 	return self:has_category_upgrade("player", "sidearm_ricochet_damage")
-		and self:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
 		and self:equipped_weapon_unit():base():is_category("revolver", "pistol")
 end
 
@@ -525,7 +524,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	local has_frenzy_cooldown_reset = self:has_category_upgrade("player", "cooldown_reset_frenzy")
 	if variant == "melee" and has_active_frenzy then
 		self:activate_temporary_upgrade("temporary", "frenzy_damage_reduction")
-		self:activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression")
+		self:activate_temporary_upgrade("temporary", "frenzy_guaranteed_armor_regen")
 
 		if has_frenzy_cooldown_reset then
 			self:reset_all_cooldown_upgrades()

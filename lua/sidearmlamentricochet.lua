@@ -5,10 +5,12 @@ local idstr_trail = Idstring("trail")
 local idstr_simulator_length = Idstring("simulator_length")
 local idstr_size = Idstring("size")
 local trail_length
+local hits = 0
 
 local civ_dmg_class = Network:is_server() and CivilianDamage or HuskCivilianDamage
 
 function SidearmLamentRicochet:on_weapon_fired(weapon_unit, result)
+	local upgrade_value = managers.player:upgrade_value("player", "sidearm_ricochet_damage")
 	if not alive(weapon_unit) or not weapon_unit:base():is_category("pistol", "revolver") or weapon_unit ~= managers.player:equipped_weapon_unit() or not result.hit_enemy then
 		return
 	end
@@ -22,11 +24,17 @@ function SidearmLamentRicochet:on_weapon_fired(weapon_unit, result)
 		return
 	end
 
+	if result.hit_enemy then
+		hits = hits + 1
+	end
+
+	if hits < upgrade_value.shots_to_activate then
+		return
+	end
 	-- if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
 	-- 	managers.player:deactivate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
 	-- end
 
-	local upgrade_value = managers.player:upgrade_value("player", "sidearm_ricochet_damage")
 	local sentry_mask = managers.slot:get_mask("sentry_gun")
 	local ally_mask = managers.slot:get_mask("all_criminals")
 	local enemy_mask = managers.slot:get_mask("enemies")
@@ -54,6 +62,8 @@ function SidearmLamentRicochet:on_weapon_fired(weapon_unit, result)
 	for _, hit in pairs(hit_enemies) do
 		self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, upgrade_value.times)
 	end
+
+	hits = 0
 end
 
 function SidearmLamentRicochet:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, times)
