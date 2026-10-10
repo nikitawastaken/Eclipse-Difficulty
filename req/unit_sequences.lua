@@ -278,6 +278,11 @@ local M = {
 	["units/payday2/characters/ene_gang_black_3/ene_gang_black_3"] = { name = "gang_black_3", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_4/ene_gang_black_4"] = { name = "gang_black_4", head = head_sequences.security },
 
+	["units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"] = { name = "gang_mexican_1", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"] = { name = "gang_mexican_2", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"] = { name = "gang_mexican_3", head = head_sequences.security },
+	["units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"] = { name = "gang_mexican_4", head = head_sequences.security },
+
 	["units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1"] = { name = "gang_russian_1", head = head_sequences.gangster_russian_b },
 	["units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2"] = { name = "gang_russian_2", head = head_sequences.gangster_russian_a },
 	["units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3"] = { name = "gang_russian_3", head = head_sequences.gangster_russian_c },

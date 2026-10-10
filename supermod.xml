@@ -1028,6 +1028,11 @@
 				<file :name="gang_black_heads_atlas_var2_df.texture" />
 				<file :name="gang_black_heads_atlas_var2_nm.texture" />
 
+				<file :name="gang_mexican_heads_atlas_var1_df.texture" />
+				<file :name="gang_mexican_heads_atlas_var1_nm.texture" />
+				<file :name="gang_mexican_heads_atlas_var2_df.texture" />
+				<file :name="gang_mexican_heads_atlas_var2_nm.texture" />
+				
 				<file :name="gang_russian_heads_atlas_var1_df.texture" />
 				<file :name="gang_russian_heads_atlas_var1_nm.texture" />
 				<file :name="gang_russian_heads_atlas_var2_df.texture" />
@@ -1183,6 +1188,22 @@
 				</group>
 			</group>
 
+			<group :name="ene_acc_gang_mexican_head/">
+				<xml  :name="ene_acc_gang_mexican_head.sequence_manager" />
+				<file :name="ene_acc_gang_mexican_head.cooked_physics" />
+				<file :name="ene_acc_gang_mexican_head.model" />
+				<file :name="ene_acc_gang_mexican_head.object" />
+				<file :name="ene_acc_gang_mexican_head.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_acc_gang_mexican_head_var1.material_config" />
+					<file :name="ene_acc_gang_mexican_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_gang_mexican_head_var2.material_config" />
+					<file :name="ene_acc_gang_mexican_head_var2_contour.material_config" />
+				</group>
+			</group>
+			
 			<group :name="ene_acc_gang_russian_head/">
 				<xml  :name="ene_acc_gang_russian_head.sequence_manager" />
 				<file :name="ene_acc_gang_russian_head.cooked_physics" />
@@ -1502,6 +1523,31 @@
 				<file :name="ene_gang_black_4_husk.unit" />
 			</group>
 
+			<group :name="ene_gang_mexican_1/">
+				<xml  :name="ene_gang_mexican_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_gang_mexican_1.material_config" />
+				<file :name="ene_gang_mexican_1_contour.material_config" />
+				<file :name="ene_gang_mexican_1.model" />
+				<file :name="ene_gang_mexican_1.object" />
+				<file :name="ene_gang_mexican_1.unit" />
+				<file :name="ene_gang_mexican_1_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_2/">
+				<file :name="ene_gang_mexican_2.unit" />
+				<file :name="ene_gang_mexican_2_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_3/">
+				<file :name="ene_gang_mexican_3.unit" />
+				<file :name="ene_gang_mexican_3_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_4/">
+				<file :name="ene_gang_mexican_4.unit" />
+				<file :name="ene_gang_mexican_4_husk.unit" />
+			</group>
+			
 			<group :name="ene_gang_russian_1/">
 				<xml  :name="ene_gang_russian_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_gang_russian_1.material_config" />
