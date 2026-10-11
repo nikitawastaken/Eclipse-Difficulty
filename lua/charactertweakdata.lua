@@ -1233,7 +1233,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_office_mex.steal_loot = true
 	self.fbi_office_mex.melee_weapon = "taser"
 	table.insert(self._enemy_list, "fbi_office_mex")
-	
+
 	self.gangster.calls_in = gang_allowed_to_call and true or false
 
 	self.triad.chatter = self.presets.enemy_chatter.gangster
