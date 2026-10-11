@@ -1,10 +1,4 @@
 ---@module Diamond Heist
-
--- TODO: investigate crashes that may be related to GenSec red guards
-do
-	return
-end
-
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local gensec_security = scripted_enemy.gensec_2

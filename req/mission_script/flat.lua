@@ -98,7 +98,7 @@ return {
 	-- force the heist to go loud upon masking up
 	[100809] = {
 		on_executed = {
-			{ id = 104853, delay = 15 },
+			{ id = 104853, delay = 25 },
 		},
 	},
 	-- force assault music upon masking up (like in PDTH)
