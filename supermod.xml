@@ -2657,13 +2657,100 @@
 			</group>
 		</group>
 
-		<!-- sosa hitboxes and footsteps -->
-		<group name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/" dyn_package="false">
-			<file :name="ene_drug_lord_boss.object"/>
-			<file :name="ene_drug_lord_boss.unit"/>
-			<file :name="ene_drug_lord_boss_husk.unit"/>
-		</group>
+		<group name="units/pd2_dlc_friend/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="bolivian_heads_atlas_df.texture" />
+				<file :name="bolivian_heads_atlas_nm.texture" />
+			</group>
 
+			<group :name="ene_acc_bolivian_head/">
+				<xml  :name="ene_acc_bolivian_head.sequence_manager" />
+				<file :name="ene_acc_bolivian_head.cooked_physics" />
+				<file :name="ene_acc_bolivian_head.material_config" />
+				<file :name="ene_acc_bolivian_head_contour.material_config" />
+				<file :name="ene_acc_bolivian_head.model" />
+				<file :name="ene_acc_bolivian_head.object" />
+				<file :name="ene_acc_bolivian_head.unit" />
+			</group>
+
+			<group :name="ene_bolivian_thug_outdoor_01/">
+				<xml  :name="ene_bolivian_thug_outdoor_01.sequence_manager" dyn_package="true" />
+				<file :name="ene_bolivian_thug_outdoor_01.material_config" />
+				<file :name="ene_bolivian_thug_outdoor_01_contour.material_config" />
+				<file :name="ene_bolivian_thug_outdoor_01.model" />
+				<file :name="ene_bolivian_thug_outdoor_01.object" />
+				<file :name="ene_bolivian_thug_outdoor_01.unit" />
+				<file :name="ene_bolivian_thug_outdoor_01_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_security_manager.material_config" />
+					<file :name="ene_security_manager_contour.material_config" />
+
+					<file :name="ene_mex_thug_outdoor_01.material_config" />
+					<file :name="ene_mex_thug_outdoor_01_contour.material_config" />
+
+					<file :name="ene_mex_thug_outdoor_02.material_config" />
+					<file :name="ene_mex_thug_outdoor_02_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_bolivian_thug_outdoor_02/">
+				<file :name="ene_bolivian_thug_outdoor_02.unit" />
+				<file :name="ene_bolivian_thug_outdoor_02_husk.unit" />
+			</group>
+
+			<group :name="ene_security_manager/">
+				<file :name="ene_security_manager.unit" />
+				<file :name="ene_security_manager_husk.unit" />
+			</group>
+		
+			<group :name="ene_thug_indoor_01/">
+				<xml  :name="ene_thug_indoor_01.sequence_manager" dyn_package="true" />
+				<file :name="ene_thug_indoor_01.material_config" />
+				<file :name="ene_thug_indoor_01_contour.material_config" />
+				<file :name="ene_thug_indoor_01.model" />
+				<file :name="ene_thug_indoor_01.object" />
+				<file :name="ene_thug_indoor_01.unit" />
+				<file :name="ene_thug_indoor_01_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_thug_indoor_02.material_config" />
+					<file :name="ene_thug_indoor_02_contour.material_config" />
+
+					<file :name="ene_mex_security_guard_1.material_config" />
+					<file :name="ene_mex_security_guard_1_contour.material_config" />
+
+					<file :name="ene_mex_security_guard_2.material_config" />
+					<file :name="ene_mex_security_guard_2_contour.material_config" />
+					
+					<file :name="ene_mex_security_guard_3.material_config" />
+					<file :name="ene_mex_security_guard_3_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_thug_indoor_02/">
+				<file :name="ene_thug_indoor_02.unit" />
+				<file :name="ene_thug_indoor_02_husk.unit" />
+			</group>
+
+			<group :name="ene_thug_indoor_03/">
+				<file :name="ene_thug_indoor_03.unit" />
+				<file :name="ene_thug_indoor_03_husk.unit" />
+			</group>
+
+			<group :name="ene_thug_indoor_04/">
+				<file :name="ene_thug_indoor_04.unit" />
+				<file :name="ene_thug_indoor_04_husk.unit" />
+			</group>
+			
+			<!-- sosa hitboxes and footsteps -->
+			<group :name="ene_drug_lord_boss/">
+				<file :name="ene_drug_lord_boss.object"/>
+				<file :name="ene_drug_lord_boss.unit"/>
+				<file :name="ene_drug_lord_boss_husk.unit"/>
+			</group>
+		</group>
+			
 		<group name="units/pd2_dlc_spa/vehicles/str_vehicle_car_police_new_york/" dyn_package="false">
 			<file :name="str_vehicle_car_police_new_york.material_config" />
 		</group>
@@ -3192,6 +3279,7 @@
 
 			<group :name="ene_murkywater_cop_1/">
 				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_cop_1.cooked_physics" />
 				<file :name="ene_murkywater_cop_1.material_config" />
 				<file :name="ene_murkywater_cop_1_contour.material_config" />
 				<file :name="ene_murkywater_cop_1.model" />
@@ -3476,6 +3564,18 @@
 				<file :name="ene_murkywater_secret_service.object" />
 				<file :name="ene_murkywater_secret_service.unit" />
 				<file :name="ene_murkywater_secret_service_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_mex/characters/" dyn_package="false" >
+			<group :name="ene_mex_security_guard_3/">
+				<file :name="ene_mex_security_guard_3.unit" />
+				<file :name="ene_mex_security_guard_3_husk.unit" />
+			</group>
+
+			<group :name="ene_mex_thug_outdoor_02/">
+				<file :name="ene_mex_thug_outdoor_02.unit" />
+				<file :name="ene_mex_thug_outdoor_02_husk.unit" />
 			</group>
 		</group>
 		
