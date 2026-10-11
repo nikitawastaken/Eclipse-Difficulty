@@ -218,7 +218,7 @@ Hooks:PostHook(PlayerTweakData, "_init_new_stances", "eclipse_init_new_stances",
 	self.stances.m249.steelsight.shoulders.translation = Vector3(-10.75, 6.6, 0.42)
 	self.stances.m249.steelsight.shoulders.rotation = Rotation(-0.108, 0.086001, -0.628)
 
-	self.stances.rpk.steelsight.shoulders.translation = Vector3(-10.745, -10.371, 4.81)
+	self.stances.rpk.steelsight.shoulders.translation = Vector3(-10.745, 0, 4.81)
 	self.stances.rpk.steelsight.shoulders.rotation = Rotation(-0.107988, 0.087, -0.628)
 
 	self.stances.mg42.steelsight.shoulders.translation = Vector3(-10.78, -2.15, -0.9)

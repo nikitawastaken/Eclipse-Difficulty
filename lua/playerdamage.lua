@@ -159,7 +159,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	-- Aimpunch
-	local has_active_injector = managers.player:has_activate_temporary_upgrade("temporary", "chico_injector")
+	local has_aimpunch_dampener = pm:has_activate_temporary_upgrade("temporary", "chico_injector") or pm:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier")
 	local is_in_steelsight = self._unit:movement():current_state()._state_data.in_full_steelsight
 	local shake_armor_multiplier = pm:body_armor_value("damage_shake")
 		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
@@ -168,7 +168,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
 
-	local shake_mul = math.clamp(attack_data.damage, 1, 10) * shake_armor_multiplier * (has_active_injector and 0.5 or 1)
+	local shake_mul = math.clamp(attack_data.damage, 1, 10) * shake_armor_multiplier * (has_aimpunch_dampener and 0.5 or 1)
 	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
@@ -181,7 +181,7 @@ function PlayerDamage:damage_bullet(attack_data)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
-	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_active_injector and 0 or 1)
+	local stamina_mul = math.clamp(attack_data.damage, 1, 10) * stamina_strip_armor_multiplier * stamina_strip_weapon_mul * (has_aimpunch_dampener and 0 or 1)
 	self._unit:movement():subtract_stamina(0.75 * stamina_mul)
 	self._unit:movement():_restart_stamina_regen_timer()
 
@@ -291,7 +291,9 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 
 			local pm = managers.player
 
-			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
+			if pm:has_activate_temporary_upgrade("temporary", "frenzy_guaranteed_armor_regen") then
+				self:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
+			end
 
 			-- Failsafe Protocol (remake it to use the cooldown system instead of temporary)
 			if pm:has_enabled_cooldown_upgrade("cooldown", "armor_break_invulnerable") then
@@ -916,11 +918,6 @@ end
 function PlayerDamage:armor_suppression_blocked()
 	-- Crook's ballistic vests block suppression
 	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
-		return true
-	end
-
-	-- Active frenzy blocks armor suppression
-	if managers.player:has_activate_temporary_upgrade("temporary", "frenzy_no_armor_suppression") then
 		return true
 	end
 
