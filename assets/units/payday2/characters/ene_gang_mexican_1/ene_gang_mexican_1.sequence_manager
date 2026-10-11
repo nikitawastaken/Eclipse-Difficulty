@@ -38,14 +38,17 @@
 		</filter>
 		
 		<sequence editable_state="true" name="'gang_mexican_1'" once="true" triggable="true">
+			<run_sequence 		name="'beanie_base'" />
+			
 			<run_sequence 		name="'random_arms_a'" />
 			<run_sequence 		name="'random_body_upper_a'" />
 			<run_sequence 		name="'random_body_lower_a'" />
 			<run_sequence 		name="'random_shoes_a'" />
+			
 			<run_sequence 		name="'random_shades_common'" />
 			<run_sequence 		name="'random_bandana_rare'" />
-			<run_sequence 		name="'random_beanie_common'" />
-			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_watch_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_mexican_2'" once="true" triggable="true">
@@ -53,39 +56,45 @@
 			<run_sequence 		name="'random_body_upper_b'" />
 			<run_sequence 		name="'random_body_lower_b'" />
 			<run_sequence 		name="'random_shoes_b'" />
-			<run_sequence 		name="'random_shades_rare'" />
+			
+			<run_sequence 		name="'random_shades_common'" />
 			<run_sequence 		name="'random_bandana_rare'" />
-			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_watch_common'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'gang_mexican_3'" once="true" triggable="true">
 			<run_sequence 		name="'body_upper_c'" />
-			<run_sequence 		name="'random_shoes_b'" />
+			
+			<run_sequence 		name="'random_shoes_a'" />
+			
 			<run_sequence 		name="'random_shades_common'" />
 			<run_sequence 		name="'random_bandana_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_watch_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_mexican_4'" once="true" triggable="true">
 			<run_sequence 		name="'random_arms_c'" />
 			<run_sequence 		name="'random_body_upper_c'" />
-			<run_sequence 		name="'random_body_lower_a'" />
-			<run_sequence 		name="'random_shoes_a'" />
+			<run_sequence 		name="'random_body_lower_c'" />
+			<run_sequence 		name="'random_shoes_b'" />
+			
 			<run_sequence 		name="'random_shades_common'" />
-			<run_sequence 		name="'random_beanie_common'" />
 			<run_sequence 		name="'random_bandana_rare'" />
-			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_watch_rare'" />
 		</sequence>
 	<!--BODY SEQUENCES -->
 	<!-- ARMS -->
 		<sequence editable_state="true" name="'random_arms_a'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('a','a','a','b','c')" />
+			<run_sequence 		name="'arms_'..pick('a','a','a','a','b','c')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_arms_b'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('b','b','b','a','c')" />
+			<run_sequence 		name="'arms_'..pick('b','b','b','b','a','c')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_arms_c'" triggable="true">
-			<run_sequence 		name="'arms_'..pick('c','c','c','a','b')" />
+			<run_sequence 		name="'arms_'..pick('c','c','c','c','a','b')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'arms_a'" once="true" triggable="true">
@@ -102,13 +111,13 @@
 		</sequence>
 	<!-- UPPER BODIES -->
 		<sequence editable_state="true" name="'random_body_upper_a'" triggable="true">
-			<run_sequence 		name="'body_upper_'..pick('a','a','a','b','d')" />
+			<run_sequence 		name="'body_upper_'..pick('a','a','a','a','b','d')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_body_upper_b'" triggable="true">
-			<run_sequence 		name="'body_upper_'..pick('b','b','b','a','d')" />
+			<run_sequence 		name="'body_upper_'..pick('b','b','b','b','a','d')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_body_upper_c'" triggable="true">
-			<run_sequence 		name="'body_upper_'..pick('d','d','d','a','b')" />
+			<run_sequence 		name="'body_upper_'..pick('d','d','d','d','a','b')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'body_upper_a'" once="true" triggable="true">	
@@ -143,13 +152,13 @@
 		</sequence>
 	<!-- LOWER BODIES -->
 		<sequence editable_state="true" name="'random_body_lower_a'" triggable="true">
-			<run_sequence 		name="'body_lower_'..pick('a','a','a','b','c')" />
+			<run_sequence 		name="'body_lower_'..pick('a','a','a','a','b','c')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_body_lower_b'" triggable="true">
-			<run_sequence 		name="'body_lower_'..pick('b','b','b','a','c')" />
+			<run_sequence 		name="'body_lower_'..pick('b','b','b','b','a','c')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_body_lower_c'" triggable="true">
-			<run_sequence 		name="'body_lower_'..pick('c','c','c','a','b')" />
+			<run_sequence 		name="'body_lower_'..pick('c','c','c','c','a','b')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'body_lower_a'" once="true" triggable="true">
@@ -213,10 +222,10 @@
 		</sequence>
 	<!--BEANIE SEQUENCES-->
 		<sequence editable_state="true" name="'random_beanie_common'" triggable="true">
-			<run_sequence 		name="'beanie_'..pick('base','base','base','none')" />
+			<run_sequence 		name="'beanie_'..pick('base','base','base','base','none')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_beanie_rare'" triggable="true">
-			<run_sequence 		name="'beanie_'..pick('none','none','none','base')" />
+			<run_sequence 		name="'beanie_'..pick('none','none','none','none','base')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'beanie_none'" once="true" triggable="true" />
@@ -241,10 +250,12 @@
 		</sequence>
 	<!--CIGARETTE SEQUENCES-->
 		<sequence editable_state="true" name="'random_cigarette_common'" triggable="true">
-			<run_sequence 		name="'cigarette_'..pick('base','base','none')" />
+			<run_sequence 		filter="'check_bandana'" name="'cigarette_'..pick('base','base','none','none','none','none')" />
+			<run_sequence 		filter="'check_no_bandana'" name="'cigarette_'..pick('base','base','none')" />
 		</sequence>
 		<sequence editable_state="true" name="'random_cigarette_rare'" triggable="true">
-			<run_sequence 		name="'cigarette_'..pick('none','none','base')" />
+			<run_sequence 		filter="'check_bandana'" name="'cigarette_'..pick('base','base','none','none','none','none','none','none')" />
+			<run_sequence 		filter="'check_no_bandana'" name="'cigarette_'..pick('none','none','base')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'cigarette_none'" once="true" triggable="true" />
@@ -256,6 +267,20 @@
 		</sequence>
 		<sequence editable_state="false" name="'kill_cigarette_smoke'" triggable="false">
 			<effect_spawner 	enabled="false" name="'cigarette_smoke'"/>
+		</sequence>
+	<!--WATCH SEQUENCES-->
+		<sequence editable_state="true" name="'random_watch_common'" triggable="true">
+			<run_sequence 		name="'watch_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_watch_rare'" triggable="true">
+			<run_sequence 		name="'watch_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'watch_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'watch_base'" once="true" triggable="true">
+			<set_variables 		has_watch="1" />
+			<object 			enabled="true" name="'g_watch'" />
+			<object 			enabled="true" name="'g_watch_lod1'" />
 		</sequence>
 	<!-- PACK SEQUENCES -->
 		<sequence editable_state="true" name="'random_pack'" triggable="true">
