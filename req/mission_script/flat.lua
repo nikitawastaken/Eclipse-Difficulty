@@ -95,6 +95,24 @@ return {
 			length_balance_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
+	-- force the heist to go loud upon masking up
+	[100809] = {
+		on_executed = {
+			{ id = 104853, delay = 15 },
+		},
+	},
+	-- force assault music upon masking up (like in PDTH)
+	[104892] = {
+		values = {
+			music_event = "music_heist_assault",
+		},
+	},
+	-- add police alreted hint upon enterning control for the first time
+	[104853] = {
+		values = {
+			blame = "police_alerted",
+		},
+	},
 	-- Add new reinforce
 	[100290] = { -- spawn_swat
 		reinforce = {
