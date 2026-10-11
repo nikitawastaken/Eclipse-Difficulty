@@ -4,6 +4,7 @@
 	<!--CUSTOM SEQUENCES START-->
 		<variables>
 			<has_sleeves			value="0" />
+			<has_shades				value="0" />
 			<has_watch				value="0" />
 			<has_cigarette			value="0" />
 		</variables>
@@ -14,7 +15,14 @@
 		<filter name="'check_sleeves'">
 			<check value="vars.has_sleeves == 1" />
 		</filter>
-		
+
+		<filter name="'check_no_shades'">
+			<check value="vars.has_shades == 0" />
+		</filter>
+		<filter name="'check_shades'">
+			<check value="vars.has_shades == 1" />
+		</filter>
+	
 		<filter name="'check_no_cigarette'">
 			<check value="vars.has_cigarette == 0" />
 		</filter>
@@ -35,6 +43,7 @@
 			<run_sequence 		name="'random_shoes_a'" />
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_2'" once="true" triggable="true">
@@ -43,6 +52,7 @@
 			<run_sequence 		name="'random_shoes_b'" />
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'gang_russian_3'" once="true" triggable="true">
@@ -51,6 +61,7 @@
 			<run_sequence 		name="'random_shoes_c'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_4'" once="true" triggable="true">
@@ -59,6 +70,7 @@
 			<run_sequence 		name="'random_shoes_a'" />
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_cigarette_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'gang_russian_5'" once="true" triggable="true">
@@ -67,6 +79,7 @@
 			<run_sequence 		name="'random_shoes_c'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 	<!--BODY SEQUENCES -->
 	<!-- UPPER BODIES -->
@@ -90,14 +103,13 @@
 
 			<object 			enabled="true" name="'g_body_upper_a'" />
 			<object 			enabled="true" name="'g_body_upper_a_lod1'" />
-			<run_sequence 		name="'random_neck'" />
 		</sequence>
 		<sequence editable_state="true" name="'body_upper_b'" once="true" triggable="true">
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />					
 			<object 			enabled="true" name="'g_body_upper_b'" />
 			<object 			enabled="true" name="'g_body_upper_b_lod1'" />
-			<run_sequence 		name="'random_neck'" />
+			
 			<run_sequence 		name="'random_watch'" />
 		</sequence>
 		<sequence editable_state="true" name="'body_upper_c'" once="true" triggable="true">
@@ -106,7 +118,6 @@
 			<object 			enabled="false" name="'g_body_lod1'" />					
 			<object 			enabled="true" name="'g_body_upper_c'" />
 			<object 			enabled="true" name="'g_body_upper_c_lod1'" />
-			<run_sequence 		name="'random_neck'" />
 		</sequence>
 		<sequence editable_state="true" name="'body_upper_d'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />			
@@ -130,23 +141,6 @@
 		<sequence editable_state="true" name="'body_lower_b'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_body_lower_b'" />
 			<object 			enabled="true" name="'g_body_lower_b_lod1'" />
-		</sequence>
-	<!-- NECKS -->
-		<sequence editable_state="true" name="'random_neck'" triggable="true">
-			<run_sequence 		name="'neck_'..pick('a','a','a','a','b','c')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'neck_a'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_neck_a'" />
-			<object 			enabled="true" name="'g_neck_a_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'neck_b'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_neck_b'" />
-			<object 			enabled="true" name="'g_neck_b_lod1'" />
-		</sequence>
-		<sequence editable_state="true" name="'neck_c'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_neck_c'" />
-			<object 			enabled="true" name="'g_neck_c_lod1'" />
 		</sequence>
 	<!-- GLOVES -->
 		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">
@@ -184,6 +178,35 @@
 		<sequence editable_state="true" name="'shoes_c'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_shoes_c'" />
 			<object 			enabled="true" name="'g_shoes_c_lod1'" />
+		</sequence>
+	<!--SHADES SEQUENCES-->
+		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shades_rare'" triggable="true">
+			<run_sequence 		name="'shades_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'shades_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
+			<run_sequence 		name="'shades_'..pick('a','b','c')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'shades_a'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_a'" />
+			<object 			enabled="true" name="'g_shades_a_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_a'" />
+		</sequence>
+		<sequence editable_state="true" name="'shades_b'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_b'" />
+			<object 			enabled="true" name="'g_shades_b_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_b'" />
+		</sequence>
+		<sequence editable_state="true" name="'shades_c'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades_c'" />
+			<object 			enabled="true" name="'g_shades_c_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_c'" />
 		</sequence>
 	<!--WATCH SEQUENCES-->
 		<sequence editable_state="true" name="'random_watch'" triggable="true">

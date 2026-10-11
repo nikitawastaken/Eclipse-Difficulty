@@ -16,11 +16,6 @@
 		<sequence editable_state="true" name="'security_penthouse'" once="true" triggable="true">		
 			<material_config 	name="'units/payday2/characters/ene_gang_mobster_1/vars/ene_male_security_penthouse_1'" synchronous="true" />
 		</sequence>
-
-		<sequence editable_state="true" name="'neck'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_neck'" />
-			<object 			enabled="true" name="'g_neck_lod1'" />
-		</sequence>
 	
 		<sequence editable_state="true" name="'headset'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_headset'" />
@@ -56,7 +51,6 @@
 			<object 			enabled="true" name="'g_undershirt_b_lod1'" />
 		</sequence>
 		<sequence editable_state="true" name="'undershirt_c'" once="true" triggable="true">
-			<run_sequence 		name="'neck'" />
 			<object 			enabled="true" name="'g_undershirt_c'" />
 			<object 			enabled="true" name="'g_undershirt_c_lod1'" />
 		</sequence>
