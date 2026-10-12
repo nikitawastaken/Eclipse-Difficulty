@@ -25,9 +25,14 @@ local is_gangster_allowed_to_call = table.list_to_set({
 	"chca",
 	"pent",
 })
+local is_civilian_not_allowed_to_call = table.list_to_set({
+	"flat",
+	"nmh",
+})
 local is_no_mercy = level_id == "nmh"
 local has_bellmead_response = bellmead_response_heists[level_id]
 local gang_allowed_to_call = is_gangster_allowed_to_call[level_id]
+local civ_not_allowed_to_call = is_civilian_not_allowed_to_call[level_id]
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
 -- if the value is a function, it calls the function with the data of the value name instead
@@ -1155,6 +1160,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	}
 
 	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
+	self.civilian.calls_in = not civ_not_allowed_to_call and true or false
 
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
