@@ -11,6 +11,7 @@ local weighted_selector = Eclipse.utils.weighted_selector
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 local bellmead_response_heists = table.list_to_set({
+	"ranc",
 	"corp",
 	"deep",
 })
