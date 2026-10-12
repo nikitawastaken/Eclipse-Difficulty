@@ -9,27 +9,27 @@
 			<param key="sky_texture" value="core/environments/skies/sky_2003_sunrise/sky_2003_sunrise_df"/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_2003_sunrise/sky_2003_sunrise"/>
-			<param key="sun_ray_color_scale" value="1"/>
+			<param key="sun_ray_color_scale" value="0.27325931191444"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.91372555494308 0.5137255191803 0.32549020648003"/>
-			<param key="global_texture" value="environments/cubemaps/cubemap_morning_hcm"/>
+			<param key="global_texture" value="units/payday2/cubemaps/cubemap_sky"/>
 		</others>
 		<post_effect>
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.25387871265411"/>
+						<param key="ambient_scale" value="0.65508759021759"/>
 						<param key="sky_bottom_color" value="0.10196079313755 0.11372549831867 0.14117647707462"/>
 						<param key="fog_start_color" value="0.91372555494308 0.5137255191803 0.32549020648003"/>
 						<param key="effect_light_scale" value="1"/>
 						<param key="fog_far_low_color" value="0.91372555494308 0.5137255191803 0.32549020648003"/>
 						<param key="ambient_falloff_scale" value="0.070000000298023"/>
-						<param key="sky_bottom_color_scale" value="2"/>
-						<param key="ambient_color_scale" value="0.10000000149012"/>
+						<param key="sky_bottom_color_scale" value="1.2000000476837"/>
+						<param key="ambient_color_scale" value="0.075000002980232"/>
 						<param key="ambient_color" value="0.49803924560547 0.54117649793625 0.58823531866074"/>
 						<param key="fog_max_range" value="95544.9140625"/>
 						<param key="bloom_threshold" value="0.55000001192093"/>
-						<param key="sky_top_color_scale" value="2"/>
+						<param key="sky_top_color_scale" value="1.2000000476837"/>
 						<param key="sky_top_color" value="0.10196079313755 0.11372549831867 0.14117647707462"/>
 						<param key="fog_min_range" value="-349.76287841797"/>
 						<param key="fog_max_density" value="1"/>

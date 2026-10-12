@@ -11,8 +11,8 @@
 			<param key="underlay" value="core/environments/skies/sky_0927_whispy_clouds/sky_0927_whispy_clouds"/>
 			<param key="sun_ray_color_scale" value="1.7061923742294"/>
 			<param key="global_world_overlay_texture" value=""/>
-			<param key="sun_ray_color" value="1 0.54117649793625 0.27450981736183"/>
-			<param key="global_texture" value="environments/cubemaps/cubemap_midday_hcm"/>
+			<param key="sun_ray_color" value="1 0.69019609689713 0.38823533058167"/>
+			<param key="global_texture" value="environments/cubemaps/cubemap_morning_lcm"/>
 		</others>
 		<post_effect>
 			<deferred>
@@ -49,9 +49,9 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
+				<fog>
+				</fog>
 			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,6 +61,10 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
+			<hdr_post_processor>
+				<default>
+				</default>
+			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>

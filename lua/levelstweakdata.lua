@@ -992,6 +992,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["arm_und_3"] = 4,
 		["arm_und_4"] = 3,
 		["arm_und_5"] = 2,
+		["arm_und_6"] = 1,
+		["arm_und_7"] = 2,
 		["default"] = 1,
 	}
 	self.arm_for.random_environments = {
@@ -1112,6 +1114,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["election_day_1_sunset"] = 2,
 		["election_day_1_sunset_alt"] = 1,
 		["election_day_1_sunset_alt_2"] = 1,
+	}
+	self.election_day_2.random_environments = {
+		["election_day_2_1"] = 1,
+		["election_day_2_2"] = 1,
 	}
 	self.election_day_3.random_environments = {
 		["breakingballot_01"] = 2,

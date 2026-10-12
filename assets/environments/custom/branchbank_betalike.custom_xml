@@ -12,7 +12,7 @@
 			<param key="sun_ray_color_scale" value="7"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="1 0.90196084976196 0.52156865596771"/>
-			<param key="global_texture" value="environments/cubemaps/cubemap_bank_01"/>
+			<param key="global_texture" value="environments/cubemaps/cubemap_suburbia_01"/>
 		</others>
 		<post_effect>
 			<deferred>
@@ -23,7 +23,7 @@
 						<param key="fog_start_color" value="0.85882359743118 0.96470594406128 0.96470594406128"/>
 						<param key="effect_light_scale" value="1"/>
 						<param key="fog_far_low_color" value="0.85882359743118 0.96470594406128 0.96470594406128"/>
-						<param key="ambient_falloff_scale" value="1"/>
+						<param key="ambient_falloff_scale" value="0.16599999368191"/>
 						<param key="sky_bottom_color_scale" value="6"/>
 						<param key="ambient_color_scale" value="0.30000001192093"/>
 						<param key="ambient_color" value="0.39215689897537 0.44313728809357 0.49411767721176"/>
@@ -49,9 +49,9 @@
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
+				<fog>
+				</fog>
 			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,6 +61,10 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
+			<hdr_post_processor>
+				<default>
+				</default>
+			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>
