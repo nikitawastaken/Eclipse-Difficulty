@@ -12,7 +12,7 @@
 			<param key="sun_ray_color_scale" value="7.0521864891052"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.74117648601532 0.65882354974747 0.45098042488098"/>
-			<param key="global_texture" value="units/payday2/cubemaps/cubemap_window_weak_df"/>
+			<param key="global_texture" value="environments/cubemaps/cubemap_hoxton_02"/>
 		</others>
 		<post_effect>
 			<deferred>
@@ -23,7 +23,7 @@
 						<param key="fog_start_color" value="0.14117647707462 0.19215688109398 0.20784315466881"/>
 						<param key="effect_light_scale" value="1"/>
 						<param key="fog_far_low_color" value="0.14117647707462 0.19215688109398 0.20784315466881"/>
-						<param key="ambient_falloff_scale" value="0"/>
+						<param key="ambient_falloff_scale" value="0.15"/>
 						<param key="sky_bottom_color_scale" value="0"/>
 						<param key="ambient_color_scale" value="0.15000000596046"/>
 						<param key="ambient_color" value="0.1843137294054 0.25098040699959 0.28235295414925"/>

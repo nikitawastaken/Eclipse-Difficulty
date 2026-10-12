@@ -3,11 +3,12 @@ return {
 	saturation_value = 0.4,
 	color_grading = { -- Randomized color gradings
 		"color_payday",
+		"color_bhd",
 		"color_nice",
 		"color_xxxgen",
 		"color_matrix_classic",
 		"color_bhd_classic",
-		"color_nice_classic",
+		"color_heat_classic",
 		"color_payday_classic",
 	},
 	environment_override = { -- File override

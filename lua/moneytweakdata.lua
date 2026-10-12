@@ -828,7 +828,7 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "mia" then
 		self.small_loot.money_bundle = (money_mul * 2500)
-		self.bag_values.coke = 34535
+		self.bag_values.coke = 84535
 		self.bag_values.money = 25600
 		self.bag_values.meth = 65600
 	end

@@ -14,8 +14,25 @@ local bellmead_response_heists = table.list_to_set({
 	"corp",
 	"deep",
 })
+local is_gangster_allowed_to_call = table.list_to_set({
+	"nightclub",
+	"friend",
+	"mex",
+	"mex_cooking",
+	"fex",
+	"chas",
+	"sand",
+	"chca",
+	"pent",
+})
+local is_civilian_not_allowed_to_call = table.list_to_set({
+	"flat",
+	"nmh",
+})
 local is_no_mercy = level_id == "nmh"
 local has_bellmead_response = bellmead_response_heists[level_id]
+local gang_allowed_to_call = is_gangster_allowed_to_call[level_id]
+local civ_not_allowed_to_call = is_civilian_not_allowed_to_call[level_id]
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
 -- if the value is a function, it calls the function with the data of the value name instead
@@ -1143,6 +1160,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	}
 
 	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
+	self.civilian.calls_in = not civ_not_allowed_to_call and true or false
 
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
@@ -1222,25 +1240,33 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_office_mex.melee_weapon = "taser"
 	table.insert(self._enemy_list, "fbi_office_mex")
 
+	self.gangster.calls_in = gang_allowed_to_call and true or false
+
 	self.triad.chatter = self.presets.enemy_chatter.gangster
+	self.triad.calls_in = self.gangster.calls_in
 
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
-	self.mobster.calls_in = true
+	self.mobster.calls_in = self.gangster.calls_in
 
 	self.biker.melee_weapon = "knife_1"
 	self.biker.chatter = self.presets.enemy_chatter.gangster
+	self.biker.calls_in = self.gangster.calls_in
 
 	self.biker_female.chatter = self.presets.enemy_chatter.gangster
+	self.biker_female.calls_in = self.gangster.calls_in
 
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
+	self.bolivian.calls_in = self.gangster.calls_in
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors.use_radio = "fri_dispatch_generic_message"
+	self.bolivian_indoors.calls_in = self.gangster.calls_in
 
 	self.bolivian_indoors_mex.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors_mex.use_radio = "fri_dispatch_generic_message"
+	self.bolivian_indoors_mex.calls_in = self.gangster.calls_in
 
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health

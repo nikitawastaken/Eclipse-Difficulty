@@ -21,7 +21,7 @@
 						<param key="ambient_scale" value="0.53799998760223"/>
 						<param key="sky_bottom_color" value="1 0.90980398654938 0.84313732385635"/>
 						<param key="fog_start_color" value="0.58431375026703 0.84313732385635 1"/>
-						<param key="effect_light_scale" value="1"/>
+						<param key="effect_light_scale" value="1.1499999761581"/>
 						<param key="fog_far_low_color" value="0.35686275362968 0.39215689897537 0.50980395078659"/>
 						<param key="ambient_falloff_scale" value="0.20000000298023"/>
 						<param key="sky_bottom_color_scale" value="0.10800000280142"/>
@@ -39,19 +39,19 @@
 			<shadow_processor>
 				<shadow_rendering>
 					<shadow_modifier>
-						<param key="slice3" value="20706 50000 0"/>
-						<param key="shadow_slice_depths" value="15236 3034 20707"/>
-						<param key="slice0" value="0 15236 0"/>
-						<param key="slice1" value="15102 3034 0"/>
-						<param key="slice2" value="2533 20707 0"/>
+						<param key="slice3" value="30706 50000 0"/>
+						<param key="shadow_slice_depths" value="4236 6034 30707"/>
+						<param key="slice0" value="0 4236 0"/>
+						<param key="slice1" value="4102 6034 0"/>
+						<param key="slice2" value="5533 30707 0"/>
 						<param key="shadow_slice_overlap" value="134 501 1"/>
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
 			<fog_processor>
-				<fog>
-				</fog>
 			</fog_processor>
+			<hdr_post_processor>
+			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
@@ -61,10 +61,6 @@
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
-			<hdr_post_processor>
-				<default>
-				</default>
-			</hdr_post_processor>
 		</post_effect>
 		<underlay_effect>
 			<sky>
