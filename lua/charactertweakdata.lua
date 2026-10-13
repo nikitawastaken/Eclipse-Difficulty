@@ -11,6 +11,7 @@ local weighted_selector = Eclipse.utils.weighted_selector
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 local bellmead_response_heists = table.list_to_set({
+	"ranc",
 	"corp",
 	"deep",
 })
@@ -1161,6 +1162,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
 	self.civilian.calls_in = not civ_not_allowed_to_call and true or false
+
+	self.civilian_female.calls_in = self.civilian.calls_in
 
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
