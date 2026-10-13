@@ -1,7 +1,7 @@
 Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
 	self._downs_to_restore = 0
 	self._is_custody_trade = false
-	self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
+	self._resource_trades_done = 0 -- put a cap on resource trades
 end)
 
 function TradeManager:reset_resource_trades_done()
@@ -405,14 +405,15 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 	end
 end
 
-function TradeManager:trade_restore_resources()
+function TradeManager:trade_restore_resources(resource_trades_done)
 	self._trading_hostage = nil
 	self._trade_in_progress = false
 	local unit = managers.player:player_unit()
 
+	self:increment_resource_trade()
+
 	if not unit then
 		-- Even if we're in cust we should still count the resource trade
-		self:increment_resource_trade()
 		return
 	end
 
@@ -422,6 +423,7 @@ function TradeManager:trade_restore_resources()
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
+	local resource_trades_done = resource_trades_done or self._resource_trades_done or 1
 
 	local damage_ext = unit:character_damage()
 
@@ -430,7 +432,7 @@ function TradeManager:trade_restore_resources()
 	end
 
 	if has_trading_health_upgrade and not (damage_ext:need_revive() or damage_ext:dead() or damage_ext:is_berserker()) then
-		unit:character_damage():restore_health_percentage(amount_of_health)
+		unit:character_damage():restore_health_percentage(amount_of_health[resource_trades_done])
 
 		unit:sound():play("pickup_ammo_health_boost", nil, true)
 	end
@@ -451,7 +453,7 @@ function TradeManager:trade_restore_resources()
 			end
 
 			for _, weapon in ipairs(available_selections) do
-				weapon.unit:base():add_ammo(amount_of_pickups, false)
+				weapon.unit:base():add_ammo(amount_of_pickups[resource_trades_done], false)
 				managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
 			end
 		end
@@ -459,7 +461,7 @@ function TradeManager:trade_restore_resources()
 
 	-- resource trading for assault delay upgrade
 	if has_trading_delay_upgrade then
-		managers.groupai:state():_resource_trade_delay_assault_task()
+		managers.groupai:state():_resource_trade_delay_assault_task(resource_trades_done)
 	end
 
 	if has_trading_delay_upgrade and not is_recon_over then
@@ -473,8 +475,6 @@ function TradeManager:trade_restore_resources()
 	if Network:is_server() then
 		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over, true)
 	end
-
-	self:increment_resource_trade()
 end
 
 function TradeManager:cleanup_fail()

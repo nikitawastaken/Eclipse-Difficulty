@@ -121,11 +121,11 @@ Hooks:PostHook(GroupAIStateBesiege, "_upd_recon_tasks", "eclipse__upd_recon_task
 end)
 
 -- Resource trading during recon
-function GroupAIStateBesiege:_resource_trade_delay_assault_task()
+function GroupAIStateBesiege:_resource_trade_delay_assault_task(resource_trades_done)
 	local assault_delay = managers.player:team_upgrade_value("player", "resource_trading_assault_delay", 0)
 	local assault_delay_balance_mul = self:_get_balancing_multiplier_players_only(tweak_data.upgrades.resource_trade_assault_delay_balance_multiplier)
 	if self._task_data.assault.next_dispatch_t then
-		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + assault_delay * assault_delay_balance_mul
+		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + assault_delay[resource_trades_done] * assault_delay_balance_mul
 	end
 end
 
