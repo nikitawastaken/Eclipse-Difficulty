@@ -56,13 +56,6 @@
 				<param type="int" min="0" max="4" />   <!-- resource trades done -->
 			</message>
 		</target>
-
-		<target mode="attach">
-			<message name="eclipse_sync_environment" delivery="ordered" receiver="connection" check="server_to_client">
-				<param type="string" />       <!-- environment_name -->
-				<param type="string" />       <!-- color_grading -->
-			</message>
-		</target>
 	</tweak>
 	<tweak version="2" name="settings/network" extension="network_settings">
 		<search>
