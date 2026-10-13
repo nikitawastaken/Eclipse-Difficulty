@@ -46,6 +46,7 @@ local optsGunfiretrigger = {
 	},
 	on_executed = {
 		{ id = 400006, delay = 8 },
+		{ id = 400024, delay = 0 },
 	},
 }
 local optsGunfireoperator = {
@@ -69,6 +70,9 @@ local optsGunfireoperator = {
 		400021,
 		400022,
 	},
+}
+local optsAlertAllEnemies = {
+	enabled = true,
 }
 
 M.elements = {
@@ -103,5 +107,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_alerttrigger(400022, "gunfire_trigger_18", Vector3(-1736, -3093, 575), Rotation(0, 0, 0), optsGunfiretrigger),
 
 	Eclipse.mission_elements.gen_operator(400023, "add_alert_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGunfireoperator),
+	
+	Eclipse.mission_elements.gen_missionscript(400024, "alert_all_guards", optsAlertAllEnemies),
 }
 return M

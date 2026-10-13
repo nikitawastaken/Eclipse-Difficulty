@@ -34,6 +34,14 @@ return {
 			{ id = 400023, delay = 0 },
 		},
 	},
+	-- alert Sosa's men when there are gunshots or explosions
+	[400024] = {
+		func = function()
+			for _, u_data in pairs(managers.enemy:all_enemies()) do
+				u_data.unit:movement():set_cool(false)
+			end
+		end,
+	},
 	-- FFO
 	[101103] = {
 		ponr = {
