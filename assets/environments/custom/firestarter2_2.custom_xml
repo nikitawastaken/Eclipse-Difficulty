@@ -12,25 +12,25 @@
 			<param key="sun_ray_color_scale" value="0"/>
 			<param key="global_world_overlay_texture" value=""/>
 			<param key="sun_ray_color" value="0.77254909276962 0.83137261867523 0.70980393886566"/>
-			<param key="global_texture" value="units/payday2/cubemaps/cubemap_zero_df"/>
+			<param key="global_texture" value="units/pd2_dlc_dah/environments/cubemaps/cubemap_night_sky"/>
 		</others>
 		<post_effect>
 			<deferred>
 				<deferred_lighting>
 					<apply_ambient>
-						<param key="ambient_scale" value="0.47954866290092"/>
-						<param key="sky_bottom_color" value="0.68627452850342 0.83921575546265 1"/>
+						<param key="ambient_scale" value="0.36167719960213"/>
+						<param key="sky_bottom_color" value="0 0.070588238537312 0.12549020349979"/>
 						<param key="fog_start_color" value="0.070588238537312 0.14901961386204 0.21568629145622"/>
 						<param key="effect_light_scale" value="1"/>
 						<param key="fog_far_low_color" value="0 0 0"/>
-						<param key="ambient_falloff_scale" value="0.47014576196671"/>
-						<param key="sky_bottom_color_scale" value="0.28208744525909"/>
+						<param key="ambient_falloff_scale" value="0.16599999368191"/>
+						<param key="sky_bottom_color_scale" value="1.0249999761581"/>
 						<param key="ambient_color_scale" value="0.1879999935627"/>
 						<param key="ambient_color" value="0.086274512112141 0.15686275064945 0.30588236451149"/>
 						<param key="fog_max_range" value="61118.94921875"/>
-						<param key="bloom_threshold" value="1"/>
-						<param key="sky_top_color_scale" value="0.094029150903225"/>
-						<param key="sky_top_color" value="0.27843138575554 0.60784316062927 0.84705889225006"/>
+						<param key="bloom_threshold" value="0"/>
+						<param key="sky_top_color_scale" value="0.68394815921783"/>
+						<param key="sky_top_color" value="0.14901961386204 0.14901961386204 0.14509804546833"/>
 						<param key="fog_min_range" value="93.088943481445"/>
 						<param key="fog_max_density" value="0.93088859319687"/>
 					</apply_ambient>
@@ -48,16 +48,12 @@
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
-			<fog_processor>
-			</fog_processor>
-			<hdr_post_processor>
-			</hdr_post_processor>
 			<bloom_combine_post_processor>
 				<bloom_combine>
 					<bloom_lense>
-						<param key="lense_intensity" value="0.15044663846493"/>
-						<param key="bloom_blur_size" value="2"/>
-						<param key="bloom_intensity" value="0.56417489051819"/>
+						<param key="lense_intensity" value="0.41999998688698"/>
+						<param key="bloom_blur_size" value="4"/>
+						<param key="bloom_intensity" value="0.75999999046326"/>
 					</bloom_lense>
 				</bloom_combine>
 			</bloom_combine_post_processor>
