@@ -1499,6 +1499,36 @@
 				<file :name="ene_murkywater_2_husk.unit" />
 			</group>
 
+			<group :name="ene_fbi_office_1/">
+				<xml  :name="ene_fbi_office_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_office_1.material_config" />
+				<file :name="ene_fbi_office_1_contour.material_config" />
+				<file :name="ene_fbi_office_1.model" />
+				<file :name="ene_fbi_office_1.object" />
+				<file :name="ene_fbi_office_1.unit" />
+				<file :name="ene_fbi_office_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_fbi_office_2.material_config" />
+					<file :name="ene_fbi_office_2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_fbi_office_2/">
+				<file :name="ene_fbi_office_2.unit" />
+				<file :name="ene_fbi_office_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_office_3/">
+				<file :name="ene_fbi_office_3.unit" />
+				<file :name="ene_fbi_office_3_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_office_4/">
+				<file :name="ene_fbi_office_4.unit" />
+				<file :name="ene_fbi_office_4_husk.unit" />
+			</group>
+		
 			<group :name="ene_gang_black_1/">
 				<xml  :name="ene_gang_black_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_gang_black_1.material_config" />

@@ -25,6 +25,7 @@ local M = {
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_bex_security_suit_01",
 	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
+	"units/payday2/characters/ene_fbi_office_1/vars/ene_fbi_office_2",
 	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
 	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
 	"units/payday2/characters/ene_swat_1/vars/ene_swat_hvh_1",
