@@ -79,10 +79,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_preferedremove(400004, "van_garden_preferedremove", optsPreferedRemove2),
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400005, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
-	
+
 	-- add custom alert
 	Eclipse.mission_elements.gen_aiglobalevent(400006, "friend_gang_alert", optsLoudAlert),
-	
+
 	Eclipse.mission_elements.gen_alerttrigger(400007, "gunfire_trigger_1", Vector3(3183, -3210, 623), Rotation(0, 0, 0), optsGunfiretrigger),
 	Eclipse.mission_elements.gen_alerttrigger(400008, "gunfire_trigger_2", Vector3(3183, -5403, 234), Rotation(0, 0, 0), optsGunfiretrigger),
 	Eclipse.mission_elements.gen_alerttrigger(400009, "gunfire_trigger_3", Vector3(3183, -333, 234), Rotation(0, 0, 0), optsGunfiretrigger),
@@ -101,8 +101,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_alerttrigger(400020, "gunfire_trigger_16", Vector3(-930, -4480, 91), Rotation(0, 0, 0), optsGunfiretrigger),
 	Eclipse.mission_elements.gen_alerttrigger(400021, "gunfire_trigger_17", Vector3(-1736, -3093, 91), Rotation(0, 0, 0), optsGunfiretrigger),
 	Eclipse.mission_elements.gen_alerttrigger(400022, "gunfire_trigger_18", Vector3(-1736, -3093, 575), Rotation(0, 0, 0), optsGunfiretrigger),
-	
-	
+
 	Eclipse.mission_elements.gen_operator(400023, "add_alert_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGunfireoperator),
 }
 return M
