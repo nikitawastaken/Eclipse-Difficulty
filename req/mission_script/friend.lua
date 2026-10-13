@@ -28,6 +28,13 @@ return {
 			{ 87, 90, 91, 92, 93, 94 },
 		},
 	},
+	-- add custom alert trigger
+	[100107] = {
+		on_executed = {
+			{ id = 400023, delay = 0 },
+		},
+	},
+	-- FFO
 	[101103] = {
 		ponr = {
 			length = 360,

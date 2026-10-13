@@ -17,7 +17,6 @@ local bellmead_response_heists = table.list_to_set({
 })
 local is_gangster_allowed_to_call = table.list_to_set({
 	"nightclub",
-	"friend",
 	"mex",
 	"mex_cooking",
 	"fex",
