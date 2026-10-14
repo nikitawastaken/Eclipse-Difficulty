@@ -61,6 +61,7 @@ M["levels/instances/unique/corp/corp_security_room/world/world"] = function(resu
 		if security_room[element.id] then
 			element.values.enemy = scripted_enemy.green_security_4
 		end
+	end
 end
 
 return M
