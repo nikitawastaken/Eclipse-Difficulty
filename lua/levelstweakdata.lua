@@ -683,6 +683,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.peta2.custom_package = us_army_package
 	self.vit.custom_package = us_army_package
 	table.insert(self.trai.custom_package, "packages/us_army")
+	
+	local green_security_package = { "packages/green_security" }
+	self.red2.custom_package = green_security_package
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
