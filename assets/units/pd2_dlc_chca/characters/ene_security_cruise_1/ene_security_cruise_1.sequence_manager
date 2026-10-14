@@ -22,8 +22,7 @@
 		<sequence editable_state="true" name="'security_cruise_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_security_cruise'" />
 			<object 			enabled="true" name="'g_gear_security_cruise_lod1'" />
-
-			<run_sequence 		name="'random_body'" />		
+			
 			<run_sequence 		name="'random_shades'" />
 			<run_sequence 		name="'random_bowtie'" />
 		</sequence>
@@ -35,8 +34,9 @@
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
 
-			<run_sequence 		name="'auc_security'" />		
-			<run_sequence 		name="'random_body'" />		
+			<run_sequence 		name="'auc_security'" />
+			
+			<run_sequence 		name="'gloves_base'" />			
 			<run_sequence 		name="'random_shades'" />
 			<run_sequence 		name="'random_tie'" />
 			<run_sequence 		name="'random_moustache'" />
