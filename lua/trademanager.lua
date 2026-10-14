@@ -401,7 +401,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		self._trade_in_progress = true
 		self._hostage_trade_clbk = nil
 		self:trade_restore_resources()
-		managers.network:session():send_to_peers("sync_trade_restore_resources")
+		managers.network:session():send_to_peers("sync_trade_restore_resources", self._resource_trades_done)
 	end
 end
 
@@ -409,15 +409,20 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 	self._trading_hostage = nil
 	self._trade_in_progress = false
 	local unit = managers.player:player_unit()
+	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 
 	self:increment_resource_trade()
+
+	-- resource trading for assault delay upgrade
+	if has_trading_delay_upgrade then
+		managers.groupai:state():_resource_trade_delay_assault_task(resource_trades_done)
+	end
 
 	if not unit then
 		-- Even if we're in cust we should still count the resource trade
 		return
 	end
 
-	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
 	local has_trading_health_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_health")
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
@@ -457,11 +462,6 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 				managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
 			end
 		end
-	end
-
-	-- resource trading for assault delay upgrade
-	if has_trading_delay_upgrade then
-		managers.groupai:state():_resource_trade_delay_assault_task(resource_trades_done)
 	end
 
 	if has_trading_delay_upgrade and not is_recon_over then
