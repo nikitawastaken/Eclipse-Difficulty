@@ -412,7 +412,7 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 
 	self:increment_resource_trade()
-	
+
 	local resource_trades_done = resource_trades_done or self._resource_trades_done or 1
 
 	-- resource trading for assault delay upgrade
