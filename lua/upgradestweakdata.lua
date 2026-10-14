@@ -790,7 +790,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Mastermind --
 
-	-- Company Soul
+	-- Aftercare
 	self.revive_health_multiplier[1] = 0.05
 	self.values.temporary.passive_revive_damage_reduction[1] = { 0.9, 5 }
 	self.definitions.player_action_revive_health_regen = {
@@ -802,11 +802,11 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.player.action_revive_health_regen = { 0.2 }
+	self.values.player.action_revive_health_regen = { 0.15 }
 	self.skill_descs.combat_medic.multibasic = "10%"
 	self.skill_descs.combat_medic.multibasic2 = "5"
 	self.skill_descs.combat_medic.multibasic3 = "5%"
-	self.skill_descs.combat_medic.multipro = "20%"
+	self.skill_descs.combat_medic.multipro = "15%"
 
 	-- Bandages
 	self.definitions.player_revive_health_boost_2 = {
