@@ -2543,7 +2543,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.berserker_movement_speed_multiplier = 0.6
 	self.skill_descs.perseverance.multibasic = "33%"
 	self.skill_descs.perseverance.multipro = "10"
-	self.skill_descs.perseverance.multipro2 = "40%"
+	self.skill_descs.perseverance.multipro2 = "60%"
 
 	-- Messiah
 	self.values.player.bleedout_damage_multiplier = { 2 }

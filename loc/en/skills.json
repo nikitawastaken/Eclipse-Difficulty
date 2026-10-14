@@ -167,7 +167,7 @@
 	"menu_uppers": "Uppers",
 	"menu_uppers_desc": "BASIC: ##$basic##\nUsing a First Aid Kit makes you regenerate ##$multibasic## health every ##$multibasic2## seconds for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro2## seconds.",
 	"menu_swan_song": "Swan Song",
-	"menu_swan_song_desc": "BASIC: ##$basic##\nYour bleedout timer duration is increased by ##$multibasic##.\n\nACE: ##$pro##\nInstead of being downed instantly, you gain the ability to keep on fighting for ##$multipro## seconds with a ##$multipro2## movement penalty.",
+	"menu_swan_song_desc": "BASIC: ##$basic##\nYour bleedout timer duration is increased by ##$multibasic##.\n\nACE: ##$pro##\nInstead of being downed instantly, you gain the ability to keep on fighting for ##$multipro## seconds with ##$multipro2## movement speed.",
 	"menu_messiah": "Messiah",
 	"menu_messiah_desc": "BASIC: ##$basic##\nWhile in bleedout or under the effect of Aced ##\"Swan Song\"## Skill, you deal ##$multibasic## more damage.\n\nACE: ##$pro##\nWhile in bleedout, you can revive yourself if you kill an enemy. You only have ##$multipro## charges during the heist.\n\nWhen self-revived, you will cause all enemies with a ##line of sight## on you to panic.",
 	"menu_bloodthirst": "Bloodthirst",
