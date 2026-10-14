@@ -686,10 +686,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	local green_security_package = { "packages/green_security" }
 	self.red2.custom_package = green_security_package
+	self.election_day_3.custom_package = green_security_package
+	self.election_day_3_skip1.custom_package = green_security_package
+	self.election_day_3_skip2.custom_package = green_security_package
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
 	self.arena.custom_package = gensec_tactical_security_package
+	self.election_day_1.custom_package = gensec_tactical_security_package
+	self.election_day_2.custom_package = gensec_tactical_security_package
 
 	local russian_mercs_package = { "packages/akan_mercs" }
 	self.pines.custom_package = russian_mercs_package

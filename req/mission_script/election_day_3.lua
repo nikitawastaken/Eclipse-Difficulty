@@ -57,6 +57,18 @@ local high_escape = {
 		[scripted_enemy.heavy_swat_2] = 3,
 	},
 }
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
+	},
+}
+local green_security_cam = {
+	enemy = scripted_enemy.green_security_4,
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -153,6 +165,25 @@ return {
 	[102792] = cloaker_spawn,
 	[103435] = cloaker_spawn,
 	[103437] = cloaker_spawn,
+	-- Replace regular security with green security
+	[103517] = green_security,
+	[103956] = green_security,
+	[103957] = green_security,
+	[103959] = green_security,
+	[102643] = green_security,
+	[102668] = green_security,
+	[102694] = green_security,
+	[102695] = green_security,
+	[103620] = green_security,
+	[103621] = green_security,
+	[103512] = green_security,
+	[100386] = green_security,
+	[104279] = green_security_cam,
+	[103540] = green_security,
+	[103553] = green_security,
+	[103626] = green_security,
+	[103630] = green_security,
+	[103640] = green_security,
 	-- Scripted Beat Cops
 	[103944] = outside_cop,
 	[102662] = outside_cop,
