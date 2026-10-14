@@ -212,9 +212,3 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		end
 	end
 end
-
-Hooks:PreHook(CopLogicTrade, "exit", "eclipse_coplogictrade_exit", function(data)
-	if data.internal_data._trade_enabled then
-		managers.trade:cleanup_fail()
-	end
-end)

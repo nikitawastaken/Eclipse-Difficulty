@@ -61,6 +61,28 @@ function TradeManager:is_trade_allowed(_)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
+	---Chat spam start
+	-- Change this to update the rate at which the debug messages are updated in chat
+	-- Note: If there is no change between the last check and next check it won't update anyways!
+	--[[ local delay_before_repeat = 4
+
+	Eclipse.log.chat_spam("is_trade_allowed1", string.format("No current trade: %s", not (self._trading_hostage or self._hostage_trade_clbk) and "pass" or "fail"), delay_before_repeat)
+	Eclipse.log.chat_spam("is_trade_allowed2", string.format("Waiting for first response trade delay: %s", has_first_response_trades_delay_passed and "done" or "in progress"), delay_before_repeat)
+	Eclipse.log.chat_spam("is_trade_allowed3", string.format("Is recon over: %s", is_recon_over and "waiting" or "done"), delay_before_repeat)
+	Eclipse.log.chat_spam(
+		"is_trade_allowed4",
+		string.format("Have downs to restore or no downs resource trade upgrade: %s", (self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and "pass" or "fail"),
+		delay_before_repeat
+	)
+	Eclipse.log.chat_spam(
+		"is_trade_allowed5",
+		string.format("Is first assault or has pre-first assault trade upgrade: %s", (not is_first_assault or has_trading_before_first_assault_upgrade) and "pass" or "fail"),
+		delay_before_repeat
+	)
+	Eclipse.log.chat_spam("is_trade_allowed6", string.format("Tradeable hostage exists: %s", managers.groupai:state():hostage_count() > 0 and "pass" or "fail"), delay_before_repeat)
+	Eclipse.log.chat_spam("is_trade_allowed7", string.format("Resource trade limit not maxed: %s", self._resource_trades_done < 3 and "pass" or "fail"), delay_before_repeat) ]]
+	---Chat spam end
+
 	return Network:is_server()
 		and not self._trading_hostage
 		and not self._hostage_trade_clbk
@@ -120,9 +142,9 @@ function TradeManager:update(t, dt)
 		self._hostage_remind_t = t + math.random(60, 120)
 	end
 
-	if self._is_custody_trade then
-		self._trade_counter_tick = self._trade_counter_tick - dt
+	self._trade_counter_tick = self._trade_counter_tick - dt
 
+	if self._is_custody_trade then
 		if self._trade_counter_tick <= 0 then
 			self._trade_counter_tick = self._trade_counter_tick + 1
 
@@ -181,6 +203,14 @@ function TradeManager:update(t, dt)
 			end
 		end
 	else
+		if self._trade_counter_tick <= 0 then
+			self._trade_counter_tick = self._trade_counter_tick + 1
+
+			if self._hostage_to_trade and not alive(self._hostage_to_trade.unit) then
+				self:cancel_trade()
+			end
+		end
+
 		self._pause_t = math.max(0, self._pause_t - dt)
 
 		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
@@ -193,23 +223,22 @@ function TradeManager:update(t, dt)
 			local respawn_t = self._t + math.rand(0.5, 1.25)
 			self._hostage_trade_clbk = "TradeManager"
 
-			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
+			-- Skip the megaphone event for resource trades
+			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 2), respawn_t)
 		end
 	end
 
 	-- If the assault is in progress, cancel trades
 	local wrong_phase = assault_phase and assault_phase ~= "control" and assault_phase ~= "anticipation"
 	if wrong_phase and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
-		self._hostage_to_trade.unit:brain():cancel_trade()
-
-		self._hostage_to_trade = nil
-		self._trade_in_progress = false
-		self._hostage_trade_clbk = nil
+		self:cancel_trade()
 	end
 end
 
 function TradeManager:clbk_begin_hostage_trade_dialog(i)
 	self._hostage_trade_clbk = nil
+
+	local char_sync_index = i
 
 	if i == 1 then
 		self._megaphone_sound_source = self:_get_megaphone_sound_source()
@@ -233,47 +262,26 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 		end
 
 		return
-	end
+	else
+		-- Do dialogs for custody trades only
+		if self._is_custody_trade then
+			local respawn_criminal = self:get_criminal_to_trade(false)
 
-	if self._is_custody_trade then
-		local respawn_criminal = self:get_criminal_to_trade(false)
-
-		if not respawn_criminal then
-			managers.groupai:state():check_gameover_conditions()
-
-			return
-		end
-
-		local char_sync_index = i
-		if i ~= 1 then
-			local ssuffix = managers.criminals:character_static_data_by_name(respawn_criminal.id).ssuffix
-
-			if ssuffix == "a" then
-				char_sync_index = 2
-			elseif ssuffix == "b" then
-				char_sync_index = 3
-			elseif ssuffix == "c" then
-				char_sync_index = 4
-			elseif ssuffix == "d" then
-				char_sync_index = 5
-			else
-				char_sync_index = 7
+			if not respawn_criminal then
+				managers.groupai:state():check_gameover_conditions()
+				return
 			end
 
+			local ssuffix = managers.criminals:character_static_data_by_name(respawn_criminal.id).ssuffix
+
+			char_sync_index = ssuffix == "a" and 2 or ssuffix == "b" and 3 or ssuffix == "c" and 4 or ssuffix == "d" and 5 or 7
+
 			self:sync_hostage_trade_dialog(char_sync_index)
-
-			local respawn_t = self._t + self.TRADE_DELAY
-			self._hostage_trade_clbk = "TradeManager"
-
-			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade"), respawn_t)
 		end
-	else
-		if i ~= 1 then
-			local respawn_t = self._t + self.TRADE_DELAY
-			self._hostage_trade_clbk = "TradeManager"
 
-			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade"), respawn_t)
-		end
+		local respawn_t = self._t + self.TRADE_DELAY
+		self._hostage_trade_clbk = "TradeManager"
+		managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade"), respawn_t)
 	end
 end
 
@@ -408,21 +416,13 @@ end
 function TradeManager:trade_restore_resources(resource_trades_done)
 	self._trading_hostage = nil
 	self._trade_in_progress = false
-	local unit = managers.player:player_unit()
-	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 
 	self:increment_resource_trade()
 
+	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 	local resource_trades_done = resource_trades_done or self._resource_trades_done or 1
-
-	-- resource trading for assault delay upgrade
 	if has_trading_delay_upgrade then
 		managers.groupai:state():_resource_trade_delay_assault_task(resource_trades_done)
-	end
-
-	if not unit then
-		-- Even if we're in cust we should still count the resource trade
-		return
 	end
 
 	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
@@ -431,6 +431,7 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 	local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
+	local unit = managers.player:player_unit()
 	local damage_ext = unit:character_damage()
 
 	for _, u_data in pairs(managers.groupai:state():all_player_criminals()) do
@@ -478,92 +479,53 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 	end
 end
 
-function TradeManager:cleanup_fail()
-	self._hostage_to_trade = nil
+-- TESTING nil hostage crash fix
+function TradeManager:cancel_trade()
+	if self._hostage_trade_clbk then
+		managers.enemy:remove_delayed_clbk(self._hostage_trade_clbk)
+
+		self._hostage_trade_clbk = nil
+	end
+
+	self:_increment_trade_index()
+
 	self._trading_hostage = nil
-	self._hostage_trade_clbk = nil
+
+	local criminal = self:get_criminal_to_trade(false)
+
+	if criminal then
+		self:_send_cancel_trade(criminal)
+	end
+
+	---Share ownership of self._hostage_to_trade in case its reference gets removed
+	---
+	---If the crash still happens then the instance is destroyed rather then the reference being lost...
+	local hostage_to_trade = self._hostage_to_trade
+	if hostage_to_trade then
+		if alive(hostage_to_trade.unit) and not hostage_to_trade.unit:character_damage():dead() then
+			hostage_to_trade.unit:brain():cancel_trade()
+		end
+
+		if hostage_to_trade.death_clbk_key then
+			hostage_to_trade.unit:character_damage():remove_listener(hostage_to_trade.death_clbk_key)
+		end
+
+		if hostage_to_trade.destroyed_clbk_key then
+			hostage_to_trade.unit:base():remove_destroy_listener(hostage_to_trade.destroyed_clbk_key)
+		end
+
+		self._hostage_to_trade = nil
+	end
+
+	managers.groupai:state():check_gameover_conditions()
+end
+
+function TradeManager:trade_complete()
+	self._trade_complete = true
+	self._trading_hostage = nil
+	if self._is_custody_trade then
+		self._hostage_to_trade = nil
+	end
 
 	self:end_stockholm_syndrome()
-end
-
--- TESTING nil hostage crash fix
-function TradeManager:cancel_trade()
-	if self._hostage_trade_clbk then
-		managers.enemy:remove_delayed_clbk(self._hostage_trade_clbk)
-
-		self._hostage_trade_clbk = nil
-	end
-
-	self:_increment_trade_index()
-
-	self._trading_hostage = nil
-
-	local criminal = self:get_criminal_to_trade(false)
-
-	if criminal then
-		self:_send_cancel_trade(criminal)
-	end
-
-	---Share ownership of self._hostage_to_trade in case its reference gets removed
-	---
-	---If the crash still happens then the instance is destroyed rather then the reference being lost...
-	local hostage_to_trade = self._hostage_to_trade
-	if hostage_to_trade then
-		if alive(hostage_to_trade.unit) and not hostage_to_trade.unit:character_damage():dead() then
-			hostage_to_trade.unit:brain():cancel_trade()
-		end
-
-		if hostage_to_trade.death_clbk_key then
-			hostage_to_trade.unit:character_damage():remove_listener(hostage_to_trade.death_clbk_key)
-		end
-
-		if hostage_to_trade.destroyed_clbk_key then
-			hostage_to_trade.unit:base():remove_destroy_listener(hostage_to_trade.destroyed_clbk_key)
-		end
-
-		self._hostage_to_trade = nil
-	end
-
-	managers.groupai:state():check_gameover_conditions()
-end
-
--- TESTING nil hostage crash fix
-function TradeManager:cancel_trade()
-	if self._hostage_trade_clbk then
-		managers.enemy:remove_delayed_clbk(self._hostage_trade_clbk)
-
-		self._hostage_trade_clbk = nil
-	end
-
-	self:_increment_trade_index()
-
-	self._trading_hostage = nil
-
-	local criminal = self:get_criminal_to_trade(false)
-
-	if criminal then
-		self:_send_cancel_trade(criminal)
-	end
-
-	---Share ownership of self._hostage_to_trade in case its reference gets removed
-	---
-	---If the crash still happens then the instance is destroyed rather then the reference being lost...
-	local hostage_to_trade = self._hostage_to_trade
-	if hostage_to_trade then
-		if alive(hostage_to_trade.unit) and not hostage_to_trade.unit:character_damage():dead() then
-			hostage_to_trade.unit:brain():cancel_trade()
-		end
-
-		if hostage_to_trade.death_clbk_key then
-			hostage_to_trade.unit:character_damage():remove_listener(hostage_to_trade.death_clbk_key)
-		end
-
-		if hostage_to_trade.destroyed_clbk_key then
-			hostage_to_trade.unit:base():remove_destroy_listener(hostage_to_trade.destroyed_clbk_key)
-		end
-
-		self._hostage_to_trade = nil
-	end
-
-	managers.groupai:state():check_gameover_conditions()
 end
