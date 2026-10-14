@@ -668,6 +668,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex.custom_package = {}
 	self.dinner.custom_package = {}
 	self.trai.custom_package = {}
+	self.corp.custom_package = {}
 
 	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
 	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
@@ -689,6 +690,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.election_day_3.custom_package = green_security_package
 	self.election_day_3_skip1.custom_package = green_security_package
 	self.election_day_3_skip2.custom_package = green_security_package
+	table.insert(self.corp.custom_package, "packages/green_security")
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	self.dah.custom_package = gensec_tactical_security_package
@@ -733,7 +735,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	local bellmead_security_package = { "packages/bellmead_security" }
 	self.ranc.custom_package = bellmead_security_package
-	self.corp.custom_package = bellmead_security_package
+	table.insert(self.corp.custom_package, "packages/bellmead_security")
 
 	local additive_weight_value = 1
 	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
