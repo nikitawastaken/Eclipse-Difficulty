@@ -11,12 +11,12 @@ function ConnectionNetworkHandler:sync_assault_ponr(sender)
 	end
 end
 
-function ConnectionNetworkHandler:sync_trade_restore_resources(sender)
+function ConnectionNetworkHandler:sync_trade_restore_resources(resource_trades_done, sender)
 	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame_playing) or not alive(managers.player:player_unit()) then
 		return
 	end
 
-	managers.trade:trade_restore_resources()
+	managers.trade:trade_restore_resources(resource_trades_done)
 end
 
 function ConnectionNetworkHandler:sync_damage_reduction_from_crewmate(sender)

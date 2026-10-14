@@ -34,6 +34,47 @@ local optsinstance_bag_requirment = {
 	},
 }
 
+local optsLoudAlert = {
+	AI_event = "police_called",
+	blame = "csgo_gunfire",
+}
+local optsGunfiretrigger = {
+	filter = "1073741823", -- copied from Big Oil Day 1
+	alert_types = {
+		"bullet",
+		"explosion",
+	},
+	on_executed = {
+		{ id = 400006, delay = 8 },
+		{ id = 400024, delay = 0 },
+	},
+}
+local optsGunfireoperator = {
+	enabled = true,
+	elements = {
+		400007,
+		400008,
+		400009,
+		400010,
+		400011,
+		400011,
+		400012,
+		400013,
+		400014,
+		400015,
+		400016,
+		400017,
+		400018,
+		400019,
+		400020,
+		400021,
+		400022,
+	},
+}
+local optsAlertAllEnemies = {
+	enabled = true,
+}
+
 M.elements = {
 	-- Prefereds
 	Eclipse.mission_elements.gen_preferedadd(400001, "van_garden_preferedadd", optsPreferedAdd1),
@@ -42,5 +83,31 @@ M.elements = {
 	Eclipse.mission_elements.gen_preferedremove(400004, "van_garden_preferedremove", optsPreferedRemove2),
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400005, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+
+	-- add custom alert
+	Eclipse.mission_elements.gen_aiglobalevent(400006, "friend_gang_alert", optsLoudAlert),
+
+	Eclipse.mission_elements.gen_alerttrigger(400007, "gunfire_trigger_1", Vector3(3183, -3210, 623), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400008, "gunfire_trigger_2", Vector3(3183, -5403, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400009, "gunfire_trigger_3", Vector3(3183, -333, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400010, "gunfire_trigger_4", Vector3(3183, 1525, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400011, "gunfire_trigger_5", Vector3(1252, 1525, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400012, "gunfire_trigger_6", Vector3(-1803, 1525, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400013, "gunfire_trigger_7", Vector3(-3602, -478, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400014, "gunfire_trigger_8", Vector3(-3602, -2277, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400013, "gunfire_trigger_9", Vector3(-5938, -2277, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400014, "gunfire_trigger_10", Vector3(-1902, -5312, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400015, "gunfire_trigger_11", Vector3(844, 5571, 234), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400016, "gunfire_trigger_12", Vector3(5991, -3121, -150), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400017, "gunfire_trigger_13", Vector3(-930, -2864, 294), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400018, "gunfire_trigger_14", Vector3(-930, -1079, 294), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400019, "gunfire_trigger_15", Vector3(-930, -3956, 91), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400020, "gunfire_trigger_16", Vector3(-930, -4480, 91), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400021, "gunfire_trigger_17", Vector3(-1736, -3093, 91), Rotation(0, 0, 0), optsGunfiretrigger),
+	Eclipse.mission_elements.gen_alerttrigger(400022, "gunfire_trigger_18", Vector3(-1736, -3093, 575), Rotation(0, 0, 0), optsGunfiretrigger),
+
+	Eclipse.mission_elements.gen_operator(400023, "add_alert_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGunfireoperator),
+
+	Eclipse.mission_elements.gen_missionscript(400024, "alert_all_guards", optsAlertAllEnemies),
 }
 return M

@@ -631,6 +631,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	local multiplier = 1
 	local categories = self:categories()
 	local weapon_tweak = self:weapon_tweak_data()
+	local has_double_drop_dmg_mul = managers.player:has_activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
 
 	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
 	self._hit_through_wall = self._hit_through_wall or hit.unit:in_slot(self.wall_mask)
@@ -651,7 +652,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 				return 0
 			end
 
-			multiplier = multiplier * (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1)
+			multiplier = (has_double_drop_dmg_mul and multiplier) or (multiplier * (self._penetration_data.enemy.damage_mul or 1) ^ math.max(0, self._enemy_penetrations - 1))
 		end
 	end
 
@@ -659,7 +660,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		self._wall_penetrations = (self._wall_penetrations or 0) + 1
 
 		if self._penetration_data.wall then
-			multiplier = multiplier * (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1)
+			multiplier = (has_double_drop_dmg_mul and multiplier) or (multiplier * (self._penetration_data.wall.damage_mul or 1) ^ math.max(0, self._wall_penetrations - 1))
 		end
 	end
 
@@ -667,7 +668,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 		self._shield_penetrations = (self._shield_penetrations or 0) + 1
 
 		if self._penetration_data.shield then
-			multiplier = multiplier * (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1)
+			multiplier = (has_double_drop_dmg_mul and multiplier) or (multiplier * (self._penetration_data.shield.damage_mul or 1) ^ math.max(0, self._shield_penetrations - 1))
 		end
 	end
 

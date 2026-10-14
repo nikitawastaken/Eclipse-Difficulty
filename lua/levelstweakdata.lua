@@ -1014,6 +1014,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["firestarter2_1"] = 2,
 		["firestarter2_2"] = 1,
 		["firestarter2_3"] = 2,
+		["firestarter2_4"] = 2,
+		["firestarter2_5"] = 1,
 	}
 	self.firestarter_3.random_environments = {
 		["firestarter3_1"] = 3,
@@ -1043,8 +1045,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.friend.random_environments = {
 		["scarface_1"] = 4,
-		["default"] = 2,
+		["default"] = 1,
 		["scarface_2"] = 2,
+		["scarface_3"] = 2,
 	}
 	self.nail.random_environments = {
 		["lab_rats_01"] = 3,
@@ -1117,7 +1120,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.election_day_2.random_environments = {
 		["election_day_2_1"] = 1,
-		["election_day_2_2"] = 1,
 	}
 	self.election_day_3.random_environments = {
 		["breakingballot_01"] = 2,
@@ -1138,6 +1140,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["shadowraid_01"] = 3,
 		["shadowraid_02"] = 2,
 		["shadowraid_03"] = 1,
+		["shadowraid_04"] = 3,
+		["shadowraid_05"] = 2,
 	}
 	self.welcome_to_the_jungle_1.random_environments = {
 		["big_oil_1_2"] = 3,

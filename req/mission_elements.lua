@@ -193,6 +193,33 @@ function M.gen_aiglobalevent(id, name, opts)
 	return aiglobalevent
 end
 
+---Generate an ai global event element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_alerttrigger(id, name, pos, rot, opts)
+	opts = opts or {}
+	local alerttrigger = {
+		id = id,
+		editor_name = name,
+		class = "ElementAlertTrigger",
+		values = {
+			on_executed = opts.on_executed or {},
+			alert_types = opts.alert_types or {},
+			trigger_times = 1,
+			base_delay = 0,
+			execute_on_startup = false,
+			enabled = true,
+			position = pos,
+			rotation = rot,
+			filter = opts.filter or "0",
+			callback = opts.callback or false,
+		},
+	}
+
+	return alerttrigger
+end
+
 ---Generate fake assault state element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference

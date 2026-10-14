@@ -1,7 +1,6 @@
 return {
 	flashlights_on = false, -- Flashlights
 	color_grading = { -- Randomized color gradings
-		"color_heat",
 		"color_nice",
 		"color_bhd",
 		"color_xgen",

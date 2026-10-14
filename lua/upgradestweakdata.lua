@@ -790,7 +790,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Mastermind --
 
-	-- Company Soul
+	-- Aftercare
 	self.revive_health_multiplier[1] = 0.05
 	self.values.temporary.passive_revive_damage_reduction[1] = { 0.9, 5 }
 	self.definitions.player_action_revive_health_regen = {
@@ -802,11 +802,11 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.player.action_revive_health_regen = { 0.2 }
+	self.values.player.action_revive_health_regen = { 0.15 }
 	self.skill_descs.combat_medic.multibasic = "10%"
 	self.skill_descs.combat_medic.multibasic2 = "5"
 	self.skill_descs.combat_medic.multibasic3 = "5%"
-	self.skill_descs.combat_medic.multipro = "20%"
+	self.skill_descs.combat_medic.multipro = "15%"
 
 	-- Bandages
 	self.definitions.player_revive_health_boost_2 = {
@@ -2720,7 +2720,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_health = { 0.2 }
+	self.values.team.player.resource_trading_health = { { 0.15, 0.2, 0.25 } }
 	self.definitions.player_civilian_hostage_speed_bonus = {
 		category = "feature",
 		name_id = "menu_player_civilian_hostage_speed_bonus",
@@ -2751,7 +2751,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_ammo = { 4 }
+	self.values.team.player.resource_trading_ammo = { { 3, 4, 5 } }
 	self.values.team.health.hostage_multiplier[1] = 1.05
 	self.definitions.team_resource_trading_assault_delay = {
 		category = "team",
@@ -2762,7 +2762,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_assault_delay = { 10 }
+	self.values.team.player.resource_trading_assault_delay = { { 5, 10, 15 } }
 	self.resource_trade_assault_delay_balance_multiplier = { 2, 1, 1, 1 }
 	self.values.team.player.resource_trading_no_downs = { true }
 	self.definitions.team_resource_trading_no_downs = {
@@ -2784,15 +2784,30 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.specialization_descs[1][1].multiperk = "20%"
+	self.specialization_descs[1][1].multiperk = "15%"
+	self.specialization_descs[1][1].multiperk2 = "20%"
+	self.specialization_descs[1][1].multiperk3 = "25%"
+	self.specialization_descs[1][1].multiperk4 = "1st"
+	self.specialization_descs[1][1].multiperk5 = "2nd"
+	self.specialization_descs[1][1].multiperk6 = "3rd"
 	self.specialization_descs[1][3].multiperk = "2"
 	self.specialization_descs[1][3].multiperk2 = "50%"
 	self.specialization_descs[1][3].multiperk3 = "50%"
-	self.specialization_descs[1][5].multiperk = "4"
+	self.specialization_descs[1][5].multiperk = "3"
+	self.specialization_descs[1][5].multiperk2 = "4"
+	self.specialization_descs[1][5].multiperk3 = "5"
+	self.specialization_descs[1][5].multiperk4 = "1st"
+	self.specialization_descs[1][5].multiperk5 = "2nd"
+	self.specialization_descs[1][5].multiperk6 = "3rd"
 	self.specialization_descs[1][7].multiperk = "5%"
 	self.specialization_descs[1][7].multiperk2 = "4"
-	self.specialization_descs[1][9].multiperk = "10"
-	self.specialization_descs[1][9].multiperk2 = "doubled"
+	self.specialization_descs[1][9].multiperk = "5"
+	self.specialization_descs[1][9].multiperk2 = "10"
+	self.specialization_descs[1][9].multiperk3 = "15"
+	self.specialization_descs[1][9].multiperk4 = "1st"
+	self.specialization_descs[1][9].multiperk5 = "2nd"
+	self.specialization_descs[1][9].multiperk6 = "3rd"
+	self.specialization_descs[1][9].multiperk7 = "doubled"
 
 	-- Muscle (uses same extra hp upgrade as grinder)
 	self.values.player.uncover_multiplier[1] = 1.25
