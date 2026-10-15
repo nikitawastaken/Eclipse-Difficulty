@@ -2706,6 +2706,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.frenzy.multibasic2 = "25%"
 	self.skill_descs.frenzy.multibasic3 = "6"
 	self.skill_descs.frenzy.multibasic4 = "20"
+	self.skill_descs.frenzy.multipro = "20"
 
 	-- Perk Decks
 	-------------
