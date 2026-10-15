@@ -786,8 +786,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.gallery.random_environments = {
-		["framingframe1_01"] = 2,
-		["framingframe1_02"] = 3,
+		["framingframe1_01"] = 1,
+		["framingframe1_02"] = 2,
+		["framingframe1_03"] = 3,
+		["framingframe1_04"] = 2,
 		["default"] = 1,
 	}
 	self.framing_frame_1.random_environments = {
@@ -908,10 +910,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.born.random_environments = {
 		["bikerheist_1_01"] = 3,
 		["bikerheist_1_02"] = 2,
+		["bikerheist_1_03"] = 3,
+		["bikerheist_1_04"] = 2,
 		["default"] = 1,
 	}
 	self.chew.random_environments = {
-		["bikerheist_2_01"] = 3,
+		["bikerheist_2_01"] = 1,
+		["bikerheist_2_02"] = 1,
 	}
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
@@ -1077,7 +1082,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["horrorhouse_05"] = 2,
 	}
 	self.pbr2.random_environments = {
-		["birth_of_sky"] = 69,
+		["birth_of_sky"] = 1,
+		["birth_of_sky_2"] = 1,
 	}
 	self.roberts.random_environments = {
 		["roberts_1"] = 2,
