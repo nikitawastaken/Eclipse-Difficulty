@@ -278,6 +278,11 @@ local M = {
 	["units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"] = { name = "fbi_office_1", head = head_sequences.security },
 	["units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"] = { name = "fbi_office_1", head = head_sequences.security },
 
+	["units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"] = { name = "fbi_female_1", head = head_sequences.security },
+
 	["units/payday2/characters/ene_gang_black_1/ene_gang_black_1"] = { name = "gang_black_1", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_2/ene_gang_black_2"] = { name = "gang_black_2", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_3/ene_gang_black_3"] = { name = "gang_black_3", head = head_sequences.security },
