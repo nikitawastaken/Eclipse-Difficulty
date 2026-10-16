@@ -1223,11 +1223,21 @@ Hooks:Add("MenuManagerInitialize", "EclipseTipsViewerMenuManagerPostInit", funct
 		end
 	end
 end)
-
+-- New menu buttons
 Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildCustomMenus", function(self, nodes)
 	nodes["EclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
 	MenuHelper:AddMenuItem(nodes["main"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
 	MenuHelper:AddMenuItem(nodes["lobby"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
+	
+	-- Show up Career mode button for clients too
+	local lobby_nodes = nodes.lobby
+	for index, item in pairs(lobby_nodes._items) do
+		if item._parameters.name == "story_missions" then
+			table.remove(lobby_nodes._items, index)
+			break
+		end
+	end
+	MenuHelper:AddMenuItem(nodes["lobby"], "story_missions", "menu_story_missions", "menu_story_missions_help", "inventory", "before")
 end)
 
 Hooks:Add("MenuManagerPopulateCustomMenus", "EclipseTipsViewerMenuManagerPostPopulateCustomMenus", function(self, nodes)
