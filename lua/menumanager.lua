@@ -1228,7 +1228,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildC
 	nodes["EclipseTipsViewerMenu"] = MenuHelper:BuildMenu("EclipseTipsViewerMenu", { focus_changed_callback = "EclipseTipsViewerFocus" })
 	MenuHelper:AddMenuItem(nodes["main"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
 	MenuHelper:AddMenuItem(nodes["lobby"], "EclipseTipsViewerMenu", "menu_eclipse_tips_title", "menu_eclipse_tips_desc", "inventory", "after")
-	
+
 	-- Show up Career mode button for clients too
 	local lobby_nodes = nodes.lobby
 	for index, item in pairs(lobby_nodes._items) do
