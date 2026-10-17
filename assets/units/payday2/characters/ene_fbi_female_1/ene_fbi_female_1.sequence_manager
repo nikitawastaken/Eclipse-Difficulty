@@ -57,7 +57,7 @@
 		</sequence>
 	<!--BADGE SEQUENCES -->
 		<sequence editable_state="true" name="'random_badge'" triggable="true">
-			<run_sequence 		name="'badge_'..pick('a','a','c','d')" />
+			<run_sequence 		name="'badge_'..pick('a','b','c','d')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'badge_a'" once="true" triggable="true">
