@@ -20,11 +20,13 @@ local defend_so = {
 		end)
 	end,
 }
+local agent_griffin = "units/payday2/characters/ene_fbi_boss_female_1/ene_fbi_boss_female_1"
 local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
 	Idstring("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"),
 	Idstring("units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"),
+	Idstring("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"),
 	Idstring("units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"),
 	Idstring("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"),
 	Idstring("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"),
@@ -288,6 +290,7 @@ return {
 		},
 	},
 	[101207] = {
+		enemy = agent_griffin,
 		values = {
 			participate_to_group_ai = false,
 		},

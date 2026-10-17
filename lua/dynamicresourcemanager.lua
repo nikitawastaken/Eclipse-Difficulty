@@ -75,6 +75,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1", dlc1_needed, false)
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2", dlc1_needed, false)
 
+	local fbi_boss_needed = PackageManager:has(IDS_UNIT, Idstring("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"))
+	load_unload_unit("units/payday2/characters/ene_fbi_boss_female_1/ene_fbi_boss_female_1", fbi_boss_needed, false)
+	
 	local murkywater_needed = PackageManager:has(IDS_UNIT, Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"))
 	load_unload_unit("units/payday2/characters/ene_acc_murkywater_helmet/ene_acc_murkywater_helmet", murkywater_needed, true)
 

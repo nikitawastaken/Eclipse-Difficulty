@@ -1553,6 +1553,16 @@
 				<file :name="ene_fbi_female_4.unit" />
 				<file :name="ene_fbi_female_4_husk.unit" />
 			</group>
+
+			<group :name="ene_fbi_boss_female_1/">
+				<file :name="ene_fbi_boss_female_1.cooked_physics" />
+				<file :name="ene_fbi_boss_female_1.material_config" />
+				<file :name="ene_fbi_boss_female_1_contour.material_config" />
+				<file :name="ene_fbi_boss_female_1.model" />
+				<file :name="ene_fbi_boss_female_1.object" />
+				<file :name="ene_fbi_boss_female_1.unit" />
+				<file :name="ene_fbi_boss_female_1_husk.unit" />
+			</group>
 			
 			<group :name="ene_gang_black_1/">
 				<xml  :name="ene_gang_black_1.sequence_manager" dyn_package="true" />
