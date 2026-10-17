@@ -276,31 +276,6 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-    <!-- Change ene_thug_outdoor_fex _tweak_table -->
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="security_mex"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="security_mex"/>
-		</target>
-	</tweak>
 
     <!-- change fbi office agents _tweak_table -->
     <!-- make agent Riker and his partner Jordan as the actual duo boss fight  -->

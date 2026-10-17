@@ -29,6 +29,9 @@
 			<check value="vars.has_watch == 1" />
 		</filter>
 
+		<sequence editable_state="true" name="'mat_thug_indoor'" once="true" triggable="true">		
+			<run_sequence 		name="'mat_thug_indoor_'..pick('1','2')" />
+		</sequence>	
 		<sequence editable_state="true" name="'mat_thug_indoor_1'" once="true" triggable="true" />
 		<sequence editable_state="true" name="'mat_thug_indoor_2'" once="true" triggable="true">		
 			<material_config 	name="'units/pd2_dlc_friend/characters/ene_thug_indoor_01/vars/ene_thug_indoor_02'" synchronous="true" />
@@ -47,15 +50,8 @@
 			<material_config 	name="'units/pd2_dlc_friend/characters/ene_thug_indoor_01/vars/ene_mex_security_guard_3'" synchronous="true" />
 		</sequence>	
 		
-		<sequence editable_state="true" name="'thug_indoor_1'" once="true" triggable="true">
-			<run_sequence 		name="'mat_thug_indoor_1'" />
-		
-			<run_sequence 		name="'random_shades'" />
-			<run_sequence 		name="'random_watch'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'thug_indoor_2'" once="true" triggable="true">
-			<run_sequence 		name="'mat_thug_indoor_2'" />
+		<sequence editable_state="true" name="'thug_indoor'" once="true" triggable="true">
+			<run_sequence 		name="'mat_thug_indoor'" />
 		
 			<run_sequence 		name="'random_shades'" />
 			<run_sequence 		name="'random_watch'" />

@@ -4171,9 +4171,16 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_fex/characters/ene_secret_service_fex/" dyn_package="false">
-			<file :name="ene_secret_service_fex.unit" />
-			<file :name="ene_secret_service_fex_husk.unit" />
+		<group name="units/pd2_dlc_fex/characters/" dyn_package="false">
+			<group :name="ene_secret_service_fex/">
+				<file :name="ene_secret_service_fex.unit" />
+				<file :name="ene_secret_service_fex_husk.unit" />
+			</group>
+			
+			<group :name="ene_thug_outdoor_fex/">
+				<file :name="ene_thug_outdoor_fex.unit" />
+				<file :name="ene_thug_outdoor_fex_husk.unit" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_chas/vehicles/chas_vehicle_car_police_sfpd/" dyn_package="false">

@@ -426,10 +426,10 @@ local M = {
 	["units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_02/ene_bolivian_thug_outdoor_02"] = { name = "thug_outdoor", head = head_sequences.security },
 	["units/pd2_dlc_friend/characters/ene_security_manager/ene_security_manager"] = { name = "security_manager", head = head_sequences.security },
 	
-	["units/pd2_dlc_friend/characters/ene_thug_indoor_01/ene_thug_indoor_01"] = { name = "thug_indoor_1", head = head_sequences.security },
-	["units/pd2_dlc_friend/characters/ene_thug_indoor_02/ene_thug_indoor_02"] = { name = "thug_indoor_2", head = head_sequences.security },
-	["units/pd2_dlc_friend/characters/ene_thug_indoor_03/ene_thug_indoor_03"] = { name = "thug_indoor_1", head = head_sequences.security },
-	["units/pd2_dlc_friend/characters/ene_thug_indoor_04/ene_thug_indoor_04"] = { name = "thug_indoor_2", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_01/ene_thug_indoor_01"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_02/ene_thug_indoor_02"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_03/ene_thug_indoor_03"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_04/ene_thug_indoor_04"] = { name = "thug_indoor", head = head_sequences.security },
 				
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"] = { name = "hvh_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2"] = { name = "hvh_cop_2", head = head_sequences.security },
@@ -606,6 +606,8 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
 
+	["units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"] = { name = "mex_thug_outdoor", head = head_sequences.security },
+		
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.gangster_russian_a },
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.gangster_russian_a },
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.gangster_russian_a },
