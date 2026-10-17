@@ -364,7 +364,8 @@ for k, v in pairs(tweak_data.projectiles) do
 	end
 end
 
--- Fix the Death Wish soundtrack being unavailable
+-- Fix the Death Wish and Wanted Dead or Alive soundtracks being unavailable
+tweak_data.music.track_list[11].lock = nil
 tweak_data.music.track_list[12].lock = nil
 
 -- Grenade Case HUD icon
