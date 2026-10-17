@@ -1231,6 +1231,9 @@ Hooks:Add("MenuManagerBuildCustomMenus", "EclipseTipsViewerMenuManagerPostBuildC
 
 	-- Show up Career mode button for clients too
 	local lobby_nodes = nodes.lobby
+	if lobby_nodes == nil then
+		return
+	end
 	for index, item in pairs(lobby_nodes._items) do
 		if item._parameters.name == "story_missions" then
 			table.remove(lobby_nodes._items, index)
