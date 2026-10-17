@@ -6,7 +6,7 @@ return {
 		"color_heat_classic",
 	},
 	environment_override = { -- File override
-		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_2_night_thundery.custom_xml",
+		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_2_night_blue_thunder.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/night_time/fog_very_faint_bright_white"] = {

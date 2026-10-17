@@ -862,7 +862,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["watchdogs2_02_night_thunder"] = 2,
 		["watchdogs2_02_night_bhdscanner"] = 2,
 		["watchdogs2_02_night_matrix"] = 1,
-		["watchdogs2_02_night_sunset"] = 1,
 	}
 	self.watchdogs_2_day.random_environments = {
 		["watchdogs2_01_day"] = 3,
@@ -932,8 +931,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["mad_2"] = 1,
 	}
 	self.pex.random_environments = {
-		["tijuana_01"] = 1,
-		["default"] = 3,
+		["pex_01"] = 3,
+		["default"] = 1,
 	}
 	self.mex.random_environments = {
 		["crossing_01"] = 1,
