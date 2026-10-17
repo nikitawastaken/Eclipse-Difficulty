@@ -96,7 +96,7 @@
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
 			<var name="_head_gear_object" value="g_hat_lod" />
 			<var name="_nr_head_gear_objects" value="4" />
-			<var name="_head_gear" value="units/pd2_dlc1/characters/ene_acc_gensec_cap/ene_acc_gensec_cap" />
+			<var name="_head_gear" value="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap" />
 			<var name="_death_sequence" value="kill_murky_flashlights" />				
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		

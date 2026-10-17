@@ -1065,8 +1065,15 @@
 				<file :name="spook_il.texture" />
 			</group>
 
+			<group :name="ene_acc_security_cap/">
+				<file :name="ene_acc_security_cap.model" />
+			</group>
+
+			<group :name="ene_acc_security_cap_2/">
+				<file :name="ene_acc_security_cap_2.model" />
+			</group>
+						
 			<group :name="ene_acc_swat_helmet/">
-				<file :name="ene_acc_swat_helmet.material_config" />
 				<file :name="ene_acc_swat_helmet.model" />
 				<file :name="ene_acc_swat_helmet.object" />
 			</group>
@@ -1085,7 +1092,6 @@
 			</group>
 
 			<group :name="ene_acc_tazer_helmet/">
-				<file :name="ene_acc_tazer_helmet.material_config" />
 				<file :name="ene_acc_tazer_helmet.model" />
 				<file :name="ene_acc_tazer_helmet.object" />
 			</group>
@@ -1096,7 +1102,6 @@
 			</group>
 
 			<group :name="ene_acc_swat_heavy_helmet/">
-				<file :name="ene_acc_swat_heavy_helmet.material_config" />
 				<file :name="ene_acc_swat_heavy_helmet.model" />
 				<file :name="ene_acc_swat_heavy_helmet.object" />
 			</group>
@@ -2048,14 +2053,6 @@
 				<file :name="ene_acc_gensec_beret.model" />
 				<file :name="ene_acc_gensec_beret.object" />
 				<file :name="ene_acc_gensec_beret.unit" />
-			</group>
-			
-			<group :name="ene_acc_gensec_cap/">
-				<file :name="ene_acc_gensec_cap.cooked_physics" />
-				<file :name="ene_acc_gensec_cap.material_config" />
-				<file :name="ene_acc_gensec_cap.model" />
-				<file :name="ene_acc_gensec_cap.object" />
-				<file :name="ene_acc_gensec_cap.unit" />
 			</group>
 
 			<group :name="ene_security_gensec_1/">
