@@ -200,7 +200,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_preferedadd(400020, "eclipse_3rd_elevator_spawn", optsPreferedAdd),
 	Eclipse.mission_elements.gen_object_editor(400021, "hit_it", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpen_the_elevator),
-	
+
 	-- Swat vans spawns
 	-- swat van 1
 	Eclipse.mission_elements.gen_dummy(400030, "swat_van_spawn_1", Vector3(6215, 2889, -1215.010), Rotation(-43, 0, 0), optsBesiegeDummy),
@@ -227,7 +227,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400048, "spawn_swats_3", optsspawnvanSWATs_3),
 	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_3", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
-	
+
 	-- respawn stuff for scripted snipers
 	Eclipse.mission_elements.gen_dummytrigger(400051, "respawn_sniper_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_sniper_1),
 	Eclipse.mission_elements.gen_dummytrigger(400052, "respawn_sniper_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_sniper_2),
