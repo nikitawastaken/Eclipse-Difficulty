@@ -19,6 +19,11 @@ local disabled = {
 		enabled = false,
 	},
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 
 local green_security = {
 	enemy = {
@@ -240,6 +245,35 @@ return {
 			{ id = 400010, delay = 0 },
 		},
 	},
+	-- add swat van spawns
+	-- left side
+	[106442] = {
+		on_executed = {
+			{ id = 400034, delay = 5, delay_rand = 5 },
+			{ id = 400041, delay = 5, delay_rand = 5 },
+		},
+	},
+	-- right side
+	[106445] = {
+		on_executed = {
+			{ id = 400048, delay = 5, delay_rand = 5 },
+		},
+	},
+	-- restore 2 unused snipers for the heli escape section
+	[100366] = {
+		on_executed = {
+			{ id = 100370, remove = true },
+			{ id = 100371, remove = true },
+		},
+	},
+	[105804] = {
+		on_executed = {
+			{ id = 100370, delay = 0 },
+			{ id = 100371, delay = 0 },
+		},
+	},
+	[100370] = enabled,
+	[100371] = enabled,
 	-- Sever hack chance in solo
 	[104494] = {
 		pre_func = function(self)

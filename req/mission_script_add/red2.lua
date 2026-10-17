@@ -30,14 +30,16 @@ local enabled_chance_escape_dozers = math.random() <= 0.4
 local enabled_chance_escape_cloakers = math.random() <= 0.4
 local enabled_chance_escape_shield_wall = math.random() <= 0.6
 local enabled_chance_shield_army = math.random() <= 0.15 + (is_pro_job and 0.15 or 0)
-local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
+local enabled_chance_more_guards = math.random() <= 0.4 + (is_pro_job and 0.2 or 0)
 local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.2 or 0)
 
 local optsSecurity = {
 	enemy_table = {
-		[scripted_enemy.security_1] = 2,
-		[scripted_enemy.security_2] = 2,
-		[scripted_enemy.security_3] = 1,
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
 	},
 	enabled = true,
 }
