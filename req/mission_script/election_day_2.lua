@@ -2,8 +2,12 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local harasser_enemy = is_eclipse and { [scripted_enemy.swat_1] = 9, [scripted_enemy.elite_sniper] = 1 } or scripted_enemy.swat_1
+local gensec_security = { [scripted_enemy.gensec_1] = 3, [scripted_enemy.gensec_2] = 1 }
 local harasser = {
 	enemy = harasser_enemy,
+}
+local gensec_enemy = {
+	enemy = gensec_security,
 }
 local enabled = {
 	values = {
@@ -101,6 +105,23 @@ return {
 	[100148] = skylight_spawn,
 	[100149] = window_close_spawn,
 	[100150] = window_close_spawn,
+	-- replace Regular Security with GenSec
+	[100670] = gensec_enemy,
+	[100671] = gensec_enemy,
+	[100672] = gensec_enemy,
+	[100673] = gensec_enemy,
+	[100674] = gensec_enemy,
+	[100675] = gensec_enemy,
+	[100676] = gensec_enemy,
+	[100677] = gensec_enemy,
+	[100678] = gensec_enemy,
+	[100679] = gensec_enemy,
+	[100605] = gensec_enemy,
+	[100606] = gensec_enemy,
+	[100607] = gensec_enemy,
+	[100608] = gensec_enemy,
+	[104997] = gensec_enemy,
+	[105057] = gensec_enemy,
 	-- Harassers
 	[102732] = harasser,
 	[102733] = harasser,

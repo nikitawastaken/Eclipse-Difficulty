@@ -32,7 +32,10 @@ local patches = {
 		filters_disable = table.set(100041, 100027, 100028),
 		filters_normal_above = table.set(100026),
 	},
+	guard_suv = table.set(100030),
 }
+
+local security_room = patches.guard_suv
 
 M["levels/instances/unique/chca/chca_helicopter_enemies/world/world"] = function(result)
 	local heli_spawns = patches.swat_chopper
@@ -50,6 +53,13 @@ M["levels/instances/unique/chca/chca_helicopter_enemies/world/world"] = function
 			table.map_append(element.values, filter_normal_above)
 		elseif heli_spawns.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
+		end
+	end
+end
+M["levels/instances/unique/corp/corp_security_room/world/world"] = function(result)
+	for _, element in pairs(result.default.elements) do
+		if security_room[element.id] then
+			element.values.enemy = scripted_enemy.green_security_4
 		end
 	end
 end

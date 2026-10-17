@@ -16,6 +16,9 @@ local exclude_shields_dozers = {
 local harasser = {
 	enemy = diff_i > 5 and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1,
 }
+local gensec_enemy = {
+	enemy = scripted_enemy.gensec_1,
+}
 local standard_spawn = {
 	values = {
 		interval = 10,
@@ -145,6 +148,20 @@ return {
 	[400006] = scripted_heli_spawn,
 	[400012] = scripted_heli_spawn,
 	[400018] = scripted_heli_spawn,
+	-- replace Regular Security with GenSec
+	[100478] = gensec_enemy,
+	[100487] = gensec_enemy,
+	[100488] = gensec_enemy,
+	[100490] = gensec_enemy,
+	[102982] = gensec_enemy,
+	[102983] = gensec_enemy,
+	[103733] = gensec_enemy,
+	[103734] = gensec_enemy,
+	[103735] = gensec_enemy,
+	[100168] = gensec_enemy,
+	[100172] = gensec_enemy,
+	[104770] = gensec_enemy,
+	[104771] = gensec_enemy,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,

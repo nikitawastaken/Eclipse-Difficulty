@@ -29,6 +29,15 @@ local specials_list = {
 local specials = {
 	enemy = specials_list,
 }
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
+	},
+}
 local enemy_filter_dozers = {
 	values = {
 		rules = {
@@ -186,6 +195,51 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
+	-- Replace regular security with green security
+	[100670] = green_security,
+	[100671] = green_security,
+	[100672] = green_security,
+	[100673] = green_security,
+	[100674] = green_security,
+	[100675] = green_security,
+	[100676] = green_security,
+	[100677] = green_security,
+	[100678] = green_security,
+	[100679] = green_security,
+	[101490] = green_security,
+	[101491] = green_security,
+	[101493] = green_security,
+	[101498] = green_security,
+	[101503] = green_security,
+	[101519] = green_security,
+	[101520] = green_security,
+	[101522] = green_security,
+	[101527] = green_security,
+	[101532] = green_security,
+	[101548] = green_security,
+	[101549] = green_security,
+	[101551] = green_security,
+	[101556] = green_security,
+	[101561] = green_security,
+	[101577] = green_security,
+	[101578] = green_security,
+	[101580] = green_security,
+	[101585] = green_security,
+	[101590] = green_security,
+	[101644] = green_security,
+	[101645] = green_security,
+	[101646] = green_security,
+	[101648] = green_security,
+	[101649] = green_security,
+	[101677] = green_security,
+	[101678] = green_security,
+	[101679] = green_security,
+	[101681] = green_security,
+	[101710] = green_security,
+	[101711] = green_security,
+	[101712] = green_security,
+	[101714] = green_security,
+	[101715] = green_security,
 	-- Difficulty scaling
 	[101754] = objective_diff_add, -- logic_link_038 (prototype found)
 	[101129] = objective_diff_add, -- link_completed_obj_015 (documents accessible)

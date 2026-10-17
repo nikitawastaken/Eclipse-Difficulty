@@ -112,14 +112,17 @@ return {
 			{ id = 101360, delay = 0 },
 		},
 	},
-	-- Two guaranteed open hangars on Overkill+ and a chance for an additional one in a Pro Job regardless of difficulty.
+	-- Two guaranteed open hangars on Overkill+ and additional one in a Pro Job regardless of difficulty.
 	[102208] = { -- RandomizeHangar
 		values = {
 			amount = (overkill_and_above and 2 or 1) + (is_pro_job and 1 or 0),
 		},
 	},
-	[103397] = filter_easy_above,
-	[103398] = filter_disable,
+	[103396] = { -- RandomizeHangar001
+		values = {
+			amount = 2 + (is_pro_job and 1 or 0),
+		},
+	},
 	-- Add the new forest group to existing preferreds
 	[102652] = { -- ai_enemy_prefered_add_001
 		values = {

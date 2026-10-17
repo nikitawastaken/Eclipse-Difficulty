@@ -54,9 +54,6 @@ local bags_required_objective = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-local security_spawn = {
-	enemy = scripted_enemy.security_1,
-}
 local shield_spawn = {
 	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
 }
@@ -84,6 +81,15 @@ local taser_spawn_2 = {
 	spawn_action = "e_sp_kick_enter",
 	values = {
 		position = Vector3(5358, 588, -733),
+	},
+}
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
 	},
 }
 local mga_thermite_event = {
@@ -128,7 +134,6 @@ local smoke_or_flash = {
 		effect_type = smoke_or_flash_chance and "flash" or "smoke",
 	},
 }
-
 return {
 	-- FFO
 	[101657] = {
@@ -444,8 +449,45 @@ return {
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
+	-- Replace regular security with green security
+	[100628] = green_security,
+	[100671] = green_security,
+	[100672] = green_security,
+	[100694] = green_security,
+	[100743] = green_security,
+	[100752] = green_security,
+	[100753] = green_security,
+	[100787] = green_security,
+	[100863] = green_security,
+	[100872] = green_security,
+	[100920] = green_security,
+	[102045] = green_security,
+	[102046] = green_security,
+	[102053] = green_security,
+	[102054] = green_security,
+	[102058] = green_security,
+	[102059] = green_security,
+	[102286] = green_security,
+	[102287] = green_security,
+	[102288] = green_security,
+	[102289] = green_security,
+	[102290] = green_security,
+	[102291] = green_security,
+	[102299] = green_security,
+	[102300] = green_security,
+	[102810] = green_security,
+	[102837] = green_security,
+	[102860] = green_security,
+	[102881] = green_security,
+	[102897] = green_security,
+	[102899] = green_security,
+	[102903] = green_security,
+	[102904] = green_security,
+	[105383] = green_security,
+	[105493] = green_security,
+	[105494] = green_security,
 	-- why is there a beat cop instead of security guard in the vault???
-	[104001] = security_spawn,
+	[104001] = green_security,
 	-- Spawn group intervals
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

@@ -24,12 +24,12 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.goat = 47500
 	self.bag_values.diamonds = 20500
 	self.bag_values.diamonds_dah = 47500
-	self.bag_values.coke = 22535
-	self.bag_values.coke_pure = 38350
+	self.bag_values.coke = 32535
+	self.bag_values.coke_pure = 43350
 	self.bag_values.meth = 30500
 	self.bag_values.meth_half = 15250
-	self.bag_values.weapon = 24750
-	self.bag_values.weapons = 32500
+	self.bag_values.weapon = 44750
+	self.bag_values.weapons = 52500
 	self.bag_values.ranc_weapon = 40200
 	self.bag_values.painting = 72000
 	self.bag_values.samurai_suit = 165000
@@ -47,8 +47,8 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.unknown = 50000
 	self.bag_values.safe = 150000
 	self.bag_values.prototype = 500000
-	self.bag_values.faberge_egg = 75000
-	self.bag_values.treasure = 34500
+	self.bag_values.faberge_egg = 125000
+	self.bag_values.treasure = 56500
 	self.bag_values.counterfeit_money = 62000
 	self.bag_values.box_unknown = 10000
 	self.bag_values.black_tablet = 750000
@@ -60,7 +60,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.mad_master_server_value_2 = 50
 	self.bag_values.mad_master_server_value_3 = 50
 	self.bag_values.mad_master_server_value_4 = 50
-	self.bag_values.weapon_glock = 14250
+	self.bag_values.weapon_glock = 18250
 	self.bag_values.weapon_scar = 27550
 	self.bag_values.drk_bomb_part = 135000
 	self.bag_values.drone_control_helmet = 625000
@@ -673,7 +673,7 @@ function MoneyTweakData:init(tweak_data)
 	self.small_loot.diamondheist_big_diamond = (money_mul * 5350)
 	self.small_loot.mus_small_artifact = (money_mul * 700)
 	self.small_loot.value_gold = (money_mul * 10000)
-	self.small_loot.gen_atm = (money_mul * 24000)
+	self.small_loot.gen_atm = (money_mul * 72000)
 	self.small_loot.special_deposit_box = (money_mul * 3500)
 	self.small_loot.slot_machine_payout = (money_mul * 75000)
 	self.small_loot.vault_loot_chest = (money_mul * 5545)
@@ -694,8 +694,8 @@ function MoneyTweakData:init(tweak_data)
 
 	-- Heist specific loot values
 	if job_id == "big" then
-		self.bag_values.money = 22450
-		self.bag_values.gold = 56450
+		self.bag_values.money = 42450
+		self.bag_values.gold = 76450
 		self.small_loot.money_bundle = (money_mul * 85)
 		self.small_loot.money_bundle_value = (money_mul * 85)
 		self.small_loot.value_gold = (money_mul * 10000)
@@ -726,13 +726,13 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.weapons = 62300
 	end
 	if job_id == "roberts" then
-		self.bag_values.money = 14650
+		self.bag_values.money = 34650
 		self.small_loot.vault_loot_gold = (money_mul * 19500)
 		self.small_loot.vault_loot_cash = (money_mul * 2500)
 		self.small_loot.vault_loot_coins = (money_mul * 1800)
 		self.small_loot.vault_loot_ring = (money_mul * 3000)
 		self.small_loot.vault_loot_jewels = (money_mul * 4400)
-		self.small_loot.gen_atm = (money_mul * 24000)
+		self.small_loot.gen_atm = (money_mul * 74000)
 	end
 	if job_id == "watchdogs" or job_id == "watchdogs_wrapper" or job_id == "watchdogs_night" then
 		self.small_loot.money_bundle = 50000
@@ -748,13 +748,13 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.diamondheist_big_diamond = 25000
 	end
 	if job_id == "red2" or job_id == "kenaz" or job_id == "chca" then
-		self.bag_values.money = 22600
+		self.bag_values.money = 32600
 		self.bag_values.gold = 75000
 		self.small_loot.gen_atm = (money_mul * 42000)
-		self.small_loot.money_bundle = (money_mul * 4250)
+		self.small_loot.money_bundle = (money_mul * 8250)
 	end
 	if job_id == "dinner" then
-		self.bag_values.gold = 92000
+		self.bag_values.gold = 92720
 		self.small_loot.money_bundle = (money_mul * 10250)
 	end
 	if job_id == "arm_cro" or job_id == "arm_hcm" or job_id == "arm_fac" or job_id == "arm_par" or job_id == "arm_und" or job_id == "glace" then
@@ -770,7 +770,7 @@ function MoneyTweakData:init(tweak_data)
 	if job_id == "firestarter" or job_id == "mex" or job_id == "pex" or job_id == "fex" then
 		self.bag_values.money = 32250
 		self.bag_values.coke = 24200
-		self.bag_values.gold = 56375
+		self.bag_values.gold = 76375
 		self.bag_values.meth = 65600
 	end
 	if job_id == "hvh" or job_id == "nail" or job_id == "help" or job_id == "haunted" then
@@ -780,12 +780,14 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.painting = 175000
 	end
 	if job_id == "brb" then
-		self.bag_values.gold = 37500
+		self.bag_values.gold = 67500
 	end
 	if job_id == "born" then
-		self.bag_values.coke = 24200
+		self.bag_values.coke = 34200
 		self.bag_values.weapon = 64750
 		self.bag_values.weapons = 62500
+		self.small_loot.money_bundle = (money_mul * 10500)
+		self.small_loot.money_bundle_value = (money_mul * 10500)
 	end
 	if job_id == "framing_frame" then
 		self.bag_values.money = 62300
@@ -800,7 +802,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.coke = 46000
 	end
 	if level_id == "alex_2" then
-		self.bag_values.money = 42350
+		self.bag_values.money = 72350
 	end
 	if job_id == "chas" then
 		self.bag_values.money = 22350
@@ -809,7 +811,7 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.coke_pure = 32050
 	end
 	if level_id == "alex_3" then
-		self.bag_values.money = 26350
+		self.bag_values.money = 46350
 	end
 	if job_id == "friend" then
 		self.bag_values.money = 24350
@@ -822,9 +824,12 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "fish" or job_id == "chca" then
 		self.bag_values.money = 62000
+		self.bag_values.mus_artifact_bag = 80000
 	end
 	if job_id == "flat" then
-		self.bag_values.coke = 32050
+		self.bag_values.coke = 42050
+		self.small_loot.money_bundle = (money_mul * 8500)
+		self.small_loot.money_bundle_value = (money_mul * 8500)
 	end
 	if job_id == "mia" then
 		self.small_loot.money_bundle = (money_mul * 2500)
@@ -838,15 +843,15 @@ function MoneyTweakData:init(tweak_data)
 	if job_id == "mus" or job_id == "sah" then
 		self.bag_values.mus_artifact_bag = 52000
 	end
-	if job_id == "kosugi" or job_id == "pbr" then
+	if job_id == "kosugi" or job_id == "pbr" or job_id == "pent" then
 		self.bag_values.money = 24250
-		self.bag_values.gold = 58000
-		self.bag_values.coke = 28535
+		self.bag_values.gold = 68000
+		self.bag_values.coke = 38535
 		self.bag_values.painting = 92000
 		self.bag_values.circuit = 120000
 		self.bag_values.masterpiece_painting = 92000
-		self.bag_values.weapon = 38500
-		self.bag_values.weapons = 38500
+		self.bag_values.weapon = 58500
+		self.bag_values.weapons = 58500
 		self.bag_values.artifact_statue = 180000
 	end
 	if level_id == "chill_combat" or level_id == "chill" then

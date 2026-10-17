@@ -115,23 +115,25 @@ function M.set_file(f)
 	M.log_file = f
 end
 
-function M.chat_spam(id, msg)
+function M.chat_spam(id, msg, time)
 	if not Utils:IsInGameState() or not Utils:IsInHeist() then
 		return
 	end
 
+	-- Default to 2s delay before a msg id can be sent again
+	time = time or 2
+
 	local t = Application:time()
 	M._spam_buff[id] = msg
 	local chat_msg
-	if not managers.groupai:state():whisper_mode() and (M._spam_t + 2) < t then
+	-- No spam for stealth for now...
+	if not managers.groupai:state():whisper_mode() and (M._spam_t + time) < t then
 		if table.size(M._spam_buff) > 0 then
 			M._spam_t = t
 			chat_msg = ""
 			for _, buff in pairs(M._spam_buff) do
 				chat_msg = chat_msg .. buff .. "\n"
 			end
-		else
-			chat_msg = "All tests passed.\n"
 		end
 	end
 	if chat_msg and chat_msg ~= M._spam_prev_msg then
