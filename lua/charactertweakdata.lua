@@ -2311,11 +2311,11 @@ CharacterTweakData.access_surrender = {
 
 function CharacterTweakData:_set_presets()
 	local health_mul = get_difficulty_specific_value({
+		0.75,
 		1,
 		1.25,
 		1.5,
-		2,
-		2.5,
+		1.75,
 	})
 
 	-- Used to be at the end of this function but _multiply_all_speeds didn't affect Dozers
