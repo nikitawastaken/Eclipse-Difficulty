@@ -13,7 +13,7 @@ return {
 	environment_override = { -- this heist is an absolute fucking mess
 		["environments/pd2_dinner_room/pd2_dinner_room"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
 		["environments/pd2_dinner_outdoor/pd2_dinner_outdoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
-		["environments/pd2_dinner_outdoor_middle/pd2_dinner_outdoor_middle"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
+		["environments/pd2_dinner_outdoor_middle/pd2_dinner_outdoor_middle"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext_nosun.custom_xml",
 		["environments/pd2_dinner_office/pd2_dinner_office"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_office_int.custom_xml",
 		["environments/pd2_dinner_slaughterhouse/pd2_dinner_slaughterhouse"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_int.custom_xml",
 		["environments/pd2_dinner_outdoor_ending/pd2_dinner_outdoor_ending"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
