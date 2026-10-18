@@ -54,7 +54,7 @@ end)
 Hooks:PostHook(CopDamage, "_clbk_tweak_data_changed", "eclipse__clbk_tweak_data_changed", function(self, old_tweak_data, new_tweak_data)
 	if new_tweak_data and new_tweak_data.tmp_dmg_mul_on_tweak_change then
 		self._tweak_change_dmg_mul_t = TimerManager:game():time() + new_tweak_data.tmp_dmg_mul_on_tweak_change[2]
-		
+
 		if self._unit:contour() then
 			applied_contour = true
 
@@ -71,7 +71,7 @@ function CopDamage:_apply_damage_reduction(...)
 	if self._medic_heal_dmg_mul_t and TimerManager:game():time() < self._medic_heal_dmg_mul_t then
 		damage = damage * (self._char_tweak.tmp_medic_heal_dmg_mul and self._char_tweak.tmp_medic_heal_dmg_mul[1] or 1)
 	end
-	
+
 	if self._tweak_change_dmg_mul_t and TimerManager:game():time() < self._tweak_change_dmg_mul_t then
 		damage = damage * (self._char_tweak.tmp_dmg_mul_on_tweak_change and self._char_tweak.tmp_dmg_mul_on_tweak_change[1] or 1)
 	end

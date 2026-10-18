@@ -2380,7 +2380,6 @@ function CharacterTweakData:_set_presets()
 			2,
 		}
 
-
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
