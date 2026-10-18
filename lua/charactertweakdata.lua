@@ -1423,7 +1423,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		"special",
 		"shield",
 	}
-	self.city_shield_break.tmp_invulnerable_on_tweak_change = 1.5
+	self.city_shield_break.tmp_dmg_mul_on_tweak_change = { 0.5, 4 }
 	self.city_shield_break.chatter = self.presets.enemy_chatter.special
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_shield_break.dodge = self.presets.dodge.special
@@ -1439,6 +1439,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_shield_break.use_animation_on_fire_damage = nil
 	self.city_shield_break.ignore_medic_revive_animation = false
 	self.city_shield_break.modify_health_on_tweak_change = true
+	self.city_shield_break.tmp_invulnerable_on_tweak_change = nil
 	self.city_shield_break.access = "swat"
 	table.insert(self._enemy_list, "city_shield_break")
 
@@ -2373,6 +2374,13 @@ function CharacterTweakData:_set_presets()
 		-- Standardise surrender break times
 		char_preset.surrender_break_time = { 10, 15 }
 
+		-- Damage taken multiplier after being healed by a Medic
+		char_preset.tmp_medic_heal_dmg_mul = {
+			get_difficulty_specific_value({ 0.8, 0.8, 0.8, 0.6, 0.4 }),
+			2,
+		}
+
+
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
@@ -2392,6 +2400,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
 			char_preset.damage.explosion_damage_mul = is_city_shield and 0.5 or 1
+			char_preset.damage.fire_damage_mul = is_city_shield and 0.5 or 1
 			char_preset.shield_explosion_dmg_mul = char_preset.wall_fwd_offset and (is_city_shield and 0.25 or 0.5) or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
@@ -2519,8 +2528,6 @@ function CharacterTweakData:_set_presets()
 		get_difficulty_specific_value({ 50, 50, 50, 40, 30 }),
 		get_difficulty_specific_value({ 30, 30, 30, 25, 20 }),
 	}
-
-	self.tmp_healing_damage_mul = get_difficulty_specific_value({ 0.8, 0.8, 0.8, 0.6, 0.4 })
 
 	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
 	self.tank_armor_health_balance_mul = { 0.55, 0.7, 0.85, 1 }

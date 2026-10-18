@@ -43,17 +43,37 @@ Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", 
 	return Hooks:GetReturn() * multiplier
 end)
 
--- Add temporary DR when healed by a medic
+-- Add temporary damage resistance when healed by a Medic
 Hooks:PostHook(CopDamage, "do_medic_heal", "sh_do_medic_heal", function(self)
-	self._last_medic_heal_t = TimerManager:game():time()
+	if self._char_tweak.tmp_medic_heal_dmg_mul then
+		self._medic_heal_dmg_mul_t = TimerManager:game():time() + self._char_tweak.tmp_medic_heal_dmg_mul[2]
+	end
+end)
+
+-- Add temporary damage resistance when changing the tweak table
+Hooks:PostHook(CopDamage, "_clbk_tweak_data_changed", "eclipse__clbk_tweak_data_changed", function(self, old_tweak_data, new_tweak_data)
+	if new_tweak_data and new_tweak_data.tmp_dmg_mul_on_tweak_change then
+		self._tweak_change_dmg_mul_t = TimerManager:game():time() + new_tweak_data.tmp_dmg_mul_on_tweak_change[2]
+		
+		if self._unit:contour() then
+			applied_contour = true
+
+			self._unit:contour():add("tmp_invulnerable", false, 3, nil, false)
+			self._unit:contour():flash("tmp_invulnerable", 0.5)
+		end
+	end
 end)
 
 local _apply_damage_reduction_original = CopDamage._apply_damage_reduction
 function CopDamage:_apply_damage_reduction(...)
 	local damage = _apply_damage_reduction_original(self, ...)
 
-	if self._last_medic_heal_t and TimerManager:game():time() - self._last_medic_heal_t < 2 then
-		damage = damage * (tweak_data.character.tmp_healing_damage_mul or 1)
+	if self._medic_heal_dmg_mul_t and TimerManager:game():time() < self._medic_heal_dmg_mul_t then
+		damage = damage * (self._char_tweak.tmp_medic_heal_dmg_mul and self._char_tweak.tmp_medic_heal_dmg_mul[1] or 1)
+	end
+	
+	if self._tweak_change_dmg_mul_t and TimerManager:game():time() < self._tweak_change_dmg_mul_t then
+		damage = damage * (self._char_tweak.tmp_dmg_mul_on_tweak_change and self._char_tweak.tmp_dmg_mul_on_tweak_change[1] or 1)
 	end
 
 	return damage
