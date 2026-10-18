@@ -3154,6 +3154,7 @@ GroupAITweakData.gensec_tac_teams_heists = table.list_to_set({
 	"roberts",
 	"election_day_1",
 	"election_day_2",
+	"big",
 	"dah",
 	"arena",
 })

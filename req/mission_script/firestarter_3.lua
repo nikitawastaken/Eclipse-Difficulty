@@ -115,6 +115,7 @@ return {
 			{ id = 400003, delay = 0 },
 			{ id = 102206, delay = 0 },
 			{ id = 400068, delay = 0 },
+			{ id = 400073, delay = 0 },
 		},
 	},
 	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
@@ -124,16 +125,19 @@ return {
 		},
 	},
 	-- trigger the ambush when the vault opens
+	-- trigger the dozer chopper
 	-- left
 	[100311] = {
 		on_executed = {
 			{ id = 400055, delay = 0 },
+			{ id = 400025, delay = 30 },
 		},
 	},
 	-- right
 	[102160] = {
 		on_executed = {
 			{ id = 400056, delay = 0 },
+			{ id = 400025, delay = 30 },
 		},
 	},
 	-- special ambush chance increase
@@ -196,21 +200,8 @@ return {
 	-- also add harrassers when the assault ends for the first time
 	[101304] = {
 		on_executed = {
-			{ id = 400080, delay = 10 },
-			{ id = 400081, delay = 10 },
+			{ id = 400079, delay = 10 },
 			{ id = 400108, delay = 0 },
-		},
-	},
-	-- disable the dozer chopper event if the heli1 gas event has been triggered
-	[101424] = {
-		on_executed = {
-			{ id = 400074, delay = 0 },
-		},
-	},
-	-- enable the dozer chopper after heli1 gas event finishes deploying units
-	[101428] = {
-		on_executed = {
-			{ id = 400073, delay = 0 },
 		},
 	},
 	-- Delay initial diff
@@ -223,8 +214,7 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
-			{ id = 400080, delay = 0 },
-			{ id = 400081, delay = 0 },
+			{ id = 400079, delay = 0 },
 		},
 	},
 	-- enable spawns sooner
@@ -282,6 +272,15 @@ return {
 	[101934] = {
 		values = {
 			difficulty_easy_wish = true,
+		},
+	},
+	-- Add custom SO weighting to some Cloaker hide spots
+	[103757] = { -- Stairwell vent
+		values = {
+			hiding_cloaker_SO_weighting = {
+				too_close_distance = 800,
+				z_far_chance_mul = 0.75,
+			},
 		},
 	},
 	-- Police car amount

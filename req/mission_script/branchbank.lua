@@ -116,6 +116,7 @@ return {
 			{ id = 400003, delay = 0 },
 			{ id = 102206, delay = 0 },
 			{ id = 400077, delay = 0 },
+			{ id = 400026, delay = 0 },
 		},
 	},
 	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
@@ -125,16 +126,19 @@ return {
 		},
 	},
 	-- trigger the ambush when the vault opens
+	-- trigger the dozer chopper
 	-- left
 	[100311] = {
 		on_executed = {
 			{ id = 400064, delay = 0 },
+			{ id = 400025, delay = 30 },
 		},
 	},
 	-- right
 	[102160] = {
 		on_executed = {
 			{ id = 400065, delay = 0 },
+			{ id = 400025, delay = 30 },
 		},
 	},
 	-- special ambush chance increase
@@ -202,20 +206,7 @@ return {
 	-- trigger swat choppers on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 400045, delay = 10 },
-			{ id = 400046, delay = 10 },
-		},
-	},
-	-- disable the dozer chopper event if the heli1 gas event has been triggered
-	[101424] = {
-		on_executed = {
-			{ id = 400027, delay = 0 },
-		},
-	},
-	-- enable the dozer chopper after heli1 gas event finishes deploying units
-	[101428] = {
-		on_executed = {
-			{ id = 400026, delay = 0 },
+			{ id = 400043, delay = 10 },
 		},
 	},
 	-- Delay initial diff
@@ -228,8 +219,7 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },
-			{ id = 400045, remove = not is_eclipse_pro and true or nil, delay = 0 },
-			{ id = 400046, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400043, remove = not is_eclipse_pro and true or nil, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

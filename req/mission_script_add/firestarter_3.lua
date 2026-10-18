@@ -304,41 +304,8 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local optsChopper_trigger_overkill_below = {
-	on_executed = {
-		{ id = 400078, delay = 0 },
-	},
-	enabled = true,
-	player_1 = true,
-	player_2 = true,
-	player_3 = true,
-	player_4 = true,
-	difficulty_normal = true,
-	difficulty_hard = true,
-	difficulty_overkill = true,
-	difficulty_overkill_145 = true,
-}
-local optsChopper_trigger_death_wish = {
-	on_executed = {
-		{ id = 400079, delay = 0 },
-	},
-	enabled = true,
-	player_1 = true,
-	player_2 = true,
-	player_3 = true,
-	player_4 = true,
-	difficulty_easy_wish = true,
-}
-local chopper_amount_dw = {
-	amount = 2,
-	on_executed = {
-		{ id = 400025, delay = 0, delay_rand = 10 },
-		{ id = 400031, delay = 0, delay_rand = 10 },
-		{ id = 400037, delay = 0, delay_rand = 10 },
-	},
-}
-local chopper_amount_ovk_below = {
-	amount = is_pro_job and 2 or 1,
+local chopper_amount = {
+	amount = (is_eclipse or is_pro_job) and 2 or 1,
 	on_executed = {
 		{ id = 400031, delay = 0, delay_rand = 10 },
 		{ id = 400037, delay = 0, delay_rand = 10 },
@@ -366,6 +333,13 @@ local optsspawnvanSWATs_2 = {
 	},
 	enabled = true,
 }
+
+local optsEnable_DozerChopper = {
+	enabled = is_eclipse,
+	elements = {
+		400025,
+	},
+}
 local optsspawndozerchopper = {
 	on_executed = {
 		{ id = 400020, delay = 26 },
@@ -374,7 +348,6 @@ local optsspawndozerchopper = {
 		{ id = 400077, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400024, delay = 0 },
 	},
-	enabled = is_eclipse,
 }
 local optsspawnswatchopper_1 = {
 	on_executed = {
@@ -433,19 +406,6 @@ local optsdisable_locked_vault_door = {
 		100198,
 		102716,
 		102717,
-	},
-}
-local optsdisable_dozer_chopper = {
-	enabled = is_eclipse,
-	elements = {
-		400025,
-	},
-}
-local optsenable_dozer_chopper = {
-	enabled = is_eclipse,
-	toggle = "off",
-	elements = {
-		400025,
 	},
 }
 local Smoke_bomb_ambush = {
@@ -586,8 +546,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400023, "shatter_glass", Vector3(0, 0, 0), Rotation(0, 0, 0), optsBreak_The_Glass),
 	Eclipse.mission_elements.gen_object_editor(400024, "dozer_heli_sequence", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerChopper),
 	Eclipse.mission_elements.gen_missionscript(400025, "dozer_heli_event", optsspawndozerchopper),
-	Eclipse.mission_elements.gen_toggleelement(400073, "enable_dozer_chopper", optsenable_dozer_chopper),
-	Eclipse.mission_elements.gen_toggleelement(400074, "disable_dozer_chopper", optsdisable_dozer_chopper),
+	Eclipse.mission_elements.gen_toggleelement(400073, "enable_dozer_chopper", optsEnable_DozerChopper),
 	-- chopper 2
 	Eclipse.mission_elements.gen_dummy(400026, "swat_heli_1", Vector3(-607, 4091.155, 0), Rotation(137, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400027, "swat_heli_2", Vector3(-534.196, 4022.955, 0), Rotation(137, 0, 0), optsSWAT_heli),
@@ -602,6 +561,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400035, "swat_heli_8", Vector3(903, -663, -19.814), Rotation(-180, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_object_editor(400036, "swat_heli_sequence_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_2),
 	Eclipse.mission_elements.gen_missionscript(400037, "swat_heli_event_2", optsspawnswatchopper_2),
+	-- chopper spawner
+	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner", chopper_amount),
 
 	-- vault ambush
 	-- left
@@ -644,11 +605,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb_ambush),
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
-	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400078, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
-	Eclipse.mission_elements.gen_element_random(400079, "random_chopper_spawner_dw", chopper_amount_dw),
-	Eclipse.mission_elements.gen_element_filter(400080, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
-	Eclipse.mission_elements.gen_element_filter(400081, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
 
 	-- Harassers
 	Eclipse.mission_elements.gen_dummy(400090, "harasser_1", Vector3(1935, 4336, 1300), Rotation(-180, 0, 0), optsSWAT_Harasser_1),

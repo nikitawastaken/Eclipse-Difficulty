@@ -697,6 +697,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arena.custom_package = gensec_tactical_security_package
 	self.election_day_1.custom_package = gensec_tactical_security_package
 	self.election_day_2.custom_package = gensec_tactical_security_package
+	self.big.custom_package = gensec_tactical_security_package
 
 	local russian_mercs_package = { "packages/akan_mercs" }
 	self.pines.custom_package = russian_mercs_package
