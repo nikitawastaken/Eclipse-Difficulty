@@ -923,7 +923,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["bigbank_03"] = 2,
 		["bigbank_04"] = 1,
 		["bigbank_05"] = 2,
-		["default"] = 2,
+		["bigbank_default"] = 2,
 	}
 	self.mad.random_environments = {
 		["mad"] = 3,
