@@ -907,7 +907,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["commissar"] = 2,
 		["commissar_2"] = 1,
 		["commissar_2_alt"] = 1,
-		["commissar_3"] = 1,
+		["commissar_3"] = 2,
 		["commissar_4"] = 3,
 		["commissar_5"] = 4,
 	}
