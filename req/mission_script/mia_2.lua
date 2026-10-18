@@ -27,10 +27,10 @@ local bulldozer_enemy = {
 local cloaker_enemy = {
 	enemy = scripted_enemy.cloaker,
 }
-local swats = {
+local swat_enemy = {
 	enemy = {
-		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 1,
-		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 1,
+		[overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1] = 2,
+		[overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2] = 3,
 	},
 }
 local shield_enemy = {
@@ -101,7 +101,7 @@ return {
 	-- Boss dead
 	[100153] = {
 		ponr = { -- FFO
-			length = 60,
+			length = 75,
 			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
 		forced_difficulty = false, -- Disable forced diff
@@ -174,6 +174,12 @@ return {
 	[101259] = {
 		values = {
 			time = 30,
+		},
+	},
+	-- Increase helicopter escape arrival delay
+	[100225] = { -- start_escape_helicopter
+		values = {
+			base_delay = 20, -- (Vanilla: 5s)
 		},
 	},
 	-- change up Commissar's room enemies
