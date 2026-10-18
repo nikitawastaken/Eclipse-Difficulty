@@ -1,8 +1,6 @@
 return {
 	flashlights_on = false, -- Flashlights
 	color_grading = { -- Randomized color gradings
-		"color_payday",
-		"color_heat_classic",
 		"color_payday_classic",
 	},
 	environment_override = { -- File override

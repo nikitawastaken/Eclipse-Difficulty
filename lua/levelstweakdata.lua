@@ -904,7 +904,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.mia_2.random_environments = {
-		["commissar"] = 69,
+		["commissar"] = 2,
+		["commissar_2"] = 1,
+		["commissar_2_alt"] = 1,
+		["commissar_3"] = 1,
+		["commissar_4"] = 3,
+		["commissar_5"] = 4,
 	}
 	self.born.random_environments = {
 		["bikerheist_1_01"] = 3,
