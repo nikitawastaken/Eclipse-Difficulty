@@ -1,20 +1,22 @@
 return {
-	flashlights_on = false, -- Flashlights
 	color_grading = { -- Randomized color gradings
 		"color_nice",
+		"color_bhd",
 		"color_xgen",
 		"color_xxxgen",
-		"color_payday",
+		"color_matrix_classic",
+		"color_nice_classic",
+		"color_bhd_classic",
 		"color_heat_classic",
 		"color_payday_classic",
 	},
-	environment_override = { -- File override
-		["environments/pd2_dinner_room/pd2_dinner_room"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_start_exterior.custom_xml",
-		["environments/pd2_dinner_outdoor/pd2_dinner_outdoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_start_exterior.custom_xml",
-		["environments/pd2_dinner_outdoor_middle/pd2_dinner_outdoor_middle"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_start_exterior.custom_xml",
-		["environments/pd2_dinner_office/pd2_dinner_office"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_middle_interior.custom_xml",
-		["environments/pd2_dinner_slaughterhouse/pd2_dinner_slaughterhouse"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_middle_interior.custom_xml",
-		["environments/pd2_dinner_outdoor_ending/pd2_dinner_outdoor_ending"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughterhouse_ending_exterior_sunny.custom_xml",
+	environment_override = { -- this heist is an absolute fucking mess
+		["environments/pd2_dinner_room/pd2_dinner_room"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
+		["environments/pd2_dinner_outdoor/pd2_dinner_outdoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
+		["environments/pd2_dinner_outdoor_middle/pd2_dinner_outdoor_middle"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
+		["environments/pd2_dinner_office/pd2_dinner_office"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_office_int.custom_xml",
+		["environments/pd2_dinner_slaughterhouse/pd2_dinner_slaughterhouse"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_int.custom_xml",
+		["environments/pd2_dinner_outdoor_ending/pd2_dinner_outdoor_ending"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/slaughter_1_main_ext.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/godrays/cheap_godray_swine_a"] = {
@@ -67,6 +69,20 @@ return {
 			{
 				position = Vector3(-6918, 8853, 771),
 				rotation = Rotation(75, -43, 0),
+			},
+		},
+		["effects/envsmod/birds"] = {
+			{
+				position = Vector3(1100, -950, 2608),
+				rotation = Rotation(55, 45, -47),
+			},
+			{
+				position = Vector3(-13425, 11425, 1951),
+				rotation = Rotation(-92, 0, -16),
+			},
+			{
+				position = Vector3(-23000, -150, 277),
+				rotation = Rotation(-92, 0, -16),
 			},
 		},
 	},

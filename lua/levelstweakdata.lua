@@ -1061,7 +1061,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.dinner.random_environments = {
 		["slaughterhouse_1"] = 4,
-		["slaughterhouse_2"] = 3,
 		["default"] = 1,
 	}
 	self.friend.random_environments = {
