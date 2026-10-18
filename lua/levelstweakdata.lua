@@ -939,8 +939,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 3,
 	}
 	self.bex.random_environments = {
-		["sanmartin_02"] = 2,
-		["default"] = 3,
+		["sanmartin_01"] = 3,
+		["sanmartin_02"] = 3,
+		["default"] = 1,
 	}
 	self.pal.random_environments = {
 		["counterfeit_1"] = 3,
