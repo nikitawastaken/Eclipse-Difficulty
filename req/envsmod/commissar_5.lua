@@ -2,6 +2,7 @@ return {
 	flashlights_on = false, -- Flashlights
 	saturation_value = 0.24,
 	color_grading = { -- Randomized color gradings
+		"color_xgen",
 		"color_payday_classic",
 	},
 	environment_override = { -- File override
