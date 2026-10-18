@@ -329,7 +329,7 @@ tweak_data.projectiles.launcher_rocket.range = 500
 tweak_data.projectiles.launcher_rocket.projectile_trail = true
 
 -- Commando 101
-tweak_data.projectiles.rocket_ray_frag.damage = 240
+tweak_data.projectiles.rocket_ray_frag.damage = 80
 tweak_data.projectiles.rocket_ray_frag.curve_pow = 1
 tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 4
 tweak_data.projectiles.rocket_ray_frag.range = 500

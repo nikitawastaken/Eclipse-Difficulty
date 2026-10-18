@@ -6,6 +6,7 @@ Hooks:PostHook(NewFlamethrowerBase, "setup_default", "eclipse_setup_default", fu
 	end
 end)
 
+-- Let Flamethrowers shoot through multiple enemies again but make it so that shields block flames.
 local mvec_to = Vector3()
 
 function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, shoot_through_data)
@@ -50,9 +51,13 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 			normal = direction,
 			position = from_pos,
 		}
-
+		
 		self._bullet_class:on_collision(fake_ray, self._unit, user_unit, damage)
-
+		
+		if unit:in_slot(self.shield_mask) then
+			break
+		end
+		
 		if unit:character_damage() and unit:character_damage().is_head then
 			hit_enemies = hit_enemies + 1
 		end

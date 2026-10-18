@@ -2715,12 +2715,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse__a
 		dmr = self:_get_table_from_category_template(tweak_data, "dmr", "spread"),
 		shotgun = self:_get_table_from_category_template(tweak_data, "shotgun", "spread"),
 		shotgun_slug = {
-			standing = 4.5,
+			standing = 4,
 			crouching = 3,
-			steelsight = 1.5,
+			steelsight = 1.6,
 			moving_standing = 6,
 			moving_crouching = 4,
-			moving_steelsight = 1.5,
+			moving_steelsight = 1.6,
 		},
 	}
 	self._kick_presets = {

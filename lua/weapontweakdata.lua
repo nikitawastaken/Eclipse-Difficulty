@@ -748,7 +748,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_steelsight = { 0, 0, 0, 0 },
 				}
 		
-				weap_data._total_ammo_mul = 1 / 2
+				weap_data._total_ammo_mul = 2 / 3
 				weap_data._pickup_mul = 0
 				
 			elseif cat_map.saw then
@@ -1102,6 +1102,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.akimbo_mappings[k] = v
 	end
 
+	local no_clip_ammo_increase = {
+		weapon = {
+			"clip_ammo_increase"
+		}
+	}
+	
 	-- Reduce Sentry Gun damage to scale better with Eclipse's enemy health pools.
 	self.sentry_gun.DAMAGE = 1
 	
@@ -2665,6 +2671,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.timers.deploy_bipod = nil
 
 	-- MA-17
+	self.kacchainsaw_flamethrower.upgrade_blocks = no_clip_ammo_increase
 	self.kacchainsaw_flamethrower.CLIP_AMMO_MAX = 50
 	self.kacchainsaw_flamethrower.stats.damage = 8
 	self.kacchainsaw_flamethrower.stats.spread = 0
@@ -2994,6 +3001,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ecp.stats.steelsight_speed = 9
 	self.ecp.stats.exit_run_speed = 9
 	self.ecp.fire_mode_data.fire_rate = 60 / 120
+	self.ecp.reload_speed_multiplier = 0.75
 	self.ecp.stats_modifiers = nil
 
 	-- Pistol Crossbow
@@ -3117,6 +3125,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m32.stats_modifiers = { damage = 10 }
 
 	-- Arbiter
+	self.arbiter.upgrade_blocks = no_clip_ammo_increase
 	self.arbiter.use_data.selection_index = 2
 	self.arbiter.CLIP_AMMO_MAX = 5
 	self.arbiter.stats.damage = 24
@@ -3181,19 +3190,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.use_data.selection_index = 2
 	self.ray.categories = rocket_launcher_category
 	self.ray.CLIP_AMMO_MAX = 4
-	self.ray.stats.damage = 48
+	self.ray.stats.damage = 32
 	self.ray.stats.spread = 24
 	self.ray.stats.recoil = 24
 	self.ray.stats.concealment = 4
 	self.ray.stats.swap_speed = 9
 	self.ray.stats.steelsight_speed = 9
 	self.ray.stats.exit_run_speed = 9
-	self.ray.fire_mode_data.fire_rate = 60 / 60
-	self.ray.stats_modifiers = { damage = 50 }
+	self.ray.fire_mode_data.fire_rate = 60 / 50
+	self.ray.stats_modifiers = { damage = 25 }
 
 	self._init_stat_overrides.ray = function()
 		self.ray._pickup_mul = 0
-		self.ray._min_clips_max = 1
+		self.ray._min_clips_max = 2
 	end
 
 	-- RPG
@@ -3211,7 +3220,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self._init_stat_overrides.rpg7 = function()
 		self.rpg7._pickup_mul = 0
-		self.rpg7._min_clips_max = 2
+		self.rpg7._min_clips_max = 3
 	end
 
 	self.flun.CLIP_AMMO_MAX = 1
@@ -3234,6 +3243,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Flamethrowers
 
 	-- MK2
+	self.flamethrower_mk2.upgrade_blocks = no_clip_ammo_increase
 	self.flamethrower_mk2.CLIP_AMMO_MAX = 150
 	self.flamethrower_mk2.stats.damage = 6
 	self.flamethrower_mk2.stats.spread = 0
@@ -3249,6 +3259,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.flamethrower_mk2.desc_id = "bm_w_ray_desc"
 
 	-- MA-17
+	self.system.upgrade_blocks = no_clip_ammo_increase
 	self.system.CLIP_AMMO_MAX = 100
 	self.system.stats.damage = 6
 	self.system.stats.spread = 0
@@ -3264,6 +3275,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.system.desc_id = "bm_w_ray_desc"
 
 	-- Cashblaster
+	self.money.upgrade_blocks = no_clip_ammo_increase
 	self.money.use_data.selection_index = 2
 	self.money.CLIP_AMMO_MAX = 100
 	self.money.stats.damage = 8
@@ -3301,6 +3313,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Miniguns
 	
 	-- Hailstorm
+	self.hailstorm.upgrade_blocks = no_clip_ammo_increase
 	self.hailstorm.CLIP_AMMO_MAX = 120
 	self.hailstorm.stats.damage = 16
 	self.hailstorm.stats.spread = 14
@@ -3344,8 +3357,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	end
 
 	-- Microgun
+	self.shuno.upgrade_blocks = no_clip_ammo_increase
 	self.shuno.CLIP_AMMO_MAX = 750
-	self.shuno.stats.damage = 12
+	self.shuno.stats.damage = 16
 	self.shuno.stats.spread = 7
 	self.shuno.stats.recoil = 9
 	self.shuno.stats.concealment = 6
@@ -3357,8 +3371,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shuno.desc_id = "bm_w_ray_desc"
 
 	-- Minigun
-	self.m134.CLIP_AMMO_MAX = 500
-	self.m134.stats.damage = 18
+	self.m134.upgrade_blocks = no_clip_ammo_increase
+	self.m134.CLIP_AMMO_MAX = 600
+	self.m134.stats.damage = 20
 	self.m134.stats.spread = 9
 	self.m134.stats.recoil = 7
 	self.m134.stats.concealment = 6
