@@ -7,6 +7,8 @@ WeaponTweakData.UNDERBARREL_PICKUP_DMG_MUL = 1 / 2
 WeaponTweakData.AP_TOTAL_DMG_MUL = 1 / 2
 WeaponTweakData.AP_PICKUP_DMG_MUL = 1 / 2
 WeaponTweakData.DAMAGE_VALUES = {
+	4,
+	6,
 	8,
 	10,
 	12,
@@ -747,8 +749,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					moving_crouching = { 0, 0, 0, 0 },
 					moving_steelsight = { 0, 0, 0, 0 },
 				}
-		
-				weap_data._total_ammo_mul = 2 / 3
+
 				weap_data._pickup_mul = 0
 				
 			elseif cat_map.saw then
@@ -2672,7 +2673,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- MA-17
 	self.kacchainsaw_flamethrower.upgrade_blocks = no_clip_ammo_increase
-	self.kacchainsaw_flamethrower.CLIP_AMMO_MAX = 50
+	self.kacchainsaw_flamethrower.CLIP_AMMO_MAX = 100
 	self.kacchainsaw_flamethrower.stats.damage = 8
 	self.kacchainsaw_flamethrower.stats.spread = 0
 	self.kacchainsaw_flamethrower.stats.recoil = 0
@@ -3244,7 +3245,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- MK2
 	self.flamethrower_mk2.upgrade_blocks = no_clip_ammo_increase
-	self.flamethrower_mk2.CLIP_AMMO_MAX = 150
+	self.flamethrower_mk2.CLIP_AMMO_MAX = 300
 	self.flamethrower_mk2.stats.damage = 6
 	self.flamethrower_mk2.stats.spread = 0
 	self.flamethrower_mk2.stats.recoil = 0
@@ -3260,7 +3261,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- MA-17
 	self.system.upgrade_blocks = no_clip_ammo_increase
-	self.system.CLIP_AMMO_MAX = 100
+	self.system.CLIP_AMMO_MAX = 150
 	self.system.stats.damage = 6
 	self.system.stats.spread = 0
 	self.system.stats.recoil = 0
@@ -3277,7 +3278,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Cashblaster
 	self.money.upgrade_blocks = no_clip_ammo_increase
 	self.money.use_data.selection_index = 2
-	self.money.CLIP_AMMO_MAX = 100
+	self.money.CLIP_AMMO_MAX = 150
 	self.money.stats.damage = 8
 	self.money.stats.spread = 0
 	self.money.stats.recoil = 0

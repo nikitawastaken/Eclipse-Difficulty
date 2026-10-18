@@ -1433,7 +1433,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
 		value = 1,
 		damage = -2,
-		extra_ammo = 25,
+		extra_ammo = 50,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {
 		ammo_max_mul = 4 / 3,
@@ -1446,7 +1446,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
 		value = 1,
 		damage = 2,
-		extra_ammo = -25,
+		extra_ammo = -50,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {
 		ammo_max_mul = 2 / 3,
@@ -1470,10 +1470,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_m_low.stats = {
 		value = 1,
 		damage = -2,
+		extra_ammo = 25,
 	}
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {
-		ammo_offset = 25,
-		ammo_max_mul = 5 / 4,
+		ammo_max_mul = 4 / 3,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.no_magazine_balancing = true
@@ -1483,10 +1483,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_m_high.stats = {
 		value = 1,
 		damage = 2,
+		extra_ammo = -25,
 	}
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {
-		ammo_offset = -25,
-		ammo_max_mul = 3 / 4,
+		ammo_max_mul = 2 / 3,
 	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.no_magazine_balancing = true

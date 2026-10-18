@@ -7,12 +7,12 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 		fire_type.dot_grace_period = 1
 	end
 
-	self.dot_entries.fire.weapon_flamethrower_mk2.dot_damage = 2
+	self.dot_entries.fire.weapon_flamethrower_mk2.dot_damage = 1.5
 	self.dot_entries.fire.weapon_flamethrower_mk2.dot_length = 3
-	self.dot_entries.fire.weapon_flamethrower_mk2.dot_trigger_chance = 0.25
+	self.dot_entries.fire.weapon_flamethrower_mk2.dot_trigger_chance = 0.75
 
 	self.dot_entries.fire.ammo_flamethrower_mk2_rare = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
-	self.dot_entries.fire.ammo_flamethrower_mk2_rare.dot_damage = 3
+	self.dot_entries.fire.ammo_flamethrower_mk2_rare.dot_damage = 2
 
 	self.dot_entries.fire.ammo_flamethrower_mk2_welldone = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 	self.dot_entries.fire.ammo_flamethrower_mk2_welldone.dot_damage = 1
@@ -45,21 +45,21 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.fire.proj_fire_com.dot_length = 2
 	self.dot_entries.fire.proj_fire_com.dot_trigger_chance = 1
 
-	self.dot_entries.fire.proj_molotov.dot_damage = 4
+	self.dot_entries.fire.proj_molotov.dot_damage = 3
 	self.dot_entries.fire.proj_molotov.dot_length = 10
 	self.dot_entries.fire.proj_molotov.dot_trigger_chance = 1
 
 	self.dot_entries.fire.proj_launcher_incendiary.dot_damage = 2
 	self.dot_entries.fire.proj_launcher_incendiary.dot_trigger_chance = 1
 
-	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_damage = 2
+	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_damage = 1
 	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_trigger_chance = 1
 
 	self.dot_entries.fire.proj_launcher_incendiary_light = clone(self.dot_entries.fire.proj_launcher_incendiary)
-	self.dot_entries.fire.proj_launcher_incendiary_light.dot_damage = 2
+	self.dot_entries.fire.proj_launcher_incendiary_light.dot_damage = 1
 
 	self.dot_entries.fire.proj_launcher_incendiary_heavy = clone(self.dot_entries.fire.proj_launcher_incendiary)
-	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_damage = 4
+	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_damage = 2
 
 	self.dot_entries.fire.cluster_incendiary = {
 		dot_trigger_chance = 1,
