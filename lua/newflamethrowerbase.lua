@@ -51,13 +51,13 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 			normal = direction,
 			position = from_pos,
 		}
-		
+
 		self._bullet_class:on_collision(fake_ray, self._unit, user_unit, damage)
-		
+
 		if unit:in_slot(self.shield_mask) then
 			break
 		end
-		
+
 		if unit:character_damage() and unit:character_damage().is_head then
 			hit_enemies = hit_enemies + 1
 		end
