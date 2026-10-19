@@ -539,7 +539,6 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		self:disable_cooldown_upgrade("cooldown", "melee_attack_frenzy")
 	end
 
-
 	-- Ex-President
 	-- Moved from CopDamage:_on_death
 	self:chk_store_armor_health_kill_counter(killed_unit, variant)
