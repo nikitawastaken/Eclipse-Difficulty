@@ -23,6 +23,7 @@ local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
 	Idstring("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"),
 	Idstring("units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"),
+	Idstring("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"),
 	Idstring("units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"),
 	Idstring("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"),
 	Idstring("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"),
