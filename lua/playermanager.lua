@@ -518,12 +518,19 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		self:disable_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
 	end
 
+	local damage_ext = self:player_unit():character_damage()
+
 	-- Entire Frenzy skill functionality
 	local has_active_frenzy = self:has_enabled_cooldown_upgrade("cooldown", "melee_attack_frenzy")
 	local has_frenzy_cooldown_reset = self:has_category_upgrade("player", "cooldown_reset_frenzy")
 	if variant == "melee" and has_active_frenzy then
 		self:activate_temporary_upgrade("temporary", "frenzy_damage_reduction")
 		self:activate_temporary_upgrade("temporary", "frenzy_guaranteed_armor_regen")
+
+		-- if armor is already broken, start the guaranteed armor regen timer manually because otherwise it doesn't work
+		if damage_ext:get_real_armor() <= 0 then
+			self:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
+		end
 
 		if has_frenzy_cooldown_reset then
 			self:reset_all_cooldown_upgrades()
@@ -532,7 +539,6 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		self:disable_cooldown_upgrade("cooldown", "melee_attack_frenzy")
 	end
 
-	local damage_ext = self:player_unit():character_damage()
 
 	-- Ex-President
 	-- Moved from CopDamage:_on_death
