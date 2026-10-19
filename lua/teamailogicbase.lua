@@ -298,6 +298,15 @@ function TeamAILogicBase._check_deliver_bag(data)
 					zipline_unit:zipline():attach_bag(carry_unit)
 				else
 					carry_data:set_position_and_throw(secure_info.bag_pos, secure_info.dir, 100)
+
+					-- clear bag HUD
+					local name_label = managers.hud:_get_name_label(data.unit:unit_data().name_label_id)
+					if name_label then
+						local bag_panel = name_label.panel and name_label.panel:child("bag")
+						if bag_panel then
+							bag_panel:set_visible(false)
+						end
+					end
 				end
 			end,
 		},
