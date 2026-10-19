@@ -34,22 +34,6 @@ local head_sequences = {
 			"disable_head",
 		},
 	},
-	soldier_a = {
-		material = 2,
-		run_sequence = {
-			"head_init",
-			"disable_face",
-			"disable_arms",
-		},
-	},
-	soldier_b = {
-		material = 2,
-		run_sequence = {
-			"head_init",
-			"disable_arms",
-			"random_balaclava_swat_rare",
-		},
-	},
 	heavy_swat = {
 		material = { 1, 2 },
 		run_sequence = {
@@ -367,10 +351,10 @@ local M = {
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.swat_c },
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_2", head = head_sequences.swat_c },
 
-	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.soldier_a },
-	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.soldier_b },
-	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
-	["units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"] = { name = "soldier_4", head = head_sequences.soldier_b },
+	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.swat_b },
+	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.swat_b },
+	["units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"] = { name = "soldier_4", head = head_sequences.swat_b },
 
 	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45"] = { name = "cop_1", head = head_sequences.security },
 	["units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass"] = { name = "cop_1", head = head_sequences.security }, -- unused
