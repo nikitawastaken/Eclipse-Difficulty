@@ -528,7 +528,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		self:activate_temporary_upgrade("temporary", "frenzy_guaranteed_armor_regen")
 
 		-- if armor is already broken, start the guaranteed armor regen timer manually because otherwise it doesn't work
-		if damage_ext:get_real_armor() <= 0 then
+		if damage_ext:get_real_armor() <= 0 and not self:has_category_upgrade("player", "armor_to_health_conversion") then
 			damage_ext:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
 		end
 
