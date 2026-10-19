@@ -106,9 +106,9 @@
 			<run_sequence 		name="'random_body_lower_a'" />
 			<run_sequence 		name="'random_shoes_c'" />
 			<run_sequence 		name="'random_shades_common'" />
-			<run_sequence 		name="'random_beanie_common'" />
 			<run_sequence 		name="'random_bandana_waist'" />
 			<run_sequence 		name="'random_cigarette_common'" />
+			<run_sequence 		name="'beanie_base'" />
 		</sequence>
 	<!--BODY SEQUENCES -->
 	<!-- UPPER BODIES -->
