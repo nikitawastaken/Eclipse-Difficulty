@@ -529,7 +529,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 
 		-- if armor is already broken, start the guaranteed armor regen timer manually because otherwise it doesn't work
 		if damage_ext:get_real_armor() <= 0 then
-			self:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
+			damage_ext:_start_regen_on_the_side(tweak_data.upgrades.values.frenzy_guaranteed_armor_regen_timer or 0)
 		end
 
 		if has_frenzy_cooldown_reset then
