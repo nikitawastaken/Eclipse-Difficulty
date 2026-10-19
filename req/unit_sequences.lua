@@ -6,6 +6,13 @@ local head_sequences = {
 			"disable_face",
 		},
 	},
+	security_no_arms = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_arms",
+		},
+	},
 	security_fat = {
 		material = { 1, 2 },
 		run_sequence = {
@@ -193,13 +200,6 @@ local head_sequences = {
 			"random_balaclava_threehole_common",
 		},
 	},
-	gangster_russian_d = {
-		material = { 1, 2 },
-		run_sequence = {
-			"head_init",
-			"disable_arms",
-		},
-	},
 }
 ---@module Unit Sequences
 local M = {
@@ -273,10 +273,25 @@ local M = {
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_2", head = head_sequences.swat_b },
 
+	["units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"] = { name = "fbi_office_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"] = { name = "fbi_office_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"] = { name = "fbi_office_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"] = { name = "fbi_office_1", head = head_sequences.security },
+
+	["units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"] = { name = "fbi_female_1", head = head_sequences.security },
+	["units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"] = { name = "fbi_female_1", head = head_sequences.security },
+
 	["units/payday2/characters/ene_gang_black_1/ene_gang_black_1"] = { name = "gang_black_1", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_2/ene_gang_black_2"] = { name = "gang_black_2", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_3/ene_gang_black_3"] = { name = "gang_black_3", head = head_sequences.security },
 	["units/payday2/characters/ene_gang_black_4/ene_gang_black_4"] = { name = "gang_black_4", head = head_sequences.security },
+
+	["units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"] = { name = "gang_mexican_1", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"] = { name = "gang_mexican_2", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"] = { name = "gang_mexican_3", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"] = { name = "gang_mexican_4", head = head_sequences.security_no_arms },
 
 	["units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1"] = { name = "gang_russian_1", head = head_sequences.gangster_russian_b },
 	["units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2"] = { name = "gang_russian_2", head = head_sequences.gangster_russian_a },
@@ -284,10 +299,10 @@ local M = {
 	["units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4"] = { name = "gang_russian_4", head = head_sequences.gangster_russian_a },
 	["units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5"] = { name = "gang_russian_5", head = head_sequences.gangster_russian_a },
 
-	["units/payday2/characters/ene_biker_1/ene_biker_1"] = { name = "biker_1", head = head_sequences.gangster_russian_d },
-	["units/payday2/characters/ene_biker_2/ene_biker_2"] = { name = "biker_2", head = head_sequences.gangster_russian_d },
-	["units/payday2/characters/ene_biker_3/ene_biker_3"] = { name = "biker_3", head = head_sequences.gangster_russian_d },
-	["units/payday2/characters/ene_biker_4/ene_biker_4"] = { name = "biker_4", head = head_sequences.gangster_russian_d },
+	["units/payday2/characters/ene_biker_1/ene_biker_1"] = { name = "biker_1", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_biker_2/ene_biker_2"] = { name = "biker_2", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_biker_3/ene_biker_3"] = { name = "biker_3", head = head_sequences.security_no_arms },
+	["units/payday2/characters/ene_biker_4/ene_biker_4"] = { name = "biker_4", head = head_sequences.security_no_arms },
 
 	["units/pd2_dlc_chca/characters/ene_triad_cruise_1/ene_triad_cruise_1"] = { name = "triad_cruise_1", head = head_sequences.security },
 	["units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2"] = { name = "triad_cruise_1", head = head_sequences.security },
@@ -407,6 +422,15 @@ local M = {
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini"] = { name = "bulldozer_4", head = head_sequences.bulldozer },
 	["units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic"] = { name = "bulldozer_medic", head = head_sequences.bulldozer },
 
+	["units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_01/ene_bolivian_thug_outdoor_01"] = { name = "thug_outdoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_02/ene_bolivian_thug_outdoor_02"] = { name = "thug_outdoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_security_manager/ene_security_manager"] = { name = "security_manager", head = head_sequences.security },
+	
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_01/ene_thug_indoor_01"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_02/ene_thug_indoor_02"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_03/ene_thug_indoor_03"] = { name = "thug_indoor", head = head_sequences.security },
+	["units/pd2_dlc_friend/characters/ene_thug_indoor_04/ene_thug_indoor_04"] = { name = "thug_indoor", head = head_sequences.security },
+				
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"] = { name = "hvh_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2"] = { name = "hvh_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_hvh/characters/ene_cop_hvh_3/ene_cop_hvh_3"] = { name = "hvh_cop_3", head = head_sequences.security },
@@ -520,6 +544,9 @@ local M = {
 	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"] = { name = "bulldozer_4", head = head_sequences.bulldozer },
 	["units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"] = { name = "bulldozer_medic", head = head_sequences.bulldozer },
 
+	["units/pd2_dlc_mex/characters/ene_mex_security_guard_3/ene_mex_security_guard_3"] = { name = "mex_security_guard", head = head_sequences.security },
+	["units/pd2_dlc_mex/characters/ene_mex_thug_outdoor_02/ene_mex_thug_outdoor_02"] = { name = "mex_thug_outdoor", head = head_sequences.security },
+		
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"] = { name = "secret_service_bex", head = head_sequences.security },
@@ -579,6 +606,8 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
 
+	["units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"] = { name = "mex_thug_outdoor", head = head_sequences.security },
+		
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.gangster_russian_a },
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.gangster_russian_a },
 	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.gangster_russian_a },
@@ -607,6 +636,9 @@ local M = {
 	["units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"] = { name = "security_cruise_1", head = head_sequences.security },
 	["units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"] = { name = "security_cruise_1", head = head_sequences.security },
 
+	["units/pd2_dlc_ranc/characters/ene_male_ranc_security_1/ene_male_ranc_security_1"] = { name = "male_ranc_security_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_ranc/characters/ene_male_ranc_security_2/ene_male_ranc_security_2"] = { name = "male_ranc_security_1", head = head_sequences.security_no_arms },
+	
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"] = { name = "male_ranc_ranger_1", head = head_sequences.security },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"] = { name = "male_ranc_ranger_2", head = head_sequences.security },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"] = { name = "male_ranc_ranger_3", head = head_sequences.security },
@@ -624,12 +656,12 @@ local M = {
 	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_c },
 	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
 
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"] = { name = "security_auc_1", head = head_sequences.security },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_1", head = head_sequences.security },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"] = { name = "security_auc_1", head = head_sequences.security },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_4/ene_male_auc_security_4"] = { name = "security_auc_1", head = head_sequences.security },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_5/ene_male_auc_security_5"] = { name = "security_auc_1", head = head_sequences.security },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_6/ene_male_auc_security_6"] = { name = "security_auc_1", head = head_sequences.security },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_4/ene_male_auc_security_4"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_5/ene_male_auc_security_5"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_6/ene_male_auc_security_6"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
 
 	["units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy"] = { name = "bulldozer_piggy", head = head_sequences.bulldozer },
 	["units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss"] = { name = "bulldozer_snowman", head = head_sequences.bulldozer },

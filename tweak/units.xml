@@ -47,29 +47,6 @@
 		</target>
 	</tweak>
 	
-	<tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-		</search>
-		<target mode="attach">
-			<var name="can_be_marked" value="true"/>
-		</target>
-	</tweak>
-	
 	<tweak version="2" name="units/pd2_mcmansion/characters/ene_male_hector_1/ene_male_hector_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
@@ -299,31 +276,6 @@
 			<var name="can_be_marked" value="true"/>
 		</target>
 	</tweak>
-    <!-- Change ene_thug_outdoor_fex _tweak_table -->
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="security_mex"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="security_mex"/>
-		</target>
-	</tweak>
 
     <!-- change fbi office agents _tweak_table -->
     <!-- make agent Riker and his partner Jordan as the actual duo boss fight  -->
@@ -349,131 +301,6 @@
 		</search>
 		<target mode="attributes">
 			<attr name="value" value="fbi_boss"/>
-		</target>
-	</tweak>
-    <tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_female_boss"/>
-		</target>
-	</tweak>
-    <tweak version="2" name="units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_female_boss"/>
-		</target>
-	</tweak>
-
-    <!-- male -->
-	<tweak version="2" name="units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-
-    <tweak version="2" name="units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-
-    <tweak version="2" name="units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-
-    <tweak version="2" name="units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 	

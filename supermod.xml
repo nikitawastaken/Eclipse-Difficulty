@@ -1029,6 +1029,11 @@
 				<file :name="gang_black_heads_atlas_var2_df.texture" />
 				<file :name="gang_black_heads_atlas_var2_nm.texture" />
 
+				<file :name="gang_mexican_heads_atlas_var1_df.texture" />
+				<file :name="gang_mexican_heads_atlas_var1_nm.texture" />
+				<file :name="gang_mexican_heads_atlas_var2_df.texture" />
+				<file :name="gang_mexican_heads_atlas_var2_nm.texture" />
+				
 				<file :name="gang_russian_heads_atlas_var1_df.texture" />
 				<file :name="gang_russian_heads_atlas_var1_nm.texture" />
 				<file :name="gang_russian_heads_atlas_var2_df.texture" />
@@ -1060,8 +1065,15 @@
 				<file :name="spook_il.texture" />
 			</group>
 
+			<group :name="ene_acc_security_cap/">
+				<file :name="ene_acc_security_cap.model" />
+			</group>
+
+			<group :name="ene_acc_security_cap_2/">
+				<file :name="ene_acc_security_cap_2.model" />
+			</group>
+						
 			<group :name="ene_acc_swat_helmet/">
-				<file :name="ene_acc_swat_helmet.material_config" />
 				<file :name="ene_acc_swat_helmet.model" />
 				<file :name="ene_acc_swat_helmet.object" />
 			</group>
@@ -1080,7 +1092,6 @@
 			</group>
 
 			<group :name="ene_acc_tazer_helmet/">
-				<file :name="ene_acc_tazer_helmet.material_config" />
 				<file :name="ene_acc_tazer_helmet.model" />
 				<file :name="ene_acc_tazer_helmet.object" />
 			</group>
@@ -1091,7 +1102,6 @@
 			</group>
 
 			<group :name="ene_acc_swat_heavy_helmet/">
-				<file :name="ene_acc_swat_heavy_helmet.material_config" />
 				<file :name="ene_acc_swat_heavy_helmet.model" />
 				<file :name="ene_acc_swat_heavy_helmet.object" />
 			</group>
@@ -1184,6 +1194,22 @@
 				</group>
 			</group>
 
+			<group :name="ene_acc_gang_mexican_head/">
+				<xml  :name="ene_acc_gang_mexican_head.sequence_manager" />
+				<file :name="ene_acc_gang_mexican_head.cooked_physics" />
+				<file :name="ene_acc_gang_mexican_head.model" />
+				<file :name="ene_acc_gang_mexican_head.object" />
+				<file :name="ene_acc_gang_mexican_head.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_acc_gang_mexican_head_var1.material_config" />
+					<file :name="ene_acc_gang_mexican_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_gang_mexican_head_var2.material_config" />
+					<file :name="ene_acc_gang_mexican_head_var2_contour.material_config" />
+				</group>
+			</group>
+			
 			<group :name="ene_acc_gang_russian_head/">
 				<xml  :name="ene_acc_gang_russian_head.sequence_manager" />
 				<file :name="ene_acc_gang_russian_head.cooked_physics" />
@@ -1478,6 +1504,71 @@
 				<file :name="ene_murkywater_2_husk.unit" />
 			</group>
 
+			<group :name="ene_fbi_office_1/">
+				<xml  :name="ene_fbi_office_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_office_1.material_config" />
+				<file :name="ene_fbi_office_1_contour.material_config" />
+				<file :name="ene_fbi_office_1.model" />
+				<file :name="ene_fbi_office_1.object" />
+				<file :name="ene_fbi_office_1.unit" />
+				<file :name="ene_fbi_office_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_fbi_office_2.material_config" />
+					<file :name="ene_fbi_office_2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_fbi_office_2/">
+				<file :name="ene_fbi_office_2.unit" />
+				<file :name="ene_fbi_office_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_office_3/">
+				<file :name="ene_fbi_office_3.unit" />
+				<file :name="ene_fbi_office_3_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_office_4/">
+				<file :name="ene_fbi_office_4.unit" />
+				<file :name="ene_fbi_office_4_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_female_1/">
+				<xml  :name="ene_fbi_female_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_female_1.material_config" />
+				<file :name="ene_fbi_female_1_contour.material_config" />
+				<file :name="ene_fbi_female_1.model" />
+				<file :name="ene_fbi_female_1.object" />
+				<file :name="ene_fbi_female_1.unit" />
+				<file :name="ene_fbi_female_1_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_female_2/">
+				<file :name="ene_fbi_female_2.unit" />
+				<file :name="ene_fbi_female_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_female_3/">
+				<file :name="ene_fbi_female_3.unit" />
+				<file :name="ene_fbi_female_3_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_female_4/">
+				<file :name="ene_fbi_female_4.unit" />
+				<file :name="ene_fbi_female_4_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_boss_female_1/">
+				<file :name="ene_fbi_boss_female_1.cooked_physics" />
+				<file :name="ene_fbi_boss_female_1.material_config" />
+				<file :name="ene_fbi_boss_female_1_contour.material_config" />
+				<file :name="ene_fbi_boss_female_1.model" />
+				<file :name="ene_fbi_boss_female_1.object" />
+				<file :name="ene_fbi_boss_female_1.unit" />
+				<file :name="ene_fbi_boss_female_1_husk.unit" />
+			</group>
+			
 			<group :name="ene_gang_black_1/">
 				<xml  :name="ene_gang_black_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_gang_black_1.material_config" />
@@ -1503,6 +1594,31 @@
 				<file :name="ene_gang_black_4_husk.unit" />
 			</group>
 
+			<group :name="ene_gang_mexican_1/">
+				<xml  :name="ene_gang_mexican_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_gang_mexican_1.material_config" />
+				<file :name="ene_gang_mexican_1_contour.material_config" />
+				<file :name="ene_gang_mexican_1.model" />
+				<file :name="ene_gang_mexican_1.object" />
+				<file :name="ene_gang_mexican_1.unit" />
+				<file :name="ene_gang_mexican_1_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_2/">
+				<file :name="ene_gang_mexican_2.unit" />
+				<file :name="ene_gang_mexican_2_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_3/">
+				<file :name="ene_gang_mexican_3.unit" />
+				<file :name="ene_gang_mexican_3_husk.unit" />
+			</group>
+
+			<group :name="ene_gang_mexican_4/">
+				<file :name="ene_gang_mexican_4.unit" />
+				<file :name="ene_gang_mexican_4_husk.unit" />
+			</group>
+			
 			<group :name="ene_gang_russian_1/">
 				<xml  :name="ene_gang_russian_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_gang_russian_1.material_config" />
@@ -1937,14 +2053,6 @@
 				<file :name="ene_acc_gensec_beret.model" />
 				<file :name="ene_acc_gensec_beret.object" />
 				<file :name="ene_acc_gensec_beret.unit" />
-			</group>
-			
-			<group :name="ene_acc_gensec_cap/">
-				<file :name="ene_acc_gensec_cap.cooked_physics" />
-				<file :name="ene_acc_gensec_cap.material_config" />
-				<file :name="ene_acc_gensec_cap.model" />
-				<file :name="ene_acc_gensec_cap.object" />
-				<file :name="ene_acc_gensec_cap.unit" />
 			</group>
 
 			<group :name="ene_security_gensec_1/">
@@ -2613,13 +2721,100 @@
 			</group>
 		</group>
 
-		<!-- sosa hitboxes and footsteps -->
-		<group name="units/pd2_dlc_friend/characters/ene_drug_lord_boss/" dyn_package="false">
-			<file :name="ene_drug_lord_boss.object"/>
-			<file :name="ene_drug_lord_boss.unit"/>
-			<file :name="ene_drug_lord_boss_husk.unit"/>
-		</group>
+		<group name="units/pd2_dlc_friend/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="bolivian_heads_atlas_df.texture" />
+				<file :name="bolivian_heads_atlas_nm.texture" />
+			</group>
 
+			<group :name="ene_acc_bolivian_head/">
+				<xml  :name="ene_acc_bolivian_head.sequence_manager" />
+				<file :name="ene_acc_bolivian_head.cooked_physics" />
+				<file :name="ene_acc_bolivian_head.material_config" />
+				<file :name="ene_acc_bolivian_head_contour.material_config" />
+				<file :name="ene_acc_bolivian_head.model" />
+				<file :name="ene_acc_bolivian_head.object" />
+				<file :name="ene_acc_bolivian_head.unit" />
+			</group>
+
+			<group :name="ene_bolivian_thug_outdoor_01/">
+				<xml  :name="ene_bolivian_thug_outdoor_01.sequence_manager" dyn_package="true" />
+				<file :name="ene_bolivian_thug_outdoor_01.material_config" />
+				<file :name="ene_bolivian_thug_outdoor_01_contour.material_config" />
+				<file :name="ene_bolivian_thug_outdoor_01.model" />
+				<file :name="ene_bolivian_thug_outdoor_01.object" />
+				<file :name="ene_bolivian_thug_outdoor_01.unit" />
+				<file :name="ene_bolivian_thug_outdoor_01_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_security_manager.material_config" />
+					<file :name="ene_security_manager_contour.material_config" />
+
+					<file :name="ene_mex_thug_outdoor_01.material_config" />
+					<file :name="ene_mex_thug_outdoor_01_contour.material_config" />
+
+					<file :name="ene_mex_thug_outdoor_02.material_config" />
+					<file :name="ene_mex_thug_outdoor_02_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_bolivian_thug_outdoor_02/">
+				<file :name="ene_bolivian_thug_outdoor_02.unit" />
+				<file :name="ene_bolivian_thug_outdoor_02_husk.unit" />
+			</group>
+
+			<group :name="ene_security_manager/">
+				<file :name="ene_security_manager.unit" />
+				<file :name="ene_security_manager_husk.unit" />
+			</group>
+		
+			<group :name="ene_thug_indoor_01/">
+				<xml  :name="ene_thug_indoor_01.sequence_manager" dyn_package="true" />
+				<file :name="ene_thug_indoor_01.material_config" />
+				<file :name="ene_thug_indoor_01_contour.material_config" />
+				<file :name="ene_thug_indoor_01.model" />
+				<file :name="ene_thug_indoor_01.object" />
+				<file :name="ene_thug_indoor_01.unit" />
+				<file :name="ene_thug_indoor_01_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_thug_indoor_02.material_config" />
+					<file :name="ene_thug_indoor_02_contour.material_config" />
+
+					<file :name="ene_mex_security_guard_1.material_config" />
+					<file :name="ene_mex_security_guard_1_contour.material_config" />
+
+					<file :name="ene_mex_security_guard_2.material_config" />
+					<file :name="ene_mex_security_guard_2_contour.material_config" />
+					
+					<file :name="ene_mex_security_guard_3.material_config" />
+					<file :name="ene_mex_security_guard_3_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_thug_indoor_02/">
+				<file :name="ene_thug_indoor_02.unit" />
+				<file :name="ene_thug_indoor_02_husk.unit" />
+			</group>
+
+			<group :name="ene_thug_indoor_03/">
+				<file :name="ene_thug_indoor_03.unit" />
+				<file :name="ene_thug_indoor_03_husk.unit" />
+			</group>
+
+			<group :name="ene_thug_indoor_04/">
+				<file :name="ene_thug_indoor_04.unit" />
+				<file :name="ene_thug_indoor_04_husk.unit" />
+			</group>
+			
+			<!-- sosa hitboxes and footsteps -->
+			<group :name="ene_drug_lord_boss/">
+				<file :name="ene_drug_lord_boss.object"/>
+				<file :name="ene_drug_lord_boss.unit"/>
+				<file :name="ene_drug_lord_boss_husk.unit"/>
+			</group>
+		</group>
+			
 		<group name="units/pd2_dlc_spa/vehicles/str_vehicle_car_police_new_york/" dyn_package="false">
 			<file :name="str_vehicle_car_police_new_york.material_config" />
 		</group>
@@ -3148,6 +3343,7 @@
 
 			<group :name="ene_murkywater_cop_1/">
 				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_cop_1.cooked_physics" />
 				<file :name="ene_murkywater_cop_1.material_config" />
 				<file :name="ene_murkywater_cop_1_contour.material_config" />
 				<file :name="ene_murkywater_cop_1.model" />
@@ -3432,6 +3628,18 @@
 				<file :name="ene_murkywater_secret_service.object" />
 				<file :name="ene_murkywater_secret_service.unit" />
 				<file :name="ene_murkywater_secret_service_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_mex/characters/" dyn_package="false" >
+			<group :name="ene_mex_security_guard_3/">
+				<file :name="ene_mex_security_guard_3.unit" />
+				<file :name="ene_mex_security_guard_3_husk.unit" />
+			</group>
+
+			<group :name="ene_mex_thug_outdoor_02/">
+				<file :name="ene_mex_thug_outdoor_02.unit" />
+				<file :name="ene_mex_thug_outdoor_02_husk.unit" />
 			</group>
 		</group>
 		
@@ -3963,9 +4171,16 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_fex/characters/ene_secret_service_fex/" dyn_package="false">
-			<file :name="ene_secret_service_fex.unit" />
-			<file :name="ene_secret_service_fex_husk.unit" />
+		<group name="units/pd2_dlc_fex/characters/" dyn_package="false">
+			<group :name="ene_secret_service_fex/">
+				<file :name="ene_secret_service_fex.unit" />
+				<file :name="ene_secret_service_fex_husk.unit" />
+			</group>
+			
+			<group :name="ene_thug_outdoor_fex/">
+				<file :name="ene_thug_outdoor_fex.unit" />
+				<file :name="ene_thug_outdoor_fex_husk.unit" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_chas/vehicles/chas_vehicle_car_police_sfpd/" dyn_package="false">
@@ -4235,7 +4450,15 @@
 			<file :name="ranc_vehicle_car_police_tdps.material_config" />
 		</group>
 
-		<group name="units/pd2_dlc_ranc/characters/" dyn_package="false">
+		<group name="units/pd2_dlc_ranc/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_acc_ranc_security_hat/">
+				<file :name="ene_acc_ranc_security_hat.cooked_physics" />
+				<file :name="ene_acc_ranc_security_hat.material_config" />
+				<file :name="ene_acc_ranc_security_hat.model" />
+				<file :name="ene_acc_ranc_security_hat.object" />
+				<file :name="ene_acc_ranc_security_hat.unit" />
+			</group>
+			
 			<group :name="ene_acc_ranc_ranger_hat/">
 				<file :name="ene_acc_ranc_ranger_hat.cooked_physics" />
 				<file :name="ene_acc_ranc_ranger_hat.material_config" />
@@ -4244,6 +4467,21 @@
 				<file :name="ene_acc_ranc_ranger_hat.unit" />
 			</group>
 
+			<group :name="ene_male_ranc_security_1/">
+				<xml  :name="ene_male_ranc_security_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_male_ranc_security_1.material_config" />
+				<file :name="ene_male_ranc_security_1_contour.material_config" />
+				<file :name="ene_male_ranc_security_1.model" />
+				<file :name="ene_male_ranc_security_1.object" />
+				<file :name="ene_male_ranc_security_1.unit" />
+				<file :name="ene_male_ranc_security_1_husk.unit" />
+			</group>
+
+			<group :name="ene_male_ranc_security_2/">
+				<file :name="ene_male_ranc_security_2.unit" />
+				<file :name="ene_male_ranc_security_2_husk.unit" />
+			</group>
+			
 			<group :name="ene_male_ranc_ranger_01/">
 				<file :name="ene_male_ranc_ranger_01.unit" />
 				<file :name="ene_male_ranc_ranger_01_husk.unit" />

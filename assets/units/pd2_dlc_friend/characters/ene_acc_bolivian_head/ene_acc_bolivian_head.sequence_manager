@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<table>
+	<unit>	
+		<variables>
+			<material_var				value="0" />
+		</variables>
+
+		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
+			<run_sequence	 	name="'random_body'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_body'" once="true" triggable="true"> 
+			<run_sequence		name="'body_'..pick('a','b','c','d','e','f','g','h')..'_var1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
+			<object 		enabled="false" name="'g_arms_a'"/>
+			<object 		enabled="false" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="false" name="'g_arms_b'"/>
+			<object 		enabled="false" name="'g_arms_b_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'disable_head'" once="true" triggable="true">	
+			<object 		enabled="false" name="'g_head_a'"/>
+			<object 		enabled="false" name="'g_head_a_lod1'"/>
+
+			<object 		enabled="false" name="'g_head_b'"/>
+			<object 		enabled="false" name="'g_head_b_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_c'"/>
+			<object 		enabled="false" name="'g_head_c_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_d'"/>
+			<object 		enabled="false" name="'g_head_d_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_e'"/>
+			<object 		enabled="false" name="'g_head_e_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_f'"/>
+			<object 		enabled="false" name="'g_head_f_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_g'"/>
+			<object 		enabled="false" name="'g_head_g_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_h'"/>
+			<object 		enabled="false" name="'g_head_h_lod1'"/>
+		</sequence>
+		
+		<sequence editable_state="true" name="'body_a_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_a'"/>
+			<object 		enabled="true" name="'g_head_a_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_b_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_b'"/>
+			<object 		enabled="true" name="'g_head_b_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_c_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_c'"/>
+			<object 		enabled="true" name="'g_head_c_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_d_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+	
+			<object 		enabled="true" name="'g_head_d'"/>
+			<object 		enabled="true" name="'g_head_d_lod1'"/>
+		</sequence>
+	
+		<sequence editable_state="true" name="'body_e_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_e'"/>
+			<object 		enabled="true" name="'g_head_e_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_f_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_f'"/>
+			<object 		enabled="true" name="'g_head_f_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_g_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_g'"/>
+			<object 		enabled="true" name="'g_head_g_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_h_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+
+			<object 		enabled="true" name="'g_head_h'"/>
+			<object 		enabled="true" name="'g_head_h_lod1'"/>
+		</sequence>
+	</unit>
+</table>

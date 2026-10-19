@@ -1972,6 +1972,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
 	safe_add(char_map.basic, "ene_bulldozer_5")
+	safe_add(char_map.basic, "ene_fbi_boss_female_1")
 
 	safe_add(char_map.dlc1, "ene_gensec_operator_1")
 	safe_add(char_map.dlc1, "ene_gensec_operator_2")
