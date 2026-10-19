@@ -259,19 +259,7 @@ return {
 			{ id = 400048, delay = 5, delay_rand = 5 },
 		},
 	},
-	-- restore 2 unused snipers for the heli escape section
-	[100366] = {
-		on_executed = {
-			{ id = 100370, remove = true },
-			{ id = 100371, remove = true },
-		},
-	},
-	[105804] = {
-		on_executed = {
-			{ id = 100370, delay = 0 },
-			{ id = 100371, delay = 0 },
-		},
-	},
+	-- restore 2 unused roof snipers
 	[100370] = enabled,
 	[100371] = enabled,
 	-- Sever hack chance in solo

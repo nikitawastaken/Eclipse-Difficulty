@@ -315,10 +315,10 @@ return {
 			{ id = 400016, delay = 3.5 },
 		},
 	},
-	-- keep vanilla snipers off on lower diffs
+	-- disable vanilla snipers
 	[102941] = {
 		values = {
-			enabled = overkill_and_above and true or false,
+			enabled = false,
 		},
 	},
 	-- spawn two extra tasers with blockade shields on Death Wish (193+ throwback)

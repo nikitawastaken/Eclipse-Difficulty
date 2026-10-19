@@ -155,25 +155,6 @@ local optsOpenSwatVanDoors_3 = {
 	},
 }
 
-local optsrespawn_sniper_1 = {
-	on_executed = {
-		{ id = 100370, delay = 60, delay_rand = 30 },
-	},
-	elements = {
-		100370,
-	},
-	event = "death",
-}
-local optsrespawn_sniper_2 = {
-	on_executed = {
-		{ id = 100371, delay = 60, delay_rand = 30 },
-	},
-	elements = {
-		100371,
-	},
-	event = "death",
-}
-
 M.elements = {
 	-- cloakers, spawn as ambush in vault hallway (similiar to First World Bank)
 	Eclipse.mission_elements.gen_dummy(400000, "spooc_1", Vector3(-2864, 746, -1000), Rotation(-180, 0, -0), optsCloaker_1),
@@ -227,9 +208,5 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400048, "spawn_swats_3", optsspawnvanSWATs_3),
 	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_3", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
-
-	-- respawn stuff for scripted snipers
-	Eclipse.mission_elements.gen_dummytrigger(400051, "respawn_sniper_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_sniper_1),
-	Eclipse.mission_elements.gen_dummytrigger(400052, "respawn_sniper_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_sniper_2),
 }
 return M
