@@ -1,20 +1,16 @@
 return {
 	flashlights_on = true, -- Flashlights
 	color_grading = { -- Randomized color gradings
-		"color_heat",
-		"color_nice",
-		"color_bhd",
-		"color_xxxgen",
-		"color_matrix_classic",
-		"color_bhd_classic",
+		"color_force",
+		"color_plus",
 		"color_heat_classic",
 	},
 	environment_override = { -- File override
-		--	["environments/pd2_env_mid_day/pd2_env_mid_day"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_1_1_night.custom_xml",
-		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_1_1_night.custom_xml",
+		--	["environments/pd2_env_mid_day/pd2_env_mid_day"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_1_3_night.custom_xml",
+		["environments/pd2_env_night/pd2_env_night"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs_night1_3.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
-		["effects/envsmod/in_between/fog_very_faint_bright_white"] = {
+		["effects/envsmod/night_time/fog_very_faint_bright_white"] = {
 			{
 				position = Vector3(-1869, 321, -19),
 				rotation = Rotation(0, 0, -0),
