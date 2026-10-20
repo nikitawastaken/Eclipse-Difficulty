@@ -2464,8 +2464,6 @@ function WeaponFactoryTweakData:_balance_underbarrel(tweak_data, part_id)
 				local damage_ratio_round = math.round(weap_total_ammo * 0.5, weapon_tweak.CLIP_AMMO_MAX) / weap_total_ammo
 
 				self[factory_id].override[part_id].custom_stats.ammo_max_mul = damage_ratio_round
-				self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = 0.75
-				self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul
 			end
 		end
 	end
