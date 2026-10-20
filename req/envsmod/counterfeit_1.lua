@@ -12,4 +12,7 @@ return {
 		["environments/pd2_pal_indoor/pd2_pal_indoor"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/counterfeit_inside.custom_xml",
 		["environments/pd2_pal_basement/pd2_pal_basement"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/counterfeit_basement.custom_xml",
 	},
+	sounds_override = { -- File override
+		["levels/narratives/classics/pal/world_sounds"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/counterfeit_world_sounds.custom_xml",
+	},
 }
