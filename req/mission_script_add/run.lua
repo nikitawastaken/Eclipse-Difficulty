@@ -205,6 +205,12 @@ local optscop_car_lights_on = {
 		{ id = 20, name = "run_sequence", notify_unit_id = 100479, notify_unit_sequence = "state_lights_siren_on", time = 0 },
 	},
 }
+local optsambulance_lights_on = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100730, notify_unit_sequence = "lights_on", time = 0 },
+	},
+}
 local optsKickthefuckingdoor = {
 	enabled = true,
 	trigger_list = {
@@ -648,8 +654,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(410066, "wall_so_5", Vector3(5394.246, 8257.724, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
 	Eclipse.mission_elements.gen_so(410067, "wall_so_6", Vector3(5470.247, 8966.672, 37.068), Rotation(-87, 0, 0), optsFirstStreet_AIsniper),
 	Eclipse.mission_elements.gen_missionscript(410068, "spawn_first_street_swats", optsspawnfirststreetSWATs),
-	-- lights on for cop cars
+	-- lights on for cop cars and ambulance
 	Eclipse.mission_elements.gen_object_editor(410069, "cop_car_lights", Vector3(0, 0, 0), Rotation(0, 0, 0), optscop_car_lights_on),
+	Eclipse.mission_elements.gen_object_editor(410075, "ambulance_lights", Vector3(0, 0, 0), Rotation(0, 0, 0), optsambulance_lights_on),
 	-- move a few older ambush event scripts to a different format
 	Eclipse.mission_elements.gen_missionscript(410070, "spawn_major_ave_shield_wall", optsspawnmajorshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),

@@ -208,6 +208,12 @@ return {
 			{ delay = 0, id = 410069 },
 		},
 	},
+	-- turn on the lights for the ambulance
+	[100152] = {
+		on_executed = {
+			{ delay = 0, id = 410075 },
+		},
+	},
 	-- add commments on incoming helis or garage events
 	[102109] = swat_heli_incoming,
 	[102130] = swat_heli_incoming,
@@ -223,6 +229,8 @@ return {
 	[101207] = disabled,
 	[102047] = disabled,
 	[103245] = disabled,
+	-- disable closing middle container
+	[100125] = disabled,
 	-- ovk145-alike dozer spawn on armitage ave.
 	[103592] = {
 		values = {
