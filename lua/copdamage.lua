@@ -64,19 +64,35 @@ Hooks:PostHook(CopDamage, "_clbk_tweak_data_changed", "eclipse__clbk_tweak_data_
 	end
 end)
 
-local _apply_damage_reduction_original = CopDamage._apply_damage_reduction
-function CopDamage:_apply_damage_reduction(...)
-	local damage = _apply_damage_reduction_original(self, ...)
-
+function CopDamage:_check_temporary_damage_reduction()
+	local has_temporary_damage_reduction = false
+	
 	if self._medic_heal_dmg_mul_t and TimerManager:game():time() < self._medic_heal_dmg_mul_t then
-		damage = damage * (self._char_tweak.tmp_medic_heal_dmg_mul and self._char_tweak.tmp_medic_heal_dmg_mul[1] or 1)
+		has_temporary_damage_reduction = true
 	end
 
 	if self._tweak_change_dmg_mul_t and TimerManager:game():time() < self._tweak_change_dmg_mul_t then
-		damage = damage * (self._char_tweak.tmp_dmg_mul_on_tweak_change and self._char_tweak.tmp_dmg_mul_on_tweak_change[1] or 1)
+		has_temporary_damage_reduction = true
+	end
+	
+	return has_temporary_damage_reduction
+end
+
+local _apply_damage_reduction_original = CopDamage._apply_damage_reduction
+function CopDamage:_apply_damage_reduction(...)
+	local damage = _apply_damage_reduction_original(self, ...)
+	
+	local tmp_dmg_mul = 1
+	
+	if self._medic_heal_dmg_mul_t and TimerManager:game():time() < self._medic_heal_dmg_mul_t then
+		tmp_dmg_mul = tmp_dmg_mul * (self._char_tweak.tmp_medic_heal_dmg_mul and self._char_tweak.tmp_medic_heal_dmg_mul[1] or 1)
 	end
 
-	return damage
+	if self._tweak_change_dmg_mul_t and TimerManager:game():time() < self._tweak_change_dmg_mul_t then
+		tmp_dmg_mul = tmp_dmg_mul * (self._char_tweak.tmp_dmg_mul_on_tweak_change and self._char_tweak.tmp_dmg_mul_on_tweak_change[1] or 1)
+	end
+	
+	return damage * tmp_dmg_mul
 end
 
 function CopDamage:can_be_critical(attack_data)
@@ -261,15 +277,21 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	local damage = attack_data.damage
 
 	if attacker_is_player then
+		local damage_scale = nil
+		
+		if self:_check_temporary_damage_reduction() then
+			damage_scale = 0.5
+		end
+		
 		local critical_hit, crit_damage = self:roll_critical_hit(attack_data, damage)
 
 		if critical_hit then
-			managers.hud:on_crit_confirmed()
+			managers.hud:on_crit_confirmed(damage_scale)
 
 			damage = crit_damage
 			attack_data.critical_hit = true
 		else
-			managers.hud:on_hit_confirmed()
+			managers.hud:on_hit_confirmed(damage_scale)
 		end
 
 		if head then
@@ -723,11 +745,15 @@ function CopDamage:damage_bullet(attack_data)
 		end
 
 		local damage_scale = nil
-
+		
 		if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().is_weak_hit then
 			damage_scale = attack_data.weapon_unit:base():is_weak_hit(attack_data.col_ray and attack_data.col_ray.distance, attack_data.attacker_unit) or 1
 		end
 
+		if self:_check_temporary_damage_reduction() then
+			damage_scale = 0.5
+		end
+		
 		local critical_hit, crit_damage = self:roll_critical_hit(attack_data, damage)
 
 		if critical_hit then
@@ -966,9 +992,13 @@ function CopDamage:damage_fire(attack_data)
 
 	if attack_data.attacker_unit == managers.player:player_unit() then
 		local damage_scale = nil
-
+	
 		if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().is_weak_hit then
 			damage_scale = attack_data.weapon_unit:base():is_weak_hit(attack_data.col_ray and attack_data.col_ray.distance, attack_data.attacker_unit) or 1
+		end
+
+		if self:_check_temporary_damage_reduction() then
+			damage_scale = 0.5
 		end
 
 		local critical_hit, crit_damage = self:roll_critical_hit(attack_data, damage)
