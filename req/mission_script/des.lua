@@ -7,33 +7,40 @@ local disabled = {
 local hub_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local garage_door_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_shields,
 }
 local upper_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 }
 local room_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local flank_spawn = {
+local flank_upper_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local flank_lower_spawn = {
+	values = {
+		interval = 45,
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -55,69 +62,42 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100304] = { -- objective 1 completed
+	[100304] = { -- objective_completed001
 		reinforce = {
 			{
-				name = "entrance",
-				force = 3,
-				position = Vector3(-1400, 2700, 0),
-			},
-			{
-				name = "hub",
-				force = 3,
-				position = Vector3(-150, -1225, 0),
-			},
+				name = "main_hall",
+				force = 5,
+				position = Vector3(-120, -2400, 100)
+			}
+		},
+		on_executed = {
+			{ id = 400007, delay = 0 },
 		},
 	},
 	[100286] = {
-		reinforce = {
-			{ name = "entrance" },
-			{
-				name = "helipad",
-				force = 3,
-				position = Vector3(-1200, 5375, 105),
-			},
-		},
-		-- add point of no return
-		ponr = {
+		ponr = { -- add point of no return
 			length = 300,
 			length_balance_mul = { 1.75, 1.25, 1, 1 },
 		},
-	},
-	[109005] = { -- open door biolab
 		reinforce = {
-			{
-				name = "bio",
-				force = 2,
-				position = Vector3(-1400, -500, 0),
-			},
+			{ name = "main_hall" },
+		},
+		on_executed = {
+			{ id = 400008, delay = 0 },
+			{ id = 400002, delay = 30, delay_rand = 30 }, -- Add a flanking group in the hub area
+			{ id = 400006, delay = 0 }, -- Remove the flanking group in the intro area
 		},
 	},
-	[100278] = { -- open door wepaons lab
-		reinforce = {
-			{
-				name = "weapons",
-				force = 2,
-				position = Vector3(-2150, -2175, 0),
-			},
+	-- Scripted difficulty scaling 
+	[102855] = { -- complete_objective038
+		on_executed = {
+			{ id = 400009, delay = 0 },
 		},
 	},
-	[108982] = { -- open door archaelogical area
-		reinforce = {
-			{
-				name = "archaelogy",
-				force = 2,
-				position = Vector3(2225, -2200, 0),
-			},
-		},
-	},
-	[108533] = { -- open door computer lab
-		reinforce = {
-			{
-				name = "computer",
-				force = 2,
-				position = Vector3(1425, -375, 0),
-			},
+	[100355] = { -- objective_started002
+		on_executed = {
+			{ id = 100800, delay = 0 },	-- Begin spawning Cloakers earlier
+			{ id = 400004, delay = 30, delay_rand = 30 }, -- Add a flanking group in the intro area
 		},
 	},
 	-- Disable a bunch of cheaty preferreds
@@ -149,9 +129,11 @@ return {
 	[107980] = room_spawn,
 	[107981] = room_spawn,
 	[107983] = room_spawn,
-	[108289] = flank_spawn, -- garage door spawn (escape)
-	[101074] = flank_spawn,
-	[101350] = flank_spawn,
+	[101074] = flank_upper_spawn,
+	[101350] = flank_upper_spawn,
+	[108289] = flank_lower_spawn,
+	[400001] = flank_lower_spawn,
+	[400004] = flank_lower_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,

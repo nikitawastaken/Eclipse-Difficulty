@@ -76,15 +76,6 @@ local upper_spawn = {
 local helicopter_guaranteed_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.25,
-			time = 60,
-			delay = 0,
-		},
-	},
-}
 
 return {
 	-- add point of no return
@@ -332,7 +323,11 @@ return {
 			{ id = 400211, delay = 0 },
 		},
 	},
-	[400210] = assault_end_diff_add,
+	[400210] = {
+		on_executed = {
+			{ id = 400212, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[400050] = helicopter_guaranteed_spawn,
 	[400060] = helicopter_guaranteed_spawn,

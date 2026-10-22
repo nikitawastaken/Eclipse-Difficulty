@@ -7,34 +7,29 @@ local no_participate = {
 local dorito_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local agile_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local dropdown_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local shaft_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local door_slide_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local disable_entrance_reinforce = {
@@ -129,11 +124,6 @@ return {
 	[101125] = { -- Escape
 		reinforce = {
 			{
-				name = "gate",
-				force = 3,
-				position = Vector3(-11000, -6750, 7000),
-			},
-			{
 				name = "what_a_nice_car",
 				force = 3,
 				position = Vector3(-11300, 500, 7400),
@@ -153,6 +143,17 @@ return {
 	[101237] = no_participate,
 	[101238] = no_participate,
 	[101239] = no_participate,
+	-- Scripted difficulty scaling
+	[100286] = { -- entered_vault (Entered airlock)
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[101426] = { -- door_opening (At the top of the mountain)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[101142] = dorito_spawn,
 	[101141] = dorito_spawn,

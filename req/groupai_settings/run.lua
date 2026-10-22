@@ -58,9 +58,9 @@ return {
 	difficulty_scaling_mod = {
 		addends = {
 			on_enemy_weapons_hot = {
-				amount = 0.375,
+				amount = 1 / 3,
 				delay = 0, -- Reduce the preset's delay
-				time = 45,
+				time = 30,
 			},
 		},
 		allowed_addends = {

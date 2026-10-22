@@ -5,28 +5,28 @@ local van_arrive_timer_random = 30 + (is_pro_job and 30 or 0)
 local building_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local building_init_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local agile_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local agile_final_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -64,7 +64,6 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	[102667] = building_init_spawn,
 	[102668] = building_init_spawn,
 	[107262] = building_init_spawn,

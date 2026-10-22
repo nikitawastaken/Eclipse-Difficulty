@@ -20,32 +20,32 @@ local enabled = {
 local standard_spawn = {
 	values = {
 		interval = 10,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 local rappel_horizontal_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 local casino_balcony_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local rappel_vertical_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 45,
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -197,6 +197,12 @@ return {
 	-- Enable unused snipers
 	[100371] = enabled,
 	[100372] = enabled,
+	-- Begin spawning Cloakers earlier. Vanilla begins spawning them at the start of the 2nd assault.
+	[100765] = { -- 2_assaults_started
+		values = {
+			counter_target = 1,
+		},
+	},
 	-- change the required amount of money bags
 	[101818] = bags_required,
 	[101819] = bags_required,

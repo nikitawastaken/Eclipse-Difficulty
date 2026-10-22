@@ -74,30 +74,12 @@ GroupAITweakData.force_size_presets = {
 }
 GroupAITweakData.difficulty_scaling_presets = {
 	-- Fast response, scales to max quite quickly
-	["timed_slow"] = {
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 1,
-				delay = 15,
-				time = { 150, 210 },
-			},
-		},
-	},
 	["timed"] = {
 		addends = {
 			on_enemy_weapons_hot = {
 				amount = 1,
 				delay = 15,
 				time = { 120, 180 },
-			},
-		},
-	},
-	["timed_fast"] = {
-		addends = {
-			on_enemy_weapons_hot = {
-				amount = 1,
-				delay = 15,
-				time = { 90, 150 },
 			},
 		},
 	},

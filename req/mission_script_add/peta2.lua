@@ -34,6 +34,28 @@ local opts_swat_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- swat van 1
@@ -67,6 +89,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400022, "swat_van_spawn_16", Vector3(12723.361, -18321.430, 10.487), Rotation(17, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_missionscript(400023, "spawn_swats_4", optsspawnvanSWATs_4),
 	Eclipse.mission_elements.gen_spawngroup(400024, "swat_group_4", { 400019, 400020, 400021, 400022 }, 0, opts_swat_group),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400025, "peta2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400026, "peta2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400027, "peta2_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

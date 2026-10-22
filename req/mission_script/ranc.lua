@@ -1,5 +1,10 @@
-local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
+local preferred = Eclipse.preferred
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
@@ -25,24 +30,6 @@ local scripted_swat_van_spawn = {
 local bags_required = {
 	values = {
 		amount = 4 + (is_pro_job and 2 or 0),
-	},
-}
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.375,
-			time = 60,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
 	},
 }
 
@@ -133,8 +120,23 @@ return {
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
 	-- Scripted difficulty scaling
-	[100929] = objective_diff_add, -- output_gate_opened_c4
-	[100123] = assault_end_diff_add, -- end_assault
+	[103552] = { -- output_gate_opened_c4
+		on_executed = {
+			{ id = 400022, delay = 0 },
+		},
+	}, 
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400023, delay = 0 },
+		},
+	}, 
+	-- Begin spawning Cloakers earlier. Vanilla begins spawning them at the start of the 2nd assault.
+	[100765] = { -- 2_assaults_started
+		values = {
+			counter_target = 1,
+		},
+	},
+	[100800] = enabled,
 	-- Spawn group intervals
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,

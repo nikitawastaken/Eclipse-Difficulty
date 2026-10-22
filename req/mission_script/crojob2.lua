@@ -13,7 +13,6 @@ local disabled = {
 local upper_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local upper_spawn_why_does_it_have_1_spawn_point = {
@@ -26,7 +25,6 @@ local upper_spawn_why_does_it_have_1_spawn_point = {
 local ship_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.4, 1.2, 1, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }

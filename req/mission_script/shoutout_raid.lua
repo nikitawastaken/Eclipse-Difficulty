@@ -40,6 +40,11 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
+				name = "central",
+				force = 4,
+				position = Vector3(2650, -125, 975),
+			},
+			{
 				name = "catwalk",
 				force = 2,
 				position = Vector3(-3650, -1850, 1400),
@@ -48,11 +53,6 @@ return {
 				name = "warehouse_entrance",
 				force = 2,
 				position = Vector3(100, -2075, 975),
-			},
-			{
-				name = "central",
-				force = 4,
-				position = Vector3(2650, -125, 975),
 			},
 			{
 				name = "near_longfellow01",

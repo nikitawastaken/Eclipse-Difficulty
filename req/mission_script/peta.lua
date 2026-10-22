@@ -18,16 +18,21 @@ local disabled = {
 		enabled = false,
 	},
 }
+local found_any_goat = {
+	on_executed = {
+		{ id = 400002, delay = 0 },
+	},
+}
 local scene_cop_count = {
 	values = {
-		amount = diff_i + 2,
-		amount_random = 4,
+		amount = 3,
+		amount_random = diff_i,
 	},
 }
 local wave_cop_count = {
 	values = {
-		amount = diff_i * 2,
-		amount_random = 6,
+		amount = 4,
+		amount_random = diff_i,
 	},
 }
 local cloaker_spawn = {
@@ -41,7 +46,33 @@ local apartment_guaranteed_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
+
 return {
+	-- Add new reinforce
+	[100109] = { -- police
+		reinforce = {
+			{
+				name = "park",
+				force = 3,
+				position = Vector3(-125, 50, 275),
+			},
+			{
+				name = "crossroads1",
+				force = 2,
+				position = Vector3(-6350, 2575, -175),
+			},
+			{
+				name = "crossroads2",
+				force = 2,
+				position = Vector3(4000, -8150, 50),
+			},
+			{
+				name = "crossroads3",
+				force = 2,
+				position = Vector3(4050, 2075, 50),
+			},
+		},
+	},
 	-- Increase drama when Snipers spawn
 	[100366] = { -- spawn_snipers
 		add_drama = {
@@ -84,7 +115,25 @@ return {
 	[103449] = wave_cop_count,
 	[103448] = wave_cop_count,
 	[103447] = wave_cop_count,
-	-- tweak apartment spawns
+	-- Scripted difficulty scaling
+	-- Add an element executed upon any goat being picked up, "free" or tied to an objective.
+	[101441] = found_any_goat, -- random_goat_collected
+	[105912] = found_any_goat, -- ap_goat_collected_l
+	[105920] = found_any_goat, -- fan_goat_collected_l
+	[105926] = found_any_goat, -- scaf_goat_collected_l
+	[105931] = found_any_goat, -- store_goat_collected_l
+	[105935] = found_any_goat, -- light_goat_collected_l
+	[400002] = { -- found_any_goat
+		on_executed = {
+			{ id = 400003, delay = 0 },
+		},
+	},	 
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		},
+	},
+	-- Tweak apartment spawns
 	[106165] = apartment_guaranteed_spawn,
 	[106167] = apartment_guaranteed_spawn,
 	[106166] = apartment_guaranteed_spawn,

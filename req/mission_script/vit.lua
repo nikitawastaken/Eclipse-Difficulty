@@ -133,7 +133,22 @@ return {
 	[102173] = us_soldier,
 	[102174] = us_soldier,
     ]]
-	--
+	-- Scripted difficulty scaling
+	[100983] = { -- open_west_wing
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[101745] = { -- output_event_drill_done (Presidential office drill done)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[103013] = { -- obj_018_second_hack_started (Second PEOC hack started)
+		on_executed = {
+			{ id = 400003, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100128] = main_window_spawn,
 	[100006] = oval_window_spawn,

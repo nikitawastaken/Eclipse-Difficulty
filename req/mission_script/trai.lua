@@ -24,24 +24,6 @@ local bags_required_objective = {
 		amount = 4 + (is_pro_job and 2 or 0),
 	},
 }
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.1875,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
 
 return {
 	-- Add new reinforce
@@ -76,9 +58,16 @@ return {
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
 	-- Scripted difficulty scaling
-	[103049] = objective_diff_add, -- link_enable_wagons
-	[103583] = objective_diff_add, -- input_enable_interact_controls
-	[100123] = assault_end_diff_add, -- end_assault
+	[103049] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[103583] = {
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Replace generic security with soldiers (SO MANY GUARDS)
 	[100670] = security_army,
 	[100671] = security_army,

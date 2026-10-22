@@ -119,8 +119,8 @@ return {
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
-			{ id = 103216, delay = 10, delay_rand = 20 },
-			{ id = 103493, delay = 10, delay_rand = 20 },
+			{ id = 103216, delay = 15, delay_rand = 15 },
+			{ id = 103493, delay = 15, delay_rand = 15 },
 		},
 	},
 	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)
@@ -148,7 +148,6 @@ return {
 	[102903] = disabled,
 	[102904] = disabled,
 	-- Spawn group intervals
-	-- This heist has notoriously annoying spawns all over the place.
 	[100132] = window_spawn,
 	[100133] = window_spawn,
 	[103491] = window_spawn,

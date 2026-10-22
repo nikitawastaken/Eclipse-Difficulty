@@ -1,14 +1,11 @@
 --Awesome layout ranomization from ASS
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local so_access = Eclipse.access_filter
-local only_cloakers_so = {
-	so_access_filter = so_access.spooc,
-}
 local disabled = {
 	values = {
 		enabled = false,
@@ -66,6 +63,16 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local only_cloakers_navlnk = {
+	so_access_filter = so_access.spooc,
+}
+local courtyard_to_container_navlink = {
+	values = {
+		interval = 10, -- (Vanilla: 3s)
+	},
+	so_access_filter = so_access.acrobatic,
+}
+
 local bags_required = {
 	values = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
@@ -85,24 +92,23 @@ local zero_traversal_covers = math.random() < chance_zero_traversal_covers
 local zero_top_containers = math.random() < chance_zero_top_containers
 local all_containers_closed = math.random() < chance_all_containers_closed
 
-local murky_green_bulldozer = scripted_enemy.murky_bulldozer_1
-local murky_black_bulldozer = scripted_enemy.murky_bulldozer_2
-local murky_elite_ben_bulldozer = scripted_enemy.murky_elite_bulldozer_1
-local murky_elite_skull_bulldozer = scripted_enemy.murky_elite_bulldozer_2
-
 local random_murky_dozers = {
-	murky_green_bulldozer,
-	murky_black_bulldozer,
+	scripted_enemy.murky_bulldozer_1,
+	scripted_enemy.murky_bulldozer_2,
 }
 local random_murky_elite_dozers = {
-	murky_elite_ben_bulldozer,
-	murky_elite_skull_bulldozer,
+	scripted_enemy.murky_elite_bulldozer_1,
+	scripted_enemy.murky_elite_bulldozer_2,
 }
 
 local murky_bulldozer = is_eclipse and random_murky_elite_dozers or random_murky_dozers
 
 local murky_dozers = {
 	enemy = murky_bulldozer,
+}
+
+local murkywater_cap = {
+	enemey = scripted_enemy.murkywater_2,
 }
 
 return {
@@ -140,11 +146,6 @@ return {
 	-- Disable a few vanilla reinforce points
 	[104143] = disabled,
 	[104144] = disabled,
-	[101696] = { -- players entered container area
-		on_executed = {
-			{ id = 102804, delay = 0 },
-		},
-	},
 	[105038] = math.random() < chance_no_keycard and disabled or nil,
 	[103563] = math.random() < chance_disable_catwalk_far and disabled or nil,
 	[102900] = {
@@ -328,20 +329,6 @@ return {
 	[101219] = snipers_amount,
 	[101222] = snipers_amount,
 	[101224] = snipers_amount,
-	-- only cloakers can use conveyor belts navlinks
-	[101036] = only_cloakers_so,
-	[105179] = only_cloakers_so,
-	[105180] = only_cloakers_so,
-	[105181] = only_cloakers_so,
-	[105182] = only_cloakers_so,
-	[105183] = only_cloakers_so,
-	[105184] = only_cloakers_so,
-	[105185] = only_cloakers_so,
-	[105186] = only_cloakers_so,
-	[105187] = only_cloakers_so,
-	[105188] = only_cloakers_so,
-	[105189] = only_cloakers_so,
-	[105190] = only_cloakers_so,
 	-- Enables NPC flashlights inside the slaughterhouse
 	[101346] = { -- entered_slaughterhouse
 		flashlight = true,
@@ -349,6 +336,26 @@ return {
 	[101179] = { -- start_sniper_spawn (triggered by activate_container_area)
 		flashlight = false,
 	},
+	-- Scripted difficulty scaling
+	[101390] = { -- complete_drill (Safe drill done)
+		on_executed = {
+			{ id = 400067, delay = 0 },
+			{ id = 102804, delay = 5 }, -- difficulty increase VO
+		},
+	},	
+	[104871] = { -- load_gas_started (Start moving the trap)
+		on_executed = {
+			{ id = 400068, delay = 0 },
+		},
+	},	
+	[102158] = { -- assault_end
+		values = {
+			trigger_times = 0,
+		},
+		on_executed = {
+			{ id = 400069, delay = 0 },
+		},
+	},	
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,
@@ -374,4 +381,60 @@ return {
 	[101533] = roof_spawn,
 	[103489] = cloaker_spawn,
 	[101715] = cloaker_spawn,
+	-- only cloakers can use conveyor belts navlinks
+	[101036] = only_cloakers_navlnk,
+	[105179] = only_cloakers_navlnk,
+	[105180] = only_cloakers_navlnk,
+	[105181] = only_cloakers_navlnk,
+	[105182] = only_cloakers_navlnk,
+	[105183] = only_cloakers_navlnk,
+	[105184] = only_cloakers_navlnk,
+	[105185] = only_cloakers_navlnk,
+	[105186] = only_cloakers_navlnk,
+	[105187] = only_cloakers_navlnk,
+	[105188] = only_cloakers_navlnk,
+	[105189] = only_cloakers_navlnk,
+	[105190] = only_cloakers_navlnk,
+	-- slow down container yard navlinks	
+	[102228] = courtyard_to_container_navlink,
+	[102220] = courtyard_to_container_navlink,
+	-- No helmets.
+	[101089] = murkywater_cap,
+	[101101] = murkywater_cap,
+	[101102] = murkywater_cap,
+	[101106] = murkywater_cap,
+	[101103] = murkywater_cap,
+	[101108] = murkywater_cap,
+	[101110] = murkywater_cap,
+	[101111] = murkywater_cap,
+	[101112] = murkywater_cap,
+	[101113] = murkywater_cap,
+	[101114] = murkywater_cap,
+	[101115] = murkywater_cap,
+	[101116] = murkywater_cap,
+	[101117] = murkywater_cap,
+	[101118] = murkywater_cap,
+	[101119] = murkywater_cap,
+	[101120] = murkywater_cap,
+	[101121] = murkywater_cap,
+	[101122] = murkywater_cap,
+	[101124] = murkywater_cap,
+	[101129] = murkywater_cap,
+	[101130] = murkywater_cap,
+	[101082] = murkywater_cap,
+	[101083] = murkywater_cap,
+	[101816] = murkywater_cap,
+	[101821] = murkywater_cap,
+	[101822] = murkywater_cap,
+	[101823] = murkywater_cap,
+	[101827] = murkywater_cap,
+	[101829] = murkywater_cap,
+	[101843] = murkywater_cap,
+	[101852] = murkywater_cap,
+	[101856] = murkywater_cap,
+	[101857] = murkywater_cap,
+	[101902] = murkywater_cap,
+	[101903] = murkywater_cap,
+	[101904] = murkywater_cap,
+	[101906] = murkywater_cap,
 }

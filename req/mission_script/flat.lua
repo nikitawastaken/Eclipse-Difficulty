@@ -48,7 +48,7 @@ local retrigger = {
 local roof_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.6, 1.4, 1.2, 1 },
+		interval_balance_mul = { 1.45, 1.3, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -515,6 +515,22 @@ return {
 	[100316] = e_nl_up_1m_down_4_3m_swing_interval,
 	[100051] = e_nl_up_1m_down_4_3m_swing_interval,
 	[101691] = e_nl_up_1m_down_4_3m_swing_interval,
+	-- Scripted difficulty scaling
+	[100181] = { -- saws_done
+		on_executed = {
+			{ id = 400093, delay = 0 },
+		},
+	},	
+	[101346] = { -- safe expl area touched
+		on_executed = {
+			{ id = 400094, delay = 0 },
+		},
+	},	
+	[104655] = { -- event_assault_end
+		on_executed = {
+			{ id = 400095, delay = 0 },
+		},
+	},	
 	-- Spawn group intervals
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,

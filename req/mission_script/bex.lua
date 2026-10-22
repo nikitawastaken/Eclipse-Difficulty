@@ -348,6 +348,28 @@ return {
 	[102536] = disabled,
 	[102537] = disabled,
 	[102538] = disabled,
+	-- Allow cops to start opening gates earlier
+	[101003] = { -- door_opened
+		on_executed = {
+			{ id = 103007, delay = 0 },
+		},
+	},
+	-- Scripted difficulty scaling
+	[101003] = { -- open_door (IT guy hack complete)
+		on_executed = {
+			{ id = 400079, delay = 0 },
+		},
+	},
+	[101829] = { -- drill_done (The Beast is done)
+		on_executed = {
+			{ id = 400080, delay = 0 },
+		},
+	},
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400081, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100019] = side_spawn,
 	[100128] = side_spawn,

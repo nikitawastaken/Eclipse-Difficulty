@@ -106,6 +106,22 @@ return {
 	[102005] = disabled,
 	-- STOP OPENING THE GOD DAMN SHUTTERS WHEN I WANT TO JUST TURN THE BRIDGE AROUND :void:
 	[101670] = disabled,
+	-- Scripted difficulty scaling
+	[100747] = { -- balloon_fired
+		on_executed = {
+			{ id = 400025, delay = 0 },
+		},
+	},	
+	[100055] = { -- open_truck
+		on_executed = {
+			{ id = 400026, delay = 0 },
+		},
+	},
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400027, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.

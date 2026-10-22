@@ -659,6 +659,28 @@ local optsstart_spawn_snipers = {
 	enabled = true,
 	trigger_times = 1,
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	--Lobby Shields
@@ -830,6 +852,11 @@ M.elements = {
 
 	-- make snipers start spawning when the assault starts after 90 seconds (like in PDTH)
 	Eclipse.mission_elements.gen_missionscript(400123, "spawn_snipers_event_global", optsstart_spawn_snipers),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400124, "red2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400125, "red2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400126, "red2_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

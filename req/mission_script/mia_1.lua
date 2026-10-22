@@ -21,6 +21,22 @@ return {
 	},
 	[100589] = disabled,
 	[100590] = disabled,
+	-- Scripted difficulty scaling
+	[101429] = { -- done_with_gas_objective 
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[100394] = { -- inside_basement 
+		on_executed = {
+			{ id = 400003, delay = 0 },
+		},
+	},
+	[400001] = { -- end_assault
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100089] = alleyway_spawn,
 	[100143] = alleyway_spawn,

@@ -50,6 +50,28 @@ local optsOpenSwatVanDoors_3 = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 103876, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.5,
+			delay = 0,
+			time = 120,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- swat van 1
@@ -78,6 +100,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400019, "spawn_swats_3", optsspawnvanSWATs_3),
 	Eclipse.mission_elements.gen_object_editor(400020, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_spawngroup(400021, "swat_group_3", { 400015, 400016, 400017, 400018 }, 0, opts_swat_group),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400022, "ranc_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400023, "ranc_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

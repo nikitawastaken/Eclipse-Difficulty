@@ -256,6 +256,28 @@ local optsOpenSwatVanDoors_Trigger_2 = {
 		{ id = 400022, delay = 0, delay_rand = 5 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- dw trailer styled skullies
@@ -339,7 +361,8 @@ M.elements = {
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400062, "bex_cloaker_spawns", optsPreferedCloakerAdd1),
 	Eclipse.mission_elements.gen_sogroup(400063, "bex_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
-	-- new Overkill+ spawngroup
+	
+	-- New Overkill+ spawngroup
 	Eclipse.mission_elements.gen_dummy(400064, "bex_spawn_enemy001", Vector3(1050, -5475, 400), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400065, "bex_spawn_enemy002", Vector3(1050, -5525, 400), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400066, "bex_spawn_enemy003", Vector3(1050, -5575, 400), Rotation(90, 0, 0), optsBesiegeDummy),
@@ -347,7 +370,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400068, "bex_spawn_enemy005", Vector3(1050, -5675, 400), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400069, "bex_enemy_group001", { 400064, 400065, 400066, 400067, 400068 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400070, "bex_ovk_roof_group", optsPreferedOvkRoofGroupAdd),
-	-- add a new street spawngroup and move vanilla groups to custom preferreds
+	
+	-- Add a new street spawngroup and move Vanilla groups to custom preferreds
 	Eclipse.mission_elements.gen_dummy(400071, "bex_spawn_enemy006", Vector3(4650, 1750, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400072, "bex_spawn_enemy007", Vector3(4650, 1825, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400073, "bex_spawn_enemy008", Vector3(4650, 1900, 0), Rotation(180, 0, 0), optsBesiegeDummy),
@@ -356,5 +380,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400076, "bex_enemy_group002", { 400071, 400072, 400073, 400074, 400075 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400077, "bex_street_groups", optsPreferedStreetGroupsAdd),
 	Eclipse.mission_elements.gen_preferedadd(400078, "bex_side_groups", optsPreferedSideGroupsAdd),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400079, "bex_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400080, "bex_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400081, "bex_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 return M

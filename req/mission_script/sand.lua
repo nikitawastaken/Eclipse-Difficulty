@@ -1,11 +1,10 @@
 local preferred = Eclipse.preferred
 local set_diff_groups = Eclipse.utils.set_diff_groups
+local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local filter_easy_above = {
 	values = set_diff_groups("easy_above"),
 }
-local diff_i = Eclipse.utils.difficulty_index()
-local is_eclipse = Eclipse.utils.is_eclipse()
-local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {
 		enabled = false,
@@ -19,13 +18,11 @@ local enabled = {
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 45,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -39,26 +36,45 @@ local boat_timer = {
 		timer = 90 + (is_pro_job and 60 or 0),
 	},
 }
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.1875,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
 
 return {
+	-- Add new reinforce
+	[100109] = { -- police
+		reinforce = {
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(-2925, -3225, 0),
+			},
+			{
+				name = "warehouse_a",
+				force = 2,
+				position = Vector3(-300, 2100, 0),
+			},
+			{
+				name = "warehouse_b",
+				force = 2,
+				position = Vector3(1000, -150, 0),
+			},
+			{
+				name = "warehouse_c",
+				force = 2,
+				position = Vector3(450, -2600, 0),
+			},
+		},
+	},
+	[101369] = { -- input_close_first_gate
+		ponr = {
+			length = 1200,
+			length_balance_mul = { 1.375, 1.125, 1, 0.875 },
+		},
+		reinforce = {
+			{ name = "gate" },
+			{ name = "warehouse_a" },
+			{ name = "warehouse_b" },
+			{ name = "warehouse_c" },
+		},
+	},
 	--Power box SO cooldown (taken from ASS)
 	[100549] = {
 		on_executed = {
@@ -70,62 +86,15 @@ return {
 			{ id = 103828, delay = 10, delay_rand = 10 },
 		},
 	},
-	-- Add new reinforce
-	[100109] = { -- police
-		reinforce = {
-			{
-				name = "gate",
-				force = 3,
-				position = Vector3(-2925, -3225, 0),
-			},
-			{
-				name = "warehouse_a",
-				force = 3,
-				position = Vector3(-300, 2100, 0),
-			},
-			{
-				name = "warehouse_b",
-				force = 3,
-				position = Vector3(1000, -150, 0),
-			},
-			{
-				name = "warehouse_c",
-				force = 3,
-				position = Vector3(450, -2600, 0),
-			},
-		},
-	},
-	[101369] = { -- input_close_first_gate
-		ponr = {
-			length = 1200,
-			length_balance_mul = { 1.375, 1.125, 1, 0.875 },
-		},
-		difficulty_addends = objective_diff_add.difficulty_addends[1],
-		reinforce = {
-			{ name = "gate" },
-			{ name = "warehouse_a" },
-			{ name = "warehouse_b" },
-			{ name = "warehouse_c" },
-		},
-	},
-	[103885] = { -- output_signal_activated
-		reinforce = {
-			{
-				name = "harbor",
-				force = 5,
-				position = Vector3(15275, -3225, -300),
-			},
-		},
-	},
 	-- Boat arrival timer
 	[103662] = boat_timer,
 	[103257] = disabled,
 	-- Delay roof rappels at the start
 	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 30 }, -- roof 1
-			{ id = 101279, delay = 30 }, -- roof 2
-			{ id = 101272, delay = 30 }, -- roof 3
+			{ id = 101280, delay = 15, delay_rand = 30 }, -- roof 1
+			{ id = 101279, delay = 15, delay_rand = 30 }, -- roof 2
+			{ id = 101272, delay = 15, delay_rand = 30 }, -- roof 3
 		},
 	},
 	-- Make sure both harbour office spawns are enabled regardless of difficulty
@@ -142,16 +111,29 @@ return {
 	[101779] = dozer_chance,
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
-	-- Difficulty scaling
-	[104374] = objective_diff_add, -- add_harbor_office_roof_spawns (harbor office)
-	[100123] = assault_end_diff_add, -- end_assault
+	-- Scripted difficulty scaling
+	[101143] = { -- input_open_second_gate 
+		on_executed = {
+			{ id = 400001, delay = 0 }, 
+		},
+	},
+	[104374] = { -- add_harbor_office_roof_spawns (Harbor office)
+		on_executed = {
+			{ id = 400002, delay = 0 }, 
+		},
+	},
+	[101630] = { -- add_water_front_spawns (Finale)
+		on_executed = {
+			{ id = 400003, delay = 0 }, 
+			{ id = 101443, delay = 0 }, -- add an additional preferred to waterfront spawns
+		},
+	},
 	-- Spawn group intervals (so fucking many)
 	[100128] = standard_spawn,
 	[100130] = standard_spawn,
 	[100131] = standard_spawn,
 	[100132] = standard_spawn,
 	[100133] = standard_spawn,
-	[101270] = standard_spawn,
 	[100007] = standard_spawn,
 	[100019] = standard_spawn,
 	[100030] = standard_spawn,

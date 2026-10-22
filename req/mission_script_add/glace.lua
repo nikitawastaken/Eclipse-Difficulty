@@ -125,15 +125,35 @@ local spawn_random_cloaker_dozer = {
 		{ id = 400026, delay = 0 },
 	},
 }
+local optsFlankPreferredAdd = { 
+	spawn_groups = { 100867, 101153 },
+	enabled = true,
+}
+local optsFlankPreferredRemove = { 
+	elements = { 400028 },
+	enabled = true,
+}
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 1 / 3,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
-	--spawns near the escape (Similiar to PDTH)
+	-- Spawns near the escape (Similiar to PDTH)
 	Eclipse.mission_elements.gen_dummy(400001, "dozer_stairs", Vector3(-3129, -48029, 5030.316), Rotation(90, -0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400002, "shield_stairs_1", Vector3(-2520.983, -47546.961, 5370.570), Rotation(-87, -0, -0), optsShield_1),
 	Eclipse.mission_elements.gen_dummy(400003, "shield_stairs_2", Vector3(-2524.437, -47481.051, 5372.570), Rotation(-87, -0, -0), optsShield_2),
 	Eclipse.mission_elements.gen_dummy(400004, "taser_stairs", Vector3(-2994, -47502, 5225.499), Rotation(-90, -0, -0), optsTaser),
 
-	--scaffolding spawns
+	-- Scaffolding spawns
 	Eclipse.mission_elements.gen_dummy(400005, "shield_scaffolding_1", Vector3(-4100, -22849, 7115.008), Rotation(0, -0, -0), optsShield_scaff_1),
 	Eclipse.mission_elements.gen_dummy(400006, "shield_scaffolding_2", Vector3(-2781.016, -23341.270, 7115.008), Rotation(90, -0, -0), optsShield_scaff_2),
 	Eclipse.mission_elements.gen_dummy(400007, "dozer_scaffolding_1", Vector3(-3102, -23325, 6519.008), Rotation(90, -0, -0), optsBulldozer_scaffold),
@@ -158,6 +178,14 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_dummy(400026, "spooc_scaffolding", Vector3(1285, -22260, 7757.596), Rotation(0, 0, 0), optsCloaker),
 	Eclipse.mission_elements.gen_element_random(400027, "random_scaffolding_special", spawn_random_cloaker_dozer),
+
+	-- New preferred for groups under the bridge
+	Eclipse.mission_elements.gen_preferedadd(400028, "glace_flank_preferedadd", optsFlankPreferredAdd),
+	Eclipse.mission_elements.gen_preferedremove(400029, "glace_flank_preferedremove", optsFlankPreferredRemove),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400030, "glace_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400031, "glace_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

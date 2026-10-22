@@ -416,14 +416,17 @@ local opts_swat_van_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
-local optsAssaultEnd = {
-	global_event = "end_assault",
-}
-local optsEnableAssaultEnd = {
-	enabled = true,
-	elements = {
-		410073,
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 1 / 3,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
 	},
+	enabled = true,
 }
 
 M.elements = {
@@ -662,9 +665,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410072, "spawn_parking_spoocs", optsspawnparkingspoocs),
 
-	-- assault_end trigger
-	Eclipse.mission_elements.gen_global_event(410073, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
-	Eclipse.mission_elements.gen_toggleelement(410074, "enable_assault_end", optsEnableAssaultEnd),
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(410073, "run_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(410074, "run_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

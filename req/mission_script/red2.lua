@@ -147,24 +147,11 @@ return {
 		reinforce = {
 			{
 				name = "lobby",
-				force = 3,
+				force = 4,
 				position = Vector3(-1500, 25, 0),
-			},
-			{
-				name = "cafeteria",
-				force = 2,
-				position = Vector3(-1950, -2050, -20),
-			},
-			{
-				name = "offices",
-				force = 2,
-				position = Vector3(-2675, 2050, -20),
 			},
 		},
 	},
-	-- disable a few vanilla reinforce spots
-	[105902] = disabled, -- left gate
-	[105904] = disabled, -- right gate
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,
@@ -239,11 +226,6 @@ return {
 		on_executed = {
 			{ id = 100043, remove = true }, -- start more preferreds
 			{ id = 400123, delay = 0 }, -- start spawning snipers after 90 seconds
-		},
-	},
-	[100359] = { -- assault ended
-		on_executed = {
-			{ id = 100043, delay = 0, delay_rand = 30 }, -- start more preferreds
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
@@ -449,6 +431,37 @@ return {
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
+	-- Scripted difficulty scaling
+	[100662] = { -- gates_opened_loud
+		on_executed = {
+			{ id = 400124, delay = 0 },
+		},
+	},	
+	[101538] = { -- player_in_vault
+		on_executed = {
+			{ id = 400125, delay = 0 },
+		},
+	},	
+	[100359] = { -- end_assault
+		on_executed = {
+			{ id = 400126, delay = 0 },
+			{ id = 100043, delay = 30, delay_rand = 30 }, -- start more preferreds
+		},
+	},	
+	-- Spawn group intervals
+	[102154] = elevator_spawn,
+	[103109] = elevator_spawn,
+	[103135] = elevator_spawn,
+	[103129] = elevator_spawn,
+	[103121] = elevator_spawn,
+	[105112] = skylight_spawn,
+	[106890] = skylight_spawn,
+	[103953] = office_spawn,
+	[103068] = office_spawn,
+	[103081] = office_spawn,
+	[103011] = office_spawn,
+	[103689] = office_spawn,
+	[105200] = vent_spawn,
 	-- Replace regular security with green security
 	[100628] = green_security,
 	[100671] = green_security,
@@ -488,18 +501,4 @@ return {
 	[105494] = green_security,
 	-- why is there a beat cop instead of security guard in the vault???
 	[104001] = green_security,
-	-- Spawn group intervals
-	[102154] = elevator_spawn,
-	[103109] = elevator_spawn,
-	[103135] = elevator_spawn,
-	[103129] = elevator_spawn,
-	[103121] = elevator_spawn,
-	[105112] = skylight_spawn,
-	[106890] = skylight_spawn,
-	[103953] = office_spawn,
-	[103068] = office_spawn,
-	[103081] = office_spawn,
-	[103011] = office_spawn,
-	[103689] = office_spawn,
-	[105200] = vent_spawn,
 }

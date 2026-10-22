@@ -1,30 +1,22 @@
 local preferred = Eclipse.preferred
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local get_difficulty_group_specific_value = Eclipse.utils.get_difficulty_group_specific_value
-local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
-local bellmead_1 = scripted_enemy.bellmead_security_1
-local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_2
-local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
-local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker = scripted_enemy.cloaker
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
 local bellmead_merc = {
-	enemy = bellmead_1,
+	enemy = scripted_enemy.bellmead_security_1,
 }
 local specials_list = {
 	[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 1, 2, 2 }),
 	[scripted_enemy.medic_1] = get_difficulty_group_specific_value({ 0, 2, 2 }),
-	[cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
-	[green_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
-	[black_bulldozer] = get_difficulty_group_specific_value({ 0, 1, 0 }),
-	[elite_ben_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
-	[elite_skull_bulldozer] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 2, 2 }),
+	[scripted_enemy.bulldozer_1] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[scripted_enemy.bulldozer_2] = get_difficulty_group_specific_value({ 0, 1, 0 }),
+	[scripted_enemy.elite_bulldozer_1] = get_difficulty_group_specific_value({ 0, 0, 1 }),
+	[scripted_enemy.elite_bulldozer_2] = get_difficulty_group_specific_value({ 0, 0, 1 }),
 }
 local specials = {
 	enemy = specials_list,
@@ -46,6 +38,7 @@ local enemy_filter_dozers = {
 				"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 				"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 				"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
+				"units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic",
 			},
 		},
 	},
@@ -53,34 +46,14 @@ local enemy_filter_dozers = {
 local office_window_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local staircase_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.1875,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
-	},
 }
 
 return {
@@ -138,8 +111,8 @@ return {
 	},
 	[100761] = { -- player_inside_office_building
 		on_executed = {
-			{ id = 100006, delay = 0, delay_rand = 30 },
-			{ id = 100021, delay = 0, delay_rand = 30 },
+			{ id = 100006, delay = 15, delay_rand = 15 },
+			{ id = 100021, delay = 15, delay_rand = 15 },
 		},
 	},
 	-- Disable the sketchy killzone crap
@@ -195,6 +168,27 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
+	-- Begin spawning Cloakers earlier. Vanilla begins spawning them at the start of the 2nd assault.
+	[100765] = { -- 2_assaults_started
+		values = {
+			counter_target = 1,
+		},
+	},
+	-- Scripted difficulty scaling
+	[101124] = { -- display_case_open (Prototype found)
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[101934] = { -- output_lab_flooded (Flooded the lab)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	-- Spawn group intervals
+	[102044] = office_window_spawn,
+	[100694] = office_window_spawn,
+	[102376] = staircase_spawn,
 	-- Replace regular security with green security
 	[100670] = green_security,
 	[100671] = green_security,
@@ -240,12 +234,4 @@ return {
 	[101712] = green_security,
 	[101714] = green_security,
 	[101715] = green_security,
-	-- Difficulty scaling
-	[101754] = objective_diff_add, -- logic_link_038 (prototype found)
-	[101129] = objective_diff_add, -- link_completed_obj_015 (documents accessible)
-	[100123] = assault_end_diff_add, -- end_assault
-	-- Spawn group intervals
-	[102044] = office_window_spawn,
-	[100694] = office_window_spawn,
-	[102376] = staircase_spawn,
 }

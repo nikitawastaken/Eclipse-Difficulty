@@ -112,6 +112,17 @@ return {
 	[100899] = { -- power_resumed
 		flashlight = false,
 	},
+	-- Scripted difficulty scaling
+	[100226] = { -- activate_emp 
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[100230] = { -- scan_completed
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100052] = wall_far_spawn,
 	[100286] = wall_far_spawn,

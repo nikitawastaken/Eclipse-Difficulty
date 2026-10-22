@@ -17,10 +17,10 @@ local disabled = {
 
 local interrupter = {
 	enemy = {
-		[scripted_enemy.swat_1] = 8,
-		[scripted_enemy.swat_2] = 6,
-		[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 4, 6 }),
-		[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 0, 3, 5 }),
+		[scripted_enemy.swat_1] = 3,
+		[scripted_enemy.swat_2] = 5,
+		[scripted_enemy.cloaker] = get_difficulty_group_specific_value({ 0, 2, 3 }),
+		[scripted_enemy.taser_1] = get_difficulty_group_specific_value({ 0, 1, 2 }),
 	},
 }
 local regular_dozers = {
@@ -28,48 +28,42 @@ local regular_dozers = {
 	scripted_enemy.bulldozer_2,
 }
 local eclipse_dozers = {
-	scripted_enemy.bulldozer_2,
+	scripted_enemy.elite_bulldozer_1,
 	scripted_enemy.elite_bulldozer_2,
 }
 
 local construct_lower_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local construct_upper_spawn = {
 	values = {
 		interval = 45,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local saw_far_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local saw_mid_spawn = {
 	values = {
 		interval = 45,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_bulldozers,
 }
 local saw_close_spawn = {
 	values = {
 		interval = 60,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local escape_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
 local escape_guaranteed_spawn = {
@@ -78,31 +72,12 @@ local escape_guaranteed_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.375,
-			time = 60,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
 
 return {
 	[100121] = { -- obj_link_complete_005 (Prisoner taken away)
 		reinforce = { -- disable construction side reinforce
 			{ name = "construct01" },
 			{ name = "construct02" },
-			{ name = "construct03" },
 		},
 		func = function(self) -- disable dozer spawn once George the pilot gets Kauzo out
 			local turn_it_off = self:get_mission_element(400027)
@@ -119,7 +94,7 @@ return {
 			{
 				name = "bridge",
 				force = 5,
-				position = Vector3(-1300, -15585, 5800),
+				position = Vector3(-1425, -17500, 5800),
 			},
 		},
 		on_executed = {
@@ -131,18 +106,13 @@ return {
 			{ name = "bridge" }, -- disable construction bridge reinforce
 			{
 				name = "construct01",
-				force = 2,
-				position = Vector3(-1425, -18825, 5800),
+				force = 3,
+				position = Vector3(-1000, -20500, 5800),
 			},
 			{
 				name = "construct02",
-				force = 2,
-				position = Vector3(-840, -21830, 5800),
-			},
-			{
-				name = "construct03",
-				force = 2,
-				position = Vector3(-1300, -24585, 5800),
+				force = 3,
+				position = Vector3(-1000, -24500, 5800),
 			},
 		},
 		ponr = {
@@ -238,14 +208,12 @@ return {
 	[101176] = { -- add_prefered_saw_spawns
 		values = { -- remove spawns close to the broken bridge part
 			spawn_groups = {
-				100867,
-				101153,
-				101157,
 				101154,
 				101160,
 				101156,
 				101159,
 				103886, -- Add a few construct groups
+				101250,
 				101847,
 			},
 		},
@@ -266,13 +234,28 @@ return {
 			},
 		},
 	},
-	-- Difficulty scaling
-	[102633] = objective_diff_add, -- obj_link_started_003 (reached scaffolding)
-	[100558] = { -- assault_ended
-		values = {
-			trigger_times = 0, -- (Vanilla: 2)
+	-- Move two "saw" spawngroups to a separate preferred that gets added later
+	[101176] = { -- add_prefered_saw_spawns
+		on_executed = {
+			{ id = 400028, delay = 60, delay_rand = 60 },
 		},
-		difficulty_addends = assault_end_diff_add.difficulty_addends[1], -- end_assault
+	},
+	-- Remove it with the other "saw" preferreds
+	[101178] = { -- remove_prefered_saw_spawns
+		on_executed = {
+			{ id = 400029, delay = 0 },
+		},
+	},
+	-- Difficulty scaling
+	[102633] = { -- obj_link_complete_002 (Found the Prisoner)
+		on_executed = {
+			{ id = 400030, delay = 0 },
+		},
+	},
+	[102295] = { -- at the top (Reached the top of the scaffolding with the Prisoner)
+		on_executed = {
+			{ id = 400031, delay = 0 },
+		},
 	},
 	-- Spawn group intervals
 	[101244] = construct_lower_spawn,

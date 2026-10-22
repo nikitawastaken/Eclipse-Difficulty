@@ -118,24 +118,6 @@ local no_align_pos = {
 		align_position = false,
 	},
 }
-local objective_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.1875,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			time = 30,
-			delay = 0,
-		},
-	},
-}
 
 return {
 	[101356] = {
@@ -491,14 +473,19 @@ return {
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
-		on_executed = { -- enable end_assault global event trigger
-			{ id = 410074, delay = 60 },
+		on_executed = { 
+			{ id = 410073, delay = 0 },			
 		},
-		difficulty_addends = objective_diff_add.difficulty_addends,
 	},
 	[103883] = { -- Matt is out, go to parking
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
+		},
+	},
+	-- Scripted difficulty addend upon reaching the fence
+	[100622] = { 
+		on_executed = {
+			{ id = 410074, delay = 0 },
 		},
 	},
 	[103885] = { -- reached gate
@@ -549,9 +536,6 @@ return {
 	},
 	-- Disable one of the Inkwell van spawngroups (Eclipse has its own)
 	[103704] = disabled,
-	-- Difficulty scaling
-	[100622] = objective_diff_add, -- reached the fence
-	[410073] = assault_end_diff_add, -- end_assault
 	-- disable 'align_position' for select navlinks
 	[103802] = no_align_pos,
 	[103801] = no_align_pos,

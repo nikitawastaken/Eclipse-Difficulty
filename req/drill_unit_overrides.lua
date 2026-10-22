@@ -1,9 +1,5 @@
 ---@module Drill Unit Overrides
 local calc_team_ai_wgt = Eclipse.utils.calculate_team_ai_weight
-local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse = Eclipse.utils.is_eclipse()
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
-
 local armadillo_drill = { -- Armored Transport Trucks in Transport heists
 	drill = {
 		{
@@ -95,6 +91,11 @@ local chca_vault_saw = {
 		2,
 	},
 }
+local arena_security_hack = {
+	[100041] = {
+		timer = 120,
+	},
+}
 
 local M = {
 	--[[
@@ -164,6 +165,12 @@ local M = {
 		},
 	},
 	]]
+	["arena"] = {
+		["are_security_room_001"] = arena_security_hack,
+		["are_security_room_002"] = arena_security_hack,
+		["are_security_room_003"] = arena_security_hack,
+		["are_security_room_004"] = arena_security_hack,
+	},
 	["arm_cro"] = {
 		[100006] = armadillo_drill,
 		[100007] = armadillo_drill,
@@ -293,7 +300,7 @@ local M = {
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
-			timer = 150 + (is_pro_job and 30 or 0),
+			timer = 150,
 		},
 	},
 	["chca"] = {
@@ -327,6 +334,28 @@ local M = {
 						jam_times = { 1, 2 },
 					},
 				},
+			},
+		},
+	},
+	["des"] = {
+		["des_hackbox_001"] = {
+			[100000] = {
+				timer = 90,
+				jam_times = { 1, 2 },
+				can_jam = true,
+			},
+		},
+		["des_hackbox_002"] = {
+			[100000] = {
+				timer = 90,
+				jam_times = { 1, 2 },
+				can_jam = true,
+			},
+		},
+		["des_drill_001"] = {
+			[100030] = {
+				jam_times = { 1, 2 },
+				can_jam = true,
 			},
 		},
 	},
@@ -387,7 +416,7 @@ local M = {
 	},
 	["hox_1"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
-			timer = (normal and 30 or hard and 60 or 90) + (is_pro_job and 30 or 0),
+			timer = 90,
 		},
 	},
 	["man"] = {
@@ -397,6 +426,13 @@ local M = {
 	},
 	["mia_2"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			timer_dt_balance_mul = {
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+				6 / 8,
+				7 / 8,
+				1,
+				1,
+			},
 			jam_times = {
 				is_balance_mul = true,
 				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
@@ -426,8 +462,8 @@ local M = {
 			can_jam = true,
 		},
 		[("units/pd2_dlc_pal/equipment/gen_interactable_drill_small_upright/gen_interactable_drill_small_upright"):key()] = {
-			timer = is_eclipse and 360 or 240,
-			jam_times = 2 + (is_pro_job and 1 or 0),
+			timer = 240,
+			jam_times = 2,
 			can_jam = true,
 		},
 	},
@@ -436,8 +472,8 @@ local M = {
 			timer = 90,
 			timer_init_balance_mul = {
 				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
-				2 / 3,
-				2 / 3,
+				4 / 6,
+				5 / 6,
 				1,
 				1,
 			},
@@ -463,6 +499,13 @@ local M = {
 	},
 	["red2"] = {
 		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
+			timer_dt_balance_mul = {
+				team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+				6 / 8,
+				7 / 8,
+				1,
+				1,
+			},
 			jam_times = {
 				is_balance_mul = true,
 				team_ai_balance_mul_weight = calc_team_ai_wgt(2),

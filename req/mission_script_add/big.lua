@@ -154,6 +154,28 @@ local optsOpenSwatVanDoors_3 = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 106424, notify_unit_sequence = "open", time = 0 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- cloakers, spawn as ambush in vault hallway (similiar to First World Bank)
@@ -208,5 +230,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400048, "spawn_swats_3", optsspawnvanSWATs_3),
 	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_3", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400051, "big_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400052, "big_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400053, "big_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 return M

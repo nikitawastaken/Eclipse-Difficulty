@@ -7,16 +7,6 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.2, 1.1, 1, 0.9 },
-	},
-}
-local scripted_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.25,
-			time = 45,
-			delay = 0,
-		},
 	},
 }
 
@@ -26,8 +16,16 @@ return {
 		set_ponr_state = true,
 	},
 	-- Increase difficulty when a safe is breached or you fail to open the safe
-	[101127] = scripted_diff_add,
-	[100244] = scripted_diff_add,
+	[101127] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[100244] = {
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	-- This heist is microscopic.
 	[100651] = standard_spawn,

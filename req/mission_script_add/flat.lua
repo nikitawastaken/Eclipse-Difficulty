@@ -371,6 +371,28 @@ local new_c4_bag_drop = {
 		{ id = 101591, delay = 0 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
+local optsDifficultyAddend02 = {
+	difficulty_addends = {
+		{
+			amount = 0.125,
+			delay = 0,
+			time = 30,
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- Infamous Heavy Shotgunners from ovk 145+
@@ -471,6 +493,11 @@ M.elements = {
 
 	-- new c4 bag drop element
 	Eclipse.mission_elements.gen_element_random(400092, "c4_dropoff", new_c4_bag_drop),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400093, "flat_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400094, "flat_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400095, "flat_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

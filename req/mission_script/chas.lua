@@ -58,12 +58,10 @@ local scripted_swat_van_spawn = {
 }
 local warehouse_preferred_delay = {
 	on_executed = {
-		{ id = 101196, delay = 0, delay_rand = 20 },
+		{ id = 101196, delay = 0, delay_rand = 30 },
 	},
 }
-local difficulty_add_20 = {
-	difficulty_add = 0.20,
-}
+
 return {
 	-- Add new reinforce
 	[100109] = {
@@ -193,6 +191,12 @@ return {
 	-- Delay preferreds when entering the basement
 	[101190] = warehouse_preferred_delay,
 	[101791] = warehouse_preferred_delay,
+	-- Begin spawning Cloakers earlier. Vanilla begins spawning them at the start of the 2nd assault.
+	[100765] = { -- 2_assaults_started
+		values = {
+			counter_target = 1,
+		},
+	},
 	-- Spawn group intervals
 	[100132] = alleyway_spawn,
 	[101006] = alleyway_spawn,

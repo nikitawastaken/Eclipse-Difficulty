@@ -16,22 +16,6 @@ local sewer_spawn = {
 		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 }
-local scripted_diff_add = {
-	difficulty_addends = {
-		amount = 0.125,
-		time = { 30, 45 },
-		delay = 0,
-	},
-}
-local assault_end_diff_add = {
-	difficulty_addends = {
-		{
-			amount = 0.25,
-			time = 60,
-			delay = 0,
-		},
-	},
-}
 
 return {
 	[100980] = {
@@ -75,17 +59,9 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 0, delay_rand = 30 }, -- Car Shop preferred
-			{ id = 100534, delay = 0, delay_rand = 30 }, -- Hardware preferred
+			{ id = 100531, delay = 15, delay_rand = 15 }, -- Car Shop preferred
+			{ id = 100534, delay = 15, delay_rand = 15 }, -- Hardware preferred
 		},
-	},
-	-- Add scripted difficulty increases
-	[100668] = scripted_diff_add, -- done_with_a_pallet
-	[100123] = { -- end_assault
-		values = {
-			trigger_times = 0, -- (Vanilla: 1)
-		},
-		difficulty_addends = assault_end_diff_add.difficulty_addends[1], -- end_assault
 	},
 	-- don't trigger swat turret scripts
 	[101316] = {
@@ -96,6 +72,20 @@ return {
 	[101317] = {
 		on_executed = {
 			{ id = 101242, remove = true },
+		},
+	},
+	-- Scripted difficulty scaling
+	[100668] = {
+		on_executed = {
+			{ id = 400020, delay = 0 },
+		},
+	},
+	[100123] = { -- end_assault
+		values = {
+			trigger_times = 0,
+		},
+		on_executed = {
+			{ id = 400021, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

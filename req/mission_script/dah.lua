@@ -602,6 +602,22 @@ return {
 			{ id = 400094, delay = 0 },
 		},
 	},
+	-- Scripted difficulty scaling
+	[103049] = { -- obj_completed_013 (Routers hacked)
+		on_executed = {
+			{ id = 410008, delay = 0 },
+		},
+	},	
+	[100457] = { -- Open_the_Vault (duh)
+		on_executed = {
+			{ id = 410009, delay = 0 },
+		},
+	},	
+	[410007] = { -- assault_end
+		on_executed = {
+			{ id = 410010, delay = 0 },
+		},
+	},	
 	-- Spawn Group delays
 	[104896] = roof_close_spawn,
 	[104852] = roof_close_spawn,

@@ -127,6 +127,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.force_size_preset = "reduced_t1"
 	self.moon.force_size_preset = "reduced_t1"
 	self.wwh.force_size_preset = "reduced_t1"
+	self.des.force_size_preset = "reduced_t1"
 	self.chca.force_size_preset = "reduced_t1"
 
 	self.watchdogs_2.force_size_preset = "increased_t1"
@@ -148,11 +149,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass.difficulty_scaling_preset = "timed"
 	self.escape_overpass_night.difficulty_scaling_preset = "timed"
 
-	self.escape_garage.difficulty_scaling_preset = "timed_fast"
-	self.framing_frame_2.difficulty_scaling_preset = "timed_fast"
-
-	self.alex_3.difficulty_scaling_preset = "timed_slow"
-
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"
@@ -165,19 +161,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
 	self.hox_2.difficulty_scaling_preset = "regroup_slow"
-	self.arena.difficulty_scaling_preset = "regroup_slow"
-	--	self.red2.difficulty_scaling_preset = "regroup_slow"
-	self.dinner.difficulty_scaling_preset = "regroup_slow"
-	self.pbr.difficulty_scaling_preset = "regroup_slow"
+	self.crojob2.difficulty_scaling_preset = "regroup_slow"
+	self.crojob3.difficulty_scaling_preset = "regroup_slow"
+	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
 	self.peta.difficulty_scaling_preset = "regroup_slow"
 	self.peta2.difficulty_scaling_preset = "regroup_slow"
-	self.pal.difficulty_scaling_preset = "regroup_slow"
-	self.mad.difficulty_scaling_preset = "regroup_slow"
-	self.flat.difficulty_scaling_preset = "regroup_slow"
+	self.born.difficulty_scaling_preset = "regroup_slow"
 	self.friend.difficulty_scaling_preset = "regroup_slow"
-	self.des.difficulty_scaling_preset = "regroup_slow"
-	self.bex.difficulty_scaling_preset = "regroup_slow"
-	self.deep.difficulty_scaling_preset = "regroup_slow"
 	self.auc.difficulty_scaling_preset = "regroup_slow"
 
 	self.pex.difficulty_scaling_preset = "sustain_aggressive"

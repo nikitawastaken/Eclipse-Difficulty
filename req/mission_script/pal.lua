@@ -1,32 +1,16 @@
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
 local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
-local scripted_enemy = Eclipse.scripted_enemy
 local is_solo = Eclipse.utils.is_solo()
-local is_eclipse = Eclipse.utils.is_eclipse()
-local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-
-local cop_smg = scripted_enemy.la_cop_3
-local cop_pistol = scripted_enemy.la_cop_1
-local cop_revolver = scripted_enemy.la_cop_2
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-local sniper = scripted_enemy.sniper
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
-}
-
-local shield = {
-	enemy = is_eclipse_pro and elite_shield or shield,
-}
-local mitchell_sniper = {
-	enemy = sniper,
 }
 local disabled = {
 	values = {
@@ -37,6 +21,12 @@ local enabled = {
 	values = {
 		enabled = true,
 	},
+}
+local shield = {
+	enemy = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield,
+}
+local mitchell_sniper = {
+	enemy = scripted_enemy.sniper,
 }
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "sniper", "spooc" },
@@ -246,10 +236,10 @@ return {
 	[102815] = exclude_cop_agents_shields_dozers,
 	[102816] = exclude_cop_agents_shields_dozers,
 	-- replace cops with lapd
-	[100725] = { enemy = cop_smg },
-	[100726] = { enemy = cop_pistol },
-	[100210] = { enemy = cop_pistol },
-	[100212] = { enemy = cop_revolver },
+	[100725] = { enemy = scripted_enemy.la_cop_3 },
+	[100726] = { enemy = scripted_enemy.la_cop_1 },
+	[100210] = { enemy = scripted_enemy.la_cop_1 },
+	[100212] = { enemy = scripted_enemy.la_cop_2 },
 	-- disable the 2nd police crusier if the cops are already alerted
 	[103034] = {
 		on_executed = {
@@ -392,6 +382,22 @@ return {
 	[101804] = shield,
 	[101883] = shield,
 	[102098] = shield,
+	-- Scripted difficulty scaling
+	[101436] = { -- open_doors_to_basement
+		on_executed = {
+			{ id = 400074, delay = 0 },
+		},
+	},	
+	[101135] = { -- next_objective_get_water_running
+		on_executed = {
+			{ id = 400075, delay = 0 },
+		},
+	},	
+	[102084] = { -- assault_ended
+		on_executed = {
+			{ id = 400076, delay = 0 },
+		},
+	},	
 	-- Spawn group intervals
 	[100911] = van_spawn,
 	[101105] = van_spawn,

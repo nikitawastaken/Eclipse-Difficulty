@@ -167,15 +167,6 @@ return {
 	},
 	-- Disable Titan Cams
 	[106265] = disabled,
-	-- Disable vanilla reinforce points
-	[101978] = disabled,
-	[102207] = disabled,
-	[102436] = disabled,
-	[102439] = disabled,
-	[104114] = disabled,
-	[104146] = disabled,
-	[104153] = disabled,
-	[104169] = disabled,
 	-- Add new elevator spawngroup
 	[103316] = {
 		on_executed = {
@@ -269,6 +260,22 @@ return {
 				self._chance = is_pro_job and 75 or 100
 			end
 		end,
+	},
+	-- Scripted difficulty scaling 
+	[104397] = { -- security_gate_opened
+		on_executed = {
+			{ id = 400051, delay = 0 },
+		},
+	},
+	[105969] = { -- vault_opened
+		on_executed = {
+			{ id = 400052, delay = 0 },
+		},
+	},
+	[100123] = { -- end_assault
+		on_executed = {
+			{ id = 400053, delay = 0 },
+		},
 	},
 	-- Spawn group intervals
 	[100007] = roof_spawn,

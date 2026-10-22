@@ -50,6 +50,22 @@ return {
 	[101760] = bags_required,
 	[101761] = bags_required,
 	[100470] = disabled,
+	-- Scripted difficulty scaling
+	[101452] = { -- override_complete (Initial hack complete)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[100244] = { -- Enable Hackable Laptop (Pyro Booth)
+		on_executed = {
+			{ id = 400003, delay = 0 },
+		},
+	},
+	[101646] = { -- drilling (Opening the vaults from below)
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100128] = standard_spawn,
 	[100132] = standard_spawn,

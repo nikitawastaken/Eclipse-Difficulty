@@ -27,6 +27,9 @@ return {
 			length = 120,
 			length_balance_mul = { 1.25, 1.25, 1, 1 },
 		},
+		on_executed = {
+			{ id = 400024, delay = 0 },
+		},
 	},
 	-- Disable hunt
 	[101598] = disabled,
@@ -57,9 +60,17 @@ return {
 			},
 		},
 	},
-	-- change preffereds for scripted blown up wall group
-	[400006] = scripted_swat_wall_spawn,
-	[400012] = scripted_swat_wall_spawn,
+	-- Scripted difficulty scaling
+	[101659] = { -- finished waiting for bain (C4 being sent it)
+		on_executed = {
+			{ id = 400023, delay = 0 },
+		},
+	},
+	[400022] = {
+		on_executed = {
+			{ id = 400025, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[101063] = construction_spawn,
 	[100979] = construction_spawn,
@@ -84,4 +95,7 @@ return {
 	[100226] = bridge_spawn,
 	[100467] = bridge_spawn,
 	[100377] = bridge_spawn,
+	-- change preffereds for scripted blown up wall group
+	[400006] = scripted_swat_wall_spawn,
+	[400012] = scripted_swat_wall_spawn,
 }
