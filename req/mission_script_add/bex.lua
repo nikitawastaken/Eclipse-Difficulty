@@ -361,7 +361,7 @@ M.elements = {
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400062, "bex_cloaker_spawns", optsPreferedCloakerAdd1),
 	Eclipse.mission_elements.gen_sogroup(400063, "bex_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
-	
+
 	-- New Overkill+ spawngroup
 	Eclipse.mission_elements.gen_dummy(400064, "bex_spawn_enemy001", Vector3(1050, -5475, 400), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400065, "bex_spawn_enemy002", Vector3(1050, -5525, 400), Rotation(90, 0, 0), optsBesiegeDummy),
@@ -370,7 +370,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400068, "bex_spawn_enemy005", Vector3(1050, -5675, 400), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400069, "bex_enemy_group001", { 400064, 400065, 400066, 400067, 400068 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400070, "bex_ovk_roof_group", optsPreferedOvkRoofGroupAdd),
-	
+
 	-- Add a new street spawngroup and move Vanilla groups to custom preferreds
 	Eclipse.mission_elements.gen_dummy(400071, "bex_spawn_enemy006", Vector3(4650, 1750, 0), Rotation(180, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400072, "bex_spawn_enemy007", Vector3(4650, 1825, 0), Rotation(180, 0, 0), optsBesiegeDummy),

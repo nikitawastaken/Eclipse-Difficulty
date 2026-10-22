@@ -112,19 +112,19 @@ return {
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
 	-- Scripted difficulty scaling
-	[101143] = { -- input_open_second_gate 
+	[101143] = { -- input_open_second_gate
 		on_executed = {
-			{ id = 400001, delay = 0 }, 
+			{ id = 400001, delay = 0 },
 		},
 	},
 	[104374] = { -- add_harbor_office_roof_spawns (Harbor office)
 		on_executed = {
-			{ id = 400002, delay = 0 }, 
+			{ id = 400002, delay = 0 },
 		},
 	},
 	[101630] = { -- add_water_front_spawns (Finale)
 		on_executed = {
-			{ id = 400003, delay = 0 }, 
+			{ id = 400003, delay = 0 },
 			{ id = 101443, delay = 0 }, -- add an additional preferred to waterfront spawns
 		},
 	},

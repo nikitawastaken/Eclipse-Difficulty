@@ -22,12 +22,12 @@ return {
 	[100589] = disabled,
 	[100590] = disabled,
 	-- Scripted difficulty scaling
-	[101429] = { -- done_with_gas_objective 
+	[101429] = { -- done_with_gas_objective
 		on_executed = {
 			{ id = 400002, delay = 0 },
 		},
 	},
-	[100394] = { -- inside_basement 
+	[100394] = { -- inside_basement
 		on_executed = {
 			{ id = 400003, delay = 0 },
 		},

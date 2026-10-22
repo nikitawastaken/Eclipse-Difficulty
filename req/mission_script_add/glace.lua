@@ -125,11 +125,11 @@ local spawn_random_cloaker_dozer = {
 		{ id = 400026, delay = 0 },
 	},
 }
-local optsFlankPreferredAdd = { 
+local optsFlankPreferredAdd = {
 	spawn_groups = { 100867, 101153 },
 	enabled = true,
 }
-local optsFlankPreferredRemove = { 
+local optsFlankPreferredRemove = {
 	elements = { 400028 },
 	enabled = true,
 }

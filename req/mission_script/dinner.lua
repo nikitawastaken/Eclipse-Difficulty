@@ -342,12 +342,12 @@ return {
 			{ id = 400067, delay = 0 },
 			{ id = 102804, delay = 5 }, -- difficulty increase VO
 		},
-	},	
+	},
 	[104871] = { -- load_gas_started (Start moving the trap)
 		on_executed = {
 			{ id = 400068, delay = 0 },
 		},
-	},	
+	},
 	[102158] = { -- assault_end
 		values = {
 			trigger_times = 0,
@@ -355,7 +355,7 @@ return {
 		on_executed = {
 			{ id = 400069, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,
@@ -395,7 +395,7 @@ return {
 	[105188] = only_cloakers_navlnk,
 	[105189] = only_cloakers_navlnk,
 	[105190] = only_cloakers_navlnk,
-	-- slow down container yard navlinks	
+	-- slow down container yard navlinks
 	[102228] = courtyard_to_container_navlink,
 	[102220] = courtyard_to_container_navlink,
 	-- No helmets.

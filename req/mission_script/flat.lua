@@ -520,17 +520,17 @@ return {
 		on_executed = {
 			{ id = 400093, delay = 0 },
 		},
-	},	
+	},
 	[101346] = { -- safe expl area touched
 		on_executed = {
 			{ id = 400094, delay = 0 },
 		},
-	},	
+	},
 	[104655] = { -- event_assault_end
 		on_executed = {
 			{ id = 400095, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,

@@ -187,12 +187,12 @@ return {
 		on_executed = {
 			{ id = 400013, delay = 0 },
 		},
-	},	
+	},
 	[102704] = { -- boss_dead
 		on_executed = {
 			{ id = 400014, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[100132] = rappel_spawn,
 	[100133] = rappel_spawn,

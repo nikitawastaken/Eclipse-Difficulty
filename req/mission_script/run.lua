@@ -473,8 +473,8 @@ return {
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
-		on_executed = { 
-			{ id = 410073, delay = 0 },			
+		on_executed = {
+			{ id = 410073, delay = 0 },
 		},
 	},
 	[103883] = { -- Matt is out, go to parking
@@ -483,7 +483,7 @@ return {
 		},
 	},
 	-- Scripted difficulty addend upon reaching the fence
-	[100622] = { 
+	[100622] = {
 		on_executed = {
 			{ id = 410074, delay = 0 },
 		},

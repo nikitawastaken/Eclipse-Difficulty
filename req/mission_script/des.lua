@@ -67,8 +67,8 @@ return {
 			{
 				name = "main_hall",
 				force = 5,
-				position = Vector3(-120, -2400, 100)
-			}
+				position = Vector3(-120, -2400, 100),
+			},
 		},
 		on_executed = {
 			{ id = 400007, delay = 0 },
@@ -88,7 +88,7 @@ return {
 			{ id = 400006, delay = 0 }, -- Remove the flanking group in the intro area
 		},
 	},
-	-- Scripted difficulty scaling 
+	-- Scripted difficulty scaling
 	[102855] = { -- complete_objective038
 		on_executed = {
 			{ id = 400009, delay = 0 },
@@ -96,7 +96,7 @@ return {
 	},
 	[100355] = { -- objective_started002
 		on_executed = {
-			{ id = 100800, delay = 0 },	-- Begin spawning Cloakers earlier
+			{ id = 100800, delay = 0 }, -- Begin spawning Cloakers earlier
 			{ id = 400004, delay = 30, delay_rand = 30 }, -- Add a flanking group in the intro area
 		},
 	},

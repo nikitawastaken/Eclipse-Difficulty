@@ -111,7 +111,7 @@ return {
 		on_executed = {
 			{ id = 400025, delay = 0 },
 		},
-	},	
+	},
 	[100055] = { -- open_truck
 		on_executed = {
 			{ id = 400026, delay = 0 },

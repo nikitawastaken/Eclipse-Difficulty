@@ -520,7 +520,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_instance_params(410006, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 
 	Eclipse.mission_elements.gen_global_event(410007, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
-		
+
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(410008, "dah_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(410009, "dah_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),

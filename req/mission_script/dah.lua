@@ -607,17 +607,17 @@ return {
 		on_executed = {
 			{ id = 410008, delay = 0 },
 		},
-	},	
+	},
 	[100457] = { -- Open_the_Vault (duh)
 		on_executed = {
 			{ id = 410009, delay = 0 },
 		},
-	},	
+	},
 	[410007] = { -- assault_end
 		on_executed = {
 			{ id = 410010, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn Group delays
 	[104896] = roof_close_spawn,
 	[104852] = roof_close_spawn,

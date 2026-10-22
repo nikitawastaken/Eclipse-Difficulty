@@ -261,7 +261,7 @@ return {
 			end
 		end,
 	},
-	-- Scripted difficulty scaling 
+	-- Scripted difficulty scaling
 	[104397] = { -- security_gate_opened
 		on_executed = {
 			{ id = 400051, delay = 0 },

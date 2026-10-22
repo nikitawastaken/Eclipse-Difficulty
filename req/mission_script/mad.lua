@@ -113,7 +113,7 @@ return {
 		flashlight = false,
 	},
 	-- Scripted difficulty scaling
-	[100226] = { -- activate_emp 
+	[100226] = { -- activate_emp
 		on_executed = {
 			{ id = 400001, delay = 0 },
 		},

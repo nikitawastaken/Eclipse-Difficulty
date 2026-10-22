@@ -127,7 +127,7 @@ return {
 		on_executed = {
 			{ id = 400003, delay = 0 },
 		},
-	},	 
+	},
 	[100123] = { -- end_assault
 		on_executed = {
 			{ id = 400004, delay = 0 },

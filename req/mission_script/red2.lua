@@ -436,18 +436,18 @@ return {
 		on_executed = {
 			{ id = 400124, delay = 0 },
 		},
-	},	
+	},
 	[101538] = { -- player_in_vault
 		on_executed = {
 			{ id = 400125, delay = 0 },
 		},
-	},	
+	},
 	[100359] = { -- end_assault
 		on_executed = {
 			{ id = 400126, delay = 0 },
 			{ id = 100043, delay = 30, delay_rand = 30 }, -- start more preferreds
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

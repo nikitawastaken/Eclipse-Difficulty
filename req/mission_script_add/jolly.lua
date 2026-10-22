@@ -140,7 +140,7 @@ M.elements = {
 
 	-- assault_end trigger
 	Eclipse.mission_elements.gen_global_event(400022, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
-	
+
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400023, "jolly_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400024, "jolly_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),

@@ -387,17 +387,17 @@ return {
 		on_executed = {
 			{ id = 400074, delay = 0 },
 		},
-	},	
+	},
 	[101135] = { -- next_objective_get_water_running
 		on_executed = {
 			{ id = 400075, delay = 0 },
 		},
-	},	
+	},
 	[102084] = { -- assault_ended
 		on_executed = {
 			{ id = 400076, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[100911] = van_spawn,
 	[101105] = van_spawn,

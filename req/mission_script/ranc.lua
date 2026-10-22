@@ -124,12 +124,12 @@ return {
 		on_executed = {
 			{ id = 400022, delay = 0 },
 		},
-	}, 
+	},
 	[100123] = { -- end_assault
 		on_executed = {
 			{ id = 400023, delay = 0 },
 		},
-	}, 
+	},
 	-- Begin spawning Cloakers earlier. Vanilla begins spawning them at the start of the 2nd assault.
 	[100765] = { -- 2_assaults_started
 		values = {

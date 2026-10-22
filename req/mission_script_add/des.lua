@@ -1,19 +1,19 @@
 ---@module Green Bridge
 local M = {}
 
-local optsFlankPreferredAdd01 = { 
+local optsFlankPreferredAdd01 = {
 	spawn_groups = { 400001 },
 	enabled = true,
 }
-local optsFlankPreferredRemove01 = { 
+local optsFlankPreferredRemove01 = {
 	elements = { 400002 },
 	enabled = true,
 }
-local optsFlankPreferredAdd02 = { 
+local optsFlankPreferredAdd02 = {
 	spawn_groups = { 400004 },
 	enabled = true,
 }
-local optsFlankPreferredRemove02 = { 
+local optsFlankPreferredRemove02 = {
 	elements = { 400005 },
 	enabled = true,
 }
