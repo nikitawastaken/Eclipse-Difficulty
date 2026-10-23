@@ -115,6 +115,13 @@ return {
 			},
 		},
 	},
+	[100000] = {
+		on_executed = {
+			{ id = 400077, delay = 3 }, -- disable atrium snipers on startup
+			{ id = 101655, delay = 3 }, -- fix the nasty crash that can occur sometimes with GenSec Security spawning in the camera room
+		},
+		spawn = vis_blockers, -- Add vis blockers
+	},
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,
@@ -369,13 +376,6 @@ return {
 	[101294] = exclude_cop_agents_shields_dozers,
 	[101506] = exclude_cop_agents_shields_dozers,
 	[101509] = exclude_cop_agents_shields_dozers,
-	-- disable atrium snipers on startup
-	[100000] = {
-		on_executed = {
-			{ id = 400077, delay = 3 },
-		},
-		spawn = vis_blockers, -- Add vis blockers
-	},
 	-- delay the elevator spawn
 	-- trigger the 3 cloakers event
 	-- enable autrium snipers
