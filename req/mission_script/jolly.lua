@@ -33,6 +33,26 @@ return {
 	},
 	-- Disable hunt
 	[101598] = disabled,
+	-- Add reinforce points
+	[100212] = { -- func_difficulty_75
+		reinforce = {
+			{
+				name = "tents",
+				force = 5,
+				position = Vector3(9475, 2300, 100),
+			},
+			{
+				name = "slope1",
+				force = 3,
+				position = Vector3(-550, -975, 450),
+			},
+			{
+				name = "slope2",
+				force = 3,
+				position = Vector3(-550, 9650, 450),
+			},
+		},
+	},
 	-- Spawn some SWATs when the wall has been breached on Overkill and above
 	[101224] = {
 		on_executed = {
