@@ -102,6 +102,12 @@ return {
 			},
 		},
 	},
+	-- fix nasty crash with the security room upon startup
+	[101926] = {
+		on_executed = {
+			{ id = 101927, delay = 3 },
+		},
+	},
 	-- Remove office building and research facility spawns from initial preferreds
 	[100129] = {
 		on_executed = {
