@@ -52,6 +52,12 @@ return {
 			spawn_groups = { 300313, 300314, 300281 },
 		},
 	},
+	-- fix nasty crash
+	[301988] = {
+		on_executed = {
+			{ id = 301990, delay = 3 },
+		},
+	},
 	-- change up ATMs brandings
 	[301403] = {
 		on_executed = {
