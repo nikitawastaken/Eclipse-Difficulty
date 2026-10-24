@@ -12,7 +12,7 @@ return function(timed_tactics, timed_random_tactics, spawn_point_ref, group_diff
 				max_nr_simultaneous_groups = 2,
 				amount = { 2, 3 },
 				disable_timer = nil,
-				disable_diff = 0.75,
+				disable_diff = 1,
 				objective = function(spawn_group)
 					return {
 						attitude = "engage",
