@@ -33,14 +33,19 @@ local shield_so = {
 local catwalk_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
+	groups = preferred.no_bulldozers,
 }
 local street_spawn = {
 	values = {
 		interval = 25,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
+}
+local wall_spawn = {
+	values = {
+		interval = 35,
+	},
+	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = deep_clone(catwalk_spawn)
 roof_spawn.groups = preferred.no_shields_bulldozers
@@ -78,6 +83,12 @@ return {
 		on_executed = {
 			{ id = 101294, remove = true },
 			{ id = 400012, delay = 0, delay_rand = 5 },
+		},
+	},
+	-- Slightly delay the car escape
+	[101471] = { -- justBeforeCarComesIn
+		on_executed = {
+			{ id = 101132, delay = 10, delay_rand = 20 }, -- Vanilla: 10s (with no randomness)
 		},
 	},
 	-- Change loot vehicle arrival timing
@@ -161,6 +172,20 @@ return {
 	[103477] = enabled,
 	[103478] = enabled,
 	[103580] = enabled,
+	-- Add a new spawn group
+	[100768] = { -- addPrefereds
+		values = { 
+			spawn_groups = {
+				100699,
+				100711,
+				100719,
+				100760,
+				100767, 
+				102827,
+				400025,
+			},
+		},
+	},
 	-- Spawn Group delays
 	[100699] = street_spawn,
 	[100711] = street_spawn,
@@ -169,6 +194,7 @@ return {
 	[100767] = street_spawn,
 	[102827] = catwalk_spawn,
 	[101687] = roof_spawn,
+	[400025] = wall_spawn,
 	[400007] = scripted_swat_van_spawn,
 	[400014] = scripted_swat_van_spawn,
 }
