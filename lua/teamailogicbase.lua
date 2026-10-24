@@ -256,6 +256,9 @@ function TeamAILogicBase._check_deliver_bag(data)
 		pos = secure_info.pos,
 		rot = Rotation:look_at(secure_info.dir:with_z(0), math.UP),
 		nav_seg = managers.navigation:get_nav_seg_from_pos(secure_info.pos, true),
+		complete_clbk = function()
+			data.ub_force_next_relocate = true
+		end,
 		followup_objective = {
 			type = "act",
 			zipline_unit = zipline_unit,

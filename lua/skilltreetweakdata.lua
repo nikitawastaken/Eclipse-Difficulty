@@ -1139,4 +1139,18 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	table.delete(self.default_upgrades, "x_m45")
 	table.delete(self.default_upgrades, "x_mp7")
 	table.delete(self.default_upgrades, "x_ppk")
+	
+	self.skill_switches[2].locks.level = 20
+	self.skill_switches[3].locks.level = 40
+	self.skill_switches[4].locks.level = 45
+	self.skill_switches[5].locks.level = 50
+	self.skill_switches[6].locks.level = 55
+	self.skill_switches[7].locks.level = 60
+	self.skill_switches[8].locks.level = 65
+	self.skill_switches[9].locks.level = 70
+	self.skill_switches[10].locks.level = 75
+	self.skill_switches[11].locks.level = 80
+	self.skill_switches[12].locks.level = 85
+	self.skill_switches[13].locks.level = 90
+	self.skill_switches[14].locks.level = 95
 end)

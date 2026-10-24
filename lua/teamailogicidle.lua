@@ -477,6 +477,11 @@ function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
 		return
 	end
 
+	if data.ub_force_next_relocate then
+		data.ub_force_next_relocate = nil
+		return true
+	end
+	
 	if not data.is_team_ai then
 		return _check_should_relocate_original(data, my_data, objective, ...)
 	end
