@@ -174,13 +174,13 @@ return {
 	[103580] = enabled,
 	-- Add a new spawn group
 	[100768] = { -- addPrefereds
-		values = { 
+		values = {
 			spawn_groups = {
 				100699,
 				100711,
 				100719,
 				100760,
-				100767, 
+				100767,
 				102827,
 				400025,
 			},
