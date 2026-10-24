@@ -380,11 +380,8 @@ end
 
 -- Improve logic for when to run and when to walk
 function CopLogicAttack._chk_request_action_walk_to_cover(data, my_data)
-	local haste = data.attention_obj
-			and data.attention_obj.reaction >= AIAttentionObject.REACT_SHOOT
-			and data.attention_obj.dis < math.lerp(my_data.weapon_range.optimal, my_data.weapon_range.far, data.attention_obj.verified and 0.75 or 0.25)
-			and "walk"
-		or "run"
+	local focus_enemy = data.attention_obj
+	local haste = focus_enemy and focus_enemy.reaction >= AIAttentionObject.REACT_SHOOT and focus_enemy.dis < (focus_enemy.verified and my_data.weapon_range.far or my_data.weapon_range.optimal) and "walk" or "run"
 	local end_pose = my_data.moving_to_cover and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) and "crouch" or nil
 
 	local new_action_data = {
