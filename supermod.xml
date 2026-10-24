@@ -694,6 +694,8 @@
 				<file :name="gen_equipment_sentry.model"/>
 				<file :name="gen_equipment_sentry.object"/>
 			</group>
+			<!-- Fix lockpick time for Brooklyn 10-10/Rats D2 door -->
+			<file :name="gen_interactable_door_corridor/gen_interactable_door_corridor.unit"/>
 		</group>
 
 		<group name="units/pd2_dlc_mxm/equipment/" from_type="custom_xml" to_type="binary">
