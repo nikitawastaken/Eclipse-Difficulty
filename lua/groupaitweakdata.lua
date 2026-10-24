@@ -3609,9 +3609,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.flash_grenade.timer = get_difficulty_specific_value({
 		2,
 		2,
-		2,
-		2,
-		2,
+		1.75,
+		1.5,
+		1.5,
 	})
 
 	self.smoke_grenade_timeout = { 25, 35 }
