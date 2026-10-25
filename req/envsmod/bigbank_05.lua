@@ -1,11 +1,17 @@
 return {
 	flashlights_on = false, -- Flashlights
-	saturation_value = 0.2,
+	saturation_value = -0.2,
 	color_grading = { -- Randomized color gradings
+		"color_payday",
+		"color_heat",
+		"color_xgen",
 		"color_matrix_classic",
+		"color_force",
+		"color_heat_classic",
+		"color_payday_classic",
 	},
 	environment_override = { -- File override
-		["environments/pd2_env_bigbank/pd2_env_bigbank"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/big_bank_kiwami.custom_xml",
+		["environments/pd2_env_bigbank/pd2_env_bigbank"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/big_bank_alt.custom_xml",
 	},
 	effect_spawner = { -- Fog effects and such
 		["effects/envsmod/birds"] = {

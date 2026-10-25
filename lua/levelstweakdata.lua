@@ -1020,6 +1020,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["firestarter1_3"] = 2,
 		["firestarter1_4"] = 3,
 		["firestarter1_5"] = 2,
+		["firestarter1_6"] = 3,
+		["firestarter1_7"] = 2,
 	}
 	self.firestarter_2.random_environments = {
 		["firestarter2_1"] = 2,
