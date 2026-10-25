@@ -295,12 +295,22 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 			rewards = {
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_fps_upg_m4_m_drum",
+					item_entry = "wpn_fps_pis_g18c_m_mag_33rnd",
 					amount = 1,
 				},
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_upg_ak_m_drum",
+					item_entry = "wpn_fps_pis_1911_m_extended",
+					amount = 1,
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_ass_ak5_fg_fnc",
+					amount = 1,
+				},
+				{
+					type_items = "weapon_mods",
+					item_entry = "wpn_fps_m16_fg_railed",
 					amount = 1,
 				},
 				{
@@ -1018,7 +1028,7 @@ function StoryMissionsTweakData:_init_missions(tweak_data)
 				},
 				{
 					type_items = "weapon_mods",
-					item_entry = "wpn_upg_ak_m_drum",
+					item_entry = "wpn_upg_ak_m_banana",
 					amount = 1,
 				},
 				{
