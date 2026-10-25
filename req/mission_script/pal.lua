@@ -5,6 +5,7 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_solo = Eclipse.utils.is_solo()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local is_pro_job = Eclipse.utils.is_pro_job()
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
@@ -35,6 +36,11 @@ local crowbar_amount = {
 	values = {
 		amount = normal and 3 or hard and 2 or 1,
 		amount_random = 1,
+	},
+}
+local snipers_amount = {
+	values = {
+		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
 	},
 }
 local van_spawn = {
@@ -293,24 +299,77 @@ return {
 			{ id = 101648, delay = 10.5 },
 		},
 	},
-	-- spawn custom PDTH styled snipers at the start of 2nd assault
-	-- Bain warns about them
-	[102082] = {
+	-- Add new custom snipers to sniper's random list
+	[102965] = {
 		on_executed = {
-			{ id = 400001, delay = 5 },
-			{ id = 400002, delay = 5 },
-			{ id = 400003, delay = 5 },
-			{ id = 400004, delay = 5 },
-			{ id = 400005, delay = 5 },
-			{ id = 400016, delay = 3.5 },
+			{ id = 400001, delay = 0 },
+			{ id = 400002, delay = 0 },
+			{ id = 400003, delay = 0 },
+			{ id = 400004, delay = 0 },
+			{ id = 400005, delay = 0 },
 		},
 	},
-	-- disable vanilla snipers
-	[102941] = {
+	-- delay the sniper spawn
+	[102958] = {
+		on_executed = {
+			{ id = 102965, delay = 120, delay_rand = 60 },
+		},
+	},
+	-- respawns snipers in 2-3 minutes after they all dead (the chance based spawns can be inconsitent)
+	[102960] = {
+		on_executed = {
+			{ id = 102958, delay = 0 },
+		},
+	},
+	-- add new custom snipers to triggers
+	-- on spawn
+	[102955] = {
 		values = {
-			enabled = false,
+			elements = {
+				102923,
+				102924,
+				102926,
+				102928,
+				102930,
+				102934,
+				102936,
+				102937,
+				102939,
+				400001,
+				400002,
+				400003,
+				400004,
+				400005,
+			},
 		},
 	},
+	-- on death
+	[102954] = {
+		values = {
+			elements = {
+				102923,
+				102924,
+				102926,
+				102928,
+				102930,
+				102934,
+				102936,
+				102937,
+				102939,
+				400001,
+				400002,
+				400003,
+				400004,
+				400005,
+			},
+		},
+	},
+	-- tweak sniper spawns
+	[102948] = snipers_amount,
+	[102949] = snipers_amount,
+	[102950] = snipers_amount,
+	[102951] = snipers_amount,
+	[102952] = snipers_amount,
 	-- spawn two extra tasers with blockade shields on Death Wish (193+ throwback)
 	[101926] = {
 		on_executed = {
