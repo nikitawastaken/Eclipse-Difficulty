@@ -39,12 +39,12 @@
 			<shadow_processor>
 				<shadow_rendering>
 					<shadow_modifier>
-						<param key="slice3" value="31999 50000 0"/>
-						<param key="shadow_slice_depths" value="2033 6000 32000"/>
-						<param key="slice0" value="0 2033 0"/>
-						<param key="slice1" value="2022 6000 0"/>
-						<param key="slice2" value="5699 32000 0"/>
-						<param key="shadow_slice_overlap" value="11 301 1"/>
+						<param key="slice1" value="533 2367 0"/>
+						<param key="shadow_slice_overlap" value="101 801 1"/>
+						<param key="shadow_slice_depths" value="634 2367 10000"/>
+						<param key="slice3" value="9999 50000 0"/>
+						<param key="slice0" value="0 634 0"/>
+						<param key="slice2" value="1566 10000 0"/>
 					</shadow_modifier>
 				</shadow_rendering>
 			</shadow_processor>
