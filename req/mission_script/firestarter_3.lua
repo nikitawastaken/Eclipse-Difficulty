@@ -99,6 +99,15 @@ return {
 			{ id = 105381, delay = 20 },
 		},
 	},
+	-- Randomize thermal drill location again. No more useless preplanning.
+	[102457] = enabled,
+	[104795] = disabled,
+	[104794] = disabled,
+	[104793] = disabled,
+	-- this needs to be enabled to prevent softlock
+	[101672] = enabled,
+	[100633] = enabled,
+	[100398] = enabled,
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
 	[100004] = {
