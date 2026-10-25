@@ -145,12 +145,17 @@ return {
 		spawn = invisible_walls, -- Add invisible walls to elevator spawn
 	},
 	-- Add new reinforce
-	[100109] = { -- Police
+	[100127] = { -- default_preferreds
 		reinforce = {
 			{
 				name = "entrance",
 				force = 3,
 				position = Vector3(3875, 0, -1100),
+			},
+			{
+				name = "upstairs",
+				force = 3,
+				position = Vector3(4325, 50, -600),
 			},
 		},
 	},
