@@ -675,6 +675,9 @@
 			<file :name="hlm_random_right002/world/world.continent"/>
 			<file :name="hlm_random_right002/world/world.mission"/>
 		</group>
+		
+		<!-- Watchdogs day 2 pre-beta lamp posts and also generally just being accurate to the baked lighting -->
+		<file name="levels/narratives/h_watchdogs/stage_2/night_only/night_only.continent"/>
 
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<!-- Grenade Case  -->
