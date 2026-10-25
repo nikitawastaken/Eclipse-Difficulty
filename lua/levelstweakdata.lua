@@ -1252,4 +1252,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["auc_04"] = 2,
 		["auc_05"] = 1,
 	}
+	self.vit.random_environments = {
+		["vit_cg"] = 3,
+		["vit_dawn"] = 1,
+	}
 end)

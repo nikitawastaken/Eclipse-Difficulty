@@ -618,11 +618,13 @@ function M.client_load_environment(level_tweak, environment_name, color_grading,
 		end
 	end
 
+	--[[
 	if environment_data.sounds_override then
 		for k, v in pairs(environment_data.sounds_override) do
 			BeardLib:ReplaceScriptData(v, "custom_xml", k, "world_sounds")
 		end
 	end
+	]]--
 end
 
 -- Easily replaces the values in a list-style table such as { X, Y, Z }
