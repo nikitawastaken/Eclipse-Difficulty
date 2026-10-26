@@ -59,6 +59,7 @@ local M = {
 	"Carry Stacker Reloaded",
 	"Custom Color Grading",
 	"Improved Environments",
+	"glowslop",
 }
 
 return table.list_to_set(M)
