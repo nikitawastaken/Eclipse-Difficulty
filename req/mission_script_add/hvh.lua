@@ -36,7 +36,7 @@ local optsSecuredBagsCounterTrigger = {
 M.elements = {
 	Eclipse.mission_elements.gen_difficulty(400001, "hvh_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400002, "hvh_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	
+
 	-- FFO stuff
 	Eclipse.mission_elements.gen_counter(400010, "Secured_bags_counter", optsSecuredBagsCounter),
 	Eclipse.mission_elements.gen_counter_operator(400011, "Secured_bags_counter_addend", optsSecuredBagsCounterOperator),
