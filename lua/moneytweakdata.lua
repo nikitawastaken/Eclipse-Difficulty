@@ -696,10 +696,10 @@ function MoneyTweakData:init(tweak_data)
 	if job_id == "big" then
 		self.bag_values.money = 42450
 		self.bag_values.gold = 76450
-		self.small_loot.money_bundle = (money_mul * 85)
-		self.small_loot.money_bundle_value = (money_mul * 85)
+		self.small_loot.money_bundle = (money_mul * 230)
+		self.small_loot.money_bundle_value = (money_mul * 230)
 		self.small_loot.value_gold = (money_mul * 10000)
-		self.small_loot.gen_atm = (money_mul * 18000)
+		self.small_loot.gen_atm = (money_mul * 24000)
 		self.small_loot.vault_loot_chest = (money_mul * 3500)
 		self.small_loot.vault_loot_diamond_chest = (money_mul * 7500)
 		self.small_loot.vault_loot_banknotes = (money_mul * 2200)
@@ -707,10 +707,10 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_diamond_collection = (money_mul * 6250)
 		self.small_loot.vault_loot_trophy = (money_mul * 1250)
 		self.small_loot.vault_loot_gold = (money_mul * 10000)
-		self.small_loot.vault_loot_cash = (money_mul * 750)
-		self.small_loot.vault_loot_coins = (money_mul * 425)
-		self.small_loot.vault_loot_ring = (money_mul * 1000)
-		self.small_loot.vault_loot_jewels = (money_mul * 1400)
+		self.small_loot.vault_loot_cash = (money_mul * 1750)
+		self.small_loot.vault_loot_coins = (money_mul * 925)
+		self.small_loot.vault_loot_ring = (money_mul * 3240)
+		self.small_loot.vault_loot_jewels = (money_mul * 2400)
 	end
 	if job_id == "mad" then
 		self.bag_values.mad_master_server_value_1 = 250000
@@ -817,6 +817,9 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.money = 24350
 		self.bag_values.coke = 42050
 		self.bag_values.coke_pure = 42050
+	end
+	if job_id == "pal" then
+		self.small_loot.diamondheist_vault_diamond = (money_mul * 40000)
 	end
 	if job_id == "pines" then
 		self.bag_values.coke = 42050
