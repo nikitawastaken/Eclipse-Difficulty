@@ -11,9 +11,17 @@ local standard_spawn = {
 }
 
 return {
-	-- instantly enter FFO when pressing the button on Pro Jobs
-	[100129] = {
+	-- Instant FFO after securing 14 bags
+	[100001] = {
+		on_executed = {
+			{ id = 400011, delay = 0 },
+		},
+	},
+	[400012] = {
 		set_ponr_state = true,
+		on_executed = {
+			{ id = 100212, delay = 1 }, -- instant hunt
+		},
 	},
 	-- Increase difficulty when a safe is breached or you fail to open the safe
 	[101127] = {

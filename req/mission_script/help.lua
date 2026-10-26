@@ -45,10 +45,24 @@ local e_nl_up_1m_down_5m_swing_interval = {
 	},
 	so_access_filter = so_access.acrobatic,
 }
+local ffo_wheel_counter = {
+	on_executed = {
+		{ id = 400002, delay = 0 },
+	},
+}
 
 return {
-	-- instantly enter FFO when all players are gathered in one place
-	[101213] = {
+	-- Instant FFO after 8 wheels done
+	[100307] = ffo_wheel_counter,
+	[100061] = ffo_wheel_counter,
+	[101072] = ffo_wheel_counter,
+	[101302] = ffo_wheel_counter,
+	[100231] = ffo_wheel_counter,
+	[100412] = ffo_wheel_counter,
+	[100484] = ffo_wheel_counter,
+	[100503] = ffo_wheel_counter,
+	[100197] = ffo_wheel_counter,
+	[400003] = {
 		set_ponr_state = true,
 	},
 	-- Add new reinforce to make up for slower spawn groups.
