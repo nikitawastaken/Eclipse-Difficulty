@@ -3819,7 +3819,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.cloaker.goggles_on_when_hiding = false
 	self.besiege.cloaker.use_spawn_noise = true
 	self.besiege.cloaker.use_idle_noise_when_hiding = true
-	self.besiege.cloaker.whistle_on_leave_hiding = false -- Has whistle chatter now
+	self.besiege.cloaker.whistle_on_leave_hiding = true
 	self.besiege.cloaker.max_rehide_attempts = {
 		0,
 		3,
