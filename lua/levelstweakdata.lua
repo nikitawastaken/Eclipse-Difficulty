@@ -926,6 +926,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.pex.random_environments = {
 		["pex_01"] = 3,
+		["pex_02"] = 3,
+		["pex_03"] = 3,
 		["default"] = 1,
 	}
 	self.mex.random_environments = {
