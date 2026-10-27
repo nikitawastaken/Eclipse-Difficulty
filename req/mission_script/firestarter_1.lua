@@ -286,6 +286,6 @@ return {
 	[400016] = cloaker_spawn,
 	-- Add missing light cones to lamp posts
 	[100984] = {
-		spawn = lampposts_effect
+		spawn = lampposts_effect,
 	},
 }
