@@ -383,16 +383,6 @@ local optsDifficultyAddend01 = {
 	},
 	enabled = true,
 }
-local optsDifficultyAddend02 = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			delay = 0,
-			time = 30,
-		},
-	},
-	enabled = true,
-}
 
 M.elements = {
 	-- Infamous Heavy Shotgunners from ovk 145+
@@ -497,7 +487,6 @@ M.elements = {
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400093, "flat_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400094, "flat_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400095, "flat_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

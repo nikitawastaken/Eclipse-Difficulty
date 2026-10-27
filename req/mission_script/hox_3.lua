@@ -79,13 +79,13 @@ return {
 		},
 		forced_difficulty = {
 			amount = 0.1,
-			time = { 15, 30 },
+			time = { 30, 45 },
 			delay = 0,
 		},
 	},
 	-- Boss dead
 	[100788] = {
-		forced_difficulty = false, -- Disable forced diff
+		forced_difficulty = false, -- disable forced difficulty
 	},
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {

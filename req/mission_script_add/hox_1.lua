@@ -1036,16 +1036,6 @@ local optsEnableAssaultEnd = {
 		400210,
 	},
 }
-local optsDifficultyAddend01 = {
-	difficulty_addends = {
-		{
-			amount = 0.25,
-			delay = 0,
-			time = 60,
-		},
-	},
-	enabled = true,
-}
 
 M.elements = {
 	-- Cloakers in the garage
@@ -1286,11 +1276,5 @@ M.elements = {
 	-- misc
 	-- open swat doors for spawns
 	Eclipse.mission_elements.gen_object_editor(400208, "open_swat_spawn_doors", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatSpawnVanDoors),
-
-	-- assault_end trigger
-	Eclipse.mission_elements.gen_global_event(400210, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
-	Eclipse.mission_elements.gen_toggleelement(400211, "enable_assault_end", optsEnableAssaultEnd),
-
-	Eclipse.mission_elements.gen_difficulty(400212, "hox_1_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 return M

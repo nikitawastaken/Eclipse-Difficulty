@@ -53,28 +53,13 @@ return {
 			{ 150, 162 },
 		},
 	},
-	-- New reinforce
-	[103141] = {
+	-- Add reinforce points
+	[103141] = { -- whisper_off
 		reinforce = {
 			{
 				name = "fountain",
 				force = 3,
 				position = Vector3(2600, 2850, -80),
-			},
-			{
-				name = "what_a_nice_truck",
-				force = 2,
-				position = Vector3(-1415, 5375, -100),
-			},
-			{
-				name = "what_a_nice_kubelwagen",
-				force = 2,
-				position = Vector3(-3250, 5000, 0),
-			},
-			{
-				name = "entrance",
-				force = 2,
-				position = Vector3(-500, 2350, 0),
 			},
 		},
 	},
@@ -120,6 +105,17 @@ return {
 	[107420] = fastup_navlink,
 	[103663] = ext_to_balcony_navlink,
 	[103664] = ext_to_balcony_navlink,
+	-- Scripted difficulty scaling
+	[102228] = { -- instance_output_obj_started_011 (Upstairs open)
+		on_executed = {
+			{ id = 400075, delay = 0 },
+		},
+	},
+	[105017] = { -- done_cutter (Laser cutter is done and the vault is accessible)
+		on_executed = {
+			{ id = 400076, delay = 0 },
+		},
+	},	
 	-- Spawn group intervals
 	[400007] = scripted_swat_van_spawn,
 	[400015] = scripted_swat_van_spawn,

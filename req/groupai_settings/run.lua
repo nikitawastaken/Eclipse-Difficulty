@@ -63,8 +63,5 @@ return {
 				time = 30,
 			},
 		},
-		allowed_addends = {
-			on_entered_regroup = false,
-		},
 	},
 }

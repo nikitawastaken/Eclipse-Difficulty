@@ -83,10 +83,6 @@ local optsSniperSO = {
 	interval = 2,
 	so_action = "AI_sniper",
 }
-local optsAssaultEnd = {
-	global_event = "end_assault",
-	enabled = true,
-}
 local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
@@ -95,16 +91,6 @@ local optsDifficultyAddend01 = {
 			delay = 0,
 			time = 60,
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
-		},
-	},
-	enabled = true,
-}
-local optsDifficultyAddend02 = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			delay = 0,
-			time = 30,
 		},
 	},
 	enabled = true,
@@ -138,12 +124,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400020, "sniper_spot_so_2", Vector3(13172.806, 10416.908, 339.274), Rotation(-174, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400021, "sniper_spot_so_3", Vector3(14153.112, 8297.195, 339.274), Rotation(46, 0, 0), optsSniper_SO),
 
-	-- assault_end trigger
-	Eclipse.mission_elements.gen_global_event(400022, "assault_end", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultEnd),
-
 	-- Scripted difficulty steps
-	Eclipse.mission_elements.gen_difficulty(400023, "jolly_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400024, "jolly_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400025, "jolly_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
+	Eclipse.mission_elements.gen_difficulty(400022, "jolly_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400023, "jolly_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 return M

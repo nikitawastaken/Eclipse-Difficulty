@@ -18,7 +18,6 @@ M.elements = {
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400001, "sand_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400002, "sand_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400003, "sand_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

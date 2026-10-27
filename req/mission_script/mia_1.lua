@@ -24,17 +24,12 @@ return {
 	-- Scripted difficulty scaling
 	[101429] = { -- done_with_gas_objective
 		on_executed = {
-			{ id = 400002, delay = 0 },
+			{ id = 400001, delay = 0 },
 		},
 	},
 	[100394] = { -- inside_basement
 		on_executed = {
-			{ id = 400003, delay = 0 },
-		},
-	},
-	[400001] = { -- end_assault
-		on_executed = {
-			{ id = 400004, delay = 0 },
+			{ id = 400002, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

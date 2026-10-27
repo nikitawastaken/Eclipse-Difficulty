@@ -1,9 +1,30 @@
 ---@module Scarface's Mansion
 local M = {}
+local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
 local bags_required = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
+
+local optsBesiegeDummyCloaker01 = {
+	trigger_times = 0,
+	enemy = scripted_enemy.cloaker,
+	participate_to_group_ai = true,
+	spawn_action = "e_sp_over_3m",
+	enabled = true,
+}
+
+local optsBesiegeDummyCloaker02 = deep_clone(optsBesiegeDummyCloaker01)
+optsBesiegeDummyCloaker02.spawn_action = "e_sp_over_2_3m"
+
+local optsBesiegeDummyCloaker03 = deep_clone(optsBesiegeDummyCloaker01)
+optsBesiegeDummyCloaker03.spawn_action = "e_sp_climb_over_2m"
+
+local optsBesiegeDummyCloaker04 = deep_clone(optsBesiegeDummyCloaker01)
+optsBesiegeDummyCloaker04.spawn_action = "e_sp_climb_over_4m"
+
+local optsBesiegeDummyCloaker05 = deep_clone(optsBesiegeDummyCloaker01)
+optsBesiegeDummyCloaker05.spawn_action = "e_sp_clk_up_water"
 
 local optsPreferedAdd1 = {
 	spawn_groups = { 100130 },
@@ -74,17 +95,30 @@ local optsGunfireoperator = {
 local optsAlertAllEnemies = {
 	enabled = true,
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- Prefereds
-	Eclipse.mission_elements.gen_preferedadd(400001, "van_garden_preferedadd", optsPreferedAdd1),
-	Eclipse.mission_elements.gen_preferedremove(400002, "van_garden_preferedremove", optsPreferedRemove1),
+	Eclipse.mission_elements.gen_preferedadd(400001, "van_driveway_preferedadd", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_preferedremove(400002, "van_driveway_preferedremove", optsPreferedRemove1),
 	Eclipse.mission_elements.gen_preferedadd(400003, "van_garden_preferedadd", optsPreferedAdd2),
 	Eclipse.mission_elements.gen_preferedremove(400004, "van_garden_preferedremove", optsPreferedRemove2),
-	-- change bag requirments
+	
+	-- Change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400005, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 
-	-- add custom alert
+	-- Add custom alert
 	Eclipse.mission_elements.gen_aiglobalevent(400006, "friend_gang_alert", optsLoudAlert),
 
 	Eclipse.mission_elements.gen_alerttrigger(400007, "gunfire_trigger_1", Vector3(3183, -3210, 623), Rotation(0, 0, 0), optsGunfiretrigger),
@@ -109,5 +143,28 @@ M.elements = {
 	Eclipse.mission_elements.gen_operator(400023, "add_alert_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGunfireoperator),
 
 	Eclipse.mission_elements.gen_missionscript(400024, "alert_all_guards", optsAlertAllEnemies),
+
+	-- Scripted difficulty addends
+	Eclipse.mission_elements.gen_difficulty(400025, "friend_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400026, "friend_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+
+	-- Replace Vanilla's Cloaker group with custom ones
+	Eclipse.mission_elements.gen_dummy(400027, "friend_cloaker_spawn01", Vector3(-5750, -3400, -160), Rotation(0, 0, 0), optsBesiegeDummyCloaker05),
+	Eclipse.mission_elements.gen_dummy(400028, "friend_cloaker_spawn02", Vector3(-7025, -2075, -160), Rotation(-90, 0, 0), optsBesiegeDummyCloaker05),
+	Eclipse.mission_elements.gen_dummy(400029, "friend_cloaker_spawn03", Vector3(3550, -6150, -150), Rotation(0, 0, 0), optsBesiegeDummyCloaker01),
+	Eclipse.mission_elements.gen_dummy(400030, "friend_cloaker_spawn04", Vector3(4025, 2550, -150), Rotation(0, 0, 0), optsBesiegeDummyCloaker01),
+	Eclipse.mission_elements.gen_dummy(400031, "friend_cloaker_spawn05", Vector3(-575, -5725, -50), Rotation(-45, 0, 0), optsBesiegeDummyCloaker02),
+	Eclipse.mission_elements.gen_dummy(400032, "friend_cloaker_spawn06", Vector3(-125, 3050, -150), Rotation(135, 0, 0), optsBesiegeDummyCloaker03),
+	Eclipse.mission_elements.gen_dummy(400033, "friend_cloaker_spawn07", Vector3(9575, -3700, -800), Rotation(90, 0, 0), optsBesiegeDummyCloaker04),
+	Eclipse.mission_elements.gen_dummy(400034, "friend_cloaker_spawn08", Vector3(9575, -2550, -800), Rotation(90, 0, 0), optsBesiegeDummyCloaker04),
+	
+	Eclipse.mission_elements.gen_spawngroup(400035, "friend_cloaker_group01", { 400027 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400036, "friend_cloaker_group02", { 400028 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400037, "friend_cloaker_group03", { 400029 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400038, "friend_cloaker_group04", { 400030 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400039, "friend_cloaker_group05", { 400031 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400040, "friend_cloaker_group06", { 400032 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400041, "friend_cloaker_group07", { 400033 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400042, "friend_cloaker_group08", { 400034 }, 0),
 }
 return M

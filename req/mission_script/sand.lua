@@ -20,11 +20,22 @@ local standard_spawn = {
 		interval = 15,
 	},
 }
+local close_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_bulldozers,
+}
 local rappel_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
 }
 local dozer_chance = {
 	values = {
@@ -43,22 +54,22 @@ return {
 		reinforce = {
 			{
 				name = "gate",
-				force = 3,
+				force = 4,
 				position = Vector3(-2925, -3225, 0),
 			},
 			{
 				name = "warehouse_a",
-				force = 2,
+				force = 3,
 				position = Vector3(-300, 2100, 0),
 			},
 			{
 				name = "warehouse_b",
-				force = 2,
+				force = 3,
 				position = Vector3(1000, -150, 0),
 			},
 			{
 				name = "warehouse_c",
-				force = 2,
+				force = 3,
 				position = Vector3(450, -2600, 0),
 			},
 		},
@@ -73,6 +84,9 @@ return {
 			{ name = "warehouse_a" },
 			{ name = "warehouse_b" },
 			{ name = "warehouse_c" },
+		},
+		on_executed = {
+			{ id = 400001, delay = 0 },
 		},
 	},
 	--Power box SO cooldown (taken from ASS)
@@ -112,20 +126,12 @@ return {
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
 	-- Scripted difficulty scaling
-	[101143] = { -- input_open_second_gate
-		on_executed = {
-			{ id = 400001, delay = 0 },
-		},
-	},
-	[104374] = { -- add_harbor_office_roof_spawns (Harbor office)
-		on_executed = {
-			{ id = 400002, delay = 0 },
-		},
-	},
 	[101630] = { -- add_water_front_spawns (Finale)
 		on_executed = {
-			{ id = 400003, delay = 0 },
-			{ id = 101443, delay = 0 }, -- add an additional preferred to waterfront spawns
+			{ id = 400002, delay = 0 },
+			{ id = 101443, delay = 0 }, -- add another preferred to waterfront spawns
+			{ id = 100021, delay = 30, delay_rand = 30 }, -- delay the remaining watefront spawns to make it easier to advance
+			{ id = 101441, delay = 30, delay_rand = 30 },
 		},
 	},
 	-- Spawn group intervals (so fucking many)
@@ -135,7 +141,6 @@ return {
 	[100132] = standard_spawn,
 	[100133] = standard_spawn,
 	[100007] = standard_spawn,
-	[100019] = standard_spawn,
 	[100030] = standard_spawn,
 	[100692] = standard_spawn,
 	[101263] = standard_spawn,
@@ -146,7 +151,6 @@ return {
 	[101270] = standard_spawn,
 	[101271] = standard_spawn,
 	[101420] = standard_spawn,
-	[101442] = standard_spawn,
 	[101444] = standard_spawn,
 	[101446] = standard_spawn,
 	[101448] = standard_spawn,
@@ -165,6 +169,8 @@ return {
 	[105463] = standard_spawn,
 	[105463] = standard_spawn,
 	[101266] = standard_spawn,
+	[100019] = close_spawn,
+	[101442] = close_spawn,
 	[100693] = rappel_spawn,
 	[101265] = rappel_spawn,
 	[101963] = rappel_spawn,
@@ -175,4 +181,28 @@ return {
 	[104812] = rappel_spawn,
 	[104814] = rappel_spawn,
 	[104816] = rappel_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
+	[100847] = cloaker_spawn,
+	[100867] = cloaker_spawn,
+	[106311] = cloaker_spawn,
+	[106318] = cloaker_spawn,
+	[106319] = cloaker_spawn,
+	[106320] = cloaker_spawn,
+	[106327] = cloaker_spawn,
+	[106328] = cloaker_spawn,
+	[106329] = cloaker_spawn,
+	[106336] = cloaker_spawn,
+	[106337] = cloaker_spawn,
+	[106338] = cloaker_spawn,
+	[106814] = cloaker_spawn,
+	[106815] = cloaker_spawn,
+	[106816] = cloaker_spawn,
+	[106817] = cloaker_spawn,
 }

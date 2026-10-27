@@ -28,8 +28,6 @@ local optsDifficultyAddend01 = {
 	},
 	enabled = true,
 }
-local optsDifficultyAddend02 = deep_clone(optsDifficultyAddend01)
-local optsDifficultyAddend03 = deep_clone(optsDifficultyAddend01)
 
 M.elements = {
 	-- Change bag requirments
@@ -37,8 +35,8 @@ M.elements = {
 
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400002, "arena_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400003, "arena_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
-	Eclipse.mission_elements.gen_difficulty(400004, "arena_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend03),
+	Eclipse.mission_elements.gen_difficulty(400003, "arena_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400004, "arena_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

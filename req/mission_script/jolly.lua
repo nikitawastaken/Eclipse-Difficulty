@@ -28,7 +28,7 @@ return {
 			length_balance_mul = { 1.25, 1.25, 1, 1 },
 		},
 		on_executed = {
-			{ id = 400024, delay = 0 },
+			{ id = 400023, delay = 0 },
 		},
 	},
 	-- Disable hunt
@@ -38,7 +38,7 @@ return {
 		reinforce = {
 			{
 				name = "tents",
-				force = 5,
+				force = 4,
 				position = Vector3(9475, 2300, 100),
 			},
 			{
@@ -83,12 +83,7 @@ return {
 	-- Scripted difficulty scaling
 	[101659] = { -- finished waiting for bain (C4 being sent it)
 		on_executed = {
-			{ id = 400023, delay = 0 },
-		},
-	},
-	[400022] = {
-		on_executed = {
-			{ id = 400025, delay = 0 },
+			{ id = 400022, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

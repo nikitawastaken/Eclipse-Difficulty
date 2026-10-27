@@ -31,16 +31,6 @@ local optsDifficultyAddend01 = {
 	},
 	enabled = true,
 }
-local optsDifficultyAddend02 = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			delay = 0,
-			time = 30,
-		},
-	},
-	enabled = true,
-}
 
 M.elements = {
 	-- change bag requirments
@@ -50,7 +40,6 @@ M.elements = {
 
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400003, "peta1_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400004, "peta1_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend02),
 }
 
 return M

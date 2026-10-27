@@ -145,7 +145,7 @@ return {
 		spawn = invisible_walls, -- Add invisible walls to elevator spawn
 	},
 	-- Add new reinforce
-	[100127] = { -- default_preferreds
+	[100256] = { -- driveins
 		reinforce = {
 			{
 				name = "entrance",
@@ -270,14 +270,14 @@ return {
 			{ id = 400051, delay = 0 },
 		},
 	},
-	[105969] = { -- vault_opened
+	[105844] = { -- Thermite done
 		on_executed = {
 			{ id = 400052, delay = 0 },
 		},
-	},
-	[100123] = { -- end_assault
+	},	
+	[105969] = { -- vault_opened
 		on_executed = {
-			{ id = 400053, delay = 0 },
+			{ id = 400052, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

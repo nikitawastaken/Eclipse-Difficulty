@@ -6,19 +6,19 @@ return {
 		steps = {
 			{
 				amount = 0.25,
-				delay = 15,
+				delay = 10,
 				time = 15,
 			},
 			{
 				amount = 0.25,
-				delay = 30,
+				delay = 20,
 				time = { 60, 90 },
 				time_mul = step_time_mul,
 				time_balance_mul = step_time_balance_mul,
 			},
 			{
 				amount = 0.25,
-				delay = 45,
+				delay = 30,
 				time = { 150, 180 },
 				time_mul = step_time_mul,
 				time_balance_mul = step_time_balance_mul,
@@ -33,8 +33,6 @@ return {
 		},
 		allowed_addends = {
 			on_enemy_weapons_hot = false,
-			on_entered_regroup = false,
-			on_entered_sustain = false,
 		},
 	},
 }

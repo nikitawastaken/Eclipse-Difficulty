@@ -233,6 +233,18 @@ local optsNewSwatArrival_2 = {
 		{ id = 5, name = "run_sequence", notify_unit_id = 401780, notify_unit_sequence = "anim_van_auc_arrive_04", time = 90 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- swat van 1
@@ -328,6 +340,10 @@ M.elements = {
 	-- swat van arrival tweaks
 	Eclipse.mission_elements.gen_object_editor(400073, "swat_vans_drive_in_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsNewSwatArrival_1),
 	Eclipse.mission_elements.gen_object_editor(400074, "swat_vans_drive_in_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsNewSwatArrival_2),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(400075, "auc_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400076, "auc_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

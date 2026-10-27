@@ -88,6 +88,9 @@ return {
 			{ id = 400038, delay = 0 }, -- possible suprise cloaker at the start of the heist
 			{ id = 100581, remove = true }, -- nuke the other elementrandom and and remaining dummies to in one
 		},
+		paused_difficulty_addends = { -- disable difficulty addends
+			on_entered_regroup = 0,
+		},
 	},
 	-- hide choppers on startup
 	-- open swat van doors for spawns
@@ -155,6 +158,12 @@ return {
 		},
 		on_executed = {
 			{ id = 100006, delay = 30 },
+		},
+	},
+	-- Turn regroup addends back on after entering the garage
+	[100006] = { 
+		paused_difficulty_addends = { -- enable difficulty addends
+			on_entered_regroup = false,
 		},
 	},
 	-- spawn swat blockade when the parking garage doors are opening
@@ -315,17 +324,6 @@ return {
 			{ id = 100586, delay = 0 },
 			{ id = 100587, delay = 0 },
 			{ id = 100589, delay = 0 },
-		},
-	},
-	-- Difficulty scaling
-	[100006] = { -- extra_preferreds1
-		on_executed = {
-			{ id = 400211, delay = 0 },
-		},
-	},
-	[400210] = {
-		on_executed = {
-			{ id = 400212, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

@@ -348,14 +348,6 @@ return {
 			{ id = 400068, delay = 0 },
 		},
 	},
-	[102158] = { -- assault_end
-		values = {
-			trigger_times = 0,
-		},
-		on_executed = {
-			{ id = 400069, delay = 0 },
-		},
-	},
 	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,

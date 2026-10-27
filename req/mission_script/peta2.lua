@@ -117,11 +117,6 @@ return {
 			{ id = 400026, delay = 0 },
 		},
 	},
-	[100123] = { -- end_assault
-		on_executed = {
-			{ id = 400027, delay = 0 },
-		},
-	},
 	-- Spawn group intervals
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.

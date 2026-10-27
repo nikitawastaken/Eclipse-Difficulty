@@ -147,6 +147,23 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass.difficulty_scaling_preset = "timed"
 	self.escape_overpass_night.difficulty_scaling_preset = "timed"
 
+	self.auc.difficulty_scaling_preset = "regroup_random"
+	self.big.difficulty_scaling_preset = "regroup_random"
+	self.bex.difficulty_scaling_preset = "regroup_random"
+	self.dah.difficulty_scaling_preset = "regroup_random"
+	self.dinner.difficulty_scaling_preset = "regroup_random"
+	self.flat.difficulty_scaling_preset = "regroup_random"
+	self.friend.difficulty_scaling_preset = "regroup_random"
+	self.hox_1.difficulty_scaling_preset = "regroup_random"
+	self.jolly.difficulty_scaling_preset = "regroup_random"
+	self.mia_1.difficulty_scaling_preset = "regroup_random"
+	self.pal.difficulty_scaling_preset = "regroup_random"
+	self.pbr2.difficulty_scaling_preset = "regroup_random"
+	self.peta.difficulty_scaling_preset = "regroup_random"
+	self.peta2.difficulty_scaling_preset = "regroup_random"
+	self.red2.difficulty_scaling_preset = "regroup_random"
+	self.sand.difficulty_scaling_preset = "regroup_random"
+	
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"
@@ -162,16 +179,22 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob2.difficulty_scaling_preset = "regroup_slow"
 	self.crojob3.difficulty_scaling_preset = "regroup_slow"
 	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"
-	self.peta.difficulty_scaling_preset = "regroup_slow"
-	self.peta2.difficulty_scaling_preset = "regroup_slow"
 	self.born.difficulty_scaling_preset = "regroup_slow"
-	self.friend.difficulty_scaling_preset = "regroup_slow"
-	self.auc.difficulty_scaling_preset = "regroup_slow"
 
 	self.pex.difficulty_scaling_preset = "sustain_aggressive"
 
 	self.man.difficulty_scaling_preset = "sustain_slow"
-	self.vit.difficulty_scaling_preset = "sustain_slow"
+
+	self.corp.difficulty_scaling_preset = "scripted"
+	self.deep.difficulty_scaling_preset = "scripted"
+	self.des.difficulty_scaling_preset = "scripted"
+	self.glace.difficulty_scaling_preset = "scripted"
+	self.kenaz.difficulty_scaling_preset = "scripted"
+	self.mad.difficulty_scaling_preset = "scripted"
+	self.pbr.difficulty_scaling_preset = "scripted"
+	self.run.difficulty_scaling_preset = "scripted"
+	self.trai.difficulty_scaling_preset = "scripted"
+	self.vit.difficulty_scaling_preset = "scripted"
 
 	-- stealth bonus changes
 	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)

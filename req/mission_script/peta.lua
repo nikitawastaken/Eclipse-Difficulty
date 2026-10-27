@@ -58,17 +58,17 @@ return {
 			},
 			{
 				name = "crossroads1",
-				force = 2,
+				force = 3,
 				position = Vector3(-6350, 2575, -175),
 			},
 			{
 				name = "crossroads2",
-				force = 2,
+				force = 3,
 				position = Vector3(4000, -8150, 50),
 			},
 			{
 				name = "crossroads3",
-				force = 2,
+				force = 3,
 				position = Vector3(4050, 2075, 50),
 			},
 		},
@@ -126,11 +126,6 @@ return {
 	[400002] = { -- found_any_goat
 		on_executed = {
 			{ id = 400003, delay = 0 },
-		},
-	},
-	[100123] = { -- end_assault
-		on_executed = {
-			{ id = 400004, delay = 0 },
 		},
 	},
 	-- Tweak apartment spawns

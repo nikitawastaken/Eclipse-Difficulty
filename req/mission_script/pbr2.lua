@@ -80,14 +80,6 @@ return {
 			{ id = 400020, delay = 0 },
 		},
 	},
-	[100123] = { -- end_assault
-		values = {
-			trigger_times = 0,
-		},
-		on_executed = {
-			{ id = 400021, delay = 0 },
-		},
-	},
 	-- Spawn group intervals
 	[100411] = standard_spawn,
 	[100403] = standard_spawn,

@@ -613,11 +613,6 @@ return {
 			{ id = 410009, delay = 0 },
 		},
 	},
-	[410007] = { -- assault_end
-		on_executed = {
-			{ id = 410010, delay = 0 },
-		},
-	},
 	-- Spawn Group delays
 	[104896] = roof_close_spawn,
 	[104852] = roof_close_spawn,

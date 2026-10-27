@@ -96,6 +96,17 @@ local arena_security_hack = {
 		timer = 120,
 	},
 }
+local auc_apollonius_cutter = {
+	[100000] = {
+		timer_dt_balance_mul = {
+			team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+			6 / 8,
+			7 / 8,
+			1,
+			1,
+		},
+	},
+}
 
 local M = {
 	--[[
@@ -236,6 +247,11 @@ local M = {
 		[100025] = armadillo_drill,
 		[100097] = armadillo_drill,
 		[100100] = armadillo_drill,
+	},
+	["auc"] = {
+		["auc_vault_ceiling_001"] = auc_apollonius_cutter,
+		["auc_vault_ceiling_002"] = auc_apollonius_cutter,
+		["auc_vault_ceiling_003"] = auc_apollonius_cutter,
 	},
 	["bex"] = {
 		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
@@ -515,6 +531,22 @@ local M = {
 				{ 3, 3 },
 			},
 			forbid_sabotage = true,
+		},
+	},
+	["sand"] = {
+		["sand_swat_van_drillable_001"] = {
+			[100022] = {
+				timer = 90,
+				timer_init_balance_mul = {
+					team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+					4 / 6,
+					5 / 6,
+					1,
+					1,
+				},
+				jam_times = 1,
+				can_jam = true,
+			},
 		},
 	},
 	["trai"] = {

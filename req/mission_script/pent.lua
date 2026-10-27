@@ -70,7 +70,7 @@ return {
 				position = Vector3(-600, -1400, -425),
 			},
 		},
-		paused_difficulty_addends = { -- disable regroup addends
+		paused_difficulty_addends = { -- limit difficulty addends
 			on_entered_regroup = 1,
 		},
 	},
@@ -79,7 +79,7 @@ return {
 			{ name = "lobby" },
 			{ name = "garage" },
 		},
-		paused_difficulty_addends = { -- enable regroup addends
+		paused_difficulty_addends = { -- remove difficulty addend limits
 			on_entered_regroup = false,
 		},
 		on_executed = { -- delay the double door spawn
@@ -97,16 +97,16 @@ return {
 		},
 		forced_difficulty = {
 			amount = 0.1,
-			time = { 15, 30 },
+			time = { 30, 45 },
 			delay = 0,
 		},
 	},
 	[101607] = { -- Yufu is dead
-		forced_difficulty = false,
 		ponr = {
 			length = 210,
 			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
+		forced_difficulty = false, -- disable forced difficulty
 	},
 	[103595] = {
 		reinforce = {

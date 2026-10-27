@@ -158,6 +158,12 @@ GroupAITweakData.difficulty_scaling_presets = {
 			on_entered_sustain = true,
 		},
 	},
+	-- Used for levels with fully scripted difficulty curves, no sustain addend
+	["scripted"] = {
+		allowed_addends = {
+			on_entered_regroup = false,
+		},
+	},
 }
 
 -- Helper to change freq based on engagement distance

@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local mobster_team = {
 	values = {
 		team = "mobster1",
@@ -9,6 +10,30 @@ local disabled = {
 		enabled = false,
 	},
 }
+local wall_spawn_action = {
+	values = {
+		so_action = "e_sp_over_3_35m",
+	},
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
+local interior_medium_navlink = {
+	values = {
+		interval = 7, 
+	},
+	so_access_filter = so_access.no_heavyweight,
+}
+
+local interior_fast_navlink = deep_clone(interior_medium_navlink)
+interior_fast_navlink.values.interval = 5
+
+local interior_slow_navlink = deep_clone(interior_medium_navlink)
+interior_slow_navlink.values.interval = 9
+
 return {
 	-- Combine some navigation areas
 	[141003] = {
@@ -86,13 +111,12 @@ return {
 		},
 		forced_difficulty = {
 			amount = 0.1,
-			time = { 15, 30 },
+			time = { 30, 45 },
 			delay = 0,
 		},
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		forced_difficulty = false, -- Disable forced diff
 		reinforce = {
 			{
 				name = "main_hall",
@@ -100,6 +124,10 @@ return {
 				position = Vector3(-1700, -1075, 50),
 			},
 		},
+		on_executed = {
+			{ id = 400026, delay = 0 },
+		},
+		forced_difficulty = false, -- disable forced difficulty
 	},
 	-- Disable Sosa retreat on low health during boss fight
 	[101596] = disabled,
@@ -127,6 +155,46 @@ return {
 	[100213] = disabled,
 	[100214] = disabled,
 	[103446] = disabled,
+	-- Tweak navlink access and intervals
+	[101062] = interior_slow_navlink,
+	[100168] = interior_slow_navlink,
+	[100169] = interior_slow_navlink,
+	[100173] = interior_slow_navlink,
+	[100176] = interior_slow_navlink,
+	[100179] = interior_slow_navlink,
+	[101025] = interior_medium_navlink,
+	[101026] = interior_medium_navlink,
+	[101085] = interior_medium_navlink,
+	[101086] = interior_medium_navlink,
+	[102454] = interior_fast_navlink,
+	[102529] = interior_fast_navlink,
+	-- Tweak spawn actions to look less bizarre
+	[102379] = wall_spawn_action,
+	[102377] = wall_spawn_action,
+	[101039] = wall_spawn_action,
+	[101038] = wall_spawn_action,
+	[101036] = wall_spawn_action,
+	-- Replace Vanilla's singular Cloaker group with custom groups
+	[100845] = { -- ai_enemy_prefered_add_001
+		values = { 
+			spawn_groups = {
+				400035,
+				400036,
+				400037,
+				400038,
+				400039, 
+				400040,
+				400041,
+				400042,
+			},
+		},
+	},
+	-- Scripted difficulty scaling
+	[102074] = { -- complete_objective017 (Mansion opened)
+		on_executed = {
+			{ id = 400025, delay = 0 },
+		},
+	},
 	--You're Sosa's men, not undercover cops
 	[100852] = mobster_team,
 	[100854] = mobster_team,
@@ -171,4 +239,13 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
+	-- Spawn group intervals
+	[400035] = cloaker_spawn,
+	[400036] = cloaker_spawn,
+	[400037] = cloaker_spawn,
+	[400038] = cloaker_spawn,
+	[400039] = cloaker_spawn,
+	[400040] = cloaker_spawn,
+	[400041] = cloaker_spawn,
+	[400042] = cloaker_spawn,
 }

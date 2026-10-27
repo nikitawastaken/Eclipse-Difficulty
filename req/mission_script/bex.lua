@@ -365,11 +365,6 @@ return {
 			{ id = 400080, delay = 0 },
 		},
 	},
-	[100123] = { -- end_assault
-		on_executed = {
-			{ id = 400081, delay = 0 },
-		},
-	},
 	-- Spawn group intervals
 	[100019] = side_spawn,
 	[100128] = side_spawn,

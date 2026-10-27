@@ -228,6 +228,11 @@ return {
 			{ id = 400123, delay = 0 }, -- start spawning snipers after 90 seconds
 		},
 	},
+	[100359] = { -- end_assault
+		on_executed = {
+			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
+		},
+	},
 	--Let the cops finish their spawn anim before moving into SO spot
 	[104029] = forced_off,
 	[104071] = forced_off,
@@ -440,12 +445,6 @@ return {
 	[101538] = { -- player_in_vault
 		on_executed = {
 			{ id = 400125, delay = 0 },
-		},
-	},
-	[100359] = { -- end_assault
-		on_executed = {
-			{ id = 400126, delay = 0 },
-			{ id = 100043, delay = 30, delay_rand = 30 }, -- start more preferreds
 		},
 	},
 	-- Spawn group intervals

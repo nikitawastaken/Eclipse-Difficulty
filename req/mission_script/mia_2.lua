@@ -72,16 +72,16 @@ local filter_easy_above = {
 
 return {
 	[100043] = { -- player_spawned
-		paused_difficulty_addends = { -- disable addends
+		paused_difficulty_addends = { -- limit difficulty addends
 			on_entered_regroup = 1,
 		},
 	},
 	[100512] = { -- add_spawn (apartment spawns)
-		paused_difficulty_addends = { -- enable addends
-			on_entered_regroup = false,
-		},
 		on_executed = { -- Don't remove 3rd floor spawngroups
 			{ id = 100511, remove = true }, -- ai_enemy_prefered_remove_002
+		},
+		paused_difficulty_addends = { -- remove difficulty addend limits
+			on_entered_regroup = false,
 		},
 	},
 	-- Boss spawn
@@ -94,7 +94,7 @@ return {
 		},
 		forced_difficulty = {
 			amount = 0.1,
-			time = { 15, 30 },
+			time = { 30, 45 },
 			delay = 0,
 		},
 	},
@@ -104,7 +104,7 @@ return {
 			length = 75,
 			length_balance_mul = { 2, 1.5, 1, 1 },
 		},
-		forced_difficulty = false, -- Disable forced diff
+		forced_difficulty = false, -- disable forced difficulty
 	},
 	-- faster coke degradation (you have 5 mins to get the coke or get nothing)
 	-- keep only one timer
