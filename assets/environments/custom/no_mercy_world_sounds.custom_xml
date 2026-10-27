@@ -1,0 +1,18 @@
+<table ambience_enabled="true" default_ambience="ambience_hospital_01" default_environment="pd2_acoustics_indoor_medium" default_occasional="occasionals_hospital">
+	<sound_area_emitters/>
+	<sound_emitters>
+		<table emitter_event="emitter_clock_02" name="sound_emitter_001" position="575 -176 223.122" rotation="0 0 -2.68221e-07 -1"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_002" position="-1100 2104 218.209" rotation="0 0 1 -1.19209e-07"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_003" position="-850 3125 220.073" rotation="0 0 -0.707107 -0.707107"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_004" position="-350 3275 197.194" rotation="0 0 1 -1.19209e-07"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_005" position="50 1875 221.156" rotation="0 0 -0.707107 -0.707107"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_006" position="-625 925 185.422" rotation="0 0 0 -1"/>
+		<table emitter_event="emitter_hospital_machine" name="sound_emitter_007" position="-1750 900 160.409" rotation="0 0 -0.707107 -0.707107"/>
+	</sound_emitters>
+	<sound_environments>
+		<table ambience_event="ambience_int_basement_lo_hum" depth="1000" environment="pd2_acoustics_indoor_large" height="500" name="sound_environment_001" occasional_event="occasionals_a_silent" position="-2240 2351 -821" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="4000"/>
+		<table ambience_event="ambience_int_basement_lo_hum" depth="1820" environment="pd2_acoustics_indoor_medium" height="2000" name="sound_environment_002" occasional_event="occasionals_a_silent" position="-3521 1800 -825" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="1230"/>
+		<table ambience_event="ambience_ext_skyscraper_roof_night" depth="6800" environment="pd2_acoustics_outdoor_large_echo" height="2000" name="sound_environment_003" occasional_event="occasionals_skyscraper" position="-7200 1225 -325" rotation="0 0 0 -1" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="3685"/>
+		<table ambience_event="ambience_ext_skyscraper_roof_night" depth="1830" environment="pd2_acoustics_outdoor_large_echo" height="2000" name="sound_environment_004" occasional_event="occasionals_skyscraper" position="-1700 3607 -325" rotation="0 0 -0.707107 -0.707107" type="box" use_ambience="true" use_environment="true" use_occasional="true" width="2940"/>
+	</sound_environments>
+</table>
