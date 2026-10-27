@@ -7,9 +7,9 @@
 		<table emitter_event="emitter_birds_01" name="sound_emitter_004" position="1115 -3136 971" rotation="0 0 0 -1"/>
 		<table emitter_event="emitter_radiator_hiss_loop" name="sound_emitter_006" position="-2486 3100 165" rotation="0 0 0 -1"/>
 		<table emitter_event="emitter_birds_01" name="sound_emitter_007" position="-3768 2220 971" rotation="0 0 0 -1"/>
-		<table emitter_event="emitter_near_beach" name="sound_emitter_008" position="-11505 -6144 -300" rotation="0 0 0 -1"/>
-		<table emitter_event="emitter_near_beach" name="sound_emitter_009" position="-11705 456 -142" rotation="0 0 0 -1"/>
-		<table emitter_event="emitter_near_beach" name="sound_emitter_010" position="-11698 6056 -201" rotation="0 0 0 -1"/>
+		<table emitter_event="cft_ocean_close" name="sound_emitter_008" position="-11505 -6144 -300" rotation="0 0 0 -1"/>
+		<table emitter_event="cft_ocean_close" name="sound_emitter_009" position="-11705 456 -142" rotation="0 0 0 -1"/>
+		<table emitter_event="cft_ocean_close" name="sound_emitter_010" position="-11698 6056 -201" rotation="0 0 0 -1"/>
 		<table emitter_event="emitter_water_dripping_03" name="sound_emitter_005" position="-3049 3548 -310" rotation="0 0 0 -1"/>
 	</sound_emitters>
 	<sound_environments>
