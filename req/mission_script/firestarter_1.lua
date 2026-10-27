@@ -93,6 +93,29 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 
+local lampposts_effect = {}
+local cone_id = Idstring("units/world/street/street_lights/street_lights_night_cone")
+
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(475, 2100, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(475, 1550, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(750, 1825, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(200, 1825, 1334), visible = true })
+
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(-550, 4025, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(-550, 3475, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(-825, 3750, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(-275, 3750, 1334), visible = true })
+
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(350, -750, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(75, -475, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(-200, -750, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(75, -1025, 1334), visible = true })
+
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(3175, 2200, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(3450, 1925, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(3175, 1650, 1334), visible = true })
+table.insert(lampposts_effect, { name = cone_id, pos = Vector3(2900, 1925, 1334), visible = true })
+
 return {
 	-- FFO
 	[100272] = {
@@ -261,4 +284,8 @@ return {
 	[400014] = cloaker_spawn,
 	[400015] = cloaker_spawn,
 	[400016] = cloaker_spawn,
+	-- Add missing light cones to lamp posts
+	[100984] = {
+		spawn = lampposts_effect
+	},
 }
