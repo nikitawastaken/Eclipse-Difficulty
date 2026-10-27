@@ -93,8 +93,12 @@ local cloaker_spawn = {
 	groups = preferred.only_cloakers_single,
 }
 
+if not managers.dyn_resource:has_resource(IDS_UNIT, Idstring("units/payday2/props/ind_prop_light_cones/ind_prop_light_cones_docks"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil) then
+	managers.dyn_resource:load(IDS_UNIT, Idstring("units/payday2/props/ind_prop_light_cones/ind_prop_light_cones_docks"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+end
+
 local lampposts_effect = {}
-local cone_id = Idstring("units/world/street/street_lights/street_lights_night_cone")
+local cone_id = Idstring("units/payday2/props/ind_prop_light_cones/ind_prop_light_cones_docks")
 
 table.insert(lampposts_effect, { name = cone_id, pos = Vector3(475, 2100, 1334), visible = true })
 table.insert(lampposts_effect, { name = cone_id, pos = Vector3(475, 1550, 1334), visible = true })
