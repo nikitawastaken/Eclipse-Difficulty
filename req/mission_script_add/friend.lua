@@ -114,7 +114,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_preferedremove(400002, "van_driveway_preferedremove", optsPreferedRemove1),
 	Eclipse.mission_elements.gen_preferedadd(400003, "van_garden_preferedadd", optsPreferedAdd2),
 	Eclipse.mission_elements.gen_preferedremove(400004, "van_garden_preferedremove", optsPreferedRemove2),
-	
+
 	-- Change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400005, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 
@@ -157,7 +157,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400032, "friend_cloaker_spawn06", Vector3(-125, 3050, -150), Rotation(135, 0, 0), optsBesiegeDummyCloaker03),
 	Eclipse.mission_elements.gen_dummy(400033, "friend_cloaker_spawn07", Vector3(9575, -3700, -800), Rotation(90, 0, 0), optsBesiegeDummyCloaker04),
 	Eclipse.mission_elements.gen_dummy(400034, "friend_cloaker_spawn08", Vector3(9575, -2550, -800), Rotation(90, 0, 0), optsBesiegeDummyCloaker04),
-	
+
 	Eclipse.mission_elements.gen_spawngroup(400035, "friend_cloaker_group01", { 400027 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400036, "friend_cloaker_group02", { 400028 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400037, "friend_cloaker_group03", { 400029 }, 0),

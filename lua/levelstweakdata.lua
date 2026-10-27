@@ -163,7 +163,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.peta2.difficulty_scaling_preset = "regroup_random"
 	self.red2.difficulty_scaling_preset = "regroup_random"
 	self.sand.difficulty_scaling_preset = "regroup_random"
-	
+
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"

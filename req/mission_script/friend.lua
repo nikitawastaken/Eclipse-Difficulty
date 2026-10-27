@@ -23,7 +23,7 @@ local cloaker_spawn = {
 }
 local interior_medium_navlink = {
 	values = {
-		interval = 7, 
+		interval = 7,
 	},
 	so_access_filter = so_access.no_heavyweight,
 }
@@ -176,13 +176,13 @@ return {
 	[101036] = wall_spawn_action,
 	-- Replace Vanilla's singular Cloaker group with custom groups
 	[100845] = { -- ai_enemy_prefered_add_001
-		values = { 
+		values = {
 			spawn_groups = {
 				400035,
 				400036,
 				400037,
 				400038,
-				400039, 
+				400039,
 				400040,
 				400041,
 				400042,

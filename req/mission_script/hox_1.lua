@@ -161,7 +161,7 @@ return {
 		},
 	},
 	-- Turn regroup addends back on after entering the garage
-	[100006] = { 
+	[100006] = {
 		paused_difficulty_addends = { -- enable difficulty addends
 			on_entered_regroup = false,
 		},

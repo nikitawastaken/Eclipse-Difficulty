@@ -115,7 +115,7 @@ return {
 		on_executed = {
 			{ id = 400076, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[400007] = scripted_swat_van_spawn,
 	[400015] = scripted_swat_van_spawn,

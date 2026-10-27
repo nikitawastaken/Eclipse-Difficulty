@@ -274,7 +274,7 @@ return {
 		on_executed = {
 			{ id = 400052, delay = 0 },
 		},
-	},	
+	},
 	[105969] = { -- vault_opened
 		on_executed = {
 			{ id = 400052, delay = 0 },
