@@ -88,6 +88,36 @@ local reduce_objective_requirement = {
 		amount = 8000,
 	},
 }
+
+local gate_parts = {}
+local knockover_decor = {}
+if is_pro_job then
+table.insert(gate_parts, { name = Idstring("units/payday2/vegetation/com_veg_plant_benjaminficus_planted/com_veg_plant_benjaminficus_planted_b"), pos = Vector3(-1525, 2350, 0), visible = true })
+table.insert(gate_parts, { name = Idstring("units/payday2/vegetation/com_veg_plant_benjaminficus_planted/com_veg_plant_benjaminficus_planted_b"), pos = Vector3(-1550, 2050, 0), visible = true })
+-- table.insert(gate_parts, { name = Idstring("units/payday2/architecture/bnk/bnk_int_fence_wall_short"), pos = Vector3(-1372, 2101, 0), rot = Rotation(90, 0, 0), visible = true })
+-- table.insert(gate_parts, { name = Idstring("units/payday2/architecture/bnk/bnk_int_fence_wall_short"), pos = Vector3(-1372, 2401, 0), rot = Rotation(90, 0, 0), visible = true })
+-- table.insert(gate_parts, { name = Idstring("units/payday2/architecture/bnk/bnk_int_fence_gate"), pos = Vector3(-1372, 2301, 0), rot = Rotation(90, 0, 0), visible = true })
+table.insert(gate_parts, { name = Idstring("units/world/props/flags/flag_us"), pos = Vector3(-1284, 2380, 0), rot = Rotation(-90, 0, 0), visible = true })
+table.insert(gate_parts, { name = Idstring("units/payday2/props/bnk_prop_entrance_carpet/bnk_prop_entrance_carpet"), pos = Vector3(-1525, 2235, -4), visible = true })
+
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/world/props/street/bicycle/bicycle"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/world/props/fire_extinguisher/fire_extinguisher"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/world/architecture/hospital/props/fire_extinguisher/fireextinguisher01"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/pd2_dlc2/csgo_models/props_street/electrical_box01"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/world/props/street/street_wire_roof/street_wire_roof_long"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+managers.dyn_resource:load(IDS_UNIT, Idstring("units/world/props/street/street_wire_roof/street_wire_roof_medium"), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+
+table.insert(knockover_decor, { name = Idstring("units/world/props/street/bicycle/bicycle"), pos = Vector3(-875, 2601, 2), rot = Rotation(89, 16, 0), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/fire_extinguisher/fire_extinguisher"), pos = Vector3(-1006, 2433, 25), rot = Rotation(0, 0, 0), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/architecture/hospital/props/fire_extinguisher/fireextinguisher01"), pos = Vector3(-1006, 2425, 133), rot = Rotation(0, 0, 0), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/pd2_dlc2/csgo_models/props_street/electrical_box01"), pos = Vector3(-3198, 2772, 350), rot = Rotation(-180, 0, 0), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/street/street_wire_roof/street_wire_roof_long"), pos = Vector3(-3219, 2649, 552), rot = Rotation(-138.606, -9.198, -4.352), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/street/street_wire_roof/street_wire_roof_long"), pos = Vector3(-3219, 2649, 551), rot = Rotation(-157, -9.5, -4.352), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/street/street_wire_roof/street_wire_roof_long"), pos = Vector3(-3226, 2651, 554), rot = Rotation(-93.450, -15.600, -4.352), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/prop_electricboxes/prop_electricbox_tiny_3"), pos = Vector3(-5160, 2804, 1108), rot = Rotation(-90, 0, 0), visible = true })
+table.insert(knockover_decor, { name = Idstring("units/world/props/street/street_wire_roof/street_wire_roof_medium"), pos = Vector3(-5151, 2819, 1111), rot = Rotation(-165, 23.941, 0), visible = true })
+else end
+
 return {
 	-- for the true 2013 experience
 	[101539] = {
@@ -343,4 +373,13 @@ return {
 
 	-- Reduce 25.000$ objective to 8.000$
 	[104638] = reduce_objective_requirement,
+	
+	-- Spawn vault gate from the trailer on pro jobs
+	[101010] = {
+		spawn = gate_parts,
+	},
+	-- Spawn Decorations
+	[101177] = {
+		spawn = knockover_decor,
+	},
 }
