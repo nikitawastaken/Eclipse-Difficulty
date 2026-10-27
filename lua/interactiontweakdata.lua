@@ -19,7 +19,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 		self.pick_lock_hard.timer = 666 -- Dallas, my friend, the devil.
 	end
 
-	-- Bagging sfx tweaks
+	-- Interaction sfx tweaks
 	self.money_wrap.sound_done = "bar_bag_pour_money_finished"
 	self.money_wrap.sound_start = "bar_bag_pour_money"
 	self.money_wrap.sound_interupt = "bar_bag_pour_money_cancel"
@@ -131,6 +131,26 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_trade.sound_start = "bar_rescue"
 	self.hostage_trade.sound_interupt = "bar_rescue_cancel"
 	self.hostage_trade.sound_done = "bar_rescue_finished"
+
+	-- PDTH reference
+	self.hack_suburbia_jammed.sound_start = "bar_drill_fix"
+	self.hack_suburbia_jammed.sound_interupt = "bar_drill_fix_cancel"
+	self.hack_suburbia_jammed.sound_done = "bar_drill_fix_finished"
+	self.hack_suburbia.sound_start = "bar_drill_apply"
+	self.hack_suburbia.sound_interupt = "bar_drill_apply_cancel"
+	self.hack_suburbia.sound_done = "bar_drill_apply_finished"
+	self.hack_suburbia_outline.sound_start = "bar_drill_apply"
+	self.hack_suburbia_outline.sound_interupt = "bar_drill_apply_cancel"
+	self.hack_suburbia_outline.sound_done = "bar_drill_apply_finished"
+	self.hack_suburbia_axis.sound_start = "bar_drill_fix"
+	self.hack_suburbia_axis.sound_interupt = "bar_drill_fix_cancel"
+	self.hack_suburbia_axis.sound_done = "bar_drill_fix_finished"
+	self.hack_suburbia_jammed_axis.sound_start = "bar_drill_fix"
+	self.hack_suburbia_jammed_axis.sound_interupt = "bar_drill_fix_cancel"
+	self.hack_suburbia_jammed_axis.sound_done = "bar_drill_fix_finished"
+	self.hack_suburbia_jammed_y.sound_start = "bar_drill_fix"
+	self.hack_suburbia_jammed_y.sound_interupt = "bar_drill_fix_cancel"
+	self.hack_suburbia_jammed_y.sound_done = "bar_drill_fix_finished"
 
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
 	self.hostage_trade.contour_flash_interval = 0.5
