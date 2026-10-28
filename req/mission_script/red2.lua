@@ -239,6 +239,25 @@ return {
 	[100226] = forced_off,
 	[100077] = forced_off,
 	[105732] = forced_off,
+	-- fix Bain's *cops near front door* dialogue not playing
+	[100619] = {
+		values = {
+			rules = {
+				enemy_names = {
+					"units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1",
+					"units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2",
+					"units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3",
+					"units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4",
+					"units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1",
+					"units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2",
+					"units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3",
+					"units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4",
+					"units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1",
+					"units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2",
+				},
+			},
+		},
+	},
 	-- startup stuff
 	[100326] = {
 		on_executed = {
