@@ -61,6 +61,12 @@ return {
 			base_delay_rand = 15,
 		},
 	},
+	-- add sound for the elevator 
+	[100349] = {
+		values = {
+			sound_event = "elevator_doors_open",
+		},
+	},
 	-- tweak power boxes amount based on difficulty
 	[105350] = filter_easy_above,
 	[105351] = filter_disable,
