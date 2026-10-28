@@ -6,7 +6,7 @@
 			<param key="rotation" value="0" />
 		</sky_orientation>
 		<others>
-			<param key="sky_texture" value="core/environments/skies/default/default"/>
+			<param key="sky_texture" value=""/>
 			<param key="global_world_overlay_mask_texture" value=""/>
 			<param key="underlay" value="core/environments/skies/sky_0200_night_moon_stars/sky_0200_night_moon_stars"/>
 			<param key="sun_ray_color_scale" value="1.1603136062622"/>
