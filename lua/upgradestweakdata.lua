@@ -2810,7 +2810,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[1][9].multiperk6 = "3rd"
 	self.specialization_descs[1][9].multiperk7 = "doubled"
 
-	-- Muscle (uses same extra hp upgrade as grinder)
+	-- Muscle
 	self.values.player.uncover_multiplier[1] = 1.25
 	self.values.player.health_ratio_invulnerable_ratio = { 0.25 }
 	self.values.cooldown.health_ratio_invulnerable = { { 1, 60 } }
@@ -2821,6 +2821,25 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "health_ratio_invulnerable",
 			category = "cooldown",
+		},
+	}
+	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
+	self.definitions.player_extra_health_multiplier_1 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_health_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_extra_health_multiplier_2 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "extra_health_multiplier",
+			category = "player",
 		},
 	}
 	self.values.temporary.health_ratio_invulnerable = { { 1, 2 } }
@@ -3212,13 +3231,22 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
-	self.definitions.player_extra_health_multiplier_1 = {
-		name_id = "menu_player_health_multiplier",
+	self.values.player.extra_health_multiplier_weak = { 1.2, 1.4 }
+	self.definitions.player_extra_health_multiplier_weak_1 = {
+		name_id = "menu_player_health_multiplier_weak_1",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "extra_health_multiplier",
+			upgrade = "extra_health_multiplier_weak",
+			category = "player",
+		},
+	}
+	self.definitions.player_extra_health_multiplier_weak_2 = {
+		name_id = "menu_player_health_multiplier_weak_2",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "extra_health_multiplier_weak",
 			category = "player",
 		},
 	}
@@ -3241,15 +3269,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.definitions.player_extra_health_multiplier_2 = {
-		name_id = "menu_player_health_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "extra_health_multiplier",
-			category = "player",
-		},
-	}
 
 	self.values.player.damage_to_hot_extra_ticks[1] = 5
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
@@ -3264,11 +3283,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
 	self.specialization_descs[11][1].multiperk4 = "1"
-	self.specialization_descs[11][3].multiperk = "30%"
+	self.specialization_descs[11][3].multiperk = "20%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
-	self.specialization_descs[11][5].multiperk = "10"
-	self.specialization_descs[11][5].multiperk2 = "5"
-	self.specialization_descs[11][7].multiperk = "30%"
+	self.specialization_descs[11][7].multiperk = "20%"
 	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
 	self.specialization_descs[11][9].multiperk3 = "4.5"

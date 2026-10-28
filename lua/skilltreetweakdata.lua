@@ -808,12 +808,12 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 	-- Grinder
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_decreased_drama_hurt" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_weak_1", "player_armor_to_health_conversion", "player_decreased_drama_hurt" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
-	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
+	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_weak_2" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
 	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_extra_ticks" }
 
