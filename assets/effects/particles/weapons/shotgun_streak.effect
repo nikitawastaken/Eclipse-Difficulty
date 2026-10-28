@@ -13,7 +13,7 @@
             <rotationbyvelocity velocity="50000"/>
         </simulatorstack>
         <visualizerstack>
-            <billboard texture="effects/textures/effects_atlas" intensity="streetlight" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_halo" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="255 217.00001525879 173" opacity_input="constant" opacity="255" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel"/>
+            <billboard texture="effects/textures/effects_atlas" intensity="identity" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_add" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="255 217.00001525879 173" opacity_input="constant" opacity="255" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel"/>
             <light per_particle_age="false" shadow_caster="false" specular="true" color_input="constant" color="255 217.00001525879 173" multiplier_input="keys" far_range_input="constant" far_range="150">
                 <multiplier_keys loop="false">
                     <key t="0" v="0.019999999552965"/>
