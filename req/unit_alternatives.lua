@@ -38,6 +38,20 @@ local M = {
 		["units/payday2/characters/ene_security_8/ene_security_8"] = 1,
 		["units/payday2/characters/ene_security_fat_8/ene_security_fat_8"] = 2,
 	},
+	[("units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1"):key()] = {
+		["units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1"] = 4,
+		["units/payday2/characters/ene_nyc_security_female_1/ene_nyc_security_female_1"] = 1,
+		["units/payday2/characters/ene_nyc_security_fat_1/ene_nyc_security_fat_1"] = 1,
+	},
+	[("units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2"):key()] = {
+		["units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2"] = 4,
+		["units/payday2/characters/ene_nyc_security_female_2/ene_nyc_security_female_2"] = 1,
+		["units/payday2/characters/ene_nyc_security_fat_2/ene_nyc_security_fat_2"] = 1,
+	},
+	[("units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3"):key()] = {
+		["units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3"] = 2,
+		["units/payday2/characters/ene_nyc_security_fat_3/ene_nyc_security_fat_3"] = 1,
+	},
 	-- Beat Cops
 	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
 		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
@@ -75,6 +89,25 @@ local M = {
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"] = 6,
 		["units/pd2_dlc_rvd/characters/ene_la_cop_fat_4/ene_la_cop_fat_4"] = 1,
+	},
+	-- NYPD Beat Cops
+	[("units/pd2_dlc_rvd/characters/ene_nyc_cop_1/ene_nyc_cop_1"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_1/ene_nyc_cop_1"] = 6,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1"] = 2,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_nyc_cop_2/ene_nyc_cop_2"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_2/ene_nyc_cop_2"] = 4,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2"] = 2,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_nyc_cop_3/ene_nyc_cop_3"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_3/ene_nyc_cop_3"] = 8,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_nyc_cop_4/ene_nyc_cop_4"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_4/ene_nyc_cop_4"] = 6,
+		["units/pd2_dlc_rvd/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4"] = 1,
 	},
 	-- SFPD Beat Cops
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {

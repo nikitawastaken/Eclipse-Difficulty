@@ -8,12 +8,6 @@
 			<has_sleeves			value="0" />
 			<has_hat				value="0" />
 			<has_shades				value="0" />
-			<is_security			value="0" />
-			<is_green_security		value="0" />
-			<is_cop					value="0" />
-			<is_la_cop				value="0" />
-			<is_fbi					value="0" />
-			<is_prisonguard			value="0" />
 		</variables>
 
 		<filter name="'check_no_tie'">
@@ -49,41 +43,6 @@
 		</filter>
 		<filter name="'check_shades'">
 			<check value="vars.has_shades == 1" />
-		</filter>
-
-		<filter name="'check_not_security'">
-			<check value="vars.is_security == 0" />
-		</filter>
-		<filter name="'check_security'">
-			<check value="vars.is_security == 1" />
-		</filter>
-		
-		<filter name="'check_not_green_security'">
-			<check value="vars.is_green_security == 0" />
-		</filter>
-		<filter name="'check_green_security'">
-			<check value="vars.is_green_security == 1" />
-		</filter>
-
-		<filter name="'check_not_cop'">
-			<check value="vars.is_cop == 0" />
-		</filter>
-		<filter name="'check_cop'">
-			<check value="vars.is_cop == 1" />
-		</filter>
-		
-		<filter name="'check_not_la_cop'">
-			<check value="vars.is_la_cop == 0" />
-		</filter>
-		<filter name="'check_la_cop'">
-			<check value="vars.is_la_cop == 1" />
-		</filter>
-
-		<filter name="'check_not_prisonguard'">
-			<check value="vars.is_prisonguard == 0" />
-		</filter>
-		<filter name="'check_prisonguard'">
-			<check value="vars.is_prisonguard == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'baton'" once="true" triggable="true"> 
@@ -144,33 +103,40 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'hat_security'" once="true" triggable="true"> 
-			<set_variables 		has_hat="1" />
-			
+			<set_variables 		has_hat="1" />			
 			<object 			enabled="true" name="'g_hat_security_lod1'" />
 			<object 			enabled="true" name="'g_hat_security_lod2'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'hat_security_badge'" once="true" triggable="true"> 		
+			<object 			enabled="true" name="'g_hat_security_lod3'" />
+			<object 			enabled="true" name="'g_hat_security_lod4'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'security'" once="true" triggable="true">		
-			<set_variables 		is_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_1'" synchronous="true" />
 		</sequence>			
 
 		<sequence editable_state="true" name="'green_security'" once="true" triggable="true">		
-			<set_variables 		is_green_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_4'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'cop'" once="true" triggable="true">		
-			<set_variables 		is_cop="1" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'nyc_security'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_nyc_security_1'" synchronous="true" />
+		</sequence>	
+		
+		<sequence editable_state="true" name="'nyc_cop'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_nyc_cop_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'la_cop'" once="true" triggable="true">		
-			<set_variables 		is_la_cop="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_la_cop_1'" synchronous="true" />
 		</sequence>	
-
+		
 		<sequence editable_state="true" name="'prisonguard'" once="true" triggable="true">		
-			<set_variables 		is_prisonguard="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'" synchronous="true" />
 		</sequence>	
 		
@@ -179,6 +145,11 @@
 			<object 			enabled="true" name="'g_badges_security_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'badges_nyc_security'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_badges_nyc_security'" />
+			<object 			enabled="true" name="'g_badges_nyc_security_lod1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'badges_green_security'" once="true" triggable="true">			
 			<object 			enabled="true" name="'g_badges_green_security'" />
 			<object 			enabled="true" name="'g_badges_green_security_lod1'" />
@@ -187,6 +158,11 @@
 		<sequence editable_state="true" name="'badges_cop'" once="true" triggable="true">				
 			<object 			enabled="true" name="'g_badges_cop'" />
 			<object 			enabled="true" name="'g_badges_cop_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'badges_nyc_cop'" once="true" triggable="true">				
+			<object 			enabled="true" name="'g_badges_nyc_cop'" />
+			<object 			enabled="true" name="'g_badges_nyc_cop_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'badges_prisonguard'" once="true" triggable="true">		
@@ -207,6 +183,7 @@
 			<run_sequence 		name="'random_watch_common'" />				
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_tag_a'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'security_female_2'" once="true" triggable="true">		
@@ -226,6 +203,7 @@
 			<run_sequence 		name="'random_watch_rare'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_tag_b'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'security_female_3'" once="true" triggable="true">		
@@ -262,6 +240,40 @@
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_security_female_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_security_a'" />
+			<object 			enabled="true" name="'g_gear_security_a_lod1'" />
+			
+			<run_sequence 		name="'nyc_security'" />
+			
+			<run_sequence 		name="'badges_nyc_security'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+			<run_sequence 		name="'random_tag_alt_a'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_security_female_2'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_security_b'" />
+			<object 			enabled="true" name="'g_gear_security_b_lod1'" />
+
+			<run_sequence 		name="'nyc_security'" />
+			
+			<run_sequence 		name="'badges_nyc_security'" />
+			<run_sequence 		name="'hat_security'" />
+			<run_sequence 		name="'hat_security_badge'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
+			<run_sequence 		name="'random_tag_alt_b'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'cop_female_1'" once="true" triggable="true">		
@@ -338,6 +350,43 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'nyc_cop_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
+			
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'badges_nyc_cop'" />
+			<run_sequence 		name="'baton'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_cop_2'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
+			
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'badges_nyc_cop'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'hat_cop'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'radio_extra'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'prisonguard_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_cop_b'" />
 			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
@@ -356,16 +405,16 @@
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
+
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body_a'" triggable="true">
 			<run_sequence 		name="'body_'..pick('short','short','long')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_body_b'" triggable="true">
 			<run_sequence 		name="'body_'..pick('long','long','short')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>	
+		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>		
 		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />
 			
@@ -374,6 +423,31 @@
 
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
+		</sequence>
+	<!--MODIFIED UV BODY SEQUENCES-->
+		<sequence editable_state="true" name="'random_body_alt_a'" triggable="true">
+			<run_sequence 		name="'body_alt_'..pick('short','short','long')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_body_alt_b'" triggable="true">
+			<run_sequence 		name="'body_alt_'..pick('long','long','short')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'body_alt_short'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />
+
+			<object 			enabled="true" name="'g_body_alt'" />
+			<object 			enabled="true" name="'g_body_alt_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'body_alt_long'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+			
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />
+
+			<object 			enabled="true" name="'g_body_alt_b'" />
+			<object 			enabled="true" name="'g_body_alt_b_lod1'" />
 		</sequence>
 	<!--SHADES SEQUENCES-->
 		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
@@ -392,6 +466,22 @@
 			<object 			enabled="true" name="'g_shades'" />
 			<object 			enabled="true" name="'g_shades_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass'" />
+		</sequence>
+	<!--ALTERNATIVE SHADES SEQUENCES -->
+		<sequence editable_state="true" name="'random_shades_alt_common'" triggable="true">
+			<run_sequence 		name="'shades_alt_'..pick('base','base','none')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_shades_alt_rare'" triggable="true">
+			<run_sequence 		name="'shades_alt_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'shades_alt_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_alt_base'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
+			
+			<object 			enabled="true" name="'g_shades_alt'" />
+			<object 			enabled="true" name="'g_shades_alt_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_alt'" />
 		</sequence>
 	<!--WATCH SEQUENCES-->
 		<sequence editable_state="true" name="'random_watch_common'" triggable="true">
@@ -424,6 +514,38 @@
 			
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right'" />
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right_lod1'" />
+		</sequence>
+	<!--TAG SEQUENCES-->
+		<sequence editable_state="true" name="'random_tag_a'" triggable="true">
+			<run_sequence 		name="'tag_'..pick('right','right','left')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_tag_b'" triggable="true">
+			<run_sequence 		name="'tag_'..pick('left','left','right')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'tag_right'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_tag_right'" />
+			<object 			enabled="true" name="'g_tag_right_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'tag_left'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_tag_left'" />
+			<object 			enabled="true" name="'g_tag_left_lod1'" />
+		</sequence>
+	<!--ALTERNATIVE TAG SEQUENCES-->
+		<sequence editable_state="true" name="'random_tag_alt_a'" triggable="true">
+			<run_sequence 		name="'tag_alt_'..pick('right','right','left')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_tag_alt_b'" triggable="true">
+			<run_sequence 		name="'tag_alt_'..pick('left','left','right')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'tag_alt_right'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_tag_alt_right'" />
+			<object 			enabled="true" name="'g_tag_alt_right_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'tag_alt_left'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_tag_alt_left'" />
+			<object 			enabled="true" name="'g_tag_alt_left_lod1'" />
 		</sequence>
 	<!--TIE SEQUENCES-->		
 		<sequence editable_state="true" name="'random_tie_common'" triggable="true">

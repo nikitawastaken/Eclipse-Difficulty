@@ -16,6 +16,8 @@ local M = {
 	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_la_cop_1",
+	"units/payday2/characters/ene_cop_1/vars/ene_nyc_cop_1",
+	"units/payday2/characters/ene_cop_1/vars/ene_nyc_security_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_bex_security_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01",
