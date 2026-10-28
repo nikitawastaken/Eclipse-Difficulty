@@ -11,6 +11,13 @@ local standard_spawn = {
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
+local elevator_spawn = {
+	values = {
+		interval = 20,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+	},
+	groups = preferred.all_groups,
+}
 local balcony_close_spawn = {
 	values = {
 		interval = 30,
@@ -110,7 +117,7 @@ return {
 	},
 	-- Spawn group intervals
 	[100817] = standard_spawn,
-	[100329] = standard_spawn,
+	[100329] = elevator_spawn,
 	[100887] = balcony_close_spawn,
 	[100896] = balcony_close_spawn,
 	[105200] = balcony_close_spawn,
