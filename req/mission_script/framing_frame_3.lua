@@ -61,7 +61,7 @@ return {
 			base_delay_rand = 15,
 		},
 	},
-	-- add sound for the elevator 
+	-- add sound for the elevator
 	[100349] = {
 		values = {
 			sound_event = "elevator_doors_open",
