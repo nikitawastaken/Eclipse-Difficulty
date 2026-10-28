@@ -42,17 +42,6 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_1/ene_cop_female_1", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_2/ene_cop_female_2", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_acc_nyc_cop_hat/ene_acc_nyc_cop_hat", cop_needed, true) -- To Do: Create a custom package file for NYC Cops and Security when the functionality is there.
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1", cop_needed, false) 
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1", cop_needed, false) 
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1", cop_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2", cop_needed, false)
 				
 	local security_needed = PackageManager:has(IDS_UNIT, Idstring("units/payday2/characters/ene_security_1/ene_security_1"))
 	load_unload_unit("units/payday2/characters/ene_security_fat_1/ene_security_fat_1", security_needed, false)
@@ -60,15 +49,6 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_security_fat_3/ene_security_fat_3", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_female_1/ene_security_female_1", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_female_2/ene_security_female_2", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_acc_nyc_security_cap/ene_acc_nyc_security_cap", security_needed, true) -- To Do: Create a custom package file for NYC Cops and Security when the functionality is there.
-	load_unload_unit("units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1", security_needed, false) 
-	load_unload_unit("units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_security_fat_1/ene_nyc_security_fat_1", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_security_fat_2/ene_nyc_security_fat_2", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_security_fat_3/ene_nyc_security_fat_3", security_needed, false)
-	load_unload_unit("units/payday2/characters/ene_nyc_security_female_1/ene_nyc_security_female_1", security_needed, false) 
-	load_unload_unit("units/payday2/characters/ene_nyc_security_female_2/ene_nyc_security_female_2", security_needed, false)
 
 	local security_2_needed = PackageManager:has(IDS_UNIT, Idstring("units/payday2/characters/ene_security_4/ene_security_4"))
 	load_unload_unit("units/payday2/characters/ene_security_8/ene_security_8", security_2_needed, false)

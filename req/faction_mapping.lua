@@ -1,7 +1,34 @@
+local level_id = Eclipse.utils.clean_level_id()
+local classic_security_heists = table.list_to_set({
+	"red2",
+	"glace",
+	"nmh",
+})
+local nypd_heists = table.list_to_set({
+	"red2",
+	"run",
+	"flat",
+	"glace",
+	"dah",
+	"nmh",
+	"brb",
+	"spa",
+})
+
+local is_nyc_heist_security = classic_security_heists[level_id]
+local is_nyc_heist_nypd = nypd_heists[level_id]
+
 ---@module Faction Mapping
 local M = {
 	["america"] = {
 		["CS"] = {
+			security_1 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1" or "units/payday2/characters/ene_security_1/ene_security_1",
+			security_2 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2" or "units/payday2/characters/ene_security_2/ene_security_2",
+			security_3 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3" or "units/payday2/characters/ene_security_3/ene_security_3",
+			cop_1 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1" or "units/payday2/characters/ene_cop_1/ene_cop_1",
+			cop_2 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2" or "units/payday2/characters/ene_cop_2/ene_cop_2",
+			cop_3 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3" or "units/payday2/characters/ene_cop_3/ene_cop_3",
+			cop_4 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4" or "units/payday2/characters/ene_cop_4/ene_cop_4",
 			swat_1 = {
 				"units/payday2/characters/ene_swat_1/ene_swat_1",
 				"units/payday2/characters/ene_swat_3/ene_swat_3",
@@ -26,6 +53,13 @@ local M = {
 			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 		},
 		["FBI"] = {
+			security_1 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1" or "units/payday2/characters/ene_security_1/ene_security_1",
+			security_2 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2" or "units/payday2/characters/ene_security_2/ene_security_2",
+			security_3 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3" or "units/payday2/characters/ene_security_3/ene_security_3",
+			cop_1 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1" or "units/payday2/characters/ene_cop_1/ene_cop_1",
+			cop_2 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2" or "units/payday2/characters/ene_cop_2/ene_cop_2",
+			cop_3 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3" or "units/payday2/characters/ene_cop_3/ene_cop_3",
+			cop_4 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4" or "units/payday2/characters/ene_cop_4/ene_cop_4",
 			swat_1 = {
 				"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
 				"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
@@ -50,6 +84,13 @@ local M = {
 			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 		},
 		["Elite"] = {
+			security_1 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1" or "units/payday2/characters/ene_security_1/ene_security_1",
+			security_2 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2" or "units/payday2/characters/ene_security_2/ene_security_2",
+			security_3 = is_nyc_heist_security and "units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3" or "units/payday2/characters/ene_security_3/ene_security_3",
+			cop_1 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1" or "units/payday2/characters/ene_cop_1/ene_cop_1",
+			cop_2 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2" or "units/payday2/characters/ene_cop_2/ene_cop_2",
+			cop_3 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3" or "units/payday2/characters/ene_cop_3/ene_cop_3",
+			cop_4 = is_nyc_heist_nypd and "units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4" or "units/payday2/characters/ene_cop_4/ene_cop_4",
 			swat_1 = {
 				"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
 				"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",

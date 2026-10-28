@@ -35,11 +35,9 @@ local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_j
 
 local optsSecurity = {
 	enemy_table = {
-		[scripted_enemy.green_security_1] = 2,
-		[scripted_enemy.green_security_2] = 2,
-		[scripted_enemy.green_security_3] = 2,
-		[scripted_enemy.green_security_4] = 1,
-		[scripted_enemy.green_security_5] = 2,
+		[scripted_enemy.security_1] = 2,
+		[scripted_enemy.security_2] = 2,
+		[scripted_enemy.security_3] = 1,
 	},
 	enabled = true,
 }

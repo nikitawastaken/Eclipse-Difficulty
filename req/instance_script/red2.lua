@@ -11,7 +11,7 @@ local security_room = patches.guard_suv
 M["levels/instances/unique/red/red_camera_room/world/world"] = function(result)
 	for _, element in pairs(result.default.elements) do
 		if security_room[element.id] then
-			element.values.enemy = scripted_enemy.green_security_4
+			element.values.enemy = scripted_enemy.security_3
 		end
 	end
 end

@@ -246,6 +246,70 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.cage.ghost_bonus = nil -- it doesn't even give 10% stealth bonus upon completeing it
 
 	-- Replace DC beat cops with appropriate ones based on the city
+	
+	-- NYPD
+	self.red2.ai_unit_group_overrides = {
+		cs_cop_1 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"),
+			},
+		},
+		cs_cop_2 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"),
+			},
+		},
+		cs_cop_3 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"),
+			},
+		},
+		cs_cop_4 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"),
+			},
+		},
+		cs_cop_1_2 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"),
+				Idstring("units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"),
+			},
+		},
+		cs_cop_1_4 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"),
+				Idstring("units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"),
+			},
+		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"),
+				Idstring("units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"),
+			},
+		},
+		cs_cop_3_4 = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"),
+				Idstring("units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"),
+			},
+		},
+		cs_cop = {
+			america = {
+				Idstring("units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"),
+				Idstring("units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"),
+				Idstring("units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"),
+				Idstring("units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"),
+			},
+		},
+	}
+	self.run.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.flat.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.glace.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.dah.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.nmh.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.spa.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	self.brb.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
+	
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
 		cs_cop_1 = {
@@ -680,6 +744,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dinner.custom_package = {}
 	self.trai.custom_package = {}
 	self.corp.custom_package = {}
+	self.red2.custom_package = {}
+	self.glace.custom_package = {}
+	self.dah.custom_package = {}
+	self.nmh.custom_package = {}
 
 	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
 	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
@@ -697,14 +765,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	table.insert(self.trai.custom_package, "packages/us_army")
 
 	local green_security_package = { "packages/green_security" }
-	self.red2.custom_package = green_security_package
 	self.election_day_3.custom_package = green_security_package
 	self.election_day_3_skip1.custom_package = green_security_package
 	self.election_day_3_skip2.custom_package = green_security_package
 	table.insert(self.corp.custom_package, "packages/green_security")
+	
+	local classic_security = { "packages/white_gensec_security" }
+	table.insert(self.red2.custom_package, "packages/white_gensec_security")
+	table.insert(self.glace.custom_package, "packages/white_gensec_security")
+	table.insert(self.nmh.custom_package, "packages/white_gensec_security")
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
-	self.dah.custom_package = gensec_tactical_security_package
+	table.insert(self.dah.custom_package, "packages/gensec_tactical_security")
 	self.arena.custom_package = gensec_tactical_security_package
 	self.election_day_1.custom_package = gensec_tactical_security_package
 	self.election_day_2.custom_package = gensec_tactical_security_package
@@ -736,6 +808,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pal.custom_package = lapd_package
 	self.friend.custom_package = lapd_package
 	table.insert(self.jolly.custom_package, "packages/lapd")
+	
+	local nypd_package = { "packages/nypd" }
+	table.insert(self.red2.custom_package, "packages/nypd")
+	self.run.custom_package = nypd_package
+	self.flat.custom_package = nypd_package
+	table.insert(self.glace.custom_package, "packages/nypd")
+	table.insert(self.dah.custom_package, "packages/nypd")
+	table.insert(self.nmh.custom_package, "packages/nypd")
+	self.brb.custom_package = nypd_package
+	self.spa.custom_package = nypd_package
 
 	local coast_guard_package = { "packages/coast_guard" }
 	self.chca.custom_package = coast_guard_package
