@@ -70,7 +70,7 @@
 	"menu_fully_loaded": "Fully Loaded",
 	"menu_fully_loaded_desc": "BASIC: ##$basic##\nYou start out the heist with extra ##$multibasic## ammo above your maximum pool.\n\nNote: Does not affect weapons that can't pick up ammo.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	"menu_mag_plus": "Mag Plus",
-	"menu_mag_plus_desc": "BASIC: ##$basic##\nFiring a weapon has a ##$multibasic## chance to not consume any ammo. This chance rises to ##$multibasic2## when the magazine has ##$multibasic3## or fewer rounds left.\n\nNote: Does not affect weapons that don't benefit from magazine size upgrades.\n\nACE: ##$pro##\nYour weapons gain ##$multipro## more rounds in their magazine.\n\nNote: Does not affect the Aced ##\"Sleight of Hand\"## Skill.",
+	"menu_mag_plus_desc": "BASIC: ##$basic##\nFiring a weapon has a ##$multibasic## chance to not consume any ammo. This chance rises to ##$multibasic2## when the magazine has ##$multibasic3## or fewer rounds left.\n\nNote: Does not affect weapons that don't benefit from magazine size upgrades.\n\nACE: ##$pro##\nYour weapons gain ##$multipro## more rounds in their magazine.",
 	"menu_ammo_2x_beta_desc": "BASIC: ##$basic##\nYour ammo bag now holds ##$multibasic## more ammunition.\n\nACE: ##$pro##\nYou can now carry an additional ammo bag.",
 	"menu_big_game_hunters": "Big Game Hunters",
 	"menu_big_game_hunters_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nA member of the crew who picks up the extra ammo box will be granted a ##$multipro## damage increase and ##full penetration## capabilities with no damage penalty for ##$multipro2## seconds.",
