@@ -315,6 +315,21 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.chill.payout = { 0 }
 	self.jobs.chill_combat.payout = { 0 }
 
+	-- Halloween flashlights on heists that support haunted environments
+	local boo = nil
+	local is_jason = os.date("%A %d") == "Friday 13"
+	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "20") and (os.date("%d") < "32")
+	if is_jason or is_halloween then
+		boo = true
+	else
+		boo = false
+	end
+	self.jobs.rat.is_halloween_level = boo
+	self.jobs.red2.is_halloween_level = boo
+	self.jobs.man.is_halloween_level = boo
+	self.jobs.spa.is_halloween_level = boo
+	self.jobs.bph.is_halloween_level = boo
+
 	-- Hide contracts from broker and prevent them from spawning on CRIME.NET
 	self.contacts.bain_no_variation.hidden = true
 	self.jobs.branchbank_deposit.contact = "bain_no_variation"
