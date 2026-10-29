@@ -318,7 +318,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	-- Halloween flashlights on heists that support haunted environments
 	local boo = nil
 	local is_jason = os.date("%A %d") == "Friday 13"
-	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "20") and (os.date("%d") < "32")
+	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "26") and (os.date("%d") < "32")
 	if is_jason or is_halloween then
 		boo = true
 	else

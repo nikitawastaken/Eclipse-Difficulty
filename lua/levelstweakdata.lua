@@ -752,7 +752,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	local additive_weight_value = 1
 	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 	local is_jason = os.date("%A %d") == "Friday 13"
-	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "20") and (os.date("%d") < "32")
+	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "26") and (os.date("%d") < "32")
 	if is_jason or is_halloween or is_eclipse_pro then
 		additive_weight_value = 6942069
 	else
