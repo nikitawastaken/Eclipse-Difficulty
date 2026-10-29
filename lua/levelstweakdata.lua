@@ -793,9 +793,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.mallcrasher.random_environments = {
-		["mallcrasher_01"] = 2,
-		["mallcrasher_02"] = 2,
-		["default"] = 1,
+		["mallcrasher_01"] = 1,
+		["mallcrasher_02"] = 1,
+		["mallcrasher_03"] = 1,
 	}
 	self.gallery.random_environments = {
 		["framingframe1_01"] = 1,
