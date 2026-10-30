@@ -118,7 +118,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400012, "respawn_sniper_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_sniper_2),
 	Eclipse.mission_elements.gen_dummytrigger(400013, "respawn_sniper_3", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_sniper_3),
 	Eclipse.mission_elements.gen_dummytrigger(400014, "respawn_sniper_4", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_sniper_4),
-	
+
 	-- Add new navlinks
 	Eclipse.mission_elements.gen_so(400015, "framing_frame_3_jumpdown_navlink01", Vector3(-3200, 2300, 3400), Rotation(180, 0, 0), optsJumpDownNavlink01),
 	Eclipse.mission_elements.gen_so(400016, "framing_frame_3_jumpdown_navlink02", Vector3(-3000, 2300, 3400), Rotation(180, 0, 0), optsJumpDownNavlink02),
