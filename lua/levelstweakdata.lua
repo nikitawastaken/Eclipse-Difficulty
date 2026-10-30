@@ -773,8 +773,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["fourstores_02"] = 3,
 		["fourstores_03"] = 3,
 		["default"] = 2,
-		["fourstores_01_night"] = 1,
-		["fourstores_02_night"] = 1,
 	}
 	self.jewelry_store.random_environments = {
 		["jewelry_01"] = 2,
