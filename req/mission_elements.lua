@@ -1011,4 +1011,28 @@ function M.gen_play_sound(id, name, pos, rot, opts)
 	return play_sound
 end
 
+function M.gen_aigraph(id, name, pos, rot, opts)
+	opts = opts or {}
+	local aigraph = {
+		id = id,
+		editor_name = name,
+		class = "ElementAIGraph",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			filter_group = opts.filter_group or "none",
+			operation = opts.operation or "allow_access",
+			graph_ids = opts.graph_ids or {},
+			use_instigator = false,
+		},
+	}
+
+	return aigraph
+end
+
 return M

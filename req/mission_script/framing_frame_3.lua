@@ -8,29 +8,30 @@ local no_shields_and_dozers = {
 local standard_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local elevator_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.all_groups,
 }
 local balcony_close_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local balcony_far_spawn = {
 	values = {
 		interval = 60,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
 }
 local powerboxes_amount = {
 	values = {
@@ -43,6 +44,14 @@ local filter_easy_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
+local no_align_pos1 = {
+	values = {
+		align_position = false,
+	},
+}
+local no_align_pos2 = deep_clone(no_align_pos1)
+no_align_pos2.values.so_action = "e_nl_slide_down_4m"
+
 return {
 	[100318] = {
 		ponr = {
@@ -121,6 +130,24 @@ return {
 			operation = "secure",
 		},
 	},
+	-- add new navlinks
+	[105442] = {
+		on_executed = {
+			{ id = 400015, delay = 0 },
+			{ id = 400016, delay = 0 },
+			{ id = 400017, delay = 0 },
+			{ id = 400018, delay = 0 },
+		},
+	},
+	-- disable 'align_position' for select navlinks and tweak navlink actions
+	[100070] = no_align_pos1,
+	[100073] = no_align_pos1,
+	[100076] = no_align_pos1,
+	[102312] = no_align_pos2,
+	[102131] = no_align_pos2,
+	[105445] = no_align_pos2,
+	[103564] = no_align_pos2,
+	[103565] = no_align_pos2,
 	-- Spawn group intervals
 	[100817] = standard_spawn,
 	[100329] = elevator_spawn,
@@ -130,4 +157,7 @@ return {
 	[105201] = balcony_close_spawn,
 	[105718] = balcony_close_spawn,
 	[105489] = balcony_far_spawn,
+	[103817] = cloaker_spawn,
+	[104145] = cloaker_spawn,
+	[104146] = cloaker_spawn,
 }

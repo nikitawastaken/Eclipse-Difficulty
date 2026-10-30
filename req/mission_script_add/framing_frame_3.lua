@@ -1,5 +1,7 @@
 local M = {}
 
+local get_navlink_so_opts = Eclipse.utils.get_navlink_so_opts
+
 local scripted_enemy = Eclipse.scripted_enemy
 local sniper = scripted_enemy.sniper
 
@@ -93,6 +95,11 @@ local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_01",
 }
 
+local optsJumpDownNavlink01 = get_navlink_so_opts("e_nl_up_1m_down_4m_window", Vector3(-3200, 2100, 3000), 15, true, true, true)
+local optsJumpDownNavlink02 = get_navlink_so_opts("e_nl_up_1m_down_4m_window", Vector3(-3000, 2100, 3000), 15, true, true, true)
+local optsJumpDownNavlink03 = get_navlink_so_opts("e_nl_up_1m_down_4m_window", Vector3(-2900, 2150, 3000), 15, true, true, true)
+local optsJumpDownNavlink04 = get_navlink_so_opts("e_nl_up_1m_down_4m_window", Vector3(-2900, 2000, 3000), 15, true, true, true)
+
 M.elements = {
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400001, "sniper_1", Vector3(-800, -1040, 3450), Rotation(-90, 0, -0), optsSniper_1),
@@ -111,5 +118,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400012, "respawn_sniper_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_sniper_2),
 	Eclipse.mission_elements.gen_dummytrigger(400013, "respawn_sniper_3", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_sniper_3),
 	Eclipse.mission_elements.gen_dummytrigger(400014, "respawn_sniper_4", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_sniper_4),
+	
+	-- Add new navlinks
+	Eclipse.mission_elements.gen_so(400015, "framing_frame_3_jumpdown_navlink01", Vector3(-3200, 2300, 3400), Rotation(180, 0, 0), optsJumpDownNavlink01),
+	Eclipse.mission_elements.gen_so(400016, "framing_frame_3_jumpdown_navlink02", Vector3(-3000, 2300, 3400), Rotation(180, 0, 0), optsJumpDownNavlink02),
+	Eclipse.mission_elements.gen_so(400017, "framing_frame_3_jumpdown_navlink03", Vector3(-2700, 2150, 3400), Rotation(90, 0, 0), optsJumpDownNavlink03),
+	Eclipse.mission_elements.gen_so(400018, "framing_frame_3_jumpdown_navlink04", Vector3(-2700, 2000, 3400), Rotation(90, 0, 0), optsJumpDownNavlink04),
 }
 return M
