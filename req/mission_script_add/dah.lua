@@ -529,7 +529,6 @@ local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_st
 local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
 
-
 M.elements = {
 	--Cloakers
 	Eclipse.mission_elements.gen_dummy(400001, "cloaker_1", Vector3(-100, -1834, 1175), Rotation(90, 0, -0), optsCloaker),
@@ -667,7 +666,7 @@ M.elements = {
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(410008, "dah_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(410009, "dah_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(500000, "cloaker_hide_so_1", Vector3(-2776.723, -1203.596, 25), Rotation(150, 0, 0), optsCloaker_Hide_SpotSO_1),
