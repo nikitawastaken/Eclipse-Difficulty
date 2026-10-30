@@ -7,7 +7,7 @@ return {
 		"color_bhd_classic",
 		"color_heat_classic",
 		"color_payday_classic",
-		"color_force_plus"
+		"color_force_plus",
 		"color_plus",
 	},
 	environment_override = { -- File override
