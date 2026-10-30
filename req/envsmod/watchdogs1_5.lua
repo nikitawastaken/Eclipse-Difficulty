@@ -7,6 +7,8 @@ return {
 		"color_force",
 		"color_e3nice",
 		"color_plus",
+		"color_tequila_sunrise",
+		"color_force_plus",
 	},
 	environment_override = { -- File override
 		["environments/pd2_env_mid_day/pd2_env_mid_day"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/watchdogs1_5.custom_xml",
