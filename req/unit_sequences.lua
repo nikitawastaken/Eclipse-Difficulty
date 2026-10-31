@@ -627,7 +627,7 @@ local M = {
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"] = { name = "male_chas_police_4", head = head_sequences.security },
 
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_fat_01/ene_male_chas_police_fat_01"] = { name = "male_chas_police_fat_1", head = head_sequences.security_fat },
-	["units/pd2_dlc_chas/characters/ene_male_chas_police_fat_02/ene_male_chas_police_fat_02"] = { name = "male_chas_police_fat_1", head = head_sequences.security_fat },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_fat_02/ene_male_chas_police_fat_02"] = { name = "male_chas_police_fat_2", head = head_sequences.security_fat },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_fat_03/ene_male_chas_police_fat_03"] = { name = "male_chas_police_fat_3", head = head_sequences.security_fat },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_fat_04/ene_male_chas_police_fat_04"] = { name = "male_chas_police_fat_4", head = head_sequences.security_fat },
 
@@ -652,7 +652,7 @@ local M = {
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = { name = "male_ranc_ranger_4", head = head_sequences.security },
 
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_fat_01/ene_male_ranc_ranger_fat_01"] = { name = "male_ranc_ranger_fat_1", head = head_sequences.security_fat },
-	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_fat_02/ene_male_ranc_ranger_fat_02"] = { name = "male_ranc_ranger_fat_1", head = head_sequences.security_fat },
+	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_fat_02/ene_male_ranc_ranger_fat_02"] = { name = "male_ranc_ranger_fat_2", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_fat_03/ene_male_ranc_ranger_fat_03"] = { name = "male_ranc_ranger_fat_3", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_fat_04/ene_male_ranc_ranger_fat_04"] = { name = "male_ranc_ranger_fat_4", head = head_sequences.security_fat },
 

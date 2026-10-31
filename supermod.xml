@@ -4398,6 +4398,10 @@
 			</group>
 
 			<group :name="ene_male_chas_police_fat_01/">
+				<xml  :name="ene_male_chas_police_fat_01.sequence_manager" dyn_package="true" />
+				<file :name="ene_male_chas_police_fat_01.cooked_physics" />
+				<file :name="ene_male_chas_police_fat_01.model" />
+				<file :name="ene_male_chas_police_fat_01.object" />
 				<file :name="ene_male_chas_police_fat_01.unit" />
 				<file :name="ene_male_chas_police_fat_01_husk.unit" />
 			</group>
