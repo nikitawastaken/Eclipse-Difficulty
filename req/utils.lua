@@ -706,7 +706,7 @@ end
 -- Returns value if it is a number, or a float between value[1] and value[2] if it is a table
 -- Adapted from `CoreMissionScriptElement.MissionScriptElement.get_random_table_value_float`
 function M.get_random_table_value_float(value)
-	return tonumber(value) or value[1] + math.rand(value[2])
+	return tonumber(value) or math.rand(value[1], value[2])
 end
 
 return M
