@@ -20,7 +20,6 @@ local random_elite_dozers = {
 	scripted_enemy.elite_bulldozer_2,
 }
 
-local gensec_security = scripted_enemy.gensec_2
 local swat_ambush_table = {
 	[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 4, 6, 8 }),
 	[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 4, 6 }),
@@ -196,46 +195,46 @@ local optsSWAT_Ambush = {
 	enabled = true,
 }
 local optsSecret_Service_1 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 400088, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_2 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 400089, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_3 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 400092, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_4 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 400093, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_5 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	enabled = true,
 }
 local optsSecret_Service_9 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 410004, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSecret_Service_10 = {
-	enemy = gensec_security,
+	enemy = scripted_enemy.gensec_2,
 	on_executed = {
 		{ id = 410005, delay = 0 },
 	},
@@ -377,35 +376,35 @@ local optsDifficultyAddend01 = {
 
 local optsBesiegeDummyCloaker_1 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_dah_up_climb_to_roof",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_2 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_climb_up_6m_down_1m",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_3 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_up_ledge",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_4 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_dwn_11m",
 	enabled = true,
 }
 local optsBesiegeDummyCloaker_5 = {
 	trigger_times = 0,
-	enemy = cloaker,
+	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_dah_up_climb_one_window",
 	enabled = true,
