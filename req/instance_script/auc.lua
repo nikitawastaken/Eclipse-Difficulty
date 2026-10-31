@@ -51,7 +51,7 @@ return {
 
 			if patches.vent_spawn[id] then
 				element.values.interval = 30
-				element.values.groups = preferred.no_cops_agents_shields_bulldozers
+				element.groups = preferred.no_cops_agents_shields_bulldozers
 			end
 		end
 	end,
