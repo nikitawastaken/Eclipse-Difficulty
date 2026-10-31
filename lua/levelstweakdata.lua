@@ -950,12 +950,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.mex.random_environments = {
-		["crossing_01"] = 1,
-		["default"] = 3,
+		["crossing_01"] = 2,
+		["default"] = 2,
 	}
 	self.bex.random_environments = {
 		["sanmartin_01"] = 3,
-		["sanmartin_02"] = 3,
+		["sanmartin_02"] = 2,
 		["default"] = 1,
 	}
 	self.pal.random_environments = {
