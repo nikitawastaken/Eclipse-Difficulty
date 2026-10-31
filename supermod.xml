@@ -983,6 +983,12 @@
 			</group>
 		</group>
 
+		<!-- Make windscreens of police cars opaque so that the Vanilla cop models baked into them are invisible -->
+		<group name="units/vehicles/animated_cars/">
+			<file :name="police_ny_noinstance.material_config" />
+			<file :name="police_ny_suburbia.material_config" />
+		</group>
+		
 		<group name="units/payday2/vehicles/" dyn_package="false">
 			<file :name="anim_vehicle_car_police/anim_vehicle_car_police.material_config" />
 			<file :name="bnk_vehicle_car_police_anim_1/bnk_vehicle_car_police_anim_1.material_config" />
