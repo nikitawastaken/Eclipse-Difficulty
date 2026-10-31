@@ -41,6 +41,11 @@
 			<run_sequence 		name="'random_tie'" />
 			<run_sequence 		name="'random_moustache'" />
 		</sequence>	
+	
+		<sequence editable_state="true" name="'security_auc_2'" once="true" triggable="true"> 
+			<run_sequence 		name="'security_auc_1'" />
+			<run_sequence 		name="'moustache_base'" />
+		</sequence>	
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">
 			<run_sequence 		name="'body_'..pick('long','long','long','long','short')" />

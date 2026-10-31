@@ -664,7 +664,7 @@ local M = {
 	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
 
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
-	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_2", head = head_sequences.security_no_arms }, -- Agent J
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_3/ene_male_auc_security_3"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_4/ene_male_auc_security_4"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_5/ene_male_auc_security_5"] = { name = "security_auc_1", head = head_sequences.security_no_arms },
