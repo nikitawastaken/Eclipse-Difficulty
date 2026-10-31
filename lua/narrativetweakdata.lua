@@ -358,6 +358,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.arm_cro_single = deep_clone(self.jobs.arm_cro)
 
 	table.insert(self._jobs_index, "arm_wrapper")
+	self.jobs.arm_wrapper = deep_clone(self.jobs.arm_und)
 	self.jobs.arm_wrapper.name_id = "heist_arm"
 	self.jobs.arm_wrapper.briefing_id = "heist_arm_und_crimenet"
 	self.jobs.arm_wrapper.contact = "bain"
