@@ -497,12 +497,12 @@ local optsDestroyTheGlass_1 = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102765, notify_unit_sequence = "destroy_01", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 102765, notify_unit_sequence = "destroy_02", time = 0 },
-		{ id = 1, name = "run_sequence", notify_unit_id = 102764, notify_unit_sequence = "destroy_01", time = 0 },
-		{ id = 2, name = "run_sequence", notify_unit_id = 102764, notify_unit_sequence = "destroy_02", time = 0 },
-		{ id = 1, name = "run_sequence", notify_unit_id = 102762, notify_unit_sequence = "destroy_01", time = 0 },
-		{ id = 2, name = "run_sequence", notify_unit_id = 102762, notify_unit_sequence = "destroy_02", time = 0 },
-		{ id = 1, name = "run_sequence", notify_unit_id = 102763, notify_unit_sequence = "destroy_01", time = 0 },
-		{ id = 2, name = "run_sequence", notify_unit_id = 102763, notify_unit_sequence = "destroy_02", time = 0 },
+		{ id = 3, name = "run_sequence", notify_unit_id = 102764, notify_unit_sequence = "destroy_01", time = 0 },
+		{ id = 4, name = "run_sequence", notify_unit_id = 102764, notify_unit_sequence = "destroy_02", time = 0 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 102762, notify_unit_sequence = "destroy_01", time = 0 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 102762, notify_unit_sequence = "destroy_02", time = 0 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 102763, notify_unit_sequence = "destroy_01", time = 0 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 102763, notify_unit_sequence = "destroy_02", time = 0 },
 	},
 }
 local optsDestroyTheGlass_2 = {
