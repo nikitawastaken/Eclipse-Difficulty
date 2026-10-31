@@ -671,16 +671,6 @@ local optsDifficultyAddend01 = {
 	},
 	enabled = true,
 }
-local optsDifficultyAddend02 = {
-	difficulty_addends = {
-		{
-			amount = 0.125,
-			delay = 0,
-			time = 30,
-		},
-	},
-	enabled = true,
-}
 
 M.elements = {
 	--Lobby Shields
@@ -833,17 +823,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	-- mission scripts
-	Eclipse.mission_elements.gen_element_filter(400124, "vault_ambush_easy_normal_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_easy_normal),
-	Eclipse.mission_elements.gen_element_filter(400125, "vault_ambush_hard_overkill_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_hard_overkill),
-	Eclipse.mission_elements.gen_element_filter(400126, "vault_ambush_eclipse_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_eclipse),
-	Eclipse.mission_elements.gen_element_random(400127, "random_ambush_event_hard_overkill", optsrandom_ambush_event_hard_overkill),
-	Eclipse.mission_elements.gen_element_random(400128, "random_ambush_event_eclipse", optsrandom_ambush_event_eclipse),
 	Eclipse.mission_elements.gen_missionscript(400116, "vault_ambush_variant_1", optsVaultAmbush_1),
 	Eclipse.mission_elements.gen_missionscript(400117, "vault_ambush_variant_2", optsVaultAmbush_2),
 	Eclipse.mission_elements.gen_missionscript(400118, "vault_ambush_variant_3", optsVaultAmbush_3),
 	Eclipse.mission_elements.gen_missionscript(400119, "vault_ambush_variant_4", optsVaultAmbush_4),
 	Eclipse.mission_elements.gen_missionscript(400120, "vault_ambush_variant_5", optsVaultAmbush_5),
 	Eclipse.mission_elements.gen_missionscript(400121, "vault_ambush_variant_6", optsVaultAmbush_6),
+	Eclipse.mission_elements.gen_element_filter(400124, "vault_ambush_easy_normal_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_easy_normal),
+	Eclipse.mission_elements.gen_element_filter(400125, "vault_ambush_hard_overkill_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_hard_overkill),
+	Eclipse.mission_elements.gen_element_filter(400126, "vault_ambush_eclipse_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_eclipse),
+	Eclipse.mission_elements.gen_element_random(400127, "random_ambush_event_hard_overkill", optsrandom_ambush_event_hard_overkill),
+	Eclipse.mission_elements.gen_element_random(400128, "random_ambush_event_eclipse", optsrandom_ambush_event_eclipse),
 	Eclipse.mission_elements.gen_element_filter(400129, "vault_ambush_variant_6_one_or_two_players", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_6_1),
 	Eclipse.mission_elements.gen_element_filter(400130, "vault_ambush_variant_6_three_or_four_players", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_6_2),
 
@@ -854,8 +844,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400123, "spawn_snipers_event_global", optsstart_spawn_snipers),
 
 	-- Scripted difficulty steps
-	Eclipse.mission_elements.gen_difficulty(400124, "red2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400125, "red2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(500001, "red2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(500002, "red2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

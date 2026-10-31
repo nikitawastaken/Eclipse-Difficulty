@@ -611,12 +611,12 @@ return {
 	-- Scripted difficulty scaling
 	[103049] = { -- obj_completed_013 (Routers hacked)
 		on_executed = {
-			{ id = 410008, delay = 0 },
+			{ id = 410007, delay = 0 },
 		},
 	},
 	[100457] = { -- Open_the_Vault (duh)
 		on_executed = {
-			{ id = 410009, delay = 0 },
+			{ id = 410008, delay = 0 },
 		},
 	},
 	-- Spawn Group delays

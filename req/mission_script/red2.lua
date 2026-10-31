@@ -101,28 +101,28 @@ local mga_vault_event = {
 local elevator_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local skylight_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -147,8 +147,8 @@ return {
 		reinforce = {
 			{
 				name = "lobby",
-				force = 4,
-				position = Vector3(-1500, 25, 0),
+				force = 5,
+				position = Vector3(-1500, 50, 0),
 			},
 		},
 	},
@@ -233,6 +233,8 @@ return {
 			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
 		},
 	},
+	-- Don't remove 'far spawns' 
+	[107018] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
 	[104029] = forced_off,
 	[104071] = forced_off,
@@ -439,12 +441,12 @@ return {
 	-- Scripted difficulty scaling
 	[100662] = { -- gates_opened_loud
 		on_executed = {
-			{ id = 400124, delay = 0 },
+			{ id = 500001, delay = 0 },
 		},
 	},
 	[101538] = { -- player_in_vault
 		on_executed = {
-			{ id = 400125, delay = 0 },
+			{ id = 500002, delay = 0 },
 		},
 	},
 	-- Spawn group intervals
