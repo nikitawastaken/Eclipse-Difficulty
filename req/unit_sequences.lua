@@ -615,11 +615,11 @@ local M = {
 
 	["units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"] = { name = "mex_thug_outdoor", head = head_sequences.security },
 
-	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.gangster_russian_a },
-	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.gangster_russian_a },
-	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.gangster_russian_a },
-	["units/pd2_dlc_chas/characters/ene_male_triad_gang_4/ene_male_triad_gang_4"] = { name = "triad_gang_4", head = head_sequences.gangster_russian_a },
-	["units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5"] = { name = "triad_gang_5", head = head_sequences.gangster_russian_a },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1"] = { name = "triad_gang_1", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2"] = { name = "triad_gang_2", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3"] = { name = "triad_gang_3", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_4/ene_male_triad_gang_4"] = { name = "triad_gang_4", head = head_sequences.security_no_arms },
+	["units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5"] = { name = "triad_gang_5", head = head_sequences.security_no_arms },
 
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = { name = "male_chas_police_1", head = head_sequences.security },
 	["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = { name = "male_chas_police_2", head = head_sequences.security },
