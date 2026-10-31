@@ -233,7 +233,7 @@ return {
 			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
 		},
 	},
-	-- Don't remove 'far spawns' 
+	-- Don't remove 'far spawns'
 	[107018] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
 	[104029] = forced_off,
