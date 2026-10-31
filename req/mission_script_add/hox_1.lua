@@ -1027,9 +1027,6 @@ local optsOpenSwatSpawnVanDoors = {
 	},
 }
 
-local optsAssaultEnd = {
-	global_event = "end_assault",
-}
 local optsEnableAssaultEnd = {
 	enabled = true,
 	elements = {

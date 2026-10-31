@@ -284,4 +284,7 @@ return {
 	[100406] = vent_spawn,
 	[103134] = vent_spawn,
 	[103113] = vent_spawn,
+	-- Disable scripted environment changes to prevent crashing on clients
+	[100348] = disabled,
+	[100640] = disabled,
 }

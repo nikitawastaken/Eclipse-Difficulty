@@ -251,7 +251,7 @@ return {
 			{ id = 100161, remove = true },
 		},
 	},
-	-- disable 'align_position' for select navlinks
+	-- disable 'align_position' for select navlinks and tweak navlink actions
 	[103692] = no_align_pos1,
 	[104450] = no_align_pos1,
 	[104451] = no_align_pos1,

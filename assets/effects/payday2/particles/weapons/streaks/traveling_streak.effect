@@ -13,7 +13,7 @@
             <rotationbyvelocity velocity="50000"/>
         </simulatorstack>
         <visualizerstack>
-            <billboard texture="effects/textures/effects_atlas" intensity="identity" billboard_type="normal_locked" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="keys" opacity_input="constant" opacity="255" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel">
+            <billboard texture="effects/textures/effects_atlas" intensity="searchlight" billboard_type="normal_locked" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="keys" opacity_input="constant" opacity="255" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel">
                 <color_keys loop="false">
                     <key t="0" v="0 0 0"/>
                     <key t="0.035567715764046" v="255 255 255"/>
@@ -21,7 +21,7 @@
                     <key t="0.79864639043808" v="0 0 0"/>
                 </color_keys>
             </billboard>
-            <billboard texture="effects/textures/effects_atlas" intensity="identity" billboard_type="normal_locked" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="scaled_channel" color_input="keys" opacity_input="constant" opacity="150" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel">
+            <billboard texture="effects/textures/effects_atlas" intensity="searchlight" billboard_type="normal_locked" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="scaled_channel" color_input="keys" opacity_input="constant" opacity="150" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.0625 0.0625" uv_offset_input="channel">
                 <size_scale_keys loop="false">
                     <key t="0" v="1 1"/>
                     <key t="0.1969899982214" v="30 1"/>

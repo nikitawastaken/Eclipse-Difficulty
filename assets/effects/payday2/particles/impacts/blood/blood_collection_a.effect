@@ -4,6 +4,9 @@
         <effect name="effects/payday2/particles/impacts/blood/blood_light_yellow"/>
         <effect name="effects/payday2/particles/impacts/blood/blood_small_dust"/>
         <effect name="effects/payday2/particles/impacts/blood/blood_tendrils"/>
+        <effect name="effects/payday2/particles/impacts/blood/blood_light_red"/>
+        <effect name="effects/payday2/particles/impacts/blood/blood_light_yellow"/>
+        <effect name="effects/payday2/particles/impacts/blood/blood_small_dust"/>
         <effect name="effects/payday2/particles/impacts/blood/blood_tendrils"/>
         <effect name="effects/payday2/particles/impacts/blood/blood_small_dust"/>
     </use_random>

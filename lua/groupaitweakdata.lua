@@ -3572,7 +3572,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 	self.undershot_reenforce_interval_factor = 1
-	self.init_reenforce_delay = 15
+	self.init_reenforce_delay = 30
 	self.use_loot_drop_reenforce = true
 	self.use_deployable_reenforce = true
 	self.deployable_reenforce = table.list_to_set({

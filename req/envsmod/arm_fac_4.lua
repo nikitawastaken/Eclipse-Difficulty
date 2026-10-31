@@ -4,9 +4,9 @@ return {
 	color_grading = { -- Randomized color gradings
 		"color_xxxgen",
 		"color_bhd_classic",
-		"color_payday",
-		"color_bhd_classic",
 		"color_payday_classic",
+		"color_plus",
+		"color_force_plus",
 	},
 	environment_override = { -- facility_1
 		["environments/pd2_env_n2/pd2_env_n2"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_fac_docks.custom_xml",

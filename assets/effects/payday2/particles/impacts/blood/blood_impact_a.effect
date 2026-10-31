@@ -1,14 +1,19 @@
 <effect force_synch="false">
     <use_random>
 		<effect name="effects/payday2/particles/impacts/blood/blood_distance_dust_combo"/>
+		<effect name="effects/payday2/particles/impacts/blood/blood_distance_dust_combo"/>
+		<effect name="effects/payday2/particles/impacts/blood/blood_collection_a"/>
 		<effect name="effects/payday2/particles/impacts/blood/blood_collection_a"/>
 		<effect name="effects/payday2/particles/impacts/blood/blood_collection_a"/>
 		<effect name="effects/particles/bullet_hit/flesh/bullet_impact_flesh_01"/>
 		<effect name="effects/particles/bullet_hit/flesh/bullet_impact_flesh_02"/>
 		<effect name="effects/particles/bullet_hit/flesh/bullet_impact_flesh_03"/>
 		<effect name="effects/particles/bullet_hit/flesh/bullet_impact_flesh_04"/>
+		<effect name="effects/payday2/particles/impacts/blood/blood_impact_katana"/>
     </use_random>
 	<use name="effects/particles/bullet_hit/flesh/bullet_impact_flesh_00"/>
+	<use name="effects/particles/bullet_hit/flesh/bullet_hit_blood"/>
+	<use name="effects/payday2/particles/impacts/blood/blood_collection_a"/>
     <atom name="facing_flash" min_size="1" max_size="3" lifetime="0.7" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="kill" cull_policy="kill" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
         <initializerstack>
             <localboxrandomposition min="0 12 0" max="0 12 0"/>

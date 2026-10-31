@@ -6,6 +6,7 @@ return {
 		"color_nice",
 		"color_bhd_classic",
 		"color_payday_classic",
+		"color_plus",
 	},
 	environment_override = { -- File override
 		["environments/pd2_env_midday/pd2_env_midday"] = tostring(Eclipse.mod_path) .. "assets/environments/custom/arm_hcm_2.custom_xml",

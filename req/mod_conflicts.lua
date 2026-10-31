@@ -60,6 +60,7 @@ local M = {
 	"Custom Color Grading",
 	"Improved Environments",
 	"glowslop",
+	"glowingEnemies",
 }
 
 return table.list_to_set(M)

@@ -95,7 +95,7 @@
 						<param key="effect_light_scale" value="1"/>
 						<param key="sun_range" value="100000"/>
 						<param key="ambient_scale" value="0.17"/>
-						<param key="ambient_falloff_scale" value="0.681"/>
+						<param key="ambient_falloff_scale" value="0.2"/>
 						<param key="fog_height_range" value="0"/>
 						<param key="sky_reflection_bottom_color_scale" value="0"/>
 						<param key="sky_top_color_scale" value="0.655"/>

@@ -562,6 +562,14 @@ local optsBesiegeDummyCloaker_2 = {
 	spawn_action = "e_sp_clk_exit_vent_1_5m",
 	enabled = true,
 }
+local optsspooc_spawned_1 = {
+	on_executed = {
+		{ id = 400103, delay = 0 },
+	},
+	elements = {
+		400091,
+	},
+}
 
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400092, 400093, 400094, 400095 },
@@ -573,9 +581,6 @@ local optsPreferedCloakerAdd1 = {
 local optsPreferedCloakerAdd2 = {
 	spawn_groups = { 400096, 400097 },
 	enabled = true,
-	on_executed = {
-		{ id = 400103, delay = 10 },
-	},
 }
 local optsAddCloakerHideGroup = {
 	enabled = true,
@@ -722,6 +727,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400089, "cloaker_spawn_4", Vector3(-439, 323, 350.084), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
 	Eclipse.mission_elements.gen_dummy(400090, "cloaker_spawn_5", Vector3(-213, 2904, 350.084), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
 	Eclipse.mission_elements.gen_dummy(400091, "cloaker_spawn_6", Vector3(-2050, 3525, 0), Rotation(-180, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummytrigger(400105, "vent_spooc_spawned", Vector3(0, 0, 0), Rotation(0, 0, 0), optsspooc_spawned_1),
 	-- spawngroups
 	Eclipse.mission_elements.gen_spawngroup(400092, "nmh_cloaker_spawngroup_01", { 400086 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400093, "nmh_cloaker_spawngroup_02", { 400087 }, 0),

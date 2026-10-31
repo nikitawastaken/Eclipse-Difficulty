@@ -832,11 +832,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	table.insert(self.corp.custom_package, "packages/bellmead_security")
 
 	local additive_weight_value = 1
-	local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 	local is_jason = os.date("%A %d") == "Friday 13"
-	local is_halloween = os.date("%B %d") == "October 31"
-	if is_jason or is_halloween or is_eclipse_pro then
-		additive_weight_value = math.huge
+	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "26") and (os.date("%d") < "32")
+	if is_jason or is_halloween then
+		additive_weight_value = 6942069
 	else
 		additive_weight_value = 0
 	end
@@ -855,8 +854,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["fourstores_02"] = 3,
 		["fourstores_03"] = 3,
 		["default"] = 2,
-		["fourstores_01_night"] = 1,
-		["fourstores_02_night"] = 1,
 	}
 	self.jewelry_store.random_environments = {
 		["jewelry_01"] = 2,
@@ -875,9 +872,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.mallcrasher.random_environments = {
-		["mallcrasher_01"] = 2,
-		["mallcrasher_02"] = 2,
-		["default"] = 1,
+		["mallcrasher_01"] = 1,
+		["mallcrasher_02"] = 1,
+		["mallcrasher_03"] = 1,
 	}
 	self.gallery.random_environments = {
 		["framingframe1_01"] = 1,
@@ -1018,11 +1015,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.big.random_environments = {
 		["bigbank_01"] = 3,
-		["bigbank_02"] = 3,
+		["bigbank_02"] = 2,
 		["bigbank_03"] = 2,
 		["bigbank_04"] = 1,
-		["bigbank_05"] = 2,
-		["bigbank_default"] = 2,
 	}
 	self.mad.random_environments = {
 		["mad"] = 3,
@@ -1036,12 +1031,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["default"] = 1,
 	}
 	self.mex.random_environments = {
-		["crossing_01"] = 1,
-		["default"] = 3,
+		["crossing_01"] = 2,
+		["default"] = 2,
 	}
 	self.bex.random_environments = {
 		["sanmartin_01"] = 3,
-		["sanmartin_02"] = 3,
+		["sanmartin_02"] = 2,
 		["default"] = 1,
 	}
 	self.pal.random_environments = {
@@ -1149,6 +1144,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["hox_1_1"] = 3,
 		["hox_1_2"] = 2,
 		["default"] = 1,
+	}
+	self.hox_2.random_environments = {
+		["hox_2_cg"] = 69,
 	}
 	self.flat.random_environments = {
 		["flat_1"] = 4,

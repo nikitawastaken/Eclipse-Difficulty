@@ -51,6 +51,8 @@
 		<texture path="core/textures/cg_e3nice"/>
 		<texture path="core/textures/cg_cgreyscale"/>
 		<texture path="core/textures/cg_tasered"/>
+		<texture path="core/textures/cg_tequila"/>
+		<texture path="core/textures/cg_russia"/>
 
 		<!-- Compact-5 Drum Magazine animation by Zdann -->
 		<animation path="anims/fps/mp5/mp5_reload_drum" load="true"/>
