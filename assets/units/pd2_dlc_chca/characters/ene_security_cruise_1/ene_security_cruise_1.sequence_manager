@@ -35,8 +35,7 @@
 			<object 			enabled="true" name="'g_hat_lod2'" />
 
 			<run_sequence 		name="'auc_security'" />
-			
-			<run_sequence 		name="'gloves_base'" />			
+				
 			<run_sequence 		name="'random_shades'" />
 			<run_sequence 		name="'random_tie'" />
 			<run_sequence 		name="'random_moustache'" />
