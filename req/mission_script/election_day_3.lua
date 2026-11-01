@@ -85,6 +85,11 @@ local window_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local elevator_spawn = {
+	values = {
+		interval = 30,
+	},
+}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -111,22 +116,26 @@ return {
 			{ 32, 120 },
 		},
 	},
+	-- Add new navlinks
+	[100446] = {
+		on_executed = {
+			{ id = 400078, delay = 0 },
+			{ id = 400079, delay = 0 },
+			{ id = 400080, delay = 0 },
+			{ id = 400081, delay = 0 },
+		},
+	},
 	-- Add new reinforce
-	[102753] = { -- enable_preferrerds
+	[102733] = { -- bring_in_preferreds
 		reinforce = {
 			{
 				name = "atrium01",
-				force = 2,
+				force = 3,
 				position = Vector3(-450, 100, 0),
 			},
 			{
 				name = "atrium02",
-				force = 2,
-				position = Vector3(-1100, -1600, 0),
-			},
-			{
-				name = "atrium03",
-				force = 2,
+				force = 3,
 				position = Vector3(-450, -3500, 0),
 			},
 		},
@@ -137,7 +146,7 @@ return {
 	-- Increase the hack duration
 	[103568] = { -- backup_started_link
 		on_executed = {
-			{ id = 103575, delay = 120, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
+			{ id = 103575, delay = 90, delay_rand = computer_hack_time_rand }, -- hacking_timer_link
 		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
@@ -155,11 +164,47 @@ return {
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
+	-- Disable the group inside the elevator that drops off the Thermal Drill
+	[103175] = {
+		on_executed = {
+			{ id = 400061, delay = 0 },
+		},
+	},
+	[103238] = {
+		on_executed = {
+			{ id = 400062, delay = 0 },
+		},
+	},
+	[103251] = {
+		on_executed = {
+			{ id = 400063, delay = 0 },
+		},
+	},
+	[103272] = { 
+		on_executed = {
+			{ id = 400064, delay = 0 },
+		},
+	},
+	-- Add elevator groups when the drill is placed
+	[103528] = { -- drill_placed1
+		on_executed = {
+			{ id = 400077, delay = 0 },
+		},
+	},
+	[103529] = { -- drill_placed2
+		on_executed = {
+			{ id = 400077, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
+	[400034] = elevator_spawn,
+	[400042] = elevator_spawn,
+	[400050] = elevator_spawn,
+	[400058] = elevator_spawn,
 	[102792] = cloaker_spawn,
 	[103435] = cloaker_spawn,
 	[103437] = cloaker_spawn,

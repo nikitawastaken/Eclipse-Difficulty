@@ -223,6 +223,18 @@ local spawn_basement_blockades = {
 		{ id = 400063, delay = 0.1 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
 
 -- Hiding Cloaker SOs are funny
 local hide_so_search_pos = Vector3(0, 2700, -100)
@@ -316,6 +328,10 @@ M.elements = {
 	-- SO sniper stuff for boss
 	Eclipse.mission_elements.gen_so(400109, "riker_spot_so", Vector3(-50, 600, 0), Rotation(0, 0, 0), optsBossSniper_SO),
 	Eclipse.mission_elements.gen_so(400110, "griffin_spot_so", Vector3(-138, 1131, -97.500), Rotation(0, 0, 0), optsBossSniper_SO),
+
+	-- Scripted difficulty steps
+	Eclipse.mission_elements.gen_difficulty(500001, "hox_2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(500002, "hox_2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

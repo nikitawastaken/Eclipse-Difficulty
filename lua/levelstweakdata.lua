@@ -155,6 +155,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.flat.difficulty_scaling_preset = "regroup_random"
 	self.friend.difficulty_scaling_preset = "regroup_random"
 	self.hox_1.difficulty_scaling_preset = "regroup_random"
+	self.hox_2.difficulty_scaling_preset = "regroup_random"
 	self.jolly.difficulty_scaling_preset = "regroup_random"
 	self.mia_1.difficulty_scaling_preset = "regroup_random"
 	self.pal.difficulty_scaling_preset = "regroup_random"
@@ -175,7 +176,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.rvd2.difficulty_scaling_preset = "regroup_aggressive"
 
 	self.arm_for.difficulty_scaling_preset = "regroup_slow"
-	self.hox_2.difficulty_scaling_preset = "regroup_slow"
 	self.crojob2.difficulty_scaling_preset = "regroup_slow"
 	self.crojob3.difficulty_scaling_preset = "regroup_slow"
 	self.crojob3_night.difficulty_scaling_preset = "regroup_slow"

@@ -341,6 +341,17 @@ return {
 	[101148] = harasser_so_interrupt,
 	[101164] = harasser_so_interrupt,
 	[101180] = harasser_so_interrupt,
+	-- Scripted difficulty scaling
+	[102112] = { -- hack_server_so002 (Second hack start)
+		on_executed = {
+			{ id = 500001, delay = 0 },
+		},
+	},
+	[102114] = { -- hack_server_so002 (Fourth hack start)
+		on_executed = {
+			{ id = 500002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	-- Hox d2 originally had pretty well thought out spawn group intervals, but as we know those got "simplified". My goal was to bring some of that back in a more streamlined way.
 	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic).
