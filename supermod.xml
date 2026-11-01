@@ -416,6 +416,12 @@
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_murkywater.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_murkywater.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_murkywater.texture"/>
+		<!-- Reapers -->
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_reapers.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_reapers.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_reapers.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_reapers.texture"/>
+		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_reapers.texture"/>
 		<!-- Federales -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_0_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_1_federales.texture"/>
