@@ -770,10 +770,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.election_day_3_skip2.custom_package = green_security_package
 	table.insert(self.corp.custom_package, "packages/green_security")
 	
-	local classic_security = { "packages/white_gensec_security" }
-	table.insert(self.red2.custom_package, "packages/white_gensec_security")
-	table.insert(self.glace.custom_package, "packages/white_gensec_security")
-	table.insert(self.nmh.custom_package, "packages/white_gensec_security")
+	local classic_security = "packages/white_gensec_security"
+	table.insert(self.red2.custom_package, classic_security)
+	table.insert(self.glace.custom_package, classic_security)
+	table.insert(self.nmh.custom_package, classic_security)
+	table.insert(self.dinner.custom_package, classic_security)
 
 	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
 	table.insert(self.dah.custom_package, "packages/gensec_tactical_security")

@@ -16,6 +16,7 @@ local is_nyc_cop_heist = nyc_cop_heists[level_id]
 local nyc_security_heists = table.list_to_set({
 	"red2",
 	"glace",
+	"dinner",
 	"nmh",
 })
 local is_nyc_security_heist = nyc_security_heists[level_id]

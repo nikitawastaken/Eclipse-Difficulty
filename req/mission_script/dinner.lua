@@ -111,6 +111,13 @@ local murkywater_cap = {
 	enemey = scripted_enemy.murkywater_2,
 }
 
+local gensec_security_1 = {
+	enemy = scripted_enemy.security_1,
+}
+local gensec_security_2 = {
+	enemy = scripted_enemy.security_2,
+}
+
 return {
 	[101061] = {
 		ponr = {
@@ -263,6 +270,9 @@ return {
 	[101241] = murky_dozers,
 	[101242] = murky_dozers,
 	[101243] = murky_dozers,
+	-- replace red GenSec security with classic white security
+	[101375] = gensec_security_1,
+	[101376] = gensec_security_2,
 	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
 	-- spawn container snipers
 	[105117] = {
