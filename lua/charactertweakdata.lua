@@ -615,7 +615,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.dodge.donut_eater.occasions.speed = 0.8
 	presets.dodge.donut_eater.occasions.hit.chance = 0.5
 	presets.dodge.donut_eater.occasions.scared.chance = 0.25
-	
+
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
 
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
