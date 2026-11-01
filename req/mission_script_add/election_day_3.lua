@@ -3,30 +3,30 @@ local M = {}
 
 local get_navlink_so_opts = Eclipse.utils.get_navlink_so_opts
 
-local optsElevatorTriggerEnemiesEnter01 = {	
+local optsElevatorTriggerEnemiesEnter01 = {
 	width = 375,
 	depth = 250,
 	height = 300,
 	instigator = "enemies",
 	trigger_on = "on_enter",
-	on_executed = { 
-		{ id = 400009, delay = 0 }, 
-		{ id = 400021, delay = 0 }, 
-		{ id = 400036, delay = 0 }, 
+	on_executed = {
+		{ id = 400009, delay = 0 },
+		{ id = 400021, delay = 0 },
+		{ id = 400036, delay = 0 },
 	},
 	trigger_times = 0,
 	enabled = true,
 }
-local optsElevatorTriggerEnemiesExit01 = {	
+local optsElevatorTriggerEnemiesExit01 = {
 	width = 375,
 	depth = 250,
 	height = 300,
 	instigator = "enemies",
 	trigger_on = "on_empty",
-	on_executed = { 
+	on_executed = {
 		{ id = 400009, delay = 0 },
-		{ id = 400025, delay = 0 }, 		
-		{ id = 400035, delay = 15 }, 
+		{ id = 400025, delay = 0 },
+		{ id = 400035, delay = 15 },
 	},
 	trigger_times = 0,
 	enabled = false,
@@ -34,42 +34,42 @@ local optsElevatorTriggerEnemiesExit01 = {
 
 local optsElevatorTriggerEnemiesEnter02 = deep_clone(optsElevatorTriggerEnemiesEnter01)
 optsElevatorTriggerEnemiesEnter02.on_executed = {
-	{ id = 400010, delay = 0 }, 
-	{ id = 400022, delay = 0 }, 
-	{ id = 400044, delay = 0 }, 
-}	
+	{ id = 400010, delay = 0 },
+	{ id = 400022, delay = 0 },
+	{ id = 400044, delay = 0 },
+}
 local optsElevatorTriggerEnemiesExit02 = deep_clone(optsElevatorTriggerEnemiesExit01)
 optsElevatorTriggerEnemiesExit02.on_executed = {
-	{ id = 400010, delay = 0 }, 
-	{ id = 400026, delay = 0 }, 
-	{ id = 400043, delay = 15 }, 
-}	
+	{ id = 400010, delay = 0 },
+	{ id = 400026, delay = 0 },
+	{ id = 400043, delay = 15 },
+}
 
 local optsElevatorTriggerEnemiesEnter03 = deep_clone(optsElevatorTriggerEnemiesEnter01)
 optsElevatorTriggerEnemiesEnter03.on_executed = {
-	{ id = 400011, delay = 0 }, 
-	{ id = 400023, delay = 0 }, 
+	{ id = 400011, delay = 0 },
+	{ id = 400023, delay = 0 },
 	{ id = 400052, delay = 0 },
-}	
+}
 local optsElevatorTriggerEnemiesExit03 = deep_clone(optsElevatorTriggerEnemiesExit01)
 optsElevatorTriggerEnemiesExit03.on_executed = {
-	{ id = 400011, delay = 0 }, 
-	{ id = 400027, delay = 0 }, 
+	{ id = 400011, delay = 0 },
+	{ id = 400027, delay = 0 },
 	{ id = 400051, delay = 15 },
 }
 
 local optsElevatorTriggerEnemiesEnter04 = deep_clone(optsElevatorTriggerEnemiesEnter01)
 optsElevatorTriggerEnemiesEnter04.on_executed = {
-	{ id = 400012, delay = 0 }, 
-	{ id = 400024, delay = 0 }, 
+	{ id = 400012, delay = 0 },
+	{ id = 400024, delay = 0 },
 	{ id = 400060, delay = 0 },
-}	
+}
 local optsElevatorTriggerEnemiesExit04 = deep_clone(optsElevatorTriggerEnemiesExit01)
 optsElevatorTriggerEnemiesExit04.on_executed = {
-	{ id = 400012, delay = 0 },	
-	{ id = 400028, delay = 0 }, 
+	{ id = 400012, delay = 0 },
+	{ id = 400028, delay = 0 },
 	{ id = 400059, delay = 15 },
-}	
+}
 
 local optsElevatorTriggerEnemiesToggle01 = {
 	toggle = "toggle",
@@ -120,8 +120,8 @@ local optsElevatorOpen01 = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600152, notify_unit_sequence = "open_doors", time = 0 },
 	},
-	on_executed = { 
-		{ id = 400013, delay = 0 }, 
+	on_executed = {
+		{ id = 400013, delay = 0 },
 		{ id = 103209, delay = 0 }, -- bing
 	},
 	enabled = true,
@@ -130,8 +130,8 @@ local optsElevatorClose01 = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600152, notify_unit_sequence = "close_doors", time = 0 },
 	},
-	on_executed = { 
-		{ id = 400017, delay = 0 }, 
+	on_executed = {
+		{ id = 400017, delay = 0 },
 	},
 	enabled = true,
 }
@@ -171,11 +171,11 @@ local optsElevatorGroup = {
 	amount = 5,
 }
 
-local optsElevatorGroupAdd01 = { 
+local optsElevatorGroupAdd01 = {
 	spawn_groups = { 400034 },
 	enabled = true,
 }
-local optsElevatorGroupRemove01 = { 
+local optsElevatorGroupRemove01 = {
 	elements = { 400035 },
 	enabled = true,
 }
@@ -216,28 +216,28 @@ optsDisableElevatorGroup03.elements = { 400051, 400003, 400007, 400067, 400071 }
 local optsDisableElevatorGroup04 = deep_clone(optsDisableElevatorGroup01)
 optsDisableElevatorGroup04.elements = { 400059, 400004, 400008, 400068, 400072 }
 
-local optsElevatorTriggerPlayersEnter01 = {	
+local optsElevatorTriggerPlayersEnter01 = {
 	width = 375,
 	depth = 250,
 	height = 300,
 	instigator = "player",
 	trigger_on = "on_enter",
-	on_executed = { 
-		{ id = 400073, delay = 0 }, 
-		{ id = 400021, delay = 0 }, 
+	on_executed = {
+		{ id = 400073, delay = 0 },
+		{ id = 400021, delay = 0 },
 	},
 	trigger_times = 0,
 	enabled = true,
 }
-local optsElevatorTriggerPlayersExit01 = {	
+local optsElevatorTriggerPlayersExit01 = {
 	width = 375,
 	depth = 250,
 	height = 300,
 	instigator = "player",
 	trigger_on = "on_empty",
-	on_executed = { 
+	on_executed = {
 		{ id = 400073, delay = 0 },
-		{ id = 400025, delay = 0 }, 		
+		{ id = 400025, delay = 0 },
 	},
 	trigger_times = 0,
 	enabled = false,
@@ -245,36 +245,36 @@ local optsElevatorTriggerPlayersExit01 = {
 
 local optsElevatorTriggerPlayersEnter02 = deep_clone(optsElevatorTriggerPlayersEnter01)
 optsElevatorTriggerPlayersEnter02.on_executed = {
-	{ id = 400074, delay = 0 }, 
-	{ id = 400022, delay = 0 }, 
-}	
+	{ id = 400074, delay = 0 },
+	{ id = 400022, delay = 0 },
+}
 local optsElevatorTriggerPlayersExit02 = deep_clone(optsElevatorTriggerPlayersExit01)
 optsElevatorTriggerPlayersExit02.on_executed = {
-	{ id = 400074, delay = 0 }, 
-	{ id = 400026, delay = 0 }, 
-}	
+	{ id = 400074, delay = 0 },
+	{ id = 400026, delay = 0 },
+}
 
 local optsElevatorTriggerPlayersEnter03 = deep_clone(optsElevatorTriggerPlayersEnter01)
 optsElevatorTriggerPlayersEnter03.on_executed = {
-	{ id = 400075, delay = 0 }, 
-	{ id = 400023, delay = 0 }, 
-}	
+	{ id = 400075, delay = 0 },
+	{ id = 400023, delay = 0 },
+}
 local optsElevatorTriggerPlayersExit03 = deep_clone(optsElevatorTriggerPlayersExit01)
 optsElevatorTriggerPlayersExit03.on_executed = {
-	{ id = 400075, delay = 0 }, 
-	{ id = 400027, delay = 0 }, 
+	{ id = 400075, delay = 0 },
+	{ id = 400027, delay = 0 },
 }
 
 local optsElevatorTriggerPlayersEnter04 = deep_clone(optsElevatorTriggerPlayersEnter01)
 optsElevatorTriggerPlayersEnter04.on_executed = {
-	{ id = 400076, delay = 0 }, 
-	{ id = 400024, delay = 0 }, 
-}	
+	{ id = 400076, delay = 0 },
+	{ id = 400024, delay = 0 },
+}
 local optsElevatorTriggerPlayersExit04 = deep_clone(optsElevatorTriggerPlayersExit01)
 optsElevatorTriggerPlayersExit04.on_executed = {
-	{ id = 400076, delay = 0 },	
-	{ id = 400028, delay = 0 }, 
-}	
+	{ id = 400076, delay = 0 },
+	{ id = 400028, delay = 0 },
+}
 
 local optsElevatorTriggerPlayersToggle01 = {
 	toggle = "toggle",
@@ -316,12 +316,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_areatrigger(400002, "elevator_area_trigger_enter_enemy_02", Vector3(-1950, -1275, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesEnter02),
 	Eclipse.mission_elements.gen_areatrigger(400003, "elevator_area_trigger_enter_enemy_03", Vector3(-1950, -1925, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesEnter03),
 	Eclipse.mission_elements.gen_areatrigger(400004, "elevator_area_trigger_enter_enemy_04", Vector3(-1950, -2275, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesEnter04),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400005, "elevator_area_trigger_enter_enemy_01", Vector3(-1950, -925, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesExit01),
 	Eclipse.mission_elements.gen_areatrigger(400006, "elevator_area_trigger_enter_enemy_02", Vector3(-1950, -1275, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesExit02),
 	Eclipse.mission_elements.gen_areatrigger(400007, "elevator_area_trigger_enter_enemy_03", Vector3(-1950, -1925, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesExit03),
 	Eclipse.mission_elements.gen_areatrigger(400008, "elevator_area_trigger_enter_enemy_04", Vector3(-1950, -2275, 150), Rotation(0, 0, 0), optsElevatorTriggerEnemiesExit04),
-	
+
 	Eclipse.mission_elements.gen_toggleelement(400009, "toggle_elevator_enemy_triggers_01", optsElevatorTriggerEnemiesToggle01),
 	Eclipse.mission_elements.gen_toggleelement(400010, "toggle_elevator_enemy_triggers_02", optsElevatorTriggerEnemiesToggle02),
 	Eclipse.mission_elements.gen_toggleelement(400011, "toggle_elevator_enemy_triggers_03", optsElevatorTriggerEnemiesToggle03),
@@ -332,12 +332,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_aigraph(400014, "elevator_ai_graph_allow_access_02", Vector3(-1975, -1200, 25), Rotation(0, 0, 0), optsAiGraphEnter02),
 	Eclipse.mission_elements.gen_aigraph(400015, "elevator_ai_graph_allow_access_03", Vector3(-1975, -1850, 25), Rotation(0, 0, 0), optsAiGraphEnter03),
 	Eclipse.mission_elements.gen_aigraph(400016, "elevator_ai_graph_allow_access_04", Vector3(-1975, -2200, 25), Rotation(0, 0, 0), optsAiGraphEnter04),
-	
+
 	Eclipse.mission_elements.gen_aigraph(400017, "elevator_ai_graph_forbid_access_01", Vector3(-1975, -850, 25), Rotation(0, 0, 0), optsAiGraphExit01),
 	Eclipse.mission_elements.gen_aigraph(400018, "elevator_ai_graph_forbid_access_02", Vector3(-1975, -1200, 25), Rotation(0, 0, 0), optsAiGraphExit02),
 	Eclipse.mission_elements.gen_aigraph(400019, "elevator_ai_graph_forbid_access_03", Vector3(-1975, -1850, 25), Rotation(0, 0, 0), optsAiGraphExit03),
 	Eclipse.mission_elements.gen_aigraph(400020, "elevator_ai_graph_forbid_access_04", Vector3(-1975, -2200, 25), Rotation(0, 0, 0), optsAiGraphExit04),
-	
+
 	-- Sequence Triggers for opening/closing elevator doors
 	Eclipse.mission_elements.gen_object_editor(400021, "elevator_open_doors_01", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorOpen01),
 	Eclipse.mission_elements.gen_object_editor(400022, "elevator_open_doors_02", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorOpen02),
@@ -348,7 +348,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400026, "elevator_close_doors_02", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorClose02),
 	Eclipse.mission_elements.gen_object_editor(400027, "elevator_close_doors_03", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorClose03),
 	Eclipse.mission_elements.gen_object_editor(400028, "elevator_close_doors_04", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorClose04),
-	
+
 	-- Elevator spawn groups
 	Eclipse.mission_elements.gen_dummy(400029, "elevator_spawn_enemy_01", Vector3(-2050, -1000, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400030, "elevator_spawn_enemy_02", Vector3(-2050, -850, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
@@ -384,8 +384,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400057, "elevator_spawn_enemy_20", Vector3(-1975, -2275, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400058, "elevator_group_04", { 400053, 400054, 400055, 400056, 400057 }, 0, optsElevatorGroup),
 	Eclipse.mission_elements.gen_preferedadd(400059, "add_elevator_group_prefered04", optsElevatorGroupAdd04),
-	Eclipse.mission_elements.gen_preferedremove(400060, "remove_elevator_group_prefered04", optsElevatorGroupRemove04),	
-	
+	Eclipse.mission_elements.gen_preferedremove(400060, "remove_elevator_group_prefered04", optsElevatorGroupRemove04),
+
 	-- Disable the prefered and all the area triggers inside the elevator that drops off the Thermal Drill
 	Eclipse.mission_elements.gen_toggleelement(400061, "disable_elevator_group_01", optsDisableElevatorGroup01),
 	Eclipse.mission_elements.gen_toggleelement(400062, "disable_elevator_group_02", optsDisableElevatorGroup02),
@@ -397,7 +397,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_areatrigger(400066, "elevator_area_trigger_enter_player_02", Vector3(-1950, -1275, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersEnter02),
 	Eclipse.mission_elements.gen_areatrigger(400067, "elevator_area_trigger_enter_player_03", Vector3(-1950, -1925, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersEnter03),
 	Eclipse.mission_elements.gen_areatrigger(400068, "elevator_area_trigger_enter_player_04", Vector3(-1950, -2275, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersEnter04),
-	
+
 	Eclipse.mission_elements.gen_areatrigger(400069, "elevator_area_trigger_exit_player_01", Vector3(-1950, -925, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersExit01),
 	Eclipse.mission_elements.gen_areatrigger(400070, "elevator_area_trigger_exit_player_02", Vector3(-1950, -1275, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersExit02),
 	Eclipse.mission_elements.gen_areatrigger(400071, "elevator_area_trigger_exit_player_03", Vector3(-1950, -1925, 150), Rotation(0, 0, 0), optsElevatorTriggerPlayersExit03),
@@ -407,9 +407,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400074, "toggle_elevator_player_triggers_02", optsElevatorTriggerPlayersToggle02),
 	Eclipse.mission_elements.gen_toggleelement(400075, "toggle_elevator_player_triggers_03", optsElevatorTriggerPlayersToggle03),
 	Eclipse.mission_elements.gen_toggleelement(400076, "toggle_elevator_player_triggers_04", optsElevatorTriggerPlayersToggle04),
-	
+
 	-- Add the new prefereds
-	Eclipse.mission_elements.gen_missionscript(400077, "add_elevator_prefereds", optsAddElevatorPrefereds),	
+	Eclipse.mission_elements.gen_missionscript(400077, "add_elevator_prefereds", optsAddElevatorPrefereds),
 
 	-- Add silly navlinks similar to the ones inside elevators on Big Bank
 	Eclipse.mission_elements.gen_so(400078, "elevator_navlink_01", Vector3(-1825, -925, 0), Rotation(-90, 0, 0), optsElevatorNavlink01),
