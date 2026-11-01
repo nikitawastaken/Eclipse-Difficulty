@@ -611,6 +611,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
 
 	-- Tweak dodge presets
+	presets.dodge.donut_eater = deep_clone(presets.dodge.poor)
+	presets.dodge.donut_eater.occasions.speed = 0.8
+	presets.dodge.donut_eater.occasions.hit.chance = 0.5
+	presets.dodge.donut_eater.occasions.scared.chance = 0.25
+	
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
 
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
@@ -1179,7 +1184,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 6
-	self.security_fat.dodge = nil
+	self.security_fat.dodge = self.presets.dodge.donut_eater
 	self.security_fat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.security_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "security_fat")
@@ -1212,7 +1217,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.cop_fat = deep_clone(self.cop)
 	self.cop_fat.HEALTH_INIT = 6
-	self.cop_fat.dodge = nil
+	self.cop_fat.dodge = self.presets.dodge.donut_eater
 	self.cop_fat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.cop_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "cop_fat")
