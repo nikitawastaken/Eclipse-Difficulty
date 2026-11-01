@@ -41,12 +41,12 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"mex",
 		"mex_cooking",
 	}
-	
+
 	local reapers_heists = {
 		"mad",
-		"pines"
+		"pines",
 	}
-	
+
 	local federales_heists = {
 		"bex",
 		"fex",
@@ -93,7 +93,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		stages = murkywater_heists,
 		risk_lock = 4,
 	}
-	
+
 	-- Reapers risk assets setup
 	self.risk_reapers_pd = {
 		name_id = "menu_asset_risklevel_0",
@@ -160,7 +160,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 
 	-- Remove the 'Expert Pilot' asset on Rats Day 3
 	self.rat_3_pilot.stages = {}
-	
+
 	-- Remove vanilla Reapers assets from Boiling Point
 	self.mad_russian_merc_cameras.stages = {}
 end)
