@@ -117,7 +117,7 @@ return {
 		},
 	},
 	-- Add new navlinks
-	[100446] = {
+	[101003] = { -- set_all_navlinks
 		on_executed = {
 			{ id = 400078, delay = 0 },
 			{ id = 400079, delay = 0 },
