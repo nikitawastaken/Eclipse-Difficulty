@@ -53,12 +53,12 @@ local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job 
 local sniper_respawn_3 = (is_eclipse and 30 or hard and 40 or 60) - (is_pro_job and 10 or 0)
 local standard_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local flank_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
