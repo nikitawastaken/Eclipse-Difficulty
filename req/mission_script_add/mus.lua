@@ -209,7 +209,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400002, "disable_first_snipers_dialogue", optsDisable_first_sniper_dialogue),
 	Eclipse.mission_elements.gen_dialogue(400003, "they_sending_snipers", Bain_sendsnipers),
 	Eclipse.mission_elements.gen_dialogue(400004, "they_sending_more_snipers", Bain_sendmoresnipers),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(500000, "cloaker_hide_so_1", Vector3(-1359, -1799, -300), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_4),
