@@ -52,7 +52,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"fex",
 		"pex",
 	}
-	
+
 	local army_presence_heists = {
 		"arm_for",
 		"roberts",
@@ -62,7 +62,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"peta_2",
 		"vit",
 	}
-	
+
 	self.risk_pd.exclude_stages = non_america_faction_heists
 	self.risk_swat.exclude_stages = non_america_faction_heists
 	self.risk_fbi.exclude_stages = non_america_faction_heists
@@ -167,7 +167,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		stages = federales_heists,
 		risk_lock = 4,
 	}
-	
+
 	-- Army units asset
 	self.army_info = {
 		name_id = "menu_asset_army_info",
