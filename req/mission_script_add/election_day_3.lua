@@ -11,7 +11,7 @@ local optsElevatorTriggerEnemiesEnter01 = {
 	trigger_on = "on_enter",
 	on_executed = {
 		{ id = 400009, delay = 0 },
-		{ id = 400021, delay = 0 },
+		{ id = 400021, delay = 2 },
 		{ id = 400036, delay = 0 },
 	},
 	trigger_times = 0,
@@ -25,7 +25,7 @@ local optsElevatorTriggerEnemiesExit01 = {
 	trigger_on = "on_empty",
 	on_executed = {
 		{ id = 400009, delay = 0 },
-		{ id = 400025, delay = 0 },
+		{ id = 400025, delay = 2 },
 		{ id = 400035, delay = 15 },
 	},
 	trigger_times = 0,
@@ -121,7 +121,7 @@ local optsElevatorOpen01 = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600152, notify_unit_sequence = "open_doors", time = 0 },
 	},
 	on_executed = {
-		{ id = 400013, delay = 0 },
+		{ id = 103176, delay = 0 },
 		{ id = 103209, delay = 0 }, -- bing
 	},
 	enabled = true,
@@ -130,38 +130,32 @@ local optsElevatorClose01 = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600152, notify_unit_sequence = "close_doors", time = 0 },
 	},
-	on_executed = {
-		{ id = 400017, delay = 0 },
-	},
 	enabled = true,
 }
 
 local optsElevatorOpen02 = deep_clone(optsElevatorOpen01)
 optsElevatorOpen02.trigger_list[1].notify_unit_id = 600080
-optsElevatorOpen02.on_executed[1].id = 400014
+optsElevatorOpen02.on_executed[1].id = 103178
 optsElevatorOpen02.on_executed[2].id = 103210
 
 local optsElevatorClose02 = deep_clone(optsElevatorClose01)
 optsElevatorClose02.trigger_list[1].notify_unit_id = 600080
-optsElevatorClose02.on_executed[1].id = 400018
 
 local optsElevatorOpen03 = deep_clone(optsElevatorOpen01)
 optsElevatorOpen03.trigger_list[1].notify_unit_id = 600078
-optsElevatorOpen03.on_executed[1].id = 400015
+optsElevatorOpen03.on_executed[1].id = 103217
 optsElevatorOpen03.on_executed[2].id = 103211
 
 local optsElevatorClose03 = deep_clone(optsElevatorClose01)
 optsElevatorClose03.trigger_list[1].notify_unit_id = 600078
-optsElevatorClose03.on_executed[1].id = 400019
 
 local optsElevatorOpen04 = deep_clone(optsElevatorOpen01)
 optsElevatorOpen04.trigger_list[1].notify_unit_id = 600079
-optsElevatorOpen04.on_executed[1].id = 400016
+optsElevatorOpen04.on_executed[1].id = 103219
 optsElevatorOpen04.on_executed[2].id = 103212
 
 local optsElevatorClose04 = deep_clone(optsElevatorClose01)
 optsElevatorClose04.trigger_list[1].notify_unit_id = 600079
-optsElevatorClose04.on_executed[1].id = 400020
 
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
@@ -350,38 +344,38 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400028, "elevator_close_doors_04", Vector3(0, 0, 0), Rotation(0, 0, -0), optsElevatorClose04),
 
 	-- Elevator spawn groups
-	Eclipse.mission_elements.gen_dummy(400029, "elevator_spawn_enemy_01", Vector3(-2050, -1000, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400030, "elevator_spawn_enemy_02", Vector3(-2050, -850, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400031, "elevator_spawn_enemy_03", Vector3(-1900, -1000, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400032, "elevator_spawn_enemy_04", Vector3(-1900, -850, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400033, "elevator_spawn_enemy_05", Vector3(-1975, -925, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400029, "elevator_spawn_enemy_01", Vector3(-2000, -975, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400030, "elevator_spawn_enemy_02", Vector3(-2000, -875, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400031, "elevator_spawn_enemy_03", Vector3(-1900, -975, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400032, "elevator_spawn_enemy_04", Vector3(-1900, -875, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400033, "elevator_spawn_enemy_05", Vector3(-1950, -925, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400034, "elevator_group_01", { 400029, 400030, 400031, 400032, 400033 }, 0, optsElevatorGroup),
 	Eclipse.mission_elements.gen_preferedadd(400035, "add_elevator_group_prefered01", optsElevatorGroupAdd01),
 	Eclipse.mission_elements.gen_preferedremove(400036, "remove_elevator_group_prefered01", optsElevatorGroupRemove01),
 
-	Eclipse.mission_elements.gen_dummy(400037, "elevator_spawn_enemy_06", Vector3(-2050, -1350, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400038, "elevator_spawn_enemy_07", Vector3(-2050, -1200, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400039, "elevator_spawn_enemy_08", Vector3(-1900, -1350, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400040, "elevator_spawn_enemy_09", Vector3(-1900, -1200, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400041, "elevator_spawn_enemy_10", Vector3(-1975, -1275, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400037, "elevator_spawn_enemy_06", Vector3(-2000, -1325, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400038, "elevator_spawn_enemy_07", Vector3(-2000, -1225, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400039, "elevator_spawn_enemy_08", Vector3(-1900, -1325, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400040, "elevator_spawn_enemy_09", Vector3(-1900, -1225, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400041, "elevator_spawn_enemy_10", Vector3(-1950, -1275, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400042, "elevator_group_02", { 400037, 400038, 400039, 400040, 400041 }, 0, optsElevatorGroup),
 	Eclipse.mission_elements.gen_preferedadd(400043, "add_elevator_group_prefered02", optsElevatorGroupAdd02),
 	Eclipse.mission_elements.gen_preferedremove(400044, "remove_elevator_group_prefered02", optsElevatorGroupRemove02),
 
-	Eclipse.mission_elements.gen_dummy(400045, "elevator_spawn_enemy_11", Vector3(-2050, -2000, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400046, "elevator_spawn_enemy_12", Vector3(-2050, -1850, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400047, "elevator_spawn_enemy_13", Vector3(-1900, -2000, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400048, "elevator_spawn_enemy_14", Vector3(-1900, -1850, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400049, "elevator_spawn_enemy_15", Vector3(-1975, -1925, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400045, "elevator_spawn_enemy_11", Vector3(-2000, -1975, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400046, "elevator_spawn_enemy_12", Vector3(-2000, -1875, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400047, "elevator_spawn_enemy_13", Vector3(-1900, -1975, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400048, "elevator_spawn_enemy_14", Vector3(-1900, -1875, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400049, "elevator_spawn_enemy_15", Vector3(-1950, -1925, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400050, "elevator_group_03", { 400045, 400046, 400047, 400048, 400049 }, 0, optsElevatorGroup),
 	Eclipse.mission_elements.gen_preferedadd(400051, "add_elevator_group_prefered03", optsElevatorGroupAdd03),
 	Eclipse.mission_elements.gen_preferedremove(400052, "remove_elevator_group_prefered03", optsElevatorGroupRemove03),
 
-	Eclipse.mission_elements.gen_dummy(400053, "elevator_spawn_enemy_16", Vector3(-2050, -2350, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400054, "elevator_spawn_enemy_17", Vector3(-2050, -2200, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400055, "elevator_spawn_enemy_18", Vector3(-1900, -2350, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400056, "elevator_spawn_enemy_19", Vector3(-1900, -2200, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400057, "elevator_spawn_enemy_20", Vector3(-1975, -2275, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400053, "elevator_spawn_enemy_16", Vector3(-2000, -2375, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400054, "elevator_spawn_enemy_17", Vector3(-2000, -2175, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400055, "elevator_spawn_enemy_18", Vector3(-1900, -2375, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400056, "elevator_spawn_enemy_19", Vector3(-1900, -2175, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400057, "elevator_spawn_enemy_20", Vector3(-1950, -2275, 0), Rotation(-90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400058, "elevator_group_04", { 400053, 400054, 400055, 400056, 400057 }, 0, optsElevatorGroup),
 	Eclipse.mission_elements.gen_preferedadd(400059, "add_elevator_group_prefered04", optsElevatorGroupAdd04),
 	Eclipse.mission_elements.gen_preferedremove(400060, "remove_elevator_group_prefered04", optsElevatorGroupRemove04),

@@ -4,6 +4,7 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local get_navlink_so_opts = Eclipse.utils.get_navlink_so_opts
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -659,6 +660,12 @@ local optsstart_spawn_snipers = {
 	enabled = true,
 	trigger_times = 1,
 }
+
+local optsDoorwaySlideNavlink01 = get_navlink_so_opts("e_nl_slide_fwd_4m", Vector3(1350, 1325, -25), 15, false, true, true, 1)
+local optsDoorwaySlideNavlink02 = get_navlink_so_opts("e_nl_slide_fwd_4m", Vector3(1350, 1175, -25), 15, false, true, true, 1)
+local optsDoorwaySlideNavlink03 = get_navlink_so_opts("e_nl_slide_fwd_4m", Vector3(1550, 700, -25), 15, false, true, true, 1)
+local optsDoorwaySlideNavlink04 = get_navlink_so_opts("e_nl_slide_fwd_4m", Vector3(1675, 700, -25), 15, false, true, true, 1)
+
 local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
@@ -843,6 +850,12 @@ M.elements = {
 	-- make snipers start spawning when the assault starts after 90 seconds (like in PDTH)
 	Eclipse.mission_elements.gen_missionscript(400123, "spawn_snipers_event_global", optsstart_spawn_snipers),
 
+	-- Add silly navlinks similar to the ones inside elevators on Big Bank
+	Eclipse.mission_elements.gen_so(400132, "doorway_slide_navlink_01", Vector3(950, 1325, -25), Rotation(-90, 0, 0), optsDoorwaySlideNavlink01),
+	Eclipse.mission_elements.gen_so(400133, "doorway_slide_navlink_02", Vector3(950, 1175, -25), Rotation(-90, 0, 0), optsDoorwaySlideNavlink02),
+	Eclipse.mission_elements.gen_so(400134, "doorway_slide_navlink_03", Vector3(1550, 300, -25), Rotation(0, 0, 0), optsDoorwaySlideNavlink03),
+	Eclipse.mission_elements.gen_so(400135, "doorway_slide_navlink_04", Vector3(1675, 300, -25), Rotation(0, 0, 0), optsDoorwaySlideNavlink04),
+	
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(500001, "red2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(500002, "red2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),

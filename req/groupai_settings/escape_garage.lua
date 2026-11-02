@@ -21,8 +21,8 @@ return {
 		addends = {
 			on_enemy_weapons_hot = {
 				amount = 1,
-				delay = 15,
-				time = { 60, 90 },
+				delay = 0, -- Reduce the preset's delay
+				time = { 45, 60 },
 			},
 		},
 	},

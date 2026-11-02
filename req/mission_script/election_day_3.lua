@@ -95,6 +95,11 @@ local cloaker_spawn = {
 		interval = 90,
 	},
 }
+local no_align_pos = {
+	values = {
+		align_position = false,
+	},
+}
 local computer_hack_time_rand = 60 + (is_pro_job and 30 or 0)
 
 return {
@@ -116,15 +121,6 @@ return {
 			{ 32, 120 },
 		},
 	},
-	-- Add new navlinks
-	[101003] = { -- set_all_navlinks
-		on_executed = {
-			{ id = 400078, delay = 0 },
-			{ id = 400079, delay = 0 },
-			{ id = 400080, delay = 0 },
-			{ id = 400081, delay = 0 },
-		},
-	},
 	-- Add new reinforce
 	[102733] = { -- bring_in_preferreds
 		reinforce = {
@@ -143,6 +139,20 @@ return {
 	-- Disable drill reinforce
 	[100676] = disabled,
 	[101138] = disabled,
+	-- Add new navlinks
+	[101003] = { -- set_all_navlinks
+		on_executed = {
+			{ id = 400078, delay = 0 },
+			{ id = 400079, delay = 0 },
+			{ id = 400080, delay = 0 },
+			{ id = 400081, delay = 0 },
+		},
+	},
+	-- disable 'align_position' for select navlinks
+	[101648] = no_align_pos,
+	[101649] = no_align_pos,
+	[101650] = no_align_pos,
+	[101651] = no_align_pos,
 	-- Increase the hack duration
 	[103568] = { -- backup_started_link
 		on_executed = {
