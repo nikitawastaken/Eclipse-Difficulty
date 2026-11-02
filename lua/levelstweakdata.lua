@@ -1088,8 +1088,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["lab_rats_03"] = 1,
 	}
 	self.help.random_environments = {
-		["prison_01"] = 3,
-		["prison_02"] = 2,
+		["prison_01"] = 4,
 		["prison_03"] = 1,
 	}
 	self.haunted.random_environments = {
