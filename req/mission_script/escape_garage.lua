@@ -5,9 +5,9 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local swats_close = {
 	enemy = {
-		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 3, 5, 7 }),
-		[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 2, 3, 4 }),
-		[scripted_enemy.swat_1] = 5,
+		[scripted_enemy.heavy_swat_1] = get_difficulty_group_specific_value({ 2, 3, 4 }),
+		[scripted_enemy.heavy_swat_2] = get_difficulty_group_specific_value({ 3, 5, 7 }),
+		[scripted_enemy.swat_1] = 2,
 		[scripted_enemy.swat_2] = 3,
 	},
 }
@@ -19,15 +19,16 @@ local enabled = {
 		enabled = true,
 	},
 }
-local exclude_shields_dozers = {
-	so_access_filter = so_access.no_heavyweight,
-}
 local garage_spawn = {
 	values = {
 		interval = 15,
 		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
+local rappel_navlink = {
+	so_access_filter = so_access.acrobatic,
+}
+
 return {
 	-- Combine some navigation areas
 	[101913] = {
@@ -45,23 +46,40 @@ return {
 			{ 4, 56 },
 		},
 	},
+	-- Instant FFO
 	[102482] = { -- DifficultyUp_0.50
 		set_ponr_state = true,
 	},
 	-- Add new navlinks
 	[102514] = { -- EnableNavLinks
 		on_executed = {
-			{ id = 400000, delay = 0 },
 			{ id = 400001, delay = 0 },
 			{ id = 400002, delay = 0 },
 			{ id = 400003, delay = 0 },
+			{ id = 400004, delay = 0 },
+			{ id = 400005, delay = 0 },
+			{ id = 400006, delay = 0 },
+			{ id = 400007, delay = 0 },
+			{ id = 400008, delay = 0 },
+			{ id = 400009, delay = 0 },
+			{ id = 400010, delay = 0 },
+			{ id = 400011, delay = 0 },
+			{ id = 400012, delay = 0 },
 		},
 	},
-	-- tweak the navlinks to prevent dozers and shields from using it
-	[400000] = exclude_shields_dozers,
-	[400001] = exclude_shields_dozers,
-	[400002] = exclude_shields_dozers,
-	[400003] = exclude_shields_dozers,
+	-- Restrict new navlink access
+	[400001] = rappel_navlink,
+	[400002] = rappel_navlink,
+	[400003] = rappel_navlink,
+	[400004] = rappel_navlink,
+	[400005] = rappel_navlink,
+	[400006] = rappel_navlink,
+	[400007] = rappel_navlink,
+	[400008] = rappel_navlink,
+	[400009] = rappel_navlink,
+	[400010] = rappel_navlink,
+	[400011] = rappel_navlink,
+	[400012] = rappel_navlink,
 	-- Enable reinforce toggles and tweak the force value of one of the elements
 	[102369] = enabled,
 	[102370] = enabled,

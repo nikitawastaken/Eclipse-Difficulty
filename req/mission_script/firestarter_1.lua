@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local enabled = {
@@ -62,13 +63,13 @@ local heli_enemy4 = {
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
-local no_align_pos1 = {
+local no_align_pos_navlink01 = {
 	values = {
 		align_position = false,
 	},
 }
-local no_align_pos2 = deep_clone(no_align_pos1)
-no_align_pos2.values.so_action = "e_nl_down_4m_var3"
+local no_align_pos_navlink02 = deep_clone(no_align_pos_navlink01)
+no_align_pos_navlink02.values.so_action = "e_nl_down_4m_var3"
 
 local no_spawn_instigator_ids = {
 	values = {
@@ -77,7 +78,7 @@ local no_spawn_instigator_ids = {
 }
 local enable_forest_group = {
 	on_executed = {
-		{ id = 400004, delay = 30 },
+		{ id = 400004, delay = 30, delay = 60 },
 	},
 }
 local forest_spawn = {
@@ -251,24 +252,28 @@ return {
 			{ id = 100161, remove = true },
 		},
 	},
+	-- Add missing light cones to lamp posts
+	[100984] = {
+		spawn = lampposts_effect,
+	},
 	-- disable 'align_position' for select navlinks and tweak navlink actions
-	[103692] = no_align_pos1,
-	[104450] = no_align_pos1,
-	[104451] = no_align_pos1,
-	[103935] = no_align_pos1,
-	[103936] = no_align_pos1,
-	[103938] = no_align_pos1,
-	[103937] = no_align_pos1,
-	[103918] = no_align_pos1,
-	[103917] = no_align_pos1,
-	[103916] = no_align_pos1,
-	[103921] = no_align_pos1,
-	[103920] = no_align_pos1,
-	[103919] = no_align_pos1,
-	[100767] = no_align_pos2,
-	[100785] = no_align_pos2,
-	[100842] = no_align_pos2,
-	[100912] = no_align_pos2,
+	[103692] = no_align_pos_navlink01,
+	[104450] = no_align_pos_navlink01,
+	[104451] = no_align_pos_navlink01,
+	[103935] = no_align_pos_navlink01,
+	[103936] = no_align_pos_navlink01,
+	[103938] = no_align_pos_navlink01,
+	[103937] = no_align_pos_navlink01,
+	[103918] = no_align_pos_navlink01,
+	[103917] = no_align_pos_navlink01,
+	[103916] = no_align_pos_navlink01,
+	[103921] = no_align_pos_navlink01,
+	[103920] = no_align_pos_navlink01,
+	[103919] = no_align_pos_navlink01,
+	[100767] = no_align_pos_navlink02,
+	[100785] = no_align_pos_navlink02,
+	[100842] = no_align_pos_navlink02,
+	[100912] = no_align_pos_navlink02,
 	-- tweak gangsters amount
 	[101298] = gangster_outside_amount,
 	[101040] = gangster_outside_amount,
@@ -288,8 +293,4 @@ return {
 	[400014] = cloaker_spawn,
 	[400015] = cloaker_spawn,
 	[400016] = cloaker_spawn,
-	-- Add missing light cones to lamp posts
-	[100984] = {
-		spawn = lampposts_effect,
-	},
 }

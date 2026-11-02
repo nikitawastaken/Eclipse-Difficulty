@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -124,6 +125,11 @@ local vent_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local so_hunt_fix = {
 	so_access_filter = { "swat", "taser" },
 }
@@ -132,6 +138,13 @@ local smoke_or_flash = {
 		effect_type = smoke_or_flash_chance and "flash" or "smoke",
 	},
 }
+local shortcut_navlink = {
+	values = {
+		align_position = false,
+	},
+	so_access_filter = so_access.acrobatic,
+}
+
 return {
 	-- FFO
 	[101657] = {
@@ -228,7 +241,7 @@ return {
 	},
 	[100359] = { -- end_assault
 		on_executed = {
-			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
+			{ id = 100043, delay = 15, delay_rand = 45 }, -- start more preferreds
 		},
 	},
 	-- Don't remove 'far spawns'
@@ -455,6 +468,26 @@ return {
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
+	-- Add new navlinks and tweak existing ones
+	[100670] = { -- open_vault_hall_bar_door
+		on_executed = {
+			{ id = 400132, delay = 0 },
+			{ id = 400133, delay = 0 },
+			{ id = 400134, delay = 0 },
+			{ id = 400135, delay = 0 },
+		},
+	},
+	[100771] = shortcut_navlink,
+	[103749] = shortcut_navlink,
+	[103964] = shortcut_navlink,
+	[104258] = shortcut_navlink,
+	[104259] = shortcut_navlink,
+	[102123] = shortcut_navlink,
+	[102136] = shortcut_navlink,
+	[400132] = shortcut_navlink,
+	[400133] = shortcut_navlink,
+	[400134] = shortcut_navlink,
+	[400135] = shortcut_navlink,
 	-- Scripted difficulty scaling
 	[100662] = { -- gates_opened_loud
 		on_executed = {
@@ -480,7 +513,9 @@ return {
 	[103011] = office_spawn,
 	[103689] = office_spawn,
 	[105200] = vent_spawn,
-	-- Replace regular security with classic GenSec security
+	[105179] = cloaker_spawn,
+	[105160] = cloaker_spawn,
+	-- Randomise Security spawns
 	[100628] = white_security,
 	[100671] = white_security,
 	[100672] = white_security,
