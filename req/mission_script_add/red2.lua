@@ -855,7 +855,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400133, "doorway_slide_navlink_02", Vector3(950, 1175, -25), Rotation(-90, 0, 0), optsDoorwaySlideNavlink02),
 	Eclipse.mission_elements.gen_so(400134, "doorway_slide_navlink_03", Vector3(1550, 300, -25), Rotation(0, 0, 0), optsDoorwaySlideNavlink03),
 	Eclipse.mission_elements.gen_so(400135, "doorway_slide_navlink_04", Vector3(1675, 300, -25), Rotation(0, 0, 0), optsDoorwaySlideNavlink04),
-	
+
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(500001, "red2_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(500002, "red2_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
