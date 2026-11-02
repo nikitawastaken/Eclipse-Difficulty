@@ -428,6 +428,9 @@
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_2_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_3_federales.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4_federales.texture"/>
+		
+		<!-- Misc level assets -->
+		<file name="guis/textures/pd2/mission_briefing/assets/army.texture"/>
 
 		<!-- Tips assets -->
 		<file name="guis/textures/loading/hints/general_skills.texture"/>
