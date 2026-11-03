@@ -388,7 +388,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		12000,
 		12000,
 		12000,
-		12000
+		12000,
 	}
 	self.jobs.arm_wrapper.contract_visuals.max_mission_xp = {
 		12000,
@@ -397,7 +397,7 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		12000,
 		12000,
 		12000,
-		12000
+		12000,
 	}
 
 	--Halloween heists gets Stonecold's (PDTH Alpha) menu movie (mysterious)
