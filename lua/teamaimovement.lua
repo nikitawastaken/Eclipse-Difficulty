@@ -246,3 +246,10 @@ function TeamAIMovement:sync_throw_bag(carry_unit, target_unit)
 		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier * 0.01)
 	end
 end
+
+Hooks:PostHook(TeamAIMovement, "pre_destroy", "eclipse_teamaimove_pre_destroy", function(self)
+	local carry_table = self._carry_table
+	for _, carry in ipairs(carry_table) do
+		carry:carry_data():unlink()
+	end
+end)
