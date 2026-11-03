@@ -219,7 +219,7 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	-- Gloves and other cosmetics locked behind achievements or nebula
+	-- Gloves and other cosmetics locked behind achievements
 	self.ach_hnd_dah_1.free = true
 	self.ach_trd_dah_1.free = true
 	self.ach_trd_nmh_1.free = true
@@ -240,40 +240,6 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 	self.ach_hnd_bex_1.free = true
 	self.ach_wcc_fex_4.free = true
 	self.ach_lrfo_1.free = true
-	self.speedrunners.free = true
-	self.sbzac_elegantteeth.free = true
-	self.sbzac_wpn_fps_upg_charm_skullz.free = true
-	self.sbzac_elegantscarf.free = true
-	self.sbzac_color_sbzac2_01.free = true
-	self.rat_oilbaron.free = true
-	self.rat_ranchdiesel.free = true
-	self.rat_mocow.free = true
-	self.prim_primtime.free = true
-	self.prim_darkmat.free = true
-	self.prim_newhorizon.free = true
-	self.a11th_homburg.free = true
-	self.a11th_homburg_grey.free = true
-	self.a11th_corl.free = true
-	self.a11th_stinger.free = true
-	self.trt_railhat.free = true
-	self.trt_railwork.free = true
-	self.trt_railroad.free = true
-	self.h22_deadman.free = true
-	self.h22_nightwalker.free = true
-	self.h22_tasslefringe.free = true
-	self.h22_bloodysnarl.free = true
-	self.h22_ghostly.free = true
-	self.h22_tornrags.free = true
-	self.h22_banshee.free = true
-	self.h22_darkprince.free = true
-	self.h22_devilclaws.free = true
-	self.h22_devilhorn.free = true
-	self.cot_smilecigar.free = true
-	self.cot_sleekygent.free = true
-	self.cot_beigedriver.free = true
-	self.dot_roclown_suit.free = true
-	self.dot_roclogrip_glv.free = true
-	self.dot_roclown_msk.free = true
 
 	-- remove viper gas achievement unlock
 	self.ach_pxp1_01.content.upgrades = nil
