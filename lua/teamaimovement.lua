@@ -109,18 +109,17 @@ function TeamAIMovement:has_crew_carrystacker()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	local dropped
 	if unit then
 		table.insert(self._carry_table, unit)
 	elseif #self._carry_table > 0 then
-		dropped = table.remove(self._carry_table)
+		table.remove(self._carry_table)
 	end
 
 	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
 	if name_label then
 		local bag_panel = name_label.panel and name_label.panel:child("bag")
 		if bag_panel then
-			bag_panel:set_visible(unit or dropped)
+			bag_panel:set_visible(#self._carry_table > 0)
 		end
 	end
 
