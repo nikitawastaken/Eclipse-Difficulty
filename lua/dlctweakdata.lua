@@ -136,6 +136,89 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 	self.ach_wcs_bex_11.free = true
 	self.ach_wcs_bex_10.free = true
 
+	-- give crime spree armor skins for being a part of the pd2 community
+	self.pd2_clan7 = {}
+	self.pd2_clan7.content = {}
+	self.pd2_clan7.dlc = "has_pd2_clan"
+	self.pd2_clan7.content.loot_global_value = "pd2_clan"
+	self.pd2_clan7.content.loot_drops = {
+		{
+			amount = 1,
+			item_entry = "cvc_green",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "cvc_black",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "cvc_grey",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "cvc_tan",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "cvc_navy_blue",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_tree_stump",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_gray_raider",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_desert_twilight",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_navy_breeze",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_woodland_tech",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_khaki_eclipse",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_desert_tech",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_misted_grey",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_khaki_regular",
+			type_items = "armor_skins"
+		},
+		{
+			amount = 1,
+			item_entry = "drm_somber_woodland",
+			type_items = "armor_skins"
+		}
+	}
+
 	-- remove viper gas achievement unlock
 	self.ach_pxp1_01.content.upgrades = nil
 
