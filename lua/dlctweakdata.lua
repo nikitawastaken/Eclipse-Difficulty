@@ -145,78 +145,78 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 		{
 			amount = 1,
 			item_entry = "cvc_green",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "cvc_black",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "cvc_grey",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "cvc_tan",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "cvc_navy_blue",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_tree_stump",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_gray_raider",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_desert_twilight",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_navy_breeze",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_woodland_tech",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_khaki_eclipse",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_desert_tech",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_misted_grey",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_khaki_regular",
-			type_items = "armor_skins"
+			type_items = "armor_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "drm_somber_woodland",
-			type_items = "armor_skins"
-		}
+			type_items = "armor_skins",
+		},
 	}
 
 	-- remove viper gas achievement unlock
