@@ -14,8 +14,8 @@ function GenericDLCManager:is_content_achievement_locked(category, entry)
 		local dlc_tweak = tweak_data.dlc[achievement_dlc_id]
 		local has_dlc = dlc_tweak and dlc_tweak.loot_global_value
 		local is_unlocked = not Global.dlc_manager.all_dlc_data[has_dlc] or Global.dlc_manager.all_dlc_data[has_dlc].verified
-		
-		if is_unlocked then 
+
+		if is_unlocked then
 			return false
 		else
 			return true
