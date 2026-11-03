@@ -44,91 +44,91 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 		{
 			amount = 1,
 			item_entry = "color_red_crust",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_blue_deluxe",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_purple_song",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_blue_teal",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_green_mellow",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_blue_deep",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_blue_ice",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_orange_mellow",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_green_deluxe",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_pink_cat",
-			type_items = "weapon_skins"
-		}
+			type_items = "weapon_skins",
+		},
 	}
 
 	self.anv_bundle.content.loot_drops = {
 		{
 			amount = 1,
 			item_entry = "continental",
-			type_items = "player_styles"
+			type_items = "player_styles",
 		},
 		{
 			amount = 1,
 			item_entry = "continental",
-			type_items = "gloves"
+			type_items = "gloves",
 		},
 		{
 			amount = 1,
 			item_entry = "color_anv_01",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_anv_02",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_anv_03",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_anv_04",
-			type_items = "weapon_skins"
+			type_items = "weapon_skins",
 		},
 		{
 			amount = 1,
 			item_entry = "color_anv_05",
-			type_items = "weapon_skins"
-		}
+			type_items = "weapon_skins",
+		},
 	}
 
 	self.ach_wcc_pex_11.free = true
