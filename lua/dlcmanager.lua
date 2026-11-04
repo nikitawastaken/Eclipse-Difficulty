@@ -71,3 +71,7 @@ function GenericDLCManager:has_achievement(data)
 end
 
 function GenericDLCManager:has_achievement_milestone(data) end
+
+function GenericDLCManager:has_freed_old_hoxton(data)
+	return true
+end
