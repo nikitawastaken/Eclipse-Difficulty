@@ -241,6 +241,9 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 	self.ach_wcc_fex_4.free = true
 	self.ach_lrfo_1.free = true
 
+	-- Try to fix Hoxton character being unavailable
+	self.ach_bulldog_1.free = true
+
 	-- remove viper gas achievement unlock
 	self.ach_pxp1_01.content.upgrades = nil
 
