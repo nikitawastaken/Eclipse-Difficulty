@@ -73,6 +73,7 @@ Hooks:PostHook(AchievementsTweakData, "init", "eclipse_init", function(self)
 			"arm_par",
 			"arm_und",
 			"arm_for",
+			"arm_wrapper",
 		},
 		difficulty = normal_and_above,
 	}
