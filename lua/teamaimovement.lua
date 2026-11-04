@@ -249,6 +249,11 @@ end
 Hooks:PostHook(TeamAIMovement, "pre_destroy", "eclipse_teamaimove_pre_destroy", function(self)
 	local carry_table = self._carry_table
 	for _, carry in ipairs(carry_table) do
-		carry:carry_data():unlink()
+		---Apparently this can crash if a bot secures a bag
+		---at the same time as the heist ending so here's
+		---a possible remedy?
+		if alive(carry) and carry:carry_data() then
+			carry:carry_data():unlink()
+		end
 	end
 end)
