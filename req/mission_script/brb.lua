@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
+local scripted_enemy = Eclipse.scripted_enemy
 local standard_spawn = {
 	values = {
 		interval = 10,
@@ -35,6 +36,16 @@ local cloaker_spawn = {
 }
 local e_nl_dwn_3_5m_access = {
 	so_access_filter = so_access.acrobatic,
+}
+
+local green_security = {
+	enemy = {
+		[scripted_enemy.green_security_1] = 2,
+		[scripted_enemy.green_security_2] = 2,
+		[scripted_enemy.green_security_3] = 2,
+		[scripted_enemy.green_security_4] = 1,
+		[scripted_enemy.green_security_5] = 2,
+	},
 }
 
 return {
@@ -99,6 +110,20 @@ return {
 	-- Restrict select navlinks
 	[100138] = e_nl_dwn_3_5m_access,
 	[100223] = e_nl_dwn_3_5m_access,
+	-- Replace regular security with green security
+	[101869] = green_security,
+	[101879] = green_security,
+	[101880] = green_security,
+	[100236] = green_security,
+	[100237] = green_security,
+	[100238] = green_security,
+	[100245] = green_security,
+	[100246] = green_security,
+	[100313] = green_security,
+	[100340] = green_security,
+	[100341] = green_security,
+	[100342] = green_security,
+	[100392] = green_security,
 	-- Spawn group intervals
 	[100007] = standard_spawn,
 	[100286] = standard_spawn,
