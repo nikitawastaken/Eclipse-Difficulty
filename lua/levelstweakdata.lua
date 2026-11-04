@@ -1190,6 +1190,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.welcome_to_the_jungle_2.random_environments = {
 		["big_oil_2_cg"] = 1,
+		["big_oil_2_plus"] = 4,
+		["big_oil_2_sunset"] = 3,
+		["big_oil_2_night"] = 2,
 	}
 	self.shoutout_raid.random_environments = {
 		["meltdown_01"] = 3,
