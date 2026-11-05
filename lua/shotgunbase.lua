@@ -42,7 +42,7 @@ function ShotgunBase:_update_stats_values()
 	end
 end
 
-function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, _, ...)
+function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
 	self._enemy_penetrations = nil
 	self._wall_penetrations = nil
 	self._shield_penetrations = nil
@@ -57,7 +57,7 @@ function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, _, ...)
 	}
 
 	for _ = 1, self._rays do
-		local res = ShotgunBase.super._fire_raycast(self, user_unit, from_pos, direction, ...)
+		local res = ShotgunBase.super._fire_raycast(self, user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
 		result.hit_enemy = result.hit_enemy or res.hit_enemy
 		table.list_append(result.rays, res.rays)
 	end
