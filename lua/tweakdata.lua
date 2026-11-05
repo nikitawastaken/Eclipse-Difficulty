@@ -348,11 +348,11 @@ tweak_data.projectiles.cluster.range = 300
 tweak_data.projectiles.cluster.warning_data = {
 	beep_speeds = {
 		0.1,
-		0.025
+		0.025,
 	},
 	sound_data = {
 		event_name = "grenade_sticky_beep",
-		event_stop_name = "grenade_sticky_beep_stop"
+		event_stop_name = "grenade_sticky_beep_stop",
 	},
 	light_data = {
 		beep_fade_speed = 4,
@@ -362,8 +362,8 @@ tweak_data.projectiles.cluster.warning_data = {
 		range = 50,
 		specular_mul = 0.5,
 		type_str = "omni|specular",
-		color = Vector3(255, 0, 0)
-	}
+		color = Vector3(255, 0, 0),
+	},
 }
 
 -- Incendiary Cluster Grenade

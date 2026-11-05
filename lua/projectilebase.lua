@@ -67,7 +67,7 @@ function ProjectileBase:update(unit, t, dt)
 
 		self._unit:m_position(self._sweep_data.last_pos)
 	end
-	
+
 	if self._warning_fx_vfx_data then
 		self:_warning_fx_vfx_upd(unit, t, dt, self._warning_fx_vfx_data)
 	end
