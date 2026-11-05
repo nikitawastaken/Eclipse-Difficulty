@@ -274,4 +274,18 @@
 			</message>
 		</target>
 	</tweak>
+	<!-- Sync stealth strikes -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="sync_register_strike" delivery="ordered" receiver="connection" check="server_to_client">
+				<param type="int" min="0" max="8" />		<!-- amount -->
+				<param type="string" />						<!-- reason -->
+				<param type="bool" />						<!-- is_pager -->
+			</message>
+		</target>
+	</tweak>
 </tweaks>
