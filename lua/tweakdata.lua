@@ -345,6 +345,7 @@ tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
 tweak_data.projectiles.cluster.init_timer = 2.5
 tweak_data.projectiles.cluster.range = 300
+tweak_data.projectiles.cluster.detonate_timer = 2.5 -- for beep blinking
 tweak_data.projectiles.cluster.warning_data = {
 	beep_speeds = {
 		0.1,
@@ -359,7 +360,7 @@ tweak_data.projectiles.cluster.warning_data = {
 		beep_mul = 0.3,
 		falloff_exp = 0.5,
 		link_to_unit = true,
-		range = 50,
+		range = 200,
 		specular_mul = 0.5,
 		type_str = "omni|specular",
 		color = Vector3(255, 0, 0),
