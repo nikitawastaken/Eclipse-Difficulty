@@ -248,19 +248,6 @@
 			<param type="bool"/> <!-- auto reload? -->
 		</target>
 	</tweak>
-	<!-- Add env string message -->
-	<tweak version="2" name="settings/network" extension="network_settings">
-		<search>
-			<network/>
-			<rpc/>
-		</search>
-		<target mode="attach">
-			<message name="eclipse_sync_environment" delivery="ordered" receiver="connection" check="server_to_client">
-				<param type="string" />       <!-- environment_name -->
-				<param type="string" />       <!-- color_grading -->
-			</message>
-		</target>
-	</tweak>
 	<!-- Sync grenade crate pickups -->
 	<tweak version="2" name="settings/network" extension="network_settings">
 		<search>
@@ -285,6 +272,29 @@
 				<param type="int" min="0" max="8" />		<!-- amount -->
 				<param type="string" />						<!-- reason -->
 				<param type="bool" />						<!-- is_pager -->
+			</message>
+		</target>
+	</tweak>
+	<!-- Client request environment info -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="eclipse_request_environment_info" delivery="ordered" receiver="connection" check="server_to_client" />
+		</target>
+	</tweak>
+	<!-- Host sync environment info -->
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<message name="eclipse_sync_environment" delivery="ordered" receiver="connection" check="server_to_client">
+				<param type="string" />       <!-- environment_name -->
+				<param type="string" />       <!-- color_grading -->
 			</message>
 		</target>
 	</tweak>
