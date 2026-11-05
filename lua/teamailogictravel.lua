@@ -70,7 +70,7 @@ function TeamAILogicTravel.update(data, ...)
 	if my_data.advancing and my_data.advancing._ub_interrupt and not data.unit:movement():chk_action_forbidden("idle") then
 		data.unit:brain():action_request({
 			body_part = 2,
-			type = "idle"
+			type = "idle",
 		})
 	end
 	if data.objective then
