@@ -4,7 +4,7 @@ local mvec2 = Vector3()
 local mrot1 = Rotation()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-function ProjectileBase:update(_, t, dt)
+function ProjectileBase:update(unit, t, dt)
 	if not self._simulated and not self._collided then
 		self._unit:m_position(mvec1)
 		mvector3.set(mvec2, self._velocity * dt)
@@ -66,6 +66,10 @@ function ProjectileBase:update(_, t, dt)
 		end
 
 		self._unit:m_position(self._sweep_data.last_pos)
+	end
+	
+	if self._warning_fx_vfx_data then
+		self:_warning_fx_vfx_upd(unit, t, dt, self._warning_fx_vfx_data)
 	end
 end
 
