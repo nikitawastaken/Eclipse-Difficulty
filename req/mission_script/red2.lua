@@ -102,28 +102,28 @@ local mga_vault_event = {
 local elevator_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local skylight_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents,
 }
 local office_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -246,8 +246,6 @@ return {
 			{ id = 100043, delay = 15, delay_rand = 45 }, -- start more preferreds
 		},
 	},
-	-- Don't remove 'far spawns'
-	[107018] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
 	[104029] = forced_off,
 	[104071] = forced_off,
