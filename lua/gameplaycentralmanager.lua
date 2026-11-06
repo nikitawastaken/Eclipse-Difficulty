@@ -99,10 +99,3 @@ Hooks:PreHook(GamePlayCentralManager, "restart_the_game", "eclipse_restart_the_g
 		end
 	end
 end)
-
--- Request environment info on load
-Hooks:PostHook(GamePlayCentralManager, "load", "eclipse_gpcmanager_load", function()
-	if Network:is_client() then
-		managers.network:session():send_to_host("eclipse_request_environment_info")
-	end
-end)
