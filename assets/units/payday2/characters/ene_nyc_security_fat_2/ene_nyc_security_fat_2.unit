@@ -114,7 +114,7 @@
 		<extension name="sound" class="CopSound" />
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/payday2/characters/ene_nyc_security_fat_1/ene_nyc_security_fat_1"/>
+	<network sync="spawn" remote_unit="units/payday2/characters/ene_nyc_security_fat_2/ene_nyc_security_fat_2_husk"/>
 
 	<sounds>	
 		<default_soundsource source="Hips" />		
