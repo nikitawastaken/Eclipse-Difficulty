@@ -35,7 +35,7 @@ local forest_navlink = {
 	},
 	so_action = "e_nl_slide_down_2m",
 }
-	
+
 return {
 	-- Add power cut SO delay
 	[100313] = {
