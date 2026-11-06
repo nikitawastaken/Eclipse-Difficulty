@@ -75,18 +75,21 @@ local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
 return {
+	-- Combine some navigation areas
+	[100667] = {
+		ai_area = {
+			{ 2, 3 },
+			{ 11, 24, 25 },
+			{ 15, 22, 49 },
+			{ 18, 19 },
+			{ 26, 27 }
+		}
+	},
 	-- FFO
 	[101032] = {
 		ponr = {
 			length = 1200,
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
-		},
-	},
-	-- Combine some navigation areas
-	[100667] = {
-		ai_area = {
-			{ 14, 23 },
-			{ 2, 3 },
 		},
 	},
 	-- Add new navlinks
@@ -331,6 +334,8 @@ return {
 			}, -- The last one is behind the fence; there is no navigation there, sad.
 		},
 	},
+	-- Disable visible flee point
+	[100458] = disabled,
 	-- Spawn group intervals
 	[100467] = standard_spawn,
 	[100550] = standard_spawn,

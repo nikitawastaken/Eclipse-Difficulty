@@ -5,11 +5,29 @@ local standard_spawn = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[101711] = {
+		ai_area = {
+			{ 109, 201 },
+			{ 90, 200 }
+		}
+	},
 	[102064] = {
 		ponr = {
 			length = 60,
 			length_balance_mul = { 2.5, 1.75, 1.25, 1 },
 		},
+	},
+	-- Re-enable door nav segs when they open again
+	[100959] = {
+		func = function()
+			managers.navigation:perform_graph_operation(200, "allow_access")
+		end
+	},
+	[100965] = {
+		func = function()
+			managers.navigation:perform_graph_operation(201, "allow_access")
+		end
 	},
 	-- add SWATs that come out of the vans
 	[102765] = {
