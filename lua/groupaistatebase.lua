@@ -1429,6 +1429,9 @@ end
 -- Stealth Strike System
 function GroupAIStateBase:register_strike(amount, reason, is_pager)
 	self._stealth_strikes = self._stealth_strikes + amount
+	if Network:is_server() then
+		managers.network:session():send_to_peers("sync_register_strike", amount, reason, is_pager)
+	end
 
 	if is_pager then
 		self._nr_pager_answers = self._nr_pager_answers + 1

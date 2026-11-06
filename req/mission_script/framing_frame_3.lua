@@ -130,7 +130,7 @@ return {
 			operation = "secure",
 		},
 	},
-	-- add new navlinks
+	-- Add new navlinks
 	[105442] = {
 		on_executed = {
 			{ id = 400015, delay = 0 },

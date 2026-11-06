@@ -27,13 +27,31 @@ function ConnectionNetworkHandler:sync_damage_reduction_from_crewmate(sender)
 	managers.player:activate_temporary_upgrade("temporary", "damage_reduction_from_crewmate")
 end
 
--- TODO: Force load the env on the client. load_environment doesn't seem to
--- behave as expected on client but the env data is at least received
+function ConnectionNetworkHandler:sync_register_strike(amount, reason, is_pager, sender)
+	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	managers.groupai:state():register_strike(amount, reason, is_pager)
+end
+
+--Respond to environment sync request with environment info
+function ConnectionNetworkHandler:eclipse_request_environment_info(sender)
+	local peer = self._verify_sender(sender)
+	if not peer or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	peer:send("eclipse_sync_environment", Eclipse.current_environment, Eclipse.color_grading)
+end
+
+--Use environment info to setup environment
 function ConnectionNetworkHandler:eclipse_sync_environment(environment_name, color_grading, sender)
 	if not self._verify_sender(sender) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
 		return
 	end
 
+	Eclipse.utils.client_load_environment(tweak_data.levels[Eclipse.utils.level_id()], environment_name, color_grading)
 	Eclipse.current_environment = environment_name
 	Eclipse.color_grading = color_grading
 end

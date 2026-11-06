@@ -258,6 +258,7 @@ tweak_data.projectiles.sticky_grenade.damage = 24
 tweak_data.projectiles.sticky_grenade.curve_pow = 0.5
 tweak_data.projectiles.sticky_grenade.range = 200
 tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation on impact
+tweak_data.projectiles.sticky_grenade.warning_data = {} -- Dummy out beep sounds for this just in case
 
 -- Launcher Grenades
 tweak_data.projectiles.launcher_frag.damage = 36
@@ -344,6 +345,27 @@ tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
 tweak_data.projectiles.cluster.init_timer = 2.5
 tweak_data.projectiles.cluster.range = 300
+tweak_data.projectiles.cluster.detonate_timer = tweak_data.projectiles.cluster.init_timer -- for beep blinking
+tweak_data.projectiles.cluster.warning_data = {
+	beep_speeds = {
+		0.1,
+		0.025,
+	},
+	sound_data = {
+		event_name = "grenade_sticky_beep",
+		event_stop_name = "grenade_sticky_beep_stop",
+	},
+	light_data = {
+		beep_fade_speed = 4,
+		beep_mul = 0.3,
+		falloff_exp = 0.5,
+		link_to_unit = true,
+		range = 200,
+		specular_mul = 0.5,
+		type_str = "omni|specular",
+		color = Vector3(255, 0, 0),
+	},
+}
 
 -- Incendiary Cluster Grenade
 tweak_data.weapon_disable_crit_for_damage.cluster_incendiary = { explosion = false, fire = false }

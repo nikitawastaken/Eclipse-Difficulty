@@ -50,6 +50,7 @@ local cloaker_spawn = {
 	values = {
 		interval = 90,
 	},
+	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
 local chopper_delay = 300 - (diff_i_no_easy * 15) - (is_pro_job and 45 or 0)
@@ -151,14 +152,14 @@ return {
 	[100132] = window_spawn,
 	[100133] = window_spawn,
 	[103491] = window_spawn,
-	[100844] = cloaker_spawn,
-	[100848] = cloaker_spawn,
-	[100852] = cloaker_spawn,
-	[100856] = cloaker_spawn,
-	[100860] = cloaker_spawn,
-	[100864] = cloaker_spawn,
-	[100868] = cloaker_spawn,
-	[100873] = cloaker_spawn,
+	[500031] = cloaker_spawn,
+	[500032] = cloaker_spawn,
+	[500033] = cloaker_spawn,
+	[500034] = cloaker_spawn,
+	[500035] = cloaker_spawn,
+	[500036] = cloaker_spawn,
+	[500037] = cloaker_spawn,
+	[500038] = cloaker_spawn,
 	-- Replace Secret Service with the suit thugs
 	[100673] = security,
 	[100674] = security,

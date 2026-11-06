@@ -7,10 +7,10 @@
 		</sky_orientation>
 		<others>
 			<param key="sky_texture" value="core/environments/skies/sky_1830_low_sun_clouds/sky_1830_low_sun_clouds"/>
-			<param key="global_world_overlay_mask_texture" value=""/>
+			<param key="global_world_overlay_mask_texture" value="units/pd2_dlc_mex/terrain/mex_terrain_textures/mex_terrain_arizona_mask"/>
 			<param key="underlay" value="core/environments/skies/sky_1830_low_sun_clouds/sky_1830_low_sun_clouds"/>
 			<param key="sun_ray_color_scale" value="5.1609997749329"/>
-			<param key="global_world_overlay_texture" value=""/>
+			<param key="global_world_overlay_texture" value="units/pd2_dlc_mex/terrain/mex_terrain_textures/mex_terrain_arizona_df"/>
 			<param key="sun_ray_color" value="1 0.56078433990479 0.35686275362968"/>
 			<param key="global_texture" value="environments/cubemaps/cubemap_fex_sky"/>
 		</others>
@@ -25,7 +25,7 @@
 						<param key="fog_far_low_color" value="0.35686275362968 0.39215689897537 0.50980395078659"/>
 						<param key="ambient_falloff_scale" value="0.15999999642372"/>
 						<param key="sky_bottom_color_scale" value="0.47014576196671"/>
-						<param key="ambient_color_scale" value="0.075000002980232"/>
+						<param key="ambient_color_scale" value="0.75"/>
 						<param key="ambient_color" value="0.47058826684952 0.47058826684952 0.47058826684952"/>
 						<param key="fog_max_range" value="500000"/>
 						<param key="bloom_threshold" value="0.49835449457169"/>

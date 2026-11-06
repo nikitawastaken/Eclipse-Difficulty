@@ -93,6 +93,7 @@ return {
 		on_executed = {
 			{ id = 400009, delay = 10 },
 			{ id = 400010, delay = 10 },
+			{ id = 400080, delay = 0 },
 		},
 		-- Disable parts reinforce when drill is done
 		reinforce = {
@@ -358,11 +359,6 @@ return {
 	[101003] = { -- open_door (IT guy hack complete)
 		on_executed = {
 			{ id = 400079, delay = 0 },
-		},
-	},
-	[101829] = { -- drill_done (The Beast is done)
-		on_executed = {
-			{ id = 400080, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

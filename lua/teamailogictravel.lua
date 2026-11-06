@@ -1,20 +1,17 @@
 -- Don't carry over "firing" variable, it has a chance to stopp bots from shooting
 Hooks:PostHook(TeamAILogicTravel, "enter", "enter_ub", function(data)
-	data.internal_data.firing = nil
+	local my_data = data.internal_data
+	my_data.firing = nil
+
+	local lower_body_action = data.unit:movement()._active_actions[2]
+	if lower_body_action and lower_body_action:type() == "walk" then
+		lower_body_action._ub_interrupt = true
+		my_data.advancing = lower_body_action
+	end
 end)
 
 -- Make bots actually use inspire, not only if you are in their detected attention objects
 local check_inspire_original = TeamAILogicTravel.check_inspire
-local function path_length(path)
-	local dis = 0
-	for i = 1, #path - 1 do
-		local p1 = path[i].x and path[i] or path[i].element:value("position")
-		local p2 = path[i + 1].x and path[i + 1] or path[i + 1].element:value("position")
-		dis = dis + mvector3.distance(p1, p2)
-	end
-	return dis
-end
-
 function TeamAILogicTravel.check_inspire(data, attention, ...)
 	if data.objective and data.objective.action and data.objective.action.variant == "untie" then
 		return
@@ -68,6 +65,13 @@ local update_original = TeamAILogicTravel.update
 function TeamAILogicTravel.update(data, ...)
 	if TeamAILogicBase._check_deliver_bag(data) then
 		return
+	end
+	local my_data = data.internal_data
+	if my_data.advancing and my_data.advancing._ub_interrupt and not data.unit:movement():chk_action_forbidden("idle") then
+		data.unit:brain():action_request({
+			body_part = 2,
+			type = "idle",
+		})
 	end
 	if data.objective then
 		return update_original(data, ...)

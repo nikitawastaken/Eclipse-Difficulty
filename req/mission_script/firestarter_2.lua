@@ -57,6 +57,17 @@ return {
 			{ name = "street", position = Vector3(4600, 4600, 1) },
 		},
 	},
+	-- Slightly reduce and randomise preferred delays
+	[102078] = {
+		on_executed = {
+			{ id = 102079, delay = 20, delay_rand = 30 }, -- Vanilla: 45 + 0
+		},
+	},
+	[102079] = {
+		on_executed = {
+			{ id = 100971, delay = 20, delay_rand = 30 }, -- Vanilla: 45 + 0
+		},
+	},
 	-- disable the goat
 	[100797] = disabled,
 	-- tweak the confiscated loot chance

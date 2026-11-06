@@ -37,6 +37,12 @@ local exhibit_slow_rappel_spawn = {
 local last_rappel_spawn = {
 	groups = preferred.no_cops_agents_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 local green_security = {
 	enemy = {
 		[scripted_enemy.green_security_1] = 2,
@@ -154,6 +160,18 @@ return {
 	[101941] = last_rappel_spawn,
 	[101942] = last_rappel_spawn,
 	[101943] = last_rappel_spawn,
+	[500044] = cloaker_spawn,
+	[500045] = cloaker_spawn,
+	[500046] = cloaker_spawn,
+	[500047] = cloaker_spawn,
+	[500048] = cloaker_spawn,
+	[500049] = cloaker_spawn,
+	[500050] = cloaker_spawn,
+	[500051] = cloaker_spawn,
+	[500052] = cloaker_spawn,
+	[500053] = cloaker_spawn,
+	[500054] = cloaker_spawn,
+	[500055] = cloaker_spawn,
 	-- Replace regular security with green security
 	[100670] = green_security,
 	[100671] = green_security,

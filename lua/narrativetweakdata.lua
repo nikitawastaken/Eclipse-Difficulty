@@ -351,32 +351,48 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.branchbank.name_id = "heist_branchbank_hl"
 	self.jobs.branchbank.contract_visuals.preview_image = { id = "branchbank" }
 
-	self.jobs.arm_fac_single = deep_clone(self.jobs.arm_fac)
-	self.jobs.arm_par_single = deep_clone(self.jobs.arm_par)
-	self.jobs.arm_hcm_single = deep_clone(self.jobs.arm_hcm)
-	self.jobs.arm_und_single = deep_clone(self.jobs.arm_und)
-	self.jobs.arm_cro_single = deep_clone(self.jobs.arm_cro)
-
 	table.insert(self._jobs_index, "arm_wrapper")
-	self.jobs.arm_wrapper = deep_clone(self.jobs.arm_und)
+	self.jobs.arm_wrapper = {}
 	self.jobs.arm_wrapper.name_id = "heist_arm"
 	self.jobs.arm_wrapper.briefing_id = "heist_arm_und_crimenet"
 	self.jobs.arm_wrapper.contact = "bain"
+	self.jobs.arm_wrapper.jc = self.jobs.arm_und.jc
 	self.jobs.arm_wrapper.chain = {}
 	self.jobs.arm_wrapper.job_wrapper = {
-		"arm_cro_single",
-		"arm_und_single",
-		"arm_hcm_single",
-		"arm_par_single",
-		"arm_fac_single",
+		"arm_cro",
+		"arm_und",
+		"arm_hcm",
+		"arm_par",
+		"arm_fac",
 	}
+	self.jobs.arm_wrapper.payout = { 12500 }
+	self.jobs.arm_wrapper.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_wrapper.briefing_event = "pln_at1_cbf_01"
 	self.jobs.arm_wrapper.debrief_event = nil
 	self.jobs.arm_wrapper.crimenet_callouts = { "pln_at1_cnc_05_01" }
 	self.jobs.arm_wrapper.crimenet_videos = { "cn_branchbank1", "cn_branchbank3" }
 	self.jobs.arm_wrapper.load_screen = "guis/dlcs/pic/textures/loading/job_crossroads"
 	self.jobs.arm_wrapper.spawn_chance_multiplier = 1
+	self.jobs.arm_wrapper.contract_visuals = {}
 	self.jobs.arm_wrapper.contract_visuals.preview_image = { id = "armor_downtown" }
+	self.jobs.arm_wrapper.contract_visuals.min_mission_xp = {
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+	}
+	self.jobs.arm_wrapper.contract_visuals.max_mission_xp = {
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+		12000,
+	}
 
 	--Halloween heists gets Stonecold's (PDTH Alpha) menu movie (mysterious)
 	self.jobs.haunted.crimenet_videos = { "menu" }

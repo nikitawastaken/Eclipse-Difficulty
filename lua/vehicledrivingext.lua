@@ -14,7 +14,9 @@ function VehicleDrivingExt:clbk_drive_SO_verification(seat, candidate_unit, ...)
 	end
 
 	-- If vehicle is slower than bot running speed, don't enter
-	if self._tweak_data.max_speed * (1000 / 60) < candidate_unit:base():char_tweak().move_speed.stand.run.cbt.fwd then
+	local vehicle_speed = self._tweak_data.max_speed -- km/h
+	local bot_speed = candidate_unit:base():char_tweak().move_speed.stand.run.cbt.bwd * 0.036 -- cm/s to km/h
+	if bot_speed > vehicle_speed * 0.5 then
 		return
 	end
 

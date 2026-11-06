@@ -742,6 +742,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.cane.custom_package = {}
 	self.mex.custom_package = {}
 	self.dinner.custom_package = {}
+	self.brb.custom_package = {}
 	self.trai.custom_package = {}
 	self.corp.custom_package = {}
 	self.red2.custom_package = {}
@@ -768,6 +769,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.election_day_3.custom_package = green_security_package
 	self.election_day_3_skip1.custom_package = green_security_package
 	self.election_day_3_skip2.custom_package = green_security_package
+	table.insert(self.brb.custom_package, "packages/green_security")
 	table.insert(self.corp.custom_package, "packages/green_security")
 	
 	local classic_security = "packages/white_gensec_security"
@@ -796,8 +798,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dark.custom_package = murky_mercs_package
 	self.wwh.custom_package = murky_mercs_package
 
-	local murky_mercs_scripted_package = { "packages/murky_mercs_scripted" }
-	self.brb.custom_package = murky_mercs_scripted_package
+	local murky_mercs_scripted_package = "packages/murky_mercs_scripted"
+	table.insert(self.brb.custom_package, murky_mercs_scripted_package)
 
 	local zombie_faction_package = { "packages/zombie_cops" }
 	self.haunted.custom_package = zombie_faction_package
@@ -1273,6 +1275,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.welcome_to_the_jungle_2.random_environments = {
 		["big_oil_2_cg"] = 1,
+		["big_oil_2_plus"] = 4,
+		["big_oil_2_sunset"] = 3,
+		["big_oil_2_night"] = 2,
 	}
 	self.shoutout_raid.random_environments = {
 		["meltdown_01"] = 3,

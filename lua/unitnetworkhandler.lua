@@ -369,3 +369,25 @@ function UnitNetworkHandler:sync_ammo_bag_setup(unit, upgrade_lvl, auto_reload, 
 
 	unit:base():sync_setup(upgrade_lvl, peer_id, bullet_storm_level, auto_reload)
 end
+
+function UnitNetworkHandler:request_carried_bag_unit(ai_unit, sender)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(sender)
+
+	if not peer then
+		return
+	end
+
+	if alive(ai_unit) then
+		local carry_table = ai_unit:movement()._carry_table
+
+		if carry_table then
+			for _, carry in ipairs(carry_table) do
+				managers.network:session():send_to_peer(peer, "sync_carried_bag_unit", ai_unit, carry)
+			end
+		end
+	end
+end

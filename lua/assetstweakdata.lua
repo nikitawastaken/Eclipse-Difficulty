@@ -61,6 +61,7 @@ Hooks:PostHook(AssetsTweakData, "_init_risk_assets", "eclipse_init_risk_assets",
 		"jolly",
 		"peta_2",
 		"vit",
+		"trai",
 	}
 
 	self.risk_pd.exclude_stages = non_america_faction_heists

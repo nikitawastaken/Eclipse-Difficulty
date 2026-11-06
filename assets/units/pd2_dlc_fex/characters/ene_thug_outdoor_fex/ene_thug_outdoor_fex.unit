@@ -111,7 +111,7 @@
 		<extension name="sound" class="CopSound" />
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/pd2_dlc_mex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex_husk"/>
+	<network sync="spawn" remote_unit="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex_husk"/>
 
 	<sounds>
 		<default_soundsource source="Hips"/>

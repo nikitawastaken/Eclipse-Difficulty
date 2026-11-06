@@ -176,3 +176,23 @@ function HUDManager:_fadeout_effect_screen_vignette_friendly_fire_panel()
 	self._screen_vignette_friendly_fire_panel:set_alpha(0)
 	self._screen_vignette_friendly_fire_panel_active = false
 end
+
+function HUDManager:load(data)
+	local state = data.HUDManager
+
+	for id, init_data in pairs(state.waypoints) do
+		---Do not load trade icons through HUDManager
+		---They are created properly through CopBase!
+		if init_data.icon ~= "wp_trade" then
+			self:add_waypoint(id, init_data)
+		end
+	end
+
+	if state.in_assault then
+		self:sync_start_assault(state.assault_number ~= nil and state.assault_number or 1)
+
+		if state.assault_mode then
+			managers.hud:sync_set_assault_mode(state.assault_mode)
+		end
+	end
+end

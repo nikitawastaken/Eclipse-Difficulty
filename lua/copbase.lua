@@ -39,8 +39,15 @@ end)
 function CopBase:save(save_data)
 	local my_save_data = {}
 
-	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
-		my_save_data.is_hostage_trade = true
+	if self._unit:interaction() then
+		---Skip the vanilla checks, do our own
+		---Can cause compatibility issues if someone checks for
+		---trades using this method, but unlikely
+		if self._unit:interaction().tweak_data == "hostage_trade" then
+			my_save_data._is_hostage_trade = true
+		elseif self._unit:interaction().tweak_data == "hostage_trade_resources" then
+			my_save_data._is_resource_trade = true
+		end
 	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
 		my_save_data.is_hostage_convert = true
 	end
@@ -69,6 +76,18 @@ function CopBase:save(save_data)
 		save_data.base = my_save_data
 	end
 end
+
+Hooks:PostHook(CopBase, "load", "eclipse_copbase_load", function(self, load_data)
+	local my_load_data = load_data.base
+	if not my_load_data then
+		return
+	end
+	if my_load_data._is_hostage_trade then
+		CopLogicTrade.hostage_trade(self._unit, true, false, false, true)
+	elseif my_load_data._is_resource_trade then
+		CopLogicTrade.hostage_trade(self._unit, true, false, false, false)
+	end
+end)
 
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
 local unit_sequence_mapping = {}

@@ -109,18 +109,17 @@ function TeamAIMovement:has_crew_carrystacker()
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	local dropped
 	if unit then
 		table.insert(self._carry_table, unit)
 	elseif #self._carry_table > 0 then
-		dropped = table.remove(self._carry_table)
+		table.remove(self._carry_table)
 	end
 
 	local name_label = managers.hud:_get_name_label(self._unit:unit_data().name_label_id)
 	if name_label then
 		local bag_panel = name_label.panel and name_label.panel:child("bag")
 		if bag_panel then
-			bag_panel:set_visible(unit or dropped)
+			bag_panel:set_visible(#self._carry_table > 0)
 		end
 	end
 
@@ -246,3 +245,15 @@ function TeamAIMovement:sync_throw_bag(carry_unit, target_unit)
 		carry_unit:push(tweak_data.ai_carry.throw_force, (dir - carry_unit:velocity()) * throw_distance_multiplier * 0.01)
 	end
 end
+
+Hooks:PostHook(TeamAIMovement, "pre_destroy", "eclipse_teamaimove_pre_destroy", function(self)
+	local carry_table = self._carry_table
+	for _, carry in ipairs(carry_table) do
+		---Apparently this can crash if a bot secures a bag
+		---at the same time as the heist ending so here's
+		---a possible remedy?
+		if alive(carry) and carry:carry_data() then
+			carry:carry_data():unlink()
+		end
+	end
+end)
