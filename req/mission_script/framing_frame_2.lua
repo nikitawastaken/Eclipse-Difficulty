@@ -9,8 +9,8 @@ return {
 	[101711] = {
 		ai_area = {
 			{ 109, 201 },
-			{ 90, 200 }
-		}
+			{ 90, 200 },
+		},
 	},
 	[102064] = {
 		ponr = {
@@ -22,12 +22,12 @@ return {
 	[100959] = {
 		func = function()
 			managers.navigation:perform_graph_operation(200, "allow_access")
-		end
+		end,
 	},
 	[100965] = {
 		func = function()
 			managers.navigation:perform_graph_operation(201, "allow_access")
-		end
+		end,
 	},
 	-- add SWATs that come out of the vans
 	[102765] = {

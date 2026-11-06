@@ -74,8 +74,8 @@ return {
 			{ 11, 24, 25 },
 			{ 15, 22, 49 },
 			{ 18, 19 },
-			{ 26, 27 }
-		}
+			{ 26, 27 },
+		},
 	},
 	-- Instant FFO after cooking 15 bags
 	[102452] = { -- methbag_produced
