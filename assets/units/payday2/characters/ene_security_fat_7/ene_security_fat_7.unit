@@ -97,7 +97,7 @@
 			<var name="_head" value="units/payday2/characters/ene_acc_fat_head/ene_acc_fat_head" />		
 			<var name="_head_gear_object" value="g_hat_security_lod" />
 			<var name="_nr_head_gear_objects" value="2" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_security_cap_2/ene_acc_security_cap_2" />
+			<var name="_head_gear" value="units/payday2/characters/ene_acc_security_cap_2/ene_acc_security_cap_2" />	
 		</extension>
 		<extension name="movement" class="CopMovement" >		
 			<var name="_footwear" value="hardsole" />
@@ -114,7 +114,7 @@
 		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/payday2/characters/ene_security_fat_4/ene_security_fat_4_husk" />
+	<network sync="spawn" remote_unit="units/payday2/characters/ene_security_fat_7/ene_security_fat_7_husk" />
 
 	<sounds>	
 		<default_soundsource source="Hips" />		
