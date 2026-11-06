@@ -1335,7 +1335,7 @@ Hooks:PreHook(PlayerStandard, "_update_movement", "eclipse_update_movement", fun
 	if Eclipse.utils.level_id() == "alex_2" and managers.groupai:state():whisper_mode() then
 		return
 	end
-	
+
 	local cur_pos = pos_new or self._pos
 	local move_dis = mvector3.distance_sq(cur_pos, self._last_sent_pos)
 	if not self:_on_zipline() and (move_dis > 22500 or move_dis > 400 and (t - self._last_sent_pos_t > 1.5 or not pos_new)) then
