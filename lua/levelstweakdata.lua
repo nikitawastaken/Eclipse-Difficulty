@@ -819,7 +819,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	table.insert(self.glace.custom_package, "packages/nypd")
 	table.insert(self.dah.custom_package, "packages/nypd")
 	table.insert(self.nmh.custom_package, "packages/nypd")
-	self.brb.custom_package = nypd_package
+	table.insert(self.brb.custom_package, "packages/nypd")
 	self.spa.custom_package = nypd_package
 
 	local coast_guard_package = { "packages/coast_guard" }
