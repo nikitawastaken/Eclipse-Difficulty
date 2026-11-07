@@ -851,7 +851,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
-	
+
 	Eclipse.mission_elements.gen_so(400138, "medic_vault_ambush_so_1", Vector3(5381, 1193, -424.896), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400139, "medic_vault_ambush_so_2", Vector3(5385, 1321, -424.896), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	-- mission scripts
