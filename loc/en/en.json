@@ -63,7 +63,7 @@
 	"hint_stealth_strike_alarm_pager_not_answered": "Pager call not answered. Suspicion increased.",
 	"hint_stealth_strike_alarm_pager_hang_up": "Pager call hung up. Suspicion increased.",
 	"hint_stealth_strike_civ_too_many_killed": "Civilian killed. Suspicion increased.",
-	
+
 	"hint_ability_no_grenade_pickup": "You can't refill a perk deck throwable.",
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
@@ -170,8 +170,8 @@
 	"eclipse_menu_team_ai_targeting_enemies_city_tank_desc": "Priority multiplier for Elite Bulldozers",
 	"eclipse_menu_team_ai_targeting_enemies_tank_medic": "Medicdozer",
 	"eclipse_menu_team_ai_targeting_enemies_tank_medic_desc": "Priority multiplier for Medicdozers",
-		
-	"menu_pro_warning": "This is a pro job! Experience gain and contract pay are increased by 20%.\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
+
+	"menu_pro_warning": "This is a pro job! Experience gain and contract pay are increased by 20%.\nRestarting the heist requires spending half of the offshore cost.\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Death Wish",
 	"menu_risk_easy_wish": "Death Wish.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
@@ -265,7 +265,7 @@
 	"mad_txt_006": "ОПЕРАЦИОННАЯ",
 
 	"menu_mutators_achievement_disabled": "",
-	
+
 	"menu_asset_army_info": "Army units",
 
 	"menu_infamy_go_infamous_error_money": "YOU NEED TO PAY 100.000.000$ FROM YOUR OFFSHORE ACCOUNT TO GO INFAMOUS",
@@ -315,6 +315,6 @@
 	"dialog_show_restart_game_message_not_enough_offshore": "You don't have enough offshore to restart the game.",
 	"menu_victory_retry_stage_offshore_restart": "$CONTINUE; Retry Stage($OFFSHORE; offshore)",
 	"failed_disconnected_continue_offshore_restart": "$CONTINUE; Return to menu(Not enough offshore)",
-	
+
 	"hud_int_hold_take_pardons": "Press $BTN_INTERACT to take the pardon"
 }

@@ -50,9 +50,14 @@ return {
 			length_balance_mul = { 2.5, 1.5, 1, 1 },
 		},
 	},
-	-- Additional flee points
 	[102375] = {
-		flee_point = {
+		ai_area = { -- Combine some navigation areas
+			{ 6, 53, 56, 69, 70 },
+			{ 9, 74, 75, 76 },
+			{ 10, 71, 72, 73 },
+			{ 11, 50 },
+		},
+		flee_point = { -- Additional flee points
 			{ name = "side", position = Vector3(-3900, -50, 1) },
 			{ name = "street", position = Vector3(4600, 4600, 1) },
 		},

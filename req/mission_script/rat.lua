@@ -49,12 +49,12 @@ local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job 
 local sniper_respawn_3 = (is_eclipse and 30 or hard and 40 or 60) - (is_pro_job and 10 or 0)
 local standard_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local flank_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -67,6 +67,16 @@ local filter_disable = {
 local meth_lab_in_basement_chance = math.random() < 0.25
 
 return {
+	-- Combine some navigation areas
+	[100667] = {
+		ai_area = {
+			{ 2, 3 },
+			{ 11, 24, 25 },
+			{ 15, 22, 49 },
+			{ 18, 19 },
+			{ 26, 27 },
+		},
+	},
 	-- Instant FFO after cooking 15 bags
 	[102452] = { -- methbag_produced
 		on_executed = {
@@ -75,13 +85,6 @@ return {
 	},
 	[400012] = { -- cooked bags
 		set_ponr_state = true,
-	},
-	-- Combine some navigation areas
-	[100667] = {
-		ai_area = {
-			{ 14, 23 },
-			{ 2, 3 },
-		},
 	},
 	-- Add new navlinks
 	[101497] = { -- 1stFloorNavlinks
@@ -331,6 +334,8 @@ return {
 			}, -- The last one is behind the fence; there is no navigation there, sad.
 		},
 	},
+	-- Disable visible flee point
+	[100458] = disabled,
 	-- Spawn group intervals
 	[100467] = standard_spawn,
 	[100550] = standard_spawn,

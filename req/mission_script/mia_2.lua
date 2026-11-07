@@ -55,13 +55,12 @@ local apartment_spawn = {
 		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 }
-local skylight_navlink_interval = {
+local skylight_navlink = {
 	values = {
-		interval = 6, -- (Vanilla: 10s)
+		enabled = true,
+		interval = 4,
 	},
 }
-local skylight_navlink_interval_enable = deep_clone(skylight_navlink_interval)
-skylight_navlink_interval_enable.values.enabled = true
 
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
@@ -231,19 +230,14 @@ return {
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
-	-- Decrease skylight navlink intervals
-	-- e_nl_down_4m
-	[101055] = skylight_navlink_interval,
-	[101086] = skylight_navlink_interval_enable,
-	[101087] = skylight_navlink_interval_enable,
-	[101089] = skylight_navlink_interval,
-	[101090] = skylight_navlink_interval,
-	[101091] = skylight_navlink_interval,
-	[101092] = skylight_navlink_interval,
-	[101093] = skylight_navlink_interval,
-	[101094] = skylight_navlink_interval,
-	[101185] = skylight_navlink_interval,
-	[101190] = skylight_navlink_interval,
+	-- Reduce skylight navlink cooldowns and enable disabled ones
+	[101055] = skylight_navlink,
+	[101086] = skylight_navlink,
+	[101087] = skylight_navlink,
+	[101089] = skylight_navlink,
+	[101090] = skylight_navlink,
+	[101091] = skylight_navlink,
+	[101092] = skylight_navlink,
 	-- Spawn group intervals
 	[101084] = apartment_spawn,
 	[101085] = apartment_spawn,

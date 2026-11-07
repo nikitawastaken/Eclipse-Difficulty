@@ -68,9 +68,8 @@ for i = 0, 3 do
 	})
 end
 return {
-	-- Combine some navigation areas
-	[134066] = {
-		ai_area = {
+	[100017] = {
+		ai_area = { -- Combine some navigation areas
 			{ 41, 42 },
 			{ 4, 34, 135 },
 			{ 3, 136, 137 },
@@ -78,6 +77,7 @@ return {
 			{ 113, 117 },
 			{ 114, 115 },
 		},
+		spawn = los_blockers, -- Add LoS blockers
 	},
 	-- FFOs
 	-- vault is open (default route)
@@ -93,10 +93,6 @@ return {
 			length = 300,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
-	},
-	-- Add LoS blockers
-	[143003] = {
-		spawn = los_blockers,
 	},
 	-- Reenforce points
 	[103167] = disabled,
