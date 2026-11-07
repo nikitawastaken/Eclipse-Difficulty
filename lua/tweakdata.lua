@@ -261,7 +261,7 @@ tweak_data.projectiles.sticky_grenade.detonate_timer = 0 -- Instant detonation o
 tweak_data.projectiles.sticky_grenade.warning_data = {} -- Dummy out beep sounds for this just in case
 
 -- Launcher Grenades
-tweak_data.projectiles.launcher_frag.damage = 36
+tweak_data.projectiles.launcher_frag.damage = 40
 tweak_data.projectiles.launcher_frag.curve_pow = 1
 tweak_data.projectiles.launcher_frag.range = 350
 
@@ -282,19 +282,18 @@ tweak_data.projectiles.launcher_poison_slap = create_poison_grenade(tweak_data.p
 
 -- China Puff
 --tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_frag_china.damage = 30
+tweak_data.projectiles.launcher_frag_china.damage = 32
 
 tweak_data.projectiles.launcher_incendiary_china = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china)
 tweak_data.projectiles.launcher_electric_china = create_electric_grenade(tweak_data.projectiles.launcher_frag_china)
 tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.projectiles.launcher_frag_china)
 
 -- Little Friend Underbarrel
---tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
---tweak_data.projectiles.launcher_m203.projectile_trail = true
+tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
+tweak_data.projectiles.launcher_m203.projectile_trail = true
 
 -- Groza Underbarrel
---tweak_data.projectiles.underbarrel_m203_groza = deep_clone(tweak_data.projectiles.launcher_frag)
---tweak_data.projectiles.underbarrel_m203_groza.projectile_trail = true
+tweak_data.projectiles.underbarrel_m203_groza = deep_clone(tweak_data.projectiles.launcher_m203)
 
 -- Piglet
 --tweak_data.projectiles.launcher_frag_m32 = deep_clone(tweak_data.projectiles.launcher_frag)

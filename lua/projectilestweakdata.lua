@@ -19,11 +19,6 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.poison_gas_grenade.max_amount = 3
 	self.projectiles.wpn_gre_electric.max_amount = 3
 
-	-- Set projectile throwing speeds
-	self.projectiles.wpn_prj_four.throw_speed_mul = 4 / 3
-	self.projectiles.wpn_prj_hur.throw_speed_mul = 4 / 3
-	self.projectiles.wpn_prj_target.throw_speed_mul = 4 / 3
-
 	-- Give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
 	self.projectiles.fir_com.animation = self.projectiles.frag_com.animation
@@ -31,6 +26,11 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.wpn_gre_electric.animation = self.projectiles.frag_com.animation
 	self.projectiles.poison_gas_grenade.animation = self.projectiles.frag_com.animation -- ditto
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
+	
+	-- Set projectile throwing speeds
+	self.projectiles.wpn_prj_four.throw_speed_mul = 4 / 3
+	self.projectiles.wpn_prj_hur.throw_speed_mul = 4 / 3
+	self.projectiles.wpn_prj_target.throw_speed_mul = 4 / 3
 
 	-- Increase the Laser Chronometer's fire rate but decrease the damage (higher ammo consumption)
 	self.projectiles.laser_watch.reuse_expire_t = self.projectiles.laser_watch.reuse_expire_t / 2

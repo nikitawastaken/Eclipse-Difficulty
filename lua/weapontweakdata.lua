@@ -3143,7 +3143,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- China Puff
 	self.china.use_data.selection_index = 2
 	self.china.CLIP_AMMO_MAX = 3
-	self.china.stats.damage = 30
+	self.china.stats.damage = 32
 	self.china.stats.spread = 22
 	self.china.stats.recoil = 20
 	self.china.stats.concealment = 15
@@ -3156,7 +3156,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- GL40
 	self.gre_m79.use_data.selection_index = 1
 	self.gre_m79.CLIP_AMMO_MAX = 1
-	self.gre_m79.stats.damage = 36
+	self.gre_m79.stats.damage = 40
 	self.gre_m79.stats.spread = 24
 	self.gre_m79.stats.recoil = 20
 	self.gre_m79.stats.concealment = 22
@@ -3168,10 +3168,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	
 	-- Compact 40
 	self.slap.CLIP_AMMO_MAX = 1
-	self.slap.stats.damage = 36
-	self.slap.stats.spread = 22
-	self.slap.stats.recoil = 22
-	self.slap.stats.concealment = 24
+	self.slap.stats.damage = 40
+	self.slap.stats.spread = 24
+	self.slap.stats.recoil = 20
+	self.slap.stats.concealment = 22
 	self.slap.stats.swap_speed = 9
 	self.slap.stats.steelsight_speed = 9
 	self.slap.stats.exit_run_speed = 9
@@ -3179,7 +3179,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.slap.stats_modifiers = { damage = 10 }
 	self.slap.timers.reload_not_empty = 3.1
 	self.slap.timers.reload_empty = self.slap.timers.reload_not_empty
-	self.slap.reload_speed_multiplier = 1.1
+	self.slap.reload_speed_multiplier = self.slap.timers.reload_not_empty / self.gre_m79.timers.reload_not_empty
 	
 	-- Rocket Launchers
 	local rocket_launcher_category = {
