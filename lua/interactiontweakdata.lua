@@ -154,7 +154,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 		self.hack_suburbia_jammed_y.sound_start = "bar_drill_fix"
 		self.hack_suburbia_jammed_y.sound_interupt = "bar_drill_fix_cancel"
 		self.hack_suburbia_jammed_y.sound_done = "bar_drill_fix_finished"
-		
+
 		self.diamond_pickup.sound_event = "money_collect_medium"
 		self.diamond_single_pickup_axis.sound_event = "money_collect_large"
 		self.money_wrap_single_bundle.sound_event = "money_collect_small"
