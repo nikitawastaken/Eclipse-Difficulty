@@ -26,7 +26,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_projectiles", "eclipse__init_project
 	self.projectiles.wpn_gre_electric.animation = self.projectiles.frag_com.animation
 	self.projectiles.poison_gas_grenade.animation = self.projectiles.frag_com.animation -- ditto
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
-	
+
 	-- Set projectile throwing speeds
 	self.projectiles.wpn_prj_four.throw_speed_mul = 4 / 3
 	self.projectiles.wpn_prj_hur.throw_speed_mul = 4 / 3
