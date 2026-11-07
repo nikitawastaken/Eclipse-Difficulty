@@ -470,3 +470,167 @@ function IngameContractGui:init(ws, node)
 		},
 	})
 end
+
+function IngameContractGui:set_potential_rewards(show_max)
+	if not alive(self._rewards_panel) then
+		return
+	end
+
+	if self._node then
+		self._node:parameters().show_potential_max = show_max
+	end
+
+	local font_size = tweak_data.menu.pd2_small_font_size
+	local risk_color = tweak_data.screen_colors.risk
+	local job_data = managers.job:current_job_data()
+	local job_chain = managers.job:current_job_chain_data()
+	local job_stars = managers.job:current_job_stars()
+	local job_and_difficulty_stars = managers.job:current_job_and_difficulty_stars()
+	local difficulty_stars = managers.job:current_difficulty_stars()
+	local job_id = managers.job:current_job_id()
+	local has_ghost_bonus = managers.job:has_ghost_bonus()
+	local heat_color = managers.job:get_job_heat_color(managers.job:current_job_id())
+	local job_heat_mul = managers.job:get_job_heat_multipliers(managers.job:current_job_id()) - 1
+	local job_heat = math.round(job_heat_mul * 100)
+	local is_job_heated = job_heat ~= 0 or job_heat_mul ~= 0
+
+	self._rewards_panel:clear()
+
+	local jobpay_title = self._jobpay_title
+	local experience_title = self._experience_title
+	local sx = math.max(jobpay_title:right(), experience_title:right()) + 8
+	local cy = jobpay_title:center_y()
+	local total_xp, dissected_xp, total_payout, base_payout, risk_payout
+	local contract_visuals = job_data.contract_visuals or {}
+	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp) or 0
+	local xp_max = contract_visuals.max_mission_xp and (type(contract_visuals.max_mission_xp) == "table" and contract_visuals.max_mission_xp[difficulty_stars + 1] or contract_visuals.max_mission_xp) or 0
+
+	if show_max then
+		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_id, job_stars, difficulty_stars, job_data.professional, #job_chain, {
+			mission_xp = xp_max
+		})
+		total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, #job_chain, job_id, nil, {
+			mandatory_bags_value = contract_visuals.mandatory_bags_value and contract_visuals.mandatory_bags_value[difficulty_stars + 1],
+			bonus_bags_value = contract_visuals.bonus_bags_value and contract_visuals.bonus_bags_value[difficulty_stars + 1],
+			small_value = contract_visuals.small_value and contract_visuals.small_value[difficulty_stars + 1],
+			vehicle_value = contract_visuals.vehicle_value and contract_visuals.vehicle_value[difficulty_stars + 1]
+		})
+	else
+		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_id, job_stars, difficulty_stars, job_data.professional, #job_chain, {
+			mission_xp = xp_min
+		})
+		total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, #job_chain, job_id)
+	end
+
+	local base_xp, risk_xp, heat_base_xp, heat_risk_xp, ghost_base_xp, ghost_risk_xp = unpack(dissected_xp)
+	local cy = experience_title:center_y()
+	local num_days = #job_chain or 1
+	local days_multiplier = 0
+	local job_xp = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.text
+	})
+
+	job_xp:set_text(managers.money:add_decimal_marks_to_string(tostring(math.round(base_xp))))
+	managers.hud:make_fine_text(job_xp)
+	job_xp:set_x(sx)
+	job_xp:set_center_y(cy)
+
+	local heat_xp = math.round(heat_base_xp + heat_risk_xp)
+	local ghost_xp = math.round(ghost_base_xp + ghost_risk_xp)
+	local risk_prefix = risk_xp >= 0 and " +" or " -"
+	local heat_prefix = heat_xp >= 0 and " +" or " -"
+	local ghost_prefix = ghost_xp >= 0 and " +" or " -"
+	local abs_risk_xp = math.abs(math.round(risk_xp))
+	local abs_heat_xp = math.abs(heat_xp)
+	local abs_ghost_xp = math.abs(ghost_xp)
+	local add_xp = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = risk_color
+	})
+
+	add_xp:set_text(risk_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_risk_xp)))
+	managers.hud:make_fine_text(add_xp)
+	add_xp:set_x(job_xp:right())
+	add_xp:set_center_y(cy)
+
+	local ghost_add_xp = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.ghost_color
+	})
+
+	ghost_add_xp:set_text(ghost_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_ghost_xp)))
+	managers.hud:make_fine_text(ghost_add_xp)
+	ghost_add_xp:set_x(math.round(add_xp:right()))
+	ghost_add_xp:set_center_y(math.round(cy))
+	ghost_add_xp:set_visible(has_ghost_bonus)
+
+	local heat_add_xp = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = heat_color
+	})
+
+	heat_add_xp:set_text(heat_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_heat_xp)))
+	managers.hud:make_fine_text(heat_add_xp)
+	heat_add_xp:set_x(math.round(ghost_add_xp:visible() and ghost_add_xp:right() or add_xp:right()))
+	heat_add_xp:set_center_y(math.round(cy))
+	heat_add_xp:set_visible(is_job_heated)
+
+	local gain_xp = total_xp
+	local levels_gained = managers.experience:get_levels_gained_from_xp(gain_xp)
+	local reached_level_cap = managers.experience:reached_level_cap()
+	local levelup_text = reached_level_cap and managers.localization:to_upper_text("menu_reached_level_cap") or managers.localization:to_upper_text("menu_levelup", {
+		levels = string.format("%0.1d%%", levels_gained * 100)
+	})
+	local potential_level_up_text = self._rewards_panel:text({
+		blend_mode = "normal",
+		layer = 3,
+		name = "potential_level_up_text",
+		visible = true,
+		text = levelup_text,
+		font_size = tweak_data.menu.pd2_small_font_size,
+		font = tweak_data.menu.pd2_small_font,
+		color = tweak_data.hud_stats.potential_xp_color
+	})
+
+	managers.hud:make_fine_text(potential_level_up_text)
+	potential_level_up_text:set_left(math.round((heat_add_xp:visible() and heat_add_xp:right() or ghost_add_xp:visible() and ghost_add_xp:right() or add_xp:right()) + 4))
+	potential_level_up_text:set_top(math.round(heat_add_xp:top()))
+	potential_level_up_text:set_visible(not managers.job:stage_success() or not managers.job:on_last_stage())
+
+	local total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, num_days, managers.job:current_job_id())
+	local cy = jobpay_title:center_y()
+	local job_cash = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.text
+	})
+
+	job_cash:set_text(managers.experience:cash_string(math.round(base_payout)))
+	managers.hud:make_fine_text(job_cash)
+	job_cash:set_x(sx)
+	job_cash:set_center_y(cy)
+
+	local add_cash = self._rewards_panel:text({
+		text = "",
+		font = tweak_data.menu.pd2_small_font,
+		font_size = font_size,
+		color = risk_color
+	})
+
+	add_cash:set_text(" +" .. managers.experience:cash_string(math.round(risk_payout)))
+	managers.hud:make_fine_text(add_cash)
+	add_cash:set_x(job_cash:right())
+	add_cash:set_center_y(cy)
+
+	local payday_value = total_payout
+end
