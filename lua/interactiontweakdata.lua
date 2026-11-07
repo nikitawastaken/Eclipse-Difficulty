@@ -134,7 +134,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_trade.sound_interupt = "bar_rescue_cancel"
 	self.hostage_trade.sound_done = "bar_rescue_finished"
 
-	-- PDTH reference
+	-- PDTH references
 	if level_id == "pal" or level_id == "dah" then
 		self.hack_suburbia_jammed.sound_start = "bar_drill_fix"
 		self.hack_suburbia_jammed.sound_interupt = "bar_drill_fix_cancel"
@@ -154,6 +154,19 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 		self.hack_suburbia_jammed_y.sound_start = "bar_drill_fix"
 		self.hack_suburbia_jammed_y.sound_interupt = "bar_drill_fix_cancel"
 		self.hack_suburbia_jammed_y.sound_done = "bar_drill_fix_finished"
+		
+		self.diamond_pickup.sound_event = "money_collect_medium"
+		self.diamond_single_pickup_axis.sound_event = "money_collect_large"
+		self.money_wrap_single_bundle.sound_event = "money_collect_small"
+		self.safe_loot_pickup.sound_event = "money_collect_large"
+		self.suburbia_necklace_pickup.sound_event = "money_collect_large"
+	end
+
+	if level_id == "red2" or level_id == "flat" or level_id == "dinner" then
+		self.diamond_pickup.sound_event = "money_collect_medium"
+		self.money_wrap_single_bundle.sound_event = "money_collect_small"
+		self.safe_loot_pickup.sound_event = "money_collect_large"
+		self.diamond_single_pickup_axis.sound_event = "money_collect_large"
 	end
 
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
