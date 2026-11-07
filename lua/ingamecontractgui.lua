@@ -502,22 +502,24 @@ function IngameContractGui:set_potential_rewards(show_max)
 	local cy = jobpay_title:center_y()
 	local total_xp, dissected_xp, total_payout, base_payout, risk_payout
 	local contract_visuals = job_data.contract_visuals or {}
-	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp) or 0
-	local xp_max = contract_visuals.max_mission_xp and (type(contract_visuals.max_mission_xp) == "table" and contract_visuals.max_mission_xp[difficulty_stars + 1] or contract_visuals.max_mission_xp) or 0
+	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
+		or 0
+	local xp_max = contract_visuals.max_mission_xp and (type(contract_visuals.max_mission_xp) == "table" and contract_visuals.max_mission_xp[difficulty_stars + 1] or contract_visuals.max_mission_xp)
+		or 0
 
 	if show_max then
 		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_id, job_stars, difficulty_stars, job_data.professional, #job_chain, {
-			mission_xp = xp_max
+			mission_xp = xp_max,
 		})
 		total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, #job_chain, job_id, nil, {
 			mandatory_bags_value = contract_visuals.mandatory_bags_value and contract_visuals.mandatory_bags_value[difficulty_stars + 1],
 			bonus_bags_value = contract_visuals.bonus_bags_value and contract_visuals.bonus_bags_value[difficulty_stars + 1],
 			small_value = contract_visuals.small_value and contract_visuals.small_value[difficulty_stars + 1],
-			vehicle_value = contract_visuals.vehicle_value and contract_visuals.vehicle_value[difficulty_stars + 1]
+			vehicle_value = contract_visuals.vehicle_value and contract_visuals.vehicle_value[difficulty_stars + 1],
 		})
 	else
 		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_id, job_stars, difficulty_stars, job_data.professional, #job_chain, {
-			mission_xp = xp_min
+			mission_xp = xp_min,
 		})
 		total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, #job_chain, job_id)
 	end
@@ -530,7 +532,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	job_xp:set_text(managers.money:add_decimal_marks_to_string(tostring(math.round(base_xp))))
@@ -550,7 +552,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = risk_color
+		color = risk_color,
 	})
 
 	add_xp:set_text(risk_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_risk_xp)))
@@ -562,7 +564,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.ghost_color
+		color = tweak_data.screen_colors.ghost_color,
 	})
 
 	ghost_add_xp:set_text(ghost_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_ghost_xp)))
@@ -575,7 +577,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = heat_color
+		color = heat_color,
 	})
 
 	heat_add_xp:set_text(heat_prefix .. managers.money:add_decimal_marks_to_string(tostring(abs_heat_xp)))
@@ -587,9 +589,10 @@ function IngameContractGui:set_potential_rewards(show_max)
 	local gain_xp = total_xp
 	local levels_gained = managers.experience:get_levels_gained_from_xp(gain_xp)
 	local reached_level_cap = managers.experience:reached_level_cap()
-	local levelup_text = reached_level_cap and managers.localization:to_upper_text("menu_reached_level_cap") or managers.localization:to_upper_text("menu_levelup", {
-		levels = string.format("%0.1d%%", levels_gained * 100)
-	})
+	local levelup_text = reached_level_cap and managers.localization:to_upper_text("menu_reached_level_cap")
+		or managers.localization:to_upper_text("menu_levelup", {
+			levels = string.format("%0.1d%%", levels_gained * 100),
+		})
 	local potential_level_up_text = self._rewards_panel:text({
 		blend_mode = "normal",
 		layer = 3,
@@ -598,7 +601,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = levelup_text,
 		font_size = tweak_data.menu.pd2_small_font_size,
 		font = tweak_data.menu.pd2_small_font,
-		color = tweak_data.hud_stats.potential_xp_color
+		color = tweak_data.hud_stats.potential_xp_color,
 	})
 
 	managers.hud:make_fine_text(potential_level_up_text)
@@ -612,7 +615,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	job_cash:set_text(managers.experience:cash_string(math.round(base_payout)))
@@ -624,7 +627,7 @@ function IngameContractGui:set_potential_rewards(show_max)
 		text = "",
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = risk_color
+		color = risk_color,
 	})
 
 	add_cash:set_text(" +" .. managers.experience:cash_string(math.round(risk_payout)))
