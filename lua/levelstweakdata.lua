@@ -114,7 +114,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hvh.force_size_preset = "reduced_t3"
 	self.mia_2.force_size_preset = "reduced_t3"
 
-	self.chill_combat.force_size_preset = "reduced_t2"	
+	self.chill_combat.force_size_preset = "reduced_t2"
 	self.bph.force_size_preset = "reduced_t2"
 	self.fex.force_size_preset = "reduced_t2"
 	self.framing_frame_3.force_size_preset = "reduced_t2"
@@ -174,7 +174,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.red2.difficulty_scaling_preset = "regroup_random"
 	self.sand.difficulty_scaling_preset = "regroup_random"
 	self.trai.difficulty_scaling_preset = "regroup_random"
-	
+
 	self.watchdogs_1.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_1_night.difficulty_scaling_preset = "regroup_aggressive"
 	self.watchdogs_2.difficulty_scaling_preset = "regroup_aggressive"

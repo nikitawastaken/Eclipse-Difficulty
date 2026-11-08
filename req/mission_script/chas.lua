@@ -196,7 +196,7 @@ return {
 		on_executed = {
 			{ id = 400043, delay = 0 },
 		},
-	},	
+	},
 	[102704] = { -- drill_is_complete
 		on_executed = {
 			{ id = 101661, delay = 0 }, -- disable tear gas SO once the drill is finished

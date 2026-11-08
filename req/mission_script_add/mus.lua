@@ -228,7 +228,7 @@ M.elements = {
 	-- Scripted difficulty steps
 	Eclipse.mission_elements.gen_difficulty(400005, "mus_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400006, "mus_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(500000, "cloaker_hide_so_1", Vector3(-1359, -1799, -300), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_4),

@@ -131,7 +131,7 @@ local optsCloaker_Hide_SpotSO_7 = get_hiding_cloaker_so_opts("e_so_hide_ledge_en
 M.elements = {
 	Eclipse.mission_elements.gen_difficulty(400001, "fex_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400002, "fex_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(500000, "cloaker_hide_so_1", Vector3(118, 1878, 5.393), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_4),
