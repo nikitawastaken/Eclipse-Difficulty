@@ -675,7 +675,7 @@
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
-			<run_sequence 		name="'hat_'..pick('base','backward')" />
+			<run_sequence 		name="'hat_'..pick('backward','backward','base')" />
 		</sequence>	
 		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true">
 			<object 			filter="'check_city_swat'" enabled="true" name="'g_hat_city_swat_lod1'" />
@@ -704,7 +704,7 @@
 			<object 			enabled="true" name="'g_hat_swat_lod8'" />
 			<object 			enabled="true" name="'g_hat_swat_lod9'" />
 		</sequence>
-
+		</sequence>
 		<sequence editable_state="true" name="'goggles_swat_hat_b'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_hat_swat_lod10'" />
 			<object 			enabled="true" name="'g_hat_swat_lod11'" />
