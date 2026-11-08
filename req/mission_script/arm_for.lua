@@ -80,7 +80,7 @@ local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.2, 1.1, 1 },
+		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
 return {

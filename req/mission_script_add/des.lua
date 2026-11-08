@@ -1,6 +1,8 @@
 ---@module Green Bridge
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local optsFlankPreferredAdd01 = {
 	spawn_groups = { 400001 },
 	enabled = true,
@@ -24,6 +26,7 @@ local optsDifficultyAddend01 = {
 			amount = 0.25,
 			delay = 0,
 			time = 60,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},

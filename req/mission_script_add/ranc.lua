@@ -1,6 +1,8 @@
 ---@module (Mid)Land Ranch
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
@@ -57,6 +59,7 @@ local optsDifficultyAddend01 = {
 			amount = 0.375,
 			delay = 0,
 			time = 90,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},

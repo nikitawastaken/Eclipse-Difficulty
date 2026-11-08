@@ -102,6 +102,17 @@ return {
 			spawn_groups = { 100436, 100434, 100305, 100231 },
 		},
 	},
+	-- Scripted difficulty scaling
+	[103056] = { -- c4_equipped (C4 found)
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[103059] = { -- 2 (Wagon filled with water)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100231] = { -- unused woods group
 		values = {

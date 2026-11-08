@@ -12,42 +12,36 @@ local sniper_trigger_times = {
 local pent_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_lower_spawn = {
 	values = {
-		interval = 20,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local roof_upper_spawn = {
 	values = {
-		interval = 25,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local garage_window_spawn = {
 	values = {
-		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local lobby_balcony_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -74,16 +68,10 @@ return {
 			on_entered_regroup = 1,
 		},
 	},
-	[101790] = { -- outside_penthouse
+	[102487] = { -- players_uppstairs
 		reinforce = {
 			{ name = "lobby" },
 			{ name = "garage" },
-		},
-		paused_difficulty_addends = { -- remove difficulty addend limits
-			on_entered_regroup = false,
-		},
-		on_executed = { -- delay the double door spawn
-			{ id = 102109, delay = 30 },
 		},
 		force_end_assault = true,
 	},
@@ -106,15 +94,24 @@ return {
 			length = 210,
 			length_balance_mul = { 1.25, 1.125, 1, 0.875 },
 		},
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
 		forced_difficulty = false, -- disable forced difficulty
 	},
-	[103595] = {
+	[103595] = { -- forced_open_door
 		reinforce = {
 			{
 				name = "main_room",
 				force = 3,
 				position = Vector3(300, -1600, 12100),
 			},
+		},
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+		paused_difficulty_addends = { -- remove difficulty addend limits
+			on_entered_regroup = false,
 		},
 	},
 	[100503] = {

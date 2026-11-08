@@ -81,17 +81,23 @@ return {
 	},
 	-- FFOs
 	-- vault is open (default route)
-	[101331] = {
+	[102619] = { -- link_start_obj045
 		ponr = {
 			length = 480,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
 	},
 	-- 3 choppers went down (c4 route)
-	[101683] = {
+	[101165] = { -- link_completed_obj_013
 		ponr = {
 			length = 300,
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
+		},
+		on_executed = {
+			{ id = 400002, delay = 0 },
 		},
 	},
 	-- Reenforce points
@@ -160,7 +166,7 @@ return {
 			{ id = 100890, remove = true },
 		},
 	},
-	[101449] = { --Escape signalled
+	[101449] = { -- Escape signalled
 		on_executed = {
 			{ id = 100890, delay = 0 },
 		},
@@ -206,9 +212,23 @@ return {
 	[101195] = bags_required,
 	[101810] = bags_required,
 	[101811] = bags_required,
+	-- Scripted difficulty scaling
+	[101136] = { -- objective_activate_objective_010 (Find Li Deng's safe, default route)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[101072] = { -- objective_activate_objective_004 (Find Xun Hang, default route)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[102571] = { -- objective_activate_objective_043 (Wait for the winch, c4 route)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
-	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately.
-	-- The shortest interval is 15s, for reference on most heists that would be 5s. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
 	[100786] = standard_spawn,
 	[101471] = standard_spawn,
 	[100792] = standard_spawn,

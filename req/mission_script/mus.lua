@@ -24,7 +24,7 @@ local matrix_window_spawn = {
 }
 local exhibit_rappel_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -123,6 +123,8 @@ return {
 			{ id = 100372, delay = 0 },
 		},
 	},
+	-- don't make Bile fly away after securing 4 bags (why it's even a thing)
+	[102462] = disabled,
 	-- don't disable ground snipers after some point
 	[100264] = disabled,
 	-- add missing Bain's warning about snipers
@@ -136,9 +138,20 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100128, delay = 10, delay_rand = 30 }, -- add 40
-			{ id = 100130, delay = 10, delay_rand = 30 }, -- add 41
-			{ id = 102129, delay = 10, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 10, delay_rand = 20 }, -- add 40
+			{ id = 100130, delay = 10, delay_rand = 20 }, -- add 41
+			{ id = 102129, delay = 10, delay_rand = 20 }, -- add 11
+		},
+	},
+	-- Scripted difficulty scaling
+	[101131] = { -- timelock_done_001
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		},
+	},
+	[101893] = { -- opened_diamond_door
+		on_executed = {
+			{ id = 400006, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

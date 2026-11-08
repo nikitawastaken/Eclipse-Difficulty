@@ -1,6 +1,8 @@
 ---@module Goat Simulator Day 1
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
@@ -26,6 +28,7 @@ local optsDifficultyAddend01 = {
 			amount = 0.075,
 			delay = 0,
 			time = 15,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 2.5, 2, 1.5, 1 },
 		},
 	},

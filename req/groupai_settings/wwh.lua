@@ -1,6 +1,6 @@
 local generate_big_lobby_balance_muls = Eclipse.utils.generate_big_lobby_balance_muls
 local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
-local step_time_mul = get_difficulty_specific_value({ 1.1, 1.1, 1, 0.9, 0.8 })
+local step_time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 })
 local step_time_balance_mul = { 1.3, 1.2, 1.1, 1 }
 
 return {

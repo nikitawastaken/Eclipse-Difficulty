@@ -1,6 +1,8 @@
 ---@module First World Bank
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -302,6 +304,16 @@ local optsSniperVaultAmbush_2 = {
 	on_executed = { { id = 400115, delay = 0 } },
 	enabled = true,
 }
+local optsMedicVaultAmbush_1 = {
+	enemy = scripted_enemy.medic_1,
+	on_executed = { { id = 400138, delay = 0 } },
+	enabled = diff_i >= 4,
+}
+local optsMedicVaultAmbush_2 = {
+	enemy = scripted_enemy.medic_1,
+	on_executed = { { id = 400139, delay = 0 } },
+	enabled = diff_i >= 4,
+}
 local optsSwatVaultAmbush_1 = {
 	enemy = scripted_enemy.heavy_swat_1,
 	on_executed = { { id = 400112, delay = 0 } },
@@ -485,6 +497,8 @@ local optsVaultAmbush_1 = {
 		{ id = 400099, delay = 0 },
 		{ id = 400100, delay = 0 },
 		{ id = 400101, delay = 0 },
+		{ id = 400136, delay = 0 },
+		{ id = 400137, delay = 0 },
 	},
 	enabled = true,
 }
@@ -500,6 +514,8 @@ local optsVaultAmbush_2 = {
 		{ id = 400101, delay = 0 },
 		{ id = 400102, delay = 0 },
 		{ id = 400103, delay = 0 },
+		{ id = 400136, delay = 0 },
+		{ id = 400137, delay = 0 },
 	},
 	enabled = true,
 }
@@ -523,6 +539,8 @@ local optsVaultAmbush_5 = {
 		{ id = 400103, delay = 0 },
 		{ id = 400104, delay = 0 },
 		{ id = 400105, delay = 0 },
+		{ id = 400136, delay = 0 },
+		{ id = 400137, delay = 0 },
 	},
 	enabled = true,
 }
@@ -543,6 +561,8 @@ local optsVaultAmbush_6_1 = {
 		{ id = 400099, delay = 0 },
 		{ id = 400100, delay = 0 },
 		{ id = 400101, delay = 0 },
+		{ id = 400136, delay = 0 },
+		{ id = 400137, delay = 0 },
 	},
 	enabled = true,
 	player_1 = true,
@@ -564,6 +584,8 @@ local optsVaultAmbush_6_2 = {
 		{ id = 400103, delay = 0 },
 		{ id = 400104, delay = 0 },
 		{ id = 400105, delay = 0 },
+		{ id = 400136, delay = 0 },
+		{ id = 400137, delay = 0 },
 	},
 	enabled = true,
 	player_3 = true,
@@ -671,6 +693,7 @@ local optsDifficultyAddend01 = {
 			amount = 0.25,
 			delay = 0,
 			time = 60,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
@@ -809,6 +832,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400099, "swat_vault_ambush_2", Vector3(4774, 1583, -224.895), Rotation(-180, 0, 0), optsSwatVaultAmbush_2),
 	Eclipse.mission_elements.gen_dummy(400100, "sniper_vault_ambush_1", Vector3(3925, 1368, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_1),
 	Eclipse.mission_elements.gen_dummy(400101, "sniper_vault_ambush_2", Vector3(3925, 1168, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400136, "medic_vault_ambush_1", Vector3(5252, 1203, -424.896), Rotation(-90, 0, 0), optsMedicVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400137, "medic_vault_ambush_2", Vector3(5252, 1297, -424.896), Rotation(-90, 0, 0), optsMedicVaultAmbush_2),
 	Eclipse.mission_elements.gen_dummy(400102, "cloaker_vault_ambush_1", Vector3(4140, 795, -44.895), Rotation(0, 0, 0), optsCloakerVaultAmbush_1),
 	Eclipse.mission_elements.gen_dummy(400103, "cloaker_vault_ambush_2", Vector3(4140, 1713, -44.895), Rotation(180, 0, 0), optsCloakerVaultAmbush_2),
 	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush),
@@ -827,6 +852,9 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+
+	Eclipse.mission_elements.gen_so(400138, "medic_vault_ambush_so_1", Vector3(5381, 1193, -424.896), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400139, "medic_vault_ambush_so_2", Vector3(5385, 1321, -424.896), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	-- mission scripts
 	Eclipse.mission_elements.gen_missionscript(400116, "vault_ambush_variant_1", optsVaultAmbush_1),
 	Eclipse.mission_elements.gen_missionscript(400117, "vault_ambush_variant_2", optsVaultAmbush_2),

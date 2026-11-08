@@ -1,6 +1,8 @@
 ---@module Dragon Heist
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
@@ -89,6 +91,19 @@ local optsOpenSwatVanDoors_6 = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 103212, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
 }
+local optsDifficultyAddend01 = {
+	trigger_times = 1,
+	difficulty_addends = {
+		{
+			amount = 0.25,
+			delay = 0,
+			time = 60,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
+			time_balance_mul = { 1.5, 1.25, 1, 1 },
+		},
+	},
+	enabled = true,
+}
 
 M.elements = {
 	-- swat van 1
@@ -144,6 +159,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400040, "spawn_swats_6", optsspawnvanSWATs_6),
 	Eclipse.mission_elements.gen_object_editor(400041, "open_swat_doors_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_6),
 	Eclipse.mission_elements.gen_spawngroup(400042, "swat_group_6", { 400036, 400037, 400038, 400039 }, 0, opts_swat_group),
+
+	Eclipse.mission_elements.gen_difficulty(400043, "chas_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400044, "chas_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

@@ -342,12 +342,12 @@ return {
 	[101164] = harasser_so_interrupt,
 	[101180] = harasser_so_interrupt,
 	-- Scripted difficulty scaling
-	[102112] = { -- hack_server_so002 (Second hack start)
+	[102119] = { -- so_002 (Second hack start)
 		on_executed = {
 			{ id = 500001, delay = 0 },
 		},
 	},
-	[102114] = { -- hack_server_so002 (Fourth hack start)
+	[102121] = { -- so_004 (Fourth hack start)
 		on_executed = {
 			{ id = 500002, delay = 0 },
 		},
