@@ -36,6 +36,7 @@ local ready_team_amount = {
 local flank_far_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
 	},
 }
 local flank_close_spawn = {
@@ -122,7 +123,7 @@ return {
 	},
 	[100327] = {
 		on_executed = {
-			{ id = 400036, delay = 90, delay_rand = 30 },
+			{ id = 400036, delay = 15, delay_rand = 45 },
 		},
 	},
 	-- Add new reinforce around the house

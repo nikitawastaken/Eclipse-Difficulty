@@ -1,7 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
-local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local office_cop_1 = "units/pd2_dlc_pex/characters/ene_male_office_cop_01/ene_male_office_cop_01"
 local office_cop_2 = "units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"
@@ -31,15 +30,15 @@ local disabled = {
 		enabled = false,
 	},
 }
-local sniper_trigger_times = {
+local trigger_times_to_one = {
 	values = {
-		trigger_times = 0,
+		trigger_times = 1,
 	},
 }
-local unused_sniper_trigger_times = {
+local sniper_trigger_times = {
 	values = {
-		trigger_times = 0,
 		enabled = true,
+		trigger_times = 0,
 	},
 }
 local sniper_amount = {
@@ -67,12 +66,6 @@ local scripted_swat_van_spawn = {
 local cloaker_spawn = {
 	values = {
 		interval = 90,
-	},
-}
-
-local trigger_times_to_one = {
-	values = {
-		trigger_times = 1,
 	},
 }
 
@@ -122,12 +115,6 @@ return {
 			{ id = 101186, remove = true },
 		},
 	},
-	-- Disable vanilla reinforce
-	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
-	[104095] = disabled, -- point_area_min_police_force_protect_fire
-	[104099] = disabled, -- point_area_min_police_force_armory_large
-	[104100] = disabled, -- point_area_min_police_force_armory_large
-	[104101] = disabled, -- point_area_min_police_force_armory_medium
 	-- Fix two of three Hajrudin look-at triggers poking out of the room
 	[102478] = {
 		values = {
@@ -200,9 +187,9 @@ return {
 	[100368] = sniper_trigger_times,
 	[100374] = sniper_trigger_times,
 	[100373] = sniper_trigger_times,
-	[100372] = unused_sniper_trigger_times,
-	[100371] = unused_sniper_trigger_times,
-	[100370] = unused_sniper_trigger_times,
+	[100372] = sniper_trigger_times,
+	[100371] = sniper_trigger_times,
+	[100370] = sniper_trigger_times,
 	-- forbid Shields and Dozers from using various SOs near the wall with a breach
 	-- e_nl_climb_over_3m
 	[102999] = exclude_shields_dozers,
@@ -218,15 +205,11 @@ return {
 	-- e_nl_under_0_7m
 	[101628] = exclude_shields_dozers,
 	-- Spawn group intervals
-	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
 	[100128] = police_roof_spawn,
 	[100692] = police_roof_spawn,
 	[104117] = police_roof_spawn,
 	[100132] = garage_roof_spawn,
 	[104091] = garage_roof_spawn,
-	[400020] = scripted_swat_van_spawn,
-	[400027] = scripted_swat_van_spawn,
-	[400034] = scripted_swat_van_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
@@ -235,6 +218,9 @@ return {
 	[100864] = cloaker_spawn,
 	[100868] = cloaker_spawn,
 	[100873] = cloaker_spawn,
+	[400020] = scripted_swat_van_spawn,
+	[400027] = scripted_swat_van_spawn,
+	[400034] = scripted_swat_van_spawn,
 	-- Office cops
 	[100634] = blue_office_cop, -- Beat Cop Guards
 	[100635] = blue_office_cop,

@@ -1,6 +1,8 @@
 ---@module Golden Grin Casino
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
@@ -434,13 +436,14 @@ local Bain_sendsnipers = {
 local Bain_chopperinbound = {
 	dialogue = "Play_pln_heli_01",
 }
-local optsDifficultyAddend = {
+local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
 		{
 			amount = 0.25,
 			delay = 0,
 			time = 90,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 2, 1.5, 1, 1 },
 		},
 	},
@@ -504,8 +507,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400050, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 	Eclipse.mission_elements.gen_dialogue(400051, "chopper_inbound", Bain_chopperinbound),
 
-	Eclipse.mission_elements.gen_difficulty(400052, "kenaz_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
-	Eclipse.mission_elements.gen_difficulty(400053, "kenaz_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
-	Eclipse.mission_elements.gen_difficulty(400054, "kenaz_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend),
+	Eclipse.mission_elements.gen_difficulty(400052, "kenaz_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400053, "kenaz_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400054, "kenaz_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 return M

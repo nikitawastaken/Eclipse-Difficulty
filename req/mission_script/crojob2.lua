@@ -22,12 +22,6 @@ local upper_spawn_why_does_it_have_1_spawn_point = {
 		elements = { 101848, 108178, 108177, 108176, 108175 },
 	},
 }
-local ship_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local crowbar_amount = {
 	values = {
 		amount = one_additional_crowbar_chance and 3 or 2,
@@ -40,7 +34,7 @@ local roof_navlink_interval = {
 }
 local ship_navlink_interval = {
 	values = {
-		interval = 6, -- (Vanilla: 2s)
+		interval = 4, -- (Vanilla: 2s)
 	},
 }
 local ladder_navlink_interval = {
@@ -180,14 +174,25 @@ return {
 	-- e_nl_cs_up_front_ladder
 	[103712] = ladder_navlink_interval,
 	[102136] = ladder_navlink_interval,
+	-- Scripted difficulty scaling
+	[102109] = { -- gate_exploded
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[102121] = { -- ship_moved
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[104040] = upper_spawn,
 	[101771] = upper_spawn,
 	[101772] = upper_spawn,
 	[108179] = upper_spawn,
+	[101630] = upper_spawn,
+	[102887] = upper_spawn,
 	[101770] = upper_spawn_why_does_it_have_1_spawn_point,
-	[101630] = ship_spawn,
-	[102887] = ship_spawn,
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,

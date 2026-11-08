@@ -141,12 +141,6 @@ return {
 			{ id = 101661, remove = true },
 		},
 	},
-	-- disable tear gas SO once the drill is finished
-	[102704] = {
-		on_executed = {
-			{ id = 101661, delay = 0 },
-		},
-	},
 	-- Restrict a few SOs
 	[101029] = exclude_shields, -- no Shields
 	[101031] = exclude_shields,
@@ -195,6 +189,18 @@ return {
 	[100765] = { -- 2_assaults_started
 		values = {
 			counter_target = 1,
+		},
+	},
+	-- Scripted difficulty scaling
+	[102219] = { -- link_start_thermal_drill_delivery (Vault found, start thermal drill delivery)
+		on_executed = {
+			{ id = 400043, delay = 0 },
+		},
+	},	
+	[102704] = { -- drill_is_complete
+		on_executed = {
+			{ id = 101661, delay = 0 }, -- disable tear gas SO once the drill is finished
+			{ id = 400044, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

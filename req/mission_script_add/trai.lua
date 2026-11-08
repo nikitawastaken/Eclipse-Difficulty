@@ -1,13 +1,16 @@
 ---@module Lost in Transit
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
 		{
-			amount = 1 / 3,
+			amount = 0.25,
 			delay = 0,
-			time = 90,
+			time = 60,
+			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},

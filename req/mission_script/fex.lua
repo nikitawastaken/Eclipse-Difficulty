@@ -120,8 +120,8 @@ return {
 			},
 		},
 		on_executed = { -- Delay sanctum preferreds
-			{ id = 103216, delay = 15, delay_rand = 15 },
-			{ id = 103493, delay = 15, delay_rand = 15 },
+			{ id = 103216, delay = 10, delay_rand = 20 },
+			{ id = 103493, delay = 10, delay_rand = 20 },
 		},
 	},
 	-- change the scripted police heli to be a dozer chopper (with 2 heavy swat shotgunners)
@@ -148,6 +148,22 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
+	-- Scripted difficulty scaling
+	[101380] = { -- muerte_done_exploded (Entrance to the sanctum blown up)
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[101988] = { -- output_hacking_fully_completed (Entrance to the sanctum hacked open)
+		on_executed = {
+			{ id = 400001, delay = 0 },
+		},
+	},
+	[100954] = { -- completed_obj_012 (Buluc is dead)
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[100132] = window_spawn,
 	[100133] = window_spawn,
