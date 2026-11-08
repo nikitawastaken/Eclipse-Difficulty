@@ -309,18 +309,6 @@ return {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	-- delay the sniper spawn
-	[102958] = {
-		on_executed = {
-			{ id = 102965, delay = 120, delay_rand = 60 },
-		},
-	},
-	-- respawns snipers in 2-3 minutes after they all dead (the chance based spawns can be inconsitent)
-	[102960] = {
-		on_executed = {
-			{ id = 102958, delay = 0 },
-		},
-	},
 	-- add new custom snipers to triggers
 	-- on spawn
 	[102955] = {

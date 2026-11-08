@@ -123,6 +123,8 @@ return {
 			{ id = 100372, delay = 0 },
 		},
 	},
+	-- don't make Bile fly away after securing 4 bags (why it's even a thing)
+	[102462] = disabled,
 	-- don't disable ground snipers after some point
 	[100264] = disabled,
 	-- add missing Bain's warning about snipers
