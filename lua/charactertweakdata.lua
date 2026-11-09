@@ -27,6 +27,7 @@ local is_gangster_allowed_to_call = table.list_to_set({
 })
 local is_civilian_not_allowed_to_call = table.list_to_set({
 	"flat",
+	"pal",
 	"nmh",
 })
 local is_no_mercy = level_id == "nmh"
