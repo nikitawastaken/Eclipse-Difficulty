@@ -160,7 +160,7 @@ local M = {
 	["units/payday2/characters/ene_security_6/ene_security_6"] = { name = "security_6", head = head_sequences.security },
 	["units/payday2/characters/ene_security_7/ene_security_7"] = { name = "security_7", head = head_sequences.security },
 	["units/payday2/characters/ene_security_8/ene_security_8"] = { name = "security_8", head = head_sequences.security },
-	
+
 	["units/payday2/characters/ene_security_fat_1/ene_security_fat_1"] = { name = "security_fat_1", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_security_fat_2/ene_security_fat_2"] = { name = "security_fat_1", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_security_fat_3/ene_security_fat_3"] = { name = "security_fat_3", head = head_sequences.security_fat },
@@ -455,7 +455,7 @@ local M = {
 	["units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"] = { name = "nyc_cop_2", head = head_sequences.security },
 	["units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"] = { name = "nyc_cop_3", head = head_sequences.security },
 	["units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"] = { name = "nyc_cop_4", head = head_sequences.security },
-	
+
 	["units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"] = { name = "nyc_cop_fat_1", head = head_sequences.security },
 	["units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"] = { name = "nyc_cop_fat_2", head = head_sequences.security },
 	["units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"] = { name = "nyc_cop_fat_3", head = head_sequences.security },

@@ -253,7 +253,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.cage.ghost_bonus = nil -- it doesn't even give 10% stealth bonus upon completeing it
 
 	-- Replace DC beat cops with appropriate ones based on the city
-	
+
 	-- NYPD
 	self.red2.ai_unit_group_overrides = {
 		cs_cop_1 = {
@@ -316,7 +316,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nmh.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
 	self.spa.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
 	self.brb.ai_unit_group_overrides = self.red2.ai_unit_group_overrides
-	
+
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
 		cs_cop_1 = {
@@ -778,7 +778,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.election_day_3_skip2.custom_package = green_security_package
 	table.insert(self.brb.custom_package, "packages/green_security")
 	table.insert(self.corp.custom_package, "packages/green_security")
-	
+
 	local classic_security = "packages/white_gensec_security"
 	table.insert(self.red2.custom_package, classic_security)
 	table.insert(self.glace.custom_package, classic_security)
@@ -818,7 +818,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pal.custom_package = lapd_package
 	self.friend.custom_package = lapd_package
 	table.insert(self.jolly.custom_package, "packages/lapd")
-	
+
 	local nypd_package = { "packages/nypd" }
 	table.insert(self.red2.custom_package, "packages/nypd")
 	self.run.custom_package = nypd_package

@@ -28,20 +28,20 @@ if is_nyc_cop_heist then
 	cop_1 = {
 		["units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"] = 6,
 		["units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1"] = 2,
-		["units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"] = 1,		
+		["units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"] = 1,
 	}
 	cop_2 = {
 		["units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"] = 4,
 		["units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2"] = 2,
-		["units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"] = 1,		
+		["units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"] = 1,
 	}
 	cop_3 = {
 		["units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"] = 8,
-		["units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"] = 1,		
+		["units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"] = 1,
 	}
 	cop_4 = {
 		["units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"] = 6,
-		["units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4"] = 1,	
+		["units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4"] = 1,
 	}
 else
 	cop_1 = {
@@ -52,16 +52,16 @@ else
 	cop_2 = {
 		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
 		["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = 2,
-		["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = 1,	
+		["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = 1,
 	}
 	cop_3 = {
 		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
-		["units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"] = 1,	
+		["units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"] = 1,
 	}
 	cop_4 = {
 		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
 		["units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"] = 1,
-	}	
+	}
 end
 
 if is_nyc_security_heist then
@@ -95,7 +95,7 @@ else
 		["units/payday2/characters/ene_security_fat_3/ene_security_fat_3"] = 1,
 	}
 end
-	
+
 local M = {
 	-- Fat variant alternatives
 	-- Security

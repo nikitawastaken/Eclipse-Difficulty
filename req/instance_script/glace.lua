@@ -9,7 +9,7 @@ local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local specials_spawns = { [taser] = 3, [cloaker] = 1 }
 
-local security_spawn = { [scripted_enemy.security_1] = 2, [scripted_enemy.security_2] = 2, [scripted_enemy.security_3] = 1, }
+local security_spawn = { [scripted_enemy.security_1] = 2, [scripted_enemy.security_2] = 2, [scripted_enemy.security_3] = 1 }
 
 local patches = {
 	swat_chopper = {
