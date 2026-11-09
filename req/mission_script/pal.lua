@@ -40,7 +40,7 @@ local crowbar_amount = {
 }
 local snipers_amount = {
 	values = {
-		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
+		amount = (normal and 3 or hard and 4 or 5) + (is_pro_job and 1 or 0),
 	},
 }
 local van_spawn = {
