@@ -75,7 +75,6 @@ function CopActionHurt:chk_block_client(action_desc, action_type, t)
 	return self:chk_block(action_type, t)
 end
 
-
 -- Fix pseudo random number generator having very low entropy
 function CopActionHurt:_pseudorandom(a, b)
 	if CopActionHurt._host_peer == nil then
