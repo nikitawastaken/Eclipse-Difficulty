@@ -42,7 +42,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_1/ene_cop_female_1", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_female_2/ene_cop_female_2", cop_needed, false)
-
+				
 	local security_needed = PackageManager:has(IDS_UNIT, Idstring("units/payday2/characters/ene_security_1/ene_security_1"))
 	load_unload_unit("units/payday2/characters/ene_security_fat_1/ene_security_fat_1", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_fat_2/ene_security_fat_2", security_needed, false)

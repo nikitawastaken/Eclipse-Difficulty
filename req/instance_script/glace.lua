@@ -9,6 +9,8 @@ local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local specials_spawns = { [taser] = 3, [cloaker] = 1 }
 
+local security_spawn = { [scripted_enemy.security_1] = 2, [scripted_enemy.security_2] = 2, [scripted_enemy.security_3] = 1, }
+
 local patches = {
 	swat_chopper = {
 		regular_spawns = table.set(100014, 100015),
@@ -16,6 +18,9 @@ local patches = {
 		filters_disable = table.set(100008, 100010),
 		filters_normal_above = table.set(100007),
 		hunt = table.set(100046),
+	},
+	prison_van = {
+		security_spawns = table.set(100034, 100035),
 	},
 }
 
@@ -36,6 +41,17 @@ M["levels/instances/unique/glace/glace_helicopter_swat/world/world"] = function(
 		elseif heli_spawns.hunt[id] then
 			element.values.enabled = true --why the fuck it's turned off?
 			element.values.forced = false
+		end
+	end
+end
+M["levels/instances/unique/glace/glace_prison_bus/world/world"] = function(result)
+	local glace_truck = patches.prison_van
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if glace_truck.security_spawns[id] then
+			element.values.enemy_table = security_spawn
 		end
 	end
 end

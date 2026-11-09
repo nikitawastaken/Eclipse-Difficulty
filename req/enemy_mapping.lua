@@ -6,6 +6,11 @@ local M = {
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = "security_1",
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = "security_2",
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "security_3",
+	-- Beat Cops
+	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = "cop_1",
+	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = "cop_2",
+	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = "cop_3",
+	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = "cop_4",
 	-- Blue SWAT
 	[("units/payday2/characters/ene_swat_1/ene_swat_1"):key()] = "swat_1",
 	[("units/payday2/characters/ene_swat_2/ene_swat_2"):key()] = "swat_2",

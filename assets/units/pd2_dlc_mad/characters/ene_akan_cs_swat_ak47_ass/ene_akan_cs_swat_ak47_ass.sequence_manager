@@ -152,9 +152,9 @@
 			
 			<object 			enabled="true" name="'g_helmet_swat_lod1'" />
 			<object 			enabled="true" name="'g_helmet_swat_lod2'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod5'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod6'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod7'" />			
+			<object 			enabled="true" name="'g_helmet_swat_lod11'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod12'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod13'" />			
 		</sequence>
 		
 		<sequence editable_state="true" name="'helmet_fbi_swat'" once="true" triggable="true"> 
@@ -230,7 +230,7 @@
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'helmet_swat'" />
-			<run_sequence 		name="'random_goggles_swat_helmet'" />
+			<run_sequence 		name="'random_goggles_swat_a'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'swat_3'" once="true" triggable="true">
@@ -239,8 +239,8 @@
 
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'goggles_head'" />
 			<run_sequence 		name="'helmet_swat'" />
+			<run_sequence 		name="'random_goggles_swat_b'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_1'" once="true" triggable="true">
@@ -272,10 +272,10 @@
 			<object 			enabled="true" name="'g_gear_swat_heavy_b'" />
 			<object 			enabled="true" name="'g_gear_swat_heavy_b_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_swat_lod8'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod9'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod10'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod11'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod14'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod15'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod16'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod17'" />
 				
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />
@@ -289,9 +289,9 @@
 			<object 			enabled="true" name="'g_gear_swat_heavy_c'" />
 			<object 			enabled="true" name="'g_gear_swat_heavy_c_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_swat_lod8'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod9'" />
-			
+			<object 			enabled="true" name="'g_helmet_swat_lod14'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod15'" />
+	
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'armor_crotch'" />
@@ -308,7 +308,7 @@
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'helmet_fbi_swat'" />
-			<run_sequence 		name="'goggles_fbi_swat_helmet_a'" />
+			<run_sequence 		name="'random_goggles_fbi_swat_a'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_2'" once="true" triggable="true">
@@ -322,7 +322,7 @@
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'helmet_fbi_swat'" />
-			<run_sequence 		name="'goggles_head'" />
+			<run_sequence 		name="'random_goggles_fbi_swat_a'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_3'" once="true" triggable="true">
@@ -333,7 +333,7 @@
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'helmet_fbi_swat'" />
-			<run_sequence 		name="'random_goggles_fbi_swat_helmet'" />
+			<run_sequence 		name="'random_goggles_fbi_swat_b'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
@@ -371,8 +371,8 @@
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_city_swat'" />
-			<run_sequence 		name="'goggles_head'" />
 			<run_sequence 		name="'headset_base'" />
+			<run_sequence 		name="'random_goggles_swat_c'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat_2'" once="true" triggable="true">
@@ -388,8 +388,8 @@
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_city_swat'" />
-			<run_sequence 		name="'goggles_head'" />
 			<run_sequence 		name="'headset_base'" />
+			<run_sequence 		name="'random_goggles_swat_c'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat_3'" once="true" triggable="true">
@@ -402,7 +402,7 @@
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_city_swat'" />
-			<run_sequence 		name="'goggles_head'" />
+			<run_sequence 		name="'random_goggles_swat_c'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_3'" once="true" triggable="true">
@@ -412,7 +412,7 @@
 			<run_sequence 		name="'city_swat'" />
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'city_hat_base'" />
-			<run_sequence 		name="'goggles_head'" />
+			<run_sequence 		name="'random_goggles_swat_c'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_3'" once="true" triggable="true">
@@ -444,46 +444,60 @@
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
 		</sequence>
-	<!--GOGGLES SEQUENCES-->>
-
+	<!--GOGGLES SEQUENCES-->
+		<sequence editable_state="true" name="'random_goggles_swat_a'" once="true" triggable="true" >
+			<set_variables 		has_goggles="1" />			
+			<run_sequence 		name="'goggles_swat_helmet_'..pick('c','c','b')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_goggles_swat_b'" once="true" triggable="true" >
+			<set_variables 		has_goggles="1" />			
+			<run_sequence 		name="'goggles_'..pick('head','head','swat_helmet_a')" />
+		</sequence>	
+		<sequence editable_state="true" name="'random_goggles_swat_c'" once="true" triggable="true" >
+			<set_variables 		has_goggles="1" />			
+			<run_sequence 		name="'goggles_head'" />
+		</sequence>	
+		
 		<sequence editable_state="true" name="'goggles_head'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_goggles'" />
 			<object 			enabled="true" name="'g_goggles_lod1'" />
 			<object 			enabled="true" name="'g_goggles_glass'" />
 		</sequence>
-		
-		<sequence editable_state="true" name="'random_goggles_swat_helmet'" once="true" triggable="true" >
-			<set_variables 		has_goggles="1" />			
-			<run_sequence 		name="'goggles_swat_helmet_'..pick('a','a','b')" />
-		</sequence>
 
 		<sequence editable_state="true" name="'goggles_swat_helmet_a'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_helmet_swat_lod3'" />
 			<object 			enabled="true" name="'g_helmet_swat_lod4'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod5'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_swat_helmet_b'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_helmet_swat_lod3'" />
-			<object 			enabled="true" name="'g_helmet_swat_lod4'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod6'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod7'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod8'" />
+		</sequence>
+		<sequence editable_state="true" name="'goggles_swat_helmet_c'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_helmet_swat_lod9'" />
+			<object 			enabled="true" name="'g_helmet_swat_lod10'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'random_goggles_fbi_swat_helmet'" once="true" triggable="true" >
+		<sequence editable_state="true" name="'random_goggles_fbi_swat_a'" once="true" triggable="true" >
 			<set_variables 		has_goggles="1" />			
-			<run_sequence 		name="'goggles_fbi_swat_helmet_'..pick('b','b','c')" />
+			<run_sequence 		name="'goggles_'..pick('head','head','fbi_swat_helmet_a')" />
 		</sequence>
-
+		<sequence editable_state="true" name="'random_goggles_fbi_swat_b'" once="true" triggable="true" >
+			<set_variables 		has_goggles="1" />			
+			<run_sequence 		name="'goggles_fbi_swat_helmet_'..pick('b','c')" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'goggles_fbi_swat_helmet_a'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod7'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod8'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod9'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_fbi_swat_helmet_b'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod10'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod11'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod12'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'goggles_fbi_swat_helmet_c'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod13'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod14'" />

@@ -1,21 +1,107 @@
 ---@module Unit alternatives
-local M = {
-	-- Fat variant alternatives
-	-- Security
-	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
+local level_id = Eclipse.utils.clean_level_id()
+
+local nyc_cop_heists = table.list_to_set({
+	"red2",
+	"run",
+	"flat",
+	"glace",
+	"dah",
+	"nmh",
+	"brb",
+	"spa",
+})
+local is_nyc_cop_heist = nyc_cop_heists[level_id]
+
+local nyc_security_heists = table.list_to_set({
+	"red2",
+	"glace",
+	"dinner",
+	"nmh",
+})
+local is_nyc_security_heist = nyc_security_heists[level_id]
+
+local cop_1, cop_2, cop_3, cop_4
+local security_1, security_2, security_3
+
+if is_nyc_cop_heist then
+	cop_1 = {
+		["units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"] = 6,
+		["units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1"] = 2,
+		["units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"] = 1,		
+	}
+	cop_2 = {
+		["units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"] = 4,
+		["units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2"] = 2,
+		["units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"] = 1,		
+	}
+	cop_3 = {
+		["units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"] = 8,
+		["units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"] = 1,		
+	}
+	cop_4 = {
+		["units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"] = 6,
+		["units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4"] = 1,	
+	}
+else
+	cop_1 = {
+		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
+		["units/payday2/characters/ene_cop_female_1/ene_cop_female_1"] = 2,
+		["units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1"] = 1,
+	}
+	cop_2 = {
+		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
+		["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = 2,
+		["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = 1,	
+	}
+	cop_3 = {
+		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
+		["units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"] = 1,	
+	}
+	cop_4 = {
+		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
+		["units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"] = 1,
+	}	
+end
+
+if is_nyc_security_heist then
+	security_1 = {
+		["units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1"] = 4,
+		["units/payday2/characters/ene_nyc_security_female_1/ene_nyc_security_female_1"] = 1,
+		["units/payday2/characters/ene_nyc_security_fat_1/ene_nyc_security_fat_1"] = 1,
+	}
+	security_2 = {
+		["units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2"] = 4,
+		["units/payday2/characters/ene_nyc_security_female_2/ene_nyc_security_female_2"] = 1,
+		["units/payday2/characters/ene_nyc_security_fat_2/ene_nyc_security_fat_2"] = 1,
+	}
+	security_3 = {
+		["units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3"] = 2,
+		["units/payday2/characters/ene_nyc_security_fat_3/ene_nyc_security_fat_3"] = 1,
+	}
+else
+	security_1 = {
 		["units/payday2/characters/ene_security_1/ene_security_1"] = 4,
 		["units/payday2/characters/ene_security_female_1/ene_security_female_1"] = 1,
 		["units/payday2/characters/ene_security_fat_1/ene_security_fat_1"] = 1,
-	},
-	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
+	}
+	security_2 = {
 		["units/payday2/characters/ene_security_2/ene_security_2"] = 4,
 		["units/payday2/characters/ene_security_female_2/ene_security_female_2"] = 1,
 		["units/payday2/characters/ene_security_fat_2/ene_security_fat_2"] = 1,
-	},
-	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {
+	}
+	security_3 = {
 		["units/payday2/characters/ene_security_3/ene_security_3"] = 2,
 		["units/payday2/characters/ene_security_fat_3/ene_security_fat_3"] = 1,
-	},
+	}
+end
+	
+local M = {
+	-- Fat variant alternatives
+	-- Security
+	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = security_1,
+	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = security_2,
+	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = security_3,
 	[("units/payday2/characters/ene_security_4/ene_security_4"):key()] = {
 		["units/payday2/characters/ene_security_4/ene_security_4"] = 5,
 		["units/payday2/characters/ene_security_female_3/ene_security_female_3"] = 2,
@@ -39,24 +125,10 @@ local M = {
 		["units/payday2/characters/ene_security_fat_8/ene_security_fat_8"] = 2,
 	},
 	-- Beat Cops
-	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
-		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
-		["units/payday2/characters/ene_cop_female_1/ene_cop_female_1"] = 2,
-		["units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = {
-		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
-		["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = 2,
-		["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = {
-		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
-		["units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = {
-		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
-		["units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"] = 1,
-	},
+	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = cop_1,
+	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = cop_2,
+	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = cop_3,
+	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = cop_4,
 	-- LAPD Beat Cops
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = 6,

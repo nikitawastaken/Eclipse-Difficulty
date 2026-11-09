@@ -44,6 +44,15 @@ local M = {
 	[("units/payday2/characters/ene_security_fat_8/ene_security_fat_8"):key()] = { c45 = 1, m4 = 1, raging_bull = 5 }, -- ditto but fat
 	[("units/payday2/characters/ene_security_female_3/ene_security_female_3"):key()] = { c45 = 3, mp5 = 1, raging_bull = 1 },
 	[("units/payday2/characters/ene_security_female_4/ene_security_female_4"):key()] = { c45 = 3, mp5 = 1, raging_bull = 1 },
+	-- Classic GenSec Security
+	[("units/payday2/characters/ene_nyc_security_1/ene_nyc_security_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_nyc_security_2/ene_nyc_security_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_nyc_security_3/ene_nyc_security_3"):key()] = "r870", --stronger camera man
+	[("units/payday2/characters/ene_nyc_security_fat_1/ene_nyc_security_fat_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_nyc_security_fat_2/ene_nyc_security_fat_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_nyc_security_fat_3/ene_nyc_security_fat_3"):key()] = "r870", --stronger camera man
+	[("units/payday2/characters/ene_nyc_security_female_1/ene_nyc_security_female_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_nyc_security_female_2/ene_nyc_security_female_2"):key()] = { c45 = 3, mp5 = 1 },
 	--Secret Service
 	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, mp5 = 1 },

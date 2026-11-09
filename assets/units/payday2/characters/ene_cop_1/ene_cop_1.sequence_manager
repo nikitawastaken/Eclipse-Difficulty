@@ -9,19 +9,6 @@
 			<has_hat				value="0" />
 			<has_gloves				value="0" />
 			<has_shades				value="0" />
-			<is_fat					value="0" />
-			<is_security			value="0" />
-			<is_green_security		value="0" />
-			<is_cop					value="0" />
-			<is_la_cop				value="0" />
-			<is_fbi					value="0" />
-			<is_prisonguard			value="0" />
-			<is_hvh_cop				value="0" />
-			<is_hvh_fbi				value="0" />
-			<is_bex_security		value="0" />
-			<is_bex_cop				value="0" />
-			<is_bex_fbi				value="0" />
-			<is_pex_cop				value="0" />
 		</variables>
 
 		<filter name="'check_no_tie'">
@@ -72,210 +59,34 @@
 			<check value="vars.has_shades == 1" />
 		</filter>
 
-		<filter name="'check_not_fat'">
-			<check value="vars.is_fat == 0" />
-		</filter>
-
-		<filter name="'check_fat'">
-			<check value="vars.is_fat == 1" />
-		</filter>
-
-		<filter name="'check_not_security'">
-			<check value="vars.is_security == 0" />
-		</filter>
-
-		<filter name="'check_security'">
-			<check value="vars.is_security == 1" />
-		</filter>
-		
-		<filter name="'check_not_green_security'">
-			<check value="vars.is_green_security == 0" />
-		</filter>
-
-		<filter name="'check_green_security'">
-			<check value="vars.is_green_security == 1" />
-		</filter>
-
-		<filter name="'check_not_cop'">
-			<check value="vars.is_cop == 0" />
-		</filter>
-
-		<filter name="'check_cop'">
-			<check value="vars.is_cop == 1" />
-		</filter>
-		
-		<filter name="'check_not_la_cop'">
-			<check value="vars.is_la_cop == 0" />
-		</filter>
-
-		<filter name="'check_la_cop'">
-			<check value="vars.is_la_cop == 1" />
-		</filter>
-
-		<filter name="'check_not_fbi'">
-			<check value="vars.is_fbi == 0" />
-		</filter>
-
-		<filter name="'check_fbi'">
-			<check value="vars.is_fbi == 1" />
-		</filter>
-
-		<filter name="'check_not_prisonguard'">
-			<check value="vars.is_prisonguard == 0" />
-		</filter>
-
-		<filter name="'check_prisonguard'">
-			<check value="vars.is_prisonguard == 1" />
-		</filter>
-
-		<filter name="'check_not_bex_security'">
-			<check value="vars.is_bex_security == 0" />
-		</filter>
-
-		<filter name="'check_bex_security'">
-			<check value="vars.is_bex_security == 1" />
-		</filter>
-
-		<filter name="'check_not_bex_cop'">
-			<check value="vars.is_bex_cop == 0" />
-		</filter>
-
-		<filter name="'check_bex_cop'">
-			<check value="vars.is_bex_cop == 1" />
-		</filter>
-
-		<filter name="'check_not_bex_fbi'">
-			<check value="vars.is_bex_fbi == 0" />
-		</filter>
-
-		<filter name="'check_bex_fbi'">
-			<check value="vars.is_bex_fbi == 1" />
-		</filter>
-		
-		<sequence editable_state="true" name="'set_fat'" once="true" triggable="true"> 
-			<set_variables 		is_fat="1" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_1_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_2_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_2'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_3_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_3'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_4_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_4'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_5_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_5'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_6_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_6'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_7_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_7'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_8_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'security_8'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'cop_1_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'cop_1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'cop_2_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'cop_2'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'cop_3_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'cop_3'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'cop_4_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'cop_4'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'la_cop_1_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'la_cop_1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'la_cop_2_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'la_cop_2'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'la_cop_3_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'la_cop_3'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'la_cop_4_fat'" once="true" triggable="true"> 
-			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'la_cop_4'" />
-		</sequence>
-
 		<sequence editable_state="true" name="'armor_body'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_body_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_body_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_body'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_body_lod1'" />
+			<object 			enabled="true" name="'g_armor_body'" />
+			<object 			enabled="true" name="'g_armor_body_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'armor_shoulders'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_shoulders_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_shoulders_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_shoulders'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_shoulders_lod1'" />
+			<object 			enabled="true" name="'g_armor_shoulders'" />
+			<object 			enabled="true" name="'g_armor_shoulders_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'armor_extra'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra_lod1'" />
+			<object 			enabled="true" name="'g_armor_extra'" />
+			<object 			enabled="true" name="'g_armor_extra_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'baton'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_baton_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_baton_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_baton'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_baton_lod1'" />
+			<object 			enabled="true" name="'g_baton'" />
+			<object 			enabled="true" name="'g_baton_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'belt'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_belt_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_belt_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_belt'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_belt_lod1'" />
+			<object 			enabled="true" name="'g_belt'" />
+			<object 			enabled="true" name="'g_belt_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'belt_b'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_belt_b_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_belt_b_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_belt_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_belt_b_lod1'" />
+			<object 			enabled="true" name="'g_belt_b'" />
+			<object 			enabled="true" name="'g_belt_b_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'earpiece'" once="true" triggable="true"> 
@@ -284,74 +95,57 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'handcuffs'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_handcuffs_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_handcuffs_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_handcuffs'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_handcuffs_lod1'" />
+			<object 			enabled="true" name="'g_handcuffs'" />
+			<object 			enabled="true" name="'g_handcuffs_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'handcuffs_b'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_handcuffs_b_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_handcuffs_b_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_handcuffs_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_handcuffs_b_lod1'" />
+			<object 			enabled="true" name="'g_handcuffs_b'" />
+			<object 			enabled="true" name="'g_handcuffs_b_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'radio_side'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_side_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_side_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_side'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_side_lod1'" />
+			<object 			enabled="true" name="'g_radio_side'" />
+			<object 			enabled="true" name="'g_radio_side_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'radio_back'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_back_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_back_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_back'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_back_lod1'" />
+			<object 			enabled="true" name="'g_radio_back'" />
+			<object 			enabled="true" name="'g_radio_back_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'radio_extra'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_extra_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_extra_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_extra'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_extra_lod1'" />
+			<object 			enabled="true" name="'g_radio_extra'" />
+			<object 			enabled="true" name="'g_radio_extra_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'radio_front'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_front_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_radio_front_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_front'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_radio_front_lod1'" />
+			<object 			enabled="true" name="'g_radio_front'" />
+			<object 			enabled="true" name="'g_radio_front_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shoulder_loops'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_shoulderloops_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_shoulderloops_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_shoulderloops'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_shoulderloops_lod1'" />
+			<object 			enabled="true" name="'g_shoulderloops'" />
+			<object 			enabled="true" name="'g_shoulderloops_lod1'" />
 		</sequence>
-
+		
 		<sequence editable_state="true" name="'suspenders'" once="true" triggable="true"> 
 			<object 			enabled="true" name="'g_suspenders'" />
 			<object 			enabled="true" name="'g_suspenders_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'suspenders_bex'" once="true" triggable="true"> 
-			<object 			enabled="true" name="'g_suspenders_bex'" />
-			<object 			enabled="true" name="'g_suspenders_bex_lod1'" />
+		<sequence editable_state="true" name="'suspenders_alt'" once="true" triggable="true"> 
+			<object 			enabled="true" name="'g_suspenders_alt'" />
+			<object 			enabled="true" name="'g_suspenders_alt_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'vest'" once="true" triggable="true"> 
-			<object 			filter="'check_fat'" enabled="true" name="'g_vest_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_vest_fat_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_vest'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_vest_lod1'" />
+			<object 			enabled="true" name="'g_vest'" />
+			<object 			enabled="true" name="'g_vest_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'hat_cop'" once="true" triggable="true"> 
-			<set_variables 		has_hat="1" />
-			
+			<set_variables 		has_hat="1" />	
 			<object 			enabled="true" name="'g_hat_cop_lod1'" />
 			<object 			enabled="true" name="'g_hat_cop_lod2'" />
 		</sequence>
@@ -367,15 +161,18 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'hat_security'" once="true" triggable="true"> 
-			<set_variables 		has_hat="1" />
-			
+			<set_variables 		has_hat="1" />			
 			<object 			enabled="true" name="'g_hat_security_lod1'" />
 			<object 			enabled="true" name="'g_hat_security_lod2'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'hat_security_badge'" once="true" triggable="true"> 		
+			<object 			enabled="true" name="'g_hat_security_lod3'" />
+			<object 			enabled="true" name="'g_hat_security_lod4'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'hat_bex_cop'" once="true" triggable="true"> 
-			<set_variables 		has_hat="1" />
-			
+			<set_variables 		has_hat="1" />		
 			<object 			enabled="true" name="'g_hat_bex_cop_lod1'" />
 			<object 			enabled="true" name="'g_hat_bex_cop_lod2'" />
 		</sequence>
@@ -391,94 +188,88 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'security'" once="true" triggable="true">		
-			<set_variables 		is_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_1'" synchronous="true" />
 		</sequence>			
 
 		<sequence editable_state="true" name="'green_security'" once="true" triggable="true">		
-			<set_variables 		is_green_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_4'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'cop'" once="true" triggable="true">		
-			<set_variables 		is_cop="1" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'nyc_security'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_nyc_security_1'" synchronous="true" />
+		</sequence>	
+		
+		<sequence editable_state="true" name="'nyc_cop'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_nyc_cop_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'la_cop'" once="true" triggable="true">		
-			<set_variables 		is_la_cop="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_la_cop_1'" synchronous="true" />
 		</sequence>	
-
+	
 		<sequence editable_state="true" name="'fbi'" once="true" triggable="true">		
-			<set_variables 		is_fbi="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_fbi_1'"/>
 		</sequence>	
 		
 		<sequence editable_state="true" name="'prisonguard'" once="true" triggable="true">		
-			<set_variables 		is_prisonguard="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'hvh_cop'" once="true" triggable="true">		
-			<set_variables 		is_hvh_cop="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_cop_hvh_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'hvh_fbi'" once="true" triggable="true">		
-			<set_variables 		is_hvh_fbi="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_fbi_hvh_1'" synchronous="true" />
 		</sequence>	
 	
 		<sequence editable_state="true" name="'bex_security'" once="true" triggable="true">		
-			<set_variables 		is_bex_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_bex_security_01'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'bex_cop'" once="true" triggable="true">		
-			<set_variables 		is_bex_cop="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_01'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'bex_fbi'" once="true" triggable="true">		
-			<set_variables 		is_bex_fbi="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'pex_cop'" once="true" triggable="true">		
-			<set_variables 		is_pex_cop="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_male_office_cop_01'" synchronous="true" />
 		</sequence>	
 		
 		<sequence editable_state="true" name="'badges_security'" once="true" triggable="true">		
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_security_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_security_fat_lod1'" />
-			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_security'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_security_lod1'" />
+			<object 			enabled="true" name="'g_badges_security'" />
+			<object 			enabled="true" name="'g_badges_security_lod1'" />
 
-			<object 			filter="'check_fat'" enabled="true" name="'g_pants_strap_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_pants_strap_fat_lod1'" />
-
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_pants_strap'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_pants_strap_lod1'" />
+			<object 			enabled="true" name="'g_pants_strap'" />
+			<object 			enabled="true" name="'g_pants_strap_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'badges_nyc_security'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_badges_nyc_security'" />
+			<object 			enabled="true" name="'g_badges_nyc_security_lod1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'badges_green_security'" once="true" triggable="true">			
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_green_security_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_green_security_fat_lod1'" />
-			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_green_security'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_green_security_lod1'" />
+			<object 			enabled="true" name="'g_badges_green_security'" />
+			<object 			enabled="true" name="'g_badges_green_security_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'badges_cop'" once="true" triggable="true">				
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_cop_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_badges_cop_fat_lod1'" />
-			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_cop'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_cop_lod1'" />
+			<object 			enabled="true" name="'g_badges_cop'" />
+			<object 			enabled="true" name="'g_badges_cop_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'badges_nyc_cop'" once="true" triggable="true">				
+			<object 			enabled="true" name="'g_badges_nyc_cop'" />
+			<object 			enabled="true" name="'g_badges_nyc_cop_lod1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'badges_fbi'" once="true" triggable="true">		
 			<object 			enabled="true" name="'g_badges_fbi'" />
 			<object 			enabled="true" name="'g_badges_fbi_lod1'" />
@@ -519,11 +310,9 @@
 			<object 			enabled="true" name="'g_badges_bex_fbi_b_lod1'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_a'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_a_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_a'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_a_lod1'" />
+		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_security_a'" />
+			<object 			enabled="true" name="'g_gear_security_a_lod1'" />
 			
 			<run_sequence 		name="'security'" />
 			
@@ -535,17 +324,13 @@
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
+			<run_sequence 		name="'random_tag_a'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_2'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_b'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_b_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_b_lod1'" />
-
-			<object 			enabled="true" name="'g_hat_security_lod1'" />
-			<object 			enabled="true" name="'g_hat_security_lod2'" />
-			
+		<sequence editable_state="true" name="'security_2'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_security_b'" />
+			<object 			enabled="true" name="'g_gear_security_b_lod1'" />
+	
 			<run_sequence 		name="'security'" />
 			
 			<run_sequence 		name="'badges_security'" />
@@ -557,13 +342,12 @@
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_common'" />
+			<run_sequence 		name="'random_tag_b'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_3'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_c'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_security_fat_c_lod1'" />		
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_c'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_security_c_lod1'" />
+		<sequence editable_state="true" name="'security_3'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_security_c'" />
+			<object 			enabled="true" name="'g_gear_security_c_lod1'" />
 
 			<run_sequence 		name="'security'" />
 			
@@ -577,11 +361,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_4'" once="true" triggable="true">		
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_a'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_a_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_a'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_a_lod1'" />
+		<sequence editable_state="true" name="'security_4'" once="true" triggable="true">				
+			<object 			enabled="true" name="'g_gear_green_security_a'" />
+			<object 			enabled="true" name="'g_gear_green_security_a_lod1'" />
 			
 			<run_sequence 		name="'green_security'" />
 			
@@ -599,11 +381,9 @@
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_5'" once="true" triggable="true">	
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_b'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_b_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_b_lod1'" />
+		<sequence editable_state="true" name="'security_5'" once="true" triggable="true">			
+			<object 			enabled="true" name="'g_gear_green_security_b'" />
+			<object 			enabled="true" name="'g_gear_green_security_b_lod1'" />
 
 			<run_sequence 		name="'green_security'" />
 			
@@ -619,11 +399,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_6'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_c'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_c_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_c'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_c_lod1'" />
+		<sequence editable_state="true" name="'security_6'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_green_security_c'" />
+			<object 			enabled="true" name="'g_gear_green_security_c_lod1'" />
 
 			<run_sequence 		name="'green_security'" />
 			
@@ -636,11 +414,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_7'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_d'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_d_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_d'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_d_lod1'" />
+		<sequence editable_state="true" name="'security_7'" once="true" triggable="true">			
+			<object 			enabled="true" name="'g_gear_green_security_d'" />
+			<object 			enabled="true" name="'g_gear_green_security_d_lod1'" />
 				
 			<run_sequence 		name="'green_security'" />
 
@@ -661,11 +437,9 @@
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_8'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_e'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_green_security_fat_e_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_e'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_green_security_e_lod1'" />
+		<sequence editable_state="true" name="'security_8'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_green_security_e'" />
+			<object 			enabled="true" name="'g_gear_green_security_e_lod1'" />
 
 			<run_sequence 		name="'green_security'" />
 	
@@ -679,11 +453,62 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_a'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_a_lod1'" />
+		<sequence editable_state="true" name="'nyc_security_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_security_a'" />
+			<object 			enabled="true" name="'g_gear_security_a_lod1'" />
+			
+			<run_sequence 		name="'nyc_security'" />
+			
+			<run_sequence 		name="'badges_nyc_security'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_gloves_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+			<run_sequence 		name="'random_tag_alt_a'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_security_2'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_security_b'" />
+			<object 			enabled="true" name="'g_gear_security_b_lod1'" />
+
+			<run_sequence 		name="'nyc_security'" />
+			
+			<run_sequence 		name="'badges_nyc_security'" />
+			<run_sequence 		name="'hat_security'" />
+			<run_sequence 		name="'hat_security_badge'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_gloves_rare'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
+			<run_sequence 		name="'random_tag_alt_b'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_security_3'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_security_c'" />
+			<object 			enabled="true" name="'g_gear_security_c_lod1'" />
+
+			<run_sequence 		name="'nyc_security'" />
+			
+			<run_sequence 		name="'vest'" />
+			<run_sequence 		name="'hat_security'" />
+			<run_sequence 		name="'hat_security_badge'" />
+			<run_sequence 		name="'hat_security'" />
+
+			<run_sequence 		name="'random_body_alt_a'" />
+			<run_sequence 		name="'random_watch_rare'" />		
+			<run_sequence 		name="'random_gloves_common'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
 			
 			<run_sequence 		name="'cop'" />
 			
@@ -700,11 +525,9 @@
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'cop_2'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b_lod1'" />		
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_b_lod1'" />
+		<sequence editable_state="true" name="'cop_2'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
 			
 			<run_sequence 		name="'cop'" />
 			
@@ -723,11 +546,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'cop_3'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_c'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_c_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c_lod1'" />
+		<sequence editable_state="true" name="'cop_3'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_c'" />
+			<object 			enabled="true" name="'g_gear_cop_c_lod1'" />
 			
 			<run_sequence 		name="'cop'" />
 
@@ -745,10 +566,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'cop_4'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_d'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_d_lod1'" />		
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_d'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_d_lod1'" />
+			<object 			enabled="true" name="'g_gear_cop_d'" />
+			<object 			enabled="true" name="'g_gear_cop_d_lod1'" />
 
 			<run_sequence 		name="'cop'" />
 			
@@ -764,11 +583,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'la_cop_1'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_a'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_a_lod1'" />
+		<sequence editable_state="true" name="'la_cop_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
 			
 			<run_sequence 		name="'la_cop'" />
 			
@@ -786,10 +603,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'la_cop_2'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b_lod1'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_b'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_b_lod1'" />
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
 			
 			<run_sequence 		name="'la_cop'" />
 			
@@ -806,11 +621,9 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'la_cop_3'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_c'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_c_lod1'" />		
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c_lod1'" />
+		<sequence editable_state="true" name="'la_cop_3'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_c'" />
+			<object 			enabled="true" name="'g_gear_cop_c_lod1'" />
 
 			<run_sequence 		name="'la_cop'" />
 
@@ -825,11 +638,9 @@
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'la_cop_4'" once="true" triggable="true">
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_e'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_ed_lod1'" />			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_e'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_e_lod1'" />
+		<sequence editable_state="true" name="'la_cop_4'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_e'" />
+			<object 			enabled="true" name="'g_gear_cop_e_lod1'" />
 			
 			<run_sequence 		name="'la_cop'" />
 			
@@ -843,6 +654,78 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'nyc_cop_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
+			
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'badges_nyc_cop'" />
+			<run_sequence 		name="'baton'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_a'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_common'" />
+			<run_sequence 		name="'random_gloves_rare'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_cop_2'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
+			
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'badges_nyc_cop'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'hat_cop'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'radio_extra'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_b'" />
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_gloves_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_cop_3'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_c'" />
+			<object 			enabled="true" name="'g_gear_cop_c_lod1'" />
+
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'vest'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'hat_cop'" />
+			
+			<run_sequence 		name="'random_body_alt_b'" />
+			<run_sequence 		name="'random_watch_rare'" />		
+			<run_sequence 		name="'random_gloves_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'nyc_cop_4'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_e'" />
+			<object 			enabled="true" name="'g_gear_cop_e_lod1'" />
+			
+			<run_sequence 		name="'nyc_cop'" />
+			
+			<run_sequence 		name="'badges_nyc_cop'" />
+			<run_sequence 		name="'belt'" />	
+			<run_sequence 		name="'hat_cop'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_body_alt_a'" />			
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_gloves_common'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'fbi_1'" once="true" triggable="true">		
 			<object 			enabled="true" name="'g_gear_fbi_a'" />
 			<object 			enabled="true" name="'g_gear_fbi_a_lod1'" />
@@ -959,11 +842,11 @@
 			<run_sequence 		name="'hat_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_security_2'" once="true" triggable="true">
@@ -978,11 +861,11 @@
 			<run_sequence 		name="'hat_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_b'" />
+			<run_sequence 		name="'random_body_alt_b'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_security_3'" once="true" triggable="true">
@@ -997,10 +880,10 @@
 			<run_sequence 		name="'hat_cop_badge_b'" />
 			<run_sequence 		name="'vest'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_shades_bex_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_1'" once="true" triggable="true">		
@@ -1015,11 +898,11 @@
 			<run_sequence 		name="'handcuffs'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_2'" once="true" triggable="true">
@@ -1034,11 +917,11 @@
 			<run_sequence 		name="'hat_bex_cop_badge'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_b'" />
+			<run_sequence 		name="'random_body_alt_b'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_3'" once="true" triggable="true">	
@@ -1052,10 +935,10 @@
 			<run_sequence 		name="'hat_bex_cop_badge'" />
 			<run_sequence 		name="'vest'" />
 			
-			<run_sequence 		name="'random_body_bex_b'" />
+			<run_sequence 		name="'random_body_alt_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_shades_bex_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_4'" once="true" triggable="true">			
@@ -1070,10 +953,10 @@
 			<run_sequence 		name="'hat_bex_cop_badge'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />			
+			<run_sequence 		name="'random_body_alt_a'" />			
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_1'" once="true" triggable="true">		
@@ -1091,7 +974,7 @@
 			<run_sequence 		name="'random_body_c'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_2'" once="true" triggable="true">
@@ -1103,13 +986,13 @@
 			<run_sequence 		name="'badges_bex_fbi'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'handcuffs_b'" />
-			<run_sequence 		name="'suspenders_bex'" />
+			<run_sequence 		name="'suspenders_alt'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_3'" once="true" triggable="true">
@@ -1121,7 +1004,7 @@
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'vest'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
 		</sequence>
@@ -1138,11 +1021,11 @@
 			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_common'" />
+			<run_sequence 		name="'random_shades_alt_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_2'" once="true" triggable="true">
@@ -1157,11 +1040,11 @@
 			<run_sequence 		name="'hat_bex_cop_badge_b'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			
-			<run_sequence 		name="'random_body_bex_b'" />
+			<run_sequence 		name="'random_body_alt_b'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_3'" once="true" triggable="true">
@@ -1173,13 +1056,13 @@
 			<run_sequence 		name="'badges_bex_fbi'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'handcuffs_b'" />
-			<run_sequence 		name="'suspenders_bex'" />
+			<run_sequence 		name="'suspenders_alt'" />
 			
-			<run_sequence 		name="'random_body_bex_a'" />
+			<run_sequence 		name="'random_body_alt_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_4'" once="true" triggable="true">
@@ -1191,33 +1074,27 @@
 			<run_sequence 		name="'badges_bex_fbi_b'" />
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'handcuffs'" />
-			<run_sequence 		name="'suspenders_bex'" />
+			<run_sequence 		name="'suspenders_alt'" />
 			
-			<run_sequence 		name="'random_body_bex_b'" />
+			<run_sequence 		name="'random_body_alt_b'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_shades_bex_rare'" />
+			<run_sequence 		name="'random_shades_alt_rare'" />
 		</sequence>
 
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body_a'" triggable="true">
-			<run_sequence 		filter="'check_fat'" name="'body_fat_'..pick('short','short','long')" />
-			<run_sequence 		filter="'check_not_fat'" name="'body_'..pick('short','short','long')" />
+			<run_sequence 		name="'body_'..pick('short','short','long')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_body_b'" triggable="true">
-			<run_sequence 		filter="'check_fat'" name="'body_fat_'..pick('long','long','short')" />
-			<run_sequence 		filter="'check_not_fat'" name="'body_'..pick('long','long','short')" />
+			<run_sequence 		name="'body_'..pick('long','long','short')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_body_c'" triggable="true">
-			<run_sequence 		filter="'check_fat'" name="'body_fat_'..pick('jacket')" />
-			<run_sequence 		filter="'check_not_fat'" name="'body_'..pick('jacket')" />
+			<run_sequence 		name="'body_'..pick('jacket')" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>
-		
+		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>		
 		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />
 			
@@ -1227,7 +1104,6 @@
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'body_jacket'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />
 			
@@ -1237,59 +1113,30 @@
 			<object 			enabled="true" name="'g_body_c'" />
 			<object 			enabled="true" name="'g_body_c_lod1'" />
 		</sequence>
+	<!--MODIFIED UV BODY SEQUENCES-->
+		<sequence editable_state="true" name="'random_body_alt_a'" triggable="true">
+			<run_sequence 		name="'body_alt_'..pick('short','short','long')" />
+		</sequence>
 
-		<sequence editable_state="true" name="'body_fat_short'" once="true" triggable="true">
+		<sequence editable_state="true" name="'random_body_alt_b'" triggable="true">
+			<run_sequence 		name="'body_alt_'..pick('long','long','short')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'body_alt_short'" once="true" triggable="true">
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
-			<object 			enabled="true" name="'g_body_fat'" />
-			<object 			enabled="true" name="'g_body_fat_lod1'" />
+			<object 			enabled="true" name="'g_body_alt'" />
+			<object 			enabled="true" name="'g_body_alt_lod1'" />
 		</sequence>
-		
-		<sequence editable_state="true" name="'body_fat_long'" once="true" triggable="true">
+		<sequence editable_state="true" name="'body_alt_long'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
-			<object 			enabled="true" name="'g_body_fat_b'" />
-			<object 			enabled="true" name="'g_body_fat_b_lod1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'body_fat_jacket'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
-			
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_fat_c'" />
-			<object 			enabled="true" name="'g_body_fat_c_lod1'" />
-		</sequence>
-	<!--BEX UV BODY SEQUENCES-->
-		<sequence editable_state="true" name="'random_body_bex_a'" triggable="true">
-			<run_sequence 		name="'body_bex_'..pick('short','short','long')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_body_bex_b'" triggable="true">
-			<run_sequence 		name="'body_bex_'..pick('long','long','short')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'body_bex_short'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_bex'" />
-			<object 			enabled="true" name="'g_body_bex_lod1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'body_bex_long'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
-			
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_bex_b'" />
-			<object 			enabled="true" name="'g_body_bex_b_lod1'" />
+			<object 			enabled="true" name="'g_body_alt_b'" />
+			<object 			enabled="true" name="'g_body_alt_b_lod1'" />
 		</sequence>
 	<!--SHADES SEQUENCES-->
 		<sequence editable_state="true" name="'random_shades_common'" triggable="true">
@@ -1309,23 +1156,21 @@
 			<object 			enabled="true" name="'g_shades_lod1'" />
 			<object 			enabled="true" name="'g_shades_glass'" />
 		</sequence>
-	<!--SHADES BEX SEQUENCES -->
-		<sequence editable_state="true" name="'random_shades_bex_common'" triggable="true">
-			<run_sequence 		name="'shades_bex_'..pick('base','base','none')" />
+	<!--ALTERNATIVE SHADES SEQUENCES -->
+		<sequence editable_state="true" name="'random_shades_alt_common'" triggable="true">
+			<run_sequence 		name="'shades_alt_'..pick('base','base','none')" />
 		</sequence>
-
-		<sequence editable_state="true" name="'random_shades_bex_rare'" triggable="true">
-			<run_sequence 		name="'shades_bex_'..pick('none','none','base')" />
+		<sequence editable_state="true" name="'random_shades_alt_rare'" triggable="true">
+			<run_sequence 		name="'shades_alt_'..pick('none','none','base')" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'shades_bex_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'shades_bex_base'" once="true" triggable="true">
+		<sequence editable_state="true" name="'shades_alt_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'shades_alt_base'" once="true" triggable="true">
 			<set_variables 		has_shades="1" />
 			
-			<object 			enabled="true" name="'g_shades_bex'" />
-			<object 			enabled="true" name="'g_shades_bex_lod1'" />
-			<object 			enabled="true" name="'g_shades_glass_bex'" />
+			<object 			enabled="true" name="'g_shades_alt'" />
+			<object 			enabled="true" name="'g_shades_alt_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_alt'" />
 		</sequence>
 	<!--GLOVES SEQUENCES-->
 		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">
@@ -1348,20 +1193,16 @@
 		<sequence editable_state="true" name="'random_watch_common'" triggable="true">
 			<run_sequence 		name="'watch_'..pick('base','base','none')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_watch_rare'" triggable="true">
 			<run_sequence 		name="'watch_'..pick('none','none','base')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_watch'" triggable="true">
 			<run_sequence 		name="'watch_'..pick('none','base')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'watch_none'" once="true" triggable="true" />
-
 		<sequence editable_state="true" name="'watch_base'" once="true" triggable="true">
-			<run_sequence 		filter="'check_fat'" name="'watch_fat_'..pick('left','left','right')" />
-			<run_sequence 		filter="'check_not_fat'" name="'watch_'..pick('left','left','right')" />
+			<run_sequence 		name="'watch_'..pick('left','left','right')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'watch_left'" once="true" triggable="true">
@@ -1370,46 +1211,57 @@
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left'" />
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left_lod1'" />
 		</sequence>
-
 		<sequence editable_state="true" name="'watch_right'" once="true" triggable="true">
 			<set_variables 		has_watch="1" />
 			
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right'" />
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right_lod1'" />
 		</sequence>
-
-		<sequence editable_state="true" name="'watch_fat_left'" once="true" triggable="true">
-			<set_variables 		has_watch="1" />
-			
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_left'" />
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_left_lod1'" />
+	<!--TAG SEQUENCES-->
+		<sequence editable_state="true" name="'random_tag_a'" triggable="true">
+			<run_sequence 		name="'tag_'..pick('right','right','left')" />
 		</sequence>
-
-		<sequence editable_state="true" name="'watch_fat_right'" once="true" triggable="true">
-			<set_variables 		has_watch="1" />
-			
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_right'" />
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_fat_right_lod1'" />
+		<sequence editable_state="true" name="'random_tag_b'" triggable="true">
+			<run_sequence 		name="'tag_'..pick('left','left','right')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'tag_right'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_tag_right'" />
+			<object 			enabled="true" name="'g_tag_right_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'tag_left'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_tag_left'" />
+			<object 			enabled="true" name="'g_tag_left_lod1'" />
+		</sequence>
+	<!--ALTERNATIVE TAG SEQUENCES-->
+		<sequence editable_state="true" name="'random_tag_alt_a'" triggable="true">
+			<run_sequence 		name="'tag_alt_'..pick('right','right','left')" />
+		</sequence>
+		<sequence editable_state="true" name="'random_tag_alt_b'" triggable="true">
+			<run_sequence 		name="'tag_alt_'..pick('left','left','right')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'tag_alt_right'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_tag_alt_right'" />
+			<object 			enabled="true" name="'g_tag_alt_right_lod1'" />
+		</sequence>
+		<sequence editable_state="true" name="'tag_alt_left'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_tag_alt_left'" />
+			<object 			enabled="true" name="'g_tag_alt_left_lod1'" />
 		</sequence>
 	<!--TIE SEQUENCES-->		
 		<sequence editable_state="true" name="'random_tie_common'" triggable="true">
 			<run_sequence 		name="'tie_'..pick('base','base','none')" />
 		</sequence>
-
 		<sequence editable_state="true" name="'random_tie_rare'" triggable="true">
 			<run_sequence 		name="'tie_'..pick('none','none','base')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'tie_none'" once="true" triggable="true" />
-
 		<sequence editable_state="true" name="'tie_base'" once="true" triggable="true">
 			<set_variables 		has_tie="1" />
-
-			<object 			filter="'check_fat'" enabled="true" name="'g_tie_fat'" />
-			<object 			filter="'check_fat'" enabled="true" name="'g_tie_fat_lod1'" />
-			
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_tie'" />
-			<object 			filter="'check_not_fat'" enabled="true" name="'g_tie_lod1'" />
+			<object 			enabled="true" name="'g_tie'" />
+			<object 			enabled="true" name="'g_tie_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

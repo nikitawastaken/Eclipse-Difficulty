@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
-	<object file="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01" />
+	<object file="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_01/ene_male_chas_police_fat_01" />
 
 	<dependencies>			
 		<depends_on bnk="soundbanks/regular_vox" />

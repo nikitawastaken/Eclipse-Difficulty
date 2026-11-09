@@ -588,7 +588,7 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_helmet_swat_goggles">
+			<lod_object name="lod_helmet_swat_goggles_a">
 				<object name="g_helmet_swat_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_helmet"max_distance="1000" />
 					<material materials="mtr_helmet_lod_1"max_distance="1500" />
@@ -600,6 +600,30 @@
 				</object>
 			</lod_object>
 
+			<lod_object name="lod_helmet_swat_goggles_b">
+				<object name="g_helmet_swat_lod6" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet"max_distance="1000" />
+					<material materials="mtr_helmet_lod_1"max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+				<object name="g_helmet_swat_lod7" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_helmet_swat_goggles_c">
+				<object name="g_helmet_swat_lod9" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet"max_distance="1000" />
+					<material materials="mtr_helmet_lod_1"max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+				<object name="g_helmet_swat_lod10" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!-- HEAVY SWAT HELMET OBJECTS -->
 			<lod_object name="lod_helmet_swat_heavy">
 				<object name="g_helmet_swat_heavy_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -910,8 +934,10 @@
 			<object name="g_helmet_swat_heavy_lod5" 		enabled="false" />	
 			
 			<object name="g_helmet_swat_heavy_lod8" 		enabled="false" />	
-			
-			<object name="g_helmet_fbi_swat_lod13" 			enabled="false" />
+
+			<object name="g_helmet_swat_lod5" 				enabled="false" />
+
+			<object name="g_helmet_swat_lod8" 				enabled="false" />
 
 			<object name="g_helmet_fbi_swat_lod13" 			enabled="false" />				
 			
