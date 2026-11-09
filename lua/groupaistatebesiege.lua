@@ -1233,7 +1233,11 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					produce_data.name = managers.modifiers:modify_value("GroupAIStateBesiege:SpawningUnit", produce_data.name)
 
 					local spawned_unit = sp_data.mission_element:produce(produce_data)
-
+					if not alive(spawned_unit) then
+						Eclipse:error_console("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
+						return true
+					end
+					
 					local objective
 					if spawn_task.objective then
 						objective = self.clone_objective(spawn_task.objective)
@@ -1293,7 +1297,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		end
 
 		if hopeless then
-			Eclipse:warn_console("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
+			Eclipse:warn_console("Spawn group %s could not spawn unit %s", spawn_task.spawn_group.id, u_type_name)
 			return true
 		end
 	end
