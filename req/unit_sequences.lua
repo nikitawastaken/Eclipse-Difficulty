@@ -230,7 +230,7 @@ local M = {
 	["units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"] = { name = "murkywater_2", head = head_sequences.swat_b },
 	["units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security"] = { name = "murkywater_2", head = head_sequences.swat_b },
 	["units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
-	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_2", head = head_sequences.swat_b },
+	["units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
 
 	["units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"] = { name = "fbi_office_1", head = head_sequences.security },
 	["units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"] = { name = "fbi_office_1", head = head_sequences.security },
@@ -323,8 +323,8 @@ local M = {
 	["units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"] = { name = "bulldozer_4", head = head_sequences.none },
 	["units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic"] = { name = "bulldozer_medic", head = head_sequences.none },
 
-	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.swat_c },
-	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_2", head = head_sequences.swat_c },
+	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.swat_b },
+	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_2", head = head_sequences.swat_b },
 
 	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.security_no_arms },
 	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.swat_b },
@@ -624,9 +624,9 @@ local M = {
 	["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_01/ene_female_ranc_ranger_01"] = { name = "female_ranc_ranger_1", head = head_sequences.security },
 	["units/pd2_dlc_ranc/characters/ene_female_ranc_ranger_02/ene_female_ranc_ranger_02"] = { name = "female_ranc_ranger_2", head = head_sequences.security },
 
-	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
-	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_c },
-	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
+	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_b },
+	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_b },
+	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_b },
 
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_1/ene_male_auc_security_1"] = { name = "security_auc_1", head = head_sequences.security },
 	["units/pd2_dlc_auc/characters/ene_male_auc_security_2/ene_male_auc_security_2"] = { name = "security_auc_2", head = head_sequences.security }, -- Agent J
