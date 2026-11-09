@@ -1237,7 +1237,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 						Eclipse:error_console("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
 						return true
 					end
-					
+
 					local objective
 					if spawn_task.objective then
 						objective = self.clone_objective(spawn_task.objective)
