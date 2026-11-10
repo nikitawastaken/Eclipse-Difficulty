@@ -759,6 +759,128 @@ function RaycastWeaponBase:can_reload()
 	return self:ammo_base():get_ammo_remaining_in_clip() < self:ammo_base():get_ammo_total() and clip_ratio >= 1
 end
 
+-- Remove blood impact / screen effects from happening with fire weapons as it's an unaddressed carryover from other bullet bases
+function FlameBulletBase:on_collision(col_ray, weapon_unit, user_unit, damage, blank, no_sound)
+	local hit_unit = col_ray.unit
+
+	user_unit = alive(user_unit) and user_unit or nil
+
+	if user_unit and self:chk_friendly_fire(hit_unit, user_unit) then
+		return "friendly_fire"
+	end
+
+	weapon_unit = alive(weapon_unit) and weapon_unit or nil
+
+	local endurance_alive_chk = false
+
+	if hit_unit:damage() then
+		local body_dmg_ext = col_ray.body:extension() and col_ray.body:extension().damage
+
+		if body_dmg_ext then
+			local sync_damage = not blank and hit_unit:id() ~= -1
+			local network_damage = math.ceil(damage * 163.84)
+			local body_damage = network_damage / 163.84
+
+			if sync_damage and managers.network:session() then
+				local normal_vec_yaw, normal_vec_pitch = self._get_vector_sync_yaw_pitch(col_ray.normal, 128, 64)
+				local dir_vec_yaw, dir_vec_pitch = self._get_vector_sync_yaw_pitch(col_ray.ray, 128, 64)
+
+				managers.network:session():send_to_peers_synched("sync_body_damage_bullet", col_ray.unit:id() ~= -1 and col_ray.body or nil, user_unit and user_unit:id() ~= -1 and user_unit or nil, normal_vec_yaw, normal_vec_pitch, col_ray.position, dir_vec_yaw, dir_vec_pitch, math.min(16384, network_damage))
+			end
+
+			local local_damage = not blank or hit_unit:id() == -1
+
+			if local_damage then
+				endurance_alive_chk = true
+
+				local weap_cats = weapon_unit and weapon_unit:base().categories and weapon_unit:base():categories()
+
+				body_dmg_ext:damage_bullet(user_unit, col_ray.normal, col_ray.position, col_ray.ray, 1)
+
+				if hit_unit:alive() then
+					body_dmg_ext:damage_damage(user_unit, col_ray.normal, col_ray.position, col_ray.ray, body_damage)
+				end
+
+				if weap_cats and hit_unit:alive() then
+					for _, category in ipairs(weap_cats) do
+						body_dmg_ext:damage_bullet_type(category, user_unit, col_ray.normal, col_ray.position, col_ray.ray, 1)
+					end
+				end
+			end
+		end
+	end
+
+	if endurance_alive_chk and not hit_unit:alive() then
+		return
+	end
+
+	local do_shotgun_push, result, do_push, push_mul
+	local hit_dmg_ext = hit_unit:character_damage()
+	local play_impact_flesh = not hit_dmg_ext or not hit_dmg_ext._no_blood
+
+	if not blank and weapon_unit then
+		local weap_base = weapon_unit:base()
+
+		if weap_base and weap_base.chk_shield_knock then
+			weap_base:chk_shield_knock(hit_unit, col_ray, weapon_unit, user_unit, damage)
+		end
+
+		if hit_dmg_ext and hit_dmg_ext.damage_fire then
+			local was_alive = not hit_dmg_ext:dead()
+			local armor_piercing, knock_down, stagger, variant
+
+			if weap_base then
+				armor_piercing = weap_base.has_armor_piercing and weap_base:has_armor_piercing()
+				knock_down = weap_base.is_knock_down and weap_base:is_knock_down()
+				stagger = weap_base.is_stagger and weap_base:is_stagger()
+				variant = weap_base.variant and weap_base:variant()
+			end
+
+			result = self:give_fire_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, false, knock_down, stagger, variant)
+
+			if result ~= "friendly_fire" then
+				local ammo_data = weap_base and weap_base.ammo_data and weap_base:ammo_data()
+
+				if ammo_data and ammo_data.push_units then
+					local has_died = hit_dmg_ext:dead()
+
+					do_push = true
+					push_mul = self:_get_character_push_multiplier(weapon_unit, was_alive and has_died)
+
+					if result and result.type == "death" and weap_base.should_shotgun_push and weap_base:should_shotgun_push() then
+						do_shotgun_push = true
+					end
+				end
+			else
+				play_impact_flesh = false
+			end
+		else
+			local ammo_data = weap_base and weap_base.ammo_data and weap_base:ammo_data()
+
+			do_push = ammo_data and ammo_data.push_units
+		end
+	elseif weapon_unit then
+		local weap_base = weapon_unit:base()
+		local ammo_data = weap_base and weap_base.ammo_data and weap_base:ammo_data()
+
+		do_push = ammo_data and ammo_data.push_units
+	end
+
+	if do_push then
+		managers.game_play_central:physics_push(col_ray, push_mul)
+	end
+
+	if do_shotgun_push then
+		managers.game_play_central:do_shotgun_push(col_ray.unit, col_ray.position, col_ray.ray, col_ray.distance, user_unit)
+	end
+
+	if play_impact_flesh then
+		-- Do Nothing
+	end
+
+	return result
+end
+
 -- Firestorm Incendiary Ammo DoT
 function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, shield_knock, knock_down, stagger, variant)
 	local action_data = {
