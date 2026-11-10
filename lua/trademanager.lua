@@ -409,18 +409,27 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		self._trade_in_progress = true
 		self._hostage_trade_clbk = nil
 		self:trade_restore_resources()
-		managers.network:session():send_to_peers("sync_trade_restore_resources", self._resource_trades_done)
 	end
 end
 
-function TradeManager:trade_restore_resources(resource_trades_done)
+function TradeManager:trade_restore_resources()
+	-- Only host should be able to call this ?
+	if Network:is_client() then
+		Eclipse:log_chat("Client called host trade function, callstack dumped to Eclipse/log.txt")
+		Eclipse.utils.log_traceback()
+		return
+	end
+
 	self._trading_hostage = nil
 	self._trade_in_progress = false
 
 	self:increment_resource_trade()
 
+	local resource_trades_done = self._resource_trades_done or 1
+	local is_recon_over = managers.groupai:state():_is_assault_active()
+	managers.network:session():send_to_peers("sync_trade_restore_resources", resource_trades_done, not not is_recon_over)
+
 	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
-	local resource_trades_done = resource_trades_done or self._resource_trades_done or 1
 	if has_trading_delay_upgrade then
 		managers.groupai:state():_resource_trade_delay_assault_task(resource_trades_done)
 	end
@@ -429,13 +438,12 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 	local has_trading_health_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_health")
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
-	local is_recon_over = managers.groupai:state():_is_assault_active()
 
 	local unit = managers.player:player_unit()
 	local damage_ext = unit:character_damage()
 
-	for _, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-		u_data.unit:character_damage():restore_lives(1)
+	if alive(unit) then
+		damage_ext:restore_lives(1)
 	end
 
 	if has_trading_health_upgrade and not (damage_ext:need_revive() or damage_ext:dead() or damage_ext:is_berserker()) then
@@ -474,8 +482,58 @@ function TradeManager:trade_restore_resources(resource_trades_done)
 		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
 	end
 
-	if Network:is_server() then
-		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over, true)
+	managers.network:session():send_to_peers_synched("finish_trade", is_recon_over, true)
+end
+
+---In the end this becomes very similar to the host one, maybe merge them in the future but not sure
+function TradeManager:client_trade_restore_resources(trades_done, is_recon_over)
+	self._trading_hostage = nil
+	self._trade_in_progress = false
+
+	local unit = managers.player:player_unit()
+	local damage_ext = unit:character_damage()
+	if alive(unit) then
+		damage_ext:restore_lives(1)
+	end
+
+	local has_trading_health_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_health")
+	if has_trading_health_upgrade and not (damage_ext:need_revive() or damage_ext:dead() or damage_ext:is_berserker()) then
+		local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
+		damage_ext:restore_health_percentage(amount_of_health[resource_trades_done])
+
+		unit:sound():play("pickup_ammo_health_boost", nil, true)
+	end
+
+	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
+	if has_trading_ammo_upgrade then
+		local inventory = unit:inventory()
+
+		if not unit:character_damage():dead() and inventory then
+			local available_selections = {}
+
+			for i, weapon in pairs(inventory:available_selections()) do
+				if inventory:is_equipped(i) then
+					table.insert(available_selections, 1, weapon)
+				else
+					table.insert(available_selections, weapon)
+				end
+			end
+
+			local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
+			for _, weapon in ipairs(available_selections) do
+				weapon.unit:base():add_ammo(amount_of_pickups[resource_trades_done], false)
+				managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
+			end
+		end
+	end
+
+	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
+	if has_trading_delay_upgrade and not is_recon_over then
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_resources_restored_assault_delay") })
+	elseif has_trading_health_upgrade then
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_resources_restored") })
+	else
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
 	end
 end
 

@@ -53,7 +53,8 @@
 		<target mode="attach">
 			<!-- create a sync_trade_restore_resources message for `ConnectionHandler` -->
 			<message name="sync_trade_restore_resources" delivery="ordered" receiver="connection" check="server_to_client">
-				<param type="int" min="0" max="4" />   <!-- resource trades done -->
+				<param type="int" min="0" max="4" />	<!-- resource_trades_done -->
+				<param type="bool" />					<!-- is_recon_over? -->
 			</message>
 		</target>
 	</tweak>

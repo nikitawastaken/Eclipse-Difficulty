@@ -156,7 +156,9 @@ function CopBrain:on_trade(pos, rotation, is_custody_trade)
 		-- is being called when it's not meant to be called
 		return
 	end
-	return self._current_logic.on_trade(self._logic_data, pos, rotation, is_custody_trade)
+
+	-- Bandaid crash fix
+	return self._current_logic.on_trade and self._current_logic.on_trade(self._logic_data, pos, rotation, is_custody_trade)
 end
 
 -- "Converted enemy has additional target priority" upgrade
