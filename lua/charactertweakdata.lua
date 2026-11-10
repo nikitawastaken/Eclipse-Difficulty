@@ -433,8 +433,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			0.5 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
-		tase_distance = 1400,
-		range = { close = 750, optimal = 1500, far = 3000 },
+		tase_distance = 1200,
 	})
 	presets.weapon.eclipse_taser.is_rifle.autofire_rounds = nil
 	presets.weapon.eclipse_taser.is_rifle.FALLOFF = {
