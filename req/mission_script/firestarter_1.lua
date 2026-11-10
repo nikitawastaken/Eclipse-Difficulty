@@ -125,6 +125,14 @@ return {
 			length_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
+	-- Add missing light cones to lamp posts
+	-- disable fbi chopper
+	[100984] = {
+		spawn = lampposts_effect,
+		on_executed = {
+			{ id = 400020, delay = 1 },
+		},
+	},
 	-- Add missing hangar reinforce spots
 	[103162] = {
 		on_executed = {
@@ -225,9 +233,11 @@ return {
 	[103456] = swat_shield_dozer_filter,
 	[103457] = swat_shield_dozer_filter,
 	-- restore unused snipers
+	-- enable fbi chopper
 	[102569] = {
 		on_executed = {
 			{ id = 101907, delay = 120 },
+			{ id = 400019, delay = 0 },
 		},
 	},
 	-- Fix sniper SO spots
@@ -247,10 +257,6 @@ return {
 			{ id = 100160, remove = true },
 			{ id = 100161, remove = true },
 		},
-	},
-	-- Add missing light cones to lamp posts
-	[100984] = {
-		spawn = lampposts_effect,
 	},
 	-- disable 'align_position' for select navlinks and tweak navlink actions
 	[103692] = no_align_pos_navlink01,

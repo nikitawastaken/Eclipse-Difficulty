@@ -174,17 +174,17 @@ return {
 	-- extend the plane arrival timer
 	[102371] = { -- plane_time_60sec
 		values = {
-			timer = 120, -- vanilla: 60
+			time = 180 + (is_pro_job and 60 or 0), -- vanilla: 60
 		},
 	},
 	[102366] = { -- plane_time_30sec
 		values = {
-			timer = 90, -- vanilla: 30
+			time = 120, -- vanilla: 30
 		},
 	},
 	[103039] = { -- plane_time_20sec
 		values = {
-			timer = 80, -- vanilla: 20
+			time = 60, -- vanilla: 20
 		},
 	},
 	-- fix escape spawngroups not working as intended
