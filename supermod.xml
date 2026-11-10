@@ -541,6 +541,17 @@
 				<group :name="character/">
 					<file :name="hvh_cloaker_goggle.effect"/>
 					<file :name="mad_cloaker_goggle.effect"/>
+					<file :name="player/blood_screen.effect"/>
+					<file :name="player/blood_screen_df.dds"/>
+					<file :name="player/blood_screen_2_df.dds"/>
+					<file :name="player/blood_screen_edge_var1.effect"/>
+					<file :name="player/blood_screen_edge_var1.dds"/>
+					<file :name="player/blood_screen_edge_var2.effect"/>
+					<file :name="player/blood_screen_edge_var2.dds"/>
+					<file :name="player/blood_screen_edge_var3.effect"/>
+					<file :name="player/blood_screen_edge_var3.dds"/>
+					<file :name="player/blood_screen_edge_var4.effect"/>
+					<file :name="player/blood_screen_edge_var4.dds"/>
 				</group>
 			</group>
 			<group :name="payday2/">

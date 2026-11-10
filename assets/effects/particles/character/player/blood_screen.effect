@@ -1,0 +1,77 @@
+<effect force_synch="false">
+    <use_random>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+        <effect name="effects/particles/character/player/blood_screen_edge_var1"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+        <effect name="effects/particles/character/player/blood_screen_edge_var2"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/particles/character/player/blood_screen_edge_var3"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/particles/character/player/blood_screen_edge_var4"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+		<effect name="effects/payday2/particles/weapons/parts/empty"/>
+    </use_random>
+    <atom name="droplet" min_size="3" max_size="6" lifetime="2.4" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <boxrandomposition relative="effect" min="-1 -1 -1" max="1 1 1"/>
+            <boxrandomvelocity relative="effect" min="0 0 0" max="0 0 0"/>
+            <boxrandomrotation relative="effect" min="0 0 1" max="0 0 1" min_rot="0" max_rot="0"/>
+            <constantage age="0"/>
+            <boxrandomaspectsize size="0.05 0.1" min="5" max="15"/>
+            <boxrandomuvoffset uv_size="0.25 1" frame_start="0 0" primary_step_direction="+x" secondary_step_direction="+y" num_frames="4"/>
+        </initializerstack>
+        <simulatorstack>
+            <constantacceleration relative="effect" acceleration="0 0.016 0"/>
+            <velocityintegrator channel="world"/>
+            <ager/>
+            <teleporter name="droplet" trigger_teleport="time" lifetime_input="constant" particle_lifetime="100" teleport_cap="0" current_position="true" channel="world" normal_variation="0" teleport_event="false" positioner="box">
+                <box min="-1 -1 -1" max="1 1 1" min_normal="0 1 0" max_normal="0 1 0"/>
+                <normal min_velocity="0" max_velocity="0"/>
+            </teleporter>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/particles/character/player/blood_screen_df" intensity="identity" billboard_type="screen_aligned" rotation_channel="world_rotation" blend_mode="normal" render_template="effect_op_add" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="100 6 6" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.25 1" uv_offset_input="channel">
+                <opacity_keys loop="false">
+                    <key t="0" v="215"/>
+                    <key t="2.5" v="18"/>
+                    <key t="5" v="0"/>
+                </opacity_keys>
+            </billboard>
+        </visualizerstack>
+    </atom>
+    <atom name="droplet_2" min_size="3" max_size="6" lifetime="3.2" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <boxrandomposition relative="effect" min="-1 -1 -1" max="1 1 1"/>
+            <boxrandomvelocity relative="effect" min="0 0 0" max="0 0 0"/>
+            <boxrandomrotation relative="effect" min="0 0 1" max="0 0 1" min_rot="0" max_rot="0"/>
+            <constantage age="0"/>
+            <boxrandomaspectsize size="0.05 0.1" min="5" max="15"/>
+            <boxrandomuvoffset uv_size="0.25 1" frame_start="0 0" primary_step_direction="+x" secondary_step_direction="+y" num_frames="4"/>
+        </initializerstack>
+        <simulatorstack>
+            <constantacceleration relative="effect" acceleration="0 0.016 0"/>
+            <velocityintegrator channel="world"/>
+            <ager/>
+            <teleporter name="droplet" trigger_teleport="time" lifetime_input="constant" particle_lifetime="100" teleport_cap="0" current_position="true" channel="world" normal_variation="0" teleport_event="false" positioner="box">
+                <box min="-1 -1 -1" max="1 1 1" min_normal="0 1 0" max_normal="0 1 0"/>
+                <normal min_velocity="0" max_velocity="0"/>
+            </teleporter>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/particles/character/player/blood_screen_2_df" intensity="identity" billboard_type="screen_aligned" rotation_channel="world_rotation" blend_mode="normal" render_template="effect_op_add" origo="0.5 0.5" per_particle_age="false" size_input="channel" color_input="constant" color="145 6 6" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="0.25 1" uv_offset_input="channel">
+                <opacity_keys loop="false">
+                    <key t="0" v="185"/>
+                    <key t="3.2" v="18"/>
+                    <key t="5" v="0"/>
+                </opacity_keys>
+            </billboard>
+        </visualizerstack>
+    </atom>
+</effect>
