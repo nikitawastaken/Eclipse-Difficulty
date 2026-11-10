@@ -222,10 +222,6 @@
 			<set_variables 		is_swat="1" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'swat_heavy'" once="true" triggable="true">
-			<set_variables 		is_swat_heavy="1" />
-		</sequence>
-				
 		<sequence editable_state="true" name="'fbi_swat'" once="true" triggable="true">		
 			<set_variables 		is_fbi_swat="1" />
 			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1'" synchronous="true" />
@@ -237,7 +233,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'hvh_swat'" once="true" triggable="true">		
-			<set_variables 		is_hvh_fbi_swat="1" />
+			<set_variables 		is_hvh_swat="1" />
 			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_swat_hvh_1'" synchronous="true" />
 		</sequence>
 		
@@ -703,7 +699,6 @@
 			<object 			enabled="true" name="'g_hat_swat_lod7'" />
 			<object 			enabled="true" name="'g_hat_swat_lod8'" />
 			<object 			enabled="true" name="'g_hat_swat_lod9'" />
-		</sequence>
 		</sequence>
 		<sequence editable_state="true" name="'goggles_swat_hat_b'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_hat_swat_lod10'" />
