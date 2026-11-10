@@ -209,37 +209,37 @@
 
 			<lod_object name="lod_upper_body_a">
 				<object name="g_body_upper_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_gang_black04" max_distance="1000" />
-					<material materials="mtr_gang_black04_lod_1" max_distance="1500" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black01" max_distance="1000" />
+					<material materials="mtr_gang_black01_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black01_lod_2" />
 				</object>
 				<object name="g_body_upper_a_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_gang_black04" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black01" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black01_lod_2" />
 				</object>
 			</lod_object>
 
 			<lod_object name="lod_upper_body_b">
 				<object name="g_body_upper_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_gang_black04" max_distance="1000" />
-					<material materials="mtr_gang_black04_lod_1" max_distance="1500" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black02" max_distance="1000" />
+					<material materials="mtr_gang_black02_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black02_lod_2" />
 				</object>
 				<object name="g_body_upper_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_gang_black04" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black02" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black02_lod_2" />
 				</object>
 			</lod_object>
 
 			<lod_object name="lod_upper_body_c">
 				<object name="g_body_upper_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_gang_black04" max_distance="1000" />
-					<material materials="mtr_gang_black04_lod_1" max_distance="1500" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black03" max_distance="1000" />
+					<material materials="mtr_gang_black03_lod_1" max_distance="1500" />
+					<material materials="mtr_gang_black03_lod_2" />
 				</object>
 				<object name="g_body_upper_c_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_gang_black04" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_gang_black04_lod_2" />
+					<material materials="mtr_gang_black03" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_gang_black03_lod_2" />
 				</object>
 			</lod_object>
 
