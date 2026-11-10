@@ -785,7 +785,17 @@ function FlameBulletBase:on_collision(col_ray, weapon_unit, user_unit, damage, b
 				local normal_vec_yaw, normal_vec_pitch = self._get_vector_sync_yaw_pitch(col_ray.normal, 128, 64)
 				local dir_vec_yaw, dir_vec_pitch = self._get_vector_sync_yaw_pitch(col_ray.ray, 128, 64)
 
-				managers.network:session():send_to_peers_synched("sync_body_damage_bullet", col_ray.unit:id() ~= -1 and col_ray.body or nil, user_unit and user_unit:id() ~= -1 and user_unit or nil, normal_vec_yaw, normal_vec_pitch, col_ray.position, dir_vec_yaw, dir_vec_pitch, math.min(16384, network_damage))
+				managers.network:session():send_to_peers_synched(
+					"sync_body_damage_bullet",
+					col_ray.unit:id() ~= -1 and col_ray.body or nil,
+					user_unit and user_unit:id() ~= -1 and user_unit or nil,
+					normal_vec_yaw,
+					normal_vec_pitch,
+					col_ray.position,
+					dir_vec_yaw,
+					dir_vec_pitch,
+					math.min(16384, network_damage)
+				)
 			end
 
 			local local_damage = not blank or hit_unit:id() == -1
