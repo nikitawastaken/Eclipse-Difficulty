@@ -1204,7 +1204,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.glace.random_environments = {
 		["glace_1"] = 4,
-		["glace_rainless"] = 2,
 	}
 	self.mus.random_environments = {
 		["dadiamond_cg"] = 69,
