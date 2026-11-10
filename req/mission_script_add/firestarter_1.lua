@@ -101,7 +101,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_preferedadd(400017, "firestarter_1_cloaker_preferred_add", cloaker_group_preferred_add),
 	Eclipse.mission_elements.gen_missionscript(400018, "firestarter_1_cloaker_spawn_global", cloaker_spawn_global),
-	
+
 	-- disable fbi chopper if it's stealth/enable fbi chopper when the heist goes loud
 	Eclipse.mission_elements.gen_toggleelement(400019, "enable_fbichopper", optsEnable_fbichopper),
 	Eclipse.mission_elements.gen_toggleelement(400020, "disable_fbichopper", optsDisable_fbichopper),
