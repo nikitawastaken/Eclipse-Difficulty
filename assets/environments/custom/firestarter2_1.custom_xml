@@ -21,7 +21,7 @@
 						<param key="ambient_scale" value="0"/>
 						<param key="sky_bottom_color" value="0.10588236153126 0.082352943718433 0.070588238537312"/>
 						<param key="fog_start_color" value="0.05882353335619 0.13333334028721 0.23529413342476"/>
-						<param key="effect_light_scale" value="1.1499999761581"/>
+						<param key="effect_light_scale" value="1"/>
 						<param key="fog_far_low_color" value="0 0 0"/>
 						<param key="ambient_falloff_scale" value="0.16599999368191"/>
 						<param key="sky_bottom_color_scale" value="0.30000001192093"/>
