@@ -23,7 +23,7 @@ local objectives_done_counter_add = {
 		{ id = 400002, delay = 0 },
 	},
 }
-	
+
 local bow_spawn = {
 	values = {
 		interval = 15,
@@ -222,7 +222,7 @@ return {
 	-- Scripted difficulty scaling
 	[101411] = objectives_done_counter_add, -- link_completed_obj_031 (Found Xun Hang's handprint)
 	[101155] = objectives_done_counter_add, -- link_completed_obj_011 (Found Li Deng's code)
-	[400003] = { 
+	[400003] = {
 		on_executed = {
 			{ id = 400004, delay = 0 },
 		},

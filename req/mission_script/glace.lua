@@ -74,7 +74,7 @@ local escape_guaranteed_spawn = {
 }
 
 return {
-	[102295] = { 
+	[102295] = {
 		reinforce = {
 			{
 				name = "construct01",
@@ -211,7 +211,7 @@ return {
 	-- Remove spawn groups closest to the broken bridge part (and add a few groups from the construction site)
 	[101176] = { -- add_prefered_saw_spawns
 		values = {
-			spawn_groups = { 101847, 103886, 101250 }
+			spawn_groups = { 101847, 103886, 101250 },
 		},
 		-- Add additioanl "saw" prefereds to introduce groups close to the prison transports with a delay
 		on_executed = {
@@ -222,7 +222,7 @@ return {
 	},
 	[101239] = { -- add_prefered_escape_bridge_spawns
 		values = {
-			spawn_groups = { 101255, 101587, 101258, 101254, 101586, 102131, 101847, 103886, 101250 }
+			spawn_groups = { 101255, 101587, 101258, 101254, 101586, 102131, 101847, 103886, 101250 },
 		},
 	},
 	-- Remove the new preferreds with the other "saw" preferreds
@@ -258,7 +258,7 @@ return {
 	[100867] = saw_close_spawn,
 	[101153] = saw_close_spawn,
 	[101155] = saw_close_spawn,
-	[101157] = saw_close_spawn,	
+	[101157] = saw_close_spawn,
 	[101158] = saw_close_spawn,
 	-- Interrupters are now EVIL
 	[104292] = interrupter,

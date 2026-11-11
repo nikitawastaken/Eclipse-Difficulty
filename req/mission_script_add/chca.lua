@@ -40,7 +40,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_counter(400001, "objectives_done_counter", optsObjectivesDoneCounter),
 	Eclipse.mission_elements.gen_counter_operator(400002, "objectives_done_addend", optsObjectivesDoneCounterOperator),
 	Eclipse.mission_elements.gen_counter_trigger(400003, "objectives_done_trigger", optsObjectivesDoneCounterTrigger),
-	
+
 	Eclipse.mission_elements.gen_difficulty(400004, "chca_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400005, "chca_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }

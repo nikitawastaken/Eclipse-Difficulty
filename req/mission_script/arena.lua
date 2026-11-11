@@ -57,7 +57,7 @@ return {
 	[101761] = bags_required,
 	[100470] = disabled,
 	-- Disable reinforce inside the pyro booth
-	[102070] = disabled, 
+	[102070] = disabled,
 	-- Disable curly cheat spawns
 	[101653] = disabled, -- curly_near_top_2_3
 	[101308] = disabled, -- curly_near_top_1_group

@@ -127,7 +127,7 @@ local glace_prison_bus = {
 		7 / 8,
 		1,
 		1,
-	},	
+	},
 	jam_times = {
 		is_balance_mul = true,
 		team_ai_balance_mul_weight = calc_team_ai_wgt(2),
