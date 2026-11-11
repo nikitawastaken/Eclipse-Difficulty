@@ -1,0 +1,61 @@
+<effect force_synch="false">
+    <atom name="screen_snowflakes" min_size="7" max_size="7" lifetime="-1" random_start_time="false" start_time="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <boxrandomposition relative="effect" min="0 0 0" max="1 1 1"/>
+            <boxrandomaspectsize size="1 1" min=".02" max=".05"/>
+            <boxrandomvelocity relative="effect" min="0 0 0" max="0 1 0"/>
+			<boxrandomuvoffset uv_size="0.0625 1" frame_start="0 0" primary_step_direction="+x" secondary_step_direction="+y" num_frames="16"/>
+            <constantage age="99999"/>
+        </initializerstack>
+        <simulatorstack>
+            <teleporter name="" trigger_teleport="time" lifetime_input="constant" particle_lifetime="6" teleport_cap="1" current_position="true" channel="world" normal_variation="0" teleport_event="false" positioner="box">
+                <box min="-0.75 -0.75 -0.75" max="0.75 0.75 0.75" min_normal="0 0 0" max_normal="0 1 0"/>
+                <normal min_velocity="0" max_velocity="1"/>
+            </teleporter>
+            <scaledvelocityintegrator channel="world" per_particle_age="true">
+                <scale_keys loop="false">
+                    <key t="0.69192755222321" v="0"/>
+                </scale_keys>
+            </scaledvelocityintegrator>
+            <ager/>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/particles/snow/snowflakes_screen_df" intensity="flashlight" billboard_type="screen_aligned" rotation_channel="world_rotation" blend_mode="lighten" render_template="effect_op_add" origo="0.5 0.5" per_particle_age="true" size_input="constant" size="0.265 0.265" color_input="constant" color="115 149 188" opacity_input="keys" rotation_input="constant" rotation="3.14" rotation_axis="0 0 1" uv_size="0.0625 1" uv_offset_input="channel">
+                <opacity_keys loop="false">
+					<key t="0" v="0"/>
+					<key t="0.1" v="255"/>
+                    <key t="2" v="255"/>
+                    <key t="2.9999" v="0"/>
+                </opacity_keys>
+            </billboard>
+        </visualizerstack>
+    </atom>
+    <atom name="screen_iceedge" min_size="1" max_size="1" lifetime="-1" random_start_time="false" start_time="0" preroll="0" inherit_velocity_multiplier="1" fade_in_start="-1" fade_in_length="0" fade_out_start="-1" spawn_cull_policy="initialize" cull_policy="update_render" cull_gracetime="0" max_particle_radius="-1" soundbank="" cue="" ambient="false" grab_relative="effect" grab_pos="0 0 0" grab_radius="200" grab_backfacing="false" timeline="">
+        <initializerstack>
+            <boxrandomposition relative="effect" min="-0 -0 -0" max="0 0 0"/>
+            <boxrandomvelocity relative="effect" min="-0 -0 -0" max="0 0 0"/>
+            <boxrandomrotation relative="effect" min="0 0 1" max="0 0 1" min_rot="0" max_rot="0"/>
+        </initializerstack>
+        <simulatorstack>
+            <velocityintegrator channel="world"/>
+        </simulatorstack>
+        <visualizerstack>
+            <billboard texture="effects/particles/snow/ice_screen_nm" intensity="candle" billboard_type="screen_aligned" rotation_channel="world_rotation" blend_mode="normal" render_template="heat_shimmer" origo="0.5 0.5" per_particle_age="false" size_input="constant" size="2 2" color_input="constant" color="187 205.00001525879 251.00001525879" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="1 1" uv_offset_input="constant" uv_offset="0 0">
+                <opacity_keys loop="false">
+					<key t="0" v="0"/>
+					<key t="0.25" v="35"/>
+                    <key t="0.5" v="75"/>
+                    <key t="1" v="135"/>
+                </opacity_keys>
+            </billboard>
+            <billboard texture="effects/particles/snow/ice_screen_df" intensity="identity" billboard_type="screen_aligned" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_add" origo="0.5 0.5" per_particle_age="false" size_input="constant" size="2 2" color_input="constant" color="187 205.00001525879 251.00001525879" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="1 1" uv_offset_input="constant" uv_offset="0 0">
+                <opacity_keys loop="false">
+					<key t="0" v="0"/>
+					<key t="0.1" v="35"/>
+                    <key t="0.5" v="75"/>
+                    <key t="1" v="135"/>
+                </opacity_keys>
+            </billboard>
+        </visualizerstack>
+    </atom>
+</effect>

@@ -93,6 +93,7 @@
 				<post :hook_id="menu/items/contractbrokerheistitem"/>
 				<post :hook_id="menu/renderers/menunodecrimenetgui"/>
 
+				<post :hook_id="environmenteffectsmanager"/>
 				<post :hook_id="customsafehousemanager"/>
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="moneymanager"/>
@@ -522,6 +523,15 @@
 					<file :name="poison_gas.effect"/>
 					<file :name="smoke_grenade_smoke.effect"/>
 					<file :name="smoke_screen.effect"/>
+				</group>
+
+				<group :name="snow/">
+					<file :name="snow_01_w_screen.effect"/>
+					<file :name="snow_slow_w_screen.effect"/>
+					<file :name="snowflake_screen.effect"/>
+					<file :name="ice_screen_df.dds"/>
+					<file :name="ice_screen_nm.dds"/>
+					<file :name="snowflakes_screen_df.dds"/>
 				</group>
 				
 				<group :name="bullet_hit/">

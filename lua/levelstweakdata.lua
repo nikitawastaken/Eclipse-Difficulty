@@ -1304,6 +1304,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.wwh.random_environments = {
 		["wwh_cg"] = 1,
+		["wwh_alt"] = 999,
 	}
 	self.escape_park.random_environments = {
 		["escape_park_1"] = 3,
