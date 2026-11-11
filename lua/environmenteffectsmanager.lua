@@ -126,7 +126,7 @@ function SnowDropEffect:start()
 	local t = {
 		effect = self._effect_name,
 		position = Vector3(),
-		rotation = Rotation()
+		rotation = Rotation(),
 	}
 
 	self._raindrops = World:effect_manager():spawn(t)
