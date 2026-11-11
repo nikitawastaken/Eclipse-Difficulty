@@ -160,10 +160,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.fex.difficulty_scaling_preset = "regroup_random"
 	self.flat.difficulty_scaling_preset = "regroup_random"
 	self.friend.difficulty_scaling_preset = "regroup_random"
+	self.glace.difficulty_scaling_preset = "regroup_random"
 	self.hox_1.difficulty_scaling_preset = "regroup_random"
 	self.hox_2.difficulty_scaling_preset = "regroup_random"
 	self.jolly.difficulty_scaling_preset = "regroup_random"
 	self.mia_1.difficulty_scaling_preset = "regroup_random"
+	self.mex.difficulty_scaling_preset = "regroup_random"
 	self.mus.difficulty_scaling_preset = "regroup_random"
 	self.pal.difficulty_scaling_preset = "regroup_random"
 	self.pbr2.difficulty_scaling_preset = "regroup_random"
@@ -172,6 +174,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.peta2.difficulty_scaling_preset = "regroup_random"
 	self.ranc.difficulty_scaling_preset = "regroup_random"
 	self.red2.difficulty_scaling_preset = "regroup_random"
+	self.run.difficulty_scaling_preset = "regroup_random"
 	self.sand.difficulty_scaling_preset = "regroup_random"
 	self.trai.difficulty_scaling_preset = "regroup_random"
 
@@ -196,11 +199,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.corp.difficulty_scaling_preset = "scripted"
 	self.deep.difficulty_scaling_preset = "scripted"
 	self.des.difficulty_scaling_preset = "scripted"
-	self.glace.difficulty_scaling_preset = "scripted"
 	self.kenaz.difficulty_scaling_preset = "scripted"
 	self.mad.difficulty_scaling_preset = "scripted"
 	self.pbr.difficulty_scaling_preset = "scripted"
-	self.run.difficulty_scaling_preset = "scripted"
 	self.vit.difficulty_scaling_preset = "scripted"
 
 	-- stealth bonus changes

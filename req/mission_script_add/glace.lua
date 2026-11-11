@@ -127,21 +127,37 @@ local spawn_random_cloaker_dozer = {
 		{ id = 400026, delay = 0 },
 	},
 }
-local optsFlankPreferredAdd = {
+local optsSawPreferredAdd01 = {
 	spawn_groups = { 100867, 101153 },
 	enabled = true,
 }
-local optsFlankPreferredRemove = {
+local optsSawPreferredRemove01 = {
 	elements = { 400028 },
+	enabled = true,
+}
+local optsSawPreferredAdd02 = {
+	spawn_groups = { 101154, 101160 },
+	enabled = true,
+}
+local optsSawPreferredRemove02 = {
+	elements = { 400030 },
+	enabled = true,
+}
+local optsSawPreferredAdd03 = {
+	spawn_groups = { 101156, 101159 },
+	enabled = true,
+}
+local optsSawPreferredRemove03 = {
+	elements = { 400032 },
 	enabled = true,
 }
 local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
 		{
-			amount = 0.375,
+			amount = 0.25,
 			delay = 0,
-			time = 90,
+			time = 60,
 			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
@@ -182,13 +198,19 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400026, "spooc_scaffolding", Vector3(1285, -22260, 7757.596), Rotation(0, 0, 0), optsCloaker),
 	Eclipse.mission_elements.gen_element_random(400027, "random_scaffolding_special", spawn_random_cloaker_dozer),
 
-	-- New preferred for groups under the bridge
-	Eclipse.mission_elements.gen_preferedadd(400028, "glace_flank_preferedadd", optsFlankPreferredAdd),
-	Eclipse.mission_elements.gen_preferedremove(400029, "glace_flank_preferedremove", optsFlankPreferredRemove),
+	-- New preferred for groups close to the prison transports
+	Eclipse.mission_elements.gen_preferedadd(400028, "glace_saw_close_preferedadd", optsSawPreferredAdd01),
+	Eclipse.mission_elements.gen_preferedremove(400029, "glace_saw_close_preferedremove", optsSawPreferredRemove01),
+
+	Eclipse.mission_elements.gen_preferedadd(400030, "glace_saw_mid_preferedadd", optsSawPreferredAdd02),
+	Eclipse.mission_elements.gen_preferedremove(400031, "glace_saw_mid_preferedremove", optsSawPreferredRemove02),
+
+	Eclipse.mission_elements.gen_preferedadd(400032, "glace_saw_far_preferedadd", optsSawPreferredAdd03),
+	Eclipse.mission_elements.gen_preferedremove(400033, "glace_saw_far_preferedremove", optsSawPreferredRemove03),
 
 	-- Scripted difficulty steps
-	Eclipse.mission_elements.gen_difficulty(400030, "glace_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
-	Eclipse.mission_elements.gen_difficulty(400031, "glace_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400034, "glace_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400035, "glace_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 
 return M

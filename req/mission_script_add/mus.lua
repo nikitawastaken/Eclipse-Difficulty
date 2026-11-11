@@ -265,7 +265,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(500031, "cloaker_hide_so_32", Vector3(682, 2486, -300), Rotation(180, 0, 0), optsCloaker_Hide_SpotSO_3),
 	-- cloakers
 	Eclipse.mission_elements.gen_dummy(500032, "cloaker_spawn_1", Vector3(248.057, -985.992, -300), Rotation(180, 0, 0), optsBesiegeDummyCloaker_1),
-	Eclipse.mission_elements.gen_dummy(500033, "cloaker_spawn_2", Vector3(-381.740, 1402.370, 1175), Rotation(0, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(500033, "cloaker_spawn_2", Vector3(-381.740, 1402.370, -300), Rotation(0, 0, 0), optsBesiegeDummyCloaker_1),
 	Eclipse.mission_elements.gen_dummy(500034, "cloaker_spawn_3", Vector3(-3435, 1231, -700), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_2),
 	Eclipse.mission_elements.gen_dummy(500035, "cloaker_spawn_4", Vector3(-603, 4241, -500), Rotation(-180, 0, 0), optsBesiegeDummyCloaker_3),
 	Eclipse.mission_elements.gen_dummy(500036, "cloaker_spawn_5", Vector3(-3402.922, -830.375, -700), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_2),

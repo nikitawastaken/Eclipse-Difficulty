@@ -6,11 +6,17 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
+local rappel_horizontal_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields,
+}
+local rappel_vertical_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
 }
 local garage_spawn = {
 	values = {
@@ -50,6 +56,12 @@ return {
 	[101760] = bags_required,
 	[101761] = bags_required,
 	[100470] = disabled,
+	-- Disable reinforce inside the pyro booth
+	[102070] = disabled, 
+	-- Disable curly cheat spawns
+	[101653] = disabled, -- curly_near_top_2_3
+	[101308] = disabled, -- curly_near_top_1_group
+	[101649] = disabled, -- curly_near_top_1_group
 	-- Scripted difficulty scaling
 	[101452] = { -- override_complete (Initial hack complete)
 		on_executed = {
@@ -67,12 +79,10 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	[100128] = standard_spawn,
-	[100132] = standard_spawn,
-	[101166] = standard_spawn,
-	[101309] = standard_spawn,
-	[104406] = standard_spawn,
-	[104471] = standard_spawn,
+	[100128] = rappel_horizontal_spawn,
+	[101309] = rappel_horizontal_spawn,
+	[101166] = rappel_vertical_spawn,
+	[104406] = rappel_vertical_spawn,
 	[101310] = garage_spawn,
 	[102066] = garage_spawn,
 	[100805] = elevator_spawn,

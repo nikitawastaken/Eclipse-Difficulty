@@ -88,11 +88,11 @@ M.elements = {
 	-- Activate Eclipse exclusive event
 	Eclipse.mission_elements.gen_missionscript(400001, "activate_eclipse_navlinks", activate_navlinks),
 	-- Restoration of unused fence spawn
-	Eclipse.mission_elements.gen_dummy(400002, "eclipse_spawn_enemy_001", Vector3(1800, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400003, "eclipse_spawn_enemy_002", Vector3(1700, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400004, "eclipse_spawn_enemy_003", Vector3(1600, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400005, "eclipse_spawn_enemy_004", Vector3(1500, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400006, "eclipse_spawn_enemy_005", Vector3(1400, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400002, "alex_spawn_enemy_001", Vector3(1800, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400003, "alex_spawn_enemy_002", Vector3(1700, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400004, "alex_spawn_enemy_003", Vector3(1600, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400005, "alex_spawn_enemy_004", Vector3(1500, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400006, "alex_spawn_enemy_005", Vector3(1400, -1925, 875), Rotation(0, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400007, "alex_fence_enemy_group01", { 400002, 400003, 400004, 400005, 400006 }, 0),
 	-- Fix for police chopper
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
@@ -114,12 +114,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400022, "alex_cloaker_spawngroup_03", { 400018 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400023, "alex_cloaker_spawngroup_04", { 400019 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400024, "alex_cloaker_spawns", optsPreferedCloakerAdd),
-	-- Restoration of unused fence spawn 2.0
-	Eclipse.mission_elements.gen_dummy(400025, "eclipse_spawn_enemy_006", Vector3(3375, -1300, 875), Rotation(45, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400026, "eclipse_spawn_enemy_007", Vector3(3275, -1400, 875), Rotation(45, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400027, "eclipse_spawn_enemy_008", Vector3(3175, -1500, 875), Rotation(45, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400028, "eclipse_spawn_enemy_009", Vector3(3075, -1600, 875), Rotation(45, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400029, "eclipse_spawn_enemy_010", Vector3(2975, -1700, 875), Rotation(45, 0, 0), optsBesiegeDummy),
+	-- New fence spawn group 2.0
+	Eclipse.mission_elements.gen_dummy(400025, "alex_spawn_enemy_006", Vector3(3375, -1300, 875), Rotation(45, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400026, "alex_spawn_enemy_007", Vector3(3275, -1400, 875), Rotation(45, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400027, "alex_spawn_enemy_008", Vector3(3175, -1500, 875), Rotation(45, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400028, "alex_spawn_enemy_009", Vector3(3075, -1600, 875), Rotation(45, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400029, "alex_spawn_enemy_010", Vector3(2975, -1700, 875), Rotation(45, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400030, "alex_fence_enemy_group02", { 400025, 400026, 400027, 400028, 400029 }, 0),
 }
 

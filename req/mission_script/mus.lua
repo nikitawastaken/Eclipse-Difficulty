@@ -16,17 +16,14 @@ local courtyard_spawn = {
 local staircase_window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local exhibit_rappel_spawn = {
+	groups = preferred.no_cops_agents,
+}
 local matrix_window_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local exhibit_rappel_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents,
 }
 local exhibit_slow_rappel_spawn = {
 	values = {
@@ -35,6 +32,9 @@ local exhibit_slow_rappel_spawn = {
 	groups = preferred.no_cops_agents,
 }
 local last_rappel_spawn = {
+	values = {
+		interval = 60,
+	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local cloaker_spawn = {
@@ -80,26 +80,6 @@ return {
 				force = 3,
 				position = Vector3(-3475, 225, -700),
 			},
-			{
-				name = "south",
-				force = 2,
-				position = Vector3(-1300, 200, -350),
-			},
-			{
-				name = "west",
-				force = 2,
-				position = Vector3(0, 2900, -300),
-			},
-			{
-				name = "north",
-				force = 2,
-				position = Vector3(1200, 200, -350),
-			},
-			{
-				name = "east",
-				force = 2,
-				position = Vector3(0, -2500, -300),
-			},
 		},
 		on_executed = { -- standard_preferreds
 			{ id = 100127, delay = 60 }, -- vanilla: 0
@@ -137,6 +117,28 @@ return {
 		},
 	},
 	[102154] = { -- 1st timelock done
+		reinforce = {
+			{
+				name = "south",
+				force = 2,
+				position = Vector3(-1300, 200, -350),
+			},
+			{
+				name = "west",
+				force = 2,
+				position = Vector3(0, 2900, -300),
+			},
+			{
+				name = "north",
+				force = 2,
+				position = Vector3(1200, 200, -350),
+			},
+			{
+				name = "east",
+				force = 2,
+				position = Vector3(0, -2500, -300),
+			},
+		},
 		on_executed = {
 			{ id = 100128, delay = 10, delay_rand = 20 }, -- add 40
 			{ id = 100130, delay = 10, delay_rand = 20 }, -- add 41
@@ -144,12 +146,12 @@ return {
 		},
 	},
 	-- Scripted difficulty scaling
-	[101131] = { -- timelock_done_001
+	[101710] = { -- complete_loud_obj002 (Override complete)
 		on_executed = {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	[101893] = { -- opened_diamond_door
+	[101893] = { -- opened_diamond_door (DaDiamond chamber entered)
 		on_executed = {
 			{ id = 400006, delay = 0 },
 		},

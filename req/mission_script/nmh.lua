@@ -41,14 +41,14 @@ local terminator_dozer_2 = {
 	},
 }
 local sniper_so = {
-	so_access_filter = so_access.law,
 	values = {
 		interval = 1,
 	},
+	so_access_filter = so_access.law,
 }
 local vent_navlink_interval = {
 	values = {
-		interval = 1,
+		interval = 3,
 	},
 }
 local cloaker_spawn = {

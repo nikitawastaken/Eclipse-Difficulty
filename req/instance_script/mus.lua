@@ -31,7 +31,7 @@ M["levels/instances/unique/mus_helicopter/world/world"] = function(result)
 	end
 end
 
-M["levels/instances/unique/mus_chamber_controller_001/world/world"] = function(result)
+M["levels/instances/unique/mus_chamber_controller/world/world"] = function(result)
 	for _, element in pairs(result.default.elements) do
 		if patches.chamber_controller.overkill_above[element.id] then
 			table.map_append(element.values, filter_overkill_above)

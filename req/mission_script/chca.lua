@@ -17,9 +17,16 @@ local enabled = {
 		enabled = true,
 	},
 }
-local standard_spawn = {
+
+local objectives_done_counter_add = {
+	on_executed = {
+		{ id = 400002, delay = 0 },
+	},
+}
+	
+local bow_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
 	},
 }
@@ -57,6 +64,7 @@ local vent_spawn_why_does_it_have_10_spawn_points = {
 	},
 	groups = vent_spawn.groups,
 }
+
 local los_blockers = {}
 local los_blocker_ids = Idstring("units/payday2/architecture/mkp/mkp_int_floor_4x4m_a")
 local los_blocker_rot = Rotation(0, -90, 0)
@@ -67,6 +75,7 @@ for i = 0, 3 do
 		rot = los_blocker_rot,
 	})
 end
+
 return {
 	[100017] = {
 		ai_area = { -- Combine some navigation areas
@@ -87,7 +96,7 @@ return {
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 		on_executed = {
-			{ id = 400002, delay = 0 },
+			{ id = 400005, delay = 0 },
 		},
 	},
 	-- 3 choppers went down (c4 route)
@@ -97,7 +106,7 @@ return {
 			length_balance_mul = { 1.125, 1, 0.875, 0.75 },
 		},
 		on_executed = {
-			{ id = 400002, delay = 0 },
+			{ id = 400005, delay = 0 },
 		},
 	},
 	-- Reenforce points
@@ -173,8 +182,6 @@ return {
 		reinforce = {
 			{ name = "casino" },
 			{ name = "courtyard" },
-			{ name = "corridor_right" },
-			{ name = "corridor_left" },
 			{ name = "casino_left" },
 			{ name = "casino_right" },
 			{ name = "spa_left" },
@@ -213,27 +220,23 @@ return {
 	[101810] = bags_required,
 	[101811] = bags_required,
 	-- Scripted difficulty scaling
-	[101136] = { -- objective_activate_objective_010 (Find Li Deng's safe, default route)
+	[101411] = objectives_done_counter_add, -- link_completed_obj_031 (Found Xun Hang's handprint)
+	[101155] = objectives_done_counter_add, -- link_completed_obj_011 (Found Li Deng's code)
+	[400003] = { 
 		on_executed = {
-			{ id = 400002, delay = 0 },
-		},
-	},
-	[101072] = { -- objective_activate_objective_004 (Find Xun Hang, default route)
-		on_executed = {
-			{ id = 400002, delay = 0 },
+			{ id = 400004, delay = 0 },
 		},
 	},
 	[102571] = { -- objective_activate_objective_043 (Wait for the winch, c4 route)
 		on_executed = {
-			{ id = 400002, delay = 0 },
+			{ id = 400004, delay = 0 },
 		},
 	},
 	-- Spawn group intervals
-	[100786] = standard_spawn,
-	[101471] = standard_spawn,
-	[100792] = standard_spawn,
-	[100131] = standard_spawn,
-	[100647] = standard_spawn,
+	[100786] = bow_spawn,
+	[101471] = bow_spawn,
+	[100792] = bow_spawn,
+	[100131] = bow_spawn,
 	[100648] = rappel_horizontal_spawn,
 	[100704] = rappel_horizontal_spawn,
 	[100712] = rappel_horizontal_spawn,

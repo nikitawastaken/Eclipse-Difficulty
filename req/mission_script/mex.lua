@@ -35,19 +35,92 @@ local bags_required = {
 }
 return {
 	[100109] = { -- police
-		paused_difficulty_addends = { -- disable addends
+		-- Add new reinforce
+		reinforce = {
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(425, 975, 0),
+			},
+		},
+		paused_difficulty_addends = { -- pause difficulty addends
 			on_entered_regroup = 1,
 		},
 	},
-	[102226] = { -- mexico_preferreds
-		paused_difficulty_addends = { -- enable addends
-			on_entered_regroup = false,
+	[101157] = { -- input_event_enable_chosen_one001
+		reinforce = {
+			{
+				name = "tunnel",
+				force = 2,
+				position = Vector3(2950, 4775, -225),
+			},
+		},
+	},
+	[101158] = { -- input_event_enable_chosen_one002
+		reinforce = {
+			{
+				name = "tunnel",
+				force = 2,
+				position = Vector3(4225, 2100, 0),
+			},
+		},
+	},
+	[101299] = { -- input_event_enable_chosen_one003
+		reinforce = {
+			{
+				name = "tunnel",
+				force = 2,
+				position = Vector3(5075, -800, -225),
+			},
 		},
 	},
 	[100020] = {
 		ponr = {
 			length = 1200,
-			length_balance_mul = { 2, 1.5, 1, 1 },
+			length_balance_mul = { 2, 1.5, 1.25, 1 },
+		},
+		reinforce = {
+			{ name = "gate" },
+			{ name = "tunnel" },
+		},
+		paused_difficulty_addends = { -- unpause difficulty addends
+			on_entered_regroup = false,
+		},
+	},
+	[101249] = {
+		reinforce = {
+			{
+				name = "hangar01",
+				force = 3,
+				position = Vector3(3600, -8750, -3200),
+			},
+		},
+	},
+	[101264] = {
+		reinforce = {
+			{
+				name = "hangar02",
+				force = 3,
+				position = Vector3(4350, -11250, -3200),
+			},
+		},
+	},
+	[100466] = { -- input_event_hose_connected_to_plane_tanker001
+		reinforce = {
+			{
+				name = "tanker",
+				force = 2,
+				position = Vector3(2925, -7275, -3200),
+			},
+		},
+	},
+	[100915] = { -- input_event_hose_connected_to_plane_tanker002
+		reinforce = {
+			{
+				name = "tanker",
+				force = 2,
+				position = Vector3(1775, -12650, -3200),
+			},
 		},
 	},
 	-- disable selected spawngroup based on which tunnel has been chossen
@@ -95,6 +168,17 @@ return {
 	[102878] = bags_required,
 	[102881] = bags_required,
 	[102893] = bags_required,
+	-- Scripted difficulty scaling
+	[102226] = { -- mexico_preferreds (Mexico side response)
+		on_executed = {
+			{ id = 400007, delay = 0 },
+		},
+	},
+	[102102] = { -- link_start_defend_tank (Started refueling the plane)
+		on_executed = {
+			{ id = 400008, delay = 0 },
+		},
+	},
 	-- Spawn group intervals
 	[103235] = window_spawn,
 	[103048] = window_spawn,

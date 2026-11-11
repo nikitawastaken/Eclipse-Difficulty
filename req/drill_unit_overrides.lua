@@ -119,6 +119,25 @@ local crojob3_wagon_drill = {
 		},
 	},
 }
+local glace_prison_bus = {
+	timer = 240,
+	timer_dt_balance_mul = {
+		team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+		6 / 8,
+		7 / 8,
+		1,
+		1,
+	},	
+	jam_times = {
+		is_balance_mul = true,
+		team_ai_balance_mul_weight = calc_team_ai_wgt(2),
+		{ 1, 1 },
+		{ 1, 2 },
+		{ 2, 2 },
+		{ 2, 3 },
+	},
+	can_jam = true,
+}
 
 local M = {
 	--[[
@@ -456,22 +475,12 @@ local M = {
 		},
 	},
 	["glace"] = {
-		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = {
-			timer = 240,
-			jam_times = { 2, 3 },
-			can_jam = true,
-			forbid_reenforce = true,
-		},
-		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam_rotated"):key()] = {
-			timer = 240,
-			jam_times = { 2, 3 },
-			can_jam = true,
-			forbid_reenforce = true,
-		},
 		[105077] = { -- SWAT van saw at the end
 			timer = 60,
 			jam_times = 1,
 		},
+		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam"):key()] = glace_prison_bus,
+		[("units/pd2_dlc_glace/equipment/gen_interactable_saw_no_jam/gen_interactable_saw_no_jam_rotated"):key()] = glace_prison_bus,
 		-- For testing tweaking inside instances
 		--[[
 		["glace_prison_bus_001"] = {
