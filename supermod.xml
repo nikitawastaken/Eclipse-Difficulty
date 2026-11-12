@@ -538,7 +538,6 @@
 					<file :name="rain_01_a.effect"/>
 					<file :name="raindrop_screen.effect"/>
 					<file :name="rain_01_b.dds"/>
-					<file :name="rain_01_d.dds"/>
 					<file :name="raindrop_screen_df.dds"/>
 					<file :name="raindrop_screen_nm.dds"/>
 					<file :name="raindrop_screen_edge_df.dds"/>
