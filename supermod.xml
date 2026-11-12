@@ -533,7 +533,18 @@
 					<file :name="ice_screen_nm.dds"/>
 					<file :name="snowflakes_screen_df.dds"/>
 				</group>
-				
+
+				<group :name="rain/">
+					<file :name="rain_01_a.effect"/>
+					<file :name="raindrop_screen.effect"/>
+					<file :name="rain_01_b.dds"/>
+					<file :name="rain_01_d.dds"/>
+					<file :name="raindrop_screen_df.dds"/>
+					<file :name="raindrop_screen_nm.dds"/>
+					<file :name="raindrop_screen_edge_df.dds"/>
+					<file :name="raindrop_screen_edge_nm.dds"/>
+				</group>
+
 				<group :name="bullet_hit/">
 					<file :name="flesh/bullet_hit_blood.effect"/>
 					<file :name="flesh/bullet_impact_flesh_00.effect"/>
