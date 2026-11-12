@@ -909,6 +909,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["framingframe3_01"] = 3,
 		["framingframe3_02"] = 2,
 		["framingframe3_03"] = 2,
+		["framingframe3_04"] = 1,
+		["framingframe3_05"] = 1,
 		["default"] = 1,
 	}
 	self.rat.random_environments = {
@@ -933,6 +935,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["rats2_01"] = 2,
 		["rats2_02"] = 2,
 		["rats2_03"] = 2,
+		["rats2_04"] = 1,
 		["default"] = 1,
 	}
 	self.alex_3.random_environments = {
@@ -1054,6 +1057,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["counterfeit_1"] = 3,
 		["counterfeit_2"] = 2,
 		["counterfeit_3"] = 1,
+		["counterfeit_4"] = 2,
 	}
 	self.moon.random_environments = {
 		["stealingxmas_1"] = 3,
@@ -1304,7 +1308,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.wwh.random_environments = {
 		["wwh_cg"] = 1,
-		["wwh_alt"] = 999,
+		["wwh_alt"] = 3,
+		["wwh_sun"] = 2,
+		["wwh_evening"] = 1,
 	}
 	self.escape_park.random_environments = {
 		["escape_park_1"] = 3,
@@ -1319,11 +1325,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		["escape_park_day_4"] = 3,
 	}
 	self.escape_overpass.random_environments = {
+		["escape_overpass_day"] = 2,
+		["escape_overpass_day_2"] = 2,
+	}
+	self.escape_overpass_night.random_environments = {
 		["escape_overpass_1"] = 4,
 		["escape_overpass_2"] = 3,
-		["escape_overpass_day"] = 2,
 	}
-	self.escape_overpass_night.random_environments = self.escape_overpass.random_environments
 	self.escape_cafe_day.random_environments = {
 		["escape_cafe_day_1"] = 1,
 		["escape_cafe_day_2"] = 1,
