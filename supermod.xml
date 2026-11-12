@@ -586,6 +586,7 @@
 
 				<group :name="particles/">
 					<file :name="explosions/cluster_incendiary_explosion.effect"/>
+					<file :name="explosions/grenade_incendiary_explosion.effect"/>
 					<file :name="character/taser_thread.effect"/>
 
 					<group :name="weapons/">
