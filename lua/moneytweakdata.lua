@@ -23,7 +23,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.gold = 34000
 	self.bag_values.goat = 47500
 	self.bag_values.diamonds = 20500
-	self.bag_values.diamonds_dah = 47500
+	self.bag_values.diamonds_dah = 175000
 	self.bag_values.coke = 32535
 	self.bag_values.coke_pure = 43350
 	self.bag_values.meth = 30500
