@@ -135,7 +135,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_trade.sound_done = "bar_rescue_finished"
 
 	-- PDTH references
-	if level_id == "pal" or level_id == "dah" then
+	if level_id == "pal" or level_id == "dah" or level_id == "flat" then
 		self.hack_suburbia_jammed.sound_start = "bar_drill_fix"
 		self.hack_suburbia_jammed.sound_interupt = "bar_drill_fix_cancel"
 		self.hack_suburbia_jammed.sound_done = "bar_drill_fix_finished"
@@ -156,6 +156,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 		self.hack_suburbia_jammed_y.sound_done = "bar_drill_fix_finished"
 
 		self.diamond_pickup.sound_event = "money_collect_medium"
+		self.diamond_pickup_pal.sound_event = "money_collect_medium"
 		self.diamond_single_pickup_axis.sound_event = "money_collect_large"
 		self.money_wrap_single_bundle.sound_event = "money_collect_small"
 		self.safe_loot_pickup.sound_event = "money_collect_large"

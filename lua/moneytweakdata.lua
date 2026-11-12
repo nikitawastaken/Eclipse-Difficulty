@@ -819,7 +819,8 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.coke_pure = 42050
 	end
 	if job_id == "pal" then
-		self.small_loot.diamondheist_vault_diamond = (money_mul * 40000)
+		self.small_loot.diamondheist_vault_diamond = (money_mul * 75000)
+		self.small_loot.diamondheist_big_diamond = (money_mul * 50000)
 	end
 	if job_id == "pines" then
 		self.bag_values.coke = 42050
@@ -831,8 +832,8 @@ function MoneyTweakData:init(tweak_data)
 	end
 	if job_id == "flat" then
 		self.bag_values.coke = 42050
-		self.small_loot.money_bundle = (money_mul * 8500)
-		self.small_loot.money_bundle_value = (money_mul * 8500)
+		self.small_loot.money_bundle = (money_mul * 12500)
+		self.small_loot.money_bundle_value = (money_mul * 12500)
 	end
 	if job_id == "mia" then
 		self.small_loot.money_bundle = (money_mul * 2500)
