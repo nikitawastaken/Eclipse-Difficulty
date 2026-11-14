@@ -188,9 +188,9 @@ return {
 		on_executed = {
 			-- remove vanilla enemy dummies, replace them with mission scripts
 			{ id = 100569, remove = true },
-			{ id = 400124, delay = 6 },
-			{ id = 400125, delay = 6 },
-			{ id = 400126, delay = 6 },
+			{ id = 400124, delay = 0 },
+			{ id = 400125, delay = 0 },
+			{ id = 400126, delay = 0 },
 			-- two dozers spawn on e/pj when leaving vault
 			-- also two hallway escape shields on ovk+ (chance) and guaranteed on e/pj
 			{ id = 400050, delay = 15 },
