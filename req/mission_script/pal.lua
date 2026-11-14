@@ -32,12 +32,6 @@ local mitchell_sniper = {
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "sniper", "spooc" },
 }
-local crowbar_amount = {
-	values = {
-		amount = normal and 3 or hard and 2 or 1,
-		amount_random = 1,
-	},
-}
 local snipers_amount = {
 	values = {
 		amount = (normal and 3 or hard and 4 or 5) + (is_pro_job and 1 or 0),
@@ -138,8 +132,6 @@ return {
 	[102216] = filter_easy_above,
 	[102320] = filter_disable,
 	[102369] = filter_disable,
-	-- change crowbar's amount depending on diffculties
-	[100127] = crowbar_amount,
 	-- Add new reinforce
 	[100031] = {
 		reinforce = {
