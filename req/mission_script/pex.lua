@@ -56,7 +56,7 @@ local police_roof_spawn = {
 local garage_roof_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.25, 1, 0.875, 0.75 }
+		interval_balance_mul = { 1.25, 1, 0.875, 0.75 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
