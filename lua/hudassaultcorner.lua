@@ -129,9 +129,10 @@ if has_ponr_text then
 				local use_stars = true
 
 				if managers.crime_spree:is_active() then
-					text_string = text_string .. managers.localization:to_upper_text("menu_cs_level", {
-						level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")
-					})
+					text_string = text_string
+						.. managers.localization:to_upper_text("menu_cs_level", {
+							level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), ""),
+						})
 					use_stars = false
 				end
 
@@ -158,7 +159,7 @@ if has_ponr_text then
 				text = text_string,
 				color = mod_color,
 				font_size = tweak_data.hud_corner.assault_size,
-				font = tweak_data.hud_corner.assault_font
+				font = tweak_data.hud_corner.assault_font,
 			})
 			local _, _, w, h = text:text_rect()
 
@@ -166,7 +167,7 @@ if has_ponr_text then
 
 			texts[text_index] = {
 				x = text_panel:w() + w * 0.5 + padding * 2,
-				text = text
+				text = text,
 			}
 		end
 
