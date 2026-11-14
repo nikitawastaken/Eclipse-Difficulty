@@ -211,18 +211,18 @@ return {
 	-- Remove spawn groups closest to the broken bridge part (and add a few groups from the construction site)
 	[101176] = { -- add_prefered_saw_spawns
 		values = {
-			spawn_groups = { 101847, 103886, 101250 },
+			spawn_groups = { 101847, 103886, 101250, 400015 },
 		},
 		-- Add additioanl "saw" prefereds to introduce groups close to the prison transports with a delay
 		on_executed = {
-			{ id = 400028, delay = 60, delay_rand = 60 },
-			{ id = 400030, delay = 30, delay_rand = 45 },
+			{ id = 400028, delay = 60, delay_rand = 90 },
+			{ id = 400030, delay = 30, delay_rand = 60 },
 			{ id = 400032, delay = 0, delay_rand = 30 },
 		},
 	},
 	[101239] = { -- add_prefered_escape_bridge_spawns
 		values = {
-			spawn_groups = { 101255, 101587, 101258, 101254, 101586, 102131, 101847, 103886, 101250 },
+			spawn_groups = { 101255, 101587, 101258, 101254, 101586, 102131, 101847, 103886, 101250, 400015 },
 		},
 	},
 	-- Remove the new preferreds with the other "saw" preferreds
