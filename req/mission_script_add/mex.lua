@@ -1,6 +1,8 @@
 ---@module Border Crossing
 local M = {}
 
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+
 local optsDisable_Spawngroup_1 = {
 	toggle = "off",
 	enabled = true,
