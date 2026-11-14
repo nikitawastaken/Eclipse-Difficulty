@@ -918,7 +918,7 @@ function FlameBulletBase:give_fire_damage(col_ray, weapon_unit, user_unit, damag
 				dot_damage = 2 * math.sqrt(damage),
 				dot_length = 3,
 				dot_trigger_chance = 1,
-				dot_trigger_max_distance = 1500 * math.sqrt(damage),
+				dot_trigger_max_distance = 2000 * math.sqrt(damage),
 				dot_grace_period = 1,
 				dot_tick_period = 0.5,
 			}
