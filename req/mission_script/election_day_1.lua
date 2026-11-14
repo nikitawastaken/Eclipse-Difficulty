@@ -27,7 +27,7 @@ local standard_spawn = {
 local jumpdown_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.45, 1.3, 1.15, 1 },
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local no_participate = {
 	values = {
 		participate_to_group_ai = false,
@@ -41,12 +46,10 @@ return {
 	[100119] = {
 		set_ponr_state = true,
 	},
-	[101483] = {
-		values = {
-			enabled = false,
-		},
-	},
-	--add reinforce
+	-- Disable Hunt
+	[100963] = disabled,
+	[101483] = disabled,
+	-- Add new reinforce
 	[100003] = {
 		reinforce = {
 			{
@@ -144,14 +147,19 @@ return {
 	[101238] = no_participate,
 	[101239] = no_participate,
 	-- Scripted difficulty scaling
-	[100286] = { -- entered_vault (Entered airlock)
+	[100285] = { -- time_to_open (Airlock is opening)
 		on_executed = {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	[101426] = { -- door_opening (At the top of the mountain)
+	[101123] = { -- found_loot (Found loot in one of the vaults)
 		on_executed = {
 			{ id = 400002, delay = 0 },
+		},
+	},
+	[101426] = { -- door_opening (At the top of the mountain)
+		on_executed = {
+			{ id = 400003, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

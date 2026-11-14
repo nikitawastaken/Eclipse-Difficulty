@@ -28,13 +28,13 @@ local lurker_spawn_delay = {
 local nightmare_inner_spawn = {
 	values = {
 		interval = 20,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 local nightmare_outer_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_cops_agents,
 }

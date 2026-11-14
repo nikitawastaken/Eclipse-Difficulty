@@ -7,13 +7,13 @@ local disabled = {
 local standard_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 local sewer_spawn = {
 	values = {
 		interval = 30,
-		interval_balance_mul = { 1.5, 1.3, 1.1, 0.9 },
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 
@@ -59,8 +59,8 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 15, delay_rand = 15 }, -- Car Shop preferred
-			{ id = 100534, delay = 15, delay_rand = 15 }, -- Hardware preferred
+			{ id = 100531, delay = 10, delay_rand = 20 }, -- Car Shop preferred
+			{ id = 100534, delay = 10, delay_rand = 20 }, -- Hardware preferred
 		},
 	},
 	-- don't trigger swat turret scripts

@@ -52,7 +52,7 @@ local no_spawn_instigator_ids = {
 local apartment_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.3, 1.1, 0.9, 0.7 },
+		interval_balance_mul = { 1.25, 1, 0.875, 0.75 },
 	},
 }
 local skylight_navlink = {

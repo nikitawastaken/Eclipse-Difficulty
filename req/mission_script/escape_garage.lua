@@ -22,7 +22,7 @@ local enabled = {
 local garage_spawn = {
 	values = {
 		interval = 15,
-		interval_balance_mul = { 1.1, 1, 0.9, 0.8 },
+		interval_balance_mul = { 1.25, 1, 0.875, 0.75 },
 	},
 }
 local rappel_navlink = {

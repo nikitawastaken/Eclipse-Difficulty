@@ -106,21 +106,26 @@ return {
 		},
 	},
 	-- Enables/disables NPCs flashlights when the power is off/on
-	[100898] = { -- power_interrupted
+	[101373] = { -- open_hatch
 		flashlight = true,
 	},
-	[100899] = { -- power_resumed
+	[100705] = { -- start_lamp_reset
 		flashlight = false,
 	},
 	-- Scripted difficulty scaling
-	[100226] = { -- activate_emp
+	[100997] = { -- complete_obj016 (Wall blown up)
 		on_executed = {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	[100230] = { -- scan_completed
+	[100203] = { -- complete_obj003 (EMP is done)
 		on_executed = {
 			{ id = 400002, delay = 0 },
+		},
+	},
+	[100230] = { -- scan_completed (Completed the first scan)
+		on_executed = {
+			{ id = 400003, delay = 0 },
 		},
 	},
 	-- Spawn group intervals

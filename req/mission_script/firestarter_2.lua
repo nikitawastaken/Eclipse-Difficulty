@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local reinforce_amount = {
 	values = {
 		amount = 3,
@@ -65,12 +66,12 @@ return {
 	-- Slightly reduce and randomise preferred delays
 	[102078] = {
 		on_executed = {
-			{ id = 102079, delay = 20, delay_rand = 30 }, -- Vanilla: 45 + 0
+			{ id = 102079, delay = 20, delay_rand = normal and 30 or 20 }, -- Vanilla: 45 + 0
 		},
 	},
 	[102079] = {
 		on_executed = {
-			{ id = 100971, delay = 20, delay_rand = 30 }, -- Vanilla: 45 + 0
+			{ id = 100971, delay = 20, delay_rand = normal and 30 or 20 }, -- Vanilla: 45 + 0
 		},
 	},
 	-- disable the goat

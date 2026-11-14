@@ -7,9 +7,9 @@ local optsDifficultyAddend01 = {
 	trigger_times = 1,
 	difficulty_addends = {
 		{
-			amount = 0.375,
+			amount = 0.25,
 			delay = 0,
-			time = 90,
+			time = 60,
 			time_mul = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			time_balance_mul = { 1.5, 1.25, 1, 1 },
 		},
@@ -20,5 +20,6 @@ local optsDifficultyAddend01 = {
 M.elements = {
 	Eclipse.mission_elements.gen_difficulty(400001, "pbr_difficulty_addend01", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 	Eclipse.mission_elements.gen_difficulty(400002, "pbr_difficulty_addend02", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
+	Eclipse.mission_elements.gen_difficulty(400003, "pbr_difficulty_addend03", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDifficultyAddend01),
 }
 return M

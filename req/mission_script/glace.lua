@@ -35,34 +35,40 @@ local eclipse_dozers = {
 local construct_far_spawn = {
 	values = {
 		interval = 10,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 local construct_mid_spawn = {
 	values = {
 		interval = 20,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_bulldozers,
 }
 local construct_close_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local saw_far_spawn = {
 	values = {
 		interval = 30,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 local saw_mid_spawn = {
 	values = {
 		interval = 40,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_bulldozers,
 }
 local saw_close_spawn = {
 	values = {
 		interval = 60,
+		interval_balance_mul = { 1.5, 1.25, 1, 1 },
 	},
 	groups = preferred.no_shields_bulldozers,
 }

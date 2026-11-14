@@ -107,6 +107,13 @@ local auc_apollonius_cutter = {
 		},
 	},
 }
+local brb_saw = {
+	[100068] = {
+		timer = 180,
+		jam_times = 1,
+		can_jam = true,
+	},
+}
 local crojob3_wagon_drill = {
 	[100007] = {
 		timer = 90,
@@ -344,6 +351,12 @@ local M = {
 		[103637] = big_vault_door,
 		[104082] = big_vault_door,
 		[101729] = big_vault_door,
+	},
+	["brb"] = {
+		["single_door_001"] = brb_saw,
+		["single_door_002"] = brb_saw,
+		["single_door_003"] = brb_saw,
+		["single_door_large_001"] = brb_saw,
 	},
 	["chas"] = {
 		[("units/payday2/equipment/gen_interactable_hack_computer/gen_interactable_hack_computer_b"):key()] = {
