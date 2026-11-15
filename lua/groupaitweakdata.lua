@@ -3443,7 +3443,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- BESIEGE --
-	self.besiege.drama_gain_mul = { 1.25, 1, 0.75 }
+	self.besiege.drama_gain_mul = { 1, 1, 1 }
 
 	if difficulty_index <= 3 then
 		self.besiege.scripted_tiers = {
