@@ -3419,15 +3419,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			on_hostage_killed = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.8, 0.6 }),
 		},
 		addend_time_balance_muls = {
-			on_enemy_weapons_hot = { 1.45, 1.3, 1.15, 1 },
-			on_entered_sustain = { 1.45, 1.3, 1.15, 1 },
-			on_entered_regroup = { 1.45, 1.3, 1.15, 1 },
-			on_entered_full_force_onslaught = { 1.45, 1.3, 1.15, 1 },
-			on_hostage_killed = { 1.45, 1.3, 1.15, 1 },
+			on_enemy_weapons_hot = { 1.4, 1.2, 1, 1 },
+			on_entered_sustain = { 1.4, 1.2, 1, 1 },
+			on_entered_regroup = { 1.4, 1.2, 1, 1 },
+			on_entered_full_force_onslaught = { 1.4, 1.2, 1, 1 },
+			on_hostage_killed = { 1.4, 1.2, 1, 1 },
 		},
 		-- The initial trade delay is not currently affected by on_enemy_weapons_hot delay multipliers
 		addend_delay_multipliers = {
-			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.2, 1, 0.9, 0.8 }),
+			on_enemy_weapons_hot = get_difficulty_specific_value({ 1.2, 1.1, 1, 0.9, 0.8 }),
 			on_entered_sustain = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
 			on_entered_regroup = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
 			on_entered_full_force_onslaught = get_difficulty_specific_value({ 1, 1, 1, 1, 1 }),
@@ -3520,16 +3520,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_balance_mul_weights = {
-		drama = calc_team_ai_wgt(2),
+		drama = calc_team_ai_wgt(2.5),
 		spawn_rate = calc_team_ai_wgt(2.5),
 		force = calc_team_ai_wgt(2.5),
 		assault_delay = calc_team_ai_wgt(2.5),
 		sustain_duration = calc_team_ai_wgt(2.5),
-		freq = calc_team_ai_wgt(2),
+		freq = calc_team_ai_wgt(2.5),
 		spawn_group_interval = calc_team_ai_wgt(2.5),
-		difficulty_addend_time = calc_team_ai_wgt(2),
-		difficulty_addend_delay = calc_team_ai_wgt(2),
-		ponr_length = calc_team_ai_wgt(2),
+		difficulty_addend_time = calc_team_ai_wgt(2.5),
+		difficulty_addend_delay = calc_team_ai_wgt(2.5),
+		ponr_length = calc_team_ai_wgt(2.5),
 	}
 
 	-- Spawn rate
@@ -3931,9 +3931,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Push delay
 	self.ponr.assault.push_delay = get_difficulty_specific_value({
 		{ 10, 10, 10 },
-		{ 10, 10, 10 },
+		{ 9, 9, 9 },
 		{ 8, 8, 8 },
-		{ 8, 8, 8 },
+		{ 7, 7, 7 },
 		{ 6, 6, 6 },
 	})
 
