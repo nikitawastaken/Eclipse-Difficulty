@@ -746,7 +746,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_sogroup(500060, "dah_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
 	Eclipse.mission_elements.gen_missionscript(500061, "dah_cloaker_spawn_global", optsAddCloakerHideGroup),
 	Eclipse.mission_elements.gen_global_event(500062, "dah_assault_start", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultStarted),
-	
+
 	-- custom alarm check
 	Eclipse.mission_elements.gen_missionscript(410009, "party_alarm_check", optsSoundTheAlarm_PartyDistrubted),
 	Eclipse.mission_elements.gen_toggleelement(410010, "disable_party_alarm_check", optsDisable_AlarmCheck),
