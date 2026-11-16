@@ -1,6 +1,7 @@
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
+
 -- Make cops react more aggressively when appropriate (less stare, more shoot)
 local _chk_reaction_to_attention_object_original = CopLogicIdle._chk_reaction_to_attention_object
 function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ...)
@@ -36,13 +37,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
 		local other_crim_attention_info = data.detected_attention_objects[u_key]
-		if
-			other_crim_attention_info
-			and (
-				other_crim_attention_info.is_deployable
-				or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout
-			)
-		then
+		if other_crim_attention_info and (other_crim_attention_info.is_deployable or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout) then
 			return math.max(attention_reaction, AIAttentionObject.REACT_COMBAT)
 		end
 	end
@@ -53,6 +48,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	return math.min(attention_reaction, AIAttentionObject.REACT_ARREST)
 end
+
 
 -- Fix defend_area objectives being force relocated to areas with players in them
 -- Fix lost follow objectives not refreshing for criminals in idle logic and Jokers in attack logic
@@ -145,7 +141,7 @@ function CopLogicIdle._chk_relocate(data)
 
 		return true
 	elseif objective_type == "free" or not objective then
-		if data.cool or not data.is_converted and data.team.id ~= "criminal1" or data.path_fail_t and data.t - data.path_fail_t < 5 then
+		if not data.enemy_slotmask or data.cool or not data.is_converted and data.team.id ~= "criminal1" or data.path_fail_t and data.t - data.path_fail_t < 5 then
 			return
 		end
 
@@ -154,6 +150,7 @@ function CopLogicIdle._chk_relocate(data)
 		return my_data ~= data.internal_data
 	end
 end
+
 
 -- Improve and simplify attention handling
 -- Moved certain checks into their own functions for easier adjustments and improved target priority calculation
@@ -172,7 +169,6 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 	local optimal_range = weapon_range.optimal
 	local close_range = weapon_range.close
 	local murder = data.tactics and data.tactics.murder
-	local target_vulnerable = data.tactics and data.tactics.target_vulnerable
 
 	for u_key, attention_data in pairs(attention_objects) do
 		local att_unit = attention_data.unit
@@ -209,27 +205,6 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
 				distance = distance * weight_mul
 
-				--[[ Add a "target_vulnerable" tactic that makes an enemy go after isolated players
-				if crim_record then
-					if target_vulnerable then
-						local closest_dis = nil
-						for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
-							if not other_crim_rec == crim_record then
-								local my_dis = mvector3.distance(other_crim_rec.pos, crim_record.m_pos)
-
-								if not closest_dis or my_dis < closest_dis then
-									closest_dis = my_dis
-								end
-							end
-						end
-
-						if closest_dis and closest_dis > 1500 then
-							distance = distance * -0.5
-						end
-					end
-				end
-				]]
-
 				local target_priority_slot
 				if attention_data.verified then
 					target_priority_slot = distance < close_range and 2 or distance < optimal_range and 4 or distance < far_range and 6 or 8
@@ -248,22 +223,6 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 					-- Focus on kingpin injector user
 					if weight_mul < 0.01 then
 						target_priority_slot = target_priority_slot - 1
-					end
-
-					if target_vulnerable then
-						if attention_data.is_local_player then
-							local current_state = att_unit:movement():current_state()
-
-							if current_state:_is_reloading() then
-								target_priority_slot = target_priority_slot - 1
-								--		Eclipse:log_chat("Target vulnerable")
-							end
-						elseif attention_data.is_husk_player then
-							if att_unit.anim_data and att_unit:anim_data().reload then
-								target_priority_slot = target_priority_slot - 1
-								--		Eclipse:log_chat("Target vulnerable")
-							end
-						end
 					end
 
 					-- If we have murder tactic and criminal is downed or tased, focus on them
@@ -360,6 +319,7 @@ function CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 	return 1 / weight_mul
 end
 
+
 -- Show hint to player when surrender is impossible
 local on_intimidated_original = CopLogicIdle.on_intimidated
 function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
@@ -393,6 +353,7 @@ function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 		end
 	end
 end
+
 
 -- Play generic chatter during idle while unalerted
 Hooks:PostHook(CopLogicIdle, "queued_update", "sh_queued_update", function(data)
