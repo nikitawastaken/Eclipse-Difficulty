@@ -1098,7 +1098,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "temporary_double_drop_damage_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
-	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.insert(self.default_upgrades, "temporary_first_aid_movement_speed_multiplier")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
