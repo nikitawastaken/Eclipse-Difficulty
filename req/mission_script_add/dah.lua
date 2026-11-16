@@ -35,6 +35,19 @@ local enabled_chance_extra_elevator_spawns = math.random() <= 0.6
 local enabled_chance_helipad_shields = math.random() <= 0.4
 local enabled_chance_helipad_dozer = math.random() <= 0.4
 
+local optsSoundTheAlarm_PartyDistrubted = {
+	enabled = true,
+	on_executed = {
+		{ id = 100429, delay = 0 },
+	},
+}
+local optsDisable_AlarmCheck = {
+	toggle = "off",
+	enabled = true,
+	elements = {
+		410009,
+	},
+}
 local optsCloaker = {
 	enemy = scripted_enemy.cloaker,
 	participate_to_group_ai = true,
@@ -733,6 +746,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_sogroup(500060, "dah_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
 	Eclipse.mission_elements.gen_missionscript(500061, "dah_cloaker_spawn_global", optsAddCloakerHideGroup),
 	Eclipse.mission_elements.gen_global_event(500062, "dah_assault_start", Vector3(0, 0, 0), Rotation(0, 0, 0), optsAssaultStarted),
+	
+	-- custom alarm check
+	Eclipse.mission_elements.gen_missionscript(410009, "party_alarm_check", optsSoundTheAlarm_PartyDistrubted),
+	Eclipse.mission_elements.gen_toggleelement(410010, "disable_party_alarm_check", optsDisable_AlarmCheck),
 }
 
 return M

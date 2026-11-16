@@ -3119,6 +3119,7 @@ GroupAITweakData.murky_response_heists = table.list_to_set({
 	"dinner",
 })
 GroupAITweakData.murky_response_heists_scripted = table.list_to_set({
+	"dah",
 	"brb",
 })
 GroupAITweakData.us_army_heists = table.list_to_set({

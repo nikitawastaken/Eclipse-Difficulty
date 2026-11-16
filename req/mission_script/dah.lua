@@ -1,7 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local enabled = {
 	values = {
 		enabled = true,
@@ -58,6 +60,12 @@ local bags_required = {
 	values = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
+}
+local party_is_over_chance = {
+	chance = (normal and 0 or hard and 20 or 40) + (is_pro_job and 20 or 0),
+}
+local red_diamond_chance = {
+	chance = (normal and 0 or hard and 20 or 30) + (is_pro_job and 10 or 0),
 }
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
@@ -121,6 +129,13 @@ return {
 			},
 		},
 	},
+	[100457] = { -- Vault is open, call the Murkywater
+		values = {
+			callback = function()
+				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
+			end,
+		},
+	},
 	[100000] = {
 		on_executed = {
 			{ id = 400077, delay = 3 }, -- disable atrium snipers on startup
@@ -135,6 +150,9 @@ return {
 	[104657] = bags_required,
 	[104658] = bags_required,
 	[100177] = disabled,
+	-- tweak the chances for red diamond
+	[104079] = red_diamond_chance,
+	[104082] = red_diamond_chance,
 	-- Disable outline for Ralph if he is tied
 	[100461] = {
 		on_executed = {
@@ -390,6 +408,26 @@ return {
 			{ id = 102128, delay = 45 },
 			{ id = 102196, delay = 10 },
 			{ id = 400076, delay = 0 },
+		},
+	},
+	-- the party is more likely to be over on higher difficulties (even more on pro jobs)
+	[104110] = party_is_over_chance,
+	-- less delay of ending the party chance
+	[104142] = {
+		on_executed = {
+			{ id = 104110, delay = 10, delay_rand = 10 },
+		},
+	},
+	-- sound the alarm if you alert civilians during the party
+	[102624] = {
+		on_executed = {
+			{ id = 410009, delay = 5 },
+		},
+	},
+	-- disable the alarm check if the party is over
+	[104104] = {
+		on_executed = {
+			{ id = 410010, delay = 0 },
 		},
 	},
 	-- replace guards in elevator with beat cops
