@@ -199,7 +199,6 @@
 		<decal_mesh name="dm_helmet" 		enabled="true" material="steel_no_decal" />
 		<decal_mesh name="dm_visor1" 		enabled="false" material="steel_no_decal" />
 		<decal_mesh name="dm_visor2" 		enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_visor3" 		enabled="false" material="steel_no_decal" />
 
 		<decal_mesh name="dm_visor_glass1" 		enabled="false" material="glass_no_decal" />
 		<decal_mesh name="dm_visor_glass1" 		enabled="false" material="glass_no_decal" />

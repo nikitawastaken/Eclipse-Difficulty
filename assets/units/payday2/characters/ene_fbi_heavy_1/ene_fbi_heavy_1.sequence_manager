@@ -69,8 +69,7 @@
 			
 			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
 			<decal_mesh 		enabled="false" name="'dm_visor_glass2'"/>
-			<decal_mesh 		enabled="false" name="'dm_visor3'"/>
-			
+
 			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
