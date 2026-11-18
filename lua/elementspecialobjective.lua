@@ -134,6 +134,10 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 		return
 	end
 
+	if not base_ext.has_tag or not base_ext:has_tag("spooc") then
+		return
+	end
+
 	local hiding_cloaker_tweak = self:_hiding_cloaker_tweak()
 	if name == "anim_start" then
 		local hide_data = {
