@@ -67,7 +67,7 @@
 			</sky>
 		</underlay_effect>
 		<environment_effects>
-			<param key="effects" value="snow"/>
+			<param key="effects" value="snow;snowdrop_screen"/>
 		</environment_effects>
 	</data>
 </environment>

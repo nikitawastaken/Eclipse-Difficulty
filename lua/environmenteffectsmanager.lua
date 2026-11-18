@@ -6,8 +6,10 @@ function EnvironmentEffectsManager:init()
 	EnvironmentEffectsManager.super.init(self)
 	self:add_effect("rain", RainEffect:new(tweak_data.env_effect.rain))
 	self:add_effect("rain_only", RainEffect:new(tweak_data.env_effect.rain_only))
+	self:add_effect("rain_no_ripples", RainEffect:new(tweak_data.env_effect.rain_no_ripples))
 	self:add_effect("snow", RainEffect:new(tweak_data.env_effect.snow))
 	self:add_effect("snow_slow", RainEffect:new(tweak_data.env_effect.snow_slow))
+	self:add_effect("foggy", RainEffect:new(tweak_data.env_effect.foggy))
 
 	if not _G.IS_VR then
 		self:add_effect("raindrop_screen", RainDropScreenEffect:new())
@@ -16,6 +18,7 @@ function EnvironmentEffectsManager:init()
 
 	self:add_effect("lightning", LightningEffect:new(tweak_data.env_effect.lightning))
 	self:add_effect("lightning_tag", LightningEffect:new(tweak_data.env_effect.lightning_tag))
+	self:add_effect("lightning_storm", LightningEffect:new(tweak_data.env_effect.lightning_storm))
 
 	self._camera_position = Vector3()
 	self._camera_rotation = Rotation()
@@ -64,6 +67,7 @@ function LightningEffect:_set_lightning_values()
 	self._original_color2 = self._sky_material:get_variable(Idstring("color2")) -- sky bottom
 	self._original_light_color = Global._global_light:color()
 	self._original_sun_horizontal = Underlay:time(Idstring("sun_horizontal"))
+
 	self._first_flash_time = 0.1
 	self._pause_flash_time = 0.1
 	self._second_flash_time = 0.3
@@ -71,8 +75,8 @@ function LightningEffect:_set_lightning_values()
 	self._flash_dir = Rotation(0, 0, self._flash_roll):y()
 	self._flash_anim_time = math.rand(0, 1)
 	self._distance = math.rand(1)
-	self._intensity_value_white = math.lerp(Vector3(0.5, 0.55, 0.6), Vector3(0.8, 0.85, 0.9), self._distance)
-	self._intensity_value_flash = math.lerp(Vector3(0.24, 0.37, 0.62), Vector3(1.57, 1.73, 2), self._distance)
+	self._intensity_value_white = math.lerp(Vector3(0.5, 0.55, 0.8), Vector3(0.8, 0.85, 1.15), self._distance)
+	self._intensity_value_flash = math.lerp(Vector3(0.48, 0.74, 1.24), Vector3(2.14, 2.46, 4), self._distance)
 	self._intensity_value = math.lerp(Vector3(1.67, 1.84, 2), Vector3(1.72, 1.90, 2), self._distance)
 	self._intensity_value_2 = math.lerp(Vector3(0.34, 0.52, 0.80), Vector3(0.40, 0.60, 0.80), self._distance)
 
