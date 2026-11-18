@@ -1801,6 +1801,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flank",
 			"smoke_grenade",
 		},
+		cloaker_spt = {
+			"unit_cover",
+			"no_push",
+		},
 		marksman = {
 			"unit_cover",
 			"ranged_fire",
@@ -3046,7 +3050,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.swat_spt,
+				tactics = self._tactics.cloaker_spt,
 			},
 		},
 	}
