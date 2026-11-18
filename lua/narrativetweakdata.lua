@@ -203,8 +203,8 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.jobs.branchbank_cash.payout = { 7500 }
 	self.jobs.branchbank_gold.payout = { 7500 }
 	self.jobs.branchbank_gold_prof.payout = { 7500 }
-	self.jobs.arm_wrapper.payout = { 12500 }
-	self.jobs.arm_wrapper.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
+	-- self.jobs.arm_wrapper.payout = { 12500 }
+	-- self.jobs.arm_wrapper.contract_cost = { 75000, 90000, 125000, 140000, 160000, 180000, 200000 }
 	self.jobs.arm_cro.payout = { 12500 }
 	self.jobs.arm_cro.contract_cost = { 31000, 62000, 155000, 310000, 400000, 400000, 400000 }
 	self.jobs.arm_und.payout = { 12500 }
