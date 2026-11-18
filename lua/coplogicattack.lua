@@ -460,8 +460,63 @@ end
 
 function MarshalLogicAttack.update_cover() end
 
---Medic attack logic
+-- Add Medic attack logic that makes them avoid engaging players
 MedicLogicAttack = MedicLogicAttack or class(CopLogicAttack)
+
+function MedicLogicAttack.update(data)
+	local my_data = data.internal_data
+
+	if my_data.has_old_action then
+		MedicLogicAttack._upd_stop_old_action(data, my_data)
+
+		if not my_data.update_queue_id then
+			data.unit:brain():set_update_enabled_state(false)
+
+			my_data.update_queue_id = "MedicLogicAttack.queued_update" .. tostring(data.key)
+
+			MedicLogicAttack.queue_update(data, my_data)
+		end
+
+		return
+	end
+
+	if MedicLogicAttack._chk_exit_non_walkable_area(data) then
+		return
+	end
+
+	MedicLogicAttack._process_pathing_results(data, my_data)
+
+	if not data.attention_obj or data.attention_obj.reaction < AIAttentionObject.REACT_AIM then
+		MedicLogicAttack._upd_enemy_detection(data, true)
+
+		if my_data ~= data.internal_data or not data.attention_obj then
+			return
+		end
+	end
+
+	if data.attention_obj.reaction >= AIAttentionObject.REACT_COMBAT then
+		my_data.want_to_take_cover = MedicLogicAttack._chk_wants_to_take_cover(data, my_data)
+
+		MedicLogicAttack._update_cover(data)
+		MedicLogicAttack._upd_combat_movement(data)
+	end
+
+	if data.team.id == "criminal1" and (not data.objective or data.objective.type == "free") and (not data.path_fail_t or data.t - data.path_fail_t > 6) then
+		managers.groupai:state():on_criminal_jobless(data.unit)
+
+		if my_data ~= data.internal_data then
+			return
+		end
+	end
+
+	if not my_data.update_queue_id then
+		data.unit:brain():set_update_enabled_state(false)
+
+		my_data.update_queue_id = "MedicLogicAttack.queued_update" .. tostring(data.key)
+
+		MedicLogicAttack.queue_update(data, my_data)
+	end
+end
 
 function MedicLogicAttack._upd_combat_movement(data)
 	local my_data = data.internal_data

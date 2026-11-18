@@ -1482,7 +1482,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil
-	self.tank_hw.melee_weapon = "helloween"
 	self.tank_hw.die_sound_event = self.tank.die_sound_event
 	self.tank_hw.chatter = self.tank.chatter
 	self.tank_hw.spawn_sound_event = self.tank.spawn_sound_event

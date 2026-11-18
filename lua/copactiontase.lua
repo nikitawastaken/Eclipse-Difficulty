@@ -9,7 +9,7 @@ local tmp_vec3 = Vector3()
 
 -- Make tasers more consistent by allowing to tase through enemies and ignoring attention when already discharging
 function CopActionTase:on_attention(attention)
-	if not attention then
+	if not attention or not attention.unit or self._expired then
 		if self._tasing_local_unit then
 			if self._discharging then
 				self._tasing_local_unit:movement():on_tase_ended()
