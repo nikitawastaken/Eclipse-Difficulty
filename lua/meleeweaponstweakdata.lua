@@ -25,6 +25,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 	self.melee_weapons.oldbaton.stats.weapon_type = "blunt"
 	self.melee_weapons.branding_iron.stats.weapon_type = "blunt"
 	self.melee_weapons.morning.stats.weapon_type = "blunt"
+	self.melee_weapons.dingdong.stats.weapon_type = "blunt"
 
 	-- Change some melee weapons' animations for better ones
 	self.melee_weapons.fireaxe.anim_global_param = "melee_pickaxe"
