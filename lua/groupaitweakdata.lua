@@ -3029,7 +3029,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.shield_def,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				amount_min = 1,
 				amount_max = 2,
 				rank = 1,
@@ -3656,9 +3656,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local special_wgt_tbl = { self._special_wgt, self._special_wgt, self._special_wgt }
 	local shield_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
 	local taser_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.4, 0.7, 1 })
-	local cloaker_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
+	local cloaker_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.3, 0.6 } or { 0.2, 0.4, 0.6 })
 	local bulldozer_wgt = table_multiply(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.4 } or { 0, 0.3, 0.4 })
-	local elite_sniper_wgt = table_multiply(clone(special_wgt_tbl), { 0.2, 0.6, 1 })
+	local elite_sniper_wgt = table_multiply(clone(special_wgt_tbl), { 0.2, 0.5, 0.8 })
 	local elite_shield_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0.3, 0.6 })
 	local elite_bulldozer_wgt = table_multiply(clone(special_wgt_tbl), { 0, 0, 0.2 })
 
