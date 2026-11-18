@@ -262,7 +262,7 @@ function CopActionShoot:_get_unit_shoot_pos(t, pos, _, _, falloff, _, shooting_p
 	else
 		error_vec_len = miss_min_dis + 100 * (1 - hit_chance) * (2 - focus_prog) * math_random() + smoke_spread
 	end
-	
+
 	mvec3_set_l(temp_vec2, error_vec_len)
 	mvec3_add(temp_vec2, pos)
 
