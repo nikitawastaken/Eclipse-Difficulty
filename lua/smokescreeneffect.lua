@@ -20,7 +20,7 @@ function SmokeScreenEffect:init(position, normal, timer_override, has_dodge_bonu
 		self._effect = World:effect_manager():spawn({
 			effect = self.EFFECT_IDS,
 			position = position,
-			normal = normal
+			normal = normal,
 		})
 	end
 

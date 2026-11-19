@@ -60,7 +60,7 @@ function SmokeScreenGrenade:_detonate(tag, unit, body, other_unit, other_body, p
 			pos,
 			range,
 			self._alert_filter,
-			alert_unit
+			alert_unit,
 		})
 	end
 end

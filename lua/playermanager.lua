@@ -89,7 +89,6 @@ function PlayerManager:get_current_smoke_screen()
 	return self._current_smoke_screen
 end
 
-
 -- vanilla funcs needed to not crash
 local function make_double_hud_string(a, b)
 	return string.format("%01d|%01d", a, b)
@@ -219,7 +218,9 @@ function PlayerManager:update(t, dt)
 	local local_player = self:local_player()
 
 	if self:has_category_upgrade("player", "close_to_hostage_boost") and (not self._hostage_close_to_local_t or t >= self._hostage_close_to_local_t) then
-		self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), tweak_data.upgrades.hostage_near_player_radius)
+		self._is_local_close_to_hostage = alive(local_player)
+			and managers.groupai
+			and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), tweak_data.upgrades.hostage_near_player_radius)
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
 

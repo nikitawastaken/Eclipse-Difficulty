@@ -937,7 +937,6 @@ function PlayerDamage:armor_suppression_blocked()
 	if is_in_smoke and (current_smoke_screen and current_smoke_screen:armor_bonus()) or managers.player:is_lingering_shadow_active() then
 		return true
 	end
-
 end
 
 function PlayerDamage:_upd_suppression(t, dt)
