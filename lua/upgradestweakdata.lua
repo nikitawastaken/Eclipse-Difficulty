@@ -2520,13 +2520,14 @@ function UpgradesTweakData:init(tweak_data)
 			category = "temporary",
 		},
 	}
+	self.values.player.uppers_cooldown = 30
 	self.values.first_aid_kit.first_aid_kit_hot_regen = { true }
 	self.values.temporary.first_aid_health_regen = { { 0.8, 60.1 } }
 	self.skill_descs.feign_death.multibasic = "8"
 	self.skill_descs.feign_death.multibasic2 = "5"
 	self.skill_descs.feign_death.multibasic3 = "60"
 	self.skill_descs.feign_death.multipro = "5"
-	self.skill_descs.feign_death.multipro2 = "120"
+	self.skill_descs.feign_death.multipro2 = "30"
 
 	-- Swan Song
 	self.values.player.bleedout_timer_multiplier = { 1.33 }

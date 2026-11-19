@@ -1,5 +1,5 @@
 -- uppers cooldown
-PlayerDamage._UPPERS_COOLDOWN = 120
+PlayerDamage._UPPERS_COOLDOWN = tweak_data.upgrades.values.player.uppers_cooldown
 local is_pro_job = Eclipse.utils.is_pro_job()
 
 -- Pro-Jobs (one down modifier) don't reduce your downs anymore
