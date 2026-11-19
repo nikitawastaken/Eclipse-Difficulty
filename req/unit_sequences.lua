@@ -162,7 +162,7 @@ local M = {
 	["units/payday2/characters/ene_security_8/ene_security_8"] = { name = "security_8", head = head_sequences.security },
 
 	["units/payday2/characters/ene_security_fat_1/ene_security_fat_1"] = { name = "security_fat_1", head = head_sequences.security_fat },
-	["units/payday2/characters/ene_security_fat_2/ene_security_fat_2"] = { name = "security_fat_1", head = head_sequences.security_fat },
+	["units/payday2/characters/ene_security_fat_2/ene_security_fat_2"] = { name = "security_fat_2", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_security_fat_3/ene_security_fat_3"] = { name = "security_fat_3", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_security_fat_4/ene_security_fat_4"] = { name = "security_fat_4", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_security_fat_5/ene_security_fat_5"] = { name = "security_fat_5", head = head_sequences.security_fat },
@@ -197,7 +197,7 @@ local M = {
 	["units/payday2/characters/ene_cop_4/ene_cop_4"] = { name = "cop_4", head = head_sequences.security },
 
 	["units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1"] = { name = "cop_fat_1", head = head_sequences.security_fat },
-	["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = { name = "cop_fat_1", head = head_sequences.security_fat },
+	["units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"] = { name = "cop_fat_2", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"] = { name = "cop_fat_3", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"] = { name = "cop_fat_4", head = head_sequences.security_fat },
 
@@ -444,7 +444,7 @@ local M = {
 	["units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"] = { name = "la_cop_4", head = head_sequences.security },
 
 	["units/pd2_dlc_rvd/characters/ene_la_cop_fat_1/ene_la_cop_fat_1"] = { name = "la_cop_fat_1", head = head_sequences.security_fat },
-	["units/pd2_dlc_rvd/characters/ene_la_cop_fat_2/ene_la_cop_fat_2"] = { name = "la_cop_fat_1", head = head_sequences.security_fat },
+	["units/pd2_dlc_rvd/characters/ene_la_cop_fat_2/ene_la_cop_fat_2"] = { name = "la_cop_fat_2", head = head_sequences.security_fat },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_fat_3/ene_la_cop_fat_3"] = { name = "la_cop_fat_3", head = head_sequences.security_fat },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_fat_4/ene_la_cop_fat_4"] = { name = "la_cop_fat_4", head = head_sequences.security_fat },
 
