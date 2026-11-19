@@ -120,10 +120,14 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	local smoke_dodge = 0
+	local m_pos = self._unit:movement():m_pos()
+	local now = TimerManager:game():time()
 
-	for _, smoke_screen in ipairs(managers.player._smoke_screen_effects or {}) do
-		if smoke_screen:is_in_smoke(self._unit) then
-			smoke_dodge = tweak_data.projectiles.smoke_screen_grenade.dodge_chance
+	for _, smoke_screen in pairs(managers.player:smoke_screens()) do
+		local in_smoke, variant, tweak_entry = smoke_screen:is_in_smoke(m_pos)
+
+		if in_smoke or managers.player:is_lingering_shadow_active() then
+			smoke_dodge = tweak_entry.dodge_chance
 
 			break
 		end
@@ -922,17 +926,25 @@ function PlayerDamage:armor_suppression_blocked()
 	end
 
 	-- Sicario's smoke screen blocks suppression
-	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
-		if smoke_screen:is_in_smoke(managers.player:player_unit()) and smoke_screen:armor_bonus() then
-			return true
-		end
+	local m_pos = self._unit:movement():m_pos()
+	local is_in_smoke = false
+	local current_smoke_screen = managers.player:get_current_smoke_screen()
+
+	for _, smoke_screen in pairs(managers.player:smoke_screens()) do
+		is_in_smoke = smoke_screen:is_in_smoke(m_pos)
 	end
+
+	if is_in_smoke and (current_smoke_screen and current_smoke_screen:armor_bonus()) or managers.player:is_lingering_shadow_active() then
+		return true
+	end
+
 end
 
 function PlayerDamage:_upd_suppression(t, dt)
 	local data = self._supperssion_data
 	if data.value then
 		if self:armor_suppression_blocked() then
+			Eclipse:log_chat_interval(0.1, "Suppression blocked")
 			data.value = nil
 			data.decay_start_t = nil
 			managers.environment_controller:set_suppression_value(0, 0)

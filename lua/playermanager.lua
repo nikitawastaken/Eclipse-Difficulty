@@ -5,6 +5,8 @@ Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._charged_shot_allowed = false
 	self._standstill_damage_reduction_active = false
 	self._eclipse_bags_carried = 0
+	self._lingering_shadow_timer = 0
+	self._current_smoke_screen = nil
 	self._kleptomaniac_allowed_equipment = {
 		"bank_manager_key",
 		"acid",
@@ -70,6 +72,23 @@ end
 function PlayerManager:max_following_hostages()
 	return tweak_data.player.max_nr_following_hostages + self:upgrade_value("player", "extra_hostages", 0) + self:upgrade_value("player", "extra_hostages_chief", 0)
 end
+
+function PlayerManager:set_lingering_shadow_timer(linger_time)
+	local now = TimerManager:game():time()
+
+	self._lingering_shadow_timer = (now + linger_time)
+end
+
+function PlayerManager:is_lingering_shadow_active()
+	local now = TimerManager:game():time()
+
+	return now < self._lingering_shadow_timer
+end
+
+function PlayerManager:get_current_smoke_screen()
+	return self._current_smoke_screen
+end
+
 
 -- vanilla funcs needed to not crash
 local function make_double_hud_string(a, b)
@@ -141,13 +160,6 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
 	end
 
-	-- Sidearm Savvy ACED
-	if self:has_category_upgrade("player", "sidearms_reload_primary") then
-		self._message_system:register(Message.OnEnemyKilled, "sidearms_reload_primary", callback(self, self, "_on_sidearms_reload_primary_event"))
-	else
-		self._message_system:register(Message.OnEnemyKilled, "sidearms_reload_primary")
-	end
-
 	-- Trigger Overdrive BASIC
 	if self:has_category_upgrade("pistol", "stacked_reload_bonus") then
 		self:register_message(Message.OnEnemyShot, "stacked_reload_bonus", callback(self, self, "_on_expert_handling_reload_event"))
@@ -190,9 +202,67 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	else
 		self:unregister_message(Message.OnPlayerDamage, "berserker_hit_stacking")
 	end
-
-	self:set_property("pistols_reload_primary_kills", 0)
 end)
+
+function PlayerManager:update(t, dt)
+	self._message_system:update()
+	self:_update_timers(t)
+
+	if self._need_to_send_player_status then
+		self._need_to_send_player_status = nil
+
+		self:need_send_player_status()
+	end
+
+	self._sent_player_status_this_frame = nil
+
+	local local_player = self:local_player()
+
+	if self:has_category_upgrade("player", "close_to_hostage_boost") and (not self._hostage_close_to_local_t or t >= self._hostage_close_to_local_t) then
+		self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), tweak_data.upgrades.hostage_near_player_radius)
+		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
+	end
+
+	self:_update_damage_dealt(t, dt)
+
+	if #self._global.synced_cocaine_stacks >= 4 then
+		local amount = 0
+
+		for i, stack in pairs(self._global.synced_cocaine_stacks) do
+			if stack.in_use then
+				amount = amount + stack.amount
+			end
+
+			if amount >= PlayerManager.TARGET_COCAINE_AMOUNT then
+				managers.achievment:award("mad_5")
+			end
+		end
+	end
+
+	self._coroutine_mgr:update(t, dt)
+	self._action_mgr:update(t, dt)
+
+	if self._unseen_strike and not self._coroutine_mgr:is_running(PlayerAction.UnseenStrike) then
+		local data = self:upgrade_value("player", "unseen_increased_crit_chance", 0)
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine(PlayerAction.UnseenStrike, PlayerAction.UnseenStrike, self, data.min_time, data.max_duration, data.crit_chance)
+		end
+	end
+
+	local player_unit = self:player_unit()
+
+	if player_unit then
+		local m_pos = player_unit:movement():m_pos()
+
+		for _, smoke_screen in pairs(self:smoke_screens()) do
+			smoke_screen:is_in_smoke(m_pos) -- needed for updating lingering shadow timer in real-time
+		end
+	end
+
+	self:update_smoke_screens(t, dt)
+	self:update_poison_gas(t, dt)
+end
 
 function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
@@ -818,9 +888,19 @@ function PlayerManager:skill_dodge_chance(...)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
-	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
-		if smoke_screen:is_in_smoke(self:player_unit()) then
-			dodge = dodge + (smoke_screen:dodge_bonus() and self:upgrade_value("player", "smoke_screen_dodge_add", 0))
+	local player_unit = self:player_unit()
+
+	if player_unit then
+		local m_pos = player_unit:movement():m_pos()
+		local is_in_smoke = false
+
+		for _, smoke_screen in pairs(self:smoke_screens()) do
+			is_in_smoke = smoke_screen:is_in_smoke(m_pos)
+			self._current_smoke_screen = smoke_screen
+		end
+
+		if is_in_smoke or self:is_lingering_shadow_active() then
+			dodge = dodge + (self._current_smoke_screen:new_dodge_bonus() and self:upgrade_value("player", "smoke_screen_dodge_add", 0) or 0)
 		end
 	end
 
@@ -831,9 +911,18 @@ local old_skill_armor_regen = PlayerManager.body_armor_regen_multiplier
 function PlayerManager:body_armor_regen_multiplier(...)
 	local armor_regen = old_skill_armor_regen(self, ...)
 
-	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
-		if smoke_screen:is_in_smoke(self:player_unit()) then
-			armor_regen = armor_regen * (smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 1) or 1)
+	local player_unit = self:player_unit()
+	if player_unit then
+		local m_pos = player_unit:movement():m_pos()
+		local is_in_smoke = false
+
+		for _, smoke_screen in pairs(self:smoke_screens()) do
+			is_in_smoke = smoke_screen:is_in_smoke(m_pos)
+			self._current_smoke_screen = smoke_screen
+		end
+
+		if is_in_smoke or self:is_lingering_shadow_active() then
+			armor_regen = armor_regen * (self._current_smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 1) or 1)
 		end
 	end
 
@@ -842,16 +931,7 @@ end
 
 -- Sicario smoke bomb buffs
 function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_armor_bonus, has_dodge_bonus, linger_bonus)
-	local time = tweak_data.projectiles.smoke_screen_grenade.duration
-	self._smoke_screen_effects = self._smoke_screen_effects or {}
-
-	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus))
-
-	if alive(self._smoke_grenade) and Network:is_server() then
-		self._smoke_grenade:set_slot(0)
-	end
-
-	self._smoke_grenade = grenade_unit
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, nil, has_dodge_bonus, grenade_unit, linger_bonus, has_armor_bonus))
 end
 
 -- Damage reduction skills
@@ -1745,16 +1825,6 @@ PlayerAction.SidearmReloadPrimary = {
 		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
-
--- Automatic primary reload with sidearms
-function PlayerManager:_on_sidearms_reload_primary_event(weapon_unit, variant)
-	if variant == "bullet" and not self._coroutine_mgr:is_running("sidearm_reloads_primary") and weapon_unit:base():is_category("revolver", "pistol") then
-		local data = self:upgrade_value("player", "sidearms_reload_primary", 0)
-		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine("sidearm_reloads_primary", PlayerAction.SidearmReloadPrimary, self, data.kills, Application:time() + data.max_time)
-		end
-	end
-end
 
 -- Pistol on-hit reload speed stacking
 -- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
