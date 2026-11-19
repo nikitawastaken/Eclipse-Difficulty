@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/payday2/characters/ene_murkywater_1/ene_murkywater_1"/>
+		<unit name="units/payday2/characters/ene_murkywater_1/ene_murkywater_1_husk"/>
+
+		<unit name="units/payday2/characters/ene_murkywater_2/ene_murkywater_2"/>
+		<unit name="units/payday2/characters/ene_murkywater_2/ene_murkywater_2_husk"/>		
+
+		<unit name="units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"/>
+		<unit name="units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer_husk"/>
+		
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker_husk"/>
+		
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2_husk"/>		
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic_husk"/>
+		
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield/ene_murkywater_shield"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield/ene_murkywater_shield_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_heavy"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_heavy_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_g36/ene_murkywater_heavy_g36"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_g36/ene_murkywater_heavy_g36_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_shotgun/ene_murkywater_heavy_shotgun"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_shotgun/ene_murkywater_heavy_shotgun_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_r870/ene_murkywater_light_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_r870/ene_murkywater_light_r870_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi/ene_murkywater_light_fbi"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi/ene_murkywater_light_fbi_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_r870/ene_murkywater_light_fbi_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_r870/ene_murkywater_light_fbi_r870_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city_r870/ene_murkywater_light_city_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city_r870/ene_murkywater_light_city_r870_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city/ene_murkywater_light_city"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city/ene_murkywater_light_city_husk"/>
+	
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper_husk"/>
+		
+		<!-- CUSTOM UNITS -->
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_1/ene_murkywater_security_1_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_2/ene_murkywater_security_2_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_security_3/ene_murkywater_security_3_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3_husk"/>		
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4_husk"/>		
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2_husk"/>		
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3_husk"/>		
+			
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5_husk"/>		
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city_mp5/ene_murkywater_light_city_mp5"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_light_city_mp5/ene_murkywater_light_city_mp5_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper_fbi/ene_murkywater_sniper_fbi"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper_fbi/eene_murkywater_sniper_fbi_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield_fbi/ene_murkywater_shield_fbi"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield_fbi/ene_murkywater_shield_fbi_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper_city/ene_murkywater_sniper_city"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_sniper_city/ene_murkywater_sniper_city_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield_city/ene_murkywater_shield_city"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_shield_city/ene_murkywater_shield_city_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_city_r870/ene_murkywater_heavy_city_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_heavy_city_r870/ene_murkywater_heavy_city_r870_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870_husk"/>	
+
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_security_cap/ene_acc_security_cap"/>			
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_cop_hat/ene_acc_cop_hat"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_fbi_cap/ene_acc_fbi_cap"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_swat_helmet/ene_acc_swat_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_swat_hat/ene_acc_swat_hat"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_medic_helmet/ene_acc_medic_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_shield_small/ene_acc_shield_small"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_shield_lights/ene_acc_shield_lights"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city"/>	
+		<unit name="units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city_dummy"/>	
+	</units>
+</package>

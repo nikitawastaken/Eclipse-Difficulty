@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_heavy_ak47_ass/ene_akan_cs_heavy_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_heavy_ak47_ass/ene_akan_cs_heavy_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_ak47_ass/ene_akan_cs_swat_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_g36/ene_akan_fbi_heavy_g36"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_heavy_g36/ene_akan_fbi_heavy_g36_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_dw_ak47_ass/ene_akan_fbi_swat_dw_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_dw_ak47_ass/ene_akan_fbi_swat_dw_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_dw_r870/ene_akan_fbi_swat_dw_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_dw_r870/ene_akan_fbi_swat_dw_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_r870/ene_akan_cs_swat_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_r870/ene_akan_cs_swat_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_ak47_ass/ene_akan_cs_cop_ak47_ass_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_akmsu_smg/ene_akan_cs_cop_akmsu_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_akmsu_smg/ene_akan_cs_cop_akmsu_smg_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_asval_smg/ene_akan_cs_cop_asval_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_asval_smg/ene_akan_cs_cop_asval_smg_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_r870/ene_akan_cs_cop_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_r870/ene_akan_cs_cop_r870_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_sniper_svd_snp/ene_akan_cs_swat_sniper_svd_snp"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_sniper_svd_snp/ene_akan_cs_swat_sniper_svd_snp_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45_husk"/>
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870_husk"/>
+		
+		<!-- CUSTOM UNITS -->
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_c45/ene_akan_cs_cop_c45_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_cop_raging_bull/ene_akan_cs_cop_raging_bull_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_c45/ene_akan_fbi_agent_c45_husk"/>
+	
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_ak47_ass/ene_akan_fbi_agent_ak47_ass_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_agent_akmsu_smg/ene_akan_fbi_agent_akmsu_smg_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_akmsu_smg/ene_akan_cs_swat_akmsu_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_cs_swat_akmsu_smg/ene_akan_cs_swat_akmsu_smg_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_akmsu_smg/ene_akan_fbi_swat_akmsu_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_akmsu_smg/ene_akan_fbi_swat_akmsu_smg_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_sniper_svd_snp/ene_akan_fbi_swat_sniper_svd_snp"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_swat_sniper_svd_snp/ene_akan_fbi_swat_sniper_svd_snp_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_ak47_ass/ene_akan_city_swat_ak47_ass_husk"/>
+	
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_r870/ene_akan_city_swat_r870_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_akmsu_smg/ene_akan_city_swat_akmsu_smg_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_svd_dmr/ene_akan_city_swat_sniper_svd_dmr"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_swat_sniper_svd_dmr/ene_akan_city_swat_sniper_svd_dmr_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_shield/ene_akan_city_shield_husk"/>
+	
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_heavy_g36/ene_akan_city_heavy_g36_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_heavy_r870/ene_akan_city_heavy_r870"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_city_heavy_r870/ene_akan_city_heavy_r870_husk"/>
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_mini/ene_akan_fbi_tank_mini_husk"/>			
+
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic_husk"/>			
+		
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_cop_hat/ene_acc_cop_hat"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_fbi_cap/ene_acc_fbi_cap"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_helmet/ene_acc_swat_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_hat/ene_acc_swat_hat"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_mask/ene_acc_shield_mask"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_medic_helmet/ene_acc_medic_helmet"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet"/>	
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_tazer_mask/ene_acc_tazer_mask"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_akan_small/ene_acc_shield_akan_small"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_akan_shield/ene_acc_shield_akan_shield"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city"/>
+		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city_dummy"/>
+	</units>
+</package>

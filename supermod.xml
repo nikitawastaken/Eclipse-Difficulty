@@ -4856,6 +4856,10 @@
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
 		
 		<!-- Create new packages -->
+		<file name="packages/faction_russia.package"/>
+		<file name="packages/faction_zombie.package"/>
 		<file name="packages/faction_murkywater.package"/>
+		<file name="packages/faction_federales.package"/>
+		
 	</assets>
 </mod>

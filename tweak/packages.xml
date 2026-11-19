@@ -38,14 +38,14 @@
 				<unit name="units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic"/>
 				<unit name="units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic_husk"/>
 				
-				<!-- Accessories (hats, helmets etc.) -->
+				<!-- Accessories (hats, helmets, shields etc.) -->
 				<unit name="units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap"/>
 				<unit name="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap"/>
 				<unit name="units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor"/>
 				<unit name="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet/ene_acc_marshal_shield_helmet"/>
 				<unit name="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2"/>
 								
-				<!-- NPC weapons (most of these are loaded at all times) -->
+				<!-- NPC weapons (most of them are loaded at all times) -->
 				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz"/>
 				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_pmm/wpn_npc_pmm"/>
 				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_pmm_tactical/wpn_npc_pmm_tactical"/>
