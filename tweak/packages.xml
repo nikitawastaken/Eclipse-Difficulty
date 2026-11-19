@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<tweaks>
+	<tweak version="2" name="packages/game_base" extension="package">
+		<search>
+			<?xml version="1.0" encoding="utf-8" ?>
+			<package/>
+		</search>
+		<target mode="attach">
+			<units_new>
+				<!-- Characters -->
+				<unit name="units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1"/>
+				<unit name="units/payday2/characters/ene_cop_fat_1/ene_cop_fat_1_husk"/>
+				
+				<unit name="units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2"/>
+				<unit name="units/payday2/characters/ene_cop_fat_2/ene_cop_fat_2_husk"/>
+				
+				<unit name="units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3"/>
+				<unit name="units/payday2/characters/ene_cop_fat_3/ene_cop_fat_3_husk"/>
+				
+				<unit name="units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"/>
+				<unit name="units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4_husk"/>
+				
+				<unit name="units/payday2/characters/ene_cop_female_1/ene_cop_female_1"/>
+				<unit name="units/payday2/characters/ene_cop_female_2/ene_cop_female_2_husk"/>
+				
+				<unit name="units/payday2/characters/ene_swat_3/ene_swat_3"/>
+				<unit name="units/payday2/characters/ene_swat_3/ene_swat_3_husk"/>
+
+				<unit name="units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"/>
+				<unit name="units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3_husk"/>
+				
+				<unit name="units/payday2/characters/ene_sniper_3/ene_sniper_3"/>
+				<unit name="units/payday2/characters/ene_sniper_3/ene_sniper_3_husk"/>
+
+				<unit name="units/payday2/characters/ene_tazer_r870/ene_tazer_r870"/>
+				<unit name="units/payday2/characters/ene_tazer_r870/ene_tazer_r870_husk"/>
+
+				<unit name="units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic"/>
+				<unit name="units/pd2_dlc_drm/characters/ene_bulldozer_medic_classic/ene_bulldozer_medic_classic_husk"/>
+				
+				<!-- Accessories (hats, helmets etc.) -->
+				<unit name="units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap"/>
+				<unit name="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap"/>
+				<unit name="units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor"/>
+				<unit name="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet/ene_acc_marshal_shield_helmet"/>
+				<unit name="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2"/>
+								
+				<!-- NPC weapons (most of these are loaded at all times) -->
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_vityaz/wpn_npc_vityaz"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_pmm/wpn_npc_pmm"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_pmm_tactical/wpn_npc_pmm_tactical"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_fort500/wpn_npc_fort500"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_fort500_bulldozer/wpn_npc_fort500_bulldozer"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_ak47_elite/wpn_npc_ak47_elite"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_svd_dmr/wpn_npc_svd_dmr"/>
+				<unit name="units/pd2_dlc_mad/weapons/wpn_npc_rpk_bulldozer/wpn_npc_rpk_bulldozer"/>			
+				<unit name="units/pd2_dlc_bex/weapons/wpn_npc_amcar/wpn_npc_amcar"/>	
+			</units_new>
+		</target>
+	</tweak>
+</tweaks>

@@ -6,6 +6,7 @@
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
+	<tweak definition="tweak/packages.xml"/>
 	<tweak definition="tweak/colorgradings.xml"/>
 	<tweak definition="tweak/fps_animation_states.xml" />
 	<tweak definition="tweak/fps_animation_subset.xml" />
@@ -1310,7 +1311,7 @@
 			</group>
 			
 			<group :name="ene_cop_1/">
-				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_cop_1.sequence_manager" />
 				<file :name="ene_cop_1.material_config" />
 				<file :name="ene_cop_1_contour.material_config" />
 				<file :name="ene_cop_1.model" />
@@ -1506,7 +1507,7 @@
 			</group>
 
 			<group :name="ene_cop_fat_1/">
-				<xml  :name="ene_cop_fat_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_cop_fat_1.sequence_manager" />
 				<file :name="ene_cop_fat_1.cooked_physics" />
 				<file :name="ene_cop_fat_1.model" />
 				<file :name="ene_cop_fat_1.object" />
@@ -1570,7 +1571,7 @@
 			</group>
 			
 			<group :name="ene_cop_female_1/">
-				<xml  :name="ene_cop_female_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_cop_female_1.sequence_manager" />
 				<file :name="ene_cop_female_1.cooked_physics" />
 				<file :name="ene_cop_female_1.model" />
 				<file :name="ene_cop_female_1.object" />
@@ -4853,5 +4854,8 @@
 		<!-- animations -->
 		<!-- Shield bash melee animation -->
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
+		
+		<!-- Create new packages -->
+		<file name="packages/faction_murkywater.package"/>
 	</assets>
 </mod>
