@@ -1619,7 +1619,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.combat_engineering.multibasic = "40%"
 
 	-- Arms Cache
-	self.values.grenade_case.amount_increase = { 2 }
+	self.values.grenade_case.amount_increase = { 1.5 }
 	self.definitions.grenade_case_amount_increase = {
 		category = "equipment_upgrade",
 		name_id = "debug_upgrade_grenade_case_amount_increase",
@@ -1629,7 +1629,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.grenade_crate.amount_increase = { 2 }
+	self.values.grenade_crate.amount_increase = { 1.5 }
 	self.definitions.grenade_crate_amount_increase = {
 		category = "equipment_upgrade",
 		name_id = "debug_upgrade_grenade_crate_amount_increase",
@@ -3756,7 +3756,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[23][9].multiperk = "20%"
 
 	-- Grenade Case
-	self.grenade_crate_base = 4
+	self.grenade_crate_base = 3
 	self.definitions.grenade_case = {
 		equipment_id = "grenade_case",
 		slot = 1,
