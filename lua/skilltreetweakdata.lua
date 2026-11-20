@@ -698,26 +698,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 
-	-- This is for applying custom atlas without typing texture_bundle_folder for every single deck
-	-- P.S. 2, 4 ,6 and 8 cards for custom perk decks still will use vanilla atlas
-	local generic_perk_deck_cards = { 2, 4, 6, 8 } -- For 2, 4, 6 and 8 cards that every deck have
-
-	local unique_perk_deck_cards = { 1, 3, 5, 7, 9 } -- For unique perk deck cards
-	local perk_decks_eclipse_atlas = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 } -- CC -> Ex-pres use default atlas so need reapply to use new one
-
-	-- Applying atlas changes for 2, 4, 6 and 8 cards
-	for i, _ in ipairs(self.specializations) do
-		for _, k in ipairs(generic_perk_deck_cards) do
-			self.specializations[i][k].texture_bundle_folder = "eclipse"
-		end
-	end
-
-	-- Applying atlas changes for 1, 3, 5, 7 and 9 cards for Crew Chief, Muscle , ... Ex-Pres
-	for _, i in ipairs(perk_decks_eclipse_atlas) do
-		for _, k in ipairs(unique_perk_deck_cards) do
-			self.specializations[i][k].texture_bundle_folder = "eclipse"
-		end
-	end
 
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
@@ -889,20 +869,20 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 	-- Sicario
 	self.specializations[18][3].upgrades = { "player_smoke_grenade_no_armor_suppression" }
-	self.specializations[18][3].texture_bundle_folder = "eclipse"
+	self.specializations[18][3].texture_bundle_folder = nil
 	self.specializations[18][3].icon_xy = { 0, 10 }
 	self.specializations[18][5].upgrades = { "player_passive_dodge_chance_1", "player_passive_dodge_chance_2", "player_passive_dodge_chance_3" }
 	self.specializations[18][5].texture_bundle_folder = nil
 	self.specializations[18][5].icon_xy = { 3, 2 }
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
-	self.specializations[18][7].texture_bundle_folder = "eclipse"
+	self.specializations[18][7].texture_bundle_folder = nil
 	self.specializations[18][7].icon_xy = { 1, 10 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- Stoic
 	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_decreased_drama_hurt" }
 	self.specializations[19][7].upgrades = { "player_emergency_throwable_regen_speed" }
-	self.specializations[19][7].texture_bundle_folder = "eclipse"
+	self.specializations[19][7].texture_bundle_folder = nil
 	self.specializations[19][7].icon_xy = { 2, 10 }
 
 	-- Tag Team
@@ -926,7 +906,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 		"player_copr_kill_life_leech_1",
 		"player_copr_activate_bonus_health_ratio_1",
 	}
-	self.specializations[22][3].texture_bundle_folder = "eclipse"
+	self.specializations[22][3].texture_bundle_folder = nil
 	self.specializations[22][3].icon_xy = { 6, 9 }
 	self.specializations[22][5].upgrades = {
 		"temporary_copr_ability_new_2",
@@ -935,7 +915,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.specializations[22][7].upgrades = {
 		"player_emergency_throwable_regen_speed",
 	}
-	self.specializations[22][7].texture_bundle_folder = "eclipse"
+	self.specializations[22][7].texture_bundle_folder = nil
 	self.specializations[22][7].icon_xy = { 7, 9 }
 	self.specializations[22][9].upgrades = {
 		"player_passive_loot_drop_multiplier",
@@ -1085,14 +1065,10 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 
 		-- wildcard upgrades
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
-		perkdeck[2].texture_bundle_folder = "eclipse"
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
-		perkdeck[4].texture_bundle_folder = "eclipse"
 		perkdeck[6].upgrades = { "armor_kit" }
-		perkdeck[6].texture_bundle_folder = "eclipse"
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
-		perkdeck[8].texture_bundle_folder = "eclipse"
 	end
 
 	-- Buncha default upgrade fuckery
