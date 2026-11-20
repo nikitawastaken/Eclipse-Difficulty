@@ -28,7 +28,7 @@ function TripMineBase:_explode(col_ray)
 				local ray_from = math.point_on_line(self._ray_from_pos, self._ray_to_pos, com)
 
 				ray_hit = not World:raycast("ray", ray_from, com, "slot_mask", slotmask, "ignore_unit", {
-					hit_body:unit()
+					hit_body:unit(),
 				}, "report")
 
 				if ray_hit then
@@ -80,7 +80,9 @@ function TripMineBase:_explode(col_ray)
 			local fire_trap_data = managers.player:upgrade_value("trip_mine", "fire_trap", nil)
 
 			if fire_trap_data then
-				managers.network:session():send_to_peers_synched("sync_trip_mine_explode_spawn_fire", self._unit, player, self._ray_from_pos, self._ray_to_pos, damage_size, damage, fire_trap_data[1], fire_trap_data[2])
+				managers.network
+					:session()
+					:send_to_peers_synched("sync_trip_mine_explode_spawn_fire", self._unit, player, self._ray_from_pos, self._ray_to_pos, damage_size, damage, fire_trap_data[1], fire_trap_data[2])
 
 				destruction_delay = self:_spawn_environment_fire(player, fire_trap_data[1], fire_trap_data[2])
 			end
@@ -97,7 +99,7 @@ function TripMineBase:_explode(col_ray)
 			self._position,
 			tweak_data.weapon.trip_mines.alert_radius,
 			self._alert_filter,
-			self._unit
+			self._unit,
 		}
 
 		managers.groupai:state():propagate_alert(alert_event)
