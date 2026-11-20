@@ -1,3 +1,4 @@
+-- Fix trip mine explosion damage upgrade affecting its radius as well
 function TripMineBase:_explode(col_ray)
 	if not managers.network:session() or self._detonated then
 		return
