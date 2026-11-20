@@ -943,7 +943,6 @@ function PlayerDamage:_upd_suppression(t, dt)
 	local data = self._supperssion_data
 	if data.value then
 		if self:armor_suppression_blocked() then
-			Eclipse:log_chat_interval(0.1, "Suppression blocked")
 			data.value = nil
 			data.decay_start_t = nil
 			managers.environment_controller:set_suppression_value(0, 0)
