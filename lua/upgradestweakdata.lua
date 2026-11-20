@@ -40,6 +40,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		interval = 0.5,
 	}
 
+	-- Ammo Bag base ammo ammount
+	self.ammo_bag_base = 3
+
 	-- Bullet damage Shield stagger effect (only used for the Team AI ability)
 	self.values.player.shield_knock_bullet.max_damage = 80
 	self.values.player.shield_knock_bullet.chance = 0.8
@@ -1478,6 +1481,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.portable_saw.multipro = "20%"
 
 	-- Extra Lead
+	self.values.ammo_bag.ammo_increase[1] = 1.5
 	self.skill_descs.ammo_2x.multibasic = "50%"
 	self.skill_descs.ammo_2x.multipro = "2"
 
