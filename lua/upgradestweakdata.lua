@@ -1615,8 +1615,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.hardware_expert.multipro = "30%"
 
 	-- Combat Engineering
-	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
-	self.skill_descs.combat_engineering.multibasic = "50%"
+	self.values.trip_mine.explosion_size_multiplier_1 = { 1.8 }
+	self.skill_descs.combat_engineering.multibasic = "80%"
 
 	-- Arms Cache
 	self.values.grenade_case.amount_increase = { 2 }
