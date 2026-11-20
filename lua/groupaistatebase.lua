@@ -87,7 +87,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
 		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
 		if self._point_of_no_return_timer <= 0 then
-			if self._is_server then
+			if Network:is_server() then
 				managers.groupai:set_state("ponr")
 				managers.network:session():send_to_peers("sync_assault_ponr")
 				self:set_difficulty(1)
@@ -393,7 +393,7 @@ Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapon
 end)
 
 -- Add the marksman enemy to special unit types
-Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse__init_misc_data", function(self)
+Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", function(self)
 	self._special_unit_types = {
 		shield = true,
 		medic = true,
@@ -825,7 +825,7 @@ end
 
 -- Do sentry marking if you are the host
 Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", function(self, t, dt)
-	if self._is_server then
+	if Network:is_server() then
 		for _, sentry in pairs(self._marking_sentries) do
 			sentry:base():_update_omniscience(t, dt)
 		end
@@ -1429,7 +1429,7 @@ end
 -- Stealth Strike System
 function GroupAIStateBase:register_strike(amount, reason, is_pager)
 	self._stealth_strikes = self._stealth_strikes + amount
-	if self._is_server then
+	if Network:is_server() then
 		managers.network:session():send_to_peers("sync_register_strike", amount, reason, is_pager)
 	end
 
@@ -1469,7 +1469,7 @@ function GroupAIStateBase:get_nr_successful_alarm_pager_bluffs()
 	return self._stealth_strikes
 end
 
-if not self._is_server then
+if not Network:is_server() then
 	return
 end
 

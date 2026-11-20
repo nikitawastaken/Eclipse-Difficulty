@@ -16,7 +16,7 @@ local get_random_table_value_float = Eclipse.utils.get_random_table_value_float
 -- Criminal status no longer influences balance multipliers
 -- Team AI contribute less towards spawn limits and spawn rates
 function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai_weight)
-	team_ai_weight = self._groupai_tweak_data.use_team_ai_balance_mul_weights and team_ai_weight or 1
+	team_ai_weight = tweak_data.group_ai.use_team_ai_balance_mul_weights and team_ai_weight or 1
 	local nr_criminals = 0
 	for u_key, u_data in pairs(self._char_criminals) do
 		if u_data.ai then
@@ -60,7 +60,7 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		self._mga_said_arrival = true
 	end
 
-	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, self._groupai_tweak_data.team_ai_balance_mul_weights.force)
+	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.force)
 	local force_value = self:_get_difficulty_dependent_value(self._tweak_data.assault.force)
 	self._task_data.assault.force = math.ceil(force_value * force_mul)
 
@@ -78,7 +78,7 @@ end
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
 	if self._task_data.assault.next_dispatch_t then
 		local delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
-		local delay_mul = self:_get_balancing_multiplier(self._tweak_data.assault.delay_balance_mul, self._groupai_tweak_data.team_ai_balance_mul_weights.assault_delay)
+		local delay_mul = self:_get_balancing_multiplier(self._tweak_data.assault.delay_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.assault_delay)
 
 		self._task_data.assault.next_dispatch_t = self._t + delay * delay_mul
 
@@ -190,7 +190,7 @@ function GroupAIStateBesiege:_begin_reenforce_task(...)
 	if self._task_data.reenforce.had_init_dispatch_delay then
 		self._task_data.reenforce.next_dispatch_t = next_dispatch_t
 	else
-		self._task_data.reenforce.next_dispatch_t = self._t + (self._groupai_tweak_data.init_reenforce_delay or 30)
+		self._task_data.reenforce.next_dispatch_t = self._t + (tweak_data.group_ai.init_reenforce_delay or 30)
 		self._task_data.reenforce.had_init_dispatch_delay = true
 	end
 end
@@ -427,7 +427,7 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 
 			if spawned then
 				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
-				local undershot_mul = (self._groupai_tweak_data.undershot_reenforce_interval_factor or 1) ^ #undershot_tasks
+				local undershot_mul = (tweak_data.group_ai.undershot_reenforce_interval_factor or 1) ^ #undershot_tasks
 				self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) * undershot_mul
 				break
 			end
@@ -748,7 +748,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				if not self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
 					if not group.ignore_grenade_check_t then
 						local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
-						local delay = push_delay * (assault_area.hostages and self._groupai_tweak_data.hostage_push_delay_mul or 1) * (tactics_map.charge and 0.5 or 1)
+						local delay = push_delay * (assault_area.hostages and tweak_data.group_ai.hostage_push_delay_mul or 1) * (tactics_map.charge and 0.5 or 1)
 						local num_criminals = table.size(assault_area.criminal.units)
 						group.ignore_grenade_check_t = self._t + math.map_range_clamped(num_criminals, 1, 4, delay, delay * 0.75)
 						return
@@ -944,7 +944,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	local hostage_check = ignore_hostages or not assault_area.hostages
 
 	if valid_grenade and hostage_check and assault_area.criminal_entered_t and table.size(assault_area.neighbours) <= 2 then
-		local teargas_chance_times = self._groupai_tweak_data.cs_grenade_chance_times or { 60, 240 }
+		local teargas_chance_times = tweak_data.group_ai.cs_grenade_chance_times or { 60, 240 }
 
 		local teargas_chance = math.map_range(self._t - assault_area.criminal_entered_t, teargas_chance_times[1], teargas_chance_times[2], 0, 1)
 		if math.random() < teargas_chance then
@@ -983,9 +983,9 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	local timeout
 	if use_teargas then
-		self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), self._groupai_tweak_data.cs_grenade_lifetime or 25)
+		self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 25)
 
-		timeout = self._groupai_tweak_data.cs_grenade_timeout or self._groupai_tweak_data.smoke_and_flash_grenade_timeout
+		timeout = tweak_data.group_ai.cs_grenade_timeout or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	else
 		if grenade_type == "flash_grenade" and grenade_user.char_tweak.chatter.flash_grenade then
 			self:chk_say_enemy_chatter(grenade_user.unit, grenade_user.m_pos, "flash_grenade")
@@ -993,12 +993,12 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 			self:chk_say_enemy_chatter(grenade_user.unit, grenade_user.m_pos, "smoke")
 		end
 
-		self:detonate_smoke_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), self._groupai_tweak_data[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade", false)
+		self:detonate_smoke_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade", false)
 
-		timeout = self._groupai_tweak_data[grenade_type .. "_timeout"] or self._groupai_tweak_data.smoke_and_flash_grenade_timeout
+		timeout = tweak_data.group_ai[grenade_type .. "_timeout"] or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	end
 
-	local min_grenade_timeout = self:_get_difficulty_dependent_value(self._groupai_tweak_data.min_grenade_timeout)
+	local min_grenade_timeout = self:_get_difficulty_dependent_value(tweak_data.group_ai.min_grenade_timeout)
 
 	task_data.use_smoke = false
 
@@ -1197,7 +1197,7 @@ end
 
 -- Scale the spawn rate based on drama, diff, and player count
 function GroupAIStateBesiege:spawn_rate()
-	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, self._groupai_tweak_data.team_ai_balance_mul_weights.spawn_rate)
+	local spawn_rate_balance_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.spawn_rate)
 	local spawn_rate_drama_mul = self:_get_drama_weight_mul("spawn_rate")
 
 	local are_police_comms_ecm_jammed, jammed_police_comms_mul = self:_active_ecm_police_comms_jamm()
@@ -1211,7 +1211,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		name = true,
 		spawn_ai = {},
 	}
-	local unit_categories = self._groupai_tweak_data.unit_categories
+	local unit_categories = tweak_data.group_ai.unit_categories
 	local current_unit_type = tweak_data.levels:get_ai_group_type()
 	local skip_delays = force or spawn_task.group.size > 0
 
@@ -1358,10 +1358,10 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	local tactics
 	if timed_desc then
 		spawn_group_desc = timed_desc
-		tactics = self._groupai_tweak_data._timed_tactics or {}
+		tactics = tweak_data.group_ai._timed_tactics or {}
 	else
-		spawn_group_desc = self._groupai_tweak_data.enemy_spawn_groups[spawn_group_type]
-		tactics = self._groupai_tweak_data._tactics or {}
+		spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
+		tactics = tweak_data.group_ai._tactics or {}
 	end
 
 	local wanted_nr_units
@@ -1390,7 +1390,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	}
 
 	local function check_special_limit_reached(unit)
-		local category = self._groupai_tweak_data.unit_categories[unit]
+		local category = tweak_data.group_ai.unit_categories[unit]
 		local special_type = category and category.special_type
 
 		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
@@ -1427,13 +1427,13 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if spawn_entry.freq_balance_mul then
-			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, self._groupai_tweak_data.team_ai_balance_mul_weights.freq)
+			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_balance_mul_weights.freq)
 		end
 
 		if spawn_entry.drama_category then
 			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(spawn_entry.drama_category)
 		else
-			local category = self._groupai_tweak_data.unit_categories[spawn_entry.unit]
+			local category = tweak_data.group_ai.unit_categories[spawn_entry.unit]
 			spawn_entry.freq = spawn_entry.freq * self:_get_drama_weight_mul(category.drama_category or category.special_type)
 		end
 	end
@@ -1484,7 +1484,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 	end
 
-	local unit_categories = self._groupai_tweak_data.unit_categories
+	local unit_categories = tweak_data.group_ai.unit_categories
 	while wanted_nr_units > 0 and #valid_unit_types > 0 do
 		local roll = math.random() * total_weight
 		local rand_entry
@@ -1560,8 +1560,8 @@ end
 -- TODO: more modifications for timed group bullshit
 function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
-	local spawn_groups = self._groupai_tweak_data.enemy_spawn_groups
-	local unit_categories = self._groupai_tweak_data.unit_categories
+	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
+	local unit_categories = tweak_data.group_ai.unit_categories
 
 	for _, group_type in ipairs(group_types) do
 		local spawn_group_desc = spawn_groups[group_type]
@@ -1993,7 +1993,7 @@ function GroupAIStatePonr:init(state, data)
 		end
 	end
 	-- Set the group ai tweak table
-	self._tweak_data = self._groupai_tweak_data["ponr"]
+	self._tweak_data = tweak_data.group_ai["ponr"]
 	self:_parse_teammate_comments()
 	self:sync_assault_mode(false)
 	self:set_bain_state(true)
@@ -2002,7 +2002,7 @@ function GroupAIStatePonr:init(state, data)
 	self:_set_rescue_state(true)
 	self:_init_unit_type_filters()
 	self:_init_team_tables()
-	if self._is_server and managers.navigation:is_data_ready() then
+	if Network:is_server() and managers.navigation:is_data_ready() then
 		self:_queue_police_upd_task()
 	end
 	self._delayed_hud_banner_update = false
@@ -2017,8 +2017,8 @@ function GroupAIStatePonr:_do_ponr_state_special_limit_add()
 
 	self._did_ponr_state_special_limit_add = true
 
-	local special_unit_spawn_limits = self._groupai_tweak_data.special_unit_spawn_limits
-	for special, limit_add in pairs(self._groupai_tweak_data.ponr_state_special_limit_add or {}) do
+	local special_unit_spawn_limits = tweak_data.group_ai.special_unit_spawn_limits
+	for special, limit_add in pairs(tweak_data.group_ai.ponr_state_special_limit_add or {}) do
 		special_unit_spawn_limits[special] = (special_unit_spawn_limits[special] or 0) + limit_add
 	end
 end
@@ -2215,12 +2215,12 @@ end
 
 -- Custom timed groups
 function GroupAIStateBesiege:create_timed_groups_table()
-	if not self._groupai_tweak_data.timed_enemy_spawn_groups then
+	if not tweak_data.group_ai.timed_enemy_spawn_groups then
 		return
 	end
 
 	local enabled_groups = {}
-	for timer_id, group in pairs(self._groupai_tweak_data.timed_enemy_spawn_groups) do
+	for timer_id, group in pairs(tweak_data.group_ai.timed_enemy_spawn_groups) do
 		enabled_groups[timer_id] = {}
 		if not group.disabled then
 			for group_id, group_tweak in pairs(group.group_data) do
@@ -2231,7 +2231,7 @@ function GroupAIStateBesiege:create_timed_groups_table()
 		end
 	end
 
-	self._timed_groups = self._groupai_tweak_data.timed_enemy_spawn_groups
+	self._timed_groups = tweak_data.group_ai.timed_enemy_spawn_groups
 	self._enabled_timed_groups = enabled_groups
 	self._disabled_timed_groups = {}
 	self._next_timed_group_spawns_t = {}
