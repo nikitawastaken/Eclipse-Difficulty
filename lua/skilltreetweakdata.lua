@@ -698,7 +698,6 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 
-
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_civilian_hostage_speed_bonus", "player_passive_intimidate_range_mul" }
