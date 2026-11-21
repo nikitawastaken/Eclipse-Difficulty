@@ -261,12 +261,13 @@
 		<sequence editable_state="true" name="'male_ranc_ranger_fat_4'" once="true" triggable="true">		
 			<object 			enabled="true" name="'g_gear_chas_police_d'" />
 			<object 			enabled="true" name="'g_gear_chas_police_d_lod1'" />
-	
+
 			<run_sequence 		name="'ranc_ranger'" />
 			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
-			
+
+			<run_sequence 		name="'hat_ranc_ranger'" />		
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />

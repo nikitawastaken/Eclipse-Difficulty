@@ -266,7 +266,8 @@
 			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'shoulder_loops'" />
 			<run_sequence 		name="'belt'" />
-			
+
+			<run_sequence 		name="'hat_ranc_ranger'" />			
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />

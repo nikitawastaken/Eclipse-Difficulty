@@ -498,6 +498,12 @@
 			<object 			enabled="true" name="'g_body_short_b'" />
 			<object 			enabled="true" name="'g_body_short_b_lod1'" />
 		</sequence>
+	<!--SHADES SEQUENCES-->
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_shades'" />
+			<object 			enabled="true" name="'g_shades_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass'" />
+		</sequence>
 	<!--GOGGLES SEQUENCES-->
 		<sequence editable_state="true" name="'random_goggles_swat_a'" once="true" triggable="true" >
 			<set_variables 		has_goggles="1" />			
