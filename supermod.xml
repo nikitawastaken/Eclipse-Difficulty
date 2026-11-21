@@ -1631,7 +1631,7 @@
 			</group>
 
 			<group :name="ene_secret_service_1/">
-				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_secret_service_1.sequence_manager" />
 				<file :name="ene_secret_service_1.material_config" />
 				<file :name="ene_secret_service_1_contour.material_config" />
 				<file :name="ene_secret_service_1.model" />
@@ -1654,7 +1654,7 @@
 			</group>
 
 			<group :name="ene_murkywater_1/">
-				<xml  :name="ene_murkywater_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_1.sequence_manager" />
 				<file :name="ene_murkywater_1.material_config" />
 				<file :name="ene_murkywater_1_contour.material_config" />
 				<file :name="ene_murkywater_1.model" />
@@ -1674,7 +1674,7 @@
 			</group>
 
 			<group :name="ene_fbi_office_1/">
-				<xml  :name="ene_fbi_office_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_fbi_office_1.sequence_manager" />
 				<file :name="ene_fbi_office_1.material_config" />
 				<file :name="ene_fbi_office_1_contour.material_config" />
 				<file :name="ene_fbi_office_1.model" />
@@ -1704,7 +1704,7 @@
 			</group>
 
 			<group :name="ene_fbi_female_1/">
-				<xml  :name="ene_fbi_female_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_fbi_female_1.sequence_manager" />
 				<file :name="ene_fbi_female_1.material_config" />
 				<file :name="ene_fbi_female_1_contour.material_config" />
 				<file :name="ene_fbi_female_1.model" />
@@ -1739,7 +1739,7 @@
 			</group>
 
 			<group :name="ene_gang_black_1/">
-				<xml  :name="ene_gang_black_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_gang_black_1.sequence_manager" />
 				<file :name="ene_gang_black_1.material_config" />
 				<file :name="ene_gang_black_1_contour.material_config" />
 				<file :name="ene_gang_black_1.model" />
@@ -1764,7 +1764,7 @@
 			</group>
 
 			<group :name="ene_gang_mexican_1/">
-				<xml  :name="ene_gang_mexican_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_gang_mexican_1.sequence_manager" />
 				<file :name="ene_gang_mexican_1.material_config" />
 				<file :name="ene_gang_mexican_1_contour.material_config" />
 				<file :name="ene_gang_mexican_1.model" />
@@ -1789,7 +1789,7 @@
 			</group>
 
 			<group :name="ene_gang_russian_1/">
-				<xml  :name="ene_gang_russian_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_gang_russian_1.sequence_manager" />
 				<file :name="ene_gang_russian_1.material_config" />
 				<file :name="ene_gang_russian_1_contour.material_config" />
 				<file :name="ene_gang_russian_1.model" />
@@ -1819,7 +1819,7 @@
 			</group>
 
 			<group :name="ene_biker_1/">
-				<xml  :name="ene_biker_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_biker_1.sequence_manager"/>
 				<file :name="ene_biker_1.material_config" />
 				<file :name="ene_biker_1_contour.material_config" />
 				<file :name="ene_biker_1.model" />
@@ -1844,7 +1844,7 @@
 			</group>
 
 			<group :name="ene_gang_mobster_1/">
-				<xml  :name="ene_gang_mobster_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_gang_mobster_1.sequence_manager" />
 				<file :name="ene_gang_mobster_1.material_config" />
 				<file :name="ene_gang_mobster_1_contour.material_config" />
 				<file :name="ene_gang_mobster_1.model" />
@@ -2189,7 +2189,7 @@
 			</group>
 
 			<group :name="ene_soldier_1/">
-				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_soldier_1.sequence_manager" />
 				<file :name="ene_soldier_1.cooked_physics" />
 				<file :name="ene_soldier_1.material_config" />
 				<file :name="ene_soldier_1_contour.material_config" />
@@ -2225,7 +2225,7 @@
 			</group>
 
 			<group :name="ene_security_gensec_1/">
-				<xml  :name="ene_security_gensec_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_security_gensec_1.sequence_manager" />
 				<file :name="ene_security_gensec_1.material_config" />
 				<file :name="ene_security_gensec_1_contour.material_config" />
 				<file :name="ene_security_gensec_1.model" />
@@ -2240,7 +2240,7 @@
 			</group>
 
 			<group :name="ene_gensec_operator_1/">
-				<xml  :name="ene_gensec_operator_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_gensec_operator_1.sequence_manager" />
 				<file :name="ene_gensec_operator_1.material_config" />
 				<file :name="ene_gensec_operator_1_contour.material_config" />
 				<file :name="ene_gensec_operator_1.model" />
@@ -2626,7 +2626,7 @@
 			</group>
 
 			<group :name="ene_akan_cs_cop_c45/">
-				<xml  :name="ene_akan_cs_cop_c45.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_cs_cop_c45.sequence_manager" />
 				<file :name="ene_akan_cs_cop_c45.material_config" />
 				<file :name="ene_akan_cs_cop_c45_contour.material_config" />
 				<file :name="ene_akan_cs_cop_c45.model" />
@@ -2681,7 +2681,7 @@
 			</group>
 
 			<group :name="ene_akan_cs_swat_ak47_ass/">
-				<xml  :name="ene_akan_cs_swat_ak47_ass.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_cs_swat_ak47_ass.sequence_manager" />
 				<file :name="ene_akan_cs_swat_ak47_ass.material_config" />
 				<file :name="ene_akan_cs_swat_ak47_ass_contour.material_config" />
 				<file :name="ene_akan_cs_swat_ak47_ass.model" />
@@ -2779,7 +2779,7 @@
 			</group>
 
 			<group :name="ene_akan_fbi_heavy_g36/">
-				<xml  :name="ene_akan_fbi_heavy_g36.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_fbi_heavy_g36.sequence_manager" />
 				<file :name="ene_akan_fbi_heavy_g36.material_config" />
 				<file :name="ene_akan_fbi_heavy_g36_contour.material_config" />
 				<file :name="ene_akan_fbi_heavy_g36.model" />
@@ -2819,7 +2819,7 @@
 			</group>
 
 			<group :name="ene_akan_medic_ak47_ass/">
-				<xml  :name="ene_akan_medic_ak47_ass.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_medic_ak47_ass.sequence_manager" />
 				<file :name="ene_akan_medic_ak47_ass.material_config" />
 				<file :name="ene_akan_medic_ak47_ass_contour.material_config" />
 				<file :name="ene_akan_medic_ak47_ass.model" />
@@ -2834,7 +2834,7 @@
 			</group>
 
 			<group :name="ene_akan_cs_tazer_ak47_ass/">
-				<xml  :name="ene_akan_cs_tazer_ak47_ass.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_cs_tazer_ak47_ass.sequence_manager" />
 				<file :name="ene_akan_cs_tazer_ak47_ass.material_config" />
 				<file :name="ene_akan_cs_tazer_ak47_ass_contour.material_config" />
 				<file :name="ene_akan_cs_tazer_ak47_ass.model" />
@@ -2849,7 +2849,7 @@
 			</group>
 
 			<group :name="ene_akan_fbi_tank_r870/">
-				<xml  :name="ene_akan_fbi_tank_r870.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_akan_fbi_tank_r870.sequence_manager" />
 				<file :name="ene_akan_fbi_tank_r870.material_config" />
 				<file :name="ene_akan_fbi_tank_r870_contour.material_config" />
 				<file :name="ene_akan_fbi_tank_r870.model" />
@@ -2910,7 +2910,7 @@
 			</group>
 
 			<group :name="ene_bolivian_thug_outdoor_01/">
-				<xml  :name="ene_bolivian_thug_outdoor_01.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_bolivian_thug_outdoor_01.sequence_manager" />
 				<file :name="ene_bolivian_thug_outdoor_01.material_config" />
 				<file :name="ene_bolivian_thug_outdoor_01_contour.material_config" />
 				<file :name="ene_bolivian_thug_outdoor_01.model" />
@@ -2941,7 +2941,7 @@
 			</group>
 
 			<group :name="ene_thug_indoor_01/">
-				<xml  :name="ene_thug_indoor_01.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_thug_indoor_01.sequence_manager" />
 				<file :name="ene_thug_indoor_01.material_config" />
 				<file :name="ene_thug_indoor_01_contour.material_config" />
 				<file :name="ene_thug_indoor_01.model" />
@@ -2995,7 +2995,7 @@
 			<group :name="ene_sniper_3/">
 				<file :name="ene_sniper_3_df.texture" />
 				<file :name="ene_sniper_3_nm.texture" />
-				<xml  :name="ene_sniper_3.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_sniper_3.sequence_manager" />
 				<file :name="ene_sniper_3.material_config" />
 				<file :name="ene_sniper_3_contour.material_config" />
 				<file :name="ene_sniper_3.model" />
@@ -3514,7 +3514,7 @@
 			</group>
 
 			<group :name="ene_murkywater_cop_1/">
-				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_cop_1.sequence_manager" />
 				<file :name="ene_murkywater_cop_1.cooked_physics" />
 				<file :name="ene_murkywater_cop_1.material_config" />
 				<file :name="ene_murkywater_cop_1_contour.material_config" />
@@ -3578,7 +3578,7 @@
 			</group>
 
 			<group :name="ene_murkywater_light/">
-				<xml  :name="ene_murkywater_light.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_light.sequence_manager" />
 				<file :name="ene_murkywater_light.material_config" />
 				<file :name="ene_murkywater_light_contour.material_config" />
 				<file :name="ene_murkywater_light.model" />
@@ -3676,7 +3676,7 @@
 			</group>
 
 			<group :name="ene_murkywater_heavy_fbi/">
-				<xml  :name="ene_murkywater_heavy_fbi.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_heavy_fbi.sequence_manager" />
 				<file :name="ene_murkywater_heavy_fbi.cooked_physics" />
 				<file :name="ene_murkywater_heavy_fbi.material_config" />
 				<file :name="ene_murkywater_heavy_fbi_contour.material_config" />
@@ -3717,7 +3717,7 @@
 			</group>
 
 			<group :name="ene_murkywater_medic/">
-				<xml  :name="ene_murkywater_medic.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_medic.sequence_manager" />
 				<file :name="ene_murkywater_medic.material_config" />
 				<file :name="ene_murkywater_medic_contour.material_config" />
 				<file :name="ene_murkywater_medic.model" />
@@ -3732,7 +3732,7 @@
 			</group>
 
 			<group :name="ene_murkywater_tazer/">
-				<xml  :name="ene_murkywater_tazer.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_tazer.sequence_manager" />
 				<file :name="ene_murkywater_tazer.material_config" />
 				<file :name="ene_murkywater_tazer_contour.material_config" />
 				<file :name="ene_murkywater_tazer.model" />
@@ -3747,7 +3747,7 @@
 			</group>
 
 			<group :name="ene_murkywater_bulldozer_1/">
-				<xml  :name="ene_murkywater_bulldozer_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_bulldozer_1.sequence_manager" />
 				<file :name="ene_murkywater_bulldozer_1.material_config" />
 				<file :name="ene_murkywater_bulldozer_1_contour.material_config" />
 				<file :name="ene_murkywater_bulldozer_1.model" />
@@ -3793,7 +3793,7 @@
 
 		<group name="units/pd2_dlc_vit/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_murkywater_secret_service/">
-				<xml  :name="ene_murkywater_secret_service.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_murkywater_secret_service.sequence_manager" />
 				<file :name="ene_murkywater_secret_service.material_config" />
 				<file :name="ene_murkywater_secret_service_contour.material_config" />
 				<file :name="ene_murkywater_secret_service.model" />
@@ -4105,7 +4105,7 @@
 			</group>
 
 			<group :name="ene_swat_policia_federale/">
-				<xml  :name="ene_swat_policia_federale.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_swat_policia_federale.sequence_manager"  />
 				<file :name="ene_swat_policia_federale.material_config" />
 				<file :name="ene_swat_policia_federale_contour.material_config" />
 				<file :name="ene_swat_policia_federale.model" />
@@ -4203,7 +4203,7 @@
 			</group>
 
 			<group :name="ene_swat_heavy_policia_federale_fbi/">
-				<xml  :name="ene_swat_heavy_policia_federale_fbi.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_swat_heavy_policia_federale_fbi.sequence_manager" />
 				<file :name="ene_swat_heavy_policia_federale_fbi.material_config" />
 				<file :name="ene_swat_heavy_policia_federale_fbi_contour.material_config" />
 				<file :name="ene_swat_heavy_policia_federale_fbi.model" />
@@ -4243,7 +4243,7 @@
 			</group>
 
 			<group :name="ene_swat_medic_policia_federale/">
-				<xml  :name="ene_swat_medic_policia_federale.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_swat_medic_policia_federale.sequence_manager" />
 				<file :name="ene_swat_medic_policia_federale.material_config" />
 				<file :name="ene_swat_medic_policia_federale_contour.material_config" />
 				<file :name="ene_swat_medic_policia_federale.model" />
@@ -4258,7 +4258,7 @@
 			</group>
 
 			<group :name="ene_swat_tazer_policia_federale/">
-				<xml  :name="ene_swat_tazer_policia_federale.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_swat_tazer_policia_federale.sequence_manager" />
 				<file :name="ene_swat_tazer_policia_federale.material_config" />
 				<file :name="ene_swat_tazer_policia_federale_contour.material_config" />
 				<file :name="ene_swat_tazer_policia_federale.model" />
@@ -4389,7 +4389,7 @@
 			</group>
 
 			<group :name="ene_male_triad_gang_1/">
-				<xml  :name="ene_male_triad_gang_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_male_triad_gang_1.sequence_manager" />
 				<file :name="ene_male_triad_gang_1.material_config" />
 				<file :name="ene_male_triad_gang_1_contour.material_config" />
 				<file :name="ene_male_triad_gang_1.model" />
@@ -4419,7 +4419,7 @@
 			</group>
 
 			<group :name="ene_male_chas_police_01/">
-				<xml  :name="ene_male_chas_police_01.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_male_chas_police_01.sequence_manager" />
 				<file :name="ene_male_chas_police_01.material_config" />
 				<file :name="ene_male_chas_police_01_contour.material_config" />
 				<file :name="ene_male_chas_police_01.model" />
@@ -4449,7 +4449,7 @@
 			</group>
 
 			<group :name="ene_male_chas_police_fat_01/">
-				<xml  :name="ene_male_chas_police_fat_01.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_male_chas_police_fat_01.sequence_manager" />
 				<file :name="ene_male_chas_police_fat_01.cooked_physics" />
 				<file :name="ene_male_chas_police_fat_01.model" />
 				<file :name="ene_male_chas_police_fat_01.object" />
@@ -4473,7 +4473,7 @@
 			</group>
 
 			<group :name="ene_female_chas_police_01/">
-				<xml  :name="ene_female_chas_police_01.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_female_chas_police_01.sequence_manager" />
 				<file :name="ene_female_chas_police_01.cooked_physics" />
 				<file :name="ene_female_chas_police_01.model" />
 				<file :name="ene_female_chas_police_01.object" />
@@ -4530,7 +4530,7 @@
 
 		<group name="units/pd2_dlc_chca/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_security_cruise_1/">
-				<xml  :name="ene_security_cruise_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_security_cruise_1.sequence_manager" />
 				<file :name="ene_security_cruise_1.material_config" />
 				<file :name="ene_security_cruise_1_contour.material_config" />
 				<file :name="ene_security_cruise_1.model" />
@@ -4555,7 +4555,7 @@
 			</group>
 
 			<group :name="ene_triad_cruise_1/">
-				<xml  :name="ene_triad_cruise_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_triad_cruise_1.sequence_manager" />
 				<file :name="ene_triad_cruise_1.material_config" />
 				<file :name="ene_triad_cruise_1_contour.material_config" />
 				<file :name="ene_triad_cruise_1.model" />
@@ -4644,7 +4644,7 @@
 			</group>
 
 			<group :name="ene_male_ranc_security_1/">
-				<xml  :name="ene_male_ranc_security_1.sequence_manager" dyn_package="true" />
+				<xml  :name="ene_male_ranc_security_1.sequence_manager" />
 				<file :name="ene_male_ranc_security_1.material_config" />
 				<file :name="ene_male_ranc_security_1_contour.material_config" />
 				<file :name="ene_male_ranc_security_1.model" />
