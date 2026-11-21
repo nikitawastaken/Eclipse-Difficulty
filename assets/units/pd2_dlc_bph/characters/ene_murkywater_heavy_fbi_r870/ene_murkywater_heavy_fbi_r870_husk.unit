@@ -4,8 +4,9 @@
 	<object file="units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi" />
 
 	<dependencies>		
-		<depends_on unit="units/pd2_dlc_bph/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor" />
 		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
+		<depends_on unit="units/pd2_dlc_bph/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet" />
+		<depends_on unit="units/pd2_dlc_bph/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor" />
 	</dependencies>
 
 	<extensions>	

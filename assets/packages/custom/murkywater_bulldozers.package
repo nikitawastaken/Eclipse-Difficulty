@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4_husk"/>
+
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"/>
+		<unit name="units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic_husk"/>
+	</units>
+</package>

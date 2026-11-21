@@ -29,6 +29,7 @@
 			<post :hook_id="utils/lightloadingscreenguiscript"/>
 			<post :hook_id="utils/version"/>
 			<post :hook_id="mutators/basemutator"/>
+			<post :hook_id="setups/gamesetup"/>
 
 			<group :hook_id="states/">
 				<post :hook_id="missionendstate"/>
@@ -109,7 +110,6 @@
 				<post :hook_id="tangomanager"/>
 				<post :hook_id="sidejobeventmanager"/>
 				<post :hook_id="blackmarketmanager"/>
-				<post :hook_id="dynamicresourcemanager"/>
 				<post :hook_id="gameplaycentralmanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="criminalsmanager"/>
@@ -4487,7 +4487,7 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_coast_guard/characters/" from_type="custom_xml" to_type="binary">
+		<group name="units/pd2_dlc_coast_guard/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
 				<file :name="coast_guard_df.texture" />
 				<file :name="coast_guard_nm.texture" />
@@ -4857,10 +4857,29 @@
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
 		
 		<!-- Create new packages -->
-		<file name="packages/faction_russia.package"/>
-		<file name="packages/faction_zombie.package"/>
-		<file name="packages/faction_murkywater.package"/>
-		<file name="packages/faction_federales.package"/>
-		
+		<group name="packages/custom/" >		
+			<file :name="faction_russia.package"/>
+			<file :name="faction_zombie.package"/>
+			<file :name="faction_murkywater.package"/>
+			<file :name="faction_federales.package"/>
+			
+			<file :name="bikers_female.package"/>
+			<file :name="chas_police.package"/>
+			<file :name="coast_guard.package"/>
+			<file :name="deep_security.package"/>
+			<file :name="fbi_security.package"/>
+			<file :name="gensec_security.package"/>
+			<file :name="headless_bulldozers.package"/>
+			<file :name="la_cops.package"/>
+			<file :name="murkywater.package"/>
+			<file :name="murkywater_bulldozers.package"/>
+			<file :name="nyc_cops.package"/>
+			<file :name="nyc_security.package"/>
+			<file :name="ranc_rangers.package"/>
+			<file :name="security.package"/>
+			<file :name="security_2.package"/>
+			<file :name="us_army.package"/>
+		</group>
+
 	</assets>
 </mod>

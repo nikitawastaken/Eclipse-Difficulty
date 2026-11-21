@@ -68,16 +68,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chas.has_megaphone_cop = true
 
 	-- Set AI group types (factions)
-	self.kosugi.ai_group_type = "murkywater"
+	self.vit.ai_group_type = "america"
+
+	self.pines.ai_group_type = "russia"
+	
+	self.haunted.ai_group_type = "zombie"
+	self.help.ai_group_type = "zombie"
+	self.nail.ai_group_type = "zombie"
+
 	self.dark.ai_group_type = "murkywater"
+	self.kosugi.ai_group_type = "murkywater"
 	self.shoutout_raid.ai_group_type = "murkywater"
 	self.wwh.ai_group_type = "murkywater"
-	self.pines.ai_group_type = "russia"
-	self.vit.ai_group_type = "america"
-	self.haunted.ai_group_type = "zombie"
-	self.nail.ai_group_type = "zombie"
-	self.help.ai_group_type = "zombie"
-
+	
 	-- Set Group AI presets that determine spawngroup composition and distribution
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -557,11 +560,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- load the missing boat driver lines to Watchdogs day 2
 	self.watchdogs_2.package = {
-		"packages/narr_watchdogs2",
+		"packages/custom/narr_watchdogs2",
 		"levels/narratives/vlad/cane/world_sounds",
 	}
 	self.watchdogs_2_day.package = {
-		"packages/narr_watchdogs2_day",
+		"packages/custom/narr_watchdogs2_day",
 		"levels/narratives/vlad/cane/world_sounds",
 	}
 
@@ -731,118 +734,109 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		end
 	end
 
-	local ready_team_package = { "packages/ready_teams" }
-	self.watchdogs_1.custom_package = ready_team_package
-	self.watchdogs_1_night.custom_package = ready_team_package
-	self.watchdogs_2.custom_package = ready_team_package
-	self.watchdogs_2_day.custom_package = ready_team_package
-	self.firestarter_1.custom_package = ready_team_package
-	self.firestarter_2.custom_package = ready_team_package
-	self.firestarter_3.custom_package = ready_team_package
-	self.alex_1.custom_package = ready_team_package
-	self.alex_2.custom_package = ready_team_package
-	self.alex_3.custom_package = ready_team_package
-	self.hox_2.custom_package = ready_team_package
-	self.man.custom_package = ready_team_package
+	-- Add custom packages
+	local function add_package(level_tweak, package)
+		local level_package_new =  {}
+		
+		if level_tweak.package then
+			if type(level_tweak.package) == "string" then
+				table.insert(level_package_new, level_tweak.package)
+			elseif type(level_tweak.package) == "table" then
+				level_package_new = clone(level_tweak.package)
+			end
+		end
+		
+		table.insert(level_package_new, package)
+		
+		level_tweak.package = level_package_new
+	end
 
-	self.welcome_to_the_jungle_1.custom_package = {}
-	self.welcome_to_the_jungle_1_night.custom_package = {}
-	self.cane.custom_package = {}
-	self.mex.custom_package = {}
-	self.dinner.custom_package = {}
-	self.brb.custom_package = {}
-	self.trai.custom_package = {}
-	self.corp.custom_package = {}
-	self.red2.custom_package = {}
-	self.glace.custom_package = {}
-	self.dah.custom_package = {}
-	self.nmh.custom_package = {}
+	local bikers_female_package = "packages/custom/bikers_female"
+	add_package(self.welcome_to_the_jungle_1, bikers_female_package)
+	add_package(self.welcome_to_the_jungle_1_night, bikers_female_package)
+	add_package(self.cane, bikers_female_package)
+	add_package(self.mex, bikers_female_package)
 
-	table.insert(self.welcome_to_the_jungle_1.custom_package, "packages/female_bikers")
-	table.insert(self.welcome_to_the_jungle_1_night.custom_package, "packages/female_bikers")
-	table.insert(self.cane.custom_package, "packages/female_bikers")
-	table.insert(self.mex.custom_package, "packages/female_bikers")
+	local coast_guard_package = "packages/custom/coast_guard"
+	add_package(self.chca, coast_guard_package)
+	add_package(self.deep, coast_guard_package)
 
-	local us_army_package = { "packages/us_army" }
-	self.arm_for.custom_package = us_army_package
-	self.roberts.custom_package = us_army_package
-	self.crojob2.custom_package = us_army_package
-	self.crojob3.custom_package = us_army_package
-	self.jolly.custom_package = us_army_package
-	self.peta2.custom_package = us_army_package
-	self.vit.custom_package = us_army_package
-	table.insert(self.trai.custom_package, "packages/us_army")
+	local deep_security_package = "packages/custom/deep_security"
+	add_package(self.ranc, deep_security_package)
+	add_package(self.corp, deep_security_package)
 
-	local green_security_package = { "packages/green_security" }
-	self.election_day_3.custom_package = green_security_package
-	self.election_day_3_skip1.custom_package = green_security_package
-	self.election_day_3_skip2.custom_package = green_security_package
-	table.insert(self.brb.custom_package, "packages/green_security")
-	table.insert(self.corp.custom_package, "packages/green_security")
+	local fbi_security_package = "packages/custom/fbi_security"
+	add_package(self.watchdogs_1, fbi_security_package)
+	add_package(self.watchdogs_1_night, fbi_security_package)
+	add_package(self.watchdogs_2, fbi_security_package)
+	add_package(self.watchdogs_2_day, fbi_security_package)
+	add_package(self.firestarter_1, fbi_security_package)
+	add_package(self.firestarter_2, fbi_security_package)
+	add_package(self.firestarter_3, fbi_security_package)
+	add_package(self.alex_1, fbi_security_package)
+	add_package(self.alex_2, fbi_security_package)
+	add_package(self.alex_3, fbi_security_package)
+	add_package(self.hox_2, fbi_security_package)
+	add_package(self.man, fbi_security_package)
+	
+	local gensec_security_package = "packages/custom/gensec_security"
+	add_package(self.arena, gensec_security_package)
+	add_package(self.big, gensec_security_package)
+	add_package(self.dah, gensec_security_package)
+	add_package(self.election_day_1, gensec_security_package)
+	add_package(self.election_day_2, gensec_security_package)
 
-	local classic_security = "packages/white_gensec_security"
-	table.insert(self.red2.custom_package, classic_security)
-	table.insert(self.glace.custom_package, classic_security)
-	table.insert(self.nmh.custom_package, classic_security)
-	table.insert(self.dinner.custom_package, classic_security)
+	local lapd_cops_package = "packages/custom/lapd_cops"
+	add_package(self.kenaz, lapd_cops_package)
+	add_package(self.pal, lapd_cops_package)
+	add_package(self.friend, lapd_cops_package)
 
-	local gensec_tactical_security_package = { "packages/gensec_tactical_security" }
-	table.insert(self.dah.custom_package, "packages/gensec_tactical_security")
-	self.arena.custom_package = gensec_tactical_security_package
-	self.election_day_1.custom_package = gensec_tactical_security_package
-	self.election_day_2.custom_package = gensec_tactical_security_package
-	self.big.custom_package = gensec_tactical_security_package
+	local murkywater_package = "packages/custom/murkywater"
+	add_package(self.dah, murkywater_package)
+	add_package(self.brb, murkywater_package)
 
-	local russian_mercs_package = { "packages/akan_mercs" }
-	self.pines.custom_package = russian_mercs_package
+	local murkywater_bulldozers_package = "packages/custom/murkywater_bulldozers"
+	add_package(self.pbr2, murkywater_bulldozers_package)
+	add_package(self.dinner, murkywater_bulldozers_package)
 
-	local murky_dozers_package = { "packages/murky_bulldozers" }
-	self.pbr2.custom_package = murky_dozers_package
-	table.insert(self.dinner.custom_package, "packages/murky_bulldozers")
+	local nyc_cops_package = "packages/custom/nyc_cops"
+	add_package(self.red2, nyc_cops_package)
+	add_package(self.run, nyc_cops_package)
+	add_package(self.flat, nyc_cops_package)
+	add_package(self.glace, nyc_cops_package)
+	add_package(self.dah, nyc_cops_package)
+	add_package(self.nmh, nyc_cops_package)
+	add_package(self.brb, nyc_cops_package)
+	add_package(self.spa, nyc_cops_package)
+	
+	local nyc_security_package = "packages/custom/nyc_security"
+	add_package(self.red2, nyc_security_package)
+	add_package(self.glace, nyc_security_package)
+	add_package(self.nmh, nyc_security_package)
+	add_package(self.dinner, nyc_security_package)
+	
+	local ranc_rangers_package = "packages/custom/ranc_rangers"
+	add_package(self.dinner, ranc_rangers_package)
+	add_package(self.trai, ranc_rangers_package)
 
-	local murky_mercs_package = { "packages/murky_mercs" }
-	self.kosugi.custom_package = murky_mercs_package
-	self.shoutout_raid.custom_package = murky_mercs_package
-	self.dark.custom_package = murky_mercs_package
-	self.wwh.custom_package = murky_mercs_package
+	local security_2_package = "packages/custom/security_2"
+	add_package(self.election_day_3, security_2_package)
+	add_package(self.election_day_3_skip1, security_2_package)
+	add_package(self.election_day_3_skip2, security_2_package)
+	add_package(self.brb, security_2_package)
+	add_package(self.corp, security_2_package)
 
-	local murky_mercs_scripted_package = "packages/murky_mercs_scripted"
-	table.insert(self.dah.custom_package, murky_mercs_scripted_package)
-	table.insert(self.brb.custom_package, murky_mercs_scripted_package)
+	local us_army_package = "packages/custom/us_army"
+	add_package(self.arm_for, us_army_package)
+	add_package(self.roberts, us_army_package)
+	add_package(self.crojob2, us_army_package)
+	add_package(self.crojob3, us_army_package)
+	add_package(self.jolly, us_army_package)
+	add_package(self.peta2, us_army_package)
+	add_package(self.vit, us_army_package)
+	add_package(self.trai, us_army_package)
 
-	local zombie_faction_package = { "packages/zombie_cops" }
-	self.haunted.custom_package = zombie_faction_package
-	self.nail.custom_package = zombie_faction_package
-	self.help.custom_package = zombie_faction_package
-
-	local lapd_package = { "packages/lapd" }
-	self.kenaz.custom_package = lapd_package
-	self.pal.custom_package = lapd_package
-	self.friend.custom_package = lapd_package
-	table.insert(self.jolly.custom_package, "packages/lapd")
-
-	local nypd_package = { "packages/nypd" }
-	table.insert(self.red2.custom_package, "packages/nypd")
-	self.run.custom_package = nypd_package
-	self.flat.custom_package = nypd_package
-	table.insert(self.glace.custom_package, "packages/nypd")
-	table.insert(self.dah.custom_package, "packages/nypd")
-	table.insert(self.nmh.custom_package, "packages/nypd")
-	table.insert(self.brb.custom_package, "packages/nypd")
-	self.spa.custom_package = nypd_package
-
-	local coast_guard_package = { "packages/coast_guard" }
-	self.chca.custom_package = coast_guard_package
-	self.deep.custom_package = coast_guard_package
-
-	local texas_rangers_package = { "packages/texas_rangers" }
-	table.insert(self.dinner.custom_package, "packages/texas_rangers")
-	table.insert(self.trai.custom_package, "packages/texas_rangers")
-
-	local bellmead_security_package = { "packages/bellmead_security" }
-	self.ranc.custom_package = bellmead_security_package
-	table.insert(self.corp.custom_package, "packages/bellmead_security")
-
+	-- Add custom environment variants
 	local additive_weight_value = 1
 	local is_jason = os.date("%A %d") == "Friday 13"
 	local is_halloween = os.date("%B") == "October" and (os.date("%d") > "26") and (os.date("%d") < "32")

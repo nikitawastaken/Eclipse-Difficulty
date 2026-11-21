@@ -119,24 +119,5 @@
 
 		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic"/>
 		<unit name="units/pd2_dlc_mad/characters/ene_akan_fbi_tank_medic/ene_akan_fbi_tank_medic_husk"/>			
-		
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_cop_hat/ene_acc_cop_hat"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_fbi_cap/ene_acc_fbi_cap"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_helmet/ene_acc_swat_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_hat/ene_acc_swat_hat"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_swat_helmet/ene_acc_city_swat_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_swat_hat/ene_acc_city_swat_hat"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_mask/ene_acc_shield_mask"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_medic_helmet/ene_acc_medic_helmet"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_tazer_helmet/ene_acc_tazer_helmet"/>	
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_tazer_mask/ene_acc_tazer_mask"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_akan_small/ene_acc_shield_akan_small"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_akan_shield/ene_acc_shield_akan_shield"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city"/>
-		<unit name="units/pd2_dlc_mad/characters/ene_acc_shield_city/ene_acc_shield_city_dummy"/>
 	</units>
 </package>

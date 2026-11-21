@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_1/ene_nyc_cop_1_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_2/ene_nyc_cop_2_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_3/ene_nyc_cop_3_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_4/ene_nyc_cop_4_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_1/ene_nyc_cop_fat_1_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_2/ene_nyc_cop_fat_2_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_3/ene_nyc_cop_fat_3_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_fat_4/ene_nyc_cop_fat_4_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_female_1/ene_nyc_cop_female_1_husk"/>
+
+		<unit name="units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2"/>
+		<unit name="units/payday2/characters/ene_nyc_cop_female_2/ene_nyc_cop_female_2_husk"/>
+	</units>
+</package>

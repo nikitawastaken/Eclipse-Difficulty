@@ -122,19 +122,5 @@
 
 		<unit name="units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870"/>
 		<unit name="units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870_husk"/>
-		
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_small"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_small"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_shield_small/ene_acc_shield_city_dummy"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_fbi_cap/ene_acc_fbi_cap"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_policia_federale_hat/ene_acc_policia_federale_hat"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_policia_federale_fbi_helmet/ene_acc_policia_federale_fbi_helmet"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_policia_federale_city_helmet/ene_acc_policia_federale_city_helmet"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_policia_federale_city_hat/ene_acc_policia_federale_city_hat"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_helmet/ene_acc_swat_heavy_policia_federale_helmet"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_mask/ene_acc_swat_heavy_policia_federale_mask"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_city_helmet/ene_acc_swat_heavy_policia_federale_city_helmet"/>
-		<unit name="units/pd2_dlc_bex/characters/ene_acc_tazer_policia_federale_mask/ene_acc_tazer_policia_federale_mask"/>
 	</units>
 </package>

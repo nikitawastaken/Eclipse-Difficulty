@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01_husk"/>
+		
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02_husk"/>
+		
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03_husk"/>
+
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04_husk"/>
+
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_01/ene_male_chas_police_fat_01"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_01/ene_male_chas_police_fat_01_husk"/>
+		
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_02/ene_male_chas_police_fat_02"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_02/ene_male_chas_police_fat_02_husk"/>
+		
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_03/ene_male_chas_police_fat_03"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_03/ene_male_chas_police_fat_03_husk"/>
+
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_04/ene_male_chas_police_fat_04"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_male_chas_police_fat_04/ene_male_chas_police_fat_04_husk"/>
+
+		<unit name="units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_female_chas_police_01/ene_female_chas_police_01_husk"/>
+		
+		<unit name="units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02"/>
+		<unit name="units/pd2_dlc_chas/characters/ene_female_chas_police_02/ene_female_chas_police_02_husk"/>
+	</units>
+</package>

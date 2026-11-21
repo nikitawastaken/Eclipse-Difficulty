@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"/>
+		<unit name="units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1_husk"/>
+
+		<unit name="units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"/>
+		<unit name="units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2_husk"/>
+
+		<unit name="units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"/>
+		<unit name="units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1_husk"/>
+
+		<unit name="units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"/>
+		<unit name="units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2_husk"/>
+	</units>
+</package>

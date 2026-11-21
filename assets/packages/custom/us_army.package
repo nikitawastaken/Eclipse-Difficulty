@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"/>
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1_husk"/>
+
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"/>
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2_husk"/>
+
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"/>
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3_husk"/>
+
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"/>
+		<unit name="units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4_husk"/>
+	</units>
+</package>

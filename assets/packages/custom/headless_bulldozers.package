@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<!-- Look, Ma! No head! -->
+		<unit name="units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"/>
+		<unit name="units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4_husk"/>
+
+		<unit name="units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5"/>
+		<unit name="units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5_husk"/>
+	</units>
+</package>

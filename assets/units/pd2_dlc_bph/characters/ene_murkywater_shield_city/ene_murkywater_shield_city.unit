@@ -9,6 +9,8 @@
 		<depends_on unit="units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle" />
 		<depends_on unit="units/payday2/weapons/wpn_npc_aa12/wpn_npc_aa12" />
 		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />
+		<depends_on unit="units/pd2_dlc_bph/characters/ene_acc_city_heavy_helmet/ene_acc_city_heavy_helmet" />
+		<depends_on unit="units/pd2_dlc_bph/characters/ene_acc_shield_city/ene_acc_shield_city" />
 	</dependencies>
 
 	<extensions>

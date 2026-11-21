@@ -3,10 +3,10 @@
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
 	<object file="units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale" />
 
-
 	<dependencies>		
 		<depends_on bnk="soundbanks/regular_vox" />
 		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />	
+		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_policia_federale_city_helmet/ene_acc_policia_federale_city_helmet" />	
 	</dependencies>
 
 	<extensions>	

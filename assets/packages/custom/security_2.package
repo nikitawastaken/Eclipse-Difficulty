@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package>
+	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
+	<units>
+		<unit name="units/payday2/characters/ene_security_4/ene_security_4"/>
+		<unit name="units/payday2/characters/ene_security_4/ene_security_4_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_5/ene_security_5"/>
+		<unit name="units/payday2/characters/ene_security_5/ene_security_5_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_6/ene_security_6"/>
+		<unit name="units/payday2/characters/ene_security_6/ene_security_6_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_7/ene_security_7"/>
+		<unit name="units/payday2/characters/ene_security_7/ene_security_7_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_8/ene_security_8"/>
+		<unit name="units/payday2/characters/ene_security_8/ene_security_8_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_fat_4/ene_security_fat_4"/>
+		<unit name="units/payday2/characters/ene_security_fat_4/ene_security_fat_4_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_fat_5/ene_security_fat_5"/>
+		<unit name="units/payday2/characters/ene_security_fat_5/ene_security_fat_5_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_fat_6/ene_security_fat_6"/>
+		<unit name="units/payday2/characters/ene_security_fat_6/ene_security_fat_6_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_fat_7/ene_security_fat_7"/>
+		<unit name="units/payday2/characters/ene_security_fat_7/ene_security_fat_7_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_fat_8/ene_security_fat_8"/>
+		<unit name="units/payday2/characters/ene_security_fat_8/ene_security_fat_8_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_female_3/ene_security_female_3"/>
+		<unit name="units/payday2/characters/ene_security_female_3/ene_security_female_3_husk"/>
+
+		<unit name="units/payday2/characters/ene_security_female_4/ene_security_female_4"/>
+		<unit name="units/payday2/characters/ene_security_female_4/ene_security_female_4_husk"/>
+	</units>
+</package>

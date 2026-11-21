@@ -58,4 +58,17 @@
 			</units_new>
 		</target>
 	</tweak>
+
+	<tweak version="2" name="packages/narr_hox_2" extension="package">
+		<search>
+			<?xml version="1.0" encoding="utf-8" ?>
+			<package/>
+		</search>
+		<target mode="attach">
+			<units_new>
+				<unit name="units/payday2/characters/ene_fbi_boss_female_1/ene_fbi_boss_female_1"/>
+				<unit name="units/payday2/characters/ene_fbi_boss_female_1/ene_fbi_boss_female_1_husk"/>
+			</units_new>
+		</target>
+	</tweak>
 </tweaks>

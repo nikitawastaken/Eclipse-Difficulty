@@ -8,6 +8,7 @@
 		<depends_on bnk="soundbanks/special_medic" />
 		<depends_on bnk="soundbanks/npc_russian_mercenaries" />
 		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_russian_head/ene_acc_russian_head" />
+		<depends_on unit="units/pd2_dlc_mad/characters/ene_acc_medic_helmet/ene_acc_medic_helmet" />
 	</dependencies>
 
 	<extensions>
