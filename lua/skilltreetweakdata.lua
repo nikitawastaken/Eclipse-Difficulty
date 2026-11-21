@@ -568,12 +568,12 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	self.skills.steroids.name_id = "menu_pumping_iron"
 	self.skills.steroids.desc_id = "menu_pumping_iron_desc"
 
-	-- Counter Strike
+	-- Shock and Awe
 	self.skills.drop_soap[1].upgrades = { "player_shield_knock" }
 	self.skills.drop_soap[2].upgrades = { "cooldown_melee_dozer_knock" }
 	self.skills.drop_soap.icon_xy = { 4, 8 }
-	self.skills.drop_soap.name_id = "menu_counter_strike"
-	self.skills.drop_soap.desc_id = "menu_counter_strike_desc"
+	self.skills.drop_soap.name_id = "menu_shock_and_awe"
+	self.skills.drop_soap.desc_id = "menu_shock_and_awe_desc"
 
 	-- Berserker
 	self.skills.wolverine[1].upgrades = { "player_berserker_hit_stacking", "player_berserker_melee_damage_addend" }

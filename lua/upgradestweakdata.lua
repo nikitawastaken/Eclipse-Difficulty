@@ -40,6 +40,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		interval = 0.5,
 	}
 
+	-- Ammo Bag base ammo ammount
+	self.ammo_bag_base = 3
+
 	-- Bullet damage Shield stagger effect (only used for the Team AI ability)
 	self.values.player.shield_knock_bullet.max_damage = 80
 	self.values.player.shield_knock_bullet.chance = 0.8
@@ -1478,6 +1481,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.portable_saw.multipro = "20%"
 
 	-- Extra Lead
+	self.values.ammo_bag.ammo_increase[1] = 1.5
 	self.skill_descs.ammo_2x.multibasic = "50%"
 	self.skill_descs.ammo_2x.multipro = "2"
 
@@ -1611,11 +1615,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.hardware_expert.multipro = "30%"
 
 	-- Combat Engineering
-	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
-	self.skill_descs.combat_engineering.multibasic = "50%"
+	self.values.trip_mine.explosion_size_multiplier_1 = { 1.4 }
+	self.skill_descs.combat_engineering.multibasic = "40%"
 
 	-- Arms Cache
-	self.values.grenade_case.amount_increase = { 2 }
+	self.values.grenade_case.amount_increase = { 1.5 }
 	self.definitions.grenade_case_amount_increase = {
 		category = "equipment_upgrade",
 		name_id = "debug_upgrade_grenade_case_amount_increase",
@@ -1625,7 +1629,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.grenade_crate.amount_increase = { 2 }
+	self.values.grenade_crate.amount_increase = { 1.5 }
 	self.definitions.grenade_crate_amount_increase = {
 		category = "equipment_upgrade",
 		name_id = "debug_upgrade_grenade_crate_amount_increase",
@@ -3752,7 +3756,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[23][9].multiperk = "20%"
 
 	-- Grenade Case
-	self.grenade_crate_base = 4
+	self.grenade_crate_base = 3
 	self.definitions.grenade_case = {
 		equipment_id = "grenade_case",
 		slot = 1,
