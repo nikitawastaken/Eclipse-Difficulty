@@ -560,11 +560,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- load the missing boat driver lines to Watchdogs day 2
 	self.watchdogs_2.package = {
-		"packages/custom/narr_watchdogs2",
+		"packages/narr_watchdogs2",
 		"levels/narratives/vlad/cane/world_sounds",
 	}
 	self.watchdogs_2_day.package = {
-		"packages/custom/narr_watchdogs2_day",
+		"packages/narr_watchdogs2_day",
 		"levels/narratives/vlad/cane/world_sounds",
 	}
 
