@@ -13,7 +13,5 @@
 
 		<unit name="units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4"/>
 		<unit name="units/pd2_dlc_coast_guard/characters/ene_coast_guard_4/ene_coast_guard_4_husk"/>
-		
-		<unit name="units/pd2_dlc_coast_guard/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap"/>
 	</units>
 </package>

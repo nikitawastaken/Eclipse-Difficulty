@@ -70,7 +70,7 @@ end
 M["levels/instances/unique/fex/fex_security_room_right/world/world"] = function(result)
 	for _, element in pairs(result.default.elements) do
 		if patches.security_room.security_spawns[element.id] then
-			element.enemy = security_enemy
+			element.values.enemy = security_enemy
 		end
 	end
 end
@@ -78,7 +78,7 @@ end
 M["levels/instances/unique/fex/fex_security_room_left/world/world"] = function(result)
 	for _, element in pairs(result.default.elements) do
 		if patches.security_room.security_spawns[element.id] then
-			element..enemy = security_enemy
+			element.values.enemy = security_enemy
 		end
 	end
 end
