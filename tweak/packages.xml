@@ -19,8 +19,11 @@
 				
 				<unit name="units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4"/>
 				<unit name="units/payday2/characters/ene_cop_fat_4/ene_cop_fat_4_husk"/>
-				
+
 				<unit name="units/payday2/characters/ene_cop_female_1/ene_cop_female_1"/>
+				<unit name="units/payday2/characters/ene_cop_female_1/ene_cop_female_1_husk"/>
+				
+				<unit name="units/payday2/characters/ene_cop_female_2/ene_cop_female_2"/>
 				<unit name="units/payday2/characters/ene_cop_female_2/ene_cop_female_2_husk"/>
 				
 				<unit name="units/payday2/characters/ene_swat_3/ene_swat_3"/>
