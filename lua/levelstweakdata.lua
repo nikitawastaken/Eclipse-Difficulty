@@ -786,10 +786,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	add_package(self.election_day_1, gensec_security_package)
 	add_package(self.election_day_2, gensec_security_package)
 
-	local lapd_cops_package = "packages/custom/lapd_cops"
-	add_package(self.kenaz, lapd_cops_package)
-	add_package(self.pal, lapd_cops_package)
-	add_package(self.friend, lapd_cops_package)
+	local la_cops_package = "packages/custom/la_cops"
+	add_package(self.kenaz, la_cops_package)
+	add_package(self.pal, la_cops_package)
+	add_package(self.friend, la_cops_package)
 
 	local murkywater_package = "packages/custom/murkywater"
 	add_package(self.dah, murkywater_package)
