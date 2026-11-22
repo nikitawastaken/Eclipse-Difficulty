@@ -71,7 +71,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.vit.ai_group_type = "america"
 
 	self.pines.ai_group_type = "russia"
-	
+
 	self.haunted.ai_group_type = "zombie"
 	self.help.ai_group_type = "zombie"
 	self.nail.ai_group_type = "zombie"
@@ -80,7 +80,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.kosugi.ai_group_type = "murkywater"
 	self.shoutout_raid.ai_group_type = "murkywater"
 	self.wwh.ai_group_type = "murkywater"
-	
+
 	-- Set Group AI presets that determine spawngroup composition and distribution
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -736,8 +736,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- Add custom packages
 	local function add_package(level_tweak, package)
-		local level_package_new =  {}
-		
+		local level_package_new = {}
+
 		if level_tweak.package then
 			if type(level_tweak.package) == "string" then
 				table.insert(level_package_new, level_tweak.package)
@@ -745,9 +745,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				level_package_new = clone(level_tweak.package)
 			end
 		end
-		
+
 		table.insert(level_package_new, package)
-		
+
 		level_tweak.package = level_package_new
 	end
 
@@ -778,7 +778,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	add_package(self.alex_3, fbi_security_package)
 	add_package(self.hox_2, fbi_security_package)
 	add_package(self.man, fbi_security_package)
-	
+
 	local gensec_security_package = "packages/custom/gensec_security"
 	add_package(self.arena, gensec_security_package)
 	add_package(self.big, gensec_security_package)
@@ -808,13 +808,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	add_package(self.nmh, nyc_cops_package)
 	add_package(self.brb, nyc_cops_package)
 	add_package(self.spa, nyc_cops_package)
-	
+
 	local nyc_security_package = "packages/custom/nyc_security"
 	add_package(self.red2, nyc_security_package)
 	add_package(self.glace, nyc_security_package)
 	add_package(self.nmh, nyc_security_package)
 	add_package(self.dinner, nyc_security_package)
-	
+
 	local ranc_rangers_package = "packages/custom/ranc_rangers"
 	add_package(self.dinner, ranc_rangers_package)
 	add_package(self.trai, ranc_rangers_package)
