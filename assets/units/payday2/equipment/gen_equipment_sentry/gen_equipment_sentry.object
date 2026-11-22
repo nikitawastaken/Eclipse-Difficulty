@@ -13,7 +13,7 @@
 	<bodies>
         <body name="dynamic_base" enabled="false" collision_class="bag" template="dynamic_no_ray" collides_with_mover="false">
             <object name="rp_sentry" />
-            <object name="g_sentry" 		collision_type="box" />
+            <object name="g_base" 			collision_type="box" />
         </body>
         <body name="hitbox" enabled="true" collision_class="bag" template="animated" collides_with_mover="false" >
             <object name="a_shield" />
@@ -31,20 +31,19 @@
     </bodies>
 	
 	<decal_surfaces default_material="metal">
-		<decal_mesh name="dm_metal_shield" enabled="false" material="metal"/>
+		<decal_mesh name="dm_metal_shield"		enabled="false" material="metal"/>
 	</decal_surfaces>
 	
     <graphics>
 		<graphic_group name="g_sentry_gun" enabled="true" culling_object="co_sentry">
-        <object name="g_laser" 				enabled="true" />
-        <object name="g_display" 			enabled="true" />
-        <object name="g_display_depleted" 	enabled="false" />
-        <object name="g_shield" 			enabled="false" />
-        <object name="g_sentry" 			enabled="true" />
-        <object name="s_sentry" 			enabled="true" shadow_caster="true" />
-        <object name="s_shield" 			enabled="false" shadow_caster="true" />
-        <object name="s_gun" 				enabled="true" shadow_caster="true" />
+			<object name="g_laser" 					enabled="true" />
+			<object name="g_display" 				enabled="true" />
+			<object name="g_display_depleted" 		enabled="false" />
+			<object name="g_shield" 				enabled="false" />
+			<object name="g_base" 					enabled="true" />
+			<object name="s_base" 					enabled="true" shadow_caster="true" />
+			<object name="s_shield" 				enabled="false" shadow_caster="true" />
+			<object name="s_gun" 					enabled="true" shadow_caster="true" />
 		</graphic_group>
     </graphics>
-	
 </dynamic_object>
