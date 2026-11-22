@@ -126,6 +126,16 @@ Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t, dt)
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
 
+	local player_unit = self:player_unit()
+
+	if player_unit then
+		local m_pos = player_unit:movement():m_pos()
+
+		for _, smoke_screen in pairs(self:smoke_screens()) do
+			smoke_screen:is_in_smoke(m_pos) -- needed for updating lingering shadow timer in real-time
+		end
+	end
+
 	self:_update_timers_new(t, dt)
 end)
 
@@ -202,68 +212,6 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 		self:unregister_message(Message.OnPlayerDamage, "berserker_hit_stacking")
 	end
 end)
-
-function PlayerManager:update(t, dt)
-	self._message_system:update()
-	self:_update_timers(t)
-
-	if self._need_to_send_player_status then
-		self._need_to_send_player_status = nil
-
-		self:need_send_player_status()
-	end
-
-	self._sent_player_status_this_frame = nil
-
-	local local_player = self:local_player()
-
-	if self:has_category_upgrade("player", "close_to_hostage_boost") and (not self._hostage_close_to_local_t or t >= self._hostage_close_to_local_t) then
-		self._is_local_close_to_hostage = alive(local_player)
-			and managers.groupai
-			and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), tweak_data.upgrades.hostage_near_player_radius)
-		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
-	end
-
-	self:_update_damage_dealt(t, dt)
-
-	if #self._global.synced_cocaine_stacks >= 4 then
-		local amount = 0
-
-		for i, stack in pairs(self._global.synced_cocaine_stacks) do
-			if stack.in_use then
-				amount = amount + stack.amount
-			end
-
-			if amount >= PlayerManager.TARGET_COCAINE_AMOUNT then
-				managers.achievment:award("mad_5")
-			end
-		end
-	end
-
-	self._coroutine_mgr:update(t, dt)
-	self._action_mgr:update(t, dt)
-
-	if self._unseen_strike and not self._coroutine_mgr:is_running(PlayerAction.UnseenStrike) then
-		local data = self:upgrade_value("player", "unseen_increased_crit_chance", 0)
-
-		if data ~= 0 then
-			self._coroutine_mgr:add_coroutine(PlayerAction.UnseenStrike, PlayerAction.UnseenStrike, self, data.min_time, data.max_duration, data.crit_chance)
-		end
-	end
-
-	local player_unit = self:player_unit()
-
-	if player_unit then
-		local m_pos = player_unit:movement():m_pos()
-
-		for _, smoke_screen in pairs(self:smoke_screens()) do
-			smoke_screen:is_in_smoke(m_pos) -- needed for updating lingering shadow timer in real-time
-		end
-	end
-
-	self:update_smoke_screens(t, dt)
-	self:update_poison_gas(t, dt)
-end
 
 function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
