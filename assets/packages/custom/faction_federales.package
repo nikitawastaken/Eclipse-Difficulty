@@ -2,6 +2,24 @@
 <package>
 	<streaming win32="texture" ps3="texture" x360="texture" xb1="texture" ps4="texture"/>	
 	<units>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_01/ene_bex_security_01"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_01/ene_bex_security_01_husk"/>
+
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_02/ene_bex_security_02"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_02/ene_bex_security_02_husk"/>
+
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_03/ene_bex_security_03"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_03/ene_bex_security_03_husk"/>
+
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01_husk"/>
+
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02_husk"/>
+		
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"/>
+		<unit name="units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03_husk"/>
+		
 		<unit name="units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01"/>
 		<unit name="units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01_husk"/>
 		
