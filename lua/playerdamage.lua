@@ -249,8 +249,9 @@ function PlayerDamage:damage_melee(attack_data)
 
 	local pm = managers.player
 	local can_counter_strike = pm:has_category_upgrade("player", "counter_strike_melee")
-	local is_tank = attack_data.attacker_unit:base():has_tag("tank")
-	local is_shield = attack_data.attacker_unit:base():has_tag("shield")
+	local attacker_unit_base = attack_data.attacker_unit and attack_data.attacker_unit:base()
+	local is_tank = attacker_unit_base and attacker_unit_base.has_tag and attacker_unit_base:has_tag("tank")
+	local is_shield = attacker_unit_base and attacker_unit_base.has_tag and attacker_unit_base:has_tag("shield")
 
 	-- Counterstrike doesn't work on dozers or shields
 	if can_counter_strike and self._unit:movement():current_state().in_melee and self._unit:movement():current_state():in_melee() and not (is_tank or is_shield) then
