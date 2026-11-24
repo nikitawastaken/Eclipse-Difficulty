@@ -1094,3 +1094,68 @@ Hooks:PostHook(PlayerDamage, "pause_downed_timer", "pause_downed_timer_ub", func
 
 	reviving_bot:brain():set_objective(Eclipse.utils.team_ai_get_assist_objective(self._unit, reviving_bot))
 end)
+
+
+local mvec1 = Vector3()
+
+function PlayerDamage:damage_melee(attack_data)
+	if not self:_chk_can_take_dmg() then
+		return
+	end
+
+	local pm = managers.player
+	local can_counter_strike = pm:has_category_upgrade("player", "counter_strike_melee")
+	local is_tank = attack_data.attacker_unit:base():has_tag("tank")
+	local is_shield = attack_data.attacker_unit:base():has_tag("shield")
+
+	-- Counterstrike doesn't work on dozers or shields
+	if can_counter_strike and self._unit:movement():current_state().in_melee and self._unit:movement():current_state():in_melee() and not (is_tank or is_shield) then
+		self._unit:movement():current_state():discharge_melee()
+
+		return "countered"
+	end
+
+	local blood_effect = attack_data.melee_weapon and attack_data.melee_weapon == "weapon"
+
+	blood_effect = blood_effect or attack_data.melee_weapon and tweak_data.weapon.npc_melee[attack_data.melee_weapon] and tweak_data.weapon.npc_melee[attack_data.melee_weapon].player_blood_effect or false
+
+	if blood_effect then
+		local pos = mvec1
+
+		mvector3.set(pos, self._unit:camera():forward())
+		mvector3.multiply(pos, 20)
+		mvector3.add(pos, self._unit:camera():position())
+
+		local rot = self._unit:camera():rotation():z()
+
+		World:effect_manager():spawn({
+			effect = Idstring("effects/payday2/particles/impacts/blood/blood_impact_a"),
+			position = pos,
+			normal = rot
+		})
+	end
+
+	local dmg_mul = pm:damage_reduction_skill_multiplier("melee")
+
+	attack_data.damage = attack_data.damage * dmg_mul
+
+	self:copr_update_attack_data(attack_data)
+	self._unit:sound():play("melee_hit_body", nil, nil)
+
+	local result = self:damage_bullet(attack_data)
+	local vars = {
+		"melee_hit",
+		"melee_hit_var2"
+	}
+
+	self._unit:camera():play_shaker(vars[math.random(#vars)], 1)
+
+	if pm:current_state() == "bipod" then
+		self._unit:movement()._current_state:exit(nil, "standard")
+		pm:set_player_state("standard")
+	end
+
+	self._unit:movement():push(attack_data.push_vel)
+
+	return result
+end

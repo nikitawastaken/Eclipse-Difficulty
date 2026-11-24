@@ -355,7 +355,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 		damage = math.min(damage, self._health - 1)
 	end
 
-	-- Counter strike aced stuns dozers
+	-- shock and awe aced stuns dozers
 	if self._health <= damage then
 		if self:check_medic_heal() then
 			result = {
@@ -384,7 +384,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 			or attack_data.variant == "counter_spooc" and "expl_hurt"
 			or self:get_damage_type(damage_effect_percent, "melee")
 			or "fire_hurt"
-		-- If the player has counter strike aced and the target is a dozer, stun them
+		-- If the player has shock and awe aced and the target is a dozer, stun them
 		if is_tank and has_tank_knockdown then
 			result_type = "expl_hurt"
 			managers.player:disable_cooldown_upgrade("cooldown", "melee_dozer_knock")

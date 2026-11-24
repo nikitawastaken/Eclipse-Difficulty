@@ -164,3 +164,13 @@ function PlayerMovement:on_uncovered(enemy_unit, ...)
 		return on_uncovered_original(self, enemy_unit, ...)
 	end
 end
+
+-- Adrenaline Rush perk card 8/9
+Hooks:PostHook(PlayerMovement, "clbk_enemy_weapons_hot", "eclipse_clbk_enemy_weapons_hot", function(self)
+	if managers.player:has_category_upgrade("temporary", "alarm_movement_speed_multiplier") then
+		managers.player:activate_temporary_upgrade("temporary", "alarm_movement_speed_multiplier")
+	end
+	if managers.player:has_category_upgrade("temporary", "alarm_interaction_speed_multiplier") then
+		managers.player:activate_temporary_upgrade("temporary", "alarm_interaction_speed_multiplier")
+	end
+end)

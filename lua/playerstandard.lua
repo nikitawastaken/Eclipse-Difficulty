@@ -1305,6 +1305,10 @@ function PlayerStandard:_get_interaction_speed()
 		dt = dt * morale_boost_bonus.move_speed_bonus
 	end
 
+	if managers.player:has_activate_temporary_upgrade("temporary", "alarm_interaction_speed_multiplier") then
+		dt = dt * managers.player:temporary_upgrade_value("temporary", "alarm_interaction_speed_multiplier", 1)
+	end
+
 	return dt
 end
 

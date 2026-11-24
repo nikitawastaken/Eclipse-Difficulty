@@ -2607,7 +2607,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.skill_descs.steroids.multibasic = "50%"
 
-	-- Counterstrike
+	-- Shock and Awe
 	self.values.cooldown.melee_dozer_knock = { { 1, 30 } }
 	self.definitions.cooldown_melee_dozer_knock = {
 		name_id = "menu_cooldown_melee_dozer_knock",
@@ -3798,6 +3798,26 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.regain_throwable_from_ammo = {
 		{
 			required_pickups = 50,
+		},
+	}
+	self.values.temporary.alarm_movement_speed_multiplier = { { 1.25, 30 } }
+	self.definitions.temporary_alarm_movement_speed_multiplier = {
+		name_id = "menu_temporary_alarm_movement_speed_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "alarm_movement_speed_multiplier",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.alarm_interaction_speed_multiplier = { { 1.25, 30 } }
+	self.definitions.temporary_alarm_interaction_speed_multiplier = {
+		name_id = "menu_temporary_alarm_interaction_speed_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "alarm_interaction_speed_multiplier",
+			category = "temporary",
 		},
 	}
 	self.values.saw.enemy_slicer[1] = 2

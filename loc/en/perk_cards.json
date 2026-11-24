@@ -9,11 +9,14 @@
 	"menu_st_category_special": "Special",
 
 
-	"menu_deckall_2": "Refund",
-	"menu_deckall_2_desc": "You will now find a throwable once every ##50## ammo pickups.",
-	"menu_deckall_4_desc": "You gain access to all insider assets.\n\nYou gain ##+1## increased concealment.",
-	"menu_deckall_6_desc": "Unlocks an armor bag equipment for you to use. The armor bag can be used to change your armor during a heist.",
-	"menu_deckall_8_desc": "Increases your doctor bag interaction speed by ##20%##.",
+	"menu_deckall_2": "Counterstrike",
+	"menu_deckall_2_desc": "When charging your melee weapons you will counterattack enemies that try to strike you, knocking them down. The knockdown does not deal any damage.\n\nNote: Does not affect Bulldozers and Shields.",
+	"menu_deckall_4": "Inside Man",
+	"menu_deckall_4_desc": "You gain access to all insider assets.",
+	"menu_deckall_6": "Refund",
+	"menu_deckall_6_desc": "You will now find a throwable once every ##50## ammo pickups.",
+	"menu_deckall_8": "Adrenaline Rush",
+	"menu_deckall_8_desc": "For ##30## seconds after the heist goes loud, you move and interact with objects ##25%## faster.",
 
 	"menu_deck1_1": "Deal Sweetener",
 	"menu_deck1_1_desc": "Trading a hostage for resources will now restore ##$multiperk##, ##$multiperk2## and ##$multiperk3## health for you and your crew for the ##$multiperk4##, ##$multiperk5## and ##$multiperk6## resource trades respectively.\n\nYou and your crew can now trade for resources regardless of whether you are missing any downs.\n\nNote: Trading perks do not stack.",

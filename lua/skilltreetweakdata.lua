@@ -1084,14 +1084,14 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 		perkdeck[9].cost = 1500
 
 		-- wildcard upgrades
-		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
+		perkdeck[2].upgrades = { "player_counter_strike_melee" }
 		perkdeck[2].texture_bundle_folder = "eclipse"
-		perkdeck[2].icon_xy = { 0, 8 }
-		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
+		perkdeck[4].upgrades = { "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
 		perkdeck[4].texture_bundle_folder = "eclipse"
-		perkdeck[6].upgrades = { "armor_kit" }
+		perkdeck[6].upgrades = { "player_regain_throwable_from_ammo_1" }
 		perkdeck[6].texture_bundle_folder = "eclipse"
-		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
+		perkdeck[6].icon_xy = { 0, 8 }
+		perkdeck[8].upgrades = { "temporary_alarm_movement_speed_multiplier", "temporary_alarm_interaction_speed_multiplier" }
 		perkdeck[8].texture_bundle_folder = "eclipse"
 	end
 
@@ -1099,6 +1099,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 	table.insert(self.default_upgrades, "temporary_double_drop_damage_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
+	table.insert(self.default_upgrades, "player_passive_suspicion_bonus")
 	table.insert(self.default_upgrades, "temporary_first_aid_movement_speed_multiplier")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
 	table.insert(self.default_upgrades, "grenade_case")

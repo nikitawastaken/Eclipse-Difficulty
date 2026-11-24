@@ -460,7 +460,7 @@ function CopActionShoot:anim_clbk_melee_strike()
 		self._common_data.melee_countered_t = TimerManager:game():time()
 		self._unit:character_damage():damage_melee({
 			damage_effect = 1,
-			damage = 0,
+			damage = 1,
 			variant = "counter_spooc",
 			attacker_unit = self._melee_unit,
 			col_ray = {

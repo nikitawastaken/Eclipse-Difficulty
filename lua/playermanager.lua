@@ -819,6 +819,7 @@ function PlayerManager:movement_speed_multiplier(...)
 	local multi = old_speed_multiplier(self, ...)
 	multi = multi * (1 + managers.player:get_property("playercqb", 0))
 	multi = multi * self:temporary_upgrade_value("temporary", "first_aid_movement_speed_multiplier", 1)
+	multi = multi * self:temporary_upgrade_value("temporary", "alarm_movement_speed_multiplier", 1)
 	return multi
 end
 
