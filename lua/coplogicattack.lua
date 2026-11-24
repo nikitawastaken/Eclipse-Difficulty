@@ -65,11 +65,11 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 	local verified_dt = focus_enemy.verified_t and data.t - focus_enemy.verified_t or math.huge
 	local weapon_range = my_data.weapon_range or { close = 750, optimal = 1500, far = 3000 }
 	local firing_range = running and weapon_range.close or weapon_range.far
-	local enemy_dis = focus_enemy.verified_dis
+	local enemy_dis = focus_enemy.dis
 	local pushing = data.group and data.group.objective and (data.group.objective.open_fire or data.group.objective.moving_in)
 
 	local expected_pos
-	local aim = data.char_tweak.always_face_enemy or not advancing or pushing or verified_dt < math.map_range(enemy_dis, 0, firing_range, 6, 3)
+	local aim = data.char_tweak.always_face_enemy or not advancing or pushing or verified_dt < math.map_range(enemy_dis, 0, firing_range, 6, 3) or not running and enemy_dis < firing_range
 	local shoot = aim and my_data.shooting and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction and verified_dt < (running and 2 or 4)
 
 	if verified or nearly_visible then
