@@ -1086,6 +1086,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "eclipse_init", function(self, tweak_
 		-- wildcard upgrades
 		perkdeck[2].upgrades = { "player_counter_strike_melee" }
 		perkdeck[2].texture_bundle_folder = "eclipse"
+		perkdeck[2].icon_xy = { 5, 0 }
 		perkdeck[4].upgrades = { "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
 		perkdeck[4].texture_bundle_folder = "eclipse"
 		perkdeck[6].upgrades = { "player_regain_throwable_from_ammo_1" }
