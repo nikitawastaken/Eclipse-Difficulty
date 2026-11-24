@@ -332,7 +332,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 				self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
 			end
 
-			if has_armor_depleted_mark_culprit and attack_data and attack_data.attacker_unit then
+			if has_armor_depleted_mark_culprit and attack_data and attack_data.attacker_unit and not self:is_friendly_fire(attack_data.attacker_unit) then
 				managers.game_play_central:auto_highlight_enemy(attack_data.attacker_unit, true)
 				managers.player:disable_cooldown_upgrade("cooldown", "armor_depleted_mark_culprit")
 			end
