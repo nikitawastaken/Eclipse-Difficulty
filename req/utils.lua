@@ -82,7 +82,7 @@ function M.ub_stop_revive_objective(reviving_bot, unit_to_revive)
 	reviving_bot:movement():action_request({
 		body_part = 1,
 		type = "idle",
-		sync = true
+		sync = true,
 	})
 
 	if Eclipse.settings.team_ai.defend_reviving then

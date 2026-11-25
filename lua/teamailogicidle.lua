@@ -198,7 +198,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 		local target, slot, reaction = _get_priority_attention_original(data, attention_objects, reaction_func, ...)
 		return target, (slot or 30), reaction
 	end
-	
+
 	reaction_func = reaction_func or TeamAILogicBase._chk_reaction_to_attention_object
 
 	local best_target, best_target_priority, best_target_reaction = nil, 0, nil
@@ -275,7 +275,14 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					local is_being_intimdated = logic_data.surrender_window and logic_data.surrender_window.window_expire_t > data.t - 1
 					local marked_contour = att_unit:contour() and att_unit:contour():find_id_match("^mark_enemy")
 					local marked_by_player = marked_contour and (marked_contour ~= "mark_enemy" or not been_marked)
-					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified and (logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting() or logic_data.attention_obj.unit:movement()._interaction_tweak)
+					local attacking_player = logic_data.attention_obj
+						and alive(logic_data.attention_obj.unit)
+						and logic_data.attention_obj.is_human_player
+						and logic_data.attention_obj.verified
+						and (
+							logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting()
+							or logic_data.attention_obj.unit:movement()._interaction_tweak
+						)
 
 					-- check for reaction changes
 					if should_intimidate then
@@ -378,7 +385,7 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 		end
 		return
 	end
-	
+
 	on_long_dis_interacted_original(data, other_unit, secondary, ...)
 
 	local objective_type = data.objective and data.objective.type

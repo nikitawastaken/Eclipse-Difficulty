@@ -660,7 +660,7 @@ function PlayerDamage:revive(silent)
 	if MusicManager.set_volume_multiplier then
 		managers.music:set_volume_multiplier("downed", 1, 1)
 	end
-	
+
 	-- Stop bots revive objective if someone else starts reviving
 	if Network:is_server() then
 		Eclipse.utils.ub_stop_assist_objective(self._unit)

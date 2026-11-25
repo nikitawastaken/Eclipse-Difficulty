@@ -402,7 +402,7 @@ if not Eclipse then
 
 			Eclipse.settings.team_ai.team_ai_weapons = value
 		end
-		
+
 		MenuHelper:AddMultipleChoice({
 			id = "team_ai_weapons",
 			title = "eclipse_menu_team_ai_weapons",
@@ -432,7 +432,7 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_block_slow_vehicles_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.team_ai.block_slow_vehicles = enabled
@@ -447,7 +447,7 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_stop_at_player_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.team_ai.stop_at_player = enabled
@@ -477,7 +477,7 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_hold_position_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.team_ai.hold_position = enabled
@@ -492,18 +492,18 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_secure_loot_toggle(item)
 			local enabled = (item:value() == "on")
-			Eclipse.settings.team_ai.secure_loot  = enabled
+			Eclipse.settings.team_ai.secure_loot = enabled
 		end
-		
+
 		MenuHelper:AddToggle({
 			id = "team_ai_secure_loot ",
 			title = "eclipse_menu_team_ai_secure_loot ",
 			desc = "eclipse_menu_team_ai_secure_loot_desc",
 			callback = "eclipse_team_ai_secure_loot_toggle",
-			value = Eclipse.settings.team_ai.secure_loot ,
+			value = Eclipse.settings.team_ai.secure_loot,
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
@@ -527,7 +527,7 @@ if not Eclipse then
 			local value = item:value()
 			Eclipse.settings.team_ai.follow_behavior = value
 		end
-		
+
 		MenuHelper:AddMultipleChoice({
 			id = "follow_behavior",
 			title = "eclipse_menu_team_ai_follow_behavior",
@@ -542,7 +542,7 @@ if not Eclipse then
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddDivider({
 			id = "divider_2",
 			size = 20,
@@ -555,7 +555,7 @@ if not Eclipse then
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_base_priority_setting(item)
 			local value = item:value()
-			
+
 			Eclipse.settings.team_ai.targeting_priority.base_priority = value
 		end
 
@@ -576,7 +576,7 @@ if not Eclipse then
 
 			Eclipse.settings.team_ai.targeting_priority.marked = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_team_ai_targeting_domination_edit(item)
 			local value = item:value()
 
@@ -676,7 +676,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddSlider({
 			id = "team_ai_targeting_defend",
 			title = "eclipse_menu_team_ai_targeting_defend",
@@ -708,7 +708,7 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-		
+
 		nodes[menu_id_team_ai_targeting] = MenuHelper:BuildMenu(menu_id_team_ai_targeting, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai], menu_id_team_ai_targeting, "eclipse_menu_team_ai_targeting", "eclipse_menu_team_ai_targeting_desc")
 
