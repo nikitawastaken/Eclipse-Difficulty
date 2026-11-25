@@ -510,10 +510,39 @@ if Network:is_client() then
 end
 
 -- Fix pathing start position (should always be our current position)
-Hooks:PreHook(CopActionWalk, "init", "eclipse_init", function(self, action_desc, common_data)
+Hooks:PreHook(CopActionWalk, "init", "sh_init", function(self, action_desc, common_data)
 	local pos = common_data.pos
 	local from_pos = action_desc.nav_path[1]
 	if pos.x ~= from_pos.x or pos.y ~= from_pos.y then
-		table.insert(action_desc.nav_path, 1, mvector3.copy(common_data.pos))
+		table.insert(action_desc.nav_path, 1, mvector3.copy(pos))
+	end
+end)
+
+-- Fix enemies not facing their targets during walking if they are using the last known position
+Hooks:OverrideFunction(CopActionWalk, "on_attention", function(self, attention)
+	self._attention_pos = false
+
+	if not attention then
+		return
+	end
+
+	self._attention = attention
+
+	if attention.handler then
+		if attention.reaction >= AIAttentionObject.REACT_SURPRISED then
+			self._attention_pos = attention.handler:get_attention_m_pos()
+		end
+		return
+	end
+
+	local stance = self._common_data.stance.name
+	if stance == "ntl" then
+		return
+	end
+
+	if attention.unit then
+		self._attention_pos = attention.unit:movement():m_pos()
+	elseif stance == "cbt" and attention.pos then
+		self._attention_pos = attention.pos
 	end
 end)
