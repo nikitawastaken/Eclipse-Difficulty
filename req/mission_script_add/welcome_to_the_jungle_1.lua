@@ -178,7 +178,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400020, "enable_birds_11", optsenable_birds_area_11),
 
 	Eclipse.mission_elements.gen_element_random(400021, "enable_random_birds_location", spawn_random_birds),
-	
+
 	-- New Cloakers and their hiding spots (actually there are enough hiding spots so we skip that)
 	-- cloakers
 	Eclipse.mission_elements.gen_dummy(500001, "cloaker_spawn_1", Vector3(707, -6752, 5.764), Rotation(0, 0, 0), optsBesiegeDummyCloaker_1),
