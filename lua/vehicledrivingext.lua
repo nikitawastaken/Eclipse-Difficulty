@@ -9,15 +9,17 @@ end
 local clbk_drive_SO_verification_original = VehicleDrivingExt.clbk_drive_SO_verification
 function VehicleDrivingExt:clbk_drive_SO_verification(seat, candidate_unit, ...)
 	-- If bot was told to hold, don't enter
-	if candidate_unit:movement()._should_stay then
+	if Eclipse.settings.team_ai.hold_position and candidate_unit:movement()._should_stay then
 		return
 	end
 
 	-- If vehicle is slower than bot running speed, don't enter
-	local vehicle_speed = self._tweak_data.max_speed -- km/h
-	local bot_speed = candidate_unit:base():char_tweak().move_speed.stand.run.cbt.bwd * 0.036 -- cm/s to km/h
-	if bot_speed > vehicle_speed * 0.5 then
-		return
+	if Eclipse.settings.team_ai.block_slow_vehicles then
+		local vehicle_speed = self._tweak_data.max_speed -- km/h
+		local bot_speed = candidate_unit:base():char_tweak().move_speed.stand.run.cbt.bwd * 0.036 -- cm/s to km/h
+		if bot_speed > vehicle_speed * 0.5 then
+			return
+		end
 	end
 
 	-- If our follow unit is not in the vehicle don't enter

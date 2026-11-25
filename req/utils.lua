@@ -30,18 +30,18 @@ function M.get_unit_from_id(unit_id)
 end
 
 -- Team AI helper functions ported from Useful Bots by Hoppip
-function M.team_ai_get_assist_SO(unit)
+function M.ub_get_assist_SO(unit)
 	return {
 		chance_inc = 0,
 		base_chance = 1,
 		usage_amount = 1,
 		AI_group = "friendlies",
 		search_pos = unit:position(),
-		objective = M.team_ai_get_assist_objective(unit),
+		objective = M.ub_get_assist_objective(unit),
 	}
 end
 
-function M.team_ai_get_assist_objective(unit, receiver)
+function M.ub_get_assist_objective(unit)
 	local pos = mvector3.copy(math.UP)
 	mvector3.random_orthogonal(pos)
 	mvector3.multiply(pos, 50)
@@ -61,40 +61,68 @@ function M.team_ai_get_assist_objective(unit, receiver)
 	}
 end
 
-function M.team_ai_stop_assist_objective(unit)
+function M.ub_stop_assist_objective(unit_to_assist)
 	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
 		local brain = c_data.unit:brain()
 		local objective = brain:objective()
-		if objective and objective.assist_unit == unit then
+		if objective and objective.assist_unit == unit_to_assist then
 			brain:set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(c_data.unit))
 		end
 	end
 end
 
-function M.team_ai_get_reviving_unit(unit)
+function M.ub_stop_revive_objective(reviving_bot, unit_to_revive)
+	local internal_data = reviving_bot:brain()._logic_data.internal_data
+	local revive_complete_clbk_id = internal_data and internal_data.revive_complete_clbk_id
+	local revive_complete_t = revive_complete_clbk_id and managers.enemy:get_delayed_clbk_exec_t(revive_complete_clbk_id)
+	if revive_complete_t and revive_complete_t - TimerManager:game():time() < 2 then
+		return
+	end
+
+	reviving_bot:movement():action_request({
+		body_part = 1,
+		type = "idle",
+		sync = true
+	})
+
+	if Eclipse.settings.team_ai.defend_reviving then
+		reviving_bot:brain():set_objective(M.ub_get_assist_objective(unit_to_revive))
+	else
+		reviving_bot:brain():set_objective(managers.groupai:state():_determine_objective_for_criminal_AI(reviving_bot))
+	end
+end
+
+function M.ub_get_reviving_bot(unit_to_revive)
 	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
 		local brain = c_data.unit:brain()
 		local objective = brain:objective()
-		if objective and objective.type == "revive" and objective.follow_unit == unit then
+		if objective and objective.type == "revive" and objective.follow_unit == unit_to_revive then
 			return c_data.unit
 		end
 	end
 end
 
-function M.team_ai_force_attention(attention_unit)
+function M.ub_force_attention(attention_unit)
 	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
 		local logic_data = c_data.unit:brain()._logic_data
 		TeamAILogicBase.force_attention(logic_data, logic_data.internal_data, attention_unit)
 	end
 end
 
-function M.team_ai_unregister_unit(unit)
+function M.ub_unregister_unit(unit)
 	for _, c_data in pairs(managers.groupai:state():all_AI_criminals()) do
 		local logic_data = c_data.unit:brain()._logic_data
 		if logic_data._latest_follow_unit == unit then
 			logic_data._latest_follow_unit = nil
 		end
 	end
+end
+
+function M.ub_get_follow_behavior()
+	local follow_behavior = Eclipse.settings.team_ai.follow_behavior
+	local max_dis_xy = 500 + math.max(0, follow_behavior - 2) * 1000
+	local max_dis_z = 250 + math.max(0, follow_behavior - 2) * 50
+	return follow_behavior, max_dis_xy, max_dis_z
 end
 -- Team AI helper functions end
 

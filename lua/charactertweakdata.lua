@@ -1,5 +1,4 @@
 local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
-local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
 local level_id = Eclipse.utils.clean_level_id()
@@ -1602,6 +1601,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.piggydozer.spawn_sound_event = self.tank.spawn_sound_event
 	self.piggydozer.chatter = self.tank.chatter
+
+	-- 'No crouch' setting for Team AI
+	if Eclipse.settings.team_ai.no_crouch then
+		for _, v in pairs(self) do
+			if type(v) == "table" and v.access == "teamAI1" then
+				v.allowed_poses = { stand = true }
+			end
+		end
+	end
 end)
 
 CharacterTweakData.team_ai_weapons_mapped = {

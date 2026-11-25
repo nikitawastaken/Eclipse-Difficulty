@@ -660,6 +660,11 @@ function PlayerDamage:revive(silent)
 	if MusicManager.set_volume_multiplier then
 		managers.music:set_volume_multiplier("downed", 1, 1)
 	end
+	
+	-- Stop bots revive objective if someone else starts reviving
+	if Network:is_server() then
+		Eclipse.utils.ub_stop_assist_objective(self._unit)
+	end
 end
 
 local _check_bleed_out_old = PlayerDamage._check_bleed_out
@@ -1141,23 +1146,12 @@ Hooks:PostHook(PlayerDamage, "pause_downed_timer", "pause_downed_timer_ub", func
 		return
 	end
 
-	local reviving_bot = Eclipse.utils.team_ai_get_reviving_unit(self._unit)
-	if not reviving_bot then
-		return
+	local reviving_bot = Eclipse.utils.ub_get_reviving_bot(self._unit)
+	if reviving_bot then
+		Eclipse.utils.ub_stop_revive_objective(reviving_bot, self._unit)
 	end
+end)
 
-	local internal_data = reviving_bot:brain()._logic_data.internal_data
-	local revive_complete_clbk_id = internal_data and internal_data.revive_complete_clbk_id
-	local revive_complete_t = revive_complete_clbk_id and managers.enemy:get_delayed_clbk_exec_t(revive_complete_clbk_id)
-	if revive_complete_t and revive_complete_t - TimerManager:game():time() < 2 then
-		return
-	end
-
-	reviving_bot:brain():set_objective(nil)
-	reviving_bot:movement():action_request({
-		body_part = 4,
-		type = "stand",
-	})
-
-	reviving_bot:brain():set_objective(Eclipse.utils.team_ai_get_assist_objective(self._unit, reviving_bot))
+Hooks:PostHook(PlayerDamage, "pre_destroy", "pre_destroy_ub", function(self)
+	Eclipse.utils.ub_stop_assist_objective(self._unit)
 end)

@@ -71,7 +71,7 @@ function TeamAIDamage:damage_tase(attack_data, ...)
 			end
 
 			self._assist_SO_id = "TeamAIDamage_assistance" .. tostring(self._unit:key())
-			managers.groupai:state():add_special_objective(self._assist_SO_id, Eclipse.utils.team_ai_get_assist_SO(self._unit))
+			managers.groupai:state():add_special_objective(self._assist_SO_id, Eclipse.utils.ub_get_assist_SO(self._unit))
 		end
 	end
 
@@ -81,7 +81,7 @@ end
 Hooks:PostHook(TeamAIDamage, "on_tase_ended", "eclipse_on_tase_ended", function(self)
 	if self._assist_SO_id then
 		managers.groupai:state():remove_special_objective(self._assist_SO_id)
-		Eclipse.utils.team_ai_stop_assist_objective(self._unit)
+		Eclipse.utils.ub_stop_assist_objective(self._unit)
 		self._assist_SO_id = nil
 	end
 end)

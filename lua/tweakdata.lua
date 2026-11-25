@@ -65,33 +65,8 @@ local function create_poison_grenade(base_grenade)
 end
 
 -- Team AI settings
-tweak_data.team_ai.can_secure_loot = Eclipse.settings.can_secure_loot -- When enabled, Team AI will assist players in securing loot when near the loot when near a loot secure point
 tweak_data.team_ai.stop_action.distance = tweak_data.team_ai.stop_action.distance * 2 -- Increase the distance at which Team AI stop holding their position
 tweak_data.team_ai.rescue_throw_bag_threshold = 0.75 -- Bags with movement penalties above this threshold will not be thrown by bots coming to revive a player
-tweak_data.team_ai.targeting_priority_mul = {
-	base_priority = Eclipse.settings.targeting_priority_mul.base_priority,
-	player_aim = Eclipse.settings.targeting_priority_mul.player_aim,
-	critical = Eclipse.settings.targeting_priority_mul.critical,
-	marked = Eclipse.settings.targeting_priority_mul.marked,
-	domination = Eclipse.settings.targeting_priority_mul.domination,
-	turret = Eclipse.settings.targeting_priority_mul.turret,
-	enemies = { -- Additional targeting priority multipliers based on enemy tags
-		spooc = Eclipse.settings.targeting_priority_mul.enemies.spooc,
-		medic = Eclipse.settings.targeting_priority_mul.enemies.medic,
-		taser = Eclipse.settings.targeting_priority_mul.enemies.taser,
-		sniper = Eclipse.settings.targeting_priority_mul.enemies.sniper,
-		tank = Eclipse.settings.targeting_priority_mul.enemies.tank,
-		shield = Eclipse.settings.targeting_priority_mul.enemies.shield,
-		city_shield = Eclipse.settings.targeting_priority_mul.enemies.city_shield,
-		city_sniper = Eclipse.settings.targeting_priority_mul.enemies.city_sniper,
-		city_tank = Eclipse.settings.targeting_priority_mul.enemies.city_tank,
-		tank_medic = Eclipse.settings.targeting_priority_mul.enemies.tank_medic,
-	},
-}
-tweak_data.team_ai.defend_targeting_priority_mul = {
-	base_priority = Eclipse.settings.defend_targeting_priority_mul.base_priority,
-	player_interacting = Eclipse.settings.defend_targeting_priority_mul.player_interacting,
-}
 
 -- Security Cameras
 tweak_data.security_camera = {

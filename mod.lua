@@ -12,36 +12,41 @@ if not Eclipse then
 			always_old_hitflash = false,
 			player_styles = 1,
 			flavor_text_tips = false,
-			team_ai_weapons = 1,
-			improved_gun_echo = 2,
 			welcome_message = true,
 			disable_christmas = false,
 			early_control_music = true,
 			force_cg = true,
-			can_secure_loot = true,
-			targeting_priority_mul = {
-				base_priority = 1,
-				player_aim = 1.5,
-				critical = 2,
-				marked = 1.5,
-				domination = 2,
-				turret = 0.5,
-				enemies = { -- Additional targeting priority multipliers based on enemy tags
-					spooc = 2,
-					medic = 2,
-					taser = 1.75,
-					sniper = 1.5,
-					tank = 1.5,
-					shield = 1,
-					city_shield = 1.25,
-					city_sniper = 1.5,
-					city_tank = 1.75,
-					tank_medic = 2,
+			team_ai = {
+				team_ai_weapons = 1,
+				no_crouch = false,
+				block_slow_vehicles = true,
+				stop_at_player = false,
+				hold_position = false,
+				defend_reviving = true,
+				secure_loot = true,
+				combat_movement = false,
+				follow_behavior = 1,
+				targeting_priority = {
+					base_priority = 1,
+					player_aim = 1.5,
+					critical = 2,
+					marked = 1.5,
+					domination = 2,
+					defend = 1.5,
+					turret = 0.5,
+					enemies = { -- Additional targeting priority multipliers based on enemy tags
+						spooc = 2,
+						medic = 2,
+						taser = 1.75,
+						sniper = 1.5,
+						tank = 1.5,
+						shield = 1,
+						city_shield = 1.25,
+						city_sniper = 1.5,
+						city_tank = 1.75,
+						tank_medic = 2,
+					},
 				},
-			},
-			defend_targeting_priority_mul = {
-				base_priority = 1.25,
-				player_interacting = 1.5,
 			},
 		},
 		loaded_elements = false,
@@ -263,18 +268,6 @@ if not Eclipse then
 			Eclipse.settings.player_styles = value
 		end
 
-		function MenuCallbackHandler:eclipse_team_ai_weapons_setting(item)
-			local value = item:value()
-
-			Eclipse.settings.team_ai_weapons = value
-		end
-
-		function MenuCallbackHandler:eclipse_improved_gun_echo_setting(item)
-			local value = item:value()
-
-			Eclipse.settings.improved_gun_echo = value
-		end
-
 		function MenuCallbackHandler:eclipse_early_control_music_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.early_control_music = enabled
@@ -360,36 +353,6 @@ if not Eclipse then
 			priority = 100,
 		})
 
-		MenuHelper:AddMultipleChoice({
-			id = "team_ai_weapons",
-			title = "eclipse_menu_team_ai_weapons",
-			desc = "eclipse_menu_team_ai_weapons_desc",
-			callback = "eclipse_team_ai_weapons_setting",
-			items = {
-				"eclipse_menu_team_ai_weapons_vanilla",
-				"eclipse_menu_team_ai_weapons_lorefriendly",
-				"eclipse_menu_team_ai_weapons_classic",
-			},
-			value = Eclipse.settings.team_ai_weapons,
-			menu_id = menu_id,
-			priority = 100,
-		})
-
-		-- MenuHelper:AddMultipleChoice({
-		-- 	id = "improved_gun_echo",
-		-- 	title = "eclipse_menu_improved_gun_echo",
-		-- 	desc = "eclipse_menu_improved_gun_echo_desc",
-		-- 	callback = "eclipse_improved_gun_echo_setting",
-		-- 	items = {
-		-- 		"eclipse_menu_improved_gun_echo_vanilla",
-		-- 		"eclipse_menu_improved_gun_echo_oldschool",
-		-- 		"eclipse_menu_improved_gun_echo_heat",
-		-- 	},
-		-- 	value = Eclipse.settings.improved_gun_echo,
-		-- 	menu_id = menu_id,
-		-- 	priority = 100,
-		-- })
-
 		MenuHelper:AddToggle({
 			id = "disable_christmas",
 			title = "eclipse_menu_disable_christmas",
@@ -431,24 +394,155 @@ if not Eclipse then
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 
 		-- Team AI settings
-		function MenuCallbackHandler:eclipse_team_ai_can_secure_loot_toggle(item)
-			local enabled = (item:value() == "on")
-			Eclipse.settings.can_secure_loot = enabled
-		end
-
 		local menu_id_team_ai = "eclipse_menu_team_ai"
 		MenuHelper:NewMenu(menu_id_team_ai)
 
-		MenuHelper:AddToggle({
-			id = "team_ai_can_secure_loot",
-			title = "eclipse_team_ai_can_secure_loot",
-			desc = "eclipse_team_ai_can_secure_loot_desc",
-			callback = "eclipse_team_ai_can_secure_loot_toggle",
-			value = Eclipse.settings.can_secure_loot,
+		function MenuCallbackHandler:eclipse_team_ai_weapons_setting(item)
+			local value = item:value()
+
+			Eclipse.settings.team_ai.team_ai_weapons = value
+		end
+		
+		MenuHelper:AddMultipleChoice({
+			id = "team_ai_weapons",
+			title = "eclipse_menu_team_ai_weapons",
+			desc = "eclipse_menu_team_ai_weapons_desc",
+			callback = "eclipse_team_ai_weapons_setting",
+			items = {
+				"eclipse_menu_team_ai_weapons_vanilla",
+				"eclipse_menu_team_ai_weapons_lorefriendly",
+				"eclipse_menu_team_ai_weapons_classic",
+			},
+			value = Eclipse.settings.team_ai.team_ai_weapons,
 			menu_id = menu_id_team_ai,
 			priority = 100,
 		})
 
+		function MenuCallbackHandler:eclipse_team_ai_no_crouch_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.no_crouch = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_no_crouch",
+			title = "eclipse_menu_team_ai_no_crouch",
+			desc = "eclipse_menu_team_ai_no_crouch_desc",
+			callback = "eclipse_team_ai_no_crouch_toggle",
+			value = Eclipse.settings.team_ai.no_crouch,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+		
+		function MenuCallbackHandler:eclipse_team_ai_block_slow_vehicles_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.block_slow_vehicles = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_block_slow_vehicles",
+			title = "eclipse_menu_team_ai_block_slow_vehicles",
+			desc = "eclipse_menu_team_ai_block_slow_vehicles_desc",
+			callback = "eclipse_team_ai_block_slow_vehicles_toggle",
+			value = Eclipse.settings.team_ai.block_slow_vehicles,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+		
+		function MenuCallbackHandler:eclipse_team_ai_stop_at_player_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.stop_at_player = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_stop_at_player",
+			title = "eclipse_menu_team_ai_stop_at_player",
+			desc = "eclipse_menu_team_ai_stop_at_player_desc",
+			callback = "eclipse_team_ai_stop_at_player_toggle",
+			value = Eclipse.settings.team_ai.stop_at_player,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+
+		function MenuCallbackHandler:eclipse_team_ai_defend_reviving_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.defend_reviving = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_defend_reviving",
+			title = "eclipse_menu_team_ai_defend_reviving",
+			desc = "eclipse_menu_team_ai_defend_reviving_desc",
+			callback = "eclipse_team_ai_defend_reviving_toggle",
+			value = Eclipse.settings.team_ai.defend_reviving,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+		
+		function MenuCallbackHandler:eclipse_team_ai_hold_position_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.hold_position = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_hold_position",
+			title = "eclipse_menu_team_ai_hold_position",
+			desc = "eclipse_menu_team_ai_hold_position_desc",
+			callback = "eclipse_team_ai_hold_position_toggle",
+			value = Eclipse.settings.team_ai.hold_position,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+		
+		function MenuCallbackHandler:eclipse_team_ai_secure_loot_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.secure_loot  = enabled
+		end
+		
+		MenuHelper:AddToggle({
+			id = "team_ai_secure_loot ",
+			title = "eclipse_menu_team_ai_secure_loot ",
+			desc = "eclipse_menu_team_ai_secure_loot_desc",
+			callback = "eclipse_team_ai_secure_loot_toggle",
+			value = Eclipse.settings.team_ai.secure_loot ,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+
+		function MenuCallbackHandler:eclipse_team_ai_combat_movement_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.team_ai.combat_movement = enabled
+		end
+
+		MenuHelper:AddToggle({
+			id = "team_ai_combat_movement",
+			title = "eclipse_menu_team_ai_combat_movement",
+			desc = "eclipse_menu_team_ai_combat_movement_desc",
+			callback = "eclipse_team_ai_combat_movement_toggle",
+			value = Eclipse.settings.team_ai.combat_movement,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+
+		function MenuCallbackHandler:eclipse_team_ai_follow_behavior_setting(item)
+			local value = item:value()
+			Eclipse.settings.team_ai.follow_behavior = value
+		end
+		
+		MenuHelper:AddMultipleChoice({
+			id = "follow_behavior",
+			title = "eclipse_menu_team_ai_follow_behavior",
+			desc = "eclipse_menu_team_ai_follow_behavior_desc",
+			callback = "eclipse_team_ai_follow_behavior_setting",
+			items = {
+				"eclipse_menu_team_ai_follow_behavior_close",
+				"eclipse_menu_team_ai_follow_behavior_medium",
+				"eclipse_menu_team_ai_follow_behavior_far",
+			},
+			value = Eclipse.settings.team_ai.follow_behavior,
+			menu_id = menu_id_team_ai,
+			priority = 100,
+		})
+		
 		MenuHelper:AddDivider({
 			id = "divider_2",
 			size = 20,
@@ -459,76 +553,63 @@ if not Eclipse then
 		nodes[menu_id_team_ai] = MenuHelper:BuildMenu(menu_id_team_ai, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id], menu_id_team_ai, "eclipse_menu_team_ai", "eclipse_menu_team_ai_desc")
 
-		function MenuCallbackHandler:eclipse_team_ai_targeting_base_priority_edit(item)
+		function MenuCallbackHandler:eclipse_team_ai_targeting_base_priority_setting(item)
 			local value = item:value()
-
-			Eclipse.settings.targeting_priority_mul.base_priority = value
+			
+			Eclipse.settings.team_ai.targeting_priority.base_priority = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_player_aim_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.player_aim = value
+			Eclipse.settings.team_ai.targeting_priority.player_aim = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_critical_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.critical = value
+			Eclipse.settings.team_ai.targeting_priority.critical = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_marked_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.marked = value
+			Eclipse.settings.team_ai.targeting_priority.marked = value
+		end
+		
+		function MenuCallbackHandler:eclipse_team_ai_targeting_domination_edit(item)
+			local value = item:value()
+
+			Eclipse.settings.team_ai.targeting_priority.domination = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_defend_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.defend = value
-		end
-
-		function MenuCallbackHandler:eclipse_team_ai_targeting_domination_edit(item)
-			local value = item:value()
-
-			Eclipse.settings.targeting_priority_mul.domination = value
+			Eclipse.settings.team_ai.targeting_priority.defend = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_turret_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.turret = value
-		end
-
-		function MenuCallbackHandler:eclipse_defend_targeting_priority_mul_base_priority_edit(item)
-			local value = item:value()
-
-			Eclipse.settings.defend_targeting_priority_mul.base_priority = value
-		end
-
-		function MenuCallbackHandler:eclipse_defend_targeting_priority_mul_player_interacting_edit(item)
-			local value = item:value()
-
-			Eclipse.settings.defend_targeting_priority_mul.player_interacting = value
+			Eclipse.settings.team_ai.targeting_priority.turret = value
 		end
 
 		local menu_id_team_ai_targeting = "eclipse_menu_team_ai_targeting"
 		MenuHelper:NewMenu(menu_id_team_ai_targeting)
 
-		MenuHelper:AddSlider({
+		MenuHelper:AddMultipleChoice({
 			id = "team_ai_targeting_base_priority",
 			title = "eclipse_menu_team_ai_targeting_base_priority",
 			desc = "eclipse_menu_team_ai_targeting_base_priority_desc",
-			callback = "eclipse_team_ai_targeting_base_priority_edit",
-			value = Eclipse.settings.targeting_priority_mul.base_priority,
+			callback = "eclipse_team_ai_targeting_base_priority_setting",
+			items = {
+				"eclipse_menu_team_ai_targeting_weapon_stats",
+				"eclipse_menu_team_ai_targeting_distance",
+				"eclipse_menu_team_ai_targeting_vanilla",
+			},
+			value = Eclipse.settings.team_ai.base_priority,
 			menu_id = menu_id_team_ai_targeting,
-			is_percentage = false,
-			show_value = true,
-			min = 0,
-			max = 5,
-			step = 0.25,
-			display_precision = 2,
 			priority = 100,
 		})
 
@@ -537,7 +618,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_player_aim",
 			desc = "eclipse_menu_team_ai_targeting_player_aim_desc",
 			callback = "eclipse_team_ai_targeting_player_aim_edit",
-			value = Eclipse.settings.targeting_priority_mul.player_aim,
+			value = Eclipse.settings.team_ai.targeting_priority.player_aim,
 			menu_id = menu_id_team_ai_targeting,
 			is_percentage = false,
 			show_value = true,
@@ -553,7 +634,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_critical",
 			desc = "eclipse_menu_team_ai_targeting_critical_desc",
 			callback = "eclipse_team_ai_targeting_critical_edit",
-			value = Eclipse.settings.targeting_priority_mul.critical,
+			value = Eclipse.settings.team_ai.targeting_priority.critical,
 			menu_id = menu_id_team_ai_targeting,
 			is_percentage = false,
 			show_value = true,
@@ -569,7 +650,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_marked",
 			desc = "eclipse_menu_team_ai_targeting_marked_desc",
 			callback = "eclipse_team_ai_targeting_marked_edit",
-			value = Eclipse.settings.targeting_priority_mul.marked,
+			value = Eclipse.settings.team_ai.targeting_priority.marked,
 			menu_id = menu_id_team_ai_targeting,
 			is_percentage = false,
 			show_value = true,
@@ -585,7 +666,23 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_domination",
 			desc = "eclipse_menu_team_ai_targeting_domination_desc",
 			callback = "eclipse_team_ai_targeting_domination_edit",
-			value = Eclipse.settings.targeting_priority_mul.domination,
+			value = Eclipse.settings.team_ai.targeting_priority.domination,
+			menu_id = menu_id_team_ai_targeting,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 5,
+			step = 0.25,
+			display_precision = 2,
+			priority = 100,
+		})
+		
+		MenuHelper:AddSlider({
+			id = "team_ai_targeting_defend",
+			title = "eclipse_menu_team_ai_targeting_defend",
+			desc = "eclipse_menu_team_ai_targeting_defend_desc",
+			callback = "eclipse_team_ai_targeting_defend_edit",
+			value = Eclipse.settings.team_ai.targeting_priority.defend,
 			menu_id = menu_id_team_ai_targeting,
 			is_percentage = false,
 			show_value = true,
@@ -601,7 +698,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_turret",
 			desc = "eclipse_menu_team_ai_targeting_turret_desc",
 			callback = "eclipse_team_ai_targeting_turret_edit",
-			value = Eclipse.settings.targeting_priority_mul.turret,
+			value = Eclipse.settings.team_ai.targeting_priority.turret,
 			menu_id = menu_id_team_ai_targeting,
 			is_percentage = false,
 			show_value = true,
@@ -611,107 +708,68 @@ if not Eclipse then
 			display_precision = 2,
 			priority = 100,
 		})
-
-		MenuHelper:AddSlider({
-			id = "defend_targeting_priority_mul_base_priority",
-			title = "eclipse_menu_defend_targeting_priority_mul_base_priority",
-			desc = "eclipse_menu_defend_targeting_priority_mul_base_priority_desc",
-			callback = "eclipse_defend_targeting_priority_mul_base_priority_edit",
-			value = Eclipse.settings.defend_targeting_priority_mul.base_priority,
-			menu_id = menu_id_team_ai_targeting,
-			is_percentage = false,
-			show_value = true,
-			min = 0,
-			max = 5,
-			step = 0.25,
-			display_precision = 2,
-			priority = 100,
-		})
-
-		MenuHelper:AddSlider({
-			id = "defend_targeting_priority_mul_player_interacting",
-			title = "eclipse_menu_defend_targeting_priority_mul_player_interacting",
-			desc = "eclipse_menu_defend_targeting_priority_mul_player_interacting_desc",
-			callback = "eclipse_defend_targeting_priority_mul_player_interacting_edit",
-			value = Eclipse.settings.defend_targeting_priority_mul.player_interacting,
-			menu_id = menu_id_team_ai_targeting,
-			is_percentage = false,
-			show_value = true,
-			min = 0,
-			max = 5,
-			step = 0.25,
-			display_precision = 2,
-			priority = 100,
-		})
-
-		MenuHelper:AddDivider({
-			id = "divider_3",
-			size = 20,
-			menu_id = menu_id_team_ai_targeting,
-			priority = 1,
-		})
-
+		
 		nodes[menu_id_team_ai_targeting] = MenuHelper:BuildMenu(menu_id_team_ai_targeting, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes[menu_id_team_ai], menu_id_team_ai_targeting, "eclipse_menu_team_ai_targeting", "eclipse_menu_team_ai_targeting_desc")
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_spooc_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.spooc = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.spooc = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_medic_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.medic = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.medic = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_taser_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.taser = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.taser = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_sniper_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.sniper = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.sniper = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_tank_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.tank = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.tank = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_shield_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.shield = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.shield = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_shield_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.city_shield = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.city_shield = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_sniper_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.city_sniper = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.city_sniper = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_city_tank_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.city_tank = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.city_tank = value
 		end
 
 		function MenuCallbackHandler:eclipse_team_ai_targeting_enemies_tank_medic_edit(item)
 			local value = item:value()
 
-			Eclipse.settings.targeting_priority_mul.enemies.tank_medic = value
+			Eclipse.settings.team_ai.targeting_priority.enemies.tank_medic = value
 		end
 
 		local menu_id_team_ai_targeting_enemies = "eclipse_menu_team_ai_targeting_enemies"
@@ -722,7 +780,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_spooc",
 			desc = "eclipse_menu_team_ai_targeting_enemies_spooc_desc",
 			callback = "eclipse_team_ai_targeting_enemies_spooc_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.spooc,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.spooc,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -738,7 +796,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_medic",
 			desc = "eclipse_menu_team_ai_targeting_enemies_medic_desc",
 			callback = "eclipse_team_ai_targeting_enemies_medic_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.medic,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.medic,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -754,7 +812,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_taser",
 			desc = "eclipse_menu_team_ai_targeting_enemies_taser_desc",
 			callback = "eclipse_team_ai_targeting_enemies_taser_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.taser,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.taser,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -770,7 +828,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_sniper",
 			desc = "eclipse_menu_team_ai_targeting_enemies_sniper_desc",
 			callback = "eclipse_team_ai_targeting_enemies_sniper_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.sniper,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.sniper,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -786,7 +844,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_tank",
 			desc = "eclipse_menu_team_ai_targeting_enemies_tank_desc",
 			callback = "eclipse_team_ai_targeting_enemies_tank_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.tank,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.tank,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -802,7 +860,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_shield",
 			desc = "eclipse_menu_team_ai_targeting_enemies_shield_desc",
 			callback = "eclipse_team_ai_targeting_enemies_shield_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.shield,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.shield,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -818,7 +876,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_city_shield",
 			desc = "eclipse_menu_team_ai_targeting_enemies_city_shield_desc",
 			callback = "eclipse_team_ai_targeting_enemies_city_shield_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.city_shield,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.city_shield,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -834,7 +892,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_city_sniper",
 			desc = "eclipse_menu_team_ai_targeting_enemies_city_sniper_desc",
 			callback = "eclipse_team_ai_targeting_enemies_city_sniper_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.city_sniper,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.city_sniper,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -850,7 +908,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_city_tank",
 			desc = "eclipse_menu_team_ai_targeting_enemies_city_tank_desc",
 			callback = "eclipse_team_ai_targeting_enemies_city_tank_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.city_tank,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.city_tank,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -866,7 +924,7 @@ if not Eclipse then
 			title = "eclipse_menu_team_ai_targeting_enemies_tank_medic",
 			desc = "eclipse_menu_team_ai_targeting_enemies_tank_medic_desc",
 			callback = "eclipse_team_ai_targeting_enemies_tank_medic_edit",
-			value = Eclipse.settings.targeting_priority_mul.enemies.tank_medic,
+			value = Eclipse.settings.team_ai.targeting_priority.enemies.tank_medic,
 			menu_id = menu_id_team_ai_targeting_enemies,
 			is_percentage = false,
 			show_value = true,
@@ -899,16 +957,6 @@ if not Eclipse then
 			merge(Eclipse.settings, data)
 		end
 	end
-
-	--[[ Load Improved Gun Echo soundbanks if the setting is enabled
-	local echo_load_group = Eclipse.settings.improved_gun_echo and "eclipse_gun_echo_" .. tostring(Eclipse.settings.improved_gun_echo)
-
-	if echo_load_group then
-		ModInstance.supermod:GetAssetLoader():LoadAssetGroup(echo_load_group)
-
-		Eclipse:log("Successfully loaded" .. echo_load_group)
-	end
-	]]
 
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function()

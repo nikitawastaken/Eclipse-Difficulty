@@ -933,6 +933,13 @@ function GroupAIStateBase:is_ai_trade_possible()
 	return false
 end
 
+local upd_team_AI_distance_original = GroupAIStateBase.upd_team_AI_distance
+function GroupAIStateBase:upd_team_AI_distance(...)
+	if not Eclipse.settings.hold_position and Network:is_server() then
+		return upd_team_AI_distance_original(self, ...)
+	end
+end
+
 -- Overhaul hiding Cloaker task
 -- Make it less prone to spamming Cloakers (tweakdata delay is applied on spawn, not when junk groups are found)
 -- Add a tweakdata limit on the number of hiding Cloaker groups
@@ -1591,7 +1598,7 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "add_special_objective_
 end)
 
 Hooks:PreHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub", function(self, unit)
-	Eclipse.utils.team_ai_unregister_unit(unit)
+	Eclipse.utils.ub_unregister_unit(unit)
 end)
 
 -- Make bots return to their previous objective

@@ -12,7 +12,6 @@ local tmp_vec2 = Vector3()
 local weighted_selector = Eclipse.utils.weighted_selector
 local get_random_table_value_float = Eclipse.utils.get_random_table_value_float
 
--- Make balance multiplier changes in this file to avoid Useful Bots overwriting it
 -- Criminal status no longer influences balance multipliers
 -- Team AI contribute less towards spawn limits and spawn rates
 function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai_weight)

@@ -193,6 +193,12 @@ end
 local tmp_vec = Vector3()
 local _get_priority_attention_original = TeamAILogicIdle._get_priority_attention
 function TeamAILogicIdle._get_priority_attention(data, attention_objects, reaction_func, ...)
+	local targeting_priority = Eclipse.settings.team_ai.targeting_priority
+	if targeting_priority.base_priority > 2 then
+		local target, slot, reaction = _get_priority_attention_original(data, attention_objects, reaction_func, ...)
+		return target, (slot or 30), reaction
+	end
+	
 	reaction_func = reaction_func or TeamAILogicBase._chk_reaction_to_attention_object
 
 	local best_target, best_target_priority, best_target_reaction = nil, 0, nil
@@ -255,8 +261,12 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 				-- use the dmg multiplier of the given distance as priority
 				local valid_target = false
 				local target_priority
-
-				target_priority = math.max(0, 1 - distance / 3000)
+				if targeting_priority.base_priority == 1 and w_usage then
+					local falloff_data = get_shoot_falloff(nil, distance, w_usage.FALLOFF)
+					target_priority = (falloff_data.dmg_mul / w_usage.FALLOFF[1].dmg_mul) * falloff_data.acc[2]
+				else
+					target_priority = math.max(0, 1 - distance / 3000)
+				end
 
 				-- fine tune target priority
 				if att_unit:in_slot(data.enemy_slotmask) and not is_tied and attention_data.verified then
@@ -265,7 +275,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					local is_being_intimdated = logic_data.surrender_window and logic_data.surrender_window.window_expire_t > data.t - 1
 					local marked_contour = att_unit:contour() and att_unit:contour():find_id_match("^mark_enemy")
 					local marked_by_player = marked_contour and (marked_contour ~= "mark_enemy" or not been_marked)
-					local targeting_priority_mul = tweak_data.team_ai.targeting_priority_mul
+					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified and (logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting() or logic_data.attention_obj.unit:movement()._interaction_tweak)
 
 					-- check for reaction changes
 					if should_intimidate then
@@ -277,41 +287,14 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					end
 
 					-- get target priority multipliers
-					if should_intimidate then
-						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.domination or 1)
-					end
+					target_priority = target_priority * (should_intimidate and targeting_priority.domination or 1)
+					target_priority = target_priority * (high_priority and targeting_priority.critical or 1)
+					target_priority = target_priority * (marked_by_player and targeting_priority.marked or 1)
+					target_priority = target_priority * (att_base.sentry_gun and targeting_priority.turret or 1)
+					target_priority = target_priority * (attacking_player and targeting_priority.defend or 1)
 
-					if high_priority then
-						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.critical or 1)
-					end
-
-					-- increase priority of enemies marked by the player
-					if marked_by_player then
-						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.marked or 1)
-					end
-
-					-- decrease priority of turrets
-					if att_base.sentry_gun then
-						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.turret or 1)
-					end
-
-					-- increase priority of special enemies
 					if att_tweak.team_ai_targeting_category then
-						target_priority = target_priority * (targeting_priority_mul and targeting_priority_mul.enemies and targeting_priority_mul.enemies[att_tweak.team_ai_targeting_category] or 1)
-					end
-
-					local attacking_player = logic_data.attention_obj and alive(logic_data.attention_obj.unit) and logic_data.attention_obj.is_human_player and logic_data.attention_obj.verified
-					local defend_targeting_priority_mul = tweak_data.team_ai.defend_targeting_priority_mul
-
-					if attacking_player then
-						target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.base_priority or 1)
-
-						if
-							logic_data.attention_obj.is_local_player and logic_data.attention_obj.unit:movement():current_state():_interacting()
-							or logic_data.attention_obj.unit:movement()._interaction_tweak
-						then
-							target_priority = target_priority * (defend_targeting_priority_mul and defend_targeting_priority_mul.player_interacting or 1)
-						end
+						target_priority = target_priority * (targeting_priority.enemies and targeting_priority.enemies[att_tweak.team_ai_targeting_category] or 1)
 					end
 
 					-- if we have a revive objective and target priority isn't high, ignore the enemy
@@ -339,8 +322,7 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 						end
 
 						-- prefer shooting enemies the player is not aiming at
-						local player_aim_target_priority = targeting_priority_mul and targeting_priority_mul.player_aim or 1
-						if follow_head_pos then
+						if follow_head_pos and targeting_priority.player_aim ~= 1 then
 							local att_head_pos = att_movement:m_head_pos()
 							if not World:raycast("ray", follow_head_pos, att_head_pos, "slot_mask", data.visibility_slotmask, "ray_type", "ai_vision", "report") then
 								mvector3.direction(tmp_vec, follow_head_pos, att_head_pos)
@@ -351,7 +333,6 @@ function TeamAILogicIdle._get_priority_attention(data, attention_objects, reacti
 					end
 				elseif (has_alerted or has_damaged) and not_assisting and distance < 1500 and not invulnerable or high_priority then
 					valid_target = true
-					reaction = math.min(reaction, AIAttentionObject.REACT_AIM)
 					target_priority = target_priority * 0.01
 				end
 
@@ -389,10 +370,15 @@ function TeamAILogicIdle.on_long_dis_interacted(data, other_unit, secondary, ...
 	end
 
 	if secondary then
-		movement:set_should_stay(true, data.m_pos)
-
+		if Eclipse.settings.team_ai.stop_at_player then
+			local tracker = other_unit:movement():nav_tracker()
+			movement:set_should_stay(true, tracker:lost() and tracker:field_position() or tracker:position())
+		else
+			movement:set_should_stay(true, data.m_pos)
+		end
 		return
 	end
+	
 	on_long_dis_interacted_original(data, other_unit, secondary, ...)
 
 	local objective_type = data.objective and data.objective.type
@@ -482,26 +468,28 @@ function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
 		return true
 	end
 
-	if not data.is_team_ai then
+	local follow_behavior, max_dis_xy, max_dis_z = Eclipse.utils.ub_get_follow_behavior()
+	if follow_behavior == 1 or not data.is_team_ai then
 		return _check_should_relocate_original(data, my_data, objective, ...)
 	end
 
-	local max_allowed_dis_xy = 500
-	local max_allowed_dis_z = 250
-
 	local follow_movement = objective.follow_unit:movement()
 	if follow_movement:nav_tracker():nav_segment() == data.unit:movement():nav_tracker():nav_segment() then
-		max_allowed_dis_xy = max_allowed_dis_xy * 2
+		max_dis_xy = max_dis_xy * 2
 	end
-	if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
-		max_allowed_dis_xy = max_allowed_dis_xy / 2
+
+	if not my_data.next_follow_vis_check or my_data.next_follow_vis_check < data.t then
+		my_data.next_follow_vis_check = data.t + 1
+		if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
+			max_dis_xy = max_dis_xy / 2
+		end
 	end
 
 	local dir = follow_movement:m_newest_pos() - data.m_pos
-	if math.abs(dir.z) > max_allowed_dis_z then
+	if math.abs(dir.z) > max_dis_z then
 		return true
 	end
 
 	mvector3.set_z(dir, 0)
-	return mvector3.length(dir) > max_allowed_dis_xy
+	return mvector3.length(dir) > max_dis_xy
 end

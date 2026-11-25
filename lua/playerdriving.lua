@@ -38,11 +38,13 @@ function PlayerDriving:enter(...)
 	local should_stay = {}
 
 	-- Save should stay state
-	for _, ai in pairs(managers.groupai:state():all_AI_criminals()) do
-		local movement = ai.unit:movement()
-		if movement and movement._should_stay then
-			table.insert(should_stay, movement)
-			movement._should_stay = false
+	if Eclipse.settings.hold_position then
+		for _, ai in pairs(managers.groupai:state():all_AI_criminals()) do
+			local movement = ai.unit:movement()
+			if movement and movement._should_stay then
+				table.insert(should_stay, movement)
+				movement._should_stay = false
+			end
 		end
 	end
 

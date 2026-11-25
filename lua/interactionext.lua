@@ -422,9 +422,17 @@ Hooks:PreHook(ReviveInteractionExt, "_at_interact_interupt", "_at_interact_inter
 end)
 
 Hooks:PreHook(ReviveInteractionExt, "remove_interact", "remove_interact_ub", function(self)
-	Eclipse.utils.team_ai_stop_assist_objective(self._unit)
+	Eclipse.utils.ub_stop_assist_objective(self._unit)
 	self._reviving_unit = nil
 	self._block_revive_SO = nil
+end)
+
+Hooks:PreHook(ReviveInteractionExt, "set_active", "set_active_ub", function(self, active)
+	if not active then
+		Eclipse.utils.ub_stop_assist_objective(self._unit)
+		self._reviving_unit = nil
+		self._block_revive_SO = nil
+	end
 end)
 
 Hooks:PostHook(ReviveInteractionExt, "set_waypoint_paused", "set_waypoint_paused_ub", function(self, paused)
@@ -435,23 +443,8 @@ Hooks:PostHook(ReviveInteractionExt, "set_waypoint_paused", "set_waypoint_paused
 		return
 	end
 
-	local reviving_bot = Eclipse.utils.team_ai_get_reviving_unit(self._unit)
-	if not reviving_bot or self._reviving_unit == reviving_bot then
-		return
+	local reviving_bot = Eclipse.utils.ub_get_reviving_bot(self._unit)
+	if reviving_bot and self._reviving_unit ~= reviving_bot then
+		Eclipse.utils.ub_stop_revive_objective(reviving_bot, self._unit)
 	end
-
-	local internal_data = reviving_bot:brain()._logic_data.internal_data
-	local revive_complete_clbk_id = internal_data and internal_data.revive_complete_clbk_id
-	local revive_complete_t = revive_complete_clbk_id and managers.enemy:get_delayed_clbk_exec_t(revive_complete_clbk_id)
-	if revive_complete_t and revive_complete_t - TimerManager:game():time() < 2 then
-		return
-	end
-
-	reviving_bot:brain():set_objective(nil)
-	reviving_bot:movement():action_request({
-		body_part = 4,
-		type = "stand",
-	})
-
-	reviving_bot:brain():set_objective(Eclipse.utils.team_ai_get_assist_objective(self._unit, reviving_bot))
 end)

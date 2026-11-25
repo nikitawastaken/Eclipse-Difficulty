@@ -34,6 +34,6 @@ local sabotage_actions = {
 Hooks:PostHook(CopActionAct, "init", "eclipse_init", function(self)
 	if sabotage_actions[self._action_desc.variant] then
 		self._is_sabotaging_action = true
-		Eclipse.utils.team_ai_force_attention(self._unit)
+		Eclipse.utils.ub_force_attention(self._unit)
 	end
 end)
