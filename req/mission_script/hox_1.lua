@@ -86,11 +86,9 @@ return {
 			on_entered_regroup = 0,
 		},
 	},
-	-- hide choppers on startup
 	-- open swat van doors for spawns
 	[100018] = {
 		on_executed = {
-			{ id = 400040, delay = 0 },
 			{ id = 400208, delay = 0 },
 		},
 	},

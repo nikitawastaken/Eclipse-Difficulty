@@ -28,6 +28,12 @@ local exclude_cop_agents_shields_dozers = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 return {
 	-- restore birds event
 	[100092] = {
@@ -70,6 +76,8 @@ return {
 	[103153] = disabled,
 	[103154] = disabled,
 	[103157] = disabled,
+	-- disable vanilla start_assault trigger for hiding cloakers
+	[100236] = disabled,
 	-- restore alert trigger from gunfire or explosions (which result the heist going loud)
 	[103293] = enabled,
 	-- Drop units from swat van
@@ -135,4 +143,12 @@ return {
 	[103339] = biker,
 	-- spawn group tweaks
 	[400007] = scripted_swat_van_spawn,
+	[500009] = cloaker_spawn,
+	[500010] = cloaker_spawn,
+	[500011] = cloaker_spawn,
+	[500012] = cloaker_spawn,
+	[500013] = cloaker_spawn,
+	[500014] = cloaker_spawn,
+	[500015] = cloaker_spawn,
+	[500016] = cloaker_spawn,
 }

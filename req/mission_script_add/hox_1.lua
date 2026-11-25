@@ -761,15 +761,6 @@ local optsSWATChopper_hide_4 = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 0 },
 	},
 }
-local optsSWATChopper_hide_startup = {
-	enabled = true,
-	trigger_list = {
-		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 0 },
-		{ id = 2, name = "run_sequence", notify_unit_id = 100001, notify_unit_sequence = "hidden", time = 0 },
-		{ id = 3, name = "run_sequence", notify_unit_id = 100002, notify_unit_sequence = "hidden", time = 0 },
-		{ id = 4, name = "run_sequence", notify_unit_id = 100003, notify_unit_sequence = "hidden", time = 0 },
-	},
-}
 local optsBesiegeDummy_Heli_1 = {
 	participate_to_group_ai = true,
 	enabled = true,
@@ -1098,7 +1089,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400032, "spawn_bulldozers", optsSpawnVanDozers),
 
 	-- SWAT choppers
-	Eclipse.mission_elements.gen_object_editor(400040, "swat_heli_sequence_startup", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_startup),
 	-- chopper 1
 	Eclipse.mission_elements.gen_dummy(400041, "swat_heli_1", Vector3(5644.503, -1639.059, -2020), Rotation(29, 0, 0), optsBesiegeDummy_Heli_1),
 	Eclipse.mission_elements.gen_dummy(400042, "swat_heli_2", Vector3(5647.503, -1748.731, -2020), Rotation(29, 0, 0), optsBesiegeDummy_Heli_1),

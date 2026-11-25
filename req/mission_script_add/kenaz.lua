@@ -118,13 +118,6 @@ local optsSWATChopper_hide_loop = {
 	},
 }
 
-local optsSWATChopper_hide_startup = {
-	enabled = true,
-	trigger_list = {
-		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "hidden", time = 0 },
-	},
-}
-
 local optsspawnswatchopper = {
 	on_executed = {
 		{ id = 400045, delay = 0 },
@@ -497,7 +490,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400041, "swat_heli_2", Vector3(-10, -2517, -147.500), Rotation(0, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_dummy(400042, "swat_heli_3", Vector3(-89, -2345, -147.500), Rotation(-180, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400043, "swat_heli_4", Vector3(-10, -2345, -147.500), Rotation(-180, 0, 0), optsSWAT_heli),
-	Eclipse.mission_elements.gen_object_editor(400044, "swat_heli_sequence_startup", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_hide_startup),
 	Eclipse.mission_elements.gen_object_editor(400045, "swat_heli_sequence_intro", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_intro),
 	Eclipse.mission_elements.gen_object_editor(400046, "swat_heli_sequence_deploy", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_deploy),
 	Eclipse.mission_elements.gen_object_editor(400047, "swat_heli_sequence_leave", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_leave),
