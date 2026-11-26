@@ -62,7 +62,7 @@ local M = {
 	"glowslop",
 	"glowingEnemies",
 	"Fullbright",
-	"fullbright"
+	"fullbright",
 }
 
 return table.list_to_set(M)
