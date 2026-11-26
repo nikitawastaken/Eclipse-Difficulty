@@ -462,7 +462,7 @@ function GroupAIStateBase:_post_megaphone_event(event)
 	sound_source:set_position(pos)
 	sound_source:post_event(mga_voice_line)
 
-	if self._is_server then
+	if Network:is_server() then
 		local event_id = self:get_sync_event_id(mga_voice_line)
 		if event_id then
 			managers.network:session():send_to_peers_synched("group_ai_event", event_id, 0)
