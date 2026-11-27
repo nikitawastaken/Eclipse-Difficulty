@@ -129,13 +129,6 @@ return {
 			},
 		},
 	},
-	[100457] = { -- Vault is open, call the Murkywater
-		values = {
-			callback = function()
-				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
-			end,
-		},
-	},
 	[100000] = {
 		on_executed = {
 			{ id = 400077, delay = 3 }, -- disable atrium snipers on startup
@@ -653,6 +646,11 @@ return {
 		},
 	},
 	[100457] = { -- Open_the_Vault (duh)
+		values = {
+			callback = function()
+				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1") -- Vault is open, call the Murkywater
+			end,
+		},
 		on_executed = {
 			{ id = 410008, delay = 0 },
 		},
