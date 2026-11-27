@@ -46,11 +46,6 @@ local sniper_so = {
 	},
 	so_access_filter = so_access.law,
 }
-local vent_navlink_interval = {
-	values = {
-		interval = 3,
-	},
-}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -77,55 +72,14 @@ return {
 	},
 	-- don't disable reception prefereds
 	[103326] = disabled, -- killReceptionPrefereds
-	-- decrease the interval of vent navlinks
-	[103194] = vent_navlink_interval,
-	[103195] = vent_navlink_interval,
-	[103198] = vent_navlink_interval,
-	[103199] = vent_navlink_interval,
-	[103202] = vent_navlink_interval,
-	[103203] = vent_navlink_interval,
-	[103206] = vent_navlink_interval,
-	[103207] = vent_navlink_interval,
-	[103210] = vent_navlink_interval,
-	[103211] = vent_navlink_interval,
-	[103238] = vent_navlink_interval,
-	[103239] = vent_navlink_interval,
-	[103233] = vent_navlink_interval,
-	[103235] = vent_navlink_interval,
-	[103267] = vent_navlink_interval,
-	[103268] = vent_navlink_interval,
-	[103217] = vent_navlink_interval,
-	[103218] = vent_navlink_interval,
-	[103231] = vent_navlink_interval,
-	[103077] = vent_navlink_interval,
-	[103161] = vent_navlink_interval,
-	[103162] = vent_navlink_interval,
-	[103165] = vent_navlink_interval,
-	[103166] = vent_navlink_interval,
-	[103168] = vent_navlink_interval,
-	[103170] = vent_navlink_interval,
-	[103172] = vent_navlink_interval,
-	[103175] = vent_navlink_interval,
-	[103178] = vent_navlink_interval,
-	[103179] = vent_navlink_interval,
-	[103153] = vent_navlink_interval,
-	[103154] = vent_navlink_interval,
-	[103150] = vent_navlink_interval,
-	[103151] = vent_navlink_interval,
-	[103145] = vent_navlink_interval,
-	[103146] = vent_navlink_interval,
 	-- add sniper access to SO navlinks
 	[103238] = sniper_so,
 	[103239] = sniper_so,
-	[103240] = sniper_so,
 	[103050] = sniper_so,
-	[103051] = sniper_so,
 	[103090] = sniper_so,
 	[103091] = sniper_so,
 	[103285] = sniper_so,
 	[103286] = sniper_so,
-	[103065] = sniper_so,
-	[103064] = sniper_so,
 	[103189] = sniper_so,
 	[103187] = sniper_so,
 	[103185] = sniper_so,
@@ -217,6 +171,7 @@ return {
 	[102631] = security_spawn,
 	[102629] = security_spawn,
 	[102630] = security_spawn,
+	[102624] = security_spawn,
 	[102625] = security_spawn,
 	[102628] = security_spawn,
 	[102626] = security_spawn,
@@ -285,6 +240,14 @@ return {
 	[103134] = vent_spawn,
 	[103113] = vent_spawn,
 	-- Disable scripted environment changes to prevent crashing on clients
-	[100348] = disabled,
-	[100640] = disabled,
+	[103469] = {
+		on_executed = {
+			{ id = 100348, remove = true },
+		},
+	},
+	[100347] = {
+		on_executed = {
+			{ id = 100640, remove = true },
+		},
+	},
 }
