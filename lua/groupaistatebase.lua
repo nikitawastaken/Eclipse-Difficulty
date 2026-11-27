@@ -1601,6 +1601,24 @@ Hooks:PreHook(GroupAIStateBase, "unregister_criminal", "unregister_criminal_ub",
 	Eclipse.utils.ub_unregister_unit(unit)
 end)
 
+---TODO: Remove after this gets fixed in vanilla
+---important_enemies is still checked by clients in _radio_chatter_clbk
+Hooks:PostHook(GroupAIStateBase, "register_criminal", "eclipse_register_criminal", function(self, unit)
+	if unit:base().sentry_gun then
+		return
+	end
+	-- not AI
+	if not unit:base()._tweak_table then
+		local u_key = unit:key()
+		local u_sighting = self._criminals[u_key]
+		u_sighting.important_enemies = {}
+
+		self._criminals[u_key] = u_sighting
+		self._player_criminals[u_key] = u_sighting
+		self._char_criminals[u_key] = u_sighting
+	end
+end)
+
 -- Make bots return to their previous objective
 local _determine_objective_for_criminal_AI_original = GroupAIStateBase._determine_objective_for_criminal_AI
 function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
