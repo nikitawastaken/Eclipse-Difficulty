@@ -13,7 +13,7 @@ function CopLogicAttack._upd_aim(data, my_data)
 	local verified = focus_enemy and focus_enemy.verified
 	local nearly_visible = focus_enemy and focus_enemy.nearly_visible
 
-	local aim, shoot, expected_pos = CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, nearly_visible)
+	local aim, shoot, expected_pos = CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy)
 
 	if aim or shoot then
 		if verified or nearly_visible then
@@ -55,48 +55,56 @@ function CopLogicAttack._upd_aim(data, my_data)
 end
 
 -- Helper function to reuse in other enemy logic _upd_aim functions
-function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, nearly_visible)
+function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy)
 	if not focus_enemy or focus_enemy.reaction < AIAttentionObject.REACT_AIM then
 		return
 	end
 
-	local advancing = my_data.advancing and not my_data.advancing:stopping()
-	local running = data.unit:anim_data().run or advancing and my_data.advancing:haste() == "run"
+	local verified = focus_enemy.verified
+	local nearly_visible = focus_enemy.nearly_visible
+	local criminal_record = focus_enemy.criminal_record
 	local verified_dt = focus_enemy.verified_t and data.t - focus_enemy.verified_t or math.huge
+	local react_shoot = focus_enemy.reaction >= AIAttentionObject.REACT_SHOOT
+
+	local anim = data.unit:anim_data()
+	local moving = anim.move
+	local running = anim.run
+	local pushing = data.group and data.group.objective and (data.group.objective.open_fire or data.group.objective.moving_in)
+	local move_mul = running and 0.5 or moving and 0.75 or 1
+
 	local weapon_range = my_data.weapon_range or { close = 750, optimal = 1500, far = 3000 }
 	local firing_range = running and weapon_range.close or weapon_range.far
-	local enemy_dis = focus_enemy.dis
-	local pushing = data.group and data.group.objective and (data.group.objective.open_fire or data.group.objective.moving_in)
+	local verified_range_dt = math.map_range(focus_enemy.dis, 0, firing_range, 6, 3)
+	local in_range = focus_enemy.dis < firing_range
 
-	local expected_pos
-	local aim = data.char_tweak.always_face_enemy or not advancing or pushing or verified_dt < math.map_range(enemy_dis, 0, firing_range, 6, 3) or not running and enemy_dis < firing_range
-	local shoot = aim and my_data.shooting and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction and verified_dt < (running and 2 or 4)
+	local aim = data.char_tweak.always_face_enemy or not moving or not running and in_range or pushing or verified_dt < verified_range_dt
+	local shoot = aim and react_shoot and my_data.firing and verified_dt < 4 * move_mul
 
 	if verified or nearly_visible then
-		if not shoot and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction then
+		if not shoot and react_shoot then
 			local suppression_t = data.unit:character_damage():last_suppression_t()
-			local suppression_dt = suppression_t and data.t - suppression_t
-			local assault_dt = focus_enemy.criminal_record and focus_enemy.criminal_record.assault_t and data.t - focus_enemy.criminal_record.assault_t
+			local suppression_dt = suppression_t and data.t - suppression_t or math.huge
+			local assault_dt = criminal_record and criminal_record.assault_t and data.t - criminal_record.assault_t or math.huge
 
-			-- selene: allow(if_same_then_else)
-			if suppression_dt and suppression_dt < 7 * (running and 0.5 or 1) * (verified and 1 or 0.5) then
+			if verified and in_range then
 				shoot = true
-			elseif verified and enemy_dis < firing_range then
+			elseif verified and assault_dt < 4 * move_mul then
 				shoot = true
-			elseif verified and assault_dt and assault_dt < (running and 2 or 4) then
+			elseif suppression_dt < 7 * move_mul * (verified and 1 or 0.5) then
 				shoot = true
-			elseif my_data.attitude == "engage" and my_data.firing and verified_dt < 4 then
+			elseif my_data.attitude == "engage" and verified_dt < 4 * move_mul then
 				shoot = true
 			end
 		end
 
-		aim = aim or shoot or enemy_dis < firing_range
-	else
-		if not shoot and focus_enemy.criminal_record then
-			expected_pos = focus_enemy.criminal_record.pos
-		else
-			expected_pos = focus_enemy.last_verified_pos or focus_enemy.verified_pos
-		end
+		aim = aim or shoot or in_range
+
+		return aim, shoot, nil
+	end
+
+	local expected_pos = not shoot and criminal_record and criminal_record.pos or focus_enemy.last_verified_pos
+	if not expected_pos or moving and verified_dt > 1 then
+		shoot = false
 	end
 
 	return aim, shoot, expected_pos

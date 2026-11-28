@@ -8,7 +8,7 @@ function TaserLogicAttack._upd_aim(data, my_data, _)
 	local verified = focus_enemy and focus_enemy.verified
 	local nearly_visible = focus_enemy and focus_enemy.nearly_visible
 
-	local aim, shoot, expected_pos = CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, nearly_visible)
+	local aim, shoot, expected_pos = CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy)
 	local tase = focus_enemy and focus_enemy.reaction == AIAttentionObject.REACT_SPECIAL_ATTACK
 
 	if aim or shoot or tase then
