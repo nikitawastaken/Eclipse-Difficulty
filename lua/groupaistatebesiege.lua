@@ -275,7 +275,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_upd_assault_task", function(self)
 			self._mga_said_start_assault = true
 			self:_post_megaphone_event("mga_generic_c")
 		end
-		
+
 		if task_spawn_allowance <= 0 then
 			task_data.phase = "fade"
 			task_data.phase_end_t = self._t + self._tweak_data.assault.fade_duration
@@ -293,11 +293,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_upd_assault_task", function(self)
 	elseif task_data.phase == "sustain" then
 		if not task_data.did_sustain_addend then
 			task_data.did_sustain_addend = true
-			if self._assault_number >= 2 then				
+			if self._assault_number >= 2 then
 				self:add_difficulty_addend_by_category("on_entered_sustain")
 			end
 		end
-		
+
 		task_spawn_allowance = managers.modifiers:modify_value("GroupAIStateBesiege:SustainSpawnAllowance", task_spawn_allowance, force_pool)
 		if task_spawn_allowance <= 0 then
 			task_data.phase = "fade"
@@ -314,7 +314,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_upd_assault_task", function(self)
 			local drama_pass = self._drama_data.amount < tweak_data.drama.assault_fade_end
 			local min_enemies_engaged = math.max(math.ceil(task_data.force * 0.35), 3)
 			local engagement_pass = self:_count_criminals_engaged_force(min_enemies_engaged) < min_enemies_engaged
-			
+
 			if task_data.phase_end_t - 8 < self._t and not task_data.said_retreat then
 				if drama_pass then
 					task_data.said_retreat = true
@@ -387,7 +387,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_upd_assault_task", function(self)
 					stance = "hos",
 					type = "assault_area",
 					area = spawn_group.area,
-					coarse_path = self:_coarse_path_from_area(spawn_group.area)
+					coarse_path = self:_coarse_path_from_area(spawn_group.area),
 				}, task_data)
 			end
 		end
@@ -1785,7 +1785,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 			return
 		end
 	end
-	
+
 	-- Say the recon group spawn voice line
 	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
 		group.said_moving_out = self:_chk_say_group(group, "recon_move_out_" .. table.random({ "a", "b", "c", "d" }))

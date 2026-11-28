@@ -377,7 +377,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_sniper = based_on(presets.weapon.eclipse_good)
-	presets.weapon.eclipse_sniper.is_sniper.aim_delay =  get_difficulty_specific_value({
+	presets.weapon.eclipse_sniper.is_sniper.aim_delay = get_difficulty_specific_value({
 		{ 1.2, 2.4 },
 		{ 0.9, 1.8 },
 		{ 0.6, 1.2 },
@@ -434,7 +434,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_medic = based_on(presets.weapon.eclipse_good, {
 		melee_dmg = 12,
 	})
-	
+
 	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
 
 	for usage, usage_data in pairs(presets.weapon.eclipse_medic) do
@@ -443,15 +443,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			for range, distance in pairs(usage_data.range) do
 				table.insert(distance_tbl, distance)
 			end
-			
+
 			local distance_max = math.max(unpack(distance_tbl))
-		
+
 			usage_data.range.close = distance_max * 0.6
 			usage_data.range.optimal = distance_max * 0.8
 			usage_data.range.far = distance_max * 1.2
 		end
 	end
-	
+
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
 		stance_acc_mul = nil_value,
 		range = { close = 300, optimal = 900, far = 1500 },
@@ -524,7 +524,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member = based_on(presets.weapon.eclipse_normal)
 
 	local team_ai_dmg = get_difficulty_specific_value({ 4, 4, 5, 5, 6 })
-	
+
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.RELOAD_SPEED = 1
 		v.melee_dmg = team_ai_dmg + 1
